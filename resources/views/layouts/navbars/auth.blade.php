@@ -6,7 +6,7 @@
             </div>
         </a>
         <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-            {{ __('Creative Tim') }}
+            {{ __('TMS') }}
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -17,7 +17,37 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'report_1' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'report_1') }}">
+                    <i class="nc-icon nc-vector"></i>
+                    <p>{{ __('Report 1') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'report_2' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'report_2') }}">
+                    <i class="nc-icon nc-vector"></i>
+                    <p>{{ __('Report 2') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'report_3' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'report_3') }}">
+                    <i class="nc-icon nc-vector"></i>
+                    <p>{{ __('Report 3') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'user_register' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'user_register') }}">
+                    <i class="nc-icon nc-badge"></i>
+                    <p>{{ __('User Register') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'student_record' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'student_record') }}">
+                    <i class="nc-icon nc-book-bookmark"></i>
+                    <p>{{ __('Student Record') }}</p>
+                </a>
+            </li>
+            {{-- <li class="{{ $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#laravelExamples">
                     <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i>
                     <p>
@@ -71,7 +101,7 @@
                     <i class="nc-icon nc-caps-small"></i>
                     <p>{{ __('Typography') }}</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- <li class="active-pro {{ $elementActive == 'upgrade' ? 'active' : '' }} bg-danger">
                 <a href="{{ route('page.index', 'upgrade') }}">
                     <i class="nc-icon nc-spaceship text-white"></i>

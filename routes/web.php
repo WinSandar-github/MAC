@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Adldap\Laravel\Facades\Adldap;
+use Adldap\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,32 +17,17 @@ use Adldap\Laravel\Facades\Adldap;
 |
 */
 
-Route::get('/test', 'UserController@index');
-
 Route::get('/', 'HomeController@index')->name('home');
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-Route::get('/ldap-search', function(Request $request) {
-    try {
-        $credentials = $request->only('username');
-
-        $username = $credentials['username'];
-
-        $ldapuser = Adldap::search()->where(env('LDAP_USER_ATTRIBUTE'), '=', $username . "")->first();
-
-        return response()->json($ldapuser);
-        
-    } catch (\Exception $e) {
-        return response()->json(["message" => $e->getMessage()], 200);
-    }
-});
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
+Auth::routes([
+    'reset' => false,
+    'verify' => false,
+    'register' => false,
+]);
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
@@ -53,6 +39,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
-
 
 

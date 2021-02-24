@@ -187,3 +187,7 @@
   outline: none;
   display: none;
 }
+
+.col-count{
+  font-weight: bold;
+}
