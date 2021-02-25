@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use Adldap\AdldapInterface;
+use Adldap\Laravel\Facades\Adldap;
 
 class UserController extends Controller
 {
@@ -14,8 +16,16 @@ class UserController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
-    public function index(User $model)
+    // public function index(User $model)
+    // {
+    //     return view('users.index', ['users' => $model->paginate(15)]);
+    // }
+
+    public function index()
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        //return response()->json(Adldap::search()->users()->get());
+        return view('users.index', [
+            'users' => $ldap->search()->users()->paginate(15)
+        ]);
     }
 }

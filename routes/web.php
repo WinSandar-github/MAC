@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Adldap\Laravel\Facades\Adldap;
+use Adldap\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,18 +17,17 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Auth::routes();
-
 Route::get('/', 'HomeController@index')->name('home');
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes([
+    'reset' => false,
+    'verify' => false,
+    'register' => false,
+]);
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
@@ -37,4 +39,5 @@ Route::group(['middleware' => 'auth'], function () {
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
+
 

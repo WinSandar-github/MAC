@@ -5686,7 +5686,7 @@ License - nucleoapp.com/license/
 }
 
 .card label {
-  font-size: 0.8571em;
+  font-size: 0.8579em;
   margin-bottom: 5px;
   color: #9A9A9A;
 }
@@ -6832,6 +6832,14 @@ License - nucleoapp.com/license/
   color: #EB5E28;
   -webkit-animation: hearthing 1s ease infinite;
           animation: hearthing 1s ease infinite; }
+
+.photo-adjust{
+  padding-right: 98px;
+}
+
+.btn-top{
+  margin-top: 2px;
+}
 
 @-webkit-keyframes hearthing {
   0% {
