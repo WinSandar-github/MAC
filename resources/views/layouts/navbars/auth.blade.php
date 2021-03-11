@@ -47,6 +47,12 @@
                     <p>{{ __('Student Record') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'miscellaneous' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'miscellaneous') }}">
+                    <i class="nc-icon nc-book-bookmark"></i>
+                    <p>{{ __('Miscellaneous') }}</p>
+                </a>
+            </li>
             {{-- <li class="{{ $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#laravelExamples">
                     <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i>
