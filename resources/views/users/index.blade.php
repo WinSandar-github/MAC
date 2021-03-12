@@ -122,7 +122,7 @@ The above copyright notice and this permission notice shall be included in all c
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     
-            <div class="wrapper">
+    <div class="wrapper">
 
                 <div class="sidebar" data-color="white" data-active-color="danger">
                     <div class="logo">
@@ -365,7 +365,8 @@ The above copyright notice and this permission notice shall be included in all c
         </div>
     </div>
 </footer>    </div>
-</div>        <div class="fixed-plugin">
+</div>        
+<div class="fixed-plugin">
     <div class="dropdown show-dropdown">
         <a href="#" data-toggle="dropdown">
             <i class="fa fa-cog fa-2x"> </i>
