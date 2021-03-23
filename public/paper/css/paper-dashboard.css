@@ -2501,7 +2501,7 @@ p.description {
 .text-primary,
 a.text-primary:focus,
 a.text-primary:hover {
-  color: #51cbce !important;
+  color: #0e0f0f !important;
 }
 
 .text-info,
@@ -4567,7 +4567,7 @@ License - nucleoapp.com/license/
 }
 
 .table>thead>tr>th {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   padding-bottom: 0;
   text-transform: uppercase;
@@ -4799,6 +4799,7 @@ License - nucleoapp.com/license/
   padding: 10px 8px;
   line-height: 30px;
   opacity: .7;
+  font-weight: 700;
 }
 
 .sidebar .nav li .nav>li>a,
@@ -5111,7 +5112,7 @@ License - nucleoapp.com/license/
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"] i,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active .sidebar-mini-icon,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active>a[data-toggle="collapse"]~div>ul>li.active>a {
-  color: #ef8157;
+  color: #57cbef;
   opacity: 1;
 }
 
@@ -5662,7 +5663,7 @@ License - nucleoapp.com/license/
 
 .card .image {
   overflow: hidden;
-  height: 200px;
+  /* height: 200px; */
   position: relative;
 }
 
@@ -5686,9 +5687,10 @@ License - nucleoapp.com/license/
 }
 
 .card label {
-  font-size: 0.8579em;
+  /* font-size: 0.8579em; */
+  font-size: 13.4px;
   margin-bottom: 5px;
-  color: #9A9A9A;
+  color: #1c1b1b;
 }
 
 .card .card-footer {
@@ -6841,6 +6843,37 @@ License - nucleoapp.com/license/
   margin-top: 2px;
 }
 
+.table-bordered td,
+.table-bordered tr th{
+  border: 1px solid black!important;
+}
+
+.uploadFile{
+  margin-left: -15px!important;
+}
+
+.change-font-size{
+  font-size: 14px!important;
+}
+
+.less-font-weight{
+  font-weight: 300!important;
+  font-size: 14px!important;
+}
+
+.upload-profile{
+  padding-left: 16px;
+  padding-right: 27px;
+}
+
+.fa-size{
+  font-size: 18px!important;
+}
+
+/* .border-color{
+  border: 1px solid #dee2e6!important;
+} */
+
 @-webkit-keyframes hearthing {
   0% {
     -webkit-transform: scale(0.75);
@@ -6860,5 +6893,10 @@ License - nucleoapp.com/license/
   100% {
     -webkit-transform: scale(0.75);
             transform: scale(0.75); } }
+
+.btn-plus{
+    margin-left: -9px;
+    margin-top: 6px;
+}
 
 /*# sourceMappingURL=dashboard-free.css.map */

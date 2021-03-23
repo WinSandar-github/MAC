@@ -29,7 +29,6 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- Canonical SEO -->
     <link rel="canonical" href="https://www.creative-tim.com/product/paper-dashboard-laravel" />
 
-
     <!--  Social tags      -->
     <meta name="keywords" content="design system, dashboard, bootstrap 4 dashboard, bootstrap 4 design, bootstrap 4 system, bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, paper, paper dashboard, creative tim, updivision, html dashboard, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap dashboard, responsive dashboard, laravel, laravel php, laravel php framework, free laravel admin template, free laravel admin, free laravel admin template + Front End + CRUD, crud laravel php, crud laravel, laravel backend admin dashboard">
     <meta name="description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up.">
@@ -60,7 +59,7 @@ The above copyright notice and this permission notice shall be included in all c
     <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/209/opt_pd_laravel_thumbnail.jpg"/>
     <meta property="og:description" content="Start your development with a Bootstrap 4 Admin Dashboard built for Laravel Framework 5.5 and Up." />
     <meta property="og:site_name" content="Creative Tim" />
-    
+
     <title>
         {{ __('TMS') }}
     </title>
@@ -76,11 +75,11 @@ The above copyright notice and this permission notice shall be included in all c
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet" />
 
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    {{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NKDMSK6');</script>
+    })(window,document,'script','dataLayer','GTM-NKDMSK6');</script> --}}
     <!-- End Google Tag Manager -->
 </head>
 
@@ -89,12 +88,12 @@ The above copyright notice and this permission notice shall be included in all c
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6"
         height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    
+
     @auth()
         @include('layouts.page_templates.auth')
         {{-- @include('layouts.navbars.fixed-plugin') --}}
     @endauth
-    
+
     @guest
         @include('layouts.page_templates.guest')
     @endguest
@@ -117,10 +116,11 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- Sharrre libray -->
     <script src="../assets/demo/jquery.sharrre.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
+    <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
+
     @stack('scripts')
 
-    @include('layouts.navbars.fixed-plugin-js')
+    {{-- @include('layouts.navbars.fixed-plugin-js') --}}
 </body>
 
 </html>
