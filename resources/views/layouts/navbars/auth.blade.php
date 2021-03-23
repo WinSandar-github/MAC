@@ -5,7 +5,7 @@
                 <img src="{{ asset('paper') }}/img/logo-small.png">
             </div>
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+        <a href="{{ route('page.index', 'dashboard') }}" class="simple-text logo-normal">
             {{ __('TMS') }}
         </a>
     </div>
@@ -38,15 +38,39 @@
             <li class="{{ $elementActive == 'user_register' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'user_register') }}">
                     <i class="nc-icon nc-badge"></i>
-                    <p>{{ __('User Register') }}</p>
+                    <p>{{ __('သင်တန်း ၁ မှ ၄ ထိ စာရင်းသွင်းရန်') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'student_record' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'student_record') }}">
                     <i class="nc-icon nc-book-bookmark"></i>
-                    <p>{{ __('Student Record') }}</p>
+                    <p>{{ __('သင်တန်း ၅ မှ ၈ ထိ စာရင်းသွင်းရန်') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'registered_user_list' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'registered_user_list') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('စာရင်းသွင်းထားသောစာရင်း') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'batch' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'batch') }}">
+                    <i class="nc-icon nc-air-baloon"></i>
+                    <p>{{ __('သင်တန်းအပတ်စဥ်') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'training' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'training') }}">
+                    <i class="nc-icon nc-air-baloon"></i>
+                    <p>{{ __('သင်ကြားပေးသောသင်တန်းများ') }}</p>
+                </a>
+            </li>
+            {{-- <li class="{{ $elementActive == 'icons' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'icons') }}">
+                    <i class="nc-icon nc-diamond"></i>
+                    <p>{{ __('Icons') }}</p>
+                </a>
+            </li> --}}
             {{-- <li class="{{ $elementActive == 'user' || $elementActive == 'profile' ? 'active' : '' }}">
                 <a data-toggle="collapse" aria-expanded="true" href="#laravelExamples">
                     <i class="nc-icon"><img src="{{ asset('paper/img/laravel.svg') }}"></i>
