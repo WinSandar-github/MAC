@@ -98,6 +98,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('training', 'TrainingClassController');
 	Route::post('training_update/{id}', 'TrainingClassController@update')->name('training_update.update');
 	Route::get('training_delete/{id}', 'TrainingClassController@delete')->name('training_delete.delete');
+    Route::resource('training_type', 'TrainingTypeController');
 });
 
 Route::group(['middleware' => 'auth'], function () {

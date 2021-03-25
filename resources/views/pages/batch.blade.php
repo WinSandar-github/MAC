@@ -72,24 +72,42 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>စဥ်</th>
-                                        <th>သင်တန်းအပတ်စဥ်ခုနှစ်</th>
-                                        <th style="width: 600px;">ဖော်ပြချက်</th>
-                                        <th>Action</th>
+                                        <th rowspan="2">စဥ်</th>
+                                        <th rowspan="2">သင်တန်း</th>
+                                        <th rowspan="2">သင်တန်းအပတ်စဥ်အမည်</th>
+                                        <th rowspan="2" style="width: 180px">အတန်း</th>
+                                        <th rowspan="1" style="width: 300px" colspan="2">ရက်စွဲ</th>
+                                        <th rowspan="2" style="width: 200px">Action</th>
+                                    </tr>
+                                    <tr>
+                                        <th>မှ</th>
+                                        <th>သို့</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @php
                                         $no=0;
                                     @endphp
-                                    @foreach($batches as $batch)
+                                @foreach($batches as $batch)
                                         <tr>
-                                            <td>{{ ++$no }}</td>
-                                            <td>{{ $batch['year'] }}</td>
-                                            <td>{{ $batch['description'] }}</td>
-                                            <td>
+                                            <td rowspan="1">{{ ++$no }}</td>
+                                            <td rowspan="1">{{ $batch->training_classes->training_name }}</td>
+                                            <td rowspan="1">{{ $batch['batch_name'] }}</td>
+                                            <td rowspan="1">
+                                                @foreach (json_decode($batch->class_id) as $class)
+                                                   @foreach ($tmsclasses as $tmsclass)
+                                                       @if ($tmsclass->id == $class)
+                                                           <div>{{ $tmsclass->class_name }}</div>
+                                                       @endif
+                                                   @endforeach
+                                                @endforeach    
+                                            </td>
+                                            <td rowspan="1">{{ $batch->from }}</td>
+                                            <td rowspan="1">{{ $batch->to }}</td>
+                                            <td rowspan="1">
                                                 <a href="{{ route('batch.edit',$batch['id']) }}" class="btn btn-success"><i class="fa fa-pencil-square-o fa-size" aria-hidden="true"></i></a>
                                                 <a href="{{ route('batch_delete.destroy',$batch['id']) }}" class="btn btn-danger"><i class="fa fa-trash fa-size" aria-hidden="true"></i></a>
+                                                <a href="" class="btn btn-primary mt-2">Publish</a>
                                             </td>
                                         </tr>
                                     @endforeach

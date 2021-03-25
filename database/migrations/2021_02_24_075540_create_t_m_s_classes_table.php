@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTrainingClassesTable extends Migration
+class CreateTMSClassesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,11 @@ class CreateTrainingClassesTable extends Migration
      */
     public function up()
     {
-        Schema::create('training_classes', function (Blueprint $table) {
+        Schema::create('t_m_s_classes', function (Blueprint $table) {
             $table->id();
-            $table->string('training_name');
-            $table->string('training_name_eng')->nullable();
-            $table->string('part');
+            $table->string('class_name');
             $table->timestamps();
         });
-
-        Artisan::call('db:seed',[
-            '--class' => TrainingClassSeeder::class
-        ]);
     }
 
     /**
@@ -33,6 +27,6 @@ class CreateTrainingClassesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('training_classes');
+        Schema::dropIfExists('t_m_s_classes');
     }
 }
