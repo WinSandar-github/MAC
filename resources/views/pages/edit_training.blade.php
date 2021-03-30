@@ -25,19 +25,10 @@
                             </div>
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
-                                <label class="col-md-2 col-form-label">{{ __('မှ') }}</label>
+                                <label class="col-md-2 col-form-label">{{ __('သင်ကြားပေးသောသင်တန်းအမည်(Englishဘာသာဖြင့်)') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <input type="date" name="start_date" class="form-control" placeholder="မှ" value="{{ $training_class['start_date'] }}" required>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
-                                <label class="col-md-2 col-form-label">{{ __('ထိ') }}</label>
-                                <div class="col-md-8">
-                                    <div class="form-group">
-                                        <input type="date" name="end_date" class="form-control" placeholder="ထိ" value="{{ $training_class['end_date'] }}" required>
+                                        <input type="text" name="training_name_eng" class="form-control" placeholder="သင်ကြားပေးသောသင်တန်းအမည်(Englishဘာသာဖြင့်)" value="{{ $training_class['training_name_eng'] }}" required>
                                     </div>
                                 </div>
                             </div>

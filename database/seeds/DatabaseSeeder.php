@@ -14,5 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([UsersTableSeeder::class]);
         $this->call([TrainingClassSeeder::class]);
         $this->call([RegionSeeder::class]);
+        $this->call([Training_typeSeeder::class]);
+        $this->call([TMSClassSeeder::class]);
     }
 }
