@@ -20,12 +20,8 @@
                                     <tr>
                                         <th rowspan="2">စဥ်</th>
                                         <th rowspan="2" style="width: 460px;">သင်တန်းအမည်</th>
-                                        <th colspan="2">အချိန်</th>
+                                        <th rowspan="2" style="width: 460px;">သင်တန်းအမည်(English ဘာသာဖြင့်)</th>
                                         <th rowspan="2">Action</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="width: 170px;">မှ</th>
-                                        <th style="width: 170px;">ထိ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,8 +32,7 @@
                                         <tr>
                                             <td>{{ ++$no }}</td>
                                             <td>{{ $training_class['training_name'] }}</td>
-                                            <td>{{ $training_class['start_date'] }}</td>
-                                            <td>{{ $training_class['end_date'] }}</td>
+                                            <td>{{ $training_class['training_name_eng'] ? $training_class['training_name_eng'] : 'English ဘာသာဖြင့် မရှိပါ'}}</td>
                                             <td>
                                                 <a href="{{ route('training.edit',$training_class['id']) }}" class="btn btn-success"><i class="fa fa-pencil-square-o fa-size" aria-hidden="true"></i></a>
                                                 {{-- <a href="{{ route('training_delete.delete',$training_class['id']) }}" class="btn btn-danger"><i class="fa fa-trash fa-size" aria-hidden="true"></i></a> --}}

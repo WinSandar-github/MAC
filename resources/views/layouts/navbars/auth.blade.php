@@ -65,6 +65,12 @@
                     <p>{{ __('သင်ကြားပေးသောသင်တန်းများ') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'training_type' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'training_type') }}">
+                    <i class="nc-icon nc-air-baloon"></i>
+                    <p>{{ __('သင်တန်းအမျိုးအစားများ') }}</p>
+                </a>
+            </li>
             {{-- <li class="{{ $elementActive == 'icons' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'icons') }}">
                     <i class="nc-icon nc-diamond"></i>

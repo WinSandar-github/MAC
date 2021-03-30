@@ -73,7 +73,7 @@ The above copyright notice and this permission notice shall be included in all c
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!-- Google Tag Manager -->
     {{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -117,7 +117,9 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="../assets/demo/jquery.sharrre.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
-
+   
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
     @stack('scripts')
 
     {{-- @include('layouts.navbars.fixed-plugin-js') --}}

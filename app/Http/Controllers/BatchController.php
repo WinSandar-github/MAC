@@ -3,83 +3,62 @@
 namespace App\Http\Controllers;
 
 use App\Batch;
+use App\TMSClass;
+use App\TrainingClass;
 use Faker\Provider\Base;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $batches = Batch::all();
-        return view('pages.batch', compact('batches'));
+        $batches = Batch::with('training_classes')->get();
+        $tmsclasses = TMSClass::get();
+        return view('pages.batch', compact('batches','tmsclasses'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return view('pages.create_batch');
+        $training_classes = TrainingClass::get();
+        $classes = TMSClass::get();
+        return view('pages.create_batch',compact('training_classes','classes'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        $request->validate([
+            'batch_name' => 'required',
+            'training_class' => 'required',
+            'from' => 'required',
+            'to' => 'required',
+        ]);
         $batch = new Batch;
-        $batch->year = $request->year;
-        $batch->description = $request->description;
+        $batch->batch_name = $request->batch_name;
+        $batch->training_id = $request->training_class;
+        $batch->from = $request->from;
+        $batch->to = $request->to;
+        $batch->class_id = json_encode($request->class);
+        $batch->publish_status = 1;
         $batch->save();
-
         return redirect()->route('batch.index')->with('success','Batches are Successfully Saved');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
+        $training_classes = TrainingClass::get();
+        $classes = TMSClass::get();
         $batch = Batch::find($id);
-        return view('pages.edit_batch', compact('batch'));
+        return view('pages.edit_batch', compact('batch','training_classes','classes'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $batch = Batch::find($id);
-        $batch->year = $request->year;
-        $batch->description = $request->description;
+        $batch->batch_name = $request->batch_name;
+        $batch->training_id = $request->training_class;
+        $batch->from = $request->from;
+        $batch->to = $request->to;
+        $batch->class_id = json_encode($request->class);
         $batch->save();
 
         return redirect()->route('batch.index')->with('success', 'Batch Updated Successfully!');
