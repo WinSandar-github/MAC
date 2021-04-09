@@ -52,7 +52,11 @@
                                 <label class="col-md-1 col-form-label">{{ __('သို့') }}</label>
                                 <div class="col-md-2">
                                     <div class="form-group">
+<<<<<<< HEAD
                                         <input type="text" name="to" placeholder="DD-MM-YYYY" class="to" required>
+=======
+                                        <input type="text" name="to" placeholder="DD-MM-YYYY" class="from" required>
+>>>>>>> 956e7043820bb1df64b9c363d9517b368351031e
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +89,11 @@
     </div>
     @push('scripts')
     <script>
+<<<<<<< HEAD
         $('document').ready(function(){
+=======
+        $(document).ready(function(){
+>>>>>>> 956e7043820bb1df64b9c363d9517b368351031e
             $('.from').flatpickr({
                 enableTime: false,
                 dateFormat: "d-m-Y",

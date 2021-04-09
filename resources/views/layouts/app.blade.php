@@ -122,7 +122,13 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
    
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<<<<<<< HEAD
     @yield('custom-javascript')
+=======
+    
+    @stack('scripts')
+
+>>>>>>> 956e7043820bb1df64b9c363d9517b368351031e
     {{-- @include('layouts.navbars.fixed-plugin-js') --}}
 </body>
 

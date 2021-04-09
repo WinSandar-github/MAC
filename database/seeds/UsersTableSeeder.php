@@ -15,6 +15,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+<<<<<<< HEAD
             array(
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
@@ -29,6 +30,13 @@ class UsersTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now()
             ),
+=======
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin1234'),
+            'created_at' => now(),
+            'updated_at' => now()
+>>>>>>> 956e7043820bb1df64b9c363d9517b368351031e
         ]);
     }
 }
