@@ -38,7 +38,7 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'ldap',
+            'provider' => 'users',
         ],
 
         'api' => [
@@ -66,24 +66,24 @@ return [
     */
 
     'providers' => [
-        'ldap' => [
-            'driver' => 'ldap',
-            'model' => LdapRecord\Models\OpenLDAP\User::class,
-            'database' => [
-                'model' => App\User::class,
-                'rules' => [],
-                'sync_passwords' => true, // If you do not define the sync_passwords key or have it set false, a user is always applied a random 16 character hashed password. This hashed password is only set once upon initial import or login so no needless updates are performed on user records.
-                'sync_attributes' => [
-                    'name' => 'cn',
-                    'email' => 'mail',
-                ],
-            ],
-        ],
-        
-        // 'users' => [
-        //     'driver' => 'eloquent',
-        //     'model' => App\User::class,
+        // 'ldap' => [
+        //     'driver' => 'ldap',
+        //     'model' => LdapRecord\Models\OpenLDAP\User::class,
+        //     'database' => [
+        //         'model' => App\User::class,
+        //         'rules' => [],
+        //         'sync_passwords' => true, // If you do not define the sync_passwords key or have it set false, a user is always applied a random 16 character hashed password. This hashed password is only set once upon initial import or login so no needless updates are performed on user records.
+        //         'sync_attributes' => [
+        //             'name' => 'cn',
+        //             'email' => 'mail',
+        //         ],
+        //     ],
         // ],
+        
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',

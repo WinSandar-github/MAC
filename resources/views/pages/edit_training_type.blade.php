@@ -6,6 +6,11 @@
 @section('content')
     <div class="content">
         <div class="row">
+            <div class="col-md-12">
+                {{ Breadcrumbs::render('edit_training_type') }}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12 text-center">
                 @foreach ($training_type as $training)
                     <form action="{{ route('training_type.update' , $training->id) }}" method="POST" enctype="multipart/form-data">

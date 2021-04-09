@@ -6,6 +6,11 @@
 @section('content')
     <div class="content">
         <div class="row">
+            <div class="col-md-12">
+                {{ Breadcrumbs::render('create_batch') }}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12 text-center">
                 <form action="{{ route('batch.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -47,7 +52,7 @@
                                 <label class="col-md-1 col-form-label">{{ __('သို့') }}</label>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <input type="text" name="to" placeholder="DD-MM-YYYY" class="from" required>
+                                        <input type="text" name="to" placeholder="DD-MM-YYYY" class="to" required>
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +85,7 @@
     </div>
     @push('scripts')
     <script>
-        $(document).ready(function(){
+        $('document').ready(function(){
             $('.from').flatpickr({
                 enableTime: false,
                 dateFormat: "d-m-Y",

@@ -54,6 +54,11 @@
     </div> --}}
     <div class="content">
         <div class="row">
+            <div class="col-md-12">
+                {{ Breadcrumbs::render('သင်တန်းအပတ်စဥ်') }}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12 text-center">
                 <form action="{{ url('student_record') }}" method="post" enctype="multipart/form-data">
                     @csrf

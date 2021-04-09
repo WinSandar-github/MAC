@@ -6,6 +6,11 @@
 @section('content')
     <div class="content">
         <div class="row">
+            <div class="col-md-12">
+                {{ Breadcrumbs::render('update_batch') }}
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-12 text-center">
                 <form action="{{ route('batch_update.update', $batch['id']) }}" method="POST" enctype="multipart/form-data">
                     @csrf
