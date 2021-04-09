@@ -73,6 +73,12 @@ Breadcrumbs::for('edit_training_type', function ($trail) {
     $trail->push('Edit', route('page.index', 'edit_training_type'));
 });
 
+// Home > Administraion > Manage Course & Category 
+Breadcrumbs::for('course-category', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('Manage Course & Category', route('page.index', 'manage_course_category'));
+});
+
 // Home > Blog
 Breadcrumbs::for('blog', function ($trail) {
     $trail->parent('home');

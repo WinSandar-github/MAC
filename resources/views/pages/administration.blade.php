@@ -65,6 +65,17 @@
                                             </nav>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <h4>Course</h4>
+                                        </div>
+                                        <div class="col-md-9 mt-4">
+                                            <nav class="nav flex-column">
+                                                <a class="nav-link active" href="{{ route('page.index', 'manage_course_category') }}">Manage Course & Categories</a>
+                                                
+                                            </nav>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- <div class="tab-pane" id="messages" role="tabpanel" aria-labelledby="messages-tab">Messages</div>

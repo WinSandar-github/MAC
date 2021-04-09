@@ -5,6 +5,7 @@
 
 @section('content')
     <div class="content">
+        @include('flash-message')
         <div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('training') }}
@@ -52,11 +53,11 @@
             </div>
         </div>
     </div>
-    @if(Session::has('success'))
+    <!-- @if(Session::has('success'))
         <script type="text/javascript" >
-            alert({{ session()->get('success') }});
+            alert("{{ session()->get('success') }}");
         </script>
-    @endif
+    @endif -->
     {{-- @if (session('success'))
         <script type="text/javascript">
             $(function(){
