@@ -19,3 +19,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// Route::group(['middleware'=>'auth'], function () {
+//     Route::apiResource('account', 'MoodleControllers\AccountCreateController');
+// });
+
+//Route::apiResource('account', 'MoodleControllers\AccountCreateController');
+
+
+

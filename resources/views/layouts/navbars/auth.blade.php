@@ -53,24 +53,55 @@
                     <p>{{ __('စာရင်းသွင်းထားသောစာရင်း') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'batch' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'batch') }}">
-                    <i class="nc-icon nc-air-baloon"></i>
-                    <p>{{ __('သင်တန်းအပတ်စဥ်') }}</p>
+            <!-- <li class="{{ $elementActive == 'lms_accounts' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'lms_accounts') }}">
+                    <i class="nc-icon nc-single-02"></i>
+                    <p>{{ __('LMS Accounts') }}</p>
+                </a>
+            </li> -->
+            <!-- <li class="{{ $elementActive == 'batch' || $elementActive == 'training' || $elementActive == 'training_type' ? 'active' : '' }}">
+                <a data-toggle="collapse" data-target="#course_scheduling">
+                    <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>
+                            {{ __('သင်တန်းများစီစဥ်ခြင်း') }}
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse show" id="course_scheduling">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'batch' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'batch') }}">
+                                <i class="nc-icon nc-air-baloon"></i>
+                                <p>{{ __('သင်တန်းအပတ်စဥ်') }}</p>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'training' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'training') }}">
+                                <i class="nc-icon nc-air-baloon"></i>
+                                <p>{{ __('သင်ကြားပေးသောသင်တန်းများ') }}</p>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'training_type' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'training_type') }}">
+                                <i class="nc-icon nc-air-baloon"></i>
+                                <p>{{ __('သင်တန်းအမျိုးအစားများ') }}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li> -->
+            <li class="{{ $elementActive == 'administration' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'administration') }}">
+                    <i class="nc-icon nc-tap-01"></i>
+                    <p>{{ __('Administraion') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'training' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'training') }}">
-                    <i class="nc-icon nc-air-baloon"></i>
-                    <p>{{ __('သင်ကြားပေးသောသင်တန်းများ') }}</p>
-                </a>
-            </li>
-            <li class="{{ $elementActive == 'training_type' ? 'active' : '' }}">
+            <!-- <li class="{{ $elementActive == 'training_type' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'training_type') }}">
                     <i class="nc-icon nc-air-baloon"></i>
                     <p>{{ __('သင်တန်းအမျိုးအစားများ') }}</p>
                 </a>
-            </li>
+            </li> -->
             {{-- <li class="{{ $elementActive == 'icons' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'icons') }}">
                     <i class="nc-icon nc-diamond"></i>

@@ -71,6 +71,8 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- CSS Files -->
     <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet" />
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="{{ asset('css') }}/custom.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
@@ -81,6 +83,7 @@ The above copyright notice and this permission notice shall be included in all c
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NKDMSK6');</script> --}}
     <!-- End Google Tag Manager -->
+    @stack('scripts')
 </head>
 
 <body class="{{ $class }}">
@@ -121,6 +124,8 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     
     @stack('scripts')
+
+    @yield('custom-javascript')
 
     {{-- @include('layouts.navbars.fixed-plugin-js') --}}
 </body>

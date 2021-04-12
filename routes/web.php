@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Adldap\Models\User;
 use LdapRecord\Connection;
+use Illuminate\Support\Facades\File;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,8 @@ Route::get('/', 'HomeController@index');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('/moodle', 'TestMoodleController@index');
 
 Route::get('/ldap-search', function(Request $request) {
     $connection = new Connection([
@@ -99,6 +102,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('training_update/{id}', 'TrainingClassController@update')->name('training_update.update');
 	Route::get('training_delete/{id}', 'TrainingClassController@delete')->name('training_delete.delete');
     Route::resource('training_type', 'TrainingTypeController');
+
+    Route::apiResource('lms_accounts', 'MoodleControllers\LmsAccountsController');
+    Route::apiResource('account', 'MoodleControllers\AccountCreateController');
+    Route::post('account_update/{id}', 'MoodleControllers\AccountCreateController@update')->name('account.update');
+    Route::get('account_destroy/{id}', 'MoodleControllers\AccountCreateController@destroy')->name('account.destroy');
+    
+    Route::get('admin', function() {
+        return redirect('/moodle/admin');
+    })->name("admin");
 });
 
 Route::group(['middleware' => 'auth'], function () {

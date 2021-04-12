@@ -5,6 +5,12 @@
 
 @section('content')
     <div class="content">
+        @include('flash-message')
+        <div class="row">
+            <div class="col-md-12">
+                {{ Breadcrumbs::render('training_type') }} 
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 text-center">
                 <form action="" method="post" enctype="multipart/form-data">

@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Auth;
+
 class PageController extends Controller
 {
     /**
@@ -24,6 +28,10 @@ class PageController extends Controller
      */
     public function index(string $page)
     {
+        //$role = Role::create(['name'=>'writer']);
+
+        //$permission = Permission::create(['name' => 'edit articles']);
+
         if (view()->exists("pages.{$page}")) {
             return view("pages.{$page}");
         }

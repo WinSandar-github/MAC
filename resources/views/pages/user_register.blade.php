@@ -102,7 +102,7 @@
                                 <label class="col-md-2 col-form-label">{{ __('မွေးသက္ကရာဇ်') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <input type="date" name="date_of_birth" class="form-control" placeholder="မွေးသက္ကရာဇ်" required>
+                                        <input type="text" name="date_of_birth" class="form-control" placeholder="မွေးသက္ကရာဇ်" required>
                                     </div>
                                 </div>
                             </div>
@@ -419,6 +419,11 @@
         }
         reader.readAsDataURL(this.files[0]); 
        });
+
+        $("input[name='date_of_birth']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
     });
     </script>
     <script>

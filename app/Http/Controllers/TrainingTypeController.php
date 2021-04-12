@@ -36,7 +36,7 @@ class TrainingTypeController extends Controller
         ]);
         $training_type->training_type_name = $request->training_type_name;
         $training_type->save();
-        return redirect(route('training_type.index'));
+        return redirect(route('training_type.index'))->with('success','Account Updated Successfully.');
     }
     public function destroy(Training_type $training_type)
     {
