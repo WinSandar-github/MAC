@@ -3,9 +3,15 @@
 namespace App\MoodleModel;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use LdapRecord\Laravel\Auth\LdapAuthenticatable;
+use LdapRecord\Laravel\Auth\AuthenticatesWithLdap;
 
-class MdlUser extends Model
+class MdlUser extends Authenticatable implements LdapAuthenticatable
 {
+    use Notifiable, AuthenticatesWithLdap;
+
     protected $table = 'mdl_user';
 
     public $timestamps = false;
@@ -16,9 +22,5 @@ class MdlUser extends Model
 
     protected $hidden = [
         'password'
-    ];
-
-    protected $nullable = [
-
     ];
 }

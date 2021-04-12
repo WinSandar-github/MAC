@@ -1,10 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-<<<<<<< HEAD
 use Illuminate\Support\Facades\DB;
-=======
->>>>>>> 956e7043820bb1df64b9c363d9517b368351031e
 
 class TMSClassSeeder extends Seeder
 {

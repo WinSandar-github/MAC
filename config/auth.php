@@ -82,7 +82,7 @@ return [
         
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\MoodleModel\MdlUser::class,
         ],
 
         // 'users' => [
