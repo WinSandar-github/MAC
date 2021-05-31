@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
         // $this->call([Training_typeSeeder::class]);
         // $this->call([TMSClassSeeder::class]);
         
-        factory(App\MoodleModel\MdlUser::class)->create();
+        //factory(App\MoodleModel\MdlUser::class)->create();
     }
 }
