@@ -35,24 +35,7 @@
                     <p>{{ __('Report 3') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'user_register' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'user_register') }}">
-                    <i class="nc-icon nc-badge"></i>
-                    <p>{{ __('သင်တန်း ၁ မှ ၄ ထိ စာရင်းသွင်းရန်') }}</p>
-                </a>
-            </li>
-            <li class="{{ $elementActive == 'student_record' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'student_record') }}">
-                    <i class="nc-icon nc-book-bookmark"></i>
-                    <p>{{ __('သင်တန်း ၅ မှ ၈ ထိ စာရင်းသွင်းရန်') }}</p>
-                </a>
-            </li>
-            <li class="{{ $elementActive == 'registered_user_list' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'registered_user_list') }}">
-                    <i class="nc-icon nc-paper"></i>
-                    <p>{{ __('စာရင်းသွင်းထားသောစာရင်း') }}</p>
-                </a>
-            </li>
+            
             <!-- <li class="{{ $elementActive == 'lms_accounts' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'lms_accounts') }}">
                     <i class="nc-icon nc-single-02"></i>
@@ -96,13 +79,19 @@
                     <p>{{ __('Administraion') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'school_registration' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'school_registration') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('School') }}</p>
+                </a>
+            </li>
             <li class="{{ $elementActive == '' ? 'active' : '' }}">
-                <a href="#article" class="nav-link" data-toggle="collapse">
+                <a href="#audit" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>Audit Firm<b class='caret'></b></p>
                    
                 </a>
-                <div class="collapse " id='article'>
+                <div class="collapse " id='audit'>
                 <ul class="nav">
                     <li class="{{ $elementActive == 'audit_firm_registration' ? 'active' : '' }}">
                         <a class="link" href="{{ route('page.index', 'audit_firm_registration') }}">
@@ -142,6 +131,12 @@
                             <span class='sidebar-normal'>CPA Part2 Registration</span>
                         </a>
                     </li>
+                    <li class="{{ $elementActive == 'cpa_ff_registration' ? 'active' : '' }}">
+                        <a class="link" href="{{ route('page.index', 'cpa_ff_registration') }}">
+                            <i class="nc-icon nc-single-copy-04"></i>
+                            <span class='sidebar-normal'>CPA(FF)</span>
+                        </a>
+                    </li>
                  </ul>
                 </div>
             </li>
@@ -175,13 +170,8 @@
                  </ul>
                 </div>
             </li>
-            <!-- <li class="{{ $elementActive == 'training_type' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'training_type') }}">
-                    <i class="nc-icon nc-air-baloon"></i>
-                    <p>{{ __('သင်တန်းအမျိုးအစားများ') }}</p>
-                </a>
-            </li> -->
-            {{-- <li class="{{ $elementActive == 'icons' ? 'active' : '' }}">
+            
+            <!-- {{-- <li class="{{ $elementActive == 'icons' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'icons') }}">
                     <i class="nc-icon nc-diamond"></i>
                     <p>{{ __('Icons') }}</p>
@@ -247,7 +237,7 @@
                     <i class="nc-icon nc-spaceship text-white"></i>
                     <p class="text-white">{{ __('Upgrade to PRO') }}</p>
                 </a>
-            </li> --}}
+            </li> --}} -->
         </ul>
     </div>
 </div>
