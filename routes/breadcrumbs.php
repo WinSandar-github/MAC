@@ -79,6 +79,24 @@ Breadcrumbs::for('course-category', function ($trail) {
     $trail->push('Manage Course & Category', route('page.index', 'manage_course_category'));
 });
 
+// Home > Teacher
+Breadcrumbs::for('teacher_registration', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Teacher', route('page.index', 'teacher_registration'));
+});
+
+// Home > QT Application
+Breadcrumbs::for('qt_application_registration', function ($trail) {
+    $trail->parent('home');
+    $trail->push('QT Application', route('page.index', 'qt_application_registration'));
+});
+
+// Home > Article
+Breadcrumbs::for('article', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Article', route('page.index', 'article'));
+});
+
 // Home > Blog
 Breadcrumbs::for('blog', function ($trail) {
     $trail->parent('home');

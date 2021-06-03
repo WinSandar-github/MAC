@@ -96,6 +96,24 @@
                     <p>{{ __('Administraion') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'teacher_registration') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('Teacher') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'qt_application_registration' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'qt_application_registration') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('QT Application') }}</p>
+                </a>
+            </li>
+            <li class="{{ $elementActive == 'article' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'article') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('Article') }}</p>
+                </a>
+            </li>
             <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#article" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
@@ -120,6 +138,31 @@
                  </ul>
                 </div>
             </li>
+
+            <li class="{{ $elementActive == '' ? 'active' : '' }}">
+                <a href="#audit_frim_card" class="nav-link" data-toggle="collapse">
+                    <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>Audit Firm Card<b class='caret'></b></p>                   
+                </a>
+                <div class="collapse " id='audit_frim_card'>
+                <ul class="nav">
+                    <li class="{{ $elementActive == 'audit_firm_card' ? 'active' : '' }}">
+                        <a class="link" href="{{ route('page.index', 'audit_firm_card') }}">
+                            <i class="nc-icon nc-single-copy-04"></i>
+                            <span class='sidebar-normal'>{{ __('Audit Firm Card') }}</span>
+                        </a>
+                    </li>
+                    
+                    <li class="{{ $elementActive == 'non_audit_firm_card' ? 'active' : '' }}">
+                        <a class="link" href="{{ route('page.index', 'non_audit_firm_card') }}">
+                            <i class="nc-icon nc-single-copy-04"></i>
+                            <span class='sidebar-normal'>Non Audit Firm Card</span>
+                        </a>
+                    </li>
+                 </ul>
+                </div>
+            </li>
+
             <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#cpa" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
