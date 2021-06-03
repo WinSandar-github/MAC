@@ -166,8 +166,7 @@
             <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#cpa" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
-                    <p>CPA<b class='caret'></b></p>
-                   
+                    <p>CPA<b class='caret'></b></p>                   
                 </a>
                 <div class="collapse " id='cpa'>
                 <ul class="nav">
@@ -185,6 +184,13 @@
                             <span class='sidebar-normal'>CPA Part2 Registration</span>
                         </a>
                     </li>
+
+                    <li class="{{ $elementActive == 'cpa_ff_pa' ? 'active' : '' }}">
+                        <a class="link" href="{{ route('page.index', 'cpa_ff_pa') }}">
+                            <i class="nc-icon nc-single-copy-04"></i>
+                            <span class='sidebar-normal'>{{ __('CPA FF & PA') }}</span>
+                        </a>                        
+                    </li>                    
                  </ul>
                 </div>
             </li>
