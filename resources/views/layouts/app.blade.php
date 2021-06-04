@@ -61,7 +61,7 @@ The above copyright notice and this permission notice shall be included in all c
     <meta property="og:site_name" content="Creative Tim" />
 
     <title>
-        {{ __('TMS') }}
+        {{ __('MAC') }}
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
@@ -124,7 +124,7 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
    
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    
+    <script src="{{ asset('js') }}/common.js"></script>
     @stack('scripts')
 
     @yield('custom-javascript')

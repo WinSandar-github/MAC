@@ -7,3 +7,7 @@
 .active span{
     color:#57cbef;
 }
+#initial_form,#renew_form,#local_form,#foreign_form,#local_initial_form,#local_renew_form,
+#foreign_initial_form,#foreign_renew_form{
+    display: none;
+}
