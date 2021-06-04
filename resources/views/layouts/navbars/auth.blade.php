@@ -189,12 +189,38 @@
                  </ul>
                 </div>
             </li>
-            <li class="{{ $elementActive == 'papp_registration' ? 'active' : '' }}">
+            <li class="{{ $elementActive == '' ? 'active' : '' }}">
+                <a href="#papp" class="nav-link" data-toggle="collapse">
+                    <i class="nc-icon nc-bullet-list-67"></i>
+                    <p>PAPP<b class='caret'></b></p>
+                   
+                </a>
+                <div class="collapse " id='papp'>
+                <ul class="nav">
+                    <li class="{{ $elementActive == 'papp_registration' ? 'active' : '' }}">
+                        <a class="link" href="{{ route('page.index', 'papp_registration') }}">
+                            <i class="nc-icon nc-single-copy-04"></i>
+                            <span class='sidebar-normal'>{{ __('PAPP(Initial)') }}</span>
+                        </a>
+                        
+                    </li>
+                    
+                    <li class="{{ $elementActive == 'papp_registration_renew' ? 'active' : '' }}">
+                        <a class="link" href="{{ route('page.index', 'papp_registration_renew') }}">
+                            <i class="nc-icon nc-single-copy-04"></i>
+                            <span class='sidebar-normal'>PAPP(Renew)</span>
+                        </a>
+                    </li>
+                    
+                 </ul>
+                </div>
+            </li>
+            <!-- <li class="{{ $elementActive == 'papp_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'papp_registration') }}">
                     <i class="nc-icon nc-paper"></i>
                     <p>{{ __('PAPP') }}</p>
                 </a>
-            </li>
+            </li> -->
             <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#da" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
@@ -219,7 +245,12 @@
                  </ul>
                 </div>
             </li>
-            
+            <li class="{{ $elementActive == 'mentor_registration' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'mentor') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('Mentor') }}</p>
+                </a>
+            </li>
             <!-- {{-- <li class="{{ $elementActive == 'icons' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'icons') }}">
                     <i class="nc-icon nc-diamond"></i>
