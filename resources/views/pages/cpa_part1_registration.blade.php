@@ -65,7 +65,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်') }}</label>
 	                                      <div class="col-md-8">
 	                                          <div class="form-group">
-	                                              <input type="text" name="name" class="form-control" placeholder="အမည်" oninput="this.value=this.value.replace(/[^က-အ၀-၉]/g,'')">
+	                                              <input type="text" name="name" class="form-control" placeholder="အမည်" >
 	                                          </div>
 	                                      </div>
 	                                    </div>
@@ -463,7 +463,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
 	                                      <div class="col-md-8">
 	                                          <div class="form-group">
-	                                              <input type="text" name="name_two" class="form-control" placeholder="အမည်" oninput="this.value=this.value.replace(/[^က-အ၀-၉]/g,'')">
+	                                              <input type="text" name="name_two" class="form-control" placeholder="အမည်" >
 	                                          </div>
 	                                      </div>
 	                                    </div>
@@ -787,7 +787,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
 	                                      <div class="col-md-8">
 	                                          <div class="form-group">
-	                                              <input type="text" name="name_two" class="form-control" placeholder="အမည်" oninput="this.value=this.value.replace(/[^က-အ၀-၉]/g,'')">
+	                                              <input type="text" name="name_two" class="form-control" placeholder="အမည်" >
 	                                          </div>
 	                                      </div>
 	                                    </div>
@@ -963,7 +963,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
 	                                      <div class="col-md-8">
 	                                          <div class="form-group">
-	                                              <input type="text" name="name_two" class="form-control" placeholder="အမည်" oninput="this.value=this.value.replace(/[^က-အ၀-၉]/g,'')">
+	                                              <input type="text" name="name_two" class="form-control" placeholder="အမည်" >
 	                                          </div>
 	                                      </div>
 	                                    </div>
@@ -1177,7 +1177,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
 	                                      <div class="col-md-8">
 	                                          <div class="form-group">
-	                                              <input type="text" name="name_two" class="form-control" placeholder="အမည်" oninput="this.value=this.value.replace(/[^က-အ၀-၉]/g,'')">
+	                                              <input type="text" name="name_two" class="form-control" placeholder="အမည်" >
 	                                          </div>
 	                                      </div>
 	                                    </div>

@@ -60,7 +60,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ)') }}</label>
 	                                      <div class="col-md-8">
 	                                          <div class="form-group">
-	                                              <input type="text" name="name" class="form-control" oninput="this.value=this.value.replace(/[^က-အ၀-၉]/g,'')">
+	                                              <input type="text" name="name" class="form-control" >
 	                                          </div>
 	                                      </div>
 	                                    </div>
@@ -232,7 +232,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('ကျောင်းအမည်') }}</label>
 	                                      <div class="col-md-8">
 	                                          <div class="form-group">
-	                                              <input type="text" name="name_two" class="form-control" oninput="this.value=this.value.replace(/[^က-အ၀-၉]/g,'')">
+	                                              <input type="text" name="name_two" class="form-control" >
 	                                          </div>
 	                                      </div>
 	                                    </div>
@@ -408,7 +408,7 @@
                                             <div class="col-md-10">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <table id="myTable" class="table profile table-bordered">
+                                                        <table id="myTable" class="table school_founder table-bordered">
                                                             <thead>
                                                                 <tr>
                                                                     <th class="less-font-weight" rowspan="2">စဥ်</th>
@@ -420,29 +420,29 @@
                                                                     <th class="less-font-weight" rowspan="2">ဆက်သွယ်ရန်လိပ်စာ</th>
                                                                     <th class="less-font-weight" rowspan="2">ဖုန်းနံပါတ်/အီးမေးလ်</th>
                                                                     <th class="less-font-weight" rowspan="2" style="text-align: right;">
-                                                                        <input type="button" class="btn btn-primary btn-sm" id="add" value="+">
+                                                                        <input type="button" class="btn btn-primary btn-sm" onclick='addRowSchoolFounder("school_founder")' value="+">
                                                                     </th>
                                                                 </tr>
                                                                 
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input type="text" value="" name="partner_sr[]" class="form-control"></td>
-                                                                    <td><input type="text" value="" name="partner_name[]" class="form-control"></td>
-                                                                    <td><input type="text" value="" name="partner_public_private_regno[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_founder_sr[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_founder_name[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_founder_passort[]" class="form-control"></td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_founder_cpa[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_founder_qual[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_founder_address[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_founder_phone[]" class="form-control">
                                                                     </td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger "  value="X"></td>
+                                                                    <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowShoolFounder("school_founder")'  value="X"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -460,7 +460,7 @@
                                             <div class="col-md-10">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <table id="myTable" class="table profile table-bordered">
+                                                        <table id="myTable" class="table school_manager table-bordered">
                                                             <thead>
                                                                 <tr>
                                                                     <th class="less-font-weight" rowspan="2">စဥ်</th>
@@ -471,29 +471,29 @@
                                                                     <th class="less-font-weight" rowspan="2">တာဝန်</th>
                                                                     <th class="less-font-weight" rowspan="2">ဖုန်းနံပါတ်/အီးမေးလ်</th>
                                                                     <th class="less-font-weight" rowspan="2" style="text-align: right;">
-                                                                        <input type="button" class="btn btn-primary btn-sm" id="add" value="+">
+                                                                        <input type="button" class="btn btn-primary btn-sm" onclick='addRowSchoolManager("school_manager")' value="+">
                                                                     </th>
                                                                 </tr>
                                                                 
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input type="text" value="" name="partner_sr[]" class="form-control"></td>
-                                                                    <td><input type="text" value="" name="partner_name[]" class="form-control"></td>
-                                                                    <td><input type="text" value="" name="partner_public_private_regno[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_manager_sr[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_manager_name[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_manager_passport[]" class="form-control"></td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_manager_cpa[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_manager_qual[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_manager_duty[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_manager_phone[]" class="form-control">
                                                                     </td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger "  value="X"></td>
+                                                                    <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowShoolManager("school_manager")' value="X"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -512,7 +512,7 @@
                                             <div class="col-md-10">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <table id="myTable" class="table profile table-bordered">
+                                                        <table id="myTable" class="table school_executive table-bordered">
                                                             <thead>
                                                                 <tr>
                                                                     <th class="less-font-weight" rowspan="2">စဥ်</th>
@@ -523,29 +523,29 @@
                                                                     <th class="less-font-weight" rowspan="2">တာဝန်</th>
                                                                     <th class="less-font-weight" rowspan="2">ဖုန်းနံပါတ်/အီးမေးလ်</th>
                                                                     <th class="less-font-weight" rowspan="2" style="text-align: right;">
-                                                                        <input type="button" class="btn btn-primary btn-sm" id="add" value="+">
+                                                                        <input type="button" class="btn btn-primary btn-sm" onclick='addRowSchoolExecutive("school_executive")' value="+">
                                                                     </th>
                                                                 </tr>
                                                                 
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input type="text" value="" name="partner_sr[]" class="form-control"></td>
-                                                                    <td><input type="text" value="" name="partner_name[]" class="form-control"></td>
-                                                                    <td><input type="text" value="" name="partner_public_private_regno[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_executive_sr[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_executive_name[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_executive_passport[]" class="form-control"></td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_executive_cpa[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_executive_qual[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_executive_duty[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_executive_phone[]" class="form-control">
                                                                     </td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger "  value="X"></td>
+                                                                    <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowShoolExecutive("school_executive")'  value="X"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -564,7 +564,7 @@
                                             <div class="col-md-10">
                                                 <div class="card">
                                                     <div class="card-body">
-                                                        <table id="myTable" class="table profile table-bordered">
+                                                        <table id="myTable" class="table school_teacher table-bordered">
                                                             <thead>
                                                                 <tr>
                                                                     <th class="less-font-weight" rowspan="2">စဥ်</th>
@@ -575,29 +575,29 @@
                                                                     <th class="less-font-weight" rowspan="2">သင်ကြားမည့်ဘာသာရပ်(များ)</th>
                                                                     <th class="less-font-weight" rowspan="2">ဖုန်းနံပါတ်/အီးမေးလ်</th>
                                                                     <th class="less-font-weight" rowspan="2" style="text-align: right;">
-                                                                        <input type="button" class="btn btn-primary btn-sm" id="add" value="+">
+                                                                        <input type="button" class="btn btn-primary btn-sm" onclick='addRowSchoolTeacher("school_teacher")' value="+">
                                                                     </th>
                                                                 </tr>
                                                                 
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input type="text" value="" name="partner_sr[]" class="form-control"></td>
-                                                                    <td><input type="text" value="" name="partner_name[]" class="form-control"></td>
-                                                                    <td><input type="text" value="" name="partner_public_private_regno[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_teacher_sr[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_teacher_name[]" class="form-control"></td>
+                                                                    <td><input type="text" value="" name="school_teacher_passport[]" class="form-control"></td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_teacher_tp[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_teacher_qual[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_teacher_subject[]" class="form-control">
                                                                     </td>
                                                                     <td>
-                                                                    <input type="text" value="" name="partner_sr[]" class="form-control">
+                                                                    <input type="text" value="" name="school_teacher_phone[]" class="form-control">
                                                                     </td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger "  value="X"></td>
+                                                                    <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowShoolTeacher("school_teacher")' value="X"></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -633,7 +633,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ)') }}</label>
 	                                      <div class="col-md-8">
 	                                          <div class="form-group">
-	                                              <input type="text" name="name_two" class="form-control" oninput="this.value=this.value.replace(/[^က-အ၀-၉]/g,'')">
+	                                              <input type="text" name="name_two" class="form-control" >
 	                                          </div>
 	                                      </div>
 	                                    </div>

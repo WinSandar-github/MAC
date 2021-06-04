@@ -129,12 +129,12 @@
                                                         <table class="table branch table-bordered input-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th class="less-font-weight">Sr</th>
+                                                                    <th class="less-font-weight">Name</th>
                                                                     <th class="less-font-weight">Township</th>
                                                                     <th class="less-font-weight">Post Code</th>
                                                                     <th class="less-font-weight">City</th>
-                                                                    <th class="less-font-weight">State/Region</th>
-                                                                    <th class="less-font-weight">Telephone</th>
+                                                                    <th class="less-font-weight">State</th>
+                                                                    <th class="less-font-weight" colspan="2">Telephone Number</th>
                                                                     <th class="less-font-weight">Email</th>
                                                                     <th class="less-font-weight">Website</th>
                                                                     <th ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowBranch("branch")' value="+"></th>
@@ -147,7 +147,12 @@
                                                                     <td><input type="text" name="branch_post_code[]" class="form-control" ></td>
                                                                     <td><input type="text" name="branch_city[]" class="form-control" ></td>
                                                                     <td><input type="text" name="branch_state[]" class="form-control" ></td>
-                                                                    <td><input type="text" name="branch_phone_no[]" class="form-control" ></td>
+                                                                    <td>
+                                                                        <input type="text" name="branch_phone_no[]" class="form-control" >
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addInputTele("branch")' value="+">
+                                                                    </td>
                                                                     <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                     <td><input type="text" name="branch_website[]" class="form-control" ></td>
                                                                     <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowBranch("branch")'  value="X"></td>
@@ -227,7 +232,7 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">No</label>
                                                                         </td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delPartner("partner_list")' value="X"></td>
+                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowPartner("partner_list")' value="X"></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -644,12 +649,12 @@
                                                             <table class="table branch_renew table-bordered input-table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="less-font-weight">Sr</th>
+                                                                        <th class="less-font-weight">Name</th>
                                                                         <th class="less-font-weight">Township</th>
                                                                         <th class="less-font-weight">Post Code</th>
                                                                         <th class="less-font-weight">City</th>
                                                                         <th class="less-font-weight">State/Region</th>
-                                                                        <th class="less-font-weight">Telephone</th>
+                                                                        <th class="less-font-weight" colspan="2">Telephone</th>
                                                                         <th class="less-font-weight">Email</th>
                                                                         <th class="less-font-weight">Website</th>
                                                                         <th ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowBranch("branch_renew")' value="+"></th>
@@ -663,6 +668,9 @@
                                                                         <td><input type="text" name="branch_city[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_state[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_phone_no[]" class="form-control" ></td>
+                                                                        <td>
+                                                                            <input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addInputTele("branch_renew")' value="+">
+                                                                        </td>
                                                                         <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_website[]" class="form-control" ></td>
                                                                         <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowBranch("branch_renew")'  value="X"></td>
