@@ -37,7 +37,7 @@
 		                              
 		                            </ul>
                             	<div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                    <div class="tab-pane fade show active m-4" id="link1" aria-expanded="true">
                                         
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
@@ -572,7 +572,7 @@
                                         </div>
  
 	                              </div>
-                                  <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                  <div class="tab-pane fade m-4" id="link2" aria-expanded="true">
                                     <div class="row">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-10">

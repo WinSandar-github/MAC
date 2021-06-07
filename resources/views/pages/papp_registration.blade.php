@@ -41,7 +41,7 @@
 		                              
 		                            </ul>
                             	<div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                    <div class="tab-pane fade show active m-4" id="link1" aria-expanded="true">
                                         
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
@@ -460,7 +460,7 @@
                                             </div>
                                         </div>
 	                              </div>
-                                  <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                  <div class="tab-pane fade m-5" id="link2" aria-expanded="true">
                                     <div class="row">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-10">
@@ -891,7 +891,7 @@
                                         </div>
                                     </div>
                                   </div>
-                                  <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                  <div class="tab-pane fade m-5" id="link3" aria-expanded="true">
                                         <div class="row">
                                             <label class="col-md-6 col-form-label"></label>
                                             <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
