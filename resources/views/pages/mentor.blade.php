@@ -74,7 +74,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
 	                                      <div class="col-md-8">
                                             <div class="form-group">
-                                                        <input type="text" name="" class="form-control" placeholder="" >
+                                                        <input type="text" name="mentor_birthone" placeholder="dd-mm-yyyy" class="form-control" >
                                                     </div>
                                                 </div>
 	                                    </div>
@@ -102,20 +102,30 @@
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('CPA PAPP	မှတ်ပုံတင်အမှတ်/ရက်စွဲ') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
+	                                        <div class="col-md-4">
+                                                <div class="form-group">
                                                         <input type="text" name="" class="form-control" placeholder="" >
-                                            </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" name="mentor_dateone" placeholder="dd-mm-yyyy" class="form-control" >
+                                                </div>
+                                            </div>
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၉။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('PAPP မှတ်ပုံတင်အမှတ်/ရက်စွဲ') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
+	                                        <div class="col-md-4">
+                                                <div class="form-group">
                                                         <input type="text" name="" class="form-control" placeholder="" >
-                                            </div>
                                                 </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <input type="text" name="mentor_datetwo" placeholder="dd-mm-yyyy" class="form-control" >
+                                                </div>
+                                            </div>
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၀။') }}</label>
@@ -131,7 +141,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('Postal Address') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
+                                                        <input type="text" name="" class="form-control" placeholder="" >
                                                 </div>
                                             </div>
 	                                    </div>
@@ -176,16 +186,16 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('စတင်တည်ထောင်သည့်နေ့') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
+                                                        <input type="text" name="mentor_datethree" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၇။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('Audit Firm ၏ဖွဲ့စည်းပုံနှင့်ဝန်ထမ်းအင်အား') }}</label>
-	                                        <div class="col-md-8">
+	                                      <label class="col-md-4 col-form-label">{{ __('Audit Firm ၏ဖွဲ့စည်းပုံနှင့်ဝန်ထမ်းအင်အား') }}</label>
+	                                        <div class="col-md-6">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
+                                                            <input type="number" name="" class="form-control" placeholder="" >
                                                 </div>
                                             </div>
 	                                    </div>
@@ -288,10 +298,11 @@
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၉။') }}</label>
 	                                      <label class="col-md-6 col-form-label">{{ __('ယခင်အလုပ်သင်ကြားပေးမှုအတွေ့အကြုံ ရှိ/မရှိ') }}</label>
-	                                        <div class="col-md-4">
-                                                <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
-                                                </div>
+                                          <div class="col-md-2">
+                                                        <input type="radio" name="" class="" value="yes"> Yes
+                                            </div>
+                                            <div class="col-md-2">
+                                                        <input type="radio" name="" class="" value="no"> No
                                             </div>
 	                                    </div>
                                         <div class="row">
@@ -299,7 +310,7 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('စာရင်းကိုင်အလုပ်သင်များအား အလုပ်သင်ကြားပေးမှု စတင်ခဲ့သည့်ခုနှစ်') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
+                                                        <input type="text" name="mentor_datefour" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
 	                                    </div>
@@ -308,7 +319,7 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('အလုပ်သင်ဦးရေလက်ခံနိုင်သည့်အရေအတွက်') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
+                                                            <input type="number" name="" class="form-control" placeholder="" >
                                                 </div>
                                             </div>
 	                                    </div>
@@ -317,7 +328,7 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('လက်ရှိလက်ခံသင်ကြားပေးသော အလုပ်သင်ဦးရေ') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
+                                                            <input type="number" name="" class="form-control" placeholder="" >
                                                 </div>
                                             </div>
 	                                    </div>
@@ -326,29 +337,40 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('မွေးထုတ်ပေးခဲ့သည့် အလုပ်သင်ဦးရေ') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
+                                                            <input type="number" name="" class="form-control" placeholder="" >
                                                 </div>
                                             </div>
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၂၄။') }}</label>
 	                                      <label class="col-md-6 col-form-label">{{ __('နှစ်စဥ်ဆက်တိုက်အလုပ်သင်ကြားနိုင်ခြင်း ရှိ/မရှိ') }}</label>
-	                                        <div class="col-md-4">
-                                                <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
-                                                </div>
+                                          <div class="col-md-2">
+                                                        <input type="radio" name="" class="" value="yes"> Yes
+                                            </div>
+                                            <div class="col-md-2">
+                                                        <input type="radio" name="" class="" value="no"> No
                                             </div>
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၂၅။') }}</label>
-	                                      <label class="col-md-6 col-form-label">{{ __('အလုပ်သင်ကြားမှုပြတ်တောက်ခဲ့ခြင်း ရှိ/မရှိနှင့် ရှိပါက ပြတ်တောက်ခဲ့ရသည့် အကြောင်းအရင်း') }}</label>
-	                                        <div class="col-md-4">
+	                                      <label class="col-md-6 col-form-label">{{ __('အလုပ်သင်ကြားမှုပြတ်တောက်ခဲ့ခြင်း ရှိ/မရှိ') }}</label>
+                                            <div class="col-md-2">
+                                                    <input type="radio" name="" class="" value="yes"> Yes
+                                            </div>
+                                            <div class="col-md-2">
+                                                    <input type="radio" name="" class="" value="no"> No
+                                            </div>
+	                                        
+	                                    </div>
+                                        <div class="row">
+                                        <label class="col-md-1 col-form-label"></label>
+	                                      <label class="col-md-6 col-form-label">{{ __('ရှိပါက ပြတ်တောက်ခဲ့ရသည့် အကြောင်းအရင်း') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="" >
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
                                             </div>
-	                                    </div>
-                                        
+                                        </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၂၆။') }}</label>
                                             <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
@@ -390,5 +412,16 @@
 @endsection
 
 @push('scripts')
+<script>
     
+    $(document).ready(function (e) {
+        createDatepicker("mentor_birthone");
+        createDatepicker("mentor_dateone");
+        createDatepicker("mentor_datetwo");
+        createDatepicker("mentor_datethree");
+        createDatepicker("mentor_datefour");
+        
+    });
+
+</script>
 @endpush

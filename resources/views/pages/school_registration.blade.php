@@ -113,7 +113,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
 	                                      <div class="col-md-8">
                                             <div class="form-group">
-                                                        <input type="text" name="" class="form-control"  >
+                                                        <input type="text" name="school_birthone" placeholder="dd-mm-yyyy" class="form-control"  >
                                                     </div>
                                                 </div>
 	                                    </div>
@@ -170,8 +170,16 @@
                                        
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
-                                            <label class="col-md-8 col-form-label">{{ __('လျှောက်ထားသူ/အဖွဲ့အစည်း၏နောက်ခံသမိုင်း(သီးခြားစာရွက်ဖြင့်ဖော်ပြရန်)') }}</label>
-                                            
+                                            <label class="col-md-6 col-form-label">{{ __('လျှောက်ထားသူ/အဖွဲ့အစည်း၏နောက်ခံသမိုင်း(သီးခြားစာရွက်ဖြင့်ဖော်ပြရန်)') }}</label>
+                                            <div class="col-md-4">
+                                                <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2">
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
@@ -427,7 +435,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input type="text" value="" name="school_founder_sr[]" class="form-control"></td>
+                                                                    <td>1</td>
                                                                     <td><input type="text" value="" name="school_founder_name[]" class="form-control"></td>
                                                                     <td><input type="text" value="" name="school_founder_passort[]" class="form-control"></td>
                                                                     <td>
@@ -442,7 +450,7 @@
                                                                     <td>
                                                                     <input type="text" value="" name="school_founder_phone[]" class="form-control">
                                                                     </td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowShoolFounder("school_founder")'  value="X"></td>
+                                                                    <td></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -478,7 +486,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input type="text" value="" name="school_manager_sr[]" class="form-control"></td>
+                                                                    <td>1</td>
                                                                     <td><input type="text" value="" name="school_manager_name[]" class="form-control"></td>
                                                                     <td><input type="text" value="" name="school_manager_passport[]" class="form-control"></td>
                                                                     <td>
@@ -493,7 +501,7 @@
                                                                     <td>
                                                                     <input type="text" value="" name="school_manager_phone[]" class="form-control">
                                                                     </td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowShoolManager("school_manager")' value="X"></td>
+                                                                    <td></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -530,7 +538,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input type="text" value="" name="school_executive_sr[]" class="form-control"></td>
+                                                                    <td>1</td>
                                                                     <td><input type="text" value="" name="school_executive_name[]" class="form-control"></td>
                                                                     <td><input type="text" value="" name="school_executive_passport[]" class="form-control"></td>
                                                                     <td>
@@ -545,7 +553,7 @@
                                                                     <td>
                                                                     <input type="text" value="" name="school_executive_phone[]" class="form-control">
                                                                     </td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowShoolExecutive("school_executive")'  value="X"></td>
+                                                                    <td></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -582,7 +590,7 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td><input type="text" value="" name="school_teacher_sr[]" class="form-control"></td>
+                                                                    <td>1</td>
                                                                     <td><input type="text" value="" name="school_teacher_name[]" class="form-control"></td>
                                                                     <td><input type="text" value="" name="school_teacher_passport[]" class="form-control"></td>
                                                                     <td>
@@ -597,7 +605,7 @@
                                                                     <td>
                                                                     <input type="text" value="" name="school_teacher_phone[]" class="form-control">
                                                                     </td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowShoolTeacher("school_teacher")' value="X"></td>
+                                                                    <td></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -821,5 +829,13 @@
 @endsection
 
 @push('scripts')
+<script>
     
+    $(document).ready(function (e) {
+        createDatepicker("school_birthone");
+        
+        
+    });
+
+</script>
 @endpush
