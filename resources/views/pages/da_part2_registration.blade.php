@@ -58,7 +58,13 @@
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
                                                 <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <input type="file" id="image" name="image" style="margin-left: 56px; margin-top: 6px;">
+                                                <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2">
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                </div>
                                             </div>
                                         </div><br>
                                         <div class="row">
@@ -126,7 +132,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
 	                                      <div class="col-md-8">
                                             <div class="form-group">
-                                                        <input type="text" name="" class="form-control" >
+                                                        <input type="text" name="birth1" class="form-control" placeholder="dd-mm-yyyy">
                                                     </div>
                                                 </div>
 	                                    </div>
@@ -151,15 +157,6 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                    <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/ မဟုတ်ပါ') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
-                                                        <input type="text" name="" class="form-control" placeholder="" >
-                                            </div>
-                                                </div>
-	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၉') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('အမြဲတမ်းနေရပ်လိပ်စာ') }}</label>
@@ -169,19 +166,30 @@
                                                 </div>
                                             </div>
 	                                    </div>
+	                                    <div class="row">
+	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
+	                                      <label class="col-md-3 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/ မဟုတ်ပါ') }}</label>
+	                                      <div class="col-md-2">
+                                                        <input type="radio" name="" value="yes"> Yes
+                                            </div>
+                                            <div class="col-md-2">
+                                                        <input type="radio" name="" value="no"> No
+                                            </div>
+	                                    </div>
+                                        
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၀။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
-	                                        <div class="col-md-8">
+	                                      <label class="col-md-3 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
+	                                        <div class="col-md-7">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်" >
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
                                             </div>
 	                                    </div>
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၁။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('တက်ရောက်ခွင့်ရသည့်အမှတ်စဥ်') }}</label>
-	                                      <div class="col-md-8">
+	                                      <label class="col-md-3 col-form-label">{{ __('တက်ရောက်ခွင့်ရသည့်အမှတ်စဥ်') }}</label>
+	                                      <div class="col-md-7">
                                             <div class="form-group">
                                                     <input type="text" name="" class="form-control">
                                                 </div>
@@ -286,7 +294,7 @@
                                             <label class="col-md-1 col-form-label">နှင့်နေ့စွဲ</label>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input type="text" name="" class="form-control">
+                                                    <input type="text" name="date1" class="form-control" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
                                         </div>
@@ -305,16 +313,16 @@
                                             <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="date2" class="form-control" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
                                            
 	                                    </div>
                                         <div class="row">
-                                        <div class="col-md-12 d-md-flex justify-content-md-end">
-                                            <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
+                                            <div class="col-md-11 d-md-flex justify-content-md-end">
+                                                <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
+                                            </div>
                                         </div>
-                                    </div>
                                   </div>
                                   
                                   <div class="tab-pane fade" id="link3" aria-expanded="true">
@@ -322,7 +330,13 @@
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
                                                 <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <input type="file" id="image" name="image" style="margin-left: 56px; margin-top: 6px;">
+                                                <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2">
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                </div>
                                             </div>
                                         </div><br>
                                         <div class="row">
@@ -393,7 +407,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
 	                                      <div class="col-md-8">
                                             <div class="form-group">
-                                                        <input type="text" name="" class="form-control"  >
+                                                        <input type="text" name="birth2" class="form-control"  placeholder="dd-mm-yyyy">
                                                     </div>
                                                 </div>
 	                                    </div>
@@ -418,17 +432,8 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                    <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/ မဟုတ်ပါ') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
-                                                        <input type="text" name="" class="form-control" placeholder="" >
-                                            </div>
-                                                </div>
-	                                    </div>
                                         <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၉။') }}</label>
+	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('အမြဲတမ်းနေရပ်လိပ်စာ') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
@@ -436,19 +441,30 @@
                                                 </div>
                                             </div>
 	                                    </div>
+	                                    <div class="row">
+	                                      <label class="col-md-1 col-form-label">{{ __('၉။') }}</label>
+	                                      <label class="col-md-3 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/ မဟုတ်ပါ') }}</label>
+	                                      <div class="col-md-2">
+                                                        <input type="radio" name="" value="yes"> Yes
+                                            </div>
+                                            <div class="col-md-2">
+                                                        <input type="radio" name="" value="no"> No
+                                            </div>
+	                                    </div>
+                                        
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၀။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
-	                                        <div class="col-md-8">
+	                                      <label class="col-md-3 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
+	                                        <div class="col-md-7">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်" >
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
                                             </div>
 	                                    </div>
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၁။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('ဒီပလိုမာစာရင်းကိုင်(ပထမ)ပိုင်းစာမေးပွဲအောင်မြင်သည့်နှစ်/လ') }}</label>
-	                                        <div class="col-md-8">
+	                                      <label class="col-md-5 col-form-label">{{ __('ဒီပလိုမာစာရင်းကိုင်(ပထမ)ပိုင်းစာမေးပွဲအောင်မြင်သည့်နှစ်/လ') }}</label>
+	                                        <div class="col-md-5">
                                                 <div class="form-group">
                                                             <input type="text" name="" class="form-control" >
                                                 </div>
@@ -456,8 +472,8 @@
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('ကိုယ်ပိုင်အမှတ်နှင့်အဆင့်') }}</label>
-	                                        <div class="col-md-8">
+	                                      <label class="col-md-5 col-form-label">{{ __('ကိုယ်ပိုင်အမှတ်နှင့်အဆင့်') }}</label>
+	                                        <div class="col-md-5">
                                                 <div class="form-group">
                                                             <input type="text" name="" class="form-control" >
                                                 </div>
@@ -475,16 +491,16 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __('ရက်စွဲ') }}</label>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="date3" class="form-control" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
                                            
 	                                    </div>
                                         <div class="row">
-                                            <div class="col-md-12 d-md-flex justify-content-md-end">
+                                            <div class="col-md-11 d-md-flex justify-content-md-end">
                                                 <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                             </div>
                                         </div>
@@ -494,7 +510,13 @@
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
                                                 <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <input type="file" id="image" name="image" style="margin-left: 56px; margin-top: 6px;">
+                                                <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2">
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                </div>
                                             </div>
                                         </div><br>
                                         <div class="row">
@@ -563,7 +585,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
 	                                      <div class="col-md-8">
                                             <div class="form-group">
-                                                        <input type="text" name="" class="form-control" >
+                                                        <input type="text" name="birth3" class="form-control" placeholder="dd-mm-yyyy">
                                                     </div>
                                                 </div>
 	                                    </div>
@@ -588,17 +610,8 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                    <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/ မဟုတ်ပါ') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
-                                                        <input type="text" name="" class="form-control" placeholder="" >
-                                            </div>
-                                                </div>
-	                                    </div>
                                         <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၉။') }}</label>
+	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('အမြဲတမ်းနေရပ်လိပ်စာ') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
@@ -606,12 +619,23 @@
                                                 </div>
                                             </div>
 	                                    </div>
+	                                    <div class="row">
+	                                      <label class="col-md-1 col-form-label">{{ __('၉။') }}</label>
+	                                      <label class="col-md-3 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/ မဟုတ်ပါ') }}</label>
+	                                      <div class="col-md-2">
+                                                        <input type="radio" name="" value="yes"> Yes
+                                            </div>
+                                            <div class="col-md-2">
+                                                        <input type="radio" name="" value="no"> No
+                                            </div>
+	                                    </div>
+                                        
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၀။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
-	                                        <div class="col-md-8">
+	                                      <label class="col-md-3 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
+	                                        <div class="col-md-7">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်" >
+                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
                                             </div>
 	                                    </div>
@@ -624,44 +648,40 @@
                                         
                                         
                                         <div class="row">
-                                            <div class="col-md-3"></div>
-                                            <div class="col-md-1">
-                                                <input type="checkbox" value="သင်တန်းတက်ရောက်ခဲ့ပြီးစာမေးပွဲဝင်ရောက်မဖြေဆိုခြင်း">
-                                            </div>
+                                            <div class="col-md-4"></div>
+                                            
                                             <div class="col-md-4">
+                                                    <input type="checkbox" value="သင်တန်းတက်ရောက်ခဲ့ပြီးစာမေးပွဲဝင်ရောက်မဖြေဆိုခြင်း">
                                                    <label>သင်တန်းတက်ရောက်ခဲ့ပြီးစာမေးပွဲဝင်ရောက်မဖြေဆိုခြင်း</label>
                                                    
                                             </div>
                                             
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-3"></div>
-                                            <div class="col-md-1">
-                                                <input type="checkbox" value="သင်တန်းတက်ရောက်ချိန် ၆၀% မပြည့်ခြင်း">
-                                            </div>
+                                            <div class="col-md-4"></div>
+                                            
                                             <div class="col-md-4">
+                                                    <input type="checkbox" value="သင်တန်းတက်ရောက်ချိန် ၆၀% မပြည့်ခြင်း">
                                                    <label>သင်တန်းတက်ရောက်ချိန် ၆၀% မပြည့်ခြင်း</label>
                                                    
                                             </div>
                                             
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-3"></div>
-                                            <div class="col-md-1">
-                                                <input type="checkbox" value="စာမေးပွဲကျရှုံးခြင်း">
-                                            </div>
+                                            <div class="col-md-4"></div>
+                                            
                                             <div class="col-md-4">
+                                                    <input type="checkbox" value="စာမေးပွဲကျရှုံးခြင်း">
                                                    <label>စာမေးပွဲကျရှုံးခြင်း</label>
                                                    
                                             </div>
                                             
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-3"></div>
-                                            <div class="col-md-1">
-                                                <input type="checkbox" value="သင်တန်းမှနုတ်ထွက်ခဲ့ခြင်း">
-                                            </div>
+                                            <div class="col-md-4"></div>
+                                            
                                             <div class="col-md-4">
+                                                 <input type="checkbox" value="သင်တန်းမှနုတ်ထွက်ခဲ့ခြင်း">
                                                    <label>သင်တန်းမှနုတ်ထွက်ခဲ့ခြင်း</label>
                                                    
                                             </div>
@@ -691,16 +711,16 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __('ရက်စွဲ') }}</label>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="date4" class="form-control" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
                                            
 	                                    </div>
                                         <div class="row">
-                                            <div class="col-md-12 d-md-flex justify-content-md-end">
+                                            <div class="col-md-11 d-md-flex justify-content-md-end">
                                                 <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                             </div>
                                         </div>
@@ -710,7 +730,13 @@
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
                                                 <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <input type="file" id="image" name="image" style="margin-left: 56px; margin-top: 6px;">
+                                                <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2">
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                </div>
                                             </div>
                                         </div><br>
                                         
@@ -772,33 +798,40 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
 	                                      <div class="col-md-8">
                                             <div class="form-group">
-                                                        <input type="text" name="" class="form-control"  >
+                                                        <input type="text" name="birth4" class="form-control"  placeholder="dd-mm-yyy">
                                                     </div>
                                                 </div>
 	                                    </div>
 	                                  
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
-	                                        <div class="col-md-8">
+	                                      <label class="col-md-3 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
+	                                        <div class="col-md-7">
                                                 <div class="form-group">
-                                                            <input type="text" name="" class="form-control" placeholder="ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်" >
+                                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                 </div>
                                             </div>
 	                                    </div>
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('သင်တန်းတက်ရောက်သည့်နေရာ(မလိုသည်ကိုဖျက်ရန်)') }}</label>
-	                                        <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <label>စာရင်းကောင်စီ/ကိုယ်ပိုင်သင်တန်းကျောင်း/ကိုယ်ပိုင်လေ့လာသူ</label>
-                                                </div>
+	                                      <label class="col-md-3 col-form-label">{{ __('သင်တန်းတက်ရောက်သည့်နေရာ') }}</label>
+                                          <div class="col-md-2">
+                                                    <input type="checkbox" name="" >
+                                                    <label class="form-check-label">စာရင်းကောင်စီ</label> 
+                                            </div>
+                                            <div class="col-md-3">
+                                                    <input type="checkbox" name="" >
+                                                    <label class="form-check-label">ကိုယ်ပိုင်သင်တန်းကျောင်း</label> 
+                                            </div>
+                                            <div class="col-md-2">
+                                                    <input type="checkbox" name="" >
+                                                    <label class="form-check-label">ကိုယ်ပိုင်လေ့လာသူ</label> 
                                             </div>
 	                                    </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
-                                            <label class="col-md-2 col-form-label">{{ __('ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းအမည်') }}</label>
-                                            <div class="col-md-8">
+                                            <label class="col-md-3 col-form-label">{{ __('ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းအမည်') }}</label>
+                                            <div class="col-md-7">
 	                                          <div class="form-group">
 	                                              <input type="text" name="name_two" class="form-control" >
 	                                          </div>
@@ -823,7 +856,7 @@
                                             <label class="col-md-2 text-right">ကျင်းပသည့်ခုနှစ်/လ</label>
                                             <div class="col-md-1">
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" id="date" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
                                         </div>
@@ -875,7 +908,7 @@
                                             <label class="col-md-2 text-right">{{ __('ရက်စွဲ') }}</label>
 	                                        <div class="col-md-2">
                                                 <div class="form-group">
-                                                        <input type="text" name="" class="form-control" >
+                                                        <input type="text" name="date5" class="form-control" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -892,16 +925,16 @@
                                             <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="date6" class="form-control" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
                                            
 	                                    </div>
                                         <div class="row">
-                                        <div class="col-md-12 d-md-flex justify-content-md-end">
-                                            <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
+                                            <div class="col-md-11 d-md-flex justify-content-md-end">
+                                                <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
+                                            </div>
                                         </div>
-                                    </div>
                                   </div>
 
                                   <div class="tab-pane fade m-5" id="link6" aria-expanded="true">
@@ -1219,5 +1252,20 @@
 @endsection
 
 @push('scripts')
+<script>
     
+    $(document).ready(function (e) {
+        createDatepicker("birth1");
+        createDatepicker("birth2");
+        createDatepicker("birth3");
+        createDatepicker("birth4");
+        createDatepicker("date1");
+        createDatepicker("date2");
+        createDatepicker("date3");
+        createDatepicker("date4");
+        createDatepicker("date5");
+        createDatepicker("date6");
+    });
+
+    </script>
 @endpush

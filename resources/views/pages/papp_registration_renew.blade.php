@@ -161,7 +161,7 @@
                                             <label class="col-md-2 col-form-label">ခုနှစ်အတွက်</label>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <input type="text" name="" class="form-control" > 
+                                                    <input type="text" name="papprenew_dateone" placeholder="dd-mm-yyyy" class="form-control" > 
                                                 </div>
                                             </div>
                                             <label class="col-md-2 col-form-label">ရက်စွဲပါမှတ်ပုံတင်အမှတ်</label>
@@ -301,21 +301,21 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th class="less-font-weight">စဥ်</th>
-                                                                        <th class="less-font-weight">လုပ်ငန်းအပ်နှံသည့်ပုဂ္ဂိုလ်/ကုမ္ပဏီ/စီးပွားရေးအဖွဲ့အစည်း/လူမှုရေးအဖွဲ့အစည်း*</th>
-                                                                        <th class="less-font-weight">စာရင်းကာလ**</th>
-                                                                        <th class="less-font-weight">တာဝန်ယူဆောင်ရွက်သည့် Principal/Managin Partner/Partner အမှုထမ်း PPA ၏အမည်***</th>
+                                                                        <th class="less-font-weight">လုပ်ငန်းအပ်နှံသည့်ပုဂ္ဂိုလ်/ကုမ္ပဏီ/စီးပွားရေးအဖွဲ့အစည်း/လူမှုရေးအဖွဲ့အစည်း<b>*</b></th>
+                                                                        <th class="less-font-weight">စာရင်းကာလ<b>**</b></th>
+                                                                        <th class="less-font-weight">တာဝန်ယူဆောင်ရွက်သည့် Principal/Managin Partner/Partner အမှုထမ်း PPA ၏အမည်<b>***</b></th>
                                                                         
                                                                         <th ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowAuditWork("audit_work")' value="+"></th>
                                                                     </tr>
                                                                 <thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" name="audit_work_sr[]" class="form-control" ></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" name="audit_work_name[]" class="form-control" ></td>
                                                                         <td><input type="text" name="audit_work_list[]" class="form-control" ></td>
                                                                         <td><input type="text" name="audit_work_ppa[]" class="form-control" ></td>
                                                                         
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowAuditWork("audit_work")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -325,7 +325,7 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-10 col-form-label">{{ __('* နှစ်အတွင်း လက်ခံ/ရရှိ Statutory Audit Work လုပ်ငန်းအားလုံးကို ထည့်သွင်းရန် ဖြစ်ပါသည်။လုပ်ငန်းအပ်နှံသည့် ပုဂ္ဂိုလ်/ကုမ္ပဏီ/စီးပွားရေးအဖွဲ့အစည်း/') }}</label>
+                                            <label class="col-md-10 col-form-label"><b>* </b>{{ __(' နှစ်အတွင်း လက်ခံ/ရရှိ Statutory Audit Work လုပ်ငန်းအားလုံးကို ထည့်သွင်းရန် ဖြစ်ပါသည်။လုပ်ငန်းအပ်နှံသည့် ပုဂ္ဂိုလ်/ကုမ္ပဏီ/စီးပွားရေးအဖွဲ့အစည်း/') }}</label>
                                             
                                         </div>
                                         <div class="row">
@@ -335,12 +335,12 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-10 col-form-label">{{ __('** ဆောင်ရွက်ပေးသည့်လုပ်ငန်း၏စာရင်းကာလဖော်ပြရန်ဖြစ်ပါသည်။ ') }}</label>
+                                            <label class="col-md-10 col-form-label"><b>**</b>{{ __(' ဆောင်ရွက်ပေးသည့်လုပ်ငန်း၏စာရင်းကာလဖော်ပြရန်ဖြစ်ပါသည်။ ') }}</label>
                                             
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-10 col-form-label">{{ __('*** ထို Statutory Audit Workကို ဦးဆောင်တာဝန်ယူဆောင်ရွက်သူ(Team Leader) PPA အမည်ကို ဖော်ပြရန်ဖြစ်ပါသည်။ ') }}</label>
+                                            <label class="col-md-10 col-form-label"><b>***</b>{{ __(' ထို Statutory Audit Workကို ဦးဆောင်တာဝန်ယူဆောင်ရွက်သူ(Team Leader) PPA အမည်ကို ဖော်ပြရန်ဖြစ်ပါသည်။ ') }}</label>
                                             
                                         </div>
                                         <div class="row">
@@ -371,12 +371,20 @@
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-10 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                     
                                                     (က)လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပြည့်မီ)မှတ်ပုံတင်လက်မှတ်
                                                     
                                                 </div>
-                                                
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
@@ -384,8 +392,20 @@
                                                     (ခ)မှတ်ပုံတင်မည့် ပြက္ခဒိန်နှစ်မတိုင်မီနှစ်တွင် မြန်မာနိုင်ငံ၌ ၁၈၃ ရက်ထက်မနည်းနေထိုင်သူဖြစ်ကြောင်းဝန်ခံချက်
                                                        
                                                 </div>
+                                                
                                         </div>
-                                        
+                                        <div class="row">
+                                                <div class="col-md-7"></div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-8 col-form-label">
@@ -395,14 +415,34 @@
                                                 
                                         </div>
                                         <div class="row">
+                                                <div class="col-md-7"></div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-10 col-form-label">{{ __('(ဃ)လျှောက်ထားသည့်နှစ်အတွက် အများပြည်သူစာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းကို မိမိ၏ အဓိကအသက်မွေးဝမ်းကျောင်းလုပ်ငန်းအဖြစ် မြန်မာနိုင်ငံအတွင်း') }}</label>
                                             
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-10 col-form-label">{{ __('တွင်လုပ်ကိုင်မည်ဖြစ်ကြောင်းခံဝန်ချက်') }}</label>
-                                            
+                                            <label class="col-md-6 col-form-label">{{ __('တွင်လုပ်ကိုင်မည်ဖြစ်ကြောင်းခံဝန်ချက်') }}</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
@@ -415,9 +455,18 @@
                                         <div class="row">
                                                 <div class="col-md-1"></div>
                                                 
-                                                <div class="col-md-10 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                 စည်းကမ်းချက်များနှင့်စပ်လျဥ်း ၍လိုက်နာခြင်းရှိ/မရှိ
                                                     
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                         </div>
                                         <div class="row">
@@ -426,6 +475,18 @@
                                                 <div class="col-md-10 col-form-label">
                                                 (စ)စတင်လျှောက်ထားသည့်နေ့မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous Professional Development-CPD)မှတ်တမ်း
                                                     
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-md-7"></div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                         </div>
                                         <div class="row">
@@ -441,7 +502,16 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-8 col-form-label">(သို့မဟုတ်)အခွန်ကင်းရှင်းကြောင်းထောက်ခံချက်</div>
+                                            <div class="col-md-6 col-form-label">(သို့မဟုတ်)အခွန်ကင်းရှင်းကြောင်းထောက်ခံချက်</div>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                        
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
@@ -451,13 +521,14 @@
                                         
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-2">
+                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="papprenew_datetwo" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr/>
 	                                    <div class="row">
                                             <label class="col-md-5 col-form-label"></label>
                                             <label class="col-md-4 col-form-label">{{ __(' မြန်မာနိုင်ငံစာရင်းကောင်စီရေးသွင်းရန်') }}</label>
@@ -466,7 +537,7 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-6 col-form-label">{{ __('ဤလျှောက်လွှာနှင့်ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများကို စိစစ်ပြီးလက်ခံပါသည်။ လက်ခံအမှတ် ') }}</label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <input type="text"class="form-control" >
                                                 </div></div>
@@ -474,18 +545,23 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text"class="form-control" >
-                                                </div></div>
+                                            <label class="col-md-6 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-2">
+                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="papprenew_datethree" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -956,5 +1032,14 @@
 @endsection
 
 @push('scripts')
+<script>
     
+    $(document).ready(function (e) {
+        createDatepicker("papprenew_dateone");
+        createDatepicker("papprenew_datetwo");
+        createDatepicker("papprenew_datethree");
+        
+    });
+
+</script>
 @endpush

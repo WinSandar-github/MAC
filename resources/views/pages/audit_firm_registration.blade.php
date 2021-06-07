@@ -155,7 +155,7 @@
                                                                     </td>
                                                                     <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                     <td><input type="text" name="branch_website[]" class="form-control" ></td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowBranch("branch")'  value="X"></td>
+                                                                    <td></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -221,7 +221,7 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" value="" name="partner_no[]" class="form-control"></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" value="" name="partner_name[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="partner_private_regno[]" class="form-control"></td>
                                                                         <td>
@@ -232,7 +232,7 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">No</label>
                                                                         </td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowPartner("partner_list")' value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -266,12 +266,12 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" value="" name="director_sr[]" class="form-control"></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" value="" name="director_name[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_position[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_cpa_no[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_private_regno[]" class="form-control"></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowDirector("director")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -539,7 +539,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control">
+                                                            <input type="date" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -673,7 +673,7 @@
                                                                         </td>
                                                                         <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_website[]" class="form-control" ></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowBranch("branch_renew")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -739,7 +739,7 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" value="" name="partner_no[]" class="form-control"></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" value="" name="partner_name[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="partner_private_regno[]" class="form-control"></td>
                                                                         <td>
@@ -750,7 +750,7 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">No</label>
                                                                         </td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowPartner("partner_renew")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -784,12 +784,12 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" value="" name="director_sr[]" class="form-control"></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" value="" name="director_name[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_position[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_cpa_no[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_private_regno[]" class="form-control"></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowDirector("director_renew")' value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1055,7 +1055,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control">
+                                                            <input type="date" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>

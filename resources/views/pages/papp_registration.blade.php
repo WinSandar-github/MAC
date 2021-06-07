@@ -268,27 +268,52 @@
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-8 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                     (က)လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပြည့်မီ)မှတ်ပုံတင်လက်မှတ်
                                                    
                                                 </div>
-                                                
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-8 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                     (ခ)မှတ်ပုံတင်မည့် ပြက္ခဒိန်နှစ်မတိုင်မီနှစ်တွင် မြန်မာနိုင်ငံ၌ ၁၈၃ ရက်ထက်မနည်းနေထိုင်သူဖြစ်ကြောင်းဝန်ခံချက်
                                                        
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                         </div>
                                         
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-8 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                     (ဂ)အခြားလုပ်ငန်းအဖွဲ့အစည်းတစ်ရပ်ရပ်တွင် အချိန်ပြည့် တာဝန်ထမ်းဆောင်နေသူ မဟုတ်ကြောင်းခံဝန်ချက်
                                                    
                                                 </div>
-                                                
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
@@ -297,8 +322,16 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-10 col-form-label">{{ __('တွင်လုပ်ကိုင်မည်ဖြစ်ကြောင်းခံဝန်ချက်') }}</label>
-                                            
+                                            <label class="col-md-6 col-form-label">{{ __('တွင်လုပ်ကိုင်မည်ဖြစ်ကြောင်းခံဝန်ချက်') }}</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
@@ -311,9 +344,18 @@
                                         <div class="row">
                                                 <div class="col-md-1"></div>
                                                 
-                                                <div class="col-md-10 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                 စည်းကမ်းချက်များနှင့်စပ်လျဥ်း ၍လိုက်နာခြင်းရှိ/မရှိ
                                                     
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                         </div>
                                         <div class="row">
@@ -323,6 +365,18 @@
                                                 (စ)စတင်လျှောက်ထားသည့်နေ့မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous Professional Development-CPD)မှတ်တမ်း
                                                     
                                                 </div>
+                                        </div>
+                                        <div class="row">
+                                        <div class="col-md-7"></div>
+                                            <div class="col-md-4">
+                                                <div class="input-group mb-3">
+                                                    
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                        <label class="custom-file-label" >Choose file</label>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
@@ -337,7 +391,16 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-8 col-form-label">(သို့မဟုတ်)အခွန်ကင်းရှင်းကြောင်းထောက်ခံချက်</div>
+                                            <div class="col-md-6 col-form-label">(သို့မဟုတ်)အခွန်ကင်းရှင်းကြောင်းထောက်ခံချက်</div>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
@@ -347,13 +410,14 @@
                                         
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-2">
+                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="pappinitial_dateone" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
+                                        <hr/>
 	                                    <div class="row">
                                             <label class="col-md-5 col-form-label"></label>
                                             <label class="col-md-4 col-form-label">{{ __(' မြန်မာနိုင်ငံစာရင်းကောင်စီရေးသွင်းရန်') }}</label>
@@ -362,7 +426,7 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-6 col-form-label">{{ __('ဤလျှောက်လွှာနှင့်ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများကို စိစစ်ပြီးလက်ခံပါသည်။ လက်ခံအမှတ် ') }}</label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <input type="text"class="form-control" >
                                                 </div></div>
@@ -370,18 +434,23 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text"class="form-control" >
-                                                </div></div>
+                                            <label class="col-md-6 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-2">
+                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="pappinitial_datetwo" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -828,7 +897,7 @@
                                             <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <input type="text" name="name" class="form-control" >
+                                                    <input type="text" name="pappinitial_datethree" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -957,5 +1026,14 @@
 @endsection
 
 @push('scripts')
+<script>
     
+    $(document).ready(function (e) {
+        createDatepicker("pappinitial_dateone");
+        createDatepicker("pappinitial_datetwo");
+        createDatepicker("pappinitial_datethree");
+        
+    });
+
+    </script>
 @endpush
