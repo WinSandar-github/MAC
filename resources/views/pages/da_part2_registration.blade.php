@@ -53,7 +53,7 @@
 		                            </ul>
                             	<div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
                                     
-                                  <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                  <div class="tab-pane fade show active m-3" id="link1" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -325,7 +325,7 @@
                                         </div>
                                   </div>
                                   
-                                  <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                  <div class="tab-pane fade m-3" id="link3" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -505,7 +505,7 @@
                                             </div>
                                         </div>
                                   </div>
-                                  <div class="tab-pane fade" id="link4" aria-expanded="true">
+                                  <div class="tab-pane fade m-3" id="link4" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -725,7 +725,7 @@
                                             </div>
                                         </div>
                                   </div>
-                                  <div class="tab-pane fade" id="link5" aria-expanded="true">
+                                  <div class="tab-pane fade m-3" id="link5" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -937,7 +937,7 @@
                                         </div>
                                   </div>
 
-                                  <div class="tab-pane fade m-5" id="link6" aria-expanded="true">
+                                  <div class="tab-pane fade m-3" id="link6" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-12 col-form-label text-center" style="font-size:17px; font-weight:bold;">{{ __('လက်မှတ်ရပြည့်သူ့စာရင်းကိုင် /ဒီပလိုမာစာရင်းကိုင် စာမေးပွဲ အောင်လက်မှတ် /အောင်မြင်ကြောင်း ထောက်ခံချက် /အမှတ်စာရင်း(အောင်မြင် /ကျရှုံး)တောင်းခံမှူပုံစံ') }}</label>
                                             </div><br>
@@ -1222,7 +1222,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                </div>
+                                    </div>
                                 
                             </div>
 

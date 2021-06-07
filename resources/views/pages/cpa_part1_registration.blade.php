@@ -52,7 +52,7 @@
 		                              </li>
 		                            </ul>
                             	<div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                    <div class="tab-pane fade show active m-3" id="link1" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -222,7 +222,7 @@
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၆။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('မိမိသည်နိုင်ငံ့ဝန်ထမ်း ဖြစ်ပါသည်/ မဟုတ်ပါ') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('မိမိသည်နိုင်ငံ့ဝန်ထမ်း ဟုတ်/ မဟုတ်ပါ') }}</label>
 	                                      
                                             <div class="col-md-2">
                                                         <input type="radio" name="" class="" value="yes"> Yes
@@ -457,7 +457,7 @@
 	                                 
 	                                </div>
                                   
-                                    <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                    <div class="tab-pane fade m-3" id="link2" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -781,7 +781,7 @@
                                         </div>
                                   </div>
                                   
-                                  <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                  <div class="tab-pane fade m-3" id="link3" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -965,7 +965,7 @@
                                             </div>
                                         </div>
                                   </div>
-                                  <div class="tab-pane fade" id="link4" aria-expanded="true">
+                                  <div class="tab-pane fade m-3" id="link4" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
@@ -1190,7 +1190,7 @@
                                             </div>
                                         </div>
                                   </div>
-                                  <div class="tab-pane fade" id="link5" aria-expanded="true">
+                                  <div class="tab-pane fade m-3" id="link5" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">

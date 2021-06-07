@@ -49,7 +49,7 @@
 		                              
 		                            </ul>
                             	    <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-	                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+	                                    <div class="tab-pane fade show active m-5" id="link1" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Accountancy Firm Registration No') }}</label>
@@ -281,7 +281,7 @@
                                             </div>
 	                                  
 	                                    </div>
-                                        <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                        <div class="tab-pane fade m-5" id="link2" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-10 col-form-label">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
@@ -569,7 +569,7 @@
 		                              
 		                            </ul>
                             	    <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-	                                    <div class="tab-pane fade show active" id="link3" aria-expanded="true">
+	                                    <div class="tab-pane fade show active m-5" id="link3" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Accountancy Firm Registration No') }}</label>
@@ -799,7 +799,7 @@
                                             </div>
 	                                  
 	                                    </div>
-                                        <div class="tab-pane fade" id="link4" aria-expanded="true">
+                                        <div class="tab-pane fade m-5" id="link4" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-10 col-form-label">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>

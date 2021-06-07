@@ -37,7 +37,7 @@
 		                              
 		                            </ul>
                             	<div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                    <div class="tab-pane fade show active m-1" id="link1" aria-expanded="true">
                                         
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
@@ -390,8 +390,8 @@
                                             </div>
                                         </div>
 	                              </div>
-                                  <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                  <div class="row">
+                                  <div class="tab-pane fade m-3" id="link2" aria-expanded="true">
+                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-8 col-form-label">{{ __('လျှောက်ထားသူ၏ကိုယ်ရေးအချက်အလက်(အင်္ဂလိပ်ဘာသာဖြင့်ဖြည့်စွက်ပေးပါရန်)') }}</label>
 	                                      

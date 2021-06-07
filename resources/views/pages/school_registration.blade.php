@@ -49,7 +49,7 @@
 		                              
 		                            </ul>
                             	<div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                    <div class="tab-pane fade show active m-5" id="link1" aria-expanded="true">
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <label class="col-md-8 col-form-label">{{ __('လျှောက်ထားသူ၏အချက်အလက်များ') }}</label>
@@ -128,7 +128,7 @@
 	                                    </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
-                                            <label class="col-md-8 col-form-label">{{ __('လုပ်ငန်းဖွဲ့စည်းမှုပုံစံကျောင်းကို အောက်ဖော်ပြပါလုပ်ငန်းဖွဲ့စည်းမှုပုံစံဖြင့်ဆောင်ရွက်ပါမည်(ဆိုင်ရာတွင်အမှန်ခြစ် ခြစ်ရန်)') }}</label>
+                                            <label class="col-md-10 col-form-label">{{ __('လုပ်ငန်းဖွဲ့စည်းမှုပုံစံကျောင်းကို အောက်ဖော်ပြပါလုပ်ငန်းဖွဲ့စည်းမှုပုံစံဖြင့်ဆောင်ရွက်ပါမည်(ဆိုင်ရာတွင်အမှန်ခြစ် ခြစ်ရန်)') }}</label>
                                             
                                         </div>
                                         <div class="row">
@@ -233,7 +233,7 @@
 	                                 
 	                              </div>
                                   
-                                  <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                  <div class="tab-pane fade m-5" id="link2" aria-expanded="true">
                                         
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
@@ -380,7 +380,7 @@
                                         
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
+                                            <label class="col-md-10 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
                                             
                                         </div>
                                         <div class="row">
@@ -400,7 +400,7 @@
                                         </div>
                                   </div>
                                   
-                                  <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                  <div class="tab-pane fade m-5" id="link3" aria-expanded="true">
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-10 col-form-label">{{ __('ကျောင်းတည်ထောင်သူပုဂ္ဂိုလ်(များ)နှင့်ကျောင်းစီမံအုပ်ချုပ်သူများ၏အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ') }}</label>
@@ -615,7 +615,7 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
+                                            <label class="col-md-10 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
                                             
                                         </div>
                                         <div class="row">
@@ -634,7 +634,7 @@
                                             </div>
                                         </div>
                                   </div>
-                                  <div class="tab-pane fade" id="link4" aria-expanded="true">
+                                  <div class="tab-pane fade m-5" id="link4" aria-expanded="true">
                                         
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
@@ -773,7 +773,7 @@
 	                                    </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
+                                            <label class="col-md-10 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
                                             
                                         </div>
                                         
