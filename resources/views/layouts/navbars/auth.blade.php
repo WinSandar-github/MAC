@@ -17,24 +17,6 @@
                     <p>{{ __('Dashboard') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'report_1' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'report_1') }}">
-                    <i class="nc-icon nc-vector"></i>
-                    <p>{{ __('Report 1') }}</p>
-                </a>
-            </li>
-            <li class="{{ $elementActive == 'report_2' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'report_2') }}">
-                    <i class="nc-icon nc-vector"></i>
-                    <p>{{ __('Report 2') }}</p>
-                </a>
-            </li>
-            <li class="{{ $elementActive == 'report_3' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'report_3') }}">
-                    <i class="nc-icon nc-vector"></i>
-                    <p>{{ __('Report 3') }}</p>
-                </a>
-            </li>            
             
             <li class="{{ $elementActive == 'administration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'administration') }}">
@@ -178,7 +160,7 @@
                  </ul>
                 </div>
             </li>
-            
+           
             <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#da" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>

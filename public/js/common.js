@@ -65,7 +65,6 @@
         function addRowBranch(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
             cols += '<td><input type="text" name="branch_no[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="branch_township[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="branch_post_code[]" class="form-control" /></td>';
@@ -86,11 +85,13 @@
                 counter -= 1
             });
         }
+        
         function addRowPartner(tbody){
+            
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="partner_no[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="partner_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="partner_private_regno[]" class="form-control" /></td>';
             cols += '<td><input type="radio" name="report_yes" id="report_yes[]" > Yes</td>';
@@ -110,8 +111,8 @@
         function addRowDirector(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="director_no[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="director_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="director_position[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="director_cpa_no" class="form-control" /> </td>';
@@ -128,11 +129,12 @@
                 counter -= 1
             });
         }
+        
         function addRowPartnerByNonAudit(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="non_partner_sr[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="non_partner_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="non_partner_passport[]" class="form-control" /></td>';
             cols += '<td><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowPartnerByNonAudit("'+tbody+'")  value="X"></td>';
@@ -143,14 +145,15 @@
         function delRowPartnerByNonAudit(tbody){
             $("table."+tbody).on("click", ".delete", function (event) {
                 $(this).closest("tr").remove();
-                counter -= 1
+                counter -= 1;
+                
             });
         }
         function addRowDirectorByNonAudit(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="non_director_sr[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="non_director_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="non_director_position[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="non_director_cpa_no[]" class="form-control" /> </td>';
@@ -168,8 +171,8 @@
         function addRowDirectorCPA(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="director_cpa_sr[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="director_cpa_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="director_cpa_position[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="director_cpa_pass_no[]" class="form-control" /> </td>';
@@ -189,8 +192,8 @@
         function addRowAuditWork(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="audit_work_sr[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="audit_work_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="audit_work_list[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="audit_work_ppa[]" class="form-control" /></td>';
@@ -208,8 +211,8 @@
         function addRowSchoolFounder(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="school_founder_sr[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="school_founder_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="school_founder_passport[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_founder_cpa[]" class="form-control" /></td>';
@@ -230,8 +233,8 @@
         function addRowSchoolManager(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="school_manager_sr[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="school_manager_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="school_manager_passport[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_manager_cpa[]" class="form-control" /></td>';
@@ -252,8 +255,8 @@
         function addRowSchoolExecutive(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="school_executive_sr[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="school_executive_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="school_executive_passport[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_executive_cpa[]" class="form-control" /></td>';
@@ -274,8 +277,8 @@
         function addRowSchoolTeacher(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
-            cols += '<td><input type="text" name="school_teacher_sr[]" class="form-control"/></td>';
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="school_teacher_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="school_teacher_passport[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_teacher_tp[]" class="form-control" /></td>';
@@ -317,3 +320,10 @@
                 counter -= 1
             });
         }
+        function createDatepicker(name){
+            $("input[name='"+name+"']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+            });
+        }
+        

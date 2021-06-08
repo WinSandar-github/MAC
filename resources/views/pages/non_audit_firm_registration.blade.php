@@ -76,7 +76,7 @@
                                         
                                         </ul>
                                     <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                        <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                        <div class="tab-pane fade show active m-5" id="link1" aria-expanded="true">
                                                 <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Foreign Firm Registration No') }}</label>
@@ -180,7 +180,7 @@
                                                                         </td>
                                                                         <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_website[]" class="form-control" ></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowBranch("branch_non_audit")' value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -213,10 +213,10 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><input type="text" value="" name="non_partner_sr[]" class="form-control"></td>
+                                                                            <td>1</td>
                                                                             <td><input type="text" value="" name="non_partner_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_partner_passport[]" class="form-control"></td>
-                                                                            <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delPartnerByNonAudit("non_partner")'  value="X"></td>
+                                                                            <td></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -249,11 +249,11 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><input type="text" value="" name="non_director_sr[]" class="form-control"></td>
+                                                                            <td>1</td>
                                                                             <td><input type="text" value="" name="non_director_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_director_position[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_director_csc_no[]" class="form-control"></td>
-                                                                            <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowDirectorByNonAudit("non_director")'  value="X"></td>
+                                                                            <td></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -265,7 +265,7 @@
                                             
                                             
                                         </div>
-                                        <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                        <div class="tab-pane fade m-5" id="link2" aria-expanded="true">
                                             <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                     <label class="col-md-4 col-form-label">{{ __('Organization Structure') }}</label>
@@ -468,12 +468,12 @@
                                                         
                                                             <div class="form-group">
                                                                 
-                                                                <input type="text" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
+                                                                <input type="date" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-12 d-md-flex justify-content-md-end">
+                                                        <div class="col-md-11 d-md-flex justify-content-md-end">
                                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                                         </div>
                                                     </div>
@@ -499,7 +499,7 @@
                                         
                                         </ul>
                                     <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                        <div class="tab-pane fade show active" id="link3" aria-expanded="true">
+                                        <div class="tab-pane fade show active m-5" id="link3" aria-expanded="true">
                                                 <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Foreign Firm Registration No') }}</label>
@@ -603,7 +603,7 @@
                                                                         </td>
                                                                         <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_website[]" class="form-control" ></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowBranch("branch_local_renew")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -636,10 +636,10 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><input type="text" value="" name="non_partner_sr[]" class="form-control"></td>
+                                                                            <td>1</td>
                                                                             <td><input type="text" value="" name="non_partner_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_partner_passport[]" class="form-control"></td>
-                                                                            <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delPartnerByNonAudit("non_partner_local")'  value="X"></td>
+                                                                            <td></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -672,11 +672,11 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><input type="text" value="" name="non_director_sr[]" class="form-control"></td>
+                                                                            <td>1</td>
                                                                             <td><input type="text" value="" name="non_director_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_director_position[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_director_csc_no[]" class="form-control"></td>
-                                                                            <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowDirectorByNonAudit("non_director_local")'  value="X"></td>
+                                                                            <td></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -688,7 +688,7 @@
                                             
                                             
                                         </div>
-                                        <div class="tab-pane fade" id="link4" aria-expanded="true">
+                                        <div class="tab-pane fade m-5" id="link4" aria-expanded="true">
                                             <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                     <label class="col-md-4 col-form-label">{{ __('Organization Structure') }}</label>
@@ -891,12 +891,12 @@
                                                         
                                                             <div class="form-group">
                                                                 
-                                                                <input type="text" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
+                                                                <input type="date" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-12 d-md-flex justify-content-md-end">
+                                                        <div class="col-md-11 d-md-flex justify-content-md-end">
                                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                                         </div>
                                                     </div>
@@ -922,7 +922,7 @@
                                         
                                         </ul>
                                     <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                        <div class="tab-pane fade show active" id="link5" aria-expanded="true">
+                                        <div class="tab-pane fade show active m-5" id="link5" aria-expanded="true">
                                                 <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Foreign Firm Registration No') }}</label>
@@ -1026,7 +1026,7 @@
                                                                         </td>
                                                                         <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_website[]" class="form-control" ></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowBranch("branch_foreign_initial")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1059,10 +1059,10 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><input type="text" value="" name="non_partner_sr[]" class="form-control"></td>
+                                                                            <td>1</td>
                                                                             <td><input type="text" value="" name="non_partner_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_partner_passport[]" class="form-control"></td>
-                                                                            <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delPartnerByNonAudit("non_partner_foregin_intial")' value="X"></td>
+                                                                            <td></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -1095,11 +1095,11 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><input type="text" value="" name="non_director_sr[]" class="form-control"></td>
+                                                                            <td>1</td>
                                                                             <td><input type="text" value="" name="non_director_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_director_position[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_director_csc_no[]" class="form-control"></td>
-                                                                            <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowDirectorByNonAudit("non_director_foreign_initial")' value="X"></td>
+                                                                            <td></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -1111,7 +1111,7 @@
                                             
                                             
                                         </div>
-                                        <div class="tab-pane fade" id="link6" aria-expanded="true">
+                                        <div class="tab-pane fade m-5" id="link6" aria-expanded="true">
                                             <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                     <label class="col-md-4 col-form-label">{{ __('Organization Structure') }}</label>
@@ -1250,13 +1250,13 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td><input type="text" value="" name="director_cpa_sr[]" class="form-control"></td>
+                                                                                <td>1</td>
                                                                                 <td><input type="text" value="" name="director_cpa_name[]" class="form-control"></td>
                                                                                 <td><input type="text" value="" name="director_cpa_position[]" class="form-control"></td>
                                                                                 <td><input type="text" value="" name="director_cpa_pass_no[]" class="form-control"></td>
                                                                                 <td><input type="text" value="" name="director_cpa_full_no[]" class="form-control"></td>
                                                                                 <td><input type="text" value="" name="director_cpa_public_no[]" class="form-control"></td>
-                                                                                <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowDirectorCPA("director_cpa_initial")' value="X"></td>
+                                                                                <td></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -1354,12 +1354,12 @@
                                                         
                                                             <div class="form-group">
                                                                 
-                                                                <input type="text" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
+                                                                <input type="date" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-12 d-md-flex justify-content-md-end">
+                                                        <div class="col-md-11 d-md-flex justify-content-md-end">
                                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                                         </div>
                                                     </div>
@@ -1385,7 +1385,7 @@
                                         
                                         </ul>
                                     <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                        <div class="tab-pane fade show active" id="link7" aria-expanded="true">
+                                        <div class="tab-pane fade show active m-5" id="link7" aria-expanded="true">
                                                 <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Foreign Firm Registration No') }}</label>
@@ -1489,7 +1489,7 @@
                                                                         </td>
                                                                         <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_website[]" class="form-control" ></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowBranch("branch_foreign_renew")' value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -1522,10 +1522,10 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><input type="text" value="" name="non_partner_sr[]" class="form-control"></td>
+                                                                            <td>1</td>
                                                                             <td><input type="text" value="" name="non_partner_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_partner_passport[]" class="form-control"></td>
-                                                                            <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowPartnerByNonAudit("non_partner_renew")'  value="X"></td>
+                                                                            <td></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -1558,11 +1558,11 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td><input type="text" value="" name="non_director_sr[]" class="form-control"></td>
+                                                                            <td>1</td>
                                                                             <td><input type="text" value="" name="non_director_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_director_position[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="non_director_csc_no[]" class="form-control"></td>
-                                                                            <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowDirectorByNonAudit("non_director_renew")'  value="X"></td>
+                                                                            <td></td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -1574,7 +1574,7 @@
                                             
                                             
                                         </div>
-                                        <div class="tab-pane fade" id="link8" aria-expanded="true">
+                                        <div class="tab-pane fade m-5" id="link8" aria-expanded="true">
                                             <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                     <label class="col-md-4 col-form-label">{{ __('Organization Structure') }}</label>
@@ -1713,13 +1713,13 @@
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td><input type="number" value="" name="director_cpa_sr[]" class="form-control"></td>
+                                                                                <td>1</td>
                                                                                 <td><input type="text" value="" name="director_cpa_name[]" class="form-control"></td>
                                                                                 <td><input type="text" value="" name="director_cpa_position[]" class="form-control"></td>
                                                                                 <td><input type="text" value="" name="director_cpa_pass_no[]" class="form-control"></td>
                                                                                 <td><input type="text" value="" name="director_cpa_full_no[]" class="form-control"></td>
                                                                                 <td><input type="text" value="" name="director_cpa_public_no[]" class="form-control"></td>
-                                                                                <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowDirectorCPA("director_cpa_renew")'  value="X"></td>
+                                                                                <td></td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -1817,12 +1817,12 @@
                                                         
                                                             <div class="form-group">
                                                                 
-                                                                <input type="text" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
+                                                                <input type="date" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-12 d-md-flex justify-content-md-end">
+                                                        <div class="col-md-11 d-md-flex justify-content-md-end">
                                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                                         </div>
                                                     </div>
