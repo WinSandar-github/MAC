@@ -45,7 +45,7 @@
                                 <label class="col-md-2 col-form-label">{{ __('အမည်') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <input type="text" name="name" class="form-control">
+                                        <input type="text" name="name" class="form-control" placeholder="အမည်" required>
                                     </div>
                                 </div>
                             </div>
@@ -200,17 +200,21 @@
                                     </div>
                                 </div>
                             </div>
-                                    
+
                             <div class="row">
                                 <label class="col-md-1 col-form-label pl-5">{{ __('၁၄။') }}</label>
-                                <label class="col-md-2 col-form-label">{{ __('ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း (လက်မှတ်မိတ္တမှန် ပူးတွဲတင်ပြရန်)') }}</label>
+                                <label class="col-md-2 col-form-label">{{ __('ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း (လက်မှတ်မိတ္တူမှန် ပူးတွဲတင်ပြရန်)') }}</label>
                                 <div class="col-md-8">
-                                    <table class="table student_profile_1 table-bordered input-table">
-                                        <tbody>
-                                            <tr>
-                                                <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း"/></td>
-                                                <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                    <table class="table in_counrty_education table-bordered input-table">
+                                        <thead>
+                                            <tr>                                                        
+                                                <th class="less-font-weight text-center" width="40%">ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း</th> 
+                                                <th class="less-font-weight text-center" width="40%">ပူးတွဲတင်ပြရမည့် လက်မှတ်မိတ္တူမှန်</th>                                                       
+                                                <th width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowInCountryEducation("in_counrty_education")' value="+"></td>
                                             </tr>
+                                        </thead>
+                                        <tbody>
+                                                                                                
                                         </tbody>
                                     </table>
                                 </div>

@@ -81,32 +81,7 @@ Auth::routes([
     'register' => false,
 ]);
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::resource('user', 'UserController', ['except' => ['show']]);
-	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-	Route::get('training', ['as' => 'training.index', 'uses' => 'TrainingClassController@index']);
-	Route::get('user_register', 'UserRegisterController@index');
-//	Route::get('student_record', 'StudentRecordController@index');
-//	Route::post('student_record', 'StudentRecordController@store');
-	Route::apiResource('student_record', 'StudentRecordController');
-	Route::apiResource('user_register', 'UserRegisterController');
-	Route::apiResource('registered_user_list', 'RegisterUserListController');
-	Route::post('registered_list/{id}', 'RegisterUserListController@user_update')->name('registered_list.user_update');
-	Route::resource('batch', 'BatchController');
-	Route::post('batch_update/{id}', 'BatchController@update')->name('batch_update.update');
-	Route::get('batch_delete/{id}', 'BatchController@destroy')->name('batch_delete.destroy');
-
-	Route::resource('training', 'TrainingClassController');
-	Route::post('training_update/{id}', 'TrainingClassController@update')->name('training_update.update');
-	Route::get('training_delete/{id}', 'TrainingClassController@delete')->name('training_delete.delete');
-    Route::resource('training_type', 'TrainingTypeController');
-
-    Route::apiResource('lms_accounts', 'MoodleControllers\LmsAccountsController');
-    Route::apiResource('account', 'MoodleControllers\AccountCreateController');
-    Route::post('account_update/{id}', 'MoodleControllers\AccountCreateController@update')->name('account.update');
-    Route::get('account_destroy/{id}', 'MoodleControllers\AccountCreateController@destroy')->name('account.destroy');
+Route::group(['middleware' => 'auth'], function () {   
     
     Route::get('admin', function() {
         return redirect('/moodle/admin');

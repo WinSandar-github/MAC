@@ -1,5 +1,67 @@
         var counter = 0;
 
+        function addRowSubject(tbody){
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td><input type="text" class="form-control" name="education[]" placeholder="လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း"/></td>';
+            cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowSubject("'+tbody+'")  value="X"></td>';            
+            newRow.append(cols);
+            $("table."+tbody).append(newRow);
+            counter++;
+        }
+        function addRowDipSubject(tbody){
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td><input type="text" class="form-control" name="education[]" placeholder="လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း"/></td>';
+            cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowSubject("'+tbody+'")  value="X"></td>';            
+            newRow.append(cols);
+            $("table."+tbody).append(newRow);
+            counter++;
+        }
+        function delRowSubject(tbody){
+            $("table."+tbody).on("click", ".delete", function (event) {
+                $(this).closest("tr").remove();
+                counter -= 1
+            });
+        }
+
+        function addRowInCountryEducation(tbody){
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td><input type="text" class="form-control" name="education[]" placeholder="ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း"/></td>';
+            cols += '<td class="text-center"><input type="file" id="image" name="image"></td>';
+            cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowInCountryEducation("'+tbody+'")  value="X"></td>';            
+            newRow.append(cols);
+            $("table."+tbody).append(newRow);
+            counter++;
+        }
+        function delRowInCountryEducation(tbody){
+            $("table."+tbody).on("click", ".delete", function (event) {
+                $(this).closest("tr").remove();
+                counter -= 1
+            });
+        }
+
+        function addRowEducation(tbody){
+            var newRow = $("<tr>");
+            var cols = "";
+
+            cols += '<td><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>';
+            cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowEducation("'+tbody+'")  value="X"></td>';            
+            newRow.append(cols);
+            $("table."+tbody).append(newRow);
+            counter++;
+        }
+        function delRowEducation(tbody){
+            $("table."+tbody).on("click", ".delete", function (event) {
+                $(this).closest("tr").remove();
+                counter -= 1
+            });
+        }
+
         function addRowBranch(tbody){
             var newRow = $("<tr>");
             var cols = "";

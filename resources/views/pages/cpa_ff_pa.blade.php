@@ -117,12 +117,17 @@
                                         </div>                           
                                     </div>
                                     <div class="row mt-5">                                        
-                                        <div class="col-md-4">
+                                        <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">                                            
-                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">                                            
+                                        <div class="col-md-5">                                            
+                                                                                        
                                         </div>
                                         <div class="col-md-4 pt-5">
                                             <div class="form-group">
@@ -159,9 +164,18 @@
                                                         <td class="border-color">Date</td>
                                                         <td class="border-color">Date</td>
                                                         <td class="border-color">
-                                                            <div class="text-center">
-                                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                            </div> 
+                                                            <div class="row ml-3">                                                                
+                                                                <div class="col-md-8 mb-3 ml-5">
+                                                                    <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                                                    <div class="input-group mt-3" style="margin-left:-11px;">                                                    
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                            <label class="custom-file-label" >Choose file</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                 
+                                                            </div>
+                                                            
                                                             <div class="form-group">
                                                                 <input type="text" name="" class="form-control" placeholder="Signture of Registrar" required>
                                                             </div> 
@@ -272,12 +286,17 @@
                                     </div>
 
                                     <div class="row mt-5">                                        
-                                        <div class="col-md-4">
+                                        <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col-md-4">                                            
-                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">                                            
+                                        <div class="col-md-5">                                            
+                                                                                        
                                         </div>
                                         <div class="col-md-4 pt-5">
                                             <div class="form-group">
@@ -314,9 +333,17 @@
                                                         <td class="border-color">Date</td>
                                                         <td class="border-color">Date</td>
                                                         <td class="border-color">
-                                                            <div class="text-center">
-                                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                            </div> 
+                                                            <div class="row ml-3">                                                                
+                                                                <div class="col-md-8 mb-3 ml-5">
+                                                                    <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                                                    <div class="input-group mt-3" style="margin-left:-11px;">                                                    
+                                                                        <div class="custom-file">
+                                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                            <label class="custom-file-label" >Choose file</label>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                                 
+                                                            </div>
                                                             <div class="form-group">
                                                                 <input type="text" name="" class="form-control" placeholder="Signture of Registrar" required>
                                                             </div> 
