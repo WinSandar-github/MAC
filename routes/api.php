@@ -25,5 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Route::apiResource('account', 'MoodleControllers\AccountCreateController');
 
+Route::get('/acc_firm_info','AccFirmInfController@index');
+
 
 

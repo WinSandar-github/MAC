@@ -26,7 +26,7 @@ Route::get('/', 'HomeController@index');
 //     return view('welcome');
 // });
 
-Route::get('/moodle', 'TestMoodleController@index');
+// Route::get('/moodle', 'TestMoodleController@index');
 
 Route::get('/ldap-search', function(Request $request) {
     $connection = new Connection([
@@ -75,12 +75,6 @@ Route::get('/ldap-search', function(Request $request) {
     
 });
 
-Auth::routes([
-    'reset' => false,
-    'verify' => false,
-    'register' => false,
-]);
-
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
@@ -113,6 +107,9 @@ Route::group(['middleware' => 'auth'], function () {
     })->name("admin");
 });
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
-});
+// Route::group(['middleware' => 'auth'], function () {
+// 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+//  });
+
+
+Route::resource('/acc_firm_info','AccFirmInfController');

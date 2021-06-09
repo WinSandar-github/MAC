@@ -11,11 +11,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call([UsersTableSeeder::class]);
-        // $this->call([TrainingClassSeeder::class]);
-        // $this->call([RegionSeeder::class]);
-        // $this->call([Training_typeSeeder::class]);
-        // $this->call([TMSClassSeeder::class]);
+        $this->call([UsersTableSeeder::class]);
+        $this->call([TrainingClassSeeder::class]);
+        $this->call([RegionSeeder::class]);
+        $this->call([Training_typeSeeder::class]);
+        $this->call([TMSClassSeeder::class]);
+        $this->call([OrganizationStructureSeeder::class]);
+        $this->call([AuditFirmTypeSeeder::class]);
+        $this->call([AuditStaffTypeSeeder::class]);
+        $this->call([AuditTotalStaffTypeSeeder::class]);
+        $this->call([NonAuditTotalStaffTypeSeeder::class]);
+        $this->call([TypeOfServiceProvidedSeeder::class]);
+        $this->call([LocalForeignSeeder::class]);
+
+
         
         //factory(App\MoodleModel\MdlUser::class)->create();
     }
