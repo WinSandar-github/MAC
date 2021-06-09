@@ -1253,6 +1253,11 @@
 
 @push('scripts')
 <script>
+        $("input[name='register_date']").flatpickr({
+                    enableTime: false,
+                    dateFormat: "d-m-Y",
+            });
+    </script>
     
     $(document).ready(function (e) {
         createDatepicker("birth1");

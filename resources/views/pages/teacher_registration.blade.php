@@ -40,9 +40,14 @@
 
                                     <div class="row">
                                         <div class="col-md-1"></div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <div class="col-md-4" style="margin-left: 640px;margin-top: -160px;">
@@ -162,12 +167,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('၆။') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table education1 table-bordered input-table">
+                                                <thead>
+                                                    <tr > 
+                                                        <th class="less-font-weight text-center" width="10%">စဉ်</th> 
+                                                        <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="text-center" width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("education1")' value="+"></td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
                                                 </tbody>
                                             </table>
                                         </div>
@@ -176,16 +185,19 @@
                                     <div class="row">
                                         <label class="col-md-1 col-form-label pl-5">{{ __('၇။') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/မဟုတ်') }}</label>
-                                        <div class="col-md-8" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ဟုတ်</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မဟုတ်</label>
-                                            </div>
+                                        <div class="col-md-8">
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="civil-servant1" id="yes-servant">
+                                                    <label class="form-check-label" for="yes-servant">{{ __('ဟုတ်') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="civil-servant1" id="no-servant">
+                                                    <label class="form-check-label" for="no-servant">{{ __('မဟုတ်') }}</label>
+                                                </div>
+                                            </div>                                                                                        
                                         </div>
-                                    </div>
+                                    </div></br>
 
                                     <div class="row">
                                         <label class="col-md-1 col-form-label pl-5">{{ __('၈။') }}</label>
@@ -196,13 +208,17 @@
                                         <label class="col-md-1 col-form-label pl-4" style="margin-right: -48px;">{{ __('(က)') }}</label>
                                         <label class="col-md-2 col-form-label" >{{ __('လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="" placeholder="လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table subject1 table-bordered input-table">
+                                                <thead>
+                                                    <tr>  
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                      
+                                                        <th class="less-font-weight text-center"  width="80%">လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း</th>                                                        
+                                                        <th  class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowSubject("subject1")' value="+"></td>
                                                     </tr>
-                                                </tbody>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
+                                                </tboddy>
                                             </table>
                                         </div>
                                     </div>
@@ -211,13 +227,17 @@
                                         <label class="col-md-1 col-form-label pl-4" style="margin-right: -48px;">{{ __('(ခ)') }}</label>
                                         <label class="col-md-2 col-form-label" >{{ __('ဒီပလိုမာစာရင်းကိုင်သင်တန်း') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="" placeholder="ဒီပလိုမာစာရင်းကိုင်သင်တန်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table dipSubject table-bordered input-table">
+                                                <thead>
+                                                    <tr>   
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                     
+                                                        <th class="less-font-weight text-center"  width="80%">ဒီပလိုမာစာရင်းကိုင်သင်တန်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowDipSubject("dipSubject")' value="+"></td>
                                                     </tr>
-                                                </tbody>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
+                                                </tboddy>
                                             </table>
                                         </div>
                                     </div>                                                             
@@ -262,9 +282,14 @@
                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
                                     <div class="row">
                                         <div class="col-md-1"></div>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="col-md-4" style="margin-left: 640px;margin-top: -160px;">
                                             <div class="row">
@@ -373,12 +398,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('၆။') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
+                                            <table class="table education2 table-bordered input-table">
+                                                <thead>
                                                     <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                                        <th class="less-font-weight text-center" width="10%" >စဉ်</th>                                                      
+                                                        <th class="less-font-weight text-center" width="80%" >ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="text-center" width="10%" ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("education2")' value="+"></td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
                                                 </tbody>
                                             </table>
                                         </div>
@@ -388,32 +417,39 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('၇။') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/မဟုတ်') }}</label>
                                         <div class="col-md-8">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ဟုတ်</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မဟုတ်</label>
-                                            </div>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="civil-servant2" id="yes-servant">
+                                                    <label class="form-check-label" for="yes-servant">{{ __('ဟုတ်') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="civil-servant2" id="no-servant">
+                                                    <label class="form-check-label" for="no-servant">{{ __('မဟုတ်') }}</label>
+                                                </div>
+                                            </div>                                                                                        
                                         </div>
-                                    </div>
+                                    </div></br>
 
                                     <div class="row">
                                         <label class="col-md-1 col-form-label pl-5">{{ __('၈။') }}</label>
                                         <label class="col-md-3 col-form-label">{{ __('သင်ကြားမည့်သင်တန်းနှင့် ဘာသာရပ်များ') }}</label><br>
-                                    </div>    
+                                    </div>
 
                                     <div class="row" style="margin-right: -63px; padding-left: 47px;">
                                         <label class="col-md-1 col-form-label pl-4" style="margin-right: -48px;">{{ __('(က)') }}</label>
                                         <label class="col-md-2 col-form-label" >{{ __('လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="" placeholder="လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table subject2 table-bordered input-table">
+                                                <thead>
+                                                    <tr>   
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                    
+                                                        <th class="less-font-weight text-center"  width="80%">လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowSubject("subject2")' value="+"></td>
                                                     </tr>
-                                                </tbody>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
+                                                </tboddy>
                                             </table>
                                         </div>
                                     </div>
@@ -422,13 +458,17 @@
                                         <label class="col-md-1 col-form-label pl-4" style="margin-right: -48px;">{{ __('(ခ)') }}</label>
                                         <label class="col-md-2 col-form-label" >{{ __('ဒီပလိုမာစာရင်းကိုင်သင်တန်း') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="" placeholder="ဒီပလိုမာစာရင်းကိုင်သင်တန်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table dipSubject2 table-bordered input-table">
+                                                <thead>
+                                                    <tr>     
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                   
+                                                        <th class="less-font-weight text-center"  width="80%">ဒီပလိုမာစာရင်းကိုင်သင်တန်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowDipSubject("dipSubject2")' value="+"></td>
                                                     </tr>
-                                                </tbody>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
+                                                </tboddy>
                                             </table>
                                         </div>
                                     </div>                                                          
