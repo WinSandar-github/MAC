@@ -160,7 +160,7 @@
                  </ul>
                 </div>
             </li>
-           
+            
             <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#da" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>

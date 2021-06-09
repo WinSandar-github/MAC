@@ -142,45 +142,23 @@
 
                                     <div class="row"> 
                                         <div class="col-md-12">
-                                            <table class="table student_profile_1 table-bordered input-table">
+                                            <table class="table cpa-ff table-bordered">
                                                 <thead class="text-center">
                                                     <tr>
-                                                        <td class="border-color" rowspan="2" width="5%">Sr No.</td>
-                                                        <td class="border-color" colspan="2" width="30%">Period</td>
+                                                        <th class="less-font-weight" rowspan="2" width="">Sr No.</th>
+                                                        <th class="less-font-weight" colspan="2" width="">Period</th>
                                                         
-                                                        <td class="border-color" rowspan="2" width="30%">Receipt No. and date for which registration fees paid</td>
-                                                        <td class="border-color" rowspan="2" width="35%">Signature of the Registrar and Office Seal</td>
+                                                        <th class="less-font-weight" rowspan="2" width="">Receipt No. and date for which registration fees paid</th>
+                                                        <th class="less-font-weight" rowspan="2" width="">Signature of the Registrar and Office Seal</th>
+                                                        <th rowspan="2"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowCPAFF("cpa-ff")' value="+"></th>
                                                     </tr>
                                                     <tr>
-                                                        <td class="border-color" width="15%">From</td>
-                                                        <td class="border-color" width="15%">To</td>
+                                                        <th class="less-font-weight" width="">From</th>
+                                                        <th class="less-font-weight" width="">To</th>
                                                         
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color">1</td>
-                                                        <td class="border-color">Date</td>
-                                                        <td class="border-color">Date</td>
-                                                        <td class="border-color">Date</td>
-                                                        <td class="border-color">
-                                                            <div class="row ml-3">                                                                
-                                                                <div class="col-md-8 mb-3 ml-5">
-                                                                    <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                                    <div class="input-group mt-3" style="margin-left:-11px;">                                                    
-                                                                        <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                            <label class="custom-file-label" >Choose file</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>                                                                 
-                                                            </div>
-                                                            
-                                                            <div class="form-group">
-                                                                <input type="text" name="" class="form-control" placeholder="Signture of Registrar" required>
-                                                            </div> 
-                                                        </td>                                                        
-                                                    </tr>
+                                                <tbody>                                                   
                                                     
                                                 </tbody>
                                             </table>
@@ -311,14 +289,15 @@
 
                                     <div class="row"> 
                                         <div class="col-md-12">
-                                            <table class="table student_profile_1 table-bordered input-table">
+                                            <table class="table cpa-pa table-bordered input-table">
                                                 <thead class="text-center">
                                                     <tr>
-                                                        <td class="border-color" rowspan="2" width="5%">Sr No.</td>
-                                                        <td class="border-color" colspan="2" width="30%">Period</td>
+                                                        <th class="less-font-weight" rowspan="2" width="5%">Sr No.</th>
+                                                        <th class="less-font-weight" colspan="2" width="30%">Period</th>
                                                         
-                                                        <td class="border-color" rowspan="2" width="30%">Receipt No. and date for which registration fees paid</td>
-                                                        <td class="border-color" rowspan="2" width="35%">Signature of the Registrar and Office Seal</td>
+                                                        <th class="less-font-weight" rowspan="2" width="30%">Receipt No. and date for which registration fees paid</th>
+                                                        <th class="less-font-weight" rowspan="2" width="35%">Signature of the Registrar and Office Seal</th>
+                                                        <th rowspan="2"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowCPAPA("cpa-pa")' value="+"></th>
                                                     </tr>
                                                     <tr>
                                                         <td class="border-color" width="15%">From</td>
@@ -326,29 +305,7 @@
                                                         
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color">1</td>
-                                                        <td class="border-color">Date</td>
-                                                        <td class="border-color">Date</td>
-                                                        <td class="border-color">Date</td>
-                                                        <td class="border-color">
-                                                            <div class="row ml-3">                                                                
-                                                                <div class="col-md-8 mb-3 ml-5">
-                                                                    <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                                    <div class="input-group mt-3" style="margin-left:-11px;">                                                    
-                                                                        <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                            <label class="custom-file-label" >Choose file</label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>                                                                 
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" name="" class="form-control" placeholder="Signture of Registrar" required>
-                                                            </div> 
-                                                        </td>                                                        
-                                                    </tr>
+                                                <tbody>                                                    
                                                     
                                                 </tbody>
                                             </table>
@@ -400,10 +357,37 @@
             reader.readAsDataURL(this.files[0]); 
        });
 
-        $("input[name='register_date']").flatpickr({
+       $("input[name='register_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-m-Y",
         });
+
+        $("input[name='date1']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
+        $("input[name='date2']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
+        $("input[name='date3']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
+        $("input[name='date4']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
+        $("input[name='date5']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
+        $("input[name='date6']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
+
+       
     });
     </script>
     

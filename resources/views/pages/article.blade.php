@@ -193,9 +193,10 @@
                                         <div class="col-md-8">
                                             <table class="table 3II-pass-3-education table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr> 
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                       
                                                         <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("3II-pass-3-education")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("3II-pass-3-education")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -563,9 +564,10 @@
                                         <div class="col-md-8">
                                             <table class="table cpa-1-2-education table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>        
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                
                                                         <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cpa-1-2-education")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cpa-1-2-education")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -922,9 +924,10 @@
                                         <div class="col-md-8">
                                             <table class="table cII-pass-1-education table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>   
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                     
                                                         <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cII-pass-1-education")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cII-pass-1-education")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -1278,9 +1281,10 @@
                                         <div class="col-md-8">
                                             <table class="table qt-pass-3-education table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>      
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                  
                                                         <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("qt-pass-3-education")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("qt-pass-3-education")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -1711,9 +1715,10 @@
                                         <div class="col-md-8">
                                             <table class="table cII-pass-renew-education table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>       
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                 
                                                         <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cII-pass-renew-education")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cII-pass-renew-education")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -2106,9 +2111,10 @@
                                         <div class="col-md-8">
                                             <table class="table cI-II-renew-education table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>     
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                   
                                                         <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cI-II-renew-education")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cI-II-renew-education")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -2286,8 +2292,6 @@
         </form>
 
     </div>
-
-
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};

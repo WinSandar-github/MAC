@@ -1,9 +1,76 @@
         var counter = 0;
+               
+
+        function addRowCPAFF(tbody){
+            var newRow = $("<tr>");
+            var cols = "";
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row-1)+'</td>';
+            cols += '<td><div class="form-group"><input type="date" name="date1" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
+            cols += '<td><div class="form-group"><input type="date" name="date2" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
+            cols += '<td><div class="form-group"><input type="date" name="date3" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
+            cols += '<td class="border-color">'+ 
+                        '<div class="input-group mt-3">'+                                                    
+                            '<div class="custom-file">'+
+                                '<input type="file" class="custom-file-input" id="inputfile2" multiple>'+
+                                '<label class="custom-file-label" >Choose file</label>'+
+                            '</div>'+
+                        '</div>'+                                                                                    
+                    
+                        '<div class="form-group">'+
+                            '<input type="text" name="" class="form-control" placeholder="Signture of Registrar" required>'+
+                        '</div>'+ 
+                    '</td>';
+            cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowCPAFF("'+tbody+'")  value="X"></td>';            
+            newRow.append(cols);
+            $("table."+tbody).append(newRow);
+            counter++;
+        }
+        function delRowCPAFF(tbody){
+            $("table."+tbody).on("click", ".delete", function (event) {
+                $(this).closest("tr").remove();
+                counter -= 1
+            });
+        }
+
+        function addRowCPAPA(tbody){
+            var newRow = $("<tr>");
+            var cols = "";
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row-1)+'</td>';
+            cols += '<td><div class="form-group"><input type="date" name="date4" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
+            cols += '<td><div class="form-group"><input type="date" name="date5" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
+            cols += '<td><div class="form-group"><input type="date" name="date6" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
+            cols += '<td class="border-color">'+ 
+                        '<div class="input-group mt-3">'+                                                    
+                            '<div class="custom-file">'+
+                                '<input type="file" class="custom-file-input" id="inputfile2" multiple>'+
+                                '<label class="custom-file-label" >Choose file</label>'+
+                            '</div>'+
+                        '</div>'+                                                                                    
+                    
+                        '<div class="form-group">'+
+                            '<input type="text" name="" class="form-control" placeholder="Signture of Registrar" required>'+
+                        '</div>'+ 
+                    '</td>';
+            cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowCPAPA("'+tbody+'")  value="X"></td>';            
+            newRow.append(cols);
+            $("table."+tbody).append(newRow);
+            counter++;
+        }
+        function delRowCPAPA(tbody){
+            $("table."+tbody).on("click", ".delete", function (event) {
+                $(this).closest("tr").remove();
+                counter -= 1
+            });
+        }
+
 
         function addRowSubject(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" class="form-control" name="education[]" placeholder="လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း"/></td>';
             cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowSubject("'+tbody+'")  value="X"></td>';            
             newRow.append(cols);
@@ -13,7 +80,8 @@
         function addRowDipSubject(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" class="form-control" name="education[]" placeholder="လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း"/></td>';
             cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowSubject("'+tbody+'")  value="X"></td>';            
             newRow.append(cols);
@@ -30,7 +98,8 @@
         function addRowInCountryEducation(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" class="form-control" name="education[]" placeholder="ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း"/></td>';
             cols += '<td class="text-center"><input type="file" id="image" name="image"></td>';
             cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowInCountryEducation("'+tbody+'")  value="X"></td>';            
@@ -48,7 +117,8 @@
         function addRowEducation(tbody){
             var newRow = $("<tr>");
             var cols = "";
-
+            var row=$('.'+tbody+' tr').length;
+            cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>';
             cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowEducation("'+tbody+'")  value="X"></td>';            
             newRow.append(cols);
@@ -65,6 +135,7 @@
         function addRowBranch(tbody){
             var newRow = $("<tr>");
             var cols = "";
+            
             cols += '<td><input type="text" name="branch_no[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="branch_township[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="branch_post_code[]" class="form-control" /></td>';

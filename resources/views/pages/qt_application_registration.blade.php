@@ -207,10 +207,11 @@
                                 <div class="col-md-8">
                                     <table class="table in_counrty_education table-bordered input-table">
                                         <thead>
-                                            <tr>                                                        
+                                            <tr>     
+                                                <th class="less-font-weight text-center" width="10%">စဉ်</th>                                                   
                                                 <th class="less-font-weight text-center" width="40%">ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း</th> 
                                                 <th class="less-font-weight text-center" width="40%">ပူးတွဲတင်ပြရမည့် လက်မှတ်မိတ္တူမှန်</th>                                                       
-                                                <th width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowInCountryEducation("in_counrty_education")' value="+"></td>
+                                                <th class="less-font-weight text-center" width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowInCountryEducation("in_counrty_education")' value="+"></td>
                                             </tr>
                                         </thead>
                                         <tbody>

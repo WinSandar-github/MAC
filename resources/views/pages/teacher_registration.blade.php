@@ -169,9 +169,10 @@
                                         <div class="col-md-8">
                                             <table class="table education1 table-bordered input-table">
                                                 <thead>
-                                                    <tr >  
+                                                    <tr > 
+                                                        <th class="less-font-weight text-center" width="10%">စဉ်</th> 
                                                         <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("education1")' value="+"></td>
+                                                        <th class="text-center" width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("education1")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -209,9 +210,10 @@
                                         <div class="col-md-8">
                                             <table class="table subject1 table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>  
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                      
                                                         <th class="less-font-weight text-center"  width="80%">လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowSubject("subject1")' value="+"></td>
+                                                        <th  class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowSubject("subject1")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -227,9 +229,10 @@
                                         <div class="col-md-8">
                                             <table class="table dipSubject table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>   
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                     
                                                         <th class="less-font-weight text-center"  width="80%">ဒီပလိုမာစာရင်းကိုင်သင်တန်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowDipSubject("dipSubject")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowDipSubject("dipSubject")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -397,9 +400,10 @@
                                         <div class="col-md-8">
                                             <table class="table education2 table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
-                                                        <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("education2")' value="+"></td>
+                                                    <tr>
+                                                        <th class="less-font-weight text-center" width="10%" >စဉ်</th>                                                      
+                                                        <th class="less-font-weight text-center" width="80%" >ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="text-center" width="10%" ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("education2")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -437,9 +441,10 @@
                                         <div class="col-md-8">
                                             <table class="table subject2 table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>   
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                    
                                                         <th class="less-font-weight text-center"  width="80%">လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowSubject("subject2")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowSubject("subject2")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -455,9 +460,10 @@
                                         <div class="col-md-8">
                                             <table class="table dipSubject2 table-bordered input-table">
                                                 <thead>
-                                                    <tr>                                                        
+                                                    <tr>     
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                   
                                                         <th class="less-font-weight text-center"  width="80%">ဒီပလိုမာစာရင်းကိုင်သင်တန်း</th>                                                        
-                                                        <th  width="20%" class="text-center"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowDipSubject("dipSubject2")' value="+"></td>
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowDipSubject("dipSubject2")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
