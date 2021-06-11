@@ -107,9 +107,10 @@ Route::group(['middleware' => 'auth'], function () {
     })->name("admin");
 });
 
-// Route::group(['middleware' => 'auth'], function () {
-// 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
-//  });
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+ });
 
 
-Route::resource('/acc_firm_info','AccFirmInfController');
+// Route::resource('/acc_firm_info','AccFirmInfController');
+// Route::resource('/cpa_full_form','CpaFullFormController');
