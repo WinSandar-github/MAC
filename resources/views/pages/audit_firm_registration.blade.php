@@ -217,7 +217,7 @@
                                                                             <input type="button" class="btn btn-primary btn-sm" onclick='addRowPartner("partner_list")' value="+">
                                                                         </th>
                                                                     </tr>
-                                                                    
+                                                                
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
