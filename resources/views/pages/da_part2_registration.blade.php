@@ -63,5 +63,24 @@
 @endsection
 
 @push('scripts')
+<<<<<<< HEAD
+=======
+<script>
+       
+    
+    $(document).ready(function (e) {
+        createDatepicker("date1");
+        createDatepicker("birth1");
+        createDatepicker("birth2");
+        createDatepicker("birth3");
+        createDatepicker("birth4");
+        createDatepicker("date1");
+        createDatepicker("date2");
+        createDatepicker("date3");
+        createDatepicker("date4");
+        createDatepicker("date5");
+        createDatepicker("date6");
+    });
+>>>>>>> 55ec70bdc6cb669d3d20f596805210e9a7e8687a
 
 @endpush

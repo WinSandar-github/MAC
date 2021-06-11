@@ -13,7 +13,7 @@
                         '<div class="input-group mt-3">'+                                                    
                             '<div class="custom-file">'+
                                 '<input type="file" class="custom-file-input" id="inputfile2" multiple>'+
-                                '<label class="custom-file-label" >Choose file</label>'+
+                                '<label class="custom-file-label" >Choose Image</label>'+
                             '</div>'+
                         '</div>'+                                                                                    
                     
