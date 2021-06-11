@@ -79,20 +79,21 @@ Breadcrumbs::for('course-category', function ($trail) {
     $trail->push('Manage Course & Category', route('page.index', 'manage_course_category'));
 });
 
-// Home > Blog
-Breadcrumbs::for('blog', function ($trail) {
+// Home > Teacher
+Breadcrumbs::for('teacher_registration', function ($trail) {
     $trail->parent('home');
-    $trail->push('Blog', route('blog'));
+    $trail->push('Teacher', route('page.index', 'teacher_registration'));
 });
 
-// Home > Blog > [Category]
-Breadcrumbs::for('category', function ($trail, $category) {
-    $trail->parent('blog');
-    $trail->push($category->title, route('category', $category->id));
+// Home > QT Application
+Breadcrumbs::for('qt_application_registration', function ($trail) {
+    $trail->parent('home');
+    $trail->push('QT Application', route('page.index', 'qt_application_registration'));
 });
 
-// Home > Blog > [Category] > [Post]
-Breadcrumbs::for('post', function ($trail, $post) {
-    $trail->parent('category', $post->category);
-    $trail->push($post->title, route('post', $post->id));
+// Home > Article
+Breadcrumbs::for('article', function ($trail) {
+    $trail->parent('home');
+    $trail->push('Article', route('page.index', 'article'));
 });
+

@@ -49,7 +49,7 @@
 		                              
 		                            </ul>
                             	    <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-	                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+	                                    <div class="tab-pane fade show active m-5" id="link1" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Accountancy Firm Registration No') }}</label>
@@ -129,12 +129,12 @@
                                                         <table class="table branch table-bordered input-table">
                                                             <thead>
                                                                 <tr>
-                                                                    <th class="less-font-weight">Sr</th>
+                                                                    <th class="less-font-weight">Name</th>
                                                                     <th class="less-font-weight">Township</th>
                                                                     <th class="less-font-weight">Post Code</th>
                                                                     <th class="less-font-weight">City</th>
-                                                                    <th class="less-font-weight">State/Region</th>
-                                                                    <th class="less-font-weight">Telephone</th>
+                                                                    <th class="less-font-weight">State</th>
+                                                                    <th class="less-font-weight" colspan="2">Telephone Number</th>
                                                                     <th class="less-font-weight">Email</th>
                                                                     <th class="less-font-weight">Website</th>
                                                                     <th ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowBranch("branch")' value="+"></th>
@@ -147,10 +147,15 @@
                                                                     <td><input type="text" name="branch_post_code[]" class="form-control" ></td>
                                                                     <td><input type="text" name="branch_city[]" class="form-control" ></td>
                                                                     <td><input type="text" name="branch_state[]" class="form-control" ></td>
-                                                                    <td><input type="text" name="branch_phone_no[]" class="form-control" ></td>
+                                                                    <td>
+                                                                        <input type="text" name="branch_phone_no[]" class="form-control" >
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addInputTele("branch")' value="+">
+                                                                    </td>
                                                                     <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                     <td><input type="text" name="branch_website[]" class="form-control" ></td>
-                                                                    <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowBranch("branch")'  value="X"></td>
+                                                                    <td></td>
                                                                 </tr>
                                                             </tbody>
                                                         </table>
@@ -216,7 +221,7 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" value="" name="partner_no[]" class="form-control"></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" value="" name="partner_name[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="partner_private_regno[]" class="form-control"></td>
                                                                         <td>
@@ -227,7 +232,7 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">No</label>
                                                                         </td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delPartner("partner_list")' value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -261,12 +266,12 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" value="" name="director_sr[]" class="form-control"></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" value="" name="director_name[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_position[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_cpa_no[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_private_regno[]" class="form-control"></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowDirector("director")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -276,7 +281,7 @@
                                             </div>
 	                                  
 	                                    </div>
-                                        <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                        <div class="tab-pane fade m-5" id="link2" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-10 col-form-label">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
@@ -534,7 +539,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control">
+                                                            <input type="date" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -564,7 +569,7 @@
 		                              
 		                            </ul>
                             	    <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-	                                    <div class="tab-pane fade show active" id="link3" aria-expanded="true">
+	                                    <div class="tab-pane fade show active m-5" id="link3" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Accountancy Firm Registration No') }}</label>
@@ -644,12 +649,12 @@
                                                             <table class="table branch_renew table-bordered input-table">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="less-font-weight">Sr</th>
+                                                                        <th class="less-font-weight">Name</th>
                                                                         <th class="less-font-weight">Township</th>
                                                                         <th class="less-font-weight">Post Code</th>
                                                                         <th class="less-font-weight">City</th>
                                                                         <th class="less-font-weight">State/Region</th>
-                                                                        <th class="less-font-weight">Telephone</th>
+                                                                        <th class="less-font-weight" colspan="2">Telephone</th>
                                                                         <th class="less-font-weight">Email</th>
                                                                         <th class="less-font-weight">Website</th>
                                                                         <th ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowBranch("branch_renew")' value="+"></th>
@@ -663,9 +668,12 @@
                                                                         <td><input type="text" name="branch_city[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_state[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_phone_no[]" class="form-control" ></td>
+                                                                        <td>
+                                                                            <input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addInputTele("branch_renew")' value="+">
+                                                                        </td>
                                                                         <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_website[]" class="form-control" ></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowBranch("branch_renew")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -731,7 +739,7 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" value="" name="partner_no[]" class="form-control"></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" value="" name="partner_name[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="partner_private_regno[]" class="form-control"></td>
                                                                         <td>
@@ -742,7 +750,7 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">No</label>
                                                                         </td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger" onclick='delRowPartner("partner_renew")'  value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -776,12 +784,12 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" value="" name="director_sr[]" class="form-control"></td>
+                                                                        <td>1</td>
                                                                         <td><input type="text" value="" name="director_name[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_position[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_cpa_no[]" class="form-control"></td>
                                                                         <td><input type="text" value="" name="director_private_regno[]" class="form-control"></td>
-                                                                        <td><input type="button" class="delete btn btn-sm btn-danger " onclick='delRowDirector("director_renew")' value="X"></td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -791,7 +799,7 @@
                                             </div>
 	                                  
 	                                    </div>
-                                        <div class="tab-pane fade" id="link4" aria-expanded="true">
+                                        <div class="tab-pane fade m-5" id="link4" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
                                                 <label class="col-md-10 col-form-label">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
@@ -1047,7 +1055,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control">
+                                                            <input type="date" class="form-control">
                                                         </div>
                                                     </div>
                                                 </div>

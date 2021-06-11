@@ -81,13 +81,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::get('training', ['as' => 'training.index', 'uses' => 'TrainingClassController@index']);
-	Route::get('user_register', 'UserRegisterController@index');
-//	Route::get('student_record', 'StudentRecordController@index');
-//	Route::post('student_record', 'StudentRecordController@store');
-	Route::apiResource('student_record', 'StudentRecordController');
-	Route::apiResource('user_register', 'UserRegisterController');
-	Route::apiResource('registered_user_list', 'RegisterUserListController');
-	Route::post('registered_list/{id}', 'RegisterUserListController@user_update')->name('registered_list.user_update');
+	
 	Route::resource('batch', 'BatchController');
 	Route::post('batch_update/{id}', 'BatchController@update')->name('batch_update.update');
 	Route::get('batch_delete/{id}', 'BatchController@destroy')->name('batch_delete.destroy');

@@ -37,7 +37,7 @@
 		                              
 		                            </ul>
                             	<div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
-                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                    <div class="tab-pane fade show active m-1" id="link1" aria-expanded="true">
                                         
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
@@ -208,7 +208,7 @@
                                                         <input type="text" name="" class="form-control" > 
                                                     </div>
                                                 </div>
-                                                <label class="col-md-1 col-form-label">လတွင်</label>
+                                                <label class="col-form-label">လတွင်</label>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
@@ -220,8 +220,21 @@
                                                         <input type="text" name="" class="form-control" > 
                                                     </div>
                                                 </div>
-                                                <label class="col-md-5">ဖြင့်အောင်မြင်ခဲ့ပါသည်။အောင်လက်မှတ်မိတ္တူမှန်ပူးတွဲတင်ပြပါသည်။</label>
+                                                <label class="col-md-4">ဖြင့်အောင်မြင်ခဲ့ပါသည်။</label>
                                                 
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <label class="col-md-6">အောင်လက်မှတ်မိတ္တူမှန်ပူးတွဲတင်ပြပါသည်။</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile1" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
@@ -236,47 +249,88 @@
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-8 col-form-label">
-                                                    <div class="form-group">
+                                                <div class="col-md-6 col-form-label">
+                                                    
                                                     (က)လက်မှတ်ရပြည်သူ့စာရင်းကိုင်စာမေးပွဲအောင်လက်မှတ်မူရင်းနှင့်မိတ္တူ
                                                        
+                                                    
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile1" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                
                                         </div>
-                                        <div class="row">
+                                            <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-8 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                     <div class="form-group">
                                                     (ခ)မြန်မာနိုင်ငံလက်မှတ်ရပြည်သူ့စာရင်းကိုင်များအသင်းဝင်ကတ်ပြား မူရင်းနှင့်မိတ္တူ
                                                        
                                                     </div>
-                                        </div>
-                                        
-                                        </div>
-                                        <div class="row">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-8 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                     <div class="form-group">
                                                     (ဂ)နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ် မူရင်းနှင့်မိတ္တူ
                                                        
                                                     </div>
                                                 </div>
-                                                
-                                        </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile3" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-10 col-form-label">{{ __('(ဃ)စတင်လျှောက်ထားသည့်နေ့မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous professional Development-CPD)မှတ်တမ်း') }}</label>
-                                            
+                                            <label class="col-md-6 col-form-label">{{ __('(ဃ)စတင်လျှောက်ထားသည့်နေ့မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous professional Development-CPD)မှတ်တမ်း') }}</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile4" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
-                                        <div class="row">
+                                            <div class="row">
                                                 <div class="col-md-1"></div>
                                                 
-                                                <div class="col-md-10 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                 (င)ပတ်စပို့အရွယ်ဓာတ်ပုံ 
                                                     
                                                 </div>
-                                        </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile5" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                        
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
@@ -286,10 +340,10 @@
                                         
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-2">
+                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="cpaff_dateone" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -302,7 +356,7 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-6 col-form-label">{{ __('ဤလျှောက်လွှာနှင့်ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများကို စိစစ်ပြီးလက်ခံပါသည်။ လက်ခံအမှတ် ') }}</label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <input type="text"class="form-control" >
                                                 </div></div>
@@ -310,18 +364,23 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text"class="form-control" >
-                                                </div></div>
+                                            <label class="col-md-6 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile5" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-2">
+                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="cpaff_datetwo" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -331,8 +390,8 @@
                                             </div>
                                         </div>
 	                              </div>
-                                  <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                  <div class="row">
+                                  <div class="tab-pane fade m-3" id="link2" aria-expanded="true">
+                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-8 col-form-label">{{ __('လျှောက်ထားသူ၏ကိုယ်ရေးအချက်အလက်(အင်္ဂလိပ်ဘာသာဖြင့်ဖြည့်စွက်ပေးပါရန်)') }}</label>
 	                                      
@@ -488,7 +547,16 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2"></div>
-                                            <label class="col-md-8 col-form-label">)မိတ္တူတင်ပြရန်</label>
+                                            <label class="col-md-5 col-form-label">)မိတ္တူတင်ပြရန်</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile5">
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
@@ -507,11 +575,12 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2"></div>
-                                            <label class="col-md-4 col-form-label"> ပုဒ်မ ၇၅တို့အရပြစ်ဒဏ်ချမှတ်ခံထားရသူဟုတ်မဟုတ်</label>
+                                            <label class="col-md-5 col-form-label"> ပုဒ်မ ၇၅တို့အရပြစ်ဒဏ်ချမှတ်ခံထားရသူဟုတ်မဟုတ်</label>
                                             <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <input type="text" name="" class="form-control">
-                                                </div>
+                                                        <input type="radio" name="" class="" value="yes"> Yes
+                                            </div>
+                                            <div class="col-md-2">
+                                                        <input type="radio" name="" class="" value="no"> No
                                             </div>
                                         </div>
                                         <div class="row">
@@ -521,31 +590,56 @@
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-10 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                     <div class="form-group">
                                                     (က)လက်မှတ်ရပြည်သူ့စာရင်းကိုင်မှတ်ပုံတင်လက်မှတ်မူရင်း
                                                        
                                                     </div>
                                                 </div>
-                                                
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-10 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                     <div class="form-group">
                                                     (ခ) သက်တမ်းတိုးမည့်နှစ်မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous professional Development-CPD)မှတ်တမ်း
                                                        
                                                     </div>
-                                        </div>
-                                        
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                         </div>
                                         
                                         <div class="row">
                                                 <div class="col-md-1"></div>
                                                 
-                                                <div class="col-md-10 col-form-label">
+                                                <div class="col-md-6 col-form-label">
                                                 (ဂ)ပတ်စပို့အရွယ်ဓာတ်ပုံ 
                                                     
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                         </div>
                                        
@@ -557,10 +651,10 @@
                                         
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-2">
+                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="cpaff_datethree" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -573,7 +667,7 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-6 col-form-label">{{ __('ဤလျှောက်လွှာနှင့်ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများကို စိစစ်ပြီးလက်ခံပါသည်။ လက်ခံအမှတ် ') }}</label>
-                                            <div class="col-md-2">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
                                                     <input type="text"class="form-control" >
                                                 </div></div>
@@ -581,18 +675,23 @@
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input type="text"class="form-control" >
-                                                </div></div>
+                                            <label class="col-md-6 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
+                                            <div class="col-md-4">
+                                                    <div class="input-group mb-3">
+                                                    
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="inputfile5" multiple>
+                                                            <label class="custom-file-label" >Choose file</label>
+                                                        </div>
+                                                    </div>
+                                            </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-2 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-2">
+                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="date" class="form-control" >
+                                                    <input type="text" name="cpaff_datefour" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>
@@ -632,5 +731,15 @@
 @endsection
 
 @push('scripts')
+<script>
     
+    $(document).ready(function (e) {
+        createDatepicker("cpaff_dateone");
+        createDatepicker("cpaff_datetwo");
+        createDatepicker("cpaff_datethree");
+        createDatepicker("cpaff_datefour");
+        
+    });
+
+</script>
 @endpush
