@@ -26,7 +26,7 @@ Route::get('/', 'HomeController@index');
 //     return view('welcome');
 // });
 
-Route::get('/moodle', 'TestMoodleController@index');
+// Route::get('/moodle', 'TestMoodleController@index');
 
 Route::get('/ldap-search', function(Request $request) {
     $connection = new Connection([
@@ -75,25 +75,13 @@ Route::get('/ldap-search', function(Request $request) {
     
 });
 
-Auth::routes([
-    'reset' => false,
-    'verify' => false,
-    'register' => false,
-]);
-
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::get('training', ['as' => 'training.index', 'uses' => 'TrainingClassController@index']);
-	Route::get('user_register', 'UserRegisterController@index');
-//	Route::get('student_record', 'StudentRecordController@index');
-//	Route::post('student_record', 'StudentRecordController@store');
-	Route::apiResource('student_record', 'StudentRecordController');
-	Route::apiResource('user_register', 'UserRegisterController');
-	Route::apiResource('registered_user_list', 'RegisterUserListController');
-	Route::post('registered_list/{id}', 'RegisterUserListController@user_update')->name('registered_list.user_update');
+	
 	Route::resource('batch', 'BatchController');
 	Route::post('batch_update/{id}', 'BatchController@update')->name('batch_update.update');
 	Route::get('batch_delete/{id}', 'BatchController@destroy')->name('batch_delete.destroy');
@@ -113,6 +101,9 @@ Route::group(['middleware' => 'auth'], function () {
     })->name("admin");
 });
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
-});
+// Route::group(['middleware' => 'auth'], function () {
+// 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+//  });
+
+
+Route::resource('/acc_firm_info','AccFirmInfController');

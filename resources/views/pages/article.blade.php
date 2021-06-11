@@ -72,7 +72,12 @@
                                         
                                         <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -186,12 +191,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table 3II-pass-3-education table-bordered input-table">
+                                                <thead>
+                                                    <tr> 
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                       
+                                                        <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("3II-pass-3-education")' value="+"></td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
                                                 </tbody>
                                             </table>
                                         </div>
@@ -251,13 +260,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('လက်တွေ့အလုပ်သင်ကြားခြင်း ရှိ/ မရှိ') }}</label>
                                         <div class="col-md-8" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
-                                            </div>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="practice_course" id="yes-practice">
+                                                    <label class="form-check-label" for="yes-practice">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="practice_course" id="no-practice">
+                                                    <label class="form-check-label" for="no-practice">{{ __('မရှိ') }}</label>
+                                                </div>
+                                            </div>                                              
                                         </div>
                                     </div>
 
@@ -275,12 +287,15 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-5 col-form-label">{{ __('ပုဂ္ဂလိကနှင့် အစိုးရဌာနအဖွဲ့အစည်းများ၊ အခြားဌာနအဖွဲ့အစည်းများ၊ ကုမ္ပဏီများ၊ Non Audit Service လုပ်ငန်းများတွင် အချိန်ပြည့် / အချိန်ပိုင်းဝန်ထမ်း အဖြစ်ဆောင်ရွက်နေခြင်း ရှိ/မရှိ') }}</label>
                                         <div class="col-md-5" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff" id="yes-ppStaff">
+                                                    <label class="form-check-label" for="yes-ppStaff">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff" id="no-ppStaff">
+                                                    <label class="form-check-label" for="no-ppStaff">{{ __('မရှိ') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -418,7 +433,12 @@
                                         
                                         <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -542,12 +562,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table cpa-1-2-education table-bordered input-table">
+                                                <thead>
+                                                    <tr>        
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                
+                                                        <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cpa-1-2-education")' value="+"></td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
                                                 </tbody>
                                             </table>
                                         </div>
@@ -607,12 +631,15 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('လက်တွေ့အလုပ်သင်ကြားဖူးခြင်း ရှိ/ မရှိ') }}</label>
                                         <div class="col-md-8" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="practice_course2" id="yes-practice">
+                                                    <label class="form-check-label" for="yes-practice">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="practice_course2" id="no-practice">
+                                                    <label class="form-check-label" for="no-practice">{{ __('မရှိ') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -631,12 +658,15 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-5 col-form-label">{{ __('ပုဂ္ဂလိကနှင့် အစိုးရဌာနအဖွဲ့အစည်းများ၊ အခြားဌာနအဖွဲ့အစည်းများ၊ ကုမ္ပဏီများ၊ Non Audit Service လုပ်ငန်းများတွင် အချိန်ပြည့် / အချိန်ပိုင်းဝန်ထမ်း အဖြစ်ဆောင်ရွက်နေခြင်း ရှိ/မရှိ') }}</label>
                                         <div class="col-md-5" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff2" id="yes-ppStaff">
+                                                    <label class="form-check-label" for="yes-ppStaff">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff2" id="no-ppStaff">
+                                                    <label class="form-check-label" for="no-ppStaff">{{ __('မရှိ') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -746,7 +776,12 @@
                                         
                                         <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -887,12 +922,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table cII-pass-1-education table-bordered input-table">
+                                                <thead>
+                                                    <tr>   
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                     
+                                                        <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cII-pass-1-education")' value="+"></td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
                                                 </tbody>
                                             </table>
                                         </div>
@@ -952,12 +991,15 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-5 col-form-label">{{ __('ပုဂ္ဂလိကနှင့် အစိုးရဌာနအဖွဲ့အစည်းများ၊ အခြားဌာနအဖွဲ့အစည်းများ၊ ကုမ္ပဏီများ၊ Non Audit Service လုပ်ငန်းများတွင် အချိန်ပြည့် / အချိန်ပိုင်းဝန်ထမ်း အဖြစ်ဆောင်ရွက်နေခြင်း ရှိ/မရှိ') }}</label>
                                         <div class="col-md-5" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff3" id="yes-ppStaff">
+                                                    <label class="form-check-label" for="yes-ppStaff">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff3" id="no-ppStaff">
+                                                    <label class="form-check-label" for="no-ppStaff">{{ __('မရှိ') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1118,7 +1160,12 @@
                                         
                                         <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -1232,12 +1279,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table qt-pass-3-education table-bordered input-table">
+                                                <thead>
+                                                    <tr>      
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                  
+                                                        <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("qt-pass-3-education")' value="+"></td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1297,12 +1348,15 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('လက်တွေ့အလုပ်သင်ကြားဖူးခြင်း ရှိ/ မရှိ') }}</label>
                                         <div class="col-md-8" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="practice_course4" id="yes-practice">
+                                                    <label class="form-check-label" for="yes-practice">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="practice_course4" id="no-practice">
+                                                    <label class="form-check-label" for="no-practice">{{ __('မရှိ') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1321,12 +1375,15 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-5 col-form-label">{{ __('ပုဂ္ဂလိကနှင့် အစိုးရဌာနအဖွဲ့အစည်းများ၊ အခြားဌာနအဖွဲ့အစည်းများ၊ ကုမ္ပဏီများ၊ Non Audit Service လုပ်ငန်းများတွင် အချိန်ပြည့် / အချိန်ပိုင်းဝန်ထမ်း အဖြစ်ဆောင်ရွက်နေခြင်း ရှိ/မရှိ') }}</label>
                                         <div class="col-md-5" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff4" id="yes-ppStaff">
+                                                    <label class="form-check-label" for="yes-practice">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff4" id="no-ppStaff">
+                                                    <label class="form-check-label" for="no-ppStaff">{{ __('မရှိ') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1465,7 +1522,12 @@
                                         
                                         <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -1651,12 +1713,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table cII-pass-renew-education table-bordered input-table">
+                                                <thead>
+                                                    <tr>       
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                 
+                                                        <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cII-pass-renew-education")' value="+"></td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1716,12 +1782,15 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-5 col-form-label">{{ __('ပုဂ္ဂလိကနှင့် အစိုးရဌာနအဖွဲ့အစည်းများ၊ အခြားဌာနအဖွဲ့အစည်းများ၊ ကုမ္ပဏီများ၊ Non Audit Service လုပ်ငန်းများတွင် အချိန်ပြည့် / အချိန်ပိုင်းဝန်ထမ်း အဖြစ်ဆောင်ရွက်နေခြင်း ရှိ/မရှိ') }}</label>
                                         <div class="col-md-5" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff5" id="yes-ppStaff">
+                                                    <label class="form-check-label" for="yes-practice">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="ppStaff5" id="no-ppStaff">
+                                                    <label class="form-check-label" for="no-ppStaff">{{ __('မရှိ') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -1861,7 +1930,12 @@
                                         
                                         <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                            <input type="file" id="image" name="image" style="margin-left: 10px;margin-top: 10px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose file</label>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -2035,12 +2109,16 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)') }}</label>
                                         <div class="col-md-8">
-                                            <table class="table student_profile_1 table-bordered input-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="border-color"><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>
-                                                        <td class="border-color"><input type="button" class="btn btn-primary btn-sm btn-plus" id="student_add_1" value="+"></td>
+                                            <table class="table cI-II-renew-education table-bordered input-table">
+                                                <thead>
+                                                    <tr>     
+                                                        <th class="less-font-weight text-center"  width="10%">စဉ်</th>                                                   
+                                                        <th class="less-font-weight text-center"  width="80%">ပညာအရည်အချင်း</th>                                                        
+                                                        <th class="less-font-weight text-center"  width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowEducation("cI-II-renew-education")' value="+"></td>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
+                                                                                                       
                                                 </tbody>
                                             </table>
                                         </div>
@@ -2100,12 +2178,15 @@
                                         <label class="col-md-1 col-form-label pl-5">{{ __('') }}</label>
                                         <label class="col-md-5 col-form-label">{{ __('ပုဂ္ဂလိကနှင့် အစိုးရဌာနအဖွဲ့အစည်းများ၊ အခြားဌာနအဖွဲ့အစည်းများ၊ ကုမ္ပဏီများ၊ Non Audit Service လုပ်ငန်းများတွင် အချိန်ပြည့် / အချိန်ပိုင်းဝန်ထမ်း အဖြစ်ဆောင်ရွက်နေခြင်း ရှိ/မရှိ') }}</label>
                                         <div class="col-md-5" style="margin-left: 21px;">
-                                            <div class="form-group">
-                                                <input class="form-check-input" type="checkbox" value="" id="yesStaff"/>
-                                                <label class="form-check-label mr-5" for="yesStaff">ရှိ</label>
-
-                                                <input class="form-check-input" type="checkbox" value="" id="noStaff"/>
-                                                <label class="form-check-label" for="noStaff">မရှိ</label>
+                                            <div class="row pl-5">
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="practice_course6" id="yes-practice">
+                                                    <label class="form-check-label" for="yes-practice">{{ __('ရှိ') }}</label>
+                                                </div>
+                                                <div class="form-check col-md-4">
+                                                    <input class="form-check-input" type="radio" name="practice_course6" id="no-practice">
+                                                    <label class="form-check-label" for="no-practice">{{ __('မရှိ') }}</label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -2211,8 +2292,6 @@
         </form>
 
     </div>
-
-
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
