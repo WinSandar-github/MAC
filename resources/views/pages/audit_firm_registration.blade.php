@@ -51,7 +51,7 @@
                             	    <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
 	                                    <div class="tab-pane fade show active m-5" id="link1" aria-expanded="true">
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('1.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Accountancy Firm Registration No') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
@@ -60,7 +60,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('2။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('2.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Accountancy Firm Name') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
@@ -74,7 +74,7 @@
                                                 @enderror
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('3။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('3.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Address Of Practice(Head Office)') }}</label>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
@@ -117,7 +117,7 @@
                                             
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('4။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('4.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Branch Office') }}</label>
                                                 
                                             </div>
@@ -164,7 +164,7 @@
                                             </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('5။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('5.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Organization Structure') }}</label>
                                                 
                                                 
@@ -197,7 +197,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('6။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('6.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Sole Proprietor/Partners/Shareholders') }}</label>
                                                 
                                             </div>
@@ -241,7 +241,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('7။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('7.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Director(s)/Officer(s)') }}</label>
                                                 
                                             </div>
@@ -283,7 +283,7 @@
 	                                    </div>
                                         <div class="tab-pane fade m-5" id="link2" aria-expanded="true">
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('1.') }}</label>
                                                 <label class="col-md-10 col-form-label">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
                                                 
                                             </div>
@@ -296,7 +296,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('2။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('2.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Total Staff') }}</label>
                                                 
                                             </div>
@@ -389,7 +389,7 @@
                                                 </div>
                                                 </div>
                                                 <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('3။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('3.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Audit Staff') }}</label>
                                                 
                                             </div>
@@ -498,7 +498,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('4။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('4.') }}</label>
                                                 <label class="col-md-3 col-form-label">{{ __('Types Of Service Provided') }}</label>
                                                 <div class="col-md-2">
                                                     <div class="">
@@ -516,7 +516,7 @@
                                                 
                                                 </div>
                                                 <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('5။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('5.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
@@ -571,7 +571,7 @@
                             	    <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
 	                                    <div class="tab-pane fade show active m-5" id="link3" aria-expanded="true">
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('1.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Accountancy Firm Registration No') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
@@ -580,7 +580,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('2။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('2.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Accountancy Firm Name') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
@@ -594,7 +594,7 @@
                                                 @enderror
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('3။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('3.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Address Of Practice(Head Office)') }}</label>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
@@ -637,7 +637,7 @@
                                                 
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('4။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('4.') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Branch Office') }}</label>
                                                 
                                             </div>    
@@ -682,7 +682,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('5။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('5.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Organization Structure') }}</label>
                                                 
                                                 
@@ -715,7 +715,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('6။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('6.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Sole Proprietor/Partners/Shareholders') }}</label>
                                                 
                                             </div>
@@ -759,7 +759,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                            <label class="col-md-1 col-form-label">{{ __('7။') }}</label>
+                                            <label class="col-md-1 col-form-label">{{ __('7.') }}</label>
                                             <label class="col-md-4 col-form-label">{{ __('Director(s)/Officer(s)') }}</label>
                                             
                                             </div>
@@ -801,7 +801,7 @@
 	                                    </div>
                                         <div class="tab-pane fade m-5" id="link4" aria-expanded="true">
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('1။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('1.') }}</label>
                                                 <label class="col-md-10 col-form-label">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
                                                 
                                             </div>
@@ -814,7 +814,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('2။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('2.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Total Staff') }}</label>
                                                 
                                             </div>
@@ -907,7 +907,7 @@
                                                 </div>
                                                 </div>
                                                 <div class="row">
-                                                <label class="col-md-1 col-form-label">{{ __('3။') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __('3.') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Audit Staff') }}</label>
                                                 
                                             </div>
@@ -1016,7 +1016,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <label class="col-md-1 col-form-label">{{ __('4။') }}</label>
+                                                    <label class="col-md-1 col-form-label">{{ __('4.') }}</label>
                                                     <label class="col-md-3 col-form-label">{{ __('Types Of Service Provided') }}</label>
                                                     <div class="col-md-2">
                                                         <div class="">
@@ -1034,7 +1034,7 @@
                                                 
                                                 </div>
                                                 <div class="row">
-                                                    <label class="col-md-1 col-form-label">{{ __('5။') }}</label>
+                                                    <label class="col-md-1 col-form-label">{{ __('5.') }}</label>
                                                     <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
                                                     <div class="col-md-8">
                                                         <div class="form-group">

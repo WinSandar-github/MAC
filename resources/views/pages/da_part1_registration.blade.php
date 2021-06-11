@@ -54,16 +54,15 @@
                                     <div class="tab-pane fade show active m-3" id="link1" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2">
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
+                                            <div class="col-md-3 pl-4">
+                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div><br>
                                         <div class="row">
                                             <div class="col-md-1"></div>
@@ -100,30 +99,56 @@
 	                                          </div>
 	                                      </div>
 	                                    </div>
-	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
-	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror" autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
-	                                  </div>
-	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('အဘအမည်(မြန်မာ)') }}</label>
-	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="father_name" class="form-control" >
-	                                          </div>
-	                                      </div>
-                                          
-	                                  </div>
+	                                    <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="row" style="padding-top: 0px; margin-top: 0px;">
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('အဘအမည်(မြန်မာ)') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" name="father_name" class="form-control" >
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
                                       <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <label class="col-md-2 col-form-label">{{ __('အဘအမည်(အင်္ဂလိပ်)') }}</label>
@@ -495,16 +520,15 @@
                                     <div class="tab-pane fade m-3" id="link2" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
+                                            <div class="col-md-3 pl-4">
+                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div><br>
                                         <div class="row">
                                             <div class="col-md-1"></div>
@@ -533,18 +557,44 @@
 	                                      </div>
 	                                    </div>
 	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
-	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror" autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
+                                            <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="row" style="padding-top: 0px; margin-top: 0px;">
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
+                                                    </div>
+                                                </div>
+                                            </div>
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
@@ -667,16 +717,15 @@
                                     <div class="tab-pane fade m-3" id="link3" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
-                                                    </div>
+                                            <div class="col-md-3 pl-4">
+                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose Image</label>
+                                                </div>
                                             </div>
+                                        </div>
                                         </div><br>
                                         <div class="row">
                                             <div class="col-md-1"></div>
@@ -704,50 +753,76 @@
 	                                          </div>
 	                                      </div>
 	                                    </div>
-	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
-	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
-	                                  </div>
-	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('အဘအမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
-	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="father_name" class="form-control"  >
-	                                          </div>
-	                                      </div>
-                                          
-	                                  </div>
-                                      
-	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('လူမျိူး/ဘာသာ') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
-                                                    <input type="text" name="" class="form-control" >
-                                                </div>
-                                            </div>
-	                                  </div>
-	                                  
-	                                    <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
-                                                        <input type="text"name="daone_birththree" placeholder="dd-mm-yyyy" class="form-control" >
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="row" style="padding-top: 0px; margin-top: 0px;">
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
                                                     </div>
                                                 </div>
-	                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('အဘအမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" name="father_name" class="form-control"  >
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                      
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('လူမျိူး/ဘာသာ') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                        <input type="text" name="" class="form-control" >
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                            <input type="text"name="daone_birththree" placeholder="dd-mm-yyyy" class="form-control" >
+                                                        </div>
+                                                    </div>
+                                        </div>
 	                                  
                                         
                                         <div class="row">
@@ -888,16 +963,15 @@
                                     <div class="tab-pane fade m-3" id="link4" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
-                                                    </div>
+                                            <div class="col-md-3 pl-4">
+                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose Image</label>
+                                                </div>
                                             </div>
+                                        </div>
                                         </div><br>
                                         
                                         <div class="row">
@@ -918,75 +992,101 @@
 	                                          </div>
 	                                      </div>
 	                                    </div>
-	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
-	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror" autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
-	                                  </div>
-	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('အဘအမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
-	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="father_name" class="form-control"  >
-	                                          </div>
-	                                      </div>
-                                          
-	                                  </div>
-                                      
-	                                  <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('သင်တန်းသားကိုယ်ပိုင်အမှတ်') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
-                                                    <input type="text" name="" class="form-control"  >
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="row" style="padding-top: 0px; margin-top: 0px;">
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
+                                                    </div>
                                                 </div>
                                             </div>
-	                                  </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('အဘအမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" name="father_name" class="form-control"  >
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                      
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('သင်တန်းသားကိုယ်ပိုင်အမှတ်') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                        <input type="text" name="" class="form-control"  >
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
+                                            <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                            <input type="text" name="daone_birthfour" placeholder="dd-mm-yyyy" class="form-control"  >
+                                                        </div>
+                                                    </div>
+                                        </div>
 	                                  
-	                                    <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
-	                                      <div class="col-md-8">
-                                            <div class="form-group">
-                                                        <input type="text" name="daone_birthfour" placeholder="dd-mm-yyyy" class="form-control"  >
+                                        <div class="row">
+                                            <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
+                                                <div class="col-md-7">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                  
-                                        <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
-	                                      <label class="col-md-3 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
-	                                        <div class="col-md-7">
-                                                <div class="form-group">
-                                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                                                </div>
-                                            </div>
-	                                    </div>
 	                                    <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
-	                                      <label class="col-md-3 col-form-label">{{ __('သင်တန်းတက်ရောက်သည့်နေရာ') }}</label>
-                                          <div class="col-md-2">
-                                                    <input type="checkbox" name="" >
-                                                    <label class="form-check-label">စာရင်းကောင်စီ</label> 
-                                            </div>
-                                            <div class="col-md-3">
-                                                    <input type="checkbox" name="" >
-                                                    <label class="form-check-label">ကိုယ်ပိုင်သင်တန်းကျောင်း</label> 
-                                            </div>
+                                            <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
+                                            <label class="col-md-3 col-form-label">{{ __('သင်တန်းတက်ရောက်သည့်နေရာ') }}</label>
                                             <div class="col-md-2">
-                                                    <input type="checkbox" name="" >
-                                                    <label class="form-check-label">ကိုယ်ပိုင်လေ့လာသူ</label> 
-                                            </div>
+                                                        <input type="checkbox" name="" >
+                                                        <label class="form-check-label">စာရင်းကောင်စီ</label> 
+                                                </div>
+                                                <div class="col-md-3">
+                                                        <input type="checkbox" name="" >
+                                                        <label class="form-check-label">ကိုယ်ပိုင်သင်တန်းကျောင်း</label> 
+                                                </div>
+                                                <div class="col-md-2">
+                                                        <input type="checkbox" name="" >
+                                                        <label class="form-check-label">ကိုယ်ပိုင်လေ့လာသူ</label> 
+                                                </div>
 	                                    </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
@@ -1020,6 +1120,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <label class="col-md-8">(ခ)အဆိုပါစာမေးပွဲတွင်အောင်မြင်ခဲ့သည့် Module ရှိပါကဆိုင်ရာအကွက်တွင်အမှန်ခြစ်အမှတ်အသားပြုရန်</label>
@@ -1110,7 +1211,7 @@
                                                         <label class="col-md-4 col-form-label">{{ __('ရက်စွဲ') }}</label>
                                                         <div class="col-md-8">
                                                             <div class="form-group">
-                                                                <input type="text" name="register_date" class="form-control" placeholder="dd/mm/yyyy" required>
+                                                                <input type="text" name="date1" class="form-control" placeholder="dd/mm/yyyy" required>
                                                             </div>
                                                         </div>
                                                     </div>                                    
@@ -1186,14 +1287,19 @@
                                                         </div>
                                                     </div>
                                             </div>
-                                            <label class="col-md-2 text-right">{{ __('ရက်စွဲ') }}</label>
-	                                        <div class="col-md-2">
-                                                <div class="form-group">
-                                                        <input type="text" name="daone_datefour" placeholder="dd-mm-yyyy" class="form-control" >
+                                            
+
+                                            <div class="row">
+                                                <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
+                                                <label class="col-md-2 col-form-label">{{ __('အဘအမည်(မြန်မာ)') }}</label>
+                                                <div class="col-md-9">
+                                                    <div class="form-group">
+                                                        <input type="text" name="father_name" class="form-control" placeholder="အဘအမည်(မြန်မာ)">
+                                                    </div>
                                                 </div>
                                                 
-                                            </div>
-
+                                            </div>                                           
+                                            
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('အဘအမည်(အင်္ဂလိပ်)') }}</label>
@@ -1203,8 +1309,7 @@
                                                     </div>
                                                 </div>
                                                 
-                                            </div>                                           
-                                            
+                                            </div> 
                                         
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
@@ -1400,6 +1505,7 @@
 <script>
     
     $(document).ready(function (e) {
+        createDatepicker("date1");
         createDatepicker("daone_birthone");
         createDatepicker("daone_birthtwo");
         createDatepicker("daone_birththree");

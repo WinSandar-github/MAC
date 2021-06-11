@@ -51,21 +51,20 @@
 		                                  </a>
 		                              </li>
 		                            </ul>
-                            	<div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
+                            	<div class="tab-space tab-content tab-no-active-fill-tab-content m-4">
                                     
                                   <div class="tab-pane fade show active m-3" id="link1" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2">
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
+                                            <div class="col-md-3 pl-4">
+                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div><br>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
@@ -96,15 +95,41 @@
 	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
 	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
+                                                <div class="row" style="padding-top: 0px; margin-top: 0px;">
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
+                                                    </div>
+                                                </div>
+                                            </div>
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
@@ -328,16 +353,15 @@
                                   <div class="tab-pane fade m-3" id="link3" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2">
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
+                                            <div class="col-md-3 pl-4">
+                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div><br>
                                         <div class="row">
                                             <label class="col-md-1 "></label>
@@ -371,15 +395,41 @@
 	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
 	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
+                                                <div class="row" style="padding-top: 0px; margin-top: 0px;">
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
+                                                    </div>
+                                                </div>
+                                            </div>
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
@@ -508,16 +558,15 @@
                                   <div class="tab-pane fade m-3" id="link4" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2">
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
+                                            <div class="col-md-3 pl-4">
+                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div><br>
                                         <div class="row">
                                             <label class="col-md-1"></label>
@@ -549,15 +598,41 @@
 	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
 	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
+                                                <div class="row" style="padding-top: 0px; margin-top: 0px;">
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
+                                                    </div>
+                                                </div>
+                                            </div>
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
@@ -728,16 +803,15 @@
                                   <div class="tab-pane fade m-3" id="link5" aria-expanded="true">
                                         <div class="row">
                                             <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2">
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
+                                            <div class="col-md-3 pl-4">
+                                            <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                            <div class="input-group mt-3" style="margin-left: -11px;">                                                    
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
+                                        </div>
                                         </div><br>
                                         
                                         <div class="row">
@@ -762,15 +836,41 @@
 	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
 	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror" autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
+                                                <div class="row" style="padding-top: 0px; margin-top: 0px;">
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
+                                                    </div>
+                                                </div>
+                                            </div>
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
@@ -937,7 +1037,7 @@
                                         </div>
                                   </div>
 
-                                  <div class="tab-pane fade m-3" id="link6" aria-expanded="true">
+                                  <div class="tab-pane fade m-3 pr-3" id="link6" aria-expanded="true">
                                             <div class="row">
                                                 <label class="col-md-12 col-form-label text-center" style="font-size:17px; font-weight:bold;">{{ __('လက်မှတ်ရပြည့်သူ့စာရင်းကိုင် /ဒီပလိုမာစာရင်းကိုင် စာမေးပွဲ အောင်လက်မှတ် /အောင်မြင်ကြောင်း ထောက်ခံချက် /အမှတ်စာရင်း(အောင်မြင် /ကျရှုံး)တောင်းခံမှူပုံစံ') }}</label>
                                             </div><br>
@@ -950,7 +1050,7 @@
                                                         <label class="col-md-4 col-form-label">{{ __('ရက်စွဲ') }}</label>
                                                         <div class="col-md-8">
                                                             <div class="form-group">
-                                                                <input type="text" name="register_date" class="form-control" placeholder="dd/mm/yyyy" required>
+                                                                <input type="text" name="date1" class="form-control" placeholder="dd/mm/yyyy" required>
                                                             </div>
                                                         </div>
                                                     </div>                                    
@@ -1253,13 +1353,10 @@
 
 @push('scripts')
 <script>
-        $("input[name='register_date']").flatpickr({
-                    enableTime: false,
-                    dateFormat: "d-m-Y",
-            });
-    </script>
+       
     
     $(document).ready(function (e) {
+        createDatepicker("date1");
         createDatepicker("birth1");
         createDatepicker("birth2");
         createDatepicker("birth3");

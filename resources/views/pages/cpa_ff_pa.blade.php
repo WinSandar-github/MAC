@@ -117,12 +117,12 @@
                                         </div>                           
                                     </div>
                                     <div class="row mt-5">                                        
-                                        <div class="col-md-3 pl-5">
+                                        <div class="col-md-3 pl-4">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3" style="margin-left: -11px;">                                                    
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -264,12 +264,12 @@
                                     </div>
 
                                     <div class="row mt-5">                                        
-                                        <div class="col-md-3 pl-5">
+                                        <div class="col-md-3 pl-4">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3" style="margin-left: -11px;">                                                    
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
                                         </div>
