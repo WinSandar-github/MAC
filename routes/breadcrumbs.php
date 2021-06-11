@@ -96,4 +96,205 @@ Breadcrumbs::for('article', function ($trail) {
     $trail->parent('home');
     $trail->push('Article', route('page.index', 'article'));
 });
+Breadcrumbs::for('teacher-register-form1', function ($trail) {
+    $trail->parent('teacher_registration');
+    $trail->push('သင်တန်းဆရာ မှတ်ပုံတင်လျှောက်လွှာ', route('page.index', 'teacher-register-form1'));
+});
+Breadcrumbs::for('teacher-register-form2', function ($trail) {
+    $trail->parent('teacher_registration');
+    $trail->push('သင်တန်းဆရာ မှတ်ပုံတင်သက်တမ်းတိုးလျှောက်လွှာ', route('page.index', 'teacher-register-form2'));
+});
+Breadcrumbs::for('school_registration', function ($trail) {
+    $trail->push('School', route('page.index', 'school_registration'));
+});
+Breadcrumbs::for('school-register-form1', function ($trail) {
+    $trail->parent('school_registration');
+    $trail->push('ကျောင်းဖွင့်လှစ်လုပ်ကိုင်ခွင့်လျှောက်လွှာ', route('page.index', 'school-register-form1'));
+});
+Breadcrumbs::for('school-register-form2', function ($trail) {
+    $trail->parent('school_registration');
+    $trail->push('သင်တန်းကျောင်းအချက်အလက်များ', route('page.index', 'school-register-form2'));
+});
+Breadcrumbs::for('school-register-form3', function ($trail) {
+    $trail->parent('school_registration');
+    $trail->push('အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ', route('page.index', 'school-register-form3'));
+});
+Breadcrumbs::for('school-register-form4', function ($trail) {
+    $trail->parent('school_registration');
+    $trail->push('ကျောင်းမှတ်ပုံတင်သက်တမ်းတိုးလျှောက်လွှာ', route('page.index', 'school-register-form4'));
+});
+Breadcrumbs::for('audit_firm_registration', function ($trail) {
+    $trail->push('Audit Firm', route('page.index', 'audit_firm_registration'));
+});
+Breadcrumbs::for('audit-firm-initial-accountancy', function ($trail) {
+    $trail->parent('audit_firm_registration');
+    $trail->push('Accountancy Firm Information(Initial)', route('page.index', 'audit-firm-initial-accountancy'));
+});
+Breadcrumbs::for('audit-firm-initial-organization', function ($trail) {
+    $trail->parent('audit_firm_registration');
+    $trail->push('Organization Structure(Initial)', route('page.index', 'audit-firm-initial-organization'));
+});
+Breadcrumbs::for('audit-firm-renew-accountancy', function ($trail) {
+    $trail->parent('audit_firm_registration');
+    $trail->push('Accountancy Firm Information(Renew)', route('page.index', 'audit-firm-renew-accountancy'));
+});
+Breadcrumbs::for('audit-firm-renew-organization', function ($trail) {
+    $trail->parent('audit_firm_registration');
+    $trail->push('Organization Structure(Renew)', route('page.index', 'audit-firm-renew-organization'));
+});
+Breadcrumbs::for('non_audit_firm_registration', function ($trail) {
+    $trail->push('Non Audit Firm', route('page.index', 'non_audit_firm_registration'));
+});
+Breadcrumbs::for('non-audit-firm-local-initial', function ($trail) {
+    $trail->parent('non_audit_firm_registration');
+    $trail->push('Local Firm Information(Initial)', route('page.index', 'non-audit-firm-local-initial'));
+});
+Breadcrumbs::for('non-audit-firm-local-renew', function ($trail) {
+    $trail->parent('non_audit_firm_registration');
+    $trail->push('Local Firm Information(Renew)', route('page.index', 'non-audit-firm-local-renew'));
+});
+Breadcrumbs::for('non-audit-firm-foreign-initial', function ($trail) {
+    $trail->parent('non_audit_firm_registration');
+    $trail->push('Foreign Firm Information(Initial)', route('page.index', 'non-audit-firm-foreign-initial'));
+});
+Breadcrumbs::for('non-audit-firm-foreign-renew', function ($trail) {
+    $trail->parent('non_audit_firm_registration');
+    $trail->push('Foreign Firm Information(Renew)', route('page.index', 'non-audit-firm-foreign-renew'));
+});
+Breadcrumbs::for('cpa_part1_registration', function ($trail) {
+    $trail->push('CPA Part 1', route('page.index', 'cpa_part1_registration'));
+});
+Breadcrumbs::for('cpa-part1-register-form1', function ($trail) {
+    $trail->parent('cpa_part1_registration');
+    $trail->push('သင်တန်းတက်ရောက်ခွင့်လျှောက်လွှာ', route('page.index', 'cpa-part1-register-form1'));
+});
+Breadcrumbs::for('cpa-part1-register-form2', function ($trail) {
+    $trail->parent('cpa_part1_registration');
+    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ', route('page.index', 'cpa-part1-register-form2'));
+});
+Breadcrumbs::for('cpa-part1-register-form3', function ($trail) {
+    $trail->parent('cpa_part1_registration');
+    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(အသစ်တက်ခွင့်ရသူများ) ', route('page.index', 'cpa-part1-register-form3'));
+});
+Breadcrumbs::for('cpa-part1-register-form4', function ($trail) {
+    $trail->parent('cpa_part1_registration');
+    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(နှစ်ဟောင်းမှတက်ခွင့်ရသူများ)', route('page.index', 'cpa-part1-register-form4'));
+});
+Breadcrumbs::for('cpa-part1-register-form5', function ($trail) {
+    $trail->parent('cpa_part1_registration');
+    $trail->push('သင်တန်းစာမေးပွဲဖြေဆိုခွင့်လျှောက်လွှာ', route('page.index', 'cpa-part1-register-form5'));
+});
+Breadcrumbs::for('cpa_part2_registration', function ($trail) {
+    $trail->push('CPA Part 2', route('page.index', 'cpa_part2_registration'));
+});
+Breadcrumbs::for('cpa-part2-register-form1', function ($trail) {
+    $trail->parent('cpa_part2_registration');
+    $trail->push('သင်တန်းတက်ရောက်ခွင့်နှင့်မှတ်ပုံတင်ခွင့်လျှောက်လွှာ', route('page.index', 'cpa-part2-register-form1'));
+});
 
+Breadcrumbs::for('cpa-part2-register-form2', function ($trail) {
+    $trail->parent('cpa_part2_registration');
+    $trail->push('သင်တန်းသားမှတ်ပုံတင်ခွင့်လျှောက်လွှာ(အသစ်တက်ခွင့်ရသူများ)', route('page.index', 'cpa-part2-register-form2'));
+});
+Breadcrumbs::for('cpa-part2-register-form3', function ($trail) {
+    $trail->parent('cpa_part2_registration');
+    $trail->push('သင်တန်းသားမှတ်ပုံတင်ခွင့်လျှောက်လွှာ(နှစ်ဟောင်းမှတက်ခွင့်ရသူများ)', route('page.index', 'cpa-part2-register-form3'));
+});
+Breadcrumbs::for('cpa-part2-register-form4', function ($trail) {
+    $trail->parent('cpa_part2_registration');
+    $trail->push('သင်တန်းစာမေးပွဲဖြေဆိုခွင့်လျှောက်လွှာ', route('page.index', 'cpa-part2-register-form4'));
+});
+Breadcrumbs::for('cpa_ff_pa', function ($trail) {
+    $trail->push('CPA FF & PA', route('page.index', 'cpa_ff_pa'));
+});
+Breadcrumbs::for('cpa_ff_pa_form1', function ($trail) {
+    $trail->parent('cpa_ff_pa');
+    $trail->push('Certificate of Certified Public Accountant (Full-Fledged)', route('page.index', 'cpa_ff_pa_form1'));
+});
+Breadcrumbs::for('cpa_ff_pa_form2', function ($trail) {
+    $trail->parent('cpa_ff_pa');
+    $trail->push('Certificate of Professional Account in Public Practice', route('page.index', 'cpa_ff_pa_form2'));
+});
+Breadcrumbs::for('cpa_ff_registration', function ($trail) {
+    $trail->push('CPA FF', route('page.index', 'cpa_ff_registration'));
+});
+Breadcrumbs::for('cpa_ff_register_form1', function ($trail) {
+    $trail->parent('cpa_ff_registration');
+    $trail->push('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပြည့်မီ)အဖြစ်မှတ်ပုံတင်ခြင်း', route('page.index', 'cpa_ff_register_form1'));
+});
+Breadcrumbs::for('cpa_ff_register_form2', function ($trail) {
+    $trail->parent('cpa_ff_registration');
+    $trail->push('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပြည့်မီ)အဖြစ်မှတ်ပုံတင်ထားခြင်းကိုသက်တမ်းတိုးမြှင့်ခြင်း', route('page.index', 'cpa_ff_register_form2'));
+});
+Breadcrumbs::for('papp_registration', function ($trail) {
+    $trail->push('PAPP Initial', route('page.index', 'papp_registration'));
+});
+Breadcrumbs::for('papp_register_initial_form1', function ($trail) {
+    $trail->parent('papp_registration');
+    $trail->push('အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်သူအဖြစ်မှတ်ပုံတင်ရန်လျှောက်ထားခြင်း', route('page.index', 'papp_register_initial_form1'));
+});
+Breadcrumbs::for('papp_register_initial_form2', function ($trail) {
+    $trail->parent('papp_registration');
+    $trail->push('အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်သူများ ဖြည့်သွင်းပေးရန်အချက်များ', route('page.index', 'papp_register_initial_form2'));
+});
+Breadcrumbs::for('papp_register_initial_form3', function ($trail) {
+    $trail->parent('papp_registration');
+    $trail->push('ကိုယ်တိုင်ခံဝန်ချက်', route('page.index', 'papp_register_initial_form3'));
+});
+Breadcrumbs::for('papp_registration_renew', function ($trail) {
+    $trail->push('PAPP Renew', route('page.index', 'papp_registration_renew'));
+});
+Breadcrumbs::for('papp_register_renew_form1', function ($trail) {
+    $trail->parent('papp_registration_renew');
+    $trail->push('အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်သူအဖြစ်သက်တမ်းတိုးရန်လျှောက်ထားခြင်း', route('page.index', 'papp_register_renew_form1'));
+});
+Breadcrumbs::for('papp_register_renew_form2', function ($trail) {
+    $trail->parent('papp_registration_renew');
+    $trail->push('အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်သူများ ဖြည့်သွင်းပေးရန်အချက်များ', route('page.index', 'papp_register_renew_form2'));
+});
+Breadcrumbs::for('da_part1_registration', function ($trail) {
+    $trail->push('DA Part 1', route('page.index', 'da_part1_registration'));
+});
+Breadcrumbs::for('da_part1_register_form1', function ($trail) {
+    $trail->parent('da_part1_registration');
+    $trail->push('သင်တန်းတက်ရောက်ခွင့်နှင့်မှတ်ပုံတင်ခွင့်လျှောက်လွှာ', route('page.index', 'da_part1_register_form1'));
+});
+Breadcrumbs::for('da_part1_register_form2', function ($trail) {
+    $trail->parent('da_part1_registration');
+    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(အသစ်တက်ခွင့်ရသူများ)', route('page.index', 'da_part1_register_form2'));
+});
+Breadcrumbs::for('da_part1_register_form3', function ($trail) {
+    $trail->parent('da_part1_registration');
+    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(နှစ်ဟောင်းမှတက်ခွင့်ရသူများ)', route('page.index', 'da_part1_register_form3'));
+});
+Breadcrumbs::for('da_part1_register_form4', function ($trail) {
+    $trail->parent('da_part1_registration');
+    $trail->push('သင်တန်းစာမေးပွဲဖြေဆိုခွင့်လျှောက်လွှာ', route('page.index', 'da_part1_register_form4'));
+});
+Breadcrumbs::for('da_part1_register_form5', function ($trail) {
+    $trail->parent('da_part1_registration');
+    $trail->push('သင်တန်းပြီးဆုံး(အောင်/ကျရှုံး)ကြောင်း အထောက်အထားတောင်းခံမှူပုံစံ', route('page.index', 'da_part1_register_form5'));
+});
+Breadcrumbs::for('da_part2_registration', function ($trail) {
+    $trail->push('DA Part 2', route('page.index', 'da_part2_registration'));
+});
+Breadcrumbs::for('da_part2_register_form1', function ($trail) {
+    $trail->parent('da_part2_registration');
+    $trail->push('သင်တန်းတက်ရောက်ခွင့်နှင့်မှတ်ပုံတင်ခွင့်လျှောက်လွှာ', route('page.index', 'da_part2_register_form1'));
+});
+Breadcrumbs::for('da_part2_register_form2', function ($trail) {
+    $trail->parent('da_part2_registration');
+    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(အသစ်တက်ခွင့်ရသူများ)', route('page.index', 'da_part2_register_form2'));
+});
+Breadcrumbs::for('da_part2_register_form3', function ($trail) {
+    $trail->parent('da_part2_registration');
+    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(နှစ်ဟောင်းမှတက်ခွင့်ရသူများ)', route('page.index', 'da_part2_register_form3'));
+});
+Breadcrumbs::for('da_part2_register_form4', function ($trail) {
+    $trail->parent('da_part2_registration');
+    $trail->push('သင်တန်းစာမေးပွဲဖြေဆိုခွင့်လျှောက်လွှာ', route('page.index', 'da_part2_register_form4'));
+});
+Breadcrumbs::for('da_part2_register_form5', function ($trail) {
+    $trail->parent('da_part2_registration');
+    $trail->push('သင်တန်းပြီးဆုံး(အောင်/ကျရှုံး)ကြောင်း အထောက်အထားတောင်းခံမှူပုံစံ', route('page.index', 'da_part2_register_form5'));
+});
