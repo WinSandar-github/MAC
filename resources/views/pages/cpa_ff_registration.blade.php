@@ -347,50 +347,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
-	                                    <div class="row">
-                                            <label class="col-md-5 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __(' မြန်မာနိုင်ငံစာရင်းကောင်စီရေးသွင်းရန်') }}</label>
-                                            
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-6 col-form-label">{{ __('ဤလျှောက်လွှာနှင့်ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများကို စိစစ်ပြီးလက်ခံပါသည်။ လက်ခံအမှတ် ') }}</label>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <input type="text"class="form-control" >
-                                                </div></div>
-                                                
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-6 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
-                                            <div class="col-md-4">
-                                                    <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile5" multiple>
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <input type="text" name="cpaff_datetwo" placeholder="dd-mm-yyyy" class="form-control" >
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-11 d-md-flex justify-content-md-end">
                                                 <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                             </div>
                                         </div>
 	                              </div>
-                                  <div class="tab-pane fade m-3" id="link2" aria-expanded="true">
+                                  <div class="tab-pane fade m-1" id="link2" aria-expanded="true">
                                     <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-8 col-form-label">{{ __('လျှောက်ထားသူ၏ကိုယ်ရေးအချက်အလက်(အင်္ဂလိပ်ဘာသာဖြင့်ဖြည့်စွက်ပေးပါရန်)') }}</label>
@@ -658,43 +622,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
-	                                    <div class="row">
-                                            <label class="col-md-5 col-form-label"></label>
-                                            <label class="col-md-4 col-form-label">{{ __(' မြန်မာနိုင်ငံစာရင်းကောင်စီရေးသွင်းရန်') }}</label>
-                                            
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-6 col-form-label">{{ __('ဤလျှောက်လွှာနှင့်ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများကို စိစစ်ပြီးလက်ခံပါသည်။ လက်ခံအမှတ် ') }}</label>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <input type="text"class="form-control" >
-                                                </div></div>
-                                                
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-6 col-form-label">{{ __('ပူးတွဲပါပုံစံ/စာရွက်စာတမ်းများ') }}</label>
-                                            <div class="col-md-4">
-                                                    <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile5" multiple>
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <label class="col-md-1 col-form-label"></label>
-                                            <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <input type="text" name="cpaff_datefour" placeholder="dd-mm-yyyy" class="form-control" >
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-11 d-md-flex justify-content-md-end">
                                                 <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
