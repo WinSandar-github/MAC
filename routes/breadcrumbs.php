@@ -81,7 +81,6 @@ Breadcrumbs::for('course-category', function ($trail) {
 
 // Home > Teacher
 Breadcrumbs::for('teacher_registration', function ($trail) {
-    $trail->parent('home');
     $trail->push('Teacher', route('page.index', 'teacher_registration'));
 });
 
@@ -93,7 +92,6 @@ Breadcrumbs::for('qt_application_registration', function ($trail) {
 
 // Home > Article
 Breadcrumbs::for('article', function ($trail) {
-    $trail->parent('home');
     $trail->push('Article', route('page.index', 'article'));
 });
 Breadcrumbs::for('teacher-register-form1', function ($trail) {
@@ -297,4 +295,28 @@ Breadcrumbs::for('da_part2_register_form4', function ($trail) {
 Breadcrumbs::for('da_part2_register_form5', function ($trail) {
     $trail->parent('da_part2_registration');
     $trail->push('သင်တန်းပြီးဆုံး(အောင်/ကျရှုံး)ကြောင်း အထောက်အထားတောင်းခံမှူပုံစံ', route('page.index', 'da_part2_register_form5'));
+});
+Breadcrumbs::for('article-form1', function ($trail) {
+    $trail->parent('article');
+    $trail->push('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)သင်တန်းကိုအောင်မြင်ပြီး၍ လက်တွေ့အလုပ်သင်ကြားရန်ဆန္ဒပြုခြင်း', route('page.index', 'article-form1'));
+});
+Breadcrumbs::for('article-form2', function ($trail) {
+    $trail->parent('article');
+    $trail->push('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပထမပိုင်း)(ဒုတိယပိုင်း)အတွက် လက်တွေ့အလုပ်သင်ကြားရန်ဆန္ဒပြုခြင်း', route('page.index', 'article-form2'));
+});
+Breadcrumbs::for('article-form3', function ($trail) {
+    $trail->parent('article');
+    $trail->push('လက်တွေ့အလုပ်သင်ကြားခြင်း(၂)နှစ်ပြည့်မြောက်ပြီး၍ လက်တွေ့အလုပ် (၁) နှစ် ထပ်မံဆင်းရန်ဆန္ဒပြုခြင်း', route('page.index', 'article-form3'));
+});
+Breadcrumbs::for('article-form4', function ($trail) {
+    $trail->parent('article');
+    $trail->push('လက်မှတ်ရပြည်သူ့စာရင်းကိုင် အရည်အချင်းစစ် စာမေးပွဲကိုအောင်မြင်ပြီး၍ လက်တွေ့အလုပ်သင်ကြားရန် ဆန္ဒပြုခြင်း', route('page.index', 'article-form4'));
+});
+Breadcrumbs::for('article-form5', function ($trail) {
+    $trail->parent('article');
+    $trail->push('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း) စာမေးပွဲကိုအောင်မြင်ပြီး၍ လက်တွေ့အလုပ်သင်ကြားရန် ဆန္ဒပြုခြင်း', route('page.index', 'article-form5'));
+});
+Breadcrumbs::for('article-form6', function ($trail) {
+    $trail->parent('article');
+    $trail->push('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပထမပိုင်း)(ဒုတိယပိုင်း)သင်တန်းအတွက် လက်တွေ့အလုပ်သင်ကြားရန် ဆန္ဒပြုခြင်း', route('page.index', 'article-form6'));
 });

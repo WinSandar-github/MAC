@@ -65,23 +65,5 @@
 @endsection
 
 @push('scripts')
-<<<<<<< HEAD
-=======
-<script>
-    
-    $(document).ready(function (e) {
-        createDatepicker("date1");
-        createDatepicker("daone_birthone");
-        createDatepicker("daone_birthtwo");
-        createDatepicker("daone_birththree");
-        createDatepicker("daone_birthfour");
-        createDatepicker("daone_dateone");
-        createDatepicker("daone_datetwo");
-        createDatepicker("daone_datethree");
-        createDatepicker("daone_datefour");
-        createDatepicker("daone_datefive");
-        
-    });
->>>>>>> 55ec70bdc6cb669d3d20f596805210e9a7e8687a
 
 @endpush

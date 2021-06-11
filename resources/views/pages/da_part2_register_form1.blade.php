@@ -34,8 +34,8 @@
                                                 <div class="input-group mb-3">
                                                     
                                                         <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2">
-                                                            <label class="custom-file-label" >Choose file</label>
+                                                            <input type="file" class="custom-file-input" id="inputfile2" accept="image/*">
+                                                            <label class="custom-file-label" >Choose Image</label>
                                                         </div>
                                                 </div>
                                             </div>
@@ -69,15 +69,41 @@
 	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
 	                                      <div class="col-md-8">
-	                                          <div class="form-group">
-	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
-	                                          </div>
-	                                      </div>
-	                                      @error('name')
-	                                          <span class="invalid-feedback" role="alert">
-	                                              <strong>{{ $message }}</strong>
-	                                          </span>
-	                                      @enderror
+                                                <div class="row" >
+                                                    <div class="col-md-2 col-5 pr-1">
+                                                        <select class="form-control" name="nrc_state_region" id="nrc_state_region" >
+                                                            @foreach($nrc_regions as $region)
+                                                                <option value="{{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en'] }}">
+                                                                    {{ $nrc_language == 'mm' ? $region['region_mm'] : $region['region_en']  }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-3 col-7 px-1">
+                                                        <select class="form-control" name="nrc_township" id="nrc_township" >
+                                                            @foreach($nrc_townships as $township)
+                                                                <option value="{{ $township['township_mm'] }}">
+                                                                    {{ $township['township_mm'] }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-2 col-5 px-1">
+                                                        <select class="form-control" name="nrc_citizen" id="nrc_citizen" style="margin-top: 0px; margin-bottom: 0px;">
+                                                            @foreach($nrc_citizens as $citizen)
+                                                            <option value="{{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}">
+                                                                {{ $nrc_language == 'mm' ? $citizen['citizen_mm'] : $citizen['citizen_en'] }}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-md-5 col-7 pl-1">
+                                                        <input type="text" name="nrc_number" id="nrc_number" pattern=".{6,6}" class="form-control" oninput="this.value=this.value.replace(/[^0-9]/g,'');"  maxlength="6" minlength="6" placeholder="" style="height: 38px">
+                                                    </div>
+                                                </div>
+                                            </div>
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
