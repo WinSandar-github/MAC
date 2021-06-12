@@ -25,37 +25,37 @@
                             <ul class="nav nav-tabs nav-justified pl-0 active_tab col-md-12 no-gutters" role="tablist">
                                 <li class="nav-item col-md-6">
                                     <a class="nav-link active pl-0 pr-2" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true">
-                                    CII Pass 3 yr
+                                    လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)သင်တန်းကိုအောင်မြင်ပြီး၍ လက်တွေ့အလုပ်သင်ကြားရန်ဆန္ဒပြုခြင်း
                                     </a>
                                 </li>
                                 <li class="nav-item col-md-6">
                                     <a class="nav-link pl-0 pr-2" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false">
-                                    CPA I,II
+                                    လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပထမပိုင်း)(ဒုတိယပိုင်း)အတွက် လက်တွေ့အလုပ်သင်ကြားရန်ဆန္ဒပြုခြင်း
                                     </a>
                                 </li>
                                 <li class="nav-item col-md-6">
                                     <a class="nav-link pl-0 pr-2" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false">
-                                    CII Pass 1 yr
+                                    လက်တွေ့အလုပ်သင်ကြားခြင်း(၂)နှစ်ပြည့်မြောက်ပြီး၍ လက်တွေ့အလုပ် (၁) နှစ် ထပ်မံဆင်းရန်ဆန္ဒပြုခြင်း
                                     </a>
                                 </li> 
                                 <li class="nav-item col-md-6">
                                     <a class="nav-link pl-0 pr-2" data-toggle="tab" href="#link4" role="tablist" aria-expanded="false">
-                                    QT Pass 3 yr
+                                    လက်မှတ်ရပြည်သူ့စာရင်းကိုင် အရည်အချင်းစစ် စာမေးပွဲကိုအောင်မြင်ပြီး၍ လက်တွေ့အလုပ်သင်ကြားရန် ဆန္ဒပြုခြင်း
                                     </a>
                                 </li> 
                                 <li class="nav-item col-md-6">
                                     <a class="nav-link pl-0 pr-2" data-toggle="tab" href="#link5" role="tablist" aria-expanded="false">
-                                    CII Pass Renew
+                                    လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း) စာမေးပွဲကိုအောင်မြင်ပြီး၍ လက်တွေ့အလုပ်သင်ကြားရန် ဆန္ဒပြုခြင်း
                                     </a>
                                 </li> 
                                 <li class="nav-item col-md-6">
                                     <a class="nav-link pl-0 pr-2" data-toggle="tab" href="#link6" role="tablist" aria-expanded="false">
-                                    CI,CII Renew
+                                    က်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပထမပိုင်း)(ဒုတိယပိုင်း)သင်တန်းအတွက် လက်တွေ့အလုပ်သင်ကြားရန် ဆန္ဒပြုခြင်း
                                     </a>
                                 </li>                                     
                             </ul>
 
-                            <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
+                            <div class="tab-space tab-content tab-no-active-fill-tab-content mt-3">
                                 <div class="tab-pane fade show active" id="link1" aria-expanded="true">
                                     <div class="row p-5">
                                         <div class="col-md-8 pt-5" style="padding-left: 100px;">
@@ -70,12 +70,12 @@
                                             </div> 
                                         </div>                                                                                
                                         
-                                        <div class="col-md-3 pl-5">
+                                        <div class="col-md-3 pl-4">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3" style="margin-left: -11px;">                                                    
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -431,12 +431,12 @@
                                             </div> 
                                         </div>                                                                                
                                         
-                                        <div class="col-md-3 pl-5">
+                                        <div class="col-md-3 pl-4">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3" style="margin-left: -11px;">                                                    
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -774,12 +774,12 @@
                                             </div> 
                                         </div>                                                                                
                                         
-                                        <div class="col-md-3 pl-5">
+                                        <div class="col-md-3 pl-4">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3" style="margin-left: -11px;">                                                    
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1158,12 +1158,12 @@
                                             </div> 
                                         </div>                                                                                
                                         
-                                        <div class="col-md-3 pl-5">
+                                        <div class="col-md-3 pl-4">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3" style="margin-left: -11px;">                                                    
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1520,12 +1520,12 @@
                                             </div> 
                                         </div>                                                                                
                                         
-                                        <div class="col-md-3 pl-5">
+                                        <div class="col-md-3 pl-4">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3" style="margin-left: -11px;">                                                    
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -1928,12 +1928,12 @@
                                             </div> 
                                         </div>                                                                                
                                         
-                                        <div class="col-md-3 pl-5">
+                                        <div class="col-md-3 pl-4">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3" style="margin-left: -11px;">                                                    
                                                 <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                    <label class="custom-file-label" >Choose file</label>
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
                                             </div>
                                         </div>

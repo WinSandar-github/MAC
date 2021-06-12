@@ -241,15 +241,15 @@
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function (e) {
-        $("input[name='date_of_birth']").flatpickr({
+        $("input[name='issue_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-m-Y",
         });
-        $("input[name='register_date']").flatpickr({
+        $("input[name='expire_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-m-Y",
         });
     });
 
-    </script>
+</script>
 @endpush
