@@ -221,7 +221,7 @@ class AccFirmInfController extends Controller
     public function update(Request $request, $id)
     {
         $acc_firm_info = AccountancyFirmInformation::find($id);
-         $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
         $acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
