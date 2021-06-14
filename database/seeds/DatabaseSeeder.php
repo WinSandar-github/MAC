@@ -23,6 +23,10 @@ class DatabaseSeeder extends Seeder
         $this->call([NonAuditTotalStaffTypeSeeder::class]);
         $this->call([TypeOfServiceProvidedSeeder::class]);
         $this->call([LocalForeignSeeder::class]);
+        $this->call([EducationLevelSeeder::class]);
+        $this->call([ModuleSeeder::class]);
+
+
 
 
         

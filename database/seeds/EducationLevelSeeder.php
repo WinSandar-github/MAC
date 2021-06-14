@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class LocalForeignSeeder extends Seeder
+class EducationLevelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,16 +13,17 @@ class LocalForeignSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('modules')->insert([
+        DB::table('education_levels')->insert([
             array(
-                'name' => 'Module-1'
+                'name' => 'CPA'
             ),
             array(
-                'name' => 'Module-2'
+                'name' => 'RA'
             ),
             array(
-                'name' => 'All Module'
-            )
+                'name' => 'အသိအမှတ်ပြုပြည်ပဘွဲ့'
+            ),
+            
             
         ]);
     }
