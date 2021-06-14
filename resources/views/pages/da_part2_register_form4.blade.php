@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'da_part2_register_form4'
+    'elementActive' => 'da_part2_registration'
 ])
 
 @section('content')
@@ -242,7 +242,7 @@
                                         
                                         
                                         <div class="row">
-                                            <label class="col-md-1 col-form-label">{{ __('၁၃။') }}</label>
+                                            <label class="col-md-1 col-form-label">{{ __('၁၁။') }}</label>
                                             <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
                                             
                                         </div>

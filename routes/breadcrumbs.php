@@ -128,9 +128,9 @@ Breadcrumbs::for('audit-firm-initial-accountancy', function ($trail) {
     $trail->parent('audit_firm_registration');
     $trail->push('Accountancy Firm Information(Initial)', route('page.index', 'audit-firm-initial-accountancy'));
 });
-Breadcrumbs::for('audit-firm-initial-organization', function ($trail) {
+Breadcrumbs::for('audit-firm-list', function ($trail) {
     $trail->parent('audit_firm_registration');
-    $trail->push('Organization Structure(Initial)', route('page.index', 'audit-firm-initial-organization'));
+    $trail->push('Audit Firm List', route('page.index', 'audit-firm-list'));
 });
 Breadcrumbs::for('audit-firm-renew-accountancy', function ($trail) {
     $trail->parent('audit_firm_registration');
