@@ -33,10 +33,10 @@
                                         <div class="col-md-3 pl-5">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class="input-group mt-3">                                                    
-                                                    <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" accept="image/*">
-                                                            <label class="custom-file-label" >Choose Image</label>
-                                                        </div>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" accept="image/*">
+                                                    <label class="custom-file-label" >Choose Image</label>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -213,9 +213,9 @@
                                             <table class="table dipSubject table-bordered input-table">
                                                 <thead>
                                                     <tr>   
-                                                        <th class="less-font-weight text-center">စဉ်</th>                                                     
-                                                        <th class="less-font-weight text-center" >ဒီပလိုမာစာရင်းကိုင်သင်တန်း</th>                                                        
-                                                        <th class="less-font-weight text-center" ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowDipSubject("dipSubject")' value="+"></td>
+                                                        <th class="less-font-weight text-center" width="10%">စဉ်</th>                                                     
+                                                        <th class="less-font-weight text-center" width="80%">ဒီပလိုမာစာရင်းကိုင်သင်တန်း</th>                                                        
+                                                        <th class="less-font-weight text-center" width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowDipSubject("dipSubject")' value="+"></td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

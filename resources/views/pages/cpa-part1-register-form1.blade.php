@@ -28,18 +28,17 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-                                            <div class="col-md-1"></div>
-                                            <div class="col-md-3">
-                                                <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" accept="image/*">
-                                                            <label class="custom-file-label" >Choose Image</label>
-                                                        </div>
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
+                                        <div class="input-group mb-3">                                            
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="inputfile2" accept="image/*">
+                                                    <label class="custom-file-label" >Choose Image</label>
                                                 </div>
-                                            </div>
-                                        </div><br>
+                                        </div>
+                                    </div>
+                                </div><br>
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်') }}</label>
