@@ -31,7 +31,7 @@ class CreateCpaOneRegSelfLearnersTable extends Migration
             $table->string('position');
             $table->string('department');
             $table->string('office_area');
-            $table->string('civil_servant');
+            $table->boolean('civil_servant');
             $table->text('address');
             $table->text('contact_address');
             $table->string('phone');
@@ -42,10 +42,15 @@ class CreateCpaOneRegSelfLearnersTable extends Migration
             $table->boolean('enrol_no_exam');
             $table->boolean('attendance');
             $table->boolean('fail_exam');
-            $table->string('resigned');
+            $table->boolean('resigned');
             $table->unsignedBigInteger('module_id');
             $table->string('batch_session_no');
             $table->timestamps();
+
+            $table->foreign('module_id')
+            ->references('id')
+            ->on('modules')
+            ->onDelete('cascade');
         });
     }
 

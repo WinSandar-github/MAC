@@ -41,32 +41,33 @@ class CpaFullFormController extends Controller
  
         if ($request->hasfile('cpa')) {
            $file = $request->file('cpa');
-           $name  = $file->getClientOriginalName();
+           $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
            $file->move(public_path().'/storage/cpa_ff/',$name);
            $cpa = '/storage/cpa_ff/'.$name;
         }
 
        if ($request->hasfile('mpa_mem_card')) {
         $file = $request->file('mpa_mem_card');
-        $name  = time().'.'.$file->getClientOriginalName();
+        $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
         $file->move(public_path().'/storage/cpa_ff/',$name);
         $mpa_mem_card = '/storage/cpa_ff/'.$name;
         }
+
         if ($request->hasfile('nrc')) {
             $file = $request->file('nrc');
-            $name  = time().'.'.$file->getClientOriginalName();
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff/',$name);
             $nrc = '/storage/cpa_ff/'.$name;
         }
         if ($request->hasfile('cdp_record')) {
             $file = $request->file('cdp_record');
-            $name  = $file->getClientOriginalName();
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff/',$name);
             $cdp_record = '/storage/cpa_ff/'.$name;
         }
         if ($request->hasfile('passport_photo')) {
             $file = $request->file('passport_photo');
-            $name  = $file->getClientOriginalName();
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff/',$name);
             $passport_photo = '/storage/cpa_ff/'.$name;
         }
@@ -150,34 +151,49 @@ class CpaFullFormController extends Controller
     {
         if ($request->hasfile('cpa')) {
             $file = $request->file('cpa');
-            $name  = $file->getClientOriginalName();
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff/',$name);
             $cpa = '/storage/cpa_ff/'.$name;
+         }else{
+             $cpa = $request->old_cpa;
          }
  
         if ($request->hasfile('mpa_mem_card')) {
          $file = $request->file('mpa_mem_card');
-         $name  = time().'.'.$file->getClientOriginalName();
+         $name  = uniqid().'.'.$file->getClientOriginalExtension();
          $file->move(public_path().'/storage/cpa_ff/',$name);
          $mpa_mem_card = '/storage/cpa_ff/'.$name;
+         }else{
+            $mpa_mem_card = $request->old_mpa_card;
+
+
          }
          if ($request->hasfile('nrc')) {
              $file = $request->file('nrc');
-             $name  = time().'.'.$file->getClientOriginalName();
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
              $file->move(public_path().'/storage/cpa_ff/',$name);
              $nrc = '/storage/cpa_ff/'.$name;
+         }else{
+            $nrc = $request->old_nrc;
+            
          }
          if ($request->hasfile('cdp_record')) {
              $file = $request->file('cdp_record');
-             $name  = $file->getClientOriginalName();
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
              $file->move(public_path().'/storage/cpa_ff/',$name);
              $cdp_record = '/storage/cpa_ff/'.$name;
+         }else{
+            $cdp_record = $request->old_cdp_record;
+
          }
          if ($request->hasfile('passport_photo')) {
              $file = $request->file('passport_photo');
-             $name  = $file->getClientOriginalName();
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
              $file->move(public_path().'/storage/cpa_ff/',$name);
              $passport_photo = '/storage/cpa_ff/'.$name;
+         }else{
+            $passport_photo = $request->old_passport_photo;
+
          }
  
          $cpa_full_form  = CpaFullForm::find($id);

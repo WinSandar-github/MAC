@@ -40,8 +40,13 @@ class CreateCpaOneExamRegistersTable extends Migration
             $table->boolean('last_exam_module_two');
             $table->unsignedBigInteger('module_id');
             $table->string('receipt_no');
-            $table->string('receipt_date');
+            $table->date('receipt_date');
             $table->timestamps();
+
+            $table->foreign('module_id')
+            ->references('id')
+            ->on('modules')
+            ->onDelete('cascade');
         });
     }
 

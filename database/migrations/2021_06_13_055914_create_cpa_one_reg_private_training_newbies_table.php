@@ -16,7 +16,7 @@ class CreateCpaOneRegPrivateTrainingNewbiesTable extends Migration
         Schema::create('cpa_one_reg_private_training_newbies', function (Blueprint $table) {
             $table->id();
             $table->string('photo');
-            $table->string('private_trining_name');
+            $table->string('private_training_name');
             $table->string('academic_year');
             $table->string('name_mm');
             $table->string('name_en');
@@ -38,8 +38,8 @@ class CreateCpaOneRegPrivateTrainingNewbiesTable extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('direct_access_no');
-            $table->string('entry_exam_no');
-             $table->timestamps();
+            $table->string('entrance_exam_no');
+            $table->timestamps();
         });
     }
 

@@ -101,10 +101,18 @@ Route::group(['middleware' => 'auth'], function () {
     })->name("admin");
 });
 
-Route::group(['middleware' => 'auth'], function () {
-	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
- });
+// Route::group(['middleware' => 'auth'], function () {
+// 	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+//  });
 
 
-// Route::resource('/acc_firm_info','AccFirmInfController');
-// Route::resource('/cpa_full_form','CpaFullFormController');
+Route::resource('/acc_firm_info','AccFirmInfController');
+Route::resource('/cpa_full_form','CpaFullFormController');
+Route::resource('/cpa_one_reg','CpaOneRegisterController');
+Route::resource('/cpa_one_exam','CpaOneExamRegController');
+Route::resource('/cpa_one_self_learner','CpaOneRegSelfLearnerController');
+Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
+Route::resource('/cpa_private_old','CpaPrivateOldController');
+
+
+

@@ -40,7 +40,7 @@ class CreateCpaOneRegPrivateTrainingOldsTable extends Migration
             $table->boolean('enrol_no_exam');
             $table->boolean('attendance');
             $table->boolean('fail_exam');
-            $table->string('resigned');
+            $table->boolean('resigned');
             $table->string('batch_session_no');
             $table->timestamps();
         });

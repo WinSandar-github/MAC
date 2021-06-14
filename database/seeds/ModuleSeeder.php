@@ -3,8 +3,7 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-
-class LocalForeignSeeder extends Seeder
+class ModuleSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,17 +12,15 @@ class LocalForeignSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('modules')->insert([
+        DB::table('local_foreigns')->insert([
             array(
-                'name' => 'Module-1'
+                'name' => 'Local'
             ),
             array(
-                'name' => 'Module-2'
+                'name' => 'Foreign'
             ),
-            array(
-                'name' => 'All Module'
-            )
             
         ]);
+        
     }
 }

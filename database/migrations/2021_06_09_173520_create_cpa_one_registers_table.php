@@ -25,23 +25,29 @@ class CreateCpaOneRegistersTable extends Migration
             $table->string('nrc_number')->nullable();
             $table->string('father_name_mm');
             $table->string('father_name_en');
-            $table->string('birth_date');
+            $table->date('birth_date');
             $table->string('education');
             $table->string('position');
             $table->string('department');
             $table->string('office_area');
-            $table->string('civil_servant');
+            $table->boolean('civil_servant');
             $table->text('address');
             $table->string('phone');
             $table->string('email');
             $table->string('direct_access_no');
             $table->string('entry_success_no');
-            $table->string('gov_department');
-            $table->string('personal_acc_training');
+            $table->boolean('gov_department');
+            $table->boolean('personal_acc_training');
+            $table->boolean('after_second_exam');
             $table->string('good_morale_file');
             $table->string('no_crime_file');
             $table->unsignedBigInteger('module_id');
             $table->timestamps();
+
+            $table->foreign('module_id')
+            ->references('id')
+            ->on('modules')
+            ->onDelete('cascade');
         });
     }
 
