@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CpaOneTrainingAddmission extends Model
+class TrainingGround extends Model
 {
     //
 }

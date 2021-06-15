@@ -25,6 +25,7 @@ class CreateCpaOneRegistersTable extends Migration
             $table->string('nrc_number')->nullable();
             $table->string('father_name_mm');
             $table->string('father_name_en');
+            $table->string('race_religion');
             $table->date('birth_date');
             $table->string('education');
             $table->string('position');

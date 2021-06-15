@@ -113,6 +113,10 @@ Route::resource('/cpa_one_exam','CpaOneExamRegController');
 Route::resource('/cpa_one_self_learner','CpaOneRegSelfLearnerController');
 Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
 Route::resource('/cpa_private_old','CpaPrivateOldController');
+Route::resource('/cpa_addmission_exam','CpaTraAddmissionExamController');
+Route::resource('/cpa_addmission_direct','CpaTraAddmissionDirectController');
+
+
 
 
 

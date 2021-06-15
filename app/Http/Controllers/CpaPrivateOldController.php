@@ -115,6 +115,8 @@ class CpaPrivateOldController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
              $file->move(public_path().'/storage/',$name);
             $photo = '/storage/'.$name;
+         }else{
+             $photo = $request->old_photo;
          }
 
         
