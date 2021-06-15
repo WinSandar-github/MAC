@@ -22,6 +22,11 @@ class CreateCpaFfFilesTable extends Migration
             $table->string('cdp_record');
             $table->string('passport_photo');
             $table->timestamps();
+
+            $table->foreign('cpa_full_form_id')
+            ->references('id')
+            ->on('cpa_full_forms')
+            ->onDelete('cascade'); 
         });
     }
 
