@@ -17,7 +17,10 @@ class CpaFullFormController extends Controller
      */
     public function index()
     {
-        return CpaFullForm::with('edu_lvl','local_degree','foreign_degree','cpa_ff_file')->get();
+        $cpa_full_form = CpaFullForm::with('edu_lvl','local_degree','foreign_degree','cpa_ff_file')->get();
+        return response()->json([
+            'data' => $cpa_full_form
+        ],200);
     }
 
     /**
@@ -114,7 +117,9 @@ class CpaFullFormController extends Controller
             $foreign->seat_num      = $request->seat_num;
             $foreign->save();
         
-        return "Success";
+            return response()->json([
+                'message' => "Insert Successfully"
+            ],200);
     }
 
     /**
@@ -125,8 +130,10 @@ class CpaFullFormController extends Controller
      */
     public function show($id)
     {
-       $cpa_full_form = CpaFullForm::where('id',$id)->with('edu_lvl','local_degree','foreign_degree','cpa_ff_file')->get();
-        return $cpa_full_form;
+        $cpa_full_form = CpaFullForm::where('id',$id)->with('edu_lvl','local_degree','foreign_degree','cpa_ff_file')->get();
+        return response()->json([
+            'data' => $cpa_full_form
+        ],200);
     }
 
     /**
@@ -245,7 +252,9 @@ class CpaFullFormController extends Controller
              $foreign->seat_num      = $request->seat_num;
              $foreign->save();
          }
-         return "Success";
+         return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -262,7 +271,10 @@ class CpaFullFormController extends Controller
           LocalDegree::where('cpa_full_form_id',$id)->delete();
           CpaFfFile::where('cpa_full_form_id',$id)->delete();
           $acc_firm_info->delete();
-          return "Delete Successfuly";
+ 
+          return response()->json([
+            'data' => "Delete Successfuly"
+        ],200);  
 
     }
 }

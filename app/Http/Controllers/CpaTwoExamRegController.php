@@ -14,7 +14,10 @@ class CpaTwoExamRegController extends Controller
      */
     public function index()
     {
-        return CpaTwoExamReg::with('module')->get();
+        $cpa_two_exam =CpaTwoExamReg::with('module')->get();
+        return response()->json([
+            'data' => $cpa_two_exam
+        ],200);
     }
 
     /**
@@ -73,7 +76,9 @@ class CpaTwoExamRegController extends Controller
         $cpa_two_exam->module_id     =   $request->module_id;
         $cpa_two_exam->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
         
         
     }
@@ -87,7 +92,9 @@ class CpaTwoExamRegController extends Controller
     public function show($id)
     {
         $cpa_two_exam =  CpaTwoExamReg::where('id',$id)->with('module')->get();
-        return $cpa_two_exam;
+        return response()->json([
+            'data' => $cpa_two_exam
+        ],200);
     }
 
     /**
@@ -150,7 +157,9 @@ class CpaTwoExamRegController extends Controller
         $cpa_two_exam->module_id     =   $request->module_id;
         $cpa_two_exam->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -164,6 +173,8 @@ class CpaTwoExamRegController extends Controller
         $cpa_two_exam = CpaTwoExamReg::find($id);
         $cpa_two_exam->delete();
 
-        return "Delete Successfully";
+        return response()->json([
+            'message' => "Delete Successfully"
+        ],200);
     }
 }

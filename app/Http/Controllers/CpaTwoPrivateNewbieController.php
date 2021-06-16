@@ -15,7 +15,10 @@ class CpaTwoPrivateNewbieController extends Controller
      */
     public function index()
     {
-        return CpaTwoRegPrivateTrainNewbie::get();
+        $cpa_two_tra_reg = CpaTwoRegPrivateTrainNewbie::get();
+        return response()->json([
+            'data' => $cpa_two_tra_reg
+        ],200);
     }
 
     /**
@@ -73,7 +76,9 @@ class CpaTwoPrivateNewbieController extends Controller
         $cpa_two_tra_reg->cpa_one_personal_no   =   $request->cpa_one_personal_no;
         $cpa_two_tra_reg->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
     }
 
     /**
@@ -84,8 +89,11 @@ class CpaTwoPrivateNewbieController extends Controller
      */
     public function show($id)
     {
-        $cpa_two_tra_reg = CpaTwoRegPrivateTrainNewbie::find($id);
-        return $cpa_two_tra_reg;
+         $cpa_two_tra_reg = CpaTwoRegPrivateTrainNewbie::find($id);
+         
+        return response()->json([
+            'data' => $cpa_two_tra_reg
+        ],200);
         
     }
 
@@ -148,7 +156,9 @@ class CpaTwoPrivateNewbieController extends Controller
         $cpa_two_tra_reg->cpa_one_personal_no   =   $request->cpa_one_personal_no;
         $cpa_two_tra_reg->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -161,7 +171,8 @@ class CpaTwoPrivateNewbieController extends Controller
     {
         $cpa_two_tra_reg = CpaTwoRegPrivateTrainNewbie::find($id);
         $cpa_two_tra_reg->delete();
-        return "Delete Successfully";
-        
+        return response()->json([
+            'message' => "Delete Successfully"
+        ],200);
     }
 }
