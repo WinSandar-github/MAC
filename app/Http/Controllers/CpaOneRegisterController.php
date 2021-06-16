@@ -68,7 +68,7 @@ class CpaOneRegisterController extends Controller
         $cpa_one_reg->nrc_township  =   $request->nrc_township;
         $cpa_one_reg->nrc_citizen   =   $request->nrc_citizen;
         $cpa_one_reg->nrc_number    =   $request->nrc_number;
-        $cpa_one_reg->race_relition =   $request->race_religion;
+        $cpa_one_reg->race_religion =   $request->race_religion;
         $cpa_one_reg->father_name_mm=   $request->father_name_mm;
         $cpa_one_reg->father_name_en=   $request->father_name_en;
         $cpa_one_reg->birth_date    =   date('Y-m-d',strtotime($request->birth_date));
