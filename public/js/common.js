@@ -136,15 +136,15 @@
             var newRow = $("<tr>");
             var cols = "";
             
-            cols += '<td><input type="text" name="branch_no[]" class="form-control"/></td>';
-            cols += '<td><input type="text" name="branch_township[]" class="form-control"/></td>';
-            cols += '<td><input type="text" name="branch_post_code[]" class="form-control" /></td>';
-            cols += '<td><input type="text" name="branch_city[]" class="form-control" /></td>';
-            cols += '<td><input type="text" name="branch_state[]" class="form-control" /></td>';
-            cols += '<td><input type="text" name="branch_telephone[]" class="form-control" /></td>';
+            cols += '<td><input type="text" name="bo_branch_name[]" class="form-control"/></td>';
+            cols += '<td><input type="text" name="bo_township[]" class="form-control"/></td>';
+            cols += '<td><input type="text" name="bo_post_code[]" class="form-control" /></td>';
+            cols += '<td><input type="text" name="bo_city[]" class="form-control" /></td>';
+            cols += '<td><input type="text" name="bo_state_region[]" class="form-control" /></td>';
+            cols += '<td><input type="text" name="bo_phone[]" class="form-control" /></td>';
             cols += '<td><input type="button" class="btn btn-primary btn-sm btn-plus" onclick=addInputTele("'+tbody+'")  value="+"></td>';
-            cols += '<td><input type="text" name="branch_email[]" class="form-control" /></td>';
-            cols += '<td><input type="text" name="branch_website[]" class="form-control" /></td>';
+            cols += '<td><input type="text" name="bo_email[]" class="form-control" /></td>';
+            cols += '<td><input type="text" name="bo_website[]" class="form-control" /></td>';
             cols += '<td><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowBranch("'+tbody+'")  value="X"></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
@@ -206,8 +206,8 @@
             var cols = "";
             var row=$('.'+tbody+' tr').length;
             cols += '<td>'+ (row)+'</td>';
-            cols += '<td><input type="text" name="non_partner_name[]" class="form-control"/></td>';
-            cols += '<td><input type="text" name="non_partner_passport[]" class="form-control" /></td>';
+            cols += '<td><input type="text" name="fona_name[]" class="form-control"/></td>';
+            cols += '<td><input type="text" name="fona_pass_csc_inco[]" class="form-control" /></td>';
             cols += '<td><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowPartnerByNonAudit("'+tbody+'")  value="X"></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
@@ -225,9 +225,9 @@
             var cols = "";
             var row=$('.'+tbody+' tr').length;
             cols += '<td>'+ (row)+'</td>';
-            cols += '<td><input type="text" name="non_director_name[]" class="form-control"/></td>';
-            cols += '<td><input type="text" name="non_director_position[]" class="form-control" /></td>';
-            cols += '<td><input type="text" name="non_director_cpa_no[]" class="form-control" /> </td>';
+            cols += '<td><input type="text" name="dona_name[]" class="form-control"/></td>';
+            cols += '<td><input type="text" name="dona_position[]" class="form-control" /></td>';
+            cols += '<td><input type="text" name="dona_passport[]" class="form-control" /> </td>';
             cols += '<td><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowDirectorByNonAudit("'+tbody+'")  value="X"></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);

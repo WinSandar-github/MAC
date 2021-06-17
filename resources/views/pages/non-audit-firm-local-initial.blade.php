@@ -32,7 +32,7 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Firm Registration No') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="foreign_firm_register_no" class="form-control" placeholder="Firm Registration No" >
+                                                        <input type="text" name="accountancy_firm_reg_no" class="form-control" placeholder="Firm Registration No" >
                                                     </div>
                                                 </div>
                                                 </div>
@@ -41,7 +41,7 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Firm Name') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="foreign_firm_name"  class="form-control  @error('name') is-invalid @enderror" placeholder="Firm Name" autofocus>
+                                                        <input type="text" name="accountancy_firm_name"  class="form-control  @error('name') is-invalid @enderror" placeholder="Firm Name" autofocus>
                                                     </div>
                                                 </div>
                                                 @error('name')
@@ -119,17 +119,17 @@
                                                                 <thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" name="branch_no[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_township[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_post_code[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_city[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_state[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_phone_no[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_branch_name[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_township[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_post_code[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_city[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_state_region[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_phone[]" class="form-control" ></td>
                                                                         <td>
                                                                             <input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addInputTele("branch_non_audit")' value="+">
                                                                         </td>
-                                                                        <td><input type="text" name="branch_email[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_website[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_email[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_website[]" class="form-control" ></td>
                                                                         <td></td>
                                                                     </tr>
                                                                 </tbody>
@@ -164,8 +164,8 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>1</td>
-                                                                            <td><input type="text" value="" name="non_partner_name[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="non_partner_passport[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="fona_name[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="fona_pass_csc_inco[]" class="form-control"></td>
                                                                             <td></td>
                                                                         </tr>
                                                                     </tbody>
@@ -200,9 +200,9 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>1</td>
-                                                                            <td><input type="text" value="" name="non_director_name[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="non_director_position[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="non_director_csc_no[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="dona_name[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="dona_position[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="dona_passport[]" class="form-control"></td>
                                                                             <td></td>
                                                                         </tr>
                                                                     </tbody>
@@ -221,544 +221,439 @@
                                                     <div class='col-md-2'></div>
                                                     <div class="col-md-3">
                                                         <div class="">
-                                                            <input type="radio" name="org_structure" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="1">
+                                                            <input type="radio" name="org_stru_id" autofocus value="1" onclick="getOrganization()">
                                                             <label class="form-check-label">Sole Proprietorship</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="">
-                                                            <input type="radio" name="org_structure" class="@error('date_of_birth') is-invalid @enderror" autofocus value="2" >
+                                                            <input type="radio" name="org_stru_id" autofocus value="2" onclick="getOrganization()">
                                                             <label class="form-check-label">Partnership</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="">
-                                                            <input type="radio" name="org_structure" class="@error('date_of_birth') is-invalid @enderror" autofocus value="3">
+                                                            <input type="radio" name="org_stru_id"  autofocus value="3" onclick="getOrganization()">
                                                             <label class="form-check-label">Company Incorporated</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="">
-                                                            <input type="radio" name="org_structure" class="@error('date_of_birth') is-invalid @enderror" autofocus value="4">
+                                                            <input type="radio" name="org_stru_id"  autofocus value="4" onclick="getOrganization()">
                                                             <label class="form-check-label">Others</label>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div><br/>
 
-                                                <div class="row" >
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10">
-                                                        <div class="card" id="sole_proprietorship">
-                                                            <div class="card-body">
-                                                                <table id="myTable" class="table non_director table-bordered">
-                                                                    <thead></thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('1.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of letterhead seal to be used')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" >
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('2.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('1 Passport size photo')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" >
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('3.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Profile of the owner')}}</th>
-                                                                            <th class="less-font-weight" width="405%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" >
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('4.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Education Certificate')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" >
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('5.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Letter outlining past work experience')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" >
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr> 
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('6.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of owner’s NRC Card/ Passport')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('7.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Tax clearance from Internal Revenue Department')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" >
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('8.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('ကိုယ်တိုင်လျှောက်ထားခြင်းမဟုတ်ပါကကိုယ်စားလှယ်လွှဲစာ နှင့် နိုင်ငံသားစိစစ်ရေး ကတ်ပြား (မိတ္တူ)')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>                                                                                                                                            
-                                                                    </tbody>
-                                                                </table>                                                                
+                                                <div id="sole-proprietorship">
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label"><b>For Sole Proprietorship</b></label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(a)Copy of letterhead seal to be used</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(b)1 Passport size photo</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(c)Profile of the owner</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(d)Copy of Education Certificate</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(e)Letter outlining past work experience</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(f)Copy of owner’s NRC Card/ Passport</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(g)Copy of Tax clearance from Internal Revenue Department</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(h)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>    
+                                                </div>
+                                                <div id="partnership">
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label"><b>For Partnership</b></label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(a)Copy of Certificate or Registration, if any</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(b)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(c)Copy of letterhead to be used</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(d)Passport size photos of the all partners</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(e)Profiles of the all partners</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(f)Copy of Education Certificates of the all partners</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(g)Letter outlining past work experiences of the all partners</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(h)Copy of Partners’ NRC Card/ Passport</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(i)Copy of Tax clearance from Internal Revenue Department</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(j)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                    
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(k)Document information requested by the Council from time to time</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
-
-                                                <div class="row"  >
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10">
-                                                        <div class="card" id="partnership">
-                                                            <div class="card-body">
-                                                                <table id="myTable" class="table non_director table-bordered">
-                                                                    <thead></thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('1.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Certificate or Registration, if any')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('2.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of signed Partnership Deeds/ Memorandum of Agreement')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('3.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of letterhead to be used')}}</th>
-                                                                            <th class="less-font-weight" width="405%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('4.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Passport size photos of the all partners')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('5.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Profiles of the all partners')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr> 
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('6.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Education Certificates of the all partners')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('7.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Letter outlining past work experiences of the all partners')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('8.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of owner’s NRC Card/ Passport')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('9.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Tax clearance from Internal Revenue Department')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('10.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('ကိုယ်တိုင်လျှောက်ထားခြင်းမဟုတ်ပါကကိုယ်စားလှယ်လွှဲစာ နှင့် နိုင်ငံသားစိစစ်ရေး ကတ်ပြား (မိတ္တူ)')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>                                                                                                                                            
-                                                                    </tbody>
-                                                                </table>                                                                
+                                                <div id="company">
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label"><b>For Company </b></label>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(a)Copy of Certificate of Incorporation (company incorporated in Myanmar)/ Certificate of Registration (branch office registered in Myanmar)</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="row"  >
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10">
-                                                        <div class="card" id="company_incorporated">
-                                                            <div class="card-body">
-                                                                <table id="myTable" class="table non_director table-bordered">
-                                                                    <thead></thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('1.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Certificate of Incorporation (company incorporated in Myanmar)/ Certificate of Registration (branch office registered in Myanmar)')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('2.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Permit under Section 27A of Myanmar Companies Act (Foreign Company များအတွက်သာ)')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('3.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of recent audited financial statements')}}</th>
-                                                                            <th class="less-font-weight" width="405%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('4.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of commercial tax registration certificate')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('5.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of letterhead to be used')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr> 
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('6.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Education Certificates of the professional staff')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('7.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Letter outlining past work experiences of the professional staff')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('8.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of shareholder’s and directors’ NRC Card/ Passport ')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('9.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Tax clearance from Internal Revenue Department')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('10.') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('ကိုယ်တိုင်လျှောက်ထားခြင်းမဟုတ်ပါကကိုယ်စားလှယ်လွှဲစာ နှင့် နိုင်ငံသားစိစစ်ရေး ကတ်ပြား (မိတ္တူ)')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>                                                                                                                                            
-                                                                    </tbody>
-                                                                </table>                                                                
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(b)Copy of Permit under Section 27A of Myanmar Companies Act (Foreign Company များအတွက်သာ)</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-
-                                                <div class="row" >
-                                                    <div class="col-md-1"></div>
-                                                    <div class="col-md-10">
-                                                        <div class="card" id="other" >
-                                                            <div class="card-body" >
-                                                                <table id="myTable" class="table non_director table-bordered">
-                                                                    <thead></thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(က)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of letterhead seal to be used')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(ခ)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('1 Passport size photo')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(ဂ)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Profile of the owner')}}</th>
-                                                                            <th class="less-font-weight" width="405%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(ဃ)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Education Certificate')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(ဃ)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Education Certificate')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(ဃ)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Education Certificate')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(င)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Letter outlining past work experience')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr> 
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(စ)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of owner’s NRC Card/ Passport')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(ဆ)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('Copy of Tax clearance from Internal Revenue Department')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <th class="less-font-weight" width="5%">{{ __('(ဇ)') }}</th>
-                                                                            <th class="less-font-weight" width="55%">{{ __('ကိုယ်တိုင်လျှောက်ထားခြင်းမဟုတ်ပါကကိုယ်စားလှယ်လွှဲစာ နှင့် နိုင်ငံသားစိစစ်ရေး ကတ်ပြား (မိတ္တူ)')}}</th>
-                                                                            <th class="less-font-weight" width="40%">
-                                                                                <div class="input-group mb-3">                                                        
-                                                                                    <div class="custom-file">
-                                                                                        <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                                        <label class="custom-file-label" >Choose file</label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </th>                                                                            
-                                                                        </tr>                                                                                                                                            
-                                                                    </tbody>
-                                                                </table>                                                                
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(c)Copy of recent audited financial statements</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(d)Copy of commercial tax registration certificate</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(e)Copy of letterhead to be used</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(f)Copy of Education Certificates of the professional staff</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(g)Letter outlining past work experiences of the professional staff</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(h)Copy of shareholder’s and directors’ NRC Card/ Passport</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(i)Copy of Tax clearance from Internal Revenue Department</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(j)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <label class="col-md-7 col-form-label">(k)Document information requested by the Council from time to time</label>
+                                                        <div class="col-md-3">
+                                                            <div class="input-group mb-3">
+                                                                            
+                                                                <div class="custom-file">
+                                                                    <input type="file" class="custom-file-input" id="inputfile2" multiple>
+                                                                    <label class="custom-file-label" >Choose file</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>    
                                                 </div>
 
                                                 <div class="row">
@@ -795,10 +690,8 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td>
-                                                                                No of directors who are alse shareholders
-                                                                            </td>
-                                                                            <td><input type="number" value="" name="shareholder_no" id="principal_total" class="form-control"></td>
+                                                                            <td>No of directors who are alse shareholders</td>
+                                                                            <td><input type="number" name="nats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                                             
                                                                             
                                                                         </tr>
@@ -806,7 +699,7 @@
                                                                             <td>
                                                                             No of directors who are not shareholders
                                                                             </td>
-                                                                            <td><input type="number" value="" name="non_shareholder_no" id="non_principal_total" class="form-control"></td>
+                                                                            <td><input type="number" name="nats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                                             
                                                                             
                                                                         </tr>
@@ -814,7 +707,7 @@
                                                                             <td>
                                                                             No of managerial level staff
                                                                             </td>
-                                                                            <td><input type="number" value="" name="managerial_level_number" id="managerial_level_number" class="form-control"></td>
+                                                                            <td><input type="number" name="nats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                                             
                                                                             
                                                                         </tr>
@@ -822,7 +715,7 @@
                                                                             <td>
                                                                             No of non-mangerial level
                                                                             </td>
-                                                                            <td><input type="number" value="" name="non-mangerial_level_number" id="non-mangerial_level_number" class="form-control"></td>
+                                                                            <td><input type="number" name="nats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                                             
                                                                             
                                                                         </tr>
@@ -830,7 +723,7 @@
                                                                             <td>
                                                                             Total Staff
                                                                             </td>
-                                                                            <td><input type="number" value="" name="total_staff_number" id="total_staff_number" class="form-control"></td>
+                                                                            <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled></td>
                                                                             
                                                                         </tr>
                                                                     </tbody>
@@ -912,7 +805,7 @@
                                                     <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
                                                     <div class="col-md-8">
                                                         <div class="form-group">
-                                                            I <input type="text" name="declaration_name" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="">
+                                                            I <input type="text" name="declaration" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="">
                                                             (managing director) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
                                                         </div>
                                                     </div>
@@ -921,19 +814,7 @@
                                                     
                                                     </div>
                                                 
-                                                    <div class="row">
-                                                        <div class="col-md-8"></div>
-                                                        <div class="col-md-1">
-                                                            <label class="form-check-label text-right">Date:</label>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                        
-                                                            <div class="form-group">
-                                                                
-                                                                <input type="date" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div class="row">
                                                         <div class="col-md-11 d-md-flex justify-content-md-end">
                                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
@@ -969,39 +850,7 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function(){
-        $('input[name="org_structure"]').click(function(){
-            var org_str_value = $(this).val();
-            if(org_str_value == 1){
-                document.getElementById("sole_proprietorship").style.display = "block";
-                document.getElementById("partnership").style.display = "none";
-                document.getElementById("company_incorporated").style.display = "none";
-                document.getElementById("other").style.display = "none";
-            }
-            else if(org_str_value == 2){
-                document.getElementById("sole_proprietorship").style.display = "none";
-                document.getElementById("partnership").style.display = "block";
-                document.getElementById("company_incorporated").style.display = "none";
-                document.getElementById("other").style.display = "none";
-            }
-            else if(org_str_value == 3){
-                document.getElementById("sole_proprietorship").style.display = "none";
-                document.getElementById("partnership").style.display = "none";
-                document.getElementById("company_incorporated").style.display = "block";
-                document.getElementById("other").style.display = "none";
-            }
-            else if(org_str_value == 4){
-                document.getElementById("sole_proprietorship").style.display = "none";
-                document.getElementById("partnership").style.display = "none";
-                document.getElementById("company_incorporated").style.display = "none";
-                document.getElementById("other").style.display = "none";
-            }
-            
-                
-            
-            
-        });
-    });
+    
     </script>
 
 @endpush
