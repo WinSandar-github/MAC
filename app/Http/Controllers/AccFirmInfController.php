@@ -26,7 +26,9 @@ class AccFirmInfController extends Controller
     {
         $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
         'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns')->get();
-        return $acc_firm_info;
+        return response()->json([
+            'data' => $acc_firm_info
+        ],200);
     }
 
     /**
@@ -183,7 +185,9 @@ class AccFirmInfController extends Controller
         }
       
         
-        return "success";
+        return response()->json([
+            'message' => "Added Successfully"
+        ],200);
     }
 
     /**
@@ -196,7 +200,9 @@ class AccFirmInfController extends Controller
     {
         $acc_firm_info = AccountancyFirmInformation::where('id',$id)->with('branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
         'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns')->get();
-        return $acc_firm_info;
+        return response()->json([
+            'data' => $acc_firm_info
+        ],200);
         
     }
 

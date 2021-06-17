@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCpaOneTrainingAddmissionsTable extends Migration
+class CreateTrainingGroundsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateCpaOneTrainingAddmissionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('cpa_one_training_addmissions', function (Blueprint $table) {
+        Schema::create('training_grounds', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateCpaOneTrainingAddmissionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cpa_one_training_addmissions');
+        Schema::dropIfExists('training_grounds');
     }
 }

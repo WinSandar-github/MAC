@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call([LocalForeignSeeder::class]);
         $this->call([EducationLevelSeeder::class]);
         $this->call([ModuleSeeder::class]);
+        $this->call([CpaOneTrainingGroundSeeder::class]);
+
 
 
 

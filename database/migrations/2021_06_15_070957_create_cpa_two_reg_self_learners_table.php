@@ -4,16 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCpaOneRegistersTable extends Migration
+class CreateCpaTwoRegSelfLearnersTable extends Migration
 {
     /**
      * Run the migrations.
-    *
+     *
      * @return void
      */
     public function up()
     {
-        Schema::create('cpa_one_registers', function (Blueprint $table) {
+        Schema::create('cpa_two_reg_self_learners', function (Blueprint $table) {
             $table->id();
             $table->string('academic_year');
             $table->string('photo');
@@ -26,29 +26,23 @@ class CreateCpaOneRegistersTable extends Migration
             $table->string('father_name_mm');
             $table->string('father_name_en');
             $table->string('race_religion');
-            $table->date('birth_date');
+            $table->string('birth_date');
             $table->string('education');
             $table->string('position');
             $table->string('department');
             $table->string('office_area');
             $table->boolean('civil_servant');
             $table->text('address');
+            $table->text('contact_address');
             $table->string('phone');
             $table->string('email');
-            $table->string('direct_access_no');
-            $table->string('entry_success_no');
-            $table->boolean('gov_department');
-            $table->boolean('personal_acc_training');
-            $table->boolean('after_second_exam');
-            $table->string('good_morale_file');
-            $table->string('no_crime_file');
-            $table->unsignedBigInteger('module_id');
+            $table->boolean('addmission_this_year');
+            $table->boolean('enrol_no_exam');
+            $table->boolean('attendance');
+            $table->boolean('fail_exam');
+            $table->boolean('resigned');
+            $table->string('batch_session_no');
             $table->timestamps();
-
-            $table->foreign('module_id')
-            ->references('id')
-            ->on('modules')
-            ->onDelete('cascade');
         });
     }
 
@@ -59,6 +53,6 @@ class CreateCpaOneRegistersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cpa_one_registers');
+        Schema::dropIfExists('cpa_two_reg_self_learners');
     }
 }

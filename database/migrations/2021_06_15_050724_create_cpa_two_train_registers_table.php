@@ -4,16 +4,16 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCpaOneRegistersTable extends Migration
+class CreateCpaTwoTrainRegistersTable extends Migration
 {
     /**
      * Run the migrations.
-    *
+     *
      * @return void
      */
     public function up()
     {
-        Schema::create('cpa_one_registers', function (Blueprint $table) {
+        Schema::create('cpa_two_train_registers', function (Blueprint $table) {
             $table->id();
             $table->string('academic_year');
             $table->string('photo');
@@ -35,20 +35,9 @@ class CreateCpaOneRegistersTable extends Migration
             $table->text('address');
             $table->string('phone');
             $table->string('email');
-            $table->string('direct_access_no');
-            $table->string('entry_success_no');
-            $table->boolean('gov_department');
-            $table->boolean('personal_acc_training');
-            $table->boolean('after_second_exam');
-            $table->string('good_morale_file');
-            $table->string('no_crime_file');
-            $table->unsignedBigInteger('module_id');
+            $table->string('cpa_one_pass_time');
+            $table->string('cpa_one_personal_no');
             $table->timestamps();
-
-            $table->foreign('module_id')
-            ->references('id')
-            ->on('modules')
-            ->onDelete('cascade');
         });
     }
 
@@ -59,6 +48,6 @@ class CreateCpaOneRegistersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cpa_one_registers');
+        Schema::dropIfExists('cpa_two_train_registers');
     }
 }
