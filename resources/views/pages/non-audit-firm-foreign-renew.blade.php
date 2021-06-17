@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'non-audit-firm-foreign-renew'
+    'elementActive' => 'non_audit_firm_registration'
 ])
 
 @section('content')

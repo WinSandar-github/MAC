@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'article-form3'
+    'elementActive' => 'article'
 ])
 
 @section('content')

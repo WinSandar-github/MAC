@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('audit_firm_registration') }}
             </div>
         </div>
-            <form action="" method="post">
+            <form >
             @csrf
             
             <div class="row">
@@ -34,7 +34,9 @@
                                     <li class="nav-item">
 		                                  <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false">Renew</a>
                                     </li>
-                                    
+                                    <li class="nav-item">
+		                                  <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false">Audit Firm Infomation</a>
+                                    </li>
                                 </ul>
                                 <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
 	                                <div class="tab-pane fade show active m-5" id="link1" aria-expanded="true">
@@ -43,7 +45,7 @@
                                             <div class="col-md-9">
                                                 <nav class="nav flex-column">
                                                     <a class="nav-link active" href="{{ route('page.index', 'audit-firm-initial-accountancy') }}"> Accountancy Firm Information</a>
-                                                    <a class="nav-link active" href="{{ route('page.index', 'audit-firm-initial-organization') }}"> Organization Structure</a>
+                                                    
                                                     
                                                 </nav>
                                             </div>
@@ -54,8 +56,20 @@
                                             
                                             <div class="col-md-9">
                                                 <nav class="nav flex-column">
-                                                    <a class="nav-link active" href="{{ route('page.index', 'audit-firm-renew-accountancy') }}"> Accountancy Firm Information</a>
-                                                    <a class="nav-link active" href="{{ route('page.index', 'audit-firm-renew-organization') }}"> Organization Structure</a>
+                                                    <a class="nav-link active" href="{{ route('page.index', 'audit-firm-renew-accountancy') }}"> Accountancy Firm</a>
+                                                   
+                                                    
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade m-5" id="link3" aria-expanded="true">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-9">
+                                                <nav class="nav flex-column">
+                                                    <a class="nav-link active" href="{{ route('page.index', 'audit-firm-list') }}"> Audit Firm List</a>
+                                                   
                                                     
                                                 </nav>
                                             </div>

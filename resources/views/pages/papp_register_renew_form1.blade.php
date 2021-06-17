@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'papp_register_renew_form1'
+    'elementActive' => 'papp_registration_renew'
 ])
 
 @section('content')
