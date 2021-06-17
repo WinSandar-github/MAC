@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('audit_firm_registration') }}
             </div>
         </div>
-            <form action="" method="post">
+            <form >
             @csrf
             
             <div class="row">
