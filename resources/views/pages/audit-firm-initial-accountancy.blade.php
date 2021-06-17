@@ -186,8 +186,8 @@
                                                                         <label class="col-md-7 col-form-label"><b>For Sole Proprietorship</b></label>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <label class="col-md-9 col-form-label">(a)Copy of valid Public Practice Accountant Certificate</label>
-                                                                        <div class="col-md-3">
+                                                                        <label class="col-md-8 col-form-label">(a)Copy of valid Public Practice Accountant Certificate</label>
+                                                                        <div class="col-md-4">
                                                                             <div class="input-group mb-3">
                                                                             
                                                                                 <div class="custom-file">
@@ -198,8 +198,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <label class="col-md-9 col-form-label">(b)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
-                                                                        <div class="col-md-3">
+                                                                        <label class="col-md-8 col-form-label">(b)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
+                                                                        <div class="col-md-4">
                                                                             <div class="input-group mb-3">
                                                                                             
                                                                                 <div class="custom-file">
@@ -210,8 +210,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <label class="col-md-9 col-form-label">(c)Copy of Tax clearance from Internal Revenue Department</label>
-                                                                        <div class="col-md-3">
+                                                                        <label class="col-md-8 col-form-label">(c)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                        <div class="col-md-4">
                                                                             <div class="input-group mb-3">
                                                                                             
                                                                                 <div class="custom-file">
@@ -222,8 +222,8 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
-                                                                        <label class="col-md-9 col-form-label">(d)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-                                                                        <div class="col-md-3">
+                                                                        <label class="col-md-8 col-form-label">(d)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                        <div class="col-md-4">
                                                                             <div class="input-group mb-3">
                                                                                             
                                                                                 <div class="custom-file">
@@ -248,8 +248,8 @@
                                                                     <label class="col-md-7 col-form-label"><b>For Partnership</b></label>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all partners</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all partners</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -260,8 +260,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(b)Copy of Certificate or Registration, if any</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(b)Copy of Certificate or Registration, if any</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -272,8 +272,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(c)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(c)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -284,8 +284,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(d)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(d)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -296,8 +296,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(e)Copy of Tax clearance from Internal Revenue Department</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(e)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -308,8 +308,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(f)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(f)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -335,8 +335,8 @@
                                                                     <label class="col-md-7 col-form-label"><b>For Company </b></label>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all shareholders</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all shareholders</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -347,8 +347,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(b)Copy of Certificate of Incorporation</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(b)Copy of Certificate of Incorporation</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -359,8 +359,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(c)Copy of signed Memorandum of Associations and Articles of Associations or constitution</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(c)Copy of signed Memorandum of Associations and Articles of Associations or constitution</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -371,8 +371,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(d)Copy of Form 6, Form 26 and Form E</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(d)Copy of Form 6, Form 26 and Form E</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -383,8 +383,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(e)Form A1 and/or Additional Form</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(e)Form A1 and/or Additional Form</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -395,8 +395,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(f)Copy of commercial tax registration certificate</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(f)Copy of commercial tax registration certificate</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -407,8 +407,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(g)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(g)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -419,8 +419,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
@@ -431,8 +431,8 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="row">
-                                                                    <label class="col-md-9 col-form-label">(i)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-                                                                    <div class="col-md-3">
+                                                                    <label class="col-md-8 col-form-label">(i)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                    <div class="col-md-4">
                                                                         <div class="input-group mb-3">
                                                                                         
                                                                             <div class="custom-file">
