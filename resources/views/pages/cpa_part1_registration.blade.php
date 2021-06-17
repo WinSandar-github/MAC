@@ -29,8 +29,8 @@
                             <div class="card-body">
                                 <div class="col-md-9">
                                     <nav class="nav flex-column">
-                                        <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form1') }}">သင်တန်းတက်ရောက်ခွင့်လျှောက်လွှာ</a>
-                                        <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form2') }}">မှတ်ပုံတင်ခွင့်လျှောက်လွှာ</a>
+                                        <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form1') }}">သင်တန်းတက်ရောက်ခွင့်လျှောက်လွှာ(တိုက်ရိုက်တက်ရောက်ခွင့်ရသူများ)</a>
+                                        <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form2') }}">မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများ)</a>
                                         <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form3') }}">မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(အသစ်တက်ခွင့်ရသူများ) </a>
                                         <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form4') }}">မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(နှစ်ဟောင်းမှတက်ခွင့်ရသူများ)</a>
                                         <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form5') }}">သင်တန်းစာမေးပွဲဖြေဆိုခွင့်လျှောက်လွှာ</a>

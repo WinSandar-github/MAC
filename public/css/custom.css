@@ -47,3 +47,16 @@
   .rubberBand {
     animation-name: rubberBand;
   }
+
+  #sole_proprietorship{
+    display:none;
+  }
+  #partnership{
+    display:none;
+  }
+  #company_incorporated{
+    display:none;
+  }
+  #other{
+    display:none;
+  }
