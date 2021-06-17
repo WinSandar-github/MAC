@@ -175,270 +175,277 @@
                                                     </div>
                                                 </div>
                                             </div><br/>
+                                            
                                             <div id="sole-proprietorship">
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label"><b>For Sole Proprietorship</b></label>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(a)Copy of valid Public Practice Accountant Certificate</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
+                                                    <div class="col-md-10">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                    <div class="row">
+                                                                        <label class="col-md-7 col-form-label"><b>For Sole Proprietorship</b></label>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <label class="col-md-9 col-form-label">(a)Copy of valid Public Practice Accountant Certificate</label>
+                                                                        <div class="col-md-3">
+                                                                            <div class="input-group mb-3">
+                                                                            
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" class="custom-file-input" id="inputfile1" onchange="getFileName('inputfile1','custom-file-label1')" multiple>
+                                                                                    <label class="custom-file-label" id="custom-file-label1">Choose file</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <label class="col-md-9 col-form-label">(b)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
+                                                                        <div class="col-md-3">
+                                                                            <div class="input-group mb-3">
+                                                                                            
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" class="custom-file-input" id="inputfile2"  onchange="getFileName('inputfile2','custom-file-label2')" multiple>
+                                                                                    <label class="custom-file-label" id="custom-file-label2">Choose file</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <label class="col-md-9 col-form-label">(c)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                        <div class="col-md-3">
+                                                                            <div class="input-group mb-3">
+                                                                                            
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" class="custom-file-input" id="inputfile3" onchange="getFileName('inputfile3','custom-file-label3')" multiple>
+                                                                                    <label class="custom-file-label" id="custom-file-label3">Choose file</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <label class="col-md-9 col-form-label">(d)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                        <div class="col-md-3">
+                                                                            <div class="input-group mb-3">
+                                                                                            
+                                                                                <div class="custom-file">
+                                                                                    <input type="file" class="custom-file-input" id="inputfile4" onchange="getFileName('inputfile4','custom-file-label4')" multiple>
+                                                                                    <label class="custom-file-label" id="custom-file-label4">Choose file</label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>    
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(b)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(c)Copy of Tax clearance from Internal Revenue Department</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(d)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>    
+                                                </div>                    
                                             </div>
                                             <div id="partnership">
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label"><b>For Partnership</b></label>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all partners</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
+                                                    <div class="col-md-10">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <label class="col-md-7 col-form-label"><b>For Partnership</b></label>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all partners</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile5" onchange="getFileName('inputfile5','custom-file-label5')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label5">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(b)Copy of Certificate or Registration, if any</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile6" onchange="getFileName('inputfile6','custom-file-label6')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label6">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(c)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile7" onchange="getFileName('inputfile7','custom-file-label7')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label7">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(d)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile8" onchange="getFileName('inputfile4','custom-file-label4')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label8">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(e)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile9" onchange="getFileName('inputfile9','custom-file-label9')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label9">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(f)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile10" onchange="getFileName('inputfile10','custom-file-label10')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label10">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div> 
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(b)Copy of Certificate or Registration, if any</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(c)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(d)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(e)Copy of Tax clearance from Internal Revenue Department</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(f)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>    
-                                            </div>
+                                                </div>   
+                                            </div>           
+                                            
                                             <div id="company">
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label"><b>For Company </b></label>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all shareholders</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
+                                                    <div class="col-md-10">
+                                                        <div class="card">
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <label class="col-md-7 col-form-label"><b>For Company </b></label>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all shareholders</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile11" onchange="getFileName('inputfile11','custom-file-label11')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label11">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(b)Copy of Certificate of Incorporation</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile12" onchange="getFileName('inputfile12','custom-file-label12')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label12">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(c)Copy of signed Memorandum of Associations and Articles of Associations or constitution</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile13" onchange="getFileName('inputfile13','custom-file-label13')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label13">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(d)Copy of Form 6, Form 26 and Form E</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile14" onchange="getFileName('inputfile14','custom-file-label14')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label14">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(e)Form A1 and/or Additional Form</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile15" onchange="getFileName('inputfile15','custom-file-label15')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label15">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(f)Copy of commercial tax registration certificate</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile16" onchange="getFileName('inputfile16','custom-file-label16')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label16">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(g)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile17" onchange="getFileName('inputfile17','custom-file-label17')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label17">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile18" onchange="getFileName('inputfile18','custom-file-label18')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label18">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <label class="col-md-9 col-form-label">(i)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                    <div class="col-md-3">
+                                                                        <div class="input-group mb-3">
+                                                                                        
+                                                                            <div class="custom-file">
+                                                                                <input type="file" class="custom-file-input" id="inputfile19" onchange="getFileName('inputfile19','custom-file-label19')" multiple>
+                                                                                <label class="custom-file-label" id="custom-file-label19">Choose file</label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>  
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(b)Copy of Certificate of Incorporation</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(c)Copy of signed Memorandum of Associations and Articles of Associations or constitution</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(d)Copy of Form 6, Form 26 and Form E</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(e)Form A1 and/or Additional Form</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(f)Copy of commercial tax registration certificate</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(g)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-1"></div>
-                                                    <label class="col-md-7 col-form-label">(i)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-                                                    <div class="col-md-3">
-                                                        <div class="input-group mb-3">
-                                                                        
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                                <label class="custom-file-label" >Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>    
+                                                </div>     
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('6') }}</label>
@@ -768,20 +775,7 @@
                                                 
                                                 </div>
                                             
-                                                <div class="row">
-                                                    <div class="col-md-8"></div>
-                                                    
-                                                    <div class="col-md-1">
-                                                        <div class="form-group">
-                                                            <label class="form-check-label">Date:</label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <div class="form-group">
-                                                            <input type="date" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="row">
                                                     <div class="col-md-11 d-md-flex justify-content-md-end">
                                                         <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
@@ -815,5 +809,16 @@
 @endsection
 
 @push('scripts')
-
+<script>
+    // document.getElementById('inputfile1').onchange = function () {
+        
+    //     var startIndex = (this.value.indexOf('\\') >= 0 ? this.value.lastIndexOf('\\') : this.value.lastIndexOf('/'));
+    //     var filename = this.value.substring(startIndex);
+    //     if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+    //         filename = filename.substring(1);
+            
+    //     }
+    //     $('#custom-file-label1').text(filename);
+    // };
+</script>
 @endpush
