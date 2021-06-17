@@ -721,14 +721,16 @@
             }
         }
         function getFileName(file,label){
-            var filepath=document.getElementById(file).value;
-            if(filepath){
-                    var startIndex = (filepath.indexOf('\\') >= 0 ? filepath.lastIndexOf('\\') : filepath.lastIndexOf('/'));
-                    var filename = filepath.substring(startIndex);
-                    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-                        filename = filename.substring(1);
-                        
-                    }
-                    $('#'+label).text(filename);
+            
+            var filepath=document.getElementById(file);
+            let filenames = [];
+            for (var i = 0; i <filepath.files.length; ++i) {
+                if(filepath.files.length == 1){
+                    $('#'+label).text(filepath.files.item(i).name);
+                }else{
+                    filenames.push(filepath.files.item(i).name);
+                    $('#'+label).text(filenames.join(","));
+                }
+                
             }
         }
