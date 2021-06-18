@@ -11,3 +11,6 @@
 #sole-proprietorship,#partnership,#company{
     display: none;
 }
+.custom-btn{
+    margin: 0px 0px 0px 0px!important;
+}

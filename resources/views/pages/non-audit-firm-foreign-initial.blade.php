@@ -114,7 +114,12 @@
                                                                         <th class="less-font-weight" colspan="2">Telephone</th>
                                                                         <th class="less-font-weight">Email</th>
                                                                         <th class="less-font-weight">Website</th>
-                                                                        <th ><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowBranch("branch_foreign_initial")' value="+"></th>
+                                                                        <th >
+                                                                            <button class="btn btn-primary btn-xs" type="button" onclick='addRowBranch("branch_foreign_initial")'>
+                                                                                <i class="fa fa-plus"></i>
+                                                                            </button>
+                                                                            
+                                                                        </th>
                                                                     </tr>
                                                                 <thead>
                                                                 <tbody>
@@ -126,7 +131,10 @@
                                                                         <td><input type="text" name="branch_state[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_phone_no[]" class="form-control" ></td>
                                                                         <td>
-                                                                            <input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addInputTele("branch_foreign_initial")' value="+">
+                                                                            <button class="btn btn-primary btn-xs" type="button" onclick='addInputTele("branch_foreign_initial")'>
+                                                                                <i class="fa fa-plus"></i>
+                                                                            </button>
+                                                                            
                                                                         </td>
                                                                         <td><input type="text" name="branch_email[]" class="form-control" ></td>
                                                                         <td><input type="text" name="branch_website[]" class="form-control" ></td>
@@ -156,7 +164,10 @@
                                                                             <th class="less-font-weight" rowspan="2">Name</th>
                                                                             <th class="less-font-weight" rowspan="2">Passport/ CSC No./ Incorporation Certificate</th>
                                                                             <th class="less-font-weight" rowspan="2" style="text-align: right;">
-                                                                                <input type="button" class="btn btn-primary btn-sm" onclick='addRowPartnerByNonAudit("non_partner_foregin_intial")' value="+">
+                                                                                
+                                                                                <button class="btn btn-primary btn-xs" type="button" onclick='addRowPartnerByNonAudit("non_partner_foregin_intial")'>
+                                                                                    <i class="fa fa-plus"></i>
+                                                                                </button>
                                                                             </th>
                                                                         </tr>
                                                                         
@@ -192,7 +203,10 @@
                                                                             <th class="less-font-weight">Position</th>
                                                                             <th class="less-font-weight" >Passport/ CSC No.</th>
                                                                             <th class="less-font-weight" style="text-align: right;">
-                                                                                <input type="button" class="btn btn-primary btn-sm" onclick='addRowDirectorByNonAudit("non_director_foreign_initial")' value="+">
+                                                                                
+                                                                                <button class="btn btn-primary btn-xs" type="button" onclick='addRowDirectorByNonAudit("non_director_foreign_initial")'>
+                                                                                    <i class="fa fa-plus"></i>
+                                                                                </button>
                                                                             </th>
                                                                         </tr>
                                                                         
@@ -221,28 +235,489 @@
                                                     <div class='col-md-2'></div>
                                                     <div class="col-md-3">
                                                         <div class="">
-                                                            <input type="checkbox" name="sole_proprietorship" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="Sole Proprietorship">
+                                                            <input type="radio" name="org_stru_id" value="1" onclick="getOrganization()">
                                                             <label class="form-check-label">Sole Proprietorship</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="">
-                                                            <input type="checkbox" name="partnership" class="@error('date_of_birth') is-invalid @enderror" autofocus value="Partnership" >
+                                                            <input type="radio" name="org_stru_id" autofocus value="2" onclick="getOrganization()">
                                                             <label class="form-check-label">Partnership</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-3">
                                                         <div class="">
-                                                            <input type="checkbox" name="company_incorporated" class="@error('date_of_birth') is-invalid @enderror" autofocus value="Company Incorporated">
+                                                            <input type="radio" name="org_stru_id"  autofocus value="3" onclick="getOrganization()">
                                                             <label class="form-check-label">Company Incorporated</label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div class="">
-                                                            <input type="checkbox" name="others" class="@error('date_of_birth') is-invalid @enderror" autofocus value="Others">
+                                                            <input type="radio" name="org_stru_id"  autofocus value="4" onclick="getOrganization()">
                                                             <label class="form-check-label">Others</label>
                                                         </div>
                                                     </div>
+                                                </div>
+                                                <div id="sole-proprietorship">
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-10">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-7 col-form-label"><b>For Sole Proprietorship</b></label>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-12 col-form-label">(a)Copy of letterhead tb used</label>
+                                                                            
+                                                                        </div>
+                                                                        <div class="controls1">
+                                                                            <div class="entry1">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls1","entry1")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-12 col-form-label">(b)1Passport size photo</label>
+                                                                            
+                                                                        </div>
+                                                                        <div class="controls2">
+                                                                            <div class="entry2">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls2","entry2")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-12 col-form-label">(b)1Passport size photo</label>
+                                                                            
+                                                                        </div>
+                                                                        <div class="controls3">
+                                                                            <div class="entry3">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls3","entry3")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-12 col-form-label">(b)1Passport size photo</label>
+                                                                            
+                                                                        </div>
+                                                                        <div class="controls4">
+                                                                            <div class="entry4">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls4","entry4")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-12 col-form-label">(b)1Passport size photo</label>
+                                                                            
+                                                                        </div>
+                                                                        <div class="controls5">
+                                                                            <div class="entry5">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls5","entry5")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-12 col-form-label">(g)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                            
+                                                                        </div>
+                                                                        <div class="controls6">
+                                                                            <div class="entry6">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls6","entry6")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mb-3">
+                                                                            <label class="col-md-12 col-form-label">(h)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                            
+                                                                        </div>
+                                                                        <div class="controls7">
+                                                                            <div class="entry7">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls7","entry7")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>                    
+                                                </div>
+                                                <div id="partnership">
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-10">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-7 col-form-label"><b>For Partnership</b></label>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all partners</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls8">
+                                                                            <div class="entry8">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls8","entry8")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(b)Copy of Certificate or Registration, if any</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls9">
+                                                                            <div class="entry9">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls9","entry9")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(c)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls10">
+                                                                            <div class="entry10">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls10","entry10")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(d)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls11">
+                                                                            <div class="entry11">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls11","entry11")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(e)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls12">
+                                                                            <div class="entry12">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls12","entry12")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(f)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls13">
+                                                                            <div class="entry13">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls13","entry13")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div> 
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>   
+                                                </div>           
+                                            
+                                                <div id="company">
+                                                    <div class="row">
+                                                        <div class="col-md-1"></div>
+                                                        <div class="col-md-10">
+                                                            <div class="card">
+                                                                <div class="card-body">
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-7 col-form-label"><b>For Company </b></label>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(a)Copy of valid Public Practice Accountant Certificate of all shareholders</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls14">
+                                                                            <div class="entry14">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls14","entry14")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(b)Copy of Certificate of Incorporation</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls15">
+                                                                            <div class="entry15">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls15","entry15")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(c)Copy of signed Memorandum of Associations and Articles of Associations or constitution</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls16">
+                                                                            <div class="entry16">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls16","entry16")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(d)Copy of Form 6, Form 26 and Form E</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls17">
+                                                                            <div class="entry17">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls17","entry17")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(e)Form A1 and/or Additional Form</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls18">
+                                                                            <div class="entry18">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls18","entry18")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(f)Copy of commercial tax registration certificate</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls19">
+                                                                            <div class="entry19">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls19","entry19")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(g)Copy of stationery/ letterhead to be used in signing of auditor's report</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls20">
+                                                                            <div class="entry20">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls20","entry20")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls21">
+                                                                            <div class="entry21">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls21","entry21")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-12 col-form-label">(i)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+                                                                        
+                                                                    </div>
+                                                                    <div class="controls22">
+                                                                            <div class="entry22">
+                                                                                <div class="row mb-3">
+                                                                                    <div class="col-md-11 col-auto">
+                                                                                        <input type="file" class="form-control" >
+                                                                                        
+                                                                                    </div>
+                                                                                    <div class="col-md-1 col-auto">
+                                                                                        <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls22","entry22")'>
+                                                                                            <i class="fa fa-plus"></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                    </div>  
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>     
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('8') }}</label>
@@ -342,7 +817,10 @@
                                                                                 <th class="less-font-weight" rowspan="2">CPA (Full-fiedged) Reg.No</th>
                                                                                 <th class="less-font-weight" rowspan="2">Public Practice Reg.No</th>
                                                                                 <th class="less-font-weight" style="text-align: right;">
-                                                                                    <input type="button" class="btn btn-primary btn-sm" onclick='addRowDirectorCPA("director_cpa_initial")' value="+">
+                                                                                    <button class="btn btn-primary btn-xs" type="button" onclick='addRowDirectorCPA("director_cpa_initial")'>
+                                                                                        <i class="fa fa-plus"></i>
+                                                                                    </button>
+                                                                                    
                                                                                 </th>
                                                                             </tr>
                                                                             
@@ -444,22 +922,10 @@
                                                     
                                                     </div>
                                                 
-                                                    <div class="row">
-                                                        <div class="col-md-8"></div>
-                                                        <div class="col-md-1">
-                                                            <label class="form-check-label text-right">Date:</label>
-                                                        </div>
-                                                        <div class="col-md-2">
-                                                        
-                                                            <div class="form-group">
-                                                                
-                                                                <input type="date" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    
                                                     <div class="row">
                                                         <div class="col-md-11 d-md-flex justify-content-md-end">
-                                                            <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
+                                                            <button type="submit" class="btn btn-primary btn-round">{{ __('Save') }}</button>
                                                         </div>
                                                     </div>
                             </div>
