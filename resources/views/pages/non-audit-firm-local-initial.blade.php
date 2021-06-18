@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('non-audit-firm-local-initial') }}
             </div>
         </div>
-            <form action="" method="post">
+            <form action="{{ route('acc_firm_info.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             
             <div class="row">
@@ -32,7 +32,9 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Firm Registration No') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="accountancy_firm_reg_no" class="form-control" placeholder="Firm Registration No" >
+                                                        <input type="hidden" value="2" name="audit_firm_type_id">
+                                                        <input type="hidden" value="1" name="local_foreign_id">
+                                                        <input type="text" name="accountancy_firm_reg_no" class="form-control" placeholder="Firm Registration No" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 </div>
@@ -41,7 +43,7 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Firm Name') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="accountancy_firm_name"  class="form-control  @error('name') is-invalid @enderror" placeholder="Firm Name" autofocus>
+                                                        <input type="text" name="accountancy_firm_name"  class="form-control  @error('name') is-invalid @enderror" placeholder="Firm Name" autofocus autocomplete="off">
                                                     </div>
                                                 </div>
                                                 @error('name')
@@ -55,22 +57,22 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Address Of Practice(Head Office)') }}</label>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="township" class="form-control" placeholder="Township" >
+                                                        <input type="text" name="township" class="form-control" placeholder="Township" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="post_code" class="form-control" placeholder="Post Code" >
+                                                        <input type="text" name="post_code" class="form-control" placeholder="Post Code" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="city" class="form-control" placeholder="City" >
+                                                        <input type="text" name="city" class="form-control" placeholder="City" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="state" class="form-control" placeholder="State/Region" >
+                                                        <input type="text" name="state" class="form-control" placeholder="State/Region" autocomplete="off" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -78,17 +80,17 @@
                                                 <div class="col-md-3"></div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="phone_no" class="form-control" placeholder="Telephone" >
+                                                        <input type="text" name="phone_no" class="form-control" placeholder="Telephone" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input type="text" name="email" class="form-control" placeholder="Email Address" >
+                                                        <input type="text" name="email" class="form-control" placeholder="Email Address" autocomplete="off" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input type="text" name="website" class="form-control" placeholder="Website Address" >
+                                                        <input type="text" name="website" class="form-control" placeholder="Website Address" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 
@@ -123,19 +125,19 @@
                                                                 <thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" name="bo_branch_name[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="bo_township[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="bo_post_code[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="bo_city[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="bo_state_region[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="bo_phone[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_branch_name[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_township[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_post_code[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_city[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_state_region[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_phone[]" class="form-control" autocomplete="off"></td>
                                                                         <td>
                                                                             <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputTele("branch_non_audit")'>
                                                                                 <i class="fa fa-plus"></i>
                                                                             </button>
                                                                         </td>
-                                                                        <td><input type="text" name="bo_email[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="bo_website[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_email[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_website[]" class="form-control" autocomplete="off"></td>
                                                                         <td></td>
                                                                     </tr>
                                                                 </tbody>
@@ -172,8 +174,11 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>1</td>
-                                                                            <td><input type="text" value="" name="fona_name[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="fona_pass_csc_inco[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="fona_name[]" class="form-control" autocomplete="off"></td>
+                                                                            <td>
+                                                                                
+                                                                                <input type="text" value="" name="fona_pass_csc_inco[]" class="form-control" autocomplete="off">
+                                                                            </td>
                                                                             <td></td>
                                                                         </tr>
                                                                     </tbody>
@@ -198,7 +203,8 @@
                                                                             <th class="less-font-weight">Sr</th>
                                                                             <th class="less-font-weight">Name</th>
                                                                             <th class="less-font-weight">Position</th>
-                                                                            <th class="less-font-weight" >Passport/ CSC No.</th>
+                                                                            <th class="less-font-weight" >Passport</th>
+                                                                            <th class="less-font-weight" >CSC No.</th>
                                                                             <th >
                                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addRowDirectorByNonAudit("non_director")'>
                                                                                     <i class="fa fa-plus"></i>
@@ -210,9 +216,13 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>1</td>
-                                                                            <td><input type="text" value="" name="dona_name[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="dona_position[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="dona_passport[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="dona_name[]" class="form-control" autocomplete="off"></td>
+                                                                            <td><input type="text" value="" name="dona_position[]" class="form-control" autocomplete="off"></td>
+                                                                            <td>
+                                                                                <input type="text" value="" name="dona_passport[]" class="form-control" autocomplete="off">
+                                                                                
+                                                                            </td>
+                                                                            <td><input type="text" value="" name="dona_csc_no[]" class="form-control" autocomplete="off"></td>
                                                                             <td></td>
                                                                         </tr>
                                                                     </tbody>
@@ -911,7 +921,7 @@
                                                         <label class="col-md-1 col-form-label"></label>
                                                         <div class="col-md-10 col-form-label">
                                                         <div class="form-group">
-                                                            <input type="text" name="managing_director_name"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
+                                                            <input type="text" name="name_sole_proprietor"  class="form-control  @error('name') is-invalid @enderror"  autofocus autocomplete="off">
                                                         </div>
                                                         </div>
                                                 </div>
@@ -938,6 +948,7 @@
                                                                         <tr>
                                                                             <td>No of directors who are alse shareholders</td>
                                                                             <td><input type="number" name="nats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                                            <input type="hidden" value="1" name="nats_type_id[]">
                                                                             
                                                                             
                                                                         </tr>
@@ -946,6 +957,7 @@
                                                                             No of directors who are not shareholders
                                                                             </td>
                                                                             <td><input type="number" name="nats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                                            <input type="hidden" value="2" name="nats_type_id[]">
                                                                             
                                                                             
                                                                         </tr>
@@ -954,7 +966,7 @@
                                                                             No of managerial level staff
                                                                             </td>
                                                                             <td><input type="number" name="nats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                            
+                                                                            <input type="hidden" value="3" name="nats_type_id[]">
                                                                             
                                                                         </tr>
                                                                         <tr>
@@ -962,6 +974,7 @@
                                                                             No of non-mangerial level
                                                                             </td>
                                                                             <td><input type="number" name="nats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                                            <input type="hidden" value="4" name="nats_type_id[]">
                                                                             
                                                                             
                                                                         </tr>
@@ -969,7 +982,7 @@
                                                                             <td>
                                                                             Total Staff
                                                                             </td>
-                                                                            <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled></td>
+                                                                            <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled autocomplete="off"></td>
                                                                             
                                                                         </tr>
                                                                     </tbody>
@@ -1051,7 +1064,7 @@
                                                     <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
                                                     <div class="col-md-8">
                                                         <div class="form-group">
-                                                            I <input type="text" name="declaration" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="">
+                                                            I <input type="text" name="declaration" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="" autocomplete="off">
                                                             (managing director) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
                                                         </div>
                                                     </div>
