@@ -13,7 +13,11 @@ class CpaOneExamRegController extends Controller
      */
     public function index()
     {
-        return CpaOneExamRegister::with('module')->get();
+        $cpa_one_exam = CpaOneExamRegister::with('module')->get();
+        return response()->json([
+            'data' => $cpa_one_exam
+        ],200);
+        
     }
 
     /**
@@ -72,8 +76,10 @@ class CpaOneExamRegController extends Controller
         $cpa_one_exam->module_id     =   $request->module_id;
         $cpa_one_exam->save();
 
-        return "Save Succssfully";
-        
+        return response()->json([
+            'message' => "Insert Succssfully"
+        ],200);
+         
         
     }
 
@@ -86,7 +92,9 @@ class CpaOneExamRegController extends Controller
     public function show($id)
     {
         $cpa_one_exam =  CpaOneExamRegister::where('id',$id)->with('module')->get();
-        return $cpa_one_exam;
+        return response()->json([
+            'data' => $cpa_one_exam
+        ],200);
     }
 
     /**
@@ -149,7 +157,9 @@ class CpaOneExamRegController extends Controller
         $cpa_one_exam->module_id     =   $request->module_id;
         $cpa_one_exam->save();
 
-        return "Save Succssfully";
+         return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -162,7 +172,10 @@ class CpaOneExamRegController extends Controller
     {
         $cpa_one_exam = CpaOneExamRegister::find($id);
         $cpa_one_exam->delete();
+         return response()->json([
+            'message' =>  "Delete Successfully"
+        ],200);
 
-        return "Delete Successfully";
+        
     }
 }

@@ -14,7 +14,10 @@ class CpaPrivateNewbieController extends Controller
      */
     public function index()
     {
-        return CpaOneRegPrivateTrainingNewbie::get();
+        $cpa_pri_newbie = CpaOneRegPrivateTrainingNewbie::get();
+        return response()->json([
+            'data' => $cpa_pri_newbie
+        ],200);
     }
 
     /**
@@ -69,7 +72,9 @@ class CpaPrivateNewbieController extends Controller
         $cpa_pri_newbie->entrance_exam_no =   $request->entrance_exam_no;
         $cpa_pri_newbie->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Inesert Successfully"
+        ],200);
     }
 
     /**
@@ -81,7 +86,9 @@ class CpaPrivateNewbieController extends Controller
     public function show($id)
     {
         $cpa_pri_newbie = CpaOneRegPrivateTrainingNewbie::get();
-        return $cpa_pri_newbie;
+        return response()->json([
+            'data' => $cpa_pri_newbie
+        ],200);
     }
 
     /**
@@ -140,7 +147,9 @@ class CpaPrivateNewbieController extends Controller
         $cpa_pri_newbie->entrance_exam_no =   $request->entrance_exam_no;
         $cpa_pri_newbie->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -153,6 +162,9 @@ class CpaPrivateNewbieController extends Controller
     {
         $cpa_pri_newbie = CpaOneRegPrivateTrainingNewbie::find($id);
         $cpa_pri_newbie->delete();
-        return "Delete successfully";
+        return response()->json([
+            'message' => "Delete Successfully"
+        ],200);
+         
     }
 }

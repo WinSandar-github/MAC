@@ -25,7 +25,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Route::apiResource('account', 'MoodleControllers\AccountCreateController');
 
-Route::get('/acc_firm_info','AccFirmInfController@index');
+
+Route::resource('/acc_firm_info','AccFirmInfController');
+Route::resource('/cpa_full_form','CpaFullFormController');
+Route::resource('/cpa_one_reg','CpaOneRegisterController');
+Route::resource('/cpa_one_exam','CpaOneExamRegController');
+Route::resource('/cpa_one_self_learner','CpaOneRegSelfLearnerController');
+Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
+Route::resource('/cpa_private_old','CpaPrivateOldController');
+Route::resource('/cpa_addmission_exam','CpaTraAddmissionExamController');
+Route::resource('/cpa_addmission_direct','CpaTraAddmissionDirectController');
+Route::resource('/cpa_two_tra_reg','CpaTwoTraRegisterController');
+Route::resource('/cpa_two_self_learner','CpaTwoRegSelfLearnerController');
+Route::resource('/cpa_two_private_newbie','CpaTwoPrivateNewbieController');
+Route::resource('/cpa_two_private_old','CpaTwoPrivateOldController');
+Route::resource('/cpa_two_exam','CpaTwoExamRegController');
 
 
 
