@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('non-audit-firm-local-initial') }}
             </div>
         </div>
-            <form action="" method="post">
+            <form action="{{ route('acc_firm_info.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             
             <div class="row">
@@ -32,6 +32,8 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Firm Registration No') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
+                                                        <input type="hidden" value="2" name="audit_firm_type_id">
+                                                        <input type="hidden" value="1" name="local_foreign_id">
                                                         <input type="text" name="accountancy_firm_reg_no" class="form-control" placeholder="Firm Registration No" >
                                                     </div>
                                                 </div>
@@ -173,7 +175,10 @@
                                                                         <tr>
                                                                             <td>1</td>
                                                                             <td><input type="text" value="" name="fona_name[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="fona_pass_csc_inco[]" class="form-control"></td>
+                                                                            <td>
+                                                                                <!-- <input type="hidden" value="1" name="[]" class="form-control"> -->
+                                                                                <input type="text" value="" name="fona_pass_csc_inco[]" class="form-control">
+                                                                            </td>
                                                                             <td></td>
                                                                         </tr>
                                                                     </tbody>
@@ -212,7 +217,10 @@
                                                                             <td>1</td>
                                                                             <td><input type="text" value="" name="dona_name[]" class="form-control"></td>
                                                                             <td><input type="text" value="" name="dona_position[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="dona_passport[]" class="form-control"></td>
+                                                                            <td>
+                                                                                <input type="text" value="" name="dona_passport[]" class="form-control">
+                                                                                <!-- <input type="hidden" value="" name="dona_csc_no[]" class="form-control"> -->
+                                                                            </td>
                                                                             <td></td>
                                                                         </tr>
                                                                     </tbody>
@@ -911,7 +919,7 @@
                                                         <label class="col-md-1 col-form-label"></label>
                                                         <div class="col-md-10 col-form-label">
                                                         <div class="form-group">
-                                                            <input type="text" name="managing_director_name"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
+                                                            <input type="text" name="name_sole_proprietor"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
                                                         </div>
                                                         </div>
                                                 </div>
