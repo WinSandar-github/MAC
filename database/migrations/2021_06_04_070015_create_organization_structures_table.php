@@ -18,6 +18,7 @@ class CreateOrganizationStructuresTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+        
     }
 
     /**

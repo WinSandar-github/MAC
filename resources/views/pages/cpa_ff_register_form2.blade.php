@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'cpa_ff_register_form2'
+    'elementActive' => 'cpa_ff_registration'
 ])
 
 @section('content')
@@ -34,8 +34,9 @@
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(က)အမည်') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(က)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('အမည်') }}</label>
+	                                      <div class="col-md-7">
 	                                          <div class="form-group">
 	                                              <input type="text" name="name" class="form-control" >
 	                                          </div>
@@ -43,8 +44,9 @@
 	                                    </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(ခ)နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(ခ)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
+	                                      <div class="col-md-7">
                                                 <div class="row" style="padding-top: 0px; margin-top: 0px;">
                                                     <div class="col-md-2 col-5 pr-1">
                                                         <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
@@ -83,8 +85,9 @@
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(ဂ)အဘအမည်') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(ဂ)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('အဘအမည်') }}</label>
+	                                      <div class="col-md-7">
 	                                          <div class="form-group">
 	                                              <input type="text" name="father_name" class="form-control" >
 	                                          </div>
@@ -94,7 +97,8 @@
                                       
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(ဃ)ပညာအရည်အချင်း') }}</label>
+                                          <label class="col-md-1 col-form-label">{{ __('(ဃ)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း') }}</label>
 	                                      <div class="col-md-2">
                                                 <input type="checkbox" name="" >
                                                 <label class="form-check-label">CPA</label>
@@ -110,8 +114,9 @@
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(င)CPAအပတ်စဥ် /ကိုယ်ပိုင်အမှတ်)') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(င)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('CPAအပတ်စဥ် /ကိုယ်ပိုင်အမှတ်') }}</label>
+	                                      <div class="col-md-7">
                                             <div class="form-group">
                                                         <input type="text" name="" class="form-control" >
                                                     </div>
@@ -123,8 +128,9 @@
                       
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(စ)ဆက်သွယ်ရန်လိပ်စာ') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(စ)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ') }}</label>
+	                                      <div class="col-md-7">
                                             <div class="form-group">
                                                         <input type="text" name="" class="form-control" >
                                                     </div>
@@ -134,7 +140,7 @@
                                         
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('တယ်လီဖုန်းနံပါတ်၊Fax ဖုန်းနံပါတ်') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('တယ်လီဖုန်းနံပါတ်') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
                                                     <input type="text" name="" class="form-control" >
@@ -142,6 +148,15 @@
                                             </div>
 	                                    </div>
 	                                    
+                                        <div class="row">
+	                                      <label class="col-md-1 col-form-label"></label>
+	                                      <label class="col-md-2 col-form-label">{{ __('Fax နံပါတ်') }}</label>
+	                                        <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" name="" class="form-control" >
+                                                </div>
+                                            </div>
+	                                    </div>
 	                                    
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
@@ -185,15 +200,16 @@
 	                                    </div>
 	                                    <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-10 col-form-label">
-                                                    (က)နောက်ဆုံးထုတ်ပေးခဲ့သည့် ကိုယ်ပိုင်စာရင်းကိုင်လုပ်ငန်းလုပ်ကိုင်ခွင့်/အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ငန်းလုပ်ကိုင်ခွင့် 
+                                                <div class="col-md-1">(က)</div>
+                                                <div class="col-md-9 col-form-label">
+                                                    နောက်ဆုံးထုတ်ပေးခဲ့သည့် ကိုယ်ပိုင်စာရင်းကိုင်လုပ်ငန်းလုပ်ကိုင်ခွင့်/အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ငန်းလုပ်ကိုင်ခွင့် 
                                                    
                                                 </div>
                                                 
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2"></div>
-                                            <label class="col-md-5 col-form-label">မှတ်ပုံတင်အမှတ်နှင့် လုပ်ကိုင်ခွင့်ပြုသည့်ခုနှစ်(မှတ်ပုံတင်အမှတ် </label>
+                                            <label class="col-md-5 col-form-label">မှတ်ပုံတင်အမှတ်နှင့် လုပ်ကိုင်ခွင့်ပြုသည့်ခုနှစ်(မှတ်ပုံတင်အမှတ်)</label>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <input type="text" name="" class="form-control">
@@ -209,7 +225,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2"></div>
-                                            <label class="col-md-5 col-form-label">)မိတ္တူတင်ပြရန်</label>
+                                            <label class="col-md-5 col-form-label">မိတ္တူတင်ပြရန်</label>
                                             <div class="col-md-4">
                                                     <div class="input-group mb-3">
                                                     
@@ -222,22 +238,22 @@
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-10 col-form-label">
-                                                    (ခ)အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းလုပ်ကိုင်ရာတွင် မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၆၆ တွင်ဖော်ပြထားသည့် တာဝန်တစ်ရပ်ရပ်
+                                                <div class="col-md-1">(ခ)</div>
+                                                <div class="col-md-9 col-form-label">
+                                                    အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းလုပ်ကိုင်ရာတွင် မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၆၆ တွင်ဖော်ပြထားသည့် 
                                                    
                                                 </div>
                                                 
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2"></div>
-                                            <label class="col-md-10 col-form-label">ကို ဆောင်ရွက်ရန်ပျက်ကွက်ခြင်း၊ပုဒ်မ ၆၈ တွင် ဖော်ပြထားသည့် ကျင့်ဝတ်
-                                            သိက္ခာတစ်ရပ်ရပ်ဖောက်ဖျက်ခြင်းတို့၍ စပ်လျဥ်း ၍ပုဒ်မ ၇၄ပုဒ်မခွဲ (ခ)(ဂ)နှင့်</label>
-                                            
+                                            <label class="col-md-9 col-form-label">တာဝန်တစ်ရပ်ရပ်ကို ဆောင်ရွက်ရန်ပျက်ကွက်ခြင်း၊ပုဒ်မ ၆၈ တွင် ဖော်ပြထားသည့် ကျင့်ဝတ်
+                                            သိက္ခာတစ်ရပ်ရပ်ဖောက်ဖျက်ခြင်းတို့၍ စပ်လျဥ်း ၍</label>                                            
                                             
                                         </div>
                                         <div class="row">
                                             <div class="col-md-2"></div>
-                                            <label class="col-md-5 col-form-label"> ပုဒ်မ ၇၅တို့အရပြစ်ဒဏ်ချမှတ်ခံထားရသူဟုတ်မဟုတ်</label>
+                                            <label class="col-md-6 col-form-label"> ပုဒ်မ ၇၄ပုဒ်မခွဲ (ခ)(ဂ)နှင့်ပုဒ်မ ၇၅တို့အရပြစ်ဒဏ်ချမှတ်ခံထားရသူဟုတ်မဟုတ်</label>
                                             <div class="col-md-2">
                                                         <input type="radio" name="" class="" value="yes"> Yes
                                             </div>
@@ -252,12 +268,9 @@
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-6 col-form-label">
-                                                    <div class="form-group">
-                                                    (က)လက်မှတ်ရပြည်သူ့စာရင်းကိုင်မှတ်ပုံတင်လက်မှတ်မူရင်း
-                                                       
-                                                    </div>
-                                                </div>
+                                                <div class="col-md-1">(က)</div>
+                                                <label class="col-md-5 col-form-label">{{ __('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်မှတ်ပုံတင်လက်မှတ်မူရင်း') }}</label>
+                                                
                                                 <div class="col-md-4">
                                                     <div class="input-group mb-3">
                                                     
@@ -270,12 +283,9 @@
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
-                                                <div class="col-md-6 col-form-label">
-                                                    <div class="form-group">
-                                                    (ခ) သက်တမ်းတိုးမည့်နှစ်မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous professional Development-CPD)မှတ်တမ်း
-                                                       
-                                                    </div>
-                                                </div>
+                                                <div class="col-md-1">(ခ)</div>
+                                                <label class="col-md-5 col-form-label">{{ __('သက်တမ်းတိုးမည့်နှစ်မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous professional Development-CPD)မှတ်တမ်း') }}</label>
+                                               
                                                 <div class="col-md-4">
                                                     <div class="input-group mb-3">
                                                     
@@ -289,11 +299,10 @@
                                         
                                         <div class="row">
                                                 <div class="col-md-1"></div>
+                                                <div class="col-md-1">(ဂ)</div>
+                                                <label class="col-md-5 col-form-label">{{ __('ပတ်စပို့အရွယ်ဓာတ်ပုံ') }}</label>
                                                 
-                                                <div class="col-md-6 col-form-label">
-                                                (ဂ)ပတ်စပို့အရွယ်ဓာတ်ပုံ 
-                                                    
-                                                </div>
+                                                
                                                 <div class="col-md-4">
                                                     <div class="input-group mb-3">
                                                     

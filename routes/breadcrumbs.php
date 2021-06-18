@@ -128,9 +128,9 @@ Breadcrumbs::for('audit-firm-initial-accountancy', function ($trail) {
     $trail->parent('audit_firm_registration');
     $trail->push('Accountancy Firm Information(Initial)', route('page.index', 'audit-firm-initial-accountancy'));
 });
-Breadcrumbs::for('audit-firm-initial-organization', function ($trail) {
+Breadcrumbs::for('audit-firm-list', function ($trail) {
     $trail->parent('audit_firm_registration');
-    $trail->push('Organization Structure(Initial)', route('page.index', 'audit-firm-initial-organization'));
+    $trail->push('Audit Firm List', route('page.index', 'audit-firm-list'));
 });
 Breadcrumbs::for('audit-firm-renew-accountancy', function ($trail) {
     $trail->parent('audit_firm_registration');
@@ -164,11 +164,11 @@ Breadcrumbs::for('cpa_part1_registration', function ($trail) {
 });
 Breadcrumbs::for('cpa-part1-register-form1', function ($trail) {
     $trail->parent('cpa_part1_registration');
-    $trail->push('သင်တန်းတက်ရောက်ခွင့်လျှောက်လွှာ', route('page.index', 'cpa-part1-register-form1'));
+    $trail->push('သင်တန်းတက်ရောက်ခွင့်လျှောက်လွှာ(တိုက်ရိုက်တက်ရောက်ခွင့်ရသူများ)', route('page.index', 'cpa-part1-register-form1'));
 });
 Breadcrumbs::for('cpa-part1-register-form2', function ($trail) {
     $trail->parent('cpa_part1_registration');
-    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ', route('page.index', 'cpa-part1-register-form2'));
+    $trail->push('မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများ)', route('page.index', 'cpa-part1-register-form2'));
 });
 Breadcrumbs::for('cpa-part1-register-form3', function ($trail) {
     $trail->parent('cpa_part1_registration');

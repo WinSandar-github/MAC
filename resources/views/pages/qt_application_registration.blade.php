@@ -226,8 +226,9 @@
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label" ></label>
-                                <label class="col-md-3 col-form-label" >{{ __('(က)ပေးအပ်သည့်အဖွဲ့အစည်းအမည်') }}</label>
-                                <div class="col-md-7">
+                                <label class="col-md-1 col-form-label" >{{ __('(က)') }}</label>
+                                <label class="col-md-3 col-form-label" >{{ __('ပေးအပ်သည့်အဖွဲ့အစည်းအမည်') }}</label>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" name="" class="form-control" placeholder="ပေးအပ်သည့်အဖွဲ့အစည်းအမည်" required>
                                     </div>
@@ -235,9 +236,9 @@
                             </div>
 
                             <div class="row">
-                                <label class="col-md-1 col-form-label">{{ __('') }}</label>
+                                <label class="col-md-2 col-form-label">{{ __('') }}</label>
                                 <label class="col-md-3 col-form-label" >{{ __('ဆက်သွယ်ရန်လိပ်စာ') }}</label>
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" name="" class="form-control" placeholder="ဆက်သွယ်ရန်လိပ်စာ" required>
                                     </div>
@@ -245,9 +246,9 @@
                             </div> 
 
                             <div class="row">
-                                <label class="col-md-1 col-form-label">{{ __('') }}</label>
+                                <label class="col-md-2 col-form-label">{{ __('') }}</label>
                                 <label class="col-md-3 col-form-label" >{{ __('အီးမေးလ်') }}</label>
-                                <div class="col-md-7">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" name="" class="form-control" placeholder="အီးမေးလ်" required>
                                     </div>
@@ -256,8 +257,9 @@
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label" >{{ __('') }}</label>
-                                <label class="col-md-3 col-form-label" >{{ __('(ခ)စာမေးပွဲကျင်းပသည့် နှစ်/လ') }}</label>
-                                <div class="col-md-7">
+                                <label class="col-md-1 col-form-label" >{{ __('(ခ)') }}</label>
+                                <label class="col-md-3 col-form-label" >{{ __('စာမေးပွဲကျင်းပသည့် နှစ်/လ') }}</label>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" name="" class="form-control" placeholder="နှစ်/လ" required>
                                     </div>
@@ -266,8 +268,9 @@
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label" >{{ __('') }}</label>
-                                <label class="col-md-3 col-form-label" >{{ __('(ဂ)မှတ်ပုံတင်အမှတ်') }}</label>
-                                <div class="col-md-7">
+                                <label class="col-md-1 col-form-label" >{{ __('(ဂ)') }}</label>
+                                <label class="col-md-3 col-form-label" >{{ __('မှတ်ပုံတင်အမှတ်') }}</label>
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <input type="text" name="" class="form-control" placeholder="မှတ်ပုံတင်အမှတ်" required>
                                     </div>
