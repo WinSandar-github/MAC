@@ -1,5 +1,4 @@
-        var counter = 0;
-               
+        var counter = 0;                      
 
         function addRowCPAFF(tbody){
             var newRow = $("<tr>");
@@ -730,7 +729,6 @@
             var controlForm = $('.'+divname+':first'),
                     currentEntry = $('.btn-add').parents('.'+diventry+':first'),
                     newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
                 newEntry.find('input').val('');
                 controlForm.find('.'+diventry+':not(:last) .btn-add')
                     .removeClass('btn-add').addClass('btn-remove')
