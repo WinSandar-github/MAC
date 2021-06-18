@@ -278,7 +278,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls1","entry1")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls1","entry1")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -298,7 +298,7 @@
                                                                                     <input type="file" class="form-control" >                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls2","entry2")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls2","entry2")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -318,7 +318,7 @@
                                                                                     <input type="file" class="form-control" >                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls3","entry3")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls3","entry3")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -338,7 +338,7 @@
                                                                                     <input type="file" class="form-control" >                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls4","entry4")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls4","entry4")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -358,7 +358,7 @@
                                                                                     <input type="file" class="form-control" >                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls5","entry5")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls5","entry5")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -378,7 +378,7 @@
                                                                                     <input type="file" class="form-control" >                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls6","entry6")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls6","entry6")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -398,7 +398,7 @@
                                                                                     <input type="file" class="form-control" >                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls7","entry7")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls7","entry7")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -418,7 +418,7 @@
                                                                                     <input type="file" class="form-control" >                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls8","entry8")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls8","entry8")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -455,7 +455,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls9","entry9")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls9","entry9")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -477,7 +477,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls10","entry10")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls10","entry10")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -499,7 +499,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls11","entry11")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls11","entry11")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -521,7 +521,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls12","entry12")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls12","entry12")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -543,7 +543,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls13","entry13")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls13","entry13")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -565,7 +565,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls14","entry14")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls14","entry14")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -587,7 +587,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls15","entry15")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls15","entry15")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -609,7 +609,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls16","entry16")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls16","entry16")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -631,7 +631,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls17","entry17")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls17","entry17")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -653,7 +653,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls18","entry18")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls18","entry18")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -690,7 +690,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls19","entry19")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls19","entry19")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -713,7 +713,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls20","entry20")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls20","entry20")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -735,7 +735,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls21","entry21")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls21","entry21")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -757,7 +757,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls22","entry22")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls22","entry22")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -779,7 +779,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls23","entry23")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls23","entry23")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -801,7 +801,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls24","entry24")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls24","entry24")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -823,7 +823,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls25","entry25")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls25","entry25")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -845,7 +845,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls26","entry26")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls26","entry26")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -867,7 +867,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls27","entry27")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls27","entry27")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -889,7 +889,7 @@
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-md custom-btn" type="button" onclick='addInputFile("controls28","entry28")'>
+                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls28","entry28")'>
                                                                                         <i class="fa fa-plus"></i>
                                                                                     </button>
                                                                                 </div>
@@ -1063,7 +1063,7 @@
                                                     
                                                     <div class="row">
                                                         <div class="col-md-11 d-md-flex justify-content-md-end">
-                                                            <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
+                                                            <button type="submit" class="btn btn-primary btn-round">{{ __('Save') }}</button>
                                                         </div>
                                                     </div>
                                             

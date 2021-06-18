@@ -141,10 +141,10 @@
             cols += '<td><input type="text" name="branch_city[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="branch_state[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="branch_telephone[]" class="form-control" /></td>';
-            cols += '<td><button class="btn btn-primary btn-xs" type="button" onclick=addInputTele("'+tbody+'")><i class="fa fa-plus"></i></button></td>';
+            cols += '<td><button class="btn btn-primary btn-sm" type="button" onclick=addInputTele("'+tbody+'")><i class="fa fa-plus"></i></button></td>';
             cols += '<td><input type="text" name="branch_email[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="branch_website[]" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowBranch("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowBranch("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -166,7 +166,7 @@
             cols += '<td><input type="text" name="partner_private_regno[]" class="form-control" /></td>';
             cols += '<td><input type="radio" name="report_yes" id="report_yes[]" > Yes</td>';
             cols += '<td><input type="radio" name="report_yes" id="report_no[]" > No</td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowPartner("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowPartner("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -186,7 +186,7 @@
             cols += '<td><input type="text" name="director_position[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="director_cpa_no" class="form-control" /> </td>';
             cols += '<td><input type="text" name="director_private_regno" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowDirector("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowDirector("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -205,7 +205,7 @@
             cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="non_partner_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="non_partner_passport[]" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowPartnerByNonAudit("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowPartnerByNonAudit("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -225,7 +225,7 @@
             cols += '<td><input type="text" name="non_director_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="non_director_position[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="non_director_cpa_no[]" class="form-control" /> </td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowDirectorByNonAudit("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowDirectorByNonAudit("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -246,7 +246,7 @@
             cols += '<td><input type="text" name="director_cpa_pass_no[]" class="form-control" /> </td>';
             cols += '<td><input type="text" name="director_cpa_full_no[]" class="form-control" /> </td>';
             cols += '<td><input type="text" name="director_cpa_public_no[]" class="form-control" /> </td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowDirectorCPA("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowDirectorCPA("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -265,7 +265,7 @@
             cols += '<td><input type="text" name="audit_work_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="audit_work_list[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="audit_work_ppa[]" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowAuditWork("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowAuditWork("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -287,7 +287,7 @@
             cols += '<td><input type="text" name="school_founder_qual[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_founder_address[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_founder_phone[]" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowShoolFounder("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowShoolFounder("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -309,7 +309,7 @@
             cols += '<td><input type="text" name="school_manager_qual[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_manager_duty[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_manager_phone[]" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowShoolManager("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowShoolManager("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -331,7 +331,7 @@
             cols += '<td><input type="text" name="school_executive_qual[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_executive_duty[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_executive_phone[]" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowShoolExecutive("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowShoolExecutive("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -353,7 +353,7 @@
             cols += '<td><input type="text" name="school_teacher_qual[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_teacher_subject[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="school_teacher_phone[]" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delRowShoolTeacher("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowShoolTeacher("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -374,7 +374,7 @@
             cols += '<td></td>';
             cols += '<td></td>';
             cols += '<td><input type="text" name="branch_telephone[]" class="form-control" /></td>';
-            cols += '<td><button class="delete btn btn-danger btn-xs" type="button" onclick=delInputTele("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
+            cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delInputTele("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
             cols += '<td></td>';
             cols += '<td></td>';
             cols += '<td></td>';
