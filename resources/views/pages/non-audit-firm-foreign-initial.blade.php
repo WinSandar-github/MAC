@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('non-audit-firm-foreign-initial') }}
             </div>
         </div>
-            <form action="" method="post">
+        <form action="{{ route('acc_firm_info.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             
             <div class="row">
@@ -32,7 +32,9 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Foreign Firm Registration No') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="foreign_firm_register_no" class="form-control" placeholder="Foreign Firm Registration No" >
+                                                        <input type="hidden" value="2" name="audit_firm_type_id">
+                                                        <input type="hidden" value="2" name="local_foreign_id">
+                                                        <input type="text" name="accountancy_firm_reg_no" class="form-control" placeholder="Foreign Firm Registration No" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 </div>
@@ -41,7 +43,7 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Foreign Firm Name') }}</label>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <input type="text" name="foreign_firm_name"  class="form-control  @error('name') is-invalid @enderror" placeholder="Foreign Firm Name" autofocus>
+                                                        <input type="text" name="accountancy_firm_name"  class="form-control  @error('name') is-invalid @enderror" placeholder="Foreign Firm Name" autofocus autocomplete="off">
                                                     </div>
                                                 </div>
                                                 @error('name')
@@ -55,22 +57,22 @@
                                                 <label class="col-md-2 col-form-label">{{ __('Address Of Practice(Head Office)') }}</label>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="township" class="form-control" placeholder="Township" >
+                                                        <input type="text" name="township" class="form-control" placeholder="Township" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="post_code" class="form-control" placeholder="Post Code" >
+                                                        <input type="text" name="post_code" class="form-control" placeholder="Post Code" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="city" class="form-control" placeholder="City" >
+                                                        <input type="text" name="city" class="form-control" placeholder="City" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="state" class="form-control" placeholder="State/Region" >
+                                                        <input type="text" name="state" class="form-control" placeholder="State/Region" autocomplete="off">
                                                     </div>
                                                 </div>
                                             </div>
@@ -78,17 +80,17 @@
                                                 <div class="col-md-3"></div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
-                                                        <input type="text" name="phone_no" class="form-control" placeholder="Telephone" >
+                                                        <input type="text" name="phone_no" class="form-control" placeholder="Telephone" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input type="text" name="email" class="form-control" placeholder="Email Address" >
+                                                        <input type="text" name="email" class="form-control" placeholder="Email Address" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input type="text" name="website" class="form-control" placeholder="Website Address" >
+                                                        <input type="text" name="website" class="form-control" placeholder="Website Address" autocomplete="off">
                                                     </div>
                                                 </div>
                                                 
@@ -124,20 +126,20 @@
                                                                 <thead>
                                                                 <tbody>
                                                                     <tr>
-                                                                        <td><input type="text" name="branch_no[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_township[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_post_code[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_city[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_state[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_phone_no[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_branch_name[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_township[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_post_code[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_city[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_state_region[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_phone[]" class="form-control" autocomplete="off"></td>
                                                                         <td>
                                                                             <button class="btn btn-primary btn-sm" type="button" onclick='addInputTele("branch_foreign_initial")'>
                                                                                 <i class="fa fa-plus"></i>
                                                                             </button>
                                                                             
                                                                         </td>
-                                                                        <td><input type="text" name="branch_email[]" class="form-control" ></td>
-                                                                        <td><input type="text" name="branch_website[]" class="form-control" ></td>
+                                                                        <td><input type="text" name="bo_email[]" class="form-control" autocomplete="off"></td>
+                                                                        <td><input type="text" name="bo_website[]" class="form-control" autocomplete="off"></td>
                                                                         <td></td>
                                                                     </tr>
                                                                 </tbody>
@@ -175,8 +177,8 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>1</td>
-                                                                            <td><input type="text" value="" name="non_partner_name[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="non_partner_passport[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="fona_name[]" class="form-control" autocomplete="off"></td>
+                                                                            <td><input type="text" value="" name="fona_pass_csc_inco[]" class="form-control" autocomplete="off"></td>
                                                                             <td></td>
                                                                         </tr>
                                                                     </tbody>
@@ -201,7 +203,8 @@
                                                                             <th class="less-font-weight">Sr</th>
                                                                             <th class="less-font-weight">Name</th>
                                                                             <th class="less-font-weight">Position</th>
-                                                                            <th class="less-font-weight" >Passport/ CSC No.</th>
+                                                                            <th class="less-font-weight" >Passport</th>
+                                                                            <th class="less-font-weight" >CSC No.</th>
                                                                             <th class="less-font-weight" style="text-align: right;">
                                                                                 
                                                                                 <button class="btn btn-primary btn-sm" type="button" onclick='addRowDirectorByNonAudit("non_director_foreign_initial")'>
@@ -214,9 +217,10 @@
                                                                     <tbody>
                                                                         <tr>
                                                                             <td>1</td>
-                                                                            <td><input type="text" value="" name="non_director_name[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="non_director_position[]" class="form-control"></td>
-                                                                            <td><input type="text" value="" name="non_director_csc_no[]" class="form-control"></td>
+                                                                            <td><input type="text" value="" name="dona_name[]" class="form-control" autocomplete="off"></td>
+                                                                            <td><input type="text" value="" name="dona_position[]" class="form-control" autocomplete="off"></td>
+                                                                            <td><input type="text" value="" name="dona_passport[]" class="form-control" autocomplete="off"></td>
+                                                                            <td><input type="text" value="" name="dona_csc_no[]" class="form-control" autocomplete="off"></td>
                                                                             <td></td>
                                                                         </tr>
                                                                     </tbody>
@@ -913,7 +917,7 @@
                                                         <label class="col-md-1 col-form-label"></label>
                                                         <div class="col-md-10 col-form-label">
                                                         <div class="form-group">
-                                                            <input type="text" name="managing_director_name"  class="form-control  @error('name') is-invalid @enderror"  autofocus>
+                                                            <input type="text" name="name_sole_proprietor"  class="form-control  @error('name') is-invalid @enderror"  autofocus autocomplete="off">
                                                         </div>
                                                         </div>
                                                 </div>
@@ -940,7 +944,7 @@
                                                                         <tr>
                                                                             <td>No of directors who are alse shareholders</td>
                                                                             <td><input type="number" name="nats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                            
+                                                                            <input type="hidden" value="1" name="nats_type_id[]">
                                                                             
                                                                         </tr>
                                                                         <tr>
@@ -948,7 +952,7 @@
                                                                             No of directors who are not shareholders
                                                                             </td>
                                                                             <td><input type="number" name="nats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                            
+                                                                            <input type="hidden" value="2" name="nats_type_id[]">
                                                                             
                                                                         </tr>
                                                                         <tr>
@@ -956,7 +960,7 @@
                                                                             No of managerial level staff
                                                                             </td>
                                                                             <td><input type="number" name="nats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                            
+                                                                            <input type="hidden" value="3" name="nats_type_id[]">
                                                                             
                                                                         </tr>
                                                                         <tr>
@@ -964,14 +968,14 @@
                                                                             No of non-mangerial level
                                                                             </td>
                                                                             <td><input type="number" name="nats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                            
+                                                                            <input type="hidden" value="4" name="nats_type_id[]">
                                                                             
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
                                                                             Total Staff
                                                                             </td>
-                                                                            <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled></td>
+                                                                            <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled autocomplete="off"></td>
                                                                             
                                                                         </tr>
                                                                     </tbody>
@@ -1011,11 +1015,11 @@
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>1</td>
-                                                                                <td><input type="text" value="" name="director_cpa_name[]" class="form-control"></td>
-                                                                                <td><input type="text" value="" name="director_cpa_position[]" class="form-control"></td>
-                                                                                <td><input type="text" value="" name="director_cpa_pass_no[]" class="form-control"></td>
-                                                                                <td><input type="text" value="" name="director_cpa_full_no[]" class="form-control"></td>
-                                                                                <td><input type="text" value="" name="director_cpa_public_no[]" class="form-control"></td>
+                                                                                <td><input type="text" value="" name="mf_name[]" class="form-control" autocomplete="off"></td>
+                                                                                <td><input type="text" value="" name="mf_position[]" class="form-control" autocomplete="off"></td>
+                                                                                <td><input type="text" value="" name="mf_cpa_passed_reg_no[]" class="form-control" autocomplete="off"></td>
+                                                                                <td><input type="text" value="" name="mf_cpa_full_reg_no[]" class="form-control" autocomplete="off"></td>
+                                                                                <td><input type="text" value="" name="mf_pub_pra_reg_no[]" class="form-control" autocomplete="off"></td>
                                                                                 <td></td>
                                                                             </tr>
                                                                         </tbody>
@@ -1045,42 +1049,42 @@
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <input type="checkbox" name="accounting_service" id="accounting_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="accounting_service">
+                                                                                    <input type="checkbox" name="t_s_p_id" id="accounting_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="3">
                                                                                     <label class="form-check-label">Accounting</label>
                                                                                 </td>
                                                                                 
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <input type="checkbox" name="advisory_service" id="advisory_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="advisory_service">
+                                                                                    <input type="checkbox" name="t_s_p_id" id="advisory_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="4">
                                                                                     <label class="form-check-label">Advisory</label>
                                                                                 </td>
                                                                                 
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <input type="checkbox" name="taxation_service" id="taxation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="taxation_service">
+                                                                                    <input type="checkbox" name="t_s_p_id" id="taxation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="5">
                                                                                     <label class="form-check-label">Taxation</label>
                                                                                 </td>
                                                                                 
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <input type="checkbox" name="liquidation_service" id="liquidation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="liquidation_service">
+                                                                                    <input type="checkbox" name="t_s_p_id" id="liquidation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="6">
                                                                                     <label class="form-check-label">Liquidation</label>
                                                                                 </td>
                                                                                 
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <input type="checkbox" name="accounting_system_service" id="accounting_system_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="accounting_system">
+                                                                                    <input type="checkbox" name="t_s_p_id" id="accounting_system_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="7">
                                                                                     <label class="form-check-label">Accounting System</label>
                                                                                 </td>
                                                                                 
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
-                                                                                    <input type="checkbox" name="other_service" id="other_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="other_service">
+                                                                                    <input type="checkbox" name="t_s_p_id" id="other_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="8">
                                                                                     <label class="form-check-label">Others</label>
                                                                                 </td>
                                                                                 
@@ -1096,7 +1100,7 @@
                                                     <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
                                                     <div class="col-md-8">
                                                         <div class="form-group">
-                                                            I <input type="text" name="declaration_name" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="">
+                                                            I <input type="text" name="declaration" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="" autocomplete="off">
                                                             (managing director) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
                                                         </div>
                                                     </div>
