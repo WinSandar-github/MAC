@@ -68,16 +68,12 @@ The above copyright notice and this permission notice shall be included in all c
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-
-    <!-- Bootstrap5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"> 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script></head>
-
-
+    
     <!-- CSS Files -->
     <!-- <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet" /> -->
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+    <!--bootstrap 5-->
+    <link href="{{ asset('bootstrap-5') }}/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{ asset('css') }}/custom.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -113,18 +109,18 @@ The above copyright notice and this permission notice shall be included in all c
     <!--   Core JS Files   -->
     <script src="{{ asset('paper') }}/js/core/jquery.min.js"></script>
     <script src="{{ asset('paper') }}/js/core/popper.min.js"></script>
-    <!-- <script src="{{ asset('paper') }}/js/core/bootstrap.min.js"></script> -->
+    <script src="{{ asset('paper') }}/js/core/bootstrap.min.js"></script>
     <script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--  Google Maps Plugin    -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <!-- Chart JS -->
     <script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
-    <!-- <script src="{{ asset('paper') }}/js/plugins/bootstrap-notify.js"></script> -->
+    <script src="{{ asset('paper') }}/js/plugins/bootstrap-notify.js"></script>
+    <script src="{{ asset('bootstrap-5') }}/js/bootstrap.min.js"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('paper') }}/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
-    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
-    <script src="{{ asset('paper') }}/demo/demo.js"></script>
+    
     <!-- Sharrre libray -->
     <script src="../assets/demo/jquery.sharrre.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
