@@ -14,7 +14,10 @@ class CpaTraAddmissionDirectController extends Controller
      */
     public function index()
     {
-        return CpaOneTrainingAddmissionDirect::get();
+        $cpa_tra_add_direct = CpaOneTrainingAddmissionDirect::get();
+        return response()->json([
+            'data' => $cpa_tra_add_direct
+        ],200);
     }
 
     /**
@@ -81,7 +84,9 @@ class CpaTraAddmissionDirectController extends Controller
         $cpa_tra_add_direct->acca_cima_reg_no            =   $request->acca_cima_reg_no;
         $cpa_tra_add_direct->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
     }
 
     /**
@@ -93,7 +98,9 @@ class CpaTraAddmissionDirectController extends Controller
     public function show($id)
     {
         $cpa_tra_add_direct = CpaOneTrainingAddmissionDirect::find($id);
-        return $cpa_tra_add_direct;
+        return response()->json([
+            'data' => $cpa_tra_add_direct
+        ],200);
 
     }
 
@@ -164,7 +171,9 @@ class CpaTraAddmissionDirectController extends Controller
         $cpa_tra_add_direct->acca_cima_reg_no            =   $request->acca_cima_reg_no;
         $cpa_tra_add_direct->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -178,7 +187,9 @@ class CpaTraAddmissionDirectController extends Controller
         
         $cpa_tra_add_direct = CpaOneTrainingAddmissionDirect::find($id);
         $cpa_tra_add_direct->delete();
-        return "Delete Successfully";
+        return response()->json([
+            'message' => "Delete Successfully"
+        ],200);
 
     }
 }

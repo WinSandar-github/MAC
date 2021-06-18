@@ -14,7 +14,11 @@ class CpaTwoRegSelfLearnerController extends Controller
      */
     public function index()
     {
-        return CpaTwoRegSelfLearner::get();
+        $cpa_two_self_learner =  CpaTwoRegSelfLearner::get();
+        return response()->json([
+            'data' => $cpa_two_self_learner
+        ],200);
+        
     }
 
     /**
@@ -71,8 +75,10 @@ class CpaTwoRegSelfLearnerController extends Controller
         $cpa_two_self_learner->batch_session_no  =   $request->batch_session_no;
         $cpa_two_self_learner->save();
 
-        return "Save Succssfully";
-    }
+        return response()->json([
+            'message' => "Save Succssfully"
+        ],200);
+     }
 
     /**
      * Display the specified resource.
@@ -144,8 +150,10 @@ class CpaTwoRegSelfLearnerController extends Controller
         $cpa_two_self_learner->batch_session_no  =   $request->batch_session_no;
         $cpa_two_self_learner->save();
 
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
 
-        return "Save Succssfully";
     }
 
     /**
@@ -158,6 +166,8 @@ class CpaTwoRegSelfLearnerController extends Controller
     {
         $cpa_two_self_learner = CpaTwoRegSelfLearner::find($id);
         $cpa_two_self_learner->delete();
-        return "Delete Successfully";
-    }
+        return response()->json([
+            'message' => "Delete Successfully"
+        ],200);
+     }
 }
