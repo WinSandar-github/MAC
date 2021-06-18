@@ -1,5 +1,4 @@
-        var counter = 0;
-               
+        var counter = 0;                      
 
         function addRowCPAFF(tbody){
             var newRow = $("<tr>");
@@ -142,10 +141,18 @@
             cols += '<td><input type="text" name="bo_city[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="bo_state_region[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="bo_phone[]" class="form-control" /></td>';
-            cols += '<td><input type="button" class="btn btn-primary btn-sm btn-plus" onclick=addInputTele("'+tbody+'")  value="+"></td>';
+            cols += '<td>'+
+                        '<button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick=addInputTele("'+tbody+'") value="X">'+
+                            '<i class="fa fa-plus"></i>'+
+                        '</button>'+
+                    '</td>';
             cols += '<td><input type="text" name="bo_email[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="bo_website[]" class="form-control" /></td>';
-            cols += '<td><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowBranch("'+tbody+'")  value="X"></td>';
+            cols += '<td>'+
+                        '<button class="btn btn-danger btn-add btn-sm custom-btn delete" type="button" onclick=delRowBranch("'+tbody+'") >'+
+                            '<i class="fa fa-trash-o"></i>'+
+                        '</button>'+
+                    '</td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -208,7 +215,11 @@
             cols += '<td>'+ (row)+'</td>';
             cols += '<td><input type="text" name="fona_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="fona_pass_csc_inco[]" class="form-control" /></td>';
-            cols += '<td><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowPartnerByNonAudit("'+tbody+'")  value="X"></td>';
+            cols += '<td>'+
+                        '<button class="btn btn-danger btn-add btn-sm custom-btn delete" type="button" onclick=delRowPartnerByNonAudit("'+tbody+'") >'+
+                            '<i class="fa fa-trash-o"></i>'+
+                        '</button>'+
+                    '</td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -228,7 +239,11 @@
             cols += '<td><input type="text" name="dona_name[]" class="form-control"/></td>';
             cols += '<td><input type="text" name="dona_position[]" class="form-control" /></td>';
             cols += '<td><input type="text" name="dona_passport[]" class="form-control" /> </td>';
-            cols += '<td><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowDirectorByNonAudit("'+tbody+'")  value="X"></td>';
+            cols += '<td>'+
+            '<button class="btn btn-danger btn-add btn-sm custom-btn delete" type="button" onclick=delRowDirectorByNonAudit("'+tbody+'") >'+
+                '<i class="fa fa-trash-o"></i>'+
+            '</button>'+
+        '</td>';
             newRow.append(cols);
             $("table."+tbody).append(newRow);
             counter++;
@@ -377,7 +392,11 @@
             cols += '<td></td>';
             cols += '<td></td>';
             cols += '<td><input type="text" name="branch_telephone[]" class="form-control" /></td>';
-            cols += '<td><input type="button" class="delete btn btn-sm btn-danger" onclick=delInputTele("'+tbody+'")  value="X"></td>';
+            cols += '<td>'+
+                        '<button class="btn btn-danger btn-add btn-sm custom-btn delete" type="button" onclick=delRowBranch("'+tbody+'") >'+
+                            '<i class="fa fa-trash-o"></i>'+
+                        '</button>'+
+                    '</td>';
             cols += '<td></td>';
             cols += '<td></td>';
             cols += '<td></td>';
@@ -720,17 +739,23 @@
                 $('#company').css('display','none');
             }
         }
-        function getFileName(file,label){
-            
-            var filepath=document.getElementById(file);
-            let filenames = [];
-            for (var i = 0; i <filepath.files.length; ++i) {
-                if(filepath.files.length == 1){
-                    $('#'+label).text(filepath.files.item(i).name);
-                }else{
-                    filenames.push(filepath.files.item(i).name);
-                    $('#'+label).text(filenames.join(","));
-                }
-                
-            }
+
+               
+
+        function addInputFile(divname,diventry){
+            var controlForm = $('.'+divname+':first'),
+                    currentEntry = $('.btn-add').parents('.'+diventry+':first'),
+                    newEntry = $(currentEntry.clone()).appendTo(controlForm);
+ 
+                newEntry.find('input').val('');
+                controlForm.find('.'+diventry+':not(:last) .btn-add')
+                    .removeClass('btn-add').addClass('btn-remove')
+                    .removeClass('btn-primary').addClass('btn-danger')
+                    .attr("onclick","delInputFile('"+diventry+"')")
+                    .html('<span class="fa fa-trash"></span>');
+                   
+ 
+        }
+        function delInputFile(diventry){
+            $('.btn-remove').parents('.'+diventry+':first').remove();
         }
