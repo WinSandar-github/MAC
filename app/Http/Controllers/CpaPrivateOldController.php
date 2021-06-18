@@ -15,7 +15,11 @@ class CpaPrivateOldController extends Controller
      */
     public function index()
     {
-        return  CpaOneRegPrivateTrainingOld::get();
+        $cpa_pri_old = CpaOneRegPrivateTrainingOld::get();
+        return response()->json([
+            'data' => $cpa_pri_old
+        ],200);
+
     }
 
     /**
@@ -74,7 +78,9 @@ class CpaPrivateOldController extends Controller
         $cpa_pri_old->batch_session_no    =   $request->batch_session_no;
         $cpa_pri_old->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
     }
 
     /**
@@ -86,7 +92,9 @@ class CpaPrivateOldController extends Controller
     public function show($id)
     {
         $cpa_pri_old = CpaOneRegPrivateTrainingOld::find($id);
-        return $cpa_pri_old;
+        return response()->json([
+            'data' => $cpa_pri_old
+        ],200);
         
     }
 
@@ -150,8 +158,9 @@ class CpaPrivateOldController extends Controller
         $cpa_pri_old->batch_session_no    =   $request->batch_session_no;
         $cpa_pri_old->save();
 
-        return "Save Succssfully";
-        
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -164,6 +173,8 @@ class CpaPrivateOldController extends Controller
     {
         $cpa_pri_old = CpaOneRegPrivateTrainingOld::find($id);
         $cpa_pri_old->delete();
-        return "Delete Successfully";
+        return response()->json([
+            'message' => "Delete Successfully"
+        ],200);
     }
 }

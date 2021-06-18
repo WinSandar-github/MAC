@@ -370,7 +370,9 @@ class AccFirmInfController extends Controller
         }
       
         
-        return "success";
+        return response()->json([
+            'data' => "Update Successfully"
+        ],200);
         
     }
 

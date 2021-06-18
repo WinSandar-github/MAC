@@ -14,7 +14,10 @@ class CpaOneRegSelfLearnerController extends Controller
      */
     public function index()
     {
-        return CpaOneRegSelfLearner::with('module')->get();
+        $cpa_one_self_learner = CpaOneRegSelfLearner::with('module')->get();
+        return response()->json([
+            'data' => $cpa_one_self_learner
+        ],200);
     }
 
     /**
@@ -74,7 +77,9 @@ class CpaOneRegSelfLearnerController extends Controller
          $cpa_one_self_learner->module_id     =   $request->module_id;
         $cpa_one_self_learner->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
     }
 
     /**
@@ -86,7 +91,9 @@ class CpaOneRegSelfLearnerController extends Controller
     public function show($id)
     {
         $cpa_one_self_learner = CpaOneRegSelfLearner::where('id',$id)->with('module')->get();
-        return $cpa_one_self_learner;
+        return response()->json([
+            'data' => $cpa_one_self_learner
+        ],200);
     }
 
     /**
@@ -150,7 +157,9 @@ class CpaOneRegSelfLearnerController extends Controller
          $cpa_one_self_learner->module_id     =   $request->module_id;
         $cpa_one_self_learner->save();
 
-        return "Save Succssfully";
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -163,6 +172,8 @@ class CpaOneRegSelfLearnerController extends Controller
     {
         $cpa_one_self_learner = CpaOneRegSelfLearner::find($id);
         $cpa_one_self_learner->delete();
-        return "Delete Successfully";
+        return response()->json([
+            'message' => "Delete Successfully"
+        ],200);
     }
 }

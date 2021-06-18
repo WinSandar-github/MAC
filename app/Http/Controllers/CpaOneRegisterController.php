@@ -14,7 +14,10 @@ class CpaOneRegisterController extends Controller
      */
     public function index()
     {
-        return CpaOneRegister::with('module')->get();
+        $cpa_one_reg = CpaOneRegister::with('module')->get();
+         return response()->json([
+            'data' => $cpa_one_reg
+        ],200);
     }
 
     /**
@@ -37,7 +40,7 @@ class CpaOneRegisterController extends Controller
     {
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
-            $name  = $file->getClientOriginalName();
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/',$name);
             $photo = '/storage/'.$name;
          }
@@ -57,8 +60,7 @@ class CpaOneRegisterController extends Controller
             }
 
 
-
-      
+       
         $cpa_one_reg = new CpaOneRegister();
         $cpa_one_reg->academic_year =   $request->aca_year;
         $cpa_one_reg->photo         =   $photo;
@@ -71,6 +73,7 @@ class CpaOneRegisterController extends Controller
         $cpa_one_reg->race_religion =   $request->race_religion;
         $cpa_one_reg->father_name_mm=   $request->father_name_mm;
         $cpa_one_reg->father_name_en=   $request->father_name_en;
+        $cpa_one_reg->race_religion =   $request->race_religion;
         $cpa_one_reg->birth_date    =   date('Y-m-d',strtotime($request->birth_date));
         $cpa_one_reg->education     =   $request->education;
         $cpa_one_reg->position      =   $request->position;
@@ -89,9 +92,11 @@ class CpaOneRegisterController extends Controller
         $cpa_one_reg->no_crime_file         =   $no_crime;
         $cpa_one_reg->module_id     =   $request->module_id;
         $cpa_one_reg->save();
-
-        return "Save Succssfully";
         
+         return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
+         
     }
 
     /**
@@ -187,7 +192,9 @@ class CpaOneRegisterController extends Controller
         $cpa_one_reg->module_id     =   $request->module_id;
         $cpa_one_reg->save();
 
-        return "update Succssfully";
+         return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     /**
@@ -200,6 +207,9 @@ class CpaOneRegisterController extends Controller
     {
         $cpa_one_reg = CpaOneRegister::find($id);
         $cpa_one_reg->delete();
-        return "Delete Successfully";
+         return response()->json([
+            'message' => "Delete Successfully"
+        ],200);
+
     }
 }
