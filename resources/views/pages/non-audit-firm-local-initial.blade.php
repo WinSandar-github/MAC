@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('non-audit-firm-local-initial') }}
             </div>
         </div>
-            <form action="{{ route('acc_firm_info.store') }}" method="post" enctype="multipart/form-data">
+            <form id="ajaxform" enctype="multipart/form-data">
             @csrf
             
             <div class="row">
@@ -37,7 +37,7 @@
                                                         <input type="text" name="accountancy_firm_reg_no" class="form-control" placeholder="Firm Registration No" autocomplete="off">
                                                     </div>
                                                 </div>
-                                                </div>
+                                </div>
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('2') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Firm Name') }}</label>
@@ -990,11 +990,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </div>
+                                                </div>
                                                     
                                                     <div class="row">
-                                                    <label class="col-md-1 col-form-label">{{ __('10') }}</label>
-                                                    <label class="col-md-4 col-form-label">{{ __('Types Of Service Provided') }}</label>
+                                                        <label class="col-md-1 col-form-label">{{ __('10') }}</label>
+                                                        <label class="col-md-4 col-form-label">{{ __('Types Of Service Provided') }}</label>
                                                     
                                                     </div>
                                                     <div class="row">
@@ -1060,28 +1060,24 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                    <label class="col-md-1 col-form-label">{{ __('11') }}</label>
-                                                    <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
-                                                    <div class="col-md-8">
-                                                        <div class="form-group">
-                                                            I <input type="text" name="declaration" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="" autocomplete="off">
-                                                            (managing director) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
-                                                        </div>
-                                                    </div>
-                                                    
-                                                    
-                                                    
-                                                    </div>
-                                                
+                                                        <label class="col-md-1 col-form-label">{{ __('11') }}</label>
+                                                        <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                                I <input type="text" name="declaration" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="" autocomplete="off">
+                                                                (managing director) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
+                                                            </div>
+                                                    </div>                                                   
+                                                                                                        
+                                                    </div>                                                
                                                     
                                                     <div class="row">
                                                         <div class="col-md-11 d-md-flex justify-content-md-end">
-                                                            <button type="submit" class="btn btn-primary btn-round">{{ __('Save') }}</button>
+                                                            <button  class="btn btn-primary btn-round "  id="save-data">{{ __('Save') }}</button>
                                                         </div>
                                                     </div>
                                             
                             </div>
-
 
                             <div class="card-footer ">
                                 
@@ -1109,6 +1105,58 @@
 
 @push('scripts')
 <script>
+
+$('#ajaxform').on('save-data',function(e){
+
+        e.preventDefault();
+
+      let accountancy_firm_reg_no   = $("input[name=accountancy_firm_reg_no]").val();
+      let accountancy_firm_name     = $("input[name=accountancy_firm_name]").val();
+      let township                  = $("input[name=township]").val();
+      let postcode                  = $("input[name=post_code]").val();
+      let city                      = $("input[name=city]").val();
+      let state_region              = $("input[name=state]").val();
+      let telephones                = $("input[name=phone_no]").val();
+      let email                     = $("input[name=email]").val();
+      let website                   = $("input[name=website]").val();
+      let audit_firm_type_id        = $("input[name=audit_firm_type_id]").val();
+      let local_foreign_id          = $("input[name=local_foreign_id]").val();
+      let organization_structure_id = $("input[name=org_stru_id]").val();
+      let type_of_service_provided_id   = $("input[name=t_s_p_id]").val();
+      let name_of_sole_proprietor       = $("input[name=name_sole_proprietor]").val();
+      let declaration                   = $("input[name=declaration]").val();
+      let _token   = $('meta[name="csrf-token"]').attr('content');
+
+      $.ajax({
+        url: "/acc_firm_info",
+        type:"POST",
+        data:{
+            accountancy_firm_reg_no:accountancy_firm_reg_no,
+            accountancy_firm_name:accountancy_firm_name,
+            township:township,
+            postcode:postcode,
+            city:city,
+            state_region:state_region,
+            telephones:telephones,
+            email:email,
+            website:website,
+            audit_firm_type_id:audit_firm_type_id,
+            local_foreign_id:local_foreign_id,
+            organization_structure_id:organization_structure_id,
+            type_of_service_provided_id:type_of_service_provided_id,
+            name_of_sole_proprietor:name_of_sole_proprietor,
+            declaration:declaration,            
+          _token: _token
+        },
+        success:function(response){
+          console.log(response);
+          if(response) {
+            $('.success').text(response.success);
+            $("#ajaxform")[0].reset();
+          }
+        },
+       });
+  });
     
     </script>
 

@@ -34,6 +34,9 @@
                                     <li class="nav-item">
 		                                  <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false">Foreign</a>
                                     </li>
+                                    <li class="nav-item">
+		                                  <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false">Non_Audit Firm Infomation</a>
+                                    </li>
                                     
                                 </ul>
                                 <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
@@ -56,6 +59,18 @@
                                                 <nav class="nav flex-column">
                                                     <a class="nav-link active" href="{{ route('page.index', 'non-audit-firm-foreign-initial') }}">Foreign Firm Information(Initial)</a>
                                                     <a class="nav-link active" href="{{ route('page.index', 'non-audit-firm-foreign-renew') }}">Foreign Firm Information(Renew)</a>
+                                                    
+                                                </nav>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade m-5" id="link3" aria-expanded="true">
+                                        <div class="row">
+                                            
+                                            <div class="col-md-9">
+                                                <nav class="nav flex-column">
+                                                    <a class="nav-link active" href="{{ route('page.index', 'non-audit-firm-list') }}"> Non_Audit Firm List</a>
+                                                   
                                                     
                                                 </nav>
                                             </div>

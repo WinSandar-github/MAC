@@ -14,7 +14,7 @@ class CpaTraAddmissionExamController extends Controller
      */
     public function index()
     {
-        $cpa_tra_add_exam = CpaOneTrainingAddmissionWithExam::get();\
+        $cpa_tra_add_exam = CpaOneTrainingAddmissionWithExam::get();
         return response()->json([
             'data' => $cpa_tra_add_exam
         ],200);
