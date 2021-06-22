@@ -427,7 +427,7 @@ class AccFirmInfController extends Controller
 
             if($request->local_foreign_id == 2){
                 //Myanmar cpa non audit foreigns
-                for($i=0;$i<sizeof($request->nats_total);$i++){
+                for($i=0;$i<sizeof($request->mf_name);$i++){
                     $foreign = new MyanmarCpaNonAuditForeign();  
                     $foreign->name                  = $request->mf_name[$i];
                     $foreign->position              = $request->mf_position[$i];
@@ -442,9 +442,7 @@ class AccFirmInfController extends Controller
         }
       
         
-        return response()->json([
-            'message' => "Added Successfully"
-        ],200);
+        return "success";
     }
 
     /**

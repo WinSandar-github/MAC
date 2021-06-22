@@ -6,7 +6,9 @@
 @section('content')
     <div class="content">
         <div class="container">
-            <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+            <div class="row">
+            <div class="col-lg-4 col-md-4"></div>
+            <div class="col-lg-4 col-md-4 ml-auto mr-auto">
                 <form class="form" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="card card-login">
@@ -16,13 +18,12 @@
                             </div>
                         </div>
                         <div class="card-body ">
-
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="nc-icon nc-single-02"></i>
-                                    </span>
-                                </div>
+                           
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text">
+                                    <i class="nc-icon nc-single-02"></i>
+                                </span>
+                               
                                 <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}" required autofocus>
                                 
                                 @if ($errors->has('email'))
@@ -32,12 +33,10 @@
                                 @endif
                             </div>
 
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="nc-icon nc-single-02"></i>
-                                    </span>
-                                </div>
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text">
+                                    <i class="nc-icon nc-lock-circle-open"></i>
+                                </span>
                                 <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" required>
                                 
                                 @if ($errors->has('password'))
@@ -47,7 +46,7 @@
                                 @endif
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group flex-nowrap">
                                 <div class="form-check">
                                      <label class="form-check-label">
                                         <input class="form-check-input" name="remember" type="checkbox" value="" {{ old('remember') ? 'checked' : '' }}>
@@ -71,6 +70,7 @@
                 <a href="{{ route('register') }}" class="btn btn-link float-right">
                     {{ __('Create Account') }}
                 </a> --}}
+            </div>
             </div>
         </div>
     </div>

@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'cpa_ff_register_form1'
+    'elementActive' => 'cpa_ff_registration'
 ])
 
 @section('content')
@@ -34,8 +34,9 @@
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(က)အမည်') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(က)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('အမည်') }}</label>
+	                                      <div class="col-md-7">
 	                                          <div class="form-group">
 	                                              <input type="text" name="name" class="form-control" >
 	                                          </div>
@@ -43,8 +44,9 @@
 	                                    </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(ခ)နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(ခ)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်') }}</label>
+	                                      <div class="col-md-7">
                                                 <div class="row" style="padding-top: 0px; margin-top: 0px;">
                                                     <div class="col-md-2 col-5 pr-1">
                                                         <select class="form-control" name="nrc_state_region" id="nrc_state_region" style="padding-top: 0px; margin-top: 0px !important; margin-bottom: 0px;">
@@ -83,8 +85,9 @@
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(ဂ)အဘအမည်') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(ဂ)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('အဘအမည်') }}</label>
+	                                      <div class="col-md-7">
 	                                          <div class="form-group">
 	                                              <input type="text" name="father_name" class="form-control" >
 	                                          </div>
@@ -94,7 +97,8 @@
                                       
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(ဃ)ပညာအရည်အချင်း') }}</label>
+                                          <label class="col-md-1 col-form-label">{{ __('(ဃ)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း') }}</label>
 	                                      <div class="col-md-2">
                                                 <input type="checkbox" name="" >
                                                 <label class="form-check-label">CPA</label>
@@ -110,8 +114,9 @@
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(င)CPAအပတ်စဥ် /ကိုယ်ပိုင်အမှတ်)') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(င)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('CPAအပတ်စဥ် /ကိုယ်ပိုင်အမှတ်') }}</label>
+	                                      <div class="col-md-7">
                                             <div class="form-group">
                                                         <input type="text" name="" class="form-control" >
                                                     </div>
@@ -123,8 +128,9 @@
                       
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('(စ)ဆက်သွယ်ရန်လိပ်စာ') }}</label>
-	                                      <div class="col-md-8">
+                                          <label class="col-md-1 col-form-label">{{ __('(စ)') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ') }}</label>
+	                                      <div class="col-md-7">
                                             <div class="form-group">
                                                         <input type="text" name="" class="form-control" >
                                                     </div>
@@ -134,7 +140,7 @@
                                         
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-2 col-form-label">{{ __('တယ်လီဖုန်းနံပါတ်၊Fax ဖုန်းနံပါတ်') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('တယ်လီဖုန်းနံပါတ်') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
                                                     <input type="text" name="" class="form-control" >
@@ -142,6 +148,15 @@
                                             </div>
 	                                    </div>
 	                                    
+                                        <div class="row">
+	                                      <label class="col-md-1 col-form-label"></label>
+	                                      <label class="col-md-2 col-form-label">{{ __('Fax နံပါတ်') }}</label>
+	                                        <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <input type="text" name="" class="form-control" >
+                                                </div>
+                                            </div>
+	                                    </div>
 	                                    
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>

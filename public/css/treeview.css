@@ -7,7 +7,10 @@
 .active span{
     color:#57cbef;
 }
-#initial_form,#renew_form,#local_form,#foreign_form,#local_initial_form,#local_renew_form,
-#foreign_initial_form,#foreign_renew_form{
+
+#sole-proprietorship,#partnership,#company{
     display: none;
+}
+.custom-btn{
+    margin: 0px 0px 0px 0px!important;
 }
