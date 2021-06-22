@@ -31,13 +31,9 @@
                                             <div class="col-md-1"></div>
                                             <div class="col-md-3">
                                                 <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" accept="image/*">
-                                                            <label class="custom-file-label" >Choose Image</label>
-                                                        </div>
-                                                    </div>
+                                                <div class=" mt-3 mb-3 col-auto">
+                                                <input type="file" class="form-control" />                                            
+                                            </div>
                                             </div>
                                         </div><br>
                                         <div class="row">

@@ -44,13 +44,10 @@
                                    
                                 </div>                                                                                
                                 
-                                <div class="col-md-3 pl-4">
+                                <div class="col-md-3 text-center">
                                     <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                    <div class="input-group mt-3" >                                                    
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                            <label class="custom-file-label" >Choose Image</label>
-                                        </div>
+                                    <div class=" mt-3 mb-3 col-auto">
+                                        <input type="file" class="form-control" />                                            
                                     </div>
                                 </div>
                             </div>
