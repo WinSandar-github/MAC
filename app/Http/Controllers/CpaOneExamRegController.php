@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaOneExamRegister;
+use Illuminate\Support\Facades\File; 
+
+
 class CpaOneExamRegController extends Controller
 {
     /**
@@ -41,8 +44,8 @@ class CpaOneExamRegController extends Controller
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }
 
        
@@ -120,8 +123,8 @@ class CpaOneExamRegController extends Controller
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }else{
              $photo = $request->old_photo;
          }
@@ -171,6 +174,14 @@ class CpaOneExamRegController extends Controller
     public function destroy($id)
     {
         $cpa_one_exam = CpaOneExamRegister::find($id);
+    
+        
+        if(file_exists(public_path($cpa_one_exam->photo))){
+ 
+            File::delete(public_path($cpa_one_exam->photo));
+      
+          }
+      
         $cpa_one_exam->delete();
          return response()->json([
             'message' =>  "Delete Successfully"

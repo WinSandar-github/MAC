@@ -69,6 +69,16 @@ class AccountancyFirmInformation extends Model
         return $this->hasMany(MyanmarCpaNonAuditForeign::class,'accountancy_firm_info_id','id');
     }
 
+    public function audit_firm_file()
+    {
+        return $this->hasMany(AuditFirmFile::class,'accountancy_firm_info_id','id');
+    }
+
+    public function non_audit_firm_file()
+    {
+        return $this->hasMany(NonAuditFirmFile::class,'accountancy_firm_info_id','id');
+    }
+
     
 
     

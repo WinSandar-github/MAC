@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaOneRegPrivateTrainingNewbie;
+use Illuminate\Support\Facades\File; 
+
 
 class CpaPrivateNewbieController extends Controller
 {
@@ -41,8 +43,8 @@ class CpaPrivateNewbieController extends Controller
         if($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }
 
         $cpa_pri_newbie = new CpaOneRegPrivateTrainingNewbie();
@@ -111,16 +113,17 @@ class CpaPrivateNewbieController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cpa_pri_newbie = CpaOneRegPrivateTrainingNewbie::find($id);
         if($request->hasfile('photo')) {
+            File::delete(public_path($cpa_pri_newbie->photo));
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }else{
              $photo = $request->old_photo;
          }
 
-        $cpa_pri_newbie = CpaOneRegPrivateTrainingNewbie::find($id);
         $cpa_pri_newbie->academic_year =   $request->aca_year;
         $cpa_pri_newbie->private_training_name =   $request->pri_tra_name;
         $cpa_pri_newbie->photo         =   $photo;
@@ -161,6 +164,8 @@ class CpaPrivateNewbieController extends Controller
     public function destroy($id)
     {
         $cpa_pri_newbie = CpaOneRegPrivateTrainingNewbie::find($id);
+        File::delete(public_path($cpa_pri_newbie->photo));
+
         $cpa_pri_newbie->delete();
         return response()->json([
             'message' => "Delete Successfully"

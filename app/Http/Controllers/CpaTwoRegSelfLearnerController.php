@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaTwoRegSelfLearner;
+use Illuminate\Support\Facades\File; 
+
 
 class CpaTwoRegSelfLearnerController extends Controller
 {
@@ -40,10 +42,11 @@ class CpaTwoRegSelfLearnerController extends Controller
     public function store(Request $request)
     {
         if ($request->hasfile('photo')) {
+
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_two/',$name);
+            $photo = '/storage/cpa_two/'.$name;
          }
         $cpa_two_self_learner = new CpaTwoRegSelfLearner();
         $cpa_two_self_learner->academic_year =   $request->aca_year;
@@ -112,15 +115,17 @@ class CpaTwoRegSelfLearnerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cpa_two_self_learner = CpaTwoRegSelfLearner::find($id);
         if ($request->hasfile('photo')) {
+            File::delete(public_path($cpa_two_self_learner->photo));
+
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_two/',$name);
+            $photo = '/storage/cpa_two/'.$name;
          }else{
              $photo = $request->old_photo;
          }
-        $cpa_two_self_learner = CpaTwoRegSelfLearner::find($id);
         $cpa_two_self_learner->academic_year =   $request->aca_year;
         $cpa_two_self_learner->photo         =   $photo;
         $cpa_two_self_learner->name_mm       =   $request->name_mm;
@@ -165,6 +170,8 @@ class CpaTwoRegSelfLearnerController extends Controller
     public function destroy($id)
     {
         $cpa_two_self_learner = CpaTwoRegSelfLearner::find($id);
+        File::delete(public_path($cpa_two_self_learner->photo));
+
         $cpa_two_self_learner->delete();
         return response()->json([
             'message' => "Delete Successfully"

@@ -8,6 +8,9 @@ use App\CpaFfFile;
 use App\LocalDegree;
 use App\ForeignDegree;
 
+use Illuminate\Support\Facades\File; 
+
+
 class CpaFullFormController extends Controller
 {
     /**
@@ -156,6 +159,7 @@ class CpaFullFormController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         if ($request->hasfile('cpa')) {
             $file = $request->file('cpa');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -266,11 +270,18 @@ class CpaFullFormController extends Controller
     public function destroy($id)
     {
         $acc_firm_info = CpaFullForm::find($id);
-          LocalDegree::where('cpa_full_form_id',$id)->delete();
-           ForeignDegree::where('cpa_full_form_id',$id)->delete();
-          LocalDegree::where('cpa_full_form_id',$id)->delete();
-          CpaFfFile::where('cpa_full_form_id',$id)->delete();
-          $acc_firm_info->delete();
+        LocalDegree::where('cpa_full_form_id',$id)->delete();
+        ForeignDegree::where('cpa_full_form_id',$id)->delete();
+        LocalDegree::where('cpa_full_form_id',$id)->delete();
+        $cpa_ff_file = CpaFfFile::where('cpa_full_form_id',$id)->first();
+        
+        File::delete(public_path($cpa_ff_file->cpa));
+        File::delete(public_path($cpa_ff_file->mpa_member_card));
+        File::delete(public_path($cpa_ff_file->nrc));
+        File::delete(public_path($cpa_ff_file->cdp_record));
+        File::delete(public_path($cpa_ff_file->passport_photo));
+        $cpa_ff_file->delete();
+        $acc_firm_info->delete();
  
           return response()->json([
             'data' => "Delete Successfuly"

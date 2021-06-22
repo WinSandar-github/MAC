@@ -15,6 +15,12 @@ use App\NonAuditTotalStaff;
 use App\MyanmarCpaNonAuditForeign;
 use App\AuditStaff;
 use App\Declaration;
+use App\AuditFirmFile;
+use App\NonAuditFirmFile;
+
+use File;
+
+
 class AccFirmInfController extends Controller
 {
     /**
@@ -24,8 +30,9 @@ class AccFirmInfController extends Controller
      */
     public function index()
     {
+
         $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
-        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns')->get();
+        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')->get();
         return response()->json([
             'data' => $acc_firm_info
         ],200);
@@ -49,6 +56,219 @@ class AccFirmInfController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->hasfile('ppa_certis'))
+        {
+            foreach($request->file('ppa_certis') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $ppa_certi[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('letterheads'))
+        {
+            foreach($request->file('letterheads') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $letterhead[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('representatives'))
+        {
+            foreach($request->file('representatives') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $representative[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('certi_or_regs'))
+        {
+            foreach($request->file('certi_or_regs') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $certi_or_reg[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+
+        if($request->hasfile('deeds_memos'))
+        {
+            foreach($request->file('deeds_memos') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $deeds_memo[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+
+        if($request->hasfile('certificate_incors'))
+        {
+            foreach($request->file('certificate_incors') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $certi_incor[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('form6_26e'))
+        {
+            foreach($request->file('form6_26e') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $form6_26e[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('form_a1'))
+        {
+            foreach($request->file('form_a1') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $form_a1[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+
+        if($request->hasfile('tax_reg_certificate'))
+        {
+            foreach($request->file('tax_reg_certificate') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $tax_reg_certificate[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('pass_photos'))
+        {
+            foreach($request->file('pass_photos') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $pass_photo[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('edu_certs'))
+        {
+            foreach($request->file('edu_certs') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $edu_cert[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('owner_profiles'))
+        {
+            foreach($request->file('owner_profiles') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $owner_profile[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+
+        if($request->hasfile('work_exps'))
+        {
+            foreach($request->file('work_exps') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $work_exp[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+
+        if($request->hasfile('nrc_passports'))
+        {
+            foreach($request->file('nrc_passports') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $nrc_passport[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('tax_clearances'))
+        {
+            foreach($request->file('tax_clearances') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $tax_clearance[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+        if($request->hasfile('permit_foreigns'))
+        {
+            foreach($request->file('permit_foreigns') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $permit_foreigns[] = '/storage/acc_firm/'.$name;
+            }
+        
+        }
+
+
+        if($request->hasfile('financial_statements'))
+        {
+            foreach($request->file('financial_statements') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $financial_statement[] = '/storage/acc_firm/'.$name;
+            }
+         
+        }
+
+                
+       
         //Main Table
         $acc_firm_info = new AccountancyFirmInformation();
         $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
@@ -86,6 +306,25 @@ class AccFirmInfController extends Controller
 
 
         if($request->audit_firm_type_id == 1){
+            if($request->org_stru_id){
+                $audit_file= new AuditFirmFile();
+                $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_file->ppa_certificate    = json_encode($ppa_certi);
+                $audit_file->letterhead        = json_encode($letterhead);
+                $audit_file->representative     = json_encode($representative);
+                $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);                
+                $audit_file->deeds_memo        = json_encode($deeds_memo);
+                $audit_file->certificate_incor    = json_encode($certi_incor);
+                $audit_file->form6_form26_form_e= json_encode($form6_26e);
+                $audit_file->form_a1           = json_encode($form_a1);
+                $audit_file->certi_or_reg      = json_encode($certi_or_reg);
+                $audit_file->save();
+
+             }
+          
+
+            
+
             //Audit
             for($i=0;$i<sizeof($request->foa_name);$i++){
                 $firm_owner_audit = new FirmOwnershipAudit();
@@ -130,10 +369,30 @@ class AccFirmInfController extends Controller
         }
         //Non-Audit
         else
-        {     
-            
-                
+        {
+            //Non-Audit Firm File
+            if($request->org_stru_id){
+                $audit_file= new NonAuditFirmFile();
+                $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_file->letterhead        = json_encode($letterhead);
+                $audit_file->passport_photo    = json_encode($pass_photo);
+                $audit_file->education_certificate  = json_encode($edu_cert);
+                $audit_file->owner_profile     = json_encode($owner_profile);
+                $audit_file->work_exp          = json_encode($work_exp);
+                $audit_file->nrc_passport      = json_encode($nrc_passport);
+                $audit_file->tax_clearance    = json_encode($tax_clearance);
+                $audit_file->permit_foreign= json_encode($permit_foreigns);
+                $audit_file->financial_statement    = json_encode($financial_statement);
+                $audit_file->representative     = json_encode($representative);
+                $audit_file->certi_or_reg      = json_encode($certi_or_reg);
+                $audit_file->deeds_memo        = json_encode($deeds_memo);
+                $audit_file->certificate_incor    = json_encode($certi_incor);
+                $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);                
+                $audit_file->save();
+            }
 
+
+                  
             //Firm OwnerShip Non-Audit in ui (Sole Proprietor/Partners/Shareholders)
             for($i=0;$i<sizeof($request->fona_name);$i++){
                 $firm_owner_non_audit = new FirmOwnershipNonAudit();
@@ -179,9 +438,7 @@ class AccFirmInfController extends Controller
                     $foreign->save();
                 } 
                 
-            } 
-
-           
+            }   
         }
       
         
@@ -199,7 +456,7 @@ class AccFirmInfController extends Controller
     public function show($id)
     {
         $acc_firm_info = AccountancyFirmInformation::where('id',$id)->with('branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
-        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns')->get();
+        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file')->get();
         return response()->json([
             'data' => $acc_firm_info
         ],200);
@@ -262,50 +519,66 @@ class AccFirmInfController extends Controller
         }
 
 
-        if($request->audit_firm_type_id == 1){
-            //Audit
-            FirmOwnershipAudit::where('accountancy_firm_info_id',$id)->delete();
+            if($request->audit_firm_type_id == 1){
+                if($request->org_stru_id){
+ 
+                    $audit_file= new AuditFirmFile();
+                    $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
+                    $audit_file->ppa_certificate    = json_encode($ppa_certi);
+                    $audit_file->letterhead         = json_encode($letterhead);
+                    $audit_file->representative     = json_encode($representative);
+                    $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);                
+                    $audit_file->deeds_memo        = json_encode($deeds_memo);
+                    $audit_file->certificate_incor    = json_encode($certi_incor);
+                    $audit_file->form6_form26_form_e= json_encode($form6_26e);
+                    $audit_file->form_a1           = json_encode($form_a1);
+                    $audit_file->certi_or_reg      = json_encode($certi_or_reg);
+                    $audit_file->save();
 
-            for($i=0;$i<sizeof($request->foa_name);$i++){
-                $firm_owner_audit = new FirmOwnershipAudit();
-                $firm_owner_audit->name                     = $request->foa_name[$i];
-                $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
-                $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
-                $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
-                $firm_owner_audit->save();
-            }
-            
-            for($i=0;$i<sizeof($request->do_name);$i++){
-                $director_officer = new DirectorsOfficersAudit();
-                $director_officer->name                     = $request->do_name[$i];
-                $director_officer->position                 = $request->do_position[$i];
-                $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
-                $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
-                $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
-                $director_officer->save();
-            }
-    
-            AuditStaff::where('accountancy_firm_info_id',$id)->delete();
-            for($i=0;$i<sizeof($request->as_part_time);$i++){
-                $audit_staff = new AuditStaff();
-                $audit_staff->part_time                = $request->as_part_time[$i];
-                $audit_staff->full_time                = $request->as_full_time[$i];
-                $audit_staff->total                    = $request->as_total[$i];
-                $audit_staff->audit_staff_type_id      = $request->as_audit_staff_type_id[$i];
-                $audit_staff->accountancy_firm_info_id = $acc_firm_info->id;
-                $audit_staff->save();
-            }
-    
-            AuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
-            for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
-                $audit_total_staff = new AuditTotalStaff();
-                $audit_total_staff->audit_staff              = $request->ats_audit_staff[$i];
-                $audit_total_staff->non_audit_staff          = $request->ats_non_audit_staff[$i];
-                $audit_total_staff->total                    = $request->ats_total[$i];
-                $audit_total_staff->audit_total_staff_type_id= $request->ats_audit_total_staff_type_id[$i];
-                $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
-                $audit_total_staff->save();
-            }
+                }
+            //Audit
+                FirmOwnershipAudit::where('accountancy_firm_info_id',$id)->delete();
+
+                for($i=0;$i<sizeof($request->foa_name);$i++){
+                    $firm_owner_audit = new FirmOwnershipAudit();
+                    $firm_owner_audit->name                     = $request->foa_name[$i];
+                    $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
+                    $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
+                    $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
+                    $firm_owner_audit->save();
+                }
+                
+                for($i=0;$i<sizeof($request->do_name);$i++){
+                    $director_officer = new DirectorsOfficersAudit();
+                    $director_officer->name                     = $request->do_name[$i];
+                    $director_officer->position                 = $request->do_position[$i];
+                    $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
+                    $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
+                    $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
+                    $director_officer->save();
+                }
+        
+                AuditStaff::where('accountancy_firm_info_id',$id)->delete();
+                for($i=0;$i<sizeof($request->as_part_time);$i++){
+                    $audit_staff = new AuditStaff();
+                    $audit_staff->part_time                = $request->as_part_time[$i];
+                    $audit_staff->full_time                = $request->as_full_time[$i];
+                    $audit_staff->total                    = $request->as_total[$i];
+                    $audit_staff->audit_staff_type_id      = $request->as_audit_staff_type_id[$i];
+                    $audit_staff->accountancy_firm_info_id = $acc_firm_info->id;
+                    $audit_staff->save();
+                }
+        
+                AuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
+                for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
+                    $audit_total_staff = new AuditTotalStaff();
+                    $audit_total_staff->audit_staff              = $request->ats_audit_staff[$i];
+                    $audit_total_staff->non_audit_staff          = $request->ats_non_audit_staff[$i];
+                    $audit_total_staff->total                    = $request->ats_total[$i];
+                    $audit_total_staff->audit_total_staff_type_id= $request->ats_audit_total_staff_type_id[$i];
+                    $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
+                    $audit_total_staff->save();
+                }
 
         }
         //Non-Audit
@@ -385,17 +658,165 @@ class AccFirmInfController extends Controller
     public function destroy($id)
     {
         $acc_firm_info = AccountancyFirmInformation::find($id);
-        BranchOffice::where('accountancy_firm_info_id',$id)->delete();
+        // BranchOffice::where('accountancy_firm_info_id',$id)->delete();
 
         if($acc_firm_info->audit_firm_type_id == 1){
             FirmOwnershipAudit::where('accountancy_firm_info_id',$id)->delete();
             DirectorsOfficersAudit::where('accountancy_firm_info_id',$id)->delete();
             AuditStaff::where('accountancy_firm_info_id',$id)->delete();
             AuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
+            $audit_firm_file = AuditFirmFile::where('accountancy_firm_info_id',$id)->first();
+             
+            $ppa_certi      = json_decode($audit_firm_file->ppa_certificate);
+            $letterhead     = json_decode($audit_firm_file->letterhead);
+            $representative = json_decode($audit_firm_file->representative);
+            $certi_or_reg   = json_decode($audit_firm_file->certi_or_reg);
+            $deeds_memo     = json_decode($audit_firm_file->deeds_memo);
+            $certi_incor    = json_decode($audit_firm_file->certificate_incor);
+            $form6_26e          = json_decode($audit_firm_file->form6_form26_form_e);
+            $form_a1        = json_decode($audit_firm_file->form_a1);
+            $tax_reg_certificate = json_decode($audit_firm_file->tax_reg_certificate);
+          
+            
+            foreach($ppa_certi as $certi){
+                File::delete(public_path($certi));
+
+            }
+
+            foreach($letterhead as $letter){
+                File::delete(public_path($letter));
+            }
+
+            foreach($representative as $represent){
+                File::delete(public_path($represent));
+            }
+
+            
+            foreach($certi_or_reg as $reg){
+                File::delete(public_path($reg));
+            }
+
+            
+            foreach($deeds_memo as $memo){
+                File::delete(public_path($memo));
+            }
+
+            
+            foreach($certi_incor as $incor){
+                File::delete(public_path($incor));
+            }
+
+            foreach($form6_26e as $form){
+                File::delete(public_path($form));
+            }
+
+            foreach($form_a1 as $a1){
+                File::delete(public_path($a1));
+
+            }
+            
+            foreach($tax_reg_certificate as $certificate){
+                File::delete(public_path($certificate));
+            }
+
+
+            
+
+            $audit_firm_file->delete();
+            
         }else{
+           
+            
             FirmOwnershipNonAudit::where('accountancy_firm_info_id',$id)->delete();
             DirectorsOfficersNonAudit::where('accountancy_firm_info_id',$id)->delete();
-             NonAuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
+            NonAuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
+            $non_audit_firm_file = NonAuditFirmFile::where('accountancy_firm_info_id',$id)->first();
+             
+            $letterhead = json_decode($non_audit_firm_file->letterhead);
+            $pass_photo = json_decode($non_audit_firm_file->passport_photo);
+            $owner_profile = json_decode($non_audit_firm_file->owner_profile);
+            $edu_cert = json_decode($non_audit_firm_file->education_certificate);
+            $work_exp = json_decode($non_audit_firm_file->work_exp);
+            $nrc_passport = json_decode($non_audit_firm_file->nrc_passport);
+            $tax_clearance = json_decode($non_audit_firm_file->tax_clearance);
+            $permit_foreigns = json_decode($non_audit_firm_file->permit_foreign);
+            $financial_statement = json_decode($non_audit_firm_file->financial_statement);
+            $representative = json_decode($non_audit_firm_file->representative);
+            $certi_or_reg = json_decode($non_audit_firm_file->certi_or_reg);
+            $deeds_memo = json_decode($non_audit_firm_file->deeds_memo);
+            $tax_reg_certificate = json_decode($non_audit_firm_file->tax_reg_certificate);
+            $certi_incor = json_decode($non_audit_firm_file->certificate_incor);
+             
+            foreach($letterhead as $letter){
+                File::delete(public_path($letter));
+            }
+
+            foreach($pass_photo as $photo){
+                File::delete(public_path($photo));
+
+            }
+
+            
+            foreach($edu_cert as $cert){
+                File::delete(public_path($cert));
+            }
+
+            foreach($owner_profile as $profile){
+                File::delete(public_path($profile));
+
+            }
+
+            foreach($work_exp as $exp){
+                File::delete(public_path($exp));
+            }
+
+            foreach($nrc_passport as $passport){
+                File::delete(public_path($passport));
+            }
+
+            
+            foreach($tax_clearance as $clear){
+                File::delete(public_path($clear));
+            }
+
+            
+            foreach($permit_foreigns as $foreign){
+                File::delete(public_path($foreign));
+            }
+
+            
+            foreach($financial_statement as $statement){
+                File::delete(public_path($statement));
+            }
+
+            
+            foreach($representative as $represent){
+                File::delete(public_path($represent));
+            }
+
+            
+            foreach($certi_or_reg as $reg){
+                File::delete(public_path($reg));
+            }
+
+            
+            foreach($deeds_memo as $memo){
+                File::delete(public_path($memo));
+            }
+
+            
+            foreach($certi_incor as $incor){
+                File::delete(public_path($incor));
+            }
+
+            
+            foreach($tax_reg_certificate as $certificate){
+                File::delete(public_path($certificate));
+            }
+
+            $non_audit_firm_file->delete();
+           
+
             if($acc_firm_info->local_foreign_id == 2){
                 NonAuditTotalStaff::where('accountancy_firm_info_id',$id)->delete(); 
             }
