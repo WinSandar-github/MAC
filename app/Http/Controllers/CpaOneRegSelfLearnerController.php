@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaOneRegSelfLearner;
+use Illuminate\Support\Facades\File; 
+
 
 class CpaOneRegSelfLearnerController extends Controller
 {
@@ -41,8 +43,8 @@ class CpaOneRegSelfLearnerController extends Controller
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }
         $cpa_one_self_learner = new CpaOneRegSelfLearner();
         $cpa_one_self_learner->academic_year =   $request->aca_year;
@@ -116,7 +118,10 @@ class CpaOneRegSelfLearnerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cpa_one_self_learner = CpaOneRegSelfLearner::find($id);
         if ($request->hasfile('photo')) {
+            File::delete(public_path($cpa_one_self_learner->photo));
+            
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/',$name);
@@ -124,7 +129,6 @@ class CpaOneRegSelfLearnerController extends Controller
          }else{
              $photo = $request->old_photo;
          }
-        $cpa_one_self_learner = CpaOneRegSelfLearner::find($id);
          $cpa_one_self_learner->academic_year =   $request->aca_year;
         $cpa_one_self_learner->photo         =   $photo;
         $cpa_one_self_learner->name_mm       =   $request->name_mm;
@@ -171,6 +175,8 @@ class CpaOneRegSelfLearnerController extends Controller
     public function destroy($id)
     {
         $cpa_one_self_learner = CpaOneRegSelfLearner::find($id);
+        File::delete(public_path($cpa_one_self_learner->photo));
+
         $cpa_one_self_learner->delete();
         return response()->json([
             'message' => "Delete Successfully"

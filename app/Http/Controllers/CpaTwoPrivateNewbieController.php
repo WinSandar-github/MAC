@@ -15,10 +15,8 @@ class CpaTwoPrivateNewbieController extends Controller
      */
     public function index()
     {
-        $cpa_two_tra_reg = CpaTwoRegPrivateTrainNewbie::get();
-        return response()->json([
-            'data' => $cpa_two_tra_reg
-        ],200);
+        $cpa_two_tra_reg = CpaTwoRegPrivateTrainNewbie::all();
+        return response()->json($cpa_two_tra_reg);
     }
 
     /**

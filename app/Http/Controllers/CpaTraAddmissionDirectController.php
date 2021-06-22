@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaOneTrainingAddmissionDirect;
+use Illuminate\Support\Facades\File; 
+
 
 class CpaTraAddmissionDirectController extends Controller
 {
@@ -41,8 +43,8 @@ class CpaTraAddmissionDirectController extends Controller
         if($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }
 
         
@@ -124,17 +126,18 @@ class CpaTraAddmissionDirectController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cpa_tra_add_direct = CpaOneTrainingAddmissionDirect::find($id);
         if($request->hasfile('photo')) {
+            File::delete(public_path($cpa_tra_add_direct->photo));
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }else{
             $photo = $request->old_photo;
          }
 
         
-        $cpa_tra_add_direct = CpaOneTrainingAddmissionDirect::find($id);
         $cpa_tra_add_direct->photo         =   $photo;
         $cpa_tra_add_direct->name          =   $request->name;
         $cpa_tra_add_direct->nrc_state_region = $request->nrc_state_region;
@@ -186,6 +189,9 @@ class CpaTraAddmissionDirectController extends Controller
     {
         
         $cpa_tra_add_direct = CpaOneTrainingAddmissionDirect::find($id);
+        File::delete(public_path($cpa_tra_add_direct->photo));
+
+        
         $cpa_tra_add_direct->delete();
         return response()->json([
             'message' => "Delete Successfully"

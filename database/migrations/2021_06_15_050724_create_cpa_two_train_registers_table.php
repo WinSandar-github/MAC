@@ -33,6 +33,8 @@ class CreateCpaTwoTrainRegistersTable extends Migration
             $table->string('office_area');
             $table->boolean('civil_servant');
             $table->text('address');
+            $table->text('contact_address');
+
             $table->string('phone');
             $table->string('email');
             $table->string('cpa_one_pass_time');

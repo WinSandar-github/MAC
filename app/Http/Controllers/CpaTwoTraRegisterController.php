@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaTwoTrainRegister;
+use Illuminate\Support\Facades\File; 
+
 
 class CpaTwoTraRegisterController extends Controller
 {
@@ -40,9 +42,9 @@ class CpaTwoTraRegisterController extends Controller
     {
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
-            $name  = $file->getClientOriginalName();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_two/',$name);
+            $photo = '/storage/cpa_two/'.$name;
          }
 
          
@@ -114,11 +116,14 @@ class CpaTwoTraRegisterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cpa_two_tra_reg = CpaTwoTrainRegister::find($id);
         if ($request->hasfile('photo')) {
+            File::delete(public_path($cpa_two_tra_reg->photo));
+
             $file = $request->file('photo');
-            $name  = $file->getClientOriginalName();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_two/',$name);
+            $photo = '/storage/cpa_two/'.$name;
          }else{
              $photo = $request->old_photo;
          }
@@ -126,7 +131,6 @@ class CpaTwoTraRegisterController extends Controller
          
 
       
-        $cpa_two_tra_reg = CpaTwoTrainRegister::find($id);
         $cpa_two_tra_reg->academic_year =   $request->aca_year;
         $cpa_two_tra_reg->photo         =   $photo;
         $cpa_two_tra_reg->name_mm       =   $request->name_mm;
@@ -166,6 +170,8 @@ class CpaTwoTraRegisterController extends Controller
     public function destroy($id)
     {
         $cpa_two_tra_reg = CpaTwoTrainRegister::find($id);
+        File::delete(public_path($cpa_two_tra_reg->photo));
+
         $cpa_two_tra_reg->delete();
         return response()->json([
             'message' => "Delete Successfully"

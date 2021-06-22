@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaOneRegPrivateTrainingOld;
+use Illuminate\Support\Facades\File; 
+
 
 
 class CpaPrivateOldController extends Controller
@@ -41,10 +43,11 @@ class CpaPrivateOldController extends Controller
     public function store(Request $request)
     {
         if($request->hasfile('photo')) {
+            
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }
 
         
@@ -119,10 +122,11 @@ class CpaPrivateOldController extends Controller
     public function update(Request $request, $id)
     {
         if($request->hasfile('photo')) {
+            File::delete(public_path($cpa_pri_old->photo));
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-             $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+             $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }else{
              $photo = $request->old_photo;
          }
@@ -172,6 +176,8 @@ class CpaPrivateOldController extends Controller
     public function destroy($id)
     {
         $cpa_pri_old = CpaOneRegPrivateTrainingOld::find($id);
+        File::delete(public_path($cpa_pri_old->photo));
+
         $cpa_pri_old->delete();
         return response()->json([
             'message' => "Delete Successfully"
