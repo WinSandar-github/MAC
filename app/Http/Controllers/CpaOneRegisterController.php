@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaOneRegister;
+use Illuminate\Support\Facades\File; 
 
 class CpaOneRegisterController extends Controller
 {
@@ -41,22 +42,22 @@ class CpaOneRegisterController extends Controller
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }
 
          if ($request->hasfile('good_morale')) {
             $file = $request->file('good_morale');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $good_morale = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $good_morale = '/storage/cpa_one/'.$name;
             }
     
             if ($request->hasfile('no_crime')) {
                 $file = $request->file('no_crime');
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/',$name);
-                $no_crime = '/storage/'.$name;
+                $file->move(public_path().'/storage/cpa_one/',$name);
+                $no_crime = '/storage/cpa_one/'.$name;
             }
 
 
@@ -133,35 +134,39 @@ class CpaOneRegisterController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cpa_one_reg = CpaOneRegister::find($id);
         
         if ($request->hasfile('photo')) {
+            File::delete(public_path($cpa_one_reg->photo));  
+
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $photo = '/storage/cpa_one/'.$name;
          }else{
              $photo = $request->old_photo;
          }
 
         if ($request->hasfile('good_morale')) {
-        $file = $request->file('good_morale');
-        $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        $file->move(public_path().'/storage/',$name);
-        $good_morale = '/storage/'.$name;
+            File::delete(public_path($cpa_one_reg->good_morale_file));
+            $file = $request->file('good_morale');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $good_morale = '/storage/cpa_one/'.$name;
         }else{
             $good_morale = $request->old_good_morale;
         }
 
         if ($request->hasfile('no_crime')) {
+            File::delete(public_path($cpa_one_reg->no_crime_file));
             $file = $request->file('no_crime');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $no_crime = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $no_crime = '/storage/cpa_one/'.$name;
         }else{
             $no_crime = $request->old_no_crime;
         }
 
-        $cpa_one_reg = CpaOneRegister::find($id);
         $cpa_one_reg->academic_year =   $request->aca_year;
         $cpa_one_reg->photo         =   $photo;
         $cpa_one_reg->name_mm       =   $request->name_mm;
@@ -206,7 +211,12 @@ class CpaOneRegisterController extends Controller
     public function destroy($id)
     {
         $cpa_one_reg = CpaOneRegister::find($id);
-        $cpa_one_reg->delete();
+   
+        File::delete(public_path($cpa_one_reg->photo));  
+        File::delete(public_path($cpa_one_reg->good_morale_file));
+        File::delete(public_path($cpa_one_reg->no_crime_file));
+    
+         $cpa_one_reg->delete();
          return response()->json([
             'message' => "Delete Successfully"
         ],200);

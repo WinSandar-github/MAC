@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaTwoExamReg;
+use Illuminate\Support\Facades\File; 
+
 
 class CpaTwoExamRegController extends Controller
 {
@@ -41,8 +43,8 @@ class CpaTwoExamRegController extends Controller
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_two/',$name);
+            $photo = '/storage/cpa_two/'.$name;
          }
 
        
@@ -117,18 +119,20 @@ class CpaTwoExamRegController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $cpa_two_exam = CpaTwoExamReg::find($id);
         if ($request->hasfile('photo')) {
+             File::delete(public_path($cpa_two_exam->photo));
+
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_two/',$name);
+            $photo = '/storage/cpa_two/'.$name;
          }else{
              $photo = $request->old_photo;
          }
 
        
         
-        $cpa_two_exam = CpaTwoExamReg::find($id);
         $cpa_two_exam->exam_center   =   $request->exam_center;
         $cpa_two_exam->photo         =   $photo;
         $cpa_two_exam->name_mm       =   $request->name_mm;
@@ -171,6 +175,9 @@ class CpaTwoExamRegController extends Controller
     public function destroy($id)
     {
         $cpa_two_exam = CpaTwoExamReg::find($id);
+        //delete local file
+        File::delete(public_path($cpa_two_exam->photo));
+
         $cpa_two_exam->delete();
 
         return response()->json([

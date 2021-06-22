@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaTwoRegPrivateTrainOld;
+use Illuminate\Support\Facades\File; 
+
 class CpaTwoPrivateOldController extends Controller
 {
     /**
@@ -40,8 +42,8 @@ class CpaTwoPrivateOldController extends Controller
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_two/',$name);
+            $photo = '/storage/cpa_two/'.$name;
          }
         $reg_pri_tra_old = new CpaTwoRegPrivateTrainOld();
         $reg_pri_tra_old->private_training_name =   $request->pri_tra_name;
@@ -112,15 +114,17 @@ class CpaTwoPrivateOldController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $reg_pri_tra_old = CpaTwoRegPrivateTrainOld::find($id);
         if ($request->hasfile('photo')) {
+            File::delete(public_path($reg_pri_tra_old->photo));
+
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/',$name);
-            $photo = '/storage/'.$name;
+            $file->move(public_path().'/storage/cpa_two/',$name);
+            $photo = '/storage/cpa_two/'.$name;
          }else{
              $photo = $request->old_photo;
          }
-        $reg_pri_tra_old = CpaTwoRegPrivateTrainOld::find($id);
         $reg_pri_tra_old->private_training_name =   $request->pri_tra_name;
         $reg_pri_tra_old->academic_year =   $request->aca_year;
         $reg_pri_tra_old->photo         =   $photo;
@@ -165,6 +169,8 @@ class CpaTwoPrivateOldController extends Controller
     public function destroy($id)
     {
         $reg_pri_tra_old = CpaTwoRegPrivateTrainOld::find($id);
+        File::delete(public_path($reg_pri_tra_old->photo));
+
         $reg_pri_tra_old->delete();
         return response()->json([
             'message' => "Delete Successfully"

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaOneTrainingAddmissionWithExam;
+use Illuminate\Support\Facades\File; 
+
 
 class CpaTraAddmissionExamController extends Controller
 {
@@ -39,6 +41,7 @@ class CpaTraAddmissionExamController extends Controller
     public function store(Request $request)
     {
         if($request->hasfile('photo')) {
+            
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/',$name);
@@ -113,6 +116,9 @@ class CpaTraAddmissionExamController extends Controller
     public function update(Request $request, $id)
     {
         if($request->hasfile('photo')) {
+            $cpa_tra_add_exam = CpaOneTrainingAddmissionWithExam::find($id);
+            File::delete(public_path($cpa_tra_add_exam->photo));
+
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/',$name);
@@ -122,7 +128,6 @@ class CpaTraAddmissionExamController extends Controller
          }
 
         
-        $cpa_tra_add_exam = CpaOneTrainingAddmissionWithExam::find($id);
         $cpa_tra_add_exam->photo         =   $photo;
         $cpa_tra_add_exam->name          =   $request->name;
         $cpa_tra_add_exam->nrc_state_region = $request->nrc_state_region;
@@ -163,6 +168,8 @@ class CpaTraAddmissionExamController extends Controller
     public function destroy($id)
     {
         $cpa_tra_add_exam = CpaOneTrainingAddmissionWithExam::find($id);
+        File::delete(public_path($cpa_tra_add_exam->photo));
+
         $cpa_tra_add_exam->delete();
         return response()->json([
             'message' => "Delete Successfully"
