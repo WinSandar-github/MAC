@@ -106,6 +106,8 @@ The above copyright notice and this permission notice shall be included in all c
         @include('layouts.page_templates.guest')
     @endguest
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <!--   Core JS Files   -->
     <script src="{{ asset('paper') }}/js/core/jquery.min.js"></script>
     <script src="{{ asset('paper') }}/js/core/popper.min.js"></script>
