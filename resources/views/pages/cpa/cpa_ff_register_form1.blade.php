@@ -394,16 +394,7 @@
         createDatepicker("cpaff_datetwo");
         createDatepicker("cpaff_datethree");
         createDatepicker("cpaff_datefour");
-
-        const fetchUsers = () => {
-                axios.get('http://localhost:8000/api/cpa_two_tra_reg')
-                .then(response => {
-                    console.log(response.data)
-                })
-        .catch(error => console.error(error));
-};
-
-fetchUsers();   
+ 
         
     });
 
