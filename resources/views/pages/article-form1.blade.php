@@ -44,13 +44,10 @@
                                    
                                 </div>                                                                                
                                 
-                                <div class="col-md-3 pl-4">
+                                <div class="col-md-3 text-center">
                                     <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
-                                    <div class="input-group mt-3" >                                                    
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                            <label class="custom-file-label" >Choose Image</label>
-                                        </div>
+                                    <div class=" mt-3 mb-3 col-auto">
+                                        <input type="file" class="form-control" />                                            
                                     </div>
                                 </div>
                             </div>
@@ -82,8 +79,8 @@
                                     </div>
 
                                     <div class="row">
-                                        <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
-                                        <label class="col-md-10 col-form-label">{{ __('ကျွန်တော်/ ကျွန်မသည် မြန်မာနိုင်ငံစာရင်းကောင်စီက ဖွင့်လှစ်သည့် လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)သင်တန်းကိုအောင်မြင်ပြီးသူတစ်ီဥးဖြစ်ပါသည်။') }}</label>                                        
+                                        <label class="col-md-1 col-form-label">{{ __('၁။') }}</label> 
+                                        <label class="col-md-10 col-form-label">{{ __('ကျွန်တော်/ ကျွန်မသည် မြန်မာနိုင်ငံစာရင်းကောင်စီက ဖွင့်လှစ်သည့် လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ဒုတိယပိုင်း) သင်းတန်းကိုအောင်မြင်ပြီးသူ တစ်ဦးဖြစ်ပါသည်။') }}</label>                                       
                                     </div>
 
                                     <div class="row">
@@ -252,9 +249,8 @@
                                         <label class="col-md-1 col-form-label">{{ __('') }}</label>
                                         <label class="col-md-2 col-form-label">{{ __('-ရှိပါက အထောက်အထားဖြင့် တင်ပြပေးပါရန်') }}</label>
                                         <div class="col-md-8">
-                                            <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                <label class="custom-file-label" >Choose File</label>
+                                            <div class=" mt-3 mb-3 col-auto">
+                                                <input type="file" class="form-control" />                                            
                                             </div>
                                         </div>
                                     </div>   
@@ -451,6 +447,7 @@
 
         
     });
+    
     </script>
     
 @endpush

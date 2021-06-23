@@ -170,18 +170,14 @@
                                                 </div>
                                                 
                                                 
-                                        </div>
+                                        </div><br>
                                        
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
                                             <label class="col-md-6 col-form-label">{{ __('လျှောက်ထားသူ/အဖွဲ့အစည်း၏နောက်ခံသမိုင်း(သီးခြားစာရွက်ဖြင့်ဖော်ပြရန်)') }}</label>
                                             <div class="col-md-4">
-                                                <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2">
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
+                                                <div class="mb-3 col-auto">
+                                                    <input type="file" class="form-control" />                                            
                                                 </div>
                                             </div>
                                         </div>

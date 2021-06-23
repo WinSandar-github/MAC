@@ -227,13 +227,9 @@
                                             <div class="col-md-2"></div>
                                             <label class="col-md-5 col-form-label">မိတ္တူတင်ပြရန်</label>
                                             <div class="col-md-4">
-                                                    <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile5">
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
-                                                    </div>
+                                                <div class=" mt-3 mb-3 col-auto">
+                                                    <input type="file" class="form-control" />                                            
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -272,13 +268,9 @@
                                                 <label class="col-md-5 col-form-label">{{ __('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်မှတ်ပုံတင်လက်မှတ်မူရင်း') }}</label>
                                                 
                                                 <div class="col-md-4">
-                                                    <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
-                                                    </div>
+                                                <div class=" mt-3 mb-3 col-auto">
+                                                <input type="file" class="form-control" />                                            
+                                            </div>
                                                 </div>
                                         </div>
                                         <div class="row">
@@ -287,13 +279,9 @@
                                                 <label class="col-md-5 col-form-label">{{ __('သက်တမ်းတိုးမည့်နှစ်မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous professional Development-CPD)မှတ်တမ်း') }}</label>
                                                
                                                 <div class="col-md-4">
-                                                    <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
-                                                    </div>
+                                                <div class=" mt-3 mb-3 col-auto">
+                                                <input type="file" class="form-control" />                                            
+                                            </div>
                                                 </div>
                                         </div>
                                         
@@ -304,13 +292,9 @@
                                                 
                                                 
                                                 <div class="col-md-4">
-                                                    <div class="input-group mb-3">
-                                                    
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="inputfile2" multiple>
-                                                            <label class="custom-file-label" >Choose file</label>
-                                                        </div>
-                                                    </div>
+                                                <div class=" mt-3 mb-3 col-auto">
+                                                <input type="file" class="form-control" />                                            
+                                            </div>
                                                 </div>
                                         </div>
                                        

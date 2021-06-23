@@ -159,6 +159,10 @@ Breadcrumbs::for('non-audit-firm-foreign-renew', function ($trail) {
     $trail->parent('non_audit_firm_registration');
     $trail->push('Foreign Firm Information(Renew)', route('page.index', 'non-audit-firm-foreign-renew'));
 });
+Breadcrumbs::for('non-audit-firm-list', function ($trail) {
+    $trail->parent('non_audit_firm_registration');
+    $trail->push('Non_Audit Firm List', route('page.index', 'non-audit-firm-list'));
+});
 Breadcrumbs::for('cpa_part1_registration', function ($trail) {
     $trail->push('CPA Part 1', route('page.index', 'cpa_part1_registration'));
 });

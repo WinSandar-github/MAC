@@ -45,7 +45,7 @@ class AccFirmInfController extends Controller
      */
     public function create()
     {
-        
+        return view('acc_firm_info');
     }
 
     /**
