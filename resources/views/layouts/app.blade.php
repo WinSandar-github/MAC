@@ -24,6 +24,7 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('paper') }}/img/apple-icon.png">
     {{-- <link rel="icon" type="image/png" href="{{ asset('paper') }}/img/favicon.png"> --}}
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Extra details for Live View on GitHub Pages -->
     <!-- Canonical SEO -->
@@ -88,7 +89,6 @@ The above copyright notice and this permission notice shall be included in all c
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-NKDMSK6');</script> --}}
     <!-- End Google Tag Manager -->
-    @stack('scripts')
 </head>
 
 <body class="{{ $class }}">
@@ -106,13 +106,15 @@ The above copyright notice and this permission notice shall be included in all c
         @include('layouts.page_templates.guest')
     @endguest
 
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+
     <!--   Core JS Files   -->
     <script src="{{ asset('paper') }}/js/core/jquery.min.js"></script>
     <script src="{{ asset('paper') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('paper') }}/js/core/bootstrap.min.js"></script>
     <script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
     <!-- Chart JS -->
     <script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
@@ -122,17 +124,16 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('paper') }}/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
     
     <!-- Sharrre libray -->
-    <script src="../assets/demo/jquery.sharrre.js"></script>
+    <script src="{{ asset('paper') }}/demo/jquery.sharrre.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
 
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
    
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('js') }}/common.js"></script>
-    @stack('scripts')
 
     @yield('custom-javascript')
+    @stack('scripts')
 
     {{-- @include('layouts.navbars.fixed-plugin-js') --}}
 </body>

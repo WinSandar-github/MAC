@@ -44,7 +44,7 @@ class CpaFullFormController extends Controller
      */
     public function store(Request $request)
     {
- 
+  
         if ($request->hasfile('cpa')) {
            $file = $request->file('cpa');
            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
@@ -77,6 +77,12 @@ class CpaFullFormController extends Controller
             $file->move(public_path().'/storage/cpa_ff/',$name);
             $passport_photo = '/storage/cpa_ff/'.$name;
         }
+        if ($request->hasfile('certificate')) {
+            $file = $request->file('certificate');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff/',$name);
+            $certificate = '/storage/cpa_ff/'.$name;
+        }
 
         $cpa_full_form  = new CpaFullForm();
         $cpa_full_form->name = $request->name;
@@ -85,7 +91,7 @@ class CpaFullFormController extends Controller
         $cpa_full_form->nrc_citizen         =   $request->nrc_citizen;
         $cpa_full_form->nrc_number          =   $request->nrc_number;
         $cpa_full_form->father_name         =   $request->father_name;
-        $cpa_full_form->education_level_id  =   $request->edu_lvl_id;
+        $cpa_full_form->education_level_id  =   $request->edu_lvl;
         $cpa_full_form->cpa_no              =   $request->cpa_no;
         $cpa_full_form->address             =   $request->address;
         $cpa_full_form->phone               =   $request->phone;
@@ -103,21 +109,22 @@ class CpaFullFormController extends Controller
         $cpa_ff_file->cdp_record        = $cdp_record;
         $cpa_ff_file->passport_photo    = $passport_photo;
         $cpa_ff_file->save();
-
-             
-            $local = new LocalDegree();
-            $local->cpa_full_form_id  = $cpa_full_form->id;
-            $local->year = $request->year;
-            $local->personal_no = $request->personal_no;
-            $local->save();
-    
-            $foreign = new ForeignDegree();
-            $foreign->cpa_full_form_id  = $cpa_full_form->id;
-            $foreign->country       = $request->country;
-            $foreign->organization  = $request->organization;
-            $foreign->year          = $request->year;
-            $foreign->month         = $request->month;
-            $foreign->seat_num      = $request->seat_num;
+        
+        
+        $local = new LocalDegree();
+        $local->cpa_full_form_id  = $cpa_full_form->id;
+        $local->year = $request->lyear;
+        $local->personal_no = $request->personal_no;
+        $local->save();
+        
+        $foreign = new ForeignDegree();
+        $foreign->cpa_full_form_id  = $cpa_full_form->id;
+        $foreign->country       = $request->country;
+        $foreign->organization  = $request->organization;
+        $foreign->year          = $request->fyear;
+        $foreign->month         = $request->month;
+        $foreign->seat_num      = $request->seat_num;
+        $cpa_ff_file->certificate   = $certificate;
             $foreign->save();
         
             return response()->json([

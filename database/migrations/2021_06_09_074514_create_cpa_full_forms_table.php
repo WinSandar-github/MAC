@@ -21,7 +21,7 @@ class CreateCpaFullFormsTable extends Migration
             $table->string('nrc_citizen')->nullable();
             $table->string('nrc_number')->nullable();
             $table->string('father_name');
-            $table->unsignedBigInteger('education_level_id');
+            $table->string('education_level_id');
             $table->string('cpa_no');
             $table->text('address');
             $table->string('phone');
@@ -30,10 +30,7 @@ class CreateCpaFullFormsTable extends Migration
             $table->boolean('foreign_degree')->default(0)->nullable();
             $table->timestamps();
 
-            $table->foreign('education_level_id')
-            ->references('id')
-            ->on('education_levels')
-            ->onDelete('cascade'); 
+        
         });
     }
 

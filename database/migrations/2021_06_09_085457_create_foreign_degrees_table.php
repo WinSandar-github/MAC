@@ -21,6 +21,7 @@ class CreateForeignDegreesTable extends Migration
             $table->string('year')->nullable();
             $table->string('month')->nullable();
             $table->string('seat_num')->nullable();
+            $table->string('certificate')->nullable();
             $table->timestamps();
 
             $table->foreign('cpa_full_form_id')

@@ -41,5 +41,26 @@ Route::resource('/cpa_two_private_newbie','CpaTwoPrivateNewbieController');
 Route::resource('/cpa_two_private_old','CpaTwoPrivateOldController');
 Route::resource('/cpa_two_exam','CpaTwoExamRegController');
 
+Route::get('/audit_firm_type','ApiController@audit_firm_type');
+Route::get('/audit_staff_type','ApiController@audit_staff_type');
+Route::get('/audit_total_staff_type','ApiController@audit_total_staff_type');
+Route::get('/cpa_one_training_ground','ApiController@cpa_one_training_ground');
+Route::get('/education_level','ApiController@education_level');
+Route::get('/local_foreign','ApiController@local_foreign');
+Route::get('/module','ApiController@module');
+Route::get('/non_audit_total_staff','ApiController@non_audit_total_staff');
+Route::get('/organization_structure','ApiController@organization_structure');
+Route::get('/cpa_one_training_ground','ApiController@cpa_one_training_ground');
+Route::get('/type_service_provided','ApiController@type_service_provided');
+
+
+
+
+
+
+
+
+
+
 
 
