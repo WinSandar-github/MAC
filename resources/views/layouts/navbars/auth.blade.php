@@ -25,7 +25,7 @@
                 </a>
             </li>
             <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'teacher_registration') }}">
+                <a href="{{ route('page.index', 'teacher.teacher_registration') }}">
                     <i class="nc-icon nc-paper"></i>
                     <p>{{ __('Teacher') }}</p>
                 </a>
@@ -126,7 +126,7 @@
                         </a>                        
                     </li>                    
                     <li class="{{ $elementActive == 'cpa_ff_registration' ? 'active' : '' }}">
-                        <a class="link" href="{{ route('page.index', 'cpa_ff_registration') }}">
+                        <a class="link" href="{{ route('cpa_ff_registration') }}">
                             <i class="nc-icon nc-single-copy-04"></i>
                             <span class='sidebar-normal'>CPA(FF)</span>
                         </a>

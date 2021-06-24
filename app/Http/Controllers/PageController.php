@@ -33,9 +33,10 @@ class PageController extends Controller
         //$permission = Permission::create(['name' => 'edit articles']);
 
         if (view()->exists("pages.{$page}")) {
+            return $page;
             return view("pages.{$page}");
         }
 
-        return abort(404);
+        // return abort(404);
     }
 }

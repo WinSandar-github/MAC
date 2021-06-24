@@ -19,7 +19,6 @@
         </div>
         <form action="" method="post">
             @csrf
-            
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
