@@ -742,67 +742,104 @@ function delInputFile(diventry){
     $('.btn-remove').parents('.'+diventry+':first').remove();
 }
 
-$('#ajaxform').on('save-data',function(e){
+function SendFormData(){
+    alert("Hello");
+    // let accountancy_firm_reg_no   = $("input[name=accountancy_firm_reg_no]").val();
+    // let accountancy_firm_name     = $("input[name=accountancy_firm_name]").val();
+    // let township                  = $("input[name=township]").val();
+    // let postcode                  = $("input[name=post_code]").val();
+    // let city                      = $("input[name=city]").val();
+    // let state_region              = $("input[name=state]").val();
+    // let telephones                = $("input[name=phone_no]").val();
+    // let email                     = $("input[name=email]").val();
+    // let website                   = $("input[name=website]").val();
+    // let audit_firm_type_id        = $("input[name=audit_firm_type_id]").val();
+    // let local_foreign_id          = $("input[name=local_foreign_id]").val();
+    // let organization_structure_id = $("input[name=org_stru_id]").val();
+    // let type_of_service_provided_id   = $("input[name=t_s_p_id]").val();
+    // let name_of_sole_proprietor       = $("input[name=name_sole_proprietor]").val();
+    // let declaration                   = $("input[name=declaration]").val();
+    // let _token   = $('meta[name="csrf-token"]').attr('content');
+    // $.ajax({
+    //     url: "/acc_firm_info",
+    //     type: 'post',
+    //     data:{
+    //             accountancy_firm_reg_no:accountancy_firm_reg_no,
+    //             accountancy_firm_name:accountancy_firm_name,
+    //             township:township,
+    //             postcode:postcode,
+    //             city:city,
+    //             state_region:state_region,
+    //             telephones:telephones,
+    //             email:email,
+    //             website:website,
+    //             audit_firm_type_id:audit_firm_type_id,
+    //             local_foreign_id:local_foreign_id,
+    //             organization_structure_id:organization_structure_id,
+    //             type_of_service_provided_id:type_of_service_provided_id,
+    //             name_of_sole_proprietor:name_of_sole_proprietor,
+    //             declaration:declaration,            
+    //             _token: _token
+    //         },
+    //     success: function(result){
+           
+    //   }
+    // });
+}
+// $('#ajaxform').on('save-data',function(e){
 
-    e.preventDefault();
+//     e.preventDefault();
 
-  let accountancy_firm_reg_no   = $("input[name=accountancy_firm_reg_no]").val();
-  let accountancy_firm_name     = $("input[name=accountancy_firm_name]").val();
-  let township                  = $("input[name=township]").val();
-  let postcode                  = $("input[name=post_code]").val();
-  let city                      = $("input[name=city]").val();
-  let state_region              = $("input[name=state]").val();
-  let telephones                = $("input[name=phone_no]").val();
-  let email                     = $("input[name=email]").val();
-  let website                   = $("input[name=website]").val();
-  let audit_firm_type_id        = $("input[name=audit_firm_type_id]").val();
-  let local_foreign_id          = $("input[name=local_foreign_id]").val();
-  let organization_structure_id = $("input[name=org_stru_id]").val();
-  let type_of_service_provided_id   = $("input[name=t_s_p_id]").val();
-  let name_of_sole_proprietor       = $("input[name=name_sole_proprietor]").val();
-  let declaration                   = $("input[name=declaration]").val();
-  let _token   = $('meta[name="csrf-token"]').attr('content');
+//   let accountancy_firm_reg_no   = $("input[name=accountancy_firm_reg_no]").val();
+//   let accountancy_firm_name     = $("input[name=accountancy_firm_name]").val();
+//   let township                  = $("input[name=township]").val();
+//   let postcode                  = $("input[name=post_code]").val();
+//   let city                      = $("input[name=city]").val();
+//   let state_region              = $("input[name=state]").val();
+//   let telephones                = $("input[name=phone_no]").val();
+//   let email                     = $("input[name=email]").val();
+//   let website                   = $("input[name=website]").val();
+//   let audit_firm_type_id        = $("input[name=audit_firm_type_id]").val();
+//   let local_foreign_id          = $("input[name=local_foreign_id]").val();
+//   let organization_structure_id = $("input[name=org_stru_id]").val();
+//   let type_of_service_provided_id   = $("input[name=t_s_p_id]").val();
+//   let name_of_sole_proprietor       = $("input[name=name_sole_proprietor]").val();
+//   let declaration                   = $("input[name=declaration]").val();
+//   let _token   = $('meta[name="csrf-token"]').attr('content');
 
-  $.ajax({
-    url: "/acc_firm_info",
-    type:"POST",
-    data:{
-        accountancy_firm_reg_no:accountancy_firm_reg_no,
-        accountancy_firm_name:accountancy_firm_name,
-        township:township,
-        postcode:postcode,
-        city:city,
-        state_region:state_region,
-        telephones:telephones,
-        email:email,
-        website:website,
-        audit_firm_type_id:audit_firm_type_id,
-        local_foreign_id:local_foreign_id,
-        organization_structure_id:organization_structure_id,
-        type_of_service_provided_id:type_of_service_provided_id,
-        name_of_sole_proprietor:name_of_sole_proprietor,
-        declaration:declaration,            
-      _token: _token
-    },
-    success:function(response){
-      console.log(response);
-      if(response) {
-        $('.success').text(response.success);
-        $("#ajaxform")[0].reset();
-      }
-    },
-   });
-});
+//   $.ajax({
+//     url: "/acc_firm_info",
+//     type:"POST",
+//     data:{
+//         accountancy_firm_reg_no:accountancy_firm_reg_no,
+//         accountancy_firm_name:accountancy_firm_name,
+//         township:township,
+//         postcode:postcode,
+//         city:city,
+//         state_region:state_region,
+//         telephones:telephones,
+//         email:email,
+//         website:website,
+//         audit_firm_type_id:audit_firm_type_id,
+//         local_foreign_id:local_foreign_id,
+//         organization_structure_id:organization_structure_id,
+//         type_of_service_provided_id:type_of_service_provided_id,
+//         name_of_sole_proprietor:name_of_sole_proprietor,
+//         declaration:declaration,            
+//       _token: _token
+//     },
+//     success:function(response){
+//       console.log(response);
+//       if(response) {
+//         $('.success').text(response.success);
+//         $("#ajaxform")[0].reset();
+//       }
+//     },
+//    });
+// });
 
 
-//for image upload file
-    const actualBtn = document.getElementById('actual-btn');
 
-    const fileChosen = document.getElementById('file-chosen');
-
-    actualBtn.addEventListener('change', function(){
-        fileChosen.textContent = this.files[0].name
-    });
 
 
 
