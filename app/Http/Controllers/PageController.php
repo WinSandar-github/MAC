@@ -31,12 +31,43 @@ class PageController extends Controller
         //$role = Role::create(['name'=>'writer']);
 
         //$permission = Permission::create(['name' => 'edit articles']);
-
+        
         if (view()->exists("pages.{$page}")) {
-            return $page;
-            return view("pages.{$page}");
+             return view("pages.{$page}");
         }
 
-        // return abort(404);
+        else if (view()->exists("pages.teacher.{$page}")) {
+            return view("pages.teacher.{$page}");
+        }
+        else if (view()->exists("pages.qt_application.{$page}")) {
+            return view("pages.qt_application.{$page}");
+        }
+        else if (view()->exists("pages.article.{$page}")) {
+            return view("pages.article.{$page}");
+        }
+        else if (view()->exists("pages.school.{$page}")) {
+            return view("pages.school.{$page}");
+        }
+        else if (view()->exists("pages.audit_firm.{$page}")) {
+            return view("pages.audit_firm.{$page}");
+        }
+        else if (view()->exists("pages.audit_firm_card.{$page}")) {
+            return view("pages.audit_firm_card.{$page}");
+        }
+        else if (view()->exists("pages.cpa.{$page}")) {
+            return view("pages.cpa.{$page}");
+        }
+        else if (view()->exists("pages.papp.{$page}")) {
+            return view("pages.papp.{$page}");
+        }
+        else if (view()->exists("pages.da.{$page}")) {
+            return view("pages.da.{$page}");
+        }
+        else if (view()->exists("pages.mentor.{$page}")) {
+            return view("pages.mentor.{$page}");
+        }
+
+        return abort(404);
+        
     }
 }
