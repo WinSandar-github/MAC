@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <form enctype="multipart/form-data" id="non_audit_firm_form" method="post" >
+        <form enctype="multipart/form-data" id="non_audit_firm_form" method="post" action="javascript:createNonAuditFirm();">
             @csrf
             
             <div class="row">
@@ -306,7 +306,7 @@
                                                     <div class="entry2">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="pass_photos">                                                                                    
+                                                                <input type="file" class="form-control" name="pass_photos[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls2","entry2")'>
@@ -326,7 +326,7 @@
                                                     <div class="entry3">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="owner_profiles">                                                                                    
+                                                                <input type="file" class="form-control" name="owner_profiles[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls3","entry3")'>
@@ -346,7 +346,7 @@
                                                     <div class="entry4">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="edu_cert">                                                                                    
+                                                                <input type="file" class="form-control" name="edu_certs[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls4","entry4")'>
@@ -366,7 +366,7 @@
                                                     <div class="entry5">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="work_exps">                                                                                    
+                                                                <input type="file" class="form-control" name="work_exps[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls5","entry5")'>
@@ -386,7 +386,7 @@
                                                     <div class="entry6">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="nrc_passports">                                                                                    
+                                                                <input type="file" class="form-control" name="nrc_passports[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls6","entry6")'>
@@ -406,7 +406,7 @@
                                                     <div class="entry7">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="tax_clearances">                                                                                    
+                                                                <input type="file" class="form-control" name="tax_clearances[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls7","entry7")'>
@@ -426,7 +426,7 @@
                                                     <div class="entry8">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="representatives">                                                                                    
+                                                                <input type="file" class="form-control" name="representatives[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls8","entry8")'>
@@ -462,7 +462,7 @@
                                                     <div class="entry9">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="certi_or_regs">
+                                                                <input type="file" class="form-control" name="certi_or_regs[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -484,7 +484,7 @@
                                                     <div class="entry10">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="deeds_memos">
+                                                                <input type="file" class="form-control" name="deeds_memos[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -506,7 +506,7 @@
                                                     <div class="entry11">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="letterheads">
+                                                                <input type="file" class="form-control" name="letterheads[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -528,7 +528,7 @@
                                                     <div class="entry12">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="pass_photos">
+                                                                <input type="file" class="form-control" name="pass_photos[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -550,7 +550,7 @@
                                                     <div class="entry13">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="owner_profiles">
+                                                                <input type="file" class="form-control" name="owner_profiles[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -572,7 +572,7 @@
                                                     <div class="entry14">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="edu_certs">
+                                                                <input type="file" class="form-control" name="edu_certs[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -594,7 +594,7 @@
                                                     <div class="entry15">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="work_exps">
+                                                                <input type="file" class="form-control" name="work_exps[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -616,7 +616,7 @@
                                                     <div class="entry16">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="nrc_passports">
+                                                                <input type="file" class="form-control" name="nrc_passports[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -638,7 +638,7 @@
                                                     <div class="entry17">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="tax_clearances">
+                                                                <input type="file" class="form-control" name="tax_clearances[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -660,7 +660,7 @@
                                                     <div class="entry18">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="representatives">
+                                                                <input type="file" class="form-control" name="representatives[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -697,7 +697,7 @@
                                                     <div class="entry19">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="certificate_incors">
+                                                                <input type="file" class="form-control" name="certificate_incors[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -720,7 +720,7 @@
                                                     <div class="entry20">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="permit_foreigns" >
+                                                                <input type="file" class="form-control" name="permit_foreigns[]" >
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -742,7 +742,7 @@
                                                     <div class="entry21">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="financial_statements">
+                                                                <input type="file" class="form-control" name="financial_statements[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -786,7 +786,7 @@
                                                     <div class="entry23">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="letterheads">
+                                                                <input type="file" class="form-control" name="letterheads[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -808,7 +808,7 @@
                                                     <div class="entry24">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="edu_cert">
+                                                                <input type="file" class="form-control" name="edu_certs[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -830,7 +830,7 @@
                                                     <div class="entry25">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="work_exp">
+                                                                <input type="file" class="form-control" name="work_exps[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -852,7 +852,7 @@
                                                     <div class="entry26">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="nrc_passport">
+                                                                <input type="file" class="form-control" name="nrc_passports[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -874,7 +874,7 @@
                                                     <div class="entry27">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="tax_clearance">
+                                                                <input type="file" class="form-control" name="tax_clearances[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -896,7 +896,7 @@
                                                     <div class="entry28">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="representative">
+                                                                <input type="file" class="form-control" name="representatives[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -1114,7 +1114,7 @@
         
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8000/api/acc_firm_info",
+                url: "api/acc_firm_info",
                 contentType: false,
                 processData: false,
                 data: formData,
