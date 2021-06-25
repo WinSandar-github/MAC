@@ -18,8 +18,7 @@
             </div>
         </div>
 
-        <!-- <form enctype="multipart/form-data" action=""> -->
-        <form action="SendFormData()">
+        <form enctype="multipart/form-data" id="non_audit_firm_form" method="post" >
             @csrf
             
             <div class="row">
@@ -286,7 +285,7 @@
                                                     <div class="entry1">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="letterheads" >
+                                                                <input type="file" class="form-control" name="letterheads[]" >
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -1075,7 +1074,7 @@
                             
                             <div class="row">
                                 <div class="col-md-11 d-md-flex justify-content-md-end">
-                                    <button  class="btn btn-primary btn-round ">{{ __('Save') }}</button>
+                                    <button  type="submit" class="btn btn-primary btn-round">{{ __('Save') }}</button>
                                 </div>
                             </div>
                                             
@@ -1107,9 +1106,25 @@
 
 @push('scripts')
 <script>
-
-
-    
-    </script>
+    $(document).ready(function(){
+        $('#non_audit_firm_form').submit(function(e) {
+            e.preventDefault();        
+            var formData = new FormData(this);
+            console.log(formData);
+        
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8000/api/acc_firm_info",
+                contentType: false,
+                processData: false,
+                data: formData,
+                success: function (data) {
+                    alert("Successfully")
+                },
+                error:function (message){}
+            });
+        });
+    });
+</script>
 
 @endpush
