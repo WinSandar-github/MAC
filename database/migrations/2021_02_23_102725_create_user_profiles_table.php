@@ -40,7 +40,7 @@ class CreateUserProfilesTable extends Migration
             $table->string('contact_number')->nullable();
             $table->unsignedBigInteger('login_admin');
 
-            $table->foreign('training_class_id')->references('id')->on('training_classes');
+            // $table->foreign('training_class_id')->references('id')->on('training_classes');
             $table->foreign('login_admin')->references('id')->on('users');
             $table->timestamps();
         });
