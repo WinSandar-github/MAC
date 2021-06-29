@@ -74,7 +74,7 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet" /> -->
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
     <!--bootstrap 5-->
-    <link href="{{ asset('bootstrap-5') }}/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ asset('plugins/bootstrap-5') }}/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Custom CSS -->
     <link href="{{ asset('css') }}/custom.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
@@ -82,6 +82,12 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <!--treeview css-->
     <link href="{{ asset('css') }}/treeview.css" rel="stylesheet" />
+    <!--toastr-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugins/toastr') }}/toastr.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-select/css/select.bootstrap4.css">
+    <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-responsive/css/responsive.bootstrap4.min.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" />
     <!-- Google Tag Manager -->
     {{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -119,7 +125,7 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
     <script src="{{ asset('paper') }}/js/plugins/bootstrap-notify.js"></script>
-    <script src="{{ asset('bootstrap-5') }}/js/bootstrap.min.js"></script>
+    <script src="{{ asset('plugins/bootstrap-5') }}/js/bootstrap.min.js"></script>
     <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="{{ asset('paper') }}/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
     
@@ -127,11 +133,16 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('paper') }}/demo/jquery.sharrre.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
-
-   
+    <script src="{{ asset('js') }}/audit_firm.js"></script>  
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('js') }}/common.js"></script>
-
+    <!--toastr-->
+    <script src="{{ asset('plugins/toastr') }}/toastr.min.js"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('plugins') }}/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('plugins') }}/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="{{ asset('plugins') }}/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="{{ asset('plugins') }}/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
     @yield('custom-javascript')
     @stack('scripts')
 

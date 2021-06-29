@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('audit-firm-initial-accountancy') }}
             </div>
         </div>
-            <form action="{{ route('acc_firm_info.store') }}" method="post" enctype="multipart/form-data">
+            <form id="audit_firm_form" method="post" action="javascript:createAuditFirm();" enctype="multipart/form-data">
             @csrf
             
             <div class="row">
@@ -195,7 +195,7 @@
                                                                     </div>
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(a)Copy of letterhead seal to be used</label>
+                                                                            <label class="form-label">(a)Copy of Public Practice Accountant Certificate</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -203,7 +203,7 @@
                                                                         <div class="entry1">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="ppa_certis[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -217,14 +217,14 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(b)1 Passport size photo</label>                                                                        
+                                                                            <label class="form-label">(b)Copy of stationery/letterhead to be used in signing of auditor's report</label>                                                                        
                                                                         </div>  
                                                                     </div>
                                                                     <div class="controls2">
                                                                         <div class="entry2">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >                                                                                    
+                                                                                    <input type="file" class="form-control" name="letterheads[]">                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
                                                                                     <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls2","entry2")'>
@@ -237,14 +237,14 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(c)Profile of the owner</label>                                                                        
+                                                                            <label class="form-label">(c)Copy of Tax clearance from Internal Revenue Department</label>                                                                        
                                                                         </div>  
                                                                     </div>
                                                                     <div class="controls3">
                                                                         <div class="entry3">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >                                                                                    
+                                                                                    <input type="file" class="form-control" name="tax_clearances[]">                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
                                                                                     <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls3","entry3")'>
@@ -257,14 +257,14 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(d)Copy of Education Certificate</label>                                                                        
+                                                                            <label class="form-label">(d)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>                                                                        
                                                                         </div>  
                                                                     </div>
                                                                     <div class="controls4">
                                                                         <div class="entry4">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >                                                                                    
+                                                                                    <input type="file" class="form-control" name="representatives[]">                                                                                    
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
                                                                                     <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls4","entry4")'>
@@ -275,85 +275,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(e)Letter outlining past work experience</label>                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls5">
-                                                                        <div class="entry5">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls5","entry5")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(f)Copy of owner’s NRC Card/ Passport</label>                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls6">
-                                                                        <div class="entry6">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls6","entry6")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(g)Copy of Tax clearance from Internal Revenue Departme</label>                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls7">
-                                                                        <div class="entry7">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls7","entry7")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(h)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls8">
-                                                                        <div class="entry8">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls8","entry8")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>                                                   
+                                                                                                                     
                                                                 </div>
                                                             </div>  
                                                         </div>
@@ -372,7 +294,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(a)Copy of Certificate or Registration, if any</label>
+                                                                            <label class="form-label">(a)Copy of Public Practice Accountant Certificate all partners</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -380,7 +302,7 @@
                                                                         <div class="entry9">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="ppa_certis[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -394,7 +316,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(b)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
+                                                                            <label class="form-label">(b)Copy of Certificate or Registration, if any</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -402,7 +324,7 @@
                                                                         <div class="entry10">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="certi_or_regs[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -416,7 +338,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(c)Copy of letterhead to be used</label>
+                                                                            <label class="form-label">(c)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -424,7 +346,7 @@
                                                                         <div class="entry11">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="deeds_memos[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -438,7 +360,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(d)Passport size photos of the all partners</label>
+                                                                            <label class="form-label">(d)Copy of stationery/letterhead to be used in signing of auditor's report</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -446,7 +368,7 @@
                                                                         <div class="entry12">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="letterheads[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -460,7 +382,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(e)Profiles of the all partners</label>
+                                                                            <label class="form-label">(e)Copy of Tax clearance from Internal Revenue Department</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -468,7 +390,7 @@
                                                                         <div class="entry13">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="tax_clearances[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -482,7 +404,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(f)Copy of Education Certificates of the all partners</label>
+                                                                            <label class="form-label">(f)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -490,7 +412,7 @@
                                                                         <div class="entry14">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="representatives[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -502,93 +424,7 @@
                                                                         </div>
                                                                     </div> 
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(g)Letter outlining past work experiences of the all partners</label>
-                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls15">
-                                                                        <div class="entry15">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
-                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls15","entry15")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> 
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(h)Copy of Partners’ NRC Card/ Passport</label>
-                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls16">
-                                                                        <div class="entry16">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
-                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls16","entry16")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> 
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(i)Copy of Tax clearance from Internal Revenue Department</label>
-                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls17">
-                                                                        <div class="entry17">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
-                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls17","entry17")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div> 
-
-                                                                   <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(j)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls18">
-                                                                        <div class="entry18">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
-                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls18","entry18")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                                    
                                                                     
                                                                 </div>
                                                             </div>  
@@ -607,7 +443,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(a)Copy of Certificate of Incorporation (company incorporated in Myanmar)/ Certificate of Registration (branch office registered in Myanmar)</label>
+                                                                            <label class="form-label">(a)Copy of Public Practice Accountant Certificate all shareholders</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -615,7 +451,7 @@
                                                                         <div class="entry19">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="ppa_certis[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -630,7 +466,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(b)Copy of Permit under Section 27A of Myanmar Companies Act (For Only Foreign Company)</label>
+                                                                            <label class="form-label">(b)Copy of Certificate of Incorporation</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -638,7 +474,7 @@
                                                                         <div class="entry20">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="certificate_incors[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -652,7 +488,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(c)Copy of recent audited financial statements</label>
+                                                                            <label class="form-label">(c)Copy of signed Memorandum of Associations and Articles of Associations or constitution</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -660,7 +496,7 @@
                                                                         <div class="entry21">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="memorandums[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -674,7 +510,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(d)Copy of commercial tax registration certificate</label>
+                                                                            <label class="form-label">(d)Copy of Form 6, Form 26 and Form E</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -682,7 +518,7 @@
                                                                         <div class="entry22">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="form6_26e[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -696,7 +532,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(e)Copy of letterhead to be used</label>
+                                                                            <label class="form-label">(e)Copy of Form A1 and/or Additional Form</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -704,7 +540,7 @@
                                                                         <div class="entry23">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="form_a1[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -718,7 +554,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(f)Copy of Education Certificates of the professional staff</label>
+                                                                            <label class="form-label">(f)Copy of commercial tax registration certificate</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -726,7 +562,7 @@
                                                                         <div class="entry24">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="tax_reg_certificate[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -740,7 +576,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(g)Letter outlining past work experiences of the professional staff</label>
+                                                                            <label class="form-label">(g)Copy of stationery/letterhead to be used in signing of auditor's report</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -748,7 +584,7 @@
                                                                         <div class="entry25">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="letterheads[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -762,7 +598,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(h)Copy of shareholder’s and directors’ NRC Card/ Passpor</label>
+                                                                            <label class="form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -770,7 +606,7 @@
                                                                         <div class="entry26">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="tax_clearances[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -784,7 +620,7 @@
 
                                                                     <div class="row mb-3">
                                                                         <div class="form-group">
-                                                                            <label class="form-label">(i)Copy of Tax clearance from Internal Revenue Department</label>
+                                                                            <label class="form-label">(i)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
                                                                         
                                                                         </div>  
                                                                     </div>
@@ -792,7 +628,7 @@
                                                                         <div class="entry27">
                                                                             <div class="row mb-3">
                                                                                 <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
+                                                                                    <input type="file" class="form-control" name="representatives[]">
                                                                                     
                                                                                 </div>
                                                                                 <div class="col-md-1 col-auto">
@@ -804,27 +640,7 @@
                                                                         </div>
                                                                     </div> 
                                                                     
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(j)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-                                                                        
-                                                                        </div>  
-                                                                    </div>
-                                                                    <div class="controls28">
-                                                                        <div class="entry28">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input type="file" class="form-control" >
-                                                                                    
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls28","entry28")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>                                                                                                                        
+                                                                                                                                                                                         
                                                                 </div>
                                                             </div>  
                                                         </div>
@@ -862,11 +678,11 @@
                                                                         <td><input type="text" value="" name="foa_name[]" class="form-control" autocomplete="off"></td>
                                                                         <td><input type="text" value="" name="foa_pub_pri_reg_no[]" class="form-control" autocomplete="off"></td>
                                                                         <td>
-                                                                            <input type="radio" value="1" name="foa_authority_to_sign">
+                                                                            <input type="radio" value="1" name="foa_authority_to_sign" id="report_yes">
                                                                             <label class="form-check-label">Yes</label>
                                                                         </td>
                                                                         <td>
-                                                                            <input type="radio" value="2" name="foa_authority_to_sign">
+                                                                            <input type="radio" value="2" name="foa_authority_to_sign" id="report_yes">
                                                                             <label class="form-check-label">No</label>
                                                                         </td>
                                                                         <td></td>
@@ -958,10 +774,10 @@
                                                                         <td>
                                                                             No of principals/ partners
                                                                         </td>
-                                                                        <td><input type="number" name="ats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                        <td><input type="number" name="ats_audit_staff[]" id="principal_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
+                                                                        <td><input type="number" value="0" name="ats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                                        <td><input type="number" value="0" name="ats_audit_staff[]" id="principal_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
                                                                         <td>
-                                                                            <input type="number" name="ats_non_audit_staff[]" id="principal_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
+                                                                            <input type="number" value="0" name="ats_non_audit_staff[]" id="principal_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
                                                                             
                                                                         </td>
                                                                         <input type="hidden" value="1" name="ats_audit_total_staff_type_id[]">
@@ -971,10 +787,10 @@
                                                                         <td>
                                                                         No of directors who are not principals/ partners
                                                                         </td>
-                                                                        <td><input type="number"  name="ats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                        <td><input type="number" name="ats_audit_staff[]" id="non_principal_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
+                                                                        <td><input type="number" value="0" name="ats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                                        <td><input type="number" value="0" name="ats_audit_staff[]" id="non_principal_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
                                                                         <td>
-                                                                            <input type="number" value="" name="ats_non_audit_staff[]" id="non_principal_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
+                                                                            <input type="number" value="0" name="ats_non_audit_staff[]" id="non_principal_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
                                                                             
                                                                         </td>
                                                                         <input type="hidden" value="2" name="ats_audit_total_staff_type_id[]">
@@ -984,10 +800,10 @@
                                                                         <td>
                                                                         No of managerial level staff
                                                                         </td>
-                                                                        <td><input type="number" value="" name="ats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                        <td><input type="number" value="" name="ats_audit_staff[]" id="managerial_level_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
+                                                                        <td><input type="number" value="0" name="ats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                                        <td><input type="number" value="0" name="ats_audit_staff[]" id="managerial_level_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
                                                                         <td>
-                                                                            <input type="number" value="" name="ats_non_audit_staff[]" id="managerial_level_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
+                                                                            <input type="number" value="0" name="ats_non_audit_staff[]" id="managerial_level_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
                                                                             
                                                                         </td>
                                                                         <input type="hidden" value="3" name="ats_audit_total_staff_type_id[]">
@@ -997,10 +813,10 @@
                                                                         <td>
                                                                         No of non-mangerial level
                                                                         </td>
-                                                                        <td><input type="number" value="" name="ats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                        <td><input type="number" value="" name="ats_audit_staff[]" id="non-mangerial_level_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
+                                                                        <td><input type="number" value="0" name="ats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                                        <td><input type="number" value="0" name="ats_audit_staff[]" id="non-mangerial_level_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
                                                                         <td>
-                                                                            <input type="number" value="" name="ats_non_audit_staff[]" id="non-mangerial_level_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
+                                                                            <input type="number" value="0" name="ats_non_audit_staff[]" id="non-mangerial_level_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
                                                                             
                                                                         </td>
                                                                         <input type="hidden" value="4" name="ats_audit_total_staff_type_id[]">
@@ -1051,10 +867,10 @@
                                                                             <td>
                                                                                 No of principals/ partners/ directors
                                                                             </td>
-                                                                            <td><input type="number" value="" name="as_total[]" id="director_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="" name="as_full_time[]" id="director_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
+                                                                            <td><input type="number" value="0" name="as_total[]" id="director_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
+                                                                            <td><input type="number" value="0" name="as_full_time[]" id="director_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
                                                                             <td>
-                                                                                <input type="number" value="" name="as_part_time[]" id="director_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()"> 
+                                                                                <input type="number" value="0" name="as_part_time[]" id="director_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()"> 
                                                                                 <input type="hidden" value="1" name="as_audit_staff_type_id[]">
                                                                             </td>
                                                                             
@@ -1064,10 +880,10 @@
                                                                             <td>
                                                                                 No of audit managers
                                                                             </td>
-                                                                            <td><input type="number" value="" name="as_total[]" id="audit_manager_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="" name="as_full_time[]" id="audit_manager_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
+                                                                            <td><input type="number" value="0" name="as_total[]" id="audit_manager_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
+                                                                            <td><input type="number" value="0" name="as_full_time[]" id="audit_manager_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
                                                                             <td>
-                                                                                <input type="number" value="" name="as_part_time[]" id="audit_manager_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
+                                                                                <input type="number" value="0" name="as_part_time[]" id="audit_manager_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
                                                                                 <input type="hidden" value="2" name="as_audit_staff_type_id[]">
                                                                             </td>
                                                                             
@@ -1077,10 +893,10 @@
                                                                             <td>
                                                                                 No of audit seniors
                                                                             </td>
-                                                                            <td><input type="number" value="" name="as_total[]" id="audit_senior_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="" name="as_full_time[]" id="audit_senior_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
+                                                                            <td><input type="number" value="0" name="as_total[]" id="audit_senior_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
+                                                                            <td><input type="number" value="0" name="as_full_time[]" id="audit_senior_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
                                                                             <td>
-                                                                                <input type="number" value="" name="as_part_time[]" id="audit_senior_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
+                                                                                <input type="number" value="0" name="as_part_time[]" id="audit_senior_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
                                                                                 <input type="hidden" value="3" name="as_audit_staff_type_id[]">
                                                                             </td>
                                                                             
@@ -1095,10 +911,10 @@
                                                                                     
                                                                                 </ul>
                                                                             </td>
-                                                                            <td><input type="number" value="" name="as_total[]" id="audit_assistant_cpa_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="" name="as_full_time[]" id="audit_assistant_cpa_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
+                                                                            <td><input type="number" value="0" name="as_total[]" id="audit_assistant_cpa_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
+                                                                            <td><input type="number" value="0" name="as_full_time[]" id="audit_assistant_cpa_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
                                                                             <td>
-                                                                                <input type="number" value="" name="as_part_time[]" id="audit_assistant_cpa_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
+                                                                                <input type="number" value="0" name="as_part_time[]" id="audit_assistant_cpa_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
                                                                                 <input type="hidden" value="4" name="as_audit_staff_type_id[]">
                                                                             </td>
                                                                             
@@ -1106,10 +922,10 @@
                                                                         </tr>
                                                                         <tr>
                                                                             
-                                                                            <td><input type="number" value="" name="as_total[]" id="audit_assistant_others_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="" name="as_full_time[]" id="audit_assistant_others_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
+                                                                            <td><input type="number" value="0" name="as_total[]" id="audit_assistant_others_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
+                                                                            <td><input type="number" value="0" name="as_full_time[]" id="audit_assistant_others_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
                                                                             <td>
-                                                                                <input type="number" value="" name="as_part_time[]" id="audit_assistant_others_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
+                                                                                <input type="number" value="0" name="as_part_time[]" id="audit_assistant_others_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
                                                                                 <input type="hidden" value="5" name="as_audit_staff_type_id[]">
                                                                             </td>
                                                                             
@@ -1167,7 +983,7 @@
                                                 
                                                 <div class="row">
                                                     <div class="col-md-11 d-md-flex justify-content-md-end">
-                                                        <button type="submit" class="btn btn-primary btn-round">{{ __('Save') }}</button>
+                                                        <button type="submit" class="btn btn-primary btn-round" form="audit_firm_form">{{ __('Save') }}</button>
                                                     </div>
                                                 </div>
                             </div>
@@ -1198,26 +1014,5 @@
 @endsection
 
 @push('scripts')
-<script>
-    
-            // $(document).on('click', '.btn-add', function (e) {
-            //     e.preventDefault();
 
-            //     var controlForm = $('.controls1:first'),
-            //         currentEntry = $(this).parents('.entry1:first'),
-            //         newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-            //     newEntry.find('input').val('');
-            //     controlForm.find('.entry1:not(:last) .btn-add')
-            //         .removeClass('btn-add').addClass('btn-remove')
-            //         .removeClass('btn-success').addClass('btn-danger')
-            //         .html('<span class="fa fa-trash"></span>');
-            // }).on('click', '.btn-remove', function (e) {
-            //     $(this).parents('.entry1:first').remove();
-
-            //     e.preventDefault();
-            //     return false;
-            // });
-    
-</script>
 @endpush

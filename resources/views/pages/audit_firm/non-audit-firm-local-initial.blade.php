@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <form enctype="multipart/form-data" id="non_audit_firm_form" method="post" >
+        <form id="non-audit-form" method="post" action="javascript:createAuditFirm();" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="2" name="audit_firm_type_id">
             <input type="hidden" value="1" name="local_foreign_id">
@@ -241,25 +241,25 @@
                                 <div class='col-md-2'></div>
                                 <div class="col-md-3">
                                     <div class="">
-                                        <input type="radio" name="org_stru_id" autofocus value="1" onclick="getOrganization()">
+                                        <input type="radio" name="org_stru_id" value="1" onclick="getOrganization()">
                                         <label class="form-check-label">Sole Proprietorship</label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="">
-                                        <input type="radio" name="org_stru_id" autofocus value="2" onclick="getOrganization()">
+                                        <input type="radio" name="org_stru_id" value="2" onclick="getOrganization()">
                                         <label class="form-check-label">Partnership</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="">
-                                        <input type="radio" name="org_stru_id"  autofocus value="3" onclick="getOrganization()">
+                                        <input type="radio" name="org_stru_id"   value="3" onclick="getOrganization()">
                                         <label class="form-check-label">Company Incorporated</label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="">
-                                        <input type="radio" name="org_stru_id"  autofocus value="4" onclick="getOrganization()">
+                                        <input type="radio" name="org_stru_id"  value="4" onclick="getOrganization()">
                                         <label class="form-check-label">Others</label>
                                     </div>
                                 </div>
@@ -719,7 +719,7 @@
                                                     <div class="entry20">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="permit_foreigns[]" >
+                                                                <input type="file" class="form-control" name="permit_foreigns[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -921,7 +921,7 @@
                                     <label class="col-md-1 col-form-label"></label>
                                     <div class="col-md-10 col-form-label">
                                     <div class="form-group">
-                                        <input type="text" name="name_sole_proprietor"  class="form-control  @error('name') is-invalid @enderror"  autofocus autocomplete="off">
+                                        <input type="text" name="name_sole_proprietor"  class="form-control"  autofocus autocomplete="off">
                                     </div>
                                     </div>
                             </div>
@@ -947,7 +947,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>No of directors who are alse shareholders</td>
-                                                        <td><input type="number" name="nats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                        <td><input type="number" value="0" name="nats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                         <input type="hidden" value="1" name="nats_type_id[]">
                                                         
                                                         
@@ -956,7 +956,7 @@
                                                         <td>
                                                         No of directors who are not shareholders
                                                         </td>
-                                                        <td><input type="number" name="nats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                        <td><input type="number" value="0" name="nats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                         <input type="hidden" value="2" name="nats_type_id[]">
                                                         
                                                         
@@ -965,7 +965,7 @@
                                                         <td>
                                                         No of managerial level staff
                                                         </td>
-                                                        <td><input type="number" name="nats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                        <td><input type="number" value="0" name="nats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                         <input type="hidden" value="3" name="nats_type_id[]">
                                                         
                                                     </tr>
@@ -973,7 +973,7 @@
                                                         <td>
                                                         No of non-mangerial level
                                                         </td>
-                                                        <td><input type="number" name="nats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                        <td><input type="number" value="0" name="nats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                         <input type="hidden" value="4" name="nats_type_id[]">
                                                         
                                                         
@@ -1013,42 +1013,42 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="accounting_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="3">
+                                                            <input type="radio" name="t_s_p_id" id="accounting_service" class="" autofocus value="3">
                                                             <label class="form-check-label">Accounting</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="advisory_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="4">
+                                                            <input type="radio" name="t_s_p_id" id="advisory_service" class="" autofocus value="4">
                                                             <label class="form-check-label">Advisory</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="taxation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="5">
+                                                            <input type="radio" name="t_s_p_id" id="taxation_service" class="" autofocus value="5">
                                                             <label class="form-check-label">Taxation</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="liquidation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="6">
+                                                            <input type="radio" name="t_s_p_id" id="liquidation_service" class="" autofocus value="6">
                                                             <label class="form-check-label">Liquidation</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="accounting_system_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="7">
+                                                            <input type="radio" name="t_s_p_id" id="accounting_system_service" class="" autofocus value="7">
                                                             <label class="form-check-label">Accounting System</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="other_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="8">
+                                                            <input type="radio" name="t_s_p_id" id="other_service" class="" autofocus value="8">
                                                             <label class="form-check-label">Others</label>
                                                         </td>
                                                         
@@ -1064,7 +1064,7 @@
                                 <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        I <input type="text" name="declaration" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="" autocomplete="off">
+                                        I <input type="text" name="declaration" id="declaration_name" class="" autofocus value="" autocomplete="off">
                                         (managing director) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
                                     </div>
                             </div>                                                   
@@ -1073,7 +1073,7 @@
                             
                             <div class="row">
                                 <div class="col-md-11 d-md-flex justify-content-md-end">
-                                    <button  type="submit" class="btn btn-primary btn-round">{{ __('Save') }}</button>
+                                    <button  type="submit" class="btn btn-primary btn-round "  form="non-audit-form">{{ __('Save') }}</button>
                                 </div>
                             </div>
                                             
@@ -1105,27 +1105,6 @@
 
 @push('scripts')
 <script>
-    
-    $(document).ready(function(){
-        $('#non_audit_firm_form').submit(function(e) {
-            e.preventDefault();        
-            var formData = new FormData(this);
-            console.log(formData);
-        
-            $.ajax({
-                type: "POST",
-                url: "api/acc_firm_info",
-                contentType: false,
-                processData: false,
-                data: formData,
-                success: function (data) {
-                    alert("Successfully");
-                    location.href="/non-audit-firm-list";
-                },
-                error:function (message){}
-            });
-        });
-    });
 
     
 </script>

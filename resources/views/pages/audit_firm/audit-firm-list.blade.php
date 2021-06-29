@@ -18,7 +18,6 @@
             </div>
         </div>
             <form action="" method="post">
-            @csrf
             
             <div class="row">
                 <div class="col-md-12">
@@ -27,7 +26,29 @@
                                 
                             </div>
                             <div class="card-body">
-                               
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <table id="tbl_audit" class="table table-hover text-nowrap">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="less-font-weight">Sr</th>
+                                                        <th class="less-font-weight">Accountancy Firm Registration No</th>
+                                                        <th class="less-font-weight">Accountancy Firm Name</th>
+                                                        <th >
+                                                            
+                                                        </th>
+                                                    </tr>
+                                                    
+                                                </thead>
+                                                <tbody id="tbl_audit_body" class="hoverTable"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                                 
                             </div>
 
@@ -57,5 +78,7 @@
 @endsection
 
 @push('scripts')
-
+<script>
+getAudit();
+</script>
 @endpush

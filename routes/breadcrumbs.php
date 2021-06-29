@@ -105,6 +105,12 @@ Breadcrumbs::for('teacher-register-form2', function ($trail) {
 Breadcrumbs::for('school_registration', function ($trail) {
     $trail->push('School', route('page.index', 'school_registration'));
 });
+Breadcrumbs::for('batch_list', function ($trail) {
+    $trail->push('Batch', route('page.index', 'batch_list'));
+});
+Breadcrumbs::for('course_list', function ($trail) {
+    $trail->push('Course', route('page.index', 'course_list'));
+});
 Breadcrumbs::for('school-register-form1', function ($trail) {
     $trail->parent('school_registration');
     $trail->push('ကျောင်းဖွင့်လှစ်လုပ်ကိုင်ခွင့်လျှောက်လွှာ', route('page.index', 'school-register-form1'));

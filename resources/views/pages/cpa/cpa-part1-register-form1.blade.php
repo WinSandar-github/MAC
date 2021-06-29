@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('cpa-part1-register-form1') }}
             </div>
         </div>
-            <form action="{{ route('cpa_addmission_direct.store') }}" method="post" enctype="multipart/form-data">
+        <form id="non-audit-form" method="post" action="javascript:createAuditFirm();" enctype="multipart/form-data">
             @csrf
             
             <div class="row">
@@ -32,7 +32,7 @@
                                     <div class="col-md-3 text-center">
                                         <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                         <div class=" mt-3 mb-3 col-auto">
-                                            <input type="file" class="form-control" />                                            
+                                            <input type="file" class="form-control" name="photo"/>                                            
                                         </div>
                                     </div>
                                 </div><br>
