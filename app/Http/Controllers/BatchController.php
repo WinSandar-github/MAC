@@ -3,66 +3,70 @@
 namespace App\Http\Controllers;
 
 use App\Batch;
-use App\TMSClass;
-use App\TrainingClass;
-use Faker\Provider\Base;
 use Illuminate\Http\Request;
 
 class BatchController extends Controller
 {
     public function index()
     {
-        $batches = Batch::with('training_classes')->get();
-        $tmsclasses = TMSClass::get();
-        return view('pages.batch', compact('batches','tmsclasses'));
+        $batches = Batch::with('course')->get();
+         return response()->json([
+            'data'  => $batches
+        ]);
     }
     public function create()
     {
-        $training_classes = TrainingClass::get();
-        $classes = TMSClass::get();
-        return view('pages.create_batch',compact('training_classes','classes'));
+       
     }
     public function store(Request $request)
     {
         $request->validate([
-            'batch_name' => 'required',
-            'training_class' => 'required',
-            'from' => 'required',
-            'to' => 'required',
+            'name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
         ]);
         $batch = new Batch;
-        $batch->batch_name = $request->batch_name;
-        $batch->training_id = $request->training_class;
-        $batch->from = $request->from;
-        $batch->to = $request->to;
-        $batch->class_id = json_encode($request->class);
-        $batch->publish_status = 1;
+        $batch->name            = $request->name;
+        $batch->course_id       = $request->course_id;
+        $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
+        $batch->end_date        = date('Y-m-d',strtotime($request->end_date));
+        $batch->publish_status  = 1;
+        $batch->moodle_course_id= 1;
+        $batch->accept_application_date = $request->acc_app_date;
         $batch->save();
-        return redirect()->route('batch.index')->with('success','Batches are Successfully Saved');
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
     }
     public function show($id)
     {
-        //
+        $batches = Batch::where('id',$id)->with('course')->get();
+        return response()->json([
+            'data'  => $batches
+        ]);return $batch;
+
+        
     }
     public function edit($id)
     {
-        $training_classes = TrainingClass::get();
-        $classes = TMSClass::get();
-        $batch = Batch::find($id);
-        return view('pages.edit_batch', compact('batch','training_classes','classes'));
     }
+        
     public function update(Request $request, $id)
     {
         $batch = Batch::find($id);
-        $batch->batch_name = $request->batch_name;
-        $batch->training_id = $request->training_class;
-        $batch->from = $request->from;
-        $batch->to = $request->to;
-        $batch->class_id = json_encode($request->class);
+        $batch->name            = $request->name;
+        $batch->course_id       = $request->course_id;
+        $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
+        $batch->end_date        = date('Y-m-d',strtotime($request->end_date));
+        $batch->publish_status  = 1;
+        $batch->moodle_course_id= 1;
+        $batch->accept_application_date = $request->acc_app_date;
         $batch->save();
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
 
-        return redirect()->route('batch.index')->with('success', 'Batch Updated Successfully!');
-    }
+     }
 
     /**
      * Remove the specified resource from storage.
@@ -75,6 +79,8 @@ class BatchController extends Controller
         $batch = Batch::find($id);
         $batch->delete();
 
-        return redirect()->route('batch.index')->with('success', 'Batch Deleted Successfully!');
+        return response()->json([
+            'message' => "Delete Successfully"
+        ],200);   
     }
 }

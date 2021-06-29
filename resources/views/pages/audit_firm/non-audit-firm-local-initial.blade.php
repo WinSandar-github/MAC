@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <form id="ajaxform" enctype="multipart/form-data">
+        <form  enctype="multipart/form-data" id="non_audit_firm_form">
             @csrf
             
             <div class="row">
@@ -1106,7 +1106,7 @@
 
 @push('scripts')
 <script>
-
+  
 
     
     </script>

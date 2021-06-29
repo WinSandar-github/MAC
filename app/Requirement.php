@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CentralStaff extends Model
+class Requirement extends Model
 {
-    protected $guarded = [];
+    //
 }
