@@ -55,8 +55,8 @@ class AccFirmInfController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-
+    {       
+            
         if($request->hasfile('ppa_certis'))
         {
             foreach($request->file('ppa_certis') as $file)
@@ -65,8 +65,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $ppa_certi[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $ppa_certi = null;
         }
 
         if($request->hasfile('letterheads'))
@@ -77,8 +79,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $letterhead[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $letterhead = null;
         }
 
         if($request->hasfile('representatives'))
@@ -89,8 +93,9 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $representative[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }else{
+            $representative = null;
         }
 
         if($request->hasfile('certi_or_regs'))
@@ -101,8 +106,9 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $certi_or_reg[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }else{
+            $certi_or_reg = null;
         }
 
 
@@ -114,8 +120,9 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $deeds_memo[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }else{
+            $deeds_memo = null;
         }
 
 
@@ -127,8 +134,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $certi_incor[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $certi_incor = null;
         }
 
         if($request->hasfile('form6_26e'))
@@ -139,8 +148,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $form6_26e[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $form6_26e = null;
         }
 
         if($request->hasfile('form_a1'))
@@ -151,8 +162,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $form_a1[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $form_a1 = null;
         }
 
 
@@ -164,8 +177,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $tax_reg_certificate[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $tax_reg_certificate = null;
         }
 
         if($request->hasfile('pass_photos'))
@@ -176,9 +191,12 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $pass_photo[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
         }
+        else{
+            $pass_photo = null;
+        }
+        
 
         if($request->hasfile('edu_certs'))
         {
@@ -188,8 +206,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $edu_cert[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $edu_cert = null;
         }
 
         if($request->hasfile('owner_profiles'))
@@ -200,8 +220,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $owner_profile[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $owner_profile = null;
         }
 
 
@@ -213,8 +235,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $work_exp[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $work_exp = null;
         }
 
 
@@ -226,8 +250,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $nrc_passport[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $nrc_passport = null;
         }
 
         if($request->hasfile('tax_clearances'))
@@ -238,8 +264,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $tax_clearance[] = '/storage/acc_firm/'.$name;
-            }
-        
+            }        
+        }
+        else{
+            $tax_clearance = null;
         }
 
         if($request->hasfile('permit_foreigns'))
@@ -250,9 +278,12 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $permit_foreigns[] = '/storage/acc_firm/'.$name;
-            }
+            }        
+        }    
+        else{
+            $permit_foreigns = null;
+        }  
         
-        }
 
 
         if($request->hasfile('financial_statements'))
@@ -263,8 +294,10 @@ class AccFirmInfController extends Controller
             
             $file->move(public_path().'/storage/acc_firm/',$name);
             $financial_statement[] = '/storage/acc_firm/'.$name;
-            }
-         
+            }                    
+        }
+        else{
+            $financial_statement = null;
         }
 
                 
@@ -372,23 +405,23 @@ class AccFirmInfController extends Controller
         {
             //Non-Audit Firm File
             if($request->org_stru_id){
-                $audit_file= new NonAuditFirmFile();
-                $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
-                $audit_file->letterhead        = json_encode($letterhead);
-                $audit_file->passport_photo    = json_encode($pass_photo);
-                $audit_file->education_certificate  = json_encode($edu_cert);
-                $audit_file->owner_profile     = json_encode($owner_profile);
-                $audit_file->work_exp          = json_encode($work_exp);
-                $audit_file->nrc_passport      = json_encode($nrc_passport);
-                $audit_file->tax_clearance    = json_encode($tax_clearance);
-                $audit_file->permit_foreign= json_encode($permit_foreigns);
-                $audit_file->financial_statement    = json_encode($financial_statement);
-                $audit_file->representative     = json_encode($representative);
-                $audit_file->certi_or_reg      = json_encode($certi_or_reg);
-                $audit_file->deeds_memo        = json_encode($deeds_memo);
-                $audit_file->certificate_incor    = json_encode($certi_incor);
-                $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);                
-                $audit_file->save();
+                $non_audit_file= new NonAuditFirmFile();
+                $non_audit_file->accountancy_firm_info_id = $acc_firm_info->id;
+                $non_audit_file->letterhead        = json_encode($letterhead);
+                $non_audit_file->passport_photo    = json_encode($pass_photo);
+                $non_audit_file->education_certificate  = json_encode($edu_cert);
+                $non_audit_file->owner_profile     = json_encode($owner_profile);
+                $non_audit_file->work_exp          = json_encode($work_exp);
+                $non_audit_file->nrc_passport      = json_encode($nrc_passport);
+                $non_audit_file->tax_clearance    = json_encode($tax_clearance);
+                $non_audit_file->permit_foreign= json_encode($permit_foreigns);
+                $non_audit_file->financial_statement    = json_encode($financial_statement);
+                $non_audit_file->representative     = json_encode($representative);
+                $non_audit_file->certi_or_reg      = json_encode($certi_or_reg);
+                $non_audit_file->deeds_memo        = json_encode($deeds_memo);
+                $non_audit_file->certificate_incor    = json_encode($certi_incor);
+                $non_audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);                
+                $non_audit_file->save();
             }
 
 

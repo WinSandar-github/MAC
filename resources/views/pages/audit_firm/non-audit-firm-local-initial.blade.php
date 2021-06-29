@@ -18,9 +18,10 @@
             </div>
         </div>
 
-        <form enctype="multipart/form-data" id="non_audit_firm_form" method="post" action="javascript:createNonAuditFirm();">
+        <form enctype="multipart/form-data" id="non_audit_firm_form" method="post" >
             @csrf
-            
+            <input type="hidden" value="2" name="audit_firm_type_id">
+            <input type="hidden" value="1" name="local_foreign_id">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
@@ -32,9 +33,7 @@
                                             <label class="col-md-1 col-form-label">{{ __('1') }}</label>
                                             <label class="col-md-2 col-form-label">{{ __('Firm Registration No') }}</label>
                                             <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <input type="hidden" value="2" name="audit_firm_type_id">
-                                                    <input type="hidden" value="1" name="local_foreign_id">
+                                                <div class="form-group">                                                    
                                                     <input type="text" name="accountancy_firm_reg_no" class="form-control" placeholder="Firm Registration No" autocomplete="off">
                                                 </div>
                                             </div>
@@ -764,7 +763,7 @@
                                                     <div class="entry22">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="tax_reg_certificate">
+                                                                <input type="file" class="form-control" name="tax_reg_certificate[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -1106,6 +1105,7 @@
 
 @push('scripts')
 <script>
+    
     $(document).ready(function(){
         $('#non_audit_firm_form').submit(function(e) {
             e.preventDefault();        
@@ -1119,12 +1119,15 @@
                 processData: false,
                 data: formData,
                 success: function (data) {
-                    alert("Successfully")
+                    alert("Successfully");
+                    location.href="/non-audit-firm-list";
                 },
                 error:function (message){}
             });
         });
     });
+
+    
 </script>
 
 @endpush
