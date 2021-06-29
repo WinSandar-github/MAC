@@ -22,16 +22,17 @@ class BatchController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'from' => 'required',
-            'to' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
         ]);
         $batch = new Batch;
         $batch->name            = $request->name;
         $batch->course_id       = $request->course_id;
-        $batch->from            = date('Y-m-d',strtotime($request->from));
-        $batch->to              = date('Y-m-d',strtotime($request->to));
+        $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
+        $batch->end_date        = date('Y-m-d',strtotime($request->end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
+        $batch->accept_application_date = $request->acc_app_date;
         $batch->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -55,10 +56,11 @@ class BatchController extends Controller
         $batch = Batch::find($id);
         $batch->name            = $request->name;
         $batch->course_id       = $request->course_id;
-        $batch->from            = $request->from;
-        $batch->to              = $request->to;
+        $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
+        $batch->end_date        = date('Y-m-d',strtotime($request->end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
+        $batch->accept_application_date = $request->acc_app_date;
         $batch->save();
         return response()->json([
             'message' => "Update Successfully"

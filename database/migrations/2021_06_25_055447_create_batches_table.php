@@ -17,10 +17,11 @@ class CreateBatchesTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('course_id');
-            $table->date('from');
-            $table->date('to');
+            $table->date('start_date');
+            $table->date('end_date');
             $table->unsignedBigInteger('moodle_course_id');
-            $table->integer('publish_status');
+            $table->boolean('publish_status');
+            $table->date('accept_application_date');
             $table->timestamps();
 
             $table->foreign('course_id')

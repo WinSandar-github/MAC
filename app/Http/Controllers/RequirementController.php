@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Course;
-class CourseController extends Controller
+use App\Requirement;
+
+class RequirementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,20 +14,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $requirements = Requirement::get();
         return response()->json([
-            'data' => $courses
+            'data' => $requirements
         ],200);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -37,14 +28,11 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-         $course = new Course();
-        $course->name               = $request->name;
-        $course->form_fee           = $request->form_fee;
-        $course->registration_fee   = $request->registration_fee;
-        $course->exam_fee           = $request->exam_fee;
-        $course->tution_fee         = $request->tution_fee;
-        $course->description        = $request->description;
-        $course->save();
+        $requirement = new Requirement();
+        $requirement->name          = $request->name;
+        $requirement->require_exam  =   1;
+        $requirement->course_id     = $request->course_id;
+        $requirement->save();
         return response()->json([
             'message' => "Insert Successfully"
         ],200);
@@ -58,22 +46,12 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::all();
+        $requirement = Requirement::find($id);
         return response()->json([
-            'data' => $course
+            'data' => $requirement
         ],200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-    }
-    
     /**
      * Update the specified resource in storage.
      *
@@ -83,14 +61,11 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $course = Course::find($id);
-        $course->name               = $request->name;
-        $course->form_fee           = $request->form_fee;
-        $course->registration_fee   = $request->registration_fee;
-        $course->exam_fee           = $request->exam_fee;
-        $course->tution_fee         = $request->tution_fee;
-        $course->description        = $request->description;
-        $course->save();
+        $requirement = Requirement::find($id);
+        $requirement->name          = $request->name;
+        $requirement->require_exam  =   1;
+        $requirement->course_id     = $request->course_id;
+        $requirement->save();
         return response()->json([
             'message' => "Update Successfully"
         ],200);
@@ -105,10 +80,11 @@ class CourseController extends Controller
      */
     public function destroy($id)
     {
-        $course = Course::find($id);
-        $course->delete();
+        $requirement = Requirement::find($id);
+        $requirement->delete();
         return response()->json([
             'message' => "Delete Successfully"
         ],200);
+
     }
 }

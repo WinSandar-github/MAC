@@ -44,6 +44,9 @@ Route::resource('/course_fee','CourseFeeController');
 Route::resource('/degree','DegreeController');
 Route::resource('/course','CourseController');
 Route::resource('/batch','BatchController');
+Route::apiResource('/student_info','StudentInfoController');
+Route::apiResource('/requirement','RequirementController');
+
 
 
 
