@@ -9,7 +9,7 @@ use App\FirmOwnershipAudit;
 use App\FirmOwnershipNonAudit;
 use App\DirectorsOfficersAudit;
 use App\DirectorsOfficersNonAudit;
-
+use Illuminate\Support\Facades\Storage;
 use App\AuditTotalStaff;
 use App\NonAuditTotalStaff;
 use App\MyanmarCpaNonAuditForeign;
@@ -61,36 +61,38 @@ class AccFirmInfController extends Controller
         {
             foreach($request->file('ppa_certis') as $file)
             {
-            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
-            $file->move(public_path().'/storage/acc_firm/',$name);
-            $ppa_certi[] = '/storage/acc_firm/'.$name;
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/acc_firm/',$name);
+                $ppa_certi[] = $name;
             }
         
+        }else{
+            $ppa_certi = null;
         }
-
+        
         if($request->hasfile('letterheads'))
         {
             foreach($request->file('letterheads') as $file)
             {
-            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
-            $file->move(public_path().'/storage/acc_firm/',$name);
-            $letterhead[] = '/storage/acc_firm/'.$name;
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/acc_firm/',$name);
+                $letterhead[] = $name;
             }
-        
+           
+        }else{
+            $letterhead = null;
         }
-
-        if($request->hasfile('representatives'))
+       if($request->hasfile('representatives'))
         {
             foreach($request->file('representatives') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $representative[] = '/storage/acc_firm/'.$name;
+            $representative[] =$name;
             }
         
+        }else{
+            $representative = null;
         }
 
         if($request->hasfile('certi_or_regs'))
@@ -98,11 +100,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('certi_or_regs') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $certi_or_reg[] = '/storage/acc_firm/'.$name;
+            $certi_or_reg[] = $name;
             }
         
+        }else{
+            $certi_or_reg = null;
         }
 
 
@@ -111,11 +114,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('deeds_memos') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $deeds_memo[] = '/storage/acc_firm/'.$name;
+            $deeds_memo[] = $name;
             }
         
+        }else{
+            $deeds_memo = null;
         }
 
 
@@ -124,11 +128,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('certificate_incors') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $certi_incor[] = '/storage/acc_firm/'.$name;
+            $certi_incor[] = $name;
             }
         
+        }else{
+            $certi_incor = null;
         }
 
         if($request->hasfile('form6_26e'))
@@ -136,11 +141,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('form6_26e') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $form6_26e[] = '/storage/acc_firm/'.$name;
+            $form6_26e[] = $name;
             }
         
+        }else{
+            $form6_26e = null;
         }
 
         if($request->hasfile('form_a1'))
@@ -148,11 +154,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('form_a1') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $form_a1[] = '/storage/acc_firm/'.$name;
+            $form_a1[] = $name;
             }
         
+        }else{
+            $form_a1 = null;
         }
 
 
@@ -161,23 +168,25 @@ class AccFirmInfController extends Controller
             foreach($request->file('tax_reg_certificate') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $tax_reg_certificate[] = '/storage/acc_firm/'.$name;
+            $tax_reg_certificate[] = $name;
             }
         
         }
-
+        else{
+            $tax_reg_certificate = null;
+        }
         if($request->hasfile('pass_photos'))
         {
             foreach($request->file('pass_photos') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $pass_photo[] = '/storage/acc_firm/'.$name;
+            $pass_photo[] = $name;
             }
         
+        }else{
+            $pass_photo = null;
         }
 
         if($request->hasfile('edu_certs'))
@@ -185,11 +194,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('edu_certs') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $edu_cert[] = '/storage/acc_firm/'.$name;
+            $edu_cert[] = $name;
             }
         
+        }else{
+            $edu_cert = null;
         }
 
         if($request->hasfile('owner_profiles'))
@@ -197,11 +207,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('owner_profiles') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $owner_profile[] = '/storage/acc_firm/'.$name;
+            $owner_profile[] = $name;
             }
         
+        }else{
+            $owner_profile = null;
         }
 
 
@@ -210,11 +221,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('work_exps') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $work_exp[] = '/storage/acc_firm/'.$name;
+            $work_exp[] = $name;
             }
         
+        }else{
+            $work_exp = null;
         }
 
 
@@ -223,11 +235,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('nrc_passports') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $nrc_passport[] = '/storage/acc_firm/'.$name;
+            $nrc_passport[] = $name;
             }
         
+        }else{
+            $nrc_passport = null;
         }
 
         if($request->hasfile('tax_clearances'))
@@ -235,11 +248,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('tax_clearances') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $tax_clearance[] = '/storage/acc_firm/'.$name;
+            $tax_clearance[] = $name;
             }
         
+        }else{
+            $tax_clearance = null;
         }
 
         if($request->hasfile('permit_foreigns'))
@@ -247,11 +261,12 @@ class AccFirmInfController extends Controller
             foreach($request->file('permit_foreigns') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $permit_foreigns[] = '/storage/acc_firm/'.$name;
+            $permit_foreigns[] =$name;
             }
         
+        }else{
+            $permit_foreigns = null;
         }
 
 
@@ -260,15 +275,15 @@ class AccFirmInfController extends Controller
             foreach($request->file('financial_statements') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-            
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $financial_statement[] = '/storage/acc_firm/'.$name;
+            $financial_statement[] = $name;
             }
          
+        }else{
+            $financial_statement = null;
         }
 
-                
-       
+        
         //Main Table
         $acc_firm_info = new AccountancyFirmInformation();
         $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
@@ -454,7 +469,7 @@ class AccFirmInfController extends Controller
     public function show($id)
     {
         $acc_firm_info = AccountancyFirmInformation::where('id',$id)->with('branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
-        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file')->get();
+        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')->get();
         return response()->json([
             'data' => $acc_firm_info
         ],200);
