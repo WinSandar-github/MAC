@@ -48,16 +48,23 @@
                     <p>{{ __('School') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'course_list' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'course_list') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('Course') }}</p>
+                </a>
+            </li>
             <li class="{{ $elementActive == 'batch_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'batch_list') }}">
                     <i class="nc-icon nc-paper"></i>
                     <p>{{ __('Batch') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'course_list' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'course_list') }}">
+            
+            <li class="{{ $elementActive == 'requirement_list' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'requirement_list') }}">
                     <i class="nc-icon nc-paper"></i>
-                    <p>{{ __('Course') }}</p>
+                    <p>{{ __('Requirement') }}</p>
                 </a>
             </li>
             <li class="{{ $elementActive == '' ? 'active' : '' }}">

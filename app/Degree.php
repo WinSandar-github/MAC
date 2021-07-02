@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StepbyStepPosition extends Model
+class Degree extends Model
 {
-    protected $guarded = [];
+    //
 }

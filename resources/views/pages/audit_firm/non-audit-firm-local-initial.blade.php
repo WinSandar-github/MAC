@@ -1105,6 +1105,7 @@
 
 @push('scripts')
 <script>
+  
 
     
 </script>

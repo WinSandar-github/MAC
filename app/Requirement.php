@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Batch extends Model
+class Requirement extends Model
 {
-    protected $fillable = ['name','from','to','course_id','moodle_course_id','publish_status','accept_application_date'];
+    protected $fillable = ['name','require_exam','course_id'];
 
     public function course(){
         return $this->belongsTo(Course::class);

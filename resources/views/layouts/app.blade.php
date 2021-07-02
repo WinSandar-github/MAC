@@ -133,7 +133,10 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('paper') }}/demo/jquery.sharrre.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
-    <script src="{{ asset('js') }}/audit_firm.js"></script>  
+    <script src="{{ asset('js') }}/audit_firm.js"></script>
+    <script src="{{ asset('js') }}/course.js"></script>
+    <script src="{{ asset('js') }}/batch.js"></script>
+    <script src="{{ asset('js') }}/requirement.js"></script>  
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('js') }}/common.js"></script>
     <!--toastr-->

@@ -229,7 +229,6 @@ class CpaFullFormController extends Controller
          $cpa_full_form->local_degree        =   $request->local_degree;
          $cpa_full_form->foreign_degree      =   $request->foreign_degree;
          $cpa_full_form->save();
-  
  
          $cpa_ff_file = CpaFfFile::where('cpa_full_form_id',$cpa_full_form->id)->first();
          $cpa_ff_file->cpa_full_form_id  = $cpa_full_form->id;
@@ -238,7 +237,6 @@ class CpaFullFormController extends Controller
          $cpa_ff_file->nrc               = $nrc;
          $cpa_ff_file->cdp_record        = $cdp_record;
          $cpa_ff_file->passport_photo    = $passport_photo;
-       
          $cpa_ff_file->save();
  
 

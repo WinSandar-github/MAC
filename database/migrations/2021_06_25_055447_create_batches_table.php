@@ -15,18 +15,19 @@ class CreateBatchesTable extends Migration
     {
         Schema::create('batches', function (Blueprint $table) {
             $table->id();
-            $table->string('batch_name');
-            $table->unsignedBigInteger('training_id');
-            $table->string('class_id');
-            $table->string('from');
-            $table->string('to');
-            $table->string('publish_status');
-            $table->foreign('training_id')
-                  ->references('id')
-                  ->on('training_classes')
-                  ->onUpdate('cascade')
-                  ->onDelete(('cascade'));
+            $table->string('name');
+            $table->unsignedBigInteger('course_id');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->unsignedBigInteger('moodle_course_id');
+            $table->boolean('publish_status');
+            $table->date('accept_application_date');
             $table->timestamps();
+
+            $table->foreign('course_id')
+            ->references('id')
+            ->on('courses')
+            ->onDelete('cascade');   
         });
     }
 
