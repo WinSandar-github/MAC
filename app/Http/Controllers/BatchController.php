@@ -19,8 +19,7 @@ class BatchController extends Controller
        
     }
     public function store(Request $request)
-    {     
-        dd($request->acc_app_date);   
+    {            
         $request->validate([
             'name' => 'required',
             'start_date' => 'required',

@@ -92,8 +92,10 @@ function updateRequirement(){
         },        
         success: function(result){
             successMessage("Update Successfully");
-            $('#create_requirement_model').modal('toggle');            
+            $('#create_requirement_model').modal('toggle');        
+            location.reload();    
             getRequirement();
+            
         
         }
     });

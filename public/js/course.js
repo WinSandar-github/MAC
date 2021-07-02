@@ -117,8 +117,10 @@ function updateCourse(){
         },        
         success: function(result){
             successMessage("Update Successfully");
-            $('#create_course_model').modal('toggle');            
+            $('#create_course_model').modal('toggle');  
+            location.reload();          
             getCourse();
+            
         
         }
     });

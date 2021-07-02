@@ -101,8 +101,10 @@ function updateBatch(){
         },        
         success: function(result){
             successMessage("Update Successfully");
-            $('#create_batch_model').modal('toggle');            
+            $('#create_batch_model').modal('toggle');       
+            location.reload();     
             getBatch();
+            
         
         }
     });
