@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Batch extends Model
 {
-    protected $fillable = ['name','from','to','course_id','moodle_course_id','publish_status'];
+    protected $fillable = ['name','from','to','course_id','moodle_course_id','publish_status','accept_application_date'];
 
     public function course(){
         return $this->belongsTo(Course::class);

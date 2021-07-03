@@ -37,7 +37,8 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-         $course = new Course();
+        $course = new Course();
+        
         $course->name               = $request->name;
         $course->form_fee           = $request->form_fee;
         $course->registration_fee   = $request->registration_fee;
@@ -58,7 +59,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::all();
+        $course = Course::where('id',$id)->get();
         return response()->json([
             'data' => $course
         ],200);

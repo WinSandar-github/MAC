@@ -134,15 +134,15 @@ function addRowBranch(tbody){
     var newRow = $("<tr>");
     var cols = "";
     
-    cols += '<td><input type="text" name="bo_branch_name[]" class="form-control" autocomplete="off"></td>';
-    cols += '<td><input type="text" name="bo_township[]" class="form-control" autocomplete="off"></td>';
-    cols += '<td><input type="text" name="bo_post_code[]" class="form-control" autocomplete="off"></td>';
-    cols += '<td><input type="text" name="bo_city[]" class="form-control" autocomplete="off"></td>';
-    cols += '<td><input type="text" name="bo_state_region[]" class="form-control" autocomplete="off"></td>';
-    cols += '<td><input type="text" name="bo_phone[]" class="form-control" autocomplete="off"></td>';
+    cols += '<td><input type="text" name="bo_branch_name[]" class="form-control" autocomplete="off"/></td>';
+    cols += '<td><input type="text" name="bo_township[]" class="form-control" autocomplete="off"/></td>';
+    cols += '<td><input type="text" name="bo_post_code[]" class="form-control" autocomplete="off"/></td>';
+    cols += '<td><input type="text" name="bo_city[]" class="form-control" autocomplete="off"/></td>';
+    cols += '<td><input type="text" name="bo_state_region[]" class="form-control"  autocomplete="off"/></td>';
+    cols += '<td><input type="text" name="bo_phone[]" class="form-control" autocomplete="off"/></td>';
     cols += '<td><button class="btn btn-primary btn-sm" type="button" onclick=addInputTele("'+tbody+'")><i class="fa fa-plus"></i></button></td>';
-    cols += '<td><input type="text" name="bo_email[]" class="form-control" autocomplete="off"></td>';
-    cols += '<td><input type="text" name="bo_website[]" class="form-control" autocomplete="off"></td>';
+    cols += '<td><input type="text" name="bo_email[]" class="form-control" autocomplete="off" /></td>';
+    cols += '<td><input type="text" name="bo_website[]" class="form-control" autocomplete="off" /></td>';
     cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowBranch("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
@@ -156,15 +156,15 @@ function delRowBranch(tbody){
 }
 
 function addRowPartner(tbody){
-    
+            
     var newRow = $("<tr>");
     var cols = "";
     var row=$('.'+tbody+' tr').length;
     cols += '<td>'+ (row)+'</td>';
-    cols += '<td><input type="text" name="partner_name[]" class="form-control"/></td>';
-    cols += '<td><input type="text" name="partner_private_regno[]" class="form-control" /></td>';
-    cols += '<td><input type="radio" name="report_yes" id="report_yes[]" > Yes</td>';
-    cols += '<td><input type="radio" name="report_yes" id="report_no[]" > No</td>';
+    cols += '<td><input type="text" name="foa_name[]" class="form-control" autocomplete="off"/></td>';
+    cols += '<td><input type="text" name="foa_pub_pri_reg_no[]" class="form-control" autocomplete="off" /></td>';
+    cols += '<td><input type="radio" name="foa_authority_to_sign'+row+'" id="report_yes" value="1"> Yes</td>';
+    cols += '<td><input type="radio" name="foa_authority_to_sign'+row+'" id="report_yes" value="2"> No</td>';
     cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowPartner("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
@@ -181,10 +181,10 @@ function addRowDirector(tbody){
     var cols = "";
     var row=$('.'+tbody+' tr').length;
     cols += '<td>'+ (row)+'</td>';
-    cols += '<td><input type="text" name="director_name[]" class="form-control"/></td>';
-    cols += '<td><input type="text" name="director_position[]" class="form-control" /></td>';
-    cols += '<td><input type="text" name="director_cpa_no" class="form-control" /> </td>';
-    cols += '<td><input type="text" name="director_private_regno" class="form-control" /></td>';
+    cols += '<td><input type="text" name="do_name[]" class="form-control" autocomplete="off"/></td>';
+    cols += '<td><input type="text" name="do_position[]" class="form-control" autocomplete="off" /></td>';
+    cols += '<td><input type="text" name="do_cpa_reg_no[]" class="form-control" autocomplete="off" /> </td>';
+    cols += '<td><input type="text" name="do_pub_pri_reg_no[]" class="form-control" autocomplete="off" /></td>';
     cols += '<td><button class="delete btn btn-danger btn-sm" type="button" onclick=delRowDirector("'+tbody+'")><i class="fa fa-trash"></i></button></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
@@ -196,7 +196,6 @@ function delRowDirector(tbody){
         counter -= 1
     });
 }
-
 function addRowPartnerByNonAudit(tbody){
     var newRow = $("<tr>");
     var cols = "";
@@ -703,15 +702,18 @@ function getOrganization(){
         $('#sole-proprietorship').css('display','block');
         $('#partnership').css('display','none');
         $('#company').css('display','none');
-    }else if(radioValue==2){
+    }
+    else if(radioValue==2){
         $('#sole-proprietorship').css('display','none');
         $('#partnership').css('display','block');
-        $('#company').css('display','none');
-    }else if(radioValue==3){
+        $('#company').css('display','none');         
+    }
+    else if(radioValue==3){
         $('#sole-proprietorship').css('display','none');
         $('#partnership').css('display','none');
         $('#company').css('display','block');
-    }else{
+    }
+    else{
         $('#sole-proprietorship').css('display','none');
         $('#partnership').css('display','none');
         $('#company').css('display','none');
@@ -741,68 +743,86 @@ function addInputFile(divname,diventry){
 function delInputFile(diventry){
     $('.btn-remove').parents('.'+diventry+':first').remove();
 }
+var toastOptions = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": false,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "1000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
+function successMessage(message) {
+    toastr.options = toastOptions;
+    toastr.success(message);
+}
+function createDataTable(table) {
 
-$('#ajaxform').on('save-data',function(e){
-
-    e.preventDefault();
-
-  let accountancy_firm_reg_no   = $("input[name=accountancy_firm_reg_no]").val();
-  let accountancy_firm_name     = $("input[name=accountancy_firm_name]").val();
-  let township                  = $("input[name=township]").val();
-  let postcode                  = $("input[name=post_code]").val();
-  let city                      = $("input[name=city]").val();
-  let state_region              = $("input[name=state]").val();
-  let telephones                = $("input[name=phone_no]").val();
-  let email                     = $("input[name=email]").val();
-  let website                   = $("input[name=website]").val();
-  let audit_firm_type_id        = $("input[name=audit_firm_type_id]").val();
-  let local_foreign_id          = $("input[name=local_foreign_id]").val();
-  let organization_structure_id = $("input[name=org_stru_id]").val();
-  let type_of_service_provided_id   = $("input[name=t_s_p_id]").val();
-  let name_of_sole_proprietor       = $("input[name=name_sole_proprietor]").val();
-  let declaration                   = $("input[name=declaration]").val();
-  let _token   = $('meta[name="csrf-token"]').attr('content');
-
-  $.ajax({
-    url: "/acc_firm_info",
-    type:"POST",
-    data:{
-        accountancy_firm_reg_no:accountancy_firm_reg_no,
-        accountancy_firm_name:accountancy_firm_name,
-        township:township,
-        postcode:postcode,
-        city:city,
-        state_region:state_region,
-        telephones:telephones,
-        email:email,
-        website:website,
-        audit_firm_type_id:audit_firm_type_id,
-        local_foreign_id:local_foreign_id,
-        organization_structure_id:organization_structure_id,
-        type_of_service_provided_id:type_of_service_provided_id,
-        name_of_sole_proprietor:name_of_sole_proprietor,
-        declaration:declaration,            
-      _token: _token
-    },
-    success:function(response){
-      console.log(response);
-      if(response) {
-        $('.success').text(response.success);
-        $("#ajaxform")[0].reset();
-      }
-    },
-   });
-});
-
-
-//for image upload file
-    const actualBtn = document.getElementById('actual-btn');
-
-    const fileChosen = document.getElementById('file-chosen');
-
-    actualBtn.addEventListener('change', function(){
-        fileChosen.textContent = this.files[0].name
+    $(table).DataTable({
+        'destroy': true,
+        'paging': true,
+        'lengthChange': false,
+        "pageLength": 5,
+        'searching': false,
+        'ordering': true,
+        'info': false,
+        'autoWidth': false,
+        "scrollX": true,
+        'select': true,
+        "order": [[0, "desc"]]
     });
+
+}
+function destroyDatatable(table, tableBody) {
+    if ($.fn.DataTable.isDataTable(table)) {
+        $(table).DataTable().destroy();
+    }
+    $(tableBody).empty();
+}
+$('table tbody').on('click', 'tr', function () {
+    if ($(this).hasClass('selected')) {
+        $(this).removeClass('selected');
+    }
+    else {
+        $('table tbody tr.selected').removeClass('selected');
+        $(this).addClass('selected');
+    }
+});
+function dataMessage(message, table, tableBody) {
+    var dataMsg = message.responseText;
+    var noOfColumn = countColumn(table);
+    var tr = "<tr>";
+    tr += "<td class='text-center' colspan='" + noOfColumn + "'>"+dataMsg+"</td>";
+    tr += "</tr>";
+    $(tableBody).append(tr);
+    if(noOfColumn>=11){
+      $(table).addClass('table-responsive');
+    }
+
+}
+function getIndexNumber(table){
+    $(table).each(function(){
+        $( this ).find( "td" ).first().html( $(this).index() + 1 );
+      });
+}
+function numberRows() {
+    $('table tbody tr').each(function (idx) {
+        $(this).children(":eq(0)").html(idx + 1);
+    });
+}
+
+  
+
+
+
 
 
 

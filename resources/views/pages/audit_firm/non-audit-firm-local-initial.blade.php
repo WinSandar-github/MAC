@@ -18,9 +18,10 @@
             </div>
         </div>
 
-        <form  enctype="multipart/form-data" id="non_audit_firm_form">
+        <form id="non-audit-form" method="post" action="javascript:createAuditFirm();" enctype="multipart/form-data">
             @csrf
-            
+            <input type="hidden" value="2" name="audit_firm_type_id">
+            <input type="hidden" value="1" name="local_foreign_id">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
@@ -32,9 +33,7 @@
                                             <label class="col-md-1 col-form-label">{{ __('1') }}</label>
                                             <label class="col-md-2 col-form-label">{{ __('Firm Registration No') }}</label>
                                             <div class="col-md-8">
-                                                <div class="form-group">
-                                                    <input type="hidden" value="2" name="audit_firm_type_id">
-                                                    <input type="hidden" value="1" name="local_foreign_id">
+                                                <div class="form-group">                                                    
                                                     <input type="text" name="accountancy_firm_reg_no" class="form-control" placeholder="Firm Registration No" autocomplete="off">
                                                 </div>
                                             </div>
@@ -242,25 +241,25 @@
                                 <div class='col-md-2'></div>
                                 <div class="col-md-3">
                                     <div class="">
-                                        <input type="radio" name="org_stru_id" autofocus value="1" onclick="getOrganization()">
+                                        <input type="radio" name="org_stru_id" value="1" onclick="getOrganization()">
                                         <label class="form-check-label">Sole Proprietorship</label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="">
-                                        <input type="radio" name="org_stru_id" autofocus value="2" onclick="getOrganization()">
+                                        <input type="radio" name="org_stru_id" value="2" onclick="getOrganization()">
                                         <label class="form-check-label">Partnership</label>
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="">
-                                        <input type="radio" name="org_stru_id"  autofocus value="3" onclick="getOrganization()">
+                                        <input type="radio" name="org_stru_id"   value="3" onclick="getOrganization()">
                                         <label class="form-check-label">Company Incorporated</label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="">
-                                        <input type="radio" name="org_stru_id"  autofocus value="4" onclick="getOrganization()">
+                                        <input type="radio" name="org_stru_id"  value="4" onclick="getOrganization()">
                                         <label class="form-check-label">Others</label>
                                     </div>
                                 </div>
@@ -285,7 +284,7 @@
                                                     <div class="entry1">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="letterheads" >
+                                                                <input type="file" class="form-control" name="letterheads[]" >
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -306,7 +305,7 @@
                                                     <div class="entry2">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="pass_photos">                                                                                    
+                                                                <input type="file" class="form-control" name="pass_photos[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls2","entry2")'>
@@ -326,7 +325,7 @@
                                                     <div class="entry3">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="owner_profiles">                                                                                    
+                                                                <input type="file" class="form-control" name="owner_profiles[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls3","entry3")'>
@@ -346,7 +345,7 @@
                                                     <div class="entry4">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="edu_certs">                                                                                    
+                                                                <input type="file" class="form-control" name="edu_certs[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls4","entry4")'>
@@ -366,7 +365,7 @@
                                                     <div class="entry5">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="work_exps">                                                                                    
+                                                                <input type="file" class="form-control" name="work_exps[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls5","entry5")'>
@@ -386,7 +385,7 @@
                                                     <div class="entry6">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="nrc_passports">                                                                                    
+                                                                <input type="file" class="form-control" name="nrc_passports[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls6","entry6")'>
@@ -406,7 +405,7 @@
                                                     <div class="entry7">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" name="tax_clearances">                                                                                    
+                                                                <input type="file" class="form-control" name="tax_clearances[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls7","entry7")'>
@@ -426,7 +425,7 @@
                                                     <div class="entry8">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >                                                                                    
+                                                                <input type="file" class="form-control" name="representatives[]">                                                                                    
                                                             </div>
                                                             <div class="col-md-1 col-auto">
                                                                 <button class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls8","entry8")'>
@@ -462,7 +461,7 @@
                                                     <div class="entry9">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="certi_or_regs[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -484,7 +483,7 @@
                                                     <div class="entry10">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="deeds_memos[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -506,7 +505,7 @@
                                                     <div class="entry11">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="letterheads[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -528,7 +527,7 @@
                                                     <div class="entry12">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="pass_photos[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -550,7 +549,7 @@
                                                     <div class="entry13">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="owner_profiles[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -572,7 +571,7 @@
                                                     <div class="entry14">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="edu_certs[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -594,7 +593,7 @@
                                                     <div class="entry15">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="work_exps[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -616,7 +615,7 @@
                                                     <div class="entry16">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="nrc_passports[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -638,7 +637,7 @@
                                                     <div class="entry17">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="tax_clearances[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -660,7 +659,7 @@
                                                     <div class="entry18">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="representatives[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -697,7 +696,7 @@
                                                     <div class="entry19">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="certificate_incors[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -720,7 +719,7 @@
                                                     <div class="entry20">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="permit_foreigns[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -742,7 +741,7 @@
                                                     <div class="entry21">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="financial_statements[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -764,7 +763,7 @@
                                                     <div class="entry22">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="tax_reg_certificate[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -786,7 +785,7 @@
                                                     <div class="entry23">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="letterheads[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -808,7 +807,7 @@
                                                     <div class="entry24">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="edu_certs[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -830,7 +829,7 @@
                                                     <div class="entry25">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="work_exps[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -844,7 +843,7 @@
 
                                                 <div class="row mb-3">
                                                     <div class="form-group">
-                                                        <label class="form-label">(h)Copy of shareholder’s and directors’ NRC Card/ Passpor</label>
+                                                        <label class="form-label">(h)Copy of shareholder’s and directors’ NRC Card/ Passport</label>
                                                     
                                                     </div>  
                                                 </div>
@@ -852,7 +851,7 @@
                                                     <div class="entry26">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="nrc_passports[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -874,7 +873,7 @@
                                                     <div class="entry27">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="tax_clearances[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -896,7 +895,7 @@
                                                     <div class="entry28">
                                                         <div class="row mb-3">
                                                             <div class="col-md-11 col-auto">
-                                                                <input type="file" class="form-control" >
+                                                                <input type="file" class="form-control" name="representatives[]">
                                                                 
                                                             </div>
                                                             <div class="col-md-1 col-auto">
@@ -922,7 +921,7 @@
                                     <label class="col-md-1 col-form-label"></label>
                                     <div class="col-md-10 col-form-label">
                                     <div class="form-group">
-                                        <input type="text" name="name_sole_proprietor"  class="form-control  @error('name') is-invalid @enderror"  autofocus autocomplete="off">
+                                        <input type="text" name="name_sole_proprietor"  class="form-control"  autofocus autocomplete="off">
                                     </div>
                                     </div>
                             </div>
@@ -948,7 +947,7 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>No of directors who are alse shareholders</td>
-                                                        <td><input type="number" name="nats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                        <td><input type="number" value="0" name="nats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                         <input type="hidden" value="1" name="nats_type_id[]">
                                                         
                                                         
@@ -957,7 +956,7 @@
                                                         <td>
                                                         No of directors who are not shareholders
                                                         </td>
-                                                        <td><input type="number" name="nats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                        <td><input type="number" value="0" name="nats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                         <input type="hidden" value="2" name="nats_type_id[]">
                                                         
                                                         
@@ -966,7 +965,7 @@
                                                         <td>
                                                         No of managerial level staff
                                                         </td>
-                                                        <td><input type="number" name="nats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                        <td><input type="number" value="0" name="nats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                         <input type="hidden" value="3" name="nats_type_id[]">
                                                         
                                                     </tr>
@@ -974,7 +973,7 @@
                                                         <td>
                                                         No of non-mangerial level
                                                         </td>
-                                                        <td><input type="number" name="nats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
+                                                        <td><input type="number" value="0" name="nats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
                                                         <input type="hidden" value="4" name="nats_type_id[]">
                                                         
                                                         
@@ -983,7 +982,7 @@
                                                         <td>
                                                         Total Staff
                                                         </td>
-                                                        <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled autocomplete="off"></td>
+                                                        <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled></td>
                                                         
                                                     </tr>
                                                 </tbody>
@@ -1014,42 +1013,42 @@
                                                 <tbody>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="accounting_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="3">
+                                                            <input type="radio" name="t_s_p_id" id="accounting_service" class="" autofocus value="3">
                                                             <label class="form-check-label">Accounting</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="advisory_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="4">
+                                                            <input type="radio" name="t_s_p_id" id="advisory_service" class="" autofocus value="4">
                                                             <label class="form-check-label">Advisory</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="taxation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="5">
+                                                            <input type="radio" name="t_s_p_id" id="taxation_service" class="" autofocus value="5">
                                                             <label class="form-check-label">Taxation</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="liquidation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="6">
+                                                            <input type="radio" name="t_s_p_id" id="liquidation_service" class="" autofocus value="6">
                                                             <label class="form-check-label">Liquidation</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="accounting_system_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="7">
+                                                            <input type="radio" name="t_s_p_id" id="accounting_system_service" class="" autofocus value="7">
                                                             <label class="form-check-label">Accounting System</label>
                                                         </td>
                                                         
                                                     </tr>
                                                     <tr>
                                                         <td>
-                                                            <input type="checkbox" name="t_s_p_id" id="other_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="8">
+                                                            <input type="radio" name="t_s_p_id" id="other_service" class="" autofocus value="8">
                                                             <label class="form-check-label">Others</label>
                                                         </td>
                                                         
@@ -1065,7 +1064,7 @@
                                 <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        I <input type="text" name="declaration" id="declaration_name" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="" autocomplete="off">
+                                        I <input type="text" name="declaration" id="declaration_name" class="" autofocus value="" autocomplete="off">
                                         (managing director) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
                                     </div>
                             </div>                                                   
@@ -1074,7 +1073,7 @@
                             
                             <div class="row">
                                 <div class="col-md-11 d-md-flex justify-content-md-end">
-                                    <button  class="btn btn-primary btn-round "  id="save-data">{{ __('Save') }}</button>
+                                    <button  type="submit" class="btn btn-primary btn-round "  form="non-audit-form">{{ __('Save') }}</button>
                                 </div>
                             </div>
                                             
@@ -1109,6 +1108,6 @@
   
 
     
-    </script>
+</script>
 
 @endpush

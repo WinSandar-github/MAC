@@ -14,7 +14,7 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        $requirements = Requirement::get();
+        $requirements = Requirement::with('course')->get();
         return response()->json([
             'data' => $requirements
         ],200);
@@ -46,7 +46,7 @@ class RequirementController extends Controller
      */
     public function show($id)
     {
-        $requirement = Requirement::find($id);
+        $requirement = Requirement::where('id',$id)->with('course')->get();
         return response()->json([
             'data' => $requirement
         ],200);

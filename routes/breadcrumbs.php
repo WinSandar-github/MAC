@@ -121,6 +121,15 @@ Breadcrumbs::for('school-register-form4', function ($trail) {
     $trail->parent('school_registration');
     $trail->push('ကျောင်းမှတ်ပုံတင်သက်တမ်းတိုးလျှောက်လွှာ', route('page.index', 'school-register-form4'));
 });
+Breadcrumbs::for('batch_list', function ($trail) {
+    $trail->push('Batch', route('page.index', 'batch_list'));
+});
+Breadcrumbs::for('course_list', function ($trail) {
+    $trail->push('Course', route('page.index', 'course_list'));
+});
+Breadcrumbs::for('requirement_list', function ($trail) {
+    $trail->push('Requirement', route('page.index', 'requirement_list'));
+});
 Breadcrumbs::for('audit_firm_registration', function ($trail) {
     $trail->push('Audit Firm', route('page.index', 'audit_firm_registration'));
 });
