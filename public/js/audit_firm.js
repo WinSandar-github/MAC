@@ -341,18 +341,18 @@ function autoLoadAudit(){
           if(element.audit_total_staffs.length!=0 ){
             var audit_total_staff=element.audit_total_staffs;
             audit_total_staff.forEach(function(item){
-              $("input[id=audit_total_staff"+item.id+"]").val(item.total);
-              $("input[id=audit_audit_staff"+item.id+"]").val(item.audit_staff);
-              $("input[id=audit_nonaudit_staff"+item.id+"]").val(item.non_audit_staff);
+              $("input[id=audit_total_staff"+item.audit_total_staff_type_id +"]").val(item.total);
+              $("input[id=audit_audit_staff"+item.audit_total_staff_type_id +"]").val(item.audit_staff);
+              $("input[id=audit_nonaudit_staff"+item.audit_total_staff_type_id +"]").val(item.non_audit_staff);
             })
             
           }
           if(element.audit_staffs.length!=0){
             var audit_staff=element.audit_staffs;
             audit_staff.forEach(function(item){
-              $("input[id=audit_staff"+item.id+"]").val(item.total);
-              $("input[id=full_time"+item.id+"]").val(item.full_time);
-              $("input[id=part_time"+item.id+"]").val(item.part_time);
+              $("input[id=audit_staff"+item.audit_staff_type_id+"]").val(item.total);
+              $("input[id=full_time"+item.audit_staff_type_id+"]").val(item.full_time);
+              $("input[id=part_time"+item.audit_staff_type_id+"]").val(item.part_time);
             })
           }
           $('#type_service'+element.type_of_service_provided_id).prop("checked", true);
@@ -442,7 +442,7 @@ function autoLoadAudit(){
             });
             var non_audit_total_staff=element.non_audit_total_staffs;
             non_audit_total_staff.forEach(function(item){
-              $("input[id=non_audit_staff"+item.id+"]").val(item.total);
+              $("input[id=non_audit_number"+item.non_audit_total_staff_type_id+"]").val(item.total);
               
             })
             var cpa_myanmar=element.my_cpa_foreigns;
@@ -592,7 +592,7 @@ function loadNonAuditStaff(){
     non_audit_total_staff.forEach(function(element){
           var tr = "<tr>";
           tr += "<td>" + element.name + "</td>";
-          tr += "<td><input type='hidden' value="+element.id+" name='nats_type_id[]'><input type='number' value='0' name='nats_total[]' class='form-control' id=non_audit_staff"+element.id+"></td>";
+          tr += "<td><input type='hidden' value="+element.id+" name='nats_type_id[]'><input type='number' value='0' name='nats_total[]' class='form-control' id=non_audit_number"+element.id+"></td>";
           tr += "</tr>";
           $("#tbl_non_audit_body").append(tr);
       
