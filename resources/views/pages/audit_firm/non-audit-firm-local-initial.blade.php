@@ -19,7 +19,7 @@
         </div>
 
         <form id="non-audit-form" method="post" action="javascript:createAuditFirm();" enctype="multipart/form-data">
-            @csrf
+            
             <input type="hidden" value="2" name="audit_firm_type_id">
             <input type="hidden" value="1" name="local_foreign_id">
             <div class="row">
@@ -237,32 +237,8 @@
                                 
                                 
                             </div>
-                            <div class='row'>
-                                <div class='col-md-2'></div>
-                                <div class="col-md-3">
-                                    <div class="">
-                                        <input type="radio" name="org_stru_id" value="1" onclick="getOrganization()">
-                                        <label class="form-check-label">Sole Proprietorship</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="">
-                                        <input type="radio" name="org_stru_id" value="2" onclick="getOrganization()">
-                                        <label class="form-check-label">Partnership</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="">
-                                        <input type="radio" name="org_stru_id"   value="3" onclick="getOrganization()">
-                                        <label class="form-check-label">Company Incorporated</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="">
-                                        <input type="radio" name="org_stru_id"  value="4" onclick="getOrganization()">
-                                        <label class="form-check-label">Others</label>
-                                    </div>
-                                </div>
+                            <div class='row organization_data'>
+                                                
                             </div><br/>
 
                             <div id="sole-proprietorship">
@@ -935,7 +911,7 @@
                                 <div class="col-md-10">
                                     <div class="card">
                                         <div class="card-body">
-                                            <table id="myTable" class="table profile table-bordered">
+                                            <table id="tbl_non_audit" class="table">
                                                 <thead>
                                                     <tr>
                                                         <th class="less-font-weight" ></th>
@@ -944,47 +920,8 @@
                                                     </tr>
                                                     
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>No of directors who are alse shareholders</td>
-                                                        <td><input type="number" value="0" name="nats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                        <input type="hidden" value="1" name="nats_type_id[]">
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                        No of directors who are not shareholders
-                                                        </td>
-                                                        <td><input type="number" value="0" name="nats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                        <input type="hidden" value="2" name="nats_type_id[]">
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                        No of managerial level staff
-                                                        </td>
-                                                        <td><input type="number" value="0" name="nats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                        <input type="hidden" value="3" name="nats_type_id[]">
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                        No of non-mangerial level
-                                                        </td>
-                                                        <td><input type="number" value="0" name="nats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                        <input type="hidden" value="4" name="nats_type_id[]">
-                                                        
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                        Total Staff
-                                                        </td>
-                                                        <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled></td>
-                                                        
-                                                    </tr>
+                                                <tbody id="tbl_non_audit_body">
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1002,7 +939,7 @@
                                 <div class="col-md-10">
                                     <div class="card">
                                         <div class="card-body">
-                                            <table id="myTable" class="table profile table-bordered">
+                                            <table id="tbl_type_service" class="table ">
                                                 <thead>
                                                     <tr>
                                                         <th class="less-font-weight" rowspan="2">Accountancy Services(Non-Audit)</th>
@@ -1010,49 +947,8 @@
                                                     </tr>
                                                     
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="radio" name="t_s_p_id" id="accounting_service" class="" autofocus value="3">
-                                                            <label class="form-check-label">Accounting</label>
-                                                        </td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="radio" name="t_s_p_id" id="advisory_service" class="" autofocus value="4">
-                                                            <label class="form-check-label">Advisory</label>
-                                                        </td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="radio" name="t_s_p_id" id="taxation_service" class="" autofocus value="5">
-                                                            <label class="form-check-label">Taxation</label>
-                                                        </td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="radio" name="t_s_p_id" id="liquidation_service" class="" autofocus value="6">
-                                                            <label class="form-check-label">Liquidation</label>
-                                                        </td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="radio" name="t_s_p_id" id="accounting_system_service" class="" autofocus value="7">
-                                                            <label class="form-check-label">Accounting System</label>
-                                                        </td>
-                                                        
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <input type="radio" name="t_s_p_id" id="other_service" class="" autofocus value="8">
-                                                            <label class="form-check-label">Others</label>
-                                                        </td>
-                                                        
-                                                    </tr>
+                                                <tbody id="tbl_type_service_body">
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1060,7 +956,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-1 col-form-label">{{ __('11') }}</label>
+                                <label class="col-md-1 col-form-label"></label>
                                 <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
@@ -1105,8 +1001,9 @@
 
 @push('scripts')
 <script>
-  
-
+    loadNonAuditStaff();
+    loadOrganization();
+    loadTypeOfService();
     
 </script>
 
