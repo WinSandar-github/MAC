@@ -34,6 +34,7 @@
                                                     <div class="form-group">
                                                         <input type="hidden" name="audit_firm_type_id">
                                                         <input type="hidden" name="local_foreign_id">
+                                                        <input type="hidden" name="accountancy_firm_id">
                                                         <input type="text" name="accountancy_firm_reg_no" class="form-control" autocomplete="off">
                                                     </div>
                                                 </div>

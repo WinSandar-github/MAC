@@ -561,7 +561,7 @@ class AccFirmInfController extends Controller
                     $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
                     $firm_owner_audit->save();
                 }
-                
+                DirectorsOfficersAudit::where('accountancy_firm_info_id',$id)->delete();
                 for($i=0;$i<sizeof($request->do_name);$i++){
                     $director_officer = new DirectorsOfficersAudit();
                     $director_officer->name                     = $request->do_name[$i];
@@ -640,7 +640,7 @@ class AccFirmInfController extends Controller
             MyanmarCpaNonAuditForeign::where('accountancy_firm_info_id',$id)->delete();
             if($request->local_foreign_id == 2){
                 //Myanmar cpa non audit foreigns
-                for($i=0;$i<sizeof($request->nats_total);$i++){
+                for($i=0;$i<sizeof($request->mf_name);$i++){
                     $foreign = new MyanmarCpaNonAuditForeign();  
                     $foreign->name                  = $request->mf_name[$i];
                     $foreign->position              = $request->mf_position[$i];
@@ -692,49 +692,58 @@ class AccFirmInfController extends Controller
             $tax_reg_certificate = json_decode($audit_firm_file->tax_reg_certificate);
           
             
-            foreach($ppa_certi as $certi){
-                File::delete(public_path($certi));
-
+            if($ppa_certi!=null){
+                foreach($ppa_certi as $certi){
+                    File::delete(public_path($certi));
+    
+                }
             }
 
-            foreach($letterhead as $letter){
-                File::delete(public_path($letter));
+            if($letterhead!=null){
+                foreach($letterhead as $letter){
+                    File::delete(public_path($letter));
+                }
             }
 
-            foreach($representative as $represent){
-                File::delete(public_path($represent));
-            }
-
-            
-            foreach($certi_or_reg as $reg){
-                File::delete(public_path($reg));
-            }
-
-            
-            foreach($deeds_memo as $memo){
-                File::delete(public_path($memo));
+            if($representative!=null){
+                foreach($representative as $represent){
+                    File::delete(public_path($represent));
+                }
             }
 
             
-            foreach($certi_incor as $incor){
-                File::delete(public_path($incor));
+            if($certi_or_reg!=null){
+                foreach($certi_or_reg as $reg){
+                    File::delete(public_path($reg));
+                }
             }
 
-            foreach($form6_26e as $form){
-                File::delete(public_path($form));
+            if($deeds_memo!=null){
+                foreach($deeds_memo as $memo){
+                    File::delete(public_path($memo));
+                }
             }
-
-            foreach($form_a1 as $a1){
-                File::delete(public_path($a1));
-
+            if($certi_incor!=null){
+                foreach($certi_incor as $incor){
+                    File::delete(public_path($incor));
+                }
             }
-            
-            foreach($tax_reg_certificate as $certificate){
-                File::delete(public_path($certificate));
+            if($form6_26e!=null){
+                foreach($form6_26e as $form){
+                    File::delete(public_path($form));
+                }
             }
-
-
-            
+            if($form_a1!=null){
+                foreach($form_a1 as $a1){
+                    File::delete(public_path($a1));
+    
+                }
+            }
+            if($tax_reg_certificate!=null){
+                foreach($tax_reg_certificate as $certificate){
+                    File::delete(public_path($certificate));
+                }
+            }
 
             $audit_firm_file->delete();
             
@@ -761,73 +770,78 @@ class AccFirmInfController extends Controller
             $tax_reg_certificate = json_decode($non_audit_firm_file->tax_reg_certificate);
             $certi_incor = json_decode($non_audit_firm_file->certificate_incor);
              
-            foreach($letterhead as $letter){
-                File::delete(public_path($letter));
+            if($letterhead!=null){
+                foreach($letterhead as $letter){
+                    File::delete(public_path($letter));
+                }
             }
-
-            foreach($pass_photo as $photo){
-                File::delete(public_path($photo));
-
+            if($pass_photo!=null){
+                foreach($pass_photo as $photo){
+                    File::delete(public_path($photo));
+    
+                }
             }
-
-            
-            foreach($edu_cert as $cert){
-                File::delete(public_path($cert));
+            if($edu_cert!=null){
+                foreach($edu_cert as $cert){
+                    File::delete(public_path($cert));
+                }
             }
-
-            foreach($owner_profile as $profile){
-                File::delete(public_path($profile));
-
+            if($owner_profile!=null){
+                foreach($owner_profile as $profile){
+                    File::delete(public_path($profile));
+    
+                }
             }
-
-            foreach($work_exp as $exp){
-                File::delete(public_path($exp));
+            if($work_exp!=null){
+                foreach($work_exp as $exp){
+                    File::delete(public_path($exp));
+                }
             }
-
-            foreach($nrc_passport as $passport){
-                File::delete(public_path($passport));
+            if($nrc_passport!=null){
+                foreach($nrc_passport as $passport){
+                    File::delete(public_path($passport));
+                }
             }
-
-            
-            foreach($tax_clearance as $clear){
-                File::delete(public_path($clear));
+            if($tax_clearance!=null){
+                foreach($tax_clearance as $clear){
+                    File::delete(public_path($clear));
+                }
             }
-
-            
-            foreach($permit_foreigns as $foreign){
-                File::delete(public_path($foreign));
+            if($permit_foreigns!=null){
+                foreach($permit_foreigns as $foreign){
+                    File::delete(public_path($foreign));
+                }
             }
-
-            
-            foreach($financial_statement as $statement){
-                File::delete(public_path($statement));
+            if($financial_statement!=null){
+                foreach($financial_statement as $statement){
+                    File::delete(public_path($statement));
+                }
             }
-
-            
-            foreach($representative as $represent){
-                File::delete(public_path($represent));
+            if($representative!=null){
+                foreach($representative as $represent){
+                    File::delete(public_path($represent));
+                }
             }
-
-            
-            foreach($certi_or_reg as $reg){
-                File::delete(public_path($reg));
+            if($certi_or_reg!=null){
+                foreach($certi_or_reg as $reg){
+                    File::delete(public_path($reg));
+                }
             }
-
-            
-            foreach($deeds_memo as $memo){
-                File::delete(public_path($memo));
+            if($deeds_memo!=null){
+                foreach($deeds_memo as $memo){
+                    File::delete(public_path($memo));
+                }
             }
-
-            
-            foreach($certi_incor as $incor){
-                File::delete(public_path($incor));
+            if($certi_incor!=null){
+                foreach($certi_incor as $incor){
+                    File::delete(public_path($incor));
+                }
             }
-
-            
-            foreach($tax_reg_certificate as $certificate){
-                File::delete(public_path($certificate));
+            if($tax_reg_certificate!=null){
+                foreach($tax_reg_certificate as $certificate){
+                    File::delete(public_path($certificate));
+                }
             }
-
             $non_audit_firm_file->delete();
            
 

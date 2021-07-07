@@ -17,7 +17,7 @@
                 {{ Breadcrumbs::render('non-audit-firm-local-initial') }}
             </div>
         </div>
-            <form >
+            <form id="non-audit-form" method="post" action="javascript:updateAuditFirm();" enctype="multipart/form-data">
            
             
             <div class="row">
@@ -34,6 +34,7 @@
                                                     <div class="form-group">
                                                         <input type="hidden" name="audit_firm_type_id">
                                                         <input type="hidden" name="local_foreign_id">
+                                                        <input type="hidden" name="accountancy_firm_id">
                                                         <input type="text" name="accountancy_firm_reg_no" class="form-control" autocomplete="off">
                                                     </div>
                                                 </div>
@@ -1072,7 +1073,7 @@
                                                 <div class="col-md-10">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <table id="tbl_non_audit" class="table">
+                                                            <table id="tbl_non_audit_number" class="table">
                                                                 <thead>
                                                                     <tr>
                                                                         <th class="less-font-weight" ></th>
@@ -1081,7 +1082,7 @@
                                                                     </tr>
                                                                     
                                                                 </thead>
-                                                                <tbody id="tbl_non_audit_body">
+                                                                <tbody id="tbl_non_audit_number_body">
                                                                     
                                                                 </tbody>
                                                             </table>
