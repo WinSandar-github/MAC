@@ -156,32 +156,8 @@
                                                 
                                                 
                                             </div>
-                                            <div class='row'>
-                                                <div class='col-md-2'></div>
-                                                <div class="col-md-3">
-                                                    <div class="">
-                                                        <input type="radio" name="org_stru_id" autofocus value="1" onclick="getOrganization()">
-                                                        <label class="form-check-label">Sole Proprietorship</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="">
-                                                        <input type="radio" name="org_stru_id" autofocus value="2" onclick="getOrganization()">
-                                                        <label class="form-check-label">Partnership</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="">
-                                                        <input type="radio" name="org_stru_id"  autofocus value="3" onclick="getOrganization()">
-                                                        <label class="form-check-label">Company Incorporated</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <div class="">
-                                                        <input type="radio" name="org_stru_id"  autofocus value="4" onclick="getOrganization()">
-                                                        <label class="form-check-label">Others</label>
-                                                    </div>
-                                                </div>
+                                            <div class='row organization_data'>
+                                                
                                             </div><br/>
                                             
                                             <div id="sole-proprietorship">
@@ -758,83 +734,19 @@
                                                 <div class="col-md-10">
                                                     <div class="card">
                                                         <div class="card-body">
-                                                            <table id="myTable" class="table profile table-bordered">
+                                                            <table id="tbl_audit_total_staff" class="table text-nowrap">
                                                                 <thead>
                                                                     <tr>
                                                                         <th class="less-font-weight" ></th>
-                                                                        <th class="less-font-weight" rowspan="2">Total</th>
-                                                                        <th class="less-font-weight" rowspan="2">Audit Staff</th>
-                                                                        <th class="less-font-weight" rowspan="2">Non-Audit Staff</th>
+                                                                        <th class="less-font-weight">Total</th>
+                                                                        <th class="less-font-weight">Audit Staff</th>
+                                                                        <th class="less-font-weight">Non-Audit Staff</th>
                                                                         
                                                                     </tr>
                                                                     
                                                                 </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>
-                                                                            No of principals/ partners
-                                                                        </td>
-                                                                        <td><input type="number" value="0" name="ats_total[]" id="principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                        <td><input type="number" value="0" name="ats_audit_staff[]" id="principal_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
-                                                                        <td>
-                                                                            <input type="number" value="0" name="ats_non_audit_staff[]" id="principal_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
-                                                                            
-                                                                        </td>
-                                                                        <input type="hidden" value="1" name="ats_audit_total_staff_type_id[]">
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                        No of directors who are not principals/ partners
-                                                                        </td>
-                                                                        <td><input type="number" value="0" name="ats_total[]" id="non_principal_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                        <td><input type="number" value="0" name="ats_audit_staff[]" id="non_principal_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
-                                                                        <td>
-                                                                            <input type="number" value="0" name="ats_non_audit_staff[]" id="non_principal_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
-                                                                            
-                                                                        </td>
-                                                                        <input type="hidden" value="2" name="ats_audit_total_staff_type_id[]">
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                        No of managerial level staff
-                                                                        </td>
-                                                                        <td><input type="number" value="0" name="ats_total[]" id="managerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                        <td><input type="number" value="0" name="ats_audit_staff[]" id="managerial_level_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
-                                                                        <td>
-                                                                            <input type="number" value="0" name="ats_non_audit_staff[]" id="managerial_level_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
-                                                                            
-                                                                        </td>
-                                                                        <input type="hidden" value="3" name="ats_audit_total_staff_type_id[]">
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                        No of non-mangerial level
-                                                                        </td>
-                                                                        <td><input type="number" value="0" name="ats_total[]" id="non-mangerial_level_total" class="form-control" onmouseup="getTotalStaff()" onkeyup="getTotalStaff()"></td>
-                                                                        <td><input type="number" value="0" name="ats_audit_staff[]" id="non-mangerial_level_audit" class="form-control" onmouseup="getTotalAudit()" onkeyup="getTotalAudit()"></td>
-                                                                        <td>
-                                                                            <input type="number" value="0" name="ats_non_audit_staff[]" id="non-mangerial_level_non_audit" class="form-control" onmouseup="getTotalNonAudit()" onkeyup="getTotalNonAudit()">
-                                                                            
-                                                                        </td>
-                                                                        <input type="hidden" value="4" name="ats_audit_total_staff_type_id[]">
-                                                                        
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>
-                                                                        Total Staff
-                                                                        </td>
-                                                                        <td><input type="text" value="0"  id="total_staff_total" class="form-control" disabled></td>
-                                                                        <td><input type="text" value="0" id="total_staff_audit" class="form-control" disabled></td>
-                                                                        <td>
-                                                                            <input type="text" value="0" id="total_staff_non_audit" class="form-control" disabled>
-                                                                            
-                                                                        </td>
-                                                                        
-                                                                        
-                                                                    </tr>
+                                                                <tbody id="tbl_audit_total_staff_body">
+                                                                    
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -851,99 +763,19 @@
                                                     <div class="col-md-10">
                                                         <div class="card">
                                                             <div class="card-body">
-                                                                <table id="myTable" class="table profile table-bordered">
+                                                                <table id="tbl_audit_staff" class="table text-nowrap">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th class="less-font-weight" rowspan="2"></th>
-                                                                            <th class="less-font-weight" rowspan="2">Total</th>
-                                                                            <th class="less-font-weight" rowspan="2">Full Time</th>
-                                                                            <th class="less-font-weight" rowspan="2">Part Time</th>
+                                                                            <th class="less-font-weight" ></th>
+                                                                            <th class="less-font-weight">Total</th>
+                                                                            <th class="less-font-weight" >Full Time</th>
+                                                                            <th class="less-font-weight" >Part Time</th>
                                                                             
                                                                         </tr>
                                                                         
                                                                     </thead>
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td>
-                                                                                No of principals/ partners/ directors
-                                                                            </td>
-                                                                            <td><input type="number" value="0" name="as_total[]" id="director_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="0" name="as_full_time[]" id="director_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
-                                                                            <td>
-                                                                                <input type="number" value="0" name="as_part_time[]" id="director_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()"> 
-                                                                                <input type="hidden" value="1" name="as_audit_staff_type_id[]">
-                                                                            </td>
-                                                                            
-                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>
-                                                                                No of audit managers
-                                                                            </td>
-                                                                            <td><input type="number" value="0" name="as_total[]" id="audit_manager_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="0" name="as_full_time[]" id="audit_manager_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
-                                                                            <td>
-                                                                                <input type="number" value="0" name="as_part_time[]" id="audit_manager_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
-                                                                                <input type="hidden" value="2" name="as_audit_staff_type_id[]">
-                                                                            </td>
-                                                                            
-                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>
-                                                                                No of audit seniors
-                                                                            </td>
-                                                                            <td><input type="number" value="0" name="as_total[]" id="audit_senior_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="0" name="as_full_time[]" id="audit_senior_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
-                                                                            <td>
-                                                                                <input type="number" value="0" name="as_part_time[]" id="audit_senior_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
-                                                                                <input type="hidden" value="3" name="as_audit_staff_type_id[]">
-                                                                            </td>
-                                                                            
-                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td rowspan="2">
-                                                                                No of audit assistants
-                                                                                <ul>
-                                                                                    <li>CPA Apprenticeship</li>
-                                                                                    <li>Others</li>
-                                                                                    
-                                                                                </ul>
-                                                                            </td>
-                                                                            <td><input type="number" value="0" name="as_total[]" id="audit_assistant_cpa_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="0" name="as_full_time[]" id="audit_assistant_cpa_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
-                                                                            <td>
-                                                                                <input type="number" value="0" name="as_part_time[]" id="audit_assistant_cpa_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
-                                                                                <input type="hidden" value="4" name="as_audit_staff_type_id[]">
-                                                                            </td>
-                                                                            
-                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            
-                                                                            <td><input type="number" value="0" name="as_total[]" id="audit_assistant_others_total" class="form-control" onmouseup="getTotalAuditStaff()" onkeyup="getTotalAuditStaff()"></td>
-                                                                            <td><input type="number" value="0" name="as_full_time[]" id="audit_assistant_others_full_time" class="form-control" onmouseup="getTotalFullTime()" onkeyup="getTotalFullTime()"></td>
-                                                                            <td>
-                                                                                <input type="number" value="0" name="as_part_time[]" id="audit_assistant_others_part_time" class="form-control" onmouseup="getTotalPartTime()" onkeyup="getTotalPartTime()">
-                                                                                <input type="hidden" value="5" name="as_audit_staff_type_id[]">
-                                                                            </td>
-                                                                            
-                                                                            
-                                                                        </tr>
-                                                                        <tr>
-                                                                            <td>
-                                                                                Total Audit Staff
-                                                                            </td>
-                                                                            <td><input type="text" value="0" id="audit_staff_total" class="form-control" disabled></td>
-                                                                            <td><input type="text" value="0" id="audit_staff_full_time" class="form-control" disabled></td>
-                                                                            <td>
-                                                                                <input type="text" value="0"id="audit_staff_part_time" class="form-control" disabled>
-                                                                                
-                                                                            </td>
-                                                                            
-                                                                            
-                                                                        </tr>
+                                                                    <tbody id="tbl_audit_staff_body">
+                                                                       
                                                                     </tbody>
                                                                 </table>
                                                             </div>
@@ -953,19 +785,9 @@
                                                 <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('11') }}</label>
                                                     <label class="col-md-3 col-form-label">{{ __('Types Of Service Provided') }}</label>
-                                                    <div class="col-md-2">
-                                                            <input type="radio" name="t_s_p_id" value="1">
-                                                            <label class="form-check-label">Audit</label>
                                                     
-                                                    </div>
-                                                    <div class="col-md-2">
-                                                        <input type="radio" name="t_s_p_id" value="2" >
-                                                        <label class="form-check-label">Non Audit</label>
-                                                        
-                                                    </div>
-                                                
-                                                
                                                 </div>
+                                                <div class="row type_service_provided"></div><br/>
                                                 <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('12') }}</label>
                                                     <label class="col-md-2 col-form-label">{{ __('Declaration') }}</label>
@@ -1014,5 +836,10 @@
 @endsection
 
 @push('scripts')
-
+<script>
+    loadOrganization();
+    loadTypeOfService();
+    loadAuditTotalStaff();
+    loadAuditStaff();
+</script>
 @endpush
