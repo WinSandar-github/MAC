@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentJobHistroysTable extends Migration
+class CreateEducationHistroysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateStudentJobHistroysTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_job_histroys', function (Blueprint $table) {
+        Schema::create('education_histroys', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
-            $table->string('name');
-            $table->string('position');
-            $table->string('department');
-            $table->string('organization');
-            $table->string('company_name');
-            $table->string('salary');
-            $table->string('address');
-
+            $table->string('university_name');
+            $table->string('degree_name')->nullable();
+            $table->date('qualified_date')->nullable();
+            $table->string('roll_number',30)->nullable();
+            $table->text('document')->nullable();
             $table->timestamps();
 
             $table->foreign('student_info_id')
@@ -40,6 +37,6 @@ class CreateStudentJobHistroysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_job_histroys');
+        Schema::dropIfExists('education_histroys');
     }
 }

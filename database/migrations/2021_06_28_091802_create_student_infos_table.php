@@ -17,10 +17,10 @@ class CreateStudentInfosTable extends Migration
             $table->id();
             $table->string('name_mm');
             $table->string('name_eng');
-            $table->string('nrc_state_region')->nullable();
-            $table->string('nrc_township')->nullable();
-            $table->string('nrc_citizen')->nullable();
-            $table->string('nrc_number')->nullable();
+            $table->string('nrc')->nullable();
+            // $table->string('nrc_township')->nullable();
+            // $table->string('nrc_citizen')->nullable();
+            // $table->string('nrc_number')->nullable();
             $table->string('father_name_mm');
             $table->string('father_name_eng');
             $table->string('race');
