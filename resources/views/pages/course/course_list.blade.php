@@ -69,8 +69,8 @@
     <div class="modal fade" id="create_course_model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
-                <form id="course_form" method="post" action="javascript:createCourse();" enctype="multipart/form-data">
-                    <!-- @csrf -->
+                <form method="post" action="{{ route('course.store') }}" enctype="multipart/form-data">
+                    @csrf
                     <input type="hidden"  name="course_id" >
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Create Course</h5>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                        <button type="submit" class="btn btn-primary" form="course_form">Save</button>
+                        <button type="submit" name="save" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
@@ -147,15 +147,6 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function() {
-        var crateModal = document.getElementById('create_course_model')
-        crateModal.addEventListener('show.bs.modal', function (event) {
-        
-            var button = event.relatedTarget;
-        
-        });
-        
-    });
-    getCourse();
+    // getCourse();
 </script>
 @endpush
