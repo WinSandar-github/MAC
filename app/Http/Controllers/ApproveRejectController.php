@@ -16,7 +16,7 @@ class ApproveRejectController extends Controller
      */
     public function index()
     {
-        $users = StudentInfo::where('approve_reject_status', FALSE)->get();
+        $users = StudentInfo::where('approve_reject_status', 0)->get();
         return view('pages.daapproval.index', compact('users'));
     }
 
@@ -79,7 +79,7 @@ class ApproveRejectController extends Controller
     {
         return "here";
         $user = StudentInfo::find($id);
-        $user->approve_reject_status = TRUE;
+        $user->approve_reject_status = 1;
         $user->save();
         Alert::success('Approved', 'You Successfully approved that user!');
         return redirect(route('da_approval.index'));
