@@ -100,6 +100,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin', function() {
         return redirect('/moodle/admin');
     })->name("admin");
+
+    // DA Form Approval
+    Route::post('{id}/daapproval', 'ApproveRejectController@update');
+    Route::resource('da_approval', 'ApproveRejectController');
 });
 
     Route::group(['middleware' => 'auth'], function () {

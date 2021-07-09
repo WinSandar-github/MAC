@@ -146,6 +146,17 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('plugins') }}/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
     <script src="{{ asset('plugins') }}/datatables-responsive/js/dataTables.responsive.min.js"></script>
     <script src="{{ asset('plugins') }}/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(document).on('show.bs.modal', '#ApprovalModal', function (e) {
+                var button = $(e.relatedTarget);
+                $('#update_id').val(button.data('id'));
+                var url = button.data('url');
+                $('#deleteDAApprovalFormAction').attr('action', url);
+            })
+        })
+    </script>
+    @include('layouts.modal')
     @yield('custom-javascript')
     @stack('scripts')
 
