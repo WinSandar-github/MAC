@@ -17,7 +17,7 @@ class StudentInfo extends Model
 
     public function education_histroy()
     {
-        return $this->hasMany(EducationHistroy::class,'student_info_id','id');
+        return $this->hasOne(EducationHistroy::class,'student_info_id','id');
     }
 
     public function student_course()
