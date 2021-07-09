@@ -130,6 +130,9 @@ Breadcrumbs::for('course_list', function ($trail) {
 Breadcrumbs::for('requirement_list', function ($trail) {
     $trail->push('Requirement', route('page.index', 'requirement_list'));
 });
+Breadcrumbs::for('da_approval', function ($trail) {
+    $trail->push('DA Approval', route('page.index', 'da_approval'));
+});
 Breadcrumbs::for('audit_firm_registration', function ($trail) {
     $trail->push('Audit Firm', route('page.index', 'audit_firm_registration'));
 });

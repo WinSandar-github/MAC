@@ -50,6 +50,9 @@
                                 <p>{{ __('ဘွဲ့လိုအပ်ချက်') }}</p>
                             </a>
                         </li>
+                        <li class="{{ Request::is('da_approval*') ? 'active' : '' }}">
+                            <a href="{{ route('da_approval.index') }}"><i class="fa fa-edit"></i><span>DA Form Approval</span></a>
+                        </li>
                     </ul>
                 </div>
             </li>
