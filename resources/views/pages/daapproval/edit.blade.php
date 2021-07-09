@@ -2,6 +2,14 @@
     'class' => '',
     'elementActive' => 'da_approval'
 ])
+<style type="text/css">
+    p {
+        margin-left: 7%;
+    }
+    label {
+        margin-bottom: 2%;
+    }
+</style>
 @section('content')    
     <div class="content">
         <div class="pull-right">
