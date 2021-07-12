@@ -82,14 +82,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 	Route::get('training', ['as' => 'training.index', 'uses' => 'TrainingClassController@index']);
 	
-	Route::resource('batch', 'BatchController');
-	Route::post('batch_update/{id}', 'BatchController@update')->name('batch_update.update');
-	Route::get('batch_delete/{id}', 'BatchController@destroy')->name('batch_delete.destroy');
+    Route::resource('/degree','DegreeController');
+    Route::resource('/course','CourseController');
+    Route::resource('/batch','BatchController');
 
 	Route::resource('training', 'TrainingClassController');
 	Route::post('training_update/{id}', 'TrainingClassController@update')->name('training_update.update');
 	Route::get('training_delete/{id}', 'TrainingClassController@delete')->name('training_delete.delete');
     Route::resource('training_type', 'TrainingTypeController');
+
 
     Route::apiResource('lms_accounts', 'MoodleControllers\LmsAccountsController');
     Route::apiResource('account', 'MoodleControllers\AccountCreateController');

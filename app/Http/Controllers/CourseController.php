@@ -37,6 +37,14 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'              => 'required',
+            'form_fee'          => 'required',
+            'registration_fee'  =>  'required',
+            'exam_fee'          =>  'required',
+            'tution_fee'        =>  'required',
+            'description'       =>  'required',
+        ]);
         $course = new Course();
         
         $course->name               = $request->name;
