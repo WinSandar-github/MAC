@@ -20,7 +20,8 @@
                                 <td>Email</td>
                                 <td>Phone Number</td>
                                 <td>NRC Number</td>
-                                <td>Action</td>
+                                <td>Status</td>
+                                <td>Detail</td>
                             </tr>
                         </thead>
                         <tbody class="text-center">
@@ -32,11 +33,9 @@
                                 <td>{!! $user->email !!}</td>
                                 <td>{!! $user->phone !!}</td>
                                 <td>{!! $user->nrc !!}</td>
+                                <td>{!! showApproved($user->approve_reject_status) !!}</td>
                                 <td>
-                                    @if(FALSE == $user->approve_reject_status)
-                                        <a href="{!! route('da_approval.show', [$user->id]) !!}"
-                                           class='btn btn-primary'><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                    @endif
+                                    <a href="{!! route('da_approval.show', [$user->id]) !!}" class='btn btn-primary'><i class="fa fa-eye" aria-hidden="true"></i></a>
                                 </td>   
                             </tr>
                         @endforeach

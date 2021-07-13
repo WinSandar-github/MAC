@@ -166,6 +166,24 @@ The above copyright notice and this permission notice shall be included in all c
                 var url = button.data('url');
                 $('#deleteDAApprovalFormAction').attr('action', url);
             });
+            $(document).on('show.bs.modal', '#RejectModal', function (e) {
+                var button = $(e.relatedTarget);
+                $('#update_id').val(button.data('id'));
+                var url = button.data('url');
+                $('#deleteRejectFormAction').attr('action', url);
+            });
+            function centerModal() {
+                $(this).css('display', 'block');
+                var $dialog = $(this).find(".modal-dialog");
+                var offset = ($(window).height() - $dialog.height()) / 2;
+                // Center modal vertically in window
+                $dialog.css("margin-top", offset);
+            }
+
+            $('.modal').on('show.bs.modal', centerModal);
+            $(window).on("resize", function () {
+                $('.modal:visible').each(centerModal);
+            });
         });
     </script>
     <script src="{{ asset('js/custom.js') }}"></script>

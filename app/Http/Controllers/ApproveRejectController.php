@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\StudentInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use RealRashid\SweetAlert\Facades\Alert;
+use Alert;
 
 class ApproveRejectController extends Controller
 {
@@ -16,7 +16,7 @@ class ApproveRejectController extends Controller
      */
     public function index()
     {
-        $users = StudentInfo::where('approve_reject_status', 0)->get();
+        $users = StudentInfo::all();
         return view('pages.daapproval.index', compact('users'));
     }
 
@@ -77,11 +77,19 @@ class ApproveRejectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // return "here";
         $user = StudentInfo::find($id);
         $user->approve_reject_status = 1;
         $user->save();
         Alert::success('Approved', 'You Successfully approved that user!');
+        return redirect(route('da_approval.index'));
+    }
+
+    public function reject(Request $request, $id)
+    {
+        $user = StudentInfo::find($id);
+        $user->approve_reject_status = 2;
+        $user->save();
+        Alert::success('Approved', 'You have rejected that user!');
         return redirect(route('da_approval.index'));
     }
 

@@ -171,7 +171,7 @@
                         <p class="ml-2">Attched Certificate</p>
                     </div>
                     <div class="col-md-6">
-                        <a style="width: 30%" class="btn btn-primary mt-0"><i class="fa fa-paperclip"></i></a>
+                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button>
                     </div>
                 </div>
 
@@ -334,7 +334,8 @@
                 </div>
                 <div class="row mt-5 justify-content-center">                    
                     <a href="#" data-toggle="modal" data-url="{{ url($user->id.'/daapproval') }}" data-target="#ApprovalModal" style="width : 20%" class="btn btn-primary"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Approve</a>
-                    <a href="{!! route('da_approval.index') !!}" style="width : 20%" class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i> Reject</a>
+
+                    <a href="#" data-toggle="modal" data-url="{{ url($user->id.'/da_approval') }}" data-target="#RejectModal" style="width : 20%" class="btn btn-primary"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Reject</a>
                 </div>
             </div>
         </div>
