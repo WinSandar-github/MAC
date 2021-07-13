@@ -12,17 +12,19 @@
                 @if($users->isEmpty())
                     <div class="well text-center">No records were found.</div>
                 @else
-                    <table class="table table-striped table-hover tbl_repeat" id="sortable">
-                        <thead>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>NRC Number</th>
-                            <th>Admin Approved</th>
-                            <th colspan="3">Action</th>
+                    <table class="table table-striped cell-border display compact ui table-hover tbl_repeat student_info_list" id="sortable">
+                        <thead class="text-center">
+                            <tr>
+                                <td>No</td>
+                                <td>Name</td>
+                                <td>Email</td>
+                                <td>Phone Number</td>
+                                <td>NRC Number</td>
+                                <td>Status</td>
+                                <td>Detail</td>
+                            </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
                         <?php $index = 1; ?>
                         @foreach($users as $user)
                             <tr>
@@ -33,10 +35,7 @@
                                 <td>{!! $user->nrc !!}</td>
                                 <td>{!! showApproved($user->approve_reject_status) !!}</td>
                                 <td>
-                                    @if(FALSE == $user->approve_reject_status)
-                                        <a href="{!! route('da_approval.edit', [$user->id]) !!}"
-                                           class='btn btn-xs btn-primary'><i class="fa fa-check-square-o"></i>&nbsp;Show</a>
-                                    @endif
+                                    <a href="{!! route('da_approval.show', [$user->id]) !!}" class='btn btn-primary'><i class="fa fa-eye" aria-hidden="true"></i></a>
                                 </td>   
                             </tr>
                         @endforeach
@@ -49,3 +48,14 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.student_info_list').DataTable({
+                "paging":   true,
+                "ordering": false,
+                "info":     false
+            });
+        });
+    </script>
+@endpush
