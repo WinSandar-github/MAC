@@ -15,6 +15,8 @@ function createCourse(){
     send_data.append('registration_fee',removeComma($("input[name=registration_fee]").val()));
     send_data.append('exam_fee',removeComma($("input[name=exam_fee]").val()));
     send_data.append('tution_fee',removeComma($("input[name=tution_fee]").val()));
+    send_data.append('registration_start_date',$("input[name=registration_start_date]").val());
+    send_data.append('registration_end_date',$("input[name=registration_end_date]").val());
     send_data.append('description',$("input[name=description]").val());   
     
     $.ajax({
@@ -51,6 +53,8 @@ function getCourse(){
                 tr += "<td>" + thousands_separators(element.registration_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.exam_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.tution_fee) + "</td>";
+                tr += "<td>" + element.registration_start_date + "</td>";
+                tr += "<td>" + element.registration_start_date + "</td>";
                 tr += "<td>" + element.description + "</td>";
             
                 tr += "<td ><div class='btn-group'>";
@@ -87,6 +91,8 @@ function showCourseInfo(id) {
             $('input[name=registration_fee]').val(course_data[0].registration_fee);
             $('input[name=exam_fee]').val(course_data[0].exam_fee);
             $('input[name=tution_fee]').val(course_data[0].tution_fee);
+            $('input[name=registration_start_date]').val(course_data[0].registration_start_date);
+            $('input[name=registration_end_date]').val(course_data[0].registration_end_date);
             $('input[name=description]').val(course_data[0].description);
             
             $('#create_course_model').modal('toggle');
@@ -106,6 +112,8 @@ function updateCourse(){
     var registration_fee=$("input[name=registration_fee]").val();
     var exam_fee=$("input[name=exam_fee]").val();
     var tution_fee=$("input[name=tution_fee]").val();
+    var registration_start_date=$("input[name=registration_start_date]").val()
+    var registration_end_date=$("input[name=registration_end_date]").val()
     var description=$("input[name=description]").val();    
    
     $.ajax({
@@ -117,6 +125,8 @@ function updateCourse(){
             registration_fee:registration_fee,
             exam_fee:exam_fee,
             tution_fee:tution_fee,
+            registration_start_date:registration_start_date,
+            registration_end_date:registration_end_date,
             description:description
         },        
         success: function(result){

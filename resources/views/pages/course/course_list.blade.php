@@ -44,6 +44,8 @@
                                                         <th class="less-font-weight" >Registration Fee</th>
                                                         <th class="less-font-weight" >Exam Fee</th>
                                                         <th class="less-font-weight" >Tution Fee</th>
+                                                        <th class="less-font-weight" >Registration Start Date</th>
+                                                        <th class="less-font-weight" >Registration End Date</th>
                                                         <th class="less-font-weight" >Description</th>
                                                         <th class="less-font-weight" >Action</th>
                                                     </tr>
@@ -127,6 +129,24 @@
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                            <label class="col-md-2 form-label">{{ __('Registration Start Date') }}</label>
+                            <div class="col-md-9">
+                                <div class="form-group">                                
+                                    <input type="date" name="registration_start_date" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                            <label class="col-md-2 form-label">{{ __('Registration End Date') }}</label>
+                            <div class="col-md-9">
+                                <div class="form-group">                                
+                                    <input type="date" name="registration_end_date" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-2 form-label">{{ __('Description') }}</label>
                             <div class="col-md-9">
                                 <div class="form-group"> 
