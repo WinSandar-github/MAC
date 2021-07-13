@@ -7,6 +7,7 @@ use App\StudentInfo;
 use App\EducationHistroy;
 use App\StudentCourseReg;
 use App\StudentJobHistroy;
+use App\registration_self_study;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -221,5 +222,10 @@ class StudentInfoController extends Controller
             'message' => 'Delete Successfully'
         ],200);
 
+    }
+    public function selfStudy()
+    {
+        $student_infos = registration_self_study::with('student_info')->get();
+        return response()->json([ 'data' => $student_infos],200);
     }
 }

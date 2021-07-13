@@ -18,6 +18,7 @@ class ApproveRejectController extends Controller
     {
         $users = StudentInfo::where('approve_reject_status', 0)->get();
         return view('pages.daapproval.index', compact('users'));
+        
     }
 
     /**
