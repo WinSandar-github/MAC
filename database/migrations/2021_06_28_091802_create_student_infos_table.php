@@ -32,7 +32,7 @@ class CreateStudentInfosTable extends Migration
             $table->boolean('gov_staff')->default(0);
             $table->string('image');
             $table->string('registration_no');
-            $table->date('date');
+            $table->string('date');
             $table->boolean('approve_reject_status')->default(0);
             $table->string('email');
             $table->string('password');

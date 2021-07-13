@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\StudentInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\StudentInfo;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ApproveRejectController extends Controller
 {
@@ -49,7 +49,12 @@ class ApproveRejectController extends Controller
      */
     public function show($id)
     {
-
+        $user = StudentInfo::with('education_histroy','student_job')->find($id);
+        if (empty($user)) {
+            Alert::error('Error', 'User Not Found');
+            return redirect(route('da_approval.index'));
+        }
+        return view('pages.daapproval.edit',compact('user'));
     }
 
     /**
@@ -60,12 +65,7 @@ class ApproveRejectController extends Controller
      */
     public function edit($id)
     { 
-        $user = StudentInfo::find($id);
-        if (empty($user)) {
-            Alert::error('Error', 'User Not Found');
-            return redirect(route('da_approval.index'));
-        }
-        return view('pages.daapproval.edit',compact('user'));
+    
     }
 
     /**
@@ -77,7 +77,7 @@ class ApproveRejectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return "here";
+        // return "here";
         $user = StudentInfo::find($id);
         $user->approve_reject_status = 1;
         $user->save();

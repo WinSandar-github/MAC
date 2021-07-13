@@ -4,9 +4,10 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <h4 class="modal-title text-center">Approve</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title text-center">Approve!</h4>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
                 <form action="#" id="deleteDAApprovalFormAction" method="post">
                     {{ csrf_field()}}
@@ -15,7 +16,6 @@
                     <input type="hidden" name="id" id="update_id" value="">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline" data-dismiss="modal">No</button>
                     <button type="submit" class="btn btn-outline">Yes</button>
                 </div>
             </form>
