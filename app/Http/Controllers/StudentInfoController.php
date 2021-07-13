@@ -45,7 +45,7 @@ class StudentInfoController extends Controller
             }
          } 
  
-         $student_info = new StudentInfo();
+        $student_info = new StudentInfo();
         $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng          =   $request->name_eng;
         $student_info->nrc              =   $request->nrc;
