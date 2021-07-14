@@ -54,7 +54,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-body">
-            <img src="{{ asset('img/user_profile/vIqzOHXj.jpeg') }}" class="img-responsive">
+            <img src="{{ asset($user->image) }}" class="img-responsive">
         </div>
     </div>
   </div>

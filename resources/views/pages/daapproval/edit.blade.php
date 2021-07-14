@@ -131,10 +131,8 @@
         </div> --}}
         <div class="row">
             <div class="col-md-4 ">
-                <center><img src="{{ asset('img/user_profile/vIqzOHXj.jpeg') }}" class="rounded-circle" style="width: 100px;height : 100px"></center>
-                {{ $user->image }}
                 <center>
-                    <img width="30%" class="rounded-circle" style="width: 100px;height : 100px" src="{{ URL::asset('storage/student_info'.$user->image) }}">
+                    <img width="30%" class="rounded-circle" style="width: 100px;height : 100px" src="{{ asset($user->image) }}">
                 </center>
                 <h5 class="border-bottom pb-2 mt-3">Education</h5>
                 <div class="row m-2 mt-3 border-bottom">
