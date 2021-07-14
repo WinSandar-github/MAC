@@ -132,7 +132,10 @@
         <div class="row">
             <div class="col-md-4 ">
                 <center><img src="{{ asset('img/user_profile/vIqzOHXj.jpeg') }}" class="rounded-circle" style="width: 100px;height : 100px"></center>
-                
+                {{ $user->image }}
+                <center>
+                    <img width="30%" class="rounded-circle" style="width: 100px;height : 100px" src="{{ URL::asset('storage/student_info'.$user->image) }}">
+                </center>
                 <h5 class="border-bottom pb-2 mt-3">Education</h5>
                 <div class="row m-2 mt-3 border-bottom">
                     <div class="col-md-6">
@@ -335,7 +338,7 @@
                 <div class="row mt-5 justify-content-center">                    
                     <a href="#" data-toggle="modal" data-url="{{ url($user->id.'/daapproval') }}" data-target="#ApprovalModal" style="width : 20%" class="btn btn-primary"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Approve</a>
 
-                    <a href="#" data-toggle="modal" data-url="{{ url($user->id.'/da_approval') }}" data-target="#RejectModal" style="width : 20%" class="btn btn-primary"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Reject</a>
+                    <a href="#" data-toggle="modal" data-url="{{ url($user->id.'/da_reject') }}" data-target="#RejectModal" style="width : 20%" class="btn btn-primary"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> Reject</a>
                 </div>
             </div>
         </div>
