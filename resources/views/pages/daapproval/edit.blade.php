@@ -343,7 +343,7 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <img src="{{ asset($user->image) }}" class="img-responsive">
+                            <img src="{{ asset($user->education_histroy->document) }}" class="img-responsive">
                         </div>
                     </div>
                   </div>
