@@ -194,5 +194,7 @@ The above copyright notice and this permission notice shall be included in all c
 
     {{-- @include('layouts.navbars.fixed-plugin-js') --}}
 </body>
-
+@include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+@include('sweetalert::alert')
 </html>
+
