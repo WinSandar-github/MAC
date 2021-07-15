@@ -7,6 +7,7 @@ use App\StudentInfo;
 use App\EducationHistroy;
 use App\StudentCourseReg;
 use App\StudentJobHistroy;
+use App\registration_self_study;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -222,4 +223,5 @@ class StudentInfoController extends Controller
         ],200);
 
     }
+    
 }

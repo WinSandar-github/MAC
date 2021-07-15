@@ -18,6 +18,7 @@ class ApproveRejectController extends Controller
     {
         $users = StudentInfo::all();
         return view('pages.daapproval.index', compact('users'));
+        
     }
 
     /**
