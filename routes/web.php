@@ -106,7 +106,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('{id}/da_approval', 'ApproveRejectController@reject');
     Route::resource('da_approval', 'ApproveRejectController');
 
-    Route::get('/student_self_study','StudentInfoController@selfStudy');
+    
 });
 
     Route::group(['middleware' => 'auth'], function () {

@@ -223,9 +223,5 @@ class StudentInfoController extends Controller
         ],200);
 
     }
-    public function selfStudy()
-    {
-        $student_infos = registration_self_study::with('student_info')->get();
-        return response()->json([ 'data' => $student_infos],200);
-    }
+    
 }

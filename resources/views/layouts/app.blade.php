@@ -86,11 +86,12 @@ The above copyright notice and this permission notice shall be included in all c
     <!--toastr-->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/toastr') }}/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
     <!-- DataTables -->
-    {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-bs4/css/dataTables.bootstrap4.min.css"> --}}
+    <!-- {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-bs4/css/dataTables.bootstrap4.min.css"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-select/css/select.bootstrap4.css"> --}}
-    {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-responsive/css/responsive.bootstrap4.min.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" /> --}}
+    {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-responsive/css/responsive.bootstrap4.min.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" /> --}} -->
 
     <!-- Google Tag Manager -->
     {{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -128,12 +129,14 @@ The above copyright notice and this permission notice shall be included in all c
 
  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js">
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> --}}
     {{-- <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script> --}}
     <script src="{{ asset('paper') }}/demo/jquery.sharrre.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js">
     <script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--  Google Maps Plugin    -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
@@ -155,10 +158,10 @@ The above copyright notice and this permission notice shall be included in all c
     <!--toastr-->
     <script src="{{ asset('plugins/toastr') }}/toastr.min.js"></script>
     <!-- DataTables -->
-    {{-- <script src="{{ asset('plugins') }}/datatables/jquery.dataTables.min.js"></script> --}}
+    <!-- {{-- <script src="{{ asset('plugins') }}/datatables/jquery.dataTables.min.js"></script> --}}
     {{-- <script src="{{ asset('plugins') }}/datatables-bs4/js/dataTables.bootstrap4.min.js"></script> --}}
     {{-- <script src="{{ asset('plugins') }}/datatables-responsive/js/dataTables.responsive.min.js"></script> --}}
-    {{-- <script src="{{ asset('plugins') }}/datatables-responsive/js/responsive.bootstrap4.min.js"></script> --}}
+    {{-- <script src="{{ asset('plugins') }}/datatables-responsive/js/responsive.bootstrap4.min.js"></script> --}} -->
     <script type="text/javascript">
         $(document).ready(function () {
             $(document).on('show.bs.modal', '#ApprovalModal', function (e) {

@@ -25,37 +25,97 @@
                                 
                                 <div class="col-md-12">
                                     <div class="card">
+                                        <div class="card-header">
+                                            
+                                            <ul class="nav nav-tabs" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="true">Registration Self Study</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false">Registration Private Shool</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false">Registration Mac</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                         <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <input type="radio" value="1" name="register_name" onclick="selectedRegistration()"> <label class='form-check-label'> Registration Self Study</label>
+                                            <div class="tab-space tab-content tab-no-active-fill-tab-content">
+	                                            <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                                    <div class="row">
+                                    
+                                                        <div class="col-md-12">
+                                                            <table id="tbl_student_self_study" class="table table-hover text-nowrap " style="width: 100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="less-font-weight">Sr No</th>
+                                                                        <th class="less-font-weight" >Name</th>
+                                                                        <th class="less-font-weight" >Email</th>                                        
+                                                                        <th class="less-font-weight" >Registration No</th>
+                                                                        <th class="less-font-weight" >Phone</th>
+                                                                        <th class="less-font-weight" >Registration Reason</th>
+                                                                        <th class="less-font-weight" >Action</th>
+                                                                    </tr>
+                                                                    
+                                                                </thead>
+                                                                <tbody id="tbl_student_self_study_body">
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    
+                                            
+                                        
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <input type="radio" value="2" name="register_name" onclick="selectedRegistration()"> <label class='form-check-label'> Registration Private Shool</label>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <input type="radio" value="3" name="register_name" onclick="selectedRegistration()"> <label class='form-check-label'> Registration Mac</label>
+                                            <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-12">
+                                                            <table id="tbl_student_private_school" class="table table-hover text-nowrap " width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="less-font-weight" >Sr No</th>
+                                                                        <th class="less-font-weight" >Name</th>
+                                                                        <th class="less-font-weight" >Email</th>                                        
+                                                                        <th class="less-font-weight" >Registration No</th>
+                                                                        <th class="less-font-weight" >Phone</th>
+                                                                        <th class="less-font-weight" >Action</th>
+                                                                    </tr>
+                                                                    
+                                                                </thead>
+                                                                <tbody id="tbl_student_private_school_body">
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                 </div>
                                             </div>
-                                            <div class="row" id="self_study_container">
-                                                <table id="tbl_student"class="table text-nowrap ">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="less-font-weight" >Sr No</th>
-                                                            <th class="less-font-weight" >Name</th>
-                                                            <th class="less-font-weight" >Email</th>                                        
-                                                            <th class="less-font-weight" >Registration No</th>
-                                                            <th class="less-font-weight" >Phone</th>
-                                                            
-                                                            <th class="less-font-weight" >Action</th>
-                                                        </tr>
-                                                        
-                                                    </thead>
-                                                    <tbody id="tbl_student_body">
-                                                        
-                                                    </tbody>
-                                                </table>
+                                            <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                                <div class="row">
+                                                    
+                                                    <div class="col-md-12">
+                                                            <table id="tbl_student_mac" class="table table-hover text-nowrap " width="100%">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="less-font-weight">Sr No</th>
+                                                                        <th class="less-font-weight" >Name</th>
+                                                                        <th class="less-font-weight" >Email</th>                                        
+                                                                        <th class="less-font-weight" >Registration No</th>
+                                                                        <th class="less-font-weight" >Phone</th>
+                                                                        <th class="less-font-weight" >Action</th>
+                                                                    </tr>
+                                                                    
+                                                                </thead>
+                                                                <tbody id="tbl_student_mac_body">
+                                                                    
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                </div>
                                             </div>
+                                        </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -75,6 +135,9 @@
 
 @push('scripts')
 <script>
-    getStudent();
+    getStudentSelfStudy();
+    getStudentPrivateSchool();
+    getStudentMac();
+
 </script>
 @endpush

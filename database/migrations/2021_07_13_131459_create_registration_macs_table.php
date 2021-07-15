@@ -16,7 +16,6 @@ class CreateRegistrationMacsTable extends Migration
         Schema::create('registration_macs', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
-            $table->text('registration_reason');
             $table->date('date');
             $table->unsignedBigInteger('invoice_id');
             $table->string('invoice_date');

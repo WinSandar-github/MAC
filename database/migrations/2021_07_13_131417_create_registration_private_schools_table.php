@@ -16,7 +16,6 @@ class CreateRegistrationPrivateSchoolsTable extends Migration
         Schema::create('registration_private_schools', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
-            $table->text('registration_reason');
             $table->date('date');
             $table->unsignedBigInteger('invoice_id');
             $table->string('invoice_date');

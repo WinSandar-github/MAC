@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\Batch;
 class CourseController extends Controller
 {
     /**
@@ -122,6 +123,13 @@ class CourseController extends Controller
         $course->delete();
         return response()->json([
             'message' => "Delete Successfully"
+        ],200);
+    }
+    public function studentCourse()
+    {
+        $courses = Course::with('batch')->get();
+        return response()->json([
+            'data' => $courses
         ],200);
     }
 }

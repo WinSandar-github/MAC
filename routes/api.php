@@ -43,9 +43,7 @@ Route::resource('/cpa_two_exam','CpaTwoExamRegController');
 Route::resource('/course_fee','CourseFeeController');
 Route::apiResource('/student_info','StudentInfoController');
 Route::apiResource('/requirement','RequirementController');
-
-
-
+Route::resource('/course','CourseController');
 
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
@@ -61,8 +59,10 @@ Route::get('/cpa_one_training_ground','ApiController@cpa_one_training_ground');
 Route::get('/type_service_provided','ApiController@type_service_provided');
 
 
-
-
+Route::get('student_course', 'CourseController@studentCourse');
+Route::resource('/student_selfstudy','StudentSelfStudyController');
+Route::resource('/student_privateschool','StudentPrivateSchoolController');
+Route::resource('/student_mac','StudentMacController');
 
 
 
