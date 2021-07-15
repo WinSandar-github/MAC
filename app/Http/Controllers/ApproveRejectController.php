@@ -90,7 +90,7 @@ class ApproveRejectController extends Controller
         $user = StudentInfo::find($id);
         $user->approve_reject_status = 2;
         $user->save();
-        Alert::success('Approved', 'You have rejected that user!');
+        Alert::success('Rejected', 'You have rejected that user!');
         return redirect(route('da_approval.index'));
     }
 

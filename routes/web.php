@@ -103,7 +103,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // DA Form Approval
     Route::post('{id}/daapproval', 'ApproveRejectController@update');
-    Route::post('{id}/da_approval', 'ApproveRejectController@reject');
+    Route::post('{id}/da_reject', 'ApproveRejectController@reject');
     Route::resource('da_approval', 'ApproveRejectController');
 
     
