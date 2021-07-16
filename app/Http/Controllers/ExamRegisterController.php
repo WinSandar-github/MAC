@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\StudentInfo;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Alert;
+use App\ExamRegister;
 
-class ApproveRejectController extends Controller
+class ExamRegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,10 @@ class ApproveRejectController extends Controller
      */
     public function index()
     {
-        $users = StudentInfo::all();
-        return view('pages.daapproval.index', compact('users'));
-        
+        $exam_registers = ExamRegister::all();
+        return response()->json([
+            'data' => $exam_registers
+        ],200);
     }
 
     /**
@@ -39,7 +38,28 @@ class ApproveRejectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasfile('invoice_image')) 
+        {
+            $file = $request->file('invoice_image');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/exam_register/',$name);
+            $invoice_image = '/storage/exam_register/'.$name;
+        }
+        $date = date('Y-m-d');
+        $invoice_date = date('Y-m-d');
+
+        $exam = new ExamRegister();
+        $exam->student_info_id = $request->student_info_id;
+        $exam->date = $date;
+        $exam->invoice_image = $invoice_image;
+        $exam->invoice_date = $invoice_date;
+        $exam->private_school_name = $request->private_school_name;
+        $exam->grade = $request->grade;
+        $exam->batch_id = $request->batch_id;
+        $exam->is_full_module = $request->is_full_module;
+        $exam->exam_type_id = $request->exam_type_id;
+        $exam->save();
+        return "You have successfully registerd!";
     }
 
     /**
@@ -50,13 +70,7 @@ class ApproveRejectController extends Controller
      */
     public function show($id)
     {
-        // $user = StudentInfo::with('education_histroy','student_job')->find($id);
-        $user = StudentInfo::find($id);
-        if (empty($user)) {
-            Alert::error('Error', 'User Not Found');
-            return redirect(route('da_approval.index'));
-        }
-        return view('pages.daapproval.edit',compact('user'));
+        //
     }
 
     /**
@@ -66,8 +80,8 @@ class ApproveRejectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    { 
-    
+    {
+        //
     }
 
     /**
@@ -79,20 +93,7 @@ class ApproveRejectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = StudentInfo::find($id);
-        $user->approve_reject_status = 1;
-        $user->save();
-        Alert::success('Approved', 'You Successfully approved that user!');
-        return redirect(route('da_approval.index'));
-    }
-
-    public function reject(Request $request, $id)
-    {
-        $user = StudentInfo::find($id);
-        $user->approve_reject_status = 2;
-        $user->save();
-        Alert::success('Rejected', 'You have rejected that user!');
-        return redirect(route('da_approval.index'));
+        //
     }
 
     /**
