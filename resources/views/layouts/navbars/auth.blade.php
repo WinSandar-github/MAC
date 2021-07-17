@@ -59,6 +59,12 @@
                                 <span>{{ __('DA Registration Form') }}</span>
                             </a>
                         </li>
+                        <li class="{{ $elementActive == 'da_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'da_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Form Approval/Reject') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
