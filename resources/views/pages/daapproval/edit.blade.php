@@ -140,7 +140,7 @@
                         <p class="ml-2">Universtry Name</p>
                     </div>
                     <div class="col-md-6">
-                        <p>{{ $user->education_histroy->university_name}}</p>
+                        <p>{{ $user->student_education_histroy->university_name}}</p>
                     </div>
                 </div>
                 <div class="row m-2 mt-3 border-bottom">
@@ -148,7 +148,7 @@
                         <p class="ml-2">Degree Name</p>
                     </div>
                     <div class="col-md-6">
-                        <p>{{ $user->education_histroy->degree_name}}</p>
+                        <p>{{ $user->student_education_histroy->degree_name}}</p>
                     </div>
                 </div>
                 <div class="row m-2 mt-3 border-bottom">
@@ -156,7 +156,7 @@
                         <p class="ml-2">Qualified Date</p>
                     </div>
                     <div class="col-md-6">
-                        <p>{{ $user->education_histroy->qualified_date}}</p>
+                        <p>{{ $user->student_education_histroy->qualified_date}}</p>
                     </div>
                 </div>
                 <div class="row m-2 mt-3 border-bottom">
@@ -164,7 +164,7 @@
                         <p class="ml-2">Roll Number</p>
                     </div>
                     <div class="col-md-6">
-                        <p>{{ $user->education_histroy->roll_number}}</p>
+                        <p>{{ $user->student_education_histroy->roll_number}}</p>
                     </div>
                 </div>
                 <div class="row m-2 mt-3 border-bottom">
@@ -231,7 +231,7 @@
                         <p class="ml-2">Address</p>
                     </div>
                     <div class="col-md-6">
-                        <p>{{ $user->student_job->address}}</p>
+                        <p>{{ $user->student_job->office_address}}</p>
                     </div>
                 </div>
             </div>
@@ -343,7 +343,7 @@
                   <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <img src="{{ asset($user->education_histroy->document) }}" class="img-responsive">
+                            <img src="{{ asset($user->student_education_histroy->certificate) }}" class="img-responsive" style="height:5%;">
                         </div>
                     </div>
                   </div>

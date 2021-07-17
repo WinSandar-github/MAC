@@ -179,7 +179,7 @@ The above copyright notice and this permission notice shall be included in all c
             function centerModal() {
                 $(this).css('display', 'block');
                 var $dialog = $(this).find(".modal-dialog");
-                var offset = ($(window).height() - $dialog.height()) / 2;
+                var offset = ($(window).height() - $dialog.height()) / 3;
                 // Center modal vertically in window
                 $dialog.css("margin-top", offset);
             }
