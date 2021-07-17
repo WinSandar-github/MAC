@@ -44,6 +44,7 @@ Route::resource('/course_fee','CourseFeeController');
 Route::apiResource('/student_info','StudentInfoController');
 Route::apiResource('/requirement','RequirementController');
 Route::resource('/course','CourseController');
+Route::resource('/papp','PAPPController');
 
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
