@@ -65,9 +65,12 @@ Route::resource('/student_selfstudy','StudentSelfStudyController');
 Route::resource('/student_privateschool','StudentPrivateSchoolController');
 Route::resource('/student_mac','StudentMacController');
 
+//Exam Register API
+Route::post('/exam_register', 'ExamRegisterController@store');
 
-
-
+//DA Register API
+// Route::post('/da_register', 'DARegisterController@store');
+Route::resource('/da_register', 'DARegisterController');
 
 
 

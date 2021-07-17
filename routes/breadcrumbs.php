@@ -339,3 +339,9 @@ Breadcrumbs::for('article-form6', function ($trail) {
 Breadcrumbs::for('index', function ($trail) {
     $trail->push('da_registration_form', route('page.index', 'index'));
 });
+Breadcrumbs::for('da_list', function ($trail) {
+    $trail->push('DA Form List', route('page.index', 'da_list'));
+});
+// Breadcrumbs::for('requirement_list', function ($trail) {
+//     $trail->push('Requirement', route('page.index', 'requirement_list'));
+// });
