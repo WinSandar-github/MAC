@@ -110,7 +110,7 @@ class StudentInfoController extends Controller
     public function show($id)
     {
         $student_info = StudentInfo::where('id',$id)->with('student_job','education_histroy','student_course')->get();
-        return response()->json(['date' => $student_info],200);
+        return response()->json(['data' => $student_info],200);
     }
 
     /**

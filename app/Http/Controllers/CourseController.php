@@ -13,7 +13,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::all();
+        $courses = Course::with('batch')->get();
         return response()->json([
             'data' => $courses
         ],200);
@@ -72,7 +72,7 @@ class CourseController extends Controller
     public function show($id)
     {
         $course = Course::where('id',$id)->get();
-        return response()->json([
+            return response()->json([
             'data' => $course
         ],200);
     }
