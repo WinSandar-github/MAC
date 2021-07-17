@@ -68,8 +68,8 @@ Route::resource('/student_mac','StudentMacController');
 Route::post('/exam_register', 'ExamRegisterController@store');
 
 //DA Register API
-Route::post('/da_register', 'DARegisterController@store');
-
+// Route::post('/da_register', 'DARegisterController@store');
+Route::resource('/da_register', 'DARegisterController');
 
 
 

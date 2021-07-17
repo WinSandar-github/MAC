@@ -10,9 +10,16 @@ use Hash;
 
 class DARegisterController extends Controller
 {
+    public function index()
+    {
+        $student_infos = StudentInfo::with('student_job', 'student_education_histroy')->get();
+        return response()->json([ 
+            'data' => $student_infos
+        ],200);
+    }
+
     public function store(Request $request)
     {
-        // return $request->all();
         $nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
         $data = StudentInfo::where('nrc', '=', $nrc)->first();
         if($data)
@@ -87,5 +94,14 @@ class DARegisterController extends Controller
         $education_histroy->save();
 
         return "You have successfully registerd!";
+    }
+
+    public function show($id)
+    {
+        $approve_reject = StudentInfo::where('id' ,$id)->with('student_job', 'student_education_histroy')->get();
+        return response()->json([
+            'data' => $approve_reject
+        ],200);
+        
     }
 }
