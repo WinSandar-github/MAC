@@ -4,6 +4,12 @@ function createBatch(){
     send_data.append('course_id',$('#selected_course_id').val());
     send_data.append('start_date',$("input[name=start_date]").val());
     send_data.append('end_date',$("input[name=end_date]").val());
+    send_data.append('mac_reg_start_date',$("input[name=mac_reg_start_date]").val());
+    send_data.append('mac_reg_end_date',$("input[name=mac_reg_end_date]").val());
+    send_data.append('self_reg_start_date',$("input[name=self_reg_start_date]").val());
+    send_data.append('self_reg_end_date',$("input[name=self_reg_end_date]").val());
+    send_data.append('private_reg_start_date',$("input[name=private_reg_start_date]").val());
+    send_data.append('private_reg_end_date',$("input[name=private_reg_end_date]").val());
     send_data.append('accept_application_date',$("input[name=acc_app_date]").val());
 
     $.ajax({
@@ -35,6 +41,12 @@ function getBatch(){
                 tr += "<td>" + element.course.name + "</td>";
                 tr += "<td>" + element.start_date + "</td>";
                 tr += "<td>" + element.end_date + "</td>";
+                tr += "<td>" + element.mac_reg_start_date + "</td>";
+                tr += "<td>" + element.mac_reg_end_date + "</td>";
+                tr += "<td>" + element.self_reg_start_date + "</td>";
+                tr += "<td>" + element.self_reg_end_date + "</td>";
+                tr += "<td>" + element.private_reg_start_date + "</td>";
+                tr += "<td>" + element.private_reg_end_date + "</td>";
                 tr += "<td>" + element.accept_application_date + "</td>";
             
                 tr += "<td ><div class='btn-group'>";
@@ -70,9 +82,15 @@ function showBatchInfo(id) {
             $('#selected_course_id').val(batch_data[0].course_id);
             $('input[name=start_date]').val(batch_data[0].start_date);
             $('input[name=end_date]').val(batch_data[0].end_date);
+            $('input[name=mac_reg_start_date]').val(batch_data[0].mac_reg_start_date);
+            $('input[name=mac_reg_end_date]').val(batch_data[0].mac_reg_end_date);
+            $('input[name=self_reg_start_date]').val(batch_data[0].self_reg_start_date);
+            $('input[name=self_reg_end_date]').val(batch_data[0].self_reg_end_date);
+            $('input[name=private_reg_start_date]').val(batch_data[0].private_reg_start_date);
+            $('input[name=private_reg_end_date]').val(batch_data[0].private_reg_end_date);
             $('input[name=acc_app_date]').val(batch_data[0].accept_application_date);            
             
-            $('#create_batch_model').modal('toggle');
+            $('#create_batch_modal').modal('toggle');
         },
 
         error:function (message){
@@ -87,6 +105,12 @@ function updateBatch(){
     var course_id=$("#selected_course_id").val();
     var start_date=$("input[name=start_date]").val();
     var end_date=$("input[name=end_date]").val();
+    var mac_reg_start_date=$("input[name=mac_reg_start_date]").val();
+    var mac_reg_end_date=$("input[name=mac_reg_end_date]").val();
+    var self_reg_start_date=$("input[name=self_reg_start_date]").val();
+    var self_reg_end_date=$("input[name=self_reg_end_date]").val();
+    var private_reg_start_date=$("input[name=private_reg_start_date]").val();
+    var private_reg_end_date=$("input[name=private_reg_end_date]").val();
     var accept_application_date=$("input[name=acc_app_date]").val();  
    
     $.ajax({
@@ -97,11 +121,17 @@ function updateBatch(){
             course_id:course_id,
             start_date:start_date,
             end_date:end_date,
+            mac_reg_start_date:mac_reg_start_date,
+            mac_reg_end_date:mac_reg_end_date,
+            self_reg_start_date:self_reg_start_date,
+            self_reg_end_date:self_reg_end_date,
+            private_reg_start_date:private_reg_start_date,
+            private_reg_end_date:private_reg_end_date,
             accept_application_date:accept_application_date
         },        
         success: function(result){
             successMessage("Update Successfully");
-            $('#create_batch_model').modal('toggle');       
+            $('#create_batch_modal').modal('toggle');       
             location.reload();     
             getBatch();
             
