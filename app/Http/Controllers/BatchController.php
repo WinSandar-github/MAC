@@ -30,6 +30,12 @@ class BatchController extends Controller
         $batch->course_id       = $request->course_id;
         $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
         $batch->end_date        = date('Y-m-d',strtotime($request->end_date));
+        $batch->mac_reg_start_date      = date('Y-m-d',strtotime($request->mac_reg_start_date));
+        $batch->mac_reg_end_date        = date('Y-m-d',strtotime($request->mac_reg_end_date));
+        $batch->self_reg_start_date      = date('Y-m-d',strtotime($request->self_reg_start_date));
+        $batch->self_reg_end_date        = date('Y-m-d',strtotime($request->self_reg_end_date));
+        $batch->private_reg_start_date      = date('Y-m-d',strtotime($request->private_reg_start_date));
+        $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
         $batch->accept_application_date = date('Y-m-d',strtotime($request->acc_app_date));
@@ -58,6 +64,12 @@ class BatchController extends Controller
         $batch->course_id       = $request->course_id;
         $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
         $batch->end_date        = date('Y-m-d',strtotime($request->end_date));
+        $batch->mac_reg_start_date      = date('Y-m-d',strtotime($request->mac_reg_start_date));
+        $batch->mac_reg_end_date        = date('Y-m-d',strtotime($request->mac_reg_end_date));
+        $batch->self_reg_start_date      = date('Y-m-d',strtotime($request->self_reg_start_date));
+        $batch->self_reg_end_date        = date('Y-m-d',strtotime($request->self_reg_end_date));
+        $batch->private_reg_start_date      = date('Y-m-d',strtotime($request->private_reg_start_date));
+        $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
         $batch->accept_application_date = date('Y-m-d',strtotime($request->acc_app_date));

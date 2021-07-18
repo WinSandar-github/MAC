@@ -25,7 +25,7 @@
                                     <h5 class="title" style="padding-left: 330px;">{{ __('Course List') }}</h5>
                                 </div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_course_model">Create</button>
+                                    <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_course_modal">Create</button>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="create_course_model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="create_course_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <!-- <form method="post" action="{{ route('course.store') }}" enctype="multipart/form-data"> -->
@@ -84,8 +84,8 @@
                     <div class="modal-body">
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('1.') }}</label>
-                            <label class="col-md-2 form-label">{{ __('Name') }}</label>
-                            <div class="col-md-9">
+                            <label class="col-md-4 form-label">{{ __('Name') }}</label>
+                            <div class="col-md-7">
                                 <div class="form-group">                                
                                     <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off">
                                 </div>
@@ -93,8 +93,8 @@
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                            <label class="col-md-2 form-label">{{ __('Form Fee') }}</label>
-                            <div class="col-md-9">
+                            <label class="col-md-4 form-label">{{ __('Form Fee') }}</label>
+                            <div class="col-md-7">
                                 <div class="form-group">                                
                                     <input type="text"  name="form_fee" class="form-control"  placeholder="Form Fee" autocomplete="off">
                                 </div>
@@ -102,8 +102,8 @@
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('3.') }}</label>
-                            <label class="col-md-2 form-label">{{ __('Registration Fee') }}</label>
-                            <div class="col-md-9">
+                            <label class="col-md-4 form-label">{{ __('Registration Fee') }}</label>
+                            <div class="col-md-7">
                                 <div class="form-group">                                
                                     <input type="text" name="registration_fee" class="form-control" placeholder="Registration Fee" autocomplete="off">
                                 </div>
@@ -111,8 +111,8 @@
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('4.') }}</label>
-                            <label class="col-md-2 form-label">{{ __('Exam Fee') }}</label>
-                            <div class="col-md-9">
+                            <label class="col-md-4 form-label">{{ __('Exam Fee') }}</label>
+                            <div class="col-md-7">
                                 <div class="form-group">                                
                                     <input type="text" name="exam_fee" class="form-control" placeholder="Exam Fee" autocomplete="off">
                                 </div>
@@ -120,8 +120,8 @@
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('5.') }}</label>
-                            <label class="col-md-2 form-label">{{ __('Tution Fee') }}</label>
-                            <div class="col-md-9">
+                            <label class="col-md-4 form-label">{{ __('Tution Fee') }}</label>
+                            <div class="col-md-7">
                                 <div class="form-group">                                
                                     <input type="text" name="tution_fee" class="form-control" placeholder="Tution Fee" autocomplete="off">
                                 </div>
@@ -129,26 +129,26 @@
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('6.') }}</label>
-                            <label class="col-md-2 form-label">{{ __('Registration Start Date') }}</label>
-                            <div class="col-md-9">
+                            <label class="col-md-4 form-label">{{ __('Registration Start Date') }}</label>
+                            <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="date" name="registration_start_date" class="form-control" autocomplete="off">
+                                    <input type="text" name="registration_start_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('7.') }}</label>
-                            <label class="col-md-2 form-label">{{ __('Registration End Date') }}</label>
-                            <div class="col-md-9">
+                            <label class="col-md-4 form-label">{{ __('Registration End Date') }}</label>
+                            <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="date" name="registration_end_date" class="form-control" autocomplete="off">
+                                    <input type="text" name="registration_end_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('8.') }}</label>
-                            <label class="col-md-2 form-label">{{ __('Description') }}</label>
-                            <div class="col-md-9">
+                            <label class="col-md-4 form-label">{{ __('Description') }}</label>
+                            <div class="col-md-7">
                                 <div class="form-group"> 
                                     <input type="text" name="description" class="form-control"  placeholder="Description" autocomplete="off">
                                 </div>
@@ -170,6 +170,17 @@
 
 @push('scripts')
 <script>
+    $(document).ready(function (e) {
+        $("input[name='registration_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
+        $("input[name='registration_end_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-m-Y",
+        });
+        
+    });
     getCourse();
 </script>
 @endpush
