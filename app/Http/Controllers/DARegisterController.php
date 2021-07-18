@@ -104,4 +104,29 @@ class DARegisterController extends Controller
         ],200);
         
     }
+
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    public function approve($id)
+    {
+        $approve = StudentInfo::find($id);
+        $approve->approve_reject_status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $reject = StudentInfo::find($id);
+        $reject->approve_reject_status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
 }

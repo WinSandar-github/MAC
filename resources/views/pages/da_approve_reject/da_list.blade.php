@@ -17,7 +17,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8">
-                                <h5 class="title" style="padding-left: 330px;">{{ __('DA Registered Form List') }}</h5>
+                                <h5 class="title" style="padding-left: 330px;">{{ __('DA Application Form List') }}</h5>
                             </div>
                         </div>
                     </div>
@@ -30,8 +30,8 @@
                                             <thead>
                                                 <tr>
                                                     <th class="less-font-weight" >No</th>
-                                                    <th class="less-font-weight" >Name</th>            
-                                                    <th class="less-font-weight" >Email</th>          
+                                                    <th class="less-font-weight" >Name</th>
+                                                    <th class="less-font-weight" >Email</th>     
                                                     <th class="less-font-weight" >Phone Number</th>
                                                     <th class="less-font-weight" >NRC</th>
                                                     <th class="less-font-weight" >Status</th>
