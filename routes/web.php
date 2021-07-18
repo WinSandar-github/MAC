@@ -101,12 +101,9 @@ Route::group(['middleware' => 'auth'], function () {
         return redirect('/moodle/admin');
     })->name("admin");
 
-    // DA Form Approval
-    Route::post('{id}/daapproval', 'ApproveRejectController@update');
-    Route::post('{id}/da_reject', 'ApproveRejectController@reject');
-    Route::resource('da_approval', 'ApproveRejectController');
-
-    
+    // DA Application Form
+    Route::patch('/approve/{id}', 'DARegisterController@approve');
+    Route::patch('/reject/{id}', 'DARegisterController@reject');
 });
 
     Route::group(['middleware' => 'auth'], function () {
