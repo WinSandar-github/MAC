@@ -43,7 +43,12 @@ Route::resource('/cpa_two_exam','CpaTwoExamRegController');
 Route::resource('/course_fee','CourseFeeController');
 Route::apiResource('/student_info','StudentInfoController');
 Route::apiResource('/requirement','RequirementController');
+
+Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
+
+
+
 
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');

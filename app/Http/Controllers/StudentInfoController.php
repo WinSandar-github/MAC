@@ -19,7 +19,7 @@ class StudentInfoController extends Controller
      */
     public function index()
     {
-        $student_infos = StudentInfo::with('student_job','education_histroy','student_course')->get();
+        $student_infos = StudentInfo::with('student_job','student_education_histroy','student_course')->get();
         return response()->json([ 'data' => $student_infos],200);
     }
 
@@ -64,6 +64,7 @@ class StudentInfoController extends Controller
         $student_info->date             =   date("Y-m-d");
         $student_info->email            =   $request->email;
         $student_info->password         =   Hash::make($request->password);
+       
         $student_info->save(); 
          
         $student_job_histroy = new StudentJobHistroy;
@@ -110,8 +111,8 @@ class StudentInfoController extends Controller
      */
     public function show($id)
     {
-        $student_info = StudentInfo::where('id',$id)->with('student_job','education_histroy','student_course')->get();
-        return response()->json(['date' => $student_info],200);
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course')->first();
+        return response()->json(['data' => $student_info],200);
     }
 
     /**
@@ -123,6 +124,7 @@ class StudentInfoController extends Controller
      */
     public function update(Request $request, $id)
     {
+         
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -136,11 +138,11 @@ class StudentInfoController extends Controller
             foreach($request->file('documents') as $file){
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
-                $document[] = '/storage/student_info/'.$name;
+                $certificate[] = '/storage/student_info/'.$name;
             }
         } 
         else{
-            $document = $request->old_document;
+            $certificate = $request->old_document;
         }
 
       
@@ -155,16 +157,17 @@ class StudentInfoController extends Controller
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
-        $student_info->date_of_birth    =   $request->dob;
+        $student_info->date_of_birth    =   $request->date_of_birth;
         $student_info->address          =   $request->address;
         $student_info->current_address  =   $request->current_address;
         $student_info->phone            =   $request->phone;
         $student_info->gov_staff        =   $request->gov_staff;
         $student_info->image            =   $image;
         $student_info->registration_no  =   $request->registration_no;
+        $student_info->approve_reject_status = 0;
         $student_info->date             =   date("Y-m-d");
-        $student_info->email            =   $request->email;
-        $student_info->password         =   Hash::make($request->password);
+        // $student_info->email            =   $request->email;
+        // $student_info->password         =   Hash::make($request->password);
         $student_info->save(); 
          
         StudentJobHistroy::where('student_info_id',$id)->delete();
@@ -180,29 +183,35 @@ class StudentInfoController extends Controller
         $student_job_histroy->save();
 
         EducationHistroy::where('student_info_id',$id)->delete();
-        for($i=0;$i < sizeof($request->uni_name);$i++){
+        $education_histroy  =   new EducationHistroy();
+        $education_histroy->student_info_id = $student_info->id;
+        $education_histroy->university_name = $request->university_name;
+        $education_histroy->degree_name     = $request->degree_name;
+        $education_histroy->certificate     = $certificate;
+        $education_histroy->qualified_date  = date("Y-m-d",strtotime($request->qualified_date));
+        $education_histroy->roll_number     = $request->roll_number;
+        $education_histroy->save();
+        // for($i=0;$i < sizeof($request->uni_name);$i++){
        
-            $education_histroy  =   new EducationHistroy();
-            $education_histroy->student_info_id = $student_info->id;
-            $education_histroy->university_name = $request->uni_name[$i];
-            $education_histroy->degree_name     = isset($request->degree_name[$i])  ? $request->degree_name[$i] : null;
-            $education_histroy->qualified_date  = isset($request->qualified_date[$i])  ? date("Y-m-d",strtotime($request->qualified_date[$i])) : null;
-            $education_histroy->roll_number     = isset($request->roll_number[$i])  ? $request->roll_number[$i] : null;
-            $education_histroy->document        = isset($document[$i])     ? $document[$i] : null;
-            $education_histroy->save();
-            }
+        //     $education_histroy  =   new EducationHistroy();
+        //     $education_histroy->student_info_id = $student_info->id;
+        //     $education_histroy->university_name = $request->uni_name[$i];
+        //     $education_histroy->degree_name     = isset($request->degree_name[$i])  ? $request->degree_name[$i] : null;
+        //     $education_histroy->qualified_date  = isset($request->qualified_date[$i])  ? date("Y-m-d",strtotime($request->qualified_date[$i])) : null;
+        //     $education_histroy->roll_number     = isset($request->roll_number[$i])  ? $request->roll_number[$i] : null;
+        //     $education_histroy->document        = isset($document[$i])     ? $document[$i] : null;
+        //     $education_histroy->save();
+        //     }
 
-        StudentCourseReg::where('student_info_id',$id)->delete();
-        $student_course = new StudentCourseReg();
-        $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id        = $request->batch_id;
-        $student_course->date            = date("Y-m-d",strtotime($request->course_date));
-        $student_course->status          = $request->course_status;
-        $student_course->save();
+        // StudentCourseReg::where('student_info_id',$id)->delete();
+        // $student_course = new StudentCourseReg();
+        // $student_course->student_info_id = $student_info->id;
+        // $student_course->batch_id        = $request->batch_id;
+        // $student_course->date            = date("Y-m-d",strtotime($request->course_date));
+        // $student_course->status          = $request->course_status;
+        // $student_course->save();
 
-        return response()->json([
-            'message' => 'Update Successfully'
-        ],200);
+        return response()->json($student_info,200);
     }
 
     /**

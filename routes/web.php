@@ -83,9 +83,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('training', ['as' => 'training.index', 'uses' => 'TrainingClassController@index']);
 	
     Route::resource('/degree','DegreeController');
-    Route::resource('/course','CourseController');
-    Route::resource('/batch','BatchController');
-
+    
 	Route::resource('training', 'TrainingClassController');
 	Route::post('training_update/{id}', 'TrainingClassController@update')->name('training_update.update');
 	Route::get('training_delete/{id}', 'TrainingClassController@delete')->name('training_delete.delete');
@@ -105,6 +103,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/approve/{id}', 'DARegisterController@approve');
     Route::patch('/reject/{id}', 'DARegisterController@reject');
 });
+
+Route::resource('/batch','BatchController');
+Route::resource('/course','CourseController');
+
+  
+
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('cpa_ff_register_form1','CpaController@cpa_ff_registration_form1');

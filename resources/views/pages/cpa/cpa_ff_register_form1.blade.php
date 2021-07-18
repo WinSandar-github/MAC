@@ -389,19 +389,19 @@
 
    
         $('#register_form').submit(function(e) {
-            e.preventDefault();
-            var formData = new FormData(this);
-       $.ajax({
-        type: "POST",
-        url: "http://localhost:8000/api/cpa_full_form",
-        contentType: false,
-        processData: false,
-        data: formData,
-        success: function (data) {
-           alert("Successfully")
-        },
-        error:function (message){
-        }
+        e.preventDefault();
+        var formData = new FormData(this);
+            $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/api/cpa_full_form",
+            contentType: false,
+            processData: false,
+            data: formData,
+            success: function (data) {
+                alert("Successfully")
+            },
+            error:function (message){
+            }
       });
     })
 
