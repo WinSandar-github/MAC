@@ -22,7 +22,7 @@ class CreateStudentJobHistroysTable extends Migration
             $table->string('organization');
             $table->string('company_name');
             $table->string('salary');
-            $table->string('address');
+            $table->string('office_address');
 
             $table->timestamps();
 

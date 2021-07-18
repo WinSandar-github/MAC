@@ -155,6 +155,7 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="{{ asset('js') }}/common.js"></script>
     <script src="{{ asset('js') }}/student.js"></script>
+    <script src="{{ asset('js') }}/da_approve_reject.js"></script>
     <!--toastr-->
     <script src="{{ asset('plugins/toastr') }}/toastr.min.js"></script>
     <!-- DataTables -->
@@ -179,7 +180,7 @@ The above copyright notice and this permission notice shall be included in all c
             function centerModal() {
                 $(this).css('display', 'block');
                 var $dialog = $(this).find(".modal-dialog");
-                var offset = ($(window).height() - $dialog.height()) / 2;
+                var offset = ($(window).height() - $dialog.height()) / 3;
                 // Center modal vertically in window
                 $dialog.css("margin-top", offset);
             }

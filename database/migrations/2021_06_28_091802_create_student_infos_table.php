@@ -25,14 +25,14 @@ class CreateStudentInfosTable extends Migration
             $table->string('father_name_eng');
             $table->string('race');
             $table->string('religion');
-            $table->string('date_of_birth');
+            $table->date('date_of_birth');
             $table->text('address');
             $table->text('current_address');
             $table->string('phone',30);
             $table->boolean('gov_staff')->default(0);
             $table->string('image');
             $table->string('registration_no');
-            $table->string('date');
+            $table->date('date');
             $table->boolean('approve_reject_status')->default(0);
             $table->string('email');
             $table->string('password');
