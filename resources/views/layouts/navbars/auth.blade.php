@@ -53,6 +53,18 @@
                         <li class="{{ Request::is('da_approval*') ? 'active' : '' }}">
                             <a href="{{ route('da_approval.index') }}"><i class="fa fa-edit"></i><span>DA Form Approval</span></a>
                         </li>
+                        <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'index') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Registration Form') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'da_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'da_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Form Approval/Reject') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

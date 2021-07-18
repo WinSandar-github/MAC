@@ -64,12 +64,17 @@ Route::get('/cpa_one_training_ground','ApiController@cpa_one_training_ground');
 Route::get('/type_service_provided','ApiController@type_service_provided');
 
 
+Route::get('student_course', 'CourseController@studentCourse');
+Route::resource('/student_selfstudy','StudentSelfStudyController');
+Route::resource('/student_privateschool','StudentPrivateSchoolController');
+Route::resource('/student_mac','StudentMacController');
 
+//Exam Register API
+Route::post('/exam_register', 'ExamRegisterController@store');
 
-
-
-
-
+//DA Register API
+// Route::post('/da_register', 'DARegisterController@store');
+Route::resource('/da_register', 'DARegisterController');
 
 
 

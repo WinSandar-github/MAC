@@ -103,6 +103,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('{id}/daapproval', 'ApproveRejectController@update');
     Route::post('{id}/da_reject', 'ApproveRejectController@reject');
     Route::resource('da_approval', 'ApproveRejectController');
+
+    
 });
 
 Route::resource('/batch','BatchController');

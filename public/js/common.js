@@ -776,10 +776,14 @@ function createDataTable(table) {
         'info': false,
         'autoWidth': false,
         "scrollX": true,
-        'select': true,
-        "order": [[0, "desc"]]
+        'select': false,
+        "order": [[0, "desc"]],
+        
     });
-
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $($.fn.dataTable.tables(true)).DataTable()
+           .columns.adjust();
+     });   
 }
 function destroyDatatable(table, tableBody) {
     if ($.fn.DataTable.isDataTable(table)) {

@@ -336,3 +336,12 @@ Breadcrumbs::for('article-form6', function ($trail) {
     $trail->parent('article');
     $trail->push('လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပထမပိုင်း)(ဒုတိယပိုင်း)သင်တန်းအတွက် လက်တွေ့အလုပ်သင်ကြားရန် ဆန္ဒပြုခြင်း', route('page.index', 'article-form6'));
 });
+Breadcrumbs::for('index', function ($trail) {
+    $trail->push('da_registration_form', route('page.index', 'index'));
+});
+Breadcrumbs::for('da_list', function ($trail) {
+    $trail->push('DA Form List', route('page.index', 'da_list'));
+});
+// Breadcrumbs::for('requirement_list', function ($trail) {
+//     $trail->push('Requirement', route('page.index', 'requirement_list'));
+// });

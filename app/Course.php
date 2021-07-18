@@ -15,7 +15,6 @@ class Course extends Model
     public function degree(){
         return $this->belongsTo(CourseFee::class);
     }
-
     public function batch(){
         return $this->hasMany(Batch::class);
     }
