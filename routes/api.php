@@ -42,8 +42,11 @@ Route::resource('/cpa_two_private_old','CpaTwoPrivateOldController');
 Route::resource('/cpa_two_exam','CpaTwoExamRegController');
 Route::resource('/course_fee','CourseFeeController');
 Route::apiResource('/student_info','StudentInfoController');
+Route::get('/student_info_by_nrc/{nrc}','StudentInfoController@GetStudentByNRC');
 Route::apiResource('/requirement','RequirementController');
 Route::resource('/course','CourseController');
+
+//papp
 Route::resource('/papp','PAPPController');
 
 

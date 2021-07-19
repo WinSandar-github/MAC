@@ -19,7 +19,8 @@ class StudentInfoController extends Controller
      */
     public function index()
     {
-        $student_infos = StudentInfo::with('student_job','education_histroy','student_course')->get();
+        //$student_infos = StudentInfo::with('student_job','education_histroy','student_course')->get();
+        $student_infos = StudentInfo::All();
         return response()->json([ 'data' => $student_infos],200);
     }
 
@@ -111,7 +112,14 @@ class StudentInfoController extends Controller
     public function show($id)
     {
         $student_info = StudentInfo::where('id',$id)->with('student_job','education_histroy','student_course')->get();
-        return response()->json(['date' => $student_info],200);
+        return response()->json(['data' => $student_info],200);
+    }
+
+    public function GetStudentByNRC($nrc)
+    {
+        //$student_info = StudentInfo::where('nrc',$nrc)->with('student_job','education_histroy','student_course')->get();
+        $student_info = StudentInfo::where('nrc',$nrc)->get();
+        return response()->json(['data' => $student_info],200);
     }
 
     /**

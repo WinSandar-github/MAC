@@ -16,15 +16,15 @@ class CreatePappsTable extends Migration
         Schema::create('papps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
-            $table->string('cpa');
-            $table->string('ra');
-            $table->string('foreign_degree');
+            $table->string('cpa')->nullable();
+            $table->string('ra')->nullable();
+            $table->string('foreign_degree')->nullable();
             $table->string('papp_date');
             $table->boolean('use_firm')->default(0);
-            $table->string('firm_name');
-            $table->string('firm_type');
-            $table->string('firm_step');
-            $table->string('staff_firm_name');
+            $table->string('firm_name')->nullable();
+            $table->string('firm_type')->nullable();
+            $table->string('firm_step')->nullable();
+            $table->string('staff_firm_name')->nullable();
             $table->string('cpa_ff_recommendation');
             $table->string('recommendation_183');
             $table->string('not_fulltime_recommendation');
