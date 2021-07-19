@@ -47,6 +47,7 @@ Route::apiResource('/requirement','RequirementController');
 
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
+Route::get('/publish_batch','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
@@ -72,6 +73,9 @@ Route::get('student_course', 'CourseController@studentCourse');
 Route::resource('/student_selfstudy','StudentSelfStudyController');
 Route::resource('/student_privateschool','StudentPrivateSchoolController');
 Route::resource('/student_mac','StudentMacController');
+
+//Student Register API
+Route::resource('/student_register','StudentRegisterController');
 
 //Exam Register API
 Route::post('/exam_register', 'ExamRegisterController@store');

@@ -24,7 +24,7 @@
                                     <h5 class="title" style="padding-left: 330px;">{{ __('Requirement List') }}</h5>
                                 </div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-primary btn-round" data-bs-toggle="modal" data-bs-target="#create_requirement_model">Create</button>
+                                    <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_requirement_model">Create</button>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,9 @@
                 <input type="hidden"  name="requirement_id" >
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Crate Requirement</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -108,15 +110,15 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function() {
-        var crateModal = document.getElementById('create_requirement_model');
-        crateModal.addEventListener('show.bs.modal', function (event) {
-            var button = event.relatedTarget;       
-        });
+    // $(document).ready(function() {
+    //     var crateModal = document.getElementById('create_requirement_model');
+    //     crateModal.addEventListener('show.bs.modal', function (event) {
+    //         var button = event.relatedTarget;       
+    //     });
 
 
         
-    });
+    // });
     loadCourse();
     getRequirement();
 </script>
