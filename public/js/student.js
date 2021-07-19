@@ -215,7 +215,7 @@ function loadStudentMac(){
 function approveStudent(){ 
     var id = $("input[name = student_id]").val();
     $.ajax({
-        url: "/approve_student/"+id,
+        url: BACKEND_URL+"/approve_student/"+id,
         type: 'PATCH',        
         success: function(result){
             console.log(result)
@@ -230,7 +230,7 @@ function rejectStudent(){
     var id = $("input[name = student_id]").val();
     console.log(id)
     $.ajax({
-        url: "/reject_student/"+id,
+        url: BACKEND_URL+"/reject_student/"+id,
         type: 'patch',        
         success: function(result){
             console.log(result)
