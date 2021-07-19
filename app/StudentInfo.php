@@ -24,16 +24,24 @@ class StudentInfo extends Model
     {
         return $this->hasOne(StudentCourseReg::class,'student_info_id','id');
     }
+
     public function student_self_study()
     {
         return $this->hasOne(registration_self_study::class,'student_info_id','id');
     }
+
     public function student_private_school()
     {
         return $this->hasOne(registration_private_school::class,'student_info_id','id');
     }
+
     public function student_mac()
     {
         return $this->hasOne(registration_mac::class,'student_info_id','id');
+    }
+
+    public function student_register()
+    {
+        return $this->hasOne(StudentRegister::class,'student_info_id','id');
     }
 }  
