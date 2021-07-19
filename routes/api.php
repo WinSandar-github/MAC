@@ -46,6 +46,7 @@ Route::apiResource('/requirement','RequirementController');
 
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
+Route::get('/publish_batch','BatchController@publish_batch');
 
 
 

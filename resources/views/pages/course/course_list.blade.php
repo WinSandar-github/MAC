@@ -173,11 +173,11 @@
     $(document).ready(function (e) {
         $("input[name='registration_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='registration_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         
     });

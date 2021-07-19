@@ -95,4 +95,11 @@ class BatchController extends Controller
             'message' => "Delete Successfully"
         ],200);   
     }
+
+    public function publish_batch(){
+        $batch = Batch::where('publish_status',1)->with('course')->get();
+        return response()->json([
+            'batch' => $batch
+        ],200);
+    }
 }

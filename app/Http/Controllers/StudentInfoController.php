@@ -31,20 +31,20 @@ class StudentInfoController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $image = '/storage/student_info/'.$name;
-        }
+        // if ($request->hasfile('image')) {
+        //     $file = $request->file('image');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_info/',$name);
+        //     $image = '/storage/student_info/'.$name;
+        // }
 
-        if ($request->hasfile('documents')) {
-            foreach($request->file('documents') as $file){
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_info/',$name);
-                $document[] = '/storage/student_info/'.$name;
-            }
-         } 
+        // if ($request->hasfile('documents')) {
+        //     foreach($request->file('documents') as $file){
+        //         $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //         $file->move(public_path().'/storage/student_info/',$name);
+        //         $document[] = '/storage/student_info/'.$name;
+        //     }
+        //  } 
  
         $student_info = new StudentInfo();
         $student_info->name_mm          =   $request->name_mm;
