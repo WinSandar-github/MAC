@@ -133,7 +133,7 @@ function createAuditFirm(){
   });
   
         $.ajax({
-                url: "/api/acc_firm_info",
+                url: BACKEND_URL+"/acc_firm_info",
                 type: 'post',
                 data:send_data,
                 contentType: false,
@@ -149,7 +149,7 @@ function getAudit(){
   destroyDatatable("#tbl_audit", "#tbl_audit_body");
   destroyDatatable("#tbl_non_audit", "#tbl_non_audit_body");
   $.ajax({
-    url: "/api/acc_firm_info",
+    url: BACKEND_URL+"/acc_firm_info",
     type: 'get',
     data:"",
     success: function(data){
@@ -215,7 +215,7 @@ function autoLoadAudit(){
   var id=localStorage.getItem("id");
   $.ajax({
     type: "GET",
-    url: "/api/acc_firm_info/"+id,
+    url: BACKEND_URL+"/acc_firm_info/"+id,
     success: function (data) {
       var audit_data=data.data;
        audit_data.forEach(function(element){

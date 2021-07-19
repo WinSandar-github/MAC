@@ -2,7 +2,7 @@
 function getStudentSelfStudy(){
     destroyDatatable("#tbl_student_self_study", "#tbl_student_self_study_body");    
     $.ajax({
-        url: "/api/student_register",
+        url: BACKEND_URL+"/student_selfstudy",
         type: 'get',
         data:"",
         success: function(data){
@@ -55,7 +55,7 @@ function loadStudentSelfStudy(){
     $("input[name = student_id]").val(id);
     $.ajax({
         type: "GET",
-        url: "/api/student_register/"+id,
+        url:BACKEND_URL+ "/student_selfstudy/"+id,
         success: function (data) {
             var student_data = data.data;
             student_data.forEach(function(element){
@@ -76,7 +76,7 @@ function loadStudentSelfStudy(){
 function getStudentPrivateSchool(){
     destroyDatatable("#tbl_student_private_school", "#tbl_student_private_school_body");    
     $.ajax({
-        url: "/api/student_register",
+        url: BACKEND_URL+"/student_privateschool",
         type: 'get',
         data:"",
         success: function(data){
@@ -126,7 +126,7 @@ function loadStudentPrivateSchool(){
     
     $.ajax({
         type: "GET",
-        url: "/api/student_register/"+id,
+        url: BACKEND_URL+"/student_privateschool/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
@@ -146,7 +146,7 @@ function loadStudentPrivateSchool(){
 function getStudentMac(){
     destroyDatatable("#tbl_student_mac", "#tbl_student_mac_body");    
     $.ajax({
-        url: "/api/student_register",
+        url: BACKEND_URL+"/student_mac",
         type: 'get',
         data:"",
         success: function(data){
@@ -195,7 +195,7 @@ function loadStudentMac(){
     
     $.ajax({
         type: "GET",
-        url: "/api/student_register/"+id,
+        url: BACKEND_URL+"/student_mac/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
@@ -215,7 +215,7 @@ function loadStudentMac(){
 function approveStudent(){ 
     var id = $("input[name = student_id]").val();
     $.ajax({
-        url: "/approve_student/"+id,
+        url: BACKEND_URL+"/approve_student/"+id,
         type: 'PATCH',        
         success: function(result){
             console.log(result)
@@ -230,7 +230,7 @@ function rejectStudent(){
     var id = $("input[name = student_id]").val();
     console.log(id)
     $.ajax({
-        url: "/reject_student/"+id,
+        url: BACKEND_URL+"/reject_student/"+id,
         type: 'patch',        
         success: function(result){
             console.log(result)
