@@ -2,7 +2,7 @@
 function getStudentSelfStudy(){
     destroyDatatable("#tbl_student_self_study", "#tbl_student_self_study_body");    
     $.ajax({
-        url: "/api/student_selfstudy",
+        url: BACKEND_URL+"/student_selfstudy",
         type: 'get',
         data:"",
         success: function(data){
@@ -54,7 +54,7 @@ function loadStudentSelfStudy(){
     $("#student_registration_reason").html("");
     $.ajax({
         type: "GET",
-        url: "/api/student_selfstudy/"+id,
+        url:BACKEND_URL+ "/student_selfstudy/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
@@ -74,7 +74,7 @@ function loadStudentSelfStudy(){
 function getStudentPrivateSchool(){
     destroyDatatable("#tbl_student_private_school", "#tbl_student_private_school_body");    
     $.ajax({
-        url: "/api/student_privateschool",
+        url: BACKEND_URL+"/student_privateschool",
         type: 'get',
         data:"",
         success: function(data){
@@ -123,7 +123,7 @@ function loadStudentPrivateSchool(){
     
     $.ajax({
         type: "GET",
-        url: "/api/student_privateschool/"+id,
+        url: BACKEND_URL+"/student_privateschool/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
@@ -142,7 +142,7 @@ function loadStudentPrivateSchool(){
 function getStudentMac(){
     destroyDatatable("#tbl_student_mac", "#tbl_student_mac_body");    
     $.ajax({
-        url: "/api/student_mac",
+        url: BACKEND_URL+"/student_mac",
         type: 'get',
         data:"",
         success: function(data){
@@ -193,7 +193,7 @@ function loadStudentMac(){
     
     $.ajax({
         type: "GET",
-        url: "/api/student_mac/"+id,
+        url: BACKEND_URL+"/student_mac/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
