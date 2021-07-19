@@ -49,14 +49,34 @@ function loadData(){
     $("#phone").html("");
     $("#email").html("");
     $("#gov_staff").html("");
+    $("#image").html("");
     $("#registration_no").html("");
+
+    $("#university_name").html("");
+    $("#degree_name").html("");
+    $("#qualified_date").html("");
+    $("#roll_number").html("");
+    $("#certificate").html("");
+
+    $("#name").html("");
+    $("#position").html("");
+    $("#department").html("");
+    $("#organization").html("");
+    $("#company_name").html("");
+    $("#salary").html("");
+    $("#office_address").html("");
+
+    $("input[name = student_info_id]").val(id);
     $.ajax({
         type: "GET",
         url: "/api/da_register/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
-                var da_data = element.da_list;
+                var education_history = element.student_education_histroy;
+                var job = element.student_job;
+                $("#id").append(element.id);
+
                 $("#name_eng").append(element.name_eng);
                 $("#name_mm").append(element.name_mm);
                 $("#nrc").append(element.nrc);
@@ -70,8 +90,52 @@ function loadData(){
                 $("#phone").append(element.phone);
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff);
+                $("#image").append(element.image);
                 $("#registration_no").append(element.registration_no);
+
+                $("#university_name").append(education_history.university_name);
+                $("#degree_name").append(education_history.degree_name);
+                $("#qualified_date").append(education_history.qualified_date);
+                $("#roll_number").append(education_history.roll_number);
+                $("#certificate").append(education_history.certificate);
+
+                $("#name").append(job.name);
+                $("#position").append(job.position);
+                $("#department").append(job.department);
+                $("#organization").append(job.organization);
+                $("#company_name").append(job.company_name);
+                $("#salary").append(job.salary);
+                $("#office_address").append(job.office_address);
             })
         }
     })
+}
+
+function approveUser(){ 
+    var id = $("input[name = student_info_id]").val();
+    $.ajax({
+        url: "/approve/"+id,
+        type: 'patch',        
+        success: function(result){
+            console.log(result)
+            successMessage("You have approved that user!");  
+            location.reload();          
+            getDAList();
+        }
+    });
+}
+
+function rejectUser(){ 
+    var id = $("input[name = student_info_id]").val();
+    console.log(id)
+    $.ajax({
+        url: "/reject/"+id,
+        type: 'patch',        
+        success: function(result){
+            console.log(result)
+            successMessage("You have rejected that user!");  
+            location.reload();          
+            getDAList();
+        }
+    });
 }

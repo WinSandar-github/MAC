@@ -95,7 +95,7 @@ function showCourseInfo(id) {
             $('input[name=registration_end_date]').val(course_data[0].registration_end_date);
             $('input[name=description]').val(course_data[0].description);
             
-            $('#create_course_model').modal('toggle');
+            $('#create_course_modal').modal('toggle');
         },
 
         error:function (message){
@@ -131,7 +131,7 @@ function updateCourse(){
         },        
         success: function(result){
             successMessage("Update Successfully");
-            $('#create_course_model').modal('toggle');  
+            $('#create_course_modal').modal('toggle');  
             location.reload();          
             getCourse();
             

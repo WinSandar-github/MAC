@@ -44,10 +44,15 @@ Route::resource('/course_fee','CourseFeeController');
 Route::apiResource('/student_info','StudentInfoController');
 Route::get('/student_info_by_nrc/{nrc}','StudentInfoController@GetStudentByNRC');
 Route::apiResource('/requirement','RequirementController');
+
+Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
 
 //papp
 Route::resource('/papp','PAPPController');
+
+
+
 
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
@@ -72,7 +77,6 @@ Route::resource('/student_mac','StudentMacController');
 Route::post('/exam_register', 'ExamRegisterController@store');
 
 //DA Register API
-// Route::post('/da_register', 'DARegisterController@store');
 Route::resource('/da_register', 'DARegisterController');
 
 
