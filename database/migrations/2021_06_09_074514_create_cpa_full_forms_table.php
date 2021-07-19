@@ -15,19 +15,19 @@ class CreateCpaFullFormsTable extends Migration
     {
         Schema::create('cpa_full_forms', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_info_id');
-            $table->string('cpa')->nullable();
-            $table->string('ra')->nullable();
-            $table->string('foreign_degree')->nullable();
-            $table->boolean('cpa_part_2')->default(0)->nullable();
-            $table->boolean('qt_pass')->default(0)->nullable();
-            $table->string('cpa_certificate');
-            $table->string('mpa_mem_card');
-            $table->string('nrc_front');
-            $table->string('nrc_back');
-            $table->string('cpd_record');
-            $table->string('passport_image');
-            $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');            
+            $table->string('name');
+            $table->string('nrc_state_region')->nullable();
+            $table->string('nrc_township')->nullable();
+            $table->string('nrc_citizen')->nullable();
+            $table->string('nrc_number')->nullable();
+            $table->string('father_name');
+            $table->string('education_level_id');
+            $table->string('cpa_no');
+            $table->text('address');
+            $table->string('phone');
+            $table->string('email');
+            $table->boolean('local_degree')->default(0)->nullable();
+            $table->boolean('foreign_degree')->default(0)->nullable();
             $table->timestamps();
 
         
