@@ -8,8 +8,8 @@ function getStudentSelfStudy(){
         success: function(data){
             var student_data=data.data;
             student_data.forEach(function (element) {
-                if(element.student_self_study!=null){
-                    var student_info=element.student_self_study;
+                if(element.student_register!=null){
+                    var student_info = element.student_register;
                
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
@@ -17,15 +17,14 @@ function getStudentSelfStudy(){
                     tr += "<td>" + element.email + "</td>";
                     tr += "<td>" + element.registration_no+ "</td>";
                     tr += "<td>" + element.phone + "</td>";
-                    tr += "<td>" + student_info.registration_reason + "</td>";
+                    tr += "<td>" + element.student_register.reg_reason + "</td>";
+                    tr += "<td>" + element.student_register.status + "</td>";
                     tr += "<td ><div class='btn-group'>";
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "</tr>";
                     $("#tbl_student_self_study_body").append(tr);  
-                }   
-                
-               
+                }  
             });
             
             getIndexNumber('#tbl_student_self_study tr');
@@ -34,9 +33,9 @@ function getStudentSelfStudy(){
         error:function (message){
             dataMessage(message, "#tbl_student_self_study", "#tbl_student_self_study_body");        
         }
-    
     });
 }
+
 function showStudentSelfStudy(studentId){
     localStorage.setItem("student_id",studentId);
     location.href="/self_study_edit";
@@ -52,13 +51,15 @@ function loadStudentSelfStudy(){
     $("#student_phone").html("");
     $("#student_registration_no").html("");
     $("#student_registration_reason").html("");
+
+    $("input[name = student_id]").val(id);
     $.ajax({
         type: "GET",
         url:BACKEND_URL+ "/student_selfstudy/"+id,
         success: function (data) {
-            var student=data.data;
-            student.forEach(function(element){
-                var self_study=element.student_self_study;
+            var student_data = data.data;
+            student_data.forEach(function(element){
+                var student_info=element.student_register;
                 $("#student_name").append(element.name_eng+"/"+element.name_mm);
                 $("#student_nrc").append(element.nrc);
                 $("#student_dob").append(element.date_of_birth);
@@ -66,11 +67,12 @@ function loadStudentSelfStudy(){
                 $("#student_email").append(element.email);
                 $("#student_phone").append(element.phone);
                 $("#student_registration_no").append(element.registration_no);
-                $("#student_registration_reason").append(self_study.registration_reason);
+                $("#student_registration_reason").append(element.student_register.reg_reason);
             })
         }
     })
 }
+
 function getStudentPrivateSchool(){
     destroyDatatable("#tbl_student_private_school", "#tbl_student_private_school_body");    
     $.ajax({
@@ -78,9 +80,9 @@ function getStudentPrivateSchool(){
         type: 'get',
         data:"",
         success: function(data){
-            var student_data=data.data;
+            var student_data = data.data;
             student_data.forEach(function (element) {
-                if(element.student_private_school!=null){
+                if(element.student_register!=null){
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
                     tr += "<td>" + element.name_eng + "</td>";
@@ -106,6 +108,7 @@ function getStudentPrivateSchool(){
     
     });
 }
+
 function showStudentPrivateSchool(studentId){
     localStorage.setItem("student_id",studentId);
     location.href="/private_school";
@@ -139,6 +142,7 @@ function loadStudentPrivateSchool(){
         }
     })
 }
+
 function getStudentMac(){
     destroyDatatable("#tbl_student_mac", "#tbl_student_mac_body");    
     $.ajax({
@@ -148,8 +152,8 @@ function getStudentMac(){
         success: function(data){
             var student_data=data.data;
             student_data.forEach(function (element) {
-                if(element.student_mac!=null){
-                    var student_info=element.student_mac;
+                if(element.student_register!=null){
+                    var student_info = element.student_register;
                
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
@@ -162,9 +166,7 @@ function getStudentMac(){
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "</tr>";
                     $("#tbl_student_mac_body").append(tr);  
-                }   
-                
-               
+                }    
             });
             
             getIndexNumber('#tbl_student_mac tr');
@@ -173,9 +175,9 @@ function getStudentMac(){
         error:function (message){
             dataMessage(message, "#tbl_student_mac", "#tbl_student_mac_body");        
         }
-    
     });
 }
+
 function showStudentMac(studentId){
     localStorage.setItem("student_id",studentId);
     location.href="/mac";
@@ -208,4 +210,33 @@ function loadStudentMac(){
             })
         }
     })
+}
+
+function approveStudent(){ 
+    var id = $("input[name = student_id]").val();
+    $.ajax({
+        url: "/approve_student/"+id,
+        type: 'PATCH',        
+        success: function(result){
+            console.log(result)
+            successMessage("You have approved that student!");  
+            location.reload();          
+            getStudentSelfStudy();
+        }
+    });
+}
+
+function rejectStudent(){ 
+    var id = $("input[name = student_id]").val();
+    console.log(id)
+    $.ajax({
+        url: "/reject_student/"+id,
+        type: 'patch',        
+        success: function(result){
+            console.log(result)
+            successMessage("You have rejected that student!");  
+            location.reload();          
+            getStudentSelfStudy();
+        }
+    });
 }

@@ -109,15 +109,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <input type="hidden" name="student_id">
                                             
-                                            <div class="row">
-                                                    <div class="col-md-8"></div>
-                                                    <div class="col-md-2 d-md-flex justify-content-md-end">
-                                                        <button type="button" class="btn btn-primary btn-round">{{ __('Approval') }}</button>
-                                                    </div>
-                                                    <div class="col-md-1 d-md-flex justify-content-md-end">
-                                                        <button type="button" class="btn btn-info btn-round">{{ __('Reject') }}</button>
-                                                    </div>
+                                            <div class="row mt-5 justify-content-center"> 
+                                                <button type="submit" name="save" class="btn btn-primary" onclick="approveStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+
+                                                <button type="submit" name="save" class="btn btn-primary"  onclick="rejectStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
                                             </div>
                                         </div>
                                             

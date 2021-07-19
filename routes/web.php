@@ -102,6 +102,10 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Application Form
     Route::patch('/approve/{id}', 'DARegisterController@approve');
     Route::patch('/reject/{id}', 'DARegisterController@reject');
+
+    // Student Register Form
+    Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
+    Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 });
 
 Route::resource('/batch','BatchController');

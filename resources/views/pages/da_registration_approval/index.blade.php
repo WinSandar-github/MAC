@@ -54,7 +54,8 @@
                                                                         <th class="less-font-weight" >Registration No</th>
                                                                         <th class="less-font-weight" >Phone</th>
                                                                         <th class="less-font-weight" >Registration Reason</th>
-                                                                        <th class="less-font-weight" >Action</th>
+                                                                        <th class="less-font-weight" >Status</th>
+                                                                        <th class="less-font-weight" >Detail</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
