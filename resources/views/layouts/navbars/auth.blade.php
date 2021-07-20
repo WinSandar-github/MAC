@@ -65,6 +65,23 @@
                     </ul>
                 </div>
             </li>
+            <li class="{{ $elementActive == 'examregisteration' ? 'active' : '' }}">
+                <a data-toggle="collapse" href="#examregisteration">
+                    <i class="nc-icon nc-tap-01"></i>
+                    <p>{{ __('Exam Registeration') }}</p>
+                    <b class="caret"></b>
+                </a>
+                <div class="collapse in" id="examregisteration">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'da_exam_one' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'da_exam_one') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Exam Form (1)') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
             {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'teacher_registration') }}">
                     <i class="nc-icon nc-paper"></i>

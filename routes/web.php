@@ -108,6 +108,10 @@ Route::group(['middleware' => 'auth'], function () {
     // Student Register Form
     Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
     Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
+
+    // DA Exam Form 1 Approve/Reject
+    Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
+    Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 });
 
     Route::group(['middleware' => 'auth'], function () {
