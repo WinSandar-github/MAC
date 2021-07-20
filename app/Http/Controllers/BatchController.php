@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Batch;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class BatchController extends Controller
 {
@@ -97,9 +98,14 @@ class BatchController extends Controller
     }
 
     public function publish_batch(){
-        $batch = Batch::where('publish_status',1)->with('course')->get();
+        $currentDate = Carbon::today();
+       
+        $batch = Batch::whereDate('start_date','<=',$currentDate)
+                        ->whereDate('end_date','>=',$currentDate)
+                        ->with('course')
+                        ->first();
         return response()->json([
-            'batch' => $batch
+            'data' => $batch
         ],200);
     }
 }

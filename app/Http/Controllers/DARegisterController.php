@@ -20,12 +20,12 @@ class DARegisterController extends Controller
 
     public function store(Request $request)
     {
-        $nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
-        $data = StudentInfo::where('nrc', '=', $nrc)->first();
-        if($data)
-        {
-            return "NRC has been used, please check again!";
-        }
+        // $nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
+        // $data = StudentInfo::where('nrc', '=', $nrc)->first();
+        // if($data)
+        // {
+        //     return "NRC has been used, please check again!";
+        // }
 
         $email = $request->email;
         $emailcheck = StudentInfo::where('email', '=', $email)->first();
@@ -55,7 +55,10 @@ class DARegisterController extends Controller
         $student_info = new StudentInfo();
         $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng         =   $request->name_eng;
-        $student_info->nrc              =   $nrc;
+        $student_info->nrc_state_region =   $request['nrc_state_region'];
+        $student_info->nrc_township     =   $request['nrc_township'] ;
+        $student_info->nrc_citizen      =    $request['nrc_citizen'] ;
+        $student_info->nrc_number       =   $request['nrc_number'];
         $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
