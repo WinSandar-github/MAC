@@ -13,7 +13,7 @@ function createBatch(){
     send_data.append('accept_application_date',$("input[name=acc_app_date]").val());
 
     $.ajax({
-            url: "/batch",
+            url: BACKEND_URL+"/batch",
             type: 'post',
             data:send_data,
             contentType: false,
@@ -28,7 +28,7 @@ function createBatch(){
 function getBatch(){
     destroyDatatable("#tbl_batch", "#tbl_batch_body");    
     $.ajax({
-        url: "/batch",
+        url: BACKEND_URL+"/batch",
         type: 'get',
         data:"",
         success: function(data){
@@ -75,7 +75,7 @@ function showBatchInfo(id) {
     $("input[name=batch_id]").val(id);
     $.ajax({
         type: "get",
-        url: "/batch/"+id,
+        url: BACKEND_URL+"/batch/"+id,
         success: function (data) {
             var batch_data=data.data;                     
             $('input[name=name]').val(batch_data[0].name);
@@ -114,7 +114,7 @@ function updateBatch(){
     var accept_application_date=$("input[name=acc_app_date]").val();  
    
     $.ajax({
-        url: "/batch/"+id,
+        url: BACKEND_URL+"/batch/"+id,
         type: 'patch',
         data:{
             name:name,
@@ -145,7 +145,7 @@ function deleteBatchInfo(batchName,batchId){
         if (result) {
             $.ajax({
                 type: "DELETE",
-                url: '/batch/'+batchId,
+                url: BACKEND_URL+'/batch/'+batchId,
                 success: function (result) {
                     successMessage("Delete Successfully");
                     getBatch();

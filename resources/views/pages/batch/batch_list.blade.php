@@ -108,7 +108,7 @@
                         <label class="col-md-4 form-label">{{ __('Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="start_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -117,7 +117,7 @@
                         <label class="col-md-4 form-label">{{ __('End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                         <label class="col-md-4 form-label">{{ __('MAC Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="mac_reg_start_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="mac_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                         <label class="col-md-4 form-label">{{ __('MAC Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="mac_reg_end_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="mac_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                         <label class="col-md-4 form-label">{{ __('Self Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="self_reg_start_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="self_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                         <label class="col-md-4 form-label">{{ __('Self Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="self_reg_end_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="self_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                         <label class="col-md-4 form-label">{{ __('Private Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="private_reg_start_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="private_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                         <label class="col-md-4 form-label">{{ __('Private Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="private_reg_end_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="private_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -184,7 +184,7 @@
                         <label class="col-md-4 form-label">{{ __('Accept Application Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="acc_app_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                <input type="text" name="acc_app_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
@@ -214,39 +214,39 @@
     $(document).ready(function (e) {
         $("input[name='start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='mac_reg_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='mac_reg_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='self_reg_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='self_reg_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='private_reg_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='private_reg_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
         $("input[name='acc_app_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "d-m-Y",
+                dateFormat: "Y-m-d",
         });
     });
 </script>

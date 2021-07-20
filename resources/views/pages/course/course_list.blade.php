@@ -132,7 +132,7 @@
                             <label class="col-md-4 form-label">{{ __('Registration Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="text" name="registration_start_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                    <input type="text" name="registration_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                                 </div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                             <label class="col-md-4 form-label">{{ __('Registration End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="text" name="registration_end_date" class="form-control" autocomplete="off" placeholder="dd/mm/yyyy">
+                                    <input type="text" name="registration_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                                 </div>
                             </div>
                         </div>

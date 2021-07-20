@@ -20,7 +20,7 @@ function createCourse(){
     send_data.append('description',$("input[name=description]").val());   
     
     $.ajax({
-            url: "/course",
+            url: BACKEND_URL+"/course",
             type: 'post',
             data:send_data,
             contentType: false,
@@ -40,7 +40,7 @@ function createCourse(){
 function getCourse(){
     destroyDatatable("#tbl_course", "#tbl_course_body");    
     $.ajax({
-        url: "/course",
+        url: BACKEND_URL+"/course",
         type: 'get',
         data:"",
         success: function(data){
@@ -83,7 +83,7 @@ function showCourseInfo(id) {
     $("input[name=course_id]").val(id);
     $.ajax({
         type: "get",
-        url: "/course/"+id,
+        url: BACKEND_URL+"/course/"+id,
         success: function (data) {
             var course_data=data.data;                     
             $('input[name=name]').val(course_data[0].name);
@@ -117,7 +117,7 @@ function updateCourse(){
     var description=$("input[name=description]").val();    
    
     $.ajax({
-        url: "/course/"+id,
+        url: BACKEND_URL+"/course/"+id,
         type: 'patch',
         data:{
             name:name,
@@ -145,7 +145,7 @@ function deleteCourseInfo(courseName,courseId){
         if (result) {
             $.ajax({
                 type: "DELETE",
-                url: '/course/'+courseId,
+                url: BACKEND_URL+'/course/'+courseId,
                 success: function (result) {
                     successMessage("Delete Successfully");
                     getCourse();
@@ -160,7 +160,7 @@ function deleteCourseInfo(courseName,courseId){
 function loadCourse(){ 
     var select = document.getElementById("selected_course_id");  
     $.ajax({
-        url: "/course",
+        url: BACKEND_URL+"/course",
         type: 'get',
         data:"",
         success: function(data){

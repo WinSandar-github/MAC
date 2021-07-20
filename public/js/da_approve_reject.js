@@ -1,7 +1,7 @@
 function getDAList(){
     destroyDatatable("#tbl_da_list", "#tbl_da_list_body");    
     $.ajax({
-        url: "/api/da_register",
+        url: BACKEND_URL+"/da_register",
         type: 'get',
         data:"",
         success: function(data){
@@ -69,7 +69,7 @@ function loadData(){
     $("input[name = student_info_id]").val(id);
     $.ajax({
         type: "GET",
-        url: "/api/da_register/"+id,
+        url: BACKEND_URL+"/da_register/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
@@ -114,7 +114,7 @@ function loadData(){
 function approveUser(){ 
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: "/approve/"+id,
+        url: BACKEND_URL+"/approve/"+id,
         type: 'patch',        
         success: function(result){
             console.log(result)
@@ -129,7 +129,7 @@ function rejectUser(){
     var id = $("input[name = student_info_id]").val();
     console.log(id)
     $.ajax({
-        url: "/reject/"+id,
+        url: BACKEND_URL+"/reject/"+id,
         type: 'patch',        
         success: function(result){
             console.log(result)

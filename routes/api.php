@@ -42,11 +42,15 @@ Route::resource('/cpa_two_private_old','CpaTwoPrivateOldController');
 Route::resource('/cpa_two_exam','CpaTwoExamRegController');
 Route::resource('/course_fee','CourseFeeController');
 Route::apiResource('/student_info','StudentInfoController');
+Route::get('/student_info_by_nrc/{nrc}','StudentInfoController@GetStudentByNRC');
 Route::apiResource('/requirement','RequirementController');
 
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
 Route::get('/publish_batch','BatchController@publish_batch');
+
+//papp
+Route::resource('/papp','PAPPController');
 
 
 
@@ -69,6 +73,9 @@ Route::get('student_course', 'CourseController@studentCourse');
 Route::resource('/student_selfstudy','StudentSelfStudyController');
 Route::resource('/student_privateschool','StudentPrivateSchoolController');
 Route::resource('/student_mac','StudentMacController');
+
+//Student Register API
+Route::resource('/student_register','StudentRegisterController');
 
 //Exam Register API
 Route::post('/exam_register', 'ExamRegisterController@store');

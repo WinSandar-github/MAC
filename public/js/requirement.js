@@ -4,7 +4,7 @@ function createRequirement(){
     send_data.append('course_id',$('#selected_course_id').val());       
     
     $.ajax({
-            url: "/api/requirement",
+            url: BACKEND_URL+"/requirement",
             type: 'post',
             data:send_data,
             contentType: false,
@@ -21,7 +21,7 @@ function createRequirement(){
 function getRequirement(){
     destroyDatatable("#tbl_requirement", "#tbl_requirement_body");    
     $.ajax({
-        url: "/api/requirement",
+        url: BACKEND_URL+"/requirement",
         type: 'get',
         data:"",
         success: function(data){
@@ -60,7 +60,7 @@ function showRequirementInfo(id) {
     $("input[name=requirement_id]").val(id);
     $.ajax({
         type: "get",
-        url: "/api/requirement/"+id,
+        url: BACKEND_URL+"/requirement/"+id,
         success: function (data) {
 
             var requirement_data=data.data;  
@@ -84,7 +84,7 @@ function updateRequirement(){
     var course_id=$("#selected_course_id").val();
     
     $.ajax({
-        url: "/api/requirement/"+id,
+        url: BACKEND_URL+"/requirement/"+id,
         type: 'patch',
         data:{
             name:name,
@@ -106,7 +106,7 @@ function deleteRequirementInfo(requirementName,requirementId){
         if (result) {
             $.ajax({
                 type: "DELETE",
-                url: '/api/requirement/'+requirementId,
+                url: BACKEND_URL+'/requirement/'+requirementId,
                 success: function (result) {
                     successMessage("Delete Successfully");
                     getRequirement();
