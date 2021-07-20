@@ -82,6 +82,7 @@ Route::post('/exam_register', 'ExamRegisterController@store');
 
 //DA Register API
 Route::resource('/da_register', 'DARegisterController');
+Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 
 
 

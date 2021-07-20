@@ -7,6 +7,7 @@ use App\StudentInfo;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use Hash;
+use App\StudentRegister;
 
 class DARegisterController extends Controller
 {
@@ -96,7 +97,9 @@ class DARegisterController extends Controller
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
 
-        return "You have successfully registerd!";
+        
+
+        return response()->json($student_info,200);
     }
 
     public function show($id)
@@ -131,5 +134,13 @@ class DARegisterController extends Controller
         return response()->json([
             'message' => "You have successfully rejected that user!"
         ],200);
+    }
+
+     public function reg_feedback($id)
+    {
+        $student_register = StudentRegister::where('student_info_id',$id)->first();
+         $status = $student_register != null ? $student_register->status : null;
+        return response()->json($status,200);
+
     }
 }
