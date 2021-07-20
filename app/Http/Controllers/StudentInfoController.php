@@ -111,13 +111,13 @@ class StudentInfoController extends Controller
      */
     public function show($id)
     {
-        $student_info = StudentInfo::where('id',$id)->with('student_job','education_histroy','student_course')->get();
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course')->first();
         return response()->json(['data' => $student_info],200);
     }
 
     public function GetStudentByNRC($nrc)
     {
-        $student_info = StudentInfo::where('nrc',$nrc)->with('student_job','education_histroy','student_course')->get();
+        $student_info = StudentInfo::where('nrc',$nrc)->with('student_job','student_education_histroy','student_course')->get();
         return response()->json(['data' => $student_info],200);
     }
 
@@ -185,7 +185,7 @@ class StudentInfoController extends Controller
         $student_job_histroy->organization      = $request->organization;
         $student_job_histroy->company_name      = $request->company_name;
         $student_job_histroy->salary            = $request->salary;
-        $student_job_histroy->address           = $request->address;
+        $student_job_histroy->office_address    = $request->address;
         $student_job_histroy->save();
 
         EducationHistroy::where('student_info_id',$id)->delete();
