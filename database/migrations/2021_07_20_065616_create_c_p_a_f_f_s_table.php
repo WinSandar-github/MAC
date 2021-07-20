@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCPAFFTable extends Migration
+class CreateCPAFFSTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCPAFFTable extends Migration
      */
     public function up()
     {
-        Schema::create('cpa_ff', function (Blueprint $table) {
+        Schema::create('c_p_a_f_f_s', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
             $table->string('cpa')->nullable();
@@ -28,8 +28,7 @@ class CreateCPAFFTable extends Migration
             $table->string('cpd_record');
             $table->string('passport_image');
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');            
-            $table->timestamps(); 
-
+            $table->timestamps();
         });
     }
 
@@ -40,6 +39,6 @@ class CreateCPAFFTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cpa_ff');
+        Schema::dropIfExists('c_p_a_f_f_s');
     }
 }
