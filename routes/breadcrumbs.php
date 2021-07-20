@@ -79,6 +79,18 @@ Breadcrumbs::for('course-category', function ($trail) {
     $trail->push('Manage Course & Category', route('page.index', 'manage_course_category'));
 });
 
+// Home > Exam Registeration
+Breadcrumbs::for('examregisteration', function ($trail) {
+    $trail->parent('home');
+    $trail->push('ExamRegisteration', route('page.index', 'examregisteration'));
+});
+
+// Home > DA Exam Form (1)
+Breadcrumbs::for('da_exam_one', function ($trail) {
+    $trail->parent('examregisteration');
+    $trail->push('DA Exam Form (1)', route('page.index', 'da_exam_one'));
+});
+
 // Home > QT Application
 Breadcrumbs::for('qt_application_registration', function ($trail) {
     $trail->parent('home');

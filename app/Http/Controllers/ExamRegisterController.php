@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ExamRegister;
+use App\StudentInfo;
+use App\StudentRegister;
 
 class ExamRegisterController extends Controller
 {
@@ -38,6 +40,9 @@ class ExamRegisterController extends Controller
      */
     public function store(Request $request)
     {
+        $student_info_id = $request->student_id;
+        $exam_type = StudentRegister::where('id', $student_info_id)->get('type');
+        $type = $exam_type[0]['type'];
         if ($request->hasfile('invoice_image')) 
         {
             $file = $request->file('invoice_image');
@@ -49,15 +54,16 @@ class ExamRegisterController extends Controller
         $invoice_date = date('Y-m-d');
 
         $exam = new ExamRegister();
-        $exam->student_info_id = $request->student_info_id;
+        $exam->student_info_id = $request->student_id;
         $exam->date = $date;
         $exam->invoice_image = $invoice_image;
         $exam->invoice_date = $invoice_date;
         $exam->private_school_name = $request->private_school_name;
-        $exam->grade = $request->grade;
-        $exam->batch_id = $request->batch_id;
+        $exam->grade = 'A';
+        $exam->batch_id = 1;
         $exam->is_full_module = $request->is_full_module;
-        $exam->exam_type_id = $request->exam_type_id;
+        $exam->exam_type_id = $type;
+        $exam->status = 0;
         $exam->save();
         return "You have successfully registerd!";
     }
@@ -70,7 +76,10 @@ class ExamRegisterController extends Controller
      */
     public function show($id)
     {
-        //
+        $exam_register = ExamRegister::where('id',$id)->get();
+        return response()->json([
+            'data' => $exam_register
+        ],200);
     }
 
     /**
@@ -105,5 +114,25 @@ class ExamRegisterController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function approveExam($id)
+    {
+        $approve = ExamRegister::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that form!"
+        ],200);
+    }
+
+    public function rejectExam($id)
+    {
+        $reject = ExamRegister::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that form!"
+        ],200);
     }
 }

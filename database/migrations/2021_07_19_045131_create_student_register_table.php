@@ -20,7 +20,7 @@ class CreateStudentRegisterTable extends Migration
             $table->text('reg_reason')->nullable();
             $table->unsignedBigInteger('invoice_id');
             $table->date('invoice_date');
-            $table->string('type');
+            $table->integer('type');
             $table->integer('status');
 
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
