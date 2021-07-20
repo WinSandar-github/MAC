@@ -52,6 +52,9 @@ Route::get('/publish_batch','BatchController@publish_batch');
 //papp
 Route::resource('/papp','PAPPController');
 
+//cpa_ff
+Route::resource('/cpa_ff','CPAFFController');
+
 
 
 
