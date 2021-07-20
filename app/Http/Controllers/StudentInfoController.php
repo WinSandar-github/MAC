@@ -115,11 +115,11 @@ class StudentInfoController extends Controller
         return response()->json(['data' => $student_info],200);
     }
 
-    public function GetStudentByNRC($nrc)
-    {
-        $student_info = StudentInfo::where('nrc',$nrc)->with('student_job','education_histroy','student_course')->get();
-        return response()->json(['data' => $student_info],200);
-    }
+    // public function GetStudentByNRC($nrc)
+    // {
+    //     $student_info = StudentInfo::where('nrc',$nrc)->with('student_job','education_histroy','student_course')->get();
+    //     return response()->json(['data' => $student_info],200);
+    // }
 
     /**
      * Update the specified resource in storage.

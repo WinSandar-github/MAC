@@ -20,12 +20,16 @@ class DARegisterController extends Controller
 
     public function store(Request $request)
     {
-        // $nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
-        // $data = StudentInfo::where('nrc', '=', $nrc)->first();
-        // if($data)
-        // {
-        //     return "NRC has been used, please check again!";
-        // }
+        //$nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
+        $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
+        ->where('nrc_township', '=', $request['nrc_township'])
+        ->where('nrc_citizen', '=', $request['nrc_citizen'])
+        ->where('nrc_number', '=', $request['nrc_number'])
+        ->first();
+        if($data)
+        {
+            return "NRC has been used, please check again!";
+        }
 
         $email = $request->email;
         $emailcheck = StudentInfo::where('email', '=', $email)->first();
@@ -104,6 +108,19 @@ class DARegisterController extends Controller
         $approve_reject = StudentInfo::where('id' ,$id)->with('student_job', 'student_education_histroy')->get();
         return response()->json([
             'data' => $approve_reject
+        ],200);
+        
+    }
+
+    public function GetStudentByNRC(Request $request)
+    {
+        $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
+        ->where('nrc_township', '=', $request['nrc_township'])
+        ->where('nrc_citizen', '=', $request['nrc_citizen'])
+        ->where('nrc_number', '=', $request['nrc_number'])
+        ->first();
+        return response()->json([
+            'data' => $data
         ],200);
         
     }
