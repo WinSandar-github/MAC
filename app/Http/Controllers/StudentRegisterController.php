@@ -58,6 +58,7 @@ class StudentRegisterController extends Controller
                 break;
         }
         
+        
     }
 
     public function show($id)

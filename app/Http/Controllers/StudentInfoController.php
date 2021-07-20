@@ -111,10 +111,15 @@ class StudentInfoController extends Controller
      */
     public function show($id)
     {
-        $student_info = StudentInfo::where('id',$id)->with('student_job','education_histroy','student_course')->get();
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course')->first();
         return response()->json(['data' => $student_info],200);
     }
 
+    public function GetStudentByNRC($nrc)
+    {
+        $student_info = StudentInfo::where('nrc',$nrc)->with('student_job','student_education_histroy','student_course')->get();
+        return response()->json(['data' => $student_info],200);
+    }
     // public function GetStudentByNRC($nrc)
     // {
     //     $student_info = StudentInfo::where('nrc',$nrc)->with('student_job','education_histroy','student_course')->get();
@@ -158,8 +163,10 @@ class StudentInfoController extends Controller
          $student_info = StudentInfo::find($id);
          $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng          =   $request->name_eng;
-        $student_info->nrc              =   $request->nrc;
-        $student_info->father_name_mm   =   $request->father_name_mm;
+        $student_info->nrc_state_region =   $request['nrc_state_region'];
+        $student_info->nrc_township     =   $request['nrc_township'] ;
+        $student_info->nrc_citizen      =    $request['nrc_citizen'] ;
+        $student_info->nrc_number       =   $request['nrc_number'];        $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
@@ -185,7 +192,7 @@ class StudentInfoController extends Controller
         $student_job_histroy->organization      = $request->organization;
         $student_job_histroy->company_name      = $request->company_name;
         $student_job_histroy->salary            = $request->salary;
-        $student_job_histroy->address           = $request->address;
+        $student_job_histroy->office_address    = $request->address;
         $student_job_histroy->save();
 
         EducationHistroy::where('student_info_id',$id)->delete();
