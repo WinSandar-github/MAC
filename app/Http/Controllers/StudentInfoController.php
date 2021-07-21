@@ -192,7 +192,7 @@ class StudentInfoController extends Controller
         $student_job_histroy->organization      = $request->organization;
         $student_job_histroy->company_name      = $request->company_name;
         $student_job_histroy->salary            = $request->salary;
-        $student_job_histroy->office_address    = $request->address;
+        $student_job_histroy->office_address    = $request->office_address;
         $student_job_histroy->save();
 
         EducationHistroy::where('student_info_id',$id)->delete();

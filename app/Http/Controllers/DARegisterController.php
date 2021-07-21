@@ -135,6 +135,7 @@ class DARegisterController extends Controller
 
     public function approve($id)
     {
+        
         $approve = StudentInfo::find($id);
         $approve->approve_reject_status = 1;
         $approve->save();
