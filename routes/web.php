@@ -107,6 +107,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
     Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 
+    // DA Exam Form 1 Approve/Reject
+    Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
+    Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
+
     //exam cards
     Route::apiResource('da1_examcard', 'DA1ExamCardController');
 });

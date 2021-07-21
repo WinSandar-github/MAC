@@ -97,13 +97,15 @@ class BatchController extends Controller
         ],200);   
     }
 
-    public function publish_batch(){
+    public function publish_batch()
+    {
         $currentDate = Carbon::today();
-       
+           
         $batch = Batch::whereDate('start_date','<=',$currentDate)
                         ->whereDate('end_date','>=',$currentDate)
                         ->with('course')
                         ->first();
+                        
         return response()->json([
             'data' => $batch
         ],200);

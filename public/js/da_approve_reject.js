@@ -127,7 +127,7 @@ function approveUser(){
 
 function rejectUser(){ 
     var id = $("input[name = student_info_id]").val();
-    console.log(id)
+    console.log(id);
     $.ajax({
         url: BACKEND_URL+"/reject/"+id,
         type: 'patch',        

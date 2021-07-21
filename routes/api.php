@@ -77,10 +77,11 @@ Route::resource('/student_mac','StudentMacController');
 Route::resource('/student_register','StudentRegisterController');
 
 //Exam Register API
-Route::post('/exam_register', 'ExamRegisterController@store');
+Route::resource('/exam_register', 'ExamRegisterController');
 
 //DA Register API
 Route::resource('/da_register', 'DARegisterController');
+Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 
 

@@ -44,4 +44,9 @@ class StudentInfo extends Model
     {
         return $this->hasOne(StudentRegister::class,'student_info_id','id');
     }
+
+    public function exam_register()
+    {
+        return $this->hasOne(ExamRegister::class,'student_info_id','id');
+    }
 }  
