@@ -80,6 +80,9 @@ class PageController extends Controller
         else if (view()->exists("pages.da_approve_reject.{$page}")) {
             return view("pages.da_approve_reject.{$page}");
         }
+        else if (view()->exists("pages.exam_form.{$page}")) {
+            return view("pages.exam_form.{$page}");
+        }
 
         return abort(404);
         
