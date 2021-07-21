@@ -20,7 +20,7 @@ class CPAFFController extends Controller
             $file = $request->file('cpa');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpa = '/storage/cpa_ff_register/'.$name;
+            $cpa = $name;
         }
         else{
             $cpa=null;
@@ -30,39 +30,39 @@ class CPAFFController extends Controller
             $file = $request->file('ra');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $ra = '/storage/cpa_ff_register/'.$name;
+            $ra = $name;
         }
         else{
             $ra=null;
         }
 
-        // if($request->hasfile('foreign_degree'))
-        // {
-        //     foreach($request->file('foreign_degree') as $file)
-        //     {
-        //         $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-        //         $file->move(public_path().'/storage/cpa_ff_register/',$name);
-        //         $foreign_degree[] = '/storage/cpa_ff_register/'.$name;
-        //     }        
-        // }else{
-        //     $foreign_degree = null;
-        // }
+        if($request->hasfile('foreign_degree'))
+        {
+            foreach($request->file('foreign_degree') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $foreign_degree[] = $name;
+            }        
+        }else{
+            $foreign_degree = null;
+        }
 
-        if ($request->hasfile('foreign_degree')) {
-            $file = $request->file('foreign_degree');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $foreign_degree = '/storage/cpa_ff_register/'.$name;
-        }
-        else{
-            $foreign_degree="";
-        }
+        // if ($request->hasfile('foreign_degree')) {
+        //     $file = $request->file('foreign_degree');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $foreign_degree = $name;
+        // }
+        // else{
+        //     $foreign_degree=null;
+        // }
 
         if ($request->hasfile('cpa_certificate')) {
             $file = $request->file('cpa_certificate');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpa_certificate = '/storage/cpa_ff_register/'.$name;
+            $cpa_certificate = $name;
         }
         else{
             $cpa_certificate="";
@@ -72,7 +72,7 @@ class CPAFFController extends Controller
             $file = $request->file('mpa_mem_card');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $mpa_mem_card = '/storage/cpa_ff_register/'.$name;
+            $mpa_mem_card = $name;
         }else{
             $mpa_mem_card="";
         }
@@ -81,7 +81,7 @@ class CPAFFController extends Controller
             $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $nrc_front= '/storage/cpa_ff_register/'.$name;
+            $nrc_front= $name;
         }else{
             $nrc_front="";
         }
@@ -90,7 +90,7 @@ class CPAFFController extends Controller
             $file = $request->file('nrc_back');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $nrc_back= '/storage/cpa_ff_register/'.$name;
+            $nrc_back= $name;
         }else{
             $nrc_back="";
         }
@@ -99,7 +99,7 @@ class CPAFFController extends Controller
             $file = $request->file('cpd_record');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpd_record = '/storage/cpa_ff_register/'.$name;
+            $cpd_record = $name;
         }else{
             $cpd_record="";
         }
@@ -108,7 +108,7 @@ class CPAFFController extends Controller
             $file = $request->file('passport_image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $passport_image = '/storage/cpa_ff_register/'.$name;
+            $passport_image = $name;
         }else{
             $passport_image="";
         }
@@ -117,9 +117,8 @@ class CPAFFController extends Controller
         $cpa_ff->student_info_id  =   $request->student_info_id;
         $cpa_ff->cpa              =   $cpa;
         $cpa_ff->ra               =   $ra;
-        // $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
-        // $cpa_ff->foreign_degree =   json_encode($degree);
-        $cpa_ff->foreign_degree   =   $foreign_degree;
+        $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
+        // $cpa_ff->foreign_degree   =   $foreign_degree;
         $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
         $cpa_ff->qt_pass          =   $request->qt_pass;
         $cpa_ff->cpa_certificate  =   $cpa_certificate;
