@@ -19,7 +19,7 @@ class StudentRegisterController extends Controller
         $date = date('Y-m-d');
         $invoice_date = date('Y-m-d');
         switch ($request->type) {
-            case 'SELF_STUDY':
+            case 0:
                 foreach($request->reg_reason as $reg_reason){
                     $registration_reason[] = $reg_reason;
                 }
@@ -34,7 +34,7 @@ class StudentRegisterController extends Controller
                 $student_register->save();
                 return "success";
                 break;
-            case 'PRIVATE_SCHOOL':
+            case 1:
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
@@ -45,7 +45,7 @@ class StudentRegisterController extends Controller
                 $student_register->save();
                 return "success";
                 break;
-            case 'MAC':
+            case 2:
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
@@ -57,6 +57,7 @@ class StudentRegisterController extends Controller
                 return "success";
                 break;
         }
+        
         
     }
 
