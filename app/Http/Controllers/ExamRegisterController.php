@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ExamRegister;
 use App\StudentInfo;
 use App\StudentRegister;
+use App\StudentCourseReg;
 
 class ExamRegisterController extends Controller
 {
@@ -43,6 +44,9 @@ class ExamRegisterController extends Controller
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('id', $student_info_id)->get('type');
         $type = $exam_type[0]['type'];
+        $batch = StudentCourseReg::where('id', $student_info_id)->get('batch_id');
+        $batch_id = $batch[0]['batch_id'];
+        
         if ($request->hasfile('invoice_image')) 
         {
             $file = $request->file('invoice_image');
@@ -60,7 +64,7 @@ class ExamRegisterController extends Controller
         $exam->invoice_date = $invoice_date;
         $exam->private_school_name = $request->private_school_name;
         $exam->grade = 'A';
-        $exam->batch_id = 1;
+        $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
         $exam->exam_type_id = $type;
         $exam->status = 0;
