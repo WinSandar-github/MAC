@@ -1,5 +1,5 @@
-var BACKEND_URL="http://localhost:8000/api";
-// var Backendurl = "https://demo.aggademo.me/MAC/public/index.php/api";
+// var BACKEND_URL="http://localhost:8000/api";
+var Backendurl = "https://demo.aggademo.me/MAC/public/index.php/api";
 var counter = 0;                      
 
 function addRowCPAFF(tbody){
