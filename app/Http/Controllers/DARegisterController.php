@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\StudentInfo;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
-use Hash;
 use App\StudentRegister;
+use App\StudentCourseReg;
+use Hash;
 
 class DARegisterController extends Controller
 {
@@ -56,6 +57,7 @@ class DARegisterController extends Controller
         $date_of_birth = date('Y-m-d');
         $date = date('Y-m-d');
         $qualified_date = date('Y-m-d');
+        $course_date = date('Y-m-d');
 
         $student_info = new StudentInfo();
         $student_info->name_mm          =   $request->name_mm;
@@ -101,7 +103,12 @@ class DARegisterController extends Controller
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
 
-        
+        $student_course = new StudentCourseReg();
+        $student_course->student_info_id = $student_info->id;
+        $student_course->batch_id        = $request->batch_id;
+        $student_course->date            = $course_date;
+        $student_course->status          = 1;
+        $student_course->save();
 
         return response()->json($student_info,200);
     }
