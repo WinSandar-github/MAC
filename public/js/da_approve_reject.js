@@ -119,7 +119,7 @@ function approveUser(){
         type: 'patch',
         success: function(result){
             successMessage("You have approved that user!");
-            location.href = "/da_list";
+            location.href = BACKEND_URL + "/da_list";
         }
     });
 }
@@ -131,7 +131,7 @@ function rejectUser(){
         type: 'patch',
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = "/da_list";
+            location.href = BACKEND_URL + /da_list";
         }
     });
 }
