@@ -2,7 +2,7 @@
 function getStudentSelfStudy(){
     destroyDatatable("#tbl_student_self_study", "#tbl_student_self_study_body");    
     $.ajax({
-        url: BACKEND_URL+"/student_selfstudy",
+        url: BACKEND_URL+"/student_register",
         type: 'get',
         data:"",
         success: function(data){
@@ -10,20 +10,22 @@ function getStudentSelfStudy(){
             student_data.forEach(function (element) {
                 if(element.student_register!=null){
                     var student_info = element.student_register;
-               
-                    var tr = "<tr>";
-                    tr += "<td>" +  + "</td>";
-                    tr += "<td>" + element.name_eng + "</td>";
-                    tr += "<td>" + element.email + "</td>";
-                    tr += "<td>" + element.registration_no+ "</td>";
-                    tr += "<td>" + element.phone + "</td>";
-                    tr += "<td>" + element.student_register.reg_reason + "</td>";
-                    tr += "<td>" + element.student_register.status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "</tr>";
-                    $("#tbl_student_self_study_body").append(tr);  
+                    if(student_info.type == 0)
+                    {
+                        var tr = "<tr>";
+                        tr += "<td>" +  + "</td>";
+                        tr += "<td>" + element.name_eng + "</td>";
+                        tr += "<td>" + element.email + "</td>";
+                        tr += "<td>" + element.registration_no+ "</td>";
+                        tr += "<td>" + element.phone + "</td>";
+                        tr += "<td>" + element.student_register.reg_reason + "</td>";
+                        tr += "<td>" + element.student_register.status + "</td>";
+                        tr += "<td ><div class='btn-group'>";
+                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id + ")'>" +
+                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                        tr += "</tr>";
+                        $("#tbl_student_self_study_body").append(tr); 
+                    } 
                 }  
             });
             
@@ -55,7 +57,7 @@ function loadStudentSelfStudy(){
     $("input[name = student_id]").val(id);
     $.ajax({
         type: "GET",
-        url:BACKEND_URL+ "/student_selfstudy/"+id,
+        url:BACKEND_URL+ "/student_register/"+id,
         success: function (data) {
             var student_data = data.data;
             student_data.forEach(function(element){
@@ -76,27 +78,29 @@ function loadStudentSelfStudy(){
 function getStudentPrivateSchool(){
     destroyDatatable("#tbl_student_private_school", "#tbl_student_private_school_body");    
     $.ajax({
-        url: BACKEND_URL+"/student_privateschool",
+        url: BACKEND_URL+"/student_register",
         type: 'get',
         data:"",
         success: function(data){
             var student_data = data.data;
             student_data.forEach(function (element) {
                 if(element.student_register!=null){
-                    var tr = "<tr>";
-                    tr += "<td>" +  + "</td>";
-                    tr += "<td>" + element.name_eng + "</td>";
-                    tr += "<td>" + element.email + "</td>";
-                    tr += "<td>" + element.registration_no+ "</td>";
-                    tr += "<td>" + element.phone + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "</tr>";
-                    $("#tbl_student_private_school_body").append(tr);  
-                }   
-                
-               
+                    var student_info = element.student_register;
+                    if(student_info.type == 1)
+                    {
+                       var tr = "<tr>";
+                       tr += "<td>" +  + "</td>";
+                       tr += "<td>" + element.name_eng + "</td>";
+                       tr += "<td>" + element.email + "</td>";
+                       tr += "<td>" + element.registration_no+ "</td>";
+                       tr += "<td>" + element.phone + "</td>";
+                       tr += "<td ><div class='btn-group'>";
+                       tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id + ")'>" +
+                           "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                       tr += "</tr>";
+                       $("#tbl_student_private_school_body").append(tr); 
+                    }     
+                }  
             });
             
             getIndexNumber('#tbl_student_private_school tr');
@@ -126,7 +130,7 @@ function loadStudentPrivateSchool(){
     
     $.ajax({
         type: "GET",
-        url: BACKEND_URL+"/student_privateschool/"+id,
+        url: BACKEND_URL+"/student_register/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
@@ -146,7 +150,7 @@ function loadStudentPrivateSchool(){
 function getStudentMac(){
     destroyDatatable("#tbl_student_mac", "#tbl_student_mac_body");    
     $.ajax({
-        url: BACKEND_URL+"/student_mac",
+        url: BACKEND_URL+"/student_register",
         type: 'get',
         data:"",
         success: function(data){
@@ -154,18 +158,20 @@ function getStudentMac(){
             student_data.forEach(function (element) {
                 if(element.student_register!=null){
                     var student_info = element.student_register;
-               
-                    var tr = "<tr>";
-                    tr += "<td>" +  + "</td>";
-                    tr += "<td>" + element.name_eng + "</td>";
-                    tr += "<td>" + element.email + "</td>";
-                    tr += "<td>" + element.registration_no+ "</td>";
-                    tr += "<td>" + element.phone + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "</tr>";
-                    $("#tbl_student_mac_body").append(tr);  
+                    if(student_info.type == 2)
+                    {
+                        var tr = "<tr>";
+                        tr += "<td>" +  + "</td>";
+                        tr += "<td>" + element.name_eng + "</td>";
+                        tr += "<td>" + element.email + "</td>";
+                        tr += "<td>" + element.registration_no+ "</td>";
+                        tr += "<td>" + element.phone + "</td>";
+                        tr += "<td ><div class='btn-group'>";
+                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id + ")'>" +
+                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                        tr += "</tr>";
+                        $("#tbl_student_mac_body").append(tr);
+                    }   
                 }    
             });
             
@@ -195,7 +201,7 @@ function loadStudentMac(){
     
     $.ajax({
         type: "GET",
-        url: BACKEND_URL+"/student_mac/"+id,
+        url: BACKEND_URL+"/student_register/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
