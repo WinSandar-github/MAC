@@ -31,7 +31,7 @@ function getDAList(){
 
 function showDAList(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href= BACKEND_UR L+ "/da_edit";
+    location.href= FRONTEND_URL + "/da_edit";
 }
 
 function loadData(){
@@ -115,11 +115,11 @@ function approveUser(){
 
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: "/api/approve/"+id,
+        url: BACKEND_URL + "/approve/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have approved that user!");
-            location.href = "/da_list";
+            location.href = FRONTEND_URL + "/da_list";
         }
     });
 }
@@ -127,11 +127,11 @@ function approveUser(){
 function rejectUser(){
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: "/api/reject/"+id,
+        url: BACKEND_URL + "/reject/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = "/da_list";
+            location.href = FRONTEND_URL + "/da_list";
         }
     });
 }
