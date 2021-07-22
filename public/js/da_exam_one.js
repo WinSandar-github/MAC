@@ -1,7 +1,7 @@
 function getExam(){
-    destroyDatatable("#tbl_da_exam_one", "#tbl_da_exam_one_body");    
+    destroyDatatable("#tbl_da_exam_one", "#tbl_da_exam_one_body");
     $.ajax({
-        url: "/api/exam_register",
+        url: BACKEND_URL + "/exam_register",
         type: 'get',
         data:"",
         success: function(data){
@@ -21,13 +21,13 @@ function getExam(){
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "</tr>";
-                    $("#tbl_da_exam_one_body").append(tr);     
+                    $("#tbl_da_exam_one_body").append(tr);
             });
             getIndexNumber('#tbl_da_exam_one tr');
-            createDataTable("#tbl_da_exam_one");      
+            createDataTable("#tbl_da_exam_one");
         },
         error:function (message){
-            dataMessage(message, "#tbl_da_exam_one", "#tbl_da_exam_one_body");        
+            dataMessage(message, "#tbl_da_exam_one", "#tbl_da_exam_one_body");
         }
     });
 }
@@ -51,13 +51,13 @@ function loadExamData()
     $("#student_status").html("");
 
     $("input[name = student_id]").val(id);
-    
+
     $.ajax({
         type: "GET",
         url: BACKEND_URL+ "/exam_register/"+id,
         success: function (data) {
             var exam_data = data.data;
-            exam_data.forEach(function (element){  
+            exam_data.forEach(function (element){
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(element.exam_type_id);
                 $("#student_grade").append(element.grade);
@@ -75,14 +75,14 @@ function loadStudentDataForExamCard()
     $("#nrc").html("");
 
     $("input[name = student_info_id]").val(id);
-    
+
     $.ajax({
         type: "GET",
         url: "/api/da_register/"+id,
         success: function (data) {
             console.log("data=",data);
             var exam_data = data.data;
-            exam_data.forEach(function (element){  
+            exam_data.forEach(function (element){
                 console.log("element=",element.student_education_histroy.roll_number);
                 // document.getElementById("student_img").src ='img/user_profile/vIqzOHXj.jpeg';
                 console.log(element.image);
@@ -90,35 +90,35 @@ function loadStudentDataForExamCard()
                 $("#roll_no").append(element.student_education_histroy.roll_number);
                 $("#name").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number);
-                
+
             })
         }
     })
 }
 
-function approveExam(){ 
+function approveExam(){
     var id = $("input[name = student_id]").val();
     $.ajax({
-        url: "/api/approve_exam/"+id,
-        type: 'PATCH',        
+        url: BACKEND_URL + "/approve_exam/"+id,
+        type: 'PATCH',
         success: function(result){
             console.log(result)
-            successMessage("You have approved that form!");  
-            location.href = "/da_exam_one";         
+            successMessage("You have approved that form!");
+            location.href = "/da_exam_one";
             getExam();
         }
     });
 }
 
-function rejectExam(){ 
+function rejectExam(){
     var id = $("input[name = student_id]").val();
     $.ajax({
-        url: "/api/reject_exam/"+id,
-        type: 'PATCH',        
+        url:  BACKEND_URL + "/reject_exam/"+id,
+        type: 'PATCH',
         success: function(result){
             console.log(result)
-            successMessage("You have rejected that form!");  
-            location.href = "/da_exam_one";         
+            successMessage("You have rejected that form!");
+            location.href = "/da_exam_one";
             getExam();
         }
     });
