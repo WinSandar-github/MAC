@@ -115,22 +115,11 @@ function approveUser(){
 
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-<<<<<<< HEAD
         url: "/api/approve/"+id,
-        type: 'patch',        
-        success: function(result){
-            successMessage("You have approved that user!"); 
-            location.href = "/da_list"; 
-=======
-        url: "/approve/"+id,
         type: 'patch',
         success: function(result){
-
-            console.log(result)
             successMessage("You have approved that user!");
-            location.href = "da_list";
-            getDAList();
->>>>>>> 4dd8f16e2a862c957a9d178152a5aa874d92171a
+            location.href = "/da_list";
         }
     });
 }
@@ -138,23 +127,12 @@ function approveUser(){
 function rejectUser(){
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-<<<<<<< HEAD
         url: "/api/reject/"+id,
-        type: 'patch',        
-        success: function(result){
-            successMessage("You have rejected that user!");  
-            location.href = "/da_list"; 
-=======
-        url: "/reject/"+id,
         type: 'patch',
         success: function(result){
-            console.log(result)
             successMessage("You have rejected that user!");
-            // location.reload();
-            location.href = "da_list";
-
-            getDAList();
->>>>>>> 4dd8f16e2a862c957a9d178152a5aa874d92171a
+            location.href = "/da_list";
         }
     });
 }
+
