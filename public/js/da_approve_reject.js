@@ -12,7 +12,7 @@ function getDAList(){
                     tr += "<td>" + element.name_eng + "</td>";
                     tr += "<td>" + element.email + "</td>";
                     tr += "<td>" + element.phone+ "</td>";
-                    tr += "<td>" + element.nrc + "</td>";
+                    tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number + "</td>";
                     tr += "<td>" + element.approve_reject_status + "</td>";
                     tr += "<td ><div class='btn-group'>";
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
@@ -79,7 +79,7 @@ function loadData(){
 
                 $("#name_eng").append(element.name_eng);
                 $("#name_mm").append(element.name_mm);
-                $("#nrc").append(element.nrc);
+                $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number );
                 $("#father_name_mm").append(element.father_name_mm);
                 $("#father_name_eng").append(element.father_name_eng);
                 $("#race").append(element.race);
@@ -115,7 +115,7 @@ function approveUser(){
 
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: "/api/approve/"+id,
+        url: BACKEND_URL + "/approve/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have approved that user!");
@@ -127,7 +127,7 @@ function approveUser(){
 function rejectUser(){
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: "/api/reject/"+id,
+        url: BACKEND_URL + "/reject/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have rejected that user!");
