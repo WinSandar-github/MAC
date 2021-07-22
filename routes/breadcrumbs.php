@@ -349,5 +349,10 @@ Breadcrumbs::for('index', function ($trail) {
     $trail->push('da_registration_form', route('page.index', 'index'));
 });
 Breadcrumbs::for('da_list', function ($trail) {
+    $trail->parent('home');
     $trail->push('DA Form List', route('page.index', 'da_list'));
+});
+Breadcrumbs::for('cpa_ff_registration_list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('CPA Full Fleged Form List', route('page.index', 'cpa_ff_registration_list'));
 });

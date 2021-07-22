@@ -127,6 +127,7 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->cpd_record       =   $cpd_record;
         $cpa_ff->passport_image   =   $passport_image;
+        $cpa_ff->status           =  0;
         $cpa_ff->save();
 
     return response()->json([
@@ -145,38 +146,38 @@ class CPAFFController extends Controller
         
     }
 
-    public function update(Request $request, $id)
-    {
-        $cpa_ff = CPAFF::find($id);
-        $cpa_ff->student_info_id  =   $request->student_info_id;
-        $cpa_ff->cpa              =   $cpa;
-        $cpa_ff->ra               =   $ra;
-        $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
-        // $cpa_ff->foreign_degree   =   $foreign_degree;
-        $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
-        $cpa_ff->qt_pass          =   $request->qt_pass;
-        $cpa_ff->cpa_certificate  =   $cpa_certificate;
-        $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
-        $cpa_ff->nrc_front        =   $nrc_front;
-        $cpa_ff->nrc_back         =   $nrc_back;
-        $cpa_ff->cpd_record       =   $cpd_record;
-        $cpa_ff->passport_image   =   $passport_image;
-        $cpa_ff->save();
-        return response()->json([
-            'message' => "Update Successfully"
-        ],200);
+    // public function update(Request $request, $id)
+    // {
+    //     $cpa_ff = CPAFF::find($id);
+    //     $cpa_ff->student_info_id  =   $request->student_info_id;
+    //     $cpa_ff->cpa              =   $cpa;
+    //     $cpa_ff->ra               =   $ra;
+    //     $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
+    //     // $cpa_ff->foreign_degree   =   $foreign_degree;
+    //     $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+    //     $cpa_ff->qt_pass          =   $request->qt_pass;
+    //     $cpa_ff->cpa_certificate  =   $cpa_certificate;
+    //     $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
+    //     $cpa_ff->nrc_front        =   $nrc_front;
+    //     $cpa_ff->nrc_back         =   $nrc_back;
+    //     $cpa_ff->cpd_record       =   $cpd_record;
+    //     $cpa_ff->passport_image   =   $passport_image;
+    //     $cpa_ff->save();
+    //     return response()->json([
+    //         'message' => "Update Successfully"
+    //     ],200);
 
-     }
+    //  }
 
-    public function destroy($id)
-    {
-        $cpa_ff = CPAFF::find($id);
-        $cpa_ff->delete();
+    // public function destroy($id)
+    // {
+    //     $cpa_ff = CPAFF::find($id);
+    //     $cpa_ff->delete();
 
-        return response()->json([
-            'message' => "Delete Successfully"
-        ],200);   
-    }
+    //     return response()->json([
+    //         'message' => "Delete Successfully"
+    //     ],200);   
+    // }
 }
 
 
