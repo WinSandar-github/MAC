@@ -5,6 +5,7 @@ function getExam(){
         type: 'get',
         data:"",
         success: function(data){
+            console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
                     var tr = "<tr>";
@@ -16,6 +17,9 @@ function getExam(){
                     tr += "<td ><div class='btn-group'>";
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "<td ><div class='btn-group'>";
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
+                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "</tr>";
                     $("#tbl_da_exam_one_body").append(tr);     
             });
@@ -31,6 +35,10 @@ function getExam(){
 function showExam(studentId){
     localStorage.setItem("student_id",studentId);
     location.href="/da_exam_one_edit";
+}
+function printExamCard(studentId){
+    localStorage.setItem("student_id",studentId);
+    location.href="/da1_examcard";
 }
 
 function loadExamData()
@@ -54,6 +62,35 @@ function loadExamData()
                 $("#exam_type").append(element.exam_type_id);
                 $("#student_grade").append(element.grade);
                 $("#student_status").append(element.status);
+            })
+        }
+    })
+}
+
+function loadStudentDataForExamCard()
+{
+    var id=localStorage.getItem("student_id");
+    $("#roll_no").html("");
+    $("#name").html("");
+    $("#nrc").html("");
+
+    $("input[name = student_info_id]").val(id);
+    
+    $.ajax({
+        type: "GET",
+        url: "/api/da_register/"+id,
+        success: function (data) {
+            console.log("data=",data);
+            var exam_data = data.data;
+            exam_data.forEach(function (element){  
+                console.log("element=",element.student_education_histroy.roll_number);
+                // document.getElementById("student_img").src ='img/user_profile/vIqzOHXj.jpeg';
+                console.log(element.image);
+                document.getElementById('student_img').src=element.image;
+                $("#roll_no").append(element.student_education_histroy.roll_number);
+                $("#name").append(element.name_mm);
+                $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number);
+                
             })
         }
     })

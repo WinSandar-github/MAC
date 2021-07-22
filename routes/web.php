@@ -112,7 +112,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 
     //exam cards
-    Route::apiResource('da1_examcard', 'DA1ExamCardController');
+    Route::get('da1_examcard', 'ExamCardsController@DA1_ExamCard');
+    Route::get('cpa1_examcard', 'ExamCardsController@CPA1_ExamCard');
 });
 
 Route::resource('/batch','BatchController');

@@ -35,6 +35,7 @@
                                                     <th class="less-font-weight" >Grade</th>
                                                     <th class="less-font-weight" >Status</th>
                                                     <th class="less-font-weight" >Detail</th>
+                                                    <th class="less-font-weight" >Print</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_da_exam_one_body" class="hoverTable">
