@@ -44,20 +44,20 @@ function printExamCard(studentId){
 function loadExamData()
 {
     var id=localStorage.getItem("student_id");
+    // console.log(id)
     $("#school_name").html("");
     $("#exam_type").html("");
     $("#student_grade").html("");
     $("#student_status").html("");
 
-    $("input[name = student_info_id]").val(id);
+    $("input[name = student_id]").val(id);
     
     $.ajax({
         type: "GET",
-        url: "/api/exam_register/"+id,
+        url: BACKEND_URL+ "/exam_register/"+id,
         success: function (data) {
             var exam_data = data.data;
             exam_data.forEach(function (element){  
-                $("#id").append(element.id);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(element.exam_type_id);
                 $("#student_grade").append(element.grade);
@@ -96,29 +96,29 @@ function loadStudentDataForExamCard()
     })
 }
 
-function approveExamOne(){ 
+function approveExam(){ 
     var id = $("input[name = student_id]").val();
     $.ajax({
-        url: "/approve_exam/"+id,
-        type: 'patch',        
+        url: "/api/approve_exam/"+id,
+        type: 'PATCH',        
         success: function(result){
             console.log(result)
             successMessage("You have approved that form!");  
-            location.reload();          
+            location.href = "/da_exam_one";         
             getExam();
         }
     });
 }
 
-function rejectExamOne(){ 
+function rejectExam(){ 
     var id = $("input[name = student_id]").val();
     $.ajax({
-        url: "/reject_exam/"+id,
-        type: 'patch',        
+        url: "/api/reject_exam/"+id,
+        type: 'PATCH',        
         success: function(result){
             console.log(result)
             successMessage("You have rejected that form!");  
-            location.reload();          
+            location.href = "/da_exam_one";         
             getExam();
         }
     });

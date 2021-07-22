@@ -16,7 +16,7 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="javascript:void()" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         
@@ -73,9 +73,9 @@
                                             <input type="hidden" name="student_id">
                                             
                                             <div class="row mt-5 justify-content-center"> 
-                                                <button type="submit" name="save" class="btn btn-primary" onclick="approveExamOne()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                                <button type="submit" name="save" class="btn btn-primary" onclick="approveExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
-                                                <button type="submit" name="save" class="btn btn-primary"  onclick="rejectExamOne()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
+                                                <button type="submit" name="save" class="btn btn-primary"  onclick="rejectExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
                                             </div>
                                         </div>
                                             

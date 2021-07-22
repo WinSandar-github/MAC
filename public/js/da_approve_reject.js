@@ -1,5 +1,5 @@
 function getDAList(){
-    destroyDatatable("#tbl_da_list", "#tbl_da_list_body");    
+    destroyDatatable("#tbl_da_list", "#tbl_da_list_body");
     $.ajax({
         url: BACKEND_URL+"/da_register",
         type: 'get',
@@ -18,20 +18,20 @@ function getDAList(){
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "</tr>";
-                    $("#tbl_da_list_body").append(tr);     
+                    $("#tbl_da_list_body").append(tr);
             });
             getIndexNumber('#tbl_da_list tr');
-            createDataTable("#tbl_da_list");      
+            createDataTable("#tbl_da_list");
         },
         error:function (message){
-            dataMessage(message, "#tbl_da_list", "#tbl_da_list_body");        
+            dataMessage(message, "#tbl_da_list", "#tbl_da_list_body");
         }
     });
 }
 
 function showDAList(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/da_edit";
+    location.href= BACKEND_UR L+ "/da_edit";
 }
 
 function loadData(){
@@ -111,31 +111,27 @@ function loadData(){
     })
 }
 
-function approveUser(){ 
+function approveUser(){
+
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: BACKEND_URL+"/approve/"+id,
-        type: 'patch',        
+        url: "/api/approve/"+id,
+        type: 'patch',
         success: function(result){
-            console.log(result)
-            successMessage("You have approved that user!");  
-            location.reload();          
-            getDAList();
+            successMessage("You have approved that user!");
+            location.href = "/da_list";
         }
     });
 }
 
-function rejectUser(){ 
+function rejectUser(){
     var id = $("input[name = student_info_id]").val();
-    console.log(id);
     $.ajax({
-        url: BACKEND_URL+"/reject/"+id,
-        type: 'patch',        
+        url: "/api/reject/"+id,
+        type: 'patch',
         success: function(result){
-            console.log(result)
-            successMessage("You have rejected that user!");  
-            location.reload();          
-            getDAList();
+            successMessage("You have rejected that user!");
+            location.href = "/da_list";
         }
     });
 }
