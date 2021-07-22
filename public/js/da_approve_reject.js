@@ -114,12 +114,12 @@ function loadData(){
 function approveUser(){ 
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: BACKEND_URL+"/approve/"+id,
+        url: "/api/approve/"+id,
         type: 'patch',        
         success: function(result){
             console.log(result)
             successMessage("You have approved that user!");  
-            location.reload();          
+            location.href = "/da_list";          
             getDAList();
         }
     });
@@ -129,12 +129,12 @@ function rejectUser(){
     var id = $("input[name = student_info_id]").val();
     console.log(id);
     $.ajax({
-        url: BACKEND_URL+"/reject/"+id,
+        url: "/api/reject/"+id,
         type: 'patch',        
         success: function(result){
             console.log(result)
             successMessage("You have rejected that user!");  
-            location.reload();          
+            location.href = "/da_list";           
             getDAList();
         }
     });

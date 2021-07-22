@@ -98,18 +98,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('admin', function() {
         return redirect('/moodle/admin');
     })->name("admin");
-
-    // DA Application Form
-    Route::patch('/approve/{id}', 'DARegisterController@approve');
-    Route::patch('/reject/{id}', 'DARegisterController@reject');
-
-    // Student Register Form
-    Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
-    Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
-
-    // DA Exam Form 1 Approve/Reject
-    Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
-    Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 });
 
 Route::resource('/batch','BatchController');
