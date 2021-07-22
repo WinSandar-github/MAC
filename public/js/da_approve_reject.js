@@ -131,7 +131,7 @@ function rejectUser(){
         type: 'patch',
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = BACKEND_URL + /da_list";
+            location.href = BACKEND_URL + "/da_list";
         }
     });
 }
