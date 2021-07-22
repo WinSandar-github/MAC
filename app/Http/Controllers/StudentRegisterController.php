@@ -16,6 +16,7 @@ class StudentRegisterController extends Controller
 
     public function store(Request $request)
     {
+      
         $date = date('Y-m-d');
         $invoice_date = date('Y-m-d');
         switch ($request->type) {
@@ -57,7 +58,7 @@ class StudentRegisterController extends Controller
                 return "success";
                 break;
         }
-        
+            
         
     }
 
