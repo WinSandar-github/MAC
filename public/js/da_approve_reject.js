@@ -31,7 +31,7 @@ function getDAList(){
 
 function showDAList(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href= BACKEND_UR L+ "/da_edit";
+    location.href= BACKEND_URL + "/da_edit";
 }
 
 function loadData(){
