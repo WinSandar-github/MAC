@@ -115,7 +115,7 @@ function approveUser(){
 
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: "/api/approve/"+id,
+        url: BACKEND_URL + "/approve/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have approved that user!");
@@ -127,7 +127,7 @@ function approveUser(){
 function rejectUser(){
     var id = $("input[name = student_info_id]").val();
     $.ajax({
-        url: "/api/reject/"+id,
+        url: BACKEND_URL + "/reject/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have rejected that user!");
