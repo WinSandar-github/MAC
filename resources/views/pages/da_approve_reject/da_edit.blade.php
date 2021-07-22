@@ -13,7 +13,7 @@
         <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
                 @csrf
-                <div class="card">
+                 <div class="card">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 ">
