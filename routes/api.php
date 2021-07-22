@@ -76,14 +76,21 @@ Route::resource('/student_selfstudy','StudentSelfStudyController');
 Route::resource('/student_privateschool','StudentPrivateSchoolController');
 Route::resource('/student_mac','StudentMacController');
 
-//Student Register API
+//Student Register Form API
 Route::resource('/student_register','StudentRegisterController');
+Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
+Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 
-//Exam Register API
+//DA Exam Form 1 API
 Route::resource('/exam_register', 'ExamRegisterController');
+Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
+Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 
-//DA Register API
+//DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
+Route::patch('/approve/{id}', 'DARegisterController@approve');
+Route::patch('/reject/{id}', 'DARegisterController@reject');
+
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 
