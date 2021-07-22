@@ -1,6 +1,6 @@
 // var BACKEND_URL="http://localhost:8000/api";
-var Backendurl = "https://demo.aggademo.me/MAC/public/index.php/api";
-var counter = 0;                      
+var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
+var counter = 0;
 
 function addRowCPAFF(tbody){
     var newRow = $("<tr>");
@@ -10,18 +10,18 @@ function addRowCPAFF(tbody){
     cols += '<td><div class="form-group"><input type="date" name="date1" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
     cols += '<td><div class="form-group"><input type="date" name="date2" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
     cols += '<td><div class="form-group"><input type="date" name="date3" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
-    cols += '<td class="border-color">'+ 
-                '<div class="input-group mt-3">'+                                                    
+    cols += '<td class="border-color">'+
+                '<div class="input-group mt-3">'+
                     '<div class="custom-file">'+
-                        '<input type="file" class="custom-file-input" id="inputfile2" multiple>'+                        
+                        '<input type="file" class="custom-file-input" id="inputfile2" multiple>'+
                     '</div>'+
-                '</div>'+                                                                                    
-            
+                '</div>'+
+
                 '<div class="form-group">'+
                     '<input type="text" name="" class="form-control" placeholder="Signture of Registrar" required>'+
-                '</div>'+ 
+                '</div>'+
             '</td>';
-    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowCPAFF("'+tbody+'")  value="X"></td>';            
+    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowCPAFF("'+tbody+'")  value="X"></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
     counter++;
@@ -41,19 +41,19 @@ function addRowCPAPA(tbody){
     cols += '<td><div class="form-group"><input type="date" name="date4" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
     cols += '<td><div class="form-group"><input type="date" name="date5" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
     cols += '<td><div class="form-group"><input type="date" name="date6" class="form-control" placeholder="dd/mm/yyyy" required></div></td>';
-    cols += '<td class="border-color">'+ 
-                '<div class="input-group mt-3">'+                                                    
+    cols += '<td class="border-color">'+
+                '<div class="input-group mt-3">'+
                     '<div class="custom-file">'+
                         '<input type="file" class="custom-file-input" id="inputfile2" multiple>'+
                         '<label class="custom-file-label" >Choose file</label>'+
                     '</div>'+
-                '</div>'+                                                                                    
-            
+                '</div>'+
+
                 '<div class="form-group">'+
                     '<input type="text" name="" class="form-control" placeholder="Signture of Registrar" required>'+
-                '</div>'+ 
+                '</div>'+
             '</td>';
-    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowCPAPA("'+tbody+'")  value="X"></td>';            
+    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowCPAPA("'+tbody+'")  value="X"></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
     counter++;
@@ -72,7 +72,7 @@ function addRowSubject(tbody){
     var row=$('.'+tbody+' tr').length;
     cols += '<td>'+ (row)+'</td>';
     cols += '<td><input type="text" class="form-control" name="education[]" placeholder="လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း"/></td>';
-    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowSubject("'+tbody+'")  value="X"></td>';            
+    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowSubject("'+tbody+'")  value="X"></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
     counter++;
@@ -83,7 +83,7 @@ function addRowDipSubject(tbody){
     var row=$('.'+tbody+' tr').length;
     cols += '<td>'+ (row)+'</td>';
     cols += '<td><input type="text" class="form-control" name="education[]" placeholder="လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း"/></td>';
-    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowSubject("'+tbody+'")  value="X"></td>';            
+    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowSubject("'+tbody+'")  value="X"></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
     counter++;
@@ -102,7 +102,7 @@ function addRowInCountryEducation(tbody){
     cols += '<td>'+ (row)+'</td>';
     cols += '<td><input type="text" class="form-control" name="education[]" placeholder="ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း"/></td>';
     cols += '<td class="text-center"><input type="file" id="image" name="image"></td>';
-    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowInCountryEducation("'+tbody+'")  value="X"></td>';            
+    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowInCountryEducation("'+tbody+'")  value="X"></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
     counter++;
@@ -120,7 +120,7 @@ function addRowEducation(tbody){
     var row=$('.'+tbody+' tr').length;
     cols += '<td>'+ (row)+'</td>';
     cols += '<td><input type="text" class="form-control" name="education[]" placeholder="ပညာအရည်အချင်း"/></td>';
-    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowEducation("'+tbody+'")  value="X"></td>';            
+    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowEducation("'+tbody+'")  value="X"></td>';
     newRow.append(cols);
     $("table."+tbody).append(newRow);
     counter++;
@@ -135,7 +135,7 @@ function delRowEducation(tbody){
 function addRowBranch(tbody){
     var newRow = $("<tr>");
     var cols = "";
-    
+
     cols += '<td><input type="text" name="bo_branch_name[]" class="form-control" autocomplete="off"/></td>';
     cols += '<td><input type="text" name="bo_township[]" class="form-control" autocomplete="off"/></td>';
     cols += '<td><input type="text" name="bo_post_code[]" class="form-control" autocomplete="off"/></td>';
@@ -158,7 +158,7 @@ function delRowBranch(tbody){
 }
 
 function addRowPartner(tbody){
-            
+
     var newRow = $("<tr>");
     var cols = "";
     var row=$('.'+tbody+' tr').length;
@@ -214,7 +214,7 @@ function delRowPartnerByNonAudit(tbody){
     $("table."+tbody).on("click", ".delete", function (event) {
         $(this).closest("tr").remove();
         counter -= 1;
-        
+
     });
 }
 function addRowDirectorByNonAudit(tbody){
@@ -396,307 +396,307 @@ function createDatepicker(name){
     });
 }
 function getTotalStaff(){
-    
+
     if($('#principal_total').val()!="" && $('#non_principal_total').val()=="" && $('#managerial_level_total').val()=="" && $('#non-mangerial_level_total').val()==""){
-        $('#total_staff_total').val($('#principal_total').val()); 
+        $('#total_staff_total').val($('#principal_total').val());
     }else if($('#principal_total').val()!="" && $('#non_principal_total').val()!="" && $('#managerial_level_total').val()=="" && $('#non-mangerial_level_total').val()==""){
-        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non_principal_total').val())); 
+        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non_principal_total').val()));
     }else if($('#principal_total').val()!="" && $('#non_principal_total').val()=="" && $('#managerial_level_total').val()!="" && $('#non-mangerial_level_total').val()==""){
-        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#managerial_level_total').val())); 
+        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#managerial_level_total').val()));
     }else if($('#principal_total').val()!="" && $('#non_principal_total').val()=="" && $('#managerial_level_total').val()=="" && $('#non-mangerial_level_total').val()!=""){
-        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non-mangerial_level_total').val())); 
+        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non-mangerial_level_total').val()));
     }else if($('#principal_total').val()!="" && $('#non_principal_total').val()=="" && $('#managerial_level_total').val()!="" && $('#non-mangerial_level_total').val()!=""){
-        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#managerial_level_total').val())+parseInt($('#non-mangerial_level_total').val())); 
+        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#managerial_level_total').val())+parseInt($('#non-mangerial_level_total').val()));
     }else if($('#principal_total').val()!="" && $('#non_principal_total').val()!="" && $('#managerial_level_total').val()=="" && $('#non-mangerial_level_total').val()!=""){
-        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non_principal_total').val())+parseInt($('#non-mangerial_level_total').val())); 
+        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non_principal_total').val())+parseInt($('#non-mangerial_level_total').val()));
     }else if($('#principal_total').val()!="" && $('#non_principal_total').val()!="" && $('#managerial_level_total').val()!="" && $('#non-mangerial_level_total').val()==""){
-        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non_principal_total').val())+parseInt($('#managerial_level_total').val())); 
+        $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non_principal_total').val())+parseInt($('#managerial_level_total').val()));
         }else if($('#principal_total').val()!="" && $('#non_principal_total').val()!="" && $('#managerial_level_total').val()!="" && $('#non-mangerial_level_total').val()!=""){
-            $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non_principal_total').val())+parseInt($('#managerial_level_total').val())+parseInt($('#non-mangerial_level_total').val()));//first row 
+            $('#total_staff_total').val(parseInt($('#principal_total').val())+parseInt($('#non_principal_total').val())+parseInt($('#managerial_level_total').val())+parseInt($('#non-mangerial_level_total').val()));//first row
         }else if($('#principal_total').val()=="" && $('#non_principal_total').val()!="" && $('#managerial_level_total').val()=="" && $('#non-mangerial_level_total').val()==""){
-        $('#total_staff_total').val($('#non_principal_total').val()); 
+        $('#total_staff_total').val($('#non_principal_total').val());
     }else if($('#principal_total').val()=="" && $('#non_principal_total').val()!="" && $('#managerial_level_total').val()!="" && $('#non-mangerial_level_total').val()==""){
-        $('#total_staff_total').val(parseInt($('#non_principal_total').val())+parseInt($('#managerial_level_total').val())); 
+        $('#total_staff_total').val(parseInt($('#non_principal_total').val())+parseInt($('#managerial_level_total').val()));
     }else if($('#principal_total').val()=="" && $('#non_principal_total').val()!="" && $('#managerial_level_total').val()!="" && $('#non-mangerial_level_total').val()!=""){
-        $('#total_staff_total').val(parseInt($('#non_principal_total').val())+parseInt($('#managerial_level_total').val())+parseInt($('#non-mangerial_level_total').val())); 
+        $('#total_staff_total').val(parseInt($('#non_principal_total').val())+parseInt($('#managerial_level_total').val())+parseInt($('#non-mangerial_level_total').val()));
     }else if($('#principal_total').val()=="" && $('#non_principal_total').val()!="" && $('#managerial_level_total').val()=="" && $('#non-mangerial_level_total').val()!=""){
         $('#total_staff_total').val(parseInt($('#non_principal_total').val())+parseInt($('#non-mangerial_level_total').val())); //second
     }else if($('#principal_total').val()=="" && $('#non_principal_total').val()=="" && $('#managerial_level_total').val()!="" && $('#non-mangerial_level_total').val()==""){
-        $('#total_staff_total').val($('#managerial_level_total').val()); 
+        $('#total_staff_total').val($('#managerial_level_total').val());
     }else if($('#principal_total').val()=="" && $('#non_principal_total').val()=="" && $('#managerial_level_total').val()!="" && $('#non-mangerial_level_total').val()!=""){
         $('#total_staff_total').val(parseInt($('#managerial_level_total').val())+parseInt($('#non-mangerial_level_total').val())); //third
     }else if($('#principal_total').val()=="" && $('#non_principal_total').val()=="" && $('#managerial_level_total').val()=="" && $('#non-mangerial_level_total').val()!=""){
-        $('#total_staff_total').val($('#non-mangerial_level_total').val()); 
+        $('#total_staff_total').val($('#non-mangerial_level_total').val());
     }
 }
 function getTotalAudit(){
-    
+
     if($('#principal_audit').val()!="" && $('#non_principal_audit').val()=="" && $('#managerial_level_audit').val()=="" && $('#non-mangerial_level_audit').val()==""){
-        $('#total_staff_audit').val($('#principal_audit').val()); 
+        $('#total_staff_audit').val($('#principal_audit').val());
     }else if($('#principal_audit').val()!="" && $('#non_principal_audit').val()!="" && $('#managerial_level_audit').val()=="" && $('#non-mangerial_level_audit').val()==""){
-        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non_principal_audit').val())); 
+        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non_principal_audit').val()));
     }else if($('#principal_audit').val()!="" && $('#non_principal_audit').val()=="" && $('#managerial_level_audit').val()!="" && $('#non-mangerial_level_audit').val()==""){
-        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#managerial_level_audit').val())); 
+        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#managerial_level_audit').val()));
     }else if($('#principal_audit').val()!="" && $('#non_principal_audit').val()=="" && $('#managerial_level_audit').val()=="" && $('#non-mangerial_level_audit').val()!=""){
-        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non-mangerial_level_audit').val())); 
+        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non-mangerial_level_audit').val()));
     }else if($('#principal_audit').val()!="" && $('#non_principal_audit').val()=="" && $('#managerial_level_audit').val()!="" && $('#non-mangerial_level_audit').val()!=""){
-        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#managerial_level_audit').val())+parseInt($('#non-mangerial_level_audit').val())); 
+        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#managerial_level_audit').val())+parseInt($('#non-mangerial_level_audit').val()));
     }else if($('#principal_audit').val()!="" && $('#non_principal_audit').val()!="" && $('#managerial_level_audit').val()=="" && $('#non-mangerial_level_audit').val()!=""){
-        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non_principal_audit').val())+parseInt($('#non-mangerial_level_audit').val())); 
+        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non_principal_audit').val())+parseInt($('#non-mangerial_level_audit').val()));
     }else if($('#principal_audit').val()!="" && $('#non_principal_audit').val()!="" && $('#managerial_level_audit').val()!="" && $('#non-mangerial_level_audit').val()==""){
-        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non_principal_audit').val())+parseInt($('#managerial_level_audit').val())); 
+        $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non_principal_audit').val())+parseInt($('#managerial_level_audit').val()));
         }else if($('#principal_audit').val()!="" && $('#non_principal_audit').val()!="" && $('#managerial_level_audit').val()!="" && $('#non-mangerial_level_audit').val()!=""){
-            $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non_principal_audit').val())+parseInt($('#managerial_level_audit').val())+parseInt($('#non-mangerial_level_audit').val()));//first row 
+            $('#total_staff_audit').val(parseInt($('#principal_audit').val())+parseInt($('#non_principal_audit').val())+parseInt($('#managerial_level_audit').val())+parseInt($('#non-mangerial_level_audit').val()));//first row
         }else if($('#principal_audit').val()=="" && $('#non_principal_audit').val()!="" && $('#managerial_level_audit').val()=="" && $('#non-mangerial_level_audit').val()==""){
-        $('#total_staff_audit').val($('#non_principal_audit').val()); 
+        $('#total_staff_audit').val($('#non_principal_audit').val());
     }else if($('#principal_audit').val()=="" && $('#non_principal_audit').val()!="" && $('#managerial_level_audit').val()!="" && $('#non-mangerial_level_audit').val()==""){
-        $('#total_staff_audit').val(parseInt($('#non_principal_audit').val())+parseInt($('#managerial_level_audit').val())); 
+        $('#total_staff_audit').val(parseInt($('#non_principal_audit').val())+parseInt($('#managerial_level_audit').val()));
     }else if($('#principal_audit').val()=="" && $('#non_principal_audit').val()!="" && $('#managerial_level_audit').val()!="" && $('#non-mangerial_level_audit').val()!=""){
-        $('#total_staff_audit').val(parseInt($('#non_principal_audit').val())+parseInt($('#managerial_level_audit').val())+parseInt($('#non-mangerial_level_audit').val())); 
+        $('#total_staff_audit').val(parseInt($('#non_principal_audit').val())+parseInt($('#managerial_level_audit').val())+parseInt($('#non-mangerial_level_audit').val()));
     }else if($('#principal_audit').val()=="" && $('#non_principal_audit').val()!="" && $('#managerial_level_audit').val()=="" && $('#non-mangerial_level_audit').val()!=""){
         $('#total_staff_audit').val(parseInt($('#non_principal_audit').val())+parseInt($('#non-mangerial_level_audit').val())); //second
     }else if($('#principal_audit').val()=="" && $('#non_principal_audit').val()=="" && $('#managerial_level_audit').val()!="" && $('#non-mangerial_level_audit').val()==""){
-        $('#total_staff_audit').val($('#managerial_level_audit').val()); 
+        $('#total_staff_audit').val($('#managerial_level_audit').val());
     }else if($('#principal_audit').val()=="" && $('#non_principal_audit').val()=="" && $('#managerial_level_audit').val()!="" && $('#non-mangerial_level_audit').val()!=""){
         $('#total_staff_audit').val(parseInt($('#managerial_level_audit').val())+parseInt($('#non-mangerial_level_audit').val())); //third
     }else if($('#principal_audit').val()=="" && $('#non_principal_audit').val()=="" && $('#managerial_level_audit').val()=="" && $('#non-mangerial_level_audit').val()!=""){
-        $('#total_staff_audit').val($('#non-mangerial_level_audit').val()); 
+        $('#total_staff_audit').val($('#non-mangerial_level_audit').val());
     }
 }
 function getTotalNonAudit(){
-    
+
     if($('#principal_non_audit').val()!="" && $('#non_principal_non_audit').val()=="" && $('#managerial_level_non_audit').val()=="" && $('#non-mangerial_level_non_audit').val()==""){
-        $('#total_staff_non_audit').val($('#principal_non_audit').val()); 
+        $('#total_staff_non_audit').val($('#principal_non_audit').val());
     }else if($('#principal_non_audit').val()!="" && $('#non_principal_non_audit').val()!="" && $('#managerial_level_non_audit').val()=="" && $('#non-mangerial_level_non_audit').val()==""){
-        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non_principal_non_audit').val())); 
+        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non_principal_non_audit').val()));
     }else if($('#principal_non_audit').val()!="" && $('#non_principal_non_audit').val()=="" && $('#managerial_level_non_audit').val()!="" && $('#non-mangerial_level_non_audit').val()==""){
-        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())); 
+        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val()));
     }else if($('#principal_non_audit').val()!="" && $('#non_principal_non_audit').val()=="" && $('#managerial_level_non_audit').val()=="" && $('#non-mangerial_level_non_audit').val()!=""){
-        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val())); 
+        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val()));
     }else if($('#principal_non_audit').val()!="" && $('#non_principal_non_audit').val()=="" && $('#managerial_level_non_audit').val()!="" && $('#non-mangerial_level_non_audit').val()!=""){
-        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val())); 
+        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val()));
     }else if($('#principal_non_audit').val()!="" && $('#non_principal_non_audit').val()!="" && $('#managerial_level_non_audit').val()=="" && $('#non-mangerial_level_non_audit').val()!=""){
-        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non_principal_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val())); 
+        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non_principal_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val()));
     }else if($('#principal_non_audit').val()!="" && $('#non_principal_non_audit').val()!="" && $('#managerial_level_non_audit').val()!="" && $('#non-mangerial_level_non_audit').val()==""){
-        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non_principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())); 
+        $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non_principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val()));
         }else if($('#principal_non_audit').val()!="" && $('#non_principal_non_audit').val()!="" && $('#managerial_level_non_audit').val()!="" && $('#non-mangerial_level_non_audit').val()!=""){
-            $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non_principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val()));//first row 
+            $('#total_staff_non_audit').val(parseInt($('#principal_non_audit').val())+parseInt($('#non_principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val()));//first row
         }else if($('#principal_non_audit').val()=="" && $('#non_principal_non_audit').val()!="" && $('#managerial_level_non_audit').val()=="" && $('#non-mangerial_level_non_audit').val()==""){
-        $('#total_staff_non_audit').val($('#non_principal_non_audit').val()); 
+        $('#total_staff_non_audit').val($('#non_principal_non_audit').val());
     }else if($('#principal_non_audit').val()=="" && $('#non_principal_non_audit').val()!="" && $('#managerial_level_non_audit').val()!="" && $('#non-mangerial_level_non_audit').val()==""){
-        $('#total_staff_non_audit').val(parseInt($('#non_principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())); 
+        $('#total_staff_non_audit').val(parseInt($('#non_principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val()));
     }else if($('#principal_non_audit').val()=="" && $('#non_principal_non_audit').val()!="" && $('#managerial_level_non_audit').val()!="" && $('#non-mangerial_level_non_audit').val()!=""){
-        $('#total_staff_non_audit').val(parseInt($('#non_principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val())); 
+        $('#total_staff_non_audit').val(parseInt($('#non_principal_non_audit').val())+parseInt($('#managerial_level_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val()));
     }else if($('#principal_non_audit').val()=="" && $('#non_principal_non_audit').val()!="" && $('#managerial_level_non_audit').val()=="" && $('#non-mangerial_level_non_audit').val()!=""){
         $('#total_staff_non_audit').val(parseInt($('#non_principal_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val())); //second
     }else if($('#principal_non_audit').val()=="" && $('#non_principal_non_audit').val()=="" && $('#managerial_level_non_audit').val()!="" && $('#non-mangerial_level_non_audit').val()==""){
-        $('#total_staff_non_audit').val($('#managerial_level_non_audit').val()); 
+        $('#total_staff_non_audit').val($('#managerial_level_non_audit').val());
     }else if($('#principal_non_audit').val()=="" && $('#non_principal_non_audit').val()=="" && $('#managerial_level_non_audit').val()!="" && $('#non-mangerial_level_non_audit').val()!=""){
         $('#total_staff_non_audit').val(parseInt($('#managerial_level_non_audit').val())+parseInt($('#non-mangerial_level_non_audit').val())); //third
     }else if($('#principal_non_audit').val()=="" && $('#non_principal_non_audit').val()=="" && $('#managerial_level_non_audit').val()=="" && $('#non-mangerial_level_non_audit').val()!=""){
-        $('#total_staff_non_audit').val($('#non-mangerial_level_non_audit').val()); 
+        $('#total_staff_non_audit').val($('#non-mangerial_level_non_audit').val());
     }
 }
 function getTotalAuditStaff(){
-    
+
     if($('#director_total').val()!="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val($('#director_total').val()); 
+        $('#audit_staff_total').val($('#director_total').val());
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_senior_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_senior_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_assistant_cpa_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_assistant_cpa_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_cpa_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_cpa_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()!="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()!=""){
         $('#audit_staff_total').val(parseInt($('#director_total').val())+parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val())); //first
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_cpa_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_cpa_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()!="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()!=""){
         $('#audit_staff_total').val(parseInt($('#audit_manager_total').val())+parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val())); //second
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#audit_senior_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_senior_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()=="" && $('#audit_assistant_others_total').val()!=""){
-        $('#audit_staff_total').val(parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_others_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_others_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()!="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()!=""){
         $('#audit_staff_total').val(parseInt($('#audit_senior_total').val())+parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val())); //third
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()==""){
-        $('#audit_staff_total').val(parseInt($('#audit_assistant_cpa_total').val())); 
+        $('#audit_staff_total').val(parseInt($('#audit_assistant_cpa_total').val()));
     }else if($('#director_total').val()=="" && $('#audit_manager_total').val()=="" && $('#audit_senior_total').val()=="" && $('#audit_assistant_cpa_total').val()!="" && $('#audit_assistant_others_total').val()!=""){
         $('#audit_staff_total').val(parseInt($('#audit_assistant_cpa_total').val())+parseInt($('#audit_assistant_others_total').val())); //four
     }else{
         $('#audit_staff_total').val($('#audit_assistant_others_total').val());
     }
-    
+
 }
 function getTotalFullTime(){
-    
+
     if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val($('#director_full_time').val()); 
+        $('#audit_staff_full_time').val($('#director_full_time').val());
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_senior_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_senior_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()!="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()!=""){
         $('#audit_staff_full_time').val(parseInt($('#director_full_time').val())+parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); //first
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()!="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()!=""){
         $('#audit_staff_full_time').val(parseInt($('#audit_manager_full_time').val())+parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); //second
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_senior_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_senior_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()=="" && $('#audit_assistant_others_full_time').val()!=""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_others_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()!="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()!=""){
         $('#audit_staff_full_time').val(parseInt($('#audit_senior_full_time').val())+parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); //third
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()==""){
-        $('#audit_staff_full_time').val(parseInt($('#audit_assistant_cpa_full_time').val())); 
+        $('#audit_staff_full_time').val(parseInt($('#audit_assistant_cpa_full_time').val()));
     }else if($('#director_full_time').val()=="" && $('#audit_manager_full_time').val()=="" && $('#audit_senior_full_time').val()=="" && $('#audit_assistant_cpa_full_time').val()!="" && $('#audit_assistant_others_full_time').val()!=""){
         $('#audit_staff_full_time').val(parseInt($('#audit_assistant_cpa_full_time').val())+parseInt($('#audit_assistant_others_full_time').val())); //four
     }else{
         $('#audit_staff_full_time').val($('#audit_assistant_others_full_time').val());
     }
-    
+
 }
 function getTotalPartTime(){
-    
+
     if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val($('#director_part_time').val()); 
+        $('#audit_staff_part_time').val($('#director_part_time').val());
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_senior_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_senior_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()!="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()!=""){
         $('#audit_staff_part_time').val(parseInt($('#director_part_time').val())+parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); //first
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_timel').val()=="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()!="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()!=""){
         $('#audit_staff_part_time').val(parseInt($('#audit_manager_part_time').val())+parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); //second
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_senior_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_senior_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()=="" && $('#audit_assistant_others_part_time').val()!=""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_others_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()!="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()!=""){
         $('#audit_staff_part_time').val(parseInt($('#audit_senior_part_time').val())+parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); //third
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()==""){
-        $('#audit_staff_part_time').val(parseInt($('#audit_assistant_cpa_part_time').val())); 
+        $('#audit_staff_part_time').val(parseInt($('#audit_assistant_cpa_part_time').val()));
     }else if($('#director_part_time').val()=="" && $('#audit_manager_part_time').val()=="" && $('#audit_senior_part_time').val()=="" && $('#audit_assistant_cpa_part_time').val()!="" && $('#audit_assistant_others_part_time').val()!=""){
         $('#audit_staff_part_time').val(parseInt($('#audit_assistant_cpa_part_time').val())+parseInt($('#audit_assistant_others_part_time').val())); //four
     }else{
         $('#audit_staff_part_time').val($('#audit_assistant_others_part_time').val());
     }
-    
+
 }
 function getOrganization(){
     var radioValue = $("input[name='org_stru_id']:checked").val();
@@ -708,7 +708,7 @@ function getOrganization(){
     else if(radioValue==2){
         $('#sole-proprietorship').css('display','none');
         $('#partnership').css('display','block');
-        $('#company').css('display','none');         
+        $('#company').css('display','none');
     }
     else if(radioValue==3){
         $('#sole-proprietorship').css('display','none');
@@ -722,11 +722,11 @@ function getOrganization(){
     }
 }
 function getFileName(file,label){
-    
+
     var filepath=document.getElementById(file);
     for (var i = 0; i <filepath.files.length; ++i) {
         $('#'+label).text(filepath.files.item(i).name);
-        
+
     }
 }
 function addInputFile(divname,diventry){
@@ -739,7 +739,7 @@ function addInputFile(divname,diventry){
             .removeClass('btn-primary').addClass('btn-danger')
             .attr("onclick","delInputFile('"+diventry+"')")
             .html('<span class="fa fa-trash"></span>');
-            
+
 
 }
 function delInputFile(diventry){
@@ -780,12 +780,12 @@ function createDataTable(table) {
         "scrollX": true,
         'select': false,
         "order": [[0, "desc"]],
-        
+
     });
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
         $($.fn.dataTable.tables(true)).DataTable()
            .columns.adjust();
-     });   
+     });
 }
 function destroyDatatable(table, tableBody) {
     if ($.fn.DataTable.isDataTable(table)) {
@@ -824,12 +824,3 @@ function numberRows() {
         $(this).children(":eq(0)").html(idx + 1);
     });
 }
-
-  
-
-
-
-
-
-
-         
