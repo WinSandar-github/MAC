@@ -81,6 +81,7 @@
                                                                         <th class="less-font-weight" >Email</th>                                        
                                                                         <th class="less-font-weight" >Registration No</th>
                                                                         <th class="less-font-weight" >Phone</th>
+                                                                        <th class="less-font-weight" >Status</th>
                                                                         <th class="less-font-weight" >Action</th>
                                                                     </tr>
                                                                     
@@ -104,6 +105,7 @@
                                                                         <th class="less-font-weight" >Email</th>                                        
                                                                         <th class="less-font-weight" >Registration No</th>
                                                                         <th class="less-font-weight" >Phone</th>
+                                                                        <th class="less-font-weight" >Status</th>
                                                                         <th class="less-font-weight" >Action</th>
                                                                     </tr>
                                                                     

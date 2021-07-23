@@ -85,6 +85,7 @@ Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 Route::resource('/exam_register', 'ExamRegisterController');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
+Route::get('/filter/{id}', 'ExamRegisterController@selectByID');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
