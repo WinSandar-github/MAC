@@ -46,7 +46,7 @@ Route::apiResource('/requirement','RequirementController');
 
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
-Route::get('/publish_batch','BatchController@publish_batch');
+Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
@@ -83,7 +83,7 @@ Route::resource('/exam_register', 'ExamRegisterController');
 Route::resource('/da_register', 'DARegisterController');
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
-
+Route::get('/get_course_type','CourseController@getCourseType');
 
 
 
