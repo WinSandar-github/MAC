@@ -33,9 +33,9 @@
                                                 <tr>
                                                     <th class="less-font-weight" >No</th>
                                                     <th class="less-font-weight" >Name</th>
-                                                    <th class="less-font-weight" >Email</th>     
-                                                    <th class="less-font-weight" >Phone Number</th>
-                                                    <th class="less-font-weight" >NRC</th>
+                                                    <th class="less-font-weight" >NRC</th>     
+                                                    <th class="less-font-weight" >Registration Number</th>
+                                                    <th class="less-font-weight" >Degree</th>
                                                     <th class="less-font-weight" >Status</th>
                                                     <th class="less-font-weight" >Detail</th>
                                                 </tr>

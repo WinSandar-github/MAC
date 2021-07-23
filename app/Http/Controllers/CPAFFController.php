@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CPAFF;
+use App\StudentJobHistroy;
+use App\EducationHistroy;
 
 class CPAFFController extends Controller
 {
     public function index()
     {
-        $cpa_ff = CPAFF::with('student_info')->get();
+        $cpa_ff = CPAFF::with('student_info','student_job', 'student_education_histroy')->get();
         return response()->json([
             'data' => $cpa_ff
         ],200);
@@ -23,7 +25,7 @@ class CPAFFController extends Controller
             $cpa = $name;
         }
         else{
-            $cpa=null;
+            $cpa = null;
         }
 
         if ($request->hasfile('ra')) {
@@ -33,7 +35,7 @@ class CPAFFController extends Controller
             $ra = $name;
         }
         else{
-            $ra=null;
+            $ra = null;
         }
 
         if($request->hasfile('foreign_degree'))
@@ -130,20 +132,41 @@ class CPAFFController extends Controller
         $cpa_ff->status           =  0;
         $cpa_ff->save();
 
-    return response()->json([
-        'message' => "Insert Successfully"
-    ],200);
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
     }
 
     public function show($id)
     {
-        $cpaff = CPAFF::where('id',$id)->with('student_info')->get();
+        $cpaff = CPAFF::where('id',$id)->with('student_info','student_job', 'student_education_histroy')->get();
         return response()->json([
             'data'  => $cpaff
         ]);
         return $cpa_ff;
 
         
+    }
+
+    public function approve($id)
+    {
+        
+        $approve = CPAFF::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $cpa_ff = CPAFF::find($id);
+        $cpa_ff->status = 2;
+        $cpa_ff->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
     }
 
     // public function update(Request $request, $id)

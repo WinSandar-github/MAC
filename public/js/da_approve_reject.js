@@ -114,32 +114,25 @@ function loadData(){
 function approveUser(){ 
     
     var id = $("input[name = student_info_id]").val();
+    console.log('approvedaid',id);
     $.ajax({
-        url: "/approve/"+id,
-        type: 'patch',        
+        url: BACKEND_URL + "/approve/"+id,
+        type: 'patch',
         success: function(result){
-          
-            console.log(result)
-            successMessage("You have approved that user!");  
-            location.href = "da_list";          
-            getDAList();
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/da_list";
         }
     });
 }
 
 function rejectUser(){ 
     var id = $("input[name = student_info_id]").val();
-    console.log(id);
     $.ajax({
-        url: "/reject/"+id,
-        type: 'patch',        
+        url: BACKEND_URL + "/reject/"+id,
+        type: 'patch',
         success: function(result){
-            console.log(result)
-            successMessage("You have rejected that user!");  
-            // location.reload();     
-            location.href = "da_list";          
-
-            getDAList();
+            successMessage("You have rejected that user!");
+            location.href = FRONTEND_URL + "/da_list";
         }
     });
 }
