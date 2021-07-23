@@ -110,6 +110,10 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Exam Form 1 Approve/Reject
     Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
     Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
+
+    //exam cards
+    Route::get('da1_examcard', 'ExamCardsController@DA1_ExamCard');
+    Route::get('cpa1_examcard', 'ExamCardsController@CPA1_ExamCard');
 });
 
 Route::resource('/batch','BatchController');
@@ -120,7 +124,7 @@ Route::resource('/course','CourseController');
 
     Route::group(['middleware' => 'auth'], function () {
         Route::get('cpa_ff_register_form1','CpaController@cpa_ff_registration_form1');
-        Route::get('cpa_ff_registration','CpaController@cpa_ff_registration')->name('cpa_ff_registration');
+        // Route::get('cpa_ff_registration','CpaController@cpa_ff_registration')->name('cpa_ff_registration');
         Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
     });
 
