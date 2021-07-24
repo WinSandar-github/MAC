@@ -22,99 +22,258 @@
                                     <img src="" id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->
-                                <h5 class="border-bottom pb-2 mt-3">CPA Full Fleged Info</h5>
+                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA Full Fleged Info</h5>
                                 
+                                <!-- CPA -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">CPA</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA </p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="cpa"></span>
+                                        <button type="button" id="cpa_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpaModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
+                                <!-- CPA Modal-->
+                                <div id="cpaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="cpa" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- RA -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">RA</p>
+                                        <p class="ml-2" style="font-weight:bold">RA </p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="ra"></span>
+                                        <button type="button" id="ra_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#raModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
+                                <!--RA Modal --> 
+                                <div id="raModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="ra" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!-- Foreign Degree -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Foreign Degree</p>
+                                        <p class="ml-2" style="font-weight:bold">Foreign Degree</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="foreign_degree"></span>
+                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#fdModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
+                                </div>
+                                <!--Foreign Modal --> 
+                                <div id="fdModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="foreign_degree" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
                                 </div>
                                 
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Degree Level</p>
+                                        <p class="ml-2" style="font-weight:bold">Degree Level</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="degree"></span>
                                     </div>
                                 </div>
+
+                                <!--CPA Certificate -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">CPA Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA Certificate</p>
                                     </div>
-                                    <div class="col-md-6">
-                                        <span id="cpa_certificate"></span>
+                                   <div class="col-md-6">
+                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
+                                <!--CPA Certificate Modal --> 
+                                <div id="capp_certi_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="cpa_certificate" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!--MPA Member Card-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">MPA Member Card</p>
+                                        <p class="ml-2" style="font-weight:bold">MPA Member Card</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="mpa_mem_card"></span>
+                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
+                                <!--MPA Member Card Modal --> 
+                                <div id="mpa_mem_card_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="mpa_mem_card" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!--NRC Card(Front) --> 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">NRC Card(Front)</p>
+                                        <p class="ml-2" style="font-weight:bold">NRC Card(Front)</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="nrc_front"></span>
+                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_front_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
+                                <!--NRC Card(Front) Modal --> 
+                                <div id="nrc_front_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="nrc_front" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!--NRC Card(Back) --> 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">NRC Card(Back)</p>
+                                        <p class="ml-2" style="font-weight:bold">NRC Card(Back)</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="nrc_back"></span>
+                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_back_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
+                                </div>
+                                <!--NRC Card(Back) Modal --> 
+                                <div id="nrc_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="nrc_back" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!--CPD Record Modal-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">CPD Record</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpd_record_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                 <!--CPD Record Modal-->
+                                <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="cpd_record" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                 <!--Passport Image-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Passport Image</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpd_record_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                 <!--Passport Image Modal-->
+                                <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img id="passport_image" class="img-fluid" />
+                                        </div>
+                                    </div>
+                                  </div>
                                 </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">CPD Record</p>
+                                        <p class="ml-2" style="font-weight:bold">Status</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="cpd_record"></span>
-                                    </div>
-                                </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2">Passport Image</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="passport_image"></span>
+                                        <span id="status"></span>
                                     </div>
                                 </div>
                                 <!-- End CPA_FF Info -->
 
                                 <!-- Start Education -->
-                                <h5 class="border-bottom pb-2 mt-5">Education</h5>
+                                <h5 class="border-bottom pb-2 mt-5" style="font-weight:bold">Education</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Universtry Name</p>
+                                        <p class="ml-2" style="font-weight:bold">Universtry Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="university_name"></span>
@@ -122,7 +281,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Degree Name</p>
+                                        <p class="ml-2" style="font-weight:bold">Degree Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="degree_name"></span>
@@ -130,7 +289,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Qualified Date</p>
+                                        <p class="ml-2" style="font-weight:bold">Qualified Date</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="qualified_date"></span>
@@ -138,7 +297,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Roll Number</p>
+                                        <p class="ml-2" style="font-weight:bold">Roll Number</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="roll_number"></span>
@@ -146,7 +305,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Attched Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">Attched Certificate</p>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button>
@@ -158,10 +317,10 @@
                             </div>
                             
                             <div class="col-md-8">
-                                <h5 class="border-bottom pb-2">Basic Info</h5>
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">Basic Info</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2 text-bold">Name(Eng) / Name(Myanmar)</p>
+                                        <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="name_eng"></span> / <span id="name_mm"></span>
@@ -169,7 +328,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">NRC</p>
+                                        <p class="ml-2" style="font-weight:bold">NRC</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="nrc"></span>
@@ -177,7 +336,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Father Name(Eng) / Father Name(Myanmar)</p>
+                                        <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
@@ -185,7 +344,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Race</p>
+                                        <p class="ml-2" style="font-weight:bold">Race</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="race"></span>
@@ -193,7 +352,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Religion</p>
+                                        <p class="ml-2"style="font-weight:bold" >Religion</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="religion"></span>
@@ -201,7 +360,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Date of Birth</p>
+                                        <p class="ml-2" style="font-weight:bold">Date of Birth</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="date_of_birth"></span>
@@ -209,7 +368,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Address</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="address"></span>
@@ -217,7 +376,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Current Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Current Address</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="current_address"></span>
@@ -225,7 +384,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Phone</p>
+                                        <p class="ml-2" style="font-weight:bold">Phone</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="phone"></span>
@@ -233,7 +392,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Email</p>
+                                        <p class="ml-2" style="font-weight:bold">Email</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="email"></span>
@@ -241,7 +400,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Government Staff</p>
+                                        <p class="ml-2"style="font-weight:bold" >Government Staff</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="gov_staff"></span>
@@ -250,7 +409,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">ကိုယ်ပိုင်အမှတ်</p>
+                                        <p class="ml-2" style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="registration_no"></span>
@@ -259,11 +418,11 @@
 
                                 <!-- Start Job -->
 
-                                <h5 class="border-bottom pb-2 mt-5">Job</h5>
+                                <h5 class="border-bottom pb-2 mt-5" style="font-weight:bold">Job</h5>
                         
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Job Name</p>
+                                        <p class="ml-2" style="font-weight:bold">Job Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="name"></span>
@@ -271,7 +430,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Job Position</p>
+                                        <p class="ml-2" style="font-weight:bold">Job Position</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="position"></span>
@@ -279,7 +438,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Department</p>
+                                        <p class="ml-2" style="font-weight:bold">Department</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="department"></span>
@@ -287,7 +446,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Organization</p>
+                                        <p class="ml-2" style="font-weight:bold">Organization</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="organization"></span>
@@ -295,7 +454,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Company Name</p>
+                                        <p class="ml-2" style="font-weight:bold">Company Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="company_name"></span>
@@ -303,7 +462,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Salary</p>
+                                        <p class="ml-2" style="font-weight:bold">Salary</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="salary"></span>
@@ -311,7 +470,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Address</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="office_address"></span>

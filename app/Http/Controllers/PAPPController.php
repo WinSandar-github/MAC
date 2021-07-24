@@ -54,7 +54,7 @@ class PAPPController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
                 $file->move(public_path().'/storage/student_papp/',$name);
-                $degree[] = $name;
+                $degree[] = '/storage/student_papp/'.$name;
             }
         
         }else{
@@ -144,7 +144,7 @@ class PAPPController extends Controller
         $papp->cpd_record                   =   $cpd;
         $papp->tax_year                     =   $request->tax_year;
         $papp->tax_free_recommendation      =   $tax_free;
-        $cpa_ff->status           =  0;
+        $papp->status                       =  0;
             $papp->save();
 
         return response()->json([
@@ -158,5 +158,26 @@ class PAPPController extends Controller
         return response()->json([
             'data'  => $papp
         ]);        
+    }
+
+    public function approve($id)
+    {
+        
+        $approve = Papp::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $reject = Papp::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
     }
 }

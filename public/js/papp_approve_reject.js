@@ -1,18 +1,14 @@
-function getCPAFFList(){
-    destroyDatatable("#tbl_cpaff_list", "#tbl_cpaff_list_body");    
+function getPAPPList(){
+    destroyDatatable("#tbl_papp_list", "#tbl_papp_list_body");    
     $.ajax({
-        url: BACKEND_URL+"/cpa_ff",
+        url: BACKEND_URL+"/papp",
         type: 'get',
         data:"",
         success: function(data){
-            var cpaff_data = data.data;            
+            var papp_data = data.data;            
 
-            cpaff_data.forEach(function (element) {
-                if(element.cpa_part_2==1){
-                    var degree = "CPA Part 2 Pass";
-                }else {
-                    var degree = "QT Pass";
-                }
+            papp_data.forEach(function (element) {
+                console.log('papp_data',element);
 
                 if(element.status==0){
                     status="Pending";
@@ -24,6 +20,13 @@ function getCPAFFList(){
                     status="Reject";
                 }
 
+                if(element.use_firm==0){
+                    use_firm="No Use Frim Name";
+                }
+                else{
+                    use_firm="Use Frim Name";
+                }
+
                 var nrc     =   element.student_info.nrc_state_region+"/";
                     nrc    +=   element.student_info.nrc_township;
                     nrc    +=   "("+ element.student_info.nrc_citizen+")";
@@ -33,31 +36,32 @@ function getCPAFFList(){
                     tr += "<td>" + element.student_info.name_eng + "</td>";
                     tr += "<td>" + nrc + "</td>";
                     tr += "<td>" + element.student_info.registration_no+ "</td>";
-                    tr += "<td>" + degree+ "</td>";
+                    tr += "<td>" + element.papp_date+ "</td>";
+                    tr += "<td>" + use_firm+ "</td>";
                     tr += "<td>" + status + "</td>";
                     tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPAFFList(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showPAPPList(" + element.id + ")'>" +
+                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "</tr>";
-                    $("#tbl_cpaff_list_body").append(tr);     
+                    $("#tbl_papp_list_body").append(tr);     
             });
-            getIndexNumber('#tbl_cpaff_list tr');
-            createDataTable("#tbl_cpaff_list");      
+            getIndexNumber('#tbl_papp_list tr');
+            createDataTable("#tbl_papp_list");      
         },
         error:function (message){
-            dataMessage(message, "#tbl_cpaff_list", "#tbl_cpaff_list_body");        
+            dataMessage(message, "#tbl_papp_list", "#tbl_papp_list_body");        
         }
     });
 }
 
-function showCPAFFList(capffId){
-    localStorage.setItem("cpa_ff_id",capffId);
-    console.log('selectitem',capffId);
-    location.href=FRONTEND_URL+"/cpa_ff_edit";
+function showPAPPList(pappID){
+    localStorage.setItem("papp_id",pappID);
+    console.log('selectitem',pappID);
+    location.href=FRONTEND_URL+"/papp_edit";
 }
 
-function loadCPAFFData(){
-    var id=localStorage.getItem("cpa_ff_id");
+function loadPAPPData(){
+    var id=localStorage.getItem("papp_id");
     // console.log('idid',id);
     $("#name_eng").html("");
     $("#name_mm").html("");
@@ -84,13 +88,20 @@ function loadCPAFFData(){
     $("#cpa").html("");
     $("#ra").html("");
     $("#foreign_degree").html("");
-    $("#degree").html("");
-    $("#cpa_certificate").html("");
-    $("#mpa_mem_card").html("");
-    $("#nrc_front").html("");
-    $("#nrc_back").html("");
+    $("#use_firm").html("");
+    $("#firm_name").html("");
+    $("#firm_type").html("");
+    $("#firm_step").html("");
+    $("#staff_firm_name").html("");
+    $("#cpa_ff_recommendation").html("");
+    $("#recommendation_183").html("");
+    $("#not_fulltime_recommendation").html("");
+    $("#work_in_myanmar_confession").html("");
+    $("#rule_confession").html("");
     $("#cpd_record").html("");
-    $("#passport_image").html("");
+    $("#tax_free_recommendation").html("");
+    $("#tax_year").html("");
+    $("#status").html("");
 
     $("#name").html("");
     $("#position").html("");
@@ -100,23 +111,36 @@ function loadCPAFFData(){
     $("#salary").html("");
     $("#office_address").html("");
 
-    $("input[name = cpaff_id]").val(id);
+    $("input[name = papp_id]").val(id);
     // console.log('id',id);
     $.ajax({
         type: "GET",
-        url: BACKEND_URL+"/cpa_ff/"+id,
+        url: BACKEND_URL+"/papp/"+id,
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
-                if(element.cpa_part_2==1){
-                    var degree = "CPA Part 2 Pass";
-                }else {
-                    var degree = "QT Pass";
-                }
+                console.log('pappdata',element);
 
                 var education_history = element.student_education_histroy;
                 
                 var job = element.student_job;
+
+                if(element.status==0){
+                    status="Pending";
+                }
+                else if(element.status==1){
+                    status="Approve";
+                }
+                else{
+                    status="Reject";
+                }
+
+                if(element.use_firm==0){
+                    use_firm="No Use Frim Name";
+                }
+                else{
+                    use_firm="Use Frim Name";
+                }
 
                 var nrc     =   element.student_info.nrc_state_region+"/";
                 nrc    +=   element.student_info.nrc_township;
@@ -124,6 +148,28 @@ function loadCPAFFData(){
                 nrc    +=   element.student_info.nrc_number;                
 
                 $("#id").append(element.id);
+                document.getElementById('image').src=element.student_info.image;                           
+                
+                // if(element.cpa==null || element.cpa==""){
+                //     document.getElementById('cpa_btn').disabled=true;
+                // }else{
+                //     document.getElementById('cpa').src=element.cpa;
+                //     $("#cpa").append(element.cpa);
+                // }
+
+                // if(element.ra==null || element.ra==""){
+                //     document.getElementById('ra_btn').disabled=true;
+                // }else{
+                //     document.getElementById('ra').src=element.ra;
+                //     $("#ra").append(element.ra);
+                // }
+
+                // if(element.foreign_degree==null || element.foreign_degree==""){
+                //     document.getElementById('fd_btn').disabled=true;
+                // }else{
+                //     document.getElementById('foreign_degree').src=element.foreign_degree;
+                //     $("#foreign_degree").append(element.foreign_degree);
+                // }
 
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
@@ -144,14 +190,20 @@ function loadCPAFFData(){
                 $("#cpa").append(element.cpa);
                 $("#ra").append(element.ra);
                 $("#foreign_degree").append(element.foreign_degree);
-                $("#degree").append(degree);
-                $("#cpa_certificate").append(element.cpa_certificate);
-                $("#mpa_mem_card").append(element.mpa_mem_card);
-                $("#nrc_front").append(element.nrc_front);
-                $("#nrc_back").append(element.nrc_back);
+                $("#use_firm").append(use_firm);
+                $("#firm_name").append(element.firm_name);
+                $("#firm_type").append(element.firm_type);
+                $("#firm_step").append(element.firm_step);
+                $("#staff_firm_name").append(element.staff_firm_name);
+                $("#cpa_ff_recommendation").append(element.cpa_ff_recommendation);
+                $("#recommendation_183").append(element.recommendation_183);
+                $("#not_fulltime_recommendation").append(element.cpd_record);
+                $("#work_in_myanmar_confession").append(element.work_in_myanmar_confession);
+                $("#rule_confession").append(element.rule_confession);
                 $("#cpd_record").append(element.cpd_record);
-                $("#passport_image").append(element.passport_image);
-                
+                $("#tax_free_recommendation").append(element.tax_free_recommendation);
+                $("#tax_year").append(element.tax_year);
+                $("#status").append(status);                
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -171,29 +223,29 @@ function loadCPAFFData(){
     })
 }
 
-function approveCPAFFUser(){
+function approvePAPPUser(){
 
-    var id = $("input[name = cpaff_id]").val();
-    console.log('approvecpaid',id);
+    var id = $("input[name = papp_id]").val();
+    console.log('approvepappid',id);
     $.ajax({
-        url: BACKEND_URL + "/approve_cpaff/"+id,
+        url: BACKEND_URL + "/approve_papp/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/cpa_ff_registration_list";
+            location.href = FRONTEND_URL + "/papp_registration_list";
         }
     });
 }
 
-function rejectCPAFFUser(){ 
-    var id = $("input[name = cpaff_id]").val();
-    console.log('rejectcpaid',id);
+function rejectPAPPUser(){ 
+    var id = $("input[name = papp_id]").val();
+    console.log('rejectpappid',id);
     $.ajax({
-        url: BACKEND_URL +"/reject_cpaff/"+id,
+        url: BACKEND_URL +"/reject_papp/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/cpa_ff_registration_list";
+            location.href = FRONTEND_URL + "/papp_registration_list";
         }
     });
 }

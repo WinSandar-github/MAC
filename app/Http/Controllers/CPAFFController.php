@@ -22,7 +22,7 @@ class CPAFFController extends Controller
             $file = $request->file('cpa');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpa = $name;
+            $cpa = '/storage/cpa_ff_register/'.$name;
         }
         else{
             $cpa = null;
@@ -32,7 +32,7 @@ class CPAFFController extends Controller
             $file = $request->file('ra');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $ra = $name;
+            $ra = '/storage/cpa_ff_register/'.$name;
         }
         else{
             $ra = null;
@@ -44,7 +44,7 @@ class CPAFFController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
                 $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $foreign_degree[] = $name;
+                $foreign_degree[] = '/storage/cpa_ff_register/'.$name;
             }        
         }else{
             $foreign_degree = null;
@@ -64,7 +64,7 @@ class CPAFFController extends Controller
             $file = $request->file('cpa_certificate');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpa_certificate = $name;
+            $cpa_certificate = '/storage/cpa_ff_register/'.$name;
         }
         else{
             $cpa_certificate="";
@@ -74,7 +74,7 @@ class CPAFFController extends Controller
             $file = $request->file('mpa_mem_card');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $mpa_mem_card = $name;
+            $mpa_mem_card = '/storage/cpa_ff_register/'.$name;
         }else{
             $mpa_mem_card="";
         }
@@ -83,7 +83,7 @@ class CPAFFController extends Controller
             $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $nrc_front= $name;
+            $nrc_front= '/storage/cpa_ff_register/'.$name;
         }else{
             $nrc_front="";
         }
@@ -92,7 +92,7 @@ class CPAFFController extends Controller
             $file = $request->file('nrc_back');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $nrc_back= $name;
+            $nrc_back= '/storage/cpa_ff_register/'.$name;
         }else{
             $nrc_back="";
         }
@@ -101,7 +101,7 @@ class CPAFFController extends Controller
             $file = $request->file('cpd_record');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpd_record = $name;
+            $cpd_record = '/storage/cpa_ff_register/'.$name;
         }else{
             $cpd_record="";
         }
@@ -110,7 +110,7 @@ class CPAFFController extends Controller
             $file = $request->file('passport_image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $passport_image = $name;
+            $passport_image = '/storage/cpa_ff_register/'.$name;
         }else{
             $passport_image="";
         }

@@ -8,6 +8,7 @@ function getCPAFFList(){
             var cpaff_data = data.data;            
 
             cpaff_data.forEach(function (element) {
+                console.log('cpaelement',element)
                 if(element.cpa_part_2==1){
                     var degree = "CPA Part 2 Pass";
                 }else {
@@ -91,6 +92,7 @@ function loadCPAFFData(){
     $("#nrc_back").html("");
     $("#cpd_record").html("");
     $("#passport_image").html("");
+    $("#status").html("");
 
     $("#name").html("");
     $("#position").html("");
@@ -114,6 +116,16 @@ function loadCPAFFData(){
                     var degree = "QT Pass";
                 }
 
+                if(element.status==0){
+                    status="Pending";
+                }
+                else if(element.status==1){
+                    status="Approve";
+                }
+                else{
+                    status="Reject";
+                }
+
                 var education_history = element.student_education_histroy;
                 
                 var job = element.student_job;
@@ -124,7 +136,7 @@ function loadCPAFFData(){
                 nrc    +=   element.student_info.nrc_number;                
 
                 $("#id").append(element.id);
-
+                document.getElementById('image').src=element.student_info.image;
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
                 $("#nrc").append(nrc);
@@ -151,6 +163,7 @@ function loadCPAFFData(){
                 $("#nrc_back").append(element.nrc_back);
                 $("#cpd_record").append(element.cpd_record);
                 $("#passport_image").append(element.passport_image);
+                $("#status").append(status);
                 
 
                 $("#university_name").append(education_history.university_name);

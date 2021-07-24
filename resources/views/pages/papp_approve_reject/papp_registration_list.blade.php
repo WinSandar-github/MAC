@@ -28,19 +28,20 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <table id="tbl_cpaff_list"class="table table-hover text-nowrap ">
+                                        <table id="tbl_papp_list"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
                                                     <th class="less-font-weight" >No</th>
                                                     <th class="less-font-weight" >Name</th>
                                                     <th class="less-font-weight" >NRC</th>     
                                                     <th class="less-font-weight" >Registration Number</th>
-                                                    <th class="less-font-weight" >Degree</th>
+                                                    <th class="less-font-weight" >PAPP Date</th>
+                                                    <th class="less-font-weight" >No Use Firm Name</th>
                                                     <th class="less-font-weight" >Status</th>
                                                     <th class="less-font-weight" >Detail</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbl_cpaff_list_body" class="hoverTable">
+                                            <tbody id="tbl_papp_list_body" class="hoverTable">
                                             </tbody>
                                         </table>
                                     </div>
