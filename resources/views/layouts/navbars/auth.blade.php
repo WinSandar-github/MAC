@@ -68,6 +68,12 @@
                                 <span>{{ __('CPA Full Fleged Form') }}</span>
                             </a>
                         </li>
+                        <li class="{{ $elementActive == 'papp_registration_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'papp_registration_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('PAPP Form') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

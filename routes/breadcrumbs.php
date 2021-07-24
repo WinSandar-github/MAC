@@ -362,3 +362,13 @@ Breadcrumbs::for('cpa_ff_edit', function ($trail) {
     $trail->parent('cpa_ff_registration_list');
     $trail->push('CPA Full Fleged Detail List', route('page.index', 'cpa_ff_edit'));
 });
+
+// PAPP List
+Breadcrumbs::for('papp_registration_list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('PAPP Form List', route('page.index', 'papp_registration_list'));
+});
+Breadcrumbs::for('papp_edit', function ($trail) {
+    $trail->parent('papp_registration_list');
+    $trail->push('PAPP Detail List', route('page.index', 'papp_edit'));
+});

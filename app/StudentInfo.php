@@ -53,4 +53,7 @@ class StudentInfo extends Model
     public function cpa_ff(){
         return $this->hasOne(CPAFF::class,'student_info_id','id');
     }
+    public function papp(){
+        return $this->hasOne(PAPP::class,'student_info_id','id');
+    }
 }  

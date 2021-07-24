@@ -118,6 +118,10 @@ Route::group(['middleware' => 'auth'], function () {
     // CPA_FF Form
     Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
     Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
+
+    // PAPP Form
+    Route::patch('/approve_papp/{id}', 'PAPPController@approve');
+    Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 });
 
 Route::resource('/batch','BatchController');
