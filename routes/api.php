@@ -50,9 +50,13 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
+Route::patch('/approve_papp/{id}', 'PAPPController@approve');
+Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
+Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
+Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 
 
 
