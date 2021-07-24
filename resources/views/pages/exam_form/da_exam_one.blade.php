@@ -11,14 +11,23 @@
     </div>   
     <div class="row">
         <div class="col-md-12 text-center">
-            <form action="" method="post" enctype="multipart/form-data">
-                @csrf
+            <form action="" method="get" enctype="multipart/form-data">
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-8">
-                                <h5 class="title" style="padding-left: 330px;">{{ __('DA Exam Form (1) List') }}</h5>
-                            </div>
+                            <table width="100%">
+                                <tr>
+                                    <td width="50%"><h5 class="title" style="padding-left: 330px;">{{ __('DA Exam Form (1) List') }}</h5></td>
+                                    <td width="25%">
+                                        <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id" style="margin-left: 75%; width: 70%;">
+                                            <option value="selected_batch_id" disabled selected>Select Batch</option>
+                                        </select>
+                                    </td>
+                                    <td width="25%">
+                                        <button type="submit" onclick="SearchByID()" class="btn btn-primary btn-hover-dark" style="margin-left: 63%;">Search</button>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     <div class="card-body">
@@ -34,6 +43,7 @@
                                                     <th class="less-font-weight" >Exam Type</th>
                                                     <th class="less-font-weight" >Grade</th>
                                                     <th class="less-font-weight" >Status</th>
+                                                    <th class="less-font-weight" >Batch ID</th>
                                                     <th class="less-font-weight" >Detail</th>
                                                     <th class="less-font-weight" >Print</th>
                                                 </tr>
@@ -54,6 +64,7 @@
 @endsection
 @push('scripts')
 <script>
+    loadBatchData();
     getExam();
 </script>
 @endpush
