@@ -34,7 +34,7 @@ Route::resource('/cpa_one_self_learner','CpaOneRegSelfLearnerController');
 Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
 Route::resource('/cpa_private_old','CpaPrivateOldController');
 Route::resource('/cpa_addmission_exam','CpaTraAddmissionExamController');
-Route::resource('/cpa_addmission_direct','CpaTraAddmissionDirectController');
+Route::resource('/cpa_register','CpaTraAddmissionDirectController');
 Route::resource('/cpa_two_tra_reg','CpaTwoTraRegisterController');
 Route::resource('/cpa_two_self_learner','CpaTwoRegSelfLearnerController');
 Route::resource('/cpa_two_private_newbie','CpaTwoPrivateNewbieController');
@@ -50,9 +50,13 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
+Route::patch('/approve_papp/{id}', 'PAPPController@approve');
+Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
+Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
+Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 
 
 
@@ -85,6 +89,7 @@ Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 Route::resource('/exam_register', 'ExamRegisterController');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
+Route::get('/filter/{id}', 'ExamRegisterController@selectByID');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');

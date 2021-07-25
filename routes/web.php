@@ -114,6 +114,14 @@ Route::group(['middleware' => 'auth'], function () {
     //exam cards
     Route::get('da1_examcard', 'ExamCardsController@DA1_ExamCard');
     Route::get('cpa1_examcard', 'ExamCardsController@CPA1_ExamCard');
+
+    // CPA_FF Form
+    Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
+    Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
+
+    // PAPP Form
+    Route::patch('/approve_papp/{id}', 'PAPPController@approve');
+    Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 });
 
 Route::resource('/batch','BatchController');

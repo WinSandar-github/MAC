@@ -36,6 +36,12 @@ class CreateStudentInfosTable extends Migration
             $table->boolean('approve_reject_status')->default(0);
             $table->string('email');
             $table->string('password');
+            $table->unsignedBigInteger('course_type_id');
+
+            $table->foreign('course_type_id')
+            ->references('id')
+            ->on('course_types')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
