@@ -204,8 +204,7 @@
             url:BACKEND_URL+'/get_course_type',
             type:'GET',
             success:function(response){
-                console.log(response.data)
-                var opt = '<option selected >Select</option>';
+                 var opt = '<option selected >Select</option>';
 
                 $.each(response.data,function(i,v){
                     opt +=

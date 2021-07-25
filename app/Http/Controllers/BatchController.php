@@ -109,7 +109,7 @@ class BatchController extends Controller
            
         $batch = Batch::whereDate('start_date','<=',$currentDate)
                         ->whereDate('end_date','>=',$currentDate)
-                         ->with('course')
+                            ->with('course')
                         ->first();
                         
         return response()->json([
