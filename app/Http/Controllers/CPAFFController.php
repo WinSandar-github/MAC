@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CPAFF;
+use App\StudentJobHistroy;
+use App\EducationHistroy;
 
 class CPAFFController extends Controller
 {
     public function index()
     {
-        $cpa_ff = CPAFF::with('student_info')->get();
+        $cpa_ff = CPAFF::with('student_info','student_job', 'student_education_histroy')->get();
         return response()->json([
             'data' => $cpa_ff
         ],200);
@@ -20,20 +22,20 @@ class CPAFFController extends Controller
             $file = $request->file('cpa');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpa = $name;
+            $cpa = '/storage/cpa_ff_register/'.$name;
         }
         else{
-            $cpa=null;
+            $cpa = null;
         }
 
         if ($request->hasfile('ra')) {
             $file = $request->file('ra');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $ra = $name;
+            $ra = '/storage/cpa_ff_register/'.$name;
         }
         else{
-            $ra=null;
+            $ra = null;
         }
 
         if($request->hasfile('foreign_degree'))
@@ -42,7 +44,7 @@ class CPAFFController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
                 $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $foreign_degree[] = $name;
+                $foreign_degree[] = '/storage/cpa_ff_register/'.$name;
             }        
         }else{
             $foreign_degree = null;
@@ -62,7 +64,7 @@ class CPAFFController extends Controller
             $file = $request->file('cpa_certificate');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpa_certificate = $name;
+            $cpa_certificate = '/storage/cpa_ff_register/'.$name;
         }
         else{
             $cpa_certificate="";
@@ -72,7 +74,7 @@ class CPAFFController extends Controller
             $file = $request->file('mpa_mem_card');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $mpa_mem_card = $name;
+            $mpa_mem_card = '/storage/cpa_ff_register/'.$name;
         }else{
             $mpa_mem_card="";
         }
@@ -81,7 +83,7 @@ class CPAFFController extends Controller
             $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $nrc_front= $name;
+            $nrc_front= '/storage/cpa_ff_register/'.$name;
         }else{
             $nrc_front="";
         }
@@ -90,7 +92,7 @@ class CPAFFController extends Controller
             $file = $request->file('nrc_back');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $nrc_back= $name;
+            $nrc_back= '/storage/cpa_ff_register/'.$name;
         }else{
             $nrc_back="";
         }
@@ -99,7 +101,7 @@ class CPAFFController extends Controller
             $file = $request->file('cpd_record');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpd_record = $name;
+            $cpd_record = '/storage/cpa_ff_register/'.$name;
         }else{
             $cpd_record="";
         }
@@ -108,7 +110,7 @@ class CPAFFController extends Controller
             $file = $request->file('passport_image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $passport_image = $name;
+            $passport_image = '/storage/cpa_ff_register/'.$name;
         }else{
             $passport_image="";
         }
@@ -127,16 +129,17 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->cpd_record       =   $cpd_record;
         $cpa_ff->passport_image   =   $passport_image;
+        $cpa_ff->status           =  0;
         $cpa_ff->save();
 
-    return response()->json([
-        'message' => "Insert Successfully"
-    ],200);
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
     }
 
     public function show($id)
     {
-        $cpaff = CPAFF::where('id',$id)->with('student_info')->get();
+        $cpaff = CPAFF::where('id',$id)->with('student_info','student_job', 'student_education_histroy')->get();
         return response()->json([
             'data'  => $cpaff
         ]);
@@ -145,38 +148,59 @@ class CPAFFController extends Controller
         
     }
 
-    public function update(Request $request, $id)
+    public function approve($id)
+    {
+        
+        $approve = CPAFF::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
     {
         $cpa_ff = CPAFF::find($id);
-        $cpa_ff->student_info_id  =   $request->student_info_id;
-        $cpa_ff->cpa              =   $cpa;
-        $cpa_ff->ra               =   $ra;
-        $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
-        // $cpa_ff->foreign_degree   =   $foreign_degree;
-        $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
-        $cpa_ff->qt_pass          =   $request->qt_pass;
-        $cpa_ff->cpa_certificate  =   $cpa_certificate;
-        $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
-        $cpa_ff->nrc_front        =   $nrc_front;
-        $cpa_ff->nrc_back         =   $nrc_back;
-        $cpa_ff->cpd_record       =   $cpd_record;
-        $cpa_ff->passport_image   =   $passport_image;
+        $cpa_ff->status = 2;
         $cpa_ff->save();
         return response()->json([
-            'message' => "Update Successfully"
+            'message' => "You have successfully rejected that user!"
         ],200);
-
-     }
-
-    public function destroy($id)
-    {
-        $cpa_ff = CPAFF::find($id);
-        $cpa_ff->delete();
-
-        return response()->json([
-            'message' => "Delete Successfully"
-        ],200);   
     }
+
+    // public function update(Request $request, $id)
+    // {
+    //     $cpa_ff = CPAFF::find($id);
+    //     $cpa_ff->student_info_id  =   $request->student_info_id;
+    //     $cpa_ff->cpa              =   $cpa;
+    //     $cpa_ff->ra               =   $ra;
+    //     $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
+    //     // $cpa_ff->foreign_degree   =   $foreign_degree;
+    //     $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+    //     $cpa_ff->qt_pass          =   $request->qt_pass;
+    //     $cpa_ff->cpa_certificate  =   $cpa_certificate;
+    //     $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
+    //     $cpa_ff->nrc_front        =   $nrc_front;
+    //     $cpa_ff->nrc_back         =   $nrc_back;
+    //     $cpa_ff->cpd_record       =   $cpd_record;
+    //     $cpa_ff->passport_image   =   $passport_image;
+    //     $cpa_ff->save();
+    //     return response()->json([
+    //         'message' => "Update Successfully"
+    //     ],200);
+
+    //  }
+
+    // public function destroy($id)
+    // {
+    //     $cpa_ff = CPAFF::find($id);
+    //     $cpa_ff->delete();
+
+    //     return response()->json([
+    //         'message' => "Delete Successfully"
+    //     ],200);   
+    // }
 }
 
 

@@ -156,6 +156,8 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('js') }}/common.js"></script>
     <script src="{{ asset('js') }}/student.js"></script>
     <script src="{{ asset('js') }}/da_approve_reject.js"></script>
+    <script src="{{ asset('js') }}/cpa_ff_approve_reject.js"></script>
+    <script src="{{ asset('js') }}/papp_approve_reject.js"></script>
     <script src="{{ asset('js') }}/da_exam_one.js"></script>
     <!--toastr-->
     <script src="{{ asset('plugins/toastr') }}/toastr.min.js"></script>

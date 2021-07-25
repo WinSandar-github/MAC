@@ -11,4 +11,19 @@ class Papp extends Model
     'firm_step','staff_firm_name','cpa_ff_recommendation','recommendation_183','not_fulltime_recommendation','work_in_myanmar_confession',
     'rule_confession','cpd_record','tax_free_recommendation'];
 
+    public function student_info()
+    {
+        return $this->belongsTo(StudentInfo::class,'student_id','id');
+    }
+
+    public function student_job()
+    {
+        return $this->belongsTo(StudentJobHistroy::class,'student_id','id');
+    }
+
+    public function student_education_histroy()
+    {
+        return $this->belongsTo(EducationHistroy::class,'student_id','id');
+    }
+
 }

@@ -33,6 +33,7 @@ class CreatePappsTable extends Migration
             $table->string('cpd_record');
             $table->string('tax_year');
             $table->string('tax_free_recommendation');
+            $table->boolean('status')->default(0);
             $table->timestamps();
 
             $table->foreign('student_id')
