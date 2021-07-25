@@ -128,6 +128,7 @@ class DARegisterController extends Controller
         ->where('nrc_township', '=', $request['nrc_township'])
         ->where('nrc_citizen', '=', $request['nrc_citizen'])
         ->where('nrc_number', '=', $request['nrc_number'])
+        ->with('student_job', 'student_education_histroy')
         ->first();
         return response()->json([
             'data' => $data
