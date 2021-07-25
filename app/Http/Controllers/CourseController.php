@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Course;
 use App\Batch;
+use App\CourseType;
 class CourseController extends Controller
 {
     /**
@@ -47,6 +48,8 @@ class CourseController extends Controller
             'registration_start_date'        =>  'required',
             'registration_end_date'        =>  'required',
             'description'       =>  'required',
+            'course_type_id'       =>  'required',
+            'code'              =>  'required'
         ]);
         $course = new Course();
         
@@ -58,6 +61,8 @@ class CourseController extends Controller
         $course->registration_start_date         = $request->registration_start_date;
         $course->registration_end_date         = $request->registration_end_date;
         $course->description        = $request->description;
+        $course->course_type_id     = $request->course_type_id;
+        $course->code               = $request->code;
         $course->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -104,6 +109,8 @@ class CourseController extends Controller
         $course->exam_fee           = $request->exam_fee;
         $course->tution_fee         = $request->tution_fee;
         $course->description        = $request->description;
+        $course->course_type_id     = $request->course_type_id;
+        $course->code               = $request->code;
         $course->save();
         return response()->json([
             'message' => "Update Successfully"
@@ -130,6 +137,13 @@ class CourseController extends Controller
         $courses = Course::with('batch')->get();
         return response()->json([
             'data' => $courses
+        ],200);
+    }
+    public function getCourseType()
+    {
+        $course_type = CourseType::get();
+        return response()->json([
+            'data' => $course_type
         ],200);
     }
 }

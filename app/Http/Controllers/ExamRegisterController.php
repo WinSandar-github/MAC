@@ -139,4 +139,12 @@ class ExamRegisterController extends Controller
             'message' => "You have successfully rejected that form!"
         ],200);
     }
+
+    public function selectByID($id)
+    {
+        $exam_register = ExamRegister::where('batch_id',$id)->get();
+        return response()->json([
+            'data' => $exam_register
+        ],200);
+    }
 }
