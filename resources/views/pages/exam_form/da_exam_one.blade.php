@@ -38,14 +38,14 @@
                                         <table id="tbl_da_exam_one"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
-                                                    <th class="less-font-weight" >No</th>
-                                                    <th class="less-font-weight" >Private School Name</th>
-                                                    <th class="less-font-weight" >Exam Type</th>
-                                                    <th class="less-font-weight" >Grade</th>
-                                                    <th class="less-font-weight" >Status</th>
-                                                    <th class="less-font-weight" >Batch ID</th>
-                                                    <th class="less-font-weight" >Detail</th>
-                                                    <th class="less-font-weight" >Print</th>
+                                                    <th class="bold-font-weight" >No</th>
+                                                    <th class="bold-font-weight" >Private School Name</th>
+                                                    <th class="bold-font-weight" >Exam Type</th>
+                                                    <th class="bold-font-weight" >Grade</th>
+                                                    <th class="bold-font-weight" >Status</th>
+                                                    <th class="bold-font-weight" >Batch ID</th>
+                                                    <th class="bold-font-weight" >Detail</th>
+                                                    <th class="bold-font-weight" >Print</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_da_exam_one_body" class="hoverTable">
