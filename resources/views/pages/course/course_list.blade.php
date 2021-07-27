@@ -38,16 +38,16 @@
                                             <table id="tbl_course"class="table table-hover text-nowrap ">
                                                 <thead>
                                                     <tr>
-                                                        <th class="less-font-weight" >Sr No</th>
-                                                        <th class="less-font-weight" >Name</th>
-                                                        <th class="less-font-weight" >Form Fee</th>                                        
-                                                        <th class="less-font-weight" >Registration Fee</th>
-                                                        <th class="less-font-weight" >Exam Fee</th>
-                                                        <th class="less-font-weight" >Tution Fee</th>
-                                                        <th class="less-font-weight" >Registration Start Date</th>
-                                                        <th class="less-font-weight" >Registration End Date</th>
-                                                        <th class="less-font-weight" >Description</th>
-                                                        <th class="less-font-weight" >Action</th>
+                                                        <th class="bold-font-weight" >Sr No</th>
+                                                        <th class="bold-font-weight" >Name</th>
+                                                        <th class="bold-font-weight" >Form Fee</th>                                        
+                                                        <th class="bold-font-weight" >Registration Fee</th>
+                                                        <th class="bold-font-weight" >Exam Fee</th>
+                                                        <th class="bold-font-weight" >Tution Fee</th>
+                                                        <th class="bold-font-weight" >Registration Start Date</th>
+                                                        <th class="bold-font-weight" >Registration End Date</th>
+                                                        <th class="bold-font-weight" >Description</th>
+                                                        <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
                                                 </thead>
