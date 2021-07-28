@@ -80,6 +80,7 @@ class DARegisterController extends Controller
         $student_info->approve_reject_status  =  0;
         $student_info->date             =   $date;
         $student_info->email            =   $request->email;
+        $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
         $student_info->save(); 
          
