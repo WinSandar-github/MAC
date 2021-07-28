@@ -18,6 +18,11 @@ class StudentRegisterController extends Controller
     {
       
         $date = date('Y-m-d');
+        if($request->date){
+            $date = $request->date;
+        }else{
+            $date = date('Y-m-d');
+        }
         $invoice_date = date('Y-m-d');
         switch ($request->type) {
             case 0:
@@ -32,6 +37,7 @@ class StudentRegisterController extends Controller
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->status = 0;
+                $student_register->form_type = $request->form_type;
                 $student_register->save();
                 return "success";
                 break;
@@ -43,6 +49,7 @@ class StudentRegisterController extends Controller
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->status = 0;
+                $student_register->form_type = $request->form_type;
                 $student_register->save();
                 return "success";
                 break;
@@ -54,6 +61,7 @@ class StudentRegisterController extends Controller
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->status = 0;
+                $student_register->form_type = $request->form_type;
                 $student_register->save();
                 return "success";
                 break;
@@ -77,7 +85,7 @@ class StudentRegisterController extends Controller
         $approve->status = 1;
         $approve->save();
         return response()->json([
-            'message' => "You have successfully approved that student!"
+            'data' =>$approve->form_type
         ],200);
     }
 
@@ -87,7 +95,7 @@ class StudentRegisterController extends Controller
         $reject->status = 2;
         $reject->save();
         return response()->json([
-            'message' => "You have successfully rejected that student!"
+            'data' =>$approve->form_type
         ],200);
     }
 }

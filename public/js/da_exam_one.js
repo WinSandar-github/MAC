@@ -8,12 +8,23 @@ function getExam(){
             // console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
+                console.log('element',element);
+
+                if(element.status==0){
+                    status="Pending";
+                }
+                else if(element.status==1){
+                    status="Approve";
+                }
+                else{
+                    status="Reject";
+                }
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
                     tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + element.exam_type_id + "</td>";
                     tr += "<td>" + element.grade + "</td>";
-                    tr += "<td>" + element.status+ "</td>";
+                    tr += "<td>" + status+ "</td>";
                     tr += "<td>" + element.batch_id+ "</td>";
                     tr += "<td ><div class='btn-group'>";
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
@@ -59,10 +70,19 @@ function loadExamData()
         success: function (data) {
             var exam_data = data.data;
             exam_data.forEach(function (element){
+                if(element.status==0){
+                    status="Pending";
+                }
+                else if(element.status==1){
+                    status="Approve";
+                }
+                else{
+                    status="Reject";
+                }
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(element.exam_type_id);
                 $("#student_grade").append(element.grade);
-                $("#student_status").append(element.status);
+                $("#student_status").append(status);
             })
         }
     })
@@ -150,6 +170,7 @@ function loadBatchData(){
 
 function SearchByID(){
     var id = $('#selected_batch_id').val();
+    console.log('id',id);
     destroyDatatable("#tbl_da_exam_one", "#tbl_da_exam_one_body");
     $.ajax({
         url: BACKEND_URL + "/filter/"+id,

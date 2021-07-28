@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'index'
+    'elementActive' => 'da_two_index'
 ])
 
 @section('content')
@@ -45,21 +45,21 @@
                                                     <div class="row">
                                     
                                                         <div class="col-md-12">
-                                                            <table id="tbl_student_self_study" class="table table-hover text-nowrap " style="width: 100%">
+                                                            <table id="da_two_self_study" class="table table-hover text-nowrap " style="width: 100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="bold-font-weight">Sr No</th>
-                                                                        <th class="bold-font-weight" >Name</th>
-                                                                        <th class="bold-font-weight" >Email</th>                                        
-                                                                        <th class="bold-font-weight" >Registration No</th>
-                                                                        <th class="bold-font-weight" >Phone</th>
-                                                                        <th class="bold-font-weight" >Registration Reason</th>
-                                                                        <th class="bold-font-weight" >Status</th>
-                                                                        <th class="bold-font-weight" >Detail</th>
+                                                                        <th class="less-font-weight">Sr No</th>
+                                                                        <th class="less-font-weight" >Name</th>
+                                                                        <th class="less-font-weight" >Email</th>                                        
+                                                                        <th class="less-font-weight" >Registration No</th>
+                                                                        <th class="less-font-weight" >Phone</th>
+                                                                        <th class="less-font-weight" >Registration Reason</th>
+                                                                        <th class="less-font-weight" >Status</th>
+                                                                        <th class="less-font-weight" >Detail</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
-                                                                <tbody id="tbl_student_self_study_body">
+                                                                <tbody id="da_two_self_study_body">
                                                                     
                                                                 </tbody>
                                                             </table>
@@ -73,20 +73,20 @@
                                                 <div class="row">
                                                     
                                                     <div class="col-md-12">
-                                                            <table id="tbl_student_private_school" class="table table-hover text-nowrap " width="100%">
+                                                            <table id="da_two_private_school" class="table table-hover text-nowrap " width="100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="bold-font-weight" >Sr No</th>
-                                                                        <th class="bold-font-weight" >Name</th>
-                                                                        <th class="bold-font-weight" >Email</th>                                        
-                                                                        <th class="bold-font-weight" >Registration No</th>
-                                                                        <th class="bold-font-weight" >Phone</th>
-                                                                        <th class="bold-font-weight" >Status</th>
-                                                                        <th class="bold-font-weight" >Action</th>
+                                                                        <th class="less-font-weight" >Sr No</th>
+                                                                        <th class="less-font-weight" >Name</th>
+                                                                        <th class="less-font-weight" >Email</th>                                        
+                                                                        <th class="less-font-weight" >Registration No</th>
+                                                                        <th class="less-font-weight" >Phone</th>
+                                                                        <th class="less-font-weight" >Status</th>
+                                                                        <th class="less-font-weight" >Action</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
-                                                                <tbody id="tbl_student_private_school_body">
+                                                                <tbody id="da_two_private_school_body">
                                                                     
                                                                 </tbody>
                                                             </table>
@@ -97,20 +97,20 @@
                                                 <div class="row">
                                                     
                                                     <div class="col-md-12">
-                                                            <table id="tbl_student_mac" class="table table-hover text-nowrap " width="100%">
+                                                            <table id="da_two_mac" class="table table-hover text-nowrap " width="100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="bold-font-weight">Sr No</th>
-                                                                        <th class="bold-font-weight" >Name</th>
-                                                                        <th class="bold-font-weight" >Email</th>                                        
-                                                                        <th class="bold-font-weight" >Registration No</th>
-                                                                        <th class="bold-font-weight" >Phone</th>
-                                                                        <th class="bold-font-weight" >Status</th>
-                                                                        <th class="bold-font-weight" >Action</th>
+                                                                        <th class="less-font-weight">Sr No</th>
+                                                                        <th class="less-font-weight" >Name</th>
+                                                                        <th class="less-font-weight" >Email</th>                                        
+                                                                        <th class="less-font-weight" >Registration No</th>
+                                                                        <th class="less-font-weight" >Phone</th>
+                                                                        <th class="less-font-weight" >Status</th>
+                                                                        <th class="less-font-weight" >Action</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
-                                                                <tbody id="tbl_student_mac_body">
+                                                                <tbody id="da_two_mac_body">
                                                                     
                                                                 </tbody>
                                                             </table>

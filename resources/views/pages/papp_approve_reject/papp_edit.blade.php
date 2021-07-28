@@ -22,12 +22,12 @@
                                     <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->
-                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA Full Fleged Info</h5>
+                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">PAPP Info</h5>
 
                                 <!-- CPA -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">CPA </p>
+                                        <p class="ml-2"  style="font-weight:bold">CPA </p>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" id="cpa_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpaModal"><i class="fa fa-paperclip"></i></button>

@@ -29,13 +29,13 @@
                                         <table id="tbl_da_list"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
-                                                    <th class="less-font-weight" >No</th>
-                                                    <th class="less-font-weight" >Name</th>
-                                                    <th class="less-font-weight" >Email</th>     
-                                                    <th class="less-font-weight" >Phone Number</th>
-                                                    <th class="less-font-weight" >NRC</th>
-                                                    <th class="less-font-weight" >Status</th>
-                                                    <th class="less-font-weight" >Detail</th>
+                                                    <th class="bold-font-weight" >No</th>
+                                                    <th class="bold-font-weight" >Name</th>
+                                                    <th class="bold-font-weight" >Email</th>     
+                                                    <th class="bold-font-weight" >Phone Number</th>
+                                                    <th class="bold-font-weight" >NRC</th>
+                                                    <th class="bold-font-weight" >Status</th>
+                                                    <th class="bold-font-weight" >Detail</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_da_list_body" class="hoverTable">
