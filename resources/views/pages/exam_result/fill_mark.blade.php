@@ -1,0 +1,126 @@
+@extends('layouts.app', [
+    'class' => '',
+    'elementActive' => 'exam_result_list'
+])
+
+@section('content')
+
+
+    <div class="content">
+        @include('flash-message')
+        <div class="row">
+            <div class="col-md-12">   
+                   
+            </div>
+        </div>       
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <form method="post" action="javascript:createExamResult();" enctype="multipart/form-data">
+                    @csrf
+                    <div class="card">
+                        
+                        <div class="card-body">
+                            <div class="row">
+                                
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3>Basic Info
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <label class="col-md-2 form-label"></label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Student Name') }}</label>
+                                                <label class="col-md-1 form-label"></label>
+                                                <div class="col-md-5 text-left">
+                                                    <div class="form-group">
+                                                        <span id="std_name"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-2 form-label"></label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Private School Name') }}</label>
+                                                <label class="col-md-1 form-label"></label>
+                                                <div class="col-md-5 text-left">
+                                                    <div class="form-group">
+                                                        <span id="school_name"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-2 form-label"></label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Exam Type') }}</label>
+                                                <label class="col-md-1 form-label"></label>
+                                                <div class="col-md-5 text-left">
+                                                    <div class="form-group">
+                                                        <span id="exam_type"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-2 form-label"></label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Grade') }}</label>
+                                                <label class="col-md-1 form-label"></label>
+                                                <div class="col-md-5 text-left">
+                                                    <div class="form-group">
+                                                        <span id="student_grade"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-2 form-label"></label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Status') }}</label>
+                                                <label class="col-md-1 form-label"></label>
+                                                <div class="col-md-5 text-left">
+                                                    <div class="form-group">
+                                                        <span id="student_status"></span>
+                                                    </div>
+                                                </div>
+                                            </div><br>
+                                            <input type="hidden" name="batch_id">
+                                            <h5 style="font-weight:bold" align="center">အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
+                                            <div class="row">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td style="padding:1.5%;">
+                                                            <table class="table mark table-bordered input-table">
+                                                                <thead>
+                                                                    <tr > 
+                                                                        <th class="less-font-weight text-center" width="5%">စဉ်</th> 
+                                                                        <th class="less-font-weight text-center" width="35%">Subject Name</th>
+                                                                        <th class="less-font-weight text-center" width="30%">အမှတ်ပေးရန်</th>
+                                                                        <th class="less-font-weight text-center" width="20%">Grade</th>                                                    
+                                                                        <th class="text-center" width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowMark("mark")' value="+"></td>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                                                                       
+                                                                </tbody>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>  
+                                        <div class="card-footer"> 
+                                            <div class="modal-footer">
+                                                <button type="submit" name="save" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                     
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+@push('scripts')
+<script>
+    getStudentByBatchID();
+</script>
+@endpush

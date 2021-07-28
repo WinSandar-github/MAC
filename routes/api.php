@@ -90,6 +90,7 @@ Route::resource('/exam_register', 'ExamRegisterController');
 
 //DA Exam Form 1 API
 Route::resource('/exam_register', 'ExamRegisterController');
+Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 Route::get('/filter/{id}', 'ExamRegisterController@selectByID');
@@ -110,6 +111,8 @@ Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
 
+// Exam Result
+Route::resource('/exam_result', 'ExamResultController');
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 

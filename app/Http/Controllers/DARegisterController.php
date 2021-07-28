@@ -82,6 +82,7 @@ class DARegisterController extends Controller
         $student_info->email            =   $request->email;
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
+        $student_info->course_type_id   =   1;
         $student_info->save(); 
          
         $student_job_histroy = new StudentJobHistroy;
