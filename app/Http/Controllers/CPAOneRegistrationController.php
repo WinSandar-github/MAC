@@ -39,6 +39,15 @@ class CpaOneRegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        $data = CpaOneRegistration::where('nrc_state_region', '=', $request['nrc_state_region'])
+        ->where('nrc_township', '=', $request['nrc_township'])
+        ->where('nrc_citizen', '=', $request['nrc_citizen'])
+        ->where('nrc_number', '=', $request['nrc_number'])
+        ->first();
+        if($data)
+        {
+            return "NRC has been used, please check again!";
+        }
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -131,6 +140,18 @@ class CpaOneRegistrationController extends Controller
         return $cpa_one_reg;
     }
 
+    public function GetCPAOneByNRC(Request $request)
+    {
+        $data = CpaOneRegistration::where('nrc_state_region', '=', $request['nrc_state_region'])
+        ->where('nrc_township', '=', $request['nrc_township'])
+        ->where('nrc_citizen', '=', $request['nrc_citizen'])
+        ->where('nrc_number', '=', $request['nrc_number'])
+        ->first();
+        return response()->json([
+            'data' => $data
+        ],200);
+        
+    }
     /**
      * Show the form for editing the specified resource.
      *

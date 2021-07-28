@@ -85,6 +85,9 @@ Route::resource('/student_register','StudentRegisterController');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 
+//DA2 Exam Register Form API
+Route::resource('/exam_register', 'ExamRegisterController');
+
 //DA Exam Form 1 API
 Route::resource('/exam_register', 'ExamRegisterController');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
@@ -98,10 +101,16 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
+Route::post('/cpa_one_by_nrc','CPAOneRegistrationController@GetCPAOneByNRC');
+
+//CPA two registration
+Route::resource('/cpa_two_registration', 'CPATwoRegistrationController');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
+
+Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 
 
