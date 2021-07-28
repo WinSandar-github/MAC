@@ -57,6 +57,8 @@ class ExamRegisterController extends Controller
         $date = date('Y-m-d');
         $invoice_date = date('Y-m-d');
 
+        
+
         $exam = new ExamRegister();
         $exam->student_info_id = $request->student_id;
         $exam->date = $date;
