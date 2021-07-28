@@ -41,7 +41,8 @@ function getDAList(){
 
 function showDAList(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href= "/da_edit";
+    location.href="/da_edit";
+
 }
 
 function loadData(){

@@ -101,10 +101,16 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
+Route::post('/cpa_one_by_nrc','CPAOneRegistrationController@GetCPAOneByNRC');
+
+//CPA two registration
+Route::resource('/cpa_two_registration', 'CPATwoRegistrationController');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
+
+Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 
 
