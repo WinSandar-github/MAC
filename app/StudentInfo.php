@@ -56,4 +56,9 @@ class StudentInfo extends Model
     public function papp(){
         return $this->hasOne(Papp::class,'student_id','id');
     }
+
+    public function cpa_one_direct(){
+        return $this->hasOne(CpaOneTrainingAddmissionDirect::class,'student_info_id','id');
+        
+    }
 }  

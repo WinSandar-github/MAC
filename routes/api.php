@@ -107,5 +107,7 @@ Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
 
+Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
+
 
 
