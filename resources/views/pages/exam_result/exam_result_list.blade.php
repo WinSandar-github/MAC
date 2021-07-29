@@ -23,7 +23,7 @@
                             <div class="col-md-9">
                                 <nav class="nav flex-column">
                                 	<a href="#my-modal" data-toggle="modal">DA Exam (1)</a>
-                                	<li>DA Exam (2)</li>
+                                    <a href="#my-modal" data-toggle="modal">DA Exam (2)</a>
                                 	<li>CPA Exam (1)</li>
                                 	<li>CPA Exam (2)</li>
                                 </nav>
@@ -56,7 +56,7 @@
 	                    				</select>
 	                    			</td>
 	                    			<td width="10%">
-	                    				<button type="submit" onclick="viewStudent()" class="btn btn-primary btn-hover-dark" style="float: right;">View</button>
+	                    				<button type="submit" onclick="chooseBatch()" class="btn btn-primary btn-hover-dark" style="float: right;">View</button>
 	                    			</td>
 	                    		</tr>
 	                    	</table>

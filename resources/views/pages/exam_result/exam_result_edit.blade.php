@@ -36,6 +36,7 @@
                                                       <th class="less-font-weight" >Grade</th>
                                                       <th class="less-font-weight" >Status</th>
                                                       <th class="less-font-weight" >Batch ID</th>
+                                                      <th class="less-font-weight" >Is Full Module</th>
                                                       <th class="less-font-weight" >Detail</th>
                                                     </tr>
                                                 </thead>

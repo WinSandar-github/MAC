@@ -17,9 +17,7 @@ class CreateExamResultTable extends Migration
             $table->id();
             $table->unsignedBigInteger('student_info_id');
             $table->unsignedBigInteger('registeration_id');
-            $table->string('subject_name');
-            $table->integer('mark');
-            $table->string('grade');
+            $table->longText('result');
             $table->date('date');
 
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
