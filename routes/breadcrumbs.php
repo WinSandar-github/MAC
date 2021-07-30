@@ -102,6 +102,11 @@ Breadcrumbs::for('exam_result_list', function ($trail) {
     $trail->push('Exam Results', route('page.index', 'exam_result_list'));
 });
 
+// Marked Students
+Breadcrumbs::for('mark_list', function ($trail) {
+    $trail->push('Marked Students List', route('page.index', 'mark_list'));
+});
+
 // Home > QT Application
 Breadcrumbs::for('qt_application_registration', function ($trail) {
     $trail->parent('home');

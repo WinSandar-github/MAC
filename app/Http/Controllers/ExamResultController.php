@@ -17,10 +17,8 @@ class ExamResultController extends Controller
      */
     public function index()
     {
-        $exam_results = StudentInfo::with('exam_result')->get();
-        return response()->json([ 
-            'data' => $exam_results
-        ],200);
+        $marks = ExamResult::with('student_info')->get();
+        return view('pages.mark.mark_list', compact('marks'));
     }
 
     /**
@@ -53,7 +51,7 @@ class ExamResultController extends Controller
         $data['registeration_id'] = $registeration_id;
         $data['date']             = $date;
         ExamResult::create($data);
-        
+        Alert::success('Success', 'Successfully Added Marks');
         return view('pages.exam_result.exam_result_list');
     }
 
@@ -79,7 +77,10 @@ class ExamResultController extends Controller
      */
     public function show($id)
     {
-        //
+        $exam_result = ExamResult::where('id',$id)->with('student_info')->get();
+        return response()->json([
+            'data' => $exam_result
+        ],200);
     }
 
     /**
@@ -90,7 +91,13 @@ class ExamResultController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mark = ExamResult::find($id);
+        $result = json_decode($mark->result, TRUE);
+        if(empty($mark)) {
+            Alert::error('Error', 'mark Not Found');
+            return redirect(route('mark.mark_list'));
+        }
+        return view('pages.mark.mark_list_edit', compact('mark','result'));
     }
 
     /**
@@ -102,7 +109,11 @@ class ExamResultController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $result = ExamResult::find($id);
+        $update = $this->prepareData($request->all());
+        ExamResult::find($id)->update($update);
+        Alert::success('Success', 'Successfully Updated Result');
+        return view('pages.exam_result.exam_result_list');
     }
 
     /**
