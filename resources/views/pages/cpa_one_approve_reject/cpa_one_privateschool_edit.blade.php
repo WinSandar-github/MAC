@@ -143,7 +143,7 @@
                             </div>
                             
                             <div class="col-md-8">
-                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA One Self Study Student Information</h5>
+                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">Basic Information Of Private School Student</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>

@@ -149,7 +149,7 @@ function loadCPAOneSelfStudyStudentData(){
                     module_id="Module - 2";
                 }
                 else{
-                    module_id="Module - 3";
+                    module_id="All Modules";
                 }
 
                 if(element.civil_servant==0){
@@ -355,7 +355,7 @@ function loadCPAOnePrivateSchoolStudentData(){
                     module_id="Module - 2";
                 }
                 else{
-                    module_id="Module - 3";
+                    module_id="All Modules";
                 }
 
                 if(element.civil_servant==0){
@@ -559,7 +559,7 @@ function loadCPAOneMACStudentData(){
                     module_id="Module - 2";
                 }
                 else{
-                    module_id="Module - 3";
+                    module_id="All Module";
                 }
 
                 if(element.civil_servant==0){
@@ -595,10 +595,14 @@ function loadCPAOneMACStudentData(){
                 $("#gov_department").append(gov_department);
                 $("#personal_acc_training").append(personal_acc_training);
                 $("#after_second_exam").append(after_second_exam);
+
+                document.getElementById('good_morale_file').src=element.good_morale_file;
                 $("#good_morale_file").append(element.good_morale_file);
+
+                document.getElementById('no_crime_file').src=element.no_crime_file;
                 $("#no_crime_file").append(element.no_crime_file);
+
                 $("#module_id").append(module_id);
-                $("#no_crime_file").append(element.no_crime_file);
                 // $("#entrance_part").append(element.entrance_part);
                 // $("#entrance_exam_no").append(element.entrance_exam_no);
                 $("#status").append(status);

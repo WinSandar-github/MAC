@@ -119,7 +119,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/approve_cpa_one_self_study/{id}', 'CPAOneRegistrationController@approve');
     Route::patch('/reject_cpa_one_self_study/{id}', 'CPAOneRegistrationController@reject');
 
-    // CPA One Self-Study 
+    // CPA One Reg 
     Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
     Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 

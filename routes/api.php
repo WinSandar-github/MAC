@@ -108,6 +108,8 @@ Route::patch('/reject_cpa_one_student/{id}', 'CPAOneRegistrationController@rejec
 
 //CPA two registration
 Route::resource('/cpa_two_registration', 'CPATwoRegistrationController');
+Route::patch('/approve_cpa_two_student/{id}', 'CPATwoRegistrationController@approve');
+Route::patch('/reject_cpa_two_student/{id}', 'CPATwoRegistrationController@reject');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');

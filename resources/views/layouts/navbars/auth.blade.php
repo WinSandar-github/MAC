@@ -83,6 +83,14 @@
                             </a>
                         </li>
 
+                        <!-- CPA Two -->
+                        <li class="{{ $elementActive == 'cpa_two_registration_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_two_registration_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('CPA Two Registration List') }}</span>
+                            </a>
+                        </li>
+
                         <li class="{{ $elementActive == 'cpa_ff_registration_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_ff_registration_list') }}">
                                 <i class="nc-icon nc-paper"></i>
