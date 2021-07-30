@@ -368,6 +368,25 @@ Breadcrumbs::for('cpa_ff_edit', function ($trail) {
     $trail->push('CPA Full Fleged Detail List', route('page.index', 'cpa_ff_edit'));
 });
 
+
+// CPA One Registration List
+Breadcrumbs::for('cpa_one_registration_list', function ($trail) {
+    $trail->parent('home');
+    $trail->push('CPA One Registration Form List', route('page.index', 'cpa_one_registration_list'));
+});
+Breadcrumbs::for('cpa_one_selfstudy_edit', function ($trail) {
+    $trail->parent('cpa_one_registration_list');
+    $trail->push('CPA One - Self Study Detail', route('page.index', 'cpa_one_selfstudy_edit'));
+});
+Breadcrumbs::for('cpa_one_privateschool_edit', function ($trail) {
+    $trail->parent('cpa_one_registration_list');
+    $trail->push('CPA One - Private School Registration Detail', route('page.index', 'cpa_one_privateschool_edit'));
+});
+Breadcrumbs::for('cpa_one_mac_edit', function ($trail) {
+    $trail->parent('cpa_one_registration_list');
+    $trail->push('CPA One - MAC Registration Detail', route('page.index', 'cpa_one_mac_edit'));
+});
+
 // PAPP List
 Breadcrumbs::for('papp_registration_list', function ($trail) {
     $trail->parent('home');

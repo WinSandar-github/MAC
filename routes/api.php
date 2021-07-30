@@ -103,6 +103,8 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
 Route::post('/cpa_one_by_nrc','CPAOneRegistrationController@GetCPAOneByNRC');
+Route::patch('/approve_cpa_one_student/{id}', 'CPAOneRegistrationController@approve');
+Route::patch('/reject_cpa_one_student/{id}', 'CPAOneRegistrationController@reject');
 
 //CPA two registration
 Route::resource('/cpa_two_registration', 'CPATwoRegistrationController');
