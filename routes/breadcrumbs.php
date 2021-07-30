@@ -97,10 +97,6 @@ Breadcrumbs::for('exam_result_list', function ($trail) {
 });
 
 // Marked Students
-Breadcrumbs::for('marked_list', function ($trail) {
-    $trail->push('Marked Students List', route('page.index', 'marked_list'));
-});
-
 Breadcrumbs::for('mark_list', function ($trail) {
     $trail->push('Marked Students List', route('page.index', 'mark_list'));
 });

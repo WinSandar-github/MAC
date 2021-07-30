@@ -112,14 +112,8 @@
                     <p>{{ __('Exam Results') }}</p>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'marked_list' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'marked_list') }}">
-                    <i class="nc-icon nc-paper"></i>
-                    <p>{{ __('Marked Students list') }}</p>
-                </a>
-            </li>
             <li class="{{ Request::is('mark*') ? 'active' : '' }}">
-                <a href="{{ url('mark') }}"><i class="fa fa-edit"></i><span>Marks</span></a>
+                <a href="{{ url('mark') }}"><i class="nc-icon nc-paper"></i><span>Marked Students list</span></a>
             </li>
             {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'teacher_registration') }}">
