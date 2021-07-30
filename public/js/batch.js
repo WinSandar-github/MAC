@@ -10,7 +10,8 @@ function createBatch(){
     send_data.append('self_reg_end_date',$("input[name=self_reg_end_date]").val());
     send_data.append('private_reg_start_date',$("input[name=private_reg_start_date]").val());
     send_data.append('private_reg_end_date',$("input[name=private_reg_end_date]").val());
-    send_data.append('accept_application_date',$("input[name=acc_app_date]").val());
+    send_data.append('accept_application_start_date',$("input[name=app_acc_start_date]").val());
+    send_data.append('accept_application_end_date',$("input[name=app_acc_start_date]").val());
 
     $.ajax({
             url: BACKEND_URL+"/batch",
@@ -47,9 +48,12 @@ function getBatch(){
                 tr += "<td>" + element.self_reg_end_date + "</td>";
                 tr += "<td>" + element.private_reg_start_date + "</td>";
                 tr += "<td>" + element.private_reg_end_date + "</td>";
-                tr += "<td>" + element.accept_application_date + "</td>";
+                tr += "<td>" + element.accept_application_start_date + "</td>";
+                tr += "<td>" + element.accept_application_end_date + "</td>";
             
                 tr += "<td ><div class='btn-group'>";
+                tr+="<button type='button' class='btn btn-primary btn-xs' onClick=''>" +
+                "<li class='fa fa-graduation-cap fa-sm'></li></button> ";
                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
                     "<li class='fa fa-edit fa-sm'></li></button> ";
                 tr += "<button type='button' class='btn btn-danger btn-xs' onClick='deleteBatchInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
@@ -88,7 +92,8 @@ function showBatchInfo(id) {
             $('input[name=self_reg_end_date]').val(batch_data[0].self_reg_end_date);
             $('input[name=private_reg_start_date]').val(batch_data[0].private_reg_start_date);
             $('input[name=private_reg_end_date]').val(batch_data[0].private_reg_end_date);
-            $('input[name=acc_app_date]').val(batch_data[0].accept_application_date);            
+            $('input[name=app_acc_start_date]').val(batch_data[0].accept_application_start_date);            
+            $('input[name=app_acc_end_date]').val(batch_data[0].accept_application_end_date);            
             
             $('#create_batch_modal').modal('toggle');
         },

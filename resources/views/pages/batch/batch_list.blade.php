@@ -49,7 +49,8 @@
                                                         <th class="bold-font-weight">Self Registration End Date</th>  
                                                         <th class="bold-font-weight">Private Registration Start Date</th>
                                                         <th class="bold-font-weight">Private Registration Endt Date</th>                                                       
-                                                        <th class="bold-font-weight">Accept Application Date</th>
+                                                        <th class="bold-font-weight">Application Accept Start Date</th>
+                                                        <th class="bold-font-weight">Application Accept End Date</th>
                                                         <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
@@ -181,15 +182,23 @@
                             
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('11.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Accept Application Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Application Accept Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="acc_app_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="app_acc_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
 
-
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Application Accept End Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="app_acc_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
                 <div class="modal-footer">
@@ -244,7 +253,11 @@
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
-        $("input[name='acc_app_date']").flatpickr({
+        $("input[name='app_acc_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='app_acc_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
