@@ -116,6 +116,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa1_examcard', 'ExamCardsController@CPA1_ExamCard');
 
     // CPA_FF Form
+    Route::patch('/approve_cpa_one_self_study/{id}', 'CPAOneRegistrationController@approve');
+    Route::patch('/reject_cpa_one_self_study/{id}', 'CPAOneRegistrationController@reject');
+
+    // CPA One Reg 
     Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
     Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 

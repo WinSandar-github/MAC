@@ -56,6 +56,7 @@ class CreateCpaOneRegistrationsTable extends Migration
             $table->string('entrance_part')->nullable();//self study
             $table->string('entrance_exam_no')->nullable();//self study
             $table->integer('cpa_one_type');
+            $table->boolean('status')->default(0);
             $table->timestamps();
 
             $table->foreign('module_id')
