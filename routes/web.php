@@ -125,6 +125,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Exam Result
     Route::resource('/exam_result', 'ExamResultController');
+    Route::get('/mark', 'ExamResultController@index');
+    Route::get('/mark/{id}', 'ExamResultController@edit');
+    Route::post('/mark/{id}', 'ExamResultController@update');
 });
 
 Route::resource('/batch','BatchController');

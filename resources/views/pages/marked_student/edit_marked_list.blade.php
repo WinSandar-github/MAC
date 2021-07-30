@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'exam_result_list'
+    'elementActive' => 'marked_list'
 ])
 
 @section('content')
@@ -40,55 +40,26 @@
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Private School Name') }}</label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Student Info ID') }}</label>
                                                 <label class="col-md-1 form-label"></label>
                                                 <div class="col-md-5 text-left">
                                                     <div class="form-group">
-                                                        <span id="school_name"></span>
+                                                        <span id="std_info_id"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Exam Type') }}</label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Registeration ID') }}</label>
                                                 <label class="col-md-1 form-label"></label>
                                                 <div class="col-md-5 text-left">
                                                     <div class="form-group">
-                                                        <span id="exam_type"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Grade') }}</label>
-                                                <label class="col-md-1 form-label"></label>
-                                                <div class="col-md-5 text-left">
-                                                    <div class="form-group">
-                                                        <span id="student_grade"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Status') }}</label>
-                                                <label class="col-md-1 form-label"></label>
-                                                <div class="col-md-5 text-left">
-                                                    <div class="form-group">
-                                                        <span id="student_status"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Module') }}</label>
-                                                <label class="col-md-1 form-label"></label>
-                                                <div class="col-md-5 text-left">
-                                                    <div class="form-group">
-                                                        <span id="is_full_module"></span>
+                                                        <span id="reg_id"></span>
                                                     </div>
                                                 </div>
                                             </div><br>
-                                            <input type="hidden" name="batch_id">
+                                            <a href="{!! route('law.edit', [$law->id]) !!}"
+                                               class='btn btn-xs btn-primary'><i class="fa fa-check-square-o"></i>&nbsp;Edit</a>
                                             <h5 style="font-weight:bold" align="center">အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
                                             <div class="row">
                                                 <table class="table mark table-bordered input-table" width="100%" style="margin: 3% 3% 0 3%;">
@@ -178,6 +149,6 @@
 @endsection
 @push('scripts')
 <script>
-    getModuleStd();
+    getResult();
 </script>
 @endpush
