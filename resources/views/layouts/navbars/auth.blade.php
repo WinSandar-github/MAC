@@ -59,21 +59,21 @@
                         <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'index') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA One Registration') }}</span>
+                                <span>{{ __('DA 1 Registration List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'da_two_index' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_two_index') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA Two Registration') }}</span>
+                                <span>{{ __('DA 2 Registration List') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
+                        {{--<li class="{{ $elementActive == 'index' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'index') }}">
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('DA Registration Form') }}</span>
                             </a>
-                        </li>
+                        </li>}}
                         
                         <!-- CPA One -->
                         <li class="{{ $elementActive == 'cpa_one_registration_list' ? 'active' : '' }}">
@@ -118,6 +118,12 @@
                             <a href="{{ route('page.index', 'da_exam_one') }}">
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('DA Exam Form (1)') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_exam_one') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('CPA(1) Exam List') }}</span>
                             </a>
                         </li>
                     </ul>

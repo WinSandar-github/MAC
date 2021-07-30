@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'da_exam_one'
+    'elementActive' => 'cpa_exam_one'
 ])
 @section('content')
 <div class="content">
@@ -17,14 +17,14 @@
                         <div class="row">
                             <table width="100%">
                                 <tr>
-                                    <td width="50%"><h5 class="title" style="padding-left: 330px;">{{ __('DA Exam Form (1) List') }}</h5></td>
+                                    <td width="50%"><h5 class="title" style="padding-left: 330px;">{{ __('CPA(1) Exam List') }}</h5></td>
                                     <td width="25%">
                                         <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id" style="margin-left: 75%; width: 70%;">
                                             <option value="all" selected>All Batch</option>
                                         </select>
                                     </td>
                                     <td width="25%">
-                                        <button type="submit" onclick="getExam()" class="btn btn-primary btn-hover-dark" style="margin-left: 63%;">Search</button>
+                                        <button type="submit" onclick="getCPAExam()" class="btn btn-primary btn-hover-dark" style="margin-left: 63%;">Search</button>
                                     </td>
                                 </tr>
                             </table>
@@ -35,7 +35,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <table id="tbl_da_exam_one"class="table table-hover text-nowrap ">
+                                        <table id="tbl_cpa_exam_one"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight" >No</th>
@@ -48,7 +48,7 @@
                                                     <th class="bold-font-weight" >Print</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbl_da_exam_one_body" class="hoverTable">
+                                            <tbody id="tbl_cpa_exam_one_body" class="hoverTable">
                                             </tbody>
                                         </table>
                                     </div>
@@ -64,7 +64,7 @@
 @endsection
 @push('scripts')
 <script>
-    loadBatchData();
-    getExam();
+    loadCPABatchData();
+    getCPAExam();
 </script>
 @endpush

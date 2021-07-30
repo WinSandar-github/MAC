@@ -16,8 +16,7 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                <form method="post" action="javascript:createExamResult();" enctype="multipart/form-data">
-                    @csrf
+                {!! Form::open(array('route' => 'exam_result.store','method'=>'POST','files' => 'true')) !!}
                     <div class="card">
                         
                         <div class="card-body">
@@ -78,27 +77,61 @@
                                                         <span id="student_status"></span>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-md-2 form-label"></label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Module') }}</label>
+                                                <label class="col-md-1 form-label"></label>
+                                                <div class="col-md-5 text-left">
+                                                    <div class="form-group">
+                                                        <span id="is_full_module"></span>
+                                                    </div>
+                                                </div>
                                             </div><br>
                                             <input type="hidden" name="batch_id">
                                             <h5 style="font-weight:bold" align="center">အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
                                             <div class="row">
-                                                <table width="100%">
+                                                <table class="table mark table-bordered input-table" width="100%" style="margin: 3% 3% 0 3%;">
                                                     <tr>
-                                                        <td style="padding:1.5%;">
-                                                            <table class="table mark table-bordered input-table">
-                                                                <thead>
-                                                                    <tr > 
-                                                                        <th class="less-font-weight text-center" width="5%">စဉ်</th> 
-                                                                        <th class="less-font-weight text-center" width="35%">Subject Name</th>
-                                                                        <th class="less-font-weight text-center" width="30%">အမှတ်ပေးရန်</th>
-                                                                        <th class="less-font-weight text-center" width="20%">Grade</th>                                                    
-                                                                        <th class="text-center" width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowMark("mark")' value="+"></td>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                                                                       
-                                                                </tbody>
-                                                            </table>
+                                                        <th width="10%">စဉ်</th>
+                                                        <th width="40%">Subject Name</th>
+                                                        <th width="30%">အမှတ်ပေးရန်</th>
+                                                        <th width="20%">Grade</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="10%">1</td>
+                                                        <td width="40%">
+                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
+                                                        </td>
+                                                        <td width="30%">
+                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="10%">2</td>
+                                                        <td width="40%">
+                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
+                                                        </td>
+                                                        <td width="30%">
+                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="10%">3</td>
+                                                        <td width="40%">
+                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
+                                                        </td>
+                                                        <td width="30%">
+                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
+                                                        </td>
+                                                        <td width="20%">
+                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -106,7 +139,7 @@
                                         </div>  
                                         <div class="card-footer"> 
                                             <div class="modal-footer">
-                                                <button type="submit" name="save" class="btn btn-primary">Save</button>
+                                                <button type="submit" name="save" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -114,13 +147,13 @@
                             </div>
                         </div>                     
                     </div>
-                </form>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
 @endsection
 @push('scripts')
 <script>
-    getStudentByBatchID();
+    getModuleStd();
 </script>
 @endpush

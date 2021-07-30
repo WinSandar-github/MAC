@@ -126,6 +126,9 @@ Route::group(['middleware' => 'auth'], function () {
     // PAPP Form
     Route::patch('/approve_papp/{id}', 'PAPPController@approve');
     Route::patch('/reject_papp/{id}', 'PAPPController@reject');
+
+    // Exam Result
+    Route::resource('/exam_result', 'ExamResultController');
 });
 
 Route::resource('/batch','BatchController');
