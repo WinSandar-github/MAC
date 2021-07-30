@@ -338,7 +338,7 @@ function getModuleStd(){
         type: 'get',
         data:"",
         success: function(data){
-            // console.log(data);
+             console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
                 var std = element.student_info;
