@@ -80,7 +80,9 @@ class DARegisterController extends Controller
         $student_info->approve_reject_status  =  0;
         $student_info->date             =   $date;
         $student_info->email            =   $request->email;
+        $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
+        $student_info->course_type_id   =   1;
         $student_info->save(); 
          
         $student_job_histroy = new StudentJobHistroy;
@@ -105,7 +107,7 @@ class DARegisterController extends Controller
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id        = $request->batch_id;
+        $student_course->batch_id        = 1;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
         $student_course->save();
@@ -128,6 +130,7 @@ class DARegisterController extends Controller
         ->where('nrc_township', '=', $request['nrc_township'])
         ->where('nrc_citizen', '=', $request['nrc_citizen'])
         ->where('nrc_number', '=', $request['nrc_number'])
+        ->with('student_job', 'student_education_histroy')
         ->first();
         return response()->json([
             'data' => $data
@@ -138,6 +141,38 @@ class DARegisterController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $image = '/storage/student_info/'.$name;
+        }
+        else{
+
+        }
+        $date_of_birth = date('Y-m-d');
+        $info = StudentInfo::find($id);
+        $info->name_mm          =   $request->name_mm;
+        $info->name_eng         =   $request->name_eng;
+        $info->nrc_state_region =   $request['nrc_state_region'];
+        $info->nrc_township     =   $request['nrc_township'] ;
+        $info->nrc_citizen      =   $request['nrc_citizen'] ;
+        $info->nrc_number       =   $request['nrc_number'];
+        $info->father_name_mm   =   $request->father_name_mm;
+        $info->father_name_eng  =   $request->father_name_eng;
+        $info->race             =   $request->race;
+        $info->religion         =   $request->religion;
+        $info->date_of_birth    =   $date_of_birth;
+        $info->address          =   $request->address;
+        $info->current_address  =   $request->current_address;
+        $info->phone            =   $request->phone;
+        $info->gov_staff        =   $request->civil_servant;
+        $info->image            =   $image;
+        $info->save();
+
+        return response()->json([
+            'message' => "Update Successfully"
+        ],200);
     }
 
     public function approve($id)

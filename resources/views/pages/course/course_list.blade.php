@@ -38,16 +38,16 @@
                                             <table id="tbl_course"class="table table-hover text-nowrap ">
                                                 <thead>
                                                     <tr>
-                                                        <th class="less-font-weight" >Sr No</th>
-                                                        <th class="less-font-weight" >Name</th>
-                                                        <th class="less-font-weight" >Form Fee</th>                                        
-                                                        <th class="less-font-weight" >Registration Fee</th>
-                                                        <th class="less-font-weight" >Exam Fee</th>
-                                                        <th class="less-font-weight" >Tution Fee</th>
-                                                        <th class="less-font-weight" >Registration Start Date</th>
-                                                        <th class="less-font-weight" >Registration End Date</th>
-                                                        <th class="less-font-weight" >Description</th>
-                                                        <th class="less-font-weight" >Action</th>
+                                                        <th class="bold-font-weight" >Sr No</th>
+                                                        <th class="bold-font-weight" >Name</th>
+                                                        <th class="bold-font-weight" >Form Fee</th>                                        
+                                                        <th class="bold-font-weight" >Registration Fee</th>
+                                                        <th class="bold-font-weight" >Exam Fee</th>
+                                                        <th class="bold-font-weight" >Tution Fee</th>
+                                                        <th class="bold-font-weight" >Registration Start Date</th>
+                                                        <th class="bold-font-weight" >Registration End Date</th>
+                                                        <th class="bold-font-weight" >Description</th>
+                                                        <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
                                                 </thead>
@@ -153,6 +153,26 @@
                                     <input type="text" name="description" class="form-control"  placeholder="Description" autocomplete="off">
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Code') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group"> 
+                                    <input type="text" name="code" class="form-control"  placeholder="Description" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>    
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Course Type') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group"> 
+                                    <select name="course_type" class="form-control course_type">
+
+                                    </select>
+                                </div>
+                            </div>
                         </div>  
                         
                     </div>
@@ -179,6 +199,20 @@
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
+
+        $.ajax({
+            url:BACKEND_URL+'/get_course_type',
+            type:'GET',
+            success:function(response){
+                 var opt = '<option selected >Select</option>';
+
+                $.each(response.data,function(i,v){
+                    opt +=
+                        `<option value=${v.id}  >${v.name}</option>`;
+                    })
+                $(".course_type").append(opt);
+            }
+        })
         
     });
     getCourse();

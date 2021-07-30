@@ -18,12 +18,12 @@
                         <div class="row">
                             <div class="col-md-4 ">
                                 <center>
-                                    <img src="" id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+                                    <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
-                                <h5 class="border-bottom pb-2 mt-3">Education</h5>
+                                <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Universtry Name</p>
+                                        <p class="ml-2" style="font-weight:bold">Universtry Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="university_name"></span>
@@ -31,7 +31,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Degree Name</p>
+                                        <p class="ml-2"  style="font-weight:bold">Degree Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="degree_name"></span>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Qualified Date</p>
+                                        <p class="ml-2" style="font-weight:bold">Qualified Date</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="qualified_date"></span>
@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Roll Number</p>
+                                        <p class="ml-2" style="font-weight:bold">Roll Number</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="roll_number"></span>
@@ -55,18 +55,18 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Attched Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">Attched Certificate</p>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
 
-                                <h5 class="border-bottom pb-2 mt-3">Job</h5>
+                                <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Job</h5>
                         
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Job Name</p>
+                                        <p class="ml-2" style="font-weight:bold">Job Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="name"></span>
@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Job Position</p>
+                                        <p class="ml-2" style="font-weight:bold">Job Position</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="position"></span>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Department</p>
+                                        <p class="ml-2" style="font-weight:bold">Department</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="department"></span>
@@ -90,7 +90,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Organization</p>
+                                        <p class="ml-2" style="font-weight:bold">Organization</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="organization"></span>
@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Company Name</p>
+                                        <p class="ml-2" style="font-weight:bold">Company Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="company_name"></span>
@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Salary</p>
+                                        <p class="ml-2" style="font-weight:bold">Salary</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="salary"></span>
@@ -114,7 +114,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Address</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="office_address"></span>
@@ -122,10 +122,10 @@
                                 </div>
                             </div>
                             <div class="col-md-8">
-                                <h5 class="border-bottom pb-2">Basic Info</h5>
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">Student Information</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2 text-bold">Name(Eng) / Name(Myanmar)</p>
+                                        <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="name_eng"></span> / <span id="name_mm"></span>
@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">NRC</p>
+                                        <p class="ml-2" style="font-weight:bold">NRC</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="nrc"></span>
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Father Name(Eng) / Father Name(Myanmar)</p>
+                                        <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
@@ -149,7 +149,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Race</p>
+                                        <p class="ml-2" style="font-weight:bold">Race</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="race"></span>
@@ -157,7 +157,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Religion</p>
+                                        <p class="ml-2" style="font-weight:bold">Religion</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="religion"></span>
@@ -165,7 +165,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Date of Birth</p>
+                                        <p class="ml-2" style="font-weight:bold">Date of Birth</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="date_of_birth"></span>
@@ -173,7 +173,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Address</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="address"></span>
@@ -181,7 +181,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Current Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Current Address</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="current_address"></span>
@@ -189,7 +189,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Phone</p>
+                                        <p class="ml-2" style="font-weight:bold">Phone</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="phone"></span>
@@ -197,7 +197,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Email</p>
+                                        <p class="ml-2" style="font-weight:bold">Email</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="email"></span>
@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">Government Staff</p>
+                                        <p class="ml-2" style="font-weight:bold">Government Staff</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="gov_staff"></span>
@@ -214,7 +214,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2">ကိုယ်ပိုင်အမှတ်</p>
+                                        <p class="ml-2" style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="registration_no"></span>
@@ -223,10 +223,10 @@
 
                                 <input type="hidden" name="student_info_id" >
 
-                                <div class="row mt-5 justify-content-center"> 
-                                    <button type="submit" name="save" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                <div class="row mt-5 justify-content-center" id="approve_reject"> 
+                                    <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
-                                    <button type="submit" name="save" class="btn btn-primary"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
+                                    <button type="submit" name="save" id="reject" class="btn btn-primary"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
                                 </div>
                                 <!-- Attached Certificate -->
                                 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

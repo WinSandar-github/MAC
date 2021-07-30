@@ -6,11 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    protected $fillable = ['name','course_fee_id','degree_id'];
+    protected $fillable = ['name','form_fee','registration_fee','exam_fee','tution_fee','registration_start_date','registartion_end_date','description','course_type_id','code'];
 
-    public function course_fee(){
-        return $this->belongsTo(CourseFee::class);
+    public function course_type(){
+        return $this->belongsTo(CourseType::class);
     }
+
 
     public function degree(){
         return $this->belongsTo(CourseFee::class);

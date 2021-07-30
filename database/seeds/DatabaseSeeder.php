@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
         $this->call([EducationLevelSeeder::class]);
         $this->call([ModuleSeeder::class]);
         $this->call([CpaOneTrainingGroundSeeder::class]);
+        $this->call([CourseTypeSeeder::class]);
+
         // $this->call([CourseFeeSeeder::class]);
         // $this->call([DegreeSeeder::class]);
 
