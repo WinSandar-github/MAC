@@ -91,6 +91,12 @@ Breadcrumbs::for('da_exam_one', function ($trail) {
     $trail->push('DA Exam Form (1)', route('page.index', 'da_exam_one'));
 });
 
+//CPA One Exam List
+Breadcrumbs::for('cpa_exam_one', function ($trail) {
+    $trail->parent('examregisteration');
+    $trail->push('CPA(1) Exam List', route('page.index', 'cpa_exam_one'));
+});
+
 // Exam Results
 Breadcrumbs::for('exam_result_list', function ($trail) {
     $trail->push('Exam Results', route('page.index', 'exam_result_list'));

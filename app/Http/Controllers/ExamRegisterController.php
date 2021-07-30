@@ -81,7 +81,11 @@ class ExamRegisterController extends Controller
      */
     public function show($id)
     {
-        $exam_register = ExamRegister::where('batch_id',$id)->get();
+        // $exam_register = ExamRegister::where('batch_id',$id)->get();
+        // return response()->json([
+        //     'data' => $exam_register
+        // ],200);
+        $exam_register = ExamRegister::where('id',$id)->get();
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -141,9 +145,15 @@ class ExamRegisterController extends Controller
         ],200);
     }
 
-    public function selectByID($id)
+    public function selectByFormType($id)
     {
-        $exam_register = ExamRegister::where('batch_id',$id)->get();
+        if($id=="all"){
+            $exam_register = ExamRegister::with('student_info')->get();
+        }
+        else 
+        {
+            $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
+        }
         return response()->json([
             'data' => $exam_register
         ],200);

@@ -103,6 +103,12 @@
                                 <span>{{ __('DA Exam Form (1)') }}</span>
                             </a>
                         </li>
+                        <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_exam_one') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('CPA(1) Exam List') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
