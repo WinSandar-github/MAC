@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'index'
+    'elementActive' => 'da_exam_one'
 ])
 
 @section('content')
@@ -31,82 +31,51 @@
                                         <div class="card-body">
                                             <div class="row">
                                                 <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Name(Eng)/(Myan)') }}</label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Private School Name') }}</label>
                                                 <label class="col-md-1 form-label"></label>
                                                 <div class="col-md-5 text-left">
                                                     <div class="form-group">
-                                                        <span id="student_name"></span>
+                                                        <span id="school_name"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Registration No') }}</label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Exam Type') }}</label>
                                                 <label class="col-md-1 form-label"></label>
                                                 <div class="col-md-5 text-left">
                                                     <div class="form-group">
-                                                        <span id="student_registration_no"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="row">
-                                                <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('NRC') }}</label>
-                                                <label class="col-md-1 form-label"></label>
-                                                <div class="col-md-5 text-left">
-                                                    <div class="form-group">
-                                                        <span id="student_nrc"></span>
+                                                        <span id="exam_type"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('DOB') }}</label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Grade') }}</label>
                                                 <label class="col-md-1 form-label"></label>
                                                 <div class="col-md-5 text-left">
                                                     <div class="form-group">
-                                                        <span id="student_dob"></span>
+                                                        <span id="student_grade"></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Father Name') }}</label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Status') }}</label>
                                                 <label class="col-md-1 form-label"></label>
                                                 <div class="col-md-5 text-left">
                                                     <div class="form-group">
-                                                        <span id="student_father"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Email') }}</label>
-                                                <label class="col-md-1 form-label"></label>
-                                                <div class="col-md-5 text-left">
-                                                    <div class="form-group">
-                                                        <span id="student_email"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Phone') }}</label>
-                                                <label class="col-md-1 form-label"></label>
-                                                <div class="col-md-5 text-left">
-                                                    <div class="form-group">
-                                                        <span id="student_phone"></span>
+                                                        <span id="student_status"></span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <input type="hidden" name="student_id">
-                                            <input type="hidden" name="student_register_id">
+                                            
                                             <div class="row mt-5 justify-content-center"> 
-                                                <button type="submit" name="save" class="btn btn-primary" onclick="approveStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                                <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveCPAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
-                                                <button type="submit" name="save" class="btn btn-primary"  onclick="rejectStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
+                                                <button type="submit" id="reject" name="save" class="btn btn-primary"  onclick="rejectCPAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
                                             </div>
                                         </div>
                                             
@@ -121,16 +90,9 @@
             </div>
         </div>
     </div>
-
-   
-
-
 @endsection
-
 @push('scripts')
 <script>
-    loadStudentMac();
-    
-
+    loadCPAOneExamData();
 </script>
 @endpush

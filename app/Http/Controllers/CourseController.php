@@ -20,6 +20,13 @@ class CourseController extends Controller
             'data' => $courses
         ],200);
     }
+    public function loadCourseByCourseType($course_type_id)
+    {
+        $courses = Course::where('course_type_id',$course_type_id)->with('batch')->get();
+        return response()->json([
+            'data' => $courses
+        ],200);
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -146,4 +153,5 @@ class CourseController extends Controller
             'data' => $course_type
         ],200);
     }
+    
 }

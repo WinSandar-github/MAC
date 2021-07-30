@@ -42,12 +42,17 @@ class StudentInfo extends Model
 
     public function student_register()
     {
-        return $this->hasOne(StudentRegister::class,'student_info_id','id');
+        return $this->hasMany(StudentRegister::class,'student_info_id','id');
     }
 
     public function exam_register()
     {
         return $this->hasOne(ExamRegister::class,'student_info_id','id');
+    }
+
+    public function exam_result()
+    {
+        return $this->hasOne(ExamResult::class,'student_info_id','id');
     }
 
     public function cpa_ff(){

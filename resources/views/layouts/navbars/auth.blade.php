@@ -50,18 +50,30 @@
                                 <p>{{ __('ဘွဲ့လိုအပ်ချက်') }}</p>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'index') }}">
-                                <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA Registration Form') }}</span>
-                            </a>
-                        </li>
                         <li class="{{ $elementActive == 'da_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_list') }}">
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('DA Application Form') }}</span>
                             </a>
                         </li>
+                        <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'index') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA 1 Registration List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'da_two_index' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'da_two_index') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA 2 Registration List') }}</span>
+                            </a>
+                        </li>
+                        {{--<li class="{{ $elementActive == 'index' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'index') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Registration Form') }}</span>
+                            </a>
+                        </li>--}}
                         <li class="{{ $elementActive == 'cpa_ff_registration_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_ff_registration_list') }}">
                                 <i class="nc-icon nc-paper"></i>
@@ -91,8 +103,20 @@
                                 <span>{{ __('DA Exam Form (1)') }}</span>
                             </a>
                         </li>
+                        <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_exam_one') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('CPA(1) Exam List') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
+            </li>
+            <li class="{{ $elementActive == 'exam_result_list' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'exam_result_list') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('Exam Results') }}</p>
+                </a>
             </li>
             {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'teacher_registration') }}">

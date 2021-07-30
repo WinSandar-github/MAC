@@ -31,14 +31,14 @@
                                         <table id="tbl_papp_list"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
-                                                    <th class="less-font-weight" >No</th>
-                                                    <th class="less-font-weight" >Name</th>
-                                                    <th class="less-font-weight" >NRC</th>     
-                                                    <th class="less-font-weight" >Registration Number</th>
-                                                    <th class="less-font-weight" >PAPP Date</th>
-                                                    <th class="less-font-weight" >No Use Firm Name</th>
-                                                    <th class="less-font-weight" >Status</th>
-                                                    <th class="less-font-weight" >Detail</th>
+                                                    <th class="bold-font-weight" >No</th>
+                                                    <th class="bold-font-weight" >Name</th>
+                                                    <th class="bold-font-weight" >NRC</th>     
+                                                    <th class="bold-font-weight" >Registration Number</th>
+                                                    <th class="bold-font-weight" >PAPP Date</th>
+                                                    <th class="bold-font-weight" >No Use Firm Name</th>
+                                                    <th class="bold-font-weight" >Status</th>
+                                                    <th class="bold-font-weight" >Detail</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_papp_list_body" class="hoverTable">

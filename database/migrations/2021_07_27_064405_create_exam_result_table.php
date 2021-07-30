@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStudentRegisterTable extends Migration
+class CreateExamResultTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,13 @@ class CreateStudentRegisterTable extends Migration
      */
     public function up()
     {
-        Schema::create('student_register', function (Blueprint $table) {
+        Schema::create('exam_result', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
+            $table->unsignedBigInteger('registeration_id');
+            $table->longText('result');
             $table->date('date');
-            $table->text('reg_reason')->nullable();
-            $table->unsignedBigInteger('invoice_id');
-            $table->date('invoice_date');
-            $table->integer('type');
-            $table->integer('status');
-            $table->string('form_type');
+
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
             $table->timestamps();
         });
@@ -35,6 +32,6 @@ class CreateStudentRegisterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('student_register');
+        Schema::dropIfExists('exam_result');
     }
 }
