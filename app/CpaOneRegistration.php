@@ -15,4 +15,7 @@ class CpaOneRegistration extends Model
     public function module(){
         return $this->belongsTo(Module::class); 
     }
+    public function cpa_two(){
+        return $this->hasOne(CpaTwoRegistration::class,'cpa_one_id','id');
+    }
 }

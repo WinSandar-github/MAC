@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\CpaTwoRegistration;
+use App\CpaOneRegistration;
 use Illuminate\Support\Facades\File; 
 
 class CPATwoRegistrationController extends Controller
 {
     public function index()
     {
-        $cpa_one_reg = CpaTwoRegistration::get();
+        $cpa_one_reg = CpaTwoRegistration::with('cpa_one')->get();
          return response()->json([
             'data' => $cpa_one_reg
         ],200);
@@ -41,6 +42,7 @@ class CPATwoRegistrationController extends Controller
         $cpa_two_reg->entrance_part =   $request->entrance_part;
         $cpa_two_reg->entrance_exam_no =   $request->entrance_exam_no;
         $cpa_two_reg->cpa_two_type=   $request->cpa_two_type;
+        $cpa_two_reg->status           =  0;
         $cpa_two_reg->save();
         
          return response()->json([
@@ -50,8 +52,28 @@ class CPATwoRegistrationController extends Controller
     }
     public function show($id)
     {
-        $cpa_one_reg = CpaTwoRegistration::where('id',$id)->get();
+        $cpa_one_reg = CpaTwoRegistration::where('id',$id)->with('cpa_one')->get();
         return $cpa_one_reg;
     }
+    
+    public function approve($id)
+    {
+        
+        $approve = CpaTwoRegistration::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
 
+    public function reject($id)
+    {
+        $reject = CpaTwoRegistration::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
 }
