@@ -22,6 +22,7 @@ class DARegisterController extends Controller
 
     public function store(Request $request)
     {
+        
         //$nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
@@ -105,7 +106,7 @@ class DARegisterController extends Controller
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id        = 1;
+        $student_course->batch_id        = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
         $student_course->save();

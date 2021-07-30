@@ -186,5 +186,13 @@ class ExamRegisterController extends Controller
         return "You have successfully registerd!";
     }
 
+    public function getExamByStudentID($id){
+        $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
+        return response()->json([
+            'data' => $exam_register
+        ],200);
+
+    }
+
 
 }

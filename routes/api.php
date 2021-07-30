@@ -105,5 +105,8 @@ Route::get('/get_course_type','CourseController@getCourseType');
 
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
+Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
+
+
 
 

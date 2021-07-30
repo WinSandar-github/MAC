@@ -6,6 +6,8 @@ use App\Batch;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Course;
+use Illuminate\Database\Eloquent\Builder;
+
 
 
 class BatchController extends Controller
@@ -103,17 +105,26 @@ class BatchController extends Controller
     {
         
         $currentDate = Carbon::today();
+        // $course = Course::orWhereHas('batches',function(Builder $query) use ($currentDate){
+       
+
+        //     $query->whereDate('start_date','<=',$currentDate);
+        //     $query->whereDate('end_date','>=',$currentDate);
+        // })->where('course_type_id',$course_type_id)->with('batches')->get();
+        
+        // return $course;
         $course = Course::where('course_type_id',$course_type_id)
-        ->with('course_type')
+        ->with('course_type','batches')
         ->get();
            
-        $batch = Batch::whereDate('start_date','<=',$currentDate)
-                        ->whereDate('end_date','>=',$currentDate)
-                            ->with('course')
-                        ->first();
+        // $batch = Batch::whereDate('start_date','<=',$currentDate)
+        //                 ->whereDate('end_date','>=',$currentDate)
+        //                     ->with('course')
+        //                 ->first();
+
+        // return $batch;                
                         
         return response()->json([
-            'batch' => $batch,
             'course' => $course
         ],200);
     }
