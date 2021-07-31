@@ -27,6 +27,7 @@ class CreateCpaTwoRegistrationsTable extends Migration
             $table->string('entrance_part')->nullable();;
             $table->string('entrance_exam_no')->nullable();;
             $table->integer('cpa_two_type')->nullable();;
+            $table->boolean('status')->default(0);
             $table->timestamps();
 
             $table->foreign('cpa_one_id')
