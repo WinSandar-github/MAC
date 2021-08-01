@@ -19,4 +19,14 @@ class Course extends Model
     public function batches(){
         return $this->hasMany(Batch::class);
     }
+
+    public function active_batch(){
+        $date = Date('Y-m-d');
+       return  $this->hasMany(Batch::class)->whereDate('start_date','<=',$date)
+                        ->whereDate('end_date','>=',$date);
+       
+      
+        
+
+    }
 }

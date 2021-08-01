@@ -105,24 +105,11 @@ class BatchController extends Controller
     {
         
         $currentDate = Carbon::today();
-        // $course = Course::orWhereHas('batches',function(Builder $query) use ($currentDate){
-       
-
-        //     $query->whereDate('start_date','<=',$currentDate);
-        //     $query->whereDate('end_date','>=',$currentDate);
-        // })->where('course_type_id',$course_type_id)->with('batches')->get();
         
-        // return $course;
+      
         $course = Course::where('course_type_id',$course_type_id)
-        ->with('course_type','batches')
+         ->with('course_type','active_batch')
         ->get();
-           
-        // $batch = Batch::whereDate('start_date','<=',$currentDate)
-        //                 ->whereDate('end_date','>=',$currentDate)
-        //                     ->with('course')
-        //                 ->first();
-
-        // return $batch;                
                         
         return response()->json([
             'course' => $course
