@@ -36,21 +36,21 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <table id="tbl_batch" class="table table-hover text-nowrap ">
-                                                <thead>
+                                                <thead >
                                                     <tr>
-                                                        <th class="less-font-weight" >Sr No</th>
-                                                        <th class="less-font-weight" >Name</th>
-                                                        <th class="less-font-weight" >Course</th>                                        
-                                                        <th class="less-font-weight">Start Date</th>
-                                                        <th class="less-font-weight">End Date</th>   
-                                                        <th class="less-font-weight">MAC Registration Start Date</th>
-                                                        <th class="less-font-weight">MAC Registration End Date/th>  
-                                                        <th class="less-font-weight">Self Registration Start Date</th>
-                                                        <th class="less-font-weight">Self Registration End Date</th>  
-                                                        <th class="less-font-weight">Private Registration Start Date</th>
-                                                        <th class="less-font-weight">Private Registration Endt Date</th>                                                       
-                                                        <th class="less-font-weight">Accept Application Date</th>
-                                                        <th class="less-font-weight" >Action</th>
+                                                        <th class="bold-font-weight" >Sr No</th>
+                                                        <th class="bold-font-weight" >Name</th>
+                                                        <th class="bold-font-weight" >Course</th>                                        
+                                                        <th class="bold-font-weight">Start Date</th>
+                                                        <th class="bold-font-weight">End Date</th>   
+                                                        <th class="bold-font-weight">MAC Registration Start Date</th>
+                                                        <th class="bold-font-weight">MAC Registration End Date</th>  
+                                                        <th class="bold-font-weight">Self Registration Start Date</th>
+                                                        <th class="bold-font-weight">Self Registration End Date</th>  
+                                                        <th class="bold-font-weight">Private Registration Start Date</th>
+                                                        <th class="bold-font-weight">Private Registration Endt Date</th>                                                       
+                                                        <th class="bold-font-weight">Accept Application Date</th>
+                                                        <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
                                                 </thead>
@@ -77,7 +77,7 @@
                     <!-- @csrf -->
                     <input type="hidden"  name="batch_id" >
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crate Batch</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Batch</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

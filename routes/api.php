@@ -34,7 +34,7 @@ Route::resource('/cpa_one_self_learner','CpaOneRegSelfLearnerController');
 Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
 Route::resource('/cpa_private_old','CpaPrivateOldController');
 Route::resource('/cpa_addmission_exam','CpaTraAddmissionExamController');
-Route::resource('/cpa_addmission_direct','CpaTraAddmissionDirectController');
+Route::resource('/cpa_register','CpaTraAddmissionDirectController');
 Route::resource('/cpa_two_tra_reg','CpaTwoTraRegisterController');
 Route::resource('/cpa_two_self_learner','CpaTwoRegSelfLearnerController');
 Route::resource('/cpa_two_private_newbie','CpaTwoPrivateNewbieController');
@@ -46,6 +46,7 @@ Route::apiResource('/requirement','RequirementController');
 
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
+Route::get('/course_by_course_type/{course_type_id}','CourseController@loadCourseByCourseType');
 Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
@@ -85,11 +86,15 @@ Route::resource('/student_register','StudentRegisterController');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 
+//DA2 Exam Register Form API
+Route::resource('/exam_register', 'ExamRegisterController');
+
 //DA Exam Form 1 API
 Route::resource('/exam_register', 'ExamRegisterController');
+Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-Route::get('/filter/{id}', 'ExamRegisterController@selectByID');
+Route::get('/filter/{id}', 'ExamRegisterController@selectByFormType');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
@@ -98,10 +103,23 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
+Route::post('/cpa_one_by_nrc','CPAOneRegistrationController@GetCPAOneByNRC');
+Route::patch('/approve_cpa_one_student/{id}', 'CPAOneRegistrationController@approve');
+Route::patch('/reject_cpa_one_student/{id}', 'CPAOneRegistrationController@reject');
+
+//CPA two registration
+Route::resource('/cpa_two_registration', 'CPATwoRegistrationController');
+Route::patch('/approve_cpa_two_student/{id}', 'CPATwoRegistrationController@approve');
+Route::patch('/reject_cpa_two_student/{id}', 'CPATwoRegistrationController@reject');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
+
+Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
+
+Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
+
 
 
 

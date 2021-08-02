@@ -111,7 +111,8 @@ class StudentInfoController extends Controller
      */
     public function show($id)
     {
-        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course')->first();
+        //
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct')->first();
         return response()->json(['data' => $student_info],200);
     }
 
@@ -145,8 +146,8 @@ class StudentInfoController extends Controller
             $image = $request->old_image;
         }
 
-        if ($request->hasfile('documents')) {
-            foreach($request->file('documents') as $file){
+        if ($request->hasfile('certificates')) {
+            foreach($request->file('certificates') as $file){
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
                 $certificate[] = '/storage/student_info/'.$name;
@@ -160,8 +161,8 @@ class StudentInfoController extends Controller
 
      
 
-         $student_info = StudentInfo::find($id);
-         $student_info->name_mm          =   $request->name_mm;
+        $student_info = StudentInfo::find($id);
+        $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng          =   $request->name_eng;
         $student_info->nrc_state_region =   $request['nrc_state_region'];
         $student_info->nrc_township     =   $request['nrc_township'] ;
@@ -218,7 +219,7 @@ class StudentInfoController extends Controller
 
         StudentCourseReg::where('student_info_id',$id)->delete();
         $student_course = new StudentCourseReg();
-        $student_course->student_info_id = $student_info->id;
+        $student_course->student_info_id = $student_info->id;   
         $student_course->batch_id        = $request->batch_id;
         $student_course->date            = date("Y-m-d",strtotime($request->course_date));
         $student_course->status          = $request->course_status;
@@ -245,5 +246,7 @@ class StudentInfoController extends Controller
         ],200);
 
     }
+
+   
     
 }

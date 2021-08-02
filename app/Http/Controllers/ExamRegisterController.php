@@ -7,6 +7,7 @@ use App\ExamRegister;
 use App\StudentInfo;
 use App\StudentRegister;
 use App\StudentCourseReg;
+use App\Batch;
 
 class ExamRegisterController extends Controller
 {
@@ -56,7 +57,7 @@ class ExamRegisterController extends Controller
         }
         $date = date('Y-m-d');
         $invoice_date = date('Y-m-d');
-
+      
         $exam = new ExamRegister();
         $exam->student_info_id = $request->student_id;
         $exam->date = $date;
@@ -80,6 +81,10 @@ class ExamRegisterController extends Controller
      */
     public function show($id)
     {
+        // $exam_register = ExamRegister::where('batch_id',$id)->get();
+        // return response()->json([
+        //     'data' => $exam_register
+        // ],200);
         $exam_register = ExamRegister::where('id',$id)->get();
         return response()->json([
             'data' => $exam_register
@@ -140,11 +145,72 @@ class ExamRegisterController extends Controller
         ],200);
     }
 
-    public function selectByID($id)
+    public function selectByFormType($id)
     {
-        $exam_register = ExamRegister::where('batch_id',$id)->get();
+        if($id=="all"){
+            $exam_register = ExamRegister::with('student_info')->get();
+        }
+        else 
+        {
+            $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
+        }
         return response()->json([
             'data' => $exam_register
         ],200);
     }
+
+    public function viewStudent($id)
+    {
+        $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
+        return response()->json([
+            'data' => $exam_register
+        ],200);
+    }
+
+    public function cpaExamRegister(Request $request)
+    {
+       
+        $student_info_id = $request->student_id;
+         
+       
+        $batch_id = StudentCourseReg::where('student_info_id', $student_info_id)->first()->batch_id;
+        $exam_type = Batch::where('id',$batch_id)->first()->course_id;
+        
+   
+        if ($request->hasfile('invoice_image')) 
+        {
+            $file = $request->file('invoice_image');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/exam_register/',$name);
+            $invoice_image = '/storage/exam_register/'.$name;
+        }
+        $date = date('Y-m-d');
+        $invoice_date = date('Y-m-d');
+      
+        $exam = new ExamRegister();
+        $exam->student_info_id = $request->student_id;
+        $exam->last_ans_exam_no= $request->last_ans_exam_no;
+        $exam->last_ans_module = $request->last_ans_module;
+        $exam->date = $date;
+        $exam->invoice_image = $invoice_image;
+        $exam->invoice_date = $invoice_date;
+        $exam->private_school_name = $request->private_school_name;
+        $exam->grade = 'A';
+        $exam->batch_id = $batch_id;
+        $exam->is_full_module = $request->is_full_module;
+        $exam->exam_type_id = $exam_type;
+        $exam->status = 0;
+        $exam->save();
+        return "You have successfully registerd!";
+    }
+
+    public function getExamByStudentID($id){
+        $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
+        return response()->json([
+            'data' => $exam_register
+        ],200);
+
+    }
+
+
 }

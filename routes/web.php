@@ -116,12 +116,22 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa1_examcard', 'ExamCardsController@CPA1_ExamCard');
 
     // CPA_FF Form
+    Route::patch('/approve_cpa_one_self_study/{id}', 'CPAOneRegistrationController@approve');
+    Route::patch('/reject_cpa_one_self_study/{id}', 'CPAOneRegistrationController@reject');
+
+    // CPA One Reg 
     Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
     Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 
     // PAPP Form
     Route::patch('/approve_papp/{id}', 'PAPPController@approve');
     Route::patch('/reject_papp/{id}', 'PAPPController@reject');
+
+    // Exam Result
+    Route::resource('/exam_result', 'ExamResultController');
+    Route::get('/mark', 'ExamResultController@index');
+    Route::get('/mark/{id}', 'ExamResultController@edit');
+    Route::post('/mark/{id}', 'ExamResultController@update');
 });
 
 Route::resource('/batch','BatchController');

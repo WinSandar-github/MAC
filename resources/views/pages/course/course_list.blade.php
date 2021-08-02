@@ -38,16 +38,16 @@
                                             <table id="tbl_course"class="table table-hover text-nowrap ">
                                                 <thead>
                                                     <tr>
-                                                        <th class="less-font-weight" >Sr No</th>
-                                                        <th class="less-font-weight" >Name</th>
-                                                        <th class="less-font-weight" >Form Fee</th>                                        
-                                                        <th class="less-font-weight" >Registration Fee</th>
-                                                        <th class="less-font-weight" >Exam Fee</th>
-                                                        <th class="less-font-weight" >Tution Fee</th>
-                                                        <th class="less-font-weight" >Registration Start Date</th>
-                                                        <th class="less-font-weight" >Registration End Date</th>
-                                                        <th class="less-font-weight" >Description</th>
-                                                        <th class="less-font-weight" >Action</th>
+                                                        <th class="bold-font-weight" >Sr No</th>
+                                                        <th class="bold-font-weight" >Name</th>
+                                                        <th class="bold-font-weight" >Form Fee</th>                                        
+                                                        <th class="bold-font-weight" >Registration Fee</th>
+                                                        <th class="bold-font-weight" >Exam Fee</th>
+                                                        <th class="bold-font-weight" >Tution Fee</th>
+                                                        <th class="bold-font-weight" >Registration Start Date</th>
+                                                        <th class="bold-font-weight" >Registration End Date</th>
+                                                        <th class="bold-font-weight" >Description</th>
+                                                        <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
                                                 </thead>
@@ -68,7 +68,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="create_course_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="create_course_modal" style="padding-top:150px;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <!-- <form method="post" action="{{ route('course.store') }}" enctype="multipart/form-data"> -->
@@ -204,8 +204,7 @@
             url:BACKEND_URL+'/get_course_type',
             type:'GET',
             success:function(response){
-                console.log(response.data)
-                var opt = '<option selected >Select</option>';
+                 var opt = '<option selected >Select</option>';
 
                 $.each(response.data,function(i,v){
                     opt +=
