@@ -100,6 +100,7 @@ Route::get('/filter/{id}', 'ExamRegisterController@selectByFormType');
 Route::resource('/da_register', 'DARegisterController');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
+Route::get('/filter_exam_register/{course_type}', 'DARegisterController@FilterExamRegister');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
