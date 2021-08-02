@@ -219,7 +219,7 @@ class StudentInfoController extends Controller
 
         StudentCourseReg::where('student_info_id',$id)->delete();
         $student_course = new StudentCourseReg();
-        $student_course->student_info_id = $student_info->id;
+        $student_course->student_info_id = $student_info->id;   
         $student_course->batch_id        = $request->batch_id;
         $student_course->date            = date("Y-m-d",strtotime($request->course_date));
         $student_course->status          = $request->course_status;
@@ -246,5 +246,7 @@ class StudentInfoController extends Controller
         ],200);
 
     }
+
+   
     
 }

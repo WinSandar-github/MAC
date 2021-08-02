@@ -68,6 +68,12 @@
                                 <span>{{ __('DA 2 Registration List') }}</span>
                             </a>
                         </li>
+                        {{-- <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'index') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Registration Form') }}</span>
+                            </a>
+                        </li> --}}
                         
                         <!-- CPA One -->
                         <li class="{{ $elementActive == 'cpa_one_registration_list' ? 'active' : '' }}">

@@ -15,7 +15,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('batch')->get();
+        $courses = Course::with('batches')->get();
         return response()->json([
             'data' => $courses
         ],200);
@@ -141,7 +141,7 @@ class CourseController extends Controller
     }
     public function studentCourse()
     {
-        $courses = Course::with('batch')->get();
+        $courses = Course::with('batches')->get();
         return response()->json([
             'data' => $courses
         ],200);
