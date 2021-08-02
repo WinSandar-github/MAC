@@ -50,6 +50,11 @@ class StudentInfo extends Model
         return $this->hasOne(ExamRegister::class,'student_info_id','id');
     }
 
+    public function exam_result()
+    {
+        return $this->hasOne(ExamResult::class,'student_info_id','id');
+    }
+
     public function cpa_ff(){
         return $this->hasOne(CPAFF::class,'student_info_id','id');
     }

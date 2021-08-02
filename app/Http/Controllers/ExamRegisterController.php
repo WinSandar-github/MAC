@@ -81,6 +81,10 @@ class ExamRegisterController extends Controller
      */
     public function show($id)
     {
+        // $exam_register = ExamRegister::where('batch_id',$id)->get();
+        // return response()->json([
+        //     'data' => $exam_register
+        // ],200);
         $exam_register = ExamRegister::where('id',$id)->get();
         return response()->json([
             'data' => $exam_register
@@ -141,9 +145,23 @@ class ExamRegisterController extends Controller
         ],200);
     }
 
-    public function selectByID($id)
+    public function selectByFormType($id)
     {
-        $exam_register = ExamRegister::where('batch_id',$id)->get();
+        if($id=="all"){
+            $exam_register = ExamRegister::with('student_info')->get();
+        }
+        else 
+        {
+            $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
+        }
+        return response()->json([
+            'data' => $exam_register
+        ],200);
+    }
+
+    public function viewStudent($id)
+    {
+        $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -185,12 +203,13 @@ class ExamRegisterController extends Controller
         $exam->save();
         return "You have successfully registerd!";
     }
-    public function exam_status($id)
-    {
-        $exam_register = ExamRegister::where('student_info_id',$id)->get();
+    public function getExamByStudentID($id){
+        $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
         return response()->json([
             'data' => $exam_register
         ],200);
+
     }
+
 
 }
