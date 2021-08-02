@@ -24,8 +24,8 @@
                                 <nav class="nav flex-column">
                                 	<a href="#my-modal" data-toggle="modal">DA Exam (1)</a>
                                     <a href="#my-modal" data-toggle="modal">DA Exam (2)</a>
-                                	<li>CPA Exam (1)</li>
-                                	<li>CPA Exam (2)</li>
+                                	<a href="#my-modal-1" data-toggle="modal">CPA Exam (1)</a>
+                                	<a href="#my-modal-1" data-toggle="modal">CPA Exam (2)</a>
                                 </nav>
                             </div>
                         </div>
@@ -66,10 +66,36 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="my-modal-1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+            <div class="modal-content">
+	            <form action="" method="get" enctype="multipart/form-data">
+	                <div class="modal-body">
+	                    <div class="row">
+	                    	<table width="100%">
+	                    		<tr>
+	                    			<td width="90%">
+	                    				<select class="form-control form-select" name="cpa_batch_id" id="cpa_batch_id">
+	                    				    <option value="cpa_batch_id" disabled selected>Select Batch</option>
+	                    				</select>
+	                    			</td>
+	                    			<td width="10%">
+	                    				<button type="submit" onclick="chooseCPABatch()" class="btn btn-primary btn-hover-dark" style="float: right;">View</button>
+	                    			</td>
+	                    		</tr>
+	                    	</table>
+	                    </div> 
+	                </div>
+	            </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @push('scripts')
 <script>
 	loadBatchData();
+    loadCPABatchData();
 </script>
 @endpush

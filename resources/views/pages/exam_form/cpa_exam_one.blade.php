@@ -19,8 +19,8 @@
                                 <tr>
                                     <td width="50%"><h5 class="title" style="padding-left: 330px;">{{ __('CPA(1) Exam List') }}</h5></td>
                                     <td width="25%">
-                                        <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id" style="margin-left: 75%; width: 70%;">
-                                            <option value="all" selected>All Batch</option>
+                                        <select class="form-control form-select" name="cpa_batch_id" id="cpa_batch_id" style="margin-left: 75%; width: 70%;">
+                                            <option value="all" selected>All Batches</option>
                                         </select>
                                     </td>
                                     <td width="25%">
