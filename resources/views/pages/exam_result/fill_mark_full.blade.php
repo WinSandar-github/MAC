@@ -91,27 +91,6 @@
                                             <input type="hidden" name="batch_id">
                                             <h5 style="font-weight:bold" align="center">အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
                                             <div class="row">
-                                                {{--<table width="100%">
-                                                    <tr>
-                                                        <td style="padding:1.5%;">
-                                                            <table class="table mark table-bordered input-table">
-                                                                <thead>
-                                                                    <tr > 
-                                                                        <th class="less-font-weight text-center" width="5%">စဉ်</th> 
-                                                                        <th class="less-font-weight text-center" width="35%">Subject Name</th>
-                                                                        <th class="less-font-weight text-center" width="30%">အမှတ်ပေးရန်</th>
-                                                                        <th class="less-font-weight text-center" width="20%">Grade</th>                                                    
-                                                                        <th class="text-center" width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowMark("mark")' value="+"></td>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                                                                       
-                                                                </tbody>
-                                                            </table>
-                                                        </td>
-                                                    </tr>
-                                                </table>--}}
-                                                
                                                 <table class="table mark table-bordered input-table" width="100%" style="margin: 3% 3% 0 3%;">
                                                     <tr>
                                                         <th width="10%">စဉ်</th>
