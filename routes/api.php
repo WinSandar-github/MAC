@@ -118,12 +118,8 @@ Route::get('/get_course_type','CourseController@getCourseType');
 
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
-<<<<<<< HEAD
-Route::get('/exam_status/{id}', 'ExamRegisterController@exam_status');
-=======
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 
 
 
->>>>>>> 6db030b117c0531b7dd82a702ffa07f5c154375a
 
