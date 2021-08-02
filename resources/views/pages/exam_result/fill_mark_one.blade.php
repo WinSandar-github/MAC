@@ -16,7 +16,8 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                {!! Form::open(array('route' => 'exam_result.store','method'=>'POST','files' => 'true')) !!}
+                <!-- {!! Form::open(array('route' => 'exam_result.store','method'=>'POST','files' => 'true')) !!} -->
+                <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">    
                     <div class="card">
                         
                         <div class="card-body">
@@ -90,9 +91,9 @@
                                             </div><br>
                                             <input type="hidden" name="batch_id">
                                             <h5 style="font-weight:bold" align="center">အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
-                                            <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">
+                                            
                                                 <div class="row">
-                                                    <table class="table mark table-bordered input-table" width="100%" style="margin: 3% 3% 0 3%;">
+                                                    <table class="table mark table-bordered input-table" id="tbl_fillmarks" width="100%" style="margin: 3% 3% 0 3%;">
                                                         <tr>
                                                             <th width="10%">စဉ်</th>
                                                             <th width="40%">Subject Name</th>
@@ -137,7 +138,6 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-                                            </form>
                                         </div>  
                                         <div class="card-footer"> 
                                             <div class="modal-footer">
@@ -149,7 +149,9 @@
                             </div>
                         </div>                     
                     </div>
-                {!! Form::close() !!}
+                <!-- {!! Form::close() !!} -->
+                
+                </form>
             </div>
         </div>
     </div>

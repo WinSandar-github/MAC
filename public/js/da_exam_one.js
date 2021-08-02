@@ -320,19 +320,33 @@ function fillMark(batchID, isFullModule){
     localStorage.setItem("batch_id",batchID);
     localStorage.setItem("is_full_module",isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
-    // console.log(is_full_module)
-    if(is_full_module == 0)
-    {
-        location.href="/fill_mark_one";
-    }
-    else if(is_full_module == 1)
-    {
-        location.href="/fill_mark_two";
-    }
-    else
-    {
-        location.href="/fill_mark_full";
-    }
+    console.log(is_full_module);
+    $.ajax({
+        url: BACKEND_URL+"/search_exam_result/"+batchID,
+        type: 'get',
+        data:"",
+        success: function(result){
+                console.log('search_exam_result',result.data.result);
+                console.log('search_exam_result',result.data.result.grades);
+                if(is_full_module == 0)
+                {
+
+                    location.href="/fill_mark_one";
+                }
+                else if(is_full_module == 1)
+                {
+                    location.href="/fill_mark_two";
+                }
+                else
+                {
+                    location.href="/fill_mark_full";
+                }
+            },
+        error:function (message){
+            console.log(message);
+            }
+        });
+    
 }
 
 function getModuleStd(){
@@ -389,5 +403,34 @@ function getModuleStd(){
 }
 
 function Exam_Result_Submit(){
-    
+    var id = localStorage.getItem("batch_id");
+    var table = document.getElementById("tbl_fillmarks");
+    var totalRowCount = table.rows.length;
+    console.log("row count",totalRowCount);
+    var data = new FormData();
+    for (var i = 1; i < totalRowCount; i++) {
+        data.append('subject[]',$('#subject'+i).val());
+    }
+    for (var i = 1; i < totalRowCount; i++) {
+        data.append('mark[]',$('#mark'+i).val());
+    }
+    for (var i = 1; i < totalRowCount; i++) {
+        data.append('grade[]',$('#grade'+i).val());
+    }
+    data.append('batch_id',id);
+    $.ajax({
+        url: BACKEND_URL+"/exam_result",
+        type: 'post',
+        data:data,
+        contentType: false,
+        processData: false,
+        success: function(result){
+            console.log(result);
+            successMessage("Insert Successfully");
+                //location.reload();
+            },
+        error:function (message){
+            console.log(message);
+            }
+        });
 }

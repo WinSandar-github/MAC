@@ -113,6 +113,10 @@ Route::resource('/cpa_two_registration', 'CPATwoRegistrationController');
 Route::patch('/approve_cpa_two_student/{id}', 'CPATwoRegistrationController@approve');
 Route::patch('/reject_cpa_two_student/{id}', 'CPATwoRegistrationController@reject');
 
+//Exam Result
+Route::resource('/exam_result','ExamResultController');
+Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResult');
+
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
