@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'non_audit_firm_registration'
+    'elementActive' => 'non-audit-firm-list'
 ])
 
 @section('content')
@@ -17,51 +17,60 @@
                 {{ Breadcrumbs::render('non-audit-firm-list') }}
             </div>
         </div>
-            <form action="" method="post">
-            @csrf
+            
+           
             
             <div class="row">
-                <div class="col-md-12">
-                    <div class="card custom-border-top card-stats">
-                            <div class="card-header ">
-                                
-                            </div>
-                            <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-10">
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <table id="tbl_non_audit" class="table table-hover text-nowrap">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="less-font-weight">Sr</th>
-                                                        <th class="less-font-weight">Accountancy Firm Registration No</th>
-                                                        <th class="less-font-weight">Accountancy Firm Name</th>
-                                                        <th >
-                                                            
-                                                        </th>
-                                                    </tr>
-                                                    
-                                                </thead>
-                                                <tbody id="tbl_non_audit_body" class="hoverTable"></tbody>
-                                            </table>
+                <div class="col-md-12 text-center">
+                    <form action="" method="post">
+                        <div class="card ">
+                                <div class="card-header ">
+                                    
+                                </div>
+                                <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                    
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <table id="tbl_non_audit" class="table table-hover text-nowrap">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="less-font-weight">Sr</th>
+                                                            <th class="less-font-weight">Accountancy Firm Registration No</th>
+                                                            <th class="less-font-weight">Accountancy Firm Name</th>
+                                                            <th class="less-font-weight">Township</th>
+                                                            <th class="less-font-weight">Post Code</th>
+                                                            <th class="less-font-weight">City</th>
+                                                            <th class="less-font-weight">State/Region</th>
+                                                            <th class="less-font-weight">Telephone</th>
+                                                            <th class="less-font-weight">Email</th>
+                                                            <th class="less-font-weight">Website</th>
+                                                            <th class="less-font-weight">
+                                                                Detail
+                                                            </th>
+                                                        </tr>
+                                                        
+                                                    </thead>
+                                                    <tbody id="tbl_non_audit_body" class="hoverTable"></tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                                
-                            </div>
+                                    
+                                </div>
 
 
-                            <div class="card-footer ">
-                                
-                            </div>
-                    </div>
+                                <div class="card-footer ">
+                                    
+                                </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        </form>
+        
 
     </div>
 
