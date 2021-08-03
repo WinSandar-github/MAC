@@ -130,11 +130,32 @@ class ExamResultController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $result = ExamResult::find($id);
-        $update = $this->prepareData($request->all());
-        ExamResult::find($id)->update($update);
-        Alert::success('Success', 'Successfully Updated Result');
-        //return view('pages.exam_result.exam_result_list');
+        $exam_result = ExamResult::find($id);
+        foreach($request->subject as $sub)
+        {
+            $subjects[] = $sub;
+        }
+        foreach($request->mark as $m)
+        {
+            $marks[] = $m;
+        }
+        foreach($request->grade as $g)
+        {
+            $grades[] = $g;
+        }
+        
+        // $std_data = ExamRegister::where('batch_id',$request->batch_id)->get('student_info_id');
+        // $student_info_id = $std_data[0]['student_info_id'];
+        // $reg_data = ExamRegister::where('batch_id',$request->batch_id)->get('id');
+        // $registeration_id = $reg_data[0]['id'];
+         $date = date('Y-m-d');               
+        // $exam_result->student_info_id=$student_info_id;
+        // $exam_result->registeration_id=$registeration_id ;
+        $exam_result->result=json_encode(['subjects'=>$subjects,'marks'=>$marks,'grades'=>$grades]);;
+        $exam_result->date=$date;
+        $exam_result->save();
+
+        return response()->json($exam_result,200);
     }
 
     /**

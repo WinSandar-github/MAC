@@ -321,37 +321,24 @@ function fillMark(batchID, isFullModule){
     localStorage.setItem("is_full_module",isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
     console.log(is_full_module);
-    $.ajax({
-        url: BACKEND_URL+"/search_exam_result/"+batchID,
-        type: 'get',
-        data:"",
-        success: function(result){
-                console.log('search_exam_result',result.data.result);
-                console.log('search_exam_result',result.data.result.grades);
-                if(is_full_module == 0)
-                {
-
-                    location.href="/fill_mark_one";
-                }
-                else if(is_full_module == 1)
-                {
-                    location.href="/fill_mark_two";
-                }
-                else
-                {
-                    location.href="/fill_mark_full";
-                }
-            },
-        error:function (message){
-            console.log(message);
-            }
-        });
+    if(is_full_module == 0)
+    {
+        location.href="/fill_mark_one";
+    }
+    else if(is_full_module == 1)
+    {
+        location.href="/fill_mark_two";
+    }
+    else
+    {
+        location.href="/fill_mark_full";
+    }
     
 }
 
 function getModuleStd(){
     var id = localStorage.getItem("batch_id");
-    // console.log(id);
+    var module_type = localStorage.getItem("is_full_module");
     $("input[name = batch_id]").val(id);
     $.ajax({
         url: BACKEND_URL + "/std/"+id,
@@ -398,6 +385,89 @@ function getModuleStd(){
                 $("#student_status").append(status);
                 $("#is_full_module").append(is_full_module);
             });
+
+            $.ajax({
+                url: BACKEND_URL+"/search_exam_result/"+id,
+                type: 'get',
+                data:"",
+                success: function(result){
+                        if(result!=null)
+                        {
+                            $("input[name = result_id]").val(result.data.id);
+                            console.log('search_exam_result',JSON.parse(result.data.result));
+                            var rData=JSON.parse(result.data.result);
+                            console.log(rData.subjects[1]);
+                            
+                            console.log('is_full_module',module_type);
+                            if(module_type == 0)
+                            {
+                                for (var i = 0; i < 3; i++) 
+                                {
+                                    var j=i+1;
+                                    var sunject=document.getElementById('subject'+j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 3; i++) 
+                                {
+                                    var j=i+1;
+                                    var mark=document.getElementById('mark'+j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 3; i++) 
+                                {
+                                    var j=i+1;
+                                    var grade=document.getElementById('grade'+j);
+                                    grade.value = rData.grades[i];
+                                }
+                            }
+                            else if(module_type == 1)
+                            {
+                                for (var i = 0; i < 2; i++) 
+                                {
+                                    var j=i+1;
+                                    var sunject=document.getElementById('subject'+j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 2; i++) 
+                                {
+                                    var j=i+1;
+                                    var mark=document.getElementById('mark'+j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 2; i++) 
+                                {
+                                    var j=i+1;
+                                    var grade=document.getElementById('grade'+j);
+                                    grade.value = rData.grades[i];
+                                }
+                            }
+                            else
+                            {
+                                for (var i = 0; i < 5; i++) 
+                                {
+                                    var j=i+1;
+                                    var sunject=document.getElementById('subject'+j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 5; i++) 
+                                {
+                                    var j=i+1;
+                                    var mark=document.getElementById('mark'+j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 5; i++) 
+                                {
+                                    var j=i+1;
+                                    var grade=document.getElementById('grade'+j);
+                                    grade.value = rData.grades[i];
+                                }
+                            }
+                        }
+                    },
+                error:function (message){
+                    console.log(message);
+                    }
+                });
         }
     });
 }
@@ -405,6 +475,8 @@ function getModuleStd(){
 function Exam_Result_Submit(){
     var id = localStorage.getItem("batch_id");
     var table = document.getElementById("tbl_fillmarks");
+    var result_id = $("input[name = result_id]").val();
+    console.log(result_id);
     var totalRowCount = table.rows.length;
     console.log("row count",totalRowCount);
     var data = new FormData();
@@ -418,19 +490,40 @@ function Exam_Result_Submit(){
         data.append('grade[]',$('#grade'+i).val());
     }
     data.append('batch_id',id);
-    $.ajax({
-        url: BACKEND_URL+"/exam_result",
-        type: 'post',
-        data:data,
-        contentType: false,
-        processData: false,
-        success: function(result){
-            console.log(result);
-            successMessage("Insert Successfully");
-                //location.reload();
+    if(result_id=="")
+    {
+        $.ajax({
+            url: BACKEND_URL+"/exam_result",
+            type: 'post',
+            data:data,
+            contentType: false,
+            processData: false,
+            success: function(result){
+                console.log(result);
+                successMessage("Insert Successfully");
+                location.reload();
+                },
+            error:function (message){
+                console.log(message);
+                }
+            });
+    }
+    else{
+        data.append('_method', 'PUT');
+        $.ajax({
+            url: BACKEND_URL+"/exam_result/"+result_id,
+            type: 'post',
+            data:data,
+            contentType: false,
+            processData: false,
+            success: function(result){
+                console.log(result.message);
+                successMessage("Updated Successfully");
+                location.reload();
             },
-        error:function (message){
-            console.log(message);
+            error:function (message){
+                console.log(message);
             }
         });
+    }
 }

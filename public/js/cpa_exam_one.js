@@ -282,8 +282,9 @@ function fillCPAMark(batchID, isFullModule){
 
 function getCPAModuleStd(){
     var id = localStorage.getItem("batch_id");
+    var module_type = localStorage.getItem("is_full_module");
     // console.log(id);
-    $("input[name = batch_id]").val(id);
+    //$("input[name = batch_id]").val(id);
     $.ajax({
         url: BACKEND_URL + "/std/"+id,
         type: 'get',
@@ -329,6 +330,67 @@ function getCPAModuleStd(){
                 $("#student_status").append(status);
                 $("#is_full_module").append(is_full_module);
             });
+            $.ajax({
+                url: BACKEND_URL+"/search_exam_result/"+id,
+                type: 'get',
+                data:"",
+                success: function(result){
+                        if(result!=null)
+                        {
+                            $("input[name = result_id]").val(result.data.id);
+                            console.log('search_exam_result',result.data.id);
+                            var rData=JSON.parse(result.data.result);
+                            console.log(rData.subjects[1]);
+                            
+                            console.log('is_full_module',module_type);
+                            if(module_type == 0 || module_type==1)
+                            {
+                                for (var i = 0; i < 3; i++) 
+                                {
+                                    var j=i+1;
+                                    var sunject=document.getElementById('subject'+j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 3; i++) 
+                                {
+                                    var j=i+1;
+                                    var mark=document.getElementById('mark'+j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 3; i++) 
+                                {
+                                    var j=i+1;
+                                    var grade=document.getElementById('grade'+j);
+                                    grade.value = rData.grades[i];
+                                }
+                            }
+                            else
+                            {
+                                for (var i = 0; i < 6; i++) 
+                                {
+                                    var j=i+1;
+                                    var sunject=document.getElementById('subject'+j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 6; i++) 
+                                {
+                                    var j=i+1;
+                                    var mark=document.getElementById('mark'+j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 6; i++) 
+                                {
+                                    var j=i+1;
+                                    var grade=document.getElementById('grade'+j);
+                                    grade.value = rData.grades[i];
+                                }
+                            }
+                        }
+                    },
+                error:function (message){
+                    console.log(message);
+                    }
+                });
         }
     });
 }

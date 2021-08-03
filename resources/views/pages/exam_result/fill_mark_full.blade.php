@@ -89,7 +89,7 @@
                                                     </div>
                                                 </div>
                                             </div><br>
-                                            <input type="hidden" name="batch_id">
+                                            <input type="hidden" name="result_id">
                                             <h5 style="font-weight:bold" align="center">အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
                                             
                                                 <div class="row">
@@ -103,61 +103,61 @@
                                                         <tr>
                                                             <td width="10%">1</td>
                                                             <td width="40%">
-                                                                <input type="text" name="subject1" id="subject1" class="form-control" value="{{ old('subject1') }}">
+                                                                <input type="text" name="subject1" id="subject1" class="form-control" value="{{ old('subject1') }}" required>
                                                             </td>
                                                             <td width="30%">
-                                                                <input type="text" name="mark1" id="mark1" class="form-control" value="{{ old('mark1') }}">
+                                                                <input type="text" name="mark1" id="mark1" class="form-control" value="{{ old('mark1') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade1" id="grade1" class="form-control" value="{{ old('grade1') }}">
+                                                                <input type="text" name="grade1" id="grade1" class="form-control" value="{{ old('grade1') }}" required>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td width="10%">2</td>
                                                             <td width="40%">
-                                                                <input type="text" name="subject2" id="subject2" class="form-control" value="{{ old('subject2') }}">
+                                                                <input type="text" name="subject2" id="subject2" class="form-control" value="{{ old('subject2') }}" required>
                                                             </td>
                                                             <td width="30%">
-                                                                <input type="text" name="mark2" id="mark2" class="form-control" value="{{ old('mark2') }}">
+                                                                <input type="text" name="mark2" id="mark2" class="form-control" value="{{ old('mark2') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade2" id="grade2" class="form-control" value="{{ old('grade2') }}">
+                                                                <input type="text" name="grade2" id="grade2" class="form-control" value="{{ old('grade2') }}" required>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td width="10%">3</td>
                                                             <td width="40%">
-                                                                <input type="text" name="subject3" id="subject3" class="form-control" value="{{ old('subject3') }}">
+                                                                <input type="text" name="subject3" id="subject3" class="form-control" value="{{ old('subject3') }}" required>
                                                             </td>
                                                             <td width="30%">
-                                                                <input type="text" name="mark3" id="mark3" class="form-control" value="{{ old('mark3') }}">
+                                                                <input type="text" name="mark3" id="mark3" class="form-control" value="{{ old('mark3') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade3" id="grade3" class="form-control" value="{{ old('grade3') }}">
+                                                                <input type="text" name="grade3" id="grade3" class="form-control" value="{{ old('grade3') }}" required>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td width="10%">4</td>
                                                             <td width="40%">
-                                                                <input type="text" name="subject4" id="subject4" class="form-control" value="{{ old('subject4') }}">
+                                                                <input type="text" name="subject4" id="subject4" class="form-control" value="{{ old('subject4') }}" required>
                                                             </td>
                                                             <td width="30%">
-                                                                <input type="text" name="mark4" id="mark4" class="form-control" value="{{ old('mark4') }}">
+                                                                <input type="text" name="mark4" id="mark4" class="form-control" value="{{ old('mark4') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade4" id="grade4" class="form-control" value="{{ old('grade4') }}">
+                                                                <input type="text" name="grade4" id="grade4" class="form-control" value="{{ old('grade4') }}" required>
                                                             </td>
                                                         </tr>
                                                         <tr>
                                                             <td width="10%">5</td>
                                                             <td width="40%">
-                                                                <input type="text" name="subject5" id="subject5" class="form-control" value="{{ old('subject5') }}">
+                                                                <input type="text" name="subject5" id="subject5" class="form-control" value="{{ old('subject5') }}" required>
                                                             </td>
                                                             <td width="30%">
-                                                                <input type="text" name="mark5" id="mark5" class="form-control" value="{{ old('mark5') }}">
+                                                                <input type="text" name="mark5" id="mark5" class="form-control" value="{{ old('mark5') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade5" id="grade5" class="form-control" value="{{ old('grade5') }}">
+                                                                <input type="text" name="grade5" id="grade5" class="form-control" value="{{ old('grade5') }}" required>
                                                             </td>
                                                         </tr>
                                                     </table>
