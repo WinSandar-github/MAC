@@ -203,4 +203,6 @@ class DARegisterController extends Controller
         return response()->json($status,200);
 
     }
+
+    
 }

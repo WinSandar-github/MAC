@@ -3,23 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\EducationLevel;
 use App\StudentCourseReg;
 use App\StudentInfo;
 
-class CpaController extends Controller
+class DATwoController extends Controller
 {
-    public function cpa_ff_registration(){
-           return view('pages.cpa.cpa_ff_registration');
-    }
-
-    public function cpa_ff_registration_form1()
-    {
-       $education_level = EducationLevel::all();  
-       return view('pages.cpa.cpa_ff_register_form1',compact('education_level'));
-    }
-
-    public function store_da_cpa_app_form(Request $request)
+    public function store(Request $request)
     {
 
         $course_date = date('Y-m-d');

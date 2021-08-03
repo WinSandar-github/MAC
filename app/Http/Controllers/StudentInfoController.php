@@ -207,23 +207,13 @@ class StudentInfoController extends Controller
         $education_histroy->qualified_date  = date("Y-m-d",strtotime($request->qualified_date));
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
-        // for($i=0;$i < sizeof($request->uni_name);$i++){
-       
-        //     $education_histroy  =   new EducationHistroy();
-        //     $education_histroy->student_info_id = $student_info->id;
-        //     $education_histroy->university_name = $request->uni_name[$i];
-        //     $education_histroy->degree_name     = isset($request->degree_name[$i])  ? $request->degree_name[$i] : null;
-        //     $education_histroy->qualified_date  = isset($request->qualified_date[$i])  ? date("Y-m-d",strtotime($request->qualified_date[$i])) : null;
-        //     $education_histroy->roll_number     = isset($request->roll_number[$i])  ? $request->roll_number[$i] : null;
-        //     $education_histroy->document        = isset($document[$i])     ? $document[$i] : null;
-        //     $education_histroy->save();
-        //     }
+      
 
         StudentCourseReg::where('student_info_id',$id)->delete();
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;   
         $student_course->batch_id        = $request->batch_id;
-        $student_course->date            = date("Y-m-d",strtotime($request->course_date));
+        // $student_course->date            = date("Y-m-d",strtotime($request->course_date));
         $student_course->status          = 1;
         $student_course->save();
 

@@ -120,6 +120,10 @@ Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 
+//Store DA/CPA Two Application Form
+Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
+
+
 
 
 
