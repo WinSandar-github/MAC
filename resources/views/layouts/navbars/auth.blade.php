@@ -149,6 +149,12 @@
                                 <span>{{ __('DA Exam (2)') }}</span>
                             </a>
                         </li>
+                        <li >
+                            <a href="#">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('QT') }}</span>
+                            </a>
+                        </li>
                         <li class="{{ $elementActive == 'cpa1_exam_result_edit' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa1_exam_result_edit') }}">
                                 <i class="nc-icon nc-paper"></i>
