@@ -32,28 +32,29 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->unsignedBigInteger('type_of_service_provided_id');
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
+            $table->integer('approve_reject_status')->default(0);
             $table->timestamps();
 
             $table->foreign('audit_firm_type_id')
             ->references('id')
             ->on('audit_firm_types')
-            ->onDelete('cascade');  
+            ->onDelete('cascade');
 
             $table->foreign('local_foreign_id')
             ->references('id')
             ->on('local_foreigns')
-            ->onDelete('cascade'); 
-            
+            ->onDelete('cascade');
+
             $table->foreign('type_of_service_provided_id')
             ->references('id')
             ->on('type_of_service_provideds')
-            ->onDelete('cascade');  
+            ->onDelete('cascade');
 
             $table->foreign('organization_structure_id')
             ->references('id')
             ->on('organization_structures')
-            ->onDelete('cascade');  
-            
+            ->onDelete('cascade');
+
         });
     }
 
