@@ -55,7 +55,8 @@
                                                         <th class="bold-font-weight">Self Registration End Date</th>  
                                                         <th class="bold-font-weight">Private Registration Start Date</th>
                                                         <th class="bold-font-weight">Private Registration Endt Date</th>                                                       
-                                                        <th class="bold-font-weight">Accept Application Date</th>
+                                                        <th class="bold-font-weight">Accept Application Start Date</th>
+                                                        <th class="bold-font-weight">Accept Application End Date</th>
                                                         <th class="bold-font-weight">Entrance Pass Start Date</th>                                                       
                                                         <th class="bold-font-weight">Entrance Pass End Date</th>
                                                         <th class="bold-font-weight" >Action</th>
@@ -189,17 +190,26 @@
                             
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('11.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Accept Application Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Accept Application Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="acc_app_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="acc_app_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="entrance_pass_start"  style="display:none; padding-left:15px;padding-right:15px">
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Accept Application End Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="acc_app_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="entrance_pass"  style="display:none; padding-left:15px;padding-right:15px">
                         <div>
                             <div class="row" >
-                                <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                                <label class="col-md-1 form-label">{{ __('13.') }}</label>
                                 <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
                                 <div class="col-md-7">
                                     <div class="form-group">                                
@@ -208,7 +218,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-md-1 form-label">{{ __('13.') }}</label>
+                                <label class="col-md-1 form-label">{{ __('14.') }}</label>
                                 <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
                                 <div class="col-md-7">
                                     <div class="form-group">                                
@@ -274,7 +284,11 @@
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
-        $("input[name='acc_app_date']").flatpickr({
+        $("input[name='acc_app_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='acc_app_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });

@@ -27,7 +27,8 @@ class CreateBatchesTable extends Migration
             $table->date('private_reg_end_date');
             $table->unsignedBigInteger('moodle_course_id');
             $table->boolean('publish_status');
-            $table->date('accept_application_date');
+            $table->date('accept_application_start_date');
+            $table->date('accept_application_end_date');
             $table->date('entrance_pass_start_date')->nullable();
             $table->date('entrance_pass_end_date')->nullable();
             $table->timestamps();
