@@ -196,25 +196,28 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="entrance_pass_start">
-                        <label class="col-md-1 form-label">{{ __('12.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
-                        <div class="col-md-7">
-                            <div class="form-group">                                
-                                <input type="text" name="entrance_pass_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                    <div class="row" id="entrance_pass_start"  style="display:none; padding-left:15px;padding-right:15px">
+                        <div>
+                            <div class="row" >
+                                <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">                                
+                                        <input type="text" name="entrance_pass_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-1 form-label">{{ __('13.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">                                
+                                        <input type="text" name="entrance_pass_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row" id="entrance_pass_end">
-                        <label class="col-md-1 form-label">{{ __('13.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
-                        <div class="col-md-7">
-                            <div class="form-group">                                
-                                <input type="text" name="entrance_pass_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
-                            </div>
-                        </div>
-                    </div>
-
                     
                 </div>
                 <div class="modal-footer">

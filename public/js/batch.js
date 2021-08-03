@@ -36,6 +36,18 @@ function getBatch(){
             var course_data=data.data;
             
             course_data.forEach(function (element) {     
+                if(element.entrance_pass_start_date==null){
+                    start_date="-";
+                }
+                else{
+                    start_date=element.entrance_pass_start_date;
+                }
+                if(element.entrance_pass_end_date==null){
+                    end_date="-";
+                }
+                else{
+                    end_date=element.entrance_pass_end_date;
+                }
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
                 tr += "<td>" + element.name + "</td>";
@@ -49,8 +61,8 @@ function getBatch(){
                 tr += "<td>" + element.private_reg_start_date + "</td>";
                 tr += "<td>" + element.private_reg_end_date + "</td>";
                 tr += "<td>" + element.accept_application_date + "</td>";
-                tr += "<td>" + element.entrance_pass_start_date + "</td>";
-                tr += "<td>" + element.entrance_pass_end_date + "</td>";
+                tr += "<td>" + start_date + "</td>";
+                tr += "<td>" + end_date + "</td>";
             
                 tr += "<td ><div class='btn-group'>";
                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
@@ -91,9 +103,13 @@ function showBatchInfo(id) {
             $('input[name=self_reg_end_date]').val(batch_data[0].self_reg_end_date);
             $('input[name=private_reg_start_date]').val(batch_data[0].private_reg_start_date);
             $('input[name=private_reg_end_date]').val(batch_data[0].private_reg_end_date);
-            $('input[name=acc_app_date]').val(batch_data[0].accept_application_date);            
-            $('input[name=entrance_pass_start_date]').val(batch_data[0].entrance_pass_start_date);
-            $('input[name=entrance_pass_end_date]').val(batch_data[0].entrance_pass_end_date);
+            $('input[name=acc_app_date]').val(batch_data[0].accept_application_date);      
+            if(batch_data[0].entrance_pass_start_date!=null){
+                $('input[name=entrance_pass_start_date]').val(batch_data[0].entrance_pass_start_date);
+            }      
+            if(batch_data[0].entrance_pass_end_date!=null){
+                $('input[name=entrance_pass_end_date]').val(batch_data[0].entrance_pass_end_date);
+            }
             
             $('#create_batch_modal').modal('toggle');
         },
@@ -165,3 +181,27 @@ function deleteBatchInfo(batchName,batchId){
             });
         }
 }
+
+$('#selected_course_id').on('change', function (e) {
+    var course_id = this.value;
+    $.ajax({
+        url: BACKEND_URL+"/course/"+course_id,
+        type: 'get',
+        data:"",
+        success: function(data){ 
+            console.log(data.data[0]); 
+            if(data.data[0].course_type_id==2){
+                document.getElementById('entrance_pass_start').style.display='block';
+                // document.getElementById('entrance_pass_end').style.display='block';
+            }
+            else{
+                document.getElementById('entrance_pass_start').style.display='none';
+                // document.getElementById('entrance_pass_end').style.display='none';
+            }
+        },
+        error:function (message){
+            dataMessage(message);        
+        }
+    
+    });
+});
