@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'da_exam_one'
+    'elementActive' => 'da_two_exam'
 ])
 
 @section('content')
@@ -73,9 +73,9 @@
                                             <input type="hidden" name="student_id">
                                             
                                             <div class="row mt-5 justify-content-center"> 
-                                                <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                                <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveDATwoExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
-                                                <button type="submit"  id="reject" name="save" class="btn btn-primary"  onclick="rejectDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
+                                                <button type="submit"  id="reject" name="save" class="btn btn-primary"  onclick="rejectDATwoExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
                                             </div>
                                         </div>
                                             

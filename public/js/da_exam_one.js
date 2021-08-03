@@ -1,60 +1,106 @@
 function getExam(){
     destroyDatatable("#tbl_da_exam_one", "#tbl_da_exam_one_body");
+    destroyDatatable("#tbl_da_exam_two", "#tbl_da_exam_two_body");
     var batch = $("#selected_batch_id").val();
-    console.log("selected",batch);
+    // console.log("selected",batch);
     $.ajax({
         url: BACKEND_URL + "/filter/"+batch,
         type: 'get',
         data:"",
         success: function(data){
-            console.log(data);
+            // console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
-                console.log('element',element.student_info.course_type_id);
+                // console.log('element',element.student_info.course_type_id);
+                
                 if(element.student_info.course_type_id==1)
                 {
-                    console.log('element',element);
+                    if(element.form_type=="da one")
+                    {
+                        console.log('element',element);
 
-                    if(element.status==0){
-                        status="PENDING";
+                        if(element.status==0){
+                            status="PENDING";
+                        }
+                        else if(element.status==1){
+                            status="APPROVED";
+                        }
+                        else{
+                            status="REJECTED";
+                        }
+                        if(element.exam_type_id == 0){
+                            exam_type_id = "SELF STUDY";
+                        }
+                        else if(element.exam_type_id==1){
+                            exam_type_id="PRIVATE SCHOOL";
+                        }
+                        else{
+                            exam_type_id="MAC STUDENT";
+                        }
+                        var tr = "<tr>";
+                        tr += "<td>" +  + "</td>";
+                        tr += "<td>" + element.private_school_name + "</td>";
+                        tr += "<td>" + exam_type_id + "</td>";
+                        tr += "<td>" + element.grade + "</td>";
+                        tr += "<td>" + status+ "</td>";
+                        tr += "<td>" + element.batch_id+ "</td>";
+                        tr += "<td ><div class='btn-group'>";
+                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                        tr += "<td ><div class='btn-group'>";
+                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id  + ")'>" +
+                        "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                        tr += "</tr>";
+                        $("#tbl_da_exam_one_body").append(tr);
                     }
-                    else if(element.status==1){
-                        status="APPROVED";
+                    else if(element.form_type=="da two")
+                    {
+                        console.log('element',element);
+
+                        if(element.status==0){
+                            status="PENDING";
+                        }
+                        else if(element.status==1){
+                            status="APPROVED";
+                        }
+                        else{
+                            status="REJECTED";
+                        }
+                        if(element.exam_type_id == 0){
+                            exam_type_id = "SELF STUDY";
+                        }
+                        else if(element.exam_type_id==1){
+                            exam_type_id="PRIVATE SCHOOL";
+                        }
+                        else{
+                            exam_type_id="MAC STUDENT";
+                        }
+                        var tr = "<tr>";
+                        tr += "<td>" +  + "</td>";
+                        tr += "<td>" + element.private_school_name + "</td>";
+                        tr += "<td>" + exam_type_id + "</td>";
+                        tr += "<td>" + element.grade + "</td>";
+                        tr += "<td>" + status+ "</td>";
+                        tr += "<td>" + element.batch_id+ "</td>";
+                        tr += "<td ><div class='btn-group'>";
+                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDaTwoExam(" + element.id + ")'>" +
+                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                        tr += "<td ><div class='btn-group'>";
+                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id  + ")'>" +
+                        "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                        tr += "</tr>";
+                        $("#tbl_da_exam_two_body").append(tr);
                     }
-                    else{
-                        status="REJECTED";
-                    }
-                    if(element.exam_type_id == 0){
-                        exam_type_id = "SELF STUDY";
-                    }
-                    else if(element.exam_type_id==1){
-                        exam_type_id="PRIVATE SCHOOL";
-                    }
-                    else{
-                        exam_type_id="MAC STUDENT";
-                    }
-                    var tr = "<tr>";
-                    tr += "<td>" +  + "</td>";
-                    tr += "<td>" + element.private_school_name + "</td>";
-                    tr += "<td>" + exam_type_id + "</td>";
-                    tr += "<td>" + element.grade + "</td>";
-                    tr += "<td>" + status+ "</td>";
-                    tr += "<td>" + element.batch_id+ "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id  + ")'>" +
-                    "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
-                    tr += "</tr>";
-                    $("#tbl_da_exam_one_body").append(tr);
                 }
             });
             getIndexNumber('#tbl_da_exam_one tr');
             createDataTable("#tbl_da_exam_one");
+            getIndexNumber('#tbl_da_exam_two tr');
+            createDataTable("#tbl_da_exam_two");
         },
         error:function (message){
             dataMessage(message, "#tbl_da_exam_one", "#tbl_da_exam_one_body");
+            dataMessage(message, "#tbl_da_exam_two", "#tbl_da_exam_two_body");
         }
     });
 }
@@ -63,12 +109,16 @@ function showExam(studentId){
     localStorage.setItem("student_id",studentId);
     location.href="/da_exam_one_edit";
 }
+function showDaTwoExam(studentId){
+    localStorage.setItem("student_id",studentId);
+    location.href="/da_two_exam_edit";
+}
 function printExamCard(studentId){
     localStorage.setItem("student_id",studentId);
     location.href="/da1_examcard";
 }
 
-function loadExamData()
+function loadDAExamData()
 {
     var id=localStorage.getItem("student_id");
     console.log(id);
@@ -141,7 +191,7 @@ function loadStudentDataForExamCard()
     })
 }
 
-function approveExam(){
+function approveDAOneExam(){
     var id = $("input[name = student_id]").val();
     $.ajax({
         url: BACKEND_URL + "/approve_exam/"+id,
@@ -155,7 +205,7 @@ function approveExam(){
     });
 }
 
-function rejectExam(){
+function rejectDAOneExam(){
     var id = $("input[name = student_id]").val();
     $.ajax({
         url:  BACKEND_URL + "/reject_exam/"+id,
@@ -164,6 +214,34 @@ function rejectExam(){
             console.log(result)
             successMessage("You have rejected that form!");
             location.href = "/da_exam_one";
+            getExam();
+        }
+    });
+}
+
+function approveDATwoExam(){
+    var id = $("input[name = student_id]").val();
+    $.ajax({
+        url: BACKEND_URL + "/approve_exam/"+id,
+        type: 'PATCH',
+        success: function(result){
+            console.log(result)
+            successMessage("You have approved that form!");
+            location.href = "/da_two_exam";
+            getExam();
+        }
+    });
+}
+
+function rejectDATwoExam(){
+    var id = $("input[name = student_id]").val();
+    $.ajax({
+        url:  BACKEND_URL + "/reject_exam/"+id,
+        type: 'PATCH',
+        success: function(result){
+            console.log(result)
+            successMessage("You have rejected that form!");
+            location.href = "/da_two_exam";
             getExam();
         }
     });

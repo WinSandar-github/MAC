@@ -166,8 +166,8 @@ Breadcrumbs::for('audit-firm-initial-accountancy', function ($trail) {
     $trail->push('Accountancy Firm Information(Initial)', route('page.index', 'audit-firm-initial-accountancy'));
 });
 Breadcrumbs::for('audit-firm-list', function ($trail) {
-    $trail->parent('audit_firm_registration');
-    $trail->push('Audit Firm List', route('page.index', 'audit-firm-list'));
+    $trail->parent('administration');
+    $trail->push('Audit Firm Registration List', route('page.index', 'audit-firm-list'));
 });
 Breadcrumbs::for('audit-firm-renew-accountancy', function ($trail) {
     $trail->parent('audit_firm_registration');
@@ -197,8 +197,8 @@ Breadcrumbs::for('non-audit-firm-foreign-renew', function ($trail) {
     $trail->push('Foreign Firm Information(Renew)', route('page.index', 'non-audit-firm-foreign-renew'));
 });
 Breadcrumbs::for('non-audit-firm-list', function ($trail) {
-    $trail->parent('non_audit_firm_registration');
-    $trail->push('Non_Audit Firm List', route('page.index', 'non-audit-firm-list'));
+    $trail->parent('administration');
+    $trail->push('Non_Audit Firm Registration List', route('page.index', 'non-audit-firm-list'));
 });
 Breadcrumbs::for('cpa_part1_registration', function ($trail) {
     $trail->push('CPA Part 1', route('page.index', 'cpa_part1_registration'));
@@ -291,8 +291,9 @@ Breadcrumbs::for('papp_register_renew_form2', function ($trail) {
     $trail->parent('papp_registration_renew');
     $trail->push('အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်သူများ ဖြည့်သွင်းပေးရန်အချက်များ', route('page.index', 'papp_register_renew_form2'));
 });
-Breadcrumbs::for('da_part1_registration', function ($trail) {
-    $trail->push('DA Part 1', route('page.index', 'da_part1_registration'));
+Breadcrumbs::for('DA 1 Registration List', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('DA 1 Registration List', route('page.index', 'index'));
 });
 Breadcrumbs::for('da_part1_register_form1', function ($trail) {
     $trail->parent('da_part1_registration');
@@ -314,8 +315,9 @@ Breadcrumbs::for('da_part1_register_form5', function ($trail) {
     $trail->parent('da_part1_registration');
     $trail->push('သင်တန်းပြီးဆုံး(အောင်/ကျရှုံး)ကြောင်း အထောက်အထားတောင်းခံမှူပုံစံ', route('page.index', 'da_part1_register_form5'));
 });
-Breadcrumbs::for('da_part2_registration', function ($trail) {
-    $trail->push('DA Part 2', route('page.index', 'da_part2_registration'));
+Breadcrumbs::for('DA 2 Registration List', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('DA 2 Registration List', route('page.index', 'da_two_index'));
 });
 Breadcrumbs::for('da_part2_register_form1', function ($trail) {
     $trail->parent('da_part2_registration');
@@ -365,13 +367,13 @@ Breadcrumbs::for('index', function ($trail) {
     $trail->push('da_registration_form', route('page.index', 'index'));
 });
 Breadcrumbs::for('da_list', function ($trail) {
-    $trail->parent('home');
-    $trail->push('DA Form List', route('page.index', 'da_list'));
+    $trail->parent('administration');
+    $trail->push('DA Application Form List', route('page.index', 'da_list'));
 });
 
 // CPAFF List
 Breadcrumbs::for('cpa_ff_registration_list', function ($trail) {
-    $trail->parent('home');
+    $trail->parent('administration');
     $trail->push('CPA Full Fleged Form List', route('page.index', 'cpa_ff_registration_list'));
 });
 Breadcrumbs::for('cpa_ff_edit', function ($trail) {
@@ -382,8 +384,8 @@ Breadcrumbs::for('cpa_ff_edit', function ($trail) {
 
 // CPA One Registration List
 Breadcrumbs::for('cpa_one_registration_list', function ($trail) {
-    $trail->parent('home');
-    $trail->push('CPA One Registration Form List', route('page.index', 'cpa_one_registration_list'));
+    $trail->parent('administration');
+    $trail->push('CPA 1 Registration Form List', route('page.index', 'cpa_one_registration_list'));
 });
 Breadcrumbs::for('cpa_one_selfstudy_edit', function ($trail) {
     $trail->parent('cpa_one_registration_list');
@@ -400,8 +402,8 @@ Breadcrumbs::for('cpa_one_mac_edit', function ($trail) {
 
 // CPA Two Registration List
 Breadcrumbs::for('cpa_two_registration_list', function ($trail) {
-    $trail->parent('home');
-    $trail->push('CPA Two Registration Form List', route('page.index', 'cpa_two_registration_list'));
+    $trail->parent('administration');
+    $trail->push('CPA 2 Registration Form List', route('page.index', 'cpa_two_registration_list'));
 });
 Breadcrumbs::for('cpa_two_selfstudy_edit', function ($trail) {
     $trail->parent('cpa_two_registration_list');
@@ -418,10 +420,20 @@ Breadcrumbs::for('cpa_two_mac_edit', function ($trail) {
 
 // PAPP List
 Breadcrumbs::for('papp_registration_list', function ($trail) {
-    $trail->parent('home');
+    $trail->parent('administration');
     $trail->push('PAPP Form List', route('page.index', 'papp_registration_list'));
 });
 Breadcrumbs::for('papp_edit', function ($trail) {
     $trail->parent('papp_registration_list');
     $trail->push('PAPP Detail List', route('page.index', 'papp_edit'));
+});
+
+// Home > Administration > Course > သင်တန်း
+Breadcrumbs::for('သင်တန်း', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('သင်တန်း', route('page.index', 'course'));
+});
+Breadcrumbs::for('ဘွဲ့လိုအပ်ချက်', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('ဘွဲ့လိုအပ်ချက်', route('page.index', 'requirement_list'));
 });

@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'cpa_exam_one'
+    'elementActive' => 'cpa_two_exam'
 ])
 @section('content')
 <div class="content">
@@ -15,22 +15,19 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-12">
-                                <h5 class="card-title">{{ __('CPA One Exam List') }}</h5>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                                
-                            </div>
-                            <div class="col-md-2">
-                                <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
-                                    <option value="all" selected>All Batch</option>
-                                </select>
-                            </div>
-                            <div class="col-md-2">
-                                <button type="submit" onclick="getCPAExam()" class="btn btn-primary btn-hover-dark m-1" >Search</button>
-                            </div>
+                            <table width="100%">
+                                <tr>
+                                    <td width="50%"><h5 class="title" style="padding-left: 330px;">{{ __('CPA(2) Exam List') }}</h5></td>
+                                    <td width="25%">
+                                        <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id" style="margin-left: 75%; width: 70%;">
+                                            <option value="all" selected>All Batch</option>
+                                        </select>
+                                    </td>
+                                    <td width="25%">
+                                        <button type="submit" onclick="getCPAExam()" class="btn btn-primary btn-hover-dark" style="margin-left: 63%;">Search</button>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                     <div class="card-body">
@@ -38,7 +35,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <table id="tbl_cpa_exam_one"class="table table-hover text-nowrap ">
+                                        <table id="tbl_cpa_exam_two"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight" >No</th>
@@ -51,7 +48,7 @@
                                                     <th class="bold-font-weight" >Print</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbl_cpa_exam_one_body" class="hoverTable">
+                                            <tbody id="tbl_cpa_exam_two_body" class="hoverTable">
                                             </tbody>
                                         </table>
                                     </div>

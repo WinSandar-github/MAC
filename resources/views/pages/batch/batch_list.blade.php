@@ -21,8 +21,14 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title">{{ __('Batch List') }}</h5>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
                                 <div class="col-md-8">
-                                    <h5 class="title" style="padding-left: 330px;">{{ __('Batch Lists') }}</h5>
+                                    
                                 </div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_batch_modal">Create</button>
