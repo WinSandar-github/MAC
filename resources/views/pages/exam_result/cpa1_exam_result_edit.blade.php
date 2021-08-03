@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'exam_result_list'
+    'elementActive' => 'cpa1_exam_result_edit'
 ])
 
 @section('content')
@@ -26,7 +26,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
-                                            <table id="tbl_exam_result"class="table table-hover text-nowrap ">
+                                            <table id="tbl_cpa_exam_result"class="table table-hover text-nowrap ">
                                                 <thead>
                                                     <tr>
                                                       <th class="less-font-weight" >No</th>
@@ -40,7 +40,7 @@
                                                       <th class="less-font-weight" >Detail</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="tbl_exam_result_body" class="hoverTable">
+                                                <tbody id="tbl_cpa_exam_result_body" class="hoverTable">
                                                 </tbody>
                                             </table>
                                         </div>
@@ -57,6 +57,6 @@
 
 @push('scripts')
 <script>
-	loadStudent();
+	loadCPAStudent('cpa one');
 </script>
 @endpush

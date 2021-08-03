@@ -93,6 +93,6 @@
 @endsection
 @push('scripts')
 <script>
-    loadCPAOneExamData();
+    loadCPAExamData();
 </script>
 @endpush

@@ -124,6 +124,18 @@
                                                                 <input type="text" name="grade2" id="grade2" class="form-control" value="{{ old('grade2') }}" required>
                                                             </td>
                                                         </tr>
+                                                        <tr>
+                                                            <td width="10%">3</td>
+                                                            <td width="40%">
+                                                                <input type="text" name="subject3" id="subject3" class="form-control" value="{{ old('subject3') }}" required>
+                                                            </td>
+                                                            <td width="30%">
+                                                                <input type="text" name="mark3" id="mark3" class="form-control" value="{{ old('mark3') }}" required>
+                                                            </td>
+                                                            <td width="20%">
+                                                                <input type="text" name="grade3" id="grade3" class="form-control" value="{{ old('grade3') }}" required>
+                                                            </td>
+                                                        </tr>
                                                     </table>
                                                 </div>
                                         </div>  
@@ -146,6 +158,6 @@
 @endsection
 @push('scripts')
 <script>
-    getModuleStd();
+    getCPAModuleStd();
 </script>
 @endpush
