@@ -120,10 +120,22 @@
                                 <span>{{ __('DA Exam Form (1)') }}</span>
                             </a>
                         </li>
+                        <li class="{{ $elementActive == 'da_two_exam' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'da_two_exam') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Exam Form (2)') }}</span>
+                            </a>
+                        </li>
                         <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_exam_one') }}">
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('CPA(1) Exam List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'cpa_two_exam' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_two_exam') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('CPA(2) Exam List') }}</span>
                             </a>
                         </li>
                     </ul>
