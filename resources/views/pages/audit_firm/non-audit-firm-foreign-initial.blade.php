@@ -907,7 +907,7 @@
                                                     <div class="col-md-10">
                                                         <div class="card">
                                                             <div class="card-body">
-                                                                <table id="tbl_non_audit" class="table">
+                                                                <table id="tbl_non_audit_number" class="table">
                                                                     <thead>
                                                                         <tr>
                                                                             <th class="less-font-weight" ></th>
@@ -916,7 +916,7 @@
                                                                         </tr>
                                                                         
                                                                     </thead>
-                                                                    <tbody id="tbl_non_audit_body">
+                                                                    <tbody id="tbl_non_audit_number_body">
                                                                         
                                                                     </tbody>
                                                                 </table>
