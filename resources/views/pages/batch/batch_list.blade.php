@@ -56,6 +56,8 @@
                                                         <th class="bold-font-weight">Private Registration Start Date</th>
                                                         <th class="bold-font-weight">Private Registration Endt Date</th>                                                       
                                                         <th class="bold-font-weight">Accept Application Date</th>
+                                                        <th class="bold-font-weight">Entrance Pass Start Date</th>                                                       
+                                                        <th class="bold-font-weight">Entrance Pass End Date</th>
                                                         <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
@@ -194,7 +196,24 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="row" id="entrance_pass_start">
+                        <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="entrance_pass_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="entrance_pass_end">
+                        <label class="col-md-1 form-label">{{ __('13.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="entrance_pass_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                            </div>
+                        </div>
+                    </div>
 
                     
                 </div>
@@ -217,6 +236,8 @@
 </script>
 
 <script type="text/javascript">
+
+
     $(document).ready(function (e) {
         $("input[name='start_date']").flatpickr({
                 enableTime: false,
@@ -251,6 +272,14 @@
                 dateFormat: "Y-m-d",
         });
         $("input[name='acc_app_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='entrance_pass_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='entrance_pass_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
