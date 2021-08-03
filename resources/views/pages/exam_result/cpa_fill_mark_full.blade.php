@@ -16,7 +16,8 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                {!! Form::open(array('route' => 'exam_result.store','method'=>'POST','files' => 'true')) !!}
+                <!-- {!! Form::open(array('route' => 'exam_result.store','method'=>'POST','files' => 'true')) !!} -->
+                <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">    
                     <div class="card">
                         
                         <div class="card-body">
@@ -88,90 +89,91 @@
                                                     </div>
                                                 </div>
                                             </div><br>
-                                            <input type="hidden" name="batch_id">
+                                            <input type="hidden" name="result_id">
                                             <h5 style="font-weight:bold" align="center">အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
-                                            <div class="row">
-                                                <table class="table mark table-bordered input-table" width="100%" style="margin: 3% 3% 0 3%;">
-                                                    <tr>
-                                                        <th width="10%">စဉ်</th>
-                                                        <th width="40%">Subject Name</th>
-                                                        <th width="30%">အမှတ်ပေးရန်</th>
-                                                        <th width="20%">Grade</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="10%">1</td>
-                                                        <td width="40%">
-                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="30%">
-                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="20%">
-                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="10%">2</td>
-                                                        <td width="40%">
-                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="30%">
-                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="20%">
-                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="10%">3</td>
-                                                        <td width="40%">
-                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="30%">
-                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="20%">
-                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="10%">4</td>
-                                                        <td width="40%">
-                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="30%">
-                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="20%">
-                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="10%">5</td>
-                                                        <td width="40%">
-                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="30%">
-                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="20%">
-                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td width="10%">6</td>
-                                                        <td width="40%">
-                                                            {!! Form::text('subject_name[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="30%">
-                                                            {!! Form::text('mark[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                        <td width="20%">
-                                                            {!! Form::text('grade[]', null, ['class' => 'form-control']) !!}
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
+                                            
+                                                <div class="row">
+                                                    <table class="table mark table-bordered input-table" id="tbl_fillmarks" width="100%" style="margin: 3% 3% 0 3%;">
+                                                        <tr>
+                                                            <th width="10%">စဉ်</th>
+                                                            <th width="40%">Subject Name</th>
+                                                            <th width="30%">အမှတ်ပေးရန်</th>
+                                                            <th width="20%">Grade</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10%">1</td>
+                                                            <td width="40%">
+                                                                <input type="text" name="subject1" id="subject1" class="form-control" value="{{ old('subject1') }}" required>
+                                                            </td>
+                                                            <td width="30%">
+                                                                <input type="text" name="mark1" id="mark1" class="form-control" value="{{ old('mark1') }}" required>
+                                                            </td>
+                                                            <td width="20%">
+                                                                <input type="text" name="grade1" id="grade1" class="form-control" value="{{ old('grade1') }}" required>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10%">2</td>
+                                                            <td width="40%">
+                                                                <input type="text" name="subject2" id="subject2" class="form-control" value="{{ old('subject2') }}" required>
+                                                            </td>
+                                                            <td width="30%">
+                                                                <input type="text" name="mark2" id="mark2" class="form-control" value="{{ old('mark2') }}" required>
+                                                            </td>
+                                                            <td width="20%">
+                                                                <input type="text" name="grade2" id="grade2" class="form-control" value="{{ old('grade2') }}" required>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10%">3</td>
+                                                            <td width="40%">
+                                                                <input type="text" name="subject3" id="subject3" class="form-control" value="{{ old('subject3') }}" required>
+                                                            </td>
+                                                            <td width="30%">
+                                                                <input type="text" name="mark3" id="mark3" class="form-control" value="{{ old('mark3') }}" required>
+                                                            </td>
+                                                            <td width="20%">
+                                                                <input type="text" name="grade3" id="grade3" class="form-control" value="{{ old('grade3') }}" required>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10%">4</td>
+                                                            <td width="40%">
+                                                                <input type="text" name="subject4" id="subject4" class="form-control" value="{{ old('subject4') }}" required>
+                                                            </td>
+                                                            <td width="30%">
+                                                                <input type="text" name="mark4" id="mark4" class="form-control" value="{{ old('mark4') }}" required>
+                                                            </td>
+                                                            <td width="20%">
+                                                                <input type="text" name="grade4" id="grade4" class="form-control" value="{{ old('grade4') }}" required>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10%">5</td>
+                                                            <td width="40%">
+                                                                <input type="text" name="subject5" id="subject5" class="form-control" value="{{ old('subject5') }}" required>
+                                                            </td>
+                                                            <td width="30%">
+                                                                <input type="text" name="mark5" id="mark5" class="form-control" value="{{ old('mark5') }}" required>
+                                                            </td>
+                                                            <td width="20%">
+                                                                <input type="text" name="grade5" id="grade5" class="form-control" value="{{ old('grade5') }}" required>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td width="10%">6</td>
+                                                            <td width="40%">
+                                                                <input type="text" name="subject6" id="subject6" class="form-control" value="{{ old('subject6') }}" required>
+                                                            </td>
+                                                            <td width="30%">
+                                                                <input type="text" name="mark6" id="mark6" class="form-control" value="{{ old('mark6') }}" required>
+                                                            </td>
+                                                            <td width="20%">
+                                                                <input type="text" name="grade6" id="grade6" class="form-control" value="{{ old('grade6') }}" required>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                         </div>  
                                         <div class="card-footer"> 
                                             <div class="modal-footer">
@@ -183,7 +185,9 @@
                             </div>
                         </div>                     
                     </div>
-                {!! Form::close() !!}
+                <!-- {!! Form::close() !!} -->
+                
+                </form>
             </div>
         </div>
     </div>

@@ -10,7 +10,7 @@
         @include('flash-message')
         <div class="row">
             <div class="col-md-12">   
-                   
+            {{ Breadcrumbs::render('DA 2 Registration List') }}
             </div>
         </div>       
 
