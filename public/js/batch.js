@@ -11,7 +11,8 @@ function createBatch(){
     send_data.append('private_reg_start_date',$("input[name=private_reg_start_date]").val());
     send_data.append('private_reg_end_date',$("input[name=private_reg_end_date]").val());
     send_data.append('accept_application_date',$("input[name=acc_app_date]").val());
-
+    send_data.append('entrance_pass_start_date',$("input[name=entrance_pass_start_date]").val());
+    send_data.append('entrance_pass_end_date',$("input[name=entrance_pass_end_date]").val());
     $.ajax({
             url: BACKEND_URL+"/batch",
             type: 'post',
@@ -48,6 +49,8 @@ function getBatch(){
                 tr += "<td>" + element.private_reg_start_date + "</td>";
                 tr += "<td>" + element.private_reg_end_date + "</td>";
                 tr += "<td>" + element.accept_application_date + "</td>";
+                tr += "<td>" + element.entrance_pass_start_date + "</td>";
+                tr += "<td>" + element.entrance_pass_end_date + "</td>";
             
                 tr += "<td ><div class='btn-group'>";
                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
@@ -89,6 +92,8 @@ function showBatchInfo(id) {
             $('input[name=private_reg_start_date]').val(batch_data[0].private_reg_start_date);
             $('input[name=private_reg_end_date]').val(batch_data[0].private_reg_end_date);
             $('input[name=acc_app_date]').val(batch_data[0].accept_application_date);            
+            $('input[name=entrance_pass_start_date]').val(batch_data[0].entrance_pass_start_date);
+            $('input[name=entrance_pass_end_date]').val(batch_data[0].entrance_pass_end_date);
             
             $('#create_batch_modal').modal('toggle');
         },
@@ -112,6 +117,8 @@ function updateBatch(){
     var private_reg_start_date=$("input[name=private_reg_start_date]").val();
     var private_reg_end_date=$("input[name=private_reg_end_date]").val();
     var accept_application_date=$("input[name=acc_app_date]").val();  
+    var entrance_pass_start_date=$("input[name=entrance_pass_start_date]").val();
+    var entrance_pass_end_date=$("input[name=entrance_pass_end_date]").val(); 
    
     $.ajax({
         url: BACKEND_URL+"/batch/"+id,
@@ -127,7 +134,9 @@ function updateBatch(){
             self_reg_end_date:self_reg_end_date,
             private_reg_start_date:private_reg_start_date,
             private_reg_end_date:private_reg_end_date,
-            accept_application_date:accept_application_date
+            accept_application_date:accept_application_date,
+            entrance_pass_start_date:entrance_pass_start_date,
+            entrance_pass_end_date:entrance_pass_end_date
         },        
         success: function(result){
             successMessage("Update Successfully");
