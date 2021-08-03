@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'exam_result_list'
+    'elementActive' => 'cpa1_exam_result_edit'
 ])
 
 @section('content')
@@ -57,6 +57,6 @@
 
 @push('scripts')
 <script>
-	loadCPAStudent();
+	loadCPAStudent('cpa one');
 </script>
 @endpush
