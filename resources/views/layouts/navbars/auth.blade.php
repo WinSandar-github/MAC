@@ -141,7 +141,48 @@
                     </ul>
                 </div>
             </li>
-            <li class="{{ $elementActive == 'exam_result_list' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'examresults' ? 'active' : '' }}">
+                <a data-toggle="collapse" href="#examresults">
+                    <i class="nc-icon nc-tap-01"></i>
+                    <p>{{ __('Exam Results') }}</p>
+                    <b class="caret"></b>
+                </a>
+                <div class="collapse in" id="examresults">
+                    <ul class="nav">
+                        <li class="{{ $elementActive == 'da1_exam_result_edit' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'da1_exam_result_edit') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Exam (1)') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'da2_exam_result_edit' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'da2_exam_result_edit') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Exam (2)') }}</span>
+                            </a>
+                        </li>
+                        <li >
+                            <a href="#">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('QT') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'cpa1_exam_result_edit' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa1_exam_result_edit') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('CPA Exam (1)') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'cpa2_exam_result_edit' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa2_exam_result_edit') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('CPA Exam (2)') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <!-- <li class="{{ $elementActive == 'exam_result_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'exam_result_list') }}">
                     <i class="nc-icon nc-paper"></i>
                     <p>{{ __('Exam Results') }}</p>
@@ -149,7 +190,7 @@
             </li>
             <li class="{{ Request::is('mark*') ? 'active' : '' }}">
                 <a href="{{ url('mark') }}"><i class="nc-icon nc-paper"></i><span>Marked Students list</span></a>
-            </li>
+            </li> -->
             {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'teacher_registration') }}">
                     <i class="nc-icon nc-paper"></i>
