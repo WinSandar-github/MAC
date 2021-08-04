@@ -327,6 +327,7 @@ class AccFirmInfController extends Controller
                 $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
                 $audit_file->ppa_certificate    = json_encode($ppa_certi);
                 $audit_file->letterhead        = json_encode($letterhead);
+                $audit_file->tax_clearance    = json_encode($tax_clearance);
                 $audit_file->representative     = json_encode($representative);
                 $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);                
                 $audit_file->deeds_memo        = json_encode($deeds_memo);
