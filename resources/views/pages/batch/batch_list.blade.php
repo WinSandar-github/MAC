@@ -290,7 +290,6 @@
                 dateFormat: "Y-m-d",
         });
         $("input[name='app_acc_end_date']").flatpickr({
-        $("input[name='acc_app_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
