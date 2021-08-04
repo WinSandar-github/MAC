@@ -24,8 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call([TypeOfServiceProvidedSeeder::class]);
         $this->call([LocalForeignSeeder::class]);
         $this->call([EducationLevelSeeder::class]);
-        $this->call([ModuleSeeder::class]);
-        $this->call([CpaOneTrainingGroundSeeder::class]);
+        // $this->call([ModuleSeeder::class]);
+        // $this->call([CpaOneTrainingGroundSeeder::class]);
         $this->call([CourseTypeSeeder::class]);
 
         // $this->call([CourseFeeSeeder::class]);
