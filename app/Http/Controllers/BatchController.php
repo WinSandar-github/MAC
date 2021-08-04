@@ -43,7 +43,10 @@ class BatchController extends Controller
         $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
-        $batch->accept_application_date = date('Y-m-d',strtotime($request->acc_app_date));
+        $batch->accept_application_start_date = date('Y-m-d',strtotime($request->accept_application_start_date));
+        $batch->accept_application_end_date = date('Y-m-d',strtotime($request->accept_application_end_date));
+        $batch->entrance_pass_start_date      =empty($request->entrance_pass_start_date)? null: date('Y-m-d',strtotime($request->entrance_pass_start_date));
+        $batch->entrance_pass_end_date       = empty($request->entrance_pass_end_date)? null: date('Y-m-d',strtotime($request->entrance_pass_end_date));
         $batch->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -77,7 +80,10 @@ class BatchController extends Controller
         $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
-        $batch->accept_application_date = date('Y-m-d',strtotime($request->acc_app_date));
+        $batch->accept_application_start_date = date('Y-m-d',strtotime($request->accept_application_start_date));  
+        $batch->accept_application_end_date = date('Y-m-d',strtotime($request->accept_application_end_date));              
+        $batch->entrance_pass_start_date      =empty($request->entrance_pass_start_date)? null: date('Y-m-d',strtotime($request->entrance_pass_start_date));
+        $batch->entrance_pass_end_date       = empty($request->entrance_pass_end_date)? null: date('Y-m-d',strtotime($request->entrance_pass_end_date));
         $batch->save();
         return response()->json([
             'message' => "Update Successfully"

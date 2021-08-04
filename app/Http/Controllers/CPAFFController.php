@@ -150,9 +150,10 @@ class CPAFFController extends Controller
 
     public function approve($id)
     {
-        
+        $accepted_date = date('Y-m-d');
         $approve = CPAFF::find($id);
         $approve->status = 1;
+        $approve->accepted_date=$accepted_date;
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -201,6 +202,13 @@ class CPAFFController extends Controller
     //         'message' => "Delete Successfully"
     //     ],200);   
     // }
+
+    public function getCpaffByStuId($stu_id){
+        $cpaff = CPAFF::where('student_info_id',$stu_id)->first();
+        return response()->json([
+            'data'  => $cpaff
+        ]);
+    }
 }
 
 

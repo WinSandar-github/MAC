@@ -20,8 +20,6 @@ class CreateCoursesTable extends Migration
             $table->integer('registration_fee');
             $table->integer('exam_fee');
             $table->integer('tution_fee');
-            $table->date('registration_start_date');
-            $table->date('registration_end_date');
             $table->text('description');
             $table->unsignedBigInteger('course_type_id');
             $table->string('code','1');
