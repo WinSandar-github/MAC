@@ -15,8 +15,6 @@ function createCourse(){
     send_data.append('registration_fee',removeComma($("input[name=registration_fee]").val()));
     send_data.append('exam_fee',removeComma($("input[name=exam_fee]").val()));
     send_data.append('tution_fee',removeComma($("input[name=tution_fee]").val()));
-    send_data.append('registration_start_date',$("input[name=registration_start_date]").val());
-    send_data.append('registration_end_date',$("input[name=registration_end_date]").val());
     send_data.append('description',$("input[name=description]").val());   
     send_data.append('code',$("input[name=code]").val());   
 
@@ -56,8 +54,6 @@ function getCourse(){
                 tr += "<td>" + thousands_separators(element.registration_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.exam_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.tution_fee) + "</td>";
-                tr += "<td>" + element.registration_start_date + "</td>";
-                tr += "<td>" + element.registration_start_date + "</td>";
                 tr += "<td>" + element.description + "</td>";
             
                 tr += "<td ><div class='btn-group'>";

@@ -48,8 +48,6 @@
                                                         <th class="bold-font-weight" >Registration Fee</th>
                                                         <th class="bold-font-weight" >Exam Fee</th>
                                                         <th class="bold-font-weight" >Tution Fee</th>
-                                                        <th class="bold-font-weight" >Registration Start Date</th>
-                                                        <th class="bold-font-weight" >Registration End Date</th>
                                                         <th class="bold-font-weight" >Description</th>
                                                         <th class="bold-font-weight" >Action</th>
                                                     </tr>
@@ -132,24 +130,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Registration Start Date') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">                                
-                                    <input type="text" name="registration_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Registration End Date') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">                                
-                                    <input type="text" name="registration_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Description') }}</label>
                             <div class="col-md-7">
@@ -163,7 +143,7 @@
                             <label class="col-md-4 form-label">{{ __('Code') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group"> 
-                                    <input type="text" name="code" class="form-control"  placeholder="Description" autocomplete="off">
+                                    <input type="text" name="code" class="form-control"  placeholder="Code" autocomplete="off">
                                 </div>
                             </div>
                         </div>    
