@@ -27,6 +27,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('nrc_back');
             $table->string('cpd_record');
             $table->string('passport_image');
+            $table->date('accepted_date')->default(null)->nullable();
             $table->boolean('status')->default(0);
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');            
             $table->timestamps();
