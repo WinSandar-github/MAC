@@ -487,6 +487,27 @@ class AccFirmInfController extends Controller
         
     }
 
+    public function approve($id)
+    {
+        
+        $approve = AccountancyFirmInformation::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $reject = AccountancyFirmInformation::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

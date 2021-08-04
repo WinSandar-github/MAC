@@ -138,6 +138,55 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            
+
+                                            <div class="row  pl-4 mt-2 border-bottom">
+                                                <!-- <div class="col-md-2"></div> -->
+                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+                                                <div class="col-md-7">
+                                                    <div class="form-group">
+                                                        <span id="name_sole_proprietor"></span>
+                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="row pl-4 mt-2 border-bottom">
+                                                <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
+                                                <label class="col-md-4 col-form-label font-weight-bold">{{ __('Declaration') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+                                                <div class="col-md-7">
+                                                    <div class="form-group">
+                                                        <span id="declaration"></span>
+                                                        <!-- I <input type="text" name="declaration" class="" autocomplete="off" >
+                                                        (sole proprietor/ managing partner) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct. -->
+                                                    </div>
+                                                </div>                                          
+                                            
+                                            
+                                            </div>
+                                            <div class="row pl-4 mt-2 border-bottom">
+                                                <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
+                                                <label class="col-md-4 col-form-label font-weight-bold">{{ __('Local OR Foregin) }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+                                                <div class="col-md-7">
+                                                    <div class="form-group">
+                                                        <span id="local_foreign_id"></span>
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                            <div class="row pl-4 mt-2 border-bottom">
+                                                <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
+                                                <label class="col-md-4 col-form-label font-weight-bold">{{ __('Approve / Reject Status') }}</label>
+                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+                                                <div class="col-md-7">
+                                                    <div class="form-group">
+                                                        <span id="status"></span>
+                                                    </div>
+                                                </div> 
+                                            </div>
                                             <!-- <div class="row  pl-4">
                                                 <div class="col-md-2">
                                                     <div class="form-group">
@@ -881,17 +930,6 @@
                                                 </div>
                                             </div>
 
-                                            <div class="row  pl-4 mt-2 border-bottom">
-                                                <!-- <div class="col-md-2"></div> -->
-                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
-                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <span id="name_sole_proprietor"></span>
-                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
-                                                    </div>
-                                                </div>
-                                            </div>
                                             <!-- <div class="row pl-4 mt-2">
                                                 <label class="col-md-1 col-form-label">{{ __('8') }}</label>
                                                 <label class="col-md-112 col-form-label" style="font-weight:bold">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
@@ -970,27 +1008,14 @@
                                                 </div>
                                                 <div class="row type_service_provided border-bottom"></div><br/>
 
-                                                <div class="row pl-4 mt-2">
-                                                    <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
-                                                    <label class="col-md-4 col-form-label font-weight-bold">{{ __('Declaration') }}</label>
-                                                    <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                    <div class="col-md-7">
-                                                        <div class="form-group">
-                                                            <span id="declaration"></span>
-                                                            <!-- I <input type="text" name="declaration" class="" autocomplete="off" >
-                                                            (sole proprietor/ managing partner) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct. -->
-                                                        </div>
-                                                    </div>
                                                 
-                                                
-                                                
-                                                </div>
                                             
                                                 <!-- <div class="row">
                                                     <div class="col-md-11 d-md-flex justify-content-md-end">
                                                         <button type="submit" class="btn btn-primary btn-round" form="audit_firm_form">{{ __('Save') }}</button>
                                                     </div>
                                                 </div> -->
+                                                <input type="hidden" name="audit_firm_id" >
 
                                                 <div class="row mt-5 justify-content-center"> 
                                                     <button type="submit" name="save" class="btn btn-primary" onclick="approveAuditFirm()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
@@ -1050,7 +1075,7 @@
 @push('scripts')
 <script>
     loadOrganization();
-    loadTypeOfService();
+    loadAuditTypeOfService();
     loadAuditTotalStaff();
     loadAuditStaff();
     autoLoadAudit();

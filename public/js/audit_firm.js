@@ -1,150 +1,150 @@
 
-function createAuditFirm(){
+// function createAuditFirm(){
     
-  var send_data=new FormData();
-  send_data.append('accountancy_firm_reg_no',$("input[name=accountancy_firm_reg_no]").val());
-  send_data.append('accountancy_firm_name',$("input[name=accountancy_firm_name]").val());
-  send_data.append('township',$("input[name=township]").val());
-  send_data.append('post_code',$("input[name=post_code]").val());
-  send_data.append('city',$("input[name=city]").val());
-  send_data.append('state',$("input[name=state]").val());
-  send_data.append('phone_no',$("input[name=phone_no]").val());
-  send_data.append('email',$("input[name=email]").val());
-  send_data.append('website',$("input[name=website]").val());
-  send_data.append('audit_firm_type_id',$("input[name=audit_firm_type_id]").val());
-  send_data.append('local_foreign_id',$("input[name=local_foreign_id]").val());
-  send_data.append('org_stru_id',$('input[name=org_stru_id]:checked').val());
-  send_data.append('t_s_p_id',$('input[name=t_s_p_id]:checked').val());
-  send_data.append('name_sole_proprietor',$("input[name=name_sole_proprietor]").val());
-  send_data.append('declaration',$("input[name=declaration]").val());
-  $('input[name="bo_branch_name[]"]').map(function(){send_data.append('bo_branch_name[]',$(this).val())});
-  $('input[name="bo_township[]"]').map(function(){send_data.append("bo_township[]",$(this).val());});
-  $('input[name="bo_post_code[]"]').map(function(){send_data.append("bo_post_code[]",$(this).val());});
-  $('input[name="bo_city[]"]').map(function(){send_data.append("bo_city[]",$(this).val());});
-  $('input[name="bo_state_region[]"]').map(function(){send_data.append("bo_state_region[]",$(this).val());});
-  $('input[name="bo_phone[]"]').map(function(){send_data.append("bo_phone[]",$(this).val());});
-  $('input[name="bo_email[]"]').map(function(){send_data.append("bo_email[]",$(this).val());});
-  $('input[name="bo_website[]"]').map(function(){send_data.append("bo_website[]",$(this).val());});
-  $('input[name="foa_name[]"]').map(function(){send_data.append("foa_name[]",$(this).val());});
-  $('input[name="foa_pub_pri_reg_no[]"]').map(function(){send_data.append("foa_pub_pri_reg_no[]",$(this).val());});
-  $('input[name="fona_name[]"]').map(function(){send_data.append("fona_name[]",$(this).val());});
-  $('input[name="fona_pass_csc_inco[]"]').map(function(){send_data.append("fona_pass_csc_inco[]",$(this).val());});
-  $("input[id=report_yes]").map(function(){send_data.append('foa_authority_to_sign[]',$(this).val());});
-  $('input[name="do_name[]"]').map(function(){send_data.append("do_name[]",$(this).val());});
-  $('input[name="do_position[]"]').map(function(){send_data.append("do_position[]",$(this).val());});
-  $('input[name="do_cpa_reg_no[]"]').map(function(){send_data.append("do_cpa_reg_no[]",$(this).val());});
-  $('input[name="do_pub_pri_reg_no[]"]').map(function(){send_data.append("do_pub_pri_reg_no[]",$(this).val());});
-  $('input[name="dona_name[]"]').map(function(){send_data.append("dona_name[]",$(this).val());});
-  $('input[name="dona_position[]"]').map(function(){send_data.append("dona_position[]",$(this).val());});
-  $('input[name="dona_passport[]"]').map(function(){send_data.append("dona_passport[]",$(this).val());});
-  $('input[name="dona_csc_no[]"]').map(function(){send_data.append("dona_csc_no[]",$(this).val());});
-  $('input[name="ats_total[]"]').map(function(){send_data.append("ats_total[]",$(this).val());});
-  $('input[name="ats_audit_staff[]"]').map(function(){send_data.append("ats_audit_staff[]",$(this).val());});
-  $('input[name="ats_non_audit_staff[]"]').map(function(){send_data.append("ats_non_audit_staff[]",$(this).val());});
-  $('input[name="ats_audit_total_staff_type_id[]"]').map(function(){send_data.append("ats_audit_total_staff_type_id[]",$(this).val());});
-  $('input[name="as_total[]"]').map(function(){send_data.append("as_total[]",$(this).val());});
-  $('input[name="as_full_time[]"]').map(function(){send_data.append("as_full_time[]",$(this).val());});
-  $('input[name="as_part_time[]"]').map(function(){send_data.append("as_part_time[]",$(this).val());});
-  $('input[name="as_audit_staff_type_id[]"]').map(function(){send_data.append('as_audit_staff_type_id[]',$(this).val());});
-  $('input[name="nats_total[]"]').map(function(){send_data.append("nats_total[]",$(this).val());});
-  $('input[name="nats_type_id[]"]').map(function(){send_data.append("nats_type_id[]",$(this).val());});
-  $('input[name="mf_name[]"]').map(function(){send_data.append("mf_name[]",$(this).val());});
-  $('input[name="mf_position[]"]').map(function(){send_data.append("mf_position[]",$(this).val());});
-  $('input[name="mf_cpa_passed_reg_no[]"]').map(function(){send_data.append("mf_cpa_passed_reg_no[]",$(this).val());});
-  $('input[name="mf_cpa_full_reg_no[]"]').map(function(){send_data.append("mf_cpa_full_reg_no[]",$(this).val());});
-  $('input[name="mf_pub_pra_reg_no[]"]').map(function(){send_data.append("mf_pub_pra_reg_no[]",$(this).val());});
+//   var send_data=new FormData();
+//   send_data.append('accountancy_firm_reg_no',$("input[name=accountancy_firm_reg_no]").val());
+//   send_data.append('accountancy_firm_name',$("input[name=accountancy_firm_name]").val());
+//   send_data.append('township',$("input[name=township]").val());
+//   send_data.append('post_code',$("input[name=post_code]").val());
+//   send_data.append('city',$("input[name=city]").val());
+//   send_data.append('state',$("input[name=state]").val());
+//   send_data.append('phone_no',$("input[name=phone_no]").val());
+//   send_data.append('email',$("input[name=email]").val());
+//   send_data.append('website',$("input[name=website]").val());
+//   send_data.append('audit_firm_type_id',$("input[name=audit_firm_type_id]").val());
+//   send_data.append('local_foreign_id',$("input[name=local_foreign_id]").val());
+//   send_data.append('org_stru_id',$('input[name=org_stru_id]:checked').val());
+//   send_data.append('t_s_p_id',$('input[name=t_s_p_id]:checked').val());
+//   send_data.append('name_sole_proprietor',$("input[name=name_sole_proprietor]").val());
+//   send_data.append('declaration',$("input[name=declaration]").val());
+//   $('input[name="bo_branch_name[]"]').map(function(){send_data.append('bo_branch_name[]',$(this).val())});
+//   $('input[name="bo_township[]"]').map(function(){send_data.append("bo_township[]",$(this).val());});
+//   $('input[name="bo_post_code[]"]').map(function(){send_data.append("bo_post_code[]",$(this).val());});
+//   $('input[name="bo_city[]"]').map(function(){send_data.append("bo_city[]",$(this).val());});
+//   $('input[name="bo_state_region[]"]').map(function(){send_data.append("bo_state_region[]",$(this).val());});
+//   $('input[name="bo_phone[]"]').map(function(){send_data.append("bo_phone[]",$(this).val());});
+//   $('input[name="bo_email[]"]').map(function(){send_data.append("bo_email[]",$(this).val());});
+//   $('input[name="bo_website[]"]').map(function(){send_data.append("bo_website[]",$(this).val());});
+//   $('input[name="foa_name[]"]').map(function(){send_data.append("foa_name[]",$(this).val());});
+//   $('input[name="foa_pub_pri_reg_no[]"]').map(function(){send_data.append("foa_pub_pri_reg_no[]",$(this).val());});
+//   $('input[name="fona_name[]"]').map(function(){send_data.append("fona_name[]",$(this).val());});
+//   $('input[name="fona_pass_csc_inco[]"]').map(function(){send_data.append("fona_pass_csc_inco[]",$(this).val());});
+//   $("input[id=report_yes]").map(function(){send_data.append('foa_authority_to_sign[]',$(this).val());});
+//   $('input[name="do_name[]"]').map(function(){send_data.append("do_name[]",$(this).val());});
+//   $('input[name="do_position[]"]').map(function(){send_data.append("do_position[]",$(this).val());});
+//   $('input[name="do_cpa_reg_no[]"]').map(function(){send_data.append("do_cpa_reg_no[]",$(this).val());});
+//   $('input[name="do_pub_pri_reg_no[]"]').map(function(){send_data.append("do_pub_pri_reg_no[]",$(this).val());});
+//   $('input[name="dona_name[]"]').map(function(){send_data.append("dona_name[]",$(this).val());});
+//   $('input[name="dona_position[]"]').map(function(){send_data.append("dona_position[]",$(this).val());});
+//   $('input[name="dona_passport[]"]').map(function(){send_data.append("dona_passport[]",$(this).val());});
+//   $('input[name="dona_csc_no[]"]').map(function(){send_data.append("dona_csc_no[]",$(this).val());});
+//   $('input[name="ats_total[]"]').map(function(){send_data.append("ats_total[]",$(this).val());});
+//   $('input[name="ats_audit_staff[]"]').map(function(){send_data.append("ats_audit_staff[]",$(this).val());});
+//   $('input[name="ats_non_audit_staff[]"]').map(function(){send_data.append("ats_non_audit_staff[]",$(this).val());});
+//   $('input[name="ats_audit_total_staff_type_id[]"]').map(function(){send_data.append("ats_audit_total_staff_type_id[]",$(this).val());});
+//   $('input[name="as_total[]"]').map(function(){send_data.append("as_total[]",$(this).val());});
+//   $('input[name="as_full_time[]"]').map(function(){send_data.append("as_full_time[]",$(this).val());});
+//   $('input[name="as_part_time[]"]').map(function(){send_data.append("as_part_time[]",$(this).val());});
+//   $('input[name="as_audit_staff_type_id[]"]').map(function(){send_data.append('as_audit_staff_type_id[]',$(this).val());});
+//   $('input[name="nats_total[]"]').map(function(){send_data.append("nats_total[]",$(this).val());});
+//   $('input[name="nats_type_id[]"]').map(function(){send_data.append("nats_type_id[]",$(this).val());});
+//   $('input[name="mf_name[]"]').map(function(){send_data.append("mf_name[]",$(this).val());});
+//   $('input[name="mf_position[]"]').map(function(){send_data.append("mf_position[]",$(this).val());});
+//   $('input[name="mf_cpa_passed_reg_no[]"]').map(function(){send_data.append("mf_cpa_passed_reg_no[]",$(this).val());});
+//   $('input[name="mf_cpa_full_reg_no[]"]').map(function(){send_data.append("mf_cpa_full_reg_no[]",$(this).val());});
+//   $('input[name="mf_pub_pra_reg_no[]"]').map(function(){send_data.append("mf_pub_pra_reg_no[]",$(this).val());});
 
-   $('input[name="ppa_certis[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('ppa_certis[]',$(this).get(0).files[i]);
-    }
+//    $('input[name="ppa_certis[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('ppa_certis[]',$(this).get(0).files[i]);
+//     }
     
-  });
-  $('input[name="letterheads[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('letterheads[]',$(this).get(0).files[i]);
-    }
+//   });
+//   $('input[name="letterheads[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('letterheads[]',$(this).get(0).files[i]);
+//     }
     
-  });
-  $('input[name="representatives[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('representatives[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="pass_photos[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('pass_photos[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="owner_profiless[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('owner_profiles[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="edu_certs[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('edu_certs[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="work_exps[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('work_exps[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="nrc_passports[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('nrc_passports[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="tax_clearances[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('tax_clearances[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="certi_or_regs[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('certi_or_regs[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="deeds_memos[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('deeds_memos[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="certificate_incors[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('certificate_incors[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="permit_foreigns[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('permit_foreigns[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="financial_statements[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('financial_statements[]',$(this).get(0).files[i]);
-    }
-  });
-  $('input[name="tax_reg_certificate[]"]').map(function(){
-    for (var i = 0; i < $(this).get(0).files.length; ++i) {
-      send_data.append('tax_reg_certificate[]',$(this).get(0).files[i]);
-    }
-  });
+//   });
+//   $('input[name="representatives[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('representatives[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="pass_photos[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('pass_photos[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="owner_profiles[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('owner_profiles[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="edu_certs[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('edu_certs[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="work_exps[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('work_exps[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="nrc_passports[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('nrc_passports[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="tax_clearances[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('tax_clearances[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="certi_or_regs[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('certi_or_regs[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="deeds_memos[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('deeds_memos[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="certificate_incors[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('certificate_incors[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="permit_foreigns[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('permit_foreigns[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="financial_statements[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('financial_statements[]',$(this).get(0).files[i]);
+//     }
+//   });
+//   $('input[name="tax_reg_certificate[]"]').map(function(){
+//     for (var i = 0; i < $(this).get(0).files.length; ++i) {
+//       send_data.append('tax_reg_certificate[]',$(this).get(0).files[i]);
+//     }
+//   });
   
-        $.ajax({
-                url: BACKEND_URL+"/acc_firm_info",
-                type: 'post',
-                data:send_data,
-                contentType: false,
-                processData: false,
-                success: function(result){
+//         $.ajax({
+//                 url: BACKEND_URL+"/acc_firm_info",
+//                 type: 'post',
+//                 data:send_data,
+//                 contentType: false,
+//                 processData: false,
+//                 success: function(result){
                  
-                  successMessage(result);
-                  location.reload();
-              }
-            });
-}
+//                   successMessage(result);
+//                   location.reload();
+//               }
+//             });
+// }
 function getAudit(){
   destroyDatatable("#tbl_audit", "#tbl_audit_body");
   destroyDatatable("#tbl_non_audit", "#tbl_non_audit_body");
@@ -156,6 +156,16 @@ function getAudit(){
       var audit_data=data.data;
       audit_data.forEach(function (element) {
         if(element.audit_firm_type_id==1){
+          // console.log('auditfirm_element',element);
+          if(element.status==0){
+              status="Pending";
+          }
+          else if(element.status==1){
+              status="Approve";
+          }
+          else{
+              status="Reject";
+          }
           var tr = "<tr>";
           tr += "<td >" +  + "</td>";
           tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
@@ -165,8 +175,9 @@ function getAudit(){
           tr += "<td >" + element.city + "</td>";
           tr += "<td >" + element.state_region + "</td>";
           tr += "<td >" + element.telephones + "</td>";
-          tr += "<td >" + element.email + "</td>";
+          tr += "<td >" + element.h_email + "</td>";
           tr += "<td >" + element.website + "</td>";
+          tr += "<td >" + status + "</td>";
           tr += "<td ><div class='btn-group'>" +
               "<button type='button' class='btn btn-primary btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
               "<li class='fa fa-eye fa-sm'></li></button> ";
@@ -175,6 +186,16 @@ function getAudit(){
           tr += "</tr>";
           $("#tbl_audit_body").append(tr);
         }else {
+          console.log('nonauditfirm_element',element);
+          if(element.status==0){
+            status="Pending";
+          }
+          else if(element.status==1){
+              status="Approve";
+          }
+          else{
+              status="Reject";
+          }
           var tr = "<tr>";
           tr += "<td >" +  + "</td>";
           tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
@@ -184,8 +205,9 @@ function getAudit(){
           tr += "<td >" + element.city + "</td>";
           tr += "<td >" + element.state_region + "</td>";
           tr += "<td >" + element.telephones + "</td>";
-          tr += "<td >" + element.email + "</td>";
+          tr += "<td >" + element.h_email + "</td>";
           tr += "<td >" + element.website + "</td>";
+          tr += "<td >" + status + "</td>";
           tr += "<td ><div class='btn-group'>" +
               "<button type='button' class='btn btn-primary btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
               "<li class='fa fa-eye fa-sm'></li></button> ";
@@ -227,12 +249,33 @@ function autoLoadAudit(){
 
   // $("#accountancy_firm_reg_no").html();
   var id=localStorage.getItem("id");
+  $("input[name = audit_firm_id]").val(id);
   $.ajax({
     type: "GET",
     url: BACKEND_URL+"/acc_firm_info/"+id,
     success: function (data) {
       var audit_data=data.data;
        audit_data.forEach(function(element){
+        //  console.log('audit_firm',element);
+         console.log('non_audit_firm',element);
+
+        if(element.status==0){
+          status="Pending";
+        }
+        else if(element.status==1){
+            status="Approve";
+        }
+        else{
+            status="Reject";
+        }
+
+        if(element.local_foreign_id==1){
+          local_foreign_id="Local";
+        }
+        else{
+          local_foreign_id="Foreign";
+        }
+
         $("input[name=accountancy_firm_id]").val(element.id);
         $("input[name=audit_firm_type_id]").val(element.audit_firm_type_id);
         $("input[name=local_foreign_id]").val(element.local_foreign_id);
@@ -243,10 +286,12 @@ function autoLoadAudit(){
         $("#city").append(element.city);
         $("#state").append(element.state_region);
         $("#phone_no").append(element.telephones);
-        $("#email").append(element.email);
+        $("#email").append(element.h_email);
         $("#website").append(element.website);
         $("#name_sole_proprietor").append(element.name_of_sole_proprietor);
         $("#declaration").append(element.declaration);
+        $("#status").append(status);
+        $("#local_foreign_id").append(local_foreign_id);
         var branch=element.branch_offices;
         branch.forEach(function(item){
           var tr = "<tr>";
@@ -493,6 +538,61 @@ function autoLoadAudit(){
     }
   });
 }
+
+function approveAuditFirm(){
+
+  var id = $("input[name = audit_firm_id]").val();
+  console.log('approveaudit_firm',id);
+  $.ajax({
+      url: BACKEND_URL + "/approve_auditfirm/"+id,
+      type: 'patch',
+      success: function(result){
+          successMessage("You have approved that user!");
+          location.href = FRONTEND_URL + "/audit-firm-list";
+      }
+  });
+}
+
+function rejectAuditFirm(){ 
+  var id = $("input[name = audit_firm_id]").val();
+  console.log('rejectaudit_firm',id);
+  $.ajax({
+      url: BACKEND_URL +"/reject_auditfirm/"+id,
+      type: 'patch',
+      success: function(result){
+          successMessage("You have rejected that user!");
+          location.href = FRONTEND_URL + "/audit-firm-list";
+      }
+  });
+}
+
+function approveNonAuditFirm(){
+
+  var id = $("input[name = audit_firm_id]").val();
+  console.log('approveaudit_firm',id);
+  $.ajax({
+      url: BACKEND_URL + "/approve_non_auditfirm/"+id,
+      type: 'patch',
+      success: function(result){
+          successMessage("You have approved that user!");
+          location.href = FRONTEND_URL + "/non-audit-firm-list";
+      }
+  });
+}
+
+function rejectNonAuditFirm(){ 
+  var id = $("input[name = audit_firm_id]").val();
+  console.log('rejectaudit_firm',id);
+  $.ajax({
+      url: BACKEND_URL +"/reject_non_auditfirm/"+id,
+      type: 'patch',
+      success: function(result){
+          successMessage("You have rejected that user!");
+          location.href = FRONTEND_URL + "/non-audit-firm-list";
+      }
+  });
+}
+
 function removeBracketed(file,divname){
   var new_file=file.replace(/[\'"[\]']+/g, '');
   var split_new_file=new_file.split(',');
@@ -506,6 +606,7 @@ function loadFile(file) {
   var myImageId = "storage/acc_firm/" + file;
   $(".modal-body #file").attr("src", myImageId);
 }
+
 function loadOrganization(){
   $.ajax({
     url: "/api/organization_structure",
@@ -530,7 +631,8 @@ function loadOrganization(){
   }
 });
 }
-function loadTypeOfService(){
+
+function loadAuditTypeOfService(){
   destroyDatatable("#tbl_type_service", "#tbl_type_service_body");
     $.ajax({
       url: "/api/type_service_provided",
@@ -558,6 +660,7 @@ function loadTypeOfService(){
     }
   });
 }
+
 function loadAuditTotalStaff(){
     destroyDatatable("#tbl_audit_total_staff", "#tbl_audit_total_staff_body");
     $.ajax({
@@ -580,6 +683,7 @@ function loadAuditTotalStaff(){
     }
   });
 }
+
 function loadAuditStaff(){
   destroyDatatable("#tbl_audit_staff", "#tbl_audit_staff_body");
   $.ajax({
@@ -602,6 +706,8 @@ function loadAuditStaff(){
   }
 });
 }
+
+
 function loadNonAuditStaff(){
   destroyDatatable("#tbl_non_audit_number", "#tbl_non_audit_number_body");
   $.ajax({
@@ -613,7 +719,7 @@ function loadNonAuditStaff(){
     non_audit_total_staff.forEach(function(element){
           var tr = "<tr>";
           tr += "<td class='font-weight-bold'>" + element.name + "</td>";
-          tr += "<td><input type='hidden' value="+element.id+" name='nats_type_id[]'><input type='number' value='0' name='nats_total[]' class='form-control' id=non_audit_number"+element.id+"></td>";
+          tr += "<td><input type='hidden' value="+element.id+" name='nats_type_id[]'><input disabled type='number' value='0' name='nats_total[]' class='form-control' id=non_audit_number"+element.id+"></td>";
           tr += "</tr>";
           $("#tbl_non_audit_number_body").append(tr);
       
@@ -622,6 +728,62 @@ function loadNonAuditStaff(){
   }
 });
 }
+
+function loadNonAuditOrganization(){
+  $.ajax({
+    url: BACKEND_URL+"/organization_structure",
+    type: 'get',
+    data:"",
+    success: function(result){
+     var organization_structure=result.data;
+     $('.organization_data').append("<div class='col-md-2'></div>");
+     organization_structure.forEach(function(element){
+       if(element.id!=3){
+        var radio_data="<div class='col-md-2'>"+
+        "<input type='radio' name='org_stru_id' autofocus value="+element.id+" id=org"+element.id+" onclick='getOrganization()'>"+
+        " <label class='form-check-label'>"+element.name+"</label>";
+       }else{
+        var radio_data="<div class='col-md-3'>"+
+        "<input type='radio' name='org_stru_id' autofocus value="+element.id+" id=org"+element.id+" onclick='getOrganization()'>"+
+        " <label class='form-check-label'>"+element.name+"</label>";
+       }
+
+       $('.organization_data').append(radio_data);
+     })
+  }
+});
+}
+
+function loadNonAuditTypeOfService(){
+  destroyDatatable("#tbl_type_service", "#tbl_type_service_body");
+    $.ajax({
+      url: BACKEND_URL+"/type_service_provided",
+      type: 'get',
+      data:"",
+      success: function(result){
+      var type_service_provided=result.data;
+      $('.type_service_provided').append("<div class='col-md-4'></div>");
+      type_service_provided.forEach(function(element){
+        if(element.audit_firm_type_id==1){
+          var radio_data="<div class='col-md-2'>"+
+          "<input disabled type='radio' name='t_s_p_id' value="+element.id+" id=type_service"+element.id+">"+
+          " <label class='form-check-label'>"+element.name+"</label>";
+          $('.type_service_provided').append(radio_data);
+        }else{
+          var tr = "<tr>";
+          tr += "<td><input disabled type='radio' name='t_s_p_id' value="+element.id+" id=type_service"+element.id+">"+
+                " <label class='form-check-label'>"+element.name+"</label>";
+          tr += "</tr>";
+          $('#tbl_type_service_body').append(tr);
+        }
+
+
+      })
+    }
+  });
+}
+
+
 function deleteAuditInfo(accName,accId){
   var result = confirm("WARNING: This will delete Accountancy Firm Name " + decodeURIComponent(accName) + " and all related data! Press OK to proceed.");
     if (result) {
