@@ -24,7 +24,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->string('city');
             $table->string('state_region');
             $table->string('telephones');
-            $table->string('email');
+            $table->string('h_email');
             $table->string('website');
             $table->string('managing_director')->nullable();
             $table->unsignedBigInteger('organization_structure_id');
@@ -32,6 +32,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->unsignedBigInteger('type_of_service_provided_id');
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
+            $table->integer('status');
             $table->timestamps();
 
             $table->foreign('audit_firm_type_id')
