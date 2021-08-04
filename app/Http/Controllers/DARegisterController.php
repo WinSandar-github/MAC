@@ -22,6 +22,7 @@ class DARegisterController extends Controller
 
     public function store(Request $request)
     {
+        
         //$nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
@@ -82,7 +83,6 @@ class DARegisterController extends Controller
         $student_info->email            =   $request->email;
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
-        $student_info->course_type_id   =   1;
         $student_info->save(); 
          
         $student_job_histroy = new StudentJobHistroy;
@@ -107,7 +107,7 @@ class DARegisterController extends Controller
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id        = 1;
+        $student_course->batch_id        = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
         $student_course->save();
@@ -202,5 +202,14 @@ class DARegisterController extends Controller
          $status = $student_register != null ? $student_register->status : null;
         return response()->json($status,200);
 
+    }
+
+    public function FilterExamRegister($course_type){
+        $student_infos = StudentInfo::where('course_type_id',$course_type)
+            ->with('exam_register', 'student_register')
+            ->get();
+        return response()->json([ 
+            'data' => $student_infos
+        ],200);
     }
 }

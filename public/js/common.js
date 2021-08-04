@@ -826,23 +826,3 @@ function numberRows() {
         $(this).children(":eq(0)").html(idx + 1);
     });
 }
-
-function addRowMark(tbody){
-    var newRow = $("<tr>");
-    var cols = "";
-    var row=$('.'+tbody+' tr').length;
-    cols += '<td>'+ (row)+'</td>';
-    cols += '<td><input type="text" class="form-control" name="subject_name[]" placeholder="Subject Name"/></td>';
-    cols += '<td><input type="text" class="form-control" name="mark[]" placeholder="အမှတ်"/></td>';
-    cols += '<td><input type="text" class="form-control" name="grade[]" placeholder="Grade"/></td>';
-    cols += '<td class="text-center"><input type="button" class="delete btn btn-sm btn-danger" onclick=delRowMark("'+tbody+'")  value="X"></td>';
-    newRow.append(cols);
-    $("table."+tbody).append(newRow);
-    counter++;
-}
-function delRowMark(tbody){
-    $("table."+tbody).on("click", ".delete", function (event) {
-        $(this).closest("tr").remove();
-        counter -= 1
-    });
-}

@@ -8,5 +8,10 @@ class ExamResult extends Model
 {
     protected $table = 'exam_result';
 
-    protected $fillable = ['student_info_id','registeration_id','subject_name','mark','grade','date'];
+    protected $fillable = ['student_info_id','registeration_id','result','date'];
+
+    public function student_info()
+    {
+        return $this->belongsTo(StudentInfo::class,'student_info_id','id');
+    }
 }

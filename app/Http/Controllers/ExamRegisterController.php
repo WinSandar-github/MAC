@@ -68,6 +68,7 @@ class ExamRegisterController extends Controller
         $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
         $exam->exam_type_id = $type;
+        $exam->form_type = $request->form_type;
         $exam->status = 0;
         $exam->save();
         return "You have successfully registerd!";
@@ -81,7 +82,11 @@ class ExamRegisterController extends Controller
      */
     public function show($id)
     {
-        $exam_register = ExamRegister::where('batch_id',$id)->get();
+        // $exam_register = ExamRegister::where('batch_id',$id)->get();
+        // return response()->json([
+        //     'data' => $exam_register
+        // ],200);
+        $exam_register = ExamRegister::where('id',$id)->get();
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -141,9 +146,15 @@ class ExamRegisterController extends Controller
         ],200);
     }
 
-    public function selectByID($id)
+    public function selectByFormType($id)
     {
-        $exam_register = ExamRegister::where('batch_id',$id)->get();
+        if($id=="all"){
+            $exam_register = ExamRegister::with('student_info')->get();
+        }
+        else 
+        {
+            $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
+        }
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -160,11 +171,11 @@ class ExamRegisterController extends Controller
     public function cpaExamRegister(Request $request)
     {
        
-        $student_info_id = $request->student_id;
-         
+        $student_info_id = $request->student_id;        
        
         $batch_id = StudentCourseReg::where('student_info_id', $student_info_id)->first()->batch_id;
         $exam_type = Batch::where('id',$batch_id)->first()->course_id;
+        
         
    
         if ($request->hasfile('invoice_image')) 
@@ -189,8 +200,18 @@ class ExamRegisterController extends Controller
         $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
         $exam->exam_type_id = $exam_type;
+        $exam->form_type = $request->form_type;
         $exam->status = 0;
         $exam->save();
         return "You have successfully registerd!";
     }
+    public function getExamByStudentID($id){
+        $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
+        return response()->json([
+            'data' => $exam_register
+        ],200);
+
+    }
+
+
 }

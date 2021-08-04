@@ -23,7 +23,8 @@ class CreateExamRegisterTable extends Migration
             $table->string('grade')->nullable();
             $table->unsignedBigInteger('batch_id');
             $table->integer('is_full_module');
-            $table->unsignedBigInteger('exam_type_id');            
+            $table->unsignedBigInteger('exam_type_id');  
+            $table->string('form_type')->nullable();          
             $table->integer('status');
             $table->integer('last_ans_exam_no')->nullable();
             $table->integer('last_ans_module')->nullable();
