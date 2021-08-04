@@ -336,6 +336,7 @@ class AccFirmInfController extends Controller
                 $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
                 $audit_file->ppa_certificate    = json_encode($ppa_certi);
                 $audit_file->letterhead        = json_encode($letterhead);
+                $audit_file->tax_clearance    = json_encode($tax_clearance);
                 $audit_file->representative     = json_encode($representative);
                 $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);                
                 $audit_file->deeds_memo        = json_encode($deeds_memo);
@@ -484,6 +485,27 @@ class AccFirmInfController extends Controller
             'data' => $acc_firm_info
         ],200);
         
+    }
+
+    public function approve($id)
+    {
+        
+        $approve = AccountancyFirmInformation::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $reject = AccountancyFirmInformation::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
     }
 
     /**
