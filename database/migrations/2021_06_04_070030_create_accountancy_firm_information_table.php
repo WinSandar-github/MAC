@@ -32,7 +32,6 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->unsignedBigInteger('type_of_service_provided_id');
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
-            $table->integer('approve_reject_status')->default(0);
             $table->timestamps();
 
             $table->foreign('audit_firm_type_id')
