@@ -154,7 +154,7 @@ class CpaTraAddmissionDirectController extends Controller
         $student_course->batch_id          = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
-        $student_course->qt_entry      = $request->qt_pass;
+        $student_course->qt_entry      = $request->qt_entry;
         $student_course->save();
 
        

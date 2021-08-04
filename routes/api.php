@@ -58,9 +58,7 @@ Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::resource('/cpa_ff','CPAFFController');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
-
-
-
+Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
@@ -74,7 +72,6 @@ Route::get('/non_audit_total_staff','ApiController@non_audit_total_staff');
 Route::get('/organization_structure','ApiController@organization_structure');
 Route::get('/cpa_one_training_ground','ApiController@cpa_one_training_ground');
 Route::get('/type_service_provided','ApiController@type_service_provided');
-
 
 Route::get('student_course', 'CourseController@studentCourse');
 Route::resource('/student_selfstudy','StudentSelfStudyController');
@@ -128,6 +125,8 @@ Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID')
 //Store DA/CPA Two Application Form
 Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
 
+//for school registration
+Route::resource('/school','SchoolController');
 
 
 
