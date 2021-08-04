@@ -9,7 +9,7 @@ class AccountancyFirmInformation extends Model
     protected $fillable = ['audit_firm_type_id','local_foreign_id','accountancy_frim_reg_no',
     'accountancy_firm_name','township','postcode','state_region','telephones','h_email',
     'website','managing_director','organization_structure_id','name_of_sole_proprietor',
-    'type_of_service_provided_id','permanent_suspension','status'];
+    'type_of_service_provided_id','permanent_suspension','status','form_fee','nrc_fee'];
 
     public function service_provided()
     {
