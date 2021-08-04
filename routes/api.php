@@ -58,7 +58,7 @@ Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::resource('/cpa_ff','CPAFFController');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
-
+Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 
 
 
