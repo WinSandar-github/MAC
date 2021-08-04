@@ -43,9 +43,8 @@
                                                         <th class="less-font-weight">Telephone</th>
                                                         <th class="less-font-weight">Email</th>
                                                         <th class="less-font-weight">Website</th>
-                                                        <th class="less-font-weight">
-                                                            Detail
-                                                        </th>
+                                                        <th class="less-font-weight">Status</th>
+                                                        <th class="less-font-weight">Detail</th>
                                                     </tr>
                                                     
                                                 </thead>

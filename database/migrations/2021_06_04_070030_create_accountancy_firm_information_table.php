@@ -33,6 +33,8 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
             $table->integer('status');
+            $table->integer('form_fee');
+            $table->integer('nrc_fee');
             $table->timestamps();
 
             $table->foreign('audit_firm_type_id')
