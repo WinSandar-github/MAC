@@ -19,7 +19,7 @@ class CreateStudentCourseRegsTable extends Migration
             $table->unsignedBigInteger('batch_id');
             $table->char('status',1);
             $table->date('date');
-            $table->bigIteger('qt_entry')->default(0);
+            $table->bigInteger('qt_entry')->default(0);
             $table->timestamps();
 
             $table->foreign('student_info_id')

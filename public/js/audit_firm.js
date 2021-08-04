@@ -160,10 +160,16 @@ function getAudit(){
           tr += "<td >" +  + "</td>";
           tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
           tr += "<td >" + element.accountancy_firm_name + "</td>";
-        
+          tr += "<td >" + element.township + "</td>";
+          tr += "<td >" + element.postcode + "</td>";
+          tr += "<td >" + element.city + "</td>";
+          tr += "<td >" + element.state_region + "</td>";
+          tr += "<td >" + element.telephones + "</td>";
+          tr += "<td >" + element.email + "</td>";
+          tr += "<td >" + element.website + "</td>";
           tr += "<td ><div class='btn-group'>" +
-              "<button type='button' class='btn btn-info btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
-              "<li class='fa fa-edit fa-sm'></li></button> ";
+              "<button type='button' class='btn btn-primary btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
+              "<li class='fa fa-eye fa-sm'></li></button> ";
           tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
 
           tr += "</tr>";
@@ -173,10 +179,16 @@ function getAudit(){
           tr += "<td >" +  + "</td>";
           tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
           tr += "<td >" + element.accountancy_firm_name + "</td>";
-        
+          tr += "<td >" + element.township + "</td>";
+          tr += "<td >" + element.postcode + "</td>";
+          tr += "<td >" + element.city + "</td>";
+          tr += "<td >" + element.state_region + "</td>";
+          tr += "<td >" + element.telephones + "</td>";
+          tr += "<td >" + element.email + "</td>";
+          tr += "<td >" + element.website + "</td>";
           tr += "<td ><div class='btn-group'>" +
-              "<button type='button' class='btn btn-info btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
-              "<li class='fa fa-edit fa-sm'></li></button> ";
+              "<button type='button' class='btn btn-primary btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
+              "<li class='fa fa-eye fa-sm'></li></button> ";
           tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
 
           tr += "</tr>";

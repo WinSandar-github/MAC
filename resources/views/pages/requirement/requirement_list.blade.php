@@ -9,7 +9,8 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <div class="col-md-12">                
+            <div class="col-md-12"> 
+            {{ Breadcrumbs::render('ဘွဲ့လိုအပ်ချက်') }}               
             </div>
         </div>       
 
@@ -20,9 +21,13 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-8">
-                                    <h5 class="title" style="padding-left: 330px;">{{ __('Requirement List') }}</h5>
+                                <div class="col-md-12">
+                                    <h5 class="card-title">{{ __('Requirement List') }}</h5>
                                 </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8"></div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_requirement_model">Create</button>
                                 </div>
@@ -44,7 +49,7 @@
                                                     </tr>
                                                     
                                                 </thead>
-                                                <tbody id="tbl_requirement_body" class="hoverTable">
+                                                <tbody id="tbl_requirement_body">
                                                     
                                                 </tbody>
                                             </table>

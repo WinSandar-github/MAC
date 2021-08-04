@@ -24,7 +24,7 @@ class CreateCoursesTable extends Migration
             $table->date('registration_end_date');
             $table->text('description');
             $table->unsignedBigInteger('course_type_id');
-            $table->string('code','1');
+            $table->string('code','20');
             $table->timestamps();
 
           
