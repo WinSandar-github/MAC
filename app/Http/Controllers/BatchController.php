@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Course;
 use Illuminate\Database\Eloquent\Builder;
-
+use App\StudentCourseReg;
+ 
 
 
 class BatchController extends Controller
@@ -122,5 +123,32 @@ class BatchController extends Controller
         ],200);
     }
 
-    
-}
+    public function saveExam(Request $request){
+        $batch = Batch::find($request->batch_id);
+        $batch->exam_start_date = $request->exam_start_date;
+        $batch->exam_end_date   = $request->exam_end_date;
+        $batch->save();
+        return response()->json([
+            'message' => "Exam Date Added Successfully"
+        ],200);
+    }
+
+    public function getExam($student_id)
+    {
+      
+        
+        $student_course = StudentCourseReg::where('student_info_id',$student_id)->with('batch')->latest()->first();
+        $exam_start_date = $student_course->batch->exam_start_date;
+        $exam_previous_month = Carbon::createFromFormat('Y-m-d', $exam_start_date)->subMonth();
+        $currentDate = Carbon::now();
+         
+        if($exam_previous_month <= $currentDate && $exam_start_date > $currentDate ){
+            $data = Batch::where('id',$student_course->batch->id)->with('course')->first();
+        }else{
+            $data = null;
+        }
+        return $data;
+
+        
+    }
+}    

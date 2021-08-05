@@ -113,7 +113,7 @@ class StudentInfoController extends Controller
     {
         //
         $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct')->first();
-        return response()->json(['data' => $student_info],200);
+         return response()->json(['data' => $student_info],200);
     }
 
     public function GetStudentByNRC($nrc)
@@ -127,13 +127,10 @@ class StudentInfoController extends Controller
     //     return response()->json(['data' => $student_info],200);
     // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
+  
+
+    //Update Da App Form 
     public function update(Request $request, $id)
     {
          

@@ -27,6 +27,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
+Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
+Route::patch('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
+
 Route::resource('/cpa_full_form','CpaFullFormController');
 Route::resource('/cpa_one_reg','CpaOneRegisterController');
 Route::resource('/cpa_one_exam','CpaOneExamRegController');
@@ -127,6 +132,11 @@ Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
 
 //for school registration
 Route::resource('/school','SchoolController');
+
+//for teacher registration
+Route::resource('/teacher','TeacherController');
+
+Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
 
 

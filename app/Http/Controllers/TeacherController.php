@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\SchoolRegister;
+use App\TeacherRegister;
 
-class SchoolController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,33 +35,37 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        $school = new SchoolRegister();
-        $school->name_mm = $request->name_mm;
-        $school->name_eng = $request->name_eng;
-        $school->father_name_mm = $request->father_name_mm;
-        $school->father_name_eng = $request->father_name_eng;
-        $school->date_of_birth = date('y-m-d', strtotime($request->dob));
-        $school->degree = $request->degree;
-        $school->address = $request->address;
-        $school->phone = $request->phone;
-        $school->email = $request->email;
-        $school->nrc_state_region = $request->nrc_state_region;
-        $school->nrc_township = $request->nrc_township;
-        $school->nrc_citizen = $request->nrc_citizen;
-        $school->nrc_number = $request->nrc_number;
-        $school_type = "";
-        foreach($request->school_type as $type){
-            $school_type = $school_type.$type.',';
+        $teacher = new TeacherRegister();
+        $teacher->name_mm = $request->name_mm;
+        $teacher->name_eng = $request->name_eng;
+        $teacher->father_name_mm = $request->father_name_mm;
+        $teacher->father_name_eng = $request->father_name_eng;
+        $teacher->reg_date = date('y-m-d');
+        $teacher->phone = $request->phone_number;
+        $teacher->email = $request->email;
+        $teacher->nrc_state_region = $request->nrc_state_region;
+        $teacher->nrc_township = $request->nrc_township;
+        $teacher->nrc_citizen = $request->nrc_citizen;
+        $teacher->nrc_number = $request->nrc_number;
+        $teacher->gov_employee = $request->gov_employee;
+        $teacher->exp_desc = $request->exp_desc;
+        $degrees = "";$certificates = ""; $diplomas = "";
+        foreach($request->degrees as $d){
+            $degrees = $degrees . $d . ',';
            
         }
-        $school->type = rtrim($school_type, ',');
-        $school->save();
-        if($request->hasFile('attachment')){
-            $fileName = $school->id.'.'.$request->file('attachment')->getClientOriginalExtension();
-            $request->file('attachment')->storeAs('public/attachment/school/', $fileName);
-            $school->attachment=$fileName;
-            $school->save();
+        foreach($request->certificates as $c){
+            $certificates = $certificates . $c . ',';
+           
         }
+        foreach($request->diplomas as $d){
+            $diplomas = $diplomas . $d . ',';
+           
+        }
+        $teacher->degrees = rtrim($degrees, ',');
+        $teacher->certificates = rtrim($certificates, ',');
+        $teacher->diplomas = rtrim($diplomas, ',');
+        $teacher->save();
         return response()->json([
             'message' => 'Success Registration.'
         ],200);

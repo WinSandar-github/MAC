@@ -132,6 +132,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/mark', 'ExamResultController@index');
     Route::get('/mark/{id}', 'ExamResultController@edit');
     Route::post('/mark/{id}', 'ExamResultController@update');
+
+    Route::post('save_exam','BatchController@saveExam');
 });
 
 Route::resource('/batch','BatchController');

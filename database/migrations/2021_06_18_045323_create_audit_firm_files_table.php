@@ -18,6 +18,7 @@ class CreateAuditFirmFilesTable extends Migration
             $table->unsignedBigInteger('accountancy_firm_info_id');
             $table->text('ppa_certificate')->nullable();
             $table->text('letterhead')->nullable();
+            $table->text('tax_clearance')->nullable();
             $table->text('representative')->nullable();
             $table->text('certi_or_reg')->nullable();
             $table->text('deeds_memo')->nullable();
