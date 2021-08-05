@@ -244,7 +244,7 @@ class PAPPController extends Controller
             $file = $request->file('renew_not_fulltime_recomm');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_papp/',$name);
-            $renew_micpa = '/storage/student_papp/'.$name;
+            $renew_not_fulltime_recomm = '/storage/student_papp/'.$name;
         }else{
             $renew_not_fulltime_recomm="";
         }
