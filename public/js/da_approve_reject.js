@@ -41,7 +41,7 @@ function getDAList(){
 
 function showDAList(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/da_edit";
+    location.href=FRONTEND_URL+"/da_edit";
 }
 
 function loadData(){
@@ -136,7 +136,7 @@ function approveUser(){
         type: 'patch',
         success: function(result){
             successMessage("You have approved that user!");
-            location.href = "/da_list";
+            location.href = FRONTEND_URL + "/da_list";
         }
     });
 }
@@ -148,7 +148,7 @@ function rejectUser(){
         type: 'patch',
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = "/da_list";
+            location.href = FRONTEND_URL + "/da_list";
         }
     });
 }
