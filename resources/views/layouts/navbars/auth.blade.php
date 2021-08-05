@@ -53,7 +53,7 @@
                         <li class="{{ $elementActive == 'da_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA Application Form') }}</span>
+                                <span>{{ __('DA Application List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
@@ -94,25 +94,25 @@
                         <li class="{{ $elementActive == 'cpa_ff_registration_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_ff_registration_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('CPA Full Fleged Form') }}</span>
+                                <span>{{ __('CPA Full Fleged List') }}</span>
                             </a>
                         </li>                        
                         <li class="{{ $elementActive == 'papp_registration_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'papp_registration_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('PAPP Form') }}</span>
+                                <span>{{ __('PAPP List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'audit-firm-list' ? 'active' : '' }}">
                                     <a href="{{ route('page.index', 'audit-firm-list') }}">
                                         <i class="nc-icon nc-single-copy-04"></i>
-                                        <span>{{ __('Audit Firm Registration List') }}</span>
+                                        <span>{{ __('Audit Firm List') }}</span>
                                     </a>
                         </li>
                         <li class="{{ $elementActive == 'non-audit-firm-list' ? 'active' : '' }}">
                                     <a  href="{{ route('page.index', 'non-audit-firm-list') }}">
                                         <i class="nc-icon nc-single-copy-04"></i>
-                                        <span>Non Audit Firm Registration List</span>
+                                        <span>Non Audit Firm List</span>
                                     </a>
                         </li>
                     </ul>
@@ -121,7 +121,7 @@
             <li class="{{ $elementActive == 'examregisteration' ? 'active' : '' }}">
                 <a data-toggle="collapse" href="#examregisteration">
                     <i class="nc-icon nc-tap-01"></i>
-                    <p>{{ __('Exam Registeration') }}</p>
+                    <p>{{ __('Exam Registration') }}</p>
                     <b class="caret"></b>
                 </a>
                 <div class="collapse in" id="examregisteration">
@@ -135,7 +135,7 @@
                         <li class="{{ $elementActive == 'da_two_exam' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_two_exam') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA Exam Form (2)') }}</span>
+                                <span>{{ __('DA 2 Exam List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">
@@ -147,7 +147,7 @@
                         <li class="{{ $elementActive == 'cpa_two_exam' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_two_exam') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('CPA(2) Exam List') }}</span>
+                                <span>{{ __('CPA 2 Exam List') }}</span>
                             </a>
                         </li>
                     </ul>
@@ -164,13 +164,13 @@
                         <li class="{{ $elementActive == 'da1_exam_result_edit' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da1_exam_result_edit') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA Exam (1)') }}</span>
+                                <span>{{ __('DA 1 Exam Result List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'da2_exam_result_edit' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da2_exam_result_edit') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA Exam (2)') }}</span>
+                                <span>{{ __('DA 2 Exam Result List') }}</span>
                             </a>
                         </li>
                         <li >
@@ -182,13 +182,13 @@
                         <li class="{{ $elementActive == 'cpa1_exam_result_edit' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa1_exam_result_edit') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('CPA Exam (1)') }}</span>
+                                <span>{{ __('CPA 1 Exam Result List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'cpa2_exam_result_edit' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa2_exam_result_edit') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('CPA Exam (2)') }}</span>
+                                <span>{{ __('CPA 2 Exam Result List') }}</span>
                             </a>
                         </li>
                     </ul>

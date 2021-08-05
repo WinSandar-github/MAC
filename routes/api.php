@@ -128,6 +128,9 @@ Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 
+//Store DA/CPA Two Application Form
+Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
+
 //for school registration
 Route::resource('/school','SchoolController');
 
@@ -136,4 +139,6 @@ Route::resource('/teacher','TeacherController');
 
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+
+Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
