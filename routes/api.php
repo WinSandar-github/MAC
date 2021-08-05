@@ -134,6 +134,6 @@ Route::resource('/school','SchoolController');
 //for teacher registration
 Route::resource('/teacher','TeacherController');
 
-
-
+//Audit DATA
+Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 

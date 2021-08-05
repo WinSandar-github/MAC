@@ -66,4 +66,9 @@ class StudentInfo extends Model
         return $this->hasOne(CpaOneTrainingAddmissionDirect::class,'student_info_id','id');
         
     }
+
+    public function accountancy_firm(){
+        return $this->belongsTo(AccountancyFirmInformation::class,'accountancy_firm_info_id','id');
+        
+    }
 }  
