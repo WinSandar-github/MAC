@@ -162,9 +162,19 @@ class PAPPController extends Controller
 
     public function approve($id)
     {
-        
+        $accepted_date = date('Y-m-d');
         $approve = Papp::find($id);
-        $approve->status = 1;
+        if($approve->status==0)
+        {
+            $approve->status = 1;            
+            $approve->accepted_date=$accepted_date;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        else if($approve->status==1){
+            $approve->status = 1;
+            $approve->renew_status=1;
+            $approve->renew_accepted_date=$accepted_date;
+        }
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -175,9 +185,96 @@ class PAPPController extends Controller
     {
         $reject = Papp::find($id);
         $reject->status = 2;
+        $approve->renew_status=2;
         $reject->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
         ],200);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $papp = Papp::find($id);
+        if ($request->hasfile('renew_file')) {
+            $file = $request->file('renew_file');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_papp/',$name);
+            $renew_file = '/storage/student_papp/'.$name;
+        }else{
+            $renew_file="";
+        }
+
+        if ($request->hasfile('renew_papp_reg')) {
+            $file = $request->file('renew_papp_reg');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_papp/',$name);
+            $renew_papp_reg = '/storage/student_papp/'.$name;
+        }else{
+            $renew_papp_reg="";
+        }
+
+        if ($request->hasfile('renew_micpa')) {
+            $file = $request->file('renew_micpa');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_papp/',$name);
+            $renew_micpa = '/storage/student_papp/'.$name;
+        }else{
+            $renew_micpa="";
+        }
+
+        if ($request->hasfile('renew_cpd')) {
+            $file = $request->file('renew_cpd');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_papp/',$name);
+            $renew_cpd = '/storage/student_papp/'.$name;
+        }else{
+            $renew_cpd="";
+        }
+
+        if ($request->hasfile('renew_183_recomm')) {
+            $file = $request->file('renew_183_recomm');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_papp/',$name);
+            $renew_183_recomm = '/storage/student_papp/'.$name;
+        }else{
+            $renew_183_recomm="";
+        }
+
+        if ($request->hasfile('renew_not_fulltime_recomm')) {
+            $file = $request->file('renew_not_fulltime_recomm');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_papp/',$name);
+            $renew_not_fulltime_recomm = '/storage/student_papp/'.$name;
+        }else{
+            $renew_not_fulltime_recomm="";
+        }
+
+        if ($request->hasfile('renew_rule_confession')) {
+            $file = $request->file('renew_rule_confession');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_papp/',$name);
+            $renew_rule_confession = '/storage/student_papp/'.$name;
+        }else{
+            $renew_cpd="";
+        }
+        $papp->renew_file=$renew_file;
+        $papp->renew_papp_reg=$renew_papp_reg;
+        $papp->renew_micpa=$renew_micpa;
+        $papp->renew_cpd=$renew_cpd;
+        $papp->renew_183_recomm=$renew_183_recomm;
+        $papp->renew_not_fulltime_recomm=$renew_not_fulltime_recomm;
+        $papp->renew_rule_confession=$renew_rule_confession;
+        $papp->renew_status=0;
+        $papp->save();        
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
+
+     }
+     public function getPappByStuId($stu_id){
+        $papp = Papp::where('student_id',$stu_id)->first();
+        return response()->json([
+            'data'  => $papp
+        ]);
     }
 }

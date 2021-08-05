@@ -33,7 +33,17 @@ class CreatePappsTable extends Migration
             $table->string('cpd_record');
             $table->string('tax_year');
             $table->string('tax_free_recommendation');
+            $table->date('accepted_date')->default(null)->nullable();
             $table->boolean('status')->default(0);
+            $table->string('renew_file')->default(null)->nullable();
+            $table->string('renew_papp_reg')->default(null)->nullable();
+            $table->string('renew_micpa')->default(null)->nullable();
+            $table->string('renew_cpd')->default(null)->nullable();
+            $table->string('renew_183_recomm')->default(null)->nullable();
+            $table->string('renew_not_fulltime_recomm')->default(null)->nullable();
+            $table->string('renew_rule_confession')->default(null)->nullable();
+            $table->date('renew_accepted_date')->default(null)->nullable();
+            $table->boolean('renew_status')->default(null)->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')
