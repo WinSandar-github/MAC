@@ -154,13 +154,15 @@ class CPAFFController extends Controller
         $approve = CPAFF::find($id);
         if($approve->status==0)
         {
-            $approve->status = 1;
+            $approve->status = 1;            
+            $approve->accepted_date=$accepted_date;
+            $approve->renew_accepted_date=$accepted_date;
         }
-        if($approve->status==1){
+        else if($approve->status==1){
             $approve->status = 1;
             $approve->renew_status=1;
+            $approve->renew_accepted_date=$accepted_date;
         }
-        $approve->accepted_date=$accepted_date;
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -171,6 +173,7 @@ class CPAFFController extends Controller
     {
         $cpa_ff = CPAFF::find($id);
         $cpa_ff->status = 2;
+        $approve->renew_status=2;
         $cpa_ff->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
