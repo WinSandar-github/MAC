@@ -15,7 +15,14 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('batch')->get();
+        $courses = Course::with('batches')->get();
+        return response()->json([
+            'data' => $courses
+        ],200);
+    }
+    public function loadCourseByCourseType($course_type_id)
+    {
+        $courses = Course::where('course_type_id',$course_type_id)->with('batches')->get();
         return response()->json([
             'data' => $courses
         ],200);
@@ -45,8 +52,6 @@ class CourseController extends Controller
             'registration_fee'  =>  'required',
             'exam_fee'          =>  'required',
             'tution_fee'        =>  'required',
-            'registration_start_date'        =>  'required',
-            'registration_end_date'        =>  'required',
             'description'       =>  'required',
             'course_type_id'       =>  'required',
             'code'              =>  'required'
@@ -58,8 +63,6 @@ class CourseController extends Controller
         $course->registration_fee   = $request->registration_fee;
         $course->exam_fee           = $request->exam_fee;
         $course->tution_fee         = $request->tution_fee;
-        $course->registration_start_date         = $request->registration_start_date;
-        $course->registration_end_date         = $request->registration_end_date;
         $course->description        = $request->description;
         $course->course_type_id     = $request->course_type_id;
         $course->code               = $request->code;
@@ -134,7 +137,7 @@ class CourseController extends Controller
     }
     public function studentCourse()
     {
-        $courses = Course::with('batch')->get();
+        $courses = Course::with('batches')->get();
         return response()->json([
             'data' => $courses
         ],200);
@@ -146,4 +149,5 @@ class CourseController extends Controller
             'data' => $course_type
         ],200);
     }
+    
 }

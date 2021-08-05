@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class StudentInfo extends Model
 {
     protected $fillable = ['name_mm','name_eng','nrc_state_region','nrc_township','nrc_citizen','nrc_number','father_name_mm','father_name_eng','race','religion',
-    'date_of_birth','address','current_address','phone','gov_staff','image','registration_no','date','approve_reject_status','email','password'];
+    'date_of_birth','address','current_address','phone','gov_staff','image','registration_no','date','approve_reject_status','email','password','accountancy_firm_info_id'];
 
       
     public function student_job()
@@ -42,7 +42,7 @@ class StudentInfo extends Model
 
     public function student_register()
     {
-        return $this->hasOne(StudentRegister::class,'student_info_id','id');
+        return $this->hasMany(StudentRegister::class,'student_info_id','id');
     }
 
     public function exam_register()
@@ -50,10 +50,20 @@ class StudentInfo extends Model
         return $this->hasOne(ExamRegister::class,'student_info_id','id');
     }
 
+    public function exam_result()
+    {
+        return $this->hasOne(ExamResult::class,'student_info_id','id');
+    }
+
     public function cpa_ff(){
         return $this->hasOne(CPAFF::class,'student_info_id','id');
     }
     public function papp(){
         return $this->hasOne(Papp::class,'student_id','id');
+    }
+
+    public function cpa_one_direct(){
+        return $this->hasOne(CpaOneTrainingAddmissionDirect::class,'student_info_id','id');
+        
     }
 }  

@@ -10,7 +10,7 @@
         @include('flash-message')
         <div class="row">
             <div class="col-md-12">   
-            {{ Breadcrumbs::render('course_list') }}             
+            {{ Breadcrumbs::render('သင်တန်း') }}             
             </div>
         </div>       
 
@@ -21,9 +21,13 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
-                                <div class="col-md-8">
-                                    <h5 class="title" style="padding-left: 330px;">{{ __('Course List') }}</h5>
+                                <div class="col-md-12">
+                                    <h5 class="card-title">{{ __('Course List') }}</h5>
                                 </div>
+                                
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8"></div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_course_modal">Create</button>
                                 </div>
@@ -38,20 +42,18 @@
                                             <table id="tbl_course"class="table table-hover text-nowrap ">
                                                 <thead>
                                                     <tr>
-                                                        <th class="less-font-weight" >Sr No</th>
-                                                        <th class="less-font-weight" >Name</th>
-                                                        <th class="less-font-weight" >Form Fee</th>                                        
-                                                        <th class="less-font-weight" >Registration Fee</th>
-                                                        <th class="less-font-weight" >Exam Fee</th>
-                                                        <th class="less-font-weight" >Tution Fee</th>
-                                                        <th class="less-font-weight" >Registration Start Date</th>
-                                                        <th class="less-font-weight" >Registration End Date</th>
-                                                        <th class="less-font-weight" >Description</th>
-                                                        <th class="less-font-weight" >Action</th>
+                                                        <th class="bold-font-weight" >Sr No</th>
+                                                        <th class="bold-font-weight" >Name</th>
+                                                        <th class="bold-font-weight" >Form Fee</th>                                        
+                                                        <th class="bold-font-weight" >Registration Fee</th>
+                                                        <th class="bold-font-weight" >Exam Fee</th>
+                                                        <th class="bold-font-weight" >Tution Fee</th>
+                                                        <th class="bold-font-weight" >Description</th>
+                                                        <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
                                                 </thead>
-                                                <tbody id="tbl_course_body" class="hoverTable">
+                                                <tbody id="tbl_course_body">
                                                     
                                                 </tbody>
                                             </table>
@@ -68,7 +70,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="create_course_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="create_course_modal" style="padding-top:150px;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <!-- <form method="post" action="{{ route('course.store') }}" enctype="multipart/form-data"> -->
@@ -128,24 +130,6 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Registration Start Date') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">                                
-                                    <input type="text" name="registration_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Registration End Date') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">                                
-                                    <input type="text" name="registration_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Description') }}</label>
                             <div class="col-md-7">
@@ -159,7 +143,7 @@
                             <label class="col-md-4 form-label">{{ __('Code') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group"> 
-                                    <input type="text" name="code" class="form-control"  placeholder="Description" autocomplete="off">
+                                    <input type="text" name="code" class="form-control"  placeholder="Code" autocomplete="off">
                                 </div>
                             </div>
                         </div>    

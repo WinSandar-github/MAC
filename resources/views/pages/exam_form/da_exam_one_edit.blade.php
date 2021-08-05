@@ -73,9 +73,9 @@
                                             <input type="hidden" name="student_id">
                                             
                                             <div class="row mt-5 justify-content-center"> 
-                                                <button type="submit" name="save" class="btn btn-primary" onclick="approveExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                                <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
-                                                <button type="submit" name="save" class="btn btn-primary"  onclick="rejectExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
+                                                <button type="submit"  id="reject" name="save" class="btn btn-primary"  onclick="rejectDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
                                             </div>
                                         </div>
                                             
@@ -93,6 +93,6 @@
 @endsection
 @push('scripts')
 <script>
-    loadExamData();
+    loadDAExamData();
 </script>
 @endpush

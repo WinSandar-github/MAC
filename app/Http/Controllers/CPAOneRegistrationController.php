@@ -39,6 +39,15 @@ class CpaOneRegistrationController extends Controller
      */
     public function store(Request $request)
     {
+        $data = CpaOneRegistration::where('nrc_state_region', '=', $request['nrc_state_region'])
+        ->where('nrc_township', '=', $request['nrc_township'])
+        ->where('nrc_citizen', '=', $request['nrc_citizen'])
+        ->where('nrc_number', '=', $request['nrc_number'])
+        ->first();
+        if($data)
+        {
+            return "NRC has been used, please check again!";
+        }
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -98,8 +107,8 @@ class CpaOneRegistrationController extends Controller
         $cpa_one_reg->direct_access_no =$request->direct_access_no;
         $cpa_one_reg->entry_success_no =$request->entry_success_no;
         $cpa_one_reg->gov_department=   $request->gov_department;
-        $cpa_one_reg->personal_acc_training =   $request->per_acc_training;
-        $cpa_one_reg->after_second_exam     =   $request->after_sec_exam;
+        $cpa_one_reg->personal_acc_training =   $request->personal_acc_training;
+        $cpa_one_reg->after_second_exam     =   $request->after_second_exam;
         $cpa_one_reg->good_morale_file      =   $good_morale;
         $cpa_one_reg->no_crime_file         =   $no_crime;
         $cpa_one_reg->module_id     =   $request->module_id;
@@ -111,6 +120,7 @@ class CpaOneRegistrationController extends Controller
         $cpa_one_reg->entrance_part     =   $request->entrance_part;
         $cpa_one_reg->entrance_exam_no     =   $request->entrance_exam_no;
         $cpa_one_reg->cpa_one_type     =   $request->cpa_one_type;
+        $cpa_one_reg->status           =  0;
         $cpa_one_reg->save();
         
          return response()->json([
@@ -130,6 +140,41 @@ class CpaOneRegistrationController extends Controller
         $cpa_one_reg = CpaOneRegistration::where('id',$id)->with('module')->get();
         return $cpa_one_reg;
     }
+
+    public function GetCPAOneByNRC(Request $request)
+    {
+        $data = CpaOneRegistration::where('nrc_state_region', '=', $request['nrc_state_region'])
+        ->where('nrc_township', '=', $request['nrc_township'])
+        ->where('nrc_citizen', '=', $request['nrc_citizen'])
+        ->where('nrc_number', '=', $request['nrc_number'])
+        ->first();
+        return response()->json([
+            'data' => $data
+        ],200);
+        
+    }
+
+    public function approve($id)
+    {
+        
+        $approve = CpaOneRegistration::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $cpa_ff = CpaOneRegistration::find($id);
+        $cpa_ff->status = 2;
+        $cpa_ff->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
 
     /**
      * Show the form for editing the specified resource.

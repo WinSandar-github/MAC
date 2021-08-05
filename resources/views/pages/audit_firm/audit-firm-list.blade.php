@@ -7,7 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'audit_firm_registration'
+    'elementActive' => 'audit-firm-list'
 ])
 
 @section('content')
@@ -21,14 +21,13 @@
             
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card custom-border-top card-stats">
+                    <div class="card ">
                             <div class="card-header ">
                                 
                             </div>
                             <div class="card-body">
                             <div class="row">
-                                <div class="col-md-1"></div>
-                                <div class="col-md-10">
+                                <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
                                             <table id="tbl_audit" class="table table-hover text-nowrap">
@@ -37,9 +36,15 @@
                                                         <th class="less-font-weight">Sr</th>
                                                         <th class="less-font-weight">Accountancy Firm Registration No</th>
                                                         <th class="less-font-weight">Accountancy Firm Name</th>
-                                                        <th >
-                                                            
-                                                        </th>
+                                                        <th class="less-font-weight">Township</th>
+                                                        <th class="less-font-weight">Post Code</th>
+                                                        <th class="less-font-weight">City</th>
+                                                        <th class="less-font-weight">State/Region</th>
+                                                        <th class="less-font-weight">Telephone</th>
+                                                        <th class="less-font-weight">Email</th>
+                                                        <th class="less-font-weight">Website</th>
+                                                        <th class="less-font-weight">Status</th>
+                                                        <th class="less-font-weight">Detail</th>
                                                     </tr>
                                                     
                                                 </thead>

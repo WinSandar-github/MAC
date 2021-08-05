@@ -11,23 +11,27 @@
     </div>   
     <div class="row">
         <div class="col-md-12 text-center">
-            <form action="" method="get" enctype="multipart/form-data">
+            <!-- <form action="" method="get" enctype="multipart/form-data"> -->
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <table width="100%">
-                                <tr>
-                                    <td width="50%"><h5 class="title" style="padding-left: 330px;">{{ __('DA Exam Form (1) List') }}</h5></td>
-                                    <td width="25%">
-                                        <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id" style="margin-left: 75%; width: 70%;">
-                                            <option value="selected_batch_id" disabled selected>Select Batch</option>
-                                        </select>
-                                    </td>
-                                    <td width="25%">
-                                        <button type="submit" onclick="SearchByID()" class="btn btn-primary btn-hover-dark" style="margin-left: 63%;">Search</button>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="col-md-12">
+                                <h5 class="card-title">{{ __('DA One Exam List') }}</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
+                                    <option value="all" selected>All Batch</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" onclick="getExam()" class="btn btn-primary btn-hover-dark m-1" >Search</button>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="card-body">
@@ -38,14 +42,14 @@
                                         <table id="tbl_da_exam_one"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
-                                                    <th class="less-font-weight" >No</th>
-                                                    <th class="less-font-weight" >Private School Name</th>
-                                                    <th class="less-font-weight" >Exam Type</th>
-                                                    <th class="less-font-weight" >Grade</th>
-                                                    <th class="less-font-weight" >Status</th>
-                                                    <th class="less-font-weight" >Batch ID</th>
-                                                    <th class="less-font-weight" >Detail</th>
-                                                    <th class="less-font-weight" >Print</th>
+                                                    <th class="bold-font-weight" >No</th>
+                                                    <th class="bold-font-weight" >Private School Name</th>
+                                                    <th class="bold-font-weight" >Exam Type</th>
+                                                    <th class="bold-font-weight" >Grade</th>
+                                                    <th class="bold-font-weight" >Status</th>
+                                                    <th class="bold-font-weight" >Batch ID</th>
+                                                    <th class="bold-font-weight" >Detail</th>
+                                                    <th class="bold-font-weight" >Print</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_da_exam_one_body" class="hoverTable">
@@ -57,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            <!-- </form> -->
         </div>
     </div>
 </div>

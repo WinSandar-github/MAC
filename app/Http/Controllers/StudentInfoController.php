@@ -111,7 +111,8 @@ class StudentInfoController extends Controller
      */
     public function show($id)
     {
-        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course')->first();
+        //
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct')->first();
         return response()->json(['data' => $student_info],200);
     }
 
@@ -145,28 +146,29 @@ class StudentInfoController extends Controller
             $image = $request->old_image;
         }
 
-        if ($request->hasfile('documents')) {
-            foreach($request->file('documents') as $file){
+        if ($request->hasfile('certificates')) {
+                $file = $request->file('certificates');
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
-                $certificate[] = '/storage/student_info/'.$name;
-            }
+                $certificate = '/storage/student_info/'.$name;
+            
         } 
         else{
-            $certificate = $request->old_document;
+            $certificate = $request->old_certificate;
         }
 
       
 
      
 
-         $student_info = StudentInfo::find($id);
-         $student_info->name_mm          =   $request->name_mm;
+        $student_info = StudentInfo::find($id);
+        $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng          =   $request->name_eng;
         $student_info->nrc_state_region =   $request['nrc_state_region'];
         $student_info->nrc_township     =   $request['nrc_township'] ;
         $student_info->nrc_citizen      =    $request['nrc_citizen'] ;
-        $student_info->nrc_number       =   $request['nrc_number'];        $student_info->father_name_mm   =   $request->father_name_mm;
+        $student_info->nrc_number       =   $request['nrc_number'];    
+        $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
@@ -179,6 +181,7 @@ class StudentInfoController extends Controller
         $student_info->registration_no  =   $request->registration_no;
         $student_info->approve_reject_status = 0;
         $student_info->date             =   date("Y-m-d");
+        
         // $student_info->email            =   $request->email;
         // $student_info->password         =   Hash::make($request->password);
         $student_info->save(); 
@@ -218,10 +221,10 @@ class StudentInfoController extends Controller
 
         StudentCourseReg::where('student_info_id',$id)->delete();
         $student_course = new StudentCourseReg();
-        $student_course->student_info_id = $student_info->id;
+        $student_course->student_info_id = $student_info->id;   
         $student_course->batch_id        = $request->batch_id;
         $student_course->date            = date("Y-m-d",strtotime($request->course_date));
-        $student_course->status          = $request->course_status;
+        $student_course->status          = 1;
         $student_course->save();
 
         return response()->json($student_info,200);
@@ -245,5 +248,7 @@ class StudentInfoController extends Controller
         ],200);
 
     }
+
+   
     
 }

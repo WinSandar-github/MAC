@@ -17,7 +17,8 @@ use App\AuditStaff;
 use App\Declaration;
 use App\AuditFirmFile;
 use App\NonAuditFirmFile;
-
+use App\StudentInfo;
+use Hash;
 use File;
 
 
@@ -294,7 +295,7 @@ class AccFirmInfController extends Controller
         $acc_firm_info->city                    = $request->city;
         $acc_firm_info->state_region            = $request->state;
         $acc_firm_info->telephones              = $request->phone_no;
-        $acc_firm_info->email                   = $request->email;
+        $acc_firm_info->h_email                 = $request->h_email;
         $acc_firm_info->website                 = $request->website;
         $acc_firm_info->audit_firm_type_id      = $request->audit_firm_type_id; 
         $acc_firm_info->local_foreign_id        = $request->local_foreign_id;
@@ -303,7 +304,17 @@ class AccFirmInfController extends Controller
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
         $acc_firm_info->declaration                  = $request->declaration;   
+        $acc_firm_info->status   = 0;   
+        $acc_firm_info->form_fee = $request->form_fee;   
+        $acc_firm_info->nrc_fee  = $request->nrc_fee;   
         $acc_firm_info->save();
+
+        //Student Info
+        $std_info = new StudentInfo();
+        $std_info->accountancy_firm_info_id = $acc_firm_info->id;
+        $std_info->email = $request->email;
+        $std_info->password = Hash::make($request->password);
+        $std_info->save();
 
         //Branch Office
         for($i=0;$i<sizeof($request->bo_branch_name);$i++){
@@ -327,6 +338,7 @@ class AccFirmInfController extends Controller
                 $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
                 $audit_file->ppa_certificate    = json_encode($ppa_certi);
                 $audit_file->letterhead        = json_encode($letterhead);
+                $audit_file->tax_clearance    = json_encode($tax_clearance);
                 $audit_file->representative     = json_encode($representative);
                 $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);                
                 $audit_file->deeds_memo        = json_encode($deeds_memo);
@@ -475,6 +487,27 @@ class AccFirmInfController extends Controller
             'data' => $acc_firm_info
         ],200);
         
+    }
+
+    public function approve($id)
+    {
+        
+        $approve = AccountancyFirmInformation::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $reject = AccountancyFirmInformation::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
     }
 
     /**

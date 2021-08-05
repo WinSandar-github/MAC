@@ -22,7 +22,7 @@ class CreateStudentRegisterTable extends Migration
             $table->date('invoice_date');
             $table->integer('type');
             $table->integer('status');
-
+            $table->string('form_type')->nullable();
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
             $table->timestamps();
         });

@@ -6,7 +6,8 @@
 <div class="content">
     @include('flash-message')
     <div class="row">
-        <div class="col-md-12">                
+        <div class="col-md-12"> 
+        {{ Breadcrumbs::render('da_list') }}               
         </div>
     </div>   
     <div class="row">
@@ -16,8 +17,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div class="col-md-8">
-                                <h5 class="title" style="padding-left: 330px;">{{ __('DA Application Form List') }}</h5>
+                            <div class="col-md-12">
+                                <h5 class="card-title">{{ __('DA Application Form List') }}</h5>
                             </div>
                         </div>
                     </div>
@@ -29,13 +30,13 @@
                                         <table id="tbl_da_list"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
-                                                    <th class="less-font-weight" >No</th>
-                                                    <th class="less-font-weight" >Name</th>
-                                                    <th class="less-font-weight" >Email</th>     
-                                                    <th class="less-font-weight" >Phone Number</th>
-                                                    <th class="less-font-weight" >NRC</th>
-                                                    <th class="less-font-weight" >Status</th>
-                                                    <th class="less-font-weight" >Detail</th>
+                                                    <th class="bold-font-weight" >No</th>
+                                                    <th class="bold-font-weight" >Name</th>
+                                                    <th class="bold-font-weight" >Email</th>     
+                                                    <th class="bold-font-weight" >Phone Number</th>
+                                                    <th class="bold-font-weight" >NRC</th>
+                                                    <th class="bold-font-weight" >Status</th>
+                                                    <th class="bold-font-weight" >Detail</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_da_list_body" class="hoverTable">

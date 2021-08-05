@@ -21,8 +21,14 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="card-title">{{ __('Batch List') }}</h5>
+                                </div>
+                                
+                            </div>
+                            <div class="row">
                                 <div class="col-md-8">
-                                    <h5 class="title" style="padding-left: 330px;">{{ __('Batch Lists') }}</h5>
+                                    
                                 </div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_batch_modal">Create</button>
@@ -36,21 +42,24 @@
                                     <div class="card">
                                         <div class="card-body">
                                             <table id="tbl_batch" class="table table-hover text-nowrap ">
-                                                <thead>
+                                                <thead >
                                                     <tr>
-                                                        <th class="less-font-weight" >Sr No</th>
-                                                        <th class="less-font-weight" >Name</th>
-                                                        <th class="less-font-weight" >Course</th>                                        
-                                                        <th class="less-font-weight">Start Date</th>
-                                                        <th class="less-font-weight">End Date</th>   
-                                                        <th class="less-font-weight">MAC Registration Start Date</th>
-                                                        <th class="less-font-weight">MAC Registration End Date/th>  
-                                                        <th class="less-font-weight">Self Registration Start Date</th>
-                                                        <th class="less-font-weight">Self Registration End Date</th>  
-                                                        <th class="less-font-weight">Private Registration Start Date</th>
-                                                        <th class="less-font-weight">Private Registration Endt Date</th>                                                       
-                                                        <th class="less-font-weight">Accept Application Date</th>
-                                                        <th class="less-font-weight" >Action</th>
+                                                        <th class="bold-font-weight" >Sr No</th>
+                                                        <th class="bold-font-weight" >Name</th>
+                                                        <th class="bold-font-weight" >Course</th>                                        
+                                                        <th class="bold-font-weight">Start Date</th>
+                                                        <th class="bold-font-weight">End Date</th>   
+                                                        <th class="bold-font-weight">MAC Registration Start Date</th>
+                                                        <th class="bold-font-weight">MAC Registration End Date</th>  
+                                                        <th class="bold-font-weight">Self Registration Start Date</th>
+                                                        <th class="bold-font-weight">Self Registration End Date</th>  
+                                                        <th class="bold-font-weight">Private Registration Start Date</th>
+                                                        <th class="bold-font-weight">Private Registration Endt Date</th>                                                       
+                                                        <th class="bold-font-weight">Accept Application Start Date</th>
+                                                        <th class="bold-font-weight">Accept Application End Date</th>
+                                                        <th class="bold-font-weight">Entrance Pass Start Date</th>                                                       
+                                                        <th class="bold-font-weight">Entrance Pass End Date</th>
+                                                        <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
                                                 </thead>
@@ -77,7 +86,7 @@
                     <!-- @csrf -->
                     <input type="hidden"  name="batch_id" >
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crate Batch</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Batch</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -181,15 +190,45 @@
                             
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('11.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Accept Application Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Application Accept Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="acc_app_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="app_acc_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
                             </div>
                         </div>
                     </div>
 
-
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Application Accept End Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="app_acc_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="entrance_pass"  style="display:none; padding-left:15px;padding-right:15px">
+                        <div>
+                            <div class="row" >
+                                <label class="col-md-1 form-label">{{ __('13.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">                                
+                                        <input type="text" name="entrance_pass_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label class="col-md-1 form-label">{{ __('14.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">                                
+                                        <input type="text" name="entrance_pass_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                 </div>
                 <div class="modal-footer">
@@ -211,6 +250,8 @@
 </script>
 
 <script type="text/javascript">
+
+
     $(document).ready(function (e) {
         $("input[name='start_date']").flatpickr({
                 enableTime: false,
@@ -244,7 +285,23 @@
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
-        $("input[name='acc_app_date']").flatpickr({
+        $("input[name='app_acc_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='app_acc_end_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='acc_app_end_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='entrance_pass_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='entrance_pass_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
