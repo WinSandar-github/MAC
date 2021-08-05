@@ -130,6 +130,9 @@ Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID')
 //for school registration
 Route::resource('/school','SchoolController');
 
+//for teacher registration
+Route::resource('/teacher','TeacherController');
+
 
 
 
