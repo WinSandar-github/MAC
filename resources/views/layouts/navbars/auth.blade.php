@@ -194,6 +194,12 @@
                     </ul>
                 </div>
             </li>
+            <li class="{{ $elementActive == 'school_registration' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'school_registration') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('School') }}</p>
+                </a>
+            </li> 
             {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'teacher_registration') }}">
                     <i class="nc-icon nc-paper"></i>

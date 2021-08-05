@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\TeacherRegister;
+use App\StudentInfo;
+use Hash;
 
 class TeacherController extends Controller
 {
@@ -66,6 +68,14 @@ class TeacherController extends Controller
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->save();
+
+        //Student Info
+        $std_info = new StudentInfo();
+        $std_info->teacher_id = $teacher->id;
+        $std_info->email = $request->email;
+        $std_info->password = Hash::make($request->password);
+        $std_info->save();
+
         return response()->json([
             'message' => 'Success Registration.'
         ],200);

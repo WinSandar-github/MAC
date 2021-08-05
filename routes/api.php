@@ -129,9 +129,11 @@ Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID')
 
 //for school registration
 Route::resource('/school','SchoolController');
-
+Route::post('/approve_school_register/{id}', 'SchoolController@approve_school_register');
+Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_register');
 //for teacher registration
 Route::resource('/teacher','TeacherController');
+
 
 
 
