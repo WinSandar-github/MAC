@@ -1,5 +1,5 @@
 function getDAList(){
-    destroyDatatable("#tbl_da_list", "#tbl_da_list_body");
+    destroyDatatable("#tbl_da_list", "#tbl_da_list_body");    
     $.ajax({
         url: BACKEND_URL+"/da_register",
         type: 'get',
@@ -7,31 +7,41 @@ function getDAList(){
         success: function(data){
             var da_data = data.data;
             da_data.forEach(function (element) {
+                var status;
+                if(element.approve_reject_status==0){
+                    status="Pending";
+                }
+                else if(element.approve_reject_status==1){
+                    status="Approve";
+                }
+                else{
+                    status="Reject";
+                }
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
                     tr += "<td>" + element.name_eng + "</td>";
                     tr += "<td>" + element.email + "</td>";
                     tr += "<td>" + element.phone+ "</td>";
-                    tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number + "</td>";
-                    tr += "<td>" + element.approve_reject_status + "</td>";
+                    tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
+                    tr += "<td>" + status + "</td>";
                     tr += "<td ><div class='btn-group'>";
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "</tr>";
-                    $("#tbl_da_list_body").append(tr);
+                    $("#tbl_da_list_body").append(tr);     
             });
             getIndexNumber('#tbl_da_list tr');
-            createDataTable("#tbl_da_list");
+            createDataTable("#tbl_da_list");      
         },
         error:function (message){
-            dataMessage(message, "#tbl_da_list", "#tbl_da_list_body");
+            dataMessage(message, "#tbl_da_list", "#tbl_da_list_body");        
         }
     });
 }
 
 function showDAList(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href= FRONTEND_URL + "/da_edit";
+    location.href= "/da_edit";
 }
 
 function loadData(){
@@ -73,13 +83,19 @@ function loadData(){
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
+                if(element.approve_reject_status==0){
+                    document.getElementById("approve_reject").style.display = "block";
+                }
+                else{
+                    document.getElementById("approve_reject").style.display = "none";
+                }
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
-
+                document.getElementById('image').src=element.image;
                 $("#name_eng").append(element.name_eng);
                 $("#name_mm").append(element.name_mm);
-                $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number );
+                $("#nrc").append(element.nrc_state_region+"/" +element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number );
                 $("#father_name_mm").append(element.father_name_mm);
                 $("#father_name_eng").append(element.father_name_eng);
                 $("#race").append(element.race);
@@ -111,28 +127,28 @@ function loadData(){
     })
 }
 
-function approveUser(){
-
+function approveUser(){ 
+    
     var id = $("input[name = student_info_id]").val();
+    console.log('approvedaid',id);
     $.ajax({
         url: BACKEND_URL + "/approve/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/da_list";
+            location.href = "/da_list";
         }
     });
 }
 
-function rejectUser(){
+function rejectUser(){ 
     var id = $("input[name = student_info_id]").val();
     $.ajax({
         url: BACKEND_URL + "/reject/"+id,
         type: 'patch',
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/da_list";
+            location.href = "/da_list";
         }
     });
 }
-

@@ -105,7 +105,7 @@ class DARegisterController extends Controller
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id        = $request->batch_id;
+        $student_course->batch_id        = 1;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
         $student_course->save();
@@ -128,6 +128,7 @@ class DARegisterController extends Controller
         ->where('nrc_township', '=', $request['nrc_township'])
         ->where('nrc_citizen', '=', $request['nrc_citizen'])
         ->where('nrc_number', '=', $request['nrc_number'])
+        ->with('student_job', 'student_education_histroy')
         ->first();
         return response()->json([
             'data' => $data

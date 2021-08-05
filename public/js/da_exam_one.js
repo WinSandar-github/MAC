@@ -5,7 +5,7 @@ function getExam(){
         type: 'get',
         data:"",
         success: function(data){
-            console.log(data);
+            // console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
                     var tr = "<tr>";
@@ -14,12 +14,13 @@ function getExam(){
                     tr += "<td>" + element.exam_type_id + "</td>";
                     tr += "<td>" + element.grade + "</td>";
                     tr += "<td>" + element.status+ "</td>";
+                    tr += "<td>" + element.batch_id+ "</td>";
                     tr += "<td ><div class='btn-group'>";
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td ><div class='btn-group'>";
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
-                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                     tr += "</tr>";
                     $("#tbl_da_exam_one_body").append(tr);
             });
@@ -120,6 +121,65 @@ function rejectExam(){
             successMessage("You have rejected that form!");
             location.href = "/da_exam_one";
             getExam();
+        }
+    });
+}
+
+function loadBatchData(){ 
+    var select = document.getElementById("selected_batch_id");  
+    $.ajax({
+        url: BACKEND_URL+"/batch",
+        type: 'get',
+        data:"",
+        success: function(data){
+
+            var batch_data=data.data;            
+            
+            batch_data.forEach(function (element) {
+                var option = document.createElement('option');
+                option.text = element.name;
+                option.value = element.id;
+                select.add(option, 0);
+            });              
+        },
+        error:function (message){
+                   
+        }
+    });
+}
+
+function SearchByID(){
+    var id = $('#selected_batch_id').val();
+    destroyDatatable("#tbl_da_exam_one", "#tbl_da_exam_one_body");
+    $.ajax({
+        url: BACKEND_URL + "/filter/"+id,
+        type: 'get',
+        data:"",
+        success: function(data){
+            var da_data = data.data;
+            da_data.forEach(function (element) {
+                console.log(element)
+                    var tr = "<tr>";
+                    tr += "<td>" +  + "</td>";
+                    tr += "<td>" + element.private_school_name + "</td>";
+                    tr += "<td>" + element.exam_type_id + "</td>";
+                    tr += "<td>" + element.grade + "</td>";
+                    tr += "<td>" + element.status+ "</td>";
+                    tr += "<td>" + element.batch_id+ "</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "<td ><div class='btn-group'>";
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
+                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "</tr>";
+                    $("#tbl_da_exam_one_body").append(tr);
+            });
+            getIndexNumber('#tbl_da_exam_one tr');
+            createDataTable("#tbl_da_exam_one");
+        },
+        error:function (message){
+            dataMessage(message, "#tbl_da_exam_one", "#tbl_da_exam_one_body");
         }
     });
 }

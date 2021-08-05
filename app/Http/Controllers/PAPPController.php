@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Papp;
+use App\StudentJobHistroy;
+use App\EducationHistroy;
 
 class PAPPController extends Controller
 {
     //
     public function index()
     {
-        $papp = Papp::all();
+        $papp = Papp::with('student_info','student_job', 'student_education_histroy')->get();
         return response()->json([
             'data' => $papp
         ],200);
@@ -52,7 +54,7 @@ class PAPPController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
                 $file->move(public_path().'/storage/student_papp/',$name);
-                $degree[] = $name;
+                $degree[] = '/storage/student_papp/'.$name;
             }
         
         }else{
@@ -124,42 +126,58 @@ class PAPPController extends Controller
         }
 
         $papp  = new Papp();
-        $papp->student_id = $request->student_id;
-        $papp->cpa =   $cpa;
-        $papp->ra =   $ra;
-        $papp->foreign_degree =   json_encode($degree);
-        // $papp->foreign_degree =   $degree;
-        // $papp->cpa =   $request->cpa;
-        // $papp->ra =   $request->ra;
-        // $papp->foreign_degree =   $request->foreign_degree;
-        $papp->papp_date =   $request->papp_date;
-        $papp->use_firm =   $request->use_firm;
-        $papp->firm_name =   $request->firm_name;
-        $papp->firm_type =   $request->firm_type;
-        $papp->firm_step =   $request->firm_step;
-        $papp->staff_firm_name =   $request->staff_firm_name;
+        $papp->student_id                   = $request->student_id;
+        $papp->cpa                          =   $cpa;
+        $papp->ra                           =   $ra;
+        $papp->foreign_degree               =   json_encode($degree);
+        $papp->papp_date                    =   $request->papp_date;
+        $papp->use_firm                     =   $request->use_firm;
+        $papp->firm_name                    =   $request->firm_name;
+        $papp->firm_type                    =   $request->firm_type;
+        $papp->firm_step                    =   $request->firm_step;
+        $papp->staff_firm_name              =   $request->staff_firm_name;
+        $papp->cpa_ff_recommendation        =   $cpa_ff;
+        $papp->recommendation_183           =   $recomm_183;
+        $papp->not_fulltime_recommendation  =   $not_fulltime;
+        $papp->work_in_myanmar_confession   =   $work_in_mm;
+        $papp->rule_confession              =   $rule;
+        $papp->cpd_record                   =   $cpd;
+        $papp->tax_year                     =   $request->tax_year;
+        $papp->tax_free_recommendation      =   $tax_free;
+        $papp->status                       =  0;
+            $papp->save();
 
-        // $papp->cpa_ff_recommendation =  $request->cpa_ff_recommendation;
-        // $papp->recommendation_183 =    $request->recommendation_183;
-        // $papp->not_fulltime_recommendation =   $request->not_fulltime_recommendation;
-        // $papp->work_in_myanmar_confession =   $request->work_in_myanmar_confession;
-        // $papp->rule_confession =   $request->rule_confession;
-        // $papp->cpd_record =   $request->cpd_record;
-        // $papp->tax_year =   $request->tax_year;
-        // $papp->tax_free_recommendation =   $request->tax_free_recommendation;
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
+    }
 
-        $papp->cpa_ff_recommendation =   $cpa_ff;
-        $papp->recommendation_183 =   $recomm_183;
-        $papp->not_fulltime_recommendation =   $not_fulltime;
-        $papp->work_in_myanmar_confession =   $work_in_mm;
-        $papp->rule_confession =   $rule;
-        $papp->cpd_record =   $cpd;
-        $papp->tax_year =   $request->tax_year;
-        $papp->tax_free_recommendation =   $tax_free;
-             $papp->save();
- 
-            return response()->json([
-                'message' => "Insert Successfully"
-            ],200);
+    public function show($id)
+    {
+        $papp = Papp::where('id',$id)->with('student_info','student_job', 'student_education_histroy')->get();
+        return response()->json([
+            'data'  => $papp
+        ]);        
+    }
+
+    public function approve($id)
+    {
+        
+        $approve = Papp::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $reject = Papp::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
     }
 }

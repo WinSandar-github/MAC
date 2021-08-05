@@ -18,7 +18,10 @@ function createCourse(){
     send_data.append('registration_start_date',$("input[name=registration_start_date]").val());
     send_data.append('registration_end_date',$("input[name=registration_end_date]").val());
     send_data.append('description',$("input[name=description]").val());   
-    
+    send_data.append('code',$("input[name=code]").val());   
+
+    send_data.append('course_type_id',$('.course_type').val());
+     
     $.ajax({
             url: BACKEND_URL+"/course",
             type: 'post',
@@ -94,7 +97,9 @@ function showCourseInfo(id) {
             $('input[name=registration_start_date]').val(course_data[0].registration_start_date);
             $('input[name=registration_end_date]').val(course_data[0].registration_end_date);
             $('input[name=description]').val(course_data[0].description);
-            
+            $('input[name=code]').val(course_data[0].code);
+            $('.course_type').val(course_data[0].course_type_id);
+                        
             $('#create_course_modal').modal('toggle');
         },
 
@@ -114,7 +119,10 @@ function updateCourse(){
     var tution_fee=$("input[name=tution_fee]").val();
     var registration_start_date=$("input[name=registration_start_date]").val()
     var registration_end_date=$("input[name=registration_end_date]").val()
-    var description=$("input[name=description]").val();    
+    var description =   $("input[name=description]").val();    
+    var code        =   $("input[name=code]").val();   
+
+    var course_type_id = $('.course_type').val();
    
     $.ajax({
         url: BACKEND_URL+"/course/"+id,
@@ -127,7 +135,9 @@ function updateCourse(){
             tution_fee:tution_fee,
             registration_start_date:registration_start_date,
             registration_end_date:registration_end_date,
-            description:description
+            description:description,
+            code:code,
+            course_type_id:course_type_id
         },        
         success: function(result){
             successMessage("Update Successfully");
