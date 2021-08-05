@@ -33,7 +33,7 @@ function loadMarkedStudent()
 
 function viewMark(resultID){
     localStorage.setItem("id",resultID);
-    location.href = "/edit_marked_list";
+    location.href =  FRONTEND_URL + "/edit_marked_list";
 }
 
 function getResult()

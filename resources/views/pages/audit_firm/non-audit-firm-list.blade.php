@@ -36,18 +36,18 @@
                                                 <table id="tbl_non_audit" class="table table-hover text-nowrap">
                                                     <thead>
                                                         <tr>
-                                                            <th class="less-font-weight">Sr</th>
-                                                            <th class="less-font-weight">Accountancy Firm Registration No</th>
-                                                            <th class="less-font-weight">Accountancy Firm Name</th>
-                                                            <th class="less-font-weight">Township</th>
-                                                            <th class="less-font-weight">Post Code</th>
-                                                            <th class="less-font-weight">City</th>
-                                                            <th class="less-font-weight">State/Region</th>
-                                                            <th class="less-font-weight">Telephone</th>
-                                                            <th class="less-font-weight">Email</th>
-                                                            <th class="less-font-weight">Website</th>
-                                                            <th class="less-font-weight">Status</th>
-                                                            <th class="less-font-weight">Detail</th>
+                                                            <th class="bold-font-weight">Sr</th>
+                                                            <th class="bold-font-weight">Accountancy Firm Registration No</th>
+                                                            <th class="bold-font-weight">Accountancy Firm Name</th>
+                                                            <th class="bold-font-weight">Township</th>
+                                                            <th class="bold-font-weight">Post Code</th>
+                                                            <th class="bold-font-weight">City</th>
+                                                            <th class="bold-font-weight">State/Region</th>
+                                                            <th class="bold-font-weight">Telephone</th>
+                                                            <th class="bold-font-weight">Email</th>
+                                                            <th class="bold-font-weight">Website</th>
+                                                            <th class="bold-font-weight">Status</th>
+                                                            <th class="bold-font-weight">Detail</th>
                                                         </tr>
                                                         
                                                     </thead>

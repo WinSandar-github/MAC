@@ -58,6 +58,7 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 Route::resource('/papp','PAPPController');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
+Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
@@ -127,12 +128,17 @@ Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 
+//Store DA/CPA Two Application Form
+Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
+
 //for school registration
 Route::resource('/school','SchoolController');
 Route::post('/approve_school_register/{id}', 'SchoolController@approve_school_register');
 Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_register');
 //for teacher registration
 Route::resource('/teacher','TeacherController');
+
+Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
 
 

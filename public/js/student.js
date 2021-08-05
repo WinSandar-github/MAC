@@ -61,7 +61,7 @@ function getStudentSelfStudy(){
 
 function showStudentSelfStudy(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/self_study_edit";
+    location.href= FRONTEND_URL + "/self_study_edit";
 }
 
 function loadStudentSelfStudy(){
@@ -167,7 +167,7 @@ function getStudentPrivateSchool(){
 
 function showStudentPrivateSchool(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/private_school";
+    location.href= FRONTEND_URL + "/private_school";
 }
 
 function loadStudentPrivateSchool(){
@@ -268,7 +268,7 @@ function getStudentMac(){
 
 function showStudentMac(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/mac";
+    location.href= FRONTEND_URL + "/mac";
 }
 
 function loadStudentMac(){
@@ -316,9 +316,9 @@ function approveStudent(){
             console.log(result.data)
             successMessage("You have approved that student!");  
             if(result.data=="da one"){
-                location.href = "/index";
+                location.href =  FRONTEND_URL + "/index";
             }else{
-                location.href = "/da_two_index";
+                location.href =  FRONTEND_URL + "/da_two_index";
             }           
             getStudentSelfStudy();
             getStudentPrivateSchool();
@@ -337,9 +337,9 @@ function rejectStudent(){
             console.log(result)
             successMessage("You have rejected that student!");  
             if(result.data=="da one"){
-                location.href = "/index";
+                location.href =  FRONTEND_URL + "/index";
             }else{
-                location.href = "/da_two_index";
+                location.href =  FRONTEND_URL + "/da_two_index";
             }             
             getStudentSelfStudy();
             getStudentPrivateSchool();

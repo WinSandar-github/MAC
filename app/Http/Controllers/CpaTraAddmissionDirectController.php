@@ -78,6 +78,8 @@ class CpaTraAddmissionDirectController extends Controller
                 $file->move(public_path().'/storage/student_info/',$name);
                 $deg_certi_img = '/storage/student_info/'.$name;
            
+        }else{
+            $deg_certi_img = null;
         }
      
         if ($request->hasfile('certificates')) {
@@ -117,6 +119,7 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->date             =   $date;
         $student_info->email            =   $request->email;
         $student_info->password         =   Hash::make($request->password);
+
         $student_info->course_type_id   = 2 ;
         // CPA
         $student_info->direct_degree                =   $request->direct_degree; 
@@ -151,6 +154,7 @@ class CpaTraAddmissionDirectController extends Controller
         $student_course->batch_id          = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
+        $student_course->qt_entry      = $request->qt_entry;
         $student_course->save();
 
        
