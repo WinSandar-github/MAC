@@ -107,15 +107,15 @@ function getExam(){
 
 function showExam(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/da_exam_one_edit";
+    location.href= FRONTEND_URL + "/da_exam_one_edit";
 }
 function showDaTwoExam(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/da_two_exam_edit";
+    location.href= FRONTEND_URL + "/da_two_exam_edit";
 }
 function printExamCard(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/da1_examcard";
+    location.href= FRONTEND_URL + "/da1_examcard";
 }
 
 function loadDAExamData()
@@ -199,7 +199,7 @@ function approveDAOneExam(){
         success: function(result){
             console.log(result)
             successMessage("You have approved that form!");
-            location.href = "/da_exam_one";
+            location.href =  FRONTEND_URL + "/da_exam_one";
             getExam();
         }
     });
@@ -213,7 +213,7 @@ function rejectDAOneExam(){
         success: function(result){
             console.log(result)
             successMessage("You have rejected that form!");
-            location.href = "/da_exam_one";
+            location.href =  FRONTEND_URL + "/da_exam_one";
             getExam();
         }
     });
@@ -227,7 +227,7 @@ function approveDATwoExam(){
         success: function(result){
             console.log(result)
             successMessage("You have approved that form!");
-            location.href = "/da_two_exam";
+            location.href =  FRONTEND_URL + "/da_two_exam";
             getExam();
         }
     });
@@ -241,7 +241,7 @@ function rejectDATwoExam(){
         success: function(result){
             console.log(result)
             successMessage("You have rejected that form!");
-            location.href = "/da_two_exam";
+            location.href =  FRONTEND_URL + "/da_two_exam";
             getExam();
         }
     });
@@ -316,7 +316,7 @@ function chooseBatch(){
             type: 'get',
             success: function(result){
                 localStorage.setItem("batch_id",id);
-                location.href = "/exam_result_edit";
+                location.href =  FRONTEND_URL + "/exam_result_edit";
                 // loadStudent();
             }
         });
@@ -401,15 +401,15 @@ function fillMark(batchID, isFullModule){
     console.log(is_full_module);
     if(is_full_module == 0)
     {
-        location.href="/fill_mark_one";
+        location.href= FRONTEND_URL + "/fill_mark_one";
     }
     else if(is_full_module == 1)
     {
-        location.href="/fill_mark_two";
+        location.href= FRONTEND_URL + "/fill_mark_two";
     }
     else
     {
-        location.href="/fill_mark_full";
+        location.href= FRONTEND_URL + "/fill_mark_full";
     }
     
 }

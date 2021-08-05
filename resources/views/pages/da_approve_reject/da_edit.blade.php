@@ -55,10 +55,11 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Attched Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button>
+                                        <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
+                                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
 
@@ -229,11 +230,11 @@
                                     <button type="submit" name="save" id="reject" class="btn btn-primary"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
                                 </div>
                                 <!-- Attached Certificate -->
-                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog">
+                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                                  <div class="modal-dialog" role="document" > 
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <img src="#" class="img-responsive" style="height:5%;">
+                                            <embed id="attach_file"  width="400px" height="500px">
                                         </div>
                                     </div>
                                   </div>

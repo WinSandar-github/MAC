@@ -490,7 +490,7 @@
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <img src="#" class="img-responsive" style="height:5%;">
+                                            <embed id="cpaff_attached_file"  width="400px" height="500px">
                                         </div>
                                     </div>
                                   </div>

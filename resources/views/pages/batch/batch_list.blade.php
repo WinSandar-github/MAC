@@ -235,6 +235,50 @@
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                     <button type="submit" class="btn btn-primary" form="batch_form">Save</button>
                 </div>
+            </form>    
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="create_exam_modal"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+            <form id="exam_form" method="post" action="javascript:createExam();" enctype="multipart/form-data">
+                    <!-- @csrf -->
+                <input type="hidden" name="batch_id" id="batch_id">   
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create Exam </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="card-body">
+                 
+                <div class="row">
+                        <label class="col-md-1 form-label">{{ __('1.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Exam Start Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="exam_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('2.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Exam End Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="exam_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                    <button type="submit" class="btn btn-primary" form="exam_form">Save</button>
+                </div>
+            </form>    
             </div>
         </div>
     </div>
@@ -290,14 +334,14 @@
                 dateFormat: "Y-m-d",
         });
         $("input[name='app_acc_end_date']").flatpickr({
-        $("input[name='acc_app_start_date']").flatpickr({
+        
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
-        $("input[name='acc_app_end_date']").flatpickr({
-                enableTime: false,
-                dateFormat: "Y-m-d",
-        });
+        // $("input[name='acc_app_end_date']").flatpickr({
+        //         enableTime: false,
+        //         dateFormat: "Y-m-d",
+        // });
         $("input[name='entrance_pass_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
@@ -306,6 +350,15 @@
                 enableTime: false,
                 dateFormat: "Y-m-d",
         });
+        $("input[name='exam_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+        $("input[name='exam_end_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+        });
+
     });
 </script>
 @endpush

@@ -152,8 +152,17 @@ class CPAFFController extends Controller
     {
         $accepted_date = date('Y-m-d');
         $approve = CPAFF::find($id);
-        $approve->status = 1;
-        $approve->accepted_date=$accepted_date;
+        if($approve->status==0)
+        {
+            $approve->status = 1;            
+            $approve->accepted_date=$accepted_date;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        else if($approve->status==1){
+            $approve->status = 1;
+            $approve->renew_status=1;
+            $approve->renew_accepted_date=$accepted_date;
+        }
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -164,34 +173,63 @@ class CPAFFController extends Controller
     {
         $cpa_ff = CPAFF::find($id);
         $cpa_ff->status = 2;
+        $approve->renew_status=2;
         $cpa_ff->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
         ],200);
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $cpa_ff = CPAFF::find($id);
-    //     $cpa_ff->student_info_id  =   $request->student_info_id;
-    //     $cpa_ff->cpa              =   $cpa;
-    //     $cpa_ff->ra               =   $ra;
-    //     $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
-    //     // $cpa_ff->foreign_degree   =   $foreign_degree;
-    //     $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
-    //     $cpa_ff->qt_pass          =   $request->qt_pass;
-    //     $cpa_ff->cpa_certificate  =   $cpa_certificate;
-    //     $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
-    //     $cpa_ff->nrc_front        =   $nrc_front;
-    //     $cpa_ff->nrc_back         =   $nrc_back;
-    //     $cpa_ff->cpd_record       =   $cpd_record;
-    //     $cpa_ff->passport_image   =   $passport_image;
-    //     $cpa_ff->save();
-    //     return response()->json([
-    //         'message' => "Update Successfully"
-    //     ],200);
+    public function update(Request $request, $id)
+    {
+        $cpa_ff = CPAFF::find($id);
+        if ($request->hasfile('renew_file')) {
+            $file = $request->file('renew_file');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $renew_file = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $renew_file="";
+        }
 
-    //  }
+        if ($request->hasfile('renew_micpa')) {
+            $file = $request->file('renew_micpa');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $renew_micpa = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $renew_micpa="";
+        }
+
+        if ($request->hasfile('renew_cpd')) {
+            $file = $request->file('renew_cpd');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $renew_cpd = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $renew_cpd="";
+        }
+
+        if ($request->hasfile('renew_cpaff_reg')) {
+            $file = $request->file('renew_cpaff_reg');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $renew_cpaff_reg = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $renew_cpaff_reg="";
+        }
+
+        $cpa_ff->renew_file=$renew_file;
+        $cpa_ff->renew_micpa=$renew_micpa;
+        $cpa_ff->renew_cpd=$renew_cpd;
+        $cpa_ff->renew_cpaff_reg=$renew_cpaff_reg;
+        $cpa_ff->renew_status=0;
+        $cpa_ff->save();        
+        return response()->json([
+            'message' => "Insert Successfully"
+        ],200);
+
+     }
 
     // public function destroy($id)
     // {

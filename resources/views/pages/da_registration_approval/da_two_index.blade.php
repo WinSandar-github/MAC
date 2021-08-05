@@ -19,7 +19,13 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
-                        
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="title">{{ __('DA 2 Registration List') }}</h5>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 
@@ -48,14 +54,14 @@
                                                             <table id="da_two_self_study" class="table table-hover text-nowrap " style="width: 100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="less-font-weight">Sr No</th>
-                                                                        <th class="less-font-weight" >Name</th>
-                                                                        <th class="less-font-weight" >Email</th>                                        
-                                                                        <th class="less-font-weight" >Registration No</th>
-                                                                        <th class="less-font-weight" >Phone</th>
-                                                                        <th class="less-font-weight" >Registration Reason</th>
-                                                                        <th class="less-font-weight" >Status</th>
-                                                                        <th class="less-font-weight" >Detail</th>
+                                                                        <th class="bold-font-weight">Sr No</th>
+                                                                        <th class="bold-font-weight" >Name</th>
+                                                                        <th class="bold-font-weight" >Email</th>                                        
+                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                        <th class="bold-font-weight" >Registration Reason</th>
+                                                                        <th class="bold-font-weight" >Status</th>
+                                                                        <th class="bold-font-weight" >Detail</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
@@ -76,13 +82,13 @@
                                                             <table id="da_two_private_school" class="table table-hover text-nowrap " width="100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="less-font-weight" >Sr No</th>
-                                                                        <th class="less-font-weight" >Name</th>
-                                                                        <th class="less-font-weight" >Email</th>                                        
-                                                                        <th class="less-font-weight" >Registration No</th>
-                                                                        <th class="less-font-weight" >Phone</th>
-                                                                        <th class="less-font-weight" >Status</th>
-                                                                        <th class="less-font-weight" >Action</th>
+                                                                        <th class="bold-font-weight" >Sr No</th>
+                                                                        <th class="bold-font-weight" >Name</th>
+                                                                        <th class="bold-font-weight" >Email</th>                                        
+                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                        <th class="bold-font-weight" >Status</th>
+                                                                        <th class="bold-font-weight" >Action</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
@@ -100,13 +106,13 @@
                                                             <table id="da_two_mac" class="table table-hover text-nowrap " width="100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="less-font-weight">Sr No</th>
-                                                                        <th class="less-font-weight" >Name</th>
-                                                                        <th class="less-font-weight" >Email</th>                                        
-                                                                        <th class="less-font-weight" >Registration No</th>
-                                                                        <th class="less-font-weight" >Phone</th>
-                                                                        <th class="less-font-weight" >Status</th>
-                                                                        <th class="less-font-weight" >Action</th>
+                                                                        <th class="bold-font-weight">Sr No</th>
+                                                                        <th class="bold-font-weight" >Name</th>
+                                                                        <th class="bold-font-weight" >Email</th>                                        
+                                                                        <th class="bold-font-weight" >Registration No</th>
+                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                        <th class="bold-font-weight" >Status</th>
+                                                                        <th class="bold-font-weight" >Action</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
