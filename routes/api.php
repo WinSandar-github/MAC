@@ -58,6 +58,7 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 Route::resource('/papp','PAPPController');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
+Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
