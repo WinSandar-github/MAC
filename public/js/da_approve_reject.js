@@ -1,3 +1,5 @@
+var attached_file;
+
 function getDAList(){
     destroyDatatable("#tbl_da_list", "#tbl_da_list_body");    
     $.ajax({
@@ -83,6 +85,7 @@ function loadData(){
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
+                console.log(element);
                 if(element.approve_reject_status==0){
                     document.getElementById("approve_reject").style.display = "block";
                 }
@@ -122,6 +125,7 @@ function loadData(){
                 $("#company_name").append(job.company_name);
                 $("#salary").append(job.salary);
                 $("#office_address").append(job.office_address);
+                attached_file=element.student_education_histroy.certificate;
             })
         }
     })
@@ -151,4 +155,13 @@ function rejectUser(){
             location.href = "/da_list";
         }
     });
+}
+
+function file_read(data){
+    if(data=='certificate'){
+        document.getElementById('attach_file').src=attached_file;
+        $('#myModal').modal({
+            show : true
+        });
+    }
 }
