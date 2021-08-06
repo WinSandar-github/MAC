@@ -67,27 +67,41 @@ The above copyright notice and this permission notice shall be included in all c
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
         name='viewport' />
     <!--     Fonts and icons     -->
+    <!-- <link href="{{ asset('css/bootstrap/') }}/font-awesome.min.css" rel="stylesheet" />
+    <link href="{{ asset('css/bootstrap/') }}/font_family.css" rel="stylesheet" /> -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    
+
     <!-- CSS Files -->
     <!-- <link href="{{ asset('paper') }}/css/bootstrap.min.css" rel="stylesheet" /> -->
     <link href="{{ asset('paper') }}/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+
     <!--bootstrap 5-->
     {{-- <link href="{{ asset('plugins/bootstrap-5') }}/css/bootstrap.min.css" rel="stylesheet" /> --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+
     <!-- Custom CSS -->
     <link href="{{ asset('css') }}/custom.css" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="{{ asset('paper') }}/demo/demo.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- flatpickr -->
+    <link rel="stylesheet" href="{{ asset('css/flatpickr/flatpickr.min.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> -->
+
     <!--treeview css-->
     <link href="{{ asset('css') }}/treeview.css" rel="stylesheet" />
+
     <!--toastr-->
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/toastr') }}/toastr.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+
+    <!-- dataTables -->
+    <link rel="stylesheet" href="{{ asset('css/dataTables/dataTables.bootstrap5.min.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css"> -->
+
     <!-- DataTables -->
     <!-- {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-bs4/css/dataTables.bootstrap4.min.css"> --}}
     {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-select/css/select.bootstrap4.css"> --}}
@@ -124,19 +138,28 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('paper') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('paper') }}/js/core/bootstrap.min.js"></script> --}}
 
-    
+
     <!-- Sharrre libray -->
 
- 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js">
     {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> --}}
     {{-- <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script> --}}
     <script src="{{ asset('paper') }}/demo/jquery.sharrre.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js">
+
+    <!-- dataTables JS -->
+    <script src="{{ asset('js/dataTables') }}/jquery.dataTables.min.js"></script>
+    <script src="{{ asset('js/dataTables') }}/dataTables.bootstrap5.min.js"></script>
+    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"> -->
+
+    <!-- flatpickr -->
+    <script src="{{ asset('js/flatpickr') }}/flatpickr.js"></script>
+
     <script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--  Google Maps Plugin    -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
@@ -151,8 +174,8 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('js') }}/audit_firm.js"></script>
     <script src="{{ asset('js') }}/course.js"></script>
     <script src="{{ asset('js') }}/batch.js"></script>
-    <script src="{{ asset('js') }}/requirement.js"></script>  
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="{{ asset('js') }}/requirement.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> -->
     <script src="{{ asset('js') }}/common.js"></script>
     <script src="{{ asset('js') }}/student.js"></script>
     <script src="{{ asset('js') }}/da_approve_reject.js"></script>
@@ -209,4 +232,3 @@ The above copyright notice and this permission notice shall be included in all c
 @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
 @include('sweetalert::alert')
 </html>
-

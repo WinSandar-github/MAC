@@ -13,21 +13,24 @@
         <div class="col-md-12 text-center">
             <!-- <form action="" method="get" enctype="multipart/form-data"> -->
                 <div class="card">
-                    <div class="card-header">
+                <div class="card-header">
                         <div class="row">
-                            <table width="100%">
-                                <tr>
-                                    <td width="50%"><h5 class="title" style="padding-left: 330px;">{{ __('CPA(2) Exam List') }}</h5></td>
-                                    <td width="25%">
-                                        <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id" style="margin-left: 75%; width: 70%;">
-                                            <option value="all" selected>All Batch</option>
-                                        </select>
-                                    </td>
-                                    <td width="25%">
-                                        <button type="submit" onclick="getCPAExam()" class="btn btn-primary btn-hover-dark" style="margin-left: 63%;">Search</button>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="col-md-12">
+                                <h5 class="title">{{ __('CPA 2 Exam Registration List') }}</h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                
+                            </div>
+                            <div class="col-md-2">
+                                <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
+                                    <option value="all" selected>All Batch</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" onclick="getCPAExam()" class="btn btn-primary btn-hover-dark m-1" >Search</button>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">

@@ -19,7 +19,13 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
-                        
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="title">{{ __('DA 1 Registration List') }}</h5>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 

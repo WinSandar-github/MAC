@@ -39,6 +39,8 @@ class CreateStudentInfosTable extends Migration
             $table->string('direct_degree')->nullable();
             $table->string('degree_rank')->nullable();
             $table->date('degree_date')->nullable();
+            $table->integer('school_id')->nullable();
+            $table->integer('teacher_id')->nullable();
             $table->string('degree_certificate_image')->nullable();
             $table->unsignedBigInteger('course_type_id')->nullable();
             $table->unsignedBigInteger('accountancy_firm_info_id')->nullable();

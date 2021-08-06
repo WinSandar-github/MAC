@@ -17,7 +17,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-8">
-                                    <h5 class="title" style="padding-left: 330px;">{{ __('Student List') }}</h5>
+                                    <h5 class="title" style="padding-left: 330px;">{{ __('CPA 2 Exam Result List') }}</h5>
                                 </div>
                             </div>
                         </div>
@@ -29,15 +29,15 @@
                                             <table id="tbl_cpa_exam_result"class="table table-hover text-nowrap ">
                                                 <thead>
                                                     <tr>
-                                                      <th class="less-font-weight" >No</th>
-                                                      <th class="less-font-weight" >Student Name</th>
-                                                      <th class="less-font-weight" >Private School Name</th>
-                                                      <th class="less-font-weight" >Exam Type</th>
-                                                      <th class="less-font-weight" >Grade</th>
-                                                      <th class="less-font-weight" >Status</th>
-                                                      <th class="less-font-weight" >Batch ID</th>
-                                                      <th class="less-font-weight" >Is Full Module</th>
-                                                      <th class="less-font-weight" >Detail</th>
+                                                      <th class="bold-font-weight" >No</th>
+                                                      <th class="bold-font-weight" >Student Name</th>
+                                                      <th class="bold-font-weight" >Private School Name</th>
+                                                      <th class="bold-font-weight" >Exam Type</th>
+                                                      <th class="bold-font-weight" >Grade</th>
+                                                      <th class="bold-font-weight" >Status</th>
+                                                      <th class="bold-font-weight" >Batch ID</th>
+                                                      <th class="bold-font-weight" >Is Full Module</th>
+                                                      <th class="bold-font-weight" >Detail</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbl_cpa_exam_result_body" class="hoverTable">
