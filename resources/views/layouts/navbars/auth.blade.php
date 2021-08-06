@@ -43,7 +43,7 @@
                                 <span>{{ __('သင်တန်းအမှတ်စဥ်') }}</span>
                             </a>
                         </li>
-            
+
                         <li class="{{ $elementActive == 'requirement_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'requirement_list') }}">
                                 <i class="nc-icon nc-paper"></i>
@@ -74,7 +74,7 @@
                                 <span>{{ __('DA Registration Form') }}</span>
                             </a>
                         </li> --}}
-                        
+
                         <!-- CPA One -->
                         <li class="{{ $elementActive == 'cpa_one_registration_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_one_registration_list') }}">
@@ -96,7 +96,7 @@
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('CPA Full Fleged List') }}</span>
                             </a>
-                        </li>                        
+                        </li>
                         <li class="{{ $elementActive == 'papp_registration_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'papp_registration_list') }}">
                                 <i class="nc-icon nc-paper"></i>
@@ -194,6 +194,12 @@
                     </ul>
                 </div>
             </li>
+            <li class="{{ $elementActive == 'school_registration' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'school_registration') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <p>{{ __('School') }}</p>
+                </a>
+            </li> 
             {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'teacher_registration') }}">
                     <i class="nc-icon nc-paper"></i>
@@ -222,7 +228,7 @@
                 <a href="#audit" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>Audit Firm<b class='caret'></b></p>
-                   
+
                 </a>
                 <div class="collapse " id='audit'>
                 <ul class="nav">
@@ -232,7 +238,7 @@
                             <span class='sidebar-normal'>{{ __('Audit Firm Registration') }}</span>
                         </a>
                     </li>
-                    
+
                     <li class="{{ $elementActive == 'non_audit_firm_registration' ? 'active' : '' }}">
                         <a class="link" href="{{ route('page.index', 'non_audit_firm_registration') }}">
                             <i class="nc-icon nc-single-copy-04"></i>
@@ -246,7 +252,7 @@
             {{-- <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#audit_frim_card" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
-                    <p>Audit Firm Card<b class='caret'></b></p>                   
+                    <p>Audit Firm Card<b class='caret'></b></p>
                 </a>
                 <div class="collapse " id='audit_frim_card'>
                 <ul class="nav">
@@ -256,7 +262,7 @@
                             <span class='sidebar-normal'>{{ __('Audit Firm Card') }}</span>
                         </a>
                     </li>
-                    
+
                     <li class="{{ $elementActive == 'non_audit_firm_card' ? 'active' : '' }}">
                         <a class="link" href="{{ route('page.index', 'non_audit_firm_card') }}">
                             <i class="nc-icon nc-single-copy-04"></i>
@@ -270,7 +276,7 @@
             {{-- <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#cpa" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
-                    <p>CPA<b class='caret'></b></p>                   
+                    <p>CPA<b class='caret'></b></p>
                 </a>
                 <div class="collapse " id='cpa'>
                 <ul class="nav">
@@ -279,9 +285,9 @@
                             <i class="nc-icon nc-single-copy-04"></i>
                             <span class='sidebar-normal'>{{ __('CPA Part1 Registration') }}</span>
                         </a>
-                        
+
                     </li>
-                    
+
                     <li class="{{ $elementActive == 'cpa_part2_registration' ? 'active' : '' }}">
                         <a class="link" href="{{ route('page.index', 'cpa_part2_registration') }}">
                             <i class="nc-icon nc-single-copy-04"></i>
@@ -293,8 +299,8 @@
                         <a class="link" href="{{ route('page.index', 'cpa_ff_pa') }}">
                             <i class="nc-icon nc-single-copy-04"></i>
                             <span class='sidebar-normal'>{{ __('CPA FF & PA') }}</span>
-                        </a>                        
-                    </li>                    
+                        </a>
+                    </li>
                     <li class="{{ $elementActive == 'cpa_ff_registration' ? 'active' : '' }}">
                         <a class="link" href="{{ route('cpa_ff_registration') }}">
                             <i class="nc-icon nc-single-copy-04"></i>
@@ -308,7 +314,7 @@
                 <a href="#papp" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>PAPP<b class='caret'></b></p>
-                   
+
                 </a>
                 <div class="collapse " id='papp'>
                 <ul class="nav">
@@ -317,25 +323,25 @@
                             <i class="nc-icon nc-single-copy-04"></i>
                             <span class='sidebar-normal'>{{ __('PAPP(Initial)') }}</span>
                         </a>
-                        
+
                     </li>
-                    
+
                     <li class="{{ $elementActive == 'papp_registration_renew' ? 'active' : '' }}">
                         <a class="link" href="{{ route('page.index', 'papp_registration_renew') }}">
                             <i class="nc-icon nc-single-copy-04"></i>
                             <span class='sidebar-normal'>PAPP(Renew)</span>
                         </a>
                     </li>
-                    
+
                  </ul>
                 </div>
             </li> --}}
-            
+
             {{-- <li class="{{ $elementActive == '' ? 'active' : '' }}">
                 <a href="#da" class="nav-link" data-toggle="collapse">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>DA<b class='caret'></b></p>
-                   
+
                 </a>
                 <div class="collapse " id='da'>
                 <ul class="nav">
@@ -345,7 +351,7 @@
                             <span class='sidebar-normal'>{{ __('DA Part1 Registration') }}</span>
                         </a>
                     </li>
-                    
+
                     <li class="{{ $elementActive == 'da_part2_registration' ? 'active' : '' }}">
                         <a class="link" href="{{ route('page.index', 'da_part2_registration') }}">
                             <i class="nc-icon nc-single-copy-04"></i>
@@ -361,7 +367,7 @@
                     <p>{{ __('Mentor') }}</p>
                 </a>
             </li> --}}
-            
+
         </ul>
     </div>
 </div>

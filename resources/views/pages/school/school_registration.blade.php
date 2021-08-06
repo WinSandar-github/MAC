@@ -24,16 +24,43 @@
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5 class="card-title text-center">{{ __('School Registration Form List') }}</h5>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-body">
-                                <div class="col-md-9">
+                                <!-- <div class="col-md-9">
                                     <nav class="nav flex-column">
                                         <a class="nav-link active" href="{{ route('page.index', 'school-register-form1') }}">ကျောင်းဖွင့်လှစ်လုပ်ကိုင်ခွင့်လျှောက်လွှာ</a>
                                         <a class="nav-link active" href="{{ route('page.index', 'school-register-form2') }}">သင်တန်းကျောင်းအချက်အလက်များ</a>
                                         <a class="nav-link active" href="{{ route('page.index', 'school-register-form3') }}">အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ </a>
                                         <a class="nav-link active" href="{{ route('page.index', 'school-register-form4') }}">ကျောင်းမှတ်ပုံတင်သက်တမ်းတိုးလျှောက်လွှာ</a>
                                     </nav>
+                                </div> -->
+                                <div class="row"> 
+                                    <div class="col-md-12">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <table id="tbl_school"class="table table-hover  text-center">
+                                                    <thead class=" text-nowrap">
+                                                        <tr>
+                                                            <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Email</th>     
+                                                            <th class="bold-font-weight" >Phone Number</th>
+                                                            <th class="bold-font-weight" >NRC</th>
+                                                            <th class="bold-font-weight" >Status</th>
+                                                            <th class="bold-font-weight" >Detail</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_school_body" class="hoverTable">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                             </div>
@@ -64,11 +91,12 @@
 @endsection
 
 @push('scripts')
+<script src="{{asset('js/school.js')}}"></script>
 <script>
     
     $(document).ready(function (e) {
-        createDatepicker("school_birthone");
-        
+        // createDatepicker("school_birthone");
+        getSchoolRegisterList();
         
     });
 

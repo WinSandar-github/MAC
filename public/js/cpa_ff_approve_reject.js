@@ -65,7 +65,7 @@ function getCPAFFList(){
 function showCPAFFList(capffId){
     localStorage.setItem("cpa_ff_id",capffId);
     console.log('selectitem',capffId);
-    location.href=FRONTEND_URL+"/cpa_ff_edit";
+    location.href= FRONTEND_URL + "/cpa_ff_edit";
 }
 
 function loadCPAFFData(){

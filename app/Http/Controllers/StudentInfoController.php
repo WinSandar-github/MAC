@@ -113,7 +113,7 @@ class StudentInfoController extends Controller
     {
         //
         $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct')->first();
-        return response()->json(['data' => $student_info],200);
+         return response()->json(['data' => $student_info],200);
     }
 
     public function GetStudentByNRC($nrc)
@@ -127,13 +127,10 @@ class StudentInfoController extends Controller
     //     return response()->json(['data' => $student_info],200);
     // }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+  
+  
+
+    //Update Da App Form 
     public function update(Request $request, $id)
     {
          
@@ -157,6 +154,7 @@ class StudentInfoController extends Controller
             $certificate = $request->old_certificate;
         }
 
+        
       
 
      
@@ -207,23 +205,13 @@ class StudentInfoController extends Controller
         $education_histroy->qualified_date  = date("Y-m-d",strtotime($request->qualified_date));
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
-        // for($i=0;$i < sizeof($request->uni_name);$i++){
-       
-        //     $education_histroy  =   new EducationHistroy();
-        //     $education_histroy->student_info_id = $student_info->id;
-        //     $education_histroy->university_name = $request->uni_name[$i];
-        //     $education_histroy->degree_name     = isset($request->degree_name[$i])  ? $request->degree_name[$i] : null;
-        //     $education_histroy->qualified_date  = isset($request->qualified_date[$i])  ? date("Y-m-d",strtotime($request->qualified_date[$i])) : null;
-        //     $education_histroy->roll_number     = isset($request->roll_number[$i])  ? $request->roll_number[$i] : null;
-        //     $education_histroy->document        = isset($document[$i])     ? $document[$i] : null;
-        //     $education_histroy->save();
-        //     }
+      
 
         StudentCourseReg::where('student_info_id',$id)->delete();
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;   
         $student_course->batch_id        = $request->batch_id;
-        $student_course->date            = date("Y-m-d",strtotime($request->course_date));
+        // $student_course->date            = date("Y-m-d",strtotime($request->course_date));
         $student_course->status          = 1;
         $student_course->save();
 

@@ -109,16 +109,16 @@ function getCPAExam(){
 
 function showCPAOneExam(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/cpa_exam_one_edit";
+    location.href= FRONTEND_URL + "/cpa_exam_one_edit";
 }
 function showCPATwoExam(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/cpa_two_exam_edit";
+    location.href= FRONTEND_URL + "/cpa_two_exam_edit";
 }
 
 function printCPAOneExamCard(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/cpa1_examcard";
+    location.href= FRONTEND_URL + "/cpa1_examcard";
 }
 function loadStudentDataForExamCard()
 {
@@ -157,7 +157,7 @@ function approveCPAOneExam(){
         success: function(result){
             console.log(result)
             successMessage("You have approved that form!");
-            location.href = "/cpa_exam_one";
+            location.href =  FRONTEND_URL + "/cpa_exam_one";
             getCPAExam();
         }
     });
@@ -171,7 +171,7 @@ function rejectCPAOneExam(){
         success: function(result){
             console.log(result)
             successMessage("You have rejected that form!");
-            location.href = "/cpa_exam_one";
+            location.href =  FRONTEND_URL + "/cpa_exam_one";
             getCPAExam();
         }
     });
@@ -185,7 +185,7 @@ function approveCPATwoExam(){
         success: function(result){
             console.log(result)
             successMessage("You have approved that form!");
-            location.href = "/cpa_two_exam";
+            location.href =  FRONTEND_URL + "/cpa_two_exam";
             getCPAExam();
         }
     });
@@ -199,7 +199,7 @@ function rejectCPATwoExam(){
         success: function(result){
             console.log(result)
             successMessage("You have rejected that form!");
-            location.href = "/cpa_two_exam";
+            location.href =  FRONTEND_URL + "/cpa_two_exam";
             getCPAExam();
         }
     });
@@ -258,7 +258,7 @@ function chooseCPABatch(){
             success: function(result){
                 console.log(result);
                 localStorage.setItem("batch_id",id);
-                location.href = "/cpa_exam_result_edit";
+                location.href =  FRONTEND_URL + "/cpa_exam_result_edit";
                 // loadStudent();
             }
         });
@@ -340,11 +340,11 @@ function fillCPAMark(batchID, isFullModule){
     // console.log(is_full_module)
     if(is_full_module == 0 || is_full_module == 1)
     {
-        location.href="/cpa_fill_mark_m1&2";
+        location.href= FRONTEND_URL + "/cpa_fill_mark_m1&2";
     }
     else
     {
-        location.href="/cpa_fill_mark_full";
+        location.href= FRONTEND_URL + "/cpa_fill_mark_full";
     }
 }
 

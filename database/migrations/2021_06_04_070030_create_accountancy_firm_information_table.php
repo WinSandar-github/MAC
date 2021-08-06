@@ -16,7 +16,8 @@ class CreateAccountancyFirmInformationTable extends Migration
         Schema::create('accountancy_firm_information', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('audit_firm_type_id');
-            $table->unsignedBigInteger('local_foreign_id');
+            //$table->unsignedBigInteger('local_foreign_id');
+            $table->unsignedBigInteger('local_foreign_type')->nullable();
             $table->string('accountancy_firm_reg_no');
             $table->string('accountancy_firm_name');
             $table->string('township');
@@ -40,23 +41,23 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->foreign('audit_firm_type_id')
             ->references('id')
             ->on('audit_firm_types')
-            ->onDelete('cascade');  
+            ->onDelete('cascade');
 
-            $table->foreign('local_foreign_id')
-            ->references('id')
-            ->on('local_foreigns')
-            ->onDelete('cascade'); 
-            
+            // $table->foreign('local_foreign_id')
+            // ->references('id')
+            // ->on('local_foreigns')
+            // ->onDelete('cascade');
+
             $table->foreign('type_of_service_provided_id')
             ->references('id')
             ->on('type_of_service_provideds')
-            ->onDelete('cascade');  
+            ->onDelete('cascade');
 
             $table->foreign('organization_structure_id')
             ->references('id')
             ->on('organization_structures')
-            ->onDelete('cascade');  
-            
+            ->onDelete('cascade');
+
         });
     }
 
