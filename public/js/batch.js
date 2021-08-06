@@ -69,13 +69,20 @@ function getBatch(){
                 tr += "<td ><div class='btn-group'>";
                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchExam(" + element.id + ")'>" +
                 "<li class='fa fa-graduation-cap fa-sm'></li></button> ";
-                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
+                tr+="<button type='button' id='batch_edit"+element.id+"' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
                     "<li class='fa fa-edit fa-sm'></li></button> ";
-                tr += "<button type='button' class='btn btn-danger btn-xs' onClick='deleteBatchInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+                tr += "<button type='button'  id='batch_delete"+element.id+"'  class='btn btn-danger btn-xs' onClick='deleteBatchInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
     
                 tr += "</tr>";
                 $("#tbl_batch_body").append(tr);         
-    
+                
+                var b_start_date=new Date(element.start_date);
+                var now=new Date(Date.now());
+                if(now>=b_start_date){
+                    document.getElementById('batch_edit'+element.id).style.display='none';
+                    document.getElementById('batch_delete'+element.id).style.display='none';
+                }
+                
             });
             
             getIndexNumber('#tbl_batch tr');
@@ -220,9 +227,12 @@ function showBatchExam(id){
         type: "get",
         url: BACKEND_URL+"/batch/"+id,
         success: function (data) {
+            console.log(data);
             var batch_data=data.data; 
             $('input[name=exam_start_date]').val(batch_data.exam_start_date != null ? batch_data.exam_start_date : null );
             $('input[name=exam_end_date]').val(batch_data.exam_end_date != null ? batch_data.exam_end_date : null );
+            $('input[name=exam_place]').val(batch_data.exam_place != null ? batch_data.exam_place : null );
+            $('input[name=exam_time]').val(batch_data.exam_time != null ? batch_data.exam_time : null );
         }
         
     })
@@ -235,13 +245,17 @@ function createExam(){
     var batch_id = $('#batch_id').val();
     var exam_start_date=$("input[name=exam_start_date]").val();
     var exam_end_date=$("input[name=exam_end_date]").val(); 
+    var exam_place=$("input[name=exam_place]").val();
+    var exam_time=$("input[name=exam_time]").val(); 
     $.ajax({
-        url: "/save_exam/",
+        url: BACKEND_URL+"/save_exam/",
         type: 'post',
         data:{
             batch_id:batch_id,
             exam_start_date:exam_start_date,
             exam_end_date:exam_end_date,
+            exam_place:exam_place,
+            exam_time:exam_time,
         },        
         success: function(result){
              

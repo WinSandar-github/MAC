@@ -29,7 +29,7 @@
                             <div class="row">
                                 <div class="col-md-8"></div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_course_modal">Create</button>
+                                    <button type="button" id="create_course" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_course_modal">Create</button>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                             <label class="col-md-4 form-label">{{ __('Name') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off">
+                                    <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
                             <label class="col-md-4 form-label">{{ __('Form Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="text"  name="form_fee" class="form-control"  placeholder="Form Fee" autocomplete="off">
+                                    <input type="text"  name="form_fee" class="form-control"  placeholder="Form Fee" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
                             <label class="col-md-4 form-label">{{ __('Registration Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="text" name="registration_fee" class="form-control" placeholder="Registration Fee" autocomplete="off">
+                                    <input type="text" name="registration_fee" class="form-control" placeholder="Registration Fee" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                             <label class="col-md-4 form-label">{{ __('Exam Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="text" name="exam_fee" class="form-control" placeholder="Exam Fee" autocomplete="off">
+                                    <input type="text" name="exam_fee" class="form-control" placeholder="Exam Fee" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             <label class="col-md-4 form-label">{{ __('Tution Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">                                
-                                    <input type="text" name="tution_fee" class="form-control" placeholder="Tution Fee" autocomplete="off">
+                                    <input type="text" name="tution_fee" class="form-control" placeholder="Tution Fee" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
@@ -134,7 +134,7 @@
                             <label class="col-md-4 form-label">{{ __('Description') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group"> 
-                                    <input type="text" name="description" class="form-control"  placeholder="Description" autocomplete="off">
+                                    <input type="text" name="description" class="form-control"  placeholder="Description" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +143,7 @@
                             <label class="col-md-4 form-label">{{ __('Code') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group"> 
-                                    <input type="text" name="code" class="form-control"  placeholder="Code" autocomplete="off">
+                                    <input type="text" name="code" class="form-control"  placeholder="Code" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>    
@@ -152,7 +152,7 @@
                             <label class="col-md-4 form-label">{{ __('Course Type') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group"> 
-                                    <select name="course_type" class="form-control course_type">
+                                    <select name="course_type" class="form-control course_type" required>
 
                                     </select>
                                 </div>
@@ -188,7 +188,7 @@
             url:BACKEND_URL+'/get_course_type',
             type:'GET',
             success:function(response){
-                 var opt = '<option selected >Select</option>';
+                 var opt = '<option value="" selected >Select</option>';
 
                 $.each(response.data,function(i,v){
                     opt +=
@@ -197,6 +197,12 @@
                 $(".course_type").append(opt);
             }
         })
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("create_course")) {
+                document.getElementById("course_form").reset();  
+            }
+        }
         
     });
     getCourse();
