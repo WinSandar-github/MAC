@@ -30,8 +30,9 @@ class CreateTeacherRegistersTable extends Migration
             $table->text('diplomas');
             $table->string('phone');
             $table->string('email');
+            $table->string('password');
             $table->text('exp_desc');
-            $table->integer('status')->default(0);
+            $table->integer('approve_reject_status')->default(0);
             $table->timestamps();
         });
     }

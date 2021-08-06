@@ -1,7 +1,9 @@
-// var BACKEND_URL="http://localhost:8000/api";
-// var FRONTEND_URL="http://localhost:8000";
+// var BACKEND_URL="http://localhost:8080/api";
+// var FRONTEND_URL="http://localhost:8080";
+//  var PDF_URL="http://localhost:8080";
 var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
 var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
+var PDF_URL =  "https://demo.aggademo.me/MAC/public";
 var counter = 0;
 
 function addRowCPAFF(tbody){
@@ -756,8 +758,8 @@ var toastOptions = {
     "preventDuplicates": false,
     "onclick": null,
     "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "1000",
+    "hideDuration": "2500",
+    "timeOut": "2500",
     "extendedTimeOut": "1000",
     "showEasing": "swing",
     "hideEasing": "linear",

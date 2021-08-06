@@ -887,4 +887,11 @@ class AccFirmInfController extends Controller
         $acc_firm_info->delete();
         return "Delete Successfully";
     }
+
+    //Audit Feedback
+    public function auditFeedback($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)->get();
+        return response()->json($data,200);
+    }
 }

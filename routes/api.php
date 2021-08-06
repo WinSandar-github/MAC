@@ -133,12 +133,14 @@ Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
 
 //for school registration
 Route::resource('/school','SchoolController');
-
+Route::post('/approve_school_register/{id}', 'SchoolController@approve_school_register');
+Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_register');
 //for teacher registration
 Route::resource('/teacher','TeacherController');
 
+//Audit DATA
+Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
-
-
 
 
