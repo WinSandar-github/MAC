@@ -33,6 +33,8 @@ class CreateBatchesTable extends Migration
             $table->date('entrance_pass_end_date')->nullable();
             $table->date('exam_start_date')->nullable();
             $table->date('exam_end_date')->nullable();
+            $table->string('exam_place')->nullable();
+            $table->string('exam_time')->nullable();
             $table->timestamps();
 
             $table->foreign('course_id')
