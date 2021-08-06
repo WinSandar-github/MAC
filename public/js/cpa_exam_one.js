@@ -120,7 +120,7 @@ function printCPAOneExamCard(studentId){
     localStorage.setItem("student_id",studentId);
     location.href= FRONTEND_URL + "/cpa1_examcard";
 }
-function loadStudentDataForExamCard()
+function loadCPAStudentDataForExamCard()
 {
     var id=localStorage.getItem("student_id");
     $("#roll_no").html("");
