@@ -298,7 +298,7 @@ class AccFirmInfController extends Controller
         $acc_firm_info->h_email                 = $request->h_email;
         $acc_firm_info->website                 = $request->website;
         $acc_firm_info->audit_firm_type_id      = $request->audit_firm_type_id; 
-        $acc_firm_info->local_foreign_id        = $request->local_foreign_id;
+        // $acc_firm_info->local_foreign_id        = $request->local_foreign_id;
         $acc_firm_info->organization_structure_id    = $request->org_stru_id;
         $acc_firm_info->type_of_service_provided_id  = $request->t_s_p_id;
         //name of sole_propietor == name of manager
@@ -885,5 +885,12 @@ class AccFirmInfController extends Controller
          
         $acc_firm_info->delete();
         return "Delete Successfully";
+    }
+
+    //Audit Feedback
+    public function auditFeedback($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)->get();
+        return response()->json($data,200);
     }
 }
