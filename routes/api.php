@@ -141,6 +141,12 @@ Route::resource('/teacher','TeacherController');
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 
+//Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
+
+//Get Current Batch filter by student id
+Route::get('/get_current_batch_studentId/{student_info_id}','BatchController@currentAttendBatch');
+
+
 
 
