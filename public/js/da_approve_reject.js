@@ -21,7 +21,7 @@ function getDAList(){
                 }
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
-                    tr += "<td>" + element.name_eng + "</td>";
+                    tr += "<td>" + element.name_mm + "</td>";
                     tr += "<td>" + element.email + "</td>";
                     tr += "<td>" + element.phone+ "</td>";
                     tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
