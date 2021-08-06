@@ -89,6 +89,8 @@ Route::resource('/student_register','StudentRegisterController');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 
+Route::post('save_exam','BatchController@saveExam');
+
 //DA2 Exam Register Form API
 Route::resource('/exam_register', 'ExamRegisterController');
 
