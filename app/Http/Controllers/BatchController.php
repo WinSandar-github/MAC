@@ -127,9 +127,11 @@ class BatchController extends Controller
         $batch = Batch::find($request->batch_id);
         $batch->exam_start_date = $request->exam_start_date;
         $batch->exam_end_date   = $request->exam_end_date;
+        $batch->exam_place   = $request->exam_place;
+        $batch->exam_time   = $request->exam_time;
         $batch->save();
         return response()->json([
-            'message' => "Exam Date Added Successfully"
+            'message' => "Exam Data Added Successfully"
         ],200);
     }
 
@@ -151,4 +153,13 @@ class BatchController extends Controller
 
         
     }
+
+    public function currentAttendBatch($student_id){
+        $student_course = StudentCourseReg::where('student_info_id',$student_id)->with('batch')->latest()->first();
+        $batch = $student_course->batch;
+        return response()->json([
+            'data' => $batch
+        ]);
+    }
+    
 }    

@@ -172,12 +172,11 @@ function loadCourse(){
         success: function(data){
 
             var course_data=data.data;            
-            
             course_data.forEach(function (element) {
                 var option = document.createElement('option');
                 option.text = element.name;
                 option.value = element.id;
-                select.add(option, 0);
+                select.add(option, 1);
                 
 
             });              

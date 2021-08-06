@@ -89,6 +89,8 @@ Route::resource('/student_register','StudentRegisterController');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 
+Route::post('save_exam','BatchController@saveExam');
+
 //DA2 Exam Register Form API
 Route::resource('/exam_register', 'ExamRegisterController');
 
@@ -140,8 +142,14 @@ Route::resource('/teacher','TeacherController');
 
 Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_register');
 
+//Audit DATA
+Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+
+//Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
+//Get Current Batch filter by student id
+Route::get('/get_current_batch_studentId/{student_info_id}','BatchController@currentAttendBatch');
 
 
 
