@@ -231,10 +231,10 @@
                                 </div>
                                 <!-- Attached Certificate -->
                                 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-                                  <div class="modal-dialog" role="document" > 
+                                  <div class="modal-dialog modal-lg" role="document" > 
                                     <div class="modal-content">
                                         <div class="modal-body">
-                                            <embed id="attach_file"  width="400px" height="500px">
+                                            <embed id="attach_file"  width="700px" height="500px">
                                         </div>
                                     </div>
                                   </div>

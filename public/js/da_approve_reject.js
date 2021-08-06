@@ -126,6 +126,7 @@ function loadData(){
                 $("#salary").append(job.salary);
                 $("#office_address").append(job.office_address);
                 attached_file=element.student_education_histroy.certificate;
+                //document.getElementById('attach_file').src=attached_file;
             })
         }
     })
@@ -156,6 +157,13 @@ function rejectUser(){
         }
     });
 }
+
+// window.onclick = function(event) {
+//     if (event.target == document.getElementById("myModal")) {
+//         console.log(attached_file);    
+//         document.getElementById('attach_file').src=attached_file;
+//     }
+//   }
 
 function file_read(data){
     if(data=='certificate'){
