@@ -138,6 +138,8 @@ Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_regi
 //for teacher registration
 Route::resource('/teacher','TeacherController');
 
+Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_register');
+
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
 

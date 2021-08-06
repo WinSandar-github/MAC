@@ -200,12 +200,12 @@
                     <p>{{ __('School') }}</p>
                 </a>
             </li> 
-            {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'teacher_registration') }}">
                     <i class="nc-icon nc-paper"></i>
                     <p>{{ __('Teacher') }}</p>
                 </a>
-            </li> --}}
+            </li>
             {{-- <li class="{{ $elementActive == 'qt_application_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'qt_application_registration') }}">
                     <i class="nc-icon nc-paper"></i>

@@ -16,7 +16,10 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teacher = TeacherRegister::orderBy('created_at','desc')->get();
+        return  response()->json([
+            'data' => $teacher
+        ],200);
     }
 
     /**
@@ -45,6 +48,7 @@ class TeacherController extends Controller
         $teacher->reg_date = date('y-m-d');
         $teacher->phone = $request->phone_number;
         $teacher->email = $request->email;
+        $teacher->password = Hash::make($request->password);
         $teacher->nrc_state_region = $request->nrc_state_region;
         $teacher->nrc_township = $request->nrc_township;
         $teacher->nrc_citizen = $request->nrc_citizen;
@@ -89,7 +93,10 @@ class TeacherController extends Controller
      */
     public function show($id)
     {
-        //
+        $teacher = TeacherRegister::find($id);
+        return  response()->json([
+            'data' => $teacher
+        ],200);
     }
 
     /**
@@ -124,5 +131,15 @@ class TeacherController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function approve_teacher_register(Request $request)
+    {
+        $teacher = TeacherRegister::find($request->id);
+        $teacher->approve_reject_status = $request->status;
+        $teacher->save();
+        return response()->json([
+            'message' => 'You have approved this user.'
+        ],200);
     }
 }
