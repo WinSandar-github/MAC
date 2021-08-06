@@ -151,4 +151,13 @@ class BatchController extends Controller
 
         
     }
+
+    public function currentAttendBatch($student_id){
+        $student_course = StudentCourseReg::where('student_info_id',$student_id)->with('batch')->latest()->first();
+        $batch = $student_course->batch;
+        return response()->json([
+            'data' => $batch
+        ]);
+    }
+    
 }    
