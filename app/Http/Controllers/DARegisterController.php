@@ -198,10 +198,11 @@ class DARegisterController extends Controller
 
      public function reg_feedback($id)
     {
-        // $course_id = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
-        // return $batch;
-        $student_register = StudentRegister::where('student_info_id',$id)->first();
-        $status = $student_register != null ? $student_register->status : null;
+         $batch = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
+        return $batch;
+         $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$batch->course_id)->first();
+         $status = $student_register != null ? $student_register->status : null;
+         
         return response()->json($status,200);
 
     }
