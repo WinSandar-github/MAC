@@ -48,7 +48,7 @@ function getExam(){
                         tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                             "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                         tr += "<td ><div class='btn-group'>";
-                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id  + ")'>" +
+                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id+','+ element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                         tr += "</tr>";
                         $("#tbl_da_exam_one_body").append(tr);
@@ -113,8 +113,9 @@ function showDaTwoExam(studentId){
     localStorage.setItem("student_id",studentId);
     location.href= FRONTEND_URL + "/da_two_exam_edit";
 }
-function printExamCard(studentId){
+function printExamCard(studentId,batch_id){
     localStorage.setItem("student_id",studentId);
+    localStorage.setItem("batch_id_for_examcard",batch_id);
     location.href= FRONTEND_URL + "/da1_examcard";
 }
 
@@ -165,11 +166,12 @@ function loadDAExamData()
 function loadStudentDataForExamCard()
 {
     var id=localStorage.getItem("student_id");
+    var batch_id=localStorage.getItem("batch_id_for_examcard");
     $("#roll_no").html("");
     $("#name").html("");
     $("#nrc").html("");
     console.log(id);
-    $("input[name = student_info_id]").val(id);
+    //$("input[name = student_info_id]").val(id);
 
     $.ajax({
         type: "GET",
@@ -186,6 +188,16 @@ function loadStudentDataForExamCard()
                 $("#name").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number);
 
+            });
+            $.ajax({
+                type:"GET",
+                url: BACKEND_URL + "/batch/"+batch_id,
+                success:function(batch){
+                    console.log('aaa',batch);
+                    $("#exam_date").append(batch.data.exam_start_date);
+                    $("#exam_place").append(batch.data.exam_place);
+                    $("#exam_time").append(batch.data.exam_time);
+                }
             })
         }
     })
