@@ -22,7 +22,7 @@ class CreateCoursesTable extends Migration
             $table->integer('tution_fee');
             $table->text('description');
             $table->unsignedBigInteger('course_type_id');
-            $table->string('code','1');
+            $table->string('code','20');
             $table->timestamps();
 
           

@@ -19,7 +19,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8">
-                                <h5 class="title" style="padding-left: 330px;">{{ __('CPA Full Fleged Form List') }}</h5>
+                                <h5 class="title" style="padding-left: 330px;">{{ __('CPA Full Fleged Registration List') }}</h5>
                             </div>
                         </div>
                     </div>

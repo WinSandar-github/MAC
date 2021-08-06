@@ -37,13 +37,15 @@
                                 <div id="cpaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="modal-header">                                            
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">CPA</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="cpa" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="cpa"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -62,13 +64,15 @@
                                 <div id="raModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="modal-header">                                            
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">RA</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="ra" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="ra"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -87,13 +91,15 @@
                                 <div id="fdModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="modal-header">                                            
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">Foreign Degree</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="foreign_degree" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="foreign_degree"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -159,13 +165,15 @@
                                 <div id="cpa_ff_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="modal-header">                                            
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">CPAFF Recommendation</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="cpa_ff_recommendation" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="cpaff_recomm"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -184,13 +192,15 @@
                                 <div id="recommendation_183_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="modal-header">                                            
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">183 Days Recommendation</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="recommendation_183" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="recomm_183"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -210,12 +220,14 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">No Fulltime Recommendation</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="not_fulltime_recommendation" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="not_fulltime_recomm"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -235,12 +247,14 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">Work In Myanmar Confession</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="work_in_myanmar_confession" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="work_in_myanmar"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -260,12 +274,14 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">Rule Confession</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="rule_confession" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="rule_confession"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -284,13 +300,15 @@
                                 <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="modal-header">                                            
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">CPD Record</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="cpd_record" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="cpd_record"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -309,13 +327,15 @@
                                 <div id="tax_free_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <div class="modal-header">                                            
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">Tax Free Recommendation</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="tax_free_recommendation" class="img-fluid" />
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="tax_free"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -541,23 +561,25 @@
                                 <!-- Attached Certificate -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Attched Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button>
+                                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#attached_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
                                 <!-- Attached Certificate Modal-->
-                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div id="attached_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
-                                            </button>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">Attached Certificate</h5>
                                         </div>
                                         <div class="modal-body">
-                                            <img id="certificate" class="img-fluid"/>
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="attached_file"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>

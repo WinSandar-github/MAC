@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SchoolRegister;
+use App\StudentInfo;
+use Hash;
 
 class SchoolController extends Controller
 {
@@ -14,7 +16,10 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        //
+        $school = SchoolRegister::all();
+        return  response()->json([
+            'data' => $school
+        ],200);
     }
 
     /**
@@ -45,6 +50,7 @@ class SchoolController extends Controller
         $school->address = $request->address;
         $school->phone = $request->phone;
         $school->email = $request->email;
+        $school->password = $request->password;
         $school->nrc_state_region = $request->nrc_state_region;
         $school->nrc_township = $request->nrc_township;
         $school->nrc_citizen = $request->nrc_citizen;
@@ -58,10 +64,17 @@ class SchoolController extends Controller
         $school->save();
         if($request->hasFile('attachment')){
             $fileName = $school->id.'.'.$request->file('attachment')->getClientOriginalExtension();
-            $request->file('attachment')->storeAs('public/attachment/school/', $fileName);
+            $request->file('attachment')->storeAs('attachment/school/', $fileName);
             $school->attachment=$fileName;
             $school->save();
         }
+        //Student Info
+        $std_info = new StudentInfo();
+        $std_info->school_id = $school->id;
+        $std_info->email = $request->email;
+        $std_info->password = Hash::make($request->password);
+        $std_info->save();
+ 
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
@@ -75,7 +88,10 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        //
+        $school = SchoolRegister::find($id);
+        return  response()->json([
+            'data' => $school
+        ],200);
     }
 
     /**
@@ -110,5 +126,25 @@ class SchoolController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function approve_school_register(Request $request, $id)
+    {
+        $school = SchoolRegister::find($id);
+        $school->approve_reject_status = 1;
+        $school->save();
+        return response()->json([
+            'message' => 'You have approved this user.'
+        ],200);
+    }
+
+    public function reject_school_register(Request $request, $id)
+    {
+        $school = SchoolRegister::find($id);
+        $school->approve_reject_status = 2;
+        $school->save();
+        return response()->json([
+            'message' => 'You have rejected this user.'
+        ],200);
     }
 }

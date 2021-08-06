@@ -30,6 +30,8 @@ class CreateSchoolRegistersTable extends Migration
             $table->text('address');
             $table->string('phone');
             $table->string('email');
+            $table->string('password');
+            $table->integer('approve_reject_status')->default(0);
             $table->timestamps();
         });
     }

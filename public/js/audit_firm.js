@@ -232,12 +232,12 @@ function getAudit(){
 }
 function showAuditInfo(auditId) {
   localStorage.setItem("id",auditId);
-  location.href="/audit-firm-show_info";
+  location.href=FRONTEND_URL+"/audit-firm-show_info";
   
 }
 function showNonAuditInfo(nonAuditId) {
   localStorage.setItem("id",nonAuditId);
-  location.href="/non-audit-firm-show_info";
+  location.href=FRONTEND_URL+"/non-audit-firm-show_info";
   
 }
 function autoLoadAudit(){
@@ -609,7 +609,7 @@ function loadFile(file) {
 
 function loadOrganization(){
   $.ajax({
-    url: "/api/organization_structure",
+    url: BACKEND_URL+"/organization_structure",
     type: 'get',
     data:"",
     success: function(result){
@@ -635,7 +635,7 @@ function loadOrganization(){
 function loadAuditTypeOfService(){
   destroyDatatable("#tbl_type_service", "#tbl_type_service_body");
     $.ajax({
-      url: "/api/type_service_provided",
+      url: BACKEND_URL+"/type_service_provided",
       type: 'get',
       data:"",
       success: function(result){
@@ -664,7 +664,7 @@ function loadAuditTypeOfService(){
 function loadAuditTotalStaff(){
     destroyDatatable("#tbl_audit_total_staff", "#tbl_audit_total_staff_body");
     $.ajax({
-      url: "/api/audit_total_staff_type",
+      url: BACKEND_URL+"/audit_total_staff_type",
       type: 'get',
       data:"",
       success: function(result){
@@ -687,7 +687,7 @@ function loadAuditTotalStaff(){
 function loadAuditStaff(){
   destroyDatatable("#tbl_audit_staff", "#tbl_audit_staff_body");
   $.ajax({
-    url: "/api/audit_staff_type",
+    url: BACKEND_URL+"/audit_staff_type",
     type: 'get',
     data:"",
     success: function(result){
@@ -711,7 +711,7 @@ function loadAuditStaff(){
 function loadNonAuditStaff(){
   destroyDatatable("#tbl_non_audit_number", "#tbl_non_audit_number_body");
   $.ajax({
-    url: "/api/non_audit_total_staff",
+    url: BACKEND_URL+"/non_audit_total_staff",
     type: 'get',
     data:"",
     success: function(result){
@@ -789,7 +789,7 @@ function deleteAuditInfo(accName,accId){
     if (result) {
         $.ajax({
             type: "DELETE",
-            url: '/api/acc_firm_info/'+accId,
+            url: BACKEND_URL+'/acc_firm_info/'+accId,
             success: function (data) {
                 successMessage(data);
                 getAudit();
@@ -938,7 +938,7 @@ function deleteAuditInfo(accName,accId){
 //   send_data.append('_method', 'PATCH');
   
 //         $.ajax({
-//                 url: "/api/acc_firm_info/"+id,
+//                 url: BACKEND_URL+"/acc_firm_info/"+id,
 //                 type: 'post',
 //                 data:send_data,
 //                 contentType: false,

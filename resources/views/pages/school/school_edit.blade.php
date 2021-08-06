@@ -1,7 +1,16 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'da_list'
+    'elementActive' => 'school_registration'
 ])
+@section('content')
+<style>
+    .content {
+      position: absolute;
+    }
+    .modal {
+      max-height: 100vh;
+    }
+</style>
 @section('content')
 <div class="content">
     @include('flash-message')
@@ -11,12 +20,12 @@
     </div>   
     <div class="row">
         <div class="col-md-12 text-center">
-            <form action="javascript:void()" method="post" enctype="multipart/form-data">
+            <form action="javascript:void();" method="post" enctype="multipart/form-data">
                 @csrf
                  <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-4 ">
+                            <!-- <div class="col-md-4 ">
                                 <center>
                                     <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
@@ -55,11 +64,10 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">Attched Certificate</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
-                                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button>
+                                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
 
@@ -121,20 +129,22 @@
                                         <span id="office_address"></span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-8">
-                                <h5 class="border-bottom pb-2" style="font-weight:bold">Student Information</h5>
+                            </div> -->
+                            <div class="col-md-12 text-left">
+                                <h5 class="border-bottom pb-2 text-center" style="font-weight:bold">School Information</h5>
+                                
+                                
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
+                                        <p class="ml-2 text-bold" style="font-weight:bold">၁။ အမည်(မြန်မာ) / အမည်(အင်္ဂလိပ်)</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="name_eng"></span> / <span id="name_mm"></span>
+                                        <span id="name_mm"></span> / <span id="name_eng"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">NRC</p>
+                                        <p class="ml-2" style="font-weight:bold">၂။ နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="nrc"></span>
@@ -142,7 +152,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
+                                        <p class="ml-2" style="font-weight:bold">၃။ အဘအမည်(မြန်မာ) / အဘအမည်(အင်္ဂလိပ်)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
@@ -150,23 +160,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Race</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="race"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Religion</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="religion"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Date of Birth</p>
+                                        <p class="ml-2" style="font-weight:bold">၄။ မွေးသဣရာဇ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="date_of_birth"></span>
@@ -174,7 +168,32 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Address</p>
+                                        <p class="ml-2" style="font-weight:bold">၅။ ပညာအရည်အချင်း</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="degree"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">၆။ လုပ်ငန်းဖွဲ့စည်းမှုပုံစံကျောင်းကို အောက်ဖော်ပြပါလုပ်ငန်းဖွဲ့စည်းမှုပုံစံဖြင့်ဆောင်ရွက်ပါမည် </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="type"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-4 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">၇။ လျှောက်ထားသူ/အဖွဲ့အစည်း၏နောက်ခံသမိုင်း</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="hidden" id="hidden_attach">
+                                        <button type="button" class="btn btn-primary btn-md" onclick="viewAttach();"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">၈။ ဆက်သွယ်ရန်လိပ်စာ</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="address"></span>
@@ -182,15 +201,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Current Address</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="current_address"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Phone</p>
+                                        <p class="ml-2" style="font-weight:bold">၉။ ဖုန်းနံပါတ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="phone"></span>
@@ -198,58 +209,50 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Email</p>
+                                        <p class="ml-2" style="font-weight:bold">၁၀။ အီးမေးလ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="email"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Government Staff</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="gov_staff"></span>
-                                        {{--<p>{{ $user->gov_staff == 0 ? 'No' : 'Yes'}}</p>--}}
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="registration_no"></span>
-                                    </div>
-                                </div>
-
                                 <input type="hidden" name="student_info_id" >
 
-                                <div class="row mt-5 justify-content-center" id="approve_reject"> 
-                                    <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                <div class="row mt-5 justify-content-center" id="approve_reject" style="display:none;"> 
+                                    <button id="approve" class="btn btn-primary" onclick="approveSchoolRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
 
-                                    <button type="submit" name="save" id="reject" class="btn btn-primary"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
+                                    <button  id="reject" class="btn btn-primary"  onclick="rejectSchoolRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
                                 </div>
-                                <!-- Attached Certificate -->
-                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-                                  <div class="modal-dialog modal-lg" role="document" > 
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <embed id="attach_file"  width="700px" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>
+                                
                             </div>
                         </div>                   
                     </div>
                 </div>
             </form>
         </div>
+       
     </div>
+</div>
+ <!-- Attached Certificate -->
+ <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">လျှောက်ထားသူ/အဖွဲ့အစည်း၏နောက်ခံသမိုင်း</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="attachment"></div>
+      </div>
+              
+    </div>
+  </div>
 </div>
 @endsection
 @push('scripts')
+<script src="{{asset('js/school.js')}}"></script>
 <script>
-    loadData();
+    getSchoolInfos();
 </script>
 @endpush

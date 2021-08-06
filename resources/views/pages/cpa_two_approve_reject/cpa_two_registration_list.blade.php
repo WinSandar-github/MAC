@@ -18,7 +18,13 @@
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
-                        
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="title">{{ __('CPA 2 Registration List') }}</h5>
+                                </div>
+                            </div>
+                        </div>
                         <div class="card-body">
                             <div class="row">
                                 
@@ -47,13 +53,13 @@
                                                             <table id="tbl_cpa_two_self_study" class="table table-hover text-nowrap " style="width: 100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="less-font-weight">Sr No</th>                                                                        
-                                                                        <th class="less-font-weight" >Name</th>
-                                                                        <th class="less-font-weight" >NRC</th>
-                                                                        <th class="less-font-weight">Academic Year</th>
-                                                                        <th class="less-font-weight" >Phone</th>
-                                                                        <th class="less-font-weight" >Status</th>
-                                                                        <th class="less-font-weight" >Detail</th>
+                                                                        <th class="bold-font-weight">Sr No</th>                                                                        
+                                                                        <th class="bold-font-weight" >Name</th>
+                                                                        <th class="bold-font-weight" >NRC</th>
+                                                                        <th class="bold-font-weight">Academic Year</th>
+                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                        <th class="bold-font-weight" >Status</th>
+                                                                        <th class="bold-font-weight" >Detail</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
@@ -74,13 +80,13 @@
                                                             <table id="tbl_cpa_two_private_school" class="table table-hover text-nowrap " width="100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="less-font-weight">Sr No</th>                                                                        
-                                                                        <th class="less-font-weight" >Name</th>
-                                                                        <th class="less-font-weight" >NRC</th>
-                                                                        <th class="less-font-weight">Academic Year</th>
-                                                                        <th class="less-font-weight" >Phone</th>
-                                                                        <th class="less-font-weight" >Status</th>
-                                                                        <th class="less-font-weight" >Detail</th>
+                                                                        <th class="bold-font-weight">Sr No</th>                                                                        
+                                                                        <th class="bold-font-weight" >Name</th>
+                                                                        <th class="bold-font-weight" >NRC</th>
+                                                                        <th class="bold-font-weight">Academic Year</th>
+                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                        <th class="bold-font-weight" >Status</th>
+                                                                        <th class="bold-font-weight" >Detail</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
@@ -98,13 +104,13 @@
                                                             <table id="tbl_cpa_two_mac" class="table table-hover text-nowrap " width="100%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th class="less-font-weight">Sr No</th>                                                                        
-                                                                        <th class="less-font-weight" >Name</th>
-                                                                        <th class="less-font-weight" >NRC</th>
-                                                                        <th class="less-font-weight">Academic Year</th>
-                                                                        <th class="less-font-weight" >Phone</th>
-                                                                        <th class="less-font-weight" >Status</th>
-                                                                        <th class="less-font-weight" >Detail</th>
+                                                                        <th class="bold-font-weight">Sr No</th>                                                                        
+                                                                        <th class="bold-font-weight" >Name</th>
+                                                                        <th class="bold-font-weight" >NRC</th>
+                                                                        <th class="bold-font-weight">Academic Year</th>
+                                                                        <th class="bold-font-weight" >Phone</th>
+                                                                        <th class="bold-font-weight" >Status</th>
+                                                                        <th class="bold-font-weight" >Detail</th>
                                                                     </tr>
                                                                     
                                                                 </thead>
