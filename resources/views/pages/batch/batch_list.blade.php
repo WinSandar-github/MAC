@@ -31,7 +31,7 @@
                                     
                                 </div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_batch_modal">Create</button>
+                                    <button type="button" class="btn btn-primary btn-round" id="create_btn" data-toggle="modal" data-target="#create_batch_modal">Create</button>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                         <label class="col-md-4 form-label">{{ __('Name') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off">
+                                <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off" required>
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                         <label class="col-md-4 form-label">{{ __('Course') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <select class="form-control form-select" name="course_id" id="selected_course_id" style="width: 100%;">
+                                <select class="form-control form-select" name="course_id" id="selected_course_id" style="width: 100%;" required>
                                     <option value="" disabled selected>Select Course</option>
                                 </select>
                             </div>
@@ -117,7 +117,7 @@
                         <label class="col-md-4 form-label">{{ __('Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -126,7 +126,7 @@
                         <label class="col-md-4 form-label">{{ __('End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
                         <label class="col-md-4 form-label">{{ __('MAC Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="mac_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="mac_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -144,7 +144,7 @@
                         <label class="col-md-4 form-label">{{ __('MAC Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="mac_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="mac_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -153,7 +153,7 @@
                         <label class="col-md-4 form-label">{{ __('Self Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="self_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="self_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -162,7 +162,7 @@
                         <label class="col-md-4 form-label">{{ __('Self Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="self_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="self_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                         <label class="col-md-4 form-label">{{ __('Private Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="private_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="private_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                         <label class="col-md-4 form-label">{{ __('Private Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="private_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="private_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -193,7 +193,7 @@
                         <label class="col-md-4 form-label">{{ __('Application Accept Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="app_acc_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="app_acc_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                         <label class="col-md-4 form-label">{{ __('Application Accept End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="app_acc_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="app_acc_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -233,7 +233,7 @@
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                    <button type="submit" class="btn btn-primary" form="batch_form">Save</button>
+                    <button type="submit" class="btn btn-primary"  form="batch_form">Save</button>
                 </div>
             </form>    
             </div>
@@ -255,12 +255,12 @@
                 </div>
                 <div class="card-body">
                  
-                <div class="row">
+                    <div class="row">
                         <label class="col-md-1 form-label">{{ __('1.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Exam Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="exam_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="exam_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
                             </div>
                         </div>
                     </div>
@@ -269,7 +269,25 @@
                         <label class="col-md-4 form-label">{{ __('Exam End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="exam_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                <input type="text" name="exam_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('3.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Exam Place') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="exam_place" class="form-control" autocomplete="off" placeholder="Place" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('4.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Exam Time') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="exam_time" class="form-control" autocomplete="off" placeholder="Time" required>
                             </div>
                         </div>
                     </div>
@@ -300,43 +318,53 @@
         $("input[name='start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='mac_reg_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='mac_reg_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='self_reg_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='self_reg_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='private_reg_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='private_reg_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='app_acc_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='app_acc_end_date']").flatpickr({
         
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         // $("input[name='acc_app_end_date']").flatpickr({
         //         enableTime: false,
@@ -345,20 +373,31 @@
         $("input[name='entrance_pass_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='entrance_pass_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='exam_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
         $("input[name='exam_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
+                allowInput: true,
         });
 
+        
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("create_btn")) {
+                document.getElementById("batch_form").reset();  
+            }
+        }
     });
+   
 </script>
 @endpush
