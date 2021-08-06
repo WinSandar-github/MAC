@@ -71,7 +71,7 @@ class DARegisterController extends Controller
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
-        $student_info->date_of_birth    =   $date_of_birth;
+        $student_info->date_of_birth    =   date('Y-m-d',strtotime($request->date_of_birth)); 
         $student_info->address          =   $request->address;
         $student_info->current_address  =   $request->current_address;
         $student_info->phone            =   $request->phone;
@@ -79,7 +79,7 @@ class DARegisterController extends Controller
         $student_info->image            =   $image;
         $student_info->registration_no  =   $request->registration_no;
         $student_info->approve_reject_status  =  0;
-        $student_info->date             =   $date;
+        $student_info->date             =   date('Y-m-d',strtotime($request->date)); 
         $student_info->email            =   $request->email;
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
@@ -101,14 +101,15 @@ class DARegisterController extends Controller
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     = $request->degree_name;
         $education_histroy->certificate     = $certificate;
-        $education_histroy->qualified_date  = $qualified_date;
+        $education_histroy->qualified_date  = date('Y-m-d',strtotime($request->qualified_date)); 
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
-        $student_course->date            = $course_date;
+        //$student_course->date            = date('Y-m-d',strtotime($request->degree_date)); 
+        $student_course->date            = $course_date; 
         $student_course->status          = 1;
         $student_course->save();
 
@@ -162,7 +163,7 @@ class DARegisterController extends Controller
         $info->father_name_eng  =   $request->father_name_eng;
         $info->race             =   $request->race;
         $info->religion         =   $request->religion;
-        $info->date_of_birth    =   $date_of_birth;
+        $info->date_of_birth    =   date('Y-m-d',strtotime($request->date_of_birth)); 
         $info->address          =   $request->address;
         $info->current_address  =   $request->current_address;
         $info->phone            =   $request->phone;

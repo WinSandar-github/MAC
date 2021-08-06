@@ -1,3 +1,14 @@
+var cpa_modal;
+var ra_modal;
+var foreign_modal;
+var cpa_certificate_modal;
+var mpa_modal;
+var nrc_front_modal;
+var nrc_back_modal;
+var cpd_record_modal;
+var passport_modal;
+var attached_modal;
+
 function getCPAFFList(){
     destroyDatatable("#tbl_cpaff_list", "#tbl_cpaff_list_body");    
     $.ajax({
@@ -109,6 +120,7 @@ function loadCPAFFData(){
         url: BACKEND_URL+"/cpa_ff/"+id,
         success: function (data) {
             var student=data.data;
+            console.log(data);
             student.forEach(function(element){
                 if(element.cpa_part_2==1){
                     var degree = "CPA Part 2 Pass";
@@ -179,6 +191,26 @@ function loadCPAFFData(){
                 $("#company_name").append(job.company_name);
                 $("#salary").append(job.salary);
                 $("#office_address").append(job.office_address);
+                cpa_modal=element.cpa;
+                ra_modal=element.ra;
+                foreign_modal=element.foreign_degree;
+                cpa_certificate_modal=element.cpa_certificate;
+                mpa_modal=element.mpa_mem_card;
+                nrc_front_modal=element.nrc_front;
+                nrc_back_modal=element.nrc_back;
+                cpd_record_modal=element.cpd_record;
+                passport_modal=element.passport_image;
+                attached_modal=element.student_education_histroy.certificate;
+                document.getElementById('cpa').src=cpa_modal;
+                document.getElementById('ra').src=ra_modal;
+                document.getElementById('foreign_degree').src=foreign_modal;
+                document.getElementById('cpa_certificate').src=cpa_certificate_modal;
+                document.getElementById('mpa_mem_card').src=mpa_modal;
+                document.getElementById('nrc_front').src=nrc_front_modal;
+                document.getElementById('nrc_back').src=nrc_back_modal;
+                document.getElementById('cpd_record').src=cpd_record_modal;
+                document.getElementById('passport_image').src=passport_modal;
+                document.getElementById('attached_file').src=attached_modal;
             })
         }
     })
@@ -210,3 +242,43 @@ function rejectCPAFFUser(){
         }
     });
 }
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById("cpaModal") && cpa_modal!=null) {
+        document.getElementById('cpa').src=cpa_modal;
+        
+    }
+    if (event.target == document.getElementById("raModal") && ra_modal!=null) {
+        document.getElementById('ra').src=ra_modal;
+        
+    }
+    if (event.target == document.getElementById("fdModal") && foreign_modal!=null) {
+        document.getElementById('foreign_degree').src=foreign_modal;
+        
+    }
+    if (event.target == document.getElementById("capp_certi_Modal") && cpa_certificate_modal!=null) {
+        document.getElementById('cpa_certificate').src=cpa_certificate_modal;
+        
+    }
+    if (event.target == document.getElementById("mpa_mem_card_Modal") && mpa_modal!=null) { 
+        document.getElementById('mpa_mem_card').src=mpa_modal;
+        
+    }
+    if (event.target == document.getElementById("nrc_front_Modal") && nrc_front_modal!=null) {
+        document.getElementById('nrc_front').src=nrc_front_modal;
+        
+    }
+    if (event.target == document.getElementById("nrc_back_Modal") && nrc_back_modal!=null) {
+        document.getElementById('nrc_back').src=nrc_back_modal;
+    }
+    if (event.target == document.getElementById("cpd_record_Modal") && cpd_record_modal!=null) {
+        document.getElementById('cpd_record').src=cpd_record_modal;
+    }
+    if (event.target == document.getElementById("passport_Modal") && passport_modal!=null) {
+        document.getElementById('passport_image').src=passport_modal;
+    }
+    if (event.target == document.getElementById("attached_Modal") && attached_modal!=null) {
+        document.getElementById('attached_file').src=attached_modal;
+    }
+}
+
