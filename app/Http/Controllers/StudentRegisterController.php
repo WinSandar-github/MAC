@@ -135,7 +135,7 @@ class StudentRegisterController extends Controller
         $reject->status = 2;
         $reject->save();
         return response()->json([
-            'data' =>$approve->form_type
+            'data' =>$reject->form_type
         ],200);
     }
 }

@@ -32,11 +32,13 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + item.reg_reason + "</td>";
                                     tr += "<td>" + item.status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                        //             tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                        // "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#tbl_student_self_study_body").append(tr); 
-                                    
+
                                     getIndexNumber('#tbl_student_self_study tr');
                                     createDataTable("#tbl_student_self_study");
                                 }else if(item.type == 0 && course[0].code=="da_2"){
@@ -49,7 +51,7 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + item.reg_reason + "</td>";
                                     tr += "<td>" + item.status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#da_two_self_study_body").append(tr);                                                     
@@ -72,13 +74,16 @@ function getStudentSelfStudy(){
     });
 }
 
-function showStudentSelfStudy(studentId){
+function showStudentSelfStudy(studentId,course_code){
     localStorage.setItem("student_id",studentId);
+    localStorage.setItem("course_code",course_code);
+    console.log(course_code);
     location.href= FRONTEND_URL + "/self_study_edit";
 }
 
 function loadStudentSelfStudy(){
     var id=localStorage.getItem("student_id");
+    var course_code=localStorage.getItem("course_code");
     $("#student_name").html("");
     $("#student_nrc").html("");
     $("#student_dob").html("");
@@ -104,10 +109,11 @@ function loadStudentSelfStudy(){
                 $("#student_phone").append(element.phone);
                 $("#student_registration_no").append(element.registration_no);
                 student_info.forEach(function(item){
-                   if(item.type==0){
+                   if(item.type==0 && course_code=="da_1"){
                     $("#student_registration_reason").append(item.reg_reason);
                     $("input[name = student_register_id]").val(item.id);
-                   }else if(item.type==0){
+                   }
+                   else if(item.type==0 && course_code=="da_2"){
                     $("#student_registration_reason").append(item.reg_reason);
                     $("input[name = student_register_id]").val(item.id);
                    }
@@ -131,44 +137,56 @@ function getStudentPrivateSchool(){
                 if(element.student_register!=null){
                     var student_info = element.student_register;
                     student_info.forEach(function(item){
-                        if(item.type == 1 && item.form_type=="da one")
-                        {
-                           var tr = "<tr>";
-                           tr += "<td>" +  + "</td>";
-                           tr += "<td>" + element.name_eng + "</td>";
-                           tr += "<td>" + element.email + "</td>";
-                           tr += "<td>" + element.registration_no+ "</td>";
-                           tr += "<td>" + element.phone + "</td>";
-                           tr += "<td>" + item.status + "</td>";
-                           tr += "<td ><div class='btn-group'>";
-                           tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id + ")'>" +
-                               "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                           tr += "</tr>";
-                           $("#tbl_student_private_school_body").append(tr); 
-                        }else if(item.type == 1 && item.form_type=="da two")
-                        {
-                           var tr = "<tr>";
-                           tr += "<td>" +  + "</td>";
-                           tr += "<td>" + element.name_eng + "</td>";
-                           tr += "<td>" + element.email + "</td>";
-                           tr += "<td>" + element.registration_no+ "</td>";
-                           tr += "<td>" + element.phone + "</td>";
-                           tr += "<td>" + item.status + "</td>";
-                           tr += "<td ><div class='btn-group'>";
-                           tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id + ")'>" +
-                               "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                           tr += "</tr>";
-                           $("#da_two_private_school_body").append(tr); 
-                        }      
+                        $.ajax({
+                            url: BACKEND_URL+"/course/"+item.form_type,
+                            type: 'get',
+                            data:"",
+                            success:function(courses){
+                                var course =courses.data;
+                                if(item.type == 1 && course[0].code=="da_1")
+                                {
+                                var tr = "<tr>";
+                                tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.name_eng + "</td>";
+                                tr += "<td>" + element.email + "</td>";
+                                tr += "<td>" + element.registration_no+ "</td>";
+                                tr += "<td>" + element.phone + "</td>";
+                                tr += "<td>" + item.status + "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                tr += "</tr>";
+                                $("#tbl_student_private_school_body").append(tr); 
+
+                                
+                                getIndexNumber('#tbl_student_private_school tr');
+                                createDataTable("#tbl_student_private_school");
+                                }else if(item.type == 1 && course[0].code=="da_2")
+                                {
+                                var tr = "<tr>";
+                                tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.name_eng + "</td>";
+                                tr += "<td>" + element.email + "</td>";
+                                tr += "<td>" + element.registration_no+ "</td>";
+                                tr += "<td>" + element.phone + "</td>";
+                                tr += "<td>" + item.status + "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                tr += "</tr>";
+                                $("#da_two_private_school_body").append(tr); 
+                                
+                                getIndexNumber('#da_two_private_school tr');
+                                createDataTable("#da_two_private_school"); 
+                                } 
+                            }
+                        })
+                             
                     })
                       
                 }  
             });
-            
-            getIndexNumber('#tbl_student_private_school tr');
-            createDataTable("#tbl_student_private_school"); 
-            getIndexNumber('#da_two_private_school tr');
-            createDataTable("#da_two_private_school");      
+                  
         },
         error:function (message){
             dataMessage(message, "#tbl_student_private_school", "#tbl_student_private_school_body");
@@ -178,13 +196,15 @@ function getStudentPrivateSchool(){
     });
 }
 
-function showStudentPrivateSchool(studentId){
+function showStudentPrivateSchool(studentId,course_code){
     localStorage.setItem("student_id",studentId);
+    localStorage.setItem("course_code",course_code);
     location.href= FRONTEND_URL + "/private_school";
 }
 
 function loadStudentPrivateSchool(){
     var id=localStorage.getItem("student_id");
+    var course_code=localStorage.getItem("course_code");
     $("#student_name").html("");
     $("#student_nrc").html("");
     $("#student_dob").html("");
@@ -208,9 +228,10 @@ function loadStudentPrivateSchool(){
                 $("#student_phone").append(element.phone);
                 $("#student_registration_no").append(element.registration_no);
                 student_info.forEach(function(item){
-                    if(item.type==1 && item.form_type=="da one"){
+                    if(item.type==1 && course_code=="da_1"){
                         $("input[name = student_register_id]").val(item.id);
-                    }else if(item.type==1 && item.form_type=="da two"){
+                    }
+                    else if(item.type==1 && course_code=="da_2"){
                         $("input[name = student_register_id]").val(item.id);
                     }
                 })
@@ -233,44 +254,56 @@ function getStudentMac(){
                 if(element.student_register!=null){
                     var student_info = element.student_register;
                     student_info.forEach(function(item){
-                        if(item.type == 2 && item.form_type=="da one")
-                        {
-                            var tr = "<tr>";
-                            tr += "<td>" +  + "</td>";
-                            tr += "<td>" + element.name_eng + "</td>";
-                            tr += "<td>" + element.email + "</td>";
-                            tr += "<td>" + element.registration_no+ "</td>";
-                            tr += "<td>" + element.phone + "</td>";
-                            tr += "<td>" + item.status + "</td>";
-                            tr += "<td ><div class='btn-group'>";
-                            tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id + ")'>" +
-                                "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                            tr += "</tr>";
-                            $("#tbl_student_mac_body").append(tr);
-                        }else if(item.type == 2 && item.form_type=="da two")
-                        {
-                            var tr = "<tr>";
-                            tr += "<td>" +  + "</td>";
-                            tr += "<td>" + element.name_eng + "</td>";
-                            tr += "<td>" + element.email + "</td>";
-                            tr += "<td>" + element.registration_no+ "</td>";
-                            tr += "<td>" + element.phone + "</td>";
-                            tr += "<td>" + item.status + "</td>";
-                            tr += "<td ><div class='btn-group'>";
-                            tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id + ")'>" +
-                                "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                            tr += "</tr>";
-                            $("#da_two_mac_body").append(tr);
-                        }      
+                        $.ajax({
+                            url: BACKEND_URL+"/student_register",
+                            type: 'get',
+                            data:"",
+                            success:function(courses){
+                                var course=courses.data;
+                                if(item.type == 2 && course[0].code=="da_1")
+                                {
+                                    var tr = "<tr>";
+                                    tr += "<td>" +  + "</td>";
+                                    tr += "<td>" + element.name_eng + "</td>";
+                                    tr += "<td>" + element.email + "</td>";
+                                    tr += "<td>" + element.registration_no+ "</td>";
+                                    tr += "<td>" + element.phone + "</td>";
+                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td ><div class='btn-group'>";
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                    tr += "</tr>";
+                                    $("#tbl_student_mac_body").append(tr);
+
+                                    
+                                    getIndexNumber('#tbl_student_mac tr');
+                                    createDataTable("#tbl_student_mac"); 
+                                }else if(item.type == 2 && course[0].code=="da_2")
+                                {
+                                    var tr = "<tr>";
+                                    tr += "<td>" +  + "</td>";
+                                    tr += "<td>" + element.name_eng + "</td>";
+                                    tr += "<td>" + element.email + "</td>";
+                                    tr += "<td>" + element.registration_no+ "</td>";
+                                    tr += "<td>" + element.phone + "</td>";
+                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td ><div class='btn-group'>";
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                    tr += "</tr>";
+                                    $("#da_two_mac_body").append(tr);
+                                    getIndexNumber('#da_two_mac tr');
+                                    createDataTable("#da_two_mac"); 
+                                }      
+                            }
+                        })
+                        
                     })
                     
                 }    
             });
             
-            getIndexNumber('#tbl_student_mac tr');
-            createDataTable("#tbl_student_mac"); 
-            getIndexNumber('#da_two_mac tr');
-            createDataTable("#da_two_mac");      
+                 
         },
         error:function (message){
             dataMessage(message, "#tbl_student_mac", "#tbl_student_mac_body");
@@ -279,13 +312,15 @@ function getStudentMac(){
     });
 }
 
-function showStudentMac(studentId){
+function showStudentMac(studentId,course_code){
     localStorage.setItem("student_id",studentId);
+    localStorage.setItem("course_code",course_code);
     location.href= FRONTEND_URL + "/mac";
 }
 
 function loadStudentMac(){
     var id=localStorage.getItem("student_id");
+    var course_code=localStorage.getItem("course_code");
     $("#student_name").html("");
     $("#student_nrc").html("");
     $("#student_dob").html("");
@@ -309,9 +344,9 @@ function loadStudentMac(){
                 $("#student_phone").append(element.phone);
                 $("#student_registration_no").append(element.registration_no);
                 student_info.forEach(function(item){
-                    if(item.type==2 && item.form_type=="da one"){
+                    if(item.type==2 && course_code=="da_1"){
                         $("input[name = student_register_id]").val(item.id);
-                    }else if(item.type==2 && item.form_type=="da two"){
+                    }else if(item.type==2 && course_code=="da_1"){
                         $("input[name = student_register_id]").val(item.id);
                     }
                 })
@@ -322,6 +357,7 @@ function loadStudentMac(){
 
 function approveStudent(){ 
     var id = $("input[name = student_register_id]").val();
+    var course_code=localStorage.getItem("course_code");
     console.log(id);
     $.ajax({
         url: BACKEND_URL+"/approve_student/"+id,
@@ -329,7 +365,7 @@ function approveStudent(){
         success: function(result){
             console.log(result.data)
             successMessage("You have approved that student!");  
-            if(result.data=="da one"){
+            if(course_code=="da_1"){
                 location.href =  FRONTEND_URL + "/index";
             }else{
                 location.href =  FRONTEND_URL + "/da_two_index";
@@ -346,6 +382,7 @@ function approveStudent(){
 
 function rejectStudent(){ 
     var id = $("input[name = student_register_id]").val();
+    var course_code=localStorage.getItem("course_code");
     console.log(id)
     $.ajax({
         url: BACKEND_URL+"/reject_student/"+id,
@@ -353,7 +390,7 @@ function rejectStudent(){
         success: function(result){
             console.log(result)
             successMessage("You have rejected that student!");  
-            if(result.data=="da one"){
+            if(course_code=="da_1"){
                 location.href =  FRONTEND_URL + "/index";
             }else{
                 location.href =  FRONTEND_URL + "/da_two_index";
