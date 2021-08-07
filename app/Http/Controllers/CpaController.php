@@ -21,11 +21,28 @@ class CpaController extends Controller
 
     public function store_da_cpa_app_form(Request $request)
     {
+        if ($request->hasfile('deg_certi_img')) {
+
+            $file = $request->file('deg_certi_img');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $deg_certi_img = '/storage/student_info/'.$name;
+       
+    }else{
+        $deg_certi_img = null;
+    }
 
         $course_date = date('Y-m-d');
 
         $student_info = StudentInfo::find($request->student_id);
         $student_info->approve_reject_status = 0;
+        if($request->direct_degree)
+        { 
+            $student_info->direct_degree                =   $request->direct_degree; 
+            $student_info->degree_date                  =   date("Y-m-d",strtotime($request->degree_date));
+            $student_info->degree_certificate_image     =   $deg_certi_img;
+            $student_info->degree_rank                  =   $request->degree_rank;
+        }
         $student_info->save();
          
         $student_course = new StudentCourseReg();

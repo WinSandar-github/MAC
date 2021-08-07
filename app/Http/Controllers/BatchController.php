@@ -111,7 +111,6 @@ class BatchController extends Controller
     public function publish_batch($course_type_id)
     {
         
-        $currentDate = Carbon::today();
         
       
         $course = Course::where('course_type_id',$course_type_id)
@@ -156,7 +155,7 @@ class BatchController extends Controller
 
     public function currentAttendBatch($student_id){
         $student_course = StudentCourseReg::where('student_info_id',$student_id)->with('batch')->latest()->first();
-        $batch = $student_course->batch;
+         $batch = Batch::where('id',$student_course->batch_id)->with('course')->first();
         return response()->json([
             'data' => $batch
         ]);

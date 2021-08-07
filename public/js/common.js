@@ -1,6 +1,7 @@
 // var BACKEND_URL="http://localhost:8000/api";
 // var FRONTEND_URL="http://localhost:8000";
 //  var PDF_URL="http://localhost:8000";
+
 var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
 var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
 var PDF_URL =  "https://demo.aggademo.me/MAC/public";
@@ -784,6 +785,27 @@ function createDataTable(table) {
         "scrollX": true,
         'select': false,
         "order": [[0, "desc"]],
+
+    });
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $($.fn.dataTable.tables(true)).DataTable()
+           .columns.adjust();
+     });
+}
+function createDataTableWithAsc(table) {
+
+    $(table).DataTable({
+        'destroy': true,
+        'paging': true,
+        'lengthChange': false,
+        "pageLength": 5,
+        'searching': false,
+        'ordering': true,
+        'info': false,
+        'autoWidth': false,
+        "scrollX": true,
+        'select': false,
+        "order": [[0, "asc"]],
 
     });
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){

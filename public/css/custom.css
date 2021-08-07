@@ -48,8 +48,11 @@
     animation-name: rubberBand;
   }
 
- 
-
   .custom-btn{
     margin-top: 0px;
+  }
+
+  .form-group .form-control,
+  .input-group .form-control {
+    padding: 8px 10px 8px 10px !important;
   }

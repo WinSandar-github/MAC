@@ -5,10 +5,15 @@
 @section('content')
 <style>
     .content {
-      position: absolute;
+        /* position: absolute; */
+        /* position: relative; */
+        /* right: 0; */
+        /* top: 0; */
     }
     .modal {
       max-height: 100vh;
+     /* position: absolute; */
+        top: 0;
     }
 </style>
 @section('content')
@@ -188,7 +193,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input type="hidden" id="hidden_attach">
-                                        <button type="button" class="btn btn-primary btn-md" onclick="viewAttach();"><i class="fa fa-paperclip"></i></button>
+                                        <button type="button" class="btn btn-primary btn-md" style="margin-bottom:1rem;margin-top:1px;" onclick="viewAttach();"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">

@@ -123,6 +123,8 @@ Route::resource('/exam_result','ExamResultController');
 Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResult');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
+Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
+Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
 
@@ -139,6 +141,8 @@ Route::post('/approve_school_register/{id}', 'SchoolController@approve_school_re
 Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_register');
 //for teacher registration
 Route::resource('/teacher','TeacherController');
+
+Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_register');
 
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
