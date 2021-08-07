@@ -59,7 +59,7 @@ function getStudentSelfStudy(){
                         createDataTable("#tbl_student_self_study");
                         getIndexNumber('#da_two_self_study tr');
                         createDataTable("#da_two_self_study"); 
-                    })
+                    });
                     
                 }  
             });     
