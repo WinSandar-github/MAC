@@ -71,6 +71,9 @@ class ExamRegisterController extends Controller
         $exam->form_type = $request->form_type;
         $exam->status = 0;
         $exam->save();
+        $student_info_id = StudentInfo::find($request->student_id);
+        $student_info_id->approve_reject_status  =  3;
+        $student_info_id->save();
         return "You have successfully registerd!";
     }
 
@@ -170,11 +173,18 @@ class ExamRegisterController extends Controller
 
     public function cpaExamRegister(Request $request)
     {
+         
+        $student_info_id = $request->student_id;
+         $exam_type = StudentRegister::where('id', $student_info_id)->get('type');
+         $type = $exam_type[0]['type'];
+     
+         $batch = StudentCourseReg::where('id', $student_info_id)->get('batch_id');
+        $batch_id = $batch[0]['batch_id'];
        
-        $student_info_id = $request->student_id;        
+        // $student_info_id = $request->student_id;        
        
-        $batch_id = StudentCourseReg::where('student_info_id', $student_info_id)->first()->batch_id;
-        $exam_type = Batch::where('id',$batch_id)->first()->course_id;
+        // $batch_id = StudentCourseReg::where('student_info_id', $student_info_id)->first()->batch_id;
+        // $exam_type = Batch::where('id',$batch_id)->first()->course_id;
         
         
    
@@ -196,17 +206,23 @@ class ExamRegisterController extends Controller
         $exam->invoice_image = $invoice_image;
         $exam->invoice_date = $invoice_date;
         $exam->private_school_name = $request->private_school_name;
-        $exam->grade = 'A';
+        $exam->grade = 1;
         $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
-        $exam->exam_type_id = $exam_type;
+        //exam type id mean mac self study private school
+        $exam->exam_type_id = $type;
         $exam->form_type = $request->form_type;
         $exam->status = 0;
         $exam->save();
+
+        $student_info = StudentInfo::find($request->student_id);
+        $student_info->approve_reject_status  =  3;
+        $student_info->save();
         return "You have successfully registerd!";
     }
     public function getExamByStudentID($id){
         $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
+        
         return response()->json([
             'data' => $exam_register
         ],200);
