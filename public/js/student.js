@@ -36,6 +36,9 @@ function getStudentSelfStudy(){
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#tbl_student_self_study_body").append(tr); 
+                                    
+                                    getIndexNumber('#tbl_student_self_study tr');
+                                    createDataTable("#tbl_student_self_study");
                                 }else if(item.type == 0 && course[0].code=="da_2"){
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
@@ -49,16 +52,14 @@ function getStudentSelfStudy(){
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
-                                    $("#da_two_self_study_body").append(tr); 
+                                    $("#da_two_self_study_body").append(tr);                                                     
+                                    
+                                    getIndexNumber('#da_two_self_study tr');
+                                    createDataTable("#da_two_self_study");
                                 } 
                             }
                             
-                        });                   
-            
-                        getIndexNumber('#tbl_student_self_study tr');
-                        createDataTable("#tbl_student_self_study");
-                        getIndexNumber('#da_two_self_study tr');
-                        createDataTable("#da_two_self_study"); 
+                        });  
                     });
                     
                 }  
@@ -103,10 +104,10 @@ function loadStudentSelfStudy(){
                 $("#student_phone").append(element.phone);
                 $("#student_registration_no").append(element.registration_no);
                 student_info.forEach(function(item){
-                   if(item.type==0 && item.form_type=="da one"){
+                   if(item.type==0){
                     $("#student_registration_reason").append(item.reg_reason);
                     $("input[name = student_register_id]").val(item.id);
-                   }else if(item.type==0 && item.form_type=="da two"){
+                   }else if(item.type==0){
                     $("#student_registration_reason").append(item.reg_reason);
                     $("input[name = student_register_id]").val(item.id);
                    }
