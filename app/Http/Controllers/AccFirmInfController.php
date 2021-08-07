@@ -20,7 +20,7 @@ use App\NonAuditFirmFile;
 use App\StudentInfo;
 use Hash;
 use File;
-
+use DB;
 
 class AccFirmInfController extends Controller
 {
@@ -894,4 +894,18 @@ class AccFirmInfController extends Controller
         $data = AccountancyFirmInformation::where('id',$id)->get();
         return response()->json($data,200);
     }
+
+    public function auditStatus($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)->get('status');
+        return response()->json($data,200);
+    }
+
+    // // get date range
+    // public function dateRange($id)
+    // {
+    //     $month = SELECT EXTRACT(MONTH FROM CURRENT_DATE);
+    //     $month = DB::table('users')->select('id','name','email')->get();
+    //     return $month;
+    // }
 }
