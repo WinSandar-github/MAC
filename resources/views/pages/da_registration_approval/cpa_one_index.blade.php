@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'index'
+    'elementActive' => 'cpa_one_index'
 ])
 
 @section('content')
@@ -10,7 +10,7 @@
         @include('flash-message')
         <div class="row">
             <div class="col-md-12">   
-                {{ Breadcrumbs::render('DA 1 Registration List') }}
+            {{ Breadcrumbs::render('cpa_one_registration_list') }}
             </div>
         </div>       
 
@@ -22,7 +22,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h5 class="title">{{ __('DA 1 Registration List') }}</h5>
+                                    <h5 class="title">{{ __('CPA 1 Registration List') }}</h5>
                                 </div>
                             </div>
                         </div>

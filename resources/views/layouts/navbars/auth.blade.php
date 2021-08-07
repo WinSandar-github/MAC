@@ -76,16 +76,16 @@
                         </li> --}}
 
                         <!-- CPA One -->
-                        <li class="{{ $elementActive == 'cpa_one_registration_list' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'cpa_one_registration_list') }}">
+                        <li class="{{ $elementActive == 'cpa_one_index' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_one_index') }}">
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('CPA 1 Registration List') }}</span>
                             </a>
                         </li>
 
                         <!-- CPA Two -->
-                        <li class="{{ $elementActive == 'cpa_two_registration_list' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'cpa_two_registration_list') }}">
+                        <li class="{{ $elementActive == 'cpa_two_index' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_two_index') }}">
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('CPA 2 Registration List') }}</span>
                             </a>
