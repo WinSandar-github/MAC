@@ -140,6 +140,8 @@ Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_regi
 //for teacher registration
 Route::resource('/teacher','TeacherController');
 
+Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_register');
+
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 
