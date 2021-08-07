@@ -31,8 +31,8 @@ class CreateStudentRegisterTable extends Migration
             $table->string('no_crime')->nullable();
             $table->string('private_school_name')->nullable();
             $table->string('cpa_one_pass_date')->nullable();
-            $table->string('entrance_exam_no')->nullable();
-            $table->string('grade')->nullable();
+            $table->string('cpa_one_access_no')->nullable();
+            $table->string('cpa_one_success_no')->nullable();
             $table->integer('status');
             $table->string('form_type')->nullable();
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
