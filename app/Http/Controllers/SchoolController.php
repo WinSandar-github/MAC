@@ -16,7 +16,7 @@ class SchoolController extends Controller
      */
     public function index()
     {
-        $school = SchoolRegister::all();
+        $school = SchoolRegister::orderBy('created_at','desc')->get();
         return  response()->json([
             'data' => $school
         ],200);

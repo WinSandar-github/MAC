@@ -26,7 +26,7 @@
                             <div class="card-header ">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <h5 class="card-title text-center">{{ __('School Registration Form List') }}</h5>
+                                        <h5 class="card-title text-center">{{ __('School Registration Lists') }}</h5>
                                     </div>
                                 </div>
                             </div>

@@ -176,6 +176,6 @@
         window.print();
         document.body.innerHTML=backup;
     }
-    loadStudentDataForExamCard();
+    loadCPAStudentDataForExamCard();
 </script>
 @endpush

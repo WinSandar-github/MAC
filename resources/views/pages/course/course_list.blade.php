@@ -9,10 +9,10 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <div class="col-md-12">   
-            {{ Breadcrumbs::render('သင်တန်း') }}             
+            <div class="col-md-12">
+            {{ Breadcrumbs::render('သင်တန်း') }}
             </div>
-        </div>       
+        </div>
 
         <div class="row">
             <div class="col-md-12 text-center">
@@ -24,7 +24,7 @@
                                 <div class="col-md-12">
                                     <h5 class="card-title">{{ __('Course List') }}</h5>
                                 </div>
-                                
+
                             </div>
                             <div class="row">
                                 <div class="col-md-8"></div>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                
+
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
@@ -44,24 +44,24 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
                                                         <th class="bold-font-weight" >Name</th>
-                                                        <th class="bold-font-weight" >Form Fee</th>                                        
+                                                        <th class="bold-font-weight" >Form Fee</th>
                                                         <th class="bold-font-weight" >Registration Fee</th>
                                                         <th class="bold-font-weight" >Exam Fee</th>
                                                         <th class="bold-font-weight" >Tution Fee</th>
                                                         <th class="bold-font-weight" >Description</th>
                                                         <th class="bold-font-weight" >Action</th>
                                                     </tr>
-                                                    
+
                                                 </thead>
                                                 <tbody id="tbl_course_body">
-                                                    
+
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                            
+
                         </div>
                     </div>
                 </form>
@@ -88,7 +88,7 @@
                             <label class="col-md-1 form-label">{{ __('1.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Name') }}</label>
                             <div class="col-md-7">
-                                <div class="form-group">                                
+                                <div class="form-group">
                                     <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off" required>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
                             <label class="col-md-1 form-label">{{ __('2.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Form Fee') }}</label>
                             <div class="col-md-7">
-                                <div class="form-group">                                
+                                <div class="form-group">
                                     <input type="text"  name="form_fee" class="form-control"  placeholder="Form Fee" autocomplete="off" required>
                                 </div>
                             </div>
@@ -106,7 +106,7 @@
                             <label class="col-md-1 form-label">{{ __('3.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Registration Fee') }}</label>
                             <div class="col-md-7">
-                                <div class="form-group">                                
+                                <div class="form-group">
                                     <input type="text" name="registration_fee" class="form-control" placeholder="Registration Fee" autocomplete="off" required>
                                 </div>
                             </div>
@@ -115,7 +115,7 @@
                             <label class="col-md-1 form-label">{{ __('4.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Exam Fee') }}</label>
                             <div class="col-md-7">
-                                <div class="form-group">                                
+                                <div class="form-group">
                                     <input type="text" name="exam_fee" class="form-control" placeholder="Exam Fee" autocomplete="off" required>
                                 </div>
                             </div>
@@ -124,7 +124,7 @@
                             <label class="col-md-1 form-label">{{ __('5.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Tution Fee') }}</label>
                             <div class="col-md-7">
-                                <div class="form-group">                                
+                                <div class="form-group">
                                     <input type="text" name="tution_fee" class="form-control" placeholder="Tution Fee" autocomplete="off" required>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                             <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Description') }}</label>
                             <div class="col-md-7">
-                                <div class="form-group"> 
+                                <div class="form-group">
                                     <input type="text" name="description" class="form-control"  placeholder="Description" autocomplete="off" required>
                                 </div>
                             </div>
@@ -142,23 +142,23 @@
                             <label class="col-md-1 form-label">{{ __('9.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Code') }}</label>
                             <div class="col-md-7">
-                                <div class="form-group"> 
-                                    <input type="text" name="code" class="form-control"  placeholder="Code" autocomplete="off" required>
+                                <div class="form-group">
+                                    <input type="text" name="code" class="form-control"  placeholder="For Eg: da_1" autocomplete="off">
                                 </div>
                             </div>
-                        </div>    
+                        </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('10.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Course Type') }}</label>
                             <div class="col-md-7">
-                                <div class="form-group"> 
+                                <div class="form-group">
                                     <select name="course_type" class="form-control course_type" required>
 
                                     </select>
                                 </div>
                             </div>
-                        </div>  
-                        
+                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
@@ -200,10 +200,10 @@
 
         window.onclick = function(event) {
             if (event.target == document.getElementById("create_course")) {
-                document.getElementById("course_form").reset();  
+                document.getElementById("course_form").reset();
             }
         }
-        
+
     });
     getCourse();
 </script>
