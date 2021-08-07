@@ -111,7 +111,6 @@ class BatchController extends Controller
     public function publish_batch($course_type_id)
     {
         
-        $currentDate = Carbon::today();
         
       
         $course = Course::where('course_type_id',$course_type_id)
