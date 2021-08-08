@@ -86,7 +86,7 @@ function getExam(){
                         tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDaTwoExam(" + element.id + ")'>" +
                             "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                         tr += "<td ><div class='btn-group'>";
-                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id  + ")'>" +
+                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id +','+ element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                         tr += "</tr>";
                         $("#tbl_da_exam_two_body").append(tr);
@@ -167,6 +167,7 @@ function loadStudentDataForExamCard()
 {
     var id=localStorage.getItem("student_id");
     var batch_id=localStorage.getItem("batch_id_for_examcard");
+    console.log('batch_id',batch_id);
     $("#roll_no").html("");
     $("#name").html("");
     $("#nrc").html("");

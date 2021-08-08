@@ -221,6 +221,13 @@ class DARegisterController extends Controller
 
     }
 
+    public function auditFormStatus($id)
+    {
+        $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        return response()->json($data,200);
+
+    }
+
     public function FilterExamRegister($course_type){
         $student_infos = StudentInfo::where('course_type_id',$course_type)
             ->with('exam_register', 'student_register')
