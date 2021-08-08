@@ -251,6 +251,7 @@ function getStudentPrivateSchool(){
                                 }
                                 if(item.type == 1 && course[0].code=="cpa_2")
                                 {
+                                console.log(element,"Cpa Two")
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.name_eng + "</td>";

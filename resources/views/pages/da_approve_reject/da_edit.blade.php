@@ -222,7 +222,7 @@
                                     </div>
                                 </div>
 
-                                <input type="hidden" name="student_info_id" >
+                                <input type="hidden" name="student_course_id" >
 
                                 <div class="row mt-5 justify-content-center" id="approve_reject"> 
                                     <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>

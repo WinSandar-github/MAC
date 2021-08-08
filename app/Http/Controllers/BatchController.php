@@ -136,15 +136,17 @@ class BatchController extends Controller
 
     public function getExam($student_id)
     {
-      
+         
         
         $student_course = StudentCourseReg::where('student_info_id',$student_id)->with('batch')->latest()->first();
+     
         $exam_start_date = $student_course->batch->exam_start_date;
+        
         $exam_previous_month = Carbon::createFromFormat('Y-m-d', $exam_start_date)->subMonth();
         $currentDate = Carbon::now();
-         
+        
         if($exam_previous_month <= $currentDate && $exam_start_date > $currentDate ){
-            $data = Batch::where('id',$student_course->batch->id)->with('course')->first();
+                $data = Batch::where('id',$student_course->batch->id)->with('course')->first();
         }else{
             $data = null;
         }
