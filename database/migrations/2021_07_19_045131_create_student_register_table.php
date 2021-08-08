@@ -21,6 +21,18 @@ class CreateStudentRegisterTable extends Migration
             $table->unsignedBigInteger('invoice_id');
             $table->date('invoice_date');
             $table->integer('type');
+            $table->string('academic_year')->nullable();
+            $table->string('direct_access_no')->nullable();
+            $table->string('entry_success_no')->nullable();
+            $table->string('module')->nullable();
+            $table->string('batch_part_no')->nullable();
+            $table->string('internship')->nullable();
+            $table->string('good_behavior')->nullable();
+            $table->string('no_crime')->nullable();
+            $table->string('private_school_name')->nullable();
+            $table->string('cpa_one_pass_date')->nullable();
+            $table->string('cpa_one_access_no')->nullable();
+            $table->string('cpa_one_success_no')->nullable();
             $table->integer('status');
             $table->string('form_type')->nullable();
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');

@@ -123,6 +123,10 @@ Route::resource('/exam_result','ExamResultController');
 Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResult');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
+Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
+Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
+Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
+
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
 
@@ -151,6 +155,7 @@ Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 //Get Current Batch filter by student id
 Route::get('/get_current_batch_studentId/{student_info_id}','BatchController@currentAttendBatch');
 
-
+//login validate for mobile
+Route::post('/loginValidate', 'LoginController@loginValidate');
 
 

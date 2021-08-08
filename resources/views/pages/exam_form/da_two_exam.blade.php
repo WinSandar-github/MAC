@@ -39,7 +39,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <table id="tbl_cpa_exam_two"class="table table-hover text-nowrap ">
+                                        <table id="tbl_da_exam_two"class="table table-hover text-nowrap ">
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight" >No</th>
@@ -52,7 +52,7 @@
                                                     <th class="bold-font-weight" >Print</th>
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbl_cpa_exam_two_body" class="hoverTable">
+                                            <tbody id="tbl_da_exam_two_body" class="hoverTable">
                                             </tbody>
                                         </table>
                                     </div>

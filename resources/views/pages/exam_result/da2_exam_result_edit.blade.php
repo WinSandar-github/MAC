@@ -57,6 +57,6 @@
 
 @push('scripts')
 <script>
-	loadStudent('da two');
+	loadStudent('da_2');
 </script>
 @endpush

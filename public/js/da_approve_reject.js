@@ -1,15 +1,20 @@
 var attached_file;
 
-function getDAList(){
-    destroyDatatable("#tbl_da_list", "#tbl_da_list_body");    
+function getDAList(course_code){
+    destroyDatatable("#tbl_da_list", "#d");    
     $.ajax({
         url: BACKEND_URL+"/da_register",
         type: 'get',
         data:"",
         success: function(data){
             var da_data = data.data;
-            da_data.forEach(function (element) {
-                var status;
+            console.log(da_data)
+            let da_one_list = da_data.filter(function(v){
+                return v.batch.course.code == course_code 
+            })
+            console.log(da_one_list)
+            da_one_list.forEach(function (element) {
+                 var status;
                 if(element.approve_reject_status==0){
                     status="Pending";
                 }
@@ -21,10 +26,10 @@ function getDAList(){
                 }
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
-                    tr += "<td>" + element.name_mm + "</td>";
-                    tr += "<td>" + element.email + "</td>";
-                    tr += "<td>" + element.phone+ "</td>";
-                    tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+                    tr += "<td>" + element.student_info.phone+ "</td>";
+                    tr += "<td>" + element.student_info.nrc_state_region+"/"+element.student_info.nrc_township+ "("+element.student_info.nrc_citizen+")"+element.student_info.nrc_number + "</td>";
                     tr += "<td>" + status + "</td>";
                     tr += "<td ><div class='btn-group'>";
                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
@@ -41,13 +46,14 @@ function getDAList(){
     });
 }
 
-function showDAList(studentId){
-    localStorage.setItem("student_id",studentId);
-    location.href=FRONTEND_URL+"/da_edit";
+function showDAList(student_course_id)
+{
+    localStorage.setItem("student_course_id",student_course_id);
+     location.href=FRONTEND_URL+"/da_edit";
 }
 
 function loadData(){
-    var id=localStorage.getItem("student_id");
+    var id=localStorage.getItem("student_course_id");
     $("#name_eng").html("");
     $("#name_mm").html("");
     $("#nrc").html("");
@@ -78,15 +84,16 @@ function loadData(){
     $("#salary").html("");
     $("#office_address").html("");
 
-    $("input[name = student_info_id]").val(id);
+    $("input[name = student_course_id]").val(id);
     $.ajax({
         type: "GET",
         url: BACKEND_URL+"/da_register/"+id,
         success: function (data) {
             var student=data.data;
-            student.forEach(function(element){
-                console.log(element);
-                if(element.approve_reject_status==0){
+            console.log(student)
+            student.forEach(function(student_course){
+                let element = student_course.student_info;
+                if(student_course.approve_reject_status==0){
                     document.getElementById("approve_reject").style.display = "block";
                 }
                 else{
@@ -134,26 +141,53 @@ function loadData(){
 
 function approveUser(){ 
     
-    var id = $("input[name = student_info_id]").val();
+    var id = $("input[name = student_course_id]").val();
+ 
     console.log('approvedaid',id);
     $.ajax({
-        url: BACKEND_URL + "/approve/"+id,
+        url: BACKEND_URL + "/approve/" + id,
         type: 'patch',
         success: function(result){
-            successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/da_list";
+            let url;
+            if(result){
+
+                switch(result.code){
+                    case 'da_1':
+                    url = '/da_one_app_list';
+                    break;
+                    case 'da_2':
+                    url = '/da_two_app_list';
+                    break;
+                    case 'cpa_1':
+                    url = '/cpa_one_app_list';
+                    break;
+                    case 'cpa_2':
+                    url = '/cpa_two_app_list';
+                    break;
+                    default:
+                    url = '/da_one_app_list';
+                    break;
+
+
+                    
+                }
+                successMessage("You have approved that user!");
+                location.href = FRONTEND_URL + url;
+            }    
         }
     });
 }
 
 function rejectUser(){ 
-    var id = $("input[name = student_info_id]").val();
+    var id = $("input[name = student_course_id]").val();
+ 
     $.ajax({
-        url: BACKEND_URL + "/reject/"+id,
+        url: BACKEND_URL + "/reject/" + id,
         type: 'patch',
         success: function(result){
+            
             successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/da_list";
+            // location.href = FRONTEND_URL + "/da_one_app_list";
         }
     });
 }
