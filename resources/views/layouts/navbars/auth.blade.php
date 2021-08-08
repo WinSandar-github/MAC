@@ -51,7 +51,7 @@
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'da_one_app_list' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'da_list') }}">
+                            <a href="{{ route('page.index', 'da_one_app_list') }}">
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('DA One Application List') }}</span>
                             </a>

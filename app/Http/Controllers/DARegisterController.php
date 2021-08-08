@@ -186,20 +186,21 @@ class DARegisterController extends Controller
     {
       
          
-        $stu_course_reg = StudentCourseReg::find('id',$id);
+        $stu_course_reg = StudentCourseReg::find($id) ;
         $stu_course_reg->approve_reject_status =1;
         $stu_course_reg->save();
         $approve = StudentInfo::where('id',$stu_course_reg->student_info_id)->first();
         $approve->approve_reject_status = 1;
         $approve->save();
         return response()->json([
-            'message' => "You have successfully approved that user!"
+            'message' => "You have successfully approved that user!",
+            'code'    =>  $stu_course_reg->batch->course->code  
         ],200);
     }
 
     public function reject($id)
     {
-        return
+         
         $stu_course_reg = StudentCourseReg::find($id);
         $stu_course_reg->approve_reject_status =2;
         $stu_course_reg->save();
@@ -207,7 +208,9 @@ class DARegisterController extends Controller
         $approve->approve_reject_status = 2;
         $approve->save();
         return response()->json([
-            'message' => "You have successfully rejected that user!"
+            'message' => "You have successfully rejected that user!",
+            'code'    =>  $stu_course_reg->batch->course->code  
+
         ],200);
     }
 
