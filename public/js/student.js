@@ -41,7 +41,8 @@ function getStudentSelfStudy(){
 
                                     getIndexNumber('#tbl_student_self_study tr');
                                     createDataTable("#tbl_student_self_study");
-                                }else if(item.type == 0 && course[0].code=="da_2"){
+                                }
+                                if(item.type == 0 && course[0].code=="da_2"){
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -59,7 +60,7 @@ function getStudentSelfStudy(){
                                     getIndexNumber('#da_two_self_study tr');
                                     createDataTable("#da_two_self_study");
                                 } 
-                                else if(item.type == 0 && course[0].code=="cpa_1")
+                                if(item.type == 0 && course[0].code=="cpa_1")
                                 {
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
@@ -77,7 +78,8 @@ function getStudentSelfStudy(){
 
                                     getIndexNumber('#tbl_cpa1_student_self_study tr');
                                     createDataTable("#tbl_cpa1_student_self_study");
-                                }else if(item.type == 0 && course[0].code=="cpa_2"){
+                                }
+                                if(item.type == 0 && course[0].code=="cpa_2"){
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -151,15 +153,15 @@ function loadStudentSelfStudy(){
                     $("#student_registration_reason").append(item.reg_reason);
                     $("input[name = student_register_id]").val(item.id);
                    }
-                   else if(item.type==0 && course_code=="da_2"){
+                   if(item.type==0 && course_code=="da_2"){
                     $("#student_registration_reason").append(item.reg_reason);
                     $("input[name = student_register_id]").val(item.id);
                    }
-                   else if(item.type==0 && course_code=="cpa_1"){
+                   if(item.type==0 && course_code=="cpa_1"){
                     $("#student_registration_reason").append(item.reg_reason);
                     $("input[name = student_register_id]").val(item.id);
                    }
-                   else if(item.type==0 && course_code=="cpa_2"){
+                   if(item.type==0 && course_code=="cpa_2"){
                     $("#student_registration_reason").append(item.reg_reason);
                     $("input[name = student_register_id]").val(item.id);
                    }
@@ -209,7 +211,8 @@ function getStudentPrivateSchool(){
                                 
                                 getIndexNumber('#tbl_student_private_school tr');
                                 createDataTable("#tbl_student_private_school");
-                                }else if(item.type == 1 && course[0].code=="da_2")
+                                }
+                                if(item.type == 1 && course[0].code=="da_2")
                                 {
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
@@ -227,7 +230,7 @@ function getStudentPrivateSchool(){
                                 getIndexNumber('#da_two_private_school tr');
                                 createDataTable("#da_two_private_school"); 
                                 } 
-                                else if(item.type == 1 && course[0].code=="cpa_1")
+                                if(item.type == 1 && course[0].code=="cpa_1")
                                 {
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
@@ -246,7 +249,7 @@ function getStudentPrivateSchool(){
                                 getIndexNumber('#tbl_cpa1_student_private_school tr');
                                 createDataTable("#tbl_cpa1_student_private_school");
                                 }
-                                else if(item.type == 1 && course[0].code=="cpa_2")
+                                if(item.type == 1 && course[0].code=="cpa_2")
                                 {
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
@@ -319,13 +322,13 @@ function loadStudentPrivateSchool(){
                     if(item.type==1 && course_code=="da_1"){
                         $("input[name = student_register_id]").val(item.id);
                     }
-                    else if(item.type==1 && course_code=="da_2"){
+                    if(item.type==1 && course_code=="da_2"){
                         $("input[name = student_register_id]").val(item.id);
                     }
-                    else if(item.type==1 && course_code=="cpa_1"){
+                    if(item.type==1 && course_code=="cpa_1"){
                         $("input[name = student_register_id]").val(item.id);
                     }
-                    else if(item.type==1 && course_code=="cpa_2"){
+                    if(item.type==1 && course_code=="cpa_2"){
                         $("input[name = student_register_id]").val(item.id);
                     }
                 })
@@ -374,7 +377,8 @@ function getStudentMac(){
                                     
                                     getIndexNumber('#tbl_student_mac tr');
                                     createDataTable("#tbl_student_mac"); 
-                                }else if(item.type == 2 && course[0].code=="da_2")
+                                }
+                                if(item.type == 2 && course[0].code=="da_2")
                                 {
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
@@ -391,7 +395,7 @@ function getStudentMac(){
                                     getIndexNumber('#da_two_mac tr');
                                     createDataTable("#da_two_mac"); 
                                 }      
-                                else if(item.type == 2 && course[0].code=="cpa_1")
+                                if(item.type == 2 && course[0].code=="cpa_1")
                                 {
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
@@ -410,7 +414,8 @@ function getStudentMac(){
                                     getIndexNumber('#tbl_cpa1_student_mac tr');
                                     createDataTable("#tbl_cpa1_student_mac"); 
                                 }
-                                else if(item.type == 2 && course[0].code=="cpa_2")
+                                
+                                if(item.type == 2 && course[0].code=="cpa_2")
                                 {
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
@@ -482,12 +487,14 @@ function loadStudentMac(){
                 student_info.forEach(function(item){
                     if(item.type==2 && course_code=="da_1"){
                         $("input[name = student_register_id]").val(item.id);
-                    }else if(item.type==2 && course_code=="da_1"){
+                    }
+                    if(item.type==2 && course_code=="da_1"){
                         $("input[name = student_register_id]").val(item.id);
                     }
-                    else if(item.type==2 && course_code=="cpa_1"){
+                    if(item.type==2 && course_code=="cpa_1"){
                         $("input[name = student_register_id]").val(item.id);
-                    }else if(item.type==2 && course_code=="cpa_1"){
+                    }
+                    if(item.type==2 && course_code=="cpa_1"){
                         $("input[name = student_register_id]").val(item.id);
                     }
                 })
