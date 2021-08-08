@@ -508,9 +508,15 @@ function approveStudent(){
             successMessage("You have approved that student!");  
             if(course_code=="da_1"){
                 location.href =  FRONTEND_URL + "/index";
-            }else{
+            }else if(course_code=="da_2"){
                 location.href =  FRONTEND_URL + "/da_two_index";
-            }           
+            }   
+            else if(course_code=="cpa_1"){
+                location.href =  FRONTEND_URL + "/cpa_one_index";
+            }
+            else{
+                location.href =  FRONTEND_URL + "/cpa_two_index";
+            }        
             getStudentSelfStudy();
             getStudentPrivateSchool();
             getStudentMac();
@@ -533,9 +539,16 @@ function rejectStudent(){
             successMessage("You have rejected that student!");  
             if(course_code=="da_1"){
                 location.href =  FRONTEND_URL + "/index";
-            }else{
+            }
+            else if(course_code=="da_2"){
                 location.href =  FRONTEND_URL + "/da_two_index";
-            }             
+            }           
+            else if(course_code=="cpa_1"){
+                location.href =  FRONTEND_URL + "/cpa_one_index";
+            }
+            else{
+                location.href =  FRONTEND_URL + "/cpa_two_index";
+            }
             getStudentSelfStudy();
             getStudentPrivateSchool();
             getStudentMac();
