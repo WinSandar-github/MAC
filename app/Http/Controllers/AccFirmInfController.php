@@ -901,11 +901,22 @@ class AccFirmInfController extends Controller
         return response()->json($data,200);
     }
 
-    // // get date range
-    // public function dateRange($id)
-    // {
-    //     $month = SELECT EXTRACT(MONTH FROM CURRENT_DATE);
-    //     $month = DB::table('users')->select('id','name','email')->get();
-    //     return $month;
-    // }
+    // get date range
+    public function dateRange($id)
+    {
+        // $date = AccountancyFirmInformation::where('id',$id)->whereDate('created_at', '<=', date('Y-m-d'))->get();
+
+        $from = date('2021-01-01');
+        $to = date('2021-12-31');
+
+        $date = AccountancyFirmInformation::whereBetween(DB::raw('DATE(created_at)'), array($from, $to))->get();
+
+        // $data = AccountancyFirmInformation::whereBetween('accountancy_firm_name', [$from, $to])->get();
+        return $date;
+        // $month = DB::table('accountancy_firm_information')->select('accountancy_firm_name')
+        // ->where('id', $id)
+        // ->whereDate('created_at', '<=', date('Y-m-d'))->get();
+
+        // return $month;
+    }
 }
