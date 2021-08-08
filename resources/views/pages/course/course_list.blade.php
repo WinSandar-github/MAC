@@ -70,7 +70,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="create_course_modal" style="padding-top:100px;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="create_course_modal" style="padding-top:80px;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <!-- <form method="post" action="{{ route('course.store') }}" enctype="multipart/form-data"> -->
