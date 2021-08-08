@@ -165,7 +165,7 @@ class ExamRegisterController extends Controller
 
     public function viewStudent($id)
     {
-        $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
+        $exam_register = ExamRegister::where('id', $id)->with('student_info')->get();
         return response()->json([
             'data' => $exam_register
         ],200);

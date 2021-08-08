@@ -57,6 +57,6 @@
 
 @push('scripts')
 <script>
-	loadCPAStudent('cpa two');
+	loadCPAStudent('cpa_2');
 </script>
 @endpush

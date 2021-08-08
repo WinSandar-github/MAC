@@ -349,7 +349,8 @@ function chooseBatch(){
 
 function loadStudent(course_type)
 {
-    //var id = localStorage.getItem("batch_id");
+    destroyDatatable("#tbl_exam_result", "#tbl_exam_result_body");
+    localStorage.setItem("course_type",course_type);
     // console.log(id);
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register/1",
@@ -361,57 +362,68 @@ function loadStudent(course_type)
             da_data.forEach(function (element) {
                // var std = element.student_info;
                 // console.log(std)
-                element.student_register.forEach(function (stu_reg){                    
-                    if(stu_reg.form_type==course_type){
-                        console.log("stu_reg",course_type);
-                        if(element.exam_register.status==0){
-                            status="PENDING";
+                //element.student_register.forEach(function (stu_reg){       
+                    $.ajax({
+                        url: BACKEND_URL+"/course/"+element.exam_register.form_type,
+                        type: 'get',
+                        data:"",
+                        success:function(courses){
+                            var course =courses.data;
+                            if(course[0].code==course_type){
+                                console.log("stu_reg",course_type);
+                                if(element.exam_register.status==0){
+                                    status="PENDING";
+                                }
+                                else if(element.exam_register.status==1){
+                                    status="APPROVED";
+                                }
+                                else{
+                                    status="REJECTED";
+                                }
+                                if(element.exam_register.exam_type_id == 0){
+                                    exam_type_id = "SELF STUDY";
+                                }
+                                else if(element.exam_register.exam_type_id==1){
+                                    exam_type_id="PRIVATE SCHOOL";
+                                }
+                                else{
+                                    exam_type_id="MAC STUDENT";
+                                }
+                                if(element.exam_register.is_full_module==0){
+                                    is_full_module="Module 1";
+                                }
+                                else if(element.exam_register.is_full_module==1){
+                                    is_full_module="Module 2";
+                                }
+                                else{
+                                    is_full_module="Full Module";
+                                }
+                
+                                var tr = "<tr>";
+                                tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.name_eng + "</td>";
+                                tr += "<td>" + element.exam_register.private_school_name + "</td>";
+                                tr += "<td>" + exam_type_id + "</td>";
+                                tr += "<td>" + element.exam_register.grade + "</td>";
+                                tr += "<td>" + status+ "</td>";
+                                tr += "<td>" + element.exam_register.batch_id+ "</td>";
+                                tr += "<td>" + is_full_module+ "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                tr += "<td ><div class='btn-group'>";
+                                $("#tbl_exam_result_body").append(tr);
+
+                                
+                            getIndexNumber('#tbl_exam_result tr');
+                            createDataTable("#tbl_exam_result");
+                            }
                         }
-                        else if(element.exam_register.status==1){
-                            status="APPROVED";
-                        }
-                        else{
-                            status="REJECTED";
-                        }
-                        if(element.exam_register.exam_type_id == 0){
-                            exam_type_id = "SELF STUDY";
-                        }
-                        else if(element.exam_register.exam_type_id==1){
-                            exam_type_id="PRIVATE SCHOOL";
-                        }
-                        else{
-                            exam_type_id="MAC STUDENT";
-                        }
-                        if(element.exam_register.is_full_module==0){
-                            is_full_module="Module 1";
-                        }
-                        else if(element.exam_register.is_full_module==1){
-                            is_full_module="Module 2";
-                        }
-                        else{
-                            is_full_module="Full Module";
-                        }
-        
-                        var tr = "<tr>";
-                        tr += "<td>" +  + "</td>";
-                        tr += "<td>" + element.name_eng + "</td>";
-                        tr += "<td>" + element.exam_register.private_school_name + "</td>";
-                        tr += "<td>" + exam_type_id + "</td>";
-                        tr += "<td>" + element.exam_register.grade + "</td>";
-                        tr += "<td>" + status+ "</td>";
-                        tr += "<td>" + element.exam_register.batch_id+ "</td>";
-                        tr += "<td>" + is_full_module+ "</td>";
-                        tr += "<td ><div class='btn-group'>";
-                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.batch_id + "," + element.exam_register.is_full_module +")'>" +
-                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                        tr += "<td ><div class='btn-group'>";
-                        $("#tbl_exam_result_body").append(tr);
-                    }
-                });
+                    })             
+                    
+                //});
                 
             });
-            getIndexNumber('#tbl_exam_result tr');
-            createDataTable("#tbl_exam_result");
         },
         error:function (message){
             dataMessage(message, "#tbl_exam_result", "#tbl_exam_result_body");
@@ -419,8 +431,8 @@ function loadStudent(course_type)
     });
 }
 
-function fillMark(batchID, isFullModule){
-    localStorage.setItem("batch_id",batchID);
+function fillMark(id, isFullModule){
+    localStorage.setItem("exam_register_id",id);
     localStorage.setItem("is_full_module",isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
     console.log(is_full_module);
@@ -440,7 +452,7 @@ function fillMark(batchID, isFullModule){
 }
 
 function getModuleStd(){
-    var id = localStorage.getItem("batch_id");
+    var id = localStorage.getItem("exam_register_id");
     var module_type = localStorage.getItem("is_full_module");
     $("input[name = batch_id]").val(id);
     $.ajax({
@@ -577,6 +589,7 @@ function getModuleStd(){
 
 function Exam_Result_Submit(){
     var id = localStorage.getItem("batch_id");
+    var course_type = localStorage.getItem("course_type");
     var table = document.getElementById("tbl_fillmarks");
     var result_id = $("input[name = result_id]").val();
     console.log(result_id);
@@ -604,7 +617,18 @@ function Exam_Result_Submit(){
             success: function(result){
                 console.log(result);
                 successMessage("Insert Successfully");
-                location.reload();
+                if(course_type=="da_1"){
+                    location.href= FRONTEND_URL + "/da1_exam_result_edit";
+                }
+                else if(course_type=="da_2"){
+                    location.href= FRONTEND_URL + "/da2_exam_result_edit";
+                }
+                else if(course_type=="cpa_1"){
+                    location.href= FRONTEND_URL + "/cpa1_exam_result_edit";
+                }
+                else{
+                    location.href= FRONTEND_URL + "/cpa2_exam_result_edit";
+                }
                 },
             error:function (message){
                 console.log(message);
@@ -622,7 +646,18 @@ function Exam_Result_Submit(){
             success: function(result){
                 console.log(result.message);
                 successMessage("Updated Successfully");
-                location.reload();
+                if(course_type=="da_1"){
+                    location.href= FRONTEND_URL + "/da1_exam_result_edit";
+                }
+                else if(course_type=="da_2"){
+                    location.href= FRONTEND_URL + "/da2_exam_result_edit";
+                }
+                else if(course_type=="cpa_1"){
+                    location.href= FRONTEND_URL + "/cpa1_exam_result_edit";
+                }
+                else{
+                    location.href= FRONTEND_URL + "/cpa2_exam_result_edit";
+                }
             },
             error:function (message){
                 console.log(message);
