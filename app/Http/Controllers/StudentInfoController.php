@@ -211,7 +211,7 @@ class StudentInfoController extends Controller
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;   
         $student_course->batch_id        = $request->batch_id;
-        // $student_course->date            = date("Y-m-d",strtotime($request->course_date));
+        $student_info->approve_reject_status = 0;
         $student_course->status          = 1;
         $student_course->save();
 

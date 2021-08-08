@@ -14,10 +14,15 @@ class DARegisterController extends Controller
 {
     public function index()
     {
-        $student_infos = StudentInfo::with('student_job', 'student_education_histroy')->get();
+
+        $student_infos = StudentCourseReg::with('student_info','batch')->get();
         return response()->json([ 
             'data' => $student_infos
         ],200);
+        // $student_infos = StudentInfo::with('student_job', 'student_education_histroy','student_courses')->get();
+        // return response()->json([ 
+        //     'data' => $student_infos
+        // ],200);
     }
 
     public function store(Request $request)
@@ -118,7 +123,8 @@ class DARegisterController extends Controller
 
     public function show($id)
     {
-        $approve_reject = StudentInfo::where('id' ,$id)->with('student_job', 'student_education_histroy')->get();
+         
+        $approve_reject = StudentCourseReg::where('id' ,$id)->with('student_info','batch')->get();
         return response()->json([
             'data' => $approve_reject
         ],200);
@@ -178,8 +184,12 @@ class DARegisterController extends Controller
 
     public function approve($id)
     {
-        
-        $approve = StudentInfo::find($id);
+      
+         
+        $stu_course_reg = StudentCourseReg::find('id',$id);
+        $stu_course_reg->approve_reject_status =1;
+        $stu_course_reg->save();
+        $approve = StudentInfo::where('id',$stu_course_reg->student_info_id)->first();
         $approve->approve_reject_status = 1;
         $approve->save();
         return response()->json([
@@ -189,9 +199,13 @@ class DARegisterController extends Controller
 
     public function reject($id)
     {
-        $reject = StudentInfo::find($id);
-        $reject->approve_reject_status = 2;
-        $reject->save();
+        return
+        $stu_course_reg = StudentCourseReg::find($id);
+        $stu_course_reg->approve_reject_status =2;
+        $stu_course_reg->save();
+        $approve = StudentInfo::where('id',$stu_course_reg->student_info_id)->first();
+        $approve->approve_reject_status = 2;
+        $approve->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
         ],200);

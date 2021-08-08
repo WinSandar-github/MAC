@@ -50,10 +50,28 @@
                                 <span>{{ __('ဘွဲ့လိုအပ်ချက်') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'da_list' ? 'active' : '' }}">
+                        <li class="{{ $elementActive == 'da_one_app_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA Application List') }}</span>
+                                <span>{{ __('DA One Application List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'da_two_app_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'da_two_app_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('DA Two Application List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'cpa_one_app_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_one_app_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('Cpa One Application List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'cpa_two_app_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'cpa_two_app_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('CPA Two Application List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
