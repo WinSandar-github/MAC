@@ -73,10 +73,10 @@ class ExamRegisterController extends Controller
         $exam->status = 0;
         $exam->save();
 
-
-        $student_info = StudentInfo::find($request->student_id);    
-        $student_info->approve_reject_status  =  3;
-        $student_info->save();
+        $student_info_id = StudentInfo::find($request->student_id);
+        $student_info_id->approve_reject_status  =  3;
+        $student_info_id->save();
+        
         return "You have successfully registerd!";
     }
 
@@ -168,7 +168,7 @@ class ExamRegisterController extends Controller
 
     public function viewStudent($id)
     {
-        $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
+        $exam_register = ExamRegister::where('id', $id)->with('student_info')->get();
         return response()->json([
             'data' => $exam_register
         ],200);

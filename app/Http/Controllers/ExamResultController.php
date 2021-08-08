@@ -170,9 +170,9 @@ class ExamResultController extends Controller
     }
 
     public function SearchExamResult($batch_id){
-        $std_data = ExamRegister::where('batch_id',$batch_id)->get('student_info_id');
+        $std_data = ExamRegister::where('id',$batch_id)->get('student_info_id');
         $student_info_id = $std_data[0]['student_info_id'];
-        $reg_data = ExamRegister::where('batch_id',$batch_id)->get('id');
+        $reg_data = ExamRegister::where('id',$batch_id)->get('id');
         $registeration_id = $reg_data[0]['id'];
 
         $exam_result=ExamResult::where('student_info_id',$student_info_id)
