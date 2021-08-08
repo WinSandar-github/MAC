@@ -54,5 +54,22 @@
 
   .form-group .form-control,
   .input-group .form-control {
-    padding: 8px 10px 8px 10px !important;
+    padding: 5px 10px 5px 10px !important;
+  }
+
+  .btn-primary{
+    color: #FFFFFF !important;
+    background-color: #51cbce !important;
+    border-color: #51cbce !important;
+  }
+
+  .btn-danger{
+    color: #FFFFFF !important;
+    background-color: #ef8157 !important;
+    border-color: #ef8157 !important;
+  }
+
+  .page-item.active .page-link{
+    background-color: #51cbce !important;
+    border-color: #51cbce !important;
   }
