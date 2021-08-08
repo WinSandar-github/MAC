@@ -78,6 +78,7 @@ function getStudentSelfStudy(){
                                     getIndexNumber('#tbl_cpa1_student_self_study tr');
                                     createDataTable("#tbl_cpa1_student_self_study");
                                 }else if(item.type == 0 && course[0].code=="cpa_2"){
+                                    alert("hello")
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -248,6 +249,7 @@ function getStudentPrivateSchool(){
                                 }
                                 else if(item.type == 1 && course[0].code=="cpa_2")
                                 {
+                                console.log(element,"Cpa Two")
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.name_eng + "</td>";

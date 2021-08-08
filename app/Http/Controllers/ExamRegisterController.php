@@ -42,6 +42,7 @@ class ExamRegisterController extends Controller
      */
     public function store(Request $request)
     {
+        
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('id', $student_info_id)->get('type');
         $type = $exam_type[0]['type'];
@@ -71,9 +72,11 @@ class ExamRegisterController extends Controller
         $exam->form_type = $request->form_type;
         $exam->status = 0;
         $exam->save();
-        $student_info_id = StudentInfo::find($request->student_id);
+
+
+        $student_info = StudentInfo::find($request->student_id);    
         $student_info->approve_reject_status  =  3;
-        $student_info_id->save();
+        $student_info->save();
         return "You have successfully registerd!";
     }
 
@@ -220,6 +223,7 @@ class ExamRegisterController extends Controller
         $student_info->save();
         return "You have successfully registerd!";
     }
+    
     public function getExamByStudentID($id){
         $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
         
