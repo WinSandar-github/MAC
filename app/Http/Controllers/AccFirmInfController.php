@@ -285,6 +285,7 @@ class AccFirmInfController extends Controller
             $financial_statement = null;
         }
 
+        $register_date = date('Y-m-d');
 
         //Main Table
         $acc_firm_info = new AccountancyFirmInformation();
@@ -308,6 +309,8 @@ class AccFirmInfController extends Controller
         $acc_firm_info->status   = 0;
         $acc_firm_info->form_fee = $request->form_fee;
         $acc_firm_info->nrc_fee  = $request->nrc_fee;
+        $acc_firm_info->register_date  = $register_date;
+        $acc_firm_info->verify_status  = 0;
         $acc_firm_info->save();
 
         //Student Info
@@ -904,19 +907,34 @@ class AccFirmInfController extends Controller
     // get date range
     public function dateRange($id)
     {
-        // $date = AccountancyFirmInformation::where('id',$id)->whereDate('created_at', '<=', date('Y-m-d'))->get();
+        $date = AccountancyFirmInformation::where('id',$id)->get('register_date');
+        $check_date = strtotime($date[0]['register_date']);
+        $date_range = strtotime(date('2021-09-30'));
+        $verify = "You are verified!";
+        $next = "Your registeration will start in next year!";
 
-        $from = date('2021-01-01');
-        $to = date('2021-12-31');
+        if($check_date <= $date_range)
+        {
+            $verify_user = AccountancyFirmInformation::find($id);
+            $verify_user->verify_status = 1;
+            $verify_user->save();
+            // return $verify;
+            return response()->json($verify,200);
+        }
+        else
+        {
+            $next_year_user = AccountancyFirmInformation::find($id);
+            $next_year_user->verify_status = 2;
+            $next_year_user->save();
+            // return $next;
+            return response()->json($next,200);
+        }
+    }
 
-        $date = AccountancyFirmInformation::whereBetween(DB::raw('DATE(created_at)'), array($from, $to))->get();
-
-        // $data = AccountancyFirmInformation::whereBetween('accountancy_firm_name', [$from, $to])->get();
-        return $date;
-        // $month = DB::table('accountancy_firm_information')->select('accountancy_firm_name')
-        // ->where('id', $id)
-        // ->whereDate('created_at', '<=', date('Y-m-d'))->get();
-
-        // return $month;
+    //check verify
+    public function checkVerify($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)->get('verify_status');
+        return response()->json($data,200);
     }
 }

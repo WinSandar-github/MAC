@@ -497,13 +497,13 @@ function loadStudentMac(){
                     if(item.type==2 && course_code=="da_1"){
                         $("input[name = student_register_id]").val(item.id);
                     }
-                    if(item.type==2 && course_code=="da_1"){
+                    if(item.type==2 && course_code=="da_2"){
                         $("input[name = student_register_id]").val(item.id);
                     }
                     if(item.type==2 && course_code=="cpa_1"){
                         $("input[name = student_register_id]").val(item.id);
                     }
-                    if(item.type==2 && course_code=="cpa_1"){
+                    if(item.type==2 && course_code=="cpa_2"){
                         $("input[name = student_register_id]").val(item.id);
                     }
                 })
@@ -513,7 +513,9 @@ function loadStudentMac(){
 }
 
 function approveStudent(){ 
+
     var id = $("input[name = student_register_id]").val();
+    
     var course_code=localStorage.getItem("course_code");
     console.log(id);
     $.ajax({
