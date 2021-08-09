@@ -360,9 +360,7 @@ function loadStudent(course_type)
             console.log("course",data);
             var da_data = data.data;
             da_data.forEach(function (element) {
-               // var std = element.student_info;
-                // console.log(std)
-                //element.student_register.forEach(function (stu_reg){       
+                if(element.exam_register!=null){    
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.exam_register.form_type,
                         type: 'get',
@@ -419,7 +417,8 @@ function loadStudent(course_type)
                             createDataTable("#tbl_exam_result");
                             }
                         }
-                    })             
+                    });
+                }         
                     
                 //});
                 
