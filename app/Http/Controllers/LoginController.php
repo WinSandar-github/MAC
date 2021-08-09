@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Auth;
 use App\StudentInfo;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -22,5 +23,25 @@ class LoginController extends Controller
            'code' => 401,
        ], 401); 
     }  
+    public function mobileLogin(Request $request){
+        $user = StudentInfo::where('email', '=', $request->email)->first();
+        if($user){
+            if(Hash::check('INPUT PASSWORD', $user->password) == true){
+                return response()->json($user,200);
+            }
+            else{
+                return response()->json([
+                    'error' => 'Unauthenticated user',
+                    'code' => 401,
+                ], 401); 
+            }
+        }
+        else{
+            return response()->json([
+                'error' => 'Unauthenticated user',
+                'code' => 401,
+            ], 401); 
+        }
+    }
 }
 

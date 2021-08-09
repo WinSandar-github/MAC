@@ -24,7 +24,7 @@ function getStudentSelfStudy(){
                                 var course=courses.data;
                                 console.log('type',item.type);
                                 if(item.type == 0 && course[0].code=="da_1")
-                                {
+                                { 
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -39,10 +39,10 @@ function getStudentSelfStudy(){
                                     tr += "</tr>";
                                     $("#tbl_student_self_study_body").append(tr); 
 
-                                    getIndexNumber('#tbl_student_self_study tr');
-                                    createDataTable("#tbl_student_self_study");
-                                }
+                                }                                
+                                
                                 if(item.type == 0 && course[0].code=="da_2"){
+                                    
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -57,8 +57,7 @@ function getStudentSelfStudy(){
                                     tr += "</tr>";
                                     $("#da_two_self_study_body").append(tr);                                                     
                                     
-                                    getIndexNumber('#da_two_self_study tr');
-                                    createDataTable("#da_two_self_study");
+                                    
                                 } 
                                 if(item.type == 0 && course[0].code=="cpa_1")
                                 {
@@ -76,8 +75,6 @@ function getStudentSelfStudy(){
                                     tr += "</tr>";
                                     $("#tbl_cpa1_student_self_study_body").append(tr); 
 
-                                    getIndexNumber('#tbl_cpa1_student_self_study tr');
-                                    createDataTable("#tbl_cpa1_student_self_study");
                                 }
                                 if(item.type == 0 && course[0].code=="cpa_2"){
                                     var tr = "<tr>";
@@ -94,16 +91,24 @@ function getStudentSelfStudy(){
                                     tr += "</tr>";
                                     $("#tbl_cpa2_student_self_study_body").append(tr);                                                     
                                     
-                                    getIndexNumber('#tbl_cpa2_student_self_study tr');
-                                    createDataTable("#tbl_cpa2_student_self_study");
                                 } 
+                                 
+                                getIndexNumber('#tbl_student_self_study tr');                                  
+                                createDataTable(".tbl_student_self_study");                                                     
+                                getIndexNumber('#da_two_self_study tr');
+                                getIndexNumber('#tbl_cpa1_student_self_study tr');
+                                getIndexNumber('#tbl_cpa2_student_self_study tr');    
+                                createDataTable(".da_two_self_study");
+                                createDataTable(".tbl_cpa1_student_self_study");
+                                createDataTable(".tbl_cpa2_student_self_study");
                             }
                             
-                        });  
-                    });
-                    
+                        });                                   
+                        
+                    }); 
                 }  
-            });     
+            }); 
+             
         },
         error:function (message){
             dataMessage(message, "#tbl_student_self_study", "#tbl_student_self_study_body");
@@ -193,6 +198,7 @@ function getStudentPrivateSchool(){
                             data:"",
                             success:function(courses){
                                 var course =courses.data;
+                                console.log(item.type,course[0].code);
                                 if(item.type == 1 && course[0].code=="da_1")
                                 {
                                 var tr = "<tr>";
@@ -209,8 +215,6 @@ function getStudentPrivateSchool(){
                                 $("#tbl_student_private_school_body").append(tr); 
 
                                 
-                                getIndexNumber('#tbl_student_private_school tr');
-                                createDataTable("#tbl_student_private_school");
                                 }
                                 if(item.type == 1 && course[0].code=="da_2")
                                 {
@@ -227,11 +231,10 @@ function getStudentPrivateSchool(){
                                 tr += "</tr>";
                                 $("#da_two_private_school_body").append(tr); 
                                 
-                                getIndexNumber('#da_two_private_school tr');
-                                createDataTable("#da_two_private_school"); 
                                 } 
                                 if(item.type == 1 && course[0].code=="cpa_1")
                                 {
+                                   
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.name_eng + "</td>";
@@ -246,8 +249,6 @@ function getStudentPrivateSchool(){
                                 $("#tbl_cpa1_student_private_school_body").append(tr); 
 
                                 
-                                getIndexNumber('#tbl_cpa1_student_private_school tr');
-                                createDataTable("#tbl_cpa1_student_private_school");
                                 }
                                 if(item.type == 1 && course[0].code=="cpa_2")
                                 {
@@ -268,9 +269,16 @@ function getStudentPrivateSchool(){
                                 $("#tbl_cpa2_student_private_school_body").append(tr); 
 
                                 
-                                getIndexNumber('#tbl_cpa2_student_private_school tr');
-                                createDataTable("#tbl_cpa2_student_private_school");
                                 }
+                                
+                                getIndexNumber('#tbl_student_private_school tr');
+                                createDataTable(".tbl_student_private_school");
+                                getIndexNumber('#da_two_private_school tr');
+                                createDataTable(".da_two_private_school"); 
+                                getIndexNumber('#tbl_cpa1_student_private_school tr');
+                                createDataTable(".tbl_cpa1_student_private_school");
+                                getIndexNumber('#tbl_cpa2_student_private_school tr');
+                                createDataTable(".tbl_cpa2_student_private_school");
                             }
                         })
                              
@@ -377,9 +385,6 @@ function getStudentMac(){
                                     tr += "</tr>";
                                     $("#tbl_student_mac_body").append(tr);
 
-                                    
-                                    getIndexNumber('#tbl_student_mac tr');
-                                    createDataTable("#tbl_student_mac"); 
                                 }
                                 if(item.type == 2 && course[0].code=="da_2")
                                 {
@@ -395,8 +400,6 @@ function getStudentMac(){
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#da_two_mac_body").append(tr);
-                                    getIndexNumber('#da_two_mac tr');
-                                    createDataTable("#da_two_mac"); 
                                 }      
                                 if(item.type == 2 && course[0].code=="cpa_1")
                                 {
@@ -414,8 +417,6 @@ function getStudentMac(){
                                     $("#tbl_cpa1_student_mac_body").append(tr);
 
                                     
-                                    getIndexNumber('#tbl_cpa1_student_mac tr');
-                                    createDataTable("#tbl_cpa1_student_mac"); 
                                 }
                                 
                                 if(item.type == 2 && course[0].code=="cpa_2")
@@ -433,10 +434,17 @@ function getStudentMac(){
                                     tr += "</tr>";
                                     $("#tbl_cpa2_student_mac_body").append(tr);
 
-                                    
-                                    getIndexNumber('#tbl_cpa2_student_mac tr');
-                                    createDataTable("#tbl_cpa2_student_mac"); 
                                 }
+                                
+                                    
+                                getIndexNumber('#tbl_student_mac tr');
+                                createDataTable(".tbl_student_mac"); 
+                                getIndexNumber('#da_two_mac tr');
+                                createDataTable(".da_two_mac"); 
+                                getIndexNumber('#tbl_cpa1_student_mac tr');
+                                createDataTable(".tbl_cpa1_student_mac");                                     
+                                getIndexNumber('#tbl_cpa2_student_mac tr');
+                                createDataTable(".tbl_cpa2_student_mac"); 
                             }
                         })
                         

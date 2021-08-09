@@ -126,6 +126,7 @@ Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
+Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
@@ -157,6 +158,7 @@ Route::get('/get_current_batch_studentId/{student_info_id}','BatchController@cur
 
 //login validate for mobile
 Route::post('/loginValidate', 'LoginController@loginValidate');
+Route::post('/mobileLogin', 'LoginController@mobileLogin');
 
 //Exam Status
 Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
