@@ -44,9 +44,9 @@ class ExamRegisterController extends Controller
     {
         
         $student_info_id = $request->student_id;
-        $exam_type = StudentRegister::where('id', $student_info_id)->get('type');
+        $exam_type = StudentRegister::where('student_info_id', $student_info_id)->latest()->get('type');
         $type = $exam_type[0]['type'];
-        $batch = StudentCourseReg::where('id', $student_info_id)->get('batch_id');
+        $batch = StudentCourseReg::where('student_info_id', $student_info_id)->latest()->get('batch_id');
         $batch_id = $batch[0]['batch_id'];
         
         if ($request->hasfile('invoice_image')) 

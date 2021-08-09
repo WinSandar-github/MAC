@@ -92,7 +92,7 @@
                                                                     </tr>
                                                                     
                                                                 </thead>
-                                                                <tbody id="tbl_cpa_2student_private_school_body">
+                                                                <tbody id="tbl_cpa2_student_private_school_body">
                                                                     
                                                                 </tbody>
                                                             </table>
