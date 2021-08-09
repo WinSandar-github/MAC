@@ -901,6 +901,14 @@ class AccFirmInfController extends Controller
         return response()->json($data,200);
     }
 
+    public function nonAuditStatus($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)
+                                          ->where('audit_firm_type_id',2)
+                                          ->get('status');
+        return response()->json($data,200);
+    }
+
     // get date range
     public function dateRange($id)
     {
