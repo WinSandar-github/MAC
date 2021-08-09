@@ -140,6 +140,7 @@ function loadData(){
 }
 
 function approveUser(){ 
+   
     
     var id = $("input[name = student_course_id]").val();
  
