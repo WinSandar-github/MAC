@@ -40,6 +40,7 @@ class ExamResultController extends Controller
 
     public function store(Request $request)
     {
+
         foreach($request->subject as $sub)
         {
             $subjects[] = $sub;
@@ -62,6 +63,7 @@ class ExamResultController extends Controller
         // Alert::success('Success', 'Successfully Added Marks');
         // return view('pages.exam_result.exam_result_list');
         $std_data = ExamRegister::where('batch_id',$request->batch_id)->get('student_info_id');
+   
         $student_info_id = $std_data[0]['student_info_id'];
         $reg_data = ExamRegister::where('batch_id',$request->batch_id)->get('id');
         $registeration_id = $reg_data[0]['id'];

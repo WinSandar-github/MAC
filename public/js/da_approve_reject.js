@@ -186,8 +186,32 @@ function rejectUser(){
         url: BACKEND_URL + "/reject/" + id,
         type: 'patch',
         success: function(result){
-            
-            successMessage("You have rejected that user!");
+            let url;
+            if(result){
+
+                switch(result.code){
+                    case 'da_1':
+                    url = '/da_one_app_list';
+                    break;
+                    case 'da_2':
+                    url = '/da_two_app_list';
+                    break;
+                    case 'cpa_1':
+                    url = '/cpa_one_app_list';
+                    break;
+                    case 'cpa_2':
+                    url = '/cpa_two_app_list';
+                    break;
+                    default:
+                    url = '/da_one_app_list';
+                    break;
+
+
+                    
+                }
+                successMessage("You have rejected that user!");
+                 location.href = FRONTEND_URL + url;
+            }
             // location.href = FRONTEND_URL + "/da_one_app_list";
         }
     });

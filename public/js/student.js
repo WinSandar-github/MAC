@@ -251,7 +251,7 @@ function getStudentPrivateSchool(){
                                 }
                                 if(item.type == 1 && course[0].code=="cpa_2")
                                 {
-                                console.log(element,"Cpa Two")
+                                
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.name_eng + "</td>";
@@ -263,6 +263,8 @@ function getStudentPrivateSchool(){
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
+                               
+                               
                                 $("#tbl_cpa2_student_private_school_body").append(tr); 
 
                                 

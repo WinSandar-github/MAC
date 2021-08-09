@@ -158,4 +158,8 @@ Route::get('/get_current_batch_studentId/{student_info_id}','BatchController@cur
 //login validate for mobile
 Route::post('/loginValidate', 'LoginController@loginValidate');
 
+//Exam Status
+Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
+
+
 

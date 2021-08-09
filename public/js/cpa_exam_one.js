@@ -1,5 +1,6 @@
 function loadCPABatchData(){ 
     var select = document.getElementById("cpa_batch_id");  
+    console.log(select,"Select")
     $.ajax({
         url: BACKEND_URL+"/course_by_course_type/2",
         type: 'get',
