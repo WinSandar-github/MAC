@@ -36,6 +36,8 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->integer('status');
             $table->integer('form_fee');
             $table->integer('nrc_fee');
+            $table->date('register_date');
+            $table->integer('verify_status');
             $table->timestamps();
 
             $table->foreign('audit_firm_type_id')
