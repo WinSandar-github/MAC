@@ -1,5 +1,5 @@
 function loadCPABatchData(){ 
-    var select = document.getElementById("cpa_batch_id");  
+    var select = document.getElementById("selected_batch_id");  
     $.ajax({
         url: BACKEND_URL+"/course_by_course_type/2",
         type: 'get',
@@ -32,10 +32,9 @@ function getCPAExam(){
         type: 'get',
         data:"",
         success: function(data){
-            console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
-                console.log('element',element.student_info.course_type_id);
+                console.log('element',element);
                 console.log('form_type', element.form_type)
                 if(element.student_info.course_type_id==2)
                 {
@@ -45,7 +44,7 @@ function getCPAExam(){
                         data:"",
                         success:function(courses){
                             var course=courses.data;
-                            if(element.form_type=="cpa one")
+                            if(course[0].code=="cpa_1")
                             {
                                 if(element.status==0){
                                     status="Pending";
@@ -71,10 +70,8 @@ function getCPAExam(){
                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_one_body").append(tr);
-                                getIndexNumber('#tbl_cpa_exam_one tr');
-                                createDataTable("#tbl_cpa_exam_one");
                             }
-                            else if(element.form_type=="cpa two")
+                            else if(course[0].code=="cpa_2")
                             {
                                 if(element.status==0){
                                     status="Pending";
@@ -101,10 +98,12 @@ function getCPAExam(){
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_two_body").append(tr);
                                 
-                                getIndexNumber('#tbl_cpa_exam_two tr');
-                                createDataTable("#tbl_cpa_exam_two");
                             }
                             
+                            getIndexNumber('#tbl_cpa_exam_one tr');
+                            createDataTable(".tbl_cpa_exam_one");
+                            getIndexNumber('#tbl_cpa_exam_two tr');
+                            createDataTable(".tbl_cpa_exam_two");
                         }
                     })
                     
@@ -289,7 +288,8 @@ function loadCPAStudent(course_type)
             var da_data = data.data;
             da_data.forEach(function (element) {
                 //element.exam_register.forEach(function (stu_reg){ 
-                    console.log(element.exam_register);  
+                    console.log(element.exam_register); 
+                    if(element.exam_register!=null){   
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.exam_register.form_type,
                         type: 'get',
@@ -347,8 +347,9 @@ function loadCPAStudent(course_type)
                                 createDataTable("#tbl_cpa_exam_result");
                             }
                          }
-                    });                
-                    
+                    });   
+                                 
+                }
                // });
             });
         },
