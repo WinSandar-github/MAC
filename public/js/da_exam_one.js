@@ -455,7 +455,7 @@ function fillMark(id, isFullModule){
 function getModuleStd(){
     var id = localStorage.getItem("exam_register_id");
     var module_type = localStorage.getItem("is_full_module");
-    $("input[name = batch_id]").val(id);
+    // $("input[name = batch_id]").val(id);
     $.ajax({
         url: BACKEND_URL + "/std/"+id,
         type: 'get',
@@ -589,7 +589,7 @@ function getModuleStd(){
 }
 
 function Exam_Result_Submit(){
-    var id = localStorage.getItem("batch_id");
+    var id = localStorage.getItem("exam_register_id");
     var course_type = localStorage.getItem("course_type");
     var table = document.getElementById("tbl_fillmarks");
     var result_id = $("input[name = result_id]").val();
@@ -606,7 +606,7 @@ function Exam_Result_Submit(){
     for (var i = 1; i < totalRowCount; i++) {
         data.append('grade[]',$('#grade'+i).val());
     }
-    data.append('batch_id',id);
+    data.append('exam_register_id',id);
     if(result_id=="")
     {
         $.ajax({
