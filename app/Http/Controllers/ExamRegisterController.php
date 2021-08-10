@@ -244,5 +244,11 @@ class ExamRegisterController extends Controller
 
     
 
+    public function FilterExamRegister(){
+        $student_infos = ExamRegister::with('student_info')->get();
+        return response()->json([ 
+            'data' => $student_infos
+        ],200);
+    }
 
 }

@@ -355,7 +355,7 @@ function loadStudent(course_type)
     localStorage.setItem("course_type",course_type);
     // console.log(id);
     $.ajax({
-        url: BACKEND_URL + "/filter_exam_register/1",
+        url: BACKEND_URL +"/filter_exam_register/1",
         type: 'get',
         data:"",
         success: function(data){
@@ -468,6 +468,7 @@ function getModuleStd(){
                 // console.log(std)
                 if(element.status==0){
                     status="PENDING";
+                    $('.pass_fail_btn').hide();
                 }
                 else if(element.status==1){
                     status="APPROVED";
@@ -492,6 +493,13 @@ function getModuleStd(){
                 }
                 else{
                     is_full_module="Full Module";
+                }
+
+                if(element.grade == 1 )
+                {
+                     $('.ex_res_btn').hide();
+                    $('.pass_fail_btn').hide();
+
                 }
 
                 $("#std_name").append(std.name_eng);

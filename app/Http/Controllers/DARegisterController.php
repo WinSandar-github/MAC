@@ -232,12 +232,5 @@ class DARegisterController extends Controller
 
     }
 
-    public function FilterExamRegister($course_type){
-        $student_infos = StudentInfo::where('course_type_id',$course_type)
-            ->with('exam_register', 'student_register')
-            ->get();
-        return response()->json([ 
-            'data' => $student_infos
-        ],200);
-    }
+  
 }

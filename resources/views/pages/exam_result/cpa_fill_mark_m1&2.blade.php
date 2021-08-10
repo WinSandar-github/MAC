@@ -91,7 +91,7 @@
                                             
                                             <div class="row">
                                                 <h5  style="font-weight:bold;margin:auto" >အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
-                                                <div class="ex_res_btn">
+                                                <div class="pass_fail_btn">
 
                                                     <button  class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
                                                     <button class=" btn  btn-danger mr-4" onClick="javascript:failExam();">Fail</button>
