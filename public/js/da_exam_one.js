@@ -13,8 +13,7 @@ function getExam(){
             da_data.forEach(function (element) {
                 // console.log('element',element);
                 // console.log('element',element.student_info.course_type_id);
-                if(element.student_info.course_type_id==1)
-                {
+                
                     console.log('student_info',element.form_type);
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
@@ -47,6 +46,7 @@ function getExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
                                 tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
                                 tr += "<td>" + element.grade + "</td>";
@@ -106,8 +106,7 @@ function getExam(){
                             getIndexNumber('#tbl_da_exam_two tr');
                             createDataTable(".tbl_da_exam_two");
                         }
-                    }) 
-                }
+                    })
             });
             
             
@@ -274,15 +273,15 @@ function rejectDATwoExam(){
     });
 }
 
-function loadBatchData(){ 
+function loadBatchData(course_code){ 
     var select = document.getElementById("selected_batch_id");  
     $.ajax({
-        url: BACKEND_URL+"/course_by_course_type/1",
+        url: BACKEND_URL+"/course_by_course_code/"+course_code,
         type: 'get',
         data:"",
         success: function(data){
             var course_data=data.data;            
-            
+            console.log('course_data',course_data);
             course_data.forEach(function (element) {
                 element.batches.forEach(function (batch){
                     var option = document.createElement('option');

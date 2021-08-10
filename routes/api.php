@@ -51,7 +51,7 @@ Route::apiResource('/requirement','RequirementController');
 
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
-Route::get('/course_by_course_type/{course_type_id}','CourseController@loadCourseByCourseType');
+Route::get('/course_by_course_code/{code}','CourseController@loadCourseByCourseCode');
 Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp

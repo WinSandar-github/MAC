@@ -42,6 +42,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight" >No</th>
+                                                    <th class="bold-font-weight" >Name</th>
                                                     <th class="bold-font-weight" >Private School Name</th>
                                                     <th class="bold-font-weight" >Exam Type</th>
                                                     <th class="bold-font-weight" >Grade</th>
@@ -67,7 +68,7 @@
 @endsection
 @push('scripts')
 <script>
-    loadCPABatchData();
+    loadBatchData("cpa_2");
     getCPAExam();
 </script>
 @endpush
