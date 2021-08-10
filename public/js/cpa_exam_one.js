@@ -1,27 +1,26 @@
-function loadCPABatchData(){ 
-     var select = document.getElementById("selected_batch_id");  
-    console.log(select,"Select")
-        $.ajax({
-        url: BACKEND_URL+"/course_by_course_type/2",
-        type: 'get',
-        data:"",
-        success: function(data){
-            var course_data=data.data;            
-            
-            course_data.forEach(function (element) {
-                element.batches.forEach(function (batch){
-                    var option = document.createElement('option');
-                    option.text = batch.name;
-                    option.value = batch.id;
-                    select.add(option, 0);
-                });
-            });              
-        },
-        error:function (message){
+// function loadCPABatchData(){ 
+//     var select = document.getElementById("selected_batch_id");  
+//     $.ajax({
+//         url: BACKEND_URL+"/course_by_course_type/2",
+//         type: 'get',
+//         data:"",
+//         success: function(data){
+//             var course_data=data.data;            
+//             console.log("course_data",course_data);
+//             course_data.forEach(function (element) {
+//                 element.batches.forEach(function (batch){
+//                     var option = document.createElement('option');
+//                     option.text = batch.name;
+//                     option.value = batch.id;
+//                     select.add(option, 0);
+//                 });
+//             });              
+//         },
+//         error:function (message){
                    
-        }
-    });
-}
+//         }
+//     });
+// }
 
 function getCPAExam(){
     destroyDatatable("#tbl_cpa_exam_one", "#tbl_cpa_exam_one_body");
@@ -36,9 +35,8 @@ function getCPAExam(){
             var da_data = data.data;
             da_data.forEach(function (element) {
                 console.log('element',element);
-                console.log('form_type', element.form_type)
-                if(element.student_info.course_type_id==2)
-                {
+                console.log('form_type', element.form_type);
+                    console.log(element.student_info.course_type_id);
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
                         type: 'get',
@@ -46,7 +44,7 @@ function getCPAExam(){
                         success:function(courses){
                             var course=courses.data;
                             if(course[0].code=="cpa_1")
-                            {
+                            {console.log("cpa 1");
                                 if(element.status==0){
                                     status="Pending";
                                 }
@@ -58,6 +56,7 @@ function getCPAExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
                                 tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + element.exam_type_id + "</td>";
                                 tr += "<td>" + element.grade + "</td>";
@@ -107,8 +106,6 @@ function getCPAExam(){
                             createDataTable(".tbl_cpa_exam_two");
                         }
                     })
-                    
-                }
             });
             
         },
