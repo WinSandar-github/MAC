@@ -65,7 +65,7 @@ class ExamRegisterController extends Controller
         $exam->invoice_image = $invoice_image;
         $exam->invoice_date = $invoice_date;
         $exam->private_school_name = $request->private_school_name;
-        $exam->grade = 1;
+        $exam->grade = 0;
         $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
         $exam->exam_type_id = $type;
@@ -210,7 +210,7 @@ class ExamRegisterController extends Controller
         $exam->invoice_image = $invoice_image;
         $exam->invoice_date = $invoice_date;
         $exam->private_school_name = $request->private_school_name;
-        $exam->grade = 1;
+        $exam->grade = 0;
         $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
         //exam type id mean mac self study private school

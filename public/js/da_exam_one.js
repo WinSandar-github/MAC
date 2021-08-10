@@ -60,8 +60,6 @@ function getExam(){
                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#tbl_da_exam_one_body").append(tr);
-                                getIndexNumber('#tbl_da_exam_one tr');
-                                createDataTable("#tbl_da_exam_one");
                             }
                             else if(course[0].code=="da_2")
                             {
@@ -100,9 +98,13 @@ function getExam(){
                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#tbl_da_exam_two_body").append(tr);
-                                getIndexNumber('#tbl_da_exam_two tr');
-                                createDataTable("#tbl_da_exam_two");
                             }
+                            
+                            getIndexNumber('#tbl_da_exam_one tr');
+                            createDataTable(".tbl_da_exam_one");
+                            
+                            getIndexNumber('#tbl_da_exam_two tr');
+                            createDataTable(".tbl_da_exam_two");
                         }
                     }) 
                 }
@@ -413,8 +415,8 @@ function loadStudent(course_type)
                                 $("#tbl_exam_result_body").append(tr);
 
                                 
-                            getIndexNumber('#tbl_exam_result tr');
-                            createDataTable("#tbl_exam_result");
+                                getIndexNumber('#tbl_exam_result tr');
+                                createDataTable("#tbl_exam_result");
                             }
                         }
                     });
@@ -614,20 +616,20 @@ function Exam_Result_Submit(){
             contentType: false,
             processData: false,
             success: function(result){
-                console.log(result);
-                successMessage("Insert Successfully");
-                if(course_type=="da_1"){
-                    location.href= FRONTEND_URL + "/da1_exam_result_edit";
-                }
-                else if(course_type=="da_2"){
-                    location.href= FRONTEND_URL + "/da2_exam_result_edit";
-                }
-                else if(course_type=="cpa_1"){
-                    location.href= FRONTEND_URL + "/cpa1_exam_result_edit";
-                }
-                else{
-                    location.href= FRONTEND_URL + "/cpa2_exam_result_edit";
-                }
+                // console.log(result);
+                // successMessage("Insert Successfully");
+                // if(course_type=="da_1"){
+                //     location.href= FRONTEND_URL + "/da1_exam_result_edit";
+                // }
+                // else if(course_type=="da_2"){
+                //     location.href= FRONTEND_URL + "/da2_exam_result_edit";
+                // }
+                // else if(course_type=="cpa_1"){
+                //     location.href= FRONTEND_URL + "/cpa1_exam_result_edit";
+                // }
+                // else{
+                //     location.href= FRONTEND_URL + "/cpa2_exam_result_edit";
+                // }
                 },
             error:function (message){
                 console.log(message);
