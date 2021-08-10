@@ -289,16 +289,17 @@ function loadCPAStudent(course_type)
             var da_data = data.data;
             da_data.forEach(function (element) {
                 //element.exam_register.forEach(function (stu_reg){ 
-                    console.log(element.exam_register); 
+                    console.log(element.exam_register,"Form Type",course_type); 
                     if(element.exam_register!=null){   
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.exam_register.form_type,
                         type: 'get',
                         data:"",
                         success:function(courses){
+                            console.log(courses,"Course")
                             var course=courses.data;
-                            console.log('courses',course);
                             if(course[0].code==course_type){
+                                console.log('check courses',course);
                                 console.log(course[0].code,course_type);
                                 if(element.exam_register.status==0){
                                     status="PENDING";
@@ -420,6 +421,11 @@ function getCPAModuleStd(){
                     is_full_module="Full Module";
                 }
 
+                if(element.grade == 1)
+                {
+                     $('.ex_res_btn').hide();
+                }
+
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
@@ -432,6 +438,7 @@ function getCPAModuleStd(){
                 type: 'get',
                 data:"",
                 success: function(result){
+                    
                         if(result!=null)
                         {
                             $("input[name = result_id]").val(result.data.id);

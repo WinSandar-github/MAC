@@ -73,9 +73,7 @@ class ExamRegisterController extends Controller
         $exam->status = 0;
         $exam->save();
 
-        $student_info_id = StudentInfo::find($request->student_id);
-        $student_info_id->approve_reject_status  =  3;
-        $student_info_id->save();
+     
         
         return "You have successfully registerd!";
     }

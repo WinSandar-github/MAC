@@ -163,5 +163,9 @@ Route::post('/mobileLogin', 'LoginController@mobileLogin');
 //Exam Status
 Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
 
+//Pass or fail student e
+Route::patch('/pass_exam/{id}', 'ExamResultController@passExam');
+Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
+
 
 
