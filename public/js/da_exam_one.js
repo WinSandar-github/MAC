@@ -378,6 +378,7 @@ function loadStudent(course_type)
                                 else{
                                     status="REJECTED";
                                 }
+
                                 if(element.exam_register.exam_type_id == 0){
                                     exam_type_id = "SELF STUDY";
                                 }
@@ -387,6 +388,7 @@ function loadStudent(course_type)
                                 else{
                                     exam_type_id="MAC STUDENT";
                                 }
+
                                 if(element.exam_register.is_full_module==0){
                                     is_full_module="Module 1";
                                 }
@@ -408,13 +410,12 @@ function loadStudent(course_type)
                                 tr += "<td>" + is_full_module+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
-                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                                tr += "<td ><div class='btn-group'>";
+                                    "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
                                 $("#tbl_exam_result_body").append(tr);
-
+                                getIndexNumber('#tbl_exam_result tr');
+                                createDataTable("#tbl_exam_result");
                                 
-                            getIndexNumber('#tbl_exam_result tr');
-                            createDataTable("#tbl_exam_result");
+                               
                             }
                         }
                     });
