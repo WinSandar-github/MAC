@@ -51,7 +51,7 @@ Route::apiResource('/requirement','RequirementController');
 
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
-Route::get('/course_by_course_type/{course_type_id}','CourseController@loadCourseByCourseType');
+Route::get('/course_by_course_code/{code}','CourseController@loadCourseByCourseCode');
 Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
@@ -100,12 +100,12 @@ Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 Route::get('/filter/{id}', 'ExamRegisterController@selectByFormType');
+Route::get('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
-Route::get('/filter_exam_register/{course_type}', 'DARegisterController@FilterExamRegister');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');

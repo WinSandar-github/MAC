@@ -61,14 +61,14 @@ class ExamResultController extends Controller
         // ExamResult::create($data);
         // Alert::success('Success', 'Successfully Added Marks');
         // return view('pages.exam_result.exam_result_list');
-        $std_data = ExamRegister::where('batch_id',$request->batch_id)->get('student_info_id');
+        $std_data = ExamRegister::where('id',$request->exam_register_id)->get('student_info_id');
         $student_info_id = $std_data[0]['student_info_id'];
-        $reg_data = ExamRegister::where('batch_id',$request->batch_id)->get('id');
-        $registeration_id = $reg_data[0]['id'];
+        // $reg_data = ExamRegister::where('batch_id',$request->batch_id)->get('id');
+        // $registeration_id = $reg_data[0]['id'];
         $date = date('Y-m-d');
         $exam_result=new ExamResult;                
         $exam_result->student_info_id=$student_info_id;
-        $exam_result->registeration_id=$registeration_id ;
+        $exam_result->registeration_id=$request->exam_register_id;
         $exam_result->result=json_encode(['subjects'=>$subjects,'marks'=>$marks,'grades'=>$grades]);;
         $exam_result->date=$date;
         $exam_result->save();
