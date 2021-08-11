@@ -27,6 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
@@ -125,8 +126,10 @@ Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResu
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
+Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
+Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
@@ -150,6 +153,9 @@ Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_regi
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 
+//Non-Audti DATA
+Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
+
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
@@ -163,7 +169,7 @@ Route::post('/mobileLogin', 'LoginController@mobileLogin');
 //Exam Status
 Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
 
-//Pass or fail student e
+//Pass or fail student 
 Route::patch('/pass_exam/{id}', 'ExamResultController@passExam');
 Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
 

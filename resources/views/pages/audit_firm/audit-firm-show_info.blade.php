@@ -167,7 +167,7 @@
                                             
                                             
                                             </div>
-                                            <div class="row pl-4 mt-2 border-bottom">
+                                            {{--<div class="row pl-4 mt-2 border-bottom">
                                                 <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
                                                 <label class="col-md-4 col-form-label font-weight-bold">{{ __('Local OR Foregin) }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
@@ -176,7 +176,7 @@
                                                         <span id="local_foreign_id"></span>
                                                     </div>
                                                 </div> 
-                                            </div>
+                                            </div>--}}
                                             <div class="row pl-4 mt-2 border-bottom">
                                                 <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
                                                 <label class="col-md-4 col-form-label font-weight-bold">{{ __('Approve / Reject Status') }}</label>
