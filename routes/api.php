@@ -125,6 +125,7 @@ Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResu
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
+Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
 
@@ -150,6 +151,9 @@ Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_regi
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 
+//Non-Audti DATA
+Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
+
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
@@ -159,5 +163,3 @@ Route::get('/get_current_batch_studentId/{student_info_id}','BatchController@cur
 //login validate for mobile
 Route::post('/loginValidate', 'LoginController@loginValidate');
 Route::post('/mobileLogin', 'LoginController@mobileLogin');
-
-

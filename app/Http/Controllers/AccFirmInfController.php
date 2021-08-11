@@ -904,6 +904,14 @@ class AccFirmInfController extends Controller
         return response()->json($data,200);
     }
 
+    public function nonAuditStatus($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)
+                                          ->where('audit_firm_type_id',2)
+                                          ->get('status');
+        return response()->json($data,200);
+    }
+
     // get date range
     public function dateRange($id)
     {
@@ -937,4 +945,28 @@ class AccFirmInfController extends Controller
         $data = AccountancyFirmInformation::where('id',$id)->get('verify_status');
         return response()->json($data,200);
     }
+
+    public function getNonAuditData($id){
+      $non_audit_data = array();
+      $acc_firm_info = AccountancyFirmInformation::where('id',$id)->get();
+      $branch_office = BranchOffice::where('accountancy_firm_info_id',$id)->get();
+      $firm_owners = FirmOwnershipNonAudit::where('accountancy_firm_info_id',$id)->get();
+      $directors_officers = DirectorsOfficersNonAudit::where('accountancy_firm_info_id',$id)->get();
+      $total_staff = NonAuditTotalStaff::where('accountancy_firm_info_id',$id)->get();
+      $student_infos = StudentInfo::where('accountancy_firm_info_id',$id)->get();
+      $myr_cpa_non_audit_foreign = MyanmarCpaNonAuditForeign::where('accountancy_firm_info_id',$id)->get();
+
+      array_push($non_audit_data , ['acc_firm_info'=>$acc_firm_info,
+                                    'branch_office'=> $branch_office,
+                                    'firm_owners' => $firm_owners,
+                                    'directors_officers'=> $directors_officers,
+                                    'total_staff' => $total_staff,
+                                    'student_infos' => $student_infos,
+                                    'myr_cpa_non_audit_foreign' => $myr_cpa_non_audit_foreign
+                                ]);
+
+      return response()->json($non_audit_data,200);
+    }
+
+
 }
