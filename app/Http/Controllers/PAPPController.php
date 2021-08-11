@@ -148,7 +148,7 @@ class PAPPController extends Controller
             $papp->save();
 
         return response()->json([
-            'message' => "Insert Successfully"
+            'message' => "You have successfully registerd!"
         ],200);
     }
 
