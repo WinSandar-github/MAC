@@ -44,6 +44,8 @@ class CreateStudentInfosTable extends Migration
             $table->string('degree_certificate_image')->nullable();
             $table->unsignedBigInteger('course_type_id')->nullable();
             $table->unsignedBigInteger('accountancy_firm_info_id')->nullable();
+            $table->unsignedBigInteger('mentor_id')->nullable();
+            
 
             $table->foreign('course_type_id')->references('id')->on('course_types')->onDelete('cascade');
             $table->timestamps();
