@@ -151,6 +151,9 @@ Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_regi
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 
+//Non-Audti DATA
+Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
+
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
