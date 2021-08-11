@@ -20,7 +20,6 @@ use App\NonAuditFirmFile;
 use App\StudentInfo;
 use Hash;
 use File;
-use DB;
 
 class AccFirmInfController extends Controller
 {
@@ -493,6 +492,16 @@ class AccFirmInfController extends Controller
 
     }
 
+    public function auditData($id)
+    {
+        $audit_data = AccountancyFirmInformation::where('id',$id)->with('branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
+        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')->first();
+        return response()->json([
+            'data' => $audit_data
+        ],200);
+
+    }
+
     public function approve($id)
     {
 
@@ -534,6 +543,234 @@ class AccFirmInfController extends Controller
      */
     public function update(Request $request, $id)
     {
+         if($request->hasfile('ppa_certis'))
+         {
+             foreach($request->file('ppa_certis') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/acc_firm/',$name);
+                 $ppa_certi[] = $name;
+             }
+
+         }else{
+             $ppa_certi = null;
+         }
+
+         if($request->hasfile('letterheads'))
+         {
+             foreach($request->file('letterheads') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/acc_firm/',$name);
+                 $letterhead[] = $name;
+             }
+
+         }else{
+             $letterhead = null;
+         }
+        if($request->hasfile('representatives'))
+         {
+             foreach($request->file('representatives') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $representative[] =$name;
+             }
+
+         }else{
+             $representative = null;
+         }
+
+         if($request->hasfile('certi_or_regs'))
+         {
+             foreach($request->file('certi_or_regs') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $certi_or_reg[] = $name;
+             }
+
+         }else{
+             $certi_or_reg = null;
+         }
+
+
+         if($request->hasfile('deeds_memos'))
+         {
+             foreach($request->file('deeds_memos') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $deeds_memo[] = $name;
+             }
+
+         }else{
+             $deeds_memo = null;
+         }
+
+
+         if($request->hasfile('certificate_incors'))
+         {
+             foreach($request->file('certificate_incors') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $certi_incor[] = $name;
+             }
+
+         }else{
+             $certi_incor = null;
+         }
+
+         if($request->hasfile('form6_26e'))
+         {
+             foreach($request->file('form6_26e') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $form6_26e[] = $name;
+             }
+
+         }else{
+             $form6_26e = null;
+         }
+
+         if($request->hasfile('form_a1'))
+         {
+             foreach($request->file('form_a1') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $form_a1[] = $name;
+             }
+
+         }else{
+             $form_a1 = null;
+         }
+
+
+         if($request->hasfile('tax_reg_certificate'))
+         {
+             foreach($request->file('tax_reg_certificate') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $tax_reg_certificate[] = $name;
+             }
+
+         }
+         else{
+             $tax_reg_certificate = null;
+         }
+         if($request->hasfile('pass_photos'))
+         {
+             foreach($request->file('pass_photos') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $pass_photo[] = $name;
+             }
+
+         }else{
+             $pass_photo = null;
+         }
+
+
+         if($request->hasfile('edu_certs'))
+         {
+             foreach($request->file('edu_certs') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $edu_cert[] = $name;
+             }
+
+         }else{
+             $edu_cert = null;
+         }
+
+         if($request->hasfile('owner_profiles'))
+         {
+             foreach($request->file('owner_profiles') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $owner_profile[] = $name;
+             }
+
+         }else{
+             $owner_profile = null;
+         }
+
+
+         if($request->hasfile('work_exps'))
+         {
+             foreach($request->file('work_exps') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $work_exp[] = $name;
+             }
+
+         }else{
+             $work_exp = null;
+         }
+
+
+         if($request->hasfile('nrc_passports'))
+         {
+             foreach($request->file('nrc_passports') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $nrc_passport[] = $name;
+             }
+
+         }else{
+             $nrc_passport = null;
+         }
+
+         if($request->hasfile('tax_clearances'))
+         {
+             foreach($request->file('tax_clearances') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $tax_clearance[] = $name;
+             }
+
+         }else{
+             $tax_clearance = null;
+         }
+
+         if($request->hasfile('permit_foreigns'))
+         {
+             foreach($request->file('permit_foreigns') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $permit_foreigns[] =$name;
+             }
+
+         }else{
+             $permit_foreigns = null;
+         }
+
+
+         if($request->hasfile('financial_statements'))
+         {
+             foreach($request->file('financial_statements') as $file)
+             {
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/acc_firm/',$name);
+             $financial_statement[] = $name;
+             }
+
+         }else{
+             $financial_statement = null;
+         }
+
+        $register_date = date('Y-m-d');
         $acc_firm_info = AccountancyFirmInformation::find($id);
         $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
@@ -542,16 +779,26 @@ class AccFirmInfController extends Controller
         $acc_firm_info->city                    = $request->city;
         $acc_firm_info->state_region            = $request->state;
         $acc_firm_info->telephones              = $request->phone_no;
-        $acc_firm_info->email                   = $request->email;
+        $acc_firm_info->h_email                 = $request->h_email;
         $acc_firm_info->website                 = $request->website;
         $acc_firm_info->audit_firm_type_id      = $request->audit_firm_type_id;
-        $acc_firm_info->local_foreign_id        = $request->local_foreign_id;
+        // $acc_firm_info->local_foreign_id        = $request->local_foreign_id;
         $acc_firm_info->organization_structure_id    = $request->org_stru_id;
         $acc_firm_info->type_of_service_provided_id  = $request->t_s_p_id;
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
-        $acc_firm_info->declaration                  = $request->declaration;
+        $acc_firm_info->declaration  = $request->declaration;
+        $acc_firm_info->status   = 0;
+        $acc_firm_info->form_fee = $request->form_fee;
+        $acc_firm_info->nrc_fee  = $request->nrc_fee;
+        $acc_firm_info->register_date  = $register_date;
+        $acc_firm_info->verify_status  = 0;
         $acc_firm_info->save();
+
+        //Student Info
+        // $std_info = new StudentInfo();
+        // $std_info->accountancy_firm_info_id = $acc_firm_info->id;
+        // $std_info->save();
 
         //Branch Office
         BranchOffice::where('accountancy_firm_info_id',$id)->delete();

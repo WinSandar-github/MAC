@@ -256,8 +256,8 @@ function autoLoadAudit(){
     success: function (data) {
       var audit_data=data.data;
        audit_data.forEach(function(element){
-        //  console.log('audit_firm',element);
-         console.log('non_audit_firm',element);
+         // console.log('audit_firm',element);
+         // console.log('non_audit_firm',element);
 
         if(element.status==0){
           status="Pending";
@@ -291,7 +291,7 @@ function autoLoadAudit(){
         $("#name_sole_proprietor").append(element.name_of_sole_proprietor);
         $("#declaration").append(element.declaration);
         $("#status").append(status);
-        $("#local_foreign_id").append(local_foreign_id);
+        // $("#local_foreign_id").append(local_foreign_id);
         var branch=element.branch_offices;
         branch.forEach(function(item){
           var tr = "<tr>";

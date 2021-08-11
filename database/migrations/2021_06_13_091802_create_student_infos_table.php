@@ -34,8 +34,8 @@ class CreateStudentInfosTable extends Migration
             $table->string('registration_no')->nullable();
             $table->date('date')->nullable();
             $table->boolean('approve_reject_status')->default(0)->nullable();
-            $table->string('email');
-            $table->string('password');
+            $table->string('email')->nullable();
+            $table->string('password')->nullable();
             $table->string('direct_degree')->nullable();
             $table->string('degree_rank')->nullable();
             $table->date('degree_date')->nullable();
