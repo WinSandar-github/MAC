@@ -68,12 +68,12 @@
                                 <span>{{ __('DA 2 Registration List') }}</span>
                             </a>
                         </li>
-                        {{-- <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
+                        <!-- {{-- <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'index') }}">
                                 <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('DA Registration Form') }}</span>
                             </a>
-                        </li> --}}
+                        </li> --}} -->
                         
                         <!-- CPA One -->
                         <li class="{{ $elementActive == 'cpa_one_registration_list' ? 'active' : '' }}">
@@ -205,7 +205,7 @@
             </li>
             {{--<li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
             </li> -->
-            {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
+            <!-- {{-- <li class="{{ $elementActive == 'teacher_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'teacher_registration') }}">
                     <i class="nc-icon nc-paper"></i>
                     <p>{{ __('Teacher') }}</p>
@@ -371,7 +371,7 @@
                     <i class="nc-icon nc-paper"></i>
                     <p>{{ __('Mentor') }}</p>
                 </a>
-            </li> --}}
+            </li> --}} -->
             
         </ul>
     </div>

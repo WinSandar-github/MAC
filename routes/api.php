@@ -124,7 +124,7 @@ Route::get('/get_course_type','CourseController@getCourseType');
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
+Route::post('/loginValidate', 'LoginController@loginValidate');
+Route::post('/mobileLogin', 'LoginController@mobileLogin');
 
-
-
-
+Route::post('store_cpa_da_two_app_form','CpaController@store_da_cpa_app_form');
