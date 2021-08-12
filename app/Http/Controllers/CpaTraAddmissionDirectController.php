@@ -155,8 +155,9 @@ class CpaTraAddmissionDirectController extends Controller
         $student_course->date            = $course_date;
         $student_course->status          = 1;
         $student_course->approve_reject_status = 0;
-
-        $student_course->qt_entry      = $request->qt_entry;
+        if($request->qt_entry){
+            $student_course->qt_entry      = $request->qt_entry;
+        }
         $student_course->save();
 
        

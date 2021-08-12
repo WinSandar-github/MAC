@@ -239,7 +239,7 @@ function showBatchExam(id){
 
     $('#create_exam_modal').modal('toggle'); 
 }
-$()
+
 function createExam(){
     
     var batch_id = $('#batch_id').val();
