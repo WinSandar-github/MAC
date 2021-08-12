@@ -16,7 +16,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="card-title">{{ __('CPA One Exam List') }}</h5>
+                                <h5 class="title">{{ __('CPA 1 Exam Registration List') }}</h5>
                             </div>
                         </div>
                         <div class="row">
@@ -42,6 +42,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight" >No</th>
+                                                    <th class="bold-font-weight" >Name</th>
                                                     <th class="bold-font-weight" >Private School Name</th>
                                                     <th class="bold-font-weight" >Exam Type</th>
                                                     <th class="bold-font-weight" >Grade</th>
@@ -67,7 +68,7 @@
 @endsection
 @push('scripts')
 <script>
-    loadCPABatchData();
+    loadBatchData("cpa_1");
     getCPAExam();
 </script>
 @endpush

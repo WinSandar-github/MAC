@@ -18,7 +18,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="card-title">{{ __('DA Application Form List') }}</h5>
+                                <h5 class="title">{{ __('DA Two Application List') }}</h5>
                             </div>
                         </div>
                     </div>
@@ -55,6 +55,6 @@
 @endsection
 @push('scripts')
 <script>
-    getDAList();
+    getDAList('da_2');
 </script>
 @endpush

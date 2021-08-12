@@ -1,7 +1,10 @@
- var BACKEND_URL="http://localhost:8000/api";
- var FRONTEND_URL="http://localhost:8000";
-//var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
-//var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
+// var BACKEND_URL="http://localhost:8000/api";
+// var FRONTEND_URL="http://localhost:8000";
+//  var PDF_URL="http://localhost:8000";
+
+var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
+var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
+var PDF_URL =  "https://demo.aggademo.me/MAC/public";
 var counter = 0;
 
 function addRowCPAFF(tbody){
@@ -752,12 +755,12 @@ var toastOptions = {
     "debug": false,
     "newestOnTop": false,
     "progressBar": false,
-    "positionClass": "toast-top-right",
+    "positionClass": "toast-top-center",
     "preventDuplicates": false,
     "onclick": null,
     "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "1000",
+    "hideDuration": "2500",
+    "timeOut": "2500",
     "extendedTimeOut": "1000",
     "showEasing": "swing",
     "hideEasing": "linear",
@@ -782,6 +785,27 @@ function createDataTable(table) {
         "scrollX": true,
         'select': false,
         "order": [[0, "desc"]],
+
+    });
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $($.fn.dataTable.tables(true)).DataTable()
+           .columns.adjust();
+     });
+}
+function createDataTableWithAsc(table) {
+
+    $(table).DataTable({
+        'destroy': true,
+        'paging': true,
+        'lengthChange': false,
+        "pageLength": 5,
+        'searching': false,
+        'ordering': true,
+        'info': false,
+        'autoWidth': false,
+        "scrollX": true,
+        'select': false,
+        "order": [[0, "asc"]],
 
     });
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){

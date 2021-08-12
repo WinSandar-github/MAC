@@ -11,92 +11,105 @@ function getExam(){
             // console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
+                // console.log('element',element);
                 // console.log('element',element.student_info.course_type_id);
                 
-                if(element.student_info.course_type_id==1)
-                {
-                    if(element.form_type=="da one")
-                    {
-                        console.log('element',element);
+                    console.log('student_info',element.form_type);
+                    $.ajax({
+                        url: BACKEND_URL+"/course/"+element.form_type,
+                        type: 'get',
+                        data:"",
+                        success:function(courses){
+                            var course=courses.data;
+                            console.log('coursesdata',courses.data);
+                            if(course[0].code=="da_1")
+                            {
+                                // console.log('element',element);
+        
+                                if(element.status==0){
+                                    status="PENDING";
+                                }
+                                else if(element.status==1){
+                                    status="APPROVED";
+                                }
+                                else{
+                                    status="REJECTED";
+                                }
+                                if(element.exam_type_id == 0){
+                                    exam_type_id = "SELF STUDY";
+                                }
+                                else if(element.exam_type_id==1){
+                                    exam_type_id="PRIVATE SCHOOL";
+                                }
+                                else{
+                                    exam_type_id="MAC STUDENT";
+                                }
+                                var tr = "<tr>";
+                                tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
+                                tr += "<td>" + element.private_school_name + "</td>";
+                                tr += "<td>" + exam_type_id + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + status+ "</td>";
+                                tr += "<td>" + element.batch_id+ "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id+','+ element.batch_id + ")'>" +
+                                "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                                tr += "</tr>";
+                                $("#tbl_da_exam_one_body").append(tr);
+                            }
+                            else if(course[0].code=="da_2")
+                            {
+                                console.log('element',element);
 
-                        if(element.status==0){
-                            status="PENDING";
+                                if(element.status==0){
+                                    status="PENDING";
+                                }
+                                else if(element.status==1){
+                                    status="APPROVED";
+                                }
+                                else{
+                                    status="REJECTED";
+                                }
+                                if(element.exam_type_id == 0){
+                                    exam_type_id = "SELF STUDY";
+                                }
+                                else if(element.exam_type_id==1){
+                                    exam_type_id="PRIVATE SCHOOL";
+                                }
+                                else{
+                                    exam_type_id="MAC STUDENT";
+                                }
+                                var tr = "<tr>";
+                                tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.private_school_name + "</td>";
+                                tr += "<td>" + exam_type_id + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + status+ "</td>";
+                                tr += "<td>" + element.batch_id+ "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDaTwoExam(" + element.id + ")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id +','+ element.batch_id + ")'>" +
+                                "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                                tr += "</tr>";
+                                $("#tbl_da_exam_two_body").append(tr);
+                            }
+                            
+                            getIndexNumber('#tbl_da_exam_one tr');
+                            createDataTable(".tbl_da_exam_one");
+                            
+                            getIndexNumber('#tbl_da_exam_two tr');
+                            createDataTable(".tbl_da_exam_two");
                         }
-                        else if(element.status==1){
-                            status="APPROVED";
-                        }
-                        else{
-                            status="REJECTED";
-                        }
-                        if(element.exam_type_id == 0){
-                            exam_type_id = "SELF STUDY";
-                        }
-                        else if(element.exam_type_id==1){
-                            exam_type_id="PRIVATE SCHOOL";
-                        }
-                        else{
-                            exam_type_id="MAC STUDENT";
-                        }
-                        var tr = "<tr>";
-                        tr += "<td>" +  + "</td>";
-                        tr += "<td>" + element.private_school_name + "</td>";
-                        tr += "<td>" + exam_type_id + "</td>";
-                        tr += "<td>" + element.grade + "</td>";
-                        tr += "<td>" + status+ "</td>";
-                        tr += "<td>" + element.batch_id+ "</td>";
-                        tr += "<td ><div class='btn-group'>";
-                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                        tr += "<td ><div class='btn-group'>";
-                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id  + ")'>" +
-                        "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
-                        tr += "</tr>";
-                        $("#tbl_da_exam_one_body").append(tr);
-                    }
-                    else if(element.form_type=="da two")
-                    {
-                        console.log('element',element);
-
-                        if(element.status==0){
-                            status="PENDING";
-                        }
-                        else if(element.status==1){
-                            status="APPROVED";
-                        }
-                        else{
-                            status="REJECTED";
-                        }
-                        if(element.exam_type_id == 0){
-                            exam_type_id = "SELF STUDY";
-                        }
-                        else if(element.exam_type_id==1){
-                            exam_type_id="PRIVATE SCHOOL";
-                        }
-                        else{
-                            exam_type_id="MAC STUDENT";
-                        }
-                        var tr = "<tr>";
-                        tr += "<td>" +  + "</td>";
-                        tr += "<td>" + element.private_school_name + "</td>";
-                        tr += "<td>" + exam_type_id + "</td>";
-                        tr += "<td>" + element.grade + "</td>";
-                        tr += "<td>" + status+ "</td>";
-                        tr += "<td>" + element.batch_id+ "</td>";
-                        tr += "<td ><div class='btn-group'>";
-                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDaTwoExam(" + element.id + ")'>" +
-                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                        tr += "<td ><div class='btn-group'>";
-                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id  + ")'>" +
-                        "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
-                        tr += "</tr>";
-                        $("#tbl_da_exam_two_body").append(tr);
-                    }
-                }
+                    })
             });
-            getIndexNumber('#tbl_da_exam_one tr');
-            createDataTable("#tbl_da_exam_one");
-            getIndexNumber('#tbl_da_exam_two tr');
-            createDataTable("#tbl_da_exam_two");
+            
+            
         },
         error:function (message){
             dataMessage(message, "#tbl_da_exam_one", "#tbl_da_exam_one_body");
@@ -107,15 +120,16 @@ function getExam(){
 
 function showExam(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/da_exam_one_edit";
+    location.href= FRONTEND_URL + "/da_exam_one_edit";
 }
 function showDaTwoExam(studentId){
     localStorage.setItem("student_id",studentId);
-    location.href="/da_two_exam_edit";
+    location.href= FRONTEND_URL + "/da_two_exam_edit";
 }
-function printExamCard(studentId){
+function printExamCard(studentId,batch_id){
     localStorage.setItem("student_id",studentId);
-    location.href="/da1_examcard";
+    localStorage.setItem("batch_id_for_examcard",batch_id);
+    location.href= FRONTEND_URL + "/da1_examcard";
 }
 
 function loadDAExamData()
@@ -165,11 +179,13 @@ function loadDAExamData()
 function loadStudentDataForExamCard()
 {
     var id=localStorage.getItem("student_id");
+    var batch_id=localStorage.getItem("batch_id_for_examcard");
+    console.log('batch_id',batch_id);
     $("#roll_no").html("");
     $("#name").html("");
     $("#nrc").html("");
     console.log(id);
-    $("input[name = student_info_id]").val(id);
+    //$("input[name = student_info_id]").val(id);
 
     $.ajax({
         type: "GET",
@@ -186,6 +202,16 @@ function loadStudentDataForExamCard()
                 $("#name").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number);
 
+            });
+            $.ajax({
+                type:"GET",
+                url: BACKEND_URL + "/batch/"+batch_id,
+                success:function(batch){
+                    console.log('aaa',batch);
+                    $("#exam_date").append(batch.data.exam_start_date);
+                    $("#exam_place").append(batch.data.exam_place);
+                    $("#exam_time").append(batch.data.exam_time);
+                }
             })
         }
     })
@@ -199,7 +225,7 @@ function approveDAOneExam(){
         success: function(result){
             console.log(result)
             successMessage("You have approved that form!");
-            location.href = "/da_exam_one";
+            location.href =  FRONTEND_URL + "/da_exam_one";
             getExam();
         }
     });
@@ -213,7 +239,7 @@ function rejectDAOneExam(){
         success: function(result){
             console.log(result)
             successMessage("You have rejected that form!");
-            location.href = "/da_exam_one";
+            location.href =  FRONTEND_URL + "/da_exam_one";
             getExam();
         }
     });
@@ -227,7 +253,7 @@ function approveDATwoExam(){
         success: function(result){
             console.log(result)
             successMessage("You have approved that form!");
-            location.href = "/da_two_exam";
+            location.href =  FRONTEND_URL + "/da_two_exam";
             getExam();
         }
     });
@@ -241,21 +267,21 @@ function rejectDATwoExam(){
         success: function(result){
             console.log(result)
             successMessage("You have rejected that form!");
-            location.href = "/da_two_exam";
+            location.href =  FRONTEND_URL + "/da_two_exam";
             getExam();
         }
     });
 }
 
-function loadBatchData(){ 
+function loadBatchData(course_code){ 
     var select = document.getElementById("selected_batch_id");  
     $.ajax({
-        url: BACKEND_URL+"/course_by_course_type/1",
+        url: BACKEND_URL+"/course_by_course_code/"+course_code,
         type: 'get',
         data:"",
         success: function(data){
             var course_data=data.data;            
-            
+            console.log('course_data',course_data);
             course_data.forEach(function (element) {
                 element.batches.forEach(function (batch){
                     var option = document.createElement('option');
@@ -316,7 +342,7 @@ function chooseBatch(){
             type: 'get',
             success: function(result){
                 localStorage.setItem("batch_id",id);
-                location.href = "/exam_result_edit";
+                location.href =  FRONTEND_URL + "/exam_result_edit";
                 // loadStudent();
             }
         });
@@ -324,69 +350,83 @@ function chooseBatch(){
 
 function loadStudent(course_type)
 {
-    //var id = localStorage.getItem("batch_id");
+    destroyDatatable("#tbl_exam_result", "#tbl_exam_result_body");
+    localStorage.setItem("course_type",course_type);
     // console.log(id);
     $.ajax({
-        url: BACKEND_URL + "/filter_exam_register/1",
+        url: BACKEND_URL + "/filter_exam_register",
         type: 'get',
         data:"",
         success: function(data){
             console.log("course",data);
             var da_data = data.data;
-            da_data.forEach(function (element) {
-               // var std = element.student_info;
-                // console.log(std)
-                element.student_register.forEach(function (stu_reg){                    
-                    if(stu_reg.form_type==course_type){
-                        console.log("stu_reg",course_type);
-                        if(element.exam_register.status==0){
-                            status="PENDING";
+            da_data.forEach(function (element) {  
+                    $.ajax({
+                        url: BACKEND_URL+"/course/"+element.form_type,
+                        type: 'get',
+                        data:"",
+                        success:function(courses){
+                            var course =courses.data;
+                            if(course[0].code==course_type){
+                                console.log("stu_reg",course_type);
+                                if(element.status==0){
+                                    status="PENDING";
+                                }
+                                else if(element.status==1){
+                                    status="APPROVED";
+                                }
+                                else{
+                                    status="REJECTED";
+                                }
+
+                                // if(element.exam_register.exam_type_id == 0){
+                                if(element.exam_type_id == 0){
+                                    exam_type_id = "SELF STUDY";
+                                }
+                                else if(element.exam_type_id==1){
+                                    exam_type_id="PRIVATE SCHOOL";
+                                }
+                                else{
+                                    exam_type_id="MAC STUDENT";
+                                }
+
+                                // if(element.exam_register.is_full_module==0){
+                                if(element.is_full_module==0){
+                                    is_full_module="Module 1";
+                                }
+                                else if(element.is_full_module==1){
+                                    is_full_module="Module 2";
+                                }
+                                else{
+                                    is_full_module="Full Module";
+                                }
+                
+                                var tr = "<tr>";
+                                tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
+                                tr += "<td>" + element.private_school_name + "</td>";
+                                tr += "<td>" + exam_type_id + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + status+ "</td>";
+                                tr += "<td>" + element.batch_id+ "</td>";
+                                tr += "<td>" + is_full_module+ "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                // tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
+                                //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module +")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                // tr += "<td ><div class='btn-group'>";
+                                $("#tbl_exam_result_body").append(tr);
+                                getIndexNumber('#tbl_exam_result tr');
+                                createDataTable("#tbl_exam_result");
+                                
+                                getIndexNumber('#tbl_exam_result tr');
+                                createDataTable("#tbl_exam_result");
+                            }
                         }
-                        else if(element.exam_register.status==1){
-                            status="APPROVED";
-                        }
-                        else{
-                            status="REJECTED";
-                        }
-                        if(element.exam_register.exam_type_id == 0){
-                            exam_type_id = "SELF STUDY";
-                        }
-                        else if(element.exam_register.exam_type_id==1){
-                            exam_type_id="PRIVATE SCHOOL";
-                        }
-                        else{
-                            exam_type_id="MAC STUDENT";
-                        }
-                        if(element.exam_register.is_full_module==0){
-                            is_full_module="Module 1";
-                        }
-                        else if(element.exam_register.is_full_module==1){
-                            is_full_module="Module 2";
-                        }
-                        else{
-                            is_full_module="Full Module";
-                        }
-        
-                        var tr = "<tr>";
-                        tr += "<td>" +  + "</td>";
-                        tr += "<td>" + element.name_eng + "</td>";
-                        tr += "<td>" + element.exam_register.private_school_name + "</td>";
-                        tr += "<td>" + exam_type_id + "</td>";
-                        tr += "<td>" + element.exam_register.grade + "</td>";
-                        tr += "<td>" + status+ "</td>";
-                        tr += "<td>" + element.exam_register.batch_id+ "</td>";
-                        tr += "<td>" + is_full_module+ "</td>";
-                        tr += "<td ><div class='btn-group'>";
-                        tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.batch_id + "," + element.exam_register.is_full_module +")'>" +
-                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                        tr += "<td ><div class='btn-group'>";
-                        $("#tbl_exam_result_body").append(tr);
-                    }
-                });
+                    });
                 
             });
-            getIndexNumber('#tbl_exam_result tr');
-            createDataTable("#tbl_exam_result");
         },
         error:function (message){
             dataMessage(message, "#tbl_exam_result", "#tbl_exam_result_body");
@@ -394,30 +434,30 @@ function loadStudent(course_type)
     });
 }
 
-function fillMark(batchID, isFullModule){
-    localStorage.setItem("batch_id",batchID);
+function fillMark(id, isFullModule){
+    localStorage.setItem("exam_register_id",id);
     localStorage.setItem("is_full_module",isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
     console.log(is_full_module);
     if(is_full_module == 0)
     {
-        location.href="/fill_mark_one";
+        location.href= FRONTEND_URL + "/fill_mark_one";
     }
     else if(is_full_module == 1)
     {
-        location.href="/fill_mark_two";
+        location.href= FRONTEND_URL + "/fill_mark_two";
     }
     else
     {
-        location.href="/fill_mark_full";
+        location.href= FRONTEND_URL + "/fill_mark_full";
     }
     
 }
 
 function getModuleStd(){
-    var id = localStorage.getItem("batch_id");
+    var id = localStorage.getItem("exam_register_id");
     var module_type = localStorage.getItem("is_full_module");
-    $("input[name = batch_id]").val(id);
+    // $("input[name = batch_id]").val(id);
     $.ajax({
         url: BACKEND_URL + "/std/"+id,
         type: 'get',
@@ -551,7 +591,8 @@ function getModuleStd(){
 }
 
 function Exam_Result_Submit(){
-    var id = localStorage.getItem("batch_id");
+    var id = localStorage.getItem("exam_register_id");
+    var course_type = localStorage.getItem("course_type");
     var table = document.getElementById("tbl_fillmarks");
     var result_id = $("input[name = result_id]").val();
     console.log(result_id);
@@ -567,7 +608,7 @@ function Exam_Result_Submit(){
     for (var i = 1; i < totalRowCount; i++) {
         data.append('grade[]',$('#grade'+i).val());
     }
-    data.append('batch_id',id);
+    data.append('exam_register_id',id);
     if(result_id=="")
     {
         $.ajax({
@@ -579,7 +620,18 @@ function Exam_Result_Submit(){
             success: function(result){
                 console.log(result);
                 successMessage("Insert Successfully");
-                location.reload();
+                if(course_type=="da_1"){
+                    location.href= FRONTEND_URL + "/da1_exam_result_edit";
+                }
+                else if(course_type=="da_2"){
+                    location.href= FRONTEND_URL + "/da2_exam_result_edit";
+                }
+                else if(course_type=="cpa_1"){
+                    location.href= FRONTEND_URL + "/cpa1_exam_result_edit";
+                }
+                else{
+                    location.href= FRONTEND_URL + "/cpa2_exam_result_edit";
+                }
                 },
             error:function (message){
                 console.log(message);
@@ -597,7 +649,18 @@ function Exam_Result_Submit(){
             success: function(result){
                 console.log(result.message);
                 successMessage("Updated Successfully");
-                location.reload();
+                if(course_type=="da_1"){
+                    location.href= FRONTEND_URL + "/da1_exam_result_edit";
+                }
+                else if(course_type=="da_2"){
+                    location.href= FRONTEND_URL + "/da2_exam_result_edit";
+                }
+                else if(course_type=="cpa_1"){
+                    location.href= FRONTEND_URL + "/cpa1_exam_result_edit";
+                }
+                else{
+                    location.href= FRONTEND_URL + "/cpa2_exam_result_edit";
+                }
             },
             error:function (message){
                 console.log(message);

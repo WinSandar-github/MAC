@@ -12,11 +12,13 @@ class CpaController extends Controller
            return view('pages.cpa.cpa_ff_registration');
     }
 
-    public function cpa_ff_registration_form1(){
+    public function cpa_ff_registration_form1()
+    {
        $education_level = EducationLevel::all();  
        return view('pages.cpa.cpa_ff_register_form1',compact('education_level'));
-  }
-  public function store_da_cpa_app_form(Request $request)
+    }
+
+    public function store_da_cpa_app_form(Request $request)
     {
         if ($request->hasfile('deg_certi_img')) {
 
@@ -25,9 +27,9 @@ class CpaController extends Controller
             $file->move(public_path().'/storage/student_info/',$name);
             $deg_certi_img = '/storage/student_info/'.$name;
        
-       }else{
-              $deg_certi_img = null;
-       }
+    }else{
+        $deg_certi_img = null;
+    }
 
         $course_date = date('Y-m-d');
 

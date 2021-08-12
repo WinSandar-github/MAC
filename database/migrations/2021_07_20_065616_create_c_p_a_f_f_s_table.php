@@ -27,7 +27,14 @@ class CreateCPAFFSTable extends Migration
             $table->string('nrc_back');
             $table->string('cpd_record');
             $table->string('passport_image');
+            $table->date('accepted_date')->default(null)->nullable();
             $table->boolean('status')->default(0);
+            $table->string('renew_file')->default(null)->nullable();
+            $table->string('renew_micpa')->default(null)->nullable();
+            $table->string('renew_cpd')->default(null)->nullable();
+            $table->string('renew_cpaff_reg')->default(null)->nullable();
+            $table->date('renew_accepted_date')->default(null)->nullable();
+            $table->boolean('renew_status')->default(null)->nullable();
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');            
             $table->timestamps();
         });

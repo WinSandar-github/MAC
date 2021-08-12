@@ -71,7 +71,7 @@
             <form id="requirement_form" method="post" action="javascript:createRequirement();" enctype="multipart/form-data">
                 <input type="hidden"  name="requirement_id" >
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Crate Requirement</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Create Requirement</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

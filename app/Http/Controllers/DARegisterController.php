@@ -14,10 +14,15 @@ class DARegisterController extends Controller
 {
     public function index()
     {
-        $student_infos = StudentInfo::with('student_job', 'student_education_histroy')->get();
+
+        $student_infos = StudentCourseReg::with('student_info','batch')->get();
         return response()->json([ 
             'data' => $student_infos
         ],200);
+        // $student_infos = StudentInfo::with('student_job', 'student_education_histroy','student_courses')->get();
+        // return response()->json([ 
+        //     'data' => $student_infos
+        // ],200);
     }
 
     public function store(Request $request)
@@ -71,7 +76,7 @@ class DARegisterController extends Controller
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
-        $student_info->date_of_birth    =   $date_of_birth;
+        $student_info->date_of_birth    =   date('Y-m-d',strtotime($request->date_of_birth)); 
         $student_info->address          =   $request->address;
         $student_info->current_address  =   $request->current_address;
         $student_info->phone            =   $request->phone;
@@ -79,7 +84,7 @@ class DARegisterController extends Controller
         $student_info->image            =   $image;
         $student_info->registration_no  =   $request->registration_no;
         $student_info->approve_reject_status  =  0;
-        $student_info->date             =   $date;
+        $student_info->date             =   date('Y-m-d',strtotime($request->date)); 
         $student_info->email            =   $request->email;
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
@@ -101,14 +106,15 @@ class DARegisterController extends Controller
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     = $request->degree_name;
         $education_histroy->certificate     = $certificate;
-        $education_histroy->qualified_date  = $qualified_date;
+        $education_histroy->qualified_date  = date('Y-m-d',strtotime($request->qualified_date)); 
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
-        $student_course->date            = $course_date;
+        //$student_course->date            = date('Y-m-d',strtotime($request->degree_date)); 
+        $student_course->date            = $course_date; 
         $student_course->status          = 1;
         $student_course->save();
 
@@ -117,7 +123,8 @@ class DARegisterController extends Controller
 
     public function show($id)
     {
-        $approve_reject = StudentInfo::where('id' ,$id)->with('student_job', 'student_education_histroy')->get();
+         
+        $approve_reject = StudentCourseReg::where('id' ,$id)->with('student_info','batch')->get();
         return response()->json([
             'data' => $approve_reject
         ],200);
@@ -162,7 +169,7 @@ class DARegisterController extends Controller
         $info->father_name_eng  =   $request->father_name_eng;
         $info->race             =   $request->race;
         $info->religion         =   $request->religion;
-        $info->date_of_birth    =   $date_of_birth;
+        $info->date_of_birth    =   date('Y-m-d',strtotime($request->date_of_birth)); 
         $info->address          =   $request->address;
         $info->current_address  =   $request->current_address;
         $info->phone            =   $request->phone;
@@ -177,39 +184,52 @@ class DARegisterController extends Controller
 
     public function approve($id)
     {
-        
-        $approve = StudentInfo::find($id);
+      
+         
+        $stu_course_reg = StudentCourseReg::find($id) ;
+        $stu_course_reg->approve_reject_status =1;
+        $stu_course_reg->save();
+        $approve = StudentInfo::where('id',$stu_course_reg->student_info_id)->first();
         $approve->approve_reject_status = 1;
         $approve->save();
         return response()->json([
-            'message' => "You have successfully approved that user!"
+            'message' => "You have successfully approved that user!",
+            'code'    =>  $stu_course_reg->batch->course->code  
         ],200);
     }
 
     public function reject($id)
     {
-        $reject = StudentInfo::find($id);
-        $reject->approve_reject_status = 2;
-        $reject->save();
+         
+        $stu_course_reg = StudentCourseReg::find($id);
+        $stu_course_reg->approve_reject_status =2;
+        $stu_course_reg->save();
+        $approve = StudentInfo::where('id',$stu_course_reg->student_info_id)->first();
+        $approve->approve_reject_status = 2;
+        $approve->save();
         return response()->json([
-            'message' => "You have successfully rejected that user!"
+            'message' => "You have successfully rejected that user!",
+            'code'    =>  $stu_course_reg->batch->course->code  
+
         ],200);
     }
 
      public function reg_feedback($id)
     {
-        $student_register = StudentRegister::where('student_info_id',$id)->first();
-         $status = $student_register != null ? $student_register->status : null;
+         $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
+         $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
+        $status = $student_register != null ? $student_register->status : null;
+         
         return response()->json($status,200);
 
     }
 
-    public function FilterExamRegister($course_type){
-        $student_infos = StudentInfo::where('course_type_id',$course_type)
-            ->with('exam_register', 'student_register')
-            ->get();
-        return response()->json([ 
-            'data' => $student_infos
-        ],200);
+    public function auditFormStatus($id)
+    {
+        $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        return response()->json($data,200);
+
     }
+
+  
 }

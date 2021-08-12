@@ -19,7 +19,6 @@ function loadMarkedStudent()
                 tr += "<td ><div class='btn-group'>";
                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='viewMark(" + element.id + ")'>" +
                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                tr += "<td ><div class='btn-group'>";
                 $("#tbl_exam_result_body").append(tr);
             });
             getIndexNumber('#tbl_exam_result tr');
@@ -33,7 +32,7 @@ function loadMarkedStudent()
 
 function viewMark(resultID){
     localStorage.setItem("id",resultID);
-    location.href = "/edit_marked_list";
+    location.href =  FRONTEND_URL + "/edit_marked_list";
 }
 
 function getResult()
