@@ -115,7 +115,7 @@
                                             <div class="row mt-5 justify-content-center"> 
                                                 <button type="submit" name="save" class="btn btn-primary" onclick="approveStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
-                                                <button type="submit" name="save" class="btn btn-primary"  onclick="rejectStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
+                                                <button type="submit" name="save" class="btn btn-danger"  onclick="rejectStudent()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                             </div>
                                         </div>
                                             
