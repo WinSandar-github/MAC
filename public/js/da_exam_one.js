@@ -358,11 +358,9 @@ function loadStudent(course_type)
         type: 'get',
         data:"",
         success: function(data){
-            console.log("course",data);
             var da_data = data.data;
             da_data.forEach(function (element) {
              
-                    console.log(element)
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
                         type: 'get',
@@ -370,6 +368,7 @@ function loadStudent(course_type)
                         success:function(courses){
                             var course =courses.data;
                             if(course[0].code==course_type){
+                                console.log(course[0].code,course_type,element)
                                 console.log("stu_reg",course_type);
                                 if(element.status==0){
                                     status="PENDING";
@@ -419,11 +418,9 @@ function loadStudent(course_type)
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 // tr += "<td ><div class='btn-group'>";
                                 $("#tbl_exam_result_body").append(tr);
+                               
                                 getIndexNumber('#tbl_exam_result tr');
-                                createDataTable("#tbl_exam_result");
-                                
-                                getIndexNumber('#tbl_exam_result tr');
-                                createDataTable("#tbl_exam_result");
+                                createDataTable(".tbl_exam_result");
                             }
                         }
                     });
@@ -504,7 +501,8 @@ function getModuleStd(){
 
                 if(element.grade == 1 )
                 {
-                     $('.ex_res_btn').hide();
+                    console.log("Grade");
+                    $('.ex_res_btn').hide();
                     $('.pass_fail_btn').hide();
 
                 }
@@ -522,7 +520,8 @@ function getModuleStd(){
                 type: 'get',
                 data:"",
                 success: function(result){
-                        if(result!=null)
+                    console.log(result)
+                        if(result.data !=null)
                         {
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',JSON.parse(result.data.result));

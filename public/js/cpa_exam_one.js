@@ -434,7 +434,7 @@ function getCPAModuleStd(){
                 data:"",
                 success: function(result){
                     
-                        if(result!=null)
+                        if(result.data !=null)
                         {
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',result.data.id);
