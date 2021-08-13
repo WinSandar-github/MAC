@@ -173,8 +173,8 @@ Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
 Route::patch('/pass_exam/{id}', 'ExamResultController@passExam');
 Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
 
-// Route::apiResource('mentor','MentorController');
-Route::resource('mentor','MentorController');
+Route::apiResource('mentor','MentorController');
+// Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
 
 
