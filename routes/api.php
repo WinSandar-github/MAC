@@ -168,3 +168,17 @@ Route::get('/get_current_batch_studentId/{student_info_id}','BatchController@cur
 //login validate for mobile
 Route::post('/loginValidate', 'LoginController@loginValidate');
 Route::post('/mobileLogin', 'LoginController@mobileLogin');
+
+//Exam Status
+Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
+
+//Pass or fail student 
+Route::patch('/pass_exam/{id}', 'ExamResultController@passExam');
+Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
+
+// Route::apiResource('mentor','MentorController');
+Route::resource('mentor','MentorController');
+Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
+
+
+

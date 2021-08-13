@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use App\Course;
 use Illuminate\Database\Eloquent\Builder;
 use App\StudentCourseReg;
- 
+use App\ExamRegister; 
 
 
 class BatchController extends Controller
@@ -111,8 +111,6 @@ class BatchController extends Controller
     public function publish_batch($course_type_id)
     {
         
-        
-      
         $course = Course::where('course_type_id',$course_type_id)
          ->with('course_type','active_batch')
         ->get();
@@ -136,7 +134,8 @@ class BatchController extends Controller
 
     public function getExam($student_id)
     {
-         
+
+       
         
         $student_course = StudentCourseReg::where('student_info_id',$student_id)->with('batch')->latest()->first();
      
@@ -146,6 +145,7 @@ class BatchController extends Controller
         $currentDate = Carbon::now();
         
         if($exam_previous_month <= $currentDate && $exam_start_date > $currentDate ){
+
                 $data = Batch::where('id',$student_course->batch->id)->with('course')->first();
         }else{
             $data = null;

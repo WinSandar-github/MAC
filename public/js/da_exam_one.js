@@ -354,13 +354,13 @@ function loadStudent(course_type)
     localStorage.setItem("course_type",course_type);
     // console.log(id);
     $.ajax({
-        url: BACKEND_URL + "/filter_exam_register",
+        url: BACKEND_URL +"/filter_exam_register",
         type: 'get',
         data:"",
         success: function(data){
-            console.log("course",data);
             var da_data = data.data;
-            da_data.forEach(function (element) {  
+            da_data.forEach(function (element) {
+             
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
                         type: 'get',
@@ -368,6 +368,7 @@ function loadStudent(course_type)
                         success:function(courses){
                             var course =courses.data;
                             if(course[0].code==course_type){
+                                console.log(course[0].code,course_type,element)
                                 console.log("stu_reg",course_type);
                                 if(element.status==0){
                                     status="PENDING";
@@ -417,14 +418,15 @@ function loadStudent(course_type)
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 // tr += "<td ><div class='btn-group'>";
                                 $("#tbl_exam_result_body").append(tr);
+                               
                                 getIndexNumber('#tbl_exam_result tr');
-                                createDataTable("#tbl_exam_result");
-                                
-                                getIndexNumber('#tbl_exam_result tr');
-                                createDataTable("#tbl_exam_result");
+                                createDataTable(".tbl_exam_result");
                             }
                         }
                     });
+                // }        
+                    
+                //});
                 
             });
         },
@@ -470,6 +472,7 @@ function getModuleStd(){
                 // console.log(std)
                 if(element.status==0){
                     status="PENDING";
+                    $('.pass_fail_btn').hide();
                 }
                 else if(element.status==1){
                     status="APPROVED";
@@ -496,6 +499,14 @@ function getModuleStd(){
                     is_full_module="Full Module";
                 }
 
+                if(element.grade == 1 )
+                {
+                    console.log("Grade");
+                    $('.ex_res_btn').hide();
+                    $('.pass_fail_btn').hide();
+
+                }
+
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
@@ -509,7 +520,8 @@ function getModuleStd(){
                 type: 'get',
                 data:"",
                 success: function(result){
-                        if(result!=null)
+                    console.log(result)
+                        if(result.data !=null)
                         {
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',JSON.parse(result.data.result));
