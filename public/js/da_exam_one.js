@@ -2,7 +2,7 @@ function getExam(){
     destroyDatatable("#tbl_da_exam_one", "#tbl_da_exam_one_body");
     destroyDatatable("#tbl_da_exam_two", "#tbl_da_exam_two_body");
     var batch = $("#selected_batch_id").val();
-    // console.log("selected",batch);
+    console.log({batch});
     $.ajax({
         url: BACKEND_URL + "/filter/"+batch,
         type: 'get',
@@ -21,7 +21,7 @@ function getExam(){
                         data:"",
                         success:function(courses){
                             var course=courses.data;
-                            console.log('coursesdata',courses.data);
+                            
                             if(course[0].code=="da_1")
                             {
                                 // console.log('element',element);
@@ -85,6 +85,7 @@ function getExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
                                 tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
                                 tr += "<td>" + element.grade + "</td>";
