@@ -178,19 +178,11 @@ class ExamRegisterController extends Controller
     {
          
         $student_info_id = $request->student_id;
-         $exam_type = StudentRegister::where('id', $student_info_id)->get('type');
+         $exam_type = StudentRegister::where('student_info_id', $student_info_id)->get('type');
          $type = $exam_type[0]['type'];
-     
-         $batch = StudentCourseReg::where('id', $student_info_id)->get('batch_id');
+         $batch = StudentCourseReg::where('student_info_id', $student_info_id)->get('batch_id');
         $batch_id = $batch[0]['batch_id'];
-       
-        // $student_info_id = $request->student_id;        
-       
-        // $batch_id = StudentCourseReg::where('student_info_id', $student_info_id)->first()->batch_id;
-        // $exam_type = Batch::where('id',$batch_id)->first()->course_id;
         
-        
-   
         if ($request->hasfile('invoice_image')) 
         {
             $file = $request->file('invoice_image');
@@ -226,7 +218,6 @@ class ExamRegisterController extends Controller
     
     public function getExamByStudentID($id){
         $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
-        
         return response()->json([
             'data' => $exam_register
         ],200);

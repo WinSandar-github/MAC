@@ -218,7 +218,7 @@ class DARegisterController extends Controller
     {
          $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
-        $status = $stu_course_reg != null ? $stu_course_reg->status : null;
+         $status = $student_register != null ? $student_register->status : null;
          
         return response()->json($status,200);
 

@@ -24,19 +24,19 @@ class LoginController extends Controller
     public function mobileLogin(Request $request){
         $user = StudentInfo::where('email', '=', $request->email)->first();
         if($user){
-            if(Hash::check('INPUT PASSWORD', $user->password) == true){
+            if(Hash::check($request->password, $user->password) == true){
                 return response()->json($user,200);
             }
             else{
                 return response()->json([
-                    'error' => 'Unauthenticated user',
+                    'errors' => 'Unauthenticated user',
                     'code' => 401,
                 ], 401); 
             }
         }
         else{
             return response()->json([
-                'error' => 'Unauthenticated user',
+                'errors' => 'Unauthenticated user',
                 'code' => 401,
             ], 401); 
         }

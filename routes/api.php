@@ -83,7 +83,7 @@ Route::get('student_course', 'CourseController@studentCourse');
 Route::resource('/student_selfstudy','StudentSelfStudyController');
 Route::resource('/student_privateschool','StudentPrivateSchoolController');
 Route::resource('/student_mac','StudentMacController');
-
+Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 //Student Register Form API
 Route::resource('/student_register','StudentRegisterController');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
@@ -133,10 +133,10 @@ Route::get('/get_course_type','CourseController@getCourseType');
 
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
-Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
+Route::get('/get_current_batch_studentId_student/{id}','ExamRegisterController@getExamByStudentID');
 
 //Store DA/CPA Two Application Form
-Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
+Route::post('store_cpa_da_two_app_form','CpaController@store_da_cpa_app_form');
 
 //for school registration
 Route::resource('/school','SchoolController');
