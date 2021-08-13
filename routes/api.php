@@ -48,10 +48,18 @@ Route::resource('/cpa_two_private_old','CpaTwoPrivateOldController');
 Route::resource('/cpa_two_exam','CpaTwoExamRegController');
 Route::resource('/course_fee','CourseFeeController');
 Route::apiResource('/student_info','StudentInfoController');
-Route::apiResource('/requirement','RequirementController');
 
+//Requirement
+Route::apiResource('/requirement','RequirementController');
+Route::post('/filter_requirement','RequirementController@FilterRequirement');
+
+//Batch
 Route::resource('/batch','BatchController');
+Route::post('/filter_batch','BatchController@FilterBatch');
+
+//Course
 Route::resource('/course','CourseController');
+Route::get('/filter_course/{course_name}','CourseController@FilterCourse');
 Route::get('/course_by_course_code/{code}','CourseController@loadCourseByCourseCode');
 Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
@@ -89,6 +97,7 @@ Route::resource('/student_mac','StudentMacController');
 Route::resource('/student_register','StudentRegisterController');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
+Route::post('/filter_registration','StudentRegisterController@FilterRegistration');
 
 Route::post('save_exam','BatchController@saveExam');
 
@@ -100,13 +109,14 @@ Route::resource('/exam_register', 'ExamRegisterController');
 Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-Route::get('/filter/{id}', 'ExamRegisterController@selectByFormType');
-Route::get('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
+Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
+Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
+Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');

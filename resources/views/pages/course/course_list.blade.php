@@ -27,7 +27,8 @@
 
                             </div>
                             <div class="row">
-                                <div class="col-md-8"></div>
+                                <div class="col-md-8">
+                                </div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
                                     <button type="button" id="create_course" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_course_modal">Create</button>
                                 </div>
@@ -38,6 +39,19 @@
 
                                 <div class="col-md-12">
                                     <div class="card">
+                                        <div class="card-header">                                            
+                                            <div class="row">
+                                                <div class="col-md-1 text-left" style="padding-top:9px;font-weight:bold;">
+                                                    {{ __('Name') }}
+                                                </div>
+                                                <div class="col-md-3" style="padding-top:9px;padding-right:0px;padding-left:0px;">
+                                                    <input type="text"  name="filter_name" class="form-control"  placeholder="Name" autocomplete="off">
+                                                </div>
+                                                <div class="col-md-4" style="padding-left:0px;">
+                                                    <button type="button" id="filter_course" onclick="getCourse()" class="btn btn-primary btn-round" >Search</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <div class="card-body">
                                             <table id="tbl_course"class="table table-hover text-nowrap ">
                                                 <thead>

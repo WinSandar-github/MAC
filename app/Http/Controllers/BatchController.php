@@ -163,4 +163,26 @@ class BatchController extends Controller
         ]);
     }
     
+    public function FilterBatch(Request $request){
+        $batches = Batch::with('course');
+        if($request->name!="" )
+        {
+            $batches = $batches->where('name', 'like', '%' . $request->name. '%');
+        }
+        if($request->course_name!="all"){
+            $batches=$batches->where('course_id',$request->course_name);
+        }
+        if($request->start_date!=""){
+            $s_date=date('Y-m-d',strtotime($request->start_date));
+            $batches=$batches->where('start_date','>=',$s_date);
+        }
+        if($request->end_date!=""){
+            $e_date=date('Y-m-d',strtotime($request->end_date));
+            $batches=$batches->where('end_date','<=',$e_date);
+        }
+        $batches=$batches->get();
+        return response()->json([
+            'data'  => $batches
+        ]);
+    }
 }    

@@ -149,5 +149,20 @@ class CourseController extends Controller
             'data' => $course_type
         ],200);
     }
+
+    public function FilterCourse($course_name){
+        if($course_name=="all"){
+            $courses = Course::with('batches')->get();
+            return response()->json([
+                'data' => $courses
+            ],200);
+        }
+        else{
+            $courses = Course::where('name', 'like', '%' . $course_name. '%')->with('batches')->get();
+            return response()->json([
+                'data' => $courses
+            ],200);
+        }
+    }
     
 }

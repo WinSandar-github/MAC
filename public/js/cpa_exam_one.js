@@ -26,16 +26,18 @@ function getCPAExam(){
     destroyDatatable("#tbl_cpa_exam_one", "#tbl_cpa_exam_one_body");
     destroyDatatable("#tbl_cpa_exam_two", "#tbl_cpa_exam_two_body");
     var batch = $("#selected_batch_id").val();
-    console.log("selected",batch);
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('batch',batch);
     $.ajax({
-        url: BACKEND_URL + "/filter/"+batch,
-        type: 'get',
-        data:"",
+        url: BACKEND_URL + "/filter",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             var da_data = data.data;
             da_data.forEach(function (element) {
-                console.log('element',element);
-                console.log('form_type', element.form_type);
                     console.log(element.student_info.course_type_id);
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
@@ -275,13 +277,19 @@ function chooseCPABatch(){
 }
 function loadCPAStudent(course_type)
 {
+    destroyDatatable("#tbl_cpa_exam_result", "#tbl_cpa_exam_result_body");
     localStorage.setItem("course_type",course_type);
     //var id = localStorage.getItem("batch_id");
     // console.log(id);
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('grade',$('#selected_grade_id').val());
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
-        type: 'get',
-        data:"",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             console.log("course",data);
             var da_data = data.data;
