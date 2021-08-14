@@ -88,6 +88,11 @@ class StudentInfo extends Model
         
     }
 
+    public function mentor(){
+        return $this->belongsTo(Mentor::class);
+        
+    }
+
 
     
 }  

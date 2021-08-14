@@ -17,8 +17,9 @@
                 {{ Breadcrumbs::render('mentor_list') }}
             </div>
         </div>
-            <form method="post" action="javascript:updateMentor();" enctype="multipart/form-data">
+            <form id="updateMentor" method="post" action="javascript:void();" enctype="multipart/form-data">
             @csrf
+             
             
             <div class="row">
                 <div class="col-md-12">
