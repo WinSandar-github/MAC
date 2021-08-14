@@ -3,7 +3,6 @@ function getTeacherRegisterList(){
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
-    console.log($("input[name=filter_by_name]").val(),$("input[name=filter_by_nrc]").val());
     $.ajax({
         type : 'post',
         url : BACKEND_URL+"/filter_teacher",

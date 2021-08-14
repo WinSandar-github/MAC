@@ -63,7 +63,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2" style="vertical-align: top;">
-                                                <button type="button" class="btn btn-primary btn-round" onclick="getDAList('da_1')" id="search">Search</button>
+                                                <button type="button" class="btn btn-primary btn-round" onclick="getSchoolRegisterList()" id="search">Search</button>
                                             </div>
                                         </div>
                                     </div>
