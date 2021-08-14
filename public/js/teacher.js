@@ -1,8 +1,15 @@
 function getTeacherRegisterList(){
     destroyDatatable("#tbl_teacher", "#tbl_teacher_body");
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
+    console.log($("input[name=filter_by_name]").val(),$("input[name=filter_by_nrc]").val());
     $.ajax({
-        type : 'GET',
-        url : BACKEND_URL+"/teacher",
+        type : 'post',
+        url : BACKEND_URL+"/filter_teacher",
+        data:send_data,
+        contentType: false,
+        processData: false,
         success : function(data){
             let indexNo = 0;
             data.data.map((obj)=> {

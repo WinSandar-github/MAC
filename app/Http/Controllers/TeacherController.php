@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\TeacherRegister;
 use App\StudentInfo;
 use Hash;
+use Illuminate\Support\Facades\DB;
 
 class TeacherController extends Controller
 {
@@ -140,6 +141,22 @@ class TeacherController extends Controller
         $teacher->save();
         return response()->json([
             'message' => 'You have approved this user.'
+        ],200);
+    }
+
+    public function FilterTeacher(Request $request)
+    {
+        $teacher = TeacherRegister::orderBy('created_at','desc');
+        if($request->name!=""){
+            $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
+                        ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+        }
+        if($request->nrc!=""){
+            $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+        }
+        $teacher=$teacher->get();
+        return  response()->json([
+            'data' => $teacher
         ],200);
     }
 }
