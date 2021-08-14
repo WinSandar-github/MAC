@@ -224,6 +224,12 @@
                     <p>{{ __('Teacher') }}</p>
                 </a>
             </li>
+            <li class="{{ $elementActive == 'mentor_list' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'mentor_list') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <span>{{ __('Mentors') }}</span>
+                </a>
+            </li>
             {{-- <li class="{{ $elementActive == 'qt_application_registration' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'qt_application_registration') }}">
                     <i class="nc-icon nc-paper"></i>

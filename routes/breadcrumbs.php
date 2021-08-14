@@ -437,3 +437,8 @@ Breadcrumbs::for('ဘွဲ့လိုအပ်ချက်', function ($trail)
     $trail->parent('administration');
     $trail->push('ဘွဲ့လိုအပ်ချက်', route('page.index', 'requirement_list'));
 });
+
+//Mentor
+Breadcrumbs::for('mentor_list', function ($trail) {
+    $trail->push('Mentors', route('page.index', 'mentor_list'));
+});
