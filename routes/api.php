@@ -177,5 +177,7 @@ Route::apiResource('mentor','MentorController');
 // Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
 
+Route::get('user_profile/{id}','StudentInfoController@userProfile');
+
 
 

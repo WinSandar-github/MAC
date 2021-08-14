@@ -137,7 +137,7 @@ class MentorController extends Controller
         //     array_push($current_check_service,$service);
         // }
         // return $id;
-        dd($request->name_eng);
+       
         $mentor = Mentor::find($id);
         $mentor->current_check_service_id = $request->current_check_service_id;
         $mentor->name_mm = $request->name_mm;
