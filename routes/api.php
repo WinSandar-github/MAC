@@ -175,5 +175,7 @@ Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
 
 Route::apiResource('mentor','MentorController');
 
+Route::get('user_profile/{id}','StudentInfoController@userProfile');
+
 
 
