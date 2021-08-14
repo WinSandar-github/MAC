@@ -504,7 +504,9 @@ class AccFirmInfController extends Controller
 
     public function approve($id)
     {
-
+        $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
         $approve = AccountancyFirmInformation::find($id);
         $approve->status = 1;
         $approve->save();
