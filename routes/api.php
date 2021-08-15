@@ -126,7 +126,7 @@ Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResu
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
-Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
+// Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
@@ -153,6 +153,8 @@ Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_regi
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 
+Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditFeedback');
+
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
 
@@ -172,13 +174,10 @@ Route::post('/mobileLogin', 'LoginController@mobileLogin');
 //Exam Status
 Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
 
-//Pass or fail student 
+//Pass or fail student
 Route::patch('/pass_exam/{id}', 'ExamResultController@passExam');
 Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
 
 // Route::apiResource('mentor','MentorController');
 Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
-
-
-
