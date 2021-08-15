@@ -42,6 +42,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">CPA</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -64,11 +67,11 @@
                                 <div id="raModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">                                            
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
+                                    <div class="modal-header">
                                             <h5 class="modal-title text-center">RA</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -84,21 +87,22 @@
                                         <p class="ml-2" style="font-weight:bold">Foreign Degree</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#fdModal"><i class="fa fa-paperclip"></i></button>
+                                        <span class="foreign_degree">
+                                            
+                                            </span>
                                     </div>
                                 </div>
                                 <!--Foreign Modal --> 
                                 <div id="fdModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">                                            
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
+                                    <div class="modal-header">
                                             <h5 class="modal-title text-center">Foreign Degree</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
                                             <embed id="foreign_degree"  width="100%" height="500px">
                                         </div>
                                     </div>
@@ -170,6 +174,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">CPAFF Recommendation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -197,6 +204,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">183 Days Recommendation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -224,6 +234,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">No Fulltime Recommendation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -251,6 +264,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">Work In Myanmar Confession</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -278,6 +294,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">Rule Confession</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -305,6 +324,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">CPD Record</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -332,6 +354,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">Tax Free Recommendation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -576,6 +601,9 @@
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
                                             <h5 class="modal-title text-center">Attached Certificate</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->

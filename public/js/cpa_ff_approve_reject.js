@@ -120,8 +120,9 @@ function loadCPAFFData(){
         url: BACKEND_URL+"/cpa_ff/"+id,
         success: function (data) {
             var student=data.data;
-            console.log(data);
+           
             student.forEach(function(element){
+                console.log('loaddata',element);
                 if(element.cpa_part_2==1){
                     var degree = "CPA Part 2 Pass";
                 }else {
@@ -165,9 +166,28 @@ function loadCPAFFData(){
                 $("#image").append(element.student_info.image);
                 $("#registration_no").append(element.student_info.registration_no);
 
-                $("#cpa").append(element.cpa);
-                $("#ra").append(element.ra);
-                $("#foreign_degree").append(element.foreign_degree);
+                
+                if(element.cpa!=null){
+                    $("#cpa").append(element.cpa);
+                }else {
+                    $("#cpa_btn").prop("disabled", true);
+                }
+
+                if(element.ra!=null){
+                    $("#ra").append(element.ra);
+                }else {
+                    $("#ra_btn").prop("disabled", true);
+                }
+
+                if(element.foreign_degree!=null && element.foreign_degree!="null"){
+                   
+                    removeBracketed(element.foreign_degree,"foreign_degree");
+                    
+                }else {
+                    $(".foreign_degree").append("<button disabled type='button' id='fd_btn' style='width: 30%;margin-top:1% ;' class='btn btn-primary' data-toggle='modal' data-target='#fdModal'><i class='fa fa-paperclip'></i></button>");
+                    
+                }
+
                 $("#degree").append(degree);
                 $("#cpa_certificate").append(element.cpa_certificate);
                 $("#mpa_mem_card").append(element.mpa_mem_card);
@@ -193,7 +213,7 @@ function loadCPAFFData(){
                 $("#office_address").append(job.office_address);
                 cpa_modal=element.cpa;
                 ra_modal=element.ra;
-                foreign_modal=element.foreign_degree;
+                // foreign_modal=element.foreign_degree;
                 cpa_certificate_modal=element.cpa_certificate;
                 mpa_modal=element.mpa_mem_card;
                 nrc_front_modal=element.nrc_front;
@@ -203,7 +223,7 @@ function loadCPAFFData(){
                 attached_modal=element.student_education_histroy.certificate;
                 document.getElementById('cpa').src=cpa_modal;
                 document.getElementById('ra').src=ra_modal;
-                document.getElementById('foreign_degree').src=foreign_modal;
+                // document.getElementById('foreign_degree').src=foreign_modal;
                 document.getElementById('cpa_certificate').src=cpa_certificate_modal;
                 document.getElementById('mpa_mem_card').src=mpa_modal;
                 document.getElementById('nrc_front').src=nrc_front_modal;
@@ -214,6 +234,19 @@ function loadCPAFFData(){
             })
         }
     })
+}
+
+function removeBracketed(file,divname){
+    var new_file=file.replace(/[\'"[\]']+/g, '');
+    var split_new_file=new_file.split(',');
+    for(var i=0;i<split_new_file.length;i++){
+        var file="<button type='button' onclick=loadFile('"+split_new_file[i]+"') id='fd_btn' style='width: 30%;margin-top:1% ;' class='btn btn-primary' data-toggle='modal' data-target='#fdModal'><i class='fa fa-paperclip'></i></button>";
+        $("."+divname).append(file);
+    }
+}
+function loadFile(file) {
+    var myImageId = file;
+    $(".modal-body #foreign_degree").attr("src", myImageId);
 }
 
 function approveCPAFFUser(){
@@ -252,10 +285,10 @@ window.onclick = function(event) {
         document.getElementById('ra').src=ra_modal;
         
     }
-    if (event.target == document.getElementById("fdModal") && foreign_modal!=null) {
-        document.getElementById('foreign_degree').src=foreign_modal;
+    // if (event.target == document.getElementById("fdModal") && foreign_modal!=null) {
+    //     document.getElementById('foreign_degree').src=foreign_modal;
         
-    }
+    // }
     if (event.target == document.getElementById("capp_certi_Modal") && cpa_certificate_modal!=null) {
         document.getElementById('cpa_certificate').src=cpa_certificate_modal;
         
