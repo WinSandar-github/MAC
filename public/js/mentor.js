@@ -84,76 +84,104 @@ function createMentor()
     });
 }
 
-function updateMentor()
-{
-    var id = localStorage.getItem("mentor_id");   
-    // console.log(id)
-    var send_data = new FormData();
-    var nrc_state_region = $("#nrc_state_region").val();
-    var nrc_township = $("#nrc_township").val();
-    var nrc_citizen = $("#nrc_citizen").val();
-    send_data.append('name_mm', $("input[name=name_mm]").val());
-    send_data.append('name_eng', $("input[name=name_eng]").val());
-    send_data.append('nrc_state_region', nrc_state_region);
-    send_data.append('nrc_township', nrc_township);
-    send_data.append('nrc_citizen', nrc_citizen);
-    send_data.append('nrc_number', $("input[name=nrc_number]").val());
-    send_data.append('father_name_mm', $("input[name=father_name_mm]").val());
-    send_data.append('father_name_eng', $("input[name=father_name_eng]").val());
-    send_data.append('race', $("input[name=race]").val());
-    send_data.append('religion', $("input[name=religion]").val());
-    send_data.append('date_of_birth', $("input[name=date_of_birth]").val());
-    send_data.append('education', $("input[name=education]").val());
-    send_data.append('ra_cpa_success_year', $("input[name=ra_cpa_success_year]").val());
-    send_data.append('ra_cpa_personal_no', $("input[name=ra_cpa_personal_no]").val());
-    send_data.append('cpa_reg_no', $("input[name=cpa_reg_no]").val());
-    send_data.append('cpa_reg_date', $("input[name=cpa_reg_date]").val());
-    send_data.append('ppa_reg_no', $("input[name=ppa_reg_no]").val());
-    send_data.append('ppa_reg_date', $("input[name=ppa_reg_date]").val());
-    send_data.append('address', $("input[name=address]").val());
-    send_data.append('phone_no', $("input[name=phone_no]").val());
-    send_data.append('fax_no', $("input[name=fax_no]").val());
-    send_data.append('m_email', $("input[name=m_email]").val());
-    send_data.append('audit_firm_name', $("input[name=audit_firm_name]").val());
-    send_data.append('audit_started_date', $("input[name=audit_started_date]").val());
-    send_data.append('audit_structure', $("input[name=audit_structure]").val());
-    send_data.append('audit_staff_no', $("input[name=audit_staff_no]").val());
-    send_data.append('current_check_service_id',$('#selected_service_id').val());
-    send_data.append('current_check_services_other', $("input[name=current_check_services_other]").val());
-    $(':radio:checked').map(function(){send_data.append('experience',$(this).val())});
-    send_data.append('started_teaching_year', $("input[name=started_teaching_year]").val());
-    send_data.append('current_accept_no', $("input[name=current_accept_no]").val());
-    send_data.append('trained_trainees_no', $("input[name=trained_trainees_no]").val());
-    send_data.append('internship_accept_no', $("input[name=internship_accept_no]").val());
-    $(':radio:checked').map(function(){send_data.append('repeat_yearly',$(this).val())});
-    $(':radio:checked').map(function(){send_data.append('training_absent',$(this).val())});
-    send_data.append('training_absent_reason', $("input[name=training_absent_reason]").val());
+// function updateMentor()
+// {
+//     var id = localStorage.getItem("mentor_id");   
+//     // console.log(id)
+//     var send_data = new FormData();
+//     var nrc_state_region = $("#nrc_state_region").val();
+//     var nrc_township = $("#nrc_township").val();
+//     var nrc_citizen = $("#nrc_citizen").val();
+//     send_data.append('name_mm', $("input[name=name_mm]").val());
+//     send_data.append('name_eng', $("input[name=name_eng]").val());
+//     send_data.append('nrc_state_region', nrc_state_region);
+//     send_data.append('nrc_township', nrc_township);
+//     send_data.append('nrc_citizen', nrc_citizen);
+//     send_data.append('nrc_number', $("input[name=nrc_number]").val());
+//     send_data.append('father_name_mm', $("input[name=father_name_mm]").val());
+//     send_data.append('father_name_eng', $("input[name=father_name_eng]").val());
+//     send_data.append('race', $("input[name=race]").val());
+//     send_data.append('religion', $("input[name=religion]").val());
+//     send_data.append('date_of_birth', $("input[name=date_of_birth]").val());
+//     send_data.append('education', $("input[name=education]").val());
+//     send_data.append('ra_cpa_success_year', $("input[name=ra_cpa_success_year]").val());
+//     send_data.append('ra_cpa_personal_no', $("input[name=ra_cpa_personal_no]").val());
+//     send_data.append('cpa_reg_no', $("input[name=cpa_reg_no]").val());
+//     send_data.append('cpa_reg_date', $("input[name=cpa_reg_date]").val());
+//     send_data.append('ppa_reg_no', $("input[name=ppa_reg_no]").val());
+//     send_data.append('ppa_reg_date', $("input[name=ppa_reg_date]").val());
+//     send_data.append('address', $("input[name=address]").val());
+//     send_data.append('phone_no', $("input[name=phone_no]").val());
+//     send_data.append('fax_no', $("input[name=fax_no]").val());
+//     send_data.append('m_email', $("input[name=m_email]").val());
+//     send_data.append('audit_firm_name', $("input[name=audit_firm_name]").val());
+//     send_data.append('audit_started_date', $("input[name=audit_started_date]").val());
+//     send_data.append('audit_structure', $("input[name=audit_structure]").val());
+//     send_data.append('audit_staff_no', $("input[name=audit_staff_no]").val());
+//     send_data.append('current_check_service_id',$('#selected_service_id').val());
+//     send_data.append('current_check_services_other', $("input[name=current_check_services_other]").val());
+//     $(':radio:checked').map(function(){send_data.append('experience',$(this).val())});
+//     send_data.append('started_teaching_year', $("input[name=started_teaching_year]").val());
+//     send_data.append('current_accept_no', $("input[name=current_accept_no]").val());
+//     send_data.append('trained_trainees_no', $("input[name=trained_trainees_no]").val());
+//     send_data.append('internship_accept_no', $("input[name=internship_accept_no]").val());
+//     $(':radio:checked').map(function(){send_data.append('repeat_yearly',$(this).val())});
+//     $(':radio:checked').map(function(){send_data.append('training_absent',$(this).val())});
+//     send_data.append('training_absent_reason', $("input[name=training_absent_reason]").val());
 
-    // console.log(send_data)
-    send_data.append('_method', 'PUT');
-    // $.ajax({
-    //     url: BACKEND_URL+"/mentor/"+id,
-    //     type: 'patch',
-    //     data: send_data,      
-    //     success: function(result){
-    //         successMessage("Update Successfully");      
-    //         location.href = "/mentor_list";  
-    //     }
-    // });
+//     // console.log(send_data)
+//     send_data.append('_method', 'PUT');
+//     // $.ajax({
+//     //     url: BACKEND_URL+"/mentor/"+id,
+//     //     type: 'patch',
+//     //     data: send_data,      
+//     //     success: function(result){
+//     //         successMessage("Update Successfully");      
+//     //         location.href = "/mentor_list";  
+//     //     }
+//     // });
+//     $.ajax({
+//         url: BACKEND_URL+"/mentor/"+id,
+//         type: 'post',
+//         data:send_data,
+//         contentType: false,
+//         processData: false,
+//         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'), 'Content-Type': 'application/json' },
+//         success: function(result){
+//             successMessage("Insert Successfully");
+//         },
+//         error:function (message){
+//             console.log(message);
+//         }
+//     });
+// }
+
+$('#updateMentor').submit(function(e){
+    e.preventDefault();
+    var id = localStorage.getItem("mentor_id");   
+    
+
+    var formData = new FormData(this);
+    formData.append('_method', 'PATCH');
+    
     $.ajax({
+        type: "POST",
         url: BACKEND_URL+"/mentor/"+id,
-        type: 'patch',
-        data:send_data,
         contentType: false,
         processData: false,
-        success: function(result){
-            successMessage("Insert Successfully");
+        data: formData,
+        success: function (data) {
+            successMessage(data.message);
+            location.href = "/mentor_list";
+
+                
         },
         error:function (message){
-            console.log(message);
         }
-    });
-}
+    })
+
+})
+
 
 function loadMentor()
 {

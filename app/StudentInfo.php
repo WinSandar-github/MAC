@@ -71,4 +71,28 @@ class StudentInfo extends Model
         return $this->belongsTo(AccountancyFirmInformation::class,'accountancy_firm_info_id','id');
         
     }
+
+     public function exam_registers()
+    {
+        return $this->hasMany(ExamRegister::class,'student_info_id','id')->with('course');
+
+    }
+
+    public function student_course_regs()
+    {
+        return $this->hasMany(StudentCourseReg::class,'student_info_id','id')->with('batch');
+    }
+
+    public function school(){
+        return $this->belongsTo(SchoolRegister::class);
+        
+    }
+
+    public function mentor(){
+        return $this->belongsTo(Mentor::class);
+        
+    }
+
+
+    
 }  
