@@ -156,6 +156,9 @@ Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
 
+//Update Non-Audit register form
+Route::post('/update_acc_firm_info/{id}','AccFirmInfController@update');
+
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
