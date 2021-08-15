@@ -13,6 +13,9 @@ class ExamRegister extends Model
     public function course(){
         return $this->belongsTo(Course::class,'form_type','id');
     }
+    public function batch(){
+        return $this->belongsTo(Batch::class);
+    }
     public function student_info()
     {
         return $this->belongsTo(StudentInfo::class,'student_info_id','id');
