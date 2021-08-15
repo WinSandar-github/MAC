@@ -58,8 +58,10 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
                                                         <th class="bold-font-weight" >Name</th>
-                                                        <th class="bold-font-weight" >Form Fee</th>
-                                                        <th class="bold-font-weight" >Registration Fee</th>
+                                                        <th class="bold-font-weight" >Application Fee</th>
+                                                        <th class="bold-font-weight" >Self-Study Registration Fee</th>
+                                                        <th class="bold-font-weight" >Private School Registration Fee</th>
+                                                        <th class="bold-font-weight" >MAC Registration Fee</th>
                                                         <th class="bold-font-weight" >Exam Fee</th>
                                                         <th class="bold-font-weight" >Tution Fee</th>
                                                         <th class="bold-font-weight" >Description</th>
@@ -109,7 +111,7 @@
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Form Fee') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Application Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <input type="text"  name="form_fee" class="form-control"  placeholder="Form Fee" autocomplete="off" required>
@@ -118,15 +120,33 @@
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('3.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Registration Fee') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Self-Study Registration Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" name="registration_fee" class="form-control" placeholder="Registration Fee" autocomplete="off" required>
+                                    <input type="text" name="selfstudy_registration_fee" class="form-control" placeholder="Registration Fee" autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('4.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Private School Registration Fee') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="privateschool_registration_fee" class="form-control" placeholder="Registration Fee" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('MAC Registration Fee') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="mac_registration_fee" class="form-control" placeholder="Registration Fee" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Exam Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -135,7 +155,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Tution Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">

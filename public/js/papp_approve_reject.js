@@ -163,26 +163,7 @@ function loadPAPPData(){
                 $("#id").append(element.id);
                 document.getElementById('image').src=element.student_info.image;                           
                 
-                // if(element.cpa==null || element.cpa==""){
-                //     document.getElementById('cpa_btn').disabled=true;
-                // }else{
-                //     document.getElementById('cpa').src=element.cpa;
-                //     $("#cpa").append(element.cpa);
-                // }
-
-                // if(element.ra==null || element.ra==""){
-                //     document.getElementById('ra_btn').disabled=true;
-                // }else{
-                //     document.getElementById('ra').src=element.ra;
-                //     $("#ra").append(element.ra);
-                // }
-
-                // if(element.foreign_degree==null || element.foreign_degree==""){
-                //     document.getElementById('fd_btn').disabled=true;
-                // }else{
-                //     document.getElementById('foreign_degree').src=element.foreign_degree;
-                //     $("#foreign_degree").append(element.foreign_degree);
-                // }
+                
 
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
@@ -200,9 +181,27 @@ function loadPAPPData(){
                 $("#image").append(element.student_info.image);
                 $("#registration_no").append(element.student_info.registration_no);
 
-                $("#cpa").append(element.cpa);
-                $("#ra").append(element.ra);
-                $("#foreign_degree").append(element.foreign_degree);
+                if(element.cpa!=null && element.cpa!=""){
+                    $("#cpa").append(element.cpa);
+                }else {
+                    $("#cpa_btn").prop("disabled", true);
+                }
+
+                if(element.ra!=null && element.ra!=""){
+                    $("#ra").append(element.ra);
+                }else {
+                    $("#ra_btn").prop("disabled", true);
+                }
+
+                if(element.foreign_degree!=null && element.foreign_degree!="null"){
+                   
+                    removeBracketed(element.foreign_degree,"foreign_degree");
+                    
+                }else {
+                    $(".foreign_degree").append("<button disabled type='button' id='fd_btn' style='width: 30%;margin-top:1% ;' class='btn btn-primary' data-toggle='modal' data-target='#fdModal'><i class='fa fa-paperclip'></i></button>");
+                    
+                }
+
                 $("#use_firm").append(use_firm);
                 $("#firm_name").append(element.firm_name);
                 $("#firm_type").append(element.firm_type);
@@ -257,6 +256,19 @@ function loadPAPPData(){
             })
         }
     })
+}
+
+function removeBracketed(file,divname){
+    var new_file=file.replace(/[\'"[\]']+/g, '');
+    var split_new_file=new_file.split(',');
+    for(var i=0;i<split_new_file.length;i++){
+        var file="<button type='button' onclick=loadFile('"+split_new_file[i]+"') id='fd_btn' style='width: 30%;margin-top:1% ;' class='btn btn-primary' data-toggle='modal' data-target='#fdModal'><i class='fa fa-paperclip'></i></button>";
+        $("."+divname).append(file);
+    }
+}
+function loadFile(file) {
+    var myImageId = file;
+    $(".modal-body #foreign_degree").attr("src", myImageId);
 }
 
 function approvePAPPUser(){

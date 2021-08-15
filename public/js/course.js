@@ -12,7 +12,9 @@ function createCourse(){
     var send_data=new FormData();
     send_data.append('name',$("input[name=name]").val());
     send_data.append('form_fee',removeComma($("input[name=form_fee]").val()));
-    send_data.append('registration_fee',removeComma($("input[name=registration_fee]").val()));
+    send_data.append('selfstudy_registration_fee',removeComma($("input[name=selfstudy_registration_fee]").val()));
+    send_data.append('privateschool_registration_fee',removeComma($("input[name=privateschool_registration_fee]").val()));
+    send_data.append('mac_registration_fee',removeComma($("input[name=mac_registration_fee]").val()));
     send_data.append('exam_fee',removeComma($("input[name=exam_fee]").val()));
     send_data.append('tution_fee',removeComma($("input[name=tution_fee]").val()));
     send_data.append('description',$("input[name=description]").val());   
@@ -59,7 +61,9 @@ function getCourse(){
                 tr += "<td>" +  + "</td>";
                 tr += "<td>" + element.name + "</td>";
                 tr += "<td>" + thousands_separators(element.form_fee) + "</td>";
-                tr += "<td>" + thousands_separators(element.registration_fee) + "</td>";
+                tr += "<td>" + thousands_separators(element.selfstudy_registration_fee) + "</td>";
+                tr += "<td>" + thousands_separators(element.privateschool_registration_fee) + "</td>";
+                tr += "<td>" + thousands_separators(element.mac_registration_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.exam_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.tution_fee) + "</td>";
                 tr += "<td>" + element.description + "</td>";
@@ -95,7 +99,9 @@ function showCourseInfo(id) {
             var course_data=data.data;                     
             $('input[name=name]').val(course_data[0].name);
             $('input[name=form_fee]').val(course_data[0].form_fee);
-            $('input[name=registration_fee]').val(course_data[0].registration_fee);
+            $('input[name=selfstudy_registration_fee]').val(course_data[0].selfstudy_registration_fee);
+            $('input[name=privateschool_registration_fee]').val(course_data[0].privateschool_registration_fee);
+            $('input[name=mac_registration_fee]').val(course_data[0].mac_registration_fee);
             $('input[name=exam_fee]').val(course_data[0].exam_fee);
             $('input[name=tution_fee]').val(course_data[0].tution_fee);
             $('input[name=registration_start_date]').val(course_data[0].registration_start_date);
@@ -118,7 +124,9 @@ function updateCourse(){
     var id= $("input[name=course_id]").val();    
     var name=$("input[name=name]").val();
     var form_fee=$("input[name=form_fee]").val();
-    var registration_fee=$("input[name=registration_fee]").val();
+    var selfstudy_registration_fee=$("input[name=selfstudy_registration_fee]").val();
+    var privateschool_registration_fee=$("input[name=privateschool_registration_fee]").val();
+    var mac_registration_fee=$("input[name=mac_registration_fee]").val();
     var exam_fee=$("input[name=exam_fee]").val();
     var tution_fee=$("input[name=tution_fee]").val();
     var registration_start_date=$("input[name=registration_start_date]").val()
@@ -134,7 +142,9 @@ function updateCourse(){
         data:{
             name:name,
             form_fee:form_fee,
-            registration_fee:registration_fee,
+            selfstudy_registration_fee:selfstudy_registration_fee,
+            privateschool_registration_fee:privateschool_registration_fee,
+            mac_registration_fee:mac_registration_fee,
             exam_fee:exam_fee,
             tution_fee:tution_fee,
             registration_start_date:registration_start_date,

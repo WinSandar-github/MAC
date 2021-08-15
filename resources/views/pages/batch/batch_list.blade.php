@@ -102,9 +102,9 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
                                                         <th class="bold-font-weight" >Name</th>
-                                                        <th class="bold-font-weight" >Course Name</th>                                        
-                                                        <th class="bold-font-weight">Start Date</th>
-                                                        <th class="bold-font-weight">End Date</th>   
+                                                        <th class="bold-font-weight" >Course Name</th> 
+                                                        <th class="bold-font-weight">Batch Start Date</th>
+                                                        <th class="bold-font-weight">Batch End Date</th>   
                                                         <th class="bold-font-weight">MAC Registration Start Date</th>
                                                         <th class="bold-font-weight">MAC Registration End Date</th>  
                                                         <th class="bold-font-weight">Self Registration Start Date</th>

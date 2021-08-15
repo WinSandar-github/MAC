@@ -168,6 +168,9 @@ Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
 
+//Update Non-Audit register form
+Route::post('/update_acc_firm_info/{id}','AccFirmInfController@update');
+
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
@@ -188,7 +191,11 @@ Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
 // Route::apiResource('mentor','MentorController');
 Route::resource('mentor','MentorController');
 Route::post('/filter_mentor','MentorController@FilterMentor');
+// Route::apiResource('mentor','MentorController');
+// Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
+
+Route::get('user_profile/{id}','StudentInfoController@userProfile');
 
 
 

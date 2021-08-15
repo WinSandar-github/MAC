@@ -17,7 +17,9 @@ class CreateCoursesTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('form_fee');
-            $table->integer('registration_fee');
+            $table->integer('selfstudy_registration_fee');
+            $table->integer('privateschool_registration_fee');
+            $table->integer('mac_registration_fee');
             $table->integer('exam_fee');
             $table->integer('tution_fee');
             $table->text('description');

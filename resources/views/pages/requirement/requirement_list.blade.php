@@ -71,7 +71,7 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
                                                         <th class="bold-font-weight" >Name</th>                                                                                                
-                                                        <th class="bold-font-weight" >Course</th>                                        
+                                                        <th class="bold-font-weight" >Course Name</th>                                        
                                                         <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
