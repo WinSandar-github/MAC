@@ -20,7 +20,7 @@
                             <div class="row">
                                 <table width="100%">
                                     <tr>
-                                        <td width="90%"><h5 style="text-align: center;" class="card-title">{{ __('Mentor Lists') }}</h5></td>
+                                        <td width="90%"><h5 style="text-align: center;" class="card-title">{{ __('Mentor Lists (MAC)') }}</h5></td>
                                         <td width="10%">
                                             <button type="button" onclick="createForm()" class="btn btn-primary btn-round">Create</button>
                                         </td>
@@ -41,6 +41,8 @@
                                                         <th class="bold-font-weight" >Email</th>     
                                                         <th class="bold-font-weight" >Phone Number</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <!-- <th class="bold-font-weight" >Status</th> -->
+                                                        <th class="bold-font-weight" >Type</th>
                                                         <th class="bold-font-weight" >Detail</th>
                                                     </tr>
                                                 </thead>

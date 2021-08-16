@@ -176,8 +176,11 @@ Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
 Route::apiResource('mentor','MentorController');
 // Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
+Route::get('check_mentor','MentorController@getMentor');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
+
+Route::get('get_type/{id}', 'StudentRegisterController@getType');
 
 
 

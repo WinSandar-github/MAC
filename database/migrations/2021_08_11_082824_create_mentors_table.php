@@ -52,6 +52,8 @@ class CreateMentorsTable extends Migration
             $table->boolean('repeat_yearly');
             $table->boolean('training_absent');
             $table->string('training_absent_reason')->nullable();
+            $table->integer('status');
+            $table->string('type');
             $table->timestamps();
 
             $table->foreign('current_check_service_id')

@@ -358,7 +358,8 @@
                                             
                                         </div>
                                         
-                                        
+                                        <input type="hidden" name="status" value="1">
+                                        <input type="hidden" name="type" value="MAC">
                                         <div class="row">
                                         <div class="col-md-11 d-md-flex justify-content-md-end">
                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
