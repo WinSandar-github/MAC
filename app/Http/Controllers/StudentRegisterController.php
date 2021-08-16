@@ -26,12 +26,13 @@ class StudentRegisterController extends Controller
         $invoice_date = date('Y-m-d');
         switch ($request->type) {
             case 0:
-                foreach($request->reg_reason as $reg_reason){
-                    $registration_reason[] = $reg_reason;
-                }
+                // foreach($request->reg_reason as $reg_reason){
+                //     $registration_reason[] = $reg_reason;
+                // }
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
-                $student_register->reg_reason = implode(",",$registration_reason);
+                $student_register->reg_reason = $request->reg_reason;
+                // $student_register->reg_reason = implode(",",$registration_reason);
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
@@ -137,5 +138,16 @@ class StudentRegisterController extends Controller
         return response()->json([
             'data' =>$reject->form_type
         ],200);
+    }
+
+    public function FilterRegistration(Request $request){
+        $student_infos = StudentInfo::with('student_register');
+        if($request!="")
+        {
+            $student_infos = $student_infos->where('name_eng','like', '%' . $request->name. '%')
+                                            ->orWhere('name_mm','like', '%' . $request->name. '%');
+        }
+        $student_infos = $student_infos->get();
+        return response()->json([ 'data' => $student_infos],200);
     }
 }

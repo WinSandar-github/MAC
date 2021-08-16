@@ -4,14 +4,17 @@ function getStudentSelfStudy(){
     destroyDatatable("#da_two_self_study", "#da_two_study_body");   
     destroyDatatable("#tbl_cpa1_student_self_study", "#tbl_cpa1_student_self_study_body");
     destroyDatatable("#tbl_cpa2_student_self_study", "#tbl_cpa2_student_self_study_body"); 
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name_ss]").val());
     $.ajax({
-        url: BACKEND_URL+"/student_register",
-        type: 'get',
-        data:"",
+        url: BACKEND_URL+"/filter_registration",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             var student_data=data.data;
             student_data.forEach(function (element) {
-                // console.log('element',element);
                 if(element.student_register!=null){
                     var student_info = element.student_register;
                     student_info.forEach(function(item){
@@ -20,11 +23,19 @@ function getStudentSelfStudy(){
                             type: 'get',
                             data:"",
                             success:function(courses){
-                                console.log('courses',courses);
                                 var course=courses.data;
-                                console.log('type',item.type);
                                 if(item.type == 0 && course[0].code=="da_1")
                                 { 
+                                    var status;
+                                    if(item.status==0){
+                                        status="PENDING";
+                                    }
+                                    else if(item.status==1){
+                                        status="APPROVED";
+                                    }
+                                    else{
+                                        status="REJECTED";
+                                    }
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -32,7 +43,7 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + element.registration_no+ "</td>";
                                     tr += "<td>" + element.phone + "</td>";
                                     tr += "<td>" + item.reg_reason + "</td>";
-                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -42,7 +53,16 @@ function getStudentSelfStudy(){
                                 }                                
                                 
                                 if(item.type == 0 && course[0].code=="da_2"){
-                                    
+                                    var status;
+                                    if(item.status==0){
+                                        status="PENDING";
+                                    }
+                                    else if(item.status==1){
+                                        status="APPROVED";
+                                    }
+                                    else{
+                                        status="REJECTED";
+                                    }
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -50,7 +70,7 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + element.registration_no+ "</td>";
                                     tr += "<td>" + element.phone + "</td>";
                                     tr += "<td>" + item.reg_reason + "</td>";
-                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -61,6 +81,16 @@ function getStudentSelfStudy(){
                                 } 
                                 if(item.type == 0 && course[0].code=="cpa_1")
                                 {
+                                    var status;
+                                    if(item.status==0){
+                                        status="PENDING";
+                                    }
+                                    else if(item.status==1){
+                                        status="APPROVED";
+                                    }
+                                    else{
+                                        status="REJECTED";
+                                    }
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -68,7 +98,7 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + element.registration_no+ "</td>";
                                     tr += "<td>" + element.phone + "</td>";
                                     tr += "<td>" + item.reg_reason + "</td>";
-                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -77,6 +107,16 @@ function getStudentSelfStudy(){
 
                                 }
                                 if(item.type == 0 && course[0].code=="cpa_2"){
+                                    var status;
+                                    if(item.status==0){
+                                        status="PENDING";
+                                    }
+                                    else if(item.status==1){
+                                        status="APPROVED";
+                                    }
+                                    else{
+                                        status="REJECTED";
+                                    }
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
@@ -84,7 +124,7 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + element.registration_no+ "</td>";
                                     tr += "<td>" + element.phone + "</td>";
                                     tr += "<td>" + item.reg_reason + "</td>";
-                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -182,10 +222,14 @@ function getStudentPrivateSchool(){
     destroyDatatable("#da_two_private_school", "#da_two_private_school_body");    
     destroyDatatable("#tbl_cpa1_student_private_school", "#tbl_cpa1_student_private_school_body");
     destroyDatatable("#tbl_cpa2_student_private_school", "#tbl_cpa2_student_private_school_body");
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name_ps]").val());
     $.ajax({
-        url: BACKEND_URL+"/student_register",
-        type: 'get',
-        data:"",
+        url: BACKEND_URL+"/filter_registration",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             var student_data = data.data;
             student_data.forEach(function (element) {
@@ -363,10 +407,14 @@ function getStudentMac(){
     destroyDatatable("#da_two_mac", "#da_two_mac_body");   
     destroyDatatable("#tbl_cpa1_student_mac", "#tbl_cpa1_student_mac_body"); 
     destroyDatatable("#tbl_cpa2_student_mac", "#tbl_cpa2_student_mac_body");  
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name_mac]").val());
     $.ajax({
-        url: BACKEND_URL+"/student_register",
-        type: 'get',
-        data:"",
+        url: BACKEND_URL+"/filter_registration",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             var student_data=data.data;
             student_data.forEach(function (element) {
@@ -382,13 +430,23 @@ function getStudentMac(){
                                 var course=courses.data;
                               if(item.type == 2 && course[0].code== "da_1" )
                                 {
+                                    var status;
+                                    if(item.status==0){
+                                        status="PENDING";
+                                    }
+                                    else if(item.status==1){
+                                        status="APPROVED";
+                                    }
+                                    else{
+                                        status="REJECTED";
+                                    }
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
                                     tr += "<td>" + element.email + "</td>";
                                     tr += "<td>" + element.registration_no+ "</td>";
                                     tr += "<td>" + element.phone + "</td>";
-                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -398,13 +456,23 @@ function getStudentMac(){
                                 }
                                 if(item.type == 2 && course[0].code=="da_2")
                                 {
+                                    var status;
+                                    if(item.status==0){
+                                        status="PENDING";
+                                    }
+                                    else if(item.status==1){
+                                        status="APPROVED";
+                                    }
+                                    else{
+                                        status="REJECTED";
+                                    }
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
                                     tr += "<td>" + element.email + "</td>";
                                     tr += "<td>" + element.registration_no+ "</td>";
                                     tr += "<td>" + element.phone + "</td>";
-                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -413,13 +481,23 @@ function getStudentMac(){
                                 }      
                                 if(item.type == 2 && course[0].code=="cpa_1")
                                 {
+                                    var status;
+                                    if(item.status==0){
+                                        status="PENDING";
+                                    }
+                                    else if(item.status==1){
+                                        status="APPROVED";
+                                    }
+                                    else{
+                                        status="REJECTED";
+                                    }
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
                                     tr += "<td>" + element.email + "</td>";
                                     tr += "<td>" + element.registration_no+ "</td>";
                                     tr += "<td>" + element.phone + "</td>";
-                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -431,13 +509,23 @@ function getStudentMac(){
                                 
                                 if(item.type == 2 && course[0].code=="cpa_2")
                                 {
+                                    var status;
+                                    if(item.status==0){
+                                        status="PENDING";
+                                    }
+                                    else if(item.status==1){
+                                        status="APPROVED";
+                                    }
+                                    else{
+                                        status="REJECTED";
+                                    }
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
                                     tr += "<td>" + element.name_eng + "</td>";
                                     tr += "<td>" + element.email + "</td>";
                                     tr += "<td>" + element.registration_no+ "</td>";
                                     tr += "<td>" + element.phone + "</td>";
-                                    tr += "<td>" + item.status + "</td>";
+                                    tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
                                     tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";

@@ -1,14 +1,20 @@
 var attached_file;
 
 function getDAList(course_code){
-    destroyDatatable("#tbl_da_list", "#d");    
+    destroyDatatable("#tbl_da_list", "#tbl_da_list_body"); 
+    console.log($("input[name=filter_by_nrc]").val());
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
     $.ajax({
-        url: BACKEND_URL+"/da_register",
-        type: 'get',
-        data:"",
+        url: BACKEND_URL+"/filter_student_info",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             var da_data = data.data;
-            console.log(da_data)
+            console.log({data});
             let da_one_list = da_data.filter(function(v){
                 return v.batch.course.code == course_code 
             })

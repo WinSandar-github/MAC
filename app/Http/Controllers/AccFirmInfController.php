@@ -1149,6 +1149,13 @@ class AccFirmInfController extends Controller
         return response()->json($data,200);
     }
 
+    // Non Audit Feedback
+    public function nonAuditFeedback($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)->get();
+        return response()->json($data,200);
+    }
+
     public function auditStatus($id)
     {
         $data = AccountancyFirmInformation::where('id',$id)->get('status');
