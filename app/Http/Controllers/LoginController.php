@@ -21,7 +21,7 @@ class LoginController extends Controller
       
           //    }
        
-        $user = StudentInfo::where('email', '=', $request->email)->with('mentor','accountancy_firm','school')->first();
+        $user = StudentInfo::where('email', '=', $request->email)->with('mentor','accountancy_firm','school','teacher')->first();
          
        
 

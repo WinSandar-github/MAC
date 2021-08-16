@@ -93,6 +93,11 @@ class StudentInfo extends Model
         
     }
 
+    public function teacher(){
+        return $this->belongsTo(TeacherRegister::class);
+        
+    }
+
 
     
 }  
