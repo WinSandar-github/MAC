@@ -380,8 +380,7 @@ function getStudentMac(){
                             data:"",
                             success:function(courses){
                                 var course=courses.data;
-                                console.log(course)
-                                if(item.type == 2 && course[0].code== "da_1" )
+                              if(item.type == 2 && course[0].code== "da_1" )
                                 {
                                     var tr = "<tr>";
                                     tr += "<td>" +  + "</td>";
