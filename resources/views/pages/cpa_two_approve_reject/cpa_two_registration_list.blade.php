@@ -31,6 +31,16 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-3 text-left" style="padding-left:0px;font;font-weight:bold;">Name</div>
+                                                <div class="col-md-5" style="padding-right:0px;padding-left:0px;">
+                                                    <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
+                                                </div>
+                                                <div class="col-md-2" style="vertical-align: top;">
+                                                    <button type="button" class="btn btn-primary btn-round" onclick="getBatch()" id="search">Search</button>
+                                                </div>
+                                            </div>
                                             
                                             <ul class="nav nav-tabs" role="tablist">
                                                 <li class="nav-item">

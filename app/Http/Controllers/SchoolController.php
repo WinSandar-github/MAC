@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SchoolRegister;
 use App\StudentInfo;
 use Hash;
+use Illuminate\Support\Facades\DB;
 
 class SchoolController extends Controller
 {
@@ -145,6 +146,22 @@ class SchoolController extends Controller
         $school->save();
         return response()->json([
             'message' => 'You have rejected this user.'
+        ],200);
+    }
+
+    public function FilterSchool(Request $request)
+    {
+        $school = SchoolRegister::orderBy('created_at','desc');
+        if($request->name!=""){
+            $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
+                        ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+        }
+        if($request->nrc!=""){
+            $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+        }
+        $school=$school->get();
+        return  response()->json([
+            'data' => $school
         ],200);
     }
 }

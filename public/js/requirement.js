@@ -19,11 +19,16 @@ function createRequirement(){
 }
 
 function getRequirement(){
-    destroyDatatable("#tbl_requirement", "#tbl_requirement_body");    
+    destroyDatatable("#tbl_requirement", "#tbl_requirement_body");
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('course_name',$('#filter_course_id').val());
     $.ajax({
-        url: BACKEND_URL+"/requirement",
-        type: 'get',
-        data:"",
+        url: BACKEND_URL+"/filter_requirement",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             
             var requirement_data=data.data;
