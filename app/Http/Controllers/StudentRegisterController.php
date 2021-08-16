@@ -195,4 +195,15 @@ class StudentRegisterController extends Controller
             'data' => $type
         ],200);
     }
+
+    public function FilterRegistration(Request $request){
+        $student_infos = StudentInfo::with('student_register');
+        if($request!="")
+        {
+            $student_infos = $student_infos->where('name_eng','like', '%' . $request->name. '%')
+                                            ->orWhere('name_mm','like', '%' . $request->name. '%');
+        }
+        $student_infos = $student_infos->get();
+        return response()->json([ 'data' => $student_infos],200);
+    }
 }

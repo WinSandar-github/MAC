@@ -150,15 +150,19 @@ class ExamRegisterController extends Controller
         ],200);
     }
 
-    public function selectByFormType($id)
+    public function FilterExamRegistration(Request $request)
     {
-        if($id=="all"){
-            $exam_register = ExamRegister::with('student_info')->get();
+        $exam_register = ExamRegister::with('student_info');
+        if($request->name!=""){
+            $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
+            ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+            ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
         }
-        else 
+        if($request->batch!="all") 
         {
-            $exam_register = ExamRegister::where('batch_id', $id)->with('student_info')->get();
+            $exam_register = $exam_register->where('batch_id', $request->batch);
         }
+        $exam_register =  $exam_register->get();
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -243,8 +247,17 @@ class ExamRegisterController extends Controller
 
     
 
-    public function FilterExamRegister(){
-        $student_infos = ExamRegister::with('student_info')->get();
+    public function FilterExamRegister(Request $request){
+        $student_infos = ExamRegister::with('student_info');
+        if($request->name!=""){
+            $student_infos = $student_infos->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
+            ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+            ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+        }
+        if($request->grade!="all"){
+            $student_infos = $student_infos->where('grade',$request->grade);
+        }
+        $student_infos = $student_infos->get();
         return response()->json([ 
             'data' => $student_infos
         ],200);

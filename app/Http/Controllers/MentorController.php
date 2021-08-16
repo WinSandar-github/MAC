@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mentor;
 use App\StudentInfo;
 use Hash;
+use Illuminate\Support\Facades\DB;
 
 class MentorController extends Controller
 {
@@ -205,6 +206,20 @@ class MentorController extends Controller
     {
         $mentor = Mentor::all();
         return response()->json([
+    }
+
+    public function FilterMentor(Request $request)
+    {
+        $mentor = Mentor::orderBy('created_at','desc');
+        if($request->name!=""){
+            $mentor=$mentor->where('name_mm', 'like', '%' . $request->name. '%')
+                        ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+        }
+        if($request->nrc!=""){
+            $mentor=$mentor->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+        }
+        $mentor=$mentor->get();
+        return  response()->json([
             'data' => $mentor
         ],200);
     }

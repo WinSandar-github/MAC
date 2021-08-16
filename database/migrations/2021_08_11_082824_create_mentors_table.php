@@ -45,12 +45,12 @@ class CreateMentorsTable extends Migration
             // $table->string('current_check_services');
             $table->string('current_check_services_other')->nullable();
             $table->string('experience');
-            $table->date('started_teaching_year');
-            $table->bigInteger('internship_accept_no');
-            $table->bigInteger('current_accept_no');
-            $table->bigInteger('trained_trainees_no');
-            $table->boolean('repeat_yearly');
-            $table->boolean('training_absent');
+            $table->date('started_teaching_year')->nullable();
+            $table->bigInteger('internship_accept_no')->nullable();
+            $table->bigInteger('current_accept_no')->nullable();
+            $table->bigInteger('trained_trainees_no')->nullable();
+            $table->boolean('repeat_yearly')->nullable();
+            $table->boolean('training_absent')->nullable();
             $table->string('training_absent_reason')->nullable();
             $table->integer('status');
             $table->string('type');
@@ -59,7 +59,7 @@ class CreateMentorsTable extends Migration
             $table->foreign('current_check_service_id')
             ->references('id')
             ->on('current_check_services')
-            ->onDelete('cascade'); 
+            ->onDelete('cascade');
         });
     }
 

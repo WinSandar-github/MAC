@@ -170,9 +170,15 @@ function loadMentor()
 
 function getMentorList(){
     destroyDatatable("#tbl_mentor", "#tbl_mentor_body");
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
     $.ajax({
-        type : 'GET',
-        url : BACKEND_URL+"/mentor",
+        type : 'post',
+        url : BACKEND_URL+"/filter_mentor",
+        data:send_data,
+        contentType: false,
+        processData: false,
         success : function(data){
             var m_data = data.data;
             m_data.forEach(function (element) {

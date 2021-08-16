@@ -456,7 +456,7 @@ class AccFirmInfController extends Controller
                 $audit_total_staff->save();
             }
 
-            if($request->local_foreign_id == 2){
+            if($request->local_foreign_type == 2){
                 //Myanmar cpa non audit foreigns
                 for($i=0;$i<sizeof($request->mf_name);$i++){
                     $foreign = new MyanmarCpaNonAuditForeign();
@@ -781,10 +781,11 @@ class AccFirmInfController extends Controller
         $acc_firm_info->city                    = $request->city;
         $acc_firm_info->state_region            = $request->state;
         $acc_firm_info->telephones              = $request->phone_no;
-        $acc_firm_info->h_email                 = $request->h_email;
+        $acc_firm_info->h_email                   = $request->h_email;
         $acc_firm_info->website                 = $request->website;
         $acc_firm_info->audit_firm_type_id      = $request->audit_firm_type_id;
-        // $acc_firm_info->local_foreign_id        = $request->local_foreign_id;
+        //$acc_firm_info->local_foreign_id        = $request->local_foreign_id;
+        $acc_firm_info->local_foreign_type        = $request->local_foreign_type;
         $acc_firm_info->organization_structure_id    = $request->org_stru_id;
         $acc_firm_info->type_of_service_provided_id  = $request->t_s_p_id;
         //name of sole_propietor == name of manager
@@ -800,6 +801,9 @@ class AccFirmInfController extends Controller
         //Student Info
         // $std_info = new StudentInfo();
         // $std_info->accountancy_firm_info_id = $acc_firm_info->id;
+        // $std_info->email = $request->email;
+        // //$std_info->password = Hash::make($request->password);
+        // $std_info->password = $request->password;
         // $std_info->save();
 
         //Branch Office
@@ -924,7 +928,7 @@ class AccFirmInfController extends Controller
             }
 
             MyanmarCpaNonAuditForeign::where('accountancy_firm_info_id',$id)->delete();
-            if($request->local_foreign_id == 2){
+            if($request->local_foreign_type == 2){
                 //Myanmar cpa non audit foreigns
                 for($i=0;$i<sizeof($request->mf_name);$i++){
                     $foreign = new MyanmarCpaNonAuditForeign();
@@ -1131,7 +1135,7 @@ class AccFirmInfController extends Controller
             $non_audit_firm_file->delete();
 
 
-            if($acc_firm_info->local_foreign_id == 2){
+            if($acc_firm_info->local_foreign_type == 2){
                 NonAuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
             }
         }
@@ -1142,6 +1146,13 @@ class AccFirmInfController extends Controller
 
     //Audit Feedback
     public function auditFeedback($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)->get();
+        return response()->json($data,200);
+    }
+
+    // Non Audit Feedback
+    public function nonAuditFeedback($id)
     {
         $data = AccountancyFirmInformation::where('id',$id)->get();
         return response()->json($data,200);
