@@ -15,14 +15,14 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('batches')->get();
+        $courses = Course::with('batches','active_batch')->get();
         return response()->json([
             'data' => $courses
         ],200);
     }
     public function loadCourseByCourseCode($code)
     {
-        $courses = Course::where('code',$code)->with('batches')->get();
+        $courses = Course::where('code',$code)->with('batches','active_batch')->get();
         return response()->json([
             'data' => $courses
         ],200);
