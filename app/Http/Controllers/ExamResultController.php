@@ -40,6 +40,7 @@ class ExamResultController extends Controller
 
     public function store(Request $request)
     {
+
         foreach($request->subject as $sub)
         {
             $subjects[] = $sub;
@@ -61,14 +62,15 @@ class ExamResultController extends Controller
         // ExamResult::create($data);
         // Alert::success('Success', 'Successfully Added Marks');
         // return view('pages.exam_result.exam_result_list');
-        $std_data = ExamRegister::where('batch_id',$request->batch_id)->get('student_info_id');
+        $std_data = ExamRegister::where('id',$request->exam_register_id)->get('student_info_id');
         $student_info_id = $std_data[0]['student_info_id'];
-        $reg_data = ExamRegister::where('batch_id',$request->batch_id)->get('id');
-        $registeration_id = $reg_data[0]['id'];
+ 
+        // $reg_data = ExamRegister::where('batch_id',$request->batch_id)->get('id');
+        // $registeration_id = $reg_data[0]['id'];
         $date = date('Y-m-d');
         $exam_result=new ExamResult;                
         $exam_result->student_info_id=$student_info_id;
-        $exam_result->registeration_id=$registeration_id ;
+        $exam_result->registeration_id=$request->exam_register_id;
         $exam_result->result=json_encode(['subjects'=>$subjects,'marks'=>$marks,'grades'=>$grades]);;
         $exam_result->date=$date;
         $exam_result->save();
@@ -172,6 +174,7 @@ class ExamResultController extends Controller
     public function SearchExamResult($batch_id){
         $std_data = ExamRegister::where('id',$batch_id)->get('student_info_id');
         $student_info_id = $std_data[0]['student_info_id'];
+     
         $reg_data = ExamRegister::where('id',$batch_id)->get('id');
         $registeration_id = $reg_data[0]['id'];
 
@@ -179,6 +182,31 @@ class ExamResultController extends Controller
             ->where('registeration_id', $registeration_id)->first();
         return response()->json([
             'data' => $exam_result
+        ],200);
+    }
+
+
+    public function passExam($id)
+    {
+        $exam_register = ExamRegister::find($id);
+        $exam_register->grade = 1;
+        $exam_register->save();
+
+        $student_info_id = StudentInfo::find($exam_register->student_info_id);
+        $student_info_id->approve_reject_status  =  3;
+        $student_info_id->save();
+        return response()->json([
+            'message' => "You have successfully pass that Student!"
+        ],200);
+    }
+
+    public function rejectExam($id)
+    {
+        $exam_register = ExamRegister::find($id);
+        $exam_register->grade = 2;
+        $exam_register->save();
+        return response()->json([
+            'message' => "You have successfully fail that Student!"
         ],200);
     }
 }

@@ -227,7 +227,7 @@
                                 <div class="row mt-5 justify-content-center" id="approve_reject"> 
                                     <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
-                                    <button type="submit" name="save" id="reject" class="btn btn-primary"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>REJECT</button>
+                                    <button type="submit" name="save" id="reject" class="btn btn-danger"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                 </div>
                                 <!-- Attached Certificate -->
                                 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >

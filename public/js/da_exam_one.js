@@ -13,8 +13,7 @@ function getExam(){
             da_data.forEach(function (element) {
                 // console.log('element',element);
                 // console.log('element',element.student_info.course_type_id);
-                if(element.student_info.course_type_id==1)
-                {
+                
                     console.log('student_info',element.form_type);
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
@@ -47,6 +46,7 @@ function getExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
                                 tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
                                 tr += "<td>" + element.grade + "</td>";
@@ -106,8 +106,7 @@ function getExam(){
                             getIndexNumber('#tbl_da_exam_two tr');
                             createDataTable(".tbl_da_exam_two");
                         }
-                    }) 
-                }
+                    })
             });
             
             
@@ -274,15 +273,15 @@ function rejectDATwoExam(){
     });
 }
 
-function loadBatchData(){ 
+function loadBatchData(course_code){ 
     var select = document.getElementById("selected_batch_id");  
     $.ajax({
-        url: BACKEND_URL+"/course_by_course_type/1",
+        url: BACKEND_URL+"/course_by_course_code/"+course_code,
         type: 'get',
         data:"",
         success: function(data){
             var course_data=data.data;            
-            
+            console.log('course_data',course_data);
             course_data.forEach(function (element) {
                 element.batches.forEach(function (batch){
                     var option = document.createElement('option');
@@ -355,44 +354,48 @@ function loadStudent(course_type)
     localStorage.setItem("course_type",course_type);
     // console.log(id);
     $.ajax({
-        url: BACKEND_URL + "/filter_exam_register/1",
+        url: BACKEND_URL +"/filter_exam_register",
         type: 'get',
         data:"",
         success: function(data){
-            console.log("course",data);
             var da_data = data.data;
             da_data.forEach(function (element) {
-                if(element.exam_register!=null){    
+             
                     $.ajax({
-                        url: BACKEND_URL+"/course/"+element.exam_register.form_type,
+                        url: BACKEND_URL+"/course/"+element.form_type,
                         type: 'get',
                         data:"",
                         success:function(courses){
                             var course =courses.data;
                             if(course[0].code==course_type){
+                                console.log(course[0].code,course_type,element)
                                 console.log("stu_reg",course_type);
-                                if(element.exam_register.status==0){
+                                if(element.status==0){
                                     status="PENDING";
                                 }
-                                else if(element.exam_register.status==1){
+                                else if(element.status==1){
                                     status="APPROVED";
                                 }
                                 else{
                                     status="REJECTED";
                                 }
-                                if(element.exam_register.exam_type_id == 0){
+
+                                // if(element.exam_register.exam_type_id == 0){
+                                if(element.exam_type_id == 0){
                                     exam_type_id = "SELF STUDY";
                                 }
-                                else if(element.exam_register.exam_type_id==1){
+                                else if(element.exam_type_id==1){
                                     exam_type_id="PRIVATE SCHOOL";
                                 }
                                 else{
                                     exam_type_id="MAC STUDENT";
                                 }
-                                if(element.exam_register.is_full_module==0){
+
+                                // if(element.exam_register.is_full_module==0){
+                                if(element.is_full_module==0){
                                     is_full_module="Module 1";
                                 }
-                                else if(element.exam_register.is_full_module==1){
+                                else if(element.is_full_module==1){
                                     is_full_module="Module 2";
                                 }
                                 else{
@@ -401,26 +404,27 @@ function loadStudent(course_type)
                 
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
-                                tr += "<td>" + element.name_eng + "</td>";
-                                tr += "<td>" + element.exam_register.private_school_name + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
+                                tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
-                                tr += "<td>" + element.exam_register.grade + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.exam_register.batch_id+ "</td>";
+                                tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td>" + is_full_module+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
+                                // tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
+                                //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module +")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                                tr += "<td ><div class='btn-group'>";
+                                // tr += "<td ><div class='btn-group'>";
                                 $("#tbl_exam_result_body").append(tr);
-
-                                
+                               
                                 getIndexNumber('#tbl_exam_result tr');
-                                createDataTable("#tbl_exam_result");
+                                createDataTable(".tbl_exam_result");
                             }
                         }
                     });
-                }         
+                // }        
                     
                 //});
                 
@@ -455,7 +459,7 @@ function fillMark(id, isFullModule){
 function getModuleStd(){
     var id = localStorage.getItem("exam_register_id");
     var module_type = localStorage.getItem("is_full_module");
-    $("input[name = batch_id]").val(id);
+    // $("input[name = batch_id]").val(id);
     $.ajax({
         url: BACKEND_URL + "/std/"+id,
         type: 'get',
@@ -468,6 +472,7 @@ function getModuleStd(){
                 // console.log(std)
                 if(element.status==0){
                     status="PENDING";
+                    $('.pass_fail_btn').hide();
                 }
                 else if(element.status==1){
                     status="APPROVED";
@@ -494,6 +499,14 @@ function getModuleStd(){
                     is_full_module="Full Module";
                 }
 
+                if(element.grade == 1 )
+                {
+                    console.log("Grade");
+                    $('.ex_res_btn').hide();
+                    $('.pass_fail_btn').hide();
+
+                }
+
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
@@ -507,7 +520,8 @@ function getModuleStd(){
                 type: 'get',
                 data:"",
                 success: function(result){
-                        if(result!=null)
+                    console.log(result)
+                        if(result.data !=null)
                         {
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',JSON.parse(result.data.result));
@@ -589,7 +603,7 @@ function getModuleStd(){
 }
 
 function Exam_Result_Submit(){
-    var id = localStorage.getItem("batch_id");
+    var id = localStorage.getItem("exam_register_id");
     var course_type = localStorage.getItem("course_type");
     var table = document.getElementById("tbl_fillmarks");
     var result_id = $("input[name = result_id]").val();
@@ -606,7 +620,7 @@ function Exam_Result_Submit(){
     for (var i = 1; i < totalRowCount; i++) {
         data.append('grade[]',$('#grade'+i).val());
     }
-    data.append('batch_id',id);
+    data.append('exam_register_id',id);
     if(result_id=="")
     {
         $.ajax({

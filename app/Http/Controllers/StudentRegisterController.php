@@ -44,7 +44,7 @@ class StudentRegisterController extends Controller
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
                 $student_register->save();
-                return "success";
+                return "You have successfully registerd!";
                 break;
             case 1:
                 $student_register = new StudentRegister();
@@ -63,7 +63,7 @@ class StudentRegisterController extends Controller
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
                 $student_register->save();
-                return "success";
+                return "You have successfully registerd!";
                 break;
             case 2:
                 if ($request->hasfile('good_behavior')) {
@@ -103,7 +103,7 @@ class StudentRegisterController extends Controller
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
                 $student_register->save();
-                return "success";
+                return "You have successfully registerd!";
                 break;
         }
             

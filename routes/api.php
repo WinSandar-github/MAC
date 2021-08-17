@@ -27,6 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
@@ -51,7 +52,7 @@ Route::apiResource('/requirement','RequirementController');
 
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
-Route::get('/course_by_course_type/{course_type_id}','CourseController@loadCourseByCourseType');
+Route::get('/course_by_course_code/{code}','CourseController@loadCourseByCourseCode');
 Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
@@ -100,12 +101,12 @@ Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 Route::get('/filter/{id}', 'ExamRegisterController@selectByFormType');
+Route::get('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
-Route::get('/filter_exam_register/{course_type}', 'DARegisterController@FilterExamRegister');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
@@ -125,11 +126,14 @@ Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResu
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
+Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
+Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
+Route::get('/course_by_course_type/{course_type_id}','CourseController@loadCourseByCourseType');
 
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
@@ -150,6 +154,9 @@ Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_regi
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
 
+//Non-Audti DATA
+Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
+
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
 
@@ -159,5 +166,17 @@ Route::get('/get_current_batch_studentId/{student_info_id}','BatchController@cur
 //login validate for mobile
 Route::post('/loginValidate', 'LoginController@loginValidate');
 Route::post('/mobileLogin', 'LoginController@mobileLogin');
+
+//Exam Status
+Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
+
+//Pass or fail student 
+Route::patch('/pass_exam/{id}', 'ExamResultController@passExam');
+Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
+
+// Route::apiResource('mentor','MentorController');
+Route::resource('mentor','MentorController');
+Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
+
 
 

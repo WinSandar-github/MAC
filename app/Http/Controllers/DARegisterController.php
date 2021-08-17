@@ -216,6 +216,7 @@ class DARegisterController extends Controller
 
      public function reg_feedback($id)
     {
+        
          $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
          $status = $student_register != null ? $student_register->status : null;
@@ -231,12 +232,5 @@ class DARegisterController extends Controller
 
     }
 
-    public function FilterExamRegister($course_type){
-        $student_infos = StudentInfo::where('course_type_id',$course_type)
-            ->with('exam_register', 'student_register')
-            ->get();
-        return response()->json([ 
-            'data' => $student_infos
-        ],200);
-    }
+  
 }

@@ -148,7 +148,7 @@
                                 <div class="row mt-5 justify-content-center" id="approve_reject" style="display:none;"> 
                                     <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
 
-                                    <button  id="reject" class="btn btn-primary"  onclick="rejectTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
+                                    <button  id="reject" class="btn btn-danger"  onclick="rejectTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
                                 </div>
                                 
                             </div>

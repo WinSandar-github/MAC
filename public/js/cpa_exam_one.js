@@ -1,26 +1,26 @@
-function loadCPABatchData(){ 
-    var select = document.getElementById("selected_batch_id");  
-    $.ajax({
-        url: BACKEND_URL+"/course_by_course_type/2",
-        type: 'get',
-        data:"",
-        success: function(data){
-            var course_data=data.data;            
-            
-            course_data.forEach(function (element) {
-                element.batches.forEach(function (batch){
-                    var option = document.createElement('option');
-                    option.text = batch.name;
-                    option.value = batch.id;
-                    select.add(option, 0);
-                });
-            });              
-        },
-        error:function (message){
+// function loadCPABatchData(){ 
+//     var select = document.getElementById("selected_batch_id");  
+//     $.ajax({
+//         url: BACKEND_URL+"/course_by_course_type/2",
+//         type: 'get',
+//         data:"",
+//         success: function(data){
+//             var course_data=data.data;            
+//             console.log("course_data",course_data);
+//             course_data.forEach(function (element) {
+//                 element.batches.forEach(function (batch){
+//                     var option = document.createElement('option');
+//                     option.text = batch.name;
+//                     option.value = batch.id;
+//                     select.add(option, 0);
+//                 });
+//             });              
+//         },
+//         error:function (message){
                    
-        }
-    });
-}
+//         }
+//     });
+// }
 
 function getCPAExam(){
     destroyDatatable("#tbl_cpa_exam_one", "#tbl_cpa_exam_one_body");
@@ -35,9 +35,8 @@ function getCPAExam(){
             var da_data = data.data;
             da_data.forEach(function (element) {
                 console.log('element',element);
-                console.log('form_type', element.form_type)
-                if(element.student_info.course_type_id==2)
-                {
+                console.log('form_type', element.form_type);
+                    console.log(element.student_info.course_type_id);
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
                         type: 'get',
@@ -45,7 +44,7 @@ function getCPAExam(){
                         success:function(courses){
                             var course=courses.data;
                             if(course[0].code=="cpa_1")
-                            {
+                            {console.log("cpa 1");
                                 if(element.status==0){
                                     status="Pending";
                                 }
@@ -57,6 +56,7 @@ function getCPAExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
                                 tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + element.exam_type_id + "</td>";
                                 tr += "<td>" + element.grade + "</td>";
@@ -106,8 +106,6 @@ function getCPAExam(){
                             createDataTable(".tbl_cpa_exam_two");
                         }
                     })
-                    
-                }
             });
             
         },
@@ -280,47 +278,46 @@ function loadCPAStudent(course_type)
     //var id = localStorage.getItem("batch_id");
     // console.log(id);
     $.ajax({
-        url: BACKEND_URL + "/filter_exam_register/2",
+        url: BACKEND_URL + "/filter_exam_register",
         type: 'get',
         data:"",
         success: function(data){
             console.log("course",data);
             var da_data = data.data;
             da_data.forEach(function (element) {
-                //element.exam_register.forEach(function (stu_reg){ 
-                    console.log(element.exam_register); 
-                    if(element.exam_register!=null){   
                     $.ajax({
-                        url: BACKEND_URL+"/course/"+element.exam_register.form_type,
+                        url: BACKEND_URL+"/course/"+element.form_type,
                         type: 'get',
                         data:"",
                         success:function(courses){
+                            console.log(courses,"Course")
+                        
                             var course=courses.data;
-                            console.log('courses',course);
                             if(course[0].code==course_type){
+                                console.log('check courses',course);
                                 console.log(course[0].code,course_type);
-                                if(element.exam_register.status==0){
+                                if(element.status==0){
                                     status="PENDING";
                                 }
-                                else if(element.exam_register.status==1){
+                                else if(element.status==1){
                                     status="APPROVED";
                                 }
                                 else{
                                     status="REJECTED";
                                 }
-                                if(element.exam_register.exam_type_id == 0){
+                                if(element.exam_type_id == 0){
                                     exam_type_id = "SELF STUDY";
                                 }
-                                else if(element.exam_register.exam_type_id==1){
+                                else if(element.exam_type_id==1){
                                     exam_type_id="PRIVATE SCHOOL";
                                 }
                                 else{
                                     exam_type_id="MAC STUDENT";
                                 }
-                                if(element.exam_register.is_full_module==0){
+                                if(element.is_full_module==0){
                                     is_full_module="Module 1";
                                 }
-                                else if(element.exam_register.is_full_module==1){
+                                else if(element.is_full_module==1){
                                     is_full_module="Module 2";
                                 }
                                 else{
@@ -329,15 +326,15 @@ function loadCPAStudent(course_type)
         
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
-                                tr += "<td>" + element.name_eng + "</td>";
-                                tr += "<td>" + element.exam_register.private_school_name + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
+                                tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
-                                tr += "<td>" + element.exam_register.grade + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.exam_register.batch_id+ "</td>";
+                                tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td>" + is_full_module+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module +")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "<td ><div class='btn-group'>";
                                 $("#tbl_cpa_exam_result_body").append(tr);
@@ -348,9 +345,6 @@ function loadCPAStudent(course_type)
                             }
                          }
                     });   
-                                 
-                }
-               // });
             });
         },
         error:function (message){
@@ -393,6 +387,7 @@ function getCPAModuleStd(){
                  console.log('ee',element);
                 if(element.status==0){
                     status="PENDING";
+                    $('.pass_fail_btn').hide();
                 }
                 else if(element.status==1){
                     status="APPROVED";
@@ -419,6 +414,13 @@ function getCPAModuleStd(){
                     is_full_module="Full Module";
                 }
 
+                if(element.grade == 1 )
+                {
+                     $('.ex_res_btn').hide();
+                    $('.pass_fail_btn').hide();
+
+                }
+
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
@@ -431,7 +433,8 @@ function getCPAModuleStd(){
                 type: 'get',
                 data:"",
                 success: function(result){
-                        if(result!=null)
+                    
+                        if(result.data !=null)
                         {
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',result.data.id);

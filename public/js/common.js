@@ -755,7 +755,7 @@ var toastOptions = {
     "debug": false,
     "newestOnTop": false,
     "progressBar": false,
-    "positionClass": "toast-top-right",
+    "positionClass": "toast-top-center",
     "preventDuplicates": false,
     "onclick": null,
     "showDuration": "300",

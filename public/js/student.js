@@ -199,21 +199,30 @@ function getStudentPrivateSchool(){
                             success:function(courses){
                                 var course =courses.data;
                                 console.log(item.type,course[0].code);
+                                if(item.status==0){
+                                    status="PENDING";
+                                }
+                                else if(item.status==1){
+                                    status="APPROVED";
+                                }
+                                else{
+                                    status="REJECTED";
+                                }
+
                                 if(item.type == 1 && course[0].code=="da_1")
-                                {
+                                {                                    
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.name_eng + "</td>";
                                 tr += "<td>" + element.email + "</td>";
                                 tr += "<td>" + element.registration_no+ "</td>";
                                 tr += "<td>" + element.phone + "</td>";
-                                tr += "<td>" + item.status + "</td>";
+                                tr += "<td>" + status + "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#tbl_student_private_school_body").append(tr); 
-
                                 
                                 }
                                 if(item.type == 1 && course[0].code=="da_2")
@@ -224,7 +233,7 @@ function getStudentPrivateSchool(){
                                 tr += "<td>" + element.email + "</td>";
                                 tr += "<td>" + element.registration_no+ "</td>";
                                 tr += "<td>" + element.phone + "</td>";
-                                tr += "<td>" + item.status + "</td>";
+                                tr += "<td>" + status + "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -241,7 +250,7 @@ function getStudentPrivateSchool(){
                                 tr += "<td>" + element.email + "</td>";
                                 tr += "<td>" + element.registration_no+ "</td>";
                                 tr += "<td>" + element.phone + "</td>";
-                                tr += "<td>" + item.status + "</td>";
+                                tr += "<td>" + status + "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -252,7 +261,7 @@ function getStudentPrivateSchool(){
                                 }
                                 if(item.type == 1 && course[0].code=="cpa_2")
                                 {
-                                console.log(element,"Cpa Two")
+                                
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.name_eng + "</td>";
@@ -264,6 +273,8 @@ function getStudentPrivateSchool(){
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
+                               
+                               
                                 $("#tbl_cpa2_student_private_school_body").append(tr); 
 
                                 
