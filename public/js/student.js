@@ -421,13 +421,14 @@ function getStudentMac(){
                 if(element.student_register!=null){
                     var student_info = element.student_register;
                     student_info.forEach(function(item){
+
                         $.ajax({
                             url: BACKEND_URL+"/course/"+item.form_type,
                             type: 'get',
                             data:"",
                             success:function(courses){
                                 var course=courses.data;
-                                if(item.type == 2 && course[0].code=="da_1")
+                              if(item.type == 2 && course[0].code== "da_1" )
                                 {
                                     var status;
                                     if(item.status==0){

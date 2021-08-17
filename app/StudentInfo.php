@@ -74,7 +74,7 @@ class StudentInfo extends Model
 
      public function exam_registers()
     {
-        return $this->hasMany(ExamRegister::class,'student_info_id','id')->with('course');
+        return $this->hasMany(ExamRegister::class,'student_info_id','id')->with('course','batch');
 
     }
 
@@ -90,6 +90,11 @@ class StudentInfo extends Model
 
     public function mentor(){
         return $this->belongsTo(Mentor::class);
+        
+    }
+
+    public function teacher(){
+        return $this->belongsTo(TeacherRegister::class);
         
     }
 
