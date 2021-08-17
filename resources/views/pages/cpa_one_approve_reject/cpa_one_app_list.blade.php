@@ -1,13 +1,13 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'da_list'
+    'elementActive' => 'cpa_one_app_list'
 ])
 @section('content')
 <div class="content">
     @include('flash-message')
     <div class="row">
         <div class="col-md-12"> 
-        {{ Breadcrumbs::render('da_list') }}               
+        {{ Breadcrumbs::render('cpa_list') }}               
         </div>
     </div>   
     <div class="row">

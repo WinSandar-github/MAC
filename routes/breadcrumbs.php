@@ -370,7 +370,10 @@ Breadcrumbs::for('da_list', function ($trail) {
     $trail->parent('administration');
     $trail->push('DA Application Form List', route('page.index', 'da_list'));
 });
-
+Breadcrumbs::for('cpa_list', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('CPA Application Form List', route('page.index', 'cpa_list'));
+});
 // CPAFF List
 Breadcrumbs::for('cpa_ff_registration_list', function ($trail) {
     $trail->parent('administration');
