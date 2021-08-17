@@ -8,6 +8,7 @@ function loadService(){
             // console.log(data)
             var course_data=data.data;            
             course_data.forEach(function (element) {
+                // console.log(element)
                 var option = document.createElement('option');
                 option.text = element.name;
                 option.value = element.id;
@@ -67,6 +68,8 @@ function createMentor()
     send_data.append('training_absent_reason', $("input[name=training_absent_reason]").val());
     send_data.append('email', $("input[name=email]").val());
     send_data.append('password', $("input[name=password]").val());
+    send_data.append('status', $("input[name=status]").val());
+    send_data.append('type', $("input[name=type]").val());
 
     $.ajax({
         url: BACKEND_URL+"/mentor",
@@ -84,83 +87,9 @@ function createMentor()
     });
 }
 
-// function updateMentor()
-// {
-//     var id = localStorage.getItem("mentor_id");   
-//     // console.log(id)
-//     var send_data = new FormData();
-//     var nrc_state_region = $("#nrc_state_region").val();
-//     var nrc_township = $("#nrc_township").val();
-//     var nrc_citizen = $("#nrc_citizen").val();
-//     send_data.append('name_mm', $("input[name=name_mm]").val());
-//     send_data.append('name_eng', $("input[name=name_eng]").val());
-//     send_data.append('nrc_state_region', nrc_state_region);
-//     send_data.append('nrc_township', nrc_township);
-//     send_data.append('nrc_citizen', nrc_citizen);
-//     send_data.append('nrc_number', $("input[name=nrc_number]").val());
-//     send_data.append('father_name_mm', $("input[name=father_name_mm]").val());
-//     send_data.append('father_name_eng', $("input[name=father_name_eng]").val());
-//     send_data.append('race', $("input[name=race]").val());
-//     send_data.append('religion', $("input[name=religion]").val());
-//     send_data.append('date_of_birth', $("input[name=date_of_birth]").val());
-//     send_data.append('education', $("input[name=education]").val());
-//     send_data.append('ra_cpa_success_year', $("input[name=ra_cpa_success_year]").val());
-//     send_data.append('ra_cpa_personal_no', $("input[name=ra_cpa_personal_no]").val());
-//     send_data.append('cpa_reg_no', $("input[name=cpa_reg_no]").val());
-//     send_data.append('cpa_reg_date', $("input[name=cpa_reg_date]").val());
-//     send_data.append('ppa_reg_no', $("input[name=ppa_reg_no]").val());
-//     send_data.append('ppa_reg_date', $("input[name=ppa_reg_date]").val());
-//     send_data.append('address', $("input[name=address]").val());
-//     send_data.append('phone_no', $("input[name=phone_no]").val());
-//     send_data.append('fax_no', $("input[name=fax_no]").val());
-//     send_data.append('m_email', $("input[name=m_email]").val());
-//     send_data.append('audit_firm_name', $("input[name=audit_firm_name]").val());
-//     send_data.append('audit_started_date', $("input[name=audit_started_date]").val());
-//     send_data.append('audit_structure', $("input[name=audit_structure]").val());
-//     send_data.append('audit_staff_no', $("input[name=audit_staff_no]").val());
-//     send_data.append('current_check_service_id',$('#selected_service_id').val());
-//     send_data.append('current_check_services_other', $("input[name=current_check_services_other]").val());
-//     $(':radio:checked').map(function(){send_data.append('experience',$(this).val())});
-//     send_data.append('started_teaching_year', $("input[name=started_teaching_year]").val());
-//     send_data.append('current_accept_no', $("input[name=current_accept_no]").val());
-//     send_data.append('trained_trainees_no', $("input[name=trained_trainees_no]").val());
-//     send_data.append('internship_accept_no', $("input[name=internship_accept_no]").val());
-//     $(':radio:checked').map(function(){send_data.append('repeat_yearly',$(this).val())});
-//     $(':radio:checked').map(function(){send_data.append('training_absent',$(this).val())});
-//     send_data.append('training_absent_reason', $("input[name=training_absent_reason]").val());
-
-//     // console.log(send_data)
-//     send_data.append('_method', 'PUT');
-//     // $.ajax({
-//     //     url: BACKEND_URL+"/mentor/"+id,
-//     //     type: 'patch',
-//     //     data: send_data,      
-//     //     success: function(result){
-//     //         successMessage("Update Successfully");      
-//     //         location.href = "/mentor_list";  
-//     //     }
-//     // });
-//     $.ajax({
-//         url: BACKEND_URL+"/mentor/"+id,
-//         type: 'post',
-//         data:send_data,
-//         contentType: false,
-//         processData: false,
-//         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'), 'Content-Type': 'application/json' },
-//         success: function(result){
-//             successMessage("Insert Successfully");
-//         },
-//         error:function (message){
-//             console.log(message);
-//         }
-//     });
-// }
-
 $('#updateMentor').submit(function(e){
     e.preventDefault();
     var id = localStorage.getItem("mentor_id");   
-    
-
     var formData = new FormData(this);
     formData.append('_method', 'PATCH');
     
@@ -172,9 +101,7 @@ $('#updateMentor').submit(function(e){
         data: formData,
         success: function (data) {
             successMessage(data.message);
-            location.href = "/mentor_list";
-
-                
+            location.href = "/mentor_list";       
         },
         error:function (message){
         }
@@ -185,7 +112,6 @@ $('#updateMentor').submit(function(e){
 
 function loadMentor()
 {
-    // $("#mentor_form").attr('action', 'javascript:updateMentor()');
     var id = localStorage.getItem("mentor_id");
     $.ajax({
         url: BACKEND_URL + "/mentor/"+id,
@@ -195,7 +121,6 @@ function loadMentor()
             var mentor_data = data.data;
             $('#name_mm').val(mentor_data.name_mm);
             $("#name_eng").val(mentor_data.name_eng);
-            // let nrc = mentor_data.nrc_state_region+"/"+mentor_data.nrc_township+"("+mentor_data.nrc_citizen+")"+mentor_data.nrc_number;
             $("#nrc_state_region").val(mentor_data.nrc_state_region);
             $("#nrc_township").val(mentor_data.nrc_township);
             $("#nrc_citizen").val(mentor_data.nrc_citizen);
@@ -257,12 +182,23 @@ function getMentorList(){
         success : function(data){
             var m_data = data.data;
             m_data.forEach(function (element) {
+                // if(element.status==0){
+                //     status="PENDING";
+                // }
+                // else if(element.status==1){
+                //     status="APPROVED";
+                // }
+                // else{
+                //     status="REJECTED";
+                // }
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
                 tr += "<td>" + element.name_mm + "</td>";
                 tr += "<td>" + element.m_email + "</td>";
                 tr += "<td>" + element.phone_no+ "</td>";
                 tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
+                // tr += "<td>" + status+ "</td>";
+                tr += "<td>" + element.type+ "</td>";
                 tr += "<td ><div class='btn-group'>";
                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -277,7 +213,6 @@ function getMentorList(){
 
 function showMentor(mentorID){
     localStorage.setItem("mentor_id",mentorID);
-    // console.log(mentorID);
     location.href=FRONTEND_URL+"/mentor_edit";
 }
 
