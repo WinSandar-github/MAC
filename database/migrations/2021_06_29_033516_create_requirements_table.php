@@ -17,13 +17,13 @@ class CreateRequirementsTable extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('require_exam');
-            $table->unsignedBigInteger('course_id');
+            // $table->unsignedBigInteger('course_id');
             $table->timestamps();
 
-            $table->foreign('course_id')
-            ->references('id')
-            ->on('courses')
-            ->onDelete('cascade');  
+            // $table->foreign('course_id')
+            // ->references('id')
+            // ->on('courses')
+            // ->onDelete('cascade');  
         });
     }
 

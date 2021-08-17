@@ -17,8 +17,9 @@
                 {{ Breadcrumbs::render('mentor_list') }}
             </div>
         </div>
-            <form method="post" action="javascript:createMentor();" enctype="multipart/form-data">
+            <form id="updateMentor" method="post" action="javascript:void();" enctype="multipart/form-data">
             @csrf
+             
             
             <div class="row">
                 <div class="col-md-12">
@@ -35,12 +36,12 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
 	                                      <div class="col-md-4">
 	                                          <div class="form-group">
-	                                              <input type="text" id="name_mm" name="name_mm" class="form-control" placeholder="မြန်မာ" value="{{ old('name_mm') }}" required="">
+                                                   <input type="text" name="name_mm" class="form-control" id="name_mm" required="">
 	                                          </div>
 	                                      </div>
                                           <div class="col-md-4">
                                               <div class="form-group">
-                                                  <input type="text" name="name_eng" class="form-control" placeholder="အင်္ဂလိပ်" value="{{ old('name_eng') }}" required="">
+                                                  <input type="text" name="name_eng" class="form-control" id="name_eng" required="">
                                               </div>
                                           </div>
 	                                    </div>
@@ -89,12 +90,12 @@
                                             <label class="col-md-2 col-form-label">{{ __('အဘအမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" id="father_name_mm" name="father_name_mm" class="form-control" placeholder="" value="{{ old('father_name_mm') }}" required="">
+                                                    <input type="text" id="father_name_mm" name="father_name_mm" class="form-control" required="">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="father_name_eng" class="form-control" placeholder="" value="{{ old('father_name_eng') }}" required="">
+                                                    <input type="text" name="father_name_eng" id="father_name_eng" class="form-control" required="">
                                                 </div>
                                             </div>
                                         </div>
@@ -104,12 +105,12 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('လူမျိူး/ဘာသာ') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="race" class="form-control" placeholder="" value="{{ old('race') }}" required="">
+                                                    <input type="text" name="race" id="race" class="form-control"  required="">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="religion" class="form-control" placeholder="" value="{{ old('religion') }}" required="">
+                                                    <input type="text" name="religion" id="religion" class="form-control"  required="">
                                                 </div>
                                             </div>
 	                                  </div>
@@ -119,7 +120,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
 	                                      <div class="col-md-8">
                                             <div class="form-group">
-                                                        <input type="text" name="date_of_birth" placeholder="dd-mm-yyyy" class="form-control" value="{{ old('date_of_birth') }}" required="">
+                                                        <input type="text" name="date_of_birth" id="date_of_birth" placeholder="dd-mm-yyyy" class="form-control" required="">
                                                     </div>
                                                 </div>
 	                                    </div>
@@ -130,7 +131,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
-                                                    <input type="text" name="education" class="form-control" placeholder="" value="{{ old('education') }}" required="">
+                                                    <input type="text" name="education" id="education" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -140,12 +141,12 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('RA/CPA အောင်မြင်သောနှစ်/ ကိုယ်ပိုင်အမှတ်') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="ra_cpa_success_year" class="form-control" value="{{ old('ra_cpa_success_year') }}" required="">
+                                                    <input type="text" name="ra_cpa_success_year" id="ra_cpa_success_year" class="form-control"  required="">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="ra_cpa_personal_no" class="form-control" value="{{ old('ra_cpa_personal_no') }}" required="">
+                                                    <input type="text" name="ra_cpa_personal_no" id="ra_cpa_personal_no" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -154,12 +155,12 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('CPA PAPP	မှတ်ပုံတင်အမှတ်/ရက်စွဲ') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                        <input type="text" name="cpa_reg_no" class="form-control" placeholder="" value="{{ old('cpa_reg_no') }}" required="">
+                                                        <input type="text" name="cpa_reg_no" id="cpa_reg_no" class="form-control"  required="">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="cpa_reg_date" placeholder="dd-mm-yyyy" class="form-control" value="{{ old('cpa_reg_date') }}" required="">
+                                                    <input type="text" name="cpa_reg_date" id="cpa_reg_date" placeholder="dd-mm-yyyy" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -168,12 +169,12 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('PAPP မှတ်ပုံတင်အမှတ်/ရက်စွဲ') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                        <input type="text" name="ppa_reg_no" class="form-control" placeholder="" value="{{ old('ppa_reg_no') }}" required="">
+                                                        <input type="text" name="ppa_reg_no" id="ppa_reg_no" class="form-control"  required="">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="ppa_reg_date" placeholder="dd-mm-yyyy" class="form-control" value="{{ old('ppa_reg_date') }}" required="">
+                                                    <input type="text" name="ppa_reg_date" id="ppa_reg_date" placeholder="dd-mm-yyyy" class="form-control"  required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -182,7 +183,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('Postal Address') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
-                                                            <input type="text" name="address" class="form-control" placeholder="" value="{{ old('address') }}" required="">
+                                                            <input type="text" name="address" id="address" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -191,12 +192,12 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('Telephone No/Fax No') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="text" name="phone_no" class="form-control" placeholder="" value="{{ old('phone_no') }}" required="">
+                                                            <input type="text" name="phone_no" id="phone_no" class="form-control" required="">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="text" name="fax_no" class="form-control" placeholder="" value="{{ old('fax_no') }}" required="">
+                                                            <input type="text" name="fax_no" id="fax_no" class="form-control"  required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -205,7 +206,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('Email') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
-                                                    <input type="email" name="m_email" class="form-control" placeholder="" value="{{ old('m_email') }}" required="">
+                                                    <input type="email" name="m_email" id="m_email" class="form-control"  required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -214,7 +215,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('Audit Firm အမည်') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
-                                                            <input type="text" name="audit_firm_name" class="form-control" placeholder="" value="{{ old('audit_firm_name') }}" required="">
+                                                            <input type="text" name="audit_firm_name" id="audit_firm_name" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -223,7 +224,7 @@
 	                                      <label class="col-md-2 col-form-label">{{ __('စတင်တည်ထောင်သည့်နေ့') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
-                                                        <input type="text" name="audit_started_date" placeholder="dd-mm-yyyy" class="form-control" value="{{ old('audit_started_date') }}" required="">
+                                                        <input type="text" name="audit_started_date" id="audit_started_date" placeholder="dd-mm-yyyy" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -232,12 +233,12 @@
 	                                      <label class="col-md-4 col-form-label">{{ __('Audit Firm ၏ဖွဲ့စည်းပုံနှင့်ဝန်ထမ်းအင်အား') }}</label>
 	                                        <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <input type="number" name="audit_structure" class="form-control" placeholder="" value="{{ old('audit_structure') }}" required="">
+                                                    <input type="number" name="audit_structure" id="audit_structure" class="form-control"  required="">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">
-                                                    <input type="number" name="audit_staff_no" class="form-control" placeholder="" value="{{ old('audit_staff_no') }}" required="">
+                                                    <input type="number" name="audit_staff_no" id="audit_staff_no" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -253,7 +254,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group">                            
-                                                    <input type="text" name="current_check_services_other" class="form-control" placeholder="other" >
+                                                    <input type="text" name="current_check_services_other" id="current_check_services_other" class="form-control" placeholder="other" >
                                                 </div>
                                             </div>
                                             
@@ -274,7 +275,7 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('စာရင်းကိုင်အလုပ်သင်များအား အလုပ်သင်ကြားပေးမှု စတင်ခဲ့သည့်ခုနှစ်') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                        <input type="text" name="started_teaching_year" placeholder="dd-mm-yyyy" class="form-control" value="{{ old('started_teaching_year') }}" required="">
+                                                        <input type="text" name="started_teaching_year" id="started_teaching_year" placeholder="dd-mm-yyyy" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -283,7 +284,7 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('အလုပ်သင်ဦးရေလက်ခံနိုင်သည့်အရေအတွက်') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="number" name="internship_accept_no" class="form-control" placeholder="" value="{{ old('internship_accept_no') }}" required="">
+                                                            <input type="number" name="internship_accept_no" id="internship_accept_no" class="form-control" placeholder="" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -292,7 +293,7 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('လက်ရှိလက်ခံသင်ကြားပေးသော အလုပ်သင်ဦးရေ') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="number" name="current_accept_no" class="form-control" placeholder="" value="{{ old('current_accept_no') }}" required="">
+                                                            <input type="number" name="current_accept_no" id="current_accept_no" class="form-control" placeholder="" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -301,7 +302,7 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('မွေးထုတ်ပေးခဲ့သည့် အလုပ်သင်ဦးရေ') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
-                                                            <input type="number" name="trained_trainees_no" class="form-control" placeholder="" value="{{ old('trained_trainees_no') }}" required="">
+                                                            <input type="number" name="trained_trainees_no" id="trained_trainees_no" class="form-control" required="">
                                                 </div>
                                             </div>
 	                                    </div>
@@ -332,37 +333,14 @@
 	                                      <label class="col-md-6 col-form-label">{{ __('ရှိပါက ပြတ်တောက်ခဲ့ရသည့် အကြောင်းအရင်း') }}</label>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <input type="text" name="training_absent_reason" class="form-control" placeholder="reason" >
+                                                    <input type="text" name="training_absent_reason" id="training_absent_reason" class="form-control" placeholder="reason" >
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="row">
-                                          <label class="col-md-1 col-form-label">{{ __('၂၄။') }}</label>
-                                          <label class="col-md-2 col-form-label">{{ __('Email/Password') }}</label>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <input type="email" name="email" class="form-control" placeholder="" value="{{ old('email') }}" required="">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <input type="password" name="password" class="form-control" placeholder="" autocomplete="off" required="">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <label class="col-md-1 col-form-label">{{ __('၂၅။') }}</label>
-                                            <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
-                                            
-                                        </div>
-                                        
-                                        <input type="hidden" name="status" value="1">
-                                        <input type="hidden" name="type" value="MAC">
                                         <div class="row">
                                         <div class="col-md-11 d-md-flex justify-content-md-end">
-                                            <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
+                                            <button type="submit" class="btn btn-info btn-round">{{ __('Update') }}</button>
                                         </div>
                                     </div>
                                 
@@ -396,6 +374,7 @@
 @push('scripts')
 <script>
     loadService();
+    loadMentor();
 </script>
 <script>
     

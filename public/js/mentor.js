@@ -1,25 +1,26 @@
-function loadService(){ 
-    var select = document.getElementById("selected_service_id");  
+function loadService(){
+    var select = document.getElementById("selected_service_id");
     $.ajax({
         url: BACKEND_URL+"/check_service",
         type: 'get',
         data:"",
         success: function(data){
             // console.log(data)
-            var course_data=data.data;            
+            var course_data=data.data;
             course_data.forEach(function (element) {
+                // console.log(element)
                 var option = document.createElement('option');
                 option.text = element.name;
                 option.value = element.id;
                 select.add(option, 1);
-                
 
-            });              
+
+            });
         },
         error:function (message){
-                   
+
         }
-    
+
     });
 }
 
@@ -50,15 +51,13 @@ function createMentor()
     send_data.append('address', $("input[name=address]").val());
     send_data.append('phone_no', $("input[name=phone_no]").val());
     send_data.append('fax_no', $("input[name=fax_no]").val());
-    send_data.append('fax_no', $("input[name=fax_no]").val());
     send_data.append('m_email', $("input[name=m_email]").val());
     send_data.append('audit_firm_name', $("input[name=audit_firm_name]").val());
     send_data.append('audit_started_date', $("input[name=audit_started_date]").val());
     send_data.append('audit_structure', $("input[name=audit_structure]").val());
     send_data.append('audit_staff_no', $("input[name=audit_staff_no]").val());
     send_data.append('current_check_service_id',$('#selected_service_id').val());
-
-    send_data.append('service_other', $("input[name=service_other]").val());
+    send_data.append('current_check_services_other', $("input[name=current_check_services_other]").val());
     $(':radio:checked').map(function(){send_data.append('experience',$(this).val())});
     send_data.append('started_teaching_year', $("input[name=started_teaching_year]").val());
     send_data.append('current_accept_no', $("input[name=current_accept_no]").val());
@@ -69,6 +68,8 @@ function createMentor()
     send_data.append('training_absent_reason', $("input[name=training_absent_reason]").val());
     send_data.append('email', $("input[name=email]").val());
     send_data.append('password', $("input[name=password]").val());
+    send_data.append('status', $("input[name=status]").val());
+    send_data.append('type', $("input[name=type]").val());
 
     $.ajax({
         url: BACKEND_URL+"/mentor",
@@ -77,7 +78,7 @@ function createMentor()
         contentType: false,
         processData: false,
         success: function(result){
-            successMessage("You have successfully registerd!"); 
+            successMessage("You have successfully registerd!");
             location.href = "/mentor_list";
         },
         error:function (message){
@@ -86,32 +87,218 @@ function createMentor()
     });
 }
 
+$('#updateMentor').submit(function(e){
+    e.preventDefault();
+    var id = localStorage.getItem("mentor_id");
+    var formData = new FormData(this);
+    formData.append('_method', 'PATCH');
+
+    $.ajax({
+        type: "POST",
+        url: BACKEND_URL+"/mentor/"+id,
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+            successMessage(data.message);
+            location.href = "/mentor_list";
+        },
+        error:function (message){
+        }
+    })
+
+})
+
+function loadMentor()
+{
+    var id = localStorage.getItem("mentor_id");
+    $("input[name = mentor_student_id]").val(id);
+    $.ajax({
+        url: BACKEND_URL + "/mentor/"+id,
+        type: 'get',
+        data:"",
+        success: function(data){
+            var mentor_data = data.data;
+            $('#name_mm').val(mentor_data.name_mm);
+            $("#name_eng").val(mentor_data.name_eng);
+            $("#nrc_state_region").val(mentor_data.nrc_state_region);
+            $("#nrc_township").val(mentor_data.nrc_township);
+            $("#nrc_citizen").val(mentor_data.nrc_citizen);
+            $("#nrc_number").val(mentor_data.nrc_number);
+            $("#father_name_mm").val(mentor_data.father_name_mm);
+            $("#father_name_eng").val(mentor_data.father_name_eng);
+            $("#race").val(mentor_data.race);
+            $("#religion").val(mentor_data.religion);
+            $("#date_of_birth").val(mentor_data.date_of_birth);
+            $("#education").val(mentor_data.education);
+            $("#ra_cpa_success_year").val(mentor_data.ra_cpa_success_year);
+            $("#ra_cpa_personal_no").val(mentor_data.ra_cpa_personal_no);
+            $("#cpa_reg_no").val(mentor_data.cpa_reg_no);
+            $("#cpa_reg_date").val(mentor_data.cpa_reg_date);
+            $("#ppa_reg_no").val(mentor_data.ppa_reg_no);
+            $("#ppa_reg_date").val(mentor_data.ppa_reg_date);
+            $("#address").val(mentor_data.address);
+            $("#phone_no").val(mentor_data.phone_no);
+            $("#fax_no").val(mentor_data.fax_no);
+            $("#m_email").val(mentor_data.m_email);
+            $("#audit_firm_name").val(mentor_data.audit_firm_name);
+            $("#audit_started_date").val(mentor_data.audit_started_date);
+            $("#audit_structure").val(mentor_data.audit_structure);
+            $("#audit_staff_no").val(mentor_data.audit_staff_no);
+            $("#selected_service_id").val(mentor_data.current_check_service_id);
+
+            // validate for other service field
+            if(mentor_data.current_check_service_id == 9){
+              $(".check-service-other").css('display','block');
+              $("#current_check_services_other").val(mentor_data.current_check_services_other);
+            }
+            else{
+              $(".check-service-other").css('display','none');
+            }
+
+            // validate for experience radio button checked
+            if(mentor_data.experience == 1)
+            {
+                $('input:radio[name=experience][value=1]').attr('checked',true);
+                $('input:radio[name=experience][value=0]').attr('disabled',true);
+                $('#start_teaching').css('visibility','visible');
+                $('#accept_amount').css('visibility','visible');
+                $('#current_accept').css('visibility','visible');
+                $('#trained_trainees').css('visibility','visible');
+                $('#yearly').css('visibility','visible');
+                $('#absent_training').css('visibility','visible');
+
+                $("#started_teaching_year").val(mentor_data.started_teaching_year);
+                $("#current_accept_no").val(mentor_data.current_accept_no);
+                $("#trained_trainees_no").val(mentor_data.trained_trainees_no);
+                $("#internship_accept_no").val(mentor_data.internship_accept_no);
+            }
+            else{
+                $('input:radio[name=experience][value=0]').attr('checked',true);
+                $('input:radio[name=experience][value=1]').attr('disabled',true);
+                $('#start_teaching').css('visibility','hidden');
+                $('#accept_amount').css('visibility','hidden');
+                $('#current_accept').css('visibility','hidden');
+                $('#trained_trainees').css('visibility','hidden');
+                $('#yearly').css('visibility','hidden');
+                $('#absent_training').css('visibility','hidden');
+            }
+
+            // validate for repeat_yearly radio button checked
+            if(mentor_data.repeat_yearly == 1)
+            {
+              $('input:radio[name=repeat_yearly][value=1]').attr('checked',true);
+              $('input:radio[name=repeat_yearly][value=0]').attr('disabled',true);
+            }
+            else{
+              $('input:radio[name=repeat_yearly][value=0]').attr('checked',true);
+              $('input:radio[name=repeat_yearly][value=1]').attr('disabled',true);
+            }
+
+            // validate for training_absent radio button checked
+            if(mentor_data.training_absent == 1)
+            {
+              $('input:radio[name=training_absent][value=1]').attr('checked',true);
+              $('input:radio[name=training_absent][value=0]').attr('disabled',true);
+              $('#absent_reason').css('visibility','visible');
+              $("#training_absent_reason").val(mentor_data.training_absent_reason);
+            }
+            else{
+              $('input:radio[name=training_absent][value=0]').attr('checked',true);
+              $('input:radio[name=training_absent][value=1]').attr('disabled',true);
+              $('#absent_reason').css('visibility','hidden');
+            }
+
+        }
+    });
+}
+
+
 function getMentorList(){
     destroyDatatable("#tbl_mentor", "#tbl_mentor_body");
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('nrc',$("input[name=filter_by_nrc]").val());
     $.ajax({
-        type : 'GET',
-        url : BACKEND_URL+"/mentor",
+        type : 'post',
+        url : BACKEND_URL+"/filter_mentor",
+        data:send_data,
+        contentType: false,
+        processData: false,
         success : function(data){
-            // console.log(data)
-            let indexNo = 0;
-            data.data.map((obj)=> {
-                let nrc = obj.nrc_state_region+"/"+obj.nrc_township+"("+obj.nrc_citizen+")"+obj.nrc_number;
+            var m_data = data.data;
+            m_data.forEach(function (element) {
+                // if(element.status==0){
+                //     status="PENDING";
+                // }
+                // else if(element.status==1){
+                //     status="APPROVED";
+                // }
+                // else{
+                //     status="REJECTED";
+                // }
                 var tr = "<tr>";
-                tr += `<td> ${ indexNo += 1 } </td>`;
-                tr += `<td> ${ obj.name_mm } </td>`;
-                tr += `<td> ${ obj.m_email } </td>`;
-                tr += `<td> ${ obj.phone_no } </td>`;
-                tr += `<td> ${ nrc } </td>`;
-                tr += `<td><a href=${FRONTEND_URL+'/mentor_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                tr += "<td>" +  + "</td>";
+                tr += "<td>" + element.name_mm + "</td>";
+                tr += "<td>" + element.m_email + "</td>";
+                tr += "<td>" + element.phone_no+ "</td>";
+                tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
+                // tr += "<td>" + status+ "</td>";
+                tr += "<td>" + element.type+ "</td>";
+                tr += "<td ><div class='btn-group'>";
+                if(element.type == "Student"){
+                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentorStudent(" + element.id + ")'>" +
+                      "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                }
+                else if(element.type == "MAC"){
+                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
+                      "<li class='fa fa-edit fa-sm'></li></button><button type='button' class='btn btn-danger btn-xs'><li class='fa fa-trash fa-sm'></li></button></div ></td > ";
+                }
+
                 tr += "</tr>";
                 $("#tbl_mentor_body").append(tr);
             });
+            getIndexNumber('#tbl_mentor tr');
             createDataTableWithAsc("#tbl_mentor");
         }
     });
 }
 
+function showMentor(mentorID){
+    localStorage.setItem("mentor_id",mentorID);
+    location.href=FRONTEND_URL+"/mentor_edit";
+}
+
+function showMentorStudent(mentorID){
+  localStorage.setItem("mentor_id",mentorID);
+  location.href=FRONTEND_URL+"/mentor_student_show";
+}
+
 function createForm()
 {
     location.href = "/mentor_create";
+}
+
+function approveMentorStudent(){
+  var id = $("input[name = mentor_student_id]").val();
+  $.ajax({
+      url: BACKEND_URL + "/approve_mentor_student/"+id,
+      type: 'PATCH',
+      success: function(result){
+          successMessage("You have approved that user!");
+          location.href = FRONTEND_URL + "/mentor_list";
+      }
+  });
+}
+
+function rejectMentorStudent(){
+  var id = $("input[name = mentor_student_id]").val();
+  $.ajax({
+      url: BACKEND_URL +"/reject_mentor_student/"+id,
+      type: 'patch',
+      success: function(result){
+          successMessage("You have rejected that user!");
+          location.href = FRONTEND_URL + "/mentor_list";
+      }
+  });
 }

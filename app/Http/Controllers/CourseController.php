@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Course;
 use App\Batch;
 use App\CourseType;
+use App\Requirement;
 class CourseController extends Controller
 {
     /**
@@ -15,14 +16,14 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('batches')->get();
+        $courses = Course::with('batches','active_batch')->get();
         return response()->json([
             'data' => $courses
         ],200);
     }
     public function loadCourseByCourseCode($code)
     {
-        $courses = Course::where('code',$code)->with('batches')->get();
+        $courses = Course::where('code',$code)->with('batches','active_batch')->get();
         return response()->json([
             'data' => $courses
         ],200);
@@ -45,27 +46,42 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {  
+        // return $request->requirement_id;
+        $requirements = [];
+        foreach($request->requirement_id as $require){
+            array_push($requirements,$require);
+        }   
+        // return $requirements;  
+
         $request->validate([
             'name'              => 'required',
             'form_fee'          => 'required',
-            'registration_fee'  =>  'required',
+            'selfstudy_registration_fee'      =>  'required',
+            'privateschool_registration_fee'  =>  'required',
+            'mac_registration_fee'            =>  'required',
             'exam_fee'          =>  'required',
             'tution_fee'        =>  'required',
             'description'       =>  'required',
-            'course_type_id'       =>  'required',
-            'code'              =>  'required'
+            'course_type_id'    =>  'required',
+            'code'              =>  'required',
+            'requirement_id'     =>  'required'
         ]);
         $course = new Course();
         
         $course->name               = $request->name;
         $course->form_fee           = $request->form_fee;
-        $course->registration_fee   = $request->registration_fee;
+        $course->selfstudy_registration_fee       = $request->selfstudy_registration_fee;
+        $course->privateschool_registration_fee   = $request->privateschool_registration_fee;
+        $course->mac_registration_fee             = $request->mac_registration_fee;
         $course->exam_fee           = $request->exam_fee;
         $course->tution_fee         = $request->tution_fee;
         $course->description        = $request->description;
         $course->course_type_id     = $request->course_type_id;
         $course->code               = $request->code;
+        // $course->requirement_id     = $request->requirement_id;
+        $course->requirement_id        = json_encode($requirements);
+
         $course->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -80,11 +96,12 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::where('id',$id)->get();
+        $course = Course::where('id',$id)->with('requirement')->first();
             return response()->json([
             'data' => $course
-        ],200);
+        ],200);return $courses;
     }
+    
 
     /**
      * Show the form for editing the specified resource.
@@ -105,15 +122,24 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $requirements = [];
+        foreach($request->requirement_id as $require){
+            array_push($requirements,$require);
+        } 
+
         $course = Course::find($id);
         $course->name               = $request->name;
         $course->form_fee           = $request->form_fee;
-        $course->registration_fee   = $request->registration_fee;
+        $course->selfstudy_registration_fee       = $request->selfstudy_registration_fee;
+        $course->privateschool_registration_fee   = $request->privateschool_registration_fee;
+        $course->mac_registration_fee             = $request->mac_registration_fee;
         $course->exam_fee           = $request->exam_fee;
         $course->tution_fee         = $request->tution_fee;
         $course->description        = $request->description;
         $course->course_type_id     = $request->course_type_id;
         $course->code               = $request->code;
+        // $course->requirement_id     = $request->requirement_id;
+        $course->requirement_id        = json_encode($requirements);
         $course->save();
         return response()->json([
             'message' => "Update Successfully"
@@ -156,4 +182,25 @@ class CourseController extends Controller
             'data' => $courses
         ],200);
     }    
+    public function getRequirement()
+    {
+        $requiement_id = Requirement::get();
+        return response()->json([
+            'data' => $requiement_id
+        ],200);
+    }
+    public function FilterCourse($course_name){
+        if($course_name=="all"){
+            $courses = Course::with('batches')->get();
+            return response()->json([
+                'data' => $courses
+            ],200);
+        }
+        else{
+            $courses = Course::where('name', 'like', '%' . $course_name. '%')->with('batches')->get();
+            return response()->json([
+                'data' => $courses
+            ],200);
+        }
+    }
 }

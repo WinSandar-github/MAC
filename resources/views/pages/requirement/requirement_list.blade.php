@@ -29,22 +29,49 @@
                             <div class="row">
                                 <div class="col-md-8"></div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
-                                    <button type="button" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_requirement_model">Create</button>
+                                    <button type="button" id="create_btn" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_requirement_model">Create</button>
                                 </div>
                             </div>
+                            
                         </div>
                         <div class="card-body">
                             <div class="row">
                                 
                                 <div class="col-md-12">
                                     <div class="card">
+                                        <div class="card-header">
+                                            <div class="row">
+                                                <div class="col-md-4">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="font-weight:bold;">Name</div>
+                                                        <div class="col-md-7">
+                                                            <input type="text" name="filter_by_name" class="form-control" placeholder="Name" autocomplete="on">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="row">
+                                                        <div class="col-md-5" style="font-weight:bold;">Course Name</div>
+                                                        <div class="col-md-7">
+                                                            <select class="form-control form-select" name="course_id" id="filter_course_id" style="width: 100%;">
+                                                                <option value="all" selected>All</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <button type="button" class="btn btn-primary btn-round" onclick="getRequirement()" id="search">Search</button>
+                                                </div>
+                                            </div> 
+                                        </div>
                                         <div class="card-body">
+                                        <hr size="5" width="95%" color="#F5F5F5"> 
                                             <table id="tbl_requirement"class="table table-hover text-nowrap ">
                                                 <thead>
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
                                                         <th class="bold-font-weight" >Name</th>                                                                                                
-                                                        <th class="bold-font-weight" >Course</th>                                        
+                                                        <th class="bold-font-weight" >Course Name</th>                                        
                                                         <th class="bold-font-weight" >Action</th>
                                                     </tr>
                                                     
@@ -125,6 +152,12 @@
         
     // });
     loadCourse();
+    loadCourseToFilter();
     getRequirement();
+    window.onclick = function(event) {
+            if (event.target == document.getElementById("create_btn")) {
+                document.getElementById("requirement_form").reset();  
+            }
+        }
 </script>
 @endpush
