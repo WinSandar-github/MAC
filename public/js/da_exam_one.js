@@ -22,7 +22,7 @@ function getExam(){
                         success:function(courses){
                             var course=courses.data;
                             
-                            if(course[0].code=="da_1")
+                            if(course.code=="da_1")
                             {
                                 if(element.status==0){
                                     status="PENDING";
@@ -59,7 +59,7 @@ function getExam(){
                                 tr += "</tr>";
                                 $("#tbl_da_exam_one_body").append(tr);
                             }
-                            else if(course[0].code=="da_2")
+                            else if(course.code=="da_2")
                             {
                                 if(element.status==0){
                                     status="PENDING";
@@ -369,7 +369,7 @@ function loadStudent(course_type)
                         data:"",
                         success:function(courses){
                             var course =courses.data;
-                            if(course[0].code==course_type){
+                            if(course.code==course_type){
                                 if(element.status==0){
                                     status="PENDING";
                                 }

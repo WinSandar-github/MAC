@@ -90,6 +90,11 @@ The above copyright notice and this permission notice shall be included in all c
     <link rel="stylesheet" href="{{ asset('css/flatpickr/flatpickr.min.css') }}">
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> -->
 
+    <!-- select2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <!-- <script src="{{ asset('plugins/select2/css') }}/select2.min.css"></script> -->
+
     <!--treeview css-->
     <link href="{{ asset('css') }}/treeview.css" rel="stylesheet" />
 
@@ -140,7 +145,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 
     <!-- Sharrre libray -->
-
+    
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js">
@@ -162,6 +167,9 @@ The above copyright notice and this permission notice shall be included in all c
 
     <!-- flatpickr -->
     <script src="{{ asset('js/flatpickr') }}/flatpickr.js"></script>
+
+    <!-- select2 -->
+    <!-- <script src="{{ asset('js/select2') }}/select2.min.js"></script> -->
 
     <!-- <script src="{{ asset('paper') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script> -->
 
@@ -193,6 +201,12 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('js') }}/mentor.js"></script>
     <!--toastr-->
     <script src="{{ asset('plugins/toastr') }}/toastr.min.js"></script>
+
+    <!-- select2 -->
+    <!-- <script src="{{ asset('plugins/select2/js') }}/select2.min.js"></script> --> -->
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <!-- DataTables -->
     <!-- {{-- <script src="{{ asset('plugins') }}/datatables/jquery.dataTables.min.js"></script> --}}
     {{-- <script src="{{ asset('plugins') }}/datatables-bs4/js/dataTables.bootstrap4.min.js"></script> --}}

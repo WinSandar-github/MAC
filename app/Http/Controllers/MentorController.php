@@ -32,11 +32,11 @@ class MentorController extends Controller
     public function store(Request $request)
     {
 
-          $current_check_service = [];
-        foreach($request->current_check_services as $service){
-            array_push($current_check_service,$service);
-        }
-        return $current_check_service;
+        //   $current_check_service = [];
+        // foreach($request->current_check_services as $service){
+        //     array_push($current_check_service,$service);
+        // }
+
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
         ->where('nrc_citizen', '=', $request['nrc_citizen'])
@@ -102,8 +102,8 @@ class MentorController extends Controller
         $mentor->repeat_yearly               = $request->repeat_yearly;
         $mentor->training_absent             = $request->training_absent;
         $mentor->training_absent_reason      = $request->training_absent_reason;
-        $mentor->status = $request->status;
-        $mentor->type   = $request->type;
+        $mentor->type      = $request->type;
+        $mentor->status      = $request->status;
         $mentor->save();
 
         $std_info = new StudentInfo();
@@ -114,7 +114,7 @@ class MentorController extends Controller
         return response()->json([
             'message' => "Successfully Added"
         ]);
-      
+
     }
 
     /**
@@ -146,7 +146,7 @@ class MentorController extends Controller
         //     array_push($current_check_service,$service);
         // }
         // return $id;
-       
+
         $mentor = Mentor::find($id);
         $mentor->current_check_service_id = $request->current_check_service_id;
         $mentor->name_mm = $request->name_mm;
@@ -210,8 +210,10 @@ class MentorController extends Controller
 
     public function getMentor()
     {
-        $mentor = Mentor::all();
+        $mentor = Mentor::where('status', 1)->get();
         return response()->json([
+            'data' => $mentor
+        ],200);
     }
 
     public function FilterMentor(Request $request)
@@ -227,6 +229,26 @@ class MentorController extends Controller
         $mentor=$mentor->get();
         return  response()->json([
             'data' => $mentor
+        ],200);
+    }
+
+    public function approve($id)
+    {
+        $approve = Mentor::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $reject = Mentor::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
         ],200);
     }
 }

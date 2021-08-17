@@ -1,26 +1,26 @@
-function loadService(){ 
-    var select = document.getElementById("selected_service_id");  
+function loadService(){
+    var select = document.getElementById("selected_service_id");
     $.ajax({
         url: BACKEND_URL+"/check_service",
         type: 'get',
         data:"",
         success: function(data){
             // console.log(data)
-            var course_data=data.data;            
+            var course_data=data.data;
             course_data.forEach(function (element) {
                 // console.log(element)
                 var option = document.createElement('option');
                 option.text = element.name;
                 option.value = element.id;
                 select.add(option, 1);
-                
 
-            });              
+
+            });
         },
         error:function (message){
-                   
+
         }
-    
+
     });
 }
 
@@ -78,7 +78,7 @@ function createMentor()
         contentType: false,
         processData: false,
         success: function(result){
-            successMessage("You have successfully registerd!"); 
+            successMessage("You have successfully registerd!");
             location.href = "/mentor_list";
         },
         error:function (message){
@@ -89,10 +89,10 @@ function createMentor()
 
 $('#updateMentor').submit(function(e){
     e.preventDefault();
-    var id = localStorage.getItem("mentor_id");   
+    var id = localStorage.getItem("mentor_id");
     var formData = new FormData(this);
     formData.append('_method', 'PATCH');
-    
+
     $.ajax({
         type: "POST",
         url: BACKEND_URL+"/mentor/"+id,
@@ -101,7 +101,7 @@ $('#updateMentor').submit(function(e){
         data: formData,
         success: function (data) {
             successMessage(data.message);
-            location.href = "/mentor_list";       
+            location.href = "/mentor_list";
         },
         error:function (message){
         }
@@ -109,10 +109,10 @@ $('#updateMentor').submit(function(e){
 
 })
 
-
 function loadMentor()
 {
     var id = localStorage.getItem("mentor_id");
+    $("input[name = mentor_student_id]").val(id);
     $.ajax({
         url: BACKEND_URL + "/mentor/"+id,
         type: 'get',
@@ -146,33 +146,79 @@ function loadMentor()
             $("#audit_structure").val(mentor_data.audit_structure);
             $("#audit_staff_no").val(mentor_data.audit_staff_no);
             $("#selected_service_id").val(mentor_data.current_check_service_id);
-            $("#current_check_services_other").val(mentor_data.current_check_services_other);
+
+            // validate for other service field
+            if(mentor_data.current_check_service_id == 9){
+              $(".check-service-other").css('display','block');
+              $("#current_check_services_other").val(mentor_data.current_check_services_other);
+            }
+            else{
+              $(".check-service-other").css('display','none');
+            }
+
+            // validate for experience radio button checked
             if(mentor_data.experience == 1)
             {
-                $('input:radio[name=experience]').attr('checked',true);
+                $('input:radio[name=experience][value=1]').attr('checked',true);
+                $('input:radio[name=experience][value=0]').attr('disabled',true);
+                $('#start_teaching').css('display','block');
+                $('#accept_amount').css('display','block');
+                $('#current_accept').css('display','block');
+                $('#trained_trainees').css('display','block');
+                $('#yearly').css('display','block');
+                $('#absent_training').css('display','block');
+
+                $("#started_teaching_year").val(mentor_data.started_teaching_year);
+                $("#current_accept_no").val(mentor_data.current_accept_no);
+                $("#trained_trainees_no").val(mentor_data.trained_trainees_no);
+                $("#internship_accept_no").val(mentor_data.internship_accept_no);
             }
-            $("#started_teaching_year").val(mentor_data.started_teaching_year);
-            $("#current_accept_no").val(mentor_data.current_accept_no);
-            $("#trained_trainees_no").val(mentor_data.trained_trainees_no);
-            $("#internship_accept_no").val(mentor_data.internship_accept_no);
+            else{
+                $('input:radio[name=experience][value=0]').attr('checked',true);
+                $('input:radio[name=experience][value=1]').attr('disabled',true);
+                $('#start_teaching').css('display','none');
+                $('#accept_amount').css('display','none');
+                $('#current_accept').css('display','none');
+                $('#trained_trainees').css('display','none');
+                $('#yearly').css('display','none');
+                $('#absent_training').css('display','none');
+            }
+
+            // validate for repeat_yearly radio button checked
             if(mentor_data.repeat_yearly == 1)
             {
-                $('input:radio[name=repeat_yearly]').attr('checked',true);
+              $('input:radio[name=repeat_yearly][value=1]').attr('checked',true);
+              $('input:radio[name=repeat_yearly][value=0]').attr('disabled',true);
             }
+            else{
+              $('input:radio[name=repeat_yearly][value=0]').attr('checked',true);
+              $('input:radio[name=repeat_yearly][value=1]').attr('disabled',true);
+            }
+
+            // validate for training_absent radio button checked
             if(mentor_data.training_absent == 1)
             {
-                $('input:radio[name=training_absent]').attr('checked',true);
+              $('input:radio[name=training_absent][value=1]').attr('checked',true);
+              $('input:radio[name=training_absent][value=0]').attr('disabled',true);
+              $('#absent_reason').css('display','block');
+              $("#training_absent_reason").val(mentor_data.training_absent_reason);
             }
-            $("#training_absent_reason").val(mentor_data.training_absent_reason);
+            else{
+              $('input:radio[name=training_absent][value=0]').attr('checked',true);
+              $('input:radio[name=training_absent][value=1]').attr('disabled',true);
+              $('#absent_reason').css('display','none');
+            }
+
         }
     });
 }
+
 
 function getMentorList(){
     destroyDatatable("#tbl_mentor", "#tbl_mentor_body");
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
-    send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
+    send_data.append('nrc',$("input[name=filter_by_nrc]").val());
     $.ajax({
         type : 'post',
         url : BACKEND_URL+"/filter_mentor",
@@ -197,13 +243,29 @@ function getMentorList(){
                 tr += "<td>" + element.m_email + "</td>";
                 tr += "<td>" + element.phone_no+ "</td>";
                 tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
-                // tr += "<td>" + status+ "</td>";
+                if(element.status == 0){
+                  tr += "<td class='text-warning'>Pending</td>";
+                }
+                else if(element.status == 1){
+                  tr += "<td class='text-success'>Approved</td>";
+                }
+                else{
+                  tr += "<td class='text-danger'>Rejected</td>";
+                }
+
                 tr += "<td>" + element.type+ "</td>";
                 tr += "<td ><div class='btn-group'>";
-                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
-                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                if(element.type == "Student"){
+                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentorStudent(" + element.id + ")'>" +
+                      "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                }
+                else if(element.type == "MAC"){
+                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
+                      "<li class='fa fa-edit fa-sm'></li></button><button type='button' class='btn btn-danger btn-xs'><li class='fa fa-trash fa-sm'></li></button></div ></td > ";
+                }
+
                 tr += "</tr>";
-                $("#tbl_mentor_body").append(tr);     
+                $("#tbl_mentor_body").append(tr);
             });
             getIndexNumber('#tbl_mentor tr');
             createDataTableWithAsc("#tbl_mentor");
@@ -216,10 +278,36 @@ function showMentor(mentorID){
     location.href=FRONTEND_URL+"/mentor_edit";
 }
 
+function showMentorStudent(mentorID){
+  localStorage.setItem("mentor_id",mentorID);
+  location.href=FRONTEND_URL+"/mentor_student_show";
+}
+
 function createForm()
 {
     location.href = "/mentor_create";
 }
 
+function approveMentorStudent(){
+  var id = $("input[name = mentor_student_id]").val();
+  $.ajax({
+      url: BACKEND_URL + "/approve_mentor_student/"+id,
+      type: 'PATCH',
+      success: function(result){
+          successMessage("You have approved that user!");
+          location.href = FRONTEND_URL + "/mentor_list";
+      }
+  });
+}
 
-
+function rejectMentorStudent(){
+  var id = $("input[name = mentor_student_id]").val();
+  $.ajax({
+      url: BACKEND_URL +"/reject_mentor_student/"+id,
+      type: 'patch',
+      success: function(result){
+          successMessage("You have rejected that user!");
+          location.href = FRONTEND_URL + "/mentor_list";
+      }
+  });
+}

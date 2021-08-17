@@ -45,7 +45,7 @@ function getCPAExam(){
                         data:"",
                         success:function(courses){
                             var course=courses.data;
-                            if(course[0].code=="cpa_1")
+                            if(course.code=="cpa_1")
                             {console.log("cpa 1");
                                 if(element.status==0){
                                     status="Pending";
@@ -73,7 +73,7 @@ function getCPAExam(){
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_one_body").append(tr);
                             }
-                            else if(course[0].code=="cpa_2")
+                            else if(course.code=="cpa_2")
                             {
                                 if(element.status==0){
                                     status="Pending";
@@ -302,9 +302,9 @@ function loadCPAStudent(course_type)
                             console.log(courses,"Course")
                         
                             var course=courses.data;
-                            if(course[0].code==course_type){
+                            if(course.code==course_type){
                                 console.log('check courses',course);
-                                console.log(course[0].code,course_type);
+                                console.log(course.code,course_type);
                                 if(element.status==0){
                                     status="PENDING";
                                 }

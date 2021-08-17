@@ -65,6 +65,7 @@
                                                         <th class="bold-font-weight" >Exam Fee</th>
                                                         <th class="bold-font-weight" >Tution Fee</th>
                                                         <th class="bold-font-weight" >Description</th>
+                                                        <th class="bold-font-weight" >Requirement</th>
                                                         <th class="bold-font-weight" >Action</th>
                                                     </tr>
 
@@ -192,6 +193,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Requirement') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <select name="requirement_id[]" class="form-control requirement_id multiple-requirement" multiple="multiple" required style="width:100%">
+                                     
+                                    
+
+                                    </select>                                    
+                                </div>
+                            </div>
+                        </div>
 
                     </div>
                     <div class="modal-footer">
@@ -208,7 +222,16 @@
 
 @push('scripts')
 <script>
-    $(document).ready(function (e) {
+    $(document).ready(function() {
+        $('.multiple-requirement').select2({
+            placeholder: "Select Requirement"
+        });
+    });
+</script>
+<script>
+    $(document).ready(function (e) {  
+
+        
         $("input[name='registration_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "Y-m-d",
@@ -230,7 +253,19 @@
                     })
                 $(".course_type").append(opt);
             }
-        })
+        });
+
+        $.ajax({
+            url:BACKEND_URL+'/get_requirement_id',
+            type:'GET',
+            success:function(response){
+                 var opt = '<option value="" >Select</option>';
+                $.each(response.data,function(i,v){
+                    opt += `<option value=${v.id}  >${v.name}</option>`;
+                })
+                $(".requirement_id").append(opt);
+            }
+        });
 
         window.onclick = function(event) {
             if (event.target == document.getElementById("create_course")) {
