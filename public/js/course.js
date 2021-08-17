@@ -48,11 +48,19 @@ function createCourse(){
 
 function getCourse(){
     destroyDatatable("#tbl_course", "#tbl_course_body");    
+    var course_name= $("input[name=filter_name]").val();
+    if($("input[name=filter_name]").val()==""){
+        course_name= "all";
+    }
+    else{
+        course_name= $("input[name=filter_name]").val();
+    }
     $.ajax({
-        url: BACKEND_URL+"/course",
+        url: BACKEND_URL+"/filter_course/"+course_name,
         type: 'get',
         data:"",
         success: function(data){
+            
             var course_data=data.data;
             console.log('data',data.data)
             course_data.forEach(function (element) {   
@@ -234,3 +242,27 @@ function loadCourse(){
     });
 }
 
+function loadCourseToFilter(){ 
+    var select = document.getElementById("filter_course_id");  
+    $.ajax({
+        url: BACKEND_URL+"/course",
+        type: 'get',
+        data:"",
+        success: function(data){
+
+            var course_data=data.data;            
+            course_data.forEach(function (element) {
+                var option = document.createElement('option');
+                option.text = element.name;
+                option.value = element.id;
+                select.add(option, 1);
+                
+
+            });              
+        },
+        error:function (message){
+                   
+        }
+    
+    });
+}

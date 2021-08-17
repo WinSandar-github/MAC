@@ -35,6 +35,11 @@ class CreateStudentRegisterTable extends Migration
             $table->string('cpa_one_success_no')->nullable();
             $table->integer('status');
             $table->string('form_type')->nullable();
+            $table->unsignedBigInteger('mentor_id')->nullable();
+            $table->unsignedBigInteger('current_check_service_id')->nullable();
+            $table->string('current_check_services_other')->nullable();
+            $table->string('recommend_file')->nullable();
+
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
             $table->timestamps();
         });

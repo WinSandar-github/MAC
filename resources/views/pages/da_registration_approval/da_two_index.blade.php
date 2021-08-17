@@ -48,6 +48,15 @@
                                         <div class="card-body">
                                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
 	                                            <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                                <div class="row">
+                                                        <div class="col-md-1 text-left" style="padding-left:20px;font;font-weight:bold;">Name</div>
+                                                        <div class="col-md-3" style="padding-right:0px;padding-left:0px;">
+                                                            <input type="text" name="filter_by_name_ss" class="form-control" placeholder="Name">
+                                                        </div>
+                                                        <div class="col-md-2" style="vertical-align: top;">
+                                                            <button type="button" class="btn btn-primary btn-round" onclick="getStudentSelfStudy()" id="search">Search</button>
+                                                        </div>
+                                                    </div>
                                                     <div class="row">
                                     
                                                         <div class="col-md-12">
@@ -77,6 +86,15 @@
                                                 </div>
                                             <div class="tab-pane fade" id="link2" aria-expanded="true">
                                                 <div class="row">
+                                                    <div class="col-md-1 text-left" style="padding-left:20px;font;font-weight:bold;">Name</div>
+                                                    <div class="col-md-3" style="padding-right:0px;padding-left:0px;">
+                                                        <input type="text" name="filter_by_name_ps" class="form-control" placeholder="Name">
+                                                    </div>
+                                                    <div class="col-md-2" style="vertical-align: top;">
+                                                        <button type="button" class="btn btn-primary btn-round" onclick="getStudentPrivateSchool()" id="search">Search</button>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
                                                     
                                                     <div class="col-md-12">
                                                             <table id="da_two_private_school" class="table table-hover text-nowrap " width="100%">
@@ -100,6 +118,15 @@
                                                 </div>
                                             </div>
                                             <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                                <div class="row">
+                                                    <div class="col-md-1 text-left" style="padding-left:20px;font;font-weight:bold;">Name</div>
+                                                    <div class="col-md-3" style="padding-right:0px;padding-left:0px;">
+                                                        <input type="text" name="filter_by_name_mac" class="form-control" placeholder="Name">
+                                                    </div>
+                                                    <div class="col-md-2" style="vertical-align: top;">
+                                                        <button type="button" class="btn btn-primary btn-round" onclick="getStudentMac()" id="search">Search</button>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     
                                                     <div class="col-md-12">

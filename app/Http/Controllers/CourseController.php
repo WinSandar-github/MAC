@@ -16,14 +16,14 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with('batches','requirement')->get();
+        $courses = Course::with('batches','active_batch')->get();
         return response()->json([
             'data' => $courses
         ],200);
     }
     public function loadCourseByCourseCode($code)
     {
-        $courses = Course::where('code',$code)->with('batches')->get();
+        $courses = Course::where('code',$code)->with('batches','active_batch')->get();
         return response()->json([
             'data' => $courses
         ],200);
@@ -181,6 +181,20 @@ class CourseController extends Controller
         return response()->json([
             'data' => $requiement_id
         ],200);
+    }
+    public function FilterCourse($course_name){
+        if($course_name=="all"){
+            $courses = Course::with('batches')->get();
+            return response()->json([
+                'data' => $courses
+            ],200);
+        }
+        else{
+            $courses = Course::where('name', 'like', '%' . $course_name. '%')->with('batches')->get();
+            return response()->json([
+                'data' => $courses
+            ],200);
+        }
     }
     
 }

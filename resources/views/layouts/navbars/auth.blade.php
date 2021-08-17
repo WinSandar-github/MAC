@@ -53,25 +53,25 @@
                         <li class="{{ $elementActive == 'da_one_app_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_one_app_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA One Application List') }}</span>
+                                <span>{{ __('DA 1 Application List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'da_two_app_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_two_app_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('DA Two Application List') }}</span>
+                                <span>{{ __('DA 2 Application List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'cpa_one_app_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_one_app_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('Cpa One Application List') }}</span>
+                                <span>{{ __('CPA 1 Application List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'cpa_two_app_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_two_app_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('CPA Two Application List') }}</span>
+                                <span>{{ __('CPA 2 Application List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
@@ -227,7 +227,7 @@
             <li class="{{ $elementActive == 'mentor_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'mentor_list') }}">
                     <i class="nc-icon nc-paper"></i>
-                    <span>{{ __('Mentors') }}</span>
+                    <span>{{ __('Mentors(MAC)') }}</span>
                 </a>
             </li>
             {{-- <li class="{{ $elementActive == 'qt_application_registration' ? 'active' : '' }}">

@@ -28,16 +28,21 @@ function createBatch(){
 }
 
 function getBatch(){
-    destroyDatatable("#tbl_batch", "#tbl_batch_body");    
+    destroyDatatable("#tbl_batch", "#tbl_batch_body"); 
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('course_name',$('#filter_course_id').val());
+    send_data.append('start_date',$("input[name=filter_by_start_date]").val());
+    send_data.append('end_date',$("input[name=filter_by_end_date]").val());
     $.ajax({
-        url: BACKEND_URL+"/batch",
-        type: 'get',
-        data:"",
+        url: BACKEND_URL+"/filter_batch",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             var course_data=data.data;
-            
-            course_data.forEach(function (element) {  
-                console.log('batchelement',element);   
+            course_data.forEach(function (element) {     
                 if(element.entrance_pass_start_date==null){
                     start_date="-";
                 }
@@ -208,10 +213,15 @@ $('#selected_course_id').on('change', function (e) {
         success: function(data){ 
             console.log(data.data[0]); 
             if(data.data[0].course_type_id==2){
-                document.getElementById('entrance_pass').style.display='block';
+                if(document.getElementById('entrance_pass'))
+                {
+                    document.getElementById('entrance_pass').style.display='block';
+                }
             }
             else{
-                document.getElementById('entrance_pass').style.display='none';
+                if(document.getElementById('entrance_pass')){
+                    document.getElementById('entrance_pass').style.display='none';
+                }
             }
         },
         error:function (message){

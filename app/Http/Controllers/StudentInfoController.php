@@ -154,11 +154,6 @@ class StudentInfoController extends Controller
             $certificate = $request->old_certificate;
         }
 
-        
-      
-
-     
-
         $student_info = StudentInfo::find($id);
         $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng          =   $request->name_eng;
@@ -235,6 +230,13 @@ class StudentInfoController extends Controller
             'message' => 'Delete Successfully'
         ],200);
 
+    }
+
+    public  function userProfile($id)
+    {
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course_regs'
+        ,'exam_registers','student_register','accountancy_firm','school','mentor','teacher')->first();
+        return response()->json(['data' => $student_info],200);
     }
 
      

@@ -10,5 +10,5 @@ class Requirement extends Model
     public function course(){
         return $this->hasMany(Course::class);
     }
-    
+      
 }
