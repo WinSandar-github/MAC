@@ -206,9 +206,17 @@ class MentorController extends Controller
         ]);
     }
 
-    public function getMentor()
+    public function getMentorMAC()
     {
         $mentor = Mentor::where('status', 1)->get();
+        return response()->json([
+            'data' => $mentor
+        ],200);
+    }
+
+    public function getMentorSelfandPrivate()
+    {
+        $mentor = Mentor::where('current_check_service_id', '<', 10)->where('status', 1)->get();
         return response()->json([
             'data' => $mentor
         ],200);

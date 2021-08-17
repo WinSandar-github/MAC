@@ -36,21 +36,24 @@ class CurrentCheckServiceSeeder extends Seeder
             ),
             array(
                 'name'  => "Non Government Organization",
-                'type'  => "2",
+                'type'  => "1",
             ),
             array(
                 'name'  => "Non Statutory Audit - Management Audit",
-                'type'  => "2",
+                'type'  => "1",
             ),
             array(
                 'name'  => "Non Statutory Audit - Enviromental Audit",
-                'type'  => "2",
+                'type'  => "1",
             ),
             array(
                 'name'  => "အခြား",
+                'type'  => "1",
+            ),  
+            array(
+                'name'  => "Government Organization",
                 'type'  => "2",
             ),
-            
         ]);
     }
 }

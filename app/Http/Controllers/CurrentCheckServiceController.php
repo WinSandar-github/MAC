@@ -25,7 +25,7 @@ class CurrentCheckServiceController extends Controller
 
     public function getCheckServiceSelf()
     {
-        $service = CurrentCheckService::where('type',2)->get();
+        $service = CurrentCheckService::where('type',1)->get();
         return response()->json([
             'data' => $service
         ],200);
