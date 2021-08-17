@@ -37,11 +37,11 @@
                                 <div id="cpaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
+                                        <div class="modal-header"> 
                                             <h5 class="modal-title text-center">CPA</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
@@ -65,7 +65,10 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">RA</h5>
+                                            <h5 class="modal-title text-center">RA</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <embed id="ra" width="100%" height="500px">
@@ -80,7 +83,10 @@
                                         <p class="ml-2" style="font-weight:bold">Foreign Degree</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#fdModal"><i class="fa fa-paperclip"></i></button>
+                                        <span class="foreign_degree">
+                                            
+                                        </span>
+                                        
                                     </div>
                                 </div>
                                 <!--Foreign Modal --> 
@@ -88,10 +94,13 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">Foreign Degree</h5>
+                                            <h5 class="modal-title text-center">Foreign Degree</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
-                                            <embed id="foreign_degree"  width="100%"  height="500px">
+                                            <embed id="foreign_degree"  src="" width="100%"  height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -113,7 +122,7 @@
                                         <p class="ml-2" style="font-weight:bold">CPA Certificate</p>
                                     </div>
                                    <div class="col-md-6">
-                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>
+                                        <button type="button" id="cpa_certi_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
                                 <!--CPA Certificate Modal --> 
@@ -121,7 +130,10 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">CAPP Certificate</h5>
+                                            <h5 class="modal-title text-center">CAPP Certificate</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa_certificate" class="img-fluid" /> -->
@@ -137,7 +149,7 @@
                                         <p class="ml-2" style="font-weight:bold">MPA Member Card</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_Modal"><i class="fa fa-paperclip"></i></button>
+                                        <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
                                 <!--MPA Member Card Modal --> 
@@ -145,7 +157,10 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">MPA Member Card</h5>
+                                            <h5 class="modal-title text-center">MPA Member Card</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
@@ -161,7 +176,7 @@
                                         <p class="ml-2" style="font-weight:bold">NRC Card(Front)</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_front_Modal"><i class="fa fa-paperclip"></i></button>
+                                        <button type="button" id="nrc_fornt_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_front_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
                                 <!--NRC Card(Front) Modal --> 
@@ -169,7 +184,10 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">NRC Card(Front)</h5>
+                                            <h5 class="modal-title text-center">NRC Card(Front)</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="nrc_front" class="img-fluid" /> -->
@@ -185,7 +203,7 @@
                                         <p class="ml-2" style="font-weight:bold">NRC Card(Back)</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" id="fd_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_back_Modal"><i class="fa fa-paperclip"></i></button>
+                                        <button type="button" id="nrc_back_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_back_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
                                 <!--NRC Card(Back) Modal --> 
@@ -193,7 +211,10 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">NRC Card(Back)</h5>
+                                            <h5 class="modal-title text-center">NRC Card(Back)</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="nrc_back" class="img-fluid" /> -->
@@ -217,7 +238,10 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">CPD Record</h5>
+                                            <h5 class="modal-title text-center">CPD Record</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                         <embed id="cpd_record"  width="100%" height="500px">
@@ -240,7 +264,10 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">Passport Image</h5>
+                                            <h5 class="modal-title text-center">Passport Image</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                         <embed id="passport_image"  width="100%" height="500px">
@@ -480,7 +507,10 @@
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                     <div class="modal-header">                                            
-                                        <h5 class="modal-title text-center">Attached Certificate</h5>
+                                            <h5 class="modal-title text-center">Attached Certificate</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
                                         </div>
                                         <div class="modal-body">
                                             <embed id="attached_file"  width="100%"  height="500px">

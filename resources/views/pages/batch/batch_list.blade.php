@@ -34,21 +34,77 @@
                                     <button type="button" class="btn btn-primary btn-round" id="create_btn" data-toggle="modal" data-target="#create_batch_modal">Create</button>
                                 </div>
                             </div>
+                            
                         </div>
                         <div class="card-body">
+                            
                             <div class="row">
                                 
                                 <div class="col-md-12">
                                     <div class="card">
+                                        <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <form method="post" enctype="multipart/form-data">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="row">
+                                                                <div class="col-md-1"></div>
+                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Name</div>
+                                                                <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
+                                                                    <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="row">
+                                                                <div class="col-md-1"></div>
+                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Course Name</div>
+                                                                <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
+                                                                    <select class="form-control form-select" name="course_id" id="filter_course_id" style="width: 100%;" required>
+                                                                        <option value="all" selected>All</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div><br/>
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div class="row">
+                                                                <div class="col-md-1"></div>
+                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Start Date</div>
+                                                                <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
+                                                                    <input type="text" name="filter_by_start_date" class="form-control" placeholder="Start Date">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-5">
+                                                            <div class="row">
+                                                                <div class="col-md-1"></div>
+                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">End Date</div>
+                                                                <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
+                                                                    <input type="text" name="filter_by_end_date" class="form-control" placeholder="End Date">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-2" style="vertical-align: top;">
+                                                            <button type="button" class="btn btn-primary btn-round" onclick="getBatch()" id="search">Search</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        </div>
                                         <div class="card-body">
+                                        <hr size="5" width="95%" color="#F5F5F5"> 
                                             <table id="tbl_batch" class="table table-hover text-nowrap ">
                                                 <thead >
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
                                                         <th class="bold-font-weight" >Name</th>
-                                                        <th class="bold-font-weight" >Course</th>                                        
-                                                        <th class="bold-font-weight">Start Date</th>
-                                                        <th class="bold-font-weight">End Date</th>   
+                                                        <th class="bold-font-weight" >Course Name</th> 
+                                                        <th class="bold-font-weight">Batch Start Date</th>
+                                                        <th class="bold-font-weight">Batch End Date</th>   
                                                         <th class="bold-font-weight">MAC Registration Start Date</th>
                                                         <th class="bold-font-weight">MAC Registration End Date</th>  
                                                         <th class="bold-font-weight">Self Registration Start Date</th>
@@ -309,6 +365,7 @@
 
     loadCourse();
     getBatch();
+    loadCourseToFilter();
 </script>
 
 <script type="text/javascript">
@@ -390,7 +447,16 @@
                 dateFormat: "Y-m-d",
                 allowInput: true,
         });
-
+        $("input[name='filter_by_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+                allowInput: true,
+        });
+        $("input[name='filter_by_end_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "Y-m-d",
+                allowInput: true,
+        });
         
         window.onclick = function(event) {
             if (event.target == document.getElementById("create_btn")) {

@@ -9,6 +9,8 @@ use App\EducationHistroy;
 use App\StudentRegister;
 use App\StudentCourseReg;
 use Hash;
+use Illuminate\Support\Facades\DB;
+
 
 class DARegisterController extends Controller
 {
@@ -216,9 +218,10 @@ class DARegisterController extends Controller
 
      public function reg_feedback($id)
     {
+        
          $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
-        $status = $student_register != null ? $student_register->status : null;
+         $status = $student_register != null ? $student_register->status : null;
          
         return response()->json($status,200);
 
@@ -231,5 +234,30 @@ class DARegisterController extends Controller
 
     }
 
-  
+    public function FilterApplicationList(Request $request)
+    {
+        $student_infos = StudentCourseReg::with('student_info','batch');
+        // $test=StudentInfo::where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc)->get();
+        if($request->name!="")
+        {
+            $student_infos=$student_infos->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id')
+                                        ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+                                        ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+        }
+        if($request->nrc!="" && $request->name=="")
+        {
+            $student_infos=$student_infos->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id')
+                                        // ->where('student_infos.nrc_state_region'.'/'.'student_infos.nrc_township'.'('.'student_infos.nrc_citizen'.')', $request->nrc);
+                                        ->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+        }
+        if($request->nrc!="" && $request->name!="")
+        {
+            $student_infos=$student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+        }
+        $student_infos=$student_infos->get();
+        return response()->json([ 
+            'data' => $student_infos,
+            // 'test'=>$test
+        ],200);
+    }
 }

@@ -26,16 +26,18 @@ function getCPAExam(){
     destroyDatatable("#tbl_cpa_exam_one", "#tbl_cpa_exam_one_body");
     destroyDatatable("#tbl_cpa_exam_two", "#tbl_cpa_exam_two_body");
     var batch = $("#selected_batch_id").val();
-    console.log("selected",batch);
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('batch',batch);
     $.ajax({
-        url: BACKEND_URL + "/filter/"+batch,
-        type: 'get',
-        data:"",
+        url: BACKEND_URL + "/filter",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             var da_data = data.data;
             da_data.forEach(function (element) {
-                console.log('element',element);
-                console.log('form_type', element.form_type);
                     console.log(element.student_info.course_type_id);
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
@@ -84,6 +86,7 @@ function getCPAExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
                                 tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + element.exam_type_id + "</td>";
                                 tr += "<td>" + element.grade + "</td>";
@@ -274,13 +277,19 @@ function chooseCPABatch(){
 }
 function loadCPAStudent(course_type)
 {
+    destroyDatatable("#tbl_cpa_exam_result", "#tbl_cpa_exam_result_body");
     localStorage.setItem("course_type",course_type);
     //var id = localStorage.getItem("batch_id");
     // console.log(id);
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('grade',$('#selected_grade_id').val());
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
-        type: 'get',
-        data:"",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             console.log("course",data);
             var da_data = data.data;
@@ -290,9 +299,11 @@ function loadCPAStudent(course_type)
                         type: 'get',
                         data:"",
                         success:function(courses){
+                            console.log(courses,"Course")
+                        
                             var course=courses.data;
-                            console.log('courses',course);
                             if(course[0].code==course_type){
+                                console.log('check courses',course);
                                 console.log(course[0].code,course_type);
                                 if(element.status==0){
                                     status="PENDING";
@@ -385,6 +396,7 @@ function getCPAModuleStd(){
                  console.log('ee',element);
                 if(element.status==0){
                     status="PENDING";
+                    $('.pass_fail_btn').hide();
                 }
                 else if(element.status==1){
                     status="APPROVED";
@@ -411,6 +423,13 @@ function getCPAModuleStd(){
                     is_full_module="Full Module";
                 }
 
+                if(element.grade == 1 )
+                {
+                     $('.ex_res_btn').hide();
+                    $('.pass_fail_btn').hide();
+
+                }
+
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
@@ -423,7 +442,8 @@ function getCPAModuleStd(){
                 type: 'get',
                 data:"",
                 success: function(result){
-                        if(result!=null)
+                    
+                        if(result.data !=null)
                         {
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',result.data.id);

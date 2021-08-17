@@ -1,14 +1,20 @@
 var attached_file;
 
 function getDAList(course_code){
-    destroyDatatable("#tbl_da_list", "#d");    
+    destroyDatatable("#tbl_da_list", "#tbl_da_list_body"); 
+    console.log($("input[name=filter_by_nrc]").val());
+    var send_data=new FormData();
+    send_data.append('name',$("input[name=filter_by_name]").val());
+    send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
     $.ajax({
-        url: BACKEND_URL+"/da_register",
-        type: 'get',
-        data:"",
+        url: BACKEND_URL+"/filter_student_info",
+        type: 'post',
+        data:send_data,
+        contentType: false,
+        processData: false,
         success: function(data){
             var da_data = data.data;
-            console.log(da_data)
+            console.log({data});
             let da_one_list = da_data.filter(function(v){
                 return v.batch.course.code == course_code 
             })
@@ -186,8 +192,32 @@ function rejectUser(){
         url: BACKEND_URL + "/reject/" + id,
         type: 'patch',
         success: function(result){
-            
-            successMessage("You have rejected that user!");
+            let url;
+            if(result){
+
+                switch(result.code){
+                    case 'da_1':
+                    url = '/da_one_app_list';
+                    break;
+                    case 'da_2':
+                    url = '/da_two_app_list';
+                    break;
+                    case 'cpa_1':
+                    url = '/cpa_one_app_list';
+                    break;
+                    case 'cpa_2':
+                    url = '/cpa_two_app_list';
+                    break;
+                    default:
+                    url = '/da_one_app_list';
+                    break;
+
+
+                    
+                }
+                successMessage("You have rejected that user!");
+                 location.href = FRONTEND_URL + url;
+            }
             // location.href = FRONTEND_URL + "/da_one_app_list";
         }
     });

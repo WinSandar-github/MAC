@@ -190,6 +190,7 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('js') }}/da_exam_one.js"></script>
     <script src="{{ asset('js') }}/exam_result.js"></script>
     <script src="{{ asset('js') }}/cpa_exam_one.js"></script>
+    <script src="{{ asset('js') }}/mentor.js"></script>
     <!--toastr-->
     <script src="{{ asset('plugins/toastr') }}/toastr.min.js"></script>
     <!-- DataTables -->

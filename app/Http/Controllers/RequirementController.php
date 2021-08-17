@@ -87,4 +87,20 @@ class RequirementController extends Controller
         ],200);
 
     }
+
+    public function FilterRequirement(Request $request)
+    {
+        $requirement=Requirement::with('course');
+        if($request->name!="")
+        {
+            $requirement=$requirement->where('name', 'like', '%' . $request->name. '%');
+        }
+        if($request->course_name!="all"){
+            $requirement=$requirement->where('course_id',$request->course_name);
+        }
+        $requirement=$requirement->get();
+        return response()->json([
+            'data' => $requirement
+        ],200);
+    }
 }
