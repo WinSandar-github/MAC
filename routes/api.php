@@ -201,6 +201,8 @@ Route::post('/filter_mentor','MentorController@FilterMentor');
 // Route::apiResource('mentor','MentorController');
 // Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
+Route::get('check_service_private','CurrentCheckServiceController@getCheckServicePrivate');
+Route::get('check_service_self','CurrentCheckServiceController@getCheckServiceSelf');
 Route::get('check_mentor','MentorController@getMentor');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');

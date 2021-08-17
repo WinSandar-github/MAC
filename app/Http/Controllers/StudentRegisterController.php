@@ -190,7 +190,8 @@ class StudentRegisterController extends Controller
 
     public function getType($id)
     {
-        $type = StudentRegister::where('student_info_id',$id)->get('type');
+        $type = StudentRegister::where('student_info_id',$id)->with('course')->get();
+        // return $type;
         return response()->json([
             'data' => $type
         ],200);

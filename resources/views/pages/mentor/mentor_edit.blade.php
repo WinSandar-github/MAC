@@ -19,18 +19,18 @@
         </div>
             <form id="updateMentor" method="post" action="javascript:void();" enctype="multipart/form-data">
             @csrf
-             
-            
+
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
-									
+
                             <div >
-                                        
+
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
@@ -99,7 +99,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                      
+
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('လူမျိူး/ဘာသာ') }}</label>
@@ -114,7 +114,7 @@
                                                 </div>
                                             </div>
 	                                  </div>
-	                                  
+
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
@@ -124,8 +124,8 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                  
-                                        
+
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း') }}</label>
@@ -135,7 +135,7 @@
                                                 </div>
                                             </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('RA/CPA အောင်မြင်သောနှစ်/ ကိုယ်ပိုင်အမှတ်') }}</label>
@@ -246,20 +246,20 @@
                                             <label class="col-md-1 col-form-label">{{ __('၁၆။') }}</label>
                                             <label class="col-md-3 col-form-label">{{ __('လက်ရှိလက်ခံဆောင်ရွက်စစ်ဆေးပေးရသည့်လုပ်ငန်းများ') }}</label>
                                             <div class="col-md-4">
-                                                <div class="form-group">                                
+                                                <div class="form-group">
                                                     <select class="form-control form-select" name="current_check_service_id" id="selected_service_id" style="width: 100%;">
                                                         <option value="" disabled selected>Select Current Service</option>
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group">                            
+                                            <div class="col-md-3 check-service-other" style="display:none;">
+                                                <div class="form-group">
                                                     <input type="text" name="current_check_services_other" id="current_check_services_other" class="form-control" placeholder="other" >
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
-                                        
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၇။') }}</label>
 	                                      <label class="col-md-6 col-form-label">{{ __('ယခင်အလုပ်သင်ကြားပေးမှုအတွေ့အကြုံ ရှိ/မရှိ') }}</label>
@@ -270,85 +270,104 @@
                                                 <input type="radio" id="no" value="0" name="experience" @if(!old('experience')) checked @endif> No
                                             </div>
 	                                    </div>
-                                        <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၁၈။') }}</label>
-	                                      <label class="col-md-6 col-form-label">{{ __('စာရင်းကိုင်အလုပ်သင်များအား အလုပ်သင်ကြားပေးမှု စတင်ခဲ့သည့်ခုနှစ်') }}</label>
-	                                        <div class="col-md-4">
-                                                <div class="form-group">
-                                                        <input type="text" name="started_teaching_year" id="started_teaching_year" placeholder="dd-mm-yyyy" class="form-control" required="">
-                                                </div>
-                                            </div>
-	                                    </div>
-                                        <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၁၉။') }}</label>
-	                                      <label class="col-md-6 col-form-label">{{ __('အလုပ်သင်ဦးရေလက်ခံနိုင်သည့်အရေအတွက်') }}</label>
-	                                        <div class="col-md-4">
-                                                <div class="form-group">
-                                                            <input type="number" name="internship_accept_no" id="internship_accept_no" class="form-control" placeholder="" required="">
-                                                </div>
-                                            </div>
-	                                    </div>
-                                        <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၂၀။') }}</label>
-	                                      <label class="col-md-6 col-form-label">{{ __('လက်ရှိလက်ခံသင်ကြားပေးသော အလုပ်သင်ဦးရေ') }}</label>
-	                                        <div class="col-md-4">
-                                                <div class="form-group">
-                                                            <input type="number" name="current_accept_no" id="current_accept_no" class="form-control" placeholder="" required="">
-                                                </div>
-                                            </div>
-	                                    </div>
-                                        <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၂၁။') }}</label>
-	                                      <label class="col-md-6 col-form-label">{{ __('မွေးထုတ်ပေးခဲ့သည့် အလုပ်သင်ဦးရေ') }}</label>
-	                                        <div class="col-md-4">
-                                                <div class="form-group">
-                                                            <input type="number" name="trained_trainees_no" id="trained_trainees_no" class="form-control" required="">
-                                                </div>
-                                            </div>
-	                                    </div>
+                                        <div id="start_teaching" style="display:none;">
+																					<div class="row">
+		                                      <label class="col-md-1 col-form-label">{{ __('၁၈။') }}</label>
+		                                      <label class="col-md-6 col-form-label">{{ __('စာရင်းကိုင်အလုပ်သင်များအား အလုပ်သင်ကြားပေးမှု စတင်ခဲ့သည့်ခုနှစ်') }}</label>
+		                                        <div class="col-md-4">
+	                                                <div class="form-group">
+	                                                        <input type="text" name="started_teaching_year" id="started_teaching_year" placeholder="dd-mm-yyyy" class="form-control" required="">
+	                                                </div>
+	                                            </div>
+		                                    </div>
+																				</div>
 
-                                        <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၂၂။') }}</label>
-	                                      <label class="col-md-6 col-form-label">{{ __('နှစ်စဥ်ဆက်တိုက်အလုပ်သင်ကြားနိုင်ခြင်း ရှိ/မရှိ') }}</label>
-                                          <div class="col-md-2">
-                                                <input type="radio" id="yes" value="1" name="repeat_yearly" @if(old('repeat_yearly')) checked @endif> Yes
-                                            </div>
-                                            <div class="col-md-2">
-                                                <input type="radio" id="no" value="0" name="repeat_yearly" @if(!old('repeat_yearly')) checked @endif> No
-                                            </div>
-	                                    </div>
-                                        <div class="row">
-	                                      <label class="col-md-1 col-form-label">{{ __('၂၃။') }}</label>
-	                                      <label class="col-md-6 col-form-label">{{ __('အလုပ်သင်ကြားမှုပြတ်တောက်ခဲ့ခြင်း ရှိ/မရှိ') }}</label>
-                                            <div class="col-md-2">
-                                                    <input type="radio" id="yes" value="1" name="training_absent" value="yes" @if(old('training_absent')) checked @endif> Yes
-                                            </div>
-                                            <div class="col-md-2">
-                                                    <input type="radio" id="no" value="0" name="training_absent" value="no" @if(!old('training_absent')) checked @endif> No
-                                            </div>
-	                                        
-	                                    </div>
-                                        <div class="row">
-                                        <label class="col-md-1 col-form-label"></label>
-	                                      <label class="col-md-6 col-form-label">{{ __('ရှိပါက ပြတ်တောက်ခဲ့ရသည့် အကြောင်းအရင်း') }}</label>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <input type="text" name="training_absent_reason" id="training_absent_reason" class="form-control" placeholder="reason" >
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div id="accept_amount" style="display:none;">
+																					<div class="row">
+		                                      <label class="col-md-1 col-form-label">{{ __('၁၉။') }}</label>
+		                                      <label class="col-md-6 col-form-label">{{ __('အလုပ်သင်ဦးရေလက်ခံနိုင်သည့်အရေအတွက်') }}</label>
+		                                        <div class="col-md-4">
+	                                                <div class="form-group">
+	                                                            <input type="number" name="internship_accept_no" id="internship_accept_no" class="form-control" placeholder="" required="">
+	                                                </div>
+	                                            </div>
+		                                    </div>
+																				</div>
+
+                                        <div id="current_accept" style="display:none;">
+																					<div class="row">
+		                                      <label class="col-md-1 col-form-label">{{ __('၂၀။') }}</label>
+		                                      <label class="col-md-6 col-form-label">{{ __('လက်ရှိလက်ခံသင်ကြားပေးသော အလုပ်သင်ဦးရေ') }}</label>
+		                                        <div class="col-md-4">
+	                                                <div class="form-group">
+	                                                            <input type="number" name="current_accept_no" id="current_accept_no" class="form-control" placeholder="" required="">
+	                                                </div>
+	                                            </div>
+		                                    	</div>
+																				</div>
+
+                                        <div id="trained_trainees" style="display:none;">
+																					<div class="row">
+		                                      <label class="col-md-1 col-form-label">{{ __('၂၁။') }}</label>
+		                                      <label class="col-md-6 col-form-label">{{ __('မွေးထုတ်ပေးခဲ့သည့် အလုပ်သင်ဦးရေ') }}</label>
+		                                        <div class="col-md-4">
+	                                                <div class="form-group">
+	                                                            <input type="number" name="trained_trainees_no" id="trained_trainees_no" class="form-control" required="">
+	                                                </div>
+	                                            </div>
+		                                    	</div>
+																				</div>
+
+                                        <div id="yearly" style="display:none;">
+																					<div class="row">
+		                                      <label class="col-md-1 col-form-label">{{ __('၂၂။') }}</label>
+		                                      <label class="col-md-6 col-form-label">{{ __('နှစ်စဥ်ဆက်တိုက်အလုပ်သင်ကြားနိုင်ခြင်း ရှိ/မရှိ') }}</label>
+	                                          <div class="col-md-2">
+	                                                <input type="radio" id="yes" value="1" name="repeat_yearly" @if(old('repeat_yearly')) checked @endif> Yes
+	                                            </div>
+	                                            <div class="col-md-2">
+	                                                <input type="radio" id="no" value="0" name="repeat_yearly" @if(!old('repeat_yearly')) checked @endif> No
+	                                            </div>
+		                                    	</div>
+																				</div>
+
+                                        <div id="absent_training" style="display:none;">
+																					<div class="row">
+		                                      <label class="col-md-1 col-form-label">{{ __('၂၃။') }}</label>
+		                                      <label class="col-md-6 col-form-label">{{ __('အလုပ်သင်ကြားမှုပြတ်တောက်ခဲ့ခြင်း ရှိ/မရှိ') }}</label>
+	                                            <div class="col-md-2">
+	                                                    <input type="radio" id="yes" value="1" name="training_absent" value="yes" @if(old('training_absent')) checked @endif> Yes
+	                                            </div>
+	                                            <div class="col-md-2">
+	                                                    <input type="radio" id="no" value="0" name="training_absent" value="no" @if(!old('training_absent')) checked @endif> No
+	                                            </div>
+
+		                                    	</div>
+																				</div>
+
+                                        <div id="absent_reason" style="display:none;">
+																					<div class="row">
+		                                        <label class="col-md-1 col-form-label"></label>
+			                                      <label class="col-md-6 col-form-label">{{ __('ရှိပါက ပြတ်တောက်ခဲ့ရသည့် အကြောင်းအရင်း') }}</label>
+	                                          <div class="col-md-4">
+	                                              <div class="form-group">
+	                                                  <input type="text" name="training_absent_reason" id="training_absent_reason" class="form-control" placeholder="reason" >
+	                                              </div>
+	                                          </div>
+	                                        </div>
+																				</div>
 
                                         <div class="row">
                                         <div class="col-md-11 d-md-flex justify-content-md-end">
                                             <button type="submit" class="btn btn-info btn-round">{{ __('Update') }}</button>
                                         </div>
                                     </div>
-                                
+
                             </div>
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -377,7 +396,7 @@
     loadMentor();
 </script>
 <script>
-    
+
     $(document).ready(function (e) {
 
         $("input[name='date_of_birth']").flatpickr({
@@ -400,8 +419,8 @@
                 enableTime: false,
                 dateFormat: "d-m-Y",
         });
-        
-        
+
+
         $("input[id*='nrc_number'], text[id*='nrc_number']").change(function(e) {
             myanmarLetterOnly($(this));
         });
@@ -426,6 +445,31 @@
             myanmarLetterOnly($(this));
         });
 
+				$("#selected_service_id").change(function(){
+	        checkOtherService($(this));
+	      });
+
+				$("input[name=experience]").on("click", function(evt) {
+	        var checkedValue = $("input[name='experience']:checked").val();
+	        if(checkedValue == '1'){
+	          $("#start_teaching,#accept_amount,#current_accept,#trained_trainees,#yearly,#absent_training").css('display','block');
+	        }
+	        else if(checkedValue == '0'){
+	          $("#started_teaching,#accept_amount,#current_accept,#trained_trainees,#yearly,#absent_training,#absent_reason").css('display','none');
+	          $("input[name='training_absent']").prop('checked',false);
+	        }
+	      });
+
+				$("input[name=training_absent]").on("click", function(evt) {
+	        var checkedValue = $("input[name='training_absent']:checked").val();
+	        if(checkedValue == '1'){
+	          $("#absent_reason").css('display','block');
+	        }
+	        else if(checkedValue == '0'){
+	          $("#absent_reason").css('display','none');
+	        }
+	      });
+
         function myanmarLetterOnly( self )
         {
             val = self.val();
@@ -434,6 +478,16 @@
             }
         }
     });
+
+		function checkOtherService(option){
+      var selected_id = $(option).val();
+      if(selected_id == 9){
+        $(".check-service-other").css('display','block');
+      }
+      else{
+        $(".check-service-other").css('display','none');
+      }
+    }
 
 </script>
 @endpush
