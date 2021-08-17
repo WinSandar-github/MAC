@@ -99,7 +99,7 @@ class CourseController extends Controller
         $course = Course::where('id',$id)->with('requirement')->first();
             return response()->json([
             'data' => $course
-        ],200);return $courses;
+        ],200);
     }
     
 
