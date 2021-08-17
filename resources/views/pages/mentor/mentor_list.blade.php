@@ -12,7 +12,7 @@
         </div>
         <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row"> 
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                     <div class="card-header">
@@ -58,16 +58,16 @@
                                         </div>
                                     </div>
                                         <div class="card-body">
-                                        <hr size="5" width="95%" color="#F5F5F5"> 
+                                        <hr size="5" width="95%" color="#F5F5F5">
                                             <table id="tbl_mentor"class="table table-hover  text-center">
                                                 <thead class=" text-nowrap">
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Name</th>
-                                                        <th class="bold-font-weight" >Email</th>     
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >Phone Number</th>
                                                         <th class="bold-font-weight" >NRC</th>
-                                                        <!-- <th class="bold-font-weight" >Status</th> -->
+                                                        <th class="bold-font-weight" >Status</th>
                                                         <th class="bold-font-weight" >Type</th>
                                                         <th class="bold-font-weight" >Detail</th>
                                                     </tr>
@@ -82,9 +82,9 @@
                         </div>
 
                         <div class="card-footer ">
-                            
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>

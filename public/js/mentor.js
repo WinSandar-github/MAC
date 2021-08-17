@@ -161,12 +161,12 @@ function loadMentor()
             {
                 $('input:radio[name=experience][value=1]').attr('checked',true);
                 $('input:radio[name=experience][value=0]').attr('disabled',true);
-                $('#start_teaching').css('visibility','visible');
-                $('#accept_amount').css('visibility','visible');
-                $('#current_accept').css('visibility','visible');
-                $('#trained_trainees').css('visibility','visible');
-                $('#yearly').css('visibility','visible');
-                $('#absent_training').css('visibility','visible');
+                $('#start_teaching').css('display','block');
+                $('#accept_amount').css('display','block');
+                $('#current_accept').css('display','block');
+                $('#trained_trainees').css('display','block');
+                $('#yearly').css('display','block');
+                $('#absent_training').css('display','block');
 
                 $("#started_teaching_year").val(mentor_data.started_teaching_year);
                 $("#current_accept_no").val(mentor_data.current_accept_no);
@@ -176,12 +176,12 @@ function loadMentor()
             else{
                 $('input:radio[name=experience][value=0]').attr('checked',true);
                 $('input:radio[name=experience][value=1]').attr('disabled',true);
-                $('#start_teaching').css('visibility','hidden');
-                $('#accept_amount').css('visibility','hidden');
-                $('#current_accept').css('visibility','hidden');
-                $('#trained_trainees').css('visibility','hidden');
-                $('#yearly').css('visibility','hidden');
-                $('#absent_training').css('visibility','hidden');
+                $('#start_teaching').css('display','none');
+                $('#accept_amount').css('display','none');
+                $('#current_accept').css('display','none');
+                $('#trained_trainees').css('display','none');
+                $('#yearly').css('display','none');
+                $('#absent_training').css('display','none');
             }
 
             // validate for repeat_yearly radio button checked
@@ -200,13 +200,13 @@ function loadMentor()
             {
               $('input:radio[name=training_absent][value=1]').attr('checked',true);
               $('input:radio[name=training_absent][value=0]').attr('disabled',true);
-              $('#absent_reason').css('visibility','visible');
+              $('#absent_reason').css('display','block');
               $("#training_absent_reason").val(mentor_data.training_absent_reason);
             }
             else{
               $('input:radio[name=training_absent][value=0]').attr('checked',true);
               $('input:radio[name=training_absent][value=1]').attr('disabled',true);
-              $('#absent_reason').css('visibility','hidden');
+              $('#absent_reason').css('display','none');
             }
 
         }
@@ -243,7 +243,16 @@ function getMentorList(){
                 tr += "<td>" + element.m_email + "</td>";
                 tr += "<td>" + element.phone_no+ "</td>";
                 tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
-                // tr += "<td>" + status+ "</td>";
+                if(element.status == 0){
+                  tr += "<td class='text-warning'>Pending</td>";
+                }
+                else if(element.status == 1){
+                  tr += "<td class='text-success'>Approved</td>";
+                }
+                else{
+                  tr += "<td class='text-danger'>Rejected</td>";
+                }
+
                 tr += "<td>" + element.type+ "</td>";
                 tr += "<td ><div class='btn-group'>";
                 if(element.type == "Student"){
