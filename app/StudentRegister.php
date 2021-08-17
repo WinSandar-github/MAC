@@ -14,4 +14,9 @@ class StudentRegister extends Model
     {
         return $this->belongsTo(StudentInfo::class,'student_info_id','id');
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class,'id');
+    }
 }

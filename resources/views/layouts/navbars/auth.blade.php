@@ -227,7 +227,7 @@
             <li class="{{ $elementActive == 'mentor_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'mentor_list') }}">
                     <i class="nc-icon nc-paper"></i>
-                    <span>{{ __('Mentors(MAC)') }}</span>
+                    <span>{{ __('Mentors') }}</span>
                 </a>
             </li>
             {{-- <li class="{{ $elementActive == 'qt_application_registration' ? 'active' : '' }}">
