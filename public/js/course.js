@@ -47,7 +47,8 @@ function createCourse(){
 }
 
 function getCourse(){
-    destroyDatatable("#tbl_course", "#tbl_course_body");    
+  
+     destroyDatatable("#tbl_course", "#tbl_course_body");    
     var course_name= $("input[name=filter_name]").val();
     if($("input[name=filter_name]").val()==""){
         course_name= "all";
@@ -65,8 +66,14 @@ function getCourse(){
             console.log('data',data.data)
             course_data.forEach(function (element) {   
                 console.log('course_element',element) 
-                var requirements = element.requirement_id;    
-                var requirements_name=requirements.replace(/[\[\]"]+/g,"");  
+                // var requirements = element.requirement_id; 
+                // console.log(requirements)   
+                // console.log(requirement_list,"Requirement")
+
+                filter_requirement = requirement_list.filter((req_list) =>element.requirement_id.includes(req_list.id))
+              
+
+                // var requirements_name=requirements.replace(/[\[\]"]+/g,"");  
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
                 tr += "<td>" + element.name + "</td>";
@@ -77,7 +84,10 @@ function getCourse(){
                 tr += "<td>" + thousands_separators(element.exam_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.tution_fee) + "</td>";
                 tr += "<td>" + element.description + "</td>";
-                tr += "<td>" + requirements_name+ "</td>";
+                tr += `<td>   ${
+                    filter_requirement.map((req) => `<p>${req.name}</p>`)
+
+                } </td>`;
             
                 tr += "<td ><div class='btn-group'>";
                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCourseInfo(" + element.id + ")'>" +
@@ -123,7 +133,7 @@ function showCourseInfo(id) {
             $('input[name=description]').val(course_data.description);
             $('input[name=code]').val(course_data.code);
             $('.course_type').val(course_data.course_type_id);
-            $('.requirement_id').val(course_data.requirement_id);
+            // $('.requirement_id').val(course_data.requirement_id);
 
             // if(course_data.requirement_id!=null){
                    
@@ -133,6 +143,13 @@ function showCourseInfo(id) {
             //     $(".requirement_id").append("<select name='requirement_id[]' class='form-control requirement_id multiple-requirement' multiple='multiple' required style='width:100%'></select>");
                 
             // }
+
+            var req_str = course_data.requirement_id.replace(",", "");
+            console.log(req_str,"Req String")
+            
+            //change string to array
+            var req_arr  = [... req_str];
+            $('.requirement_id').select2().val(req_arr).trigger('change');
                         
             $('#create_course_modal').modal('toggle');
         },
@@ -265,4 +282,20 @@ function loadCourseToFilter(){
         }
     
     });
+}
+
+
+function getRequirementCourse(){
+    
+    $.ajax({
+        url:BACKEND_URL+'/get_requirement_id',
+        type:'GET',
+        success:function(response){
+            requirement_list = response.data;
+           
+           
+
+        }
+    })        
+
 }
