@@ -147,6 +147,7 @@ Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
+Route::get('/get_requirement_id','CourseController@getRequirement');
 
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
