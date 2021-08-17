@@ -542,11 +542,12 @@ function autoLoadAudit(){
 function approveAuditFirm(){
 
   var id = $("input[name = audit_firm_id]").val();
-  console.log('approveaudit_firm',id);
+  // console.log('approveaudit_firm',id);
   $.ajax({
       url: BACKEND_URL + "/approve_auditfirm/"+id,
       type: 'patch',
       success: function(result){
+        // console.log(result) 
           successMessage("You have approved that user!");
           location.href = FRONTEND_URL + "/audit-firm-list";
       }

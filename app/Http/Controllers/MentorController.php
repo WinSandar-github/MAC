@@ -96,6 +96,8 @@ class MentorController extends Controller
         $mentor->repeat_yearly               = $request->repeat_yearly;
         $mentor->training_absent             = $request->training_absent;
         $mentor->training_absent_reason      = $request->training_absent_reason;
+        $mentor->status = $request->status;
+        $mentor->type   = $request->type;
         $mentor->save();
 
         $std_info = new StudentInfo();
@@ -198,6 +200,12 @@ class MentorController extends Controller
         return response()->json([
             'message' => "Successfully Delete"
         ]);
+    }
+
+    public function getMentor()
+    {
+        $mentor = Mentor::all();
+        return response()->json([
     }
 
     public function FilterMentor(Request $request)
