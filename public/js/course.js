@@ -21,6 +21,13 @@ function createCourse(){
     send_data.append('code',$("input[name=code]").val());   
 
     send_data.append('course_type_id',$('.course_type').val());
+    send_data.append('requirement_id[]',$('.requirement_id').val());
+
+    // $('select[name="requirement_id[]"]').map(function(){
+    //     for (var i = 0; i < $(this).get(0).selected.length; ++i) {
+    //         send_data.append('requirement_id[]',$(this).get(0).files[i]);
+    //     }
+    // });
      
     $.ajax({
             url: BACKEND_URL+"/course",
@@ -29,7 +36,6 @@ function createCourse(){
             contentType: false,
             processData: false,
             success: function(result){
-                 
                 successMessage("Insert Successfully");
                 location.reload();
             },
@@ -48,7 +54,11 @@ function getCourse(){
         data:"",
         success: function(data){
             var course_data=data.data;
-            course_data.forEach(function (element) {          
+            console.log('data',data.data)
+            course_data.forEach(function (element) {   
+                console.log('course_element',element) 
+                var requirements = element.requirement_id;    
+                var requirements_name=requirements.replace(/[\[\]"]+/g,"");  
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
                 tr += "<td>" + element.name + "</td>";
@@ -59,6 +69,7 @@ function getCourse(){
                 tr += "<td>" + thousands_separators(element.exam_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.tution_fee) + "</td>";
                 tr += "<td>" + element.description + "</td>";
+                tr += "<td>" + requirements_name+ "</td>";
             
                 tr += "<td ><div class='btn-group'>";
                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCourseInfo(" + element.id + ")'>" +
@@ -81,6 +92,7 @@ function getCourse(){
 }
 
 function showCourseInfo(id) {
+    console.log('id',id);
     
     $("#course_form").attr('action', 'javascript:updateCourse()');    
     $("input[name=course_id]").val(id);
@@ -88,19 +100,31 @@ function showCourseInfo(id) {
         type: "get",
         url: BACKEND_URL+"/course/"+id,
         success: function (data) {
-            var course_data=data.data;                     
-            $('input[name=name]').val(course_data[0].name);
-            $('input[name=form_fee]').val(course_data[0].form_fee);
-            $('input[name=selfstudy_registration_fee]').val(course_data[0].selfstudy_registration_fee);
-            $('input[name=privateschool_registration_fee]').val(course_data[0].privateschool_registration_fee);
-            $('input[name=mac_registration_fee]').val(course_data[0].mac_registration_fee);
-            $('input[name=exam_fee]').val(course_data[0].exam_fee);
-            $('input[name=tution_fee]').val(course_data[0].tution_fee);
-            $('input[name=registration_start_date]').val(course_data[0].registration_start_date);
-            $('input[name=registration_end_date]').val(course_data[0].registration_end_date);
-            $('input[name=description]').val(course_data[0].description);
-            $('input[name=code]').val(course_data[0].code);
-            $('.course_type').val(course_data[0].course_type_id);
+            var course_data=data.data;  
+            console.log('show course',course_data);
+            // removeBracketed(course_data.requirement_id,"requirement_id");                   
+            $('input[name=name]').val(course_data.name);
+            $('input[name=form_fee]').val(course_data.form_fee);
+            $('input[name=selfstudy_registration_fee]').val(course_data.selfstudy_registration_fee);
+            $('input[name=privateschool_registration_fee]').val(course_data.privateschool_registration_fee);
+            $('input[name=mac_registration_fee]').val(course_data.mac_registration_fee);
+            $('input[name=exam_fee]').val(course_data.exam_fee);
+            $('input[name=tution_fee]').val(course_data.tution_fee);
+            $('input[name=registration_start_date]').val(course_data.registration_start_date);
+            $('input[name=registration_end_date]').val(course_data.registration_end_date);
+            $('input[name=description]').val(course_data.description);
+            $('input[name=code]').val(course_data.code);
+            $('.course_type').val(course_data.course_type_id);
+            $('.requirement_id').val(course_data.requirement_id);
+
+            // if(course_data.requirement_id!=null){
+                   
+            //     removeBracketed(course_data.requirement_id,"requirement_id");
+                
+            // }else {
+            //     $(".requirement_id").append("<select name='requirement_id[]' class='form-control requirement_id multiple-requirement' multiple='multiple' required style='width:100%'></select>");
+                
+            // }
                         
             $('#create_course_modal').modal('toggle');
         },
@@ -111,6 +135,16 @@ function showCourseInfo(id) {
     });
     
 }
+
+// function removeBracketed(selectdata,divname){
+//     var new_selectdata=selectdata.replace(/[\'"[\]']+/g, '');
+//     // var split_new_selectdata=new_selectdata.split(',');
+//     console.log('split_new_selectdata',new_selectdata);
+//     for(var i=0;i<new_selectdata.length;i++){
+//         var selectdata="<option value=('"+new_selectdata[i]+"')>"+new_selectdata[i]+" </option>";
+//         $("."+divname).append(selectdata);
+//     }
+// }
 
 function updateCourse(){
     var id= $("input[name=course_id]").val();    
@@ -127,6 +161,7 @@ function updateCourse(){
     var code        =   $("input[name=code]").val();   
 
     var course_type_id = $('.course_type').val();
+    var requirement_id = $('.requirement_id').val();
    
     $.ajax({
         url: BACKEND_URL+"/course/"+id,
@@ -143,7 +178,8 @@ function updateCourse(){
             registration_end_date:registration_end_date,
             description:description,
             code:code,
-            course_type_id:course_type_id
+            course_type_id:course_type_id,
+            requirement_id:requirement_id
         },        
         success: function(result){
             successMessage("Update Successfully");

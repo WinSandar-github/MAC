@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
         // $this->call([CpaOneTrainingGroundSeeder::class]);
         $this->call([CourseTypeSeeder::class]);
         $this->call([CurrentCheckServiceSeeder::class]);
+        $this->call([CourseRequirementSeeder::class]);
 
 
         // $this->call([CourseFeeSeeder::class]);

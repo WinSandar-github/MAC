@@ -36,7 +36,8 @@ function getBatch(){
         success: function(data){
             var course_data=data.data;
             
-            course_data.forEach(function (element) {     
+            course_data.forEach(function (element) {  
+                console.log('batchelement',element);   
                 if(element.entrance_pass_start_date==null){
                     start_date="-";
                 }
