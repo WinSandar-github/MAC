@@ -78,7 +78,12 @@ function createMentor()
         contentType: false,
         processData: false,
         success: function(result){
+<<<<<<< HEAD
+            // console.log(result)
+            successMessage("You have successfully registerd!"); 
+=======
             successMessage("You have successfully registerd!");
+>>>>>>> 22229e570cf09f2a7dfb6ccc10090b8004c8da85
             location.href = "/mentor_list";
         },
         error:function (message){
