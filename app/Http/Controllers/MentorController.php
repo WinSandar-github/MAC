@@ -96,6 +96,8 @@ class MentorController extends Controller
         $mentor->repeat_yearly               = $request->repeat_yearly;
         $mentor->training_absent             = $request->training_absent;
         $mentor->training_absent_reason      = $request->training_absent_reason;
+        $mentor->type      = $request->type;
+        $mentor->status      = $request->status;
         $mentor->save();
 
         $std_info = new StudentInfo();
@@ -106,7 +108,7 @@ class MentorController extends Controller
         return response()->json([
             'message' => "Successfully Added"
         ]);
-      
+
     }
 
     /**
@@ -138,7 +140,7 @@ class MentorController extends Controller
         //     array_push($current_check_service,$service);
         // }
         // return $id;
-       
+
         $mentor = Mentor::find($id);
         $mentor->current_check_service_id = $request->current_check_service_id;
         $mentor->name_mm = $request->name_mm;
@@ -213,6 +215,26 @@ class MentorController extends Controller
         $mentor=$mentor->get();
         return  response()->json([
             'data' => $mentor
+        ],200);
+    }
+
+    public function approve($id)
+    {
+        $approve = Mentor::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function reject($id)
+    {
+        $reject = Mentor::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
         ],200);
     }
 }
