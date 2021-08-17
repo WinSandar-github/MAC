@@ -384,7 +384,7 @@
 @push('scripts')
 <script>
     loadService();
-    loadMentor();
+    loadMentorStudent();
 </script>
 <script>
 

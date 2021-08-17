@@ -109,7 +109,7 @@ $('#updateMentor').submit(function(e){
 
 })
 
-function loadMentor()
+function loadMentorStudent()
 {
     var id = localStorage.getItem("mentor_id");
     $("input[name = mentor_student_id]").val(id);
@@ -213,6 +213,104 @@ function loadMentor()
     });
 }
 
+function loadMentor()
+{
+    var id = localStorage.getItem("mentor_id");
+    $("input[name = mentor_student_id]").val(id);
+    $.ajax({
+        url: BACKEND_URL + "/mentor/"+id,
+        type: 'get',
+        data:"",
+        success: function(data){
+            var mentor_data = data.data;
+            $('#name_mm').val(mentor_data.name_mm);
+            $("#name_eng").val(mentor_data.name_eng);
+            $("#nrc_state_region").val(mentor_data.nrc_state_region);
+            $("#nrc_township").val(mentor_data.nrc_township);
+            $("#nrc_citizen").val(mentor_data.nrc_citizen);
+            $("#nrc_number").val(mentor_data.nrc_number);
+            $("#father_name_mm").val(mentor_data.father_name_mm);
+            $("#father_name_eng").val(mentor_data.father_name_eng);
+            $("#race").val(mentor_data.race);
+            $("#religion").val(mentor_data.religion);
+            $("#date_of_birth").val(mentor_data.date_of_birth);
+            $("#education").val(mentor_data.education);
+            $("#ra_cpa_success_year").val(mentor_data.ra_cpa_success_year);
+            $("#ra_cpa_personal_no").val(mentor_data.ra_cpa_personal_no);
+            $("#cpa_reg_no").val(mentor_data.cpa_reg_no);
+            $("#cpa_reg_date").val(mentor_data.cpa_reg_date);
+            $("#ppa_reg_no").val(mentor_data.ppa_reg_no);
+            $("#ppa_reg_date").val(mentor_data.ppa_reg_date);
+            $("#address").val(mentor_data.address);
+            $("#phone_no").val(mentor_data.phone_no);
+            $("#fax_no").val(mentor_data.fax_no);
+            $("#m_email").val(mentor_data.m_email);
+            $("#audit_firm_name").val(mentor_data.audit_firm_name);
+            $("#audit_started_date").val(mentor_data.audit_started_date);
+            $("#audit_structure").val(mentor_data.audit_structure);
+            $("#audit_staff_no").val(mentor_data.audit_staff_no);
+            $("#selected_service_id").val(mentor_data.current_check_service_id);
+
+            // validate for other service field
+            if(mentor_data.current_check_service_id == 9){
+              $(".check-service-other").css('display','block');
+              $("#current_check_services_other").val(mentor_data.current_check_services_other);
+            }
+            else{
+              $(".check-service-other").css('display','none');
+            }
+
+            // validate for experience radio button checked
+            if(mentor_data.experience == 1)
+            {
+                $('input:radio[name=experience][value=1]').attr('checked',true);
+                //$('input:radio[name=experience][value=0]').attr('disabled',true);
+                $('#start_teaching').css('display','block');
+                $('#accept_amount').css('display','block');
+                $('#current_accept').css('display','block');
+                $('#trained_trainees').css('display','block');
+                $('#yearly').css('display','block');
+                $('#absent_training').css('display','block');
+
+                $("#started_teaching_year").val(mentor_data.started_teaching_year);
+                $("#current_accept_no").val(mentor_data.current_accept_no);
+                $("#trained_trainees_no").val(mentor_data.trained_trainees_no);
+                $("#internship_accept_no").val(mentor_data.internship_accept_no);
+            }
+            else{
+                $('input:radio[name=experience][value=0]').attr('checked',true);
+                $('#start_teaching').css('display','none');
+                $('#accept_amount').css('display','none');
+                $('#current_accept').css('display','none');
+                $('#trained_trainees').css('display','none');
+                $('#yearly').css('display','none');
+                $('#absent_training').css('display','none');
+            }
+
+            // validate for repeat_yearly radio button checked
+            if(mentor_data.repeat_yearly == 1)
+            {
+              $('input:radio[name=repeat_yearly][value=1]').attr('checked',true);
+            }
+            else{
+              $('input:radio[name=repeat_yearly][value=0]').attr('checked',true);
+            }
+
+            // validate for training_absent radio button checked
+            if(mentor_data.training_absent == 1)
+            {
+              $('input:radio[name=training_absent][value=1]').attr('checked',true);
+              $('#absent_reason').css('display','block');
+              $("#training_absent_reason").val(mentor_data.training_absent_reason);
+            }
+            else{
+              $('input:radio[name=training_absent][value=0]').attr('checked',true);
+              $('#absent_reason').css('display','none');
+            }
+
+        }
+    });
+}
 
 function getMentorList(){
     destroyDatatable("#tbl_mentor", "#tbl_mentor_body");
