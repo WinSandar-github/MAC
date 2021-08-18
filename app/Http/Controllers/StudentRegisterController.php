@@ -45,9 +45,12 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
+                
                 if($request->reg_reason){
                     $student_register->reg_reason = implode(",",$registration_reason);
+                    // $student_register->reg_reason = $request->reg_reason;
                 }
+                
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
