@@ -163,7 +163,7 @@ function getStudentSelfStudy(){
 function showStudentSelfStudy(studentId,course_code){
     localStorage.setItem("student_id",studentId);
     localStorage.setItem("course_code",course_code);
-    console.log(course_code);
+    // console.log(course_code);
     location.href= FRONTEND_URL + "/self_study_edit";
 }
 
@@ -171,7 +171,7 @@ function loadStudentSelfStudy(){
     var id=localStorage.getItem("student_id");
     var course_code=localStorage.getItem("course_code");
     $("#student_name").html("");
-    $("#student_nrc").html("");
+    // $("#student_nrc").html("");
     $("#student_dob").html("");
     $("#student_father").html("");
     $("#student_email").html("");
