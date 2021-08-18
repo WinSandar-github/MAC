@@ -78,8 +78,9 @@ function createMentor()
         contentType: false,
         processData: false,
         success: function(result){
-            successMessage("You have successfully registerd!");
-            location.href = "/mentor_list";
+            // console.log(result)
+            successMessage("You have successfully registerd!"); 
+            location.href = FRONTEND_URL+"/mentor_list";
         },
         error:function (message){
             errorMessage(message);
@@ -383,7 +384,7 @@ function showMentorStudent(mentorID){
 
 function createForm()
 {
-    location.href = "/mentor_create";
+    location.href = FRONTEND_URL+"/mentor_create";
 }
 
 function approveMentorStudent(){
