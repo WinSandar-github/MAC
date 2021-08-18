@@ -75,7 +75,7 @@
                                                     <th class="bold-font-weight" >Exam Type</th>
                                                     <th class="bold-font-weight" >Grade</th>
                                                     <th class="bold-font-weight" >Status</th>
-                                                    <th class="bold-font-weight" >Batch ID</th>
+                                                    <!-- <th class="bold-font-weight" >Batch ID</th> -->
                                                     <th class="bold-font-weight" >Detail</th>
                                                     <th class="bold-font-weight" >Print</th>
                                                 </tr>
