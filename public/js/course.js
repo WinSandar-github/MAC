@@ -292,6 +292,7 @@ function getRequirementCourse(){
         type:'GET',
         success:function(response){
             requirement_list = response.data;
+            console.log(requirement_list)
            
            
 

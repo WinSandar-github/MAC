@@ -223,13 +223,13 @@
 @push('scripts')
 <script>
     $(document).ready(function() {
+        var requirement_list;
+        getRequirementCourse()
+        getCourse();
         $('.multiple-requirement').select2({
             placeholder: "Select Requirement"
         });
-    });
-</script>
-<script>
-    $(document).ready(function (e) {  
+    
 
         
         $("input[name='registration_start_date']").flatpickr({
@@ -274,6 +274,5 @@
         }
 
     });
-    getCourse();
 </script>
 @endpush

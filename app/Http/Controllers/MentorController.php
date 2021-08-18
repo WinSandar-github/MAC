@@ -32,11 +32,7 @@ class MentorController extends Controller
     public function store(Request $request)
     {
 
-          $current_check_service = [];
-        foreach($request->current_check_services as $service){
-            array_push($current_check_service,$service);
-        }
-        return $current_check_service;
+         
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
         ->where('nrc_citizen', '=', $request['nrc_citizen'])
@@ -212,6 +208,8 @@ class MentorController extends Controller
     {
         $mentor = Mentor::all();
         return response()->json([
+            'data' => $mentor     
+        ]);
     }
 
     public function FilterMentor(Request $request)
