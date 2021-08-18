@@ -26,12 +26,12 @@ class StudentRegisterController extends Controller
         $invoice_date = date('Y-m-d');
         switch ($request->type) {
             case 0:
-                if(isset($request->reg_reason))
-                {
-                    foreach($request->reg_reason as $reg_reason){
-                        $registration_reason[] = $reg_reason;
-                    }
-                }
+                // if(isset($request->reg_reason))
+                // {
+                //     foreach($request->reg_reason as $reg_reason){
+                //         $registration_reason[] = $reg_reason;
+                //     }
+                // }
 
                 if ($request->hasfile('recommend_file')) {
                     $file = $request->file('recommend_file');
@@ -45,9 +45,14 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
-                if($request->reg_reason){
-                    $student_register->reg_reason = implode(",",$registration_reason);
-                }
+                
+                // if($request->reg_reason){
+                    // $student_register->reg_reason = implode(",",$registration_reason);
+                
+                $student_register->reg_reason = $request->reg_reason;
+                
+                // }
+                
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
