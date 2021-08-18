@@ -203,7 +203,8 @@ Route::post('/filter_mentor','MentorController@FilterMentor');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
 Route::get('check_service_private','CurrentCheckServiceController@getCheckServicePrivate');
 Route::get('check_service_self','CurrentCheckServiceController@getCheckServiceSelf');
-Route::get('check_mentor','MentorController@getMentor');
+Route::get('check_mentor_mac','MentorController@getMentorMAC');
+Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
 
