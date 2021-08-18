@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'da_list'
+    'elementActive' => 'da_two_app_list'
 ])
 @section('content')
 <div class="content">

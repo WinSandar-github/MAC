@@ -16,6 +16,7 @@ class CreateCurrentCheckServicesTable extends Migration
         Schema::create('current_check_services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('type');
             $table->timestamps();
         });
     }

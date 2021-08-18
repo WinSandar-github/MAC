@@ -332,14 +332,22 @@ function loadCPAStudent(course_type)
                                 else{
                                     is_full_module="Full Module";
                                 }
-        
+                                if(element.grade==0){
+                                    student_grade="PENDING";
+                                }
+                                else if(element.grade==1){
+                                    student_grade="PASS";
+                                }
+                                else{
+                                    student_grade="FAIL";
+                                }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
-                                tr += "<td>" + element.private_school_name + "</td>";
+                                //tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
-                                tr += "<td>" + element.grade + "</td>";
-                                tr += "<td>" + status+ "</td>";
+                                tr += "<td>" + student_grade + "</td>";
+                                //tr += "<td>" + status+ "</td>";
                                 tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td>" + is_full_module+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
