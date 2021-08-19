@@ -42,6 +42,7 @@ class CreateStudentInfosTable extends Migration
             $table->integer('school_id')->nullable();
             $table->integer('teacher_id')->nullable();
             $table->string('degree_certificate_image')->nullable();
+            $table->string('accountancy_firm_name')->nullable();
             $table->unsignedBigInteger('course_type_id')->nullable();
             $table->unsignedBigInteger('accountancy_firm_info_id')->nullable();
             $table->unsignedBigInteger('mentor_id')->nullable();
