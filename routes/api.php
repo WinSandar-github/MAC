@@ -209,3 +209,11 @@ Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
 
 Route::get('get_type/{id}', 'StudentRegisterController@getType');
+
+//School Status
+Route::get('getSchoolStatus/{id}', 'SchoolController@schoolStatus');
+
+//Teacher Status
+Route::get('getTeacherStatus/{id}', 'TeacherController@teacherStatus');
+
+

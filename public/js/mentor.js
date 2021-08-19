@@ -79,7 +79,7 @@ function createMentor()
         processData: false,
         success: function(result){
             // console.log(result)
-            successMessage("You have successfully registerd!"); 
+            successMessage("You have successfully registerd!");
             location.href = FRONTEND_URL+"/mentor_list";
         },
         error:function (message){
@@ -102,7 +102,7 @@ $('#updateMentor').submit(function(e){
         data: formData,
         success: function (data) {
             successMessage(data.message);
-            location.href = "/mentor_list";
+            location.href = FRONTEND_URL+"/mentor_list";
         },
         error:function (message){
         }

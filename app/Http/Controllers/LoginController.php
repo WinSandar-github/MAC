@@ -21,13 +21,14 @@ class LoginController extends Controller
       
           //    }
        
-        $user = StudentInfo::where('email', '=', $request->email)->with('mentor','accountancy_firm','school','teacher')->first();
-         
-       
+    $user = StudentInfo::where('email', '=', $request->email)->with('mentor','accountancy_firm','school','teacher')->first();
+      
 
     if($user){
-      
+     
+       
         if(Hash::check($request->password, $user->password)){
+            
             return response()->json($user,200);
         }
         else{
