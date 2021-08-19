@@ -553,6 +553,9 @@ function getCPAModuleStd(){
                                     grade.value = rData.grades[i];
                                 }
                             }
+                        }else{
+                            alert("Hello")
+                            $('.pass_fail_btn').hide();
                         }
                     },
                 error:function (message){

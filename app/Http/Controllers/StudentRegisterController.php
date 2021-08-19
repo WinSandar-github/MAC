@@ -210,4 +210,6 @@ class StudentRegisterController extends Controller
         $student_infos = $student_infos->get();
         return response()->json([ 'data' => $student_infos],200);
     }
+
+    
 }
