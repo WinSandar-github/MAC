@@ -16,6 +16,7 @@ class StudentRegisterController extends Controller
 
     public function store(Request $request)
     {
+        
       
         $date = date('Y-m-d');
         if($request->date){
@@ -95,10 +96,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-                $student_register->mentor_id = $request->mentor_id;
-                $student_register->current_check_service_id = $request->current_check_service_id;
-                $student_register->current_check_services_other = $request->current_check_services_other;
-                $student_register->recommend_file = $recommend_file;
+              
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
@@ -150,10 +148,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-                $student_register->mentor_id = $request->mentor_id;
-                $student_register->current_check_service_id = $request->current_check_service_id;
-                $student_register->current_check_services_other = $request->current_check_services_other;
-                $student_register->recommend_file = $recommend_file;
+             
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
@@ -209,6 +204,32 @@ class StudentRegisterController extends Controller
         }
         $student_infos = $student_infos->get();
         return response()->json([ 'data' => $student_infos],200);
+    }
+
+    public function updateMentor(Request $request)
+    {
+         
+        if ($request->hasfile('recommend_file')) {
+            $file = $request->file('recommend_file');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/aa_register/',$name);
+            $recommend_file = '/storage/aa_register/'.$name;
+        }
+        else{
+            $recommend_file="";
+        }
+
+        $student_register =  StudentRegister::where('student_info_id',$request->student_id)->first();
+           
+        $student_register->mentor_id = $request->mentor_id;
+        $student_register->current_check_service_id = $request->current_check_service_id;
+        $student_register->current_check_services_other = $request->current_check_services_other;
+        $student_register->recommend_file = $recommend_file;
+        $student_register->save();
+        
+        return response()->json([
+            'message' => "Successfully"
+        ]);
     }
 
     
