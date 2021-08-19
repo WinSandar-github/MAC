@@ -110,7 +110,7 @@ function approveTeacherRegister(){
         type: 'post',
         success: function(result){
             successMessage('You have approved that user!');
-            location.href = '/teacher_registration';
+            location.href = FRONTEND_URL + '/teacher_registration';
         }
     });
 }

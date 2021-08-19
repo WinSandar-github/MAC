@@ -220,9 +220,8 @@ class ExamRegisterController extends Controller
         $exam->status = 0;
         $exam->save();
 
-        $student_info = StudentInfo::find($request->student_id);
-        $student_info->approve_reject_status  =  3;
-        $student_info->save();
+
+     
         return "You have successfully registerd!";
     }
     
@@ -248,8 +247,8 @@ class ExamRegisterController extends Controller
     
 
     public function FilterExamRegister(Request $request){
-        $student_infos = ExamRegister::with('student_info');
-        if($request->name!=""){
+        $student_infos = ExamRegister::with('student_info')->where('status',1);
+        if($request->name!=""){-
             $student_infos = $student_infos->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
             ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
             ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
