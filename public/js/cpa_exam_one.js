@@ -1,11 +1,11 @@
 // function loadCPABatchData(){ 
-//     var select = document.getElementById("selected_batch_id");  
+//     var select = document.getElementById("selected_batch_id");
 //     $.ajax({
 //         url: BACKEND_URL+"/course_by_course_type/2",
 //         type: 'get',
 //         data:"",
 //         success: function(data){
-//             var course_data=data.data;            
+//             var course_data=data.data;
 //             console.log("course_data",course_data);
 //             course_data.forEach(function (element) {
 //                 element.batches.forEach(function (batch){
@@ -14,10 +14,10 @@
 //                     option.value = batch.id;
 //                     select.add(option, 0);
 //                 });
-//             });              
+//             });
 //         },
 //         error:function (message){
-                   
+
 //         }
 //     });
 // }
@@ -48,22 +48,43 @@ function getCPAExam(){
                             if(course.code=="cpa_1")
                             {console.log("cpa 1");
                                 if(element.status==0){
-                                    status="Pending";
+                                    status="PENDING";
                                 }
                                 else if(element.status==1){
-                                    status="Approve";
+                                    status="APPROVED";
                                 }
                                 else{
-                                    status="Reject";
+                                    status="REJECTED";
                                 }
+
+                                if(element.exam_type_id == 0){
+                                    exam_type_id = "SELF STUDY";
+                                }
+                                else if(element.exam_type_id==1){
+                                    exam_type_id="PRIVATE SCHOOL";
+                                }
+                                else{
+                                    exam_type_id="MAC STUDENT";
+                                }
+
+                                if(element.grade==0){
+                                    grade="PENDING";
+                                }
+                                else if(element.grade==1){
+                                    grade="PASSED";
+                                }
+                                else{
+                                    grade="FAILED";
+                                }
+
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
-                                tr += "<td>" + element.private_school_name + "</td>";
+                                //tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + element.exam_type_id + "</td>";
                                 tr += "<td>" + element.grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.batch_id+ "</td>";
+                                // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPAOneExam(" + element.id + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -100,9 +121,9 @@ function getCPAExam(){
                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_two_body").append(tr);
-                                
+
                             }
-                            
+
                             getIndexNumber('#tbl_cpa_exam_one tr');
                             createDataTable(".tbl_cpa_exam_one");
                             getIndexNumber('#tbl_cpa_exam_two tr');
@@ -110,7 +131,7 @@ function getCPAExam(){
                         }
                     })
             });
-            
+
         },
         error:function (message){
             dataMessage(message, "#tbl_cpa_exam_one", "#tbl_cpa_exam_one_body");
@@ -236,17 +257,38 @@ function loadCPAExamData()
             console.log(exam_data);
             exam_data.forEach(function (element){
                 if(element.status==0){
-                    status="Pending";
+                    status="PENDING";
                 }
                 else if(element.status==1){
-                    status="Approve";
+                    status="APPROVED";
                 }
                 else{
-                    status="Reject";
+                    status="REJECTED";
                 }
+
+                if(element.exam_type_id == 0){
+                    exam_type_id = "SELF STUDY";
+                }
+                else if(element.exam_type_id==1){
+                    exam_type_id="PRIVATE SCHOOL";
+                }
+                else{
+                    exam_type_id="MAC STUDENT";
+                }
+
+                if(element.grade==0){
+                    grade="PENDING";
+                }
+                else if(element.grade==1){
+                    grade="PASSED";
+                }
+                else{
+                    grade="FAILED";
+                }
+
                 $("#school_name").append(element.private_school_name);
-                $("#exam_type").append(element.exam_type_id);
-                $("#student_grade").append(element.grade);
+                $("#exam_type").append(exam_type_id);
+                $("#student_grade").append(grade);
                 $("#student_status").append(status);
                 if(element.status==0){
                     document.getElementById("approve").style.display='block';
@@ -300,7 +342,7 @@ function loadCPAStudent(course_type)
                         data:"",
                         success:function(courses){
                             console.log(courses,"Course")
-                        
+
                             var course=courses.data;
                             if(course.code==course_type){
                                 console.log('check courses',course);
@@ -336,10 +378,10 @@ function loadCPAStudent(course_type)
                                     student_grade="PENDING";
                                 }
                                 else if(element.grade==1){
-                                    student_grade="PASS";
+                                    student_grade="PASSED";
                                 }
                                 else{
-                                    student_grade="FAIL";
+                                    student_grade="FAILED";
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
@@ -348,7 +390,7 @@ function loadCPAStudent(course_type)
                                 tr += "<td>" + exam_type_id + "</td>";
                                 tr += "<td>" + student_grade + "</td>";
                                 //tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.batch_id+ "</td>";
+                                // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td>" + is_full_module+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module +")'>" +
@@ -356,12 +398,12 @@ function loadCPAStudent(course_type)
                                 tr += "<td ><div class='btn-group'>";
                                 $("#tbl_cpa_exam_result_body").append(tr);
 
-                                                    
+
                                 getIndexNumber('#tbl_cpa_exam_result tr');
                                 createDataTable("#tbl_cpa_exam_result");
                             }
                          }
-                    });   
+                    });
             });
         },
         error:function (message){
@@ -431,17 +473,27 @@ function getCPAModuleStd(){
                     is_full_module="Full Module";
                 }
 
-                if(element.grade == 1 )
-                {
-                     $('.ex_res_btn').hide();
-                    $('.pass_fail_btn').hide();
+                // if(element.grade == 1 )
+                // {
+                //      $('.ex_res_btn').hide();
+                //     $('.pass_fail_btn').hide();
 
+                // }
+
+                if(element.grade==0){
+                    grade="PENDING";
+                }
+                else if(element.grade==1){
+                    grade="PASSED";
+                }
+                else{
+                    grade="FAILED";
                 }
 
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
-                $("#student_grade").append(element.grade);
+                $("#student_grade").append(grade);
                 $("#student_status").append(status);
                 $("#is_full_module").append(is_full_module);
             });
@@ -450,30 +502,30 @@ function getCPAModuleStd(){
                 type: 'get',
                 data:"",
                 success: function(result){
-                    
+
                         if(result.data !=null)
                         {
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',result.data.id);
                             var rData=JSON.parse(result.data.result);
                             console.log(rData.subjects[1]);
-                            
+
                             console.log('is_full_module',module_type);
                             if(module_type == 0 || module_type==1)
                             {
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var sunject=document.getElementById('subject'+j);
                                     sunject.value = rData.subjects[i];
                                 }
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var mark=document.getElementById('mark'+j);
                                     mark.value = rData.marks[i];
                                 }
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var grade=document.getElementById('grade'+j);
@@ -482,19 +534,19 @@ function getCPAModuleStd(){
                             }
                             else
                             {
-                                for (var i = 0; i < 6; i++) 
+                                for (var i = 0; i < 6; i++)
                                 {
                                     var j=i+1;
                                     var sunject=document.getElementById('subject'+j);
                                     sunject.value = rData.subjects[i];
                                 }
-                                for (var i = 0; i < 6; i++) 
+                                for (var i = 0; i < 6; i++)
                                 {
                                     var j=i+1;
                                     var mark=document.getElementById('mark'+j);
                                     mark.value = rData.marks[i];
                                 }
-                                for (var i = 0; i < 6; i++) 
+                                for (var i = 0; i < 6; i++)
                                 {
                                     var j=i+1;
                                     var grade=document.getElementById('grade'+j);
