@@ -1,11 +1,11 @@
 // function loadCPABatchData(){ 
-//     var select = document.getElementById("selected_batch_id");  
+//     var select = document.getElementById("selected_batch_id");
 //     $.ajax({
 //         url: BACKEND_URL+"/course_by_course_type/2",
 //         type: 'get',
 //         data:"",
 //         success: function(data){
-//             var course_data=data.data;            
+//             var course_data=data.data;
 //             console.log("course_data",course_data);
 //             course_data.forEach(function (element) {
 //                 element.batches.forEach(function (batch){
@@ -14,10 +14,10 @@
 //                     option.value = batch.id;
 //                     select.add(option, 0);
 //                 });
-//             });              
+//             });
 //         },
 //         error:function (message){
-                   
+
 //         }
 //     });
 // }
@@ -80,9 +80,9 @@ function getCPAExam(){
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
-                                tr += "<td>" + element.private_school_name + "</td>";
-                                tr += "<td>" + exam_type_id + "</td>";
-                                tr += "<td>" + grade + "</td>";
+                                //tr += "<td>" + element.private_school_name + "</td>";
+                                tr += "<td>" + element.exam_type_id + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
                                 // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
@@ -121,9 +121,9 @@ function getCPAExam(){
                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_two_body").append(tr);
-                                
+
                             }
-                            
+
                             getIndexNumber('#tbl_cpa_exam_one tr');
                             createDataTable(".tbl_cpa_exam_one");
                             getIndexNumber('#tbl_cpa_exam_two tr');
@@ -131,7 +131,7 @@ function getCPAExam(){
                         }
                     })
             });
-            
+
         },
         error:function (message){
             dataMessage(message, "#tbl_cpa_exam_one", "#tbl_cpa_exam_one_body");
@@ -342,7 +342,7 @@ function loadCPAStudent(course_type)
                         data:"",
                         success:function(courses){
                             console.log(courses,"Course")
-                        
+
                             var course=courses.data;
                             if(course.code==course_type){
                                 console.log('check courses',course);
@@ -398,12 +398,12 @@ function loadCPAStudent(course_type)
                                 tr += "<td ><div class='btn-group'>";
                                 $("#tbl_cpa_exam_result_body").append(tr);
 
-                                                    
+
                                 getIndexNumber('#tbl_cpa_exam_result tr');
                                 createDataTable("#tbl_cpa_exam_result");
                             }
                          }
-                    });   
+                    });
             });
         },
         error:function (message){
@@ -502,30 +502,30 @@ function getCPAModuleStd(){
                 type: 'get',
                 data:"",
                 success: function(result){
-                    
+
                         if(result.data !=null)
                         {
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',result.data.id);
                             var rData=JSON.parse(result.data.result);
                             console.log(rData.subjects[1]);
-                            
+
                             console.log('is_full_module',module_type);
                             if(module_type == 0 || module_type==1)
                             {
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var sunject=document.getElementById('subject'+j);
                                     sunject.value = rData.subjects[i];
                                 }
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var mark=document.getElementById('mark'+j);
                                     mark.value = rData.marks[i];
                                 }
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var grade=document.getElementById('grade'+j);
@@ -534,19 +534,19 @@ function getCPAModuleStd(){
                             }
                             else
                             {
-                                for (var i = 0; i < 6; i++) 
+                                for (var i = 0; i < 6; i++)
                                 {
                                     var j=i+1;
                                     var sunject=document.getElementById('subject'+j);
                                     sunject.value = rData.subjects[i];
                                 }
-                                for (var i = 0; i < 6; i++) 
+                                for (var i = 0; i < 6; i++)
                                 {
                                     var j=i+1;
                                     var mark=document.getElementById('mark'+j);
                                     mark.value = rData.marks[i];
                                 }
-                                for (var i = 0; i < 6; i++) 
+                                for (var i = 0; i < 6; i++)
                                 {
                                     var j=i+1;
                                     var grade=document.getElementById('grade'+j);
