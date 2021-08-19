@@ -134,7 +134,7 @@
                                                     </table>
                                                 </div>
                                         </div>  
-                                        <div class="card-footer"> 
+                                        <div class="card-footer ex_res_btn"> 
                                             <div class="modal-footer">
                                                 <button type="submit" name="save" class="btn btn-primary">Submit</button>
                                             </div>
