@@ -579,6 +579,8 @@ function getModuleStd(){
                     console.log(result)
                         if(result.data !=null)
                         {
+                           
+
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',JSON.parse(result.data.result));
                             var rData=JSON.parse(result.data.result);
@@ -648,6 +650,9 @@ function getModuleStd(){
                                     grade.value = rData.grades[i];
                                 }
                             }
+                        }else{
+                            alert("Hello")
+                            $('.pass_fail_btn').hide();
                         }
                     },
                 error:function (message){
