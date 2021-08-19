@@ -315,7 +315,7 @@ class AccFirmInfController extends Controller
         //Student Info
         $std_info = new StudentInfo();
         $std_info->accountancy_firm_info_id = $acc_firm_info->id;
-        $std_info->accountancy_firm_name = $acc_firm_info->accountancy_firm_name;
+        //$std_info->accountancy_firm_name = $acc_firm_info->accountancy_firm_name;
         $std_info->email = $request->email;
         $std_info->password = Hash::make($request->password);
         $std_info->save();
