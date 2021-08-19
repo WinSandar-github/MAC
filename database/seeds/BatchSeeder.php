@@ -34,8 +34,8 @@ class BatchSeeder extends Seeder
                 'accept_application_end_date'   => Carbon::now(),
                 'entrance_pass_start_date'      => Carbon::now(),
                 'entrance_pass_end_date'        => Carbon::now(),
-                'exam_start_date'               => Carbon::now()->subMonth(),
-                'exam_end_date'                 => Carbon::now()->subMonth()->addweek(),
+                'exam_start_date'               => Carbon::now()->addMonth(),
+                'exam_end_date'                 => Carbon::now()->addMonth()->addweek(),
                 'exam_place'                    => "Yangon",
                 'exam_time'                     => "10:00am"  
          
@@ -58,12 +58,10 @@ class BatchSeeder extends Seeder
                 'accept_application_end_date'   => Carbon::now(),
                 'entrance_pass_start_date'      => Carbon::now(),
                 'entrance_pass_end_date'        => Carbon::now(),
-                'exam_start_date'               => Carbon::now()->subMonth(),
-                'exam_end_date'                 => Carbon::now()->subMonth()->addweek(),
+                'exam_start_date'               => Carbon::now()->addMonth(),
+                'exam_end_date'                 => Carbon::now()->addMonth()->addweek(),
                 'exam_place'                    => "Yangon",
-                'exam_time'                     => "10:00am"  
-         
-                 
+                'exam_time'                     => "10:00am"       
             ),
             array(
                 'name'              => 'Batch Three',
@@ -82,8 +80,8 @@ class BatchSeeder extends Seeder
                 'accept_application_end_date'   => Carbon::now(),
                 'entrance_pass_start_date'      => Carbon::now(),
                 'entrance_pass_end_date'        => Carbon::now(),
-                'exam_start_date'               => Carbon::now()->subMonth(),
-                'exam_end_date'                 => Carbon::now()->subMonth()->addweek(),
+                'exam_start_date'               => Carbon::now()->addMonth(),
+                'exam_end_date'                 => Carbon::now()->addMonth()->addweek(),
                 'exam_place'                    => "Yangon",
                 'exam_time'                     => "10:00am"  
          
@@ -106,8 +104,8 @@ class BatchSeeder extends Seeder
                 'accept_application_end_date'   => Carbon::now(),
                 'entrance_pass_start_date'      => Carbon::now(),
                 'entrance_pass_end_date'        => Carbon::now(),
-                'exam_start_date'               => Carbon::now()->subMonth(),
-                'exam_end_date'                 => Carbon::now()->subMonth()->addweek(),
+                'exam_start_date'               => Carbon::now()->addMonth(),
+                'exam_end_date'                 => Carbon::now()->addMonth()->addweek(),
                 'exam_place'                    => "Yangon",
                 'exam_time'                     => "10:00am"  
          

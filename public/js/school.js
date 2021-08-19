@@ -85,7 +85,7 @@ function approveSchoolRegister(){
         type: 'post',
         success: function(result){
             successMessage(result.message);
-            location.href = '/school_registration';
+            location.href = FRONTEND_URL + '/school_registration';
         }
     });
 }
