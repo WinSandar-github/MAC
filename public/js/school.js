@@ -109,7 +109,7 @@ function viewAttach(){
     let content="";
     let i=0;
     content += `<div>`;
-    url = PDF_URL + "/storage/attachment/school/" + $("#hidden_attach").val();
+    url = PDF_URL + "/storage/attachment/" + $("#hidden_attach").val();
     content += `<embed src=${url} width="100%" height="500px" />`;
     content += `</div>`;
     console.log(content);
