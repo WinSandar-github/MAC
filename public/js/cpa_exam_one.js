@@ -554,7 +554,6 @@ function getCPAModuleStd(){
                                 }
                             }
                         }else{
-                            alert("Hello")
                             $('.pass_fail_btn').hide();
                         }
                     },
