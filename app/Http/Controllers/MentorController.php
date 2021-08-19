@@ -257,4 +257,10 @@ class MentorController extends Controller
             'message' => "You have successfully rejected that user!"
         ],200);
     }
+
+    public function mentorStatus($id)
+    {
+        $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        return response()->json($data,200);
+    }
 }

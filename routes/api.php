@@ -219,3 +219,5 @@ Route::get('getTeacherStatus/{id}', 'TeacherController@teacherStatus');
 Route::post('/update_mentor','StudentRegisterController@updateMentor');
 
 
+//Mentor Status
+Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
