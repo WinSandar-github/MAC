@@ -48,22 +48,43 @@ function getCPAExam(){
                             if(course.code=="cpa_1")
                             {console.log("cpa 1");
                                 if(element.status==0){
-                                    status="Pending";
+                                    status="PENDING";
                                 }
                                 else if(element.status==1){
-                                    status="Approve";
+                                    status="APPROVED";
                                 }
                                 else{
-                                    status="Reject";
+                                    status="REJECTED";
                                 }
+
+                                if(element.exam_type_id == 0){
+                                    exam_type_id = "SELF STUDY";
+                                }
+                                else if(element.exam_type_id==1){
+                                    exam_type_id="PRIVATE SCHOOL";
+                                }
+                                else{
+                                    exam_type_id="MAC STUDENT";
+                                }
+
+                                if(element.grade==0){
+                                    grade="PENDING";
+                                }
+                                else if(element.grade==1){
+                                    grade="PASSED";
+                                }
+                                else{
+                                    grade="FAILED";
+                                }
+
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
                                 tr += "<td>" + element.private_school_name + "</td>";
-                                tr += "<td>" + element.exam_type_id + "</td>";
-                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + exam_type_id + "</td>";
+                                tr += "<td>" + grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.batch_id+ "</td>";
+                                // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPAOneExam(" + element.id + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -236,17 +257,38 @@ function loadCPAExamData()
             console.log(exam_data);
             exam_data.forEach(function (element){
                 if(element.status==0){
-                    status="Pending";
+                    status="PENDING";
                 }
                 else if(element.status==1){
-                    status="Approve";
+                    status="APPROVED";
                 }
                 else{
-                    status="Reject";
+                    status="REJECTED";
                 }
+
+                if(element.exam_type_id == 0){
+                    exam_type_id = "SELF STUDY";
+                }
+                else if(element.exam_type_id==1){
+                    exam_type_id="PRIVATE SCHOOL";
+                }
+                else{
+                    exam_type_id="MAC STUDENT";
+                }
+
+                if(element.grade==0){
+                    grade="PENDING";
+                }
+                else if(element.grade==1){
+                    grade="PASSED";
+                }
+                else{
+                    grade="FAILED";
+                }
+
                 $("#school_name").append(element.private_school_name);
-                $("#exam_type").append(element.exam_type_id);
-                $("#student_grade").append(element.grade);
+                $("#exam_type").append(exam_type_id);
+                $("#student_grade").append(grade);
                 $("#student_status").append(status);
                 if(element.status==0){
                     document.getElementById("approve").style.display='block';
@@ -336,10 +378,10 @@ function loadCPAStudent(course_type)
                                     student_grade="PENDING";
                                 }
                                 else if(element.grade==1){
-                                    student_grade="PASS";
+                                    student_grade="PASSED";
                                 }
                                 else{
-                                    student_grade="FAIL";
+                                    student_grade="FAILED";
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
@@ -348,7 +390,7 @@ function loadCPAStudent(course_type)
                                 tr += "<td>" + exam_type_id + "</td>";
                                 tr += "<td>" + student_grade + "</td>";
                                 //tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.batch_id+ "</td>";
+                                // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td>" + is_full_module+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module +")'>" +
@@ -431,17 +473,27 @@ function getCPAModuleStd(){
                     is_full_module="Full Module";
                 }
 
-                if(element.grade == 1 )
-                {
-                     $('.ex_res_btn').hide();
-                    $('.pass_fail_btn').hide();
+                // if(element.grade == 1 )
+                // {
+                //      $('.ex_res_btn').hide();
+                //     $('.pass_fail_btn').hide();
 
+                // }
+
+                if(element.grade==0){
+                    grade="PENDING";
+                }
+                else if(element.grade==1){
+                    grade="PASSED";
+                }
+                else{
+                    grade="FAILED";
                 }
 
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
-                $("#student_grade").append(element.grade);
+                $("#student_grade").append(grade);
                 $("#student_status").append(status);
                 $("#is_full_module").append(is_full_module);
             });
