@@ -65,7 +65,8 @@ class SchoolController extends Controller
         $school->save();
         if($request->hasFile('attachment')){
             $fileName = $school->id.'.'.$request->file('attachment')->getClientOriginalExtension();
-            $request->file('attachment')->storeAs('attachment/school/', $fileName);
+            //$request->file('attachment')->storeAs('attachment/school/', $fileName);
+            $request->file('attachment')->move(public_path().'/storage/attachment/',$fileName);
             $school->attachment=$fileName;
             $school->save();
         }
