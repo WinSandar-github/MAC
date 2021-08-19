@@ -136,6 +136,9 @@ class TeacherController extends Controller
 
     public function approve_teacher_register(Request $request)
     {
+        $std_info = StudentInfo::where('teacher_id', $request->id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
         $teacher = TeacherRegister::find($request->id);
         $teacher->approve_reject_status = $request->status;
         $teacher->save();
@@ -158,5 +161,11 @@ class TeacherController extends Controller
         return  response()->json([
             'data' => $teacher
         ],200);
+    }
+
+    public function teacherStatus($id)
+    {
+        $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        return response()->json($data,200);
     }
 }
