@@ -161,7 +161,7 @@ function loadPAPPData(){
                 nrc    +=   element.student_info.nrc_number;                
 
                 $("#id").append(element.id);
-                document.getElementById('image').src=element.student_info.image;                           
+                document.getElementById('image').src=PDF_URL+element.student_info.image;                           
                 
                 
 
@@ -242,17 +242,17 @@ function loadPAPPData(){
                 cpd_record_modal=element.cpd_record;
                 tax_free_modal=element.tax_free_recommendation;
                 attached_modal=element.student_education_histroy.certificate;
-                document.getElementById('cpa').src=cpa_modal;
-                document.getElementById('ra').src=ra_modal;
-                document.getElementById('foreign_degree').src=foreign_modal;
-                document.getElementById('cpaff_recomm').src=cpaff_recomm_modal;
-                document.getElementById('recomm_183').src=recomm_183_modal;
-                document.getElementById('not_fulltime_recomm').src=not_fulltime_recomm_modal;
-                document.getElementById('work_in_myanmar').src=work_in_myanmar_modal;
-                document.getElementById('rule_confession').src=rule_confession_modal;
-                document.getElementById('cpd_record').src=cpd_record_modal;
-                document.getElementById('tax_free').src=tax_free_modal;
-                document.getElementById('attached_file').src=attached_modal;
+                document.getElementById('cpa').src=PDF_URL+cpa_modal;
+                document.getElementById('ra').src=PDF_URL+ra_modal;
+                document.getElementById('foreign_degree').src=PDF_URL+foreign_modal;
+                document.getElementById('cpaff_recomm').src=PDF_URL+cpaff_recomm_modal;
+                document.getElementById('recomm_183').src=PDF_URL+recomm_183_modal;
+                document.getElementById('not_fulltime_recomm').src=PDF_URL+not_fulltime_recomm_modal;
+                document.getElementById('work_in_myanmar').src=PDF_URL+work_in_myanmar_modal;
+                document.getElementById('rule_confession').src=PDF_URL+rule_confession_modal;
+                document.getElementById('cpd_record').src=PDF_URL+cpd_record_modal;
+                document.getElementById('tax_free').src=PDF_URL+tax_free_modal;
+                document.getElementById('attached_file').src=PDF_URL+attached_modal;
             })
         }
     })
@@ -300,42 +300,42 @@ function rejectPAPPUser(){
 
 window.onclick = function(event) {
     if (event.target == document.getElementById("cpaModal") && cpa_modal!=null) {
-        document.getElementById('cpa').src=cpa_modal;
+        document.getElementById('cpa').src=PDF_URL+cpa_modal;
         
     }
     if (event.target == document.getElementById("raModal") && ra_modal!=null) {
-        document.getElementById('ra').src=ra_modal;
+        document.getElementById('ra').src=PDF_URL+ra_modal;
         
     }
     if (event.target == document.getElementById("fdModal") && foreign_modal!=null) {
-        document.getElementById('foreign_degree').src=foreign_modal;
+        document.getElementById('foreign_degree').src=PDF_URL+foreign_modal;
         
     }
     if (event.target == document.getElementById("cpa_ff_recommendation_Modal") && cpaff_recomm_modal!=null) {
-        document.getElementById('cpaff_recomm').src=cpaff_recomm_modal;
+        document.getElementById('cpaff_recomm').src=PDF_URL+cpaff_recomm_modal;
         
     }
     if (event.target == document.getElementById("recommendation_183_Modal") && recomm_183_modal!=null) { 
-        document.getElementById('recomm_183').src=recomm_183_modal;
+        document.getElementById('recomm_183').src=PDF_URL+recomm_183_modal;
         
     }
     if (event.target == document.getElementById("not_fulltime_recommendation_Modal") && not_fulltime_recomm_modal!=null) {
-        document.getElementById('not_fulltime_recomm').src=not_fulltime_recomm_modal;
+        document.getElementById('not_fulltime_recomm').src=PDF_URL+not_fulltime_recomm_modal;
         
     }
     if (event.target == document.getElementById("work_in_myanmar_confession_Modal") && work_in_myanmar_modal!=null) {
-        document.getElementById('work_in_myanmar').src=work_in_myanmar_modal;
+        document.getElementById('work_in_myanmar').src=PDF_URL+work_in_myanmar_modal;
     }
     if (event.target == document.getElementById("rule_confession_Modal") && rule_confession_modal!=null) {
-        document.getElementById('rule_confession').src=rule_confession_modal;
+        document.getElementById('rule_confession').src=PDF_URL+rule_confession_modal;
     }
     if (event.target == document.getElementById("cpd_record_Modal") && cpd_record_modal!=null) {
-        document.getElementById('cpd_record').src=cpd_record_modal;
+        document.getElementById('cpd_record').src=PDF_URL+cpd_record_modal;
     }
     if (event.target == document.getElementById("tax_free_recommendation_Modal") && tax_free_modal!=null) {
-        document.getElementById('tax_free').src=tax_free_modal;
+        document.getElementById('tax_free').src=PDF_URL+tax_free_modal;
     }
     if (event.target == document.getElementById("attached_Modal") && attached_modal!=null) {
-        document.getElementById('attached_file').src=attached_modal;
+        document.getElementById('attached_file').src=PDF_URL+attached_modal;
     }
 }
