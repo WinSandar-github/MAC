@@ -108,7 +108,7 @@ function loadData(){
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
-                document.getElementById('image').src=element.image;
+                document.getElementById('image').src=PDF_URL+element.image;
                 $("#name_eng").append(element.name_eng);
                 $("#name_mm").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region+"/" +element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number );
@@ -232,7 +232,7 @@ function rejectUser(){
 
 function file_read(data){
     if(data=='certificate'){
-        document.getElementById('attach_file').src=attached_file;
+        document.getElementById('attach_file').src=PDF_URL+attached_file;
         $('#myModal').modal({
             show : true
         });

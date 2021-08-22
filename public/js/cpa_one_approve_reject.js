@@ -178,7 +178,7 @@ function loadCPAOneSelfStudyStudentData(){
                 $("#department").append(element.department);
                 $("#office_area").append(element.office_area);
 
-                document.getElementById('photo').src=element.photo;
+                document.getElementById('photo').src=PDF_URL+element.photo;
                 $("#photo").append(element.phto);
                 $("#direct_access_no").append(element.direct_access_no);
                 $("#entry_success_no").append(element.entry_success_no);
@@ -384,7 +384,7 @@ function loadCPAOnePrivateSchoolStudentData(){
                 $("#department").append(element.department);
                 $("#office_area").append(element.office_area);
 
-                document.getElementById('photo').src=element.photo;
+                document.getElementById('photo').src=PDF_URL+element.photo;
                 $("#photo").append(element.phto);
                 $("#direct_access_no").append(element.direct_access_no);
                 $("#entry_success_no").append(element.entry_success_no);
@@ -588,7 +588,7 @@ function loadCPAOneMACStudentData(){
                 $("#department").append(element.department);
                 $("#office_area").append(element.office_area);
 
-                document.getElementById('photo').src=element.photo;
+                document.getElementById('photo').src=PDF_URL+element.photo;
                 $("#photo").append(element.phto);
                 $("#direct_access_no").append(element.direct_access_no);
                 $("#entry_success_no").append(element.entry_success_no);
@@ -596,10 +596,10 @@ function loadCPAOneMACStudentData(){
                 $("#personal_acc_training").append(personal_acc_training);
                 $("#after_second_exam").append(after_second_exam);
 
-                document.getElementById('good_morale_file').src=element.good_morale_file;
+                document.getElementById('good_morale_file').src=PDF_URL+element.good_morale_file;
                 $("#good_morale_file").append(element.good_morale_file);
 
-                document.getElementById('no_crime_file').src=element.no_crime_file;
+                document.getElementById('no_crime_file').src=PDF_URL+element.no_crime_file;
                 $("#no_crime_file").append(element.no_crime_file);
 
                 $("#module_id").append(module_id);

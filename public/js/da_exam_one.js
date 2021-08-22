@@ -230,7 +230,7 @@ function loadStudentDataForExamCard()
                 console.log("element=",element.student_education_histroy.roll_number);
                 // document.getElementById("student_img").src ='img/user_profile/vIqzOHXj.jpeg';
                 console.log(element.image);
-                document.getElementById('student_img').src=element.image;
+                document.getElementById('student_img').src=PDF_URL+element.image;
                 $("#roll_no").append(element.student_education_histroy.roll_number);
                 $("#name").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number);
