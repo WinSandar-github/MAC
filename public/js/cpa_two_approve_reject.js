@@ -179,7 +179,7 @@ function loadCPATwoSelfStudyStudentData(){
                 $("#department").append(element.cpa_one.department);
                 $("#office_area").append(element.cpa_one.office_area);
 
-                document.getElementById('photo').src=element.cpa_one.photo;
+                document.getElementById('photo').src=PDF_URL+element.cpa_one.photo;
                 $("#photo").append(element.cpa_one.photo);
                 // $("#direct_access_no").append(element.cpa_one.direct_access_no);
                 // $("#entry_success_no").append(element.cpa_one.entry_success_no);
@@ -384,7 +384,7 @@ function loadCPATwoPrivateSchoolStudentData(){
                 $("#department").append(element.cpa_one.department);
                 $("#office_area").append(element.cpa_one.office_area);
 
-                document.getElementById('photo').src=element.cpa_one.photo;
+                document.getElementById('photo').src=PDF_URL+element.cpa_one.photo;
                 $("#photo").append(element.cpa_one.phto);
                 // $("#direct_access_no").append(element.direct_access_no);
                 // $("#entry_success_no").append(element.entry_success_no);
@@ -594,7 +594,7 @@ function loadCPATwoMACStudentData(){
                 $("#department").append(element.cpa_one.department);
                 $("#office_area").append(element.cpa_one.office_area);
 
-                document.getElementById('photo').src=element.cpa_one.photo;
+                document.getElementById('photo').src=PDF_URL+element.cpa_one.photo;
                 $("#photo").append(element.cpa_one.phto);
                 // $("#direct_access_no").append(element.direct_access_no);
                 // $("#entry_success_no").append(element.entry_success_no);
