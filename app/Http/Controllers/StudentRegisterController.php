@@ -219,14 +219,15 @@ class StudentRegisterController extends Controller
             $recommend_file="";
         }
 
-        $student_register =  StudentRegister::where('student_info_id',$request->student_id)->first();
-           
+        $student_register =  StudentRegister::where('student_info_id',$request->student_id)->latest()->first();
+            
         $student_register->mentor_id = $request->mentor_id;
         $student_register->current_check_service_id = $request->current_check_service_id;
         $student_register->current_check_services_other = $request->current_check_services_other;
         $student_register->recommend_file = $recommend_file;
         $student_register->save();
-        
+
+         
         return response()->json([
             'message' => "Successfully"
         ]);

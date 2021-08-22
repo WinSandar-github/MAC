@@ -12,12 +12,14 @@ var attached_modal;
 
 
 function getPAPPList(){
-    destroyDatatable("#tbl_papp_list", "#tbl_papp_list_body");    
+    destroyDatatable("#tbl_papp_list", "#tbl_papp_list_body");   
+    show_loader(); 
     $.ajax({
         url: BACKEND_URL+"/papp",
         type: 'get',
         data:"",
         success: function(data){
+            EasyLoading.hide();
             var papp_data = data.data;            
 
             papp_data.forEach(function (element) {
