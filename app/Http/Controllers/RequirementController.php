@@ -31,7 +31,7 @@ class RequirementController extends Controller
         $requirement = new Requirement();
         $requirement->name          = $request->name;
         $requirement->require_exam  =   1;
-        $requirement->course_id     = $request->course_id;
+        // $requirement->course_id     = $request->course_id;
         $requirement->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -46,7 +46,7 @@ class RequirementController extends Controller
      */
     public function show($id)
     {
-        $requirement = Requirement::where('id',$id)->with('course')->get();
+        $requirement = Requirement::find($id);
         return response()->json([
             'data' => $requirement
         ],200);
@@ -64,7 +64,7 @@ class RequirementController extends Controller
         $requirement = Requirement::find($id);
         $requirement->name          = $request->name;
         $requirement->require_exam  =   1;
-        $requirement->course_id     = $request->course_id;
+        // $requirement->course_id     = $request->course_id;
         $requirement->save();
         return response()->json([
             'message' => "Update Successfully"
@@ -95,9 +95,9 @@ class RequirementController extends Controller
         {
             $requirement=$requirement->where('name', 'like', '%' . $request->name. '%');
         }
-        if($request->course_name!="all"){
-            $requirement=$requirement->where('course_id',$request->course_name);
-        }
+        // if($request->course_name!="all"){
+        //     $requirement=$requirement->where('course_id',$request->course_name);
+        // }
         $requirement=$requirement->get();
         return response()->json([
             'data' => $requirement

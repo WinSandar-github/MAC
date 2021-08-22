@@ -53,18 +53,20 @@ function getExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr +="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
                                 //tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
                                 tr += "<td>" + grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr +="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id+','+ element.batch_id + ")'>" +
+                                    "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                 // tr += "<td>" + element.batch_id+ "</td>";
-                                tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                                tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id+','+ element.batch_id + ")'>" +
-                                "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                                
                                 tr += "</tr>";
                                 $("#tbl_da_exam_one_body").append(tr);
                             }
@@ -99,18 +101,20 @@ function getExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr +="<button type='button' class='btn btn-primary btn-xs' onClick='showDaTwoExam(" + element.id + ")'>" +
+                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
                                 tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
                                 tr += "<td>" + grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr +="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id +','+ element.batch_id + ")'>" +
+                                     "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                 // tr += "<td>" + element.batch_id+ "</td>";
-                                tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDaTwoExam(" + element.id + ")'>" +
-                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                                tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id +','+ element.batch_id + ")'>" +
-                                "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                                
                                 tr += "</tr>";
                                 $("#tbl_da_exam_two_body").append(tr);
                             }
@@ -344,17 +348,18 @@ function SearchByID(){
                 console.log(element)
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";   
+                        tr += "<td ><div class='btn-group'>";
+                    tr  +="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";                 
                     tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + element.exam_type_id + "</td>";
                     tr += "<td>" + element.grade + "</td>";
-                    tr += "<td>" + element.status+ "</td>";
+                    tr += "<td>" + element.status+ "</td>";                    
                     tr += "<td>" + element.batch_id+ "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
-                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "</tr>";
                     $("#tbl_da_exam_one_body").append(tr);
             });
@@ -449,6 +454,11 @@ function loadStudent(course_type)
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                // tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
+                                //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module +")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
                                 //tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
@@ -456,11 +466,7 @@ function loadStudent(course_type)
                                 //tr += "<td>" + status+ "</td>";
                                 // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td>" + is_full_module+ "</td>";
-                                tr += "<td ><div class='btn-group'>";
-                                // tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
-                                //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module +")'>" +
-                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                
                                 // tr += "<td ><div class='btn-group'>";
                                 $("#tbl_exam_result_body").append(tr);
                                

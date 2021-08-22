@@ -57,6 +57,12 @@ function getBatch(){
                 }
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
+                tr += "<td ><div class='btn-group'>";
+                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchExam(" + element.id + ")'>" +
+                    "<li class='fa fa-graduation-cap fa-sm'></li></button> ";
+                tr+="<button type='button' id='batch_edit"+element.id+"' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
+                    "<li class='fa fa-edit fa-sm'></li></button> ";
+                tr += "<button type='button'  id='batch_delete"+element.id+"'  class='btn btn-danger btn-xs' onClick='deleteBatchInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
                 tr += "<td>" + element.name + "</td>";
                 tr += "<td>" + element.course.name + "</td>";
                 tr += "<td>" + element.start_date + "</td>";
@@ -70,15 +76,8 @@ function getBatch(){
                 tr += "<td>" + element.accept_application_start_date + "</td>";
                 tr += "<td>" + element.accept_application_end_date + "</td>";
                 tr += "<td>" + start_date + "</td>";
-                tr += "<td>" + end_date + "</td>";
-            
-                tr += "<td ><div class='btn-group'>";
-                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchExam(" + element.id + ")'>" +
-                "<li class='fa fa-graduation-cap fa-sm'></li></button> ";
-                tr+="<button type='button' id='batch_edit"+element.id+"' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
-                    "<li class='fa fa-edit fa-sm'></li></button> ";
-                tr += "<button type='button'  id='batch_delete"+element.id+"'  class='btn btn-danger btn-xs' onClick='deleteBatchInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
-    
+                tr += "<td>" + end_date + "</td>";           
+                    
                 tr += "</tr>";
                 $("#tbl_batch_body").append(tr);         
                 

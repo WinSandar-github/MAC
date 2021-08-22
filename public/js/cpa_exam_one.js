@@ -79,18 +79,19 @@ function getCPAExam(){
 
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
-                                tr += "<td>" + element.student_info.name_eng + "</td>";
-                                //tr += "<td>" + element.private_school_name + "</td>";
-                                tr += "<td>" + element.exam_type_id + "</td>";
-                                tr += "<td>" + element.grade + "</td>";
-                                tr += "<td>" + status+ "</td>";
-                                // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPAOneExam(" + element.id + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
+                                //tr += "<td>" + element.private_school_name + "</td>";
+                                tr += "<td>" + element.exam_type_id + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + status+ "</td>";
+                                // tr += "<td>" + element.batch_id+ "</td>";
+                                
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_one_body").append(tr);
                             }
@@ -107,18 +108,19 @@ function getCPAExam(){
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
-                                tr += "<td>" + element.student_info.name_eng + "</td>";
-                                tr += "<td>" + element.private_school_name + "</td>";
-                                tr += "<td>" + element.exam_type_id + "</td>";
-                                tr += "<td>" + element.grade + "</td>";
-                                tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPATwoExam(" + element.id + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
+                                tr += "<td>" + element.private_school_name + "</td>";
+                                tr += "<td>" + element.exam_type_id + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + status+ "</td>";
+                                tr += "<td>" + element.batch_id+ "</td>";
+                                
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_two_body").append(tr);
 
@@ -385,6 +387,9 @@ function loadCPAStudent(course_type)
                                 }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module +")'>" +
+                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
                                 //tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
@@ -392,10 +397,8 @@ function loadCPAStudent(course_type)
                                 //tr += "<td>" + status+ "</td>";
                                 // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td>" + is_full_module+ "</td>";
-                                tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module +")'>" +
-                                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                                tr += "<td ><div class='btn-group'>";
+                                
+                                // tr += "<td ><div class='btn-group'>";
                                 $("#tbl_cpa_exam_result_body").append(tr);
 
 

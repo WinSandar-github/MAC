@@ -20,6 +20,7 @@ function getDAList(course_code){
             })
             console.log(da_one_list)
             da_one_list.forEach(function (element) {
+                console.log('element', element);
                  var status;
                 if(element.approve_reject_status==0){
                     status="Pending";
@@ -32,14 +33,15 @@ function getDAList(course_code){
                 }
                     var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
+                          "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.phone+ "</td>";
                     tr += "<td>" + element.student_info.nrc_state_region+"/"+element.student_info.nrc_township+ "("+element.student_info.nrc_citizen+")"+element.student_info.nrc_number + "</td>";
                     tr += "<td>" + status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "</tr>";
                     $("#tbl_da_list_body").append(tr);     
             });

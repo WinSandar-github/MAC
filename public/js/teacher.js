@@ -15,6 +15,7 @@ function getTeacherRegisterList(){
                 let nrc = obj.nrc_state_region+"/"+obj.nrc_township+"("+obj.nrc_citizen+")"+obj.nrc_number;
                 var tr = "<tr>";
                 tr += `<td> ${ indexNo += 1 } </td>`;
+                tr += `<td><a href=${FRONTEND_URL+'/teacher_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
                 tr += `<td> ${ obj.name_mm } </td>`;
                 tr += `<td> ${ obj.email } </td>`;
                 tr += `<td> ${ obj.phone } </td>`;
@@ -30,7 +31,7 @@ function getTeacherRegisterList(){
                     status_color = "text-danger";
                 }
                 tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
-                tr += `<td><a href=${FRONTEND_URL+'/teacher_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                
                 tr += "</tr>";
                 $("#tbl_teacher_body").append(tr);
             });

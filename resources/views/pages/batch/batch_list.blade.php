@@ -88,7 +88,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2" style="vertical-align: top;">
-                                                            <button type="button" class="btn btn-primary btn-round" onclick="getBatch()" id="search">Search</button>
+                                                            <button type="button" class="btn btn-primary btn-round m-0" onclick="getBatch()" id="search">Search</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -101,6 +101,7 @@
                                                 <thead >
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
+                                                        <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >Course Name</th> 
                                                         <th class="bold-font-weight">Batch Start Date</th>
@@ -115,7 +116,7 @@
                                                         <th class="bold-font-weight">Accept Application End Date</th>
                                                         <th class="bold-font-weight">Entrance Pass Start Date</th>                                                       
                                                         <th class="bold-font-weight">Entrance Pass End Date</th>
-                                                        <th class="bold-font-weight" >Action</th>
+                                                        
                                                     </tr>
                                                     
                                                 </thead>

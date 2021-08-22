@@ -60,7 +60,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
-                                                <button type="submit" onclick="getCPAExam()" class="btn btn-primary btn-hover-dark m-1" >Search</button>
+                                                <button type="submit" onclick="getCPAExam()" class="btn btn-primary btn-hover-dark m-0" >Search</button>
                                             </div>
                                         </div>
                                     </div>
@@ -69,14 +69,15 @@
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight" >No</th>
+                                                    <th class="bold-font-weight" >Actopm</th>
+                                                    <th class="bold-font-weight" >Print</th>
                                                     <th class="bold-font-weight" >Name</th>
                                                     {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                                     <th class="bold-font-weight" >Exam Type</th>
                                                     <th class="bold-font-weight" >Grade</th>
                                                     <th class="bold-font-weight" >Status</th>
                                                     <th class="bold-font-weight" >Batch ID</th>
-                                                    <th class="bold-font-weight" >Detail</th>
-                                                    <th class="bold-font-weight" >Print</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_cpa_exam_two_body" class="hoverTable">
