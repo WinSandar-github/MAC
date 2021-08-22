@@ -80,11 +80,9 @@ function getCPAExam(){
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
-                                //tr += "<td>" + element.private_school_name + "</td>";
-                                tr += "<td>" + element.exam_type_id + "</td>";
-                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + exam_type_id + "</td>";
+                                tr += "<td>" + grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
-                                // tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPAOneExam(" + element.id + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -105,14 +103,31 @@ function getCPAExam(){
                                 else{
                                     status="Reject";
                                 }
+                                if(element.exam_type_id == 0){
+                                    exam_type_id = "SELF STUDY";
+                                }
+                                else if(element.exam_type_id==1){
+                                    exam_type_id="PRIVATE SCHOOL";
+                                }
+                                else{
+                                    exam_type_id="MAC STUDENT";
+                                }
+
+                                if(element.grade==0){
+                                    grade="PENDING";
+                                }
+                                else if(element.grade==1){
+                                    grade="PASSED";
+                                }
+                                else{
+                                    grade="FAILED";
+                                }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
-                                tr += "<td>" + element.private_school_name + "</td>";
-                                tr += "<td>" + element.exam_type_id + "</td>";
-                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + exam_type_id + "</td>";
+                                tr += "<td>" + grade + "</td>";
                                 tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPATwoExam(" + element.id + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
