@@ -217,5 +217,8 @@ Route::get('getSchoolStatus/{id}', 'SchoolController@schoolStatus');
 //Teacher Status
 Route::get('getTeacherStatus/{id}', 'TeacherController@teacherStatus');
 
+Route::post('/update_mentor','StudentRegisterController@updateMentor');
+
+
 //Mentor Status
 Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');

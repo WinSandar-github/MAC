@@ -523,9 +523,10 @@ function approveStudent() {
             } else {
                 location.href = FRONTEND_URL + "/cpa_two_index";
             }
-            getStudentSelfStudy();
-            getStudentPrivateSchool();
-            getStudentMac();
+            // getStudentSelfStudy();
+            // getStudentPrivateSchool();
+            // getStudentMac();
+            GetStudentRegistration(course_code);
         },
         error: function (e) {
             console.log(e);
@@ -552,9 +553,10 @@ function rejectStudent() {
             } else {
                 location.href = FRONTEND_URL + "/cpa_two_index";
             }
-            getStudentSelfStudy();
-            getStudentPrivateSchool();
-            getStudentMac();
+            // getStudentSelfStudy();
+            // getStudentPrivateSchool();
+            // getStudentMac();
+            GetStudentRegistration(course_code);
         }
     });
 }

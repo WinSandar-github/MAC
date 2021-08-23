@@ -4,21 +4,27 @@ function getDAList(course_code) {
     destroyDatatable("#tbl_da_pending_list", "#tbl_da_pending_list_body");
     destroyDatatable("#tbl_da_approved_list", "#tbl_da_approved_list_body");
     destroyDatatable("#tbl_da_rejected_list", "#tbl_da_rejected_list_body");
-    console.log($("input[name=filter_by_nrc]").val());
-    var tab = document.getElementById('link1');
+    // console.log($("input[name=filter_by_nrc]").val());
+    // var tab = document.getElementById('link1');
 
-    console.log('tab', tab);
+    // console.log('tab', tab);
     var send_data = new FormData();
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('nrc', $("input[name=filter_by_nrc]").val());
     send_data.append('batch', $("#selected_batch_id").val());
+    show_loader();
     $.ajax({
         url: BACKEND_URL + "/filter_student_info",
         type: 'post',
         data: send_data,
         contentType: false,
         processData: false,
+        // <<<<<<< HEAD
+        //         success: function (data) {
+        // =======
         success: function (data) {
+            EasyLoading.hide();
+            // >>>>>>> ac67ed3c0efebdce43c2dac463280128b110edb1
             var da_data = data.data;
             console.log({
                 data
