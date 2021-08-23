@@ -205,7 +205,7 @@ class StudentRegisterController extends Controller
     }
 
     public function FilterRegistration(Request $request){
-        $student_register = StudentRegister::with('student_info','course')->join('courses', 'student_register.form_type', '=', 'courses.id');                            
+        $student_register = StudentRegister::with('student_info','course');                            
         if($request->name!="")
         {
             $student_register = $student_register->join('student_infos', 'student_register.student_info_id', '=', 'student_infos.id')
@@ -220,7 +220,8 @@ class StudentRegisterController extends Controller
             $student_register = $student_register->join('student_course_regs', 'student_register.student_info_id', '=', 'student_course_regs.student_info_id')
             ->where('student_course_regs.batch_id',$request->batch);
         }
-        $student_register = $student_register->where('courses.code', $request->course_code)->get();
+        //$student_register = $student_register->get();
+        $student_register = $student_register->where('form_type', $request->course_code)->get();
         return response()->json([ 'data' => $student_register],200);
     }
 
