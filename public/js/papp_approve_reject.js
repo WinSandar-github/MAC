@@ -48,15 +48,16 @@ function getPAPPList(){
                     nrc    +=   element.student_info.nrc_number;
                 var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showPAPPList(" + element.id + ")'>" +
+                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
                     tr += "<td>" + nrc + "</td>";
                     tr += "<td>" + element.student_info.registration_no+ "</td>";
                     tr += "<td>" + element.papp_date+ "</td>";
                     tr += "<td>" + use_firm+ "</td>";
                     tr += "<td>" + status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showPAPPList(" + element.id + ")'>" +
-                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "</tr>";
                     $("#tbl_papp_list_body").append(tr);     
             });

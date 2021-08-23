@@ -60,7 +60,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-6" style="vertical-align: top;">
-                                                <button type="button" class="btn btn-primary btn-round" onclick="getDAList('da_1')" id="search">Search</button>
+                                                <button type="button" class="btn btn-primary btn-round m-0" onclick="getDAList('da_1')" id="search">Search</button>
                                             </div>
                                         </div>
                                         
@@ -84,13 +84,14 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Batch Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Detail</th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_da_pending_list_body" class="hoverTable">
@@ -102,13 +103,13 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Batch Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Detail</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_da_approved_list_body" class="hoverTable">
@@ -120,13 +121,13 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Batch Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Detail</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_da_rejected_list_body" class="hoverTable">

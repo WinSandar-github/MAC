@@ -350,8 +350,9 @@
 
                                         <input type="hidden" name="mentor_student_id" >
                                         <div class="row mt-5 justify-content-center">
-                                            <button type="" name="mentor_student_approve" class="btn btn-primary" onclick="approveMentorStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                                             <button type="" name="mentor_student_reject" class="btn btn-danger"  onclick="rejectMentorStudent()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                            <button type="" name="mentor_student_approve" class="btn btn-primary" onclick="approveMentorStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                            
                                         </div>
 
                             </div>

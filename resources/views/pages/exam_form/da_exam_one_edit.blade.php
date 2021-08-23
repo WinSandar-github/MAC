@@ -73,9 +73,9 @@
                                             <input type="hidden" name="student_id">
                                             
                                             <div class="row mt-5 justify-content-center"> 
-                                                <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-
                                                 <button type="submit"  id="reject" name="save" class="btn btn-danger"  onclick="rejectDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                                <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                                
                                             </div>
                                         </div>
                                             
