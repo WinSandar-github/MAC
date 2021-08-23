@@ -172,8 +172,8 @@
                                             </form>
                                                 <div class="pass_fail_btn" style="display:none;">
                                                         
-                                                    <button  class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
                                                     <button class=" btn  btn-danger mr-4" onClick="javascript:failExam();">Fail</button>
+                                                    <button  class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
                                                 </div>
                                             </div>
                                         </div>

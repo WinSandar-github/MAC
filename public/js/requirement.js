@@ -1,7 +1,7 @@
 function createRequirement(){    
     var send_data=new FormData();
     send_data.append('name',$("input[name=name]").val());
-    send_data.append('course_id',$('#selected_course_id').val());       
+    // send_data.append('course_id',$('#selected_course_id').val());       
     
     $.ajax({
             url: BACKEND_URL+"/requirement",
@@ -22,7 +22,7 @@ function getRequirement(){
     destroyDatatable("#tbl_requirement", "#tbl_requirement_body");
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
-    send_data.append('course_name',$('#filter_course_id').val());
+    // send_data.append('course_name',$('#filter_course_id').val());
     $.ajax({
         url: BACKEND_URL+"/filter_requirement",
         type: 'post',
@@ -32,17 +32,17 @@ function getRequirement(){
         success: function(data){
             
             var requirement_data=data.data;
-            requirement_data.forEach(function (element) {   
+            requirement_data.forEach(function (element) {  
+                console.log('requirement',element); 
                 
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
-                tr += "<td>" + element.name + "</td>";
-                tr += "<td>" + element.course.name + "</td>";                
-            
                 tr += "<td ><div class='btn-group'>";
-                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showRequirementInfo(" + element.id + ")'>" +
-                    "<li class='fa fa-edit fa-sm'></li></button> ";
+                tr +="<button type='button' class='btn btn-primary btn-xs' onClick='showRequirementInfo(" + element.id + ")'>" +
+                     "<li class='fa fa-edit fa-sm'></li></button> ";
                 tr += "<button type='button' class='btn btn-danger btn-xs' onClick='deleteRequirementInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+                tr += "<td>" + element.name + "</td>";
+                // tr += "<td>" + element.course.name + "</td>"; 
     
                 tr += "</tr>";
                 $("#tbl_requirement_body").append(tr);         
@@ -69,9 +69,10 @@ function showRequirementInfo(id) {
         success: function (data) {
 
             var requirement_data=data.data;  
+            console.log('show requirement',requirement_data);
                      
-            $('input[name=name]').val(requirement_data[0].name);
-            $('#selected_course_id').val(requirement_data[0].course_id);                        
+            $('input[name=name]').val(requirement_data.name);
+            // $('#selected_course_id').val(requirement_data[0].course_id);                        
             
             $('#create_requirement_model').modal('toggle');
         },
@@ -86,14 +87,14 @@ function showRequirementInfo(id) {
 function updateRequirement(){
     var id= $("input[name=requirement_id]").val();    
     var name=$("input[name=name]").val();
-    var course_id=$("#selected_course_id").val();
+    // var course_id=$("#selected_course_id").val();
     
     $.ajax({
         url: BACKEND_URL+"/requirement/"+id,
         type: 'patch',
         data:{
             name:name,
-            course_id:course_id
+            // course_id:course_id
         },        
         success: function(result){
             successMessage("Update Successfully");

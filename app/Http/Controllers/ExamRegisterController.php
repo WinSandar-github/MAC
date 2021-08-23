@@ -162,7 +162,8 @@ class ExamRegisterController extends Controller
         {
             $exam_register = $exam_register->where('batch_id', $request->batch);
         }
-        $exam_register =  $exam_register->get();
+        $exam_register =  $exam_register->where('form_type', $request->course_code)->get();
+        // $exam_register =  $exam_register->get();
         return response()->json([
             'data' => $exam_register
         ],200);
