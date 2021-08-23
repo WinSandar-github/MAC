@@ -40,15 +40,15 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">                                            
-                                            <div class="row">
-                                                <div class="col-md-1 text-left" style="padding-top:9px;font-weight:bold;">
+                                            <div class="row pl-3">
+                                                <div class="col-md-1 text-left" style="font-weight:bold;">
                                                     {{ __('Name') }}
                                                 </div>
-                                                <div class="col-md-3" style="padding-top:9px;padding-right:0px;padding-left:0px;">
+                                                <div class="col-md-3" >
                                                     <input type="text"  name="filter_name" class="form-control"  placeholder="Name" autocomplete="off">
                                                 </div>
-                                                <div class="col-md-4" style="padding-left:0px;">
-                                                    <button type="button" id="filter_course" onclick="getCourse()" class="btn btn-primary btn-round" >Search</button>
+                                                <div class="col-md-2" >
+                                                    <button type="button" id="filter_course" onclick="getCourse()" class="btn btn-primary btn-round m-0" >Search</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -57,6 +57,7 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
+                                                        <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >Application Fee</th>
                                                         <th class="bold-font-weight" >Self-Study Registration Fee</th>
@@ -66,7 +67,7 @@
                                                         <th class="bold-font-weight" >Tution Fee</th>
                                                         <th class="bold-font-weight" >Description</th>
                                                         <th class="bold-font-weight" >Requirement</th>
-                                                        <th class="bold-font-weight" >Action</th>
+                                                        
                                                     </tr>
 
                                                 </thead>

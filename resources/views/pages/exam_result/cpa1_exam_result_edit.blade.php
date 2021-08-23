@@ -27,18 +27,18 @@
                                     <div class="card">
                                     <div class="card-header">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <div class="row">
-                                                        <div class="col-md-1"></div>
+                                                        <!-- <div class="col-md-1"></div> -->
                                                         <div class="col-md-3 text-left" style="font-weight:bold;">Name</div>
                                                         <div class="col-md-7 text-left">
                                                             <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
                                                         </div> 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <div class="row">
-                                                    <div class="col-md-1"></div>
+                                                        <!-- <div class="col-md-1"></div> -->
                                                         <div class="col-md-3 text-left" style="font-weight:bold;">Grade</div>
                                                         <div class="col-md-7 text-left">
                                                             <select class="form-control form-select" name="selected_grade_id" id="selected_grade_id">
@@ -51,7 +51,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <button type="submit" onclick="loadCPAStudent('cpa_1')" class="btn btn-primary btn-hover-dark m-1" >Search</button>
+                                                    <button type="submit" onclick="loadCPAStudent('cpa_1')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -60,11 +60,12 @@
                                                 <thead>
                                                     <tr>
                                                       <th class="bold-font-weight" >No</th>
+                                                      <th class="bold-font-weight" >Action</th>
                                                       <th class="bold-font-weight" >Name</th>
                                                       <th class="bold-font-weight" >Exam Type</th>
                                                       <th class="bold-font-weight" >Grade</th>
                                                       <th class="bold-font-weight" >Module</th>
-                                                      <th class="bold-font-weight" >Detail</th>
+                                                      
                                                     </tr>
                                                 </thead>
                                                 <tbody id="tbl_cpa_exam_result_body" class="hoverTable">

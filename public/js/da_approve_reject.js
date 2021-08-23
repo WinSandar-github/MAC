@@ -41,43 +41,46 @@ function getDAList(course_code) {
                 if (element.approve_reject_status == 0) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td >";
                     tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number + "</td>";
                     tr += "<td>" + status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                   
                     tr += "</tr>";
                     $("#tbl_da_pending_list_body").append(tr);
                 } else if (element.approve_reject_status == 1) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number + "</td>";
                     tr += "<td>" + status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "</tr>";
                     $("#tbl_da_approved_list_body").append(tr);
                 } else if (element.approve_reject_status == 2) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
+                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number + "</td>";
                     tr += "<td>" + status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "</tr>";
                     $("#tbl_da_rejected_list_body").append(tr);
                 }
