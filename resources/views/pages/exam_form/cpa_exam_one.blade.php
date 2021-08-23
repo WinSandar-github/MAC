@@ -27,18 +27,18 @@
                                 <div class="card">
                                     <div class="card-header">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-5">
                                                 <div class="row">
-                                                    <div class="col-md-1"></div>
+                                                    <!-- <div class="col-md-1"></div> -->
                                                     <div class="col-md-3 text-left" style="font-weight:bold;">Name</div>
                                                     <div class="col-md-7 text-left">
                                                         <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
                                                     </div> 
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-5">
                                                 <div class="row">
-                                                <div class="col-md-1"></div>
+                                                <!-- <div class="col-md-1"></div> -->
                                                     <div class="col-md-3 text-left" style="font-weight:bold;">Batch</div>
                                                     <div class="col-md-7 text-left">
                                                         <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
@@ -57,14 +57,15 @@
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight" >No</th>
-                                                    <th class="bold-font-weight" >Action</th>
-                                                    <th class="bold-font-weight" >Print</th>
+                                                    <th class="bold-font-weight" >Action</th>                                                    
                                                     <th class="bold-font-weight" >Name</th>
                                                     {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                                     <th class="bold-font-weight" >Exam Type</th>
                                                     <th class="bold-font-weight" >Grade</th>
+                                                    <th class="bold-font-weight" >Batch ID</th>
                                                     <th class="bold-font-weight" >Status</th>
-                                                    <!-- <th class="bold-font-weight" >Batch ID</th> -->
+                                                    <th class="bold-font-weight" >Print</th>
+                                                    
                                                     
                                                 </tr>
                                             </thead>

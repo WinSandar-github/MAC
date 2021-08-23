@@ -27,18 +27,18 @@
                                     <div class="card">
                                     <div class="card-header">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <div class="row">
-                                                        <div class="col-md-1"></div>
+                                                        <!-- <div class="col-md-1"></div> -->
                                                         <div class="col-md-3 text-left" style="font-weight:bold;">Name</div>
                                                         <div class="col-md-7 text-left">
                                                             <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
                                                         </div> 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                <div class="col-md-5">
                                                     <div class="row">
-                                                    <div class="col-md-1"></div>
+                                                        <!-- <div class="col-md-1"></div> -->
                                                         <div class="col-md-3 text-left" style="font-weight:bold;">Grade</div>
                                                         <div class="col-md-7 text-left">
                                                             <select class="form-control form-select" name="selected_grade_id" id="selected_grade_id">

@@ -82,15 +82,17 @@ function getCPAExam(){
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPAOneExam(" + element.id + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                                tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
-                                "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                                
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
                                 //tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + element.exam_type_id + "</td>";
                                 tr += "<td>" + element.grade + "</td>";
-                                tr += "<td>" + status+ "</td>";
-                                // tr += "<td>" + element.batch_id+ "</td>";
+                                tr += "<td>" + element.batch_id+ "</td>";
+                                tr += "<td>" + status+ "</td>";                               
+                                
+                                tr += "<td ><div class='btn-group'>";
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
+                                "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
                                 
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_one_body").append(tr);
@@ -111,15 +113,17 @@ function getCPAExam(){
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCPATwoExam(" + element.id + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                                
+                                tr += "<td>" + element.student_info.name_eng + "</td>";
+                                // tr += "<td>" + element.private_school_name + "</td>";
+                                tr += "<td>" + element.exam_type_id + "</td>";
+                                tr += "<td>" + element.grade + "</td>";
+                                tr += "<td>" + element.batch_id+ "</td>";
+                                tr += "<td>" + status+ "</td>";                                
+                                
                                 tr += "<td ><div class='btn-group'>";
                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
-                                tr += "<td>" + element.student_info.name_eng + "</td>";
-                                tr += "<td>" + element.private_school_name + "</td>";
-                                tr += "<td>" + element.exam_type_id + "</td>";
-                                tr += "<td>" + element.grade + "</td>";
-                                tr += "<td>" + status+ "</td>";
-                                tr += "<td>" + element.batch_id+ "</td>";
                                 
                                 tr += "</tr>";
                                 $("#tbl_cpa_exam_two_body").append(tr);
@@ -321,10 +325,11 @@ function chooseCPABatch(){
 }
 function loadCPAStudent(course_type)
 {
+    
     destroyDatatable("#tbl_cpa_exam_result", "#tbl_cpa_exam_result_body");
     localStorage.setItem("course_type",course_type);
     //var id = localStorage.getItem("batch_id");
-    // console.log(id);
+    // console.log("course_type",course_type);
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('grade',$('#selected_grade_id').val());
@@ -335,20 +340,20 @@ function loadCPAStudent(course_type)
         contentType: false,
         processData: false,
         success: function(data){
-            console.log("course",data);
+            // console.log("course",data);
             var da_data = data.data;
             da_data.forEach(function (element) {
+                // console.log('cpaexamelement',element);
                     $.ajax({
                         url: BACKEND_URL+"/course/"+element.form_type,
                         type: 'get',
                         data:"",
-                        success:function(courses){
-                            console.log(courses,"Course")
+                        success:function(courses){                            
 
                             var course=courses.data;
                             if(course.code==course_type){
-                                console.log('check courses',course);
-                                console.log(course.code,course_type);
+                                // console.log('check courses',course);
+                                // console.log(course.code,course_type);
                                 if(element.status==0){
                                     status="PENDING";
                                 }
@@ -358,6 +363,7 @@ function loadCPAStudent(course_type)
                                 else{
                                     status="REJECTED";
                                 }
+
                                 if(element.exam_type_id == 0){
                                     exam_type_id = "SELF STUDY";
                                 }
@@ -367,6 +373,7 @@ function loadCPAStudent(course_type)
                                 else{
                                     exam_type_id="MAC STUDENT";
                                 }
+
                                 if(element.is_full_module==0){
                                     is_full_module="Module 1";
                                 }
@@ -376,6 +383,7 @@ function loadCPAStudent(course_type)
                                 else{
                                     is_full_module="Full Module";
                                 }
+                                
                                 if(element.grade==0){
                                     student_grade="PENDING";
                                 }

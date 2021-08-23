@@ -34,18 +34,18 @@
                                     <div class="card">
                                     <div class="card-header">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-5">
                                                 <div class="row">
-                                                    <div class="col-md-1"></div>
+                                                    <!-- <div class="col-md-1"></div> -->
                                                     <div class="col-md-3 text-left" style="font-weight:bold;">Name</div>
                                                     <div class="col-md-7 text-left" style="padding-left:0px;">
                                                         <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-5">
                                                 <div class="row">
-                                                    <div class="col-md-1"></div>
+                                                    <!-- <div class="col-md-1"></div> -->
                                                     <div class="col-md-3 text-left" style="font-weight:bold;">NRC</div>
                                                     <div class="col-md-7 text-left" style="padding-left:0px;">
                                                         <input type="text" name="filter_by_nrc" class="form-control" placeholder="eg. ၁/ကမတ(နိုင်)၁၂၃၄၅၆">

@@ -70,8 +70,7 @@
                                                                         <th class="bold-font-weight" >Registration No</th>
                                                                         <th class="bold-font-weight" >Phone</th>
                                                                         <th class="bold-font-weight" >Registration Reason</th>
-                                                                        <th class="bold-font-weight" >Status</th>
-                                                                        
+                                                                        <th class="bold-font-weight" >Status</th>                                                                        
                                                                     </tr>
                                                                     
                                                                 </thead>

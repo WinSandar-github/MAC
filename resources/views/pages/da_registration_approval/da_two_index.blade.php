@@ -47,7 +47,7 @@
                                         </div>
                                         <div class="card-body">
                                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
-	                                            <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+	                                            <div class="tab-pane fade" id="link1" aria-expanded="true">
                                                 <div class="row">
                                                         <div class="col-md-1 text-left" style="padding-left:20px;font;font-weight:bold;">Name</div>
                                                         <div class="col-md-3" style="padding-right:0px;padding-left:0px;">
@@ -119,7 +119,7 @@
                                                         </div>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                            <div class="tab-pane fade show active" id="link3" aria-expanded="true">
                                                 <div class="row">
                                                     <div class="col-md-1 text-left" style="padding-left:20px;font;font-weight:bold;">Name</div>
                                                     <div class="col-md-3" style="padding-right:0px;padding-left:0px;">
