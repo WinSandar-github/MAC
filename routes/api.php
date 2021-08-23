@@ -33,6 +33,10 @@ Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
+// Mentor
+Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
+Route::patch('/reject_mentor_student/{id}', 'MentorController@reject');
+
 Route::resource('/cpa_full_form','CpaFullFormController');
 Route::resource('/cpa_one_reg','CpaOneRegisterController');
 Route::resource('/cpa_one_exam','CpaOneExamRegController');
@@ -143,6 +147,7 @@ Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
+Route::get('/get_requirement_id','CourseController@getRequirement');
 
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
@@ -198,7 +203,10 @@ Route::post('/filter_mentor','MentorController@FilterMentor');
 // Route::apiResource('mentor','MentorController');
 // Route::resource('mentor','MentorController');
 Route::get('check_service','CurrentCheckServiceController@getCurrentCheckService');
-Route::get('check_mentor','MentorController@getMentor');
+Route::get('check_service_private','CurrentCheckServiceController@getCheckServicePrivate');
+Route::get('check_service_self','CurrentCheckServiceController@getCheckServiceSelf');
+Route::get('check_mentor_mac','MentorController@getMentorMAC');
+Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
 

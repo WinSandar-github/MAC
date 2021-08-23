@@ -18,13 +18,14 @@ function getStudentSelfStudy(){
                 if(element.student_register!=null){
                     var student_info = element.student_register;
                     student_info.forEach(function(item){
-                        $.ajax({
+                         $.ajax({
                             url:BACKEND_URL+"/course/"+item.form_type,
                             type: 'get',
                             data:"",
                             success:function(courses){
                                 var course=courses.data;
-                                if(item.type == 0 && course[0].code=="da_1")
+                                 
+                                if(item.type == 0 && course.code=="da_1")
                                 { 
                                     var status;
                                     if(item.status==0){
@@ -45,14 +46,14 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + item.reg_reason + "</td>";
                                     tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#tbl_student_self_study_body").append(tr); 
 
                                 }                                
                                 
-                                if(item.type == 0 && course[0].code=="da_2"){
+                                if(item.type == 0 && course.code=="da_2"){
                                     var status;
                                     if(item.status==0){
                                         status="PENDING";
@@ -72,14 +73,14 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + item.reg_reason + "</td>";
                                     tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#da_two_self_study_body").append(tr);                                                     
                                     
                                     
                                 } 
-                                if(item.type == 0 && course[0].code=="cpa_1")
+                                if(item.type == 0 && course.code=="cpa_1")
                                 {
                                     var status;
                                     if(item.status==0){
@@ -100,13 +101,13 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + item.reg_reason + "</td>";
                                     tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#tbl_cpa1_student_self_study_body").append(tr); 
 
                                 }
-                                if(item.type == 0 && course[0].code=="cpa_2"){
+                                if(item.type == 0 && course.code=="cpa_2"){
                                     var status;
                                     if(item.status==0){
                                         status="PENDING";
@@ -126,7 +127,7 @@ function getStudentSelfStudy(){
                                     tr += "<td>" + item.reg_reason + "</td>";
                                     tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentSelfStudy(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#tbl_cpa2_student_self_study_body").append(tr);                                                     
@@ -162,7 +163,7 @@ function getStudentSelfStudy(){
 function showStudentSelfStudy(studentId,course_code){
     localStorage.setItem("student_id",studentId);
     localStorage.setItem("course_code",course_code);
-    console.log(course_code);
+    // console.log(course_code);
     location.href= FRONTEND_URL + "/self_study_edit";
 }
 
@@ -170,7 +171,7 @@ function loadStudentSelfStudy(){
     var id=localStorage.getItem("student_id");
     var course_code=localStorage.getItem("course_code");
     $("#student_name").html("");
-    $("#student_nrc").html("");
+    // $("#student_nrc").html("");
     $("#student_dob").html("");
     $("#student_father").html("");
     $("#student_email").html("");
@@ -242,7 +243,7 @@ function getStudentPrivateSchool(){
                             data:"",
                             success:function(courses){
                                 var course =courses.data;
-                                console.log(item.type,course[0].code);
+                                console.log(item.type,course.code);
                                 if(item.status==0){
                                     status="PENDING";
                                 }
@@ -253,7 +254,7 @@ function getStudentPrivateSchool(){
                                     status="REJECTED";
                                 }
 
-                                if(item.type == 1 && course[0].code=="da_1")
+                                if(item.type == 1 && course.code=="da_1")
                                 {                                    
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
@@ -263,13 +264,13 @@ function getStudentPrivateSchool(){
                                 tr += "<td>" + element.phone + "</td>";
                                 tr += "<td>" + status + "</td>";
                                 tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#tbl_student_private_school_body").append(tr); 
                                 
                                 }
-                                if(item.type == 1 && course[0].code=="da_2")
+                                if(item.type == 1 && course.code=="da_2")
                                 {
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
@@ -279,13 +280,13 @@ function getStudentPrivateSchool(){
                                 tr += "<td>" + element.phone + "</td>";
                                 tr += "<td>" + status + "</td>";
                                 tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#da_two_private_school_body").append(tr); 
                                 
                                 } 
-                                if(item.type == 1 && course[0].code=="cpa_1")
+                                if(item.type == 1 && course.code=="cpa_1")
                                 {
                                    
                                 var tr = "<tr>";
@@ -296,14 +297,14 @@ function getStudentPrivateSchool(){
                                 tr += "<td>" + element.phone + "</td>";
                                 tr += "<td>" + status + "</td>";
                                 tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                 $("#tbl_cpa1_student_private_school_body").append(tr); 
 
                                 
                                 }
-                                if(item.type == 1 && course[0].code=="cpa_2")
+                                if(item.type == 1 && course.code=="cpa_2")
                                 {
                                 
                                 var tr = "<tr>";
@@ -314,7 +315,7 @@ function getStudentPrivateSchool(){
                                 tr += "<td>" + element.phone + "</td>";
                                 tr += "<td>" + item.status + "</td>";
                                 tr += "<td ><div class='btn-group'>";
-                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentPrivateSchool(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                 tr += "</tr>";
                                
@@ -428,7 +429,7 @@ function getStudentMac(){
                             data:"",
                             success:function(courses){
                                 var course=courses.data;
-                              if(item.type == 2 && course[0].code== "da_1" )
+                              if(item.type == 2 && course.code== "da_1" )
                                 {
                                     var status;
                                     if(item.status==0){
@@ -448,13 +449,13 @@ function getStudentMac(){
                                     tr += "<td>" + element.phone + "</td>";
                                     tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#tbl_student_mac_body").append(tr);
 
                                 }
-                                if(item.type == 2 && course[0].code=="da_2")
+                                if(item.type == 2 && course.code=="da_2")
                                 {
                                     var status;
                                     if(item.status==0){
@@ -474,12 +475,12 @@ function getStudentMac(){
                                     tr += "<td>" + element.phone + "</td>";
                                     tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#da_two_mac_body").append(tr);
                                 }      
-                                if(item.type == 2 && course[0].code=="cpa_1")
+                                if(item.type == 2 && course.code=="cpa_1")
                                 {
                                     var status;
                                     if(item.status==0){
@@ -499,7 +500,7 @@ function getStudentMac(){
                                     tr += "<td>" + element.phone + "</td>";
                                     tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#tbl_cpa1_student_mac_body").append(tr);
@@ -507,7 +508,7 @@ function getStudentMac(){
                                     
                                 }
                                 
-                                if(item.type == 2 && course[0].code=="cpa_2")
+                                if(item.type == 2 && course.code=="cpa_2")
                                 {
                                     var status;
                                     if(item.status==0){
@@ -527,7 +528,7 @@ function getStudentMac(){
                                     tr += "<td>" + element.phone + "</td>";
                                     tr += "<td>" + status + "</td>";
                                     tr += "<td ><div class='btn-group'>";
-                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course[0].code+"\"" + ")'>" +
+                                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showStudentMac(" + element.id +','+ "\""+course.code+"\"" + ")'>" +
                                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                                     tr += "</tr>";
                                     $("#tbl_cpa2_student_mac_body").append(tr);

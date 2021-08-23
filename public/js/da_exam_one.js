@@ -22,7 +22,7 @@ function getExam(){
                         success:function(courses){
                             var course=courses.data;
                             
-                            if(course[0].code=="da_1")
+                            if(course.code=="da_1")
                             {
                                 if(element.status==0){
                                     status="PENDING";
@@ -59,7 +59,7 @@ function getExam(){
                                 tr += "</tr>";
                                 $("#tbl_da_exam_one_body").append(tr);
                             }
-                            else if(course[0].code=="da_2")
+                            else if(course.code=="da_2")
                             {
                                 if(element.status==0){
                                     status="PENDING";
@@ -369,7 +369,7 @@ function loadStudent(course_type)
                         data:"",
                         success:function(courses){
                             var course =courses.data;
-                            if(course[0].code==course_type){
+                            if(course.code==course_type){
                                 if(element.status==0){
                                     status="PENDING";
                                 }
@@ -402,13 +402,22 @@ function loadStudent(course_type)
                                     is_full_module="Full Module";
                                 }
                 
+                                if(element.grade==0){
+                                    student_grade="PENDING";
+                                }
+                                else if(element.grade==1){
+                                    student_grade="PASS";
+                                }
+                                else{
+                                    student_grade="FAIL";
+                                }
                                 var tr = "<tr>";
                                 tr += "<td>" +  + "</td>";
                                 tr += "<td>" + element.student_info.name_eng + "</td>";
-                                tr += "<td>" + element.private_school_name + "</td>";
+                                //tr += "<td>" + element.private_school_name + "</td>";
                                 tr += "<td>" + exam_type_id + "</td>";
-                                tr += "<td>" + element.grade + "</td>";
-                                tr += "<td>" + status+ "</td>";
+                                tr += "<td>" + student_grade + "</td>";
+                                //tr += "<td>" + status+ "</td>";
                                 tr += "<td>" + element.batch_id+ "</td>";
                                 tr += "<td>" + is_full_module+ "</td>";
                                 tr += "<td ><div class='btn-group'>";

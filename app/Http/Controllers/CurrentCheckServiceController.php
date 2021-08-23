@@ -14,4 +14,20 @@ class CurrentCheckServiceController extends Controller
             'data' => $service
         ],200);
     }
+
+    public function getCheckServicePrivate()
+    {
+        $service = CurrentCheckService::where('type',1)->get();
+        return response()->json([
+            'data' => $service
+        ],200);
+    }
+
+    public function getCheckServiceSelf()
+    {
+        $service = CurrentCheckService::where('type',1)->get();
+        return response()->json([
+            'data' => $service
+        ],200);
+    }
 }
