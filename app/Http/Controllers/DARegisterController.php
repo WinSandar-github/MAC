@@ -254,6 +254,9 @@ class DARegisterController extends Controller
         {
             $student_infos=$student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
+        if($request->batch!="all"){
+            $student_infos = $student_infos->where('batch_id',$request->batch);
+        }
         $student_infos=$student_infos->get();
         return response()->json([ 
             'data' => $student_infos,
