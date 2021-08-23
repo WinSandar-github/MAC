@@ -99,6 +99,7 @@ Route::resource('/student_mac','StudentMacController');
 
 //Student Register Form API
 Route::resource('/student_register','StudentRegisterController');
+Route::get('/show_student_register/{id}','StudentRegisterController@showStudentRegister');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 Route::post('/filter_registration','StudentRegisterController@FilterRegistration');
