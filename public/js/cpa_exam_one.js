@@ -187,7 +187,7 @@ function loadCPAStudentDataForExamCard()
                 console.log("element=",element.student_education_histroy.roll_number);
                 // document.getElementById("student_img").src ='img/user_profile/vIqzOHXj.jpeg';
                 console.log(element.image);
-                document.getElementById('student_img').src=element.image;
+                document.getElementById('student_img').src=PDF_URL+element.image;
                 $("#roll_no").append(element.student_education_histroy.roll_number);
                 $("#name").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number);
@@ -341,6 +341,7 @@ function loadCPAStudent(course_type)
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('grade',$('#selected_grade_id').val());
+    show_loader();
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
         type: 'post',
@@ -420,8 +421,10 @@ function loadCPAStudent(course_type)
                          }
                     });
             });
+            EasyLoading.hide();
         },
         error:function (message){
+            EasyLoading.hide();
             dataMessage(message, "#tbl_cpa_exam_result", "#tbl_cpa_exam_result_body");
         }
     });
@@ -487,13 +490,17 @@ function getCPAModuleStd(){
                 else{
                     is_full_module="Full Module";
                 }
+                
+                setTimeout(() => {
+                    if(element.grade == 1 )
+                    {
+                        
+                        $('.ex_res_btn').hide();
+                        $('.pass_fail_btn').hide();
 
-                // if(element.grade == 1 )
-                // {
-                //      $('.ex_res_btn').hide();
-                //     $('.pass_fail_btn').hide();
-
-                // }
+                    }
+                    
+                }, 2000);
 
                 if(element.grade==0){
                     grade="PENDING";
@@ -520,6 +527,10 @@ function getCPAModuleStd(){
 
                         if(result.data !=null)
                         {
+                            $('.ex_res_btn').hide();
+
+                            $('.pass_fail_btn').show();
+                            
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',result.data.id);
                             var rData=JSON.parse(result.data.result);

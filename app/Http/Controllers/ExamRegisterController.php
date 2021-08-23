@@ -42,7 +42,7 @@ class ExamRegisterController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->invoice_image;
+        
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('student_info_id', $student_info_id)->latest()->get('type');
         $type = $exam_type[0]['type'];
@@ -62,7 +62,7 @@ class ExamRegisterController extends Controller
         $exam = new ExamRegister();
         $exam->student_info_id = $request->student_id;
         $exam->date = $date;
-        $exam->invoice_image = $request->invoice_image;
+        //$exam->invoice_image = $invoice_image;
         $exam->invoice_date = $invoice_date;
         $exam->private_school_name = $request->private_school_name;
         $exam->grade = 0;
@@ -193,13 +193,7 @@ class ExamRegisterController extends Controller
         
         
    
-        // if ($request->hasfile('invoice_image')) 
-        // {
-        //     $file = $request->file('invoice_image');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/exam_register/',$name);
-        //     $invoice_image = '/storage/exam_register/'.$name;
-        // }
+     
         $date = date('Y-m-d');
         $invoice_date = date('Y-m-d');
       
@@ -208,7 +202,6 @@ class ExamRegisterController extends Controller
         $exam->last_ans_exam_no= $request->last_ans_exam_no;
         $exam->last_ans_module = $request->last_ans_module;
         $exam->date = $date;
-        $exam->invoice_image = $request->invoice_image;
         $exam->invoice_date = $invoice_date;
         $exam->private_school_name = $request->private_school_name;
         $exam->grade = 0;

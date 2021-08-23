@@ -226,7 +226,7 @@ function loadStudentDataForExamCard()
                 console.log("element=",element.student_education_histroy.roll_number);
                 // document.getElementById("student_img").src ='img/user_profile/vIqzOHXj.jpeg';
                 console.log(element.image);
-                document.getElementById('student_img').src=element.image;
+                document.getElementById('student_img').src=PDF_URL+element.image;
                 $("#roll_no").append(element.student_education_histroy.roll_number);
                 $("#name").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region+"/"+element.nrc_township+"("+element.nrc_citizen+")"+element.nrc_number);
@@ -303,12 +303,15 @@ function rejectDATwoExam(){
 }
 
 function loadBatchData(course_code){ 
-    var select = document.getElementById("selected_batch_id");  
+    var select = document.getElementById("selected_batch_id"); 
+    show_loader(); 
     $.ajax({
         url: BACKEND_URL+"/course_by_course_code/"+course_code,
         type: 'get',
-        data:"",
-        success: function(data){
+        contentType: false,
+        processData: false,
+         success: function(data){
+             
             var course_data=data.data;            
             console.log('course_data',course_data);
             course_data.forEach(function (element) {
@@ -318,9 +321,12 @@ function loadBatchData(course_code){
                     option.value = batch.id;
                     select.add(option, 0);
                 });
-            });              
+            });  
+            EasyLoading.hide();
+
         },
         error:function (message){
+            EasyLoading.hide();
                    
         }
     });
@@ -385,6 +391,7 @@ function loadStudent(course_type)
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('grade',$('#selected_grade_id').val());
     console.log($("input[name=filter_by_name]").val(),$('#selected_grade_id').val());
+    show_loader();
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
         type: 'post',
@@ -470,8 +477,10 @@ function loadStudent(course_type)
                 //});
                 
             });
+            EasyLoading.hide();
         },
         error:function (message){
+            EasyLoading.hide();
             dataMessage(message, "#tbl_exam_result", "#tbl_exam_result_body");
         }
     });
@@ -513,7 +522,7 @@ function getModuleStd(){
                 // console.log(std)
                 if(element.status==0){
                     status="PENDING";
-                    $('.pass_fail_btn').hide();
+                   
                 }
                 else if(element.status==1){
                     status="APPROVED";
@@ -540,13 +549,7 @@ function getModuleStd(){
                     is_full_module="Full Module";
                 }
 
-                // if(element.grade == 1 )
-                // {
-                //     console.log("Grade");
-                //     $('.ex_res_btn').hide();
-                //     $('.pass_fail_btn').hide();
-
-                // }
+                
 
                 if(element.grade==0){
                     grade="PENDING";
@@ -557,7 +560,17 @@ function getModuleStd(){
                 else{
                     grade="FAILED";
                 }
+                setTimeout(() => {
+                    if(element.grade == 1 )
+                    {
+                        
+                        $('.ex_res_btn').hide();
+                        $('.pass_fail_btn').hide();
 
+                    }
+                    
+                }, 2000);
+                 
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
@@ -575,7 +588,10 @@ function getModuleStd(){
                     console.log(result)
                         if(result.data !=null)
                         {
-                           
+                            $('.ex_res_btn').hide();
+
+                            $('.pass_fail_btn').show();
+
 
                             $("input[name = result_id]").val(result.data.id);
                             console.log('search_exam_result',JSON.parse(result.data.result));
@@ -646,9 +662,7 @@ function getModuleStd(){
                                     grade.value = rData.grades[i];
                                 }
                             }
-                        }else{
-                            $('.pass_fail_btn').hide();
-                        }
+                        } 
                     },
                 error:function (message){
                     console.log(message);

@@ -6,6 +6,7 @@ function getDAList(course_code){
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
+    show_loader();
     $.ajax({
         url: BACKEND_URL+"/filter_student_info",
         type: 'post',
@@ -13,6 +14,7 @@ function getDAList(course_code){
         contentType: false,
         processData: false,
         success: function(data){
+            EasyLoading.hide();
             var da_data = data.data;
             console.log({data});
             let da_one_list = da_data.filter(function(v){
@@ -108,7 +110,7 @@ function loadData(){
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
-                document.getElementById('image').src=element.image;
+                document.getElementById('image').src=PDF_URL+element.image;
                 $("#name_eng").append(element.name_eng);
                 $("#name_mm").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region+"/" +element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number );
@@ -232,7 +234,7 @@ function rejectUser(){
 
 function file_read(data){
     if(data=='certificate'){
-        document.getElementById('attach_file').src=attached_file;
+        document.getElementById('attach_file').src=PDF_URL+attached_file;
         $('#myModal').modal({
             show : true
         });
