@@ -30,7 +30,19 @@ function getCPAExam(course_code) {
     var send_data = new FormData();
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('batch', batch);
-    send_data.append('course_code', course_code);
+    if(course_code=="da_1"){
+        course_id=1;
+    }
+    else if(course_code=="da_2"){
+        course_id=2;
+    }
+    else if(course_code=="cpa_1"){
+        course_id=3;
+    }
+    else if(course_code=="cpa_2"){
+        course_id=4;
+    }
+    send_data.append('course_code', course_id);
     $.ajax({
         url: BACKEND_URL + "/filter",
         type: 'post',

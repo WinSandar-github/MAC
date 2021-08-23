@@ -6,7 +6,19 @@ function GetStudentRegistration(course_code) {
     send_data.append('name', $("input[name=filter_by_name_ss]").val());
     send_data.append('status', $("#selected_status").val());
     send_data.append('batch', $("#selected_batch_id").val());
-    send_data.append('course_code', course_code);
+    if(course_code=="da_1"){
+        course_id=1;
+    }
+    else if(course_code=="da_2"){
+        course_id=2;
+    }
+    else if(course_code=="cpa_1"){
+        course_id=3;
+    }
+    else if(course_code=="cpa_2"){
+        course_id=4;
+    }
+    send_data.append('course_code', course_id);
     $.ajax({
         url: BACKEND_URL + "/filter_registration",
         type: 'post',
@@ -17,6 +29,8 @@ function GetStudentRegistration(course_code) {
             var student_data = data.data;
             console.log("stu data", student_data);
             student_data.forEach(function (element) {
+                console.log(element.id,"id");
+                console.log("stu element", element);
                 if (element.type == 0) {
                     var status;
                     if (element.status == 0) {

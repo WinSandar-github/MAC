@@ -5,7 +5,19 @@ function getExam(course_code) {
     var batch = $("#selected_batch_id").val();
     var send_data = new FormData();
     send_data.append('name', $("input[name=filter_by_name]").val());
-    send_data.append('course_code', course_code);
+    if(course_code=="da_1"){
+        course_id=1;
+    }
+    else if(course_code=="da_2"){
+        course_id=2;
+    }
+    else if(course_code=="cpa_1"){
+        course_id=3;
+    }
+    else if(course_code=="cpa_2"){
+        course_id=4;
+    }
+    send_data.append('course_code', course_id);
     send_data.append('batch', batch);
     $.ajax({
         url: BACKEND_URL + "/filter",
