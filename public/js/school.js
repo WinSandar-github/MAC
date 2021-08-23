@@ -3,6 +3,7 @@ function getSchoolRegisterList(){
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
+    show_loader();
     $.ajax({
         type : 'post',
         url : BACKEND_URL+"/filter_school",
@@ -35,6 +36,7 @@ function getSchoolRegisterList(){
                 $("#tbl_school_body").append(tr);
             });
             createDataTableWithAsc("#tbl_school");
+            EasyLoading.hide();
         }
     });
 }

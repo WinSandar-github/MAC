@@ -148,11 +148,13 @@
 function getAudit(){
   destroyDatatable("#tbl_audit", "#tbl_audit_body");
   destroyDatatable("#tbl_non_audit", "#tbl_non_audit_body");
+  show_loader();
   $.ajax({
     url: BACKEND_URL+"/acc_firm_info",
     type: 'get',
     data:"",
     success: function(data){
+      EasyLoading.hide();
       var audit_data=data.data;
       audit_data.forEach(function (element) {
         if(element.audit_firm_type_id==1){

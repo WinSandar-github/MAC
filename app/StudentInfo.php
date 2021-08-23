@@ -42,7 +42,7 @@ class StudentInfo extends Model
 
     public function student_register()
     {
-        return $this->hasMany(StudentRegister::class,'student_info_id','id');
+        return $this->hasMany(StudentRegister::class,'student_info_id','id')->with('course');
     }
 
     public function exam_register()

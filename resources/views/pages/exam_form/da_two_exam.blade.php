@@ -61,28 +61,84 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
-                                                <button type="submit" onclick="getExam()" class="btn btn-primary btn-hover-dark m-1" >Search</button>
+                                                <button type="submit" onclick="getExam('da_2')" class="btn btn-primary btn-hover-dark m-1" >Search</button>
                                             </div>
                                         </div>
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                            </li>
+                                        </ul>
                                     </div>
                                     <div class="card-body">
-                                        <table id="tbl_da_exam_two"class="table table-hover text-nowrap ">
-                                            <thead>
-                                                <tr>
-                                                    <th class="bold-font-weight" >No</th>
-                                                    <th class="bold-font-weight" >Name</th>
-                                                    {{--<th class="bold-font-weight" >Private School Name</th>--}}
-                                                    <th class="bold-font-weight" >Exam Type</th>
-                                                    <th class="bold-font-weight" >Grade</th>
-                                                    <th class="bold-font-weight" >Status</th>
-                                                    <!-- <th class="bold-font-weight" >Batch ID</th> -->
-                                                    <th class="bold-font-weight" >Detail</th>
-                                                    <th class="bold-font-weight" >Print</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbl_da_exam_two_body" class="hoverTable">
-                                            </tbody>
-                                        </table>
+                                        <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                            <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                                <table id="tbl_da_pending_exam" class="table table-hover text-nowrap ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Name</th>
+                                                            {{--<th class="bold-font-weight" >Private School Name</th>--}}
+                                                            <th class="bold-font-weight" >Exam Type</th>
+                                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
+                                                            <th class="bold-font-weight" >Grade</th>
+                                                            <th class="bold-font-weight" >Status</th>
+                                                            <!-- <th class="bold-font-weight" >Batch ID</th> -->
+                                                            <th class="bold-font-weight" >Detail</th>
+                                                            <th class="bold-font-weight" >Print</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_da_pending_exam_body" class="hoverTable">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                                <table id="tbl_da_approved_exam"class="table table-hover text-nowrap ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Name</th>
+                                                            {{--<th class="bold-font-weight" >Private School Name</th>--}}
+                                                            <th class="bold-font-weight" >Exam Type</th>
+                                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
+                                                            <th class="bold-font-weight" >Grade</th>
+                                                            <th class="bold-font-weight" >Status</th>
+                                                            <!-- <th class="bold-font-weight" >Batch ID</th> -->
+                                                            <th class="bold-font-weight" >Detail</th>
+                                                            <th class="bold-font-weight" >Print</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_da_approved_exam_body" class="hoverTable">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                                <table id="tbl_da_rejected_exam"class="table table-hover text-nowrap ">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Name</th>
+                                                            {{--<th class="bold-font-weight" >Private School Name</th>--}}
+                                                            <th class="bold-font-weight" >Exam Type</th>
+                                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
+                                                            <th class="bold-font-weight" >Grade</th>
+                                                            <th class="bold-font-weight" >Status</th>
+                                                            <!-- <th class="bold-font-weight" >Batch ID</th> -->
+                                                            <th class="bold-font-weight" >Detail</th>
+                                                            <th class="bold-font-weight" >Print</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_da_rejected_exam_body" class="hoverTable">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -97,6 +153,6 @@
 @push('scripts')
 <script>
     loadBatchData("da_2");
-    getExam();
+    getExam('da_2');
 </script>
 @endpush
