@@ -41,11 +41,16 @@ function getTeacherRegisterList(){
     });
 }
 
+function showTeacher(teacherID){
+    localStorage.setItem("teacher_id",teacherID);
+    location.href=FRONTEND_URL+"/teacher_edit/";
+}
+
 function getTeacherInfos(){
     let result = window.location.href;
     let url = new URL(result);
-    let id = url.searchParams.get("id");
-   
+    // let id = url.searchParams.get("id");
+    var id = localStorage.getItem("teacher_id");
     $.ajax({
         type : 'GET',
         url : BACKEND_URL+"/teacher/"+id,
