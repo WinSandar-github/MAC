@@ -6,6 +6,7 @@ function getDAList(course_code){
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
+    show_loader();
     $.ajax({
         url: BACKEND_URL+"/filter_student_info",
         type: 'post',
@@ -13,6 +14,7 @@ function getDAList(course_code){
         contentType: false,
         processData: false,
         success: function(data){
+            EasyLoading.hide();
             var da_data = data.data;
             console.log({data});
             let da_one_list = da_data.filter(function(v){

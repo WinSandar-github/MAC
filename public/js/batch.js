@@ -14,13 +14,15 @@ function createBatch(){
     send_data.append('accept_application_end_date',$("input[name=app_acc_start_date]").val());
     send_data.append('entrance_pass_start_date',$("input[name=entrance_pass_start_date]").val());
     send_data.append('entrance_pass_end_date',$("input[name=entrance_pass_end_date]").val());
+    show_loader();
     $.ajax({
             url: BACKEND_URL+"/batch",
             type: 'post',
             data:send_data,
             contentType: false,
             processData: false,
-            success: function(result){                 
+            success: function(result){          
+                EasyLoading.hide();       
                 successMessage("Insert Successfully");
                 location.reload();
         }
@@ -34,6 +36,7 @@ function getBatch(){
     send_data.append('course_name',$('#filter_course_id').val());
     send_data.append('start_date',$("input[name=filter_by_start_date]").val());
     send_data.append('end_date',$("input[name=filter_by_end_date]").val());
+    show_loader();
     $.ajax({
         url: BACKEND_URL+"/filter_batch",
         type: 'post',
@@ -41,6 +44,7 @@ function getBatch(){
         contentType: false,
         processData: false,
         success: function(data){
+            EasyLoading.hide();
             var course_data=data.data;
             course_data.forEach(function (element) {     
                 if(element.entrance_pass_start_date==null){
@@ -156,6 +160,8 @@ function updateBatch(){
     var accept_application_end_date=$("input[name=app_acc_end_date]").val(); 
     var entrance_pass_start_date=$("input[name=entrance_pass_start_date]").val();
     var entrance_pass_end_date=$("input[name=entrance_pass_end_date]").val(); 
+
+    show_loader();
    
     $.ajax({
         url: BACKEND_URL+"/batch/"+id,
@@ -177,9 +183,10 @@ function updateBatch(){
             entrance_pass_end_date:entrance_pass_end_date
         },        
         success: function(result){
+            EasyLoading.hide();
             successMessage("Update Successfully");
             $('#create_batch_modal').modal('toggle');       
-            location.reload();     
+            // location.reload();     
             getBatch();
             
         

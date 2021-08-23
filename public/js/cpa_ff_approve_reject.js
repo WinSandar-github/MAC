@@ -11,11 +11,13 @@ var attached_modal;
 
 function getCPAFFList(){
     destroyDatatable("#tbl_cpaff_list", "#tbl_cpaff_list_body");    
+    show_loader();
     $.ajax({
         url: BACKEND_URL+"/cpa_ff",
         type: 'get',
         data:"",
         success: function(data){
+            EasyLoading.hide();
             var cpaff_data = data.data;            
 
             cpaff_data.forEach(function (element) {

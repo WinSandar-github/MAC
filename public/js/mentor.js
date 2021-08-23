@@ -318,6 +318,7 @@ function getMentorList(){
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());
+    show_loader();
     $.ajax({
         type : 'post',
         url : BACKEND_URL+"/filter_mentor",
@@ -368,6 +369,7 @@ function getMentorList(){
             });
             getIndexNumber('#tbl_mentor tr');
             createDataTableWithAsc("#tbl_mentor");
+            EasyLoading.hide();
         }
     });
 }

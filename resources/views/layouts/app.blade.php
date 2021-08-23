@@ -113,6 +113,11 @@ The above copyright notice and this permission notice shall be included in all c
     {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/datatables-responsive/css/responsive.bootstrap4.min.css"><link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.css" rel="stylesheet" type="text/css" /> --}} -->
 
     <!-- Google Tag Manager -->
+
+    
+    <link rel="stylesheet" href="{{ asset('EasyLoading/jquery-ui.min.css')}} ">
+    <link rel="stylesheet" href="{{ asset('EasyLoading/css/easy-loading.css')}}">
+
     {{-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -175,6 +180,12 @@ The above copyright notice and this permission notice shall be included in all c
 
     <!--  Google Maps Plugin    -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> -->
+
+      <!-- EasyLoading -->
+
+      <script src="{{ asset('EasyLoading/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('EasyLoading/js/easy-loading.js')}}"></script>
+    <script src="{{ asset('js/easyloading.js') }}"></script>
     <!-- Chart JS -->
     <script src="{{ asset('paper') }}/js/plugins/chartjs.min.js"></script>
     <!--  Notifications Plugin    -->
@@ -241,6 +252,17 @@ The above copyright notice and this permission notice shall be included in all c
         });
     </script>
     <script src="{{ asset('js/custom.js') }}"></script>
+
+    
+        <!-- <script>
+            alert("hello")
+    show_loader()
+    setTimeout(() => {
+        alert("Easy Loading")
+        EasyLoading.hide();
+        
+    }, 3000);
+        </script> -->
 
     @include('layouts.modal')
     @yield('custom-javascript')
