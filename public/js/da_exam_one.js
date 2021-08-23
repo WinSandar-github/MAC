@@ -589,6 +589,7 @@ function fillMark(id, isFullModule) {
 
 function getModuleStd() {
     var id = localStorage.getItem("exam_register_id");
+    console.log('exam',id);
     var module_type = localStorage.getItem("is_full_module");
     // $("input[name = batch_id]").val(id);
     $.ajax({
@@ -699,15 +700,39 @@ function getModuleStd() {
                                     grade.value = rData.grades[i];
                                 }
                             }
-                            for (var i = 0; i < 5; i++) {
-                                var j = i + 1;
-                                var mark = document.getElementById('mark' + j);
-                                mark.value = rData.marks[i];
+                            else if(module_type == 1){
+                                for (var i = 0; i < 2; i++) {
+                                    var j = i + 1;
+                                    var sunject = document.getElementById('subject' + j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 2; i++) {
+                                    var j = i + 1;
+                                    var mark = document.getElementById('mark' + j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 2; i++) {
+                                    var j = i + 1;
+                                    var grade = document.getElementById('grade' + j);
+                                    grade.value = rData.grades[i];
+                                }
                             }
-                            for (var i = 0; i < 5; i++) {
-                                var j = i + 1;
-                                var grade = document.getElementById('grade' + j);
-                                grade.value = rData.grades[i];
+                            else if(module_type == 2){
+                                for (var i = 0; i < 5; i++) {
+                                    var j = i + 1;
+                                    var sunject = document.getElementById('subject' + j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 5; i++) {
+                                    var j = i + 1;
+                                    var mark = document.getElementById('mark' + j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 5; i++) {
+                                    var j = i + 1;
+                                    var grade = document.getElementById('grade' + j);
+                                    grade.value = rData.grades[i];
+                                }
                             }
                         } 
                     },
