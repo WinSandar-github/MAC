@@ -29,6 +29,7 @@ function createCourse(){
     //     }
     // });
      
+    show_loader();
     $.ajax({
             url: BACKEND_URL+"/course",
             type: 'post',
@@ -36,6 +37,7 @@ function createCourse(){
             contentType: false,
             processData: false,
             success: function(result){
+                EasyLoading.hide();
                 successMessage("Insert Successfully");
                 location.reload();
             },
@@ -56,11 +58,13 @@ function getCourse(){
     else{
         course_name= $("input[name=filter_name]").val();
     }
+    show_loader();
     $.ajax({
         url: BACKEND_URL+"/filter_course/"+course_name,
         type: 'get',
         data:"",
         success: function(data){
+            EasyLoading.hide();
             
             var course_data=data.data;
             console.log('data',data.data)
@@ -186,6 +190,8 @@ function updateCourse(){
 
     var course_type_id = $('.course_type').val();
     var requirement_id = $('.requirement_id').val();
+
+    show_loader();
    
     $.ajax({
         url: BACKEND_URL+"/course/"+id,
@@ -206,9 +212,10 @@ function updateCourse(){
             requirement_id:requirement_id
         },        
         success: function(result){
+            EasyLoading.hide();
             successMessage("Update Successfully");
             $('#create_course_modal').modal('toggle');  
-            location.reload();          
+            // location.reload();          
             getCourse();
             
         
@@ -285,13 +292,14 @@ function loadCourseToFilter(){
 
 
 function getRequirementCourse(){
-    
+     
     $.ajax({
         url:BACKEND_URL+'/get_requirement_id',
         type:'GET',
         success:function(response){
+            
             requirement_list = response.data;
-            console.log(requirement_list)
+            
            
            
 

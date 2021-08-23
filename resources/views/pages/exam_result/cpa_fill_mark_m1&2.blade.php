@@ -91,11 +91,7 @@
                                             
                                             <div class="row">
                                                 <h5  style="font-weight:bold;margin:auto" >အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
-                                                <div class="pass_fail_btn">
-
-                                                    <button  class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
-                                                    <button class=" btn  btn-danger mr-4" onClick="javascript:failExam();">Fail</button>
-                                                </div>
+                                                
                                             </div>
                                             <!-- {!! Form::close() !!} -->
                                             <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">    
@@ -149,13 +145,18 @@
                                                 </div>
                                         </div>  
                                         <div class="card-footer"> 
-                                            <div class="modal-footer ex_res_btn">
-                                                <button type="submit" name="save" class="btn btn-primary">Submit</button>
+                                            <div class="modal-footer ">
+                                                <button type="submit" name="save" class="btn btn-primary ex_res_btn">Submit</button>
+                                            </form>
+                                                <div class="pass_fail_btn" style="display:none;">
+
+                                                    <button class=" btn  btn-danger" onClick="javascript:failExam();">Fail</button>
+                                                    <button  class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
+                                                </div>
                                             </div>
                                         </div>
                                                         <!-- {!! Form::close() !!} -->
 
-                                            </form>
                                     </div>
                                 </div>
                             </div>

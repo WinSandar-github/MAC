@@ -256,7 +256,7 @@
                                         <p class="ml-2" style="font-weight:bold">Passport Image</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpd_record_Modal"><i class="fa fa-paperclip"></i></button>
+                                        <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#passport_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
                                  <!--Passport Image Modal-->

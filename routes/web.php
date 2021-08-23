@@ -139,7 +139,10 @@ Route::group(['middleware' => 'auth'], function () {
 Route::resource('/batch','BatchController');
 Route::resource('/course','CourseController');
 
-  
+//Mentor
+Route::get('mentor_list', 'MentorController@FilterMentor');  
+// Teacher 
+Route::get('teacher_registration', 'TeacherController@FilterTeacher');  
 
 
     Route::group(['middleware' => 'auth'], function () {
