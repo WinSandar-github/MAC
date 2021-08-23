@@ -99,6 +99,7 @@ Route::resource('/student_mac','StudentMacController');
 
 //Student Register Form API
 Route::resource('/student_register','StudentRegisterController');
+Route::get('/show_student_register/{id}','StudentRegisterController@showStudentRegister');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 Route::post('/filter_registration','StudentRegisterController@FilterRegistration');
@@ -211,3 +212,15 @@ Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
 
 Route::get('get_type/{id}', 'StudentRegisterController@getType');
+
+//School Status
+Route::get('getSchoolStatus/{id}', 'SchoolController@schoolStatus');
+
+//Teacher Status
+Route::get('getTeacherStatus/{id}', 'TeacherController@teacherStatus');
+
+Route::post('/update_mentor','StudentRegisterController@updateMentor');
+
+
+//Mentor Status
+Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');

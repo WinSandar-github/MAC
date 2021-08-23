@@ -16,6 +16,7 @@ class StudentRegisterController extends Controller
 
     public function store(Request $request)
     {
+        
       
         $date = date('Y-m-d');
         if($request->date){
@@ -45,9 +46,12 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
+                
                 if($request->reg_reason){
                     $student_register->reg_reason = implode(",",$registration_reason);
+                    // $student_register->reg_reason = $request->reg_reason;
                 }
+                
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
@@ -92,10 +96,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-                $student_register->mentor_id = $request->mentor_id;
-                $student_register->current_check_service_id = $request->current_check_service_id;
-                $student_register->current_check_services_other = $request->current_check_services_other;
-                $student_register->recommend_file = $recommend_file;
+              
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
@@ -147,10 +148,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-                $student_register->mentor_id = $request->mentor_id;
-                $student_register->current_check_service_id = $request->current_check_service_id;
-                $student_register->current_check_services_other = $request->current_check_services_other;
-                $student_register->recommend_file = $recommend_file;
+             
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
@@ -167,6 +165,15 @@ class StudentRegisterController extends Controller
         ],200);
         
     }
+    public function showStudentRegister($id)
+    {
+        $student_register = StudentRegister::where('id',$id)->with('student_info')->first();
+        return response()->json([
+            'data' => $student_register
+        ],200);
+        
+    }
+
 
     public function approveStudent($id)
     {
@@ -198,13 +205,51 @@ class StudentRegisterController extends Controller
     }
 
     public function FilterRegistration(Request $request){
-        $student_infos = StudentInfo::with('student_register');
-        if($request!="")
+        $student_register = StudentRegister::with('student_info','course')->join('courses', 'student_register.form_type', '=', 'courses.id');                            
+        if($request->name!="")
         {
-            $student_infos = $student_infos->where('name_eng','like', '%' . $request->name. '%')
-                                            ->orWhere('name_mm','like', '%' . $request->name. '%');
+            $student_register = $student_register->join('student_infos', 'student_register.student_info_id', '=', 'student_infos.id')
+            ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+            ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
         }
-        $student_infos = $student_infos->get();
-        return response()->json([ 'data' => $student_infos],200);
+        if($request->status!="all")
+        {
+            $student_register = $student_register->where('student_register.status',$request->status);
+        }
+        if($request->batch!="all"){
+            $student_register = $student_register->join('student_course_regs', 'student_register.student_info_id', '=', 'student_course_regs.student_info_id')
+            ->where('student_course_regs.batch_id',$request->batch);
+        }
+        $student_register = $student_register->where('courses.code', $request->course_code)->get();
+        return response()->json([ 'data' => $student_register],200);
     }
+
+    public function updateMentor(Request $request)
+    {
+         
+        if ($request->hasfile('recommend_file')) {
+            $file = $request->file('recommend_file');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/aa_register/',$name);
+            $recommend_file = '/storage/aa_register/'.$name;
+        }
+        else{
+            $recommend_file="";
+        }
+
+        $student_register =  StudentRegister::where('student_info_id',$request->student_id)->latest()->first();
+            
+        $student_register->mentor_id = $request->mentor_id;
+        $student_register->current_check_service_id = $request->current_check_service_id;
+        $student_register->current_check_services_other = $request->current_check_services_other;
+        $student_register->recommend_file = $recommend_file;
+        $student_register->save();
+
+         
+        return response()->json([
+            'message' => "Successfully"
+        ]);
+    }
+
+    
 }

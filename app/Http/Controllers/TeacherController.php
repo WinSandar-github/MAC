@@ -136,6 +136,9 @@ class TeacherController extends Controller
 
     public function approve_teacher_register(Request $request)
     {
+        $std_info = StudentInfo::where('teacher_id', $request->id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
         $teacher = TeacherRegister::find($request->id);
         $teacher->approve_reject_status = $request->status;
         $teacher->save();
@@ -143,6 +146,22 @@ class TeacherController extends Controller
             'message' => 'You have approved this user.'
         ],200);
     }
+
+    // public function FilterTeacher(Request $request)
+    // {
+    //     $teacher = TeacherRegister::orderBy('created_at','desc');
+    //     if($request->name!=""){
+    //         $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
+    //                     ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+    //     }
+    //     if($request->nrc!=""){
+    //         $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+    //     }
+    //     $teacher=$teacher->get();
+    //     return  response()->json([
+    //         'data' => $teacher
+    //     ],200);
+    // }
 
     public function FilterTeacher(Request $request)
     {
@@ -154,9 +173,13 @@ class TeacherController extends Controller
         if($request->nrc!=""){
             $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
-        $teacher=$teacher->get();
-        return  response()->json([
-            'data' => $teacher
-        ],200);
+        $teacher = $teacher->paginate(3);
+        return view('pages.teacher.teacher_list', compact('teacher'));
+    }
+
+    public function teacherStatus($id)
+    {
+        $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        return response()->json($data,200);
     }
 }

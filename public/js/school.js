@@ -3,6 +3,7 @@ function getSchoolRegisterList(){
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
+    show_loader();
     $.ajax({
         type : 'post',
         url : BACKEND_URL+"/filter_school",
@@ -35,6 +36,7 @@ function getSchoolRegisterList(){
                 $("#tbl_school_body").append(tr);
             });
             createDataTableWithAsc("#tbl_school");
+            EasyLoading.hide();
         }
     });
 }
@@ -85,7 +87,7 @@ function approveSchoolRegister(){
         type: 'post',
         success: function(result){
             successMessage(result.message);
-            location.href = '/school_registration';
+            location.href = FRONTEND_URL + '/school_registration';
         }
     });
 }
@@ -109,7 +111,7 @@ function viewAttach(){
     let content="";
     let i=0;
     content += `<div>`;
-    url = PDF_URL + "/storage/attachment/school/" + $("#hidden_attach").val();
+    url = PDF_URL + "/storage/attachment/" + $("#hidden_attach").val();
     content += `<embed src=${url} width="100%" height="500px" />`;
     content += `</div>`;
     console.log(content);

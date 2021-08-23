@@ -2,7 +2,8 @@ function getTeacherRegisterList(){
     destroyDatatable("#tbl_teacher", "#tbl_teacher_body");
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
-    send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
+    send_data.append('nrc',$("input[name=filter_by_nrc]").val());
+    show_loader();  
     $.ajax({
         type : 'post',
         url : BACKEND_URL+"/filter_teacher",
@@ -35,15 +36,21 @@ function getTeacherRegisterList(){
                 $("#tbl_teacher_body").append(tr);
             });
             createDataTableWithAsc("#tbl_teacher");
+            EasyLoading.hide();
         }
     });
+}
+
+function showTeacher(teacherID){
+    localStorage.setItem("teacher_id",teacherID);
+    location.href=FRONTEND_URL+"/teacher_edit/";
 }
 
 function getTeacherInfos(){
     let result = window.location.href;
     let url = new URL(result);
-    let id = url.searchParams.get("id");
-   
+    // let id = url.searchParams.get("id");
+    var id = localStorage.getItem("teacher_id");
     $.ajax({
         type : 'GET',
         url : BACKEND_URL+"/teacher/"+id,
@@ -110,7 +117,7 @@ function approveTeacherRegister(){
         type: 'post',
         success: function(result){
             successMessage('You have approved that user!');
-            location.href = '/teacher_registration';
+            location.href = FRONTEND_URL + '/teacher_registration';
         }
     });
 }

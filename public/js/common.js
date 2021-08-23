@@ -7,6 +7,17 @@
 // var PDF_URL =  "https://demo.aggademo.me/MAC/public";
 var counter = 0;
 
+function ConfirmSubmit(){
+    var radio = document.getElementById("submit_confirm");
+    if (radio.checked == true){
+        document.getElementById("submit_btn").disabled= false;
+    }
+    else{
+    document.getElementById("submit_btn").disabled = true;
+    }
+}
+
+
 function addRowCPAFF(tbody){
     var newRow = $("<tr>");
     var cols = "";

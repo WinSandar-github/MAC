@@ -17,7 +17,6 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <!-- {!! Form::open(array('route' => 'exam_result.store','method'=>'POST','files' => 'true')) !!} -->
-                <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">    
                     <div class="card">
                         
                         <div class="card-body">
@@ -89,9 +88,13 @@
                                                     </div>
                                                 </div>
                                             </div><br>
-                                            <input type="hidden" name="result_id">
-                                            <h5 style="font-weight:bold" align="center">အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
+                                            <div class="row">
+                                                <h5  style="font-weight:bold;margin:auto" >အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
+                                                
+                                            </div>
+                                            <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">    
                                             
+                                                <input type="hidden" name="result_id">
                                                 <div class="row">
                                                     <table class="table mark table-bordered input-table" id="tbl_fillmarks" width="100%" style="margin: 3% 3% 0 3%;">
                                                         <tr>
@@ -127,11 +130,19 @@
                                                     </table>
                                                 </div>
                                         </div>  
-                                        <div class="card-footer"> 
+                                        <div class="card-footer "> 
                                             <div class="modal-footer">
-                                                <button type="submit" name="save" class="btn btn-primary">Submit</button>
+                                                <button type="submit" name="save" class="btn btn-primary ex_res_btn">Submit</button>
+                                            </form> 
+                                                <div class="pass_fail_btn" style="diplay:none;">
+                                                    
+                                                    <button class=" btn  btn-danger " onClick="javascript:failExam();">Fail</button>
+                                                    <button  class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
+                                                </div>
                                             </div>
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +150,7 @@
                     </div>
                 <!-- {!! Form::close() !!} -->
                 
-                </form>
+              
             </div>
         </div>
     </div>

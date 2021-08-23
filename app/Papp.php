@@ -19,12 +19,12 @@ class Papp extends Model
 
     public function student_job()
     {
-        return $this->belongsTo(StudentJobHistroy::class,'student_id','id');
+        return $this->belongsTo(StudentJobHistroy::class,'student_id','student_info_id');
     }
 
     public function student_education_histroy()
     {
-        return $this->belongsTo(EducationHistroy::class,'student_id','id');
+        return $this->belongsTo(EducationHistroy::class,'student_id','student_info_id');
     }
 
 }

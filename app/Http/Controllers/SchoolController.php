@@ -65,7 +65,8 @@ class SchoolController extends Controller
         $school->save();
         if($request->hasFile('attachment')){
             $fileName = $school->id.'.'.$request->file('attachment')->getClientOriginalExtension();
-            $request->file('attachment')->storeAs('attachment/school/', $fileName);
+            //$request->file('attachment')->storeAs('attachment/school/', $fileName);
+            $request->file('attachment')->move(public_path().'/storage/attachment/',$fileName);
             $school->attachment=$fileName;
             $school->save();
         }
@@ -131,6 +132,9 @@ class SchoolController extends Controller
 
     public function approve_school_register(Request $request, $id)
     {
+        $std_info = StudentInfo::where('school_id', $id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
         $school = SchoolRegister::find($id);
         $school->approve_reject_status = 1;
         $school->save();
@@ -163,5 +167,11 @@ class SchoolController extends Controller
         return  response()->json([
             'data' => $school
         ],200);
+    }
+
+    public function schoolStatus($id)
+    {
+        $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        return response()->json($data,200);
     }
 }
