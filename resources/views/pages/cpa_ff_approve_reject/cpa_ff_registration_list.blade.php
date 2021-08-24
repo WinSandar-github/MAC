@@ -32,12 +32,13 @@
                                             <thead>
                                                 <tr>
                                                     <th class="bold-font-weight" >No</th>
-                                                    <th class="bold-font-weight" >Name</th>
+                                                    <th class="bold-font-weight" >Action</th>
+                                                    <th class="bold-font-weight" >Name</th>                                                    
                                                     <th class="bold-font-weight" >NRC</th>     
                                                     <th class="bold-font-weight" >Registration Number</th>
                                                     <th class="bold-font-weight" >Degree</th>
                                                     <th class="bold-font-weight" >Status</th>
-                                                    <th class="bold-font-weight" >Detail</th>
+                                                    
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_cpaff_list_body" class="hoverTable">

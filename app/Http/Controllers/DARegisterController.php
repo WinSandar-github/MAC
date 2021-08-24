@@ -86,7 +86,7 @@ class DARegisterController extends Controller
         $student_info->image            =   $image;
         $student_info->registration_no  =   $request->registration_no;
         $student_info->approve_reject_status  =  0;
-        $student_info->date             =   date('Y-m-d',strtotime($request->date)); 
+        $student_info->date             =   $date; 
         $student_info->email            =   $request->email;
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
@@ -253,6 +253,9 @@ class DARegisterController extends Controller
         if($request->nrc!="" && $request->name!="")
         {
             $student_infos=$student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+        }
+        if($request->batch!="all"){
+            $student_infos = $student_infos->where('batch_id',$request->batch);
         }
         $student_infos=$student_infos->get();
         return response()->json([ 

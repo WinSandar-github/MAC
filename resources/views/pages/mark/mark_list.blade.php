@@ -30,10 +30,11 @@
                                                 <thead>
                                                     <tr>
                                                       <th class="less-font-weight" >No</th>
+                                                      <th class="less-font-weight" >Action</th>
                                                       <th class="less-font-weight" >Student Name</th>
                                                       <th class="less-font-weight" >Student Info ID</th>
                                                       <th class="less-font-weight" >Registeration ID</th>
-                                                      <th class="less-font-weight" >Detail</th>
+                                                      
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -41,13 +42,14 @@
                                                 	@foreach($marks as $mark)
                                                 	    <tr>
                                                 	        <td>{{ $index++ }}</td>
+                                                            <td>
+                                                                <a href="{{ url("/mark/$mark->id") }}"
+                                                                class='btn btn-xs btn-primary'><i class="fa fa-check-square-o"></i>&nbsp;Edit</a>
+                                                	        </td>
                                                 	        <td>{!! $mark->student_info->name_eng !!}</td>
                                                 	        <td>{!! $mark->student_info_id !!}</td>
                                                 	        <td>{!! $mark->registeration_id !!}</td>
-                                                	        <td>
-                                                	        <a href="{{ url("/mark/$mark->id") }}"
-                                                	           class='btn btn-xs btn-primary'><i class="fa fa-check-square-o"></i>&nbsp;Edit</a>
-                                                	        </td>
+                                                	        
                                                 	    </tr>
                                                 	@endforeach
                                                 </tbody>

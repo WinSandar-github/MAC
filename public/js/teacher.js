@@ -16,6 +16,7 @@ function getTeacherRegisterList(){
                 let nrc = obj.nrc_state_region+"/"+obj.nrc_township+"("+obj.nrc_citizen+")"+obj.nrc_number;
                 var tr = "<tr>";
                 tr += `<td> ${ indexNo += 1 } </td>`;
+                tr += `<td><a href=${FRONTEND_URL+'/teacher_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
                 tr += `<td> ${ obj.name_mm } </td>`;
                 tr += `<td> ${ obj.email } </td>`;
                 tr += `<td> ${ obj.phone } </td>`;
@@ -31,7 +32,7 @@ function getTeacherRegisterList(){
                     status_color = "text-danger";
                 }
                 tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
-                tr += `<td><a href=${FRONTEND_URL+'/teacher_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                
                 tr += "</tr>";
                 $("#tbl_teacher_body").append(tr);
             });
@@ -41,11 +42,16 @@ function getTeacherRegisterList(){
     });
 }
 
+function showTeacher(teacherID){
+    localStorage.setItem("teacher_id",teacherID);
+    location.href=FRONTEND_URL+"/teacher_edit/";
+}
+
 function getTeacherInfos(){
     let result = window.location.href;
     let url = new URL(result);
-    let id = url.searchParams.get("id");
-   
+    // let id = url.searchParams.get("id");
+    var id = localStorage.getItem("teacher_id");
     $.ajax({
         type : 'GET',
         url : BACKEND_URL+"/teacher/"+id,
@@ -105,7 +111,9 @@ function getTeacherInfos(){
 function approveTeacherRegister(){
     let result = window.location.href;
     let url = new URL(result);
-    let id = url.searchParams.get("id");
+    //let id = url.searchParams.get("id");
+    var id = localStorage.getItem("teacher_id");
+    console.log({id});
     $.ajax({
         url: BACKEND_URL + "/approve_teacher_register",
         data: 'id='+id+"&status=1",

@@ -145,10 +145,10 @@
                                         <span id="exp_desc"></span>
                                     </div>
                                 </div>
-                                <div class="row mt-5 justify-content-center" id="approve_reject" style="display:none;"> 
-                                    <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
+                                <div class="row mt-5 justify-content-center" id="approve_reject" style="display:none;">                                    
 
                                     <button  id="reject" class="btn btn-danger"  onclick="rejectTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
+                                    <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
                                 </div>
                                 
                             </div>
