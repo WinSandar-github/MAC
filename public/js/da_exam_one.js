@@ -60,6 +60,8 @@ function getExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
@@ -78,6 +80,8 @@ function getExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+                    
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
@@ -96,6 +100,8 @@ function getExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
