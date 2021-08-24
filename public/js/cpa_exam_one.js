@@ -85,6 +85,8 @@ function getCPAExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showCPAOneExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + element.exam_type_id + "</td>";
                     tr += "<td>" + element.grade + "</td>";
@@ -103,6 +105,8 @@ function getCPAExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showCPAOneExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + element.exam_type_id + "</td>";
                     tr += "<td>" + element.grade + "</td>";
@@ -121,6 +125,8 @@ function getCPAExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showCPAOneExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + element.exam_type_id + "</td>";
                     tr += "<td>" + element.grade + "</td>";

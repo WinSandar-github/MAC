@@ -60,6 +60,8 @@ function getExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
@@ -78,6 +80,8 @@ function getExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+                    
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
@@ -96,6 +100,8 @@ function getExam(course_code) {
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
@@ -643,7 +649,7 @@ function getModuleStd() {
                 setTimeout(() => {
                     if(element.grade == 1 )
                     {
-                        
+                         
                         $('.ex_res_btn').hide();
                         $('.pass_fail_btn').hide();
 
@@ -734,6 +740,8 @@ function getModuleStd() {
                                     grade.value = rData.grades[i];
                                 }
                             }
+                        }else{
+                            $('.pass_fail_btn').hide();
                         } 
                     },
                 error:function (message){
