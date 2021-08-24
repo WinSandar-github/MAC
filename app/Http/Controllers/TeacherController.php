@@ -147,22 +147,6 @@ class TeacherController extends Controller
         ],200);
     }
 
-    // public function FilterTeacher(Request $request)
-    // {
-    //     $teacher = TeacherRegister::orderBy('created_at','desc');
-    //     if($request->name!=""){
-    //         $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
-    //                     ->orWhere('name_eng', 'like', '%' . $request->name. '%');
-    //     }
-    //     if($request->nrc!=""){
-    //         $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-    //     }
-    //     $teacher=$teacher->get();
-    //     return  response()->json([
-    //         'data' => $teacher
-    //     ],200);
-    // }
-
     public function FilterTeacher(Request $request)
     {
         $teacher = TeacherRegister::orderBy('created_at','desc');
@@ -173,9 +157,25 @@ class TeacherController extends Controller
         if($request->nrc!=""){
             $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
-        $teacher = $teacher->paginate(3);
-        return view('pages.teacher.teacher_list', compact('teacher'));
+        $teacher=$teacher->get();
+        return  response()->json([
+            'data' => $teacher
+        ],200);
     }
+
+    // public function FilterTeacher(Request $request)
+    // {
+    //     $teacher = TeacherRegister::orderBy('created_at','desc');
+    //     if($request->name!=""){
+    //         $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
+    //                     ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+    //     }
+    //     if($request->nrc!=""){
+    //         $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+    //     }
+    //     $teacher = $teacher->paginate(3);
+    //     return view('pages.teacher.teacher_list', compact('teacher'));
+    // }
 
     public function teacherStatus($id)
     {
