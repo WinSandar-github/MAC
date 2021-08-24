@@ -183,7 +183,7 @@ The above copyright notice and this permission notice shall be included in all c
 
       <!-- EasyLoading -->
 
-      <script src="{{ asset('EasyLoading/jquery-ui.min.js')}}"></script>
+    <script src="{{ asset('EasyLoading/jquery-ui.min.js')}}"></script>
     <script src="{{ asset('EasyLoading/js/easy-loading.js')}}"></script>
     <script src="{{ asset('js/easyloading.js') }}"></script>
     <!-- Chart JS -->

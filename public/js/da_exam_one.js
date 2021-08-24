@@ -563,7 +563,7 @@ function getModuleStd(){
                 setTimeout(() => {
                     if(element.grade == 1 )
                     {
-                        
+                         
                         $('.ex_res_btn').hide();
                         $('.pass_fail_btn').hide();
 
@@ -662,6 +662,8 @@ function getModuleStd(){
                                     grade.value = rData.grades[i];
                                 }
                             }
+                        }else{
+                            $('.pass_fail_btn').hide();
                         } 
                     },
                 error:function (message){
