@@ -222,3 +222,6 @@ Route::post('/update_mentor','StudentRegisterController@updateMentor');
 
 //Mentor Status
 Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
+
+//Email Verification
+Route::patch('/check_code/{id}', 'DARegisterController@checkCode');
