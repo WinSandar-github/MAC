@@ -10,7 +10,8 @@ use App\StudentRegister;
 use App\StudentCourseReg;
 use Hash;
 use Illuminate\Support\Facades\DB;
-
+use Mail;
+use App\Mail\ContactMail;
 
 class DARegisterController extends Controller
 {
@@ -87,11 +88,18 @@ class DARegisterController extends Controller
         $student_info->registration_no  =   $request->registration_no;
         $student_info->approve_reject_status  =  0;
         $student_info->date             =   $date; 
-        $student_info->email            =   $request->email;
+        $student_info->email            =   strtolower($request->email);
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
-        $student_info->save(); 
-         
+        $student_info->verify_code      =   uniqid();
+        $data = array(
+            'email' => 'macadmin@gmail.com',
+            'verify_code' => $student_info['verify_code']
+        );
+        Mail::to($student_info['email'])->send(new ContactMail($data));
+        $student_info->verify_status    =   1;
+        $student_info->save();
+
         $student_job_histroy = new StudentJobHistroy;
         $student_job_histroy->student_info_id   = $student_info->id;
         $student_job_histroy->name              = $request->name;
@@ -261,6 +269,16 @@ class DARegisterController extends Controller
         return response()->json([ 
             'data' => $student_infos,
             // 'test'=>$test
+        ],200);
+    }
+
+    public function checkCode($id)
+    {
+        $data = StudentInfo::where('id',$id)->first();
+        $data->verify_status = 1;
+        $data->save();
+        return response()->json([
+            'data' => $data
         ],200);
     }
 }
