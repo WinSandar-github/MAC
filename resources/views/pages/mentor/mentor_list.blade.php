@@ -65,7 +65,7 @@
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
-                                                        <th class="bold-font-weight" >Email</th>
+                                                        <th class="bold-font-weight" >Contact Email</th>
                                                         <th class="bold-font-weight" >Phone Number</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Status</th>

@@ -66,8 +66,8 @@ function createMentor()
     $(':radio:checked').map(function(){send_data.append('repeat_yearly',$(this).val())});
     $(':radio:checked').map(function(){send_data.append('training_absent',$(this).val())});
     send_data.append('training_absent_reason', $("input[name=training_absent_reason]").val());
-    send_data.append('email', $("input[name=email]").val());
-    send_data.append('password', $("input[name=password]").val());
+    // send_data.append('email', $("input[name=email]").val());
+    // send_data.append('password', $("input[name=password]").val());
     send_data.append('status', $("input[name=status]").val());
     send_data.append('type', $("input[name=type]").val());
 

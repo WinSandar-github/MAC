@@ -72,7 +72,7 @@ function getCPAExam(course_code) {
                 }
 
                 if (element.grade == 0) {
-                    grade = "PENDING";
+                    grade = "-";
                 } else if (element.grade == 1) {
                     grade = "PASSED";
                 } else {
@@ -88,8 +88,8 @@ function getCPAExam(course_code) {
                     tr += "<td>" + element.student_info.email + "</td>";
 
                     //tr += "<td>" + element.private_school_name + "</td>";
-                    tr += "<td>" + element.exam_type_id + "</td>";
-                    tr += "<td>" + element.grade + "</td>";
+                    tr += "<td>" + exam_type_id + "</td>";
+                    tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
                     
@@ -288,7 +288,7 @@ function loadCPAExamData() {
                 }
 
                 if (element.grade == 0) {
-                    grade = "PENDING";
+                    grade = "-";
                 } else if (element.grade == 1) {
                     grade = "PASSED";
                 } else {

@@ -106,7 +106,7 @@
                                                         <tr>
                                                             <td width="10%">1</td>
                                                             <td width="40%">
-                                                                <input type="text" name="subject1" id="subject1" class="form-control" value="{{ old('subject1') }}" required>
+                                                                <input type="text" name="subject1" id="subject1" class="form-control" value="Subject One" readonly>
                                                             </td>
                                                             <td width="30%">
                                                                 <input type="text" name="mark1" id="mark1" class="form-control" value="{{ old('mark1') }}" required>
@@ -118,7 +118,7 @@
                                                         <tr>
                                                             <td width="10%">2</td>
                                                             <td width="40%">
-                                                                <input type="text" name="subject2" id="subject2" class="form-control" value="{{ old('subject2') }}" required>
+                                                                <input type="text" name="subject2" id="subject2" class="form-control" value="Subject Two" readonly>
                                                             </td>
                                                             <td width="30%">
                                                                 <input type="text" name="mark2" id="mark2" class="form-control" value="{{ old('mark2') }}" required>
