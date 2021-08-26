@@ -66,8 +66,8 @@ function createMentor()
     $(':radio:checked').map(function(){send_data.append('repeat_yearly',$(this).val())});
     $(':radio:checked').map(function(){send_data.append('training_absent',$(this).val())});
     send_data.append('training_absent_reason', $("input[name=training_absent_reason]").val());
-    send_data.append('email', $("input[name=email]").val());
-    send_data.append('password', $("input[name=password]").val());
+    // send_data.append('email', $("input[name=email]").val());
+    // send_data.append('password', $("input[name=password]").val());
     send_data.append('status', $("input[name=status]").val());
     send_data.append('type', $("input[name=type]").val());
 
@@ -78,9 +78,8 @@ function createMentor()
         contentType: false,
         processData: false,
         success: function(result){
-            // console.log(result)
             successMessage("You have successfully registerd!");
-            location.href = FRONTEND_URL+"/mentor_list";
+            location.href = "/mentor_list";
         },
         error:function (message){
             errorMessage(message);
@@ -102,7 +101,7 @@ $('#updateMentor').submit(function(e){
         data: formData,
         success: function (data) {
             successMessage(data.message);
-            location.href = FRONTEND_URL+"/mentor_list";
+            location.href = "/mentor_list";
         },
         error:function (message){
         }
@@ -339,6 +338,15 @@ function getMentorList(){
                 // }
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
+                tr += "<td ><div class='btn-group'>";
+                if(element.type == "Student"){
+                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentorStudent(" + element.id + ")'>" +
+                      "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                }
+                else if(element.type == "MAC"){
+                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
+                      "<li class='fa fa-edit fa-sm'></li></button><button type='button' class='btn btn-danger btn-xs'><li class='fa fa-trash fa-sm'></li></button></div ></td > ";
+                }
                 tr += "<td>" + element.name_mm + "</td>";
                 tr += "<td>" + element.m_email + "</td>";
                 tr += "<td>" + element.phone_no+ "</td>";
@@ -354,15 +362,7 @@ function getMentorList(){
                 }
 
                 tr += "<td>" + element.type+ "</td>";
-                tr += "<td ><div class='btn-group'>";
-                if(element.type == "Student"){
-                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentorStudent(" + element.id + ")'>" +
-                      "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                }
-                else if(element.type == "MAC"){
-                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
-                      "<li class='fa fa-edit fa-sm'></li></button><button type='button' class='btn btn-danger btn-xs'><li class='fa fa-trash fa-sm'></li></button></div ></td > ";
-                }
+                
 
                 tr += "</tr>";
                 $("#tbl_mentor_body").append(tr);
@@ -386,7 +386,7 @@ function showMentorStudent(mentorID){
 
 function createForm()
 {
-    location.href = FRONTEND_URL+"/mentor_create";
+    location.href = "/mentor_create";
 }
 
 function approveMentorStudent(){

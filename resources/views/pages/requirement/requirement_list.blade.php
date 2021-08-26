@@ -49,7 +49,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
+                                                {{--<div class="col-md-4">
                                                     <div class="row">
                                                         <div class="col-md-5" style="font-weight:bold;">Course Name</div>
                                                         <div class="col-md-7">
@@ -58,9 +58,9 @@
                                                             </select>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>--}}
                                                 <div class="col-md-2">
-                                                    <button type="button" class="btn btn-primary btn-round" onclick="getRequirement()" id="search">Search</button>
+                                                    <button type="button" class="btn btn-primary btn-round m-0" onclick="getRequirement()" id="search">Search</button>
                                                 </div>
                                             </div> 
                                         </div>
@@ -70,9 +70,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
-                                                        <th class="bold-font-weight" >Name</th>                                                                                                
-                                                        <th class="bold-font-weight" >Course Name</th>                                        
                                                         <th class="bold-font-weight" >Action</th>
+                                                        <th class="bold-font-weight" >Name</th>                                                                                                
+                                                        <!-- <th class="bold-font-weight" >Course Name</th>                                         -->
+                                                        
                                                     </tr>
                                                     
                                                 </thead>
@@ -105,7 +106,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <label class="col-md-1 form-label">{{ __('1.') }}</label>
+                        <label class="col-md-1 form-label">{{ __('') }}</label>
                         <label class="col-md-2 form-label">{{ __('Name') }}</label>
                         <div class="col-md-9">
                             <div class="form-group">                                
@@ -115,7 +116,7 @@
                     </div>
                     
                     
-                    <div class="row">
+                    {{--<div class="row">
                         <label class="col-md-1 form-label">{{ __('2.') }}</label>
                         <label class="col-md-2 form-label">{{ __('Course') }}</label>
                         <div class="col-md-9">
@@ -125,7 +126,7 @@
                                 </select>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     
                     
                 </div>
@@ -151,8 +152,9 @@
 
         
     // });
-    loadCourse();
-    loadCourseToFilter();
+
+    // loadCourse();
+    // loadCourseToFilter();
     getRequirement();
     window.onclick = function(event) {
             if (event.target == document.getElementById("create_btn")) {

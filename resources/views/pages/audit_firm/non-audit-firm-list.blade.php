@@ -37,6 +37,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight">Sr</th>
+                                                            <th class="bold-font-weight">Action</th>
                                                             <th class="bold-font-weight">Accountancy Firm Registration No</th>
                                                             <th class="bold-font-weight">Accountancy Firm Name</th>
                                                             <th class="bold-font-weight">Township</th>
@@ -47,7 +48,7 @@
                                                             <th class="bold-font-weight">Email</th>
                                                             <th class="bold-font-weight">Website</th>
                                                             <th class="bold-font-weight">Status</th>
-                                                            <th class="bold-font-weight">Detail</th>
+                                                            
                                                         </tr>
                                                         
                                                     </thead>

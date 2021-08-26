@@ -104,11 +104,11 @@ class MentorController extends Controller
         $mentor->status      = $request->status;
         $mentor->save();
 
-        $std_info = new StudentInfo();
-        $std_info->mentor_id = $mentor->id;
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
-        $std_info->save();
+        // $std_info = new StudentInfo();
+        // $std_info->mentor_id = $mentor->id;
+        // $std_info->email = $request->email;
+        // $std_info->password = Hash::make($request->password);
+        // $std_info->save();
         return response()->json([
             'message' => "Successfully Added"
         ]);
@@ -222,22 +222,6 @@ class MentorController extends Controller
         ],200);
     }
 
-    // public function FilterMentor(Request $request)
-    // {
-    //     $mentor = Mentor::orderBy('created_at','desc');
-    //     if($request->name!=""){
-    //         $mentor=$mentor->where('name_mm', 'like', '%' . $request->name. '%')
-    //                     ->orWhere('name_eng', 'like', '%' . $request->name. '%');
-    //     }
-    //     if($request->nrc!=""){
-    //         $mentor=$mentor->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-    //     }
-    //     $mentor=$mentor->get();
-    //     return  response()->json([
-    //         'data' => $mentor
-    //     ],200);
-    // }
-
     public function FilterMentor(Request $request)
     {
         $mentor = Mentor::orderBy('created_at','desc');
@@ -248,9 +232,25 @@ class MentorController extends Controller
         if($request->nrc!=""){
             $mentor=$mentor->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
-        $mentor = $mentor->paginate(5);
-        return view('pages.mentor.mentor_paginate', compact('mentor'));
+        $mentor=$mentor->get();
+        return  response()->json([
+            'data' => $mentor
+        ],200);
     }
+
+    // public function FilterMentor(Request $request)
+    // {
+    //     $mentor = Mentor::orderBy('created_at','desc');
+    //     if($request->name!=""){
+    //         $mentor=$mentor->where('name_mm', 'like', '%' . $request->name. '%')
+    //                     ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+    //     }
+    //     if($request->nrc!=""){
+    //         $mentor=$mentor->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+    //     }
+    //     $mentor = $mentor->paginate(5);
+    //     return view('pages.mentor.mentor_paginate', compact('mentor'));
+    // }
 
     public function approve($id)
     {

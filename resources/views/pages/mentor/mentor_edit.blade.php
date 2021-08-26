@@ -203,7 +203,7 @@
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၂။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('Email') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('Contact Email') }}</label>
 	                                        <div class="col-md-8">
                                                 <div class="form-group">
                                                     <input type="email" name="m_email" id="m_email" class="form-control"  required="">

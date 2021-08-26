@@ -6,7 +6,19 @@ function GetStudentRegistration(course_code) {
     send_data.append('name', $("input[name=filter_by_name_ss]").val());
     send_data.append('status', $("#selected_status").val());
     send_data.append('batch', $("#selected_batch_id").val());
-    send_data.append('course_code', course_code);
+    if(course_code=="da_1"){
+        course_id=1;
+    }
+    else if(course_code=="da_2"){
+        course_id=2;
+    }
+    else if(course_code=="cpa_1"){
+        course_id=3;
+    }
+    else if(course_code=="cpa_2"){
+        course_id=4;
+    }
+    send_data.append('course_code', course_id);
     $.ajax({
         url: BACKEND_URL + "/filter_registration",
         type: 'post',
@@ -17,6 +29,8 @@ function GetStudentRegistration(course_code) {
             var student_data = data.data;
             console.log("stu data", student_data);
             student_data.forEach(function (element) {
+                console.log(element.id,"id");
+                console.log("stu element", element);
                 if (element.type == 0) {
                     var status;
                     if (element.status == 0) {
@@ -28,15 +42,16 @@ function GetStudentRegistration(course_code) {
                     }
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.registration_no + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + element.reg_reason + "</td>";
                     tr += "<td>" + status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "</tr>";
                     $("#tbl_student_self_study_body").append(tr);
 
@@ -51,14 +66,15 @@ function GetStudentRegistration(course_code) {
                     }
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.registration_no + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                   
                     tr += "</tr>";
                     $("#tbl_student_private_school_body").append(tr);
 
@@ -74,14 +90,15 @@ function GetStudentRegistration(course_code) {
                     }
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.registration_no + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + status + "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "</tr>";
                     $("#tbl_student_mac_body").append(tr);
 

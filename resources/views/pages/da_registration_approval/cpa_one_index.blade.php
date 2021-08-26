@@ -91,14 +91,15 @@
                                                     <table id="tbl_student_self_study" class="table table-hover text-nowrap " style="width: 100%">
                                                         <thead>
                                                             <tr>
-                                                                <th class="bold-font-weight">Sr No</th>
+                                                                <th class="bold-font-weight">No</th>
+                                                                <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Name</th>
                                                                 <th class="bold-font-weight" >Email</th>                                        
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >Registration Reason</th>
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight" >Detail</th>
+                                                                
                                                             </tr>
                                                             
                                                         </thead>
@@ -111,13 +112,13 @@
                                                     <table id="tbl_student_private_school" class="table table-hover text-nowrap " width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th class="bold-font-weight" >Sr No</th>
+                                                                <th class="bold-font-weight">No</th>
+                                                                <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Name</th>
                                                                 <th class="bold-font-weight" >Email</th>                                        
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight" >Action</th>
                                                             </tr>
                                                             
                                                         </thead>
@@ -130,13 +131,13 @@
                                                     <table id="tbl_student_mac" class="table table-hover text-nowrap " width="100%">
                                                         <thead>
                                                             <tr>
-                                                                <th class="bold-font-weight">Sr No</th>
+                                                                <th class="bold-font-weight">No</th>
+                                                                <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Name</th>
                                                                 <th class="bold-font-weight" >Email</th>                                        
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight" >Action</th>
                                                             </tr>
                                                             
                                                         </thead>

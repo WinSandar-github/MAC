@@ -170,6 +170,10 @@ function getAudit(){
           }
           var tr = "<tr>";
           tr += "<td >" +  + "</td>";
+          tr += "<td ><div class='btn-group'>" +
+                "<button type='button' class='btn btn-primary btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
+                "<li class='fa fa-eye fa-sm'></li></button> ";
+          tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
           tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
           tr += "<td >" + element.accountancy_firm_name + "</td>";
           tr += "<td >" + element.township + "</td>";
@@ -179,11 +183,7 @@ function getAudit(){
           tr += "<td >" + element.telephones + "</td>";
           tr += "<td >" + element.h_email + "</td>";
           tr += "<td >" + element.website + "</td>";
-          tr += "<td >" + status + "</td>";
-          tr += "<td ><div class='btn-group'>" +
-              "<button type='button' class='btn btn-primary btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
-              "<li class='fa fa-eye fa-sm'></li></button> ";
-          tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+          tr += "<td >" + status + "</td>";         
 
           tr += "</tr>";
           $("#tbl_audit_body").append(tr);
@@ -200,6 +200,10 @@ function getAudit(){
           }
           var tr = "<tr>";
           tr += "<td >" +  + "</td>";
+          tr += "<td ><div class='btn-group'>" +
+                "<button type='button' class='btn btn-primary btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
+                "<li class='fa fa-eye fa-sm'></li></button> ";
+          tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
           tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
           tr += "<td >" + element.accountancy_firm_name + "</td>";
           tr += "<td >" + element.township + "</td>";
@@ -210,10 +214,6 @@ function getAudit(){
           tr += "<td >" + element.h_email + "</td>";
           tr += "<td >" + element.website + "</td>";
           tr += "<td >" + status + "</td>";
-          tr += "<td ><div class='btn-group'>" +
-              "<button type='button' class='btn btn-primary btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
-              "<li class='fa fa-eye fa-sm'></li></button> ";
-          tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
 
           tr += "</tr>";
           $("#tbl_non_audit_body").append(tr);

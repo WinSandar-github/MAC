@@ -80,6 +80,10 @@ function getCourse(){
                 // var requirements_name=requirements.replace(/[\[\]"]+/g,"");  
                 var tr = "<tr>";
                 tr += "<td>" +  + "</td>";
+                tr += "<td ><div class='btn-group'>";
+                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCourseInfo(" + element.id + ")'>" +
+                    "<li class='fa fa-edit fa-sm'></li></button> ";
+                tr += "<button type='button' class='btn btn-danger btn-xs' onClick='deleteCourseInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
                 tr += "<td>" + element.name + "</td>";
                 tr += "<td>" + thousands_separators(element.form_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.selfstudy_registration_fee) + "</td>";
@@ -91,13 +95,8 @@ function getCourse(){
                 tr += `<td>   ${
                     filter_requirement.map((req) => `<p>${req.name}</p>`)
 
-                } </td>`;
-            
-                tr += "<td ><div class='btn-group'>";
-                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showCourseInfo(" + element.id + ")'>" +
-                    "<li class='fa fa-edit fa-sm'></li></button> ";
-                tr += "<button type='button' class='btn btn-danger btn-xs' onClick='deleteCourseInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
-    
+                } </td>`;         
+                    
                 tr += "</tr>";
                 $("#tbl_course_body").append(tr);         
     

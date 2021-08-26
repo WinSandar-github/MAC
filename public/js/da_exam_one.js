@@ -5,7 +5,19 @@ function getExam(course_code) {
     var batch = $("#selected_batch_id").val();
     var send_data = new FormData();
     send_data.append('name', $("input[name=filter_by_name]").val());
-    send_data.append('course_code', course_code);
+    if(course_code=="da_1"){
+        course_id=1;
+    }
+    else if(course_code=="da_2"){
+        course_id=2;
+    }
+    else if(course_code=="cpa_1"){
+        course_id=3;
+    }
+    else if(course_code=="cpa_2"){
+        course_id=4;
+    }
+    send_data.append('course_code', course_id);
     send_data.append('batch', batch);
     $.ajax({
         url: BACKEND_URL + "/filter",
@@ -44,15 +56,18 @@ function getExam(course_code) {
                 if (element.status == 0) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -61,15 +76,18 @@ function getExam(course_code) {
                 } else if (element.status == 1) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+                    
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -78,15 +96,18 @@ function getExam(course_code) {
                 } else if (element.status == 2) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.email + "</td>";
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    tr += "<td ><div class='btn-group'>";
-                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -424,14 +445,15 @@ function SearchByID() {
                 console.log(element)
                 var tr = "<tr>";
                 tr += "<td>" + +"</td>";
+                tr += "<td ><div class='btn-group'>";
+                tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                 tr += "<td>" + element.private_school_name + "</td>";
                 tr += "<td>" + element.exam_type_id + "</td>";
                 tr += "<td>" + element.grade + "</td>";
                 tr += "<td>" + element.status + "</td>";
                 tr += "<td>" + element.batch_id + "</td>";
-                tr += "<td ><div class='btn-group'>";
-                tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-                    "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                
                 tr += "<td ><div class='btn-group'>";
                 tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -521,6 +543,11 @@ function loadStudent(course_type) {
                             }
                             var tr = "<tr>";
                             tr += "<td>" + +"</td>";
+                            tr += "<td ><div class='btn-group'>";
+                            // tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
+                            //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
+                            tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module + ")'>" +
+                                "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                             tr += "<td>" + element.student_info.name_eng + "</td>";
                             //tr += "<td>" + element.private_school_name + "</td>";
                             tr += "<td>" + exam_type_id + "</td>";
@@ -528,11 +555,7 @@ function loadStudent(course_type) {
                             //tr += "<td>" + status+ "</td>";
                             // tr += "<td>" + element.batch_id+ "</td>";
                             tr += "<td>" + is_full_module + "</td>";
-                            tr += "<td ><div class='btn-group'>";
-                            // tr+="<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.exam_register.id + "," + element.exam_register.is_full_module +")'>" +
-                            //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
-                            tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module + ")'>" +
-                                "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                            
                             // tr += "<td ><div class='btn-group'>";
                             $("#tbl_exam_result_body").append(tr);
 
@@ -572,6 +595,7 @@ function fillMark(id, isFullModule) {
 
 function getModuleStd() {
     var id = localStorage.getItem("exam_register_id");
+    console.log('exam',id);
     var module_type = localStorage.getItem("is_full_module");
     // $("input[name = batch_id]").val(id);
     $.ajax({
@@ -625,7 +649,7 @@ function getModuleStd() {
                 setTimeout(() => {
                     if(element.grade == 1 )
                     {
-                        
+                         
                         $('.ex_res_btn').hide();
                         $('.pass_fail_btn').hide();
 
@@ -682,16 +706,42 @@ function getModuleStd() {
                                     grade.value = rData.grades[i];
                                 }
                             }
-                            for (var i = 0; i < 5; i++) {
-                                var j = i + 1;
-                                var mark = document.getElementById('mark' + j);
-                                mark.value = rData.marks[i];
+                            else if(module_type == 1){
+                                for (var i = 0; i < 2; i++) {
+                                    var j = i + 1;
+                                    var sunject = document.getElementById('subject' + j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 2; i++) {
+                                    var j = i + 1;
+                                    var mark = document.getElementById('mark' + j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 2; i++) {
+                                    var j = i + 1;
+                                    var grade = document.getElementById('grade' + j);
+                                    grade.value = rData.grades[i];
+                                }
                             }
-                            for (var i = 0; i < 5; i++) {
-                                var j = i + 1;
-                                var grade = document.getElementById('grade' + j);
-                                grade.value = rData.grades[i];
+                            else if(module_type == 2){
+                                for (var i = 0; i < 5; i++) {
+                                    var j = i + 1;
+                                    var sunject = document.getElementById('subject' + j);
+                                    sunject.value = rData.subjects[i];
+                                }
+                                for (var i = 0; i < 5; i++) {
+                                    var j = i + 1;
+                                    var mark = document.getElementById('mark' + j);
+                                    mark.value = rData.marks[i];
+                                }
+                                for (var i = 0; i < 5; i++) {
+                                    var j = i + 1;
+                                    var grade = document.getElementById('grade' + j);
+                                    grade.value = rData.grades[i];
+                                }
                             }
+                        }else{
+                            $('.pass_fail_btn').hide();
                         } 
                     },
                 error:function (message){
