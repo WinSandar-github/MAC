@@ -10,7 +10,7 @@
         @include('flash-message')
         <div class="row">
             <div class="col-md-12"> 
-            {{ Breadcrumbs::render('ဘွဲ့လိုအပ်ချက်') }}               
+            {{ Breadcrumbs::render('အရည်အချင်းသတ်မှတ်ချက်') }}               
             </div>
         </div>       
 
@@ -107,8 +107,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('') }}</label>
-                        <label class="col-md-2 form-label">{{ __('Name') }}</label>
-                        <div class="col-md-9">
+                        <label class="col-md-3 form-label">{{ __('Requirement Name') }}</label>
+                        <div class="col-md-8">
                             <div class="form-group">                                
                                 <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off">
                             </div>
@@ -118,7 +118,7 @@
                     
                     {{--<div class="row">
                         <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                        <label class="col-md-2 form-label">{{ __('Course') }}</label>
+                        <label class="col-md-2 form-label">{{ __('Course Name') }}</label>
                         <div class="col-md-9">
                             <div class="form-group">                                
                                 <select class="form-control form-select" name="course_id" id="selected_course_id" style="width: 100%;">

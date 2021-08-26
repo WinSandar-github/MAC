@@ -436,9 +436,9 @@ Breadcrumbs::for('သင်တန်း', function ($trail) {
     $trail->parent('administration');
     $trail->push('သင်တန်း', route('page.index', 'course'));
 });
-Breadcrumbs::for('ဘွဲ့လိုအပ်ချက်', function ($trail) {
+Breadcrumbs::for('အရည်အချင်းသတ်မှတ်ချက်', function ($trail) {
     $trail->parent('administration');
-    $trail->push('ဘွဲ့လိုအပ်ချက်', route('page.index', 'requirement_list'));
+    $trail->push('အရည်အချင်းသတ်မှတ်ချက်', route('page.index', 'requirement_list'));
 });
 
 //Mentor
