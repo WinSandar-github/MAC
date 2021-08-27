@@ -145,6 +145,7 @@ Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
+Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');

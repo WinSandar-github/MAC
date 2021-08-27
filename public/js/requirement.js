@@ -2,6 +2,7 @@ function createRequirement(){
     var send_data=new FormData();
     send_data.append('name',$("input[name=name]").val());
     // send_data.append('course_id',$('#selected_course_id').val());       
+    send_data.append('type',$('#selected_type').val());       
     
     $.ajax({
             url: BACKEND_URL+"/requirement",
@@ -42,6 +43,7 @@ function getRequirement(){
                      "<li class='fa fa-edit fa-sm'></li></button> ";
                 tr += "<button type='button' class='btn btn-danger btn-xs' onClick='deleteRequirementInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
                 tr += "<td>" + element.name + "</td>";
+                tr += "<td>" + element.type + "</td>";
                 // tr += "<td>" + element.course.name + "</td>"; 
     
                 tr += "</tr>";
@@ -67,12 +69,13 @@ function showRequirementInfo(id) {
         type: "get",
         url: BACKEND_URL+"/requirement/"+id,
         success: function (data) {
-
+            console.log(data)
             var requirement_data=data.data;  
             console.log('show requirement',requirement_data);
                      
             $('input[name=name]').val(requirement_data.name);
             // $('#selected_course_id').val(requirement_data[0].course_id);                        
+            $('#selected_type').val(requirement_data.type);                        
             
             $('#create_requirement_model').modal('toggle');
         },
@@ -88,6 +91,7 @@ function updateRequirement(){
     var id= $("input[name=requirement_id]").val();    
     var name=$("input[name=name]").val();
     // var course_id=$("#selected_course_id").val();
+    var type=$("#selected_type").val();
     
     $.ajax({
         url: BACKEND_URL+"/requirement/"+id,
@@ -95,6 +99,7 @@ function updateRequirement(){
         data:{
             name:name,
             // course_id:course_id
+            type:type
         },        
         success: function(result){
             successMessage("Update Successfully");
