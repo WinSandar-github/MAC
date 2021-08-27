@@ -16,6 +16,7 @@ class CreateRequirementsTable extends Migration
         Schema::create('requirements', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('type')->nullable();
             $table->boolean('require_exam');
             // $table->unsignedBigInteger('course_id');
             $table->timestamps();
