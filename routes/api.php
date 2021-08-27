@@ -223,5 +223,7 @@ Route::post('/update_mentor','StudentRegisterController@updateMentor');
 //Mentor Status
 Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
 
+//Store app and register on student register
+Route::post('store_student_app_reg','StudentRegisterController@store_student_app_reg');
 //Email Verification
 Route::patch('/check_code/{id}', 'DARegisterController@checkCode');
