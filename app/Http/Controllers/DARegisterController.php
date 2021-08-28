@@ -92,11 +92,11 @@ class DARegisterController extends Controller
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
         $student_info->verify_code      =   uniqid();
-        $data = array(
-            'email' => 'macadmin@gmail.com',
-            'verify_code' => $student_info['verify_code']
-        );
-        Mail::to($student_info['email'])->send(new ContactMail($data));
+        // $data = array(
+        //     'email' => 'macadmin@gmail.com',
+        //     'verify_code' => $student_info['verify_code']
+        // );
+        // Mail::to($student_info['email'])->send(new ContactMail($data));
         $student_info->verify_status    =   1;
         $student_info->save();
 
