@@ -63,7 +63,7 @@
                                             <div class="col-md-2">
                                                 <button type="submit" onclick="getExam('da_2')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
                                             </div>
-                                        </div>
+                                        </div><br/>
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>

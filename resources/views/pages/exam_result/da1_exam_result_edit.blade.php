@@ -27,7 +27,7 @@
                                     <div class="card">
                                         <div class="card-header">
                                             <div class="row">
-                                                <div class="col-md-5">
+                                                <div class="col-md-6">
                                                     <div class="row">
                                                         
                                                         <div class="col-md-3 text-left" style="font-weight:bold;">Name</div>
@@ -36,7 +36,7 @@
                                                         </div> 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5">
+                                                <div class="col-md-6">
                                                     <div class="row">
                                                     
                                                         <div class="col-md-3 text-left" style="font-weight:bold;">Grade</div>
@@ -50,27 +50,89 @@
                                                         </div> 
                                                     </div>
                                                 </div>
-                                                <div class="col-md-2">
+                                            </div><br/>
+                                            <div class="row">    
+                                                <div class="col-md-6">
+                                                    <div class="row">
+                                                    <!-- <div class="col-md-1"></div> -->
+                                                        <div class="col-md-3 text-left" style="font-weight:bold;">Batch</div>
+                                                        <div class="col-md-7 text-left">
+                                                            <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
+                                                                <option value="all" selected>All Batches</option>
+                                                            </select>
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
                                                     <button type="submit" onclick="loadStudent('da_1')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
                                                 </div>
-                                            </div>
+                                            </div><br/>
+                                            <ul class="nav nav-tabs" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="true" style="font-weight:bold">Passed List</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false" style="font-weight:bold">Failed List</a>
+                                                </li>
+                                            </ul>
                                         </div>
                                         <div class="card-body">
-                                            <table id="tbl_exam_result"class="table table-hover text-nowrap ">
-                                                <thead>
-                                                    <tr>
-                                                      <th class="bold-font-weight" >No</th>
-                                                      <th class="bold-font-weight" >Action</th>
-                                                      <th class="bold-font-weight" >Name</th>
-                                                      <th class="bold-font-weight" >Exam Type</th>
-                                                      <th class="bold-font-weight" >Grade</th>
-                                                      <th class="bold-font-weight" >Module</th>
-                                                      
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbl_exam_result_body" class="hoverTable">
-                                                </tbody>
-                                            </table>
+                                            <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                                <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                                    <table id="tbl_exam_pending_result" class="table table-hover text-nowrap ">
+                                                        <thead>
+                                                            <tr>
+                                                            <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Action</th>
+                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Exam Type</th>
+                                                            <th class="bold-font-weight" >Grade</th>
+                                                            <th class="bold-font-weight" >Batch Name</th>
+                                                            <th class="bold-font-weight" >Module</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_exam_pending_result_body" class="hoverTable">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                                    <table id="tbl_exam_approved_result" class="table table-hover text-nowrap ">
+                                                        <thead>
+                                                            <tr>
+                                                            <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Action</th>
+                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Exam Type</th>
+                                                            <th class="bold-font-weight" >Grade</th>
+                                                            <th class="bold-font-weight" >Batch Name</th>
+                                                            <th class="bold-font-weight" >Module</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_exam_approved_result_body" class="hoverTable">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                                    <table id="tbl_exam_rejected_result" class="table table-hover text-nowrap ">
+                                                        <thead>
+                                                            <tr>
+                                                            <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Action</th>
+                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Exam Type</th>
+                                                            <th class="bold-font-weight" >Grade</th>
+                                                            <th class="bold-font-weight" >Batch Name</th>
+                                                            <th class="bold-font-weight" >Module</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_exam_rejected_result_body" class="hoverTable">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -86,5 +148,6 @@
 @push('scripts')
 <script>
 	loadStudent('da_1');
+    loadBatchData("da_1");
 </script>
 @endpush
