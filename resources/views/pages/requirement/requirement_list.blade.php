@@ -71,7 +71,8 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Name</th>                                                                                                
+                                                        <th class="bold-font-weight" >Name</th>         
+                                                        <th class="bold-font-weight" >Type</th>                                                                                                
                                                         <!-- <th class="bold-font-weight" >Course Name</th>                                         -->
                                                         
                                                     </tr>
@@ -106,16 +107,35 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <label class="col-md-1 form-label">{{ __('') }}</label>
-                        <label class="col-md-3 form-label">{{ __('Requirement Name') }}</label>
-                        <div class="col-md-8">
+                        <label class="col-md-1 form-label">{{ __('1') }}</label>
+                        <label class="col-md-2 form-label">{{ __('Name') }}</label>
+                        <div class="col-md-9">
                             <div class="form-group">                                
                                 <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off">
                             </div>
                         </div>
                     </div>
                     
-                    
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('2.') }}</label>
+                        <label class="col-md-2 form-label">{{ __('Type') }}</label>
+                        <div class="col-md-9">
+                            <div class="form-group">                                
+                                <select class="form-control form-select" name="type" id="selected_type" style="width: 100%;">
+                                    <option value="0" selected>Select Type</option>
+                                    <option value="COURSE">COURSE</option>
+                                    <option value="SCHOOL">SCHOOL</option>
+                                    <option value="TEACHER">TEACHER</option>
+                                    <option value="MENTOR">MENTOR</option>
+                                    <option value="AUDIT_FIRM">AUDIT_FIRM</option>
+                                    <option value="NON_AUDIT_FIRM">NON_AUDIT_FIRM</option>
+                                    <option value="CPA_FF">CPA_FF</option>
+                                    <option value="PAPP">PAPP</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     {{--<div class="row">
                         <label class="col-md-1 form-label">{{ __('2.') }}</label>
                         <label class="col-md-2 form-label">{{ __('Course Name') }}</label>
