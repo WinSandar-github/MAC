@@ -50,9 +50,9 @@
                                                         <div class="col-md-5">
                                                             <div class="row">
                                                                 <div class="col-md-1"></div>
-                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Name</div>
+                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Batch Number</div>
                                                                 <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
-                                                                    <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
+                                                                    <input type="text" name="filter_by_name" class="form-control" placeholder="Batch Number">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -72,18 +72,18 @@
                                                         <div class="col-md-5">
                                                             <div class="row">
                                                                 <div class="col-md-1"></div>
-                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Start Date</div>
+                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Batch Start Date</div>
                                                                 <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
-                                                                    <input type="text" name="filter_by_start_date" class="form-control" placeholder="Start Date">
+                                                                    <input type="text" name="filter_by_start_date" class="form-control" placeholder="DD-MMM-YYYY">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-md-5">
                                                             <div class="row">
                                                                 <div class="col-md-1"></div>
-                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">End Date</div>
+                                                                <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Batch End Date</div>
                                                                 <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
-                                                                    <input type="text" name="filter_by_end_date" class="form-control" placeholder="End Date">
+                                                                    <input type="text" name="filter_by_end_date" class="form-control" placeholder="DD-MMM-YYYY">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -102,25 +102,25 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >Sr No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Name</th>
+                                                        <th class="bold-font-weight" >Batch Number</th>
                                                         <th class="bold-font-weight" >Course Name</th> 
                                                         <th class="bold-font-weight">Batch Start Date</th>
-                                                        <th class="bold-font-weight">Batch End Date</th>   
+                                                        <th class="bold-font-weight">Batch End Date</th>
+                                                        <th class="bold-font-weight">Application Accept Start Date</th>
+                                                        <th class="bold-font-weight">Application Accept End Date</th>   
                                                         <th class="bold-font-weight">MAC Registration Start Date</th>
                                                         <th class="bold-font-weight">MAC Registration End Date</th>  
                                                         <th class="bold-font-weight">Self Registration Start Date</th>
                                                         <th class="bold-font-weight">Self Registration End Date</th>  
                                                         <th class="bold-font-weight">Private Registration Start Date</th>
-                                                        <th class="bold-font-weight">Private Registration Endt Date</th>                                                       
-                                                        <th class="bold-font-weight">Accept Application Start Date</th>
-                                                        <th class="bold-font-weight">Accept Application End Date</th>
+                                                        <th class="bold-font-weight">Private Registration Endt Date</th>
                                                         <th class="bold-font-weight">Entrance Pass Start Date</th>                                                       
                                                         <th class="bold-font-weight">Entrance Pass End Date</th>
                                                         
                                                     </tr>
                                                     
                                                 </thead>
-                                                <tbody id="tbl_batch_body" class="hoverTable">
+                                                <tbody id="tbl_batch_body" class="hoverTable text-left">
                                                     
                                                 </tbody>
                                             </table>
@@ -136,7 +136,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="create_batch_modal" style="padding-top:150px;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="create_batch_modal" style="padding-top:150px;" >
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
             <form id="batch_form" method="post" action="javascript:createBatch();" enctype="multipart/form-data">
@@ -151,16 +151,16 @@
                 <div class="modal-body">
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('1.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Name') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Batch Number') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off" required>
+                                <input type="text" name="name" class="form-control" placeholder="Batch Number" autocomplete="off" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Course') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Course Name') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
                                 <select class="form-control form-select" name="course_id" id="selected_course_id" style="width: 100%;" required>
@@ -171,73 +171,94 @@
                     </div>
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('3.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Start Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Batch Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                                <input type="text" name="start_date" class="form-control"  placeholder="DD-MMM-YYYY">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('4.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('End Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Batch End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Application Accept Start Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="app_acc_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Application Accept End Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="app_acc_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('7.') }}</label>
                         <label class="col-md-4 form-label">{{ __('MAC Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="mac_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-md-1 form-label">{{ __('6.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('MAC Registration End Date') }}</label>
-                        <div class="col-md-7">
-                            <div class="form-group">                                
-                                <input type="text" name="mac_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-md-1 form-label">{{ __('7.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Self Registration Start Date') }}</label>
-                        <div class="col-md-7">
-                            <div class="form-group">                                
-                                <input type="text" name="self_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                                <input type="text" name="mac_reg_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('8.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Self Registration End Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('MAC Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="self_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                                <input type="text" name="mac_reg_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('9.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Private Registration Start Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Self Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="private_reg_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                                <input type="text" name="self_reg_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Self Registration End Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="self_reg_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('11.') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Private Registration Start Date') }}</label>
+                        <div class="col-md-7">
+                            <div class="form-group">                                
+                                <input type="text" name="private_reg_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-1 form-label">{{ __('12.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Private Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="private_reg_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                                <input type="text" name="private_reg_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
                     </div>
@@ -245,25 +266,7 @@
                                                   
                     <input type="hidden" value="1" name="publish_status" class="form-control" autocomplete="off">
                             
-                    <div class="row">
-                        <label class="col-md-1 form-label">{{ __('11.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Application Accept Start Date') }}</label>
-                        <div class="col-md-7">
-                            <div class="form-group">                                
-                                <input type="text" name="app_acc_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <label class="col-md-1 form-label">{{ __('12.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Application Accept End Date') }}</label>
-                        <div class="col-md-7">
-                            <div class="form-group">                                
-                                <input type="text" name="app_acc_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="row" id="entrance_pass"  style="display:none; padding-left:15px;padding-right:15px">
                         <div>
                             <div class="row" >
@@ -271,7 +274,7 @@
                                 <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
                                 <div class="col-md-7">
                                     <div class="form-group">                                
-                                        <input type="text" name="entrance_pass_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                        <input type="text" name="entrance_pass_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
                                     </div>
                                 </div>
                             </div>
@@ -280,7 +283,7 @@
                                 <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
                                 <div class="col-md-7">
                                     <div class="form-group">                                
-                                        <input type="text" name="entrance_pass_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd">
+                                        <input type="text" name="entrance_pass_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
                                     </div>
                                 </div>
                             </div>
@@ -314,19 +317,19 @@
                  
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('1.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Exam Start Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Exam Registration Start Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="exam_start_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                                <input type="text" name="exam_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Exam End Date') }}</label>
+                        <label class="col-md-4 form-label">{{ __('Exam Registration End Date') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="exam_end_date" class="form-control" autocomplete="off" placeholder="yyyy/mm/dd" required>
+                                <input type="text" name="exam_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
                     </div>
@@ -344,11 +347,12 @@
                         <label class="col-md-4 form-label">{{ __('Exam Time') }}</label>
                         <div class="col-md-7">
                             <div class="form-group">                                
-                                <input type="text" name="exam_time" class="form-control" autocomplete="off" placeholder="Time" required>
+                                <input type="text" name="exam_time" class="form-control" autocomplete="off" placeholder="Exam Time" required>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                     <button type="submit" class="btn btn-primary" form="exam_form">Save</button>
@@ -364,9 +368,7 @@
 @push('scripts')
 <script>
 
-    loadCourse();
-    getBatch();
-    loadCourseToFilter();
+    
 </script>
 
 <script type="text/javascript">
@@ -375,53 +377,58 @@
     $(document).ready(function (e) {
         $("input[name='start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
+        // $("input[name='start_date']").flatpickr({
+        //         enableTime: false,
+        //         dateFormat: "d-M-Y",
+        //         allowInput: true,
+        // });
         $("input[name='end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='mac_reg_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='mac_reg_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='self_reg_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='self_reg_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='private_reg_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='private_reg_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='app_acc_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='app_acc_end_date']").flatpickr({
         
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         // $("input[name='acc_app_end_date']").flatpickr({
@@ -430,32 +437,32 @@
         // });
         $("input[name='entrance_pass_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='entrance_pass_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='exam_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='exam_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='filter_by_start_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         $("input[name='filter_by_end_date']").flatpickr({
                 enableTime: false,
-                dateFormat: "Y-m-d",
+                dateFormat: "d-M-Y",
                 allowInput: true,
         });
         
@@ -465,6 +472,10 @@
             }
         }
     });
+
+    loadCourse();
+    getBatch();
+    loadCourseToFilter();
    
 </script>
 @endpush
