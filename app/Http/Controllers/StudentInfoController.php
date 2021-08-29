@@ -19,7 +19,7 @@ class StudentInfoController extends Controller
      */
     public function index()
     {
-        $student_infos = StudentInfo::with('student_job','student_education_histroy','student_course')->get();
+        $student_infos = StudentInfo::with('student_job','student_education_histroy','student_course','exam_registers')->get();
         return response()->json([ 'data' => $student_infos],200);
     }
 
@@ -112,7 +112,7 @@ class StudentInfoController extends Controller
     public function show($id)
     {
         //
-        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct')->first();
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct','exam_registers')->first();
          return response()->json(['data' => $student_info],200);
     }
 
