@@ -52,7 +52,7 @@
                                                         </tr>
                                                         
                                                     </thead>
-                                                    <tbody id="tbl_non_audit_body" class="hoverTable"></tbody>
+                                                    <tbody id="tbl_non_audit_body" class="hoverTable left-text"></tbody>
                                                 </table>
                                             </div>
                                         </div>

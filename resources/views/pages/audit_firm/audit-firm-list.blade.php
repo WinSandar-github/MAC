@@ -49,7 +49,7 @@
                                                     </tr>
                                                     
                                                 </thead>
-                                                <tbody id="tbl_audit_body" class="hoverTable"></tbody>
+                                                <tbody id="tbl_audit_body" class="hoverTable text-left"></tbody>
                                             </table>
                                         </div>
                                     </div>

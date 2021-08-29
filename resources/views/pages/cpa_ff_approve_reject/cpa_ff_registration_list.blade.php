@@ -19,7 +19,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8">
-                                <h5 class="title" style="padding-left: 330px;">{{ __('CPA Full Fleged Registration List') }}</h5>
+                                <h5 class="title" style="padding-left: 330px;">{{ __('CPA Full-Fledged Registration List') }}</h5>
                             </div>
                         </div>
                     </div>
@@ -41,7 +41,7 @@
                                                     
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbl_cpaff_list_body" class="hoverTable">
+                                            <tbody id="tbl_cpaff_list_body" class="hoverTable text-left" >
                                             </tbody>
                                         </table>
                                     </div>

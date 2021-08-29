@@ -42,7 +42,7 @@
                                                     
                                                 </tr>
                                             </thead>
-                                            <tbody id="tbl_papp_list_body" class="hoverTable">
+                                            <tbody id="tbl_papp_list_body" class="hoverTable text-left">
                                             </tbody>
                                         </table>
                                     </div>

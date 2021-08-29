@@ -47,9 +47,9 @@
                                             <div class="col-md-5">
                                                 <div class="row">
                                                     <!-- <div class="col-md-1"></div> -->
-                                                    <div class="col-md-3 text-left" style="font-weight:bold;">Name</div>
+                                                    <div class="col-md-4 text-left" style="font-weight:bold;">School Name</div>
                                                     <div class="col-md-7 text-left" style="padding-left:0px;">
-                                                        <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
+                                                        <input type="text" name="filter_by_name" class="form-control" placeholder="School Name">
                                                     </div>
                                                 </div>
                                             </div>
@@ -74,14 +74,14 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >School Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
                                                             <th class="bold-font-weight" >Status</th>                                                            
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbl_school_body" class="hoverTable">
+                                                    <tbody id="tbl_school_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>

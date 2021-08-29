@@ -71,7 +71,7 @@
                                                     </tr>
 
                                                 </thead>
-                                                <tbody id="tbl_course_body" class="text-left">
+                                                <tbody id="tbl_course_body" class="hoverTable text-left">
 
                                                 </tbody>
                                             </table>
