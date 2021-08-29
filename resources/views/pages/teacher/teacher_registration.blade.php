@@ -65,25 +65,76 @@
                                                 <button type="button" class="btn btn-primary btn-round mt-0" onclick="getTeacherRegisterList()" id="search">Search</button>
                                             </div>
                                         </div>
+                                        <br/>
+                                            <ul class="nav nav-tabs" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                                </li>
+                                            </ul>
                                     </div>
                                         <div class="card-body">
-                                        <hr size="5" width="95%" color="#F5F5F5"> 
-                                            <table id="tbl_teacher"class="table table-hover  text-center">
-                                                <thead class=" text-nowrap">
-                                                    <tr>
-                                                        <th class="bold-font-weight" >No</th>
-                                                        <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Name</th>
-                                                        <th class="bold-font-weight" >Email</th>     
-                                                        <th class="bold-font-weight" >Phone Number</th>
-                                                        <th class="bold-font-weight" >NRC</th>
-                                                        <th class="bold-font-weight" >Status</th>
-                                                        
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="tbl_teacher_body" class="hoverTable">
-                                                </tbody>
-                                            </table>
+                                            <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                                <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                                    <table id="tbl_teacher_pending"class="table table-hover  text-center">
+                                                        <thead class=" text-nowrap">
+                                                            <tr>
+                                                                <th class="bold-font-weight" >No</th>
+                                                                <th class="bold-font-weight" >Action</th>
+                                                                <th class="bold-font-weight" >Name</th>
+                                                                <th class="bold-font-weight" >Email</th>     
+                                                                <th class="bold-font-weight" >Phone Number</th>
+                                                                <th class="bold-font-weight" >NRC</th>
+                                                                <th class="bold-font-weight" >Status</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_teacher_pending_body" class="hoverTable">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                                    <table id="tbl_teacher_approved"class="table table-hover  text-center">
+                                                        <thead class=" text-nowrap">
+                                                            <tr>
+                                                                <th class="bold-font-weight" >No</th>
+                                                                <th class="bold-font-weight" >Action</th>
+                                                                <th class="bold-font-weight" >Name</th>
+                                                                <th class="bold-font-weight" >Email</th>     
+                                                                <th class="bold-font-weight" >Phone Number</th>
+                                                                <th class="bold-font-weight" >NRC</th>
+                                                                <th class="bold-font-weight" >Status</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_teacher_approved_body" class="hoverTable">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                                    <table id="tbl_teacher_rejected"class="table table-hover  text-center">
+                                                        <thead class=" text-nowrap">
+                                                            <tr>
+                                                                <th class="bold-font-weight" >No</th>
+                                                                <th class="bold-font-weight" >Action</th>
+                                                                <th class="bold-font-weight" >Name</th>
+                                                                <th class="bold-font-weight" >Email</th>     
+                                                                <th class="bold-font-weight" >Phone Number</th>
+                                                                <th class="bold-font-weight" >NRC</th>
+                                                                <th class="bold-font-weight" >Status</th>
+                                                                
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tbl_teacher_rejected_body" class="hoverTable">
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
