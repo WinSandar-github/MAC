@@ -1,5 +1,7 @@
 function getSchoolRegisterList(){
-    destroyDatatable("#tbl_school", "#tbl_school_body");
+    destroyDatatable("#tbl_school_pending", "#tbl_school_pending_body");
+    destroyDatatable("#tbl_school_approved", "#tbl_school_approved_body");
+    destroyDatatable("#tbl_school_rejected", "#tbl_school_rejected_body");
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());  
@@ -11,32 +13,84 @@ function getSchoolRegisterList(){
         contentType: false,
         processData: false,
         success : function(data){
-            let indexNo = 0;
+            let indexNo1 = 0;
+            let indexNo2 = 0;
+            let indexNo3 = 0;
             data.data.map((obj)=> {
                 let nrc = obj.nrc_state_region+"/"+obj.nrc_township+"("+obj.nrc_citizen+")"+obj.nrc_number;
-                var tr = "<tr>";
-                tr += `<td> ${ indexNo += 1 } </td>`;
-                tr += `<td><a href=${FRONTEND_URL+'/school_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
-                tr += `<td> ${ obj.name_mm } </td>`;
-                tr += `<td> ${ obj.email } </td>`;
-                tr += `<td> ${ obj.phone } </td>`;
-                tr += `<td> ${ nrc } </td>`;
-                let status_color = "";
-                if(obj.approve_reject_status == 0){
-                    status_color = "text-warning";
+                if(obj.approve_reject_status==0){
+                    var tr = "<tr>";
+                    tr += `<td> ${ indexNo1 += 1 } </td>`;
+                    tr += `<td><a href=${FRONTEND_URL+'/school_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                    tr += `<td> ${ obj.name_mm } </td>`;
+                    tr += `<td> ${ obj.email } </td>`;
+                    tr += `<td> ${ obj.phone } </td>`;
+                    tr += `<td> ${ nrc } </td>`;
+                    let status_color = "";
+                    if(obj.approve_reject_status == 0){
+                        status_color = "text-warning";
+                    }
+                    else if(obj.approve_reject_status == 1){
+                        status_color = "text-success";
+                    }
+                    else{
+                        status_color = "text-danger";
+                    }
+                    tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
+                    
+                    tr += "</tr>";
+                    $("#tbl_school_pending_body").append(tr);
                 }
-                else if(obj.approve_reject_status == 1){
-                    status_color = "text-success";
+                else if(obj.approve_reject_status==1){
+                    var tr = "<tr>";
+                    tr += `<td> ${ indexNo2 += 1 } </td>`;
+                    tr += `<td><a href=${FRONTEND_URL+'/school_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                    tr += `<td> ${ obj.name_mm } </td>`;
+                    tr += `<td> ${ obj.email } </td>`;
+                    tr += `<td> ${ obj.phone } </td>`;
+                    tr += `<td> ${ nrc } </td>`;
+                    let status_color = "";
+                    if(obj.approve_reject_status == 0){
+                        status_color = "text-warning";
+                    }
+                    else if(obj.approve_reject_status == 1){
+                        status_color = "text-success";
+                    }
+                    else{
+                        status_color = "text-danger";
+                    }
+                    tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
+                    
+                    tr += "</tr>";
+                    $("#tbl_school_approved_body").append(tr);
                 }
-                else{
-                    status_color = "text-danger";
+                else if(obj.approve_reject_status==2){
+                    var tr = "<tr>";
+                    tr += `<td> ${ indexNo3 += 1 } </td>`;
+                    tr += `<td><a href=${FRONTEND_URL+'/school_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                    tr += `<td> ${ obj.name_mm } </td>`;
+                    tr += `<td> ${ obj.email } </td>`;
+                    tr += `<td> ${ obj.phone } </td>`;
+                    tr += `<td> ${ nrc } </td>`;
+                    let status_color = "";
+                    if(obj.approve_reject_status == 0){
+                        status_color = "text-warning";
+                    }
+                    else if(obj.approve_reject_status == 1){
+                        status_color = "text-success";
+                    }
+                    else{
+                        status_color = "text-danger";
+                    }
+                    tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
+                    
+                    tr += "</tr>";
+                    $("#tbl_school_rejected_body").append(tr);
                 }
-                tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
-                
-                tr += "</tr>";
-                $("#tbl_school_body").append(tr);
             });
-            createDataTableWithAsc("#tbl_school");
+            createDataTableWithAsc("#tbl_school_pending");
+            createDataTableWithAsc("#tbl_school_approved");
+            createDataTableWithAsc("#tbl_school_rejected");
             EasyLoading.hide();
         }
     });
