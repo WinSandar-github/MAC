@@ -122,6 +122,7 @@ Route::resource('/da_register', 'DARegisterController');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
+Route::post('/send_email', 'DARegisterController@send_email');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
