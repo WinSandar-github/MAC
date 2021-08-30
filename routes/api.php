@@ -122,6 +122,7 @@ Route::resource('/da_register', 'DARegisterController');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
+Route::post('/send_email', 'DARegisterController@send_email');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
@@ -154,6 +155,8 @@ Route::get('/get_requirement_id','CourseController@getRequirement');
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
+Route::post('/loginValidate', 'LoginController@loginValidate');
+Route::post('/mobileLogin', 'LoginController@mobileLogin');
 
 //Store DA/CPA Two Application Form
 Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');

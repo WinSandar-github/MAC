@@ -424,16 +424,6 @@ return [
 			'township_mm' => 'လဘန'
 		],
 		[
-			// 'id' => 41,
-			'region_id' => 3,
-			'township_mm' => 'လသန'
-		],
-		[
-			// 'id' => 41,
-			'region_id' => 3,
-			'township_mm' => 'ဝလမ'
-		],
-		[
 			// 'id' => 42,
 			'region_id' => 3,
 			'township_mm' => 'သတန'
