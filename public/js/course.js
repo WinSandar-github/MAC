@@ -15,7 +15,7 @@ function createCourse(){
     send_data.append('selfstudy_registration_fee',removeComma($("input[name=selfstudy_registration_fee]").val()));
     send_data.append('privateschool_registration_fee',removeComma($("input[name=privateschool_registration_fee]").val()));
     send_data.append('mac_registration_fee',removeComma($("input[name=mac_registration_fee]").val()));
-    send_data.append('exam_fee',removeComma($("input[name=exam_fee]").val()));
+    // send_data.append('exam_fee',removeComma($("input[name=exam_fee]").val()));
     send_data.append('tution_fee',removeComma($("input[name=tution_fee]").val()));
     send_data.append('description',$("input[name=description]").val());   
     send_data.append('code',$("input[name=code]").val());   
@@ -85,13 +85,14 @@ function getCourse(){
                     "<li class='fa fa-edit fa-sm'></li></button> ";
                 tr += "<button type='button' class='btn btn-danger btn-xs' onClick='deleteCourseInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
                 tr += "<td>" + element.name + "</td>";
+                tr += "<td>" + element.description + "</td>";
                 tr += "<td>" + thousands_separators(element.form_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.selfstudy_registration_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.privateschool_registration_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.mac_registration_fee) + "</td>";
-                tr += "<td>" + thousands_separators(element.exam_fee) + "</td>";
+                // tr += "<td>" + thousands_separators(element.exam_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.tution_fee) + "</td>";
-                tr += "<td>" + element.description + "</td>";
+                
                 tr += `<td>   ${
                     filter_requirement.map((req) => `<p>${req.name}</p>`)
 

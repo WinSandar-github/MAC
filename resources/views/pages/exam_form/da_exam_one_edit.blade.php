@@ -51,7 +51,7 @@
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Grade') }}</label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Remark') }}</label>
                                                 <label class="col-md-1 form-label"></label>
                                                 <div class="col-md-5 text-left">
                                                     <div class="form-group">
