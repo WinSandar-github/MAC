@@ -313,7 +313,9 @@ function loadMentor()
 }
 
 function getMentorList(){
-    destroyDatatable("#tbl_mentor", "#tbl_mentor_body");
+    destroyDatatable("#tbl_mentor_pending", "#tbl_mentor_pending_body");
+    destroyDatatable("#tbl_mentor_approved", "#tbl_mentor_approved_body");
+    destroyDatatable("#tbl_mentor_rejected", "#tbl_mentor_rejected_body");
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());
@@ -336,39 +338,112 @@ function getMentorList(){
                 // else{
                 //     status="REJECTED";
                 // }
-                var tr = "<tr>";
-                tr += "<td>" +  + "</td>";
-                tr += "<td ><div class='btn-group'>";
-                if(element.type == "Student"){
-                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentorStudent(" + element.id + ")'>" +
-                      "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                }
-                else if(element.type == "MAC"){
-                  tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
-                      "<li class='fa fa-edit fa-sm'></li></button><button type='button' class='btn btn-danger btn-xs'><li class='fa fa-trash fa-sm'></li></button></div ></td > ";
-                }
-                tr += "<td>" + element.name_mm + "</td>";
-                tr += "<td>" + element.m_email + "</td>";
-                tr += "<td>" + element.phone_no+ "</td>";
-                tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
-                if(element.status == 0){
-                  tr += "<td class='text-warning'>Pending</td>";
-                }
-                else if(element.status == 1){
-                  tr += "<td class='text-success'>Approved</td>";
-                }
-                else{
-                  tr += "<td class='text-danger'>Rejected</td>";
-                }
+                if(element.status==0)
+                {
+                  var tr = "<tr>";
+                  tr += "<td>" +  + "</td>";
+                  tr += "<td ><div class='btn-group'>";
+                  if(element.type == "Student"){
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentorStudent(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                  }
+                  else if(element.type == "MAC"){
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
+                        "<li class='fa fa-edit fa-sm'></li></button><button type='button' class='btn btn-danger btn-xs'><li class='fa fa-trash fa-sm'></li></button></div ></td > ";
+                  }
+                  tr += "<td>" + element.name_mm + "</td>";
+                  tr += "<td>" + element.m_email + "</td>";
+                  tr += "<td>" + element.phone_no+ "</td>";
+                  tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
+                  if(element.status == 0){
+                    tr += "<td class='text-warning'>Pending</td>";
+                  }
+                  else if(element.status == 1){
+                    tr += "<td class='text-success'>Approved</td>";
+                  }
+                  else{
+                    tr += "<td class='text-danger'>Rejected</td>";
+                  }
 
-                tr += "<td>" + element.type+ "</td>";
-                
+                  tr += "<td>" + element.type+ "</td>";
+                  
 
-                tr += "</tr>";
-                $("#tbl_mentor_body").append(tr);
+                  tr += "</tr>";
+                  $("#tbl_mentor_pending_body").append(tr);
+              }
+              else if(element.status==1)
+                {
+                  var tr = "<tr>";
+                  tr += "<td>" +  + "</td>";
+                  tr += "<td ><div class='btn-group'>";
+                  if(element.type == "Student"){
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentorStudent(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                  }
+                  else if(element.type == "MAC"){
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
+                        "<li class='fa fa-edit fa-sm'></li></button><button type='button' class='btn btn-danger btn-xs'><li class='fa fa-trash fa-sm'></li></button></div ></td > ";
+                  }
+                  tr += "<td>" + element.name_mm + "</td>";
+                  tr += "<td>" + element.m_email + "</td>";
+                  tr += "<td>" + element.phone_no+ "</td>";
+                  tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
+                  if(element.status == 0){
+                    tr += "<td class='text-warning'>Pending</td>";
+                  }
+                  else if(element.status == 1){
+                    tr += "<td class='text-success'>Approved</td>";
+                  }
+                  else{
+                    tr += "<td class='text-danger'>Rejected</td>";
+                  }
+
+                  tr += "<td>" + element.type+ "</td>";
+                  
+
+                  tr += "</tr>";
+                  $("#tbl_mentor_approved_body").append(tr);
+              }
+              else if(element.status==2)
+                {
+                  var tr = "<tr>";
+                  tr += "<td>" +  + "</td>";
+                  tr += "<td ><div class='btn-group'>";
+                  if(element.type == "Student"){
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentorStudent(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                  }
+                  else if(element.type == "MAC"){
+                    tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showMentor(" + element.id + ")'>" +
+                        "<li class='fa fa-edit fa-sm'></li></button><button type='button' class='btn btn-danger btn-xs'><li class='fa fa-trash fa-sm'></li></button></div ></td > ";
+                  }
+                  tr += "<td>" + element.name_mm + "</td>";
+                  tr += "<td>" + element.m_email + "</td>";
+                  tr += "<td>" + element.phone_no+ "</td>";
+                  tr += "<td>" + element.nrc_state_region+"/"+element.nrc_township+ "("+element.nrc_citizen+")"+element.nrc_number + "</td>";
+                  if(element.status == 0){
+                    tr += "<td class='text-warning'>Pending</td>";
+                  }
+                  else if(element.status == 1){
+                    tr += "<td class='text-success'>Approved</td>";
+                  }
+                  else{
+                    tr += "<td class='text-danger'>Rejected</td>";
+                  }
+
+                  tr += "<td>" + element.type+ "</td>";
+                  
+
+                  tr += "</tr>";
+                  $("#tbl_mentor_rejected_body").append(tr);
+              }
             });
-            getIndexNumber('#tbl_mentor tr');
-            createDataTableWithAsc("#tbl_mentor");
+            getIndexNumber('#tbl_mentor_pending tr');
+            createDataTableWithAsc("#tbl_mentor_pending");
+            getIndexNumber('#tbl_mentor_approved tr');
+            createDataTableWithAsc("#tbl_mentor_approved");
+            getIndexNumber('#tbl_mentor_rejected tr');
+            createDataTableWithAsc("#tbl_mentor_rejected");
             EasyLoading.hide();
         }
     });

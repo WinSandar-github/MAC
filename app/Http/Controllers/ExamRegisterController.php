@@ -241,14 +241,17 @@ class ExamRegisterController extends Controller
     
 
     public function FilterExamRegister(Request $request){
-        $student_infos = ExamRegister::with('student_info')->where('status',1);
-        if($request->name!=""){-
+        $student_infos = ExamRegister::with('student_info','batch')->where('form_type',$request->course_code)->where('status',1);
+        if($request->name!=""){
             $student_infos = $student_infos->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
             ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
             ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
         }
         if($request->grade!="all"){
             $student_infos = $student_infos->where('grade',$request->grade);
+        }
+        if($request->batch!="all"){
+            $student_infos = $student_infos->where('batch_id', $request->batch);
         }
         $student_infos = $student_infos->get();
         return response()->json([ 

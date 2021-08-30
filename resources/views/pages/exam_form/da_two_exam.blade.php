@@ -89,7 +89,7 @@
 
                                                             {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                                             <th class="bold-font-weight" >Exam Type</th>
-                                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
+                                                            {{--<th class="bold-font-weight" >Batch Number</th>--}}
                                                             <th class="bold-font-weight" >Remark</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
@@ -112,7 +112,7 @@
 
                                                             {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                                             <th class="bold-font-weight" >Exam Type</th>
-                                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
+                                                            {{--<th class="bold-font-weight" >Batch Number</th>--}}
                                                             <th class="bold-font-weight" >Remark</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
@@ -134,7 +134,7 @@
 
                                                             {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                                             <th class="bold-font-weight" >Exam Type</th>
-                                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
+                                                            {{--<th class="bold-font-weight" >Batch Number</th>--}}
                                                             <th class="bold-font-weight" >Remark</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
