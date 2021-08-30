@@ -19,7 +19,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8">
-                                <h5 class="title" style="padding-left: 330px;">{{ __('CPA Full Fleged Registration List') }}</h5>
+                                <h5 class="title" style="padding-left: 330px;">{{ __('CPA Full-Fledged Registration List') }}</h5>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>                                                    
+                                                            <th class="bold-font-weight" >Student Name</th>                                                    
                                                             <th class="bold-font-weight" >NRC</th>     
                                                             <th class="bold-font-weight" >Registration Number</th>
                                                             <th class="bold-font-weight" >Degree</th>
@@ -56,7 +56,7 @@
                                                             
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbl_cpaff_pending_list_body" class="hoverTable">
+                                                    <tbody id="tbl_cpaff_pending_list_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -66,7 +66,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>                                                    
+                                                            <th class="bold-font-weight" >Student Name</th>                                                    
                                                             <th class="bold-font-weight" >NRC</th>     
                                                             <th class="bold-font-weight" >Registration Number</th>
                                                             <th class="bold-font-weight" >Degree</th>
@@ -74,7 +74,7 @@
                                                             
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbl_cpaff_approved_list_body" class="hoverTable">
+                                                    <tbody id="tbl_cpaff_approved_list_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -84,7 +84,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>                                                    
+                                                            <th class="bold-font-weight" >Student Name</th>                                                    
                                                             <th class="bold-font-weight" >NRC</th>     
                                                             <th class="bold-font-weight" >Registration Number</th>
                                                             <th class="bold-font-weight" >Degree</th>
@@ -92,7 +92,7 @@
                                                             
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbl_cpaff_rejected_list_body" class="hoverTable">
+                                                    <tbody id="tbl_cpaff_rejected_list_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>

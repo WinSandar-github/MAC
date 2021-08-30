@@ -71,7 +71,7 @@
                                                                 </tr>
                                                                 
                                                             </thead>
-                                                            <tbody id="tbl_non_audit_pending_body" class="hoverTable"></tbody>
+                                                            <tbody id="tbl_non_audit_pending_body" class="hoverTable text-left"></tbody>
                                                         </table>
                                                     </div>
                                                     <div class="tab-pane fade" id="link2" aria-expanded="true">
@@ -94,7 +94,7 @@
                                                                 </tr>
                                                                 
                                                             </thead>
-                                                            <tbody id="tbl_non_audit_approved_body" class="hoverTable"></tbody>
+                                                            <tbody id="tbl_non_audit_approved_body" class="hoverTable text-left"></tbody>
                                                         </table>
                                                     </div>
                                                     <div class="tab-pane fade" id="link3" aria-expanded="true">
@@ -117,7 +117,7 @@
                                                                 </tr>
                                                                 
                                                             </thead>
-                                                            <tbody id="tbl_non_audit_rejected_body" class="hoverTable"></tbody>
+                                                            <tbody id="tbl_non_audit_rejected_body" class="hoverTable text-left"></tbody>
                                                         </table>
                                                     </div>
                                                 </div>

@@ -48,7 +48,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Student Name</th>
                                                             <th class="bold-font-weight" >NRC</th>     
                                                             <th class="bold-font-weight" >Registration Number</th>
                                                             <th class="bold-font-weight" >PAPP Date</th>
@@ -57,7 +57,7 @@
                                                             
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbl_papp_pending_list_body" class="hoverTable">
+                                                    <tbody id="tbl_papp_pending_list_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -67,7 +67,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Student Name</th>
                                                             <th class="bold-font-weight" >NRC</th>     
                                                             <th class="bold-font-weight" >Registration Number</th>
                                                             <th class="bold-font-weight" >PAPP Date</th>
@@ -76,7 +76,7 @@
                                                             
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbl_papp_approved_list_body" class="hoverTable">
+                                                    <tbody id="tbl_papp_approved_list_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -86,7 +86,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Student Name</th>
                                                             <th class="bold-font-weight" >NRC</th>     
                                                             <th class="bold-font-weight" >Registration Number</th>
                                                             <th class="bold-font-weight" >PAPP Date</th>
@@ -95,7 +95,7 @@
                                                             
                                                         </tr>
                                                     </thead>
-                                                    <tbody id="tbl_papp_rejected_list_body" class="hoverTable">
+                                                    <tbody id="tbl_papp_rejected_list_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>

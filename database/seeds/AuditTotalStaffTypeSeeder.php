@@ -25,7 +25,7 @@ class AuditTotalStaffTypeSeeder extends Seeder
                 'name' => 'No of managerial level staff	'
             ),
             array(
-                'name' => 'No of non-mangerial level'
+                'name' => 'No of non-managerial level'
             ),
             
         ]);
