@@ -36,6 +36,7 @@ Route::patch('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 // Mentor
 Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
 Route::patch('/reject_mentor_student/{id}', 'MentorController@reject');
+Route::patch('/renewMentor/{id}', 'MentorController@renewMentor');
 
 Route::resource('/cpa_full_form','CpaFullFormController');
 Route::resource('/cpa_one_reg','CpaOneRegisterController');
@@ -236,3 +237,5 @@ Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent
 
 Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 
+// Get all courses
+Route::get('/get_courses','CourseController@getCourses');
