@@ -18,7 +18,7 @@ class CreateEducationHistroysTable extends Migration
             $table->unsignedBigInteger('student_info_id');
             $table->string('university_name');
             $table->string('degree_name')->nullable();
-            $table->date('qualified_date')->nullable();
+            $table->string('qualified_date')->nullable();
             $table->string('roll_number',30)->nullable();
             $table->string('certificate')->nullable();
             $table->timestamps();

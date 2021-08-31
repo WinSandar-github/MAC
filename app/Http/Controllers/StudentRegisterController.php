@@ -62,10 +62,13 @@ class StudentRegisterController extends Controller
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->academic_year=$request->academic_year;
+                $student_register->batch_no = $request->batch_no_self;
+                $student_register->part_no = $request->part_no_self;
+                $student_register->personal_no = $request->personal_no_self;
                 $student_register->direct_access_no=$request->direct_access_no;
                 $student_register->entry_success_no=$request->entry_success_no;
                 $student_register->module=$request->module;
-                $student_register->batch_part_no = $request->batch_part_no;;
+                // $student_register->batch_part_no = $request->batch_part_no;;
                 $student_register->type = $request->type;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
@@ -97,6 +100,9 @@ class StudentRegisterController extends Controller
                 $student_register->type = $request->type;
                 $student_register->private_school_name = $request->private_school_name;
                 $student_register->academic_year = $request->academic_year;
+                $student_register->batch_no = $request->batch_no_private;
+                $student_register->part_no = $request->part_no_private;
+                $student_register->personal_no = $request->personal_no_private;
                 $student_register->direct_access_no = $request->direct_access_no;
                 $student_register->entry_success_no = $request->entry_success_no;
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
@@ -104,7 +110,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-              
+
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
@@ -145,6 +151,9 @@ class StudentRegisterController extends Controller
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;                
                 $student_register->academic_year=$request->academic_year;
+                $student_register->batch_no = $request->batch_no_mac;
+                $student_register->part_no = $request->part_no_mac;
+                $student_register->personal_no = $request->personal_no_mac;
                 $student_register->direct_access_no=$request->direct_access_no;
                 $student_register->entry_success_no=$request->entry_success_no;
                 $student_register->internship=$request->internship;
