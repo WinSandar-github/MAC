@@ -183,50 +183,51 @@ class CPAFFController extends Controller
     public function update(Request $request, $id)
     {
         $cpa_ff = CPAFF::find($id);
-        if ($request->hasfile('renew_file')) {
-            $file = $request->file('renew_file');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $renew_file = '/storage/cpa_ff_register/'.$name;
-        }else{
-            $renew_file="";
-        }
+        // if ($request->hasfile('renew_file')) {
+        //     $file = $request->file('renew_file');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $renew_file = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $renew_file="";
+        // }
 
-        if ($request->hasfile('renew_micpa')) {
-            $file = $request->file('renew_micpa');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $renew_micpa = '/storage/cpa_ff_register/'.$name;
-        }else{
-            $renew_micpa="";
-        }
+        // if ($request->hasfile('renew_micpa')) {
+        //     $file = $request->file('renew_micpa');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $renew_micpa = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $renew_micpa="";
+        // }
 
-        if ($request->hasfile('renew_cpd')) {
-            $file = $request->file('renew_cpd');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $renew_cpd = '/storage/cpa_ff_register/'.$name;
-        }else{
-            $renew_cpd="";
-        }
+        // if ($request->hasfile('renew_cpd')) {
+        //     $file = $request->file('renew_cpd');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $renew_cpd = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $renew_cpd="";
+        // }
 
-        if ($request->hasfile('renew_cpaff_reg')) {
-            $file = $request->file('renew_cpaff_reg');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $renew_cpaff_reg = '/storage/cpa_ff_register/'.$name;
-        }else{
-            $renew_cpaff_reg="";
-        }
+        // if ($request->hasfile('renew_cpaff_reg')) {
+        //     $file = $request->file('renew_cpaff_reg');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $renew_cpaff_reg = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $renew_cpaff_reg="";
+        // }
 
-        $cpa_ff->renew_file=$renew_file;
-        $cpa_ff->renew_micpa=$renew_micpa;
-        $cpa_ff->renew_cpd=$renew_cpd;
-        $cpa_ff->renew_cpaff_reg=$renew_cpaff_reg;
-        $cpa_ff->renew_status=0;
+        // $cpa_ff->renew_file=$renew_file;
+        // $cpa_ff->renew_micpa=$renew_micpa;
+        // $cpa_ff->renew_cpd=$renew_cpd;
+        // $cpa_ff->renew_cpaff_reg=$renew_cpaff_reg;
+        $cpa_ff->renew_accepted_date=date('Y-m-d');
+        $cpa_ff->renew_status=1;
         $cpa_ff->save();        
         return response()->json([
-            'message' => "Insert Successfully"
+            'message' => "You have renewed successfully"
         ],200);
 
      }
