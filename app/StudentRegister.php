@@ -8,7 +8,7 @@ class StudentRegister extends Model
 {
     protected $table = 'student_register';
 
-    protected $fillable = ['student_info_id','date','reg_reason','invoice_id','invoice_date','type','status'];
+    protected $fillable = ['student_info_id','date','reg_reason','invoice_id','invoice_date','type','batch_no','part_no','personal_no','status'];
 
     public function student_info()
     {
