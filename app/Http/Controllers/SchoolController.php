@@ -56,6 +56,7 @@ class SchoolController extends Controller
         $school->nrc_township = $request->nrc_township;
         $school->nrc_citizen = $request->nrc_citizen;
         $school->nrc_number = $request->nrc_number;
+        $school->reg_date = date('Y-m-d');
         $school_type = "";
         foreach($request->school_type as $type){
             $school_type = $school_type.$type.',';
@@ -116,7 +117,12 @@ class SchoolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $school = SchoolRegister::find($id);
+        $school->renew_date = date('Y-m-d');
+        $school->save();
+        return response()->json([
+            'message' => 'You have renewed successfully.'
+        ],200);
     }
 
     /**
@@ -137,6 +143,7 @@ class SchoolController extends Controller
         $std_info->save();
         $school = SchoolRegister::find($id);
         $school->approve_reject_status = 1;
+        $school->renew_date = date('Y-m-d');
         $school->save();
         return response()->json([
             'message' => 'You have approved this user.'

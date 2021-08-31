@@ -167,13 +167,13 @@ class DARegisterController extends Controller
     public function send_email(Request $request)
     {
         $student_info = new StudentInfo();
-        $student_info->verify_code = mt_rand(1000,9999);
-        // $student_info->verify_code = '1234';
-        $data = array(
-            'email' => 'macadmin@gmail.com',
-            'verify_code' => $student_info['verify_code']
-        );
-        Mail::to($request['email'])->send(new ContactMail($data));
+        //$student_info->verify_code = mt_rand(1000,9999);
+        $student_info->verify_code = '1234';
+        // $data = array(
+        //     'email' => 'macadmin@gmail.com',
+        //     'verify_code' => $student_info['verify_code']
+        // );
+        //Mail::to($request['email'])->send(new ContactMail($data));
         return response()->json([
             'data' => $student_info
         ],200);
@@ -276,10 +276,10 @@ class DARegisterController extends Controller
     {
         
          $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
+         
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
          $status = $student_register != null ? $student_register->status : null;
-        //  print_r($stu_course_reg);
-        return response()->json($stu_course_reg,200);
+         return response()->json($status,200);
 
     }
 
