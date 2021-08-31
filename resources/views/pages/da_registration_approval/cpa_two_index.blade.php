@@ -36,16 +36,15 @@
                                                 <div class="col-md-6">
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
-                                                        <div class="col-md-3 text-left" style="padding-left:20px;font-weight:bold;">Name</div>
+                                                        <div class="col-md-4 text-left" style="padding-left:20px;font-weight:bold;">Student Name</div>
                                                         <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
-                                                            <input type="text" name="filter_by_name_ss" class="form-control" placeholder="Name">
+                                                            <input type="text" name="filter_by_name_ss" class="form-control" placeholder="Student Name">
                                                         </div>
                                                     </div> 
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="row">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-3 text-left" style="padding-left:20px;font-weight:bold;">Batch</div>
+                                                        <div class="col-md-4 text-left" style="padding-left:20px;font-weight:bold;">Batch Number</div>
                                                         <div class="col-md-7 text-left"  style="padding-right:0px;padding-left:0px;">
                                                             <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                                                 <option value="all" selected>All Batches</option>
@@ -58,7 +57,7 @@
                                                 <div class="col-md-6">
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
-                                                        <div class="col-md-3 text-left" style="padding-left:20px;font-weight:bold;">Status</div>
+                                                        <div class="col-md-4 text-left" style="padding-left:20px;font-weight:bold;">Status</div>
                                                         <div class="col-md-7 text-left"  style="padding-right:0px;padding-left:0px;">
                                                             <select class="form-control form-select" name="selected_status" id="selected_status">
                                                                 <option value="all" selected>All</option>
@@ -93,7 +92,7 @@
                                                             <tr>
                                                                 <th class="bold-font-weight">No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >Name</th>
+                                                                <th class="bold-font-weight" >Student Name</th>
                                                                 <th class="bold-font-weight" >Email</th>                                        
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
@@ -103,7 +102,7 @@
                                                             </tr>
                                                             
                                                         </thead>
-                                                        <tbody id="tbl_student_self_study_body"  class="hoverTable">
+                                                        <tbody id="tbl_student_self_study_body"  class="hoverTable text-left">
                                                             
                                                         </tbody>
                                                     </table>
@@ -114,7 +113,7 @@
                                                             <tr>
                                                             <th class="bold-font-weight">No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >Name</th>
+                                                                <th class="bold-font-weight" >Student Name</th>
                                                                 <th class="bold-font-weight" >Email</th>                                        
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
@@ -122,7 +121,7 @@
                                                             </tr>
                                                             
                                                         </thead>
-                                                        <tbody id="tbl_student_private_school_body"  class="hoverTable">
+                                                        <tbody id="tbl_student_private_school_body"  class="hoverTable text-left">
                                                             
                                                         </tbody>
                                                     </table>
@@ -133,7 +132,7 @@
                                                             <tr>
                                                             <th class="bold-font-weight">No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >Name</th>
+                                                                <th class="bold-font-weight" >Student Name</th>
                                                                 <th class="bold-font-weight" >Email</th>                                        
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
@@ -141,7 +140,7 @@
                                                             </tr>
                                                             
                                                         </thead>
-                                                        <tbody id="tbl_student_mac_body"  class="hoverTable">
+                                                        <tbody id="tbl_student_mac_body"  class="hoverTable text-left">
                                                             
                                                         </tbody>
                                                     </table>

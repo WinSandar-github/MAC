@@ -1,5 +1,7 @@
 function getTeacherRegisterList(){
-    destroyDatatable("#tbl_teacher", "#tbl_teacher_body");
+    destroyDatatable("#tbl_teacher_pending", "#tbl_teacher_pending_body");
+    destroyDatatable("#tbl_teacher_approved", "#tbl_teacher_approved_body");
+    destroyDatatable("#tbl_teacher_rejected", "#tbl_teacher_rejected_body");
     var send_data=new FormData();
     send_data.append('name',$("input[name=filter_by_name]").val());
     send_data.append('nrc',$("input[name=filter_by_nrc]").val());
@@ -11,32 +13,88 @@ function getTeacherRegisterList(){
         contentType: false,
         processData: false,
         success : function(data){
-            let indexNo = 0;
+            let indexNo1 = 0;
+            let indexNo2 = 0;
+            let indexNo3 = 0;
             data.data.map((obj)=> {
-                let nrc = obj.nrc_state_region+"/"+obj.nrc_township+"("+obj.nrc_citizen+")"+obj.nrc_number;
-                var tr = "<tr>";
-                tr += `<td> ${ indexNo += 1 } </td>`;
-                tr += `<td><a href=${FRONTEND_URL+'/teacher_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
-                tr += `<td> ${ obj.name_mm } </td>`;
-                tr += `<td> ${ obj.email } </td>`;
-                tr += `<td> ${ obj.phone } </td>`;
-                tr += `<td> ${ nrc } </td>`;
-                let status_color = "";
-                if(obj.approve_reject_status == 0){
-                    status_color = "text-warning";
-                }
-                else if(obj.approve_reject_status == 1){
-                    status_color = "text-success";
-                }
-                else{
-                    status_color = "text-danger";
-                }
-                tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
                 
-                tr += "</tr>";
-                $("#tbl_teacher_body").append(tr);
+                let nrc = obj.nrc_state_region+"/"+obj.nrc_township+"("+obj.nrc_citizen+")"+obj.nrc_number;
+                if(obj.approve_reject_status == 0)
+                {
+                    var tr = "<tr>";
+                    tr += `<td> ${ indexNo1 += 1 } </td>`;
+                    tr += `<td><a href=${FRONTEND_URL+'/teacher_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                    tr += `<td> ${ obj.name_mm } </td>`;
+                    tr += `<td> ${ obj.email } </td>`;
+                    tr += `<td> ${ obj.phone } </td>`;
+                    tr += `<td> ${ nrc } </td>`;
+                    let status_color = "";
+                    if(obj.approve_reject_status == 0){
+                        status_color = "text-warning";
+                    }
+                    else if(obj.approve_reject_status == 1){
+                        status_color = "text-success";
+                    }
+                    else{
+                        status_color = "text-danger";
+                    }
+                    tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
+                    
+                    tr += "</tr>";
+                    $("#tbl_teacher_pending_body").append(tr);
+                }
+                else if(obj.approve_reject_status == 1)
+                {
+                    var tr = "<tr>";
+                    tr += `<td> ${ indexNo2 += 1 } </td>`;
+                    tr += `<td><a href=${FRONTEND_URL+'/teacher_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                    tr += `<td> ${ obj.name_mm } </td>`;
+                    tr += `<td> ${ obj.email } </td>`;
+                    tr += `<td> ${ obj.phone } </td>`;
+                    tr += `<td> ${ nrc } </td>`;
+                    let status_color = "";
+                    if(obj.approve_reject_status == 0){
+                        status_color = "text-warning";
+                    }
+                    else if(obj.approve_reject_status == 1){
+                        status_color = "text-success";
+                    }
+                    else{
+                        status_color = "text-danger";
+                    }
+                    tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
+                    
+                    tr += "</tr>";
+                    $("#tbl_teacher_approved_body").append(tr);
+                }
+                else if(obj.approve_reject_status == 2)
+                {
+                    var tr = "<tr>";
+                    tr += `<td> ${ indexNo3 += 1 } </td>`;
+                    tr += `<td><a href=${FRONTEND_URL+'/teacher_edit?id='+obj.id} class='btn btn-primary btn-sm'><i class='fa fa-eye fa-sm'></i></a> </td>`;
+                    tr += `<td> ${ obj.name_mm } </td>`;
+                    tr += `<td> ${ obj.email } </td>`;
+                    tr += `<td> ${ obj.phone } </td>`;
+                    tr += `<td> ${ nrc } </td>`;
+                    let status_color = "";
+                    if(obj.approve_reject_status == 0){
+                        status_color = "text-warning";
+                    }
+                    else if(obj.approve_reject_status == 1){
+                        status_color = "text-success";
+                    }
+                    else{
+                        status_color = "text-danger";
+                    }
+                    tr += `<td class='${status_color}'> ${ obj.approve_reject_status == 0 ? 'Pending': obj.approve_reject_status == 1 ? 'Approved' : 'Rejected'} </td>`;
+                    
+                    tr += "</tr>";
+                    $("#tbl_teacher_rejected_body").append(tr);
+                }
             });
-            createDataTableWithAsc("#tbl_teacher");
+            createDataTableWithAsc("#tbl_teacher_pending");
+            createDataTableWithAsc("#tbl_teacher_approved");
+            createDataTableWithAsc("#tbl_teacher_rejected");
             EasyLoading.hide();
         }
     });
@@ -51,7 +109,6 @@ function getTeacherInfos(){
     let result = window.location.href;
     let url = new URL(result);
     let id = url.searchParams.get("id");
-    //var id = localStorage.getItem("teacher_id");
     $.ajax({
         type : 'GET',
         url : BACKEND_URL+"/teacher/"+id,
@@ -112,8 +169,6 @@ function approveTeacherRegister(){
     let result = window.location.href;
     let url = new URL(result);
     let id = url.searchParams.get("id");
-    //var id = localStorage.getItem("teacher_id");
-    //console.log({id});
     $.ajax({
         url: BACKEND_URL + "/approve_teacher_register",
         data: 'id='+id+"&status=1",

@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-2 form-label"></label>
-                                                <label class="col-md-3 form-label text-left">{{ __('Grade') }}</label>
+                                                <label class="col-md-3 form-label text-left">{{ __('Remark') }}</label>
                                                 <label class="col-md-1 form-label"></label>
                                                 <div class="col-md-5 text-left">
                                                     <div class="form-group">
@@ -105,7 +105,7 @@
                                                             <tr>
                                                                 <td width="10%">1</td>
                                                                 <td width="40%">
-                                                                    <input type="text" name="subject1" id="subject1" class="form-control" value="{{ old('subject1') }}" required>
+                                                                    <input type="text" name="subject1" id="subject1" class="form-control" value="Subject One" readonly>
                                                                 </td>
                                                                 <td width="30%">
                                                                     <input type="text" name="mark1" id="mark1" class="form-control" value="{{ old('mark1') }}" required>
@@ -117,7 +117,7 @@
                                                             <tr>
                                                                 <td width="10%">2</td>
                                                                 <td width="40%">
-                                                                    <input type="text" name="subject2" id="subject2" class="form-control" value="{{ old('subject2') }}" required>
+                                                                    <input type="text" name="subject2" id="subject2" class="form-control" value="Subject Two" readonly>
                                                                 </td>
                                                                 <td width="30%">
                                                                     <input type="text" name="mark2" id="mark2" class="form-control" value="{{ old('mark2') }}" required>
@@ -129,7 +129,7 @@
                                                             <tr>
                                                                 <td width="10%">3</td>
                                                                 <td width="40%">
-                                                                    <input type="text" name="subject3" id="subject3" class="form-control" value="{{ old('subject3') }}" required>
+                                                                    <input type="text" name="subject3" id="subject3" class="form-control" value="Subject Three" readonly>
                                                                 </td>
                                                                 <td width="30%">
                                                                     <input type="text" name="mark3" id="mark3" class="form-control" value="{{ old('mark3') }}" required>
@@ -141,7 +141,7 @@
                                                             <tr>
                                                                 <td width="10%">4</td>
                                                                 <td width="40%">
-                                                                    <input type="text" name="subject4" id="subject4" class="form-control" value="{{ old('subject4') }}" required>
+                                                                    <input type="text" name="subject4" id="subject4" class="form-control" value="Subject Four" readonly>
                                                                 </td>
                                                                 <td width="30%">
                                                                     <input type="text" name="mark4" id="mark4" class="form-control" value="{{ old('mark4') }}" required>
@@ -153,7 +153,7 @@
                                                             <tr>
                                                                 <td width="10%">5</td>
                                                                 <td width="40%">
-                                                                    <input type="text" name="subject5" id="subject5" class="form-control" value="{{ old('subject5') }}" required>
+                                                                    <input type="text" name="subject5" id="subject5" class="form-control" value="Subject Five" readonly>
                                                                 </td>
                                                                 <td width="30%">
                                                                     <input type="text" name="mark5" id="mark5" class="form-control" value="{{ old('mark5') }}" required>

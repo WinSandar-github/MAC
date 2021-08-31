@@ -72,7 +72,7 @@ function getCPAExam(course_code) {
                 }
 
                 if (element.grade == 0) {
-                    grade = "PENDING";
+                    grade = "-";
                 } else if (element.grade == 1) {
                     grade = "PASSED";
                 } else {
@@ -88,8 +88,8 @@ function getCPAExam(course_code) {
                     tr += "<td>" + element.student_info.email + "</td>";
 
                     //tr += "<td>" + element.private_school_name + "</td>";
-                    tr += "<td>" + element.exam_type_id + "</td>";
-                    tr += "<td>" + element.grade + "</td>";
+                    tr += "<td>" + exam_type_id + "</td>";
+                    tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
                     
@@ -288,7 +288,7 @@ function loadCPAExamData() {
                 }
 
                 if (element.grade == 0) {
-                    grade = "PENDING";
+                    grade = "-";
                 } else if (element.grade == 1) {
                     grade = "PASSED";
                 } else {
@@ -327,13 +327,30 @@ function chooseCPABatch() {
 }
 
 function loadCPAStudent(course_type) {
-    destroyDatatable("#tbl_cpa_exam_result", "#tbl_cpa_exam_result_body");
+    destroyDatatable("#tbl_cpa_exam_pending_result", "#tbl_cpa_exam_pending_result_body");
+    destroyDatatable("#tbl_cpa_exam_approved_result", "#tbl_cpa_exam_approved_result_body");
+    destroyDatatable("#tbl_cpa_exam_rejected_result", "#tbl_cpa_exam_rejected_result_body");
     localStorage.setItem("course_type", course_type);
     //var id = localStorage.getItem("batch_id");
     // console.log(id);
-    var send_data = new FormData();
+    if(course_type=="da_1"){
+        course_id=1;
+    }
+    else if(course_type=="da_2"){
+        course_id=2;
+    }
+    else if(course_type=="cpa_1"){
+        course_id=3;
+    }
+    else if(course_type=="cpa_2"){
+        course_id=4;
+    }
+    var send_data=new FormData();
+    send_data.append('course_code',course_id);
+    send_data.append('batch',$("#selected_batch_id").val());
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('grade', $('#selected_grade_id').val());
+    console.log($("#selected_batch_id").val());
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
         type: 'post',
@@ -344,71 +361,100 @@ function loadCPAStudent(course_type) {
             console.log("course", data);
             var da_data = data.data;
             da_data.forEach(function (element) {
-                $.ajax({
-                    url: BACKEND_URL + "/course/" + element.form_type,
-                    type: 'get',
-                    data: "",
-                    success: function (courses) {
-                        console.log(courses, "Course")
-
-                        var course = courses.data;
-                        if (course.code == course_type) {
-                            console.log('check courses', course);
-                            console.log(course.code, course_type);
-                            if (element.status == 0) {
-                                status = "PENDING";
-                            } else if (element.status == 1) {
-                                status = "APPROVED";
-                            } else {
-                                status = "REJECTED";
-                            }
-                            if (element.exam_type_id == 0) {
-                                exam_type_id = "SELF STUDY";
-                            } else if (element.exam_type_id == 1) {
-                                exam_type_id = "PRIVATE SCHOOL";
-                            } else {
-                                exam_type_id = "MAC STUDENT";
-                            }
-                            if (element.is_full_module == 0) {
-                                is_full_module = "Module 1";
-                            } else if (element.is_full_module == 1) {
-                                is_full_module = "Module 2";
-                            } else {
-                                is_full_module = "Full Module";
-                            }
-                            if (element.grade == 0) {
-                                student_grade = "PENDING";
-                            } else if (element.grade == 1) {
-                                student_grade = "PASSED";
-                            } else {
-                                student_grade = "FAILED";
-                            }
-                            var tr = "<tr>";
-                            tr += "<td>" + +"</td>";
-                            tr += "<td ><div class='btn-group'>";
-                            tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module + ")'>" +
-                                "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                            tr += "<td>" + element.student_info.name_eng + "</td>";
-                            //tr += "<td>" + element.private_school_name + "</td>";
-                            tr += "<td>" + exam_type_id + "</td>";
-                            tr += "<td>" + student_grade + "</td>";
-                            //tr += "<td>" + status+ "</td>";
-                            // tr += "<td>" + element.batch_id+ "</td>";
-                            tr += "<td>" + is_full_module + "</td>";
-                            
-                            tr += "<td ><div class='btn-group'>";
-                            $("#tbl_cpa_exam_result_body").append(tr);
-
-
-                            getIndexNumber('#tbl_cpa_exam_result tr');
-                            createDataTable("#tbl_cpa_exam_result");
-                        }
-                    }
-                });
+                if (element.status == 0) {
+                    status = "PENDING";
+                } else if (element.status == 1) {
+                    status = "APPROVED";
+                } else {
+                    status = "REJECTED";
+                }
+                if (element.exam_type_id == 0) {
+                    exam_type_id = "SELF STUDY";
+                } else if (element.exam_type_id == 1) {
+                    exam_type_id = "PRIVATE SCHOOL";
+                } else {
+                    exam_type_id = "MAC STUDENT";
+                }
+                if (element.is_full_module == 0) {
+                    is_full_module = "Module 1";
+                } else if (element.is_full_module == 1) {
+                    is_full_module = "Module 2";
+                } else {
+                    is_full_module = "Full Module";
+                }
+                if (element.grade == 0) {
+                    student_grade = "-";
+                } else if (element.grade == 1) {
+                    student_grade = "PASSED";
+                } else {
+                    student_grade = "FAILED";
+                }
+                if(element.grade==0){
+                    var tr = "<tr>";
+                    tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    //tr += "<td>" + element.private_school_name + "</td>";
+                    tr += "<td>" + exam_type_id + "</td>";
+                    tr += "<td>" + student_grade + "</td>";
+                    //tr += "<td>" + status+ "</td>";
+                    // tr += "<td>" + element.batch_id+ "</td>";
+                    tr += "<td>" + element.batch.name + "</td>";
+                    tr += "<td>" + is_full_module + "</td>";
+                    
+                    //tr += "<td ><div class='btn-group'>";
+                    $("#tbl_cpa_exam_pending_result_body").append(tr);
+                }
+                else if(element.grade==1){
+                    var tr = "<tr>";
+                    tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    //tr += "<td>" + element.private_school_name + "</td>";
+                    tr += "<td>" + exam_type_id + "</td>";
+                    tr += "<td>" + student_grade + "</td>";
+                    //tr += "<td>" + status+ "</td>";
+                    // tr += "<td>" + element.batch_id+ "</td>";
+                    tr += "<td>" + element.batch.name + "</td>";
+                    tr += "<td>" + is_full_module + "</td>";
+                    
+                    //tr += "<td ><div class='btn-group'>";
+                    $("#tbl_cpa_exam_approved_result_body").append(tr);
+                }                          
+                else if(element.grade==2){
+                    var tr = "<tr>";
+                    tr += "<td>" + +"</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillCPAMark(" + element.id + "," + element.is_full_module + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    //tr += "<td>" + element.private_school_name + "</td>";
+                    tr += "<td>" + exam_type_id + "</td>";
+                    tr += "<td>" + student_grade + "</td>";
+                    //tr += "<td>" + status+ "</td>";
+                    // tr += "<td>" + element.batch_id+ "</td>";
+                    tr += "<td>" + element.batch.name + "</td>";
+                    tr += "<td>" + is_full_module + "</td>";
+                    
+                    //tr += "<td ><div class='btn-group'>";
+                    $("#tbl_cpa_exam_rejected_result_body").append(tr);
+                }       
             });
+            getIndexNumber('#tbl_cpa_exam_pending_result tr');
+            createDataTable("#tbl_cpa_exam_pending_result");
+            getIndexNumber('#tbl_cpa_exam_approved_result tr');
+            createDataTable("#tbl_cpa_exam_approved_result");
+            getIndexNumber('#tbl_cpa_exam_rejected_result tr');
+            createDataTable("#tbl_cpa_exam_rejected_result");
         },
         error: function (message) {
-            dataMessage(message, "#tbl_cpa_exam_result", "#tbl_cpa_exam_result_body");
+            dataMessage(message, "#tbl_cpa_exam_pending_result", "#tbl_cpa_exam_pending_result_body");
+            dataMessage(message, "#tbl_cpa_exam_approved_result", "#tbl_cpa_exam_approved_result_body");
+            dataMessage(message, "#tbl_cpa_exam_rejected_result", "#tbl_cpa_exam_rejected_result_body");
         }
     });
 }

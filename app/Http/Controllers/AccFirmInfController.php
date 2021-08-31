@@ -20,6 +20,7 @@ use App\NonAuditFirmFile;
 use App\StudentInfo;
 use Hash;
 use File;
+use Carbon\Carbon;
 
 class AccFirmInfController extends Controller
 {
@@ -316,8 +317,15 @@ class AccFirmInfController extends Controller
         $std_info = new StudentInfo();
         $std_info->accountancy_firm_info_id = $acc_firm_info->id;
         //$std_info->accountancy_firm_name = $acc_firm_info->accountancy_firm_name;
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
+        $std_info->email            =   strtolower($request->email);
+        $std_info->password         =   Hash::make($request->password);
+        $std_info->verify_code      =   uniqid();
+        // $data = array(
+        //     'email' => 'macadmin@gmail.com',
+        //     'verify_code' => $student_info['verify_code']
+        // );
+        // Mail::to($student_info['email'])->send(new ContactMail($data));
+        $std_info->verify_status    =   1;
         $std_info->save();
 
         //Branch Office
@@ -1176,13 +1184,40 @@ class AccFirmInfController extends Controller
     // get date range
     public function dateRange($id)
     {
+        date_default_timezone_set("Asia/Yangon");
         $date = AccountancyFirmInformation::where('id',$id)->get('register_date');
-        $check_date = strtotime($date[0]['register_date']);
-        $date_range = strtotime(date('2021-09-30'));
+        $reg_date = strtotime($date[0]['register_date']);
+        // $date_range = strtotime(date('2021-09-30'));
+        $date = AccountancyFirmInformation::find($id);
+        $register_date = Carbon::parse($date->register_date)->format('M');
+
         $verify = "You are verified!";
         $next = "Your registeration will start in next year!";
+        $renew = "Your registeration is expired! You need to submit new registeration form again.";
 
-        if($check_date <= $date_range)
+        $accept_date = date("Y-m-d H:i:s", strtotime('+ 1 year', $reg_date));
+        $currentDate = date("Y-m-d");
+        $currentTime = date("H:i:s");
+        $currentDate =  date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
+        
+        if($currentDate >= $accept_date)
+        {
+            $renew_user = AccountancyFirmInformation::find($id);
+            $renew_user->verify_status = 3;
+            $renew_user->save();
+            // return $verify;
+            return response()->json($renew,200);
+        }
+
+        if('Oct' == $register_date || 'Nov' == $register_date || 'Dec' == $register_date)
+        {
+            $next_year_user = AccountancyFirmInformation::find($id);
+            $next_year_user->verify_status = 2;
+            $next_year_user->save();
+            // return $next;
+            return response()->json($next,200); 
+        }
+        else
         {
             $verify_user = AccountancyFirmInformation::find($id);
             $verify_user->verify_status = 1;
@@ -1190,16 +1225,16 @@ class AccFirmInfController extends Controller
             // return $verify;
             return response()->json($verify,200);
         }
-        else
-        {
-            $next_year_user = AccountancyFirmInformation::find($id);
-            $next_year_user->verify_status = 2;
-            $next_year_user->save();
-            // return $next;
-            return response()->json($next,200);
-        }
     }
 
+    public function renewSubscribe($id)
+    {
+        $register_date = date('Y-m-d');
+        $data = AccountancyFirmInformation::where('id',$id)->first();
+        $data->register_date = $register_date;
+        $data->save();
+        return response()->json($data,200);
+    }
     //check verify
     public function checkVerify($id)
     {

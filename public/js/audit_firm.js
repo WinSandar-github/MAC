@@ -146,8 +146,12 @@
 //             });
 // }
 function getAudit(){
-  destroyDatatable("#tbl_audit", "#tbl_audit_body");
-  destroyDatatable("#tbl_non_audit", "#tbl_non_audit_body");
+  destroyDatatable("#tbl_audit_pending", "#tbl_audit_pending_body");
+  destroyDatatable("#tbl_audit_approved", "#tbl_audit_approved_body");
+  destroyDatatable("#tbl_audit_rejected", "#tbl_audit_rejected_body");
+  destroyDatatable("#tbl_non_audit_pending", "#tbl_non_audit_pending_body");
+  destroyDatatable("#tbl_non_audit_approved", "#tbl_non_audit_approved_body");
+  destroyDatatable("#tbl_non_audit_rejected", "#tbl_non_audit_rejected_body");
   show_loader();
   $.ajax({
     url: BACKEND_URL+"/acc_firm_info",
@@ -168,25 +172,69 @@ function getAudit(){
           else{
               status="Reject";
           }
-          var tr = "<tr>";
-          tr += "<td >" +  + "</td>";
-          tr += "<td ><div class='btn-group'>" +
-                "<button type='button' class='btn btn-primary btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
-                "<li class='fa fa-eye fa-sm'></li></button> ";
-          tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
-          tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
-          tr += "<td >" + element.accountancy_firm_name + "</td>";
-          tr += "<td >" + element.township + "</td>";
-          tr += "<td >" + element.postcode + "</td>";
-          tr += "<td >" + element.city + "</td>";
-          tr += "<td >" + element.state_region + "</td>";
-          tr += "<td >" + element.telephones + "</td>";
-          tr += "<td >" + element.h_email + "</td>";
-          tr += "<td >" + element.website + "</td>";
-          tr += "<td >" + status + "</td>";         
+          if(element.status==0){
+            var tr = "<tr>";
+            tr += "<td >" +  + "</td>";
+            tr += "<td ><div class='btn-group'>" +
+                  "<button type='button' class='btn btn-primary btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
+                  "<li class='fa fa-eye fa-sm'></li></button> ";
+            tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+            tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
+            tr += "<td >" + element.accountancy_firm_name + "</td>";
+            tr += "<td >" + element.township + "</td>";
+            tr += "<td >" + element.postcode + "</td>";
+            tr += "<td >" + element.city + "</td>";
+            tr += "<td >" + element.state_region + "</td>";
+            tr += "<td >" + element.telephones + "</td>";
+            tr += "<td >" + element.h_email + "</td>";
+            tr += "<td >" + element.website + "</td>";
+            tr += "<td >" + status + "</td>";         
 
-          tr += "</tr>";
-          $("#tbl_audit_body").append(tr);
+            tr += "</tr>";
+            $("#tbl_audit_pending_body").append(tr);
+          }
+          else if(element.status==1){
+            var tr = "<tr>";
+            tr += "<td >" +  + "</td>";
+            tr += "<td ><div class='btn-group'>" +
+                  "<button type='button' class='btn btn-primary btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
+                  "<li class='fa fa-eye fa-sm'></li></button> ";
+            tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+            tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
+            tr += "<td >" + element.accountancy_firm_name + "</td>";
+            tr += "<td >" + element.township + "</td>";
+            tr += "<td >" + element.postcode + "</td>";
+            tr += "<td >" + element.city + "</td>";
+            tr += "<td >" + element.state_region + "</td>";
+            tr += "<td >" + element.telephones + "</td>";
+            tr += "<td >" + element.h_email + "</td>";
+            tr += "<td >" + element.website + "</td>";
+            tr += "<td >" + status + "</td>";         
+
+            tr += "</tr>";
+            $("#tbl_audit_approved_body").append(tr);
+          }
+          else if(element.status==2){
+            var tr = "<tr>";
+            tr += "<td >" +  + "</td>";
+            tr += "<td ><div class='btn-group'>" +
+                  "<button type='button' class='btn btn-primary btn-xs' onClick='showAuditInfo(" + element.id + ")'>" +
+                  "<li class='fa fa-eye fa-sm'></li></button> ";
+            tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+            tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
+            tr += "<td >" + element.accountancy_firm_name + "</td>";
+            tr += "<td >" + element.township + "</td>";
+            tr += "<td >" + element.postcode + "</td>";
+            tr += "<td >" + element.city + "</td>";
+            tr += "<td >" + element.state_region + "</td>";
+            tr += "<td >" + element.telephones + "</td>";
+            tr += "<td >" + element.h_email + "</td>";
+            tr += "<td >" + element.website + "</td>";
+            tr += "<td >" + status + "</td>";         
+
+            tr += "</tr>";
+            $("#tbl_audit_rejected_body").append(tr);
+          }
         }else {
           console.log('nonauditfirm_element',element);
           if(element.status==0){
@@ -198,36 +246,92 @@ function getAudit(){
           else{
               status="Reject";
           }
-          var tr = "<tr>";
-          tr += "<td >" +  + "</td>";
-          tr += "<td ><div class='btn-group'>" +
-                "<button type='button' class='btn btn-primary btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
-                "<li class='fa fa-eye fa-sm'></li></button> ";
-          tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
-          tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
-          tr += "<td >" + element.accountancy_firm_name + "</td>";
-          tr += "<td >" + element.township + "</td>";
-          tr += "<td >" + element.postcode + "</td>";
-          tr += "<td >" + element.city + "</td>";
-          tr += "<td >" + element.state_region + "</td>";
-          tr += "<td >" + element.telephones + "</td>";
-          tr += "<td >" + element.h_email + "</td>";
-          tr += "<td >" + element.website + "</td>";
-          tr += "<td >" + status + "</td>";
+          if(element.status==0){
+            var tr = "<tr>";
+            tr += "<td >" +  + "</td>";
+            tr += "<td ><div class='btn-group'>" +
+                  "<button type='button' class='btn btn-primary btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
+                  "<li class='fa fa-eye fa-sm'></li></button> ";
+            tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+            tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
+            tr += "<td >" + element.accountancy_firm_name + "</td>";
+            tr += "<td >" + element.township + "</td>";
+            tr += "<td >" + element.postcode + "</td>";
+            tr += "<td >" + element.city + "</td>";
+            tr += "<td >" + element.state_region + "</td>";
+            tr += "<td >" + element.telephones + "</td>";
+            tr += "<td >" + element.h_email + "</td>";
+            tr += "<td >" + element.website + "</td>";
+            tr += "<td >" + status + "</td>";
 
-          tr += "</tr>";
-          $("#tbl_non_audit_body").append(tr);
+            tr += "</tr>";
+            $("#tbl_non_audit_pending_body").append(tr);
+          }
+          else if(element.status==1){
+            var tr = "<tr>";
+            tr += "<td >" +  + "</td>";
+            tr += "<td ><div class='btn-group'>" +
+                  "<button type='button' class='btn btn-primary btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
+                  "<li class='fa fa-eye fa-sm'></li></button> ";
+            tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+            tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
+            tr += "<td >" + element.accountancy_firm_name + "</td>";
+            tr += "<td >" + element.township + "</td>";
+            tr += "<td >" + element.postcode + "</td>";
+            tr += "<td >" + element.city + "</td>";
+            tr += "<td >" + element.state_region + "</td>";
+            tr += "<td >" + element.telephones + "</td>";
+            tr += "<td >" + element.h_email + "</td>";
+            tr += "<td >" + element.website + "</td>";
+            tr += "<td >" + status + "</td>";
+
+            tr += "</tr>";
+            $("#tbl_non_audit_approved_body").append(tr);
+          }
+          else if(element.status==2){
+            var tr = "<tr>";
+            tr += "<td >" +  + "</td>";
+            tr += "<td ><div class='btn-group'>" +
+                  "<button type='button' class='btn btn-primary btn-xs' onClick='showNonAuditInfo(" + element.id + ")'>" +
+                  "<li class='fa fa-eye fa-sm'></li></button> ";
+            tr += "<button type='button' class='btn btn-danger btn-xs' onClick=deleteAuditInfo(\"" + encodeURIComponent(element.accountancy_firm_name) + "\"," + element.id + ")><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+            tr += "<td>" + element.accountancy_firm_reg_no + "</td>";
+            tr += "<td >" + element.accountancy_firm_name + "</td>";
+            tr += "<td >" + element.township + "</td>";
+            tr += "<td >" + element.postcode + "</td>";
+            tr += "<td >" + element.city + "</td>";
+            tr += "<td >" + element.state_region + "</td>";
+            tr += "<td >" + element.telephones + "</td>";
+            tr += "<td >" + element.h_email + "</td>";
+            tr += "<td >" + element.website + "</td>";
+            tr += "<td >" + status + "</td>";
+
+            tr += "</tr>";
+            $("#tbl_non_audit_rejected_body").append(tr);
+          }
         }
 
     });
-    getIndexNumber('#tbl_audit tr');
-    createDataTable("#tbl_audit");
-    getIndexNumber('#tbl_non_audit tr');
-    createDataTable("#tbl_non_audit");
+    getIndexNumber('#tbl_audit_pending tr');
+    createDataTable("#tbl_audit_pending");
+    getIndexNumber('#tbl_audit_approved tr');
+    createDataTable("#tbl_audit_approved");
+    getIndexNumber('#tbl_audit_rejected tr');
+    createDataTable("#tbl_audit_rejected");
+    getIndexNumber('#tbl_non_audit_pending tr');
+    createDataTable("#tbl_non_audit_pending");
+    getIndexNumber('#tbl_non_audit_approved tr');
+    createDataTable("#tbl_non_audit_approved");
+    getIndexNumber('#tbl_non_audit_rejected tr');
+    createDataTable("#tbl_non_audit_rejected");
     },
     error:function (message){
-      dataMessage(message, "#tbl_audit", "#tbl_audit_body");
-      dataMessage(message, "#tbl_non_audit", "#tbl_non_audit_body");
+      dataMessage(message, "#tbl_audit_pending", "#tbl_audit_pending_body");
+      dataMessage(message, "#tbl_audit_approved", "#tbl_audit_approved_body");
+      dataMessage(message, "#tbl_audit_rejected", "#tbl_audit_rejected_body");
+      dataMessage(message, "#tbl_non_audit_pending", "#tbl_non_audit_pending_body");
+      dataMessage(message, "#tbl_non_audit_approved", "#tbl_non_audit_approved_body");
+      dataMessage(message, "#tbl_non_audit_rejected", "#tbl_non_audit_rejected_body");
   }
   
 });

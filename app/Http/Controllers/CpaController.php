@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\EducationLevel;
 use App\StudentCourseReg;
 use App\StudentInfo;
-
 class CpaController extends Controller
 {
     public function cpa_ff_registration(){
