@@ -1,5 +1,5 @@
 // var BACKEND_URL="http://localhost:8000/api";
-//  var FRONTEND_URL="http://localhost:8080";
+//  var FRONTEND_URL="http://localhost:8000";
 //   var PDF_URL="http://localhost:8000";
 
  var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
@@ -783,6 +783,7 @@ function successMessage(message) {
     toastr.options = toastOptions;
     toastr.success(message);
 }
+
 function createDataTable(table) {
 
     $(table).DataTable({
@@ -840,6 +841,7 @@ $('table tbody').on('click', 'tr', function () {
         $(this).addClass('selected');
     }
 });
+
 function dataMessage(message, table, tableBody) {
     var dataMsg = message.responseText;
     var noOfColumn = countColumn(table);
