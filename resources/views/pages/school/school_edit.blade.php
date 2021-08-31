@@ -165,7 +165,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">၄။ မွေးသဣရာဇ်</p>
+                                        <p class="ml-2" style="font-weight:bold">၄။ မွေးသက္ကရာဇ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="date_of_birth"></span>

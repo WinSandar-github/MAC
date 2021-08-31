@@ -71,14 +71,15 @@ function getBatch(){
                 tr += "<td>" + element.course.name + "</td>";
                 tr += "<td>" + element.start_date + "</td>";
                 tr += "<td>" + element.end_date + "</td>";
+                tr += "<td>" + element.accept_application_start_date + "</td>";
+                tr += "<td>" + element.accept_application_end_date + "</td>";
                 tr += "<td>" + element.mac_reg_start_date + "</td>";
                 tr += "<td>" + element.mac_reg_end_date + "</td>";
                 tr += "<td>" + element.self_reg_start_date + "</td>";
                 tr += "<td>" + element.self_reg_end_date + "</td>";
                 tr += "<td>" + element.private_reg_start_date + "</td>";
                 tr += "<td>" + element.private_reg_end_date + "</td>";
-                tr += "<td>" + element.accept_application_start_date + "</td>";
-                tr += "<td>" + element.accept_application_end_date + "</td>";
+                
                 tr += "<td>" + start_date + "</td>";
                 tr += "<td>" + end_date + "</td>";           
                     

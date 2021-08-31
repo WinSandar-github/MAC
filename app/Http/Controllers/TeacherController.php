@@ -46,7 +46,7 @@ class TeacherController extends Controller
         $teacher->name_eng = $request->name_eng;
         $teacher->father_name_mm = $request->father_name_mm;
         $teacher->father_name_eng = $request->father_name_eng;
-        $teacher->reg_date = date('y-m-d');
+        $teacher->reg_date = date('Y-m-d');
         $teacher->phone = $request->phone_number;
         $teacher->email = $request->email;
         $teacher->password = Hash::make($request->password);
@@ -120,7 +120,13 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $teacher = TeacherRegister::find($id);
+        $teacher->renew_date = date('Y-m-d');
+        $teacher->save();
+        return response()->json([
+            'message' => 'You have renewed successfully.'
+        ],200);
+        
     }
 
     /**
@@ -140,6 +146,7 @@ class TeacherController extends Controller
         $std_info->approve_reject_status = 1;
         $std_info->save();
         $teacher = TeacherRegister::find($request->id);
+        $teacher->renew_date = date('Y-m-d');
         $teacher->approve_reject_status = $request->status;
         $teacher->save();
         return response()->json([
@@ -182,4 +189,5 @@ class TeacherController extends Controller
         $data = StudentInfo::where('id',$id)->get('approve_reject_status');
         return response()->json($data,200);
     }
+    
 }

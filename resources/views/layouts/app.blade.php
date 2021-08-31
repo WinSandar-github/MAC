@@ -93,6 +93,10 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
+    <!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<!-- <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script> -->
+
     <!-- <script src="{{ asset('plugins/select2/css') }}/select2.min.css"></script> -->
 
     <!--treeview css-->
@@ -217,6 +221,11 @@ The above copyright notice and this permission notice shall be included in all c
     <!-- <script src="{{ asset('plugins/select2/js') }}/select2.min.js"></script> --> -->
 
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <!-- include summernote css/js -->
+<!-- <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet"> -->
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 
     <!-- DataTables -->
     <!-- {{-- <script src="{{ asset('plugins') }}/datatables/jquery.dataTables.min.js"></script> --}}
