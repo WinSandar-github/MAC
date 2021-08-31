@@ -83,18 +83,18 @@ class AccFirmInfController extends Controller
         }else{
             $letterhead = null;
         }
-       if($request->hasfile('representatives'))
-        {
-            foreach($request->file('representatives') as $file)
-            {
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/acc_firm/',$name);
-            $representative[] =$name;
-            }
+    //    if($request->hasfile('representatives'))
+    //     {
+    //         foreach($request->file('representatives') as $file)
+    //         {
+    //         $name  = uniqid().'.'.$file->getClientOriginalExtension();
+    //         $file->move(public_path().'/storage/acc_firm/',$name);
+    //         $representative[] =$name;
+    //         }
 
-        }else{
-            $representative = null;
-        }
+    //     }else{
+    //         $representative = null;
+    //     }
 
         if($request->hasfile('certi_or_regs'))
         {
@@ -137,31 +137,31 @@ class AccFirmInfController extends Controller
             $certi_incor = null;
         }
 
-        if($request->hasfile('form6_26e'))
-        {
-            foreach($request->file('form6_26e') as $file)
-            {
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/acc_firm/',$name);
-            $form6_26e[] = $name;
-            }
+        // if($request->hasfile('form6_26e'))
+        // {
+        //     foreach($request->file('form6_26e') as $file)
+        //     {
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/acc_firm/',$name);
+        //     $form6_26e[] = $name;
+        //     }
 
-        }else{
-            $form6_26e = null;
-        }
+        // }else{
+        //     $form6_26e = null;
+        // }
 
-        if($request->hasfile('form_a1'))
-        {
-            foreach($request->file('form_a1') as $file)
-            {
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/acc_firm/',$name);
-            $form_a1[] = $name;
-            }
+        // if($request->hasfile('form_a1'))
+        // {
+        //     foreach($request->file('form_a1') as $file)
+        //     {
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/acc_firm/',$name);
+        //     $form_a1[] = $name;
+        //     }
 
-        }else{
-            $form_a1 = null;
-        }
+        // }else{
+        //     $form_a1 = null;
+        // }
 
 
         if($request->hasfile('tax_reg_certificate'))
@@ -232,17 +232,30 @@ class AccFirmInfController extends Controller
         }
 
 
-        if($request->hasfile('nrc_passports'))
+        if($request->hasfile('nrc_passports_front'))
         {
-            foreach($request->file('nrc_passports') as $file)
+            foreach($request->file('nrc_passports_front') as $file)
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $nrc_passport[] = $name;
+            $nrc_passport_front[] = $name;
             }
 
         }else{
-            $nrc_passport = null;
+            $nrc_passport_front = null;
+        }
+
+        if($request->hasfile('nrc_passports_back'))
+        {
+            foreach($request->file('nrc_passports_back') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $nrc_passport_back[] = $name;
+            }
+
+        }else{
+            $nrc_passport_back = null;
         }
 
         if($request->hasfile('tax_clearances'))
@@ -289,7 +302,8 @@ class AccFirmInfController extends Controller
 
         //Main Table
         $acc_firm_info = new AccountancyFirmInformation();
-        $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        // $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        $acc_firm_info->accountancy_firm_reg_no =  uniqid();
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
         $acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
@@ -307,8 +321,8 @@ class AccFirmInfController extends Controller
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
         $acc_firm_info->declaration                  = $request->declaration;
         $acc_firm_info->status   = 0;
-        $acc_firm_info->form_fee = $request->form_fee;
-        $acc_firm_info->nrc_fee  = $request->nrc_fee;
+        // $acc_firm_info->form_fee = $request->form_fee;
+        // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
         $acc_firm_info->verify_status  = 0;
         $acc_firm_info->save();
@@ -351,12 +365,12 @@ class AccFirmInfController extends Controller
                 $audit_file->ppa_certificate    = json_encode($ppa_certi);
                 $audit_file->letterhead        = json_encode($letterhead);
                 $audit_file->tax_clearance    = json_encode($tax_clearance);
-                $audit_file->representative     = json_encode($representative);
+                // $audit_file->representative     = json_encode($representative);
                 $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
                 $audit_file->deeds_memo        = json_encode($deeds_memo);
                 $audit_file->certificate_incor    = json_encode($certi_incor);
-                $audit_file->form6_form26_form_e= json_encode($form6_26e);
-                $audit_file->form_a1           = json_encode($form_a1);
+                // $audit_file->form6_form26_form_e= json_encode($form6_26e);
+                // $audit_file->form_a1           = json_encode($form_a1);
                 $audit_file->certi_or_reg      = json_encode($certi_or_reg);
                 $audit_file->save();
 
@@ -419,11 +433,12 @@ class AccFirmInfController extends Controller
                 $non_audit_file->education_certificate  = json_encode($edu_cert);
                 $non_audit_file->owner_profile     = json_encode($owner_profile);
                 $non_audit_file->work_exp          = json_encode($work_exp);
-                $non_audit_file->nrc_passport      = json_encode($nrc_passport);
+                $non_audit_file->nrc_passport_front     = json_encode($nrc_passport_front);
+                $non_audit_file->nrc_passport_back      = json_encode($nrc_passport_back);
                 $non_audit_file->tax_clearance    = json_encode($tax_clearance);
                 $non_audit_file->permit_foreign= json_encode($permit_foreigns);
                 $non_audit_file->financial_statement    = json_encode($financial_statement);
-                $non_audit_file->representative     = json_encode($representative);
+                // $non_audit_file->representative     = json_encode($representative);
                 $non_audit_file->certi_or_reg      = json_encode($certi_or_reg);
                 $non_audit_file->deeds_memo        = json_encode($deeds_memo);
                 $non_audit_file->certificate_incor    = json_encode($certi_incor);
@@ -450,7 +465,7 @@ class AccFirmInfController extends Controller
                 $director_officer_non_audit->name       = $request->dona_name[$i];
                 $director_officer_non_audit->position   = $request->dona_position[$i];
                 $director_officer_non_audit->passport   = $request->dona_passport[$i];
-                $director_officer_non_audit->csc_no     = $request->dona_csc_no[$i];
+                // $director_officer_non_audit->csc_no     = $request->dona_csc_no[$i];
                 $director_officer_non_audit->accountancy_firm_info_id = $acc_firm_info->id;
                 $director_officer_non_audit->save();
             }
@@ -1227,6 +1242,51 @@ class AccFirmInfController extends Controller
         }
     }
 
+    public function nonAuditDateRange($id)
+    {
+        date_default_timezone_set("Asia/Yangon");
+        $date = AccountancyFirmInformation::where('id',$id)->get('register_date');
+        $reg_date = strtotime($date[0]['register_date']);
+        // $date_range = strtotime(date('2021-09-30'));
+        $date = AccountancyFirmInformation::find($id);
+        $register_date = Carbon::parse($date->register_date)->format('M');
+
+        $verify = "You are verified!";
+        $next = "Your registeration will start in next year!";
+        $renew = "Your registeration is expired! You need to submit new registeration form again.";
+
+        $accept_date = date("Y-m-d H:i:s", strtotime('+ 1 year', $reg_date));
+        $currentDate = date("Y-m-d");
+        $currentTime = date("H:i:s");
+        $currentDate =  date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
+        
+        if($currentDate >= $accept_date)
+        {
+            $renew_user = AccountancyFirmInformation::find($id);
+            $renew_user->verify_status = 3;
+            $renew_user->save();
+            // return $verify;
+            return response()->json($renew,200);
+        }
+
+        if('Oct' == $register_date || 'Nov' == $register_date || 'Dec' == $register_date)
+        {
+            $next_year_user = AccountancyFirmInformation::find($id);
+            $next_year_user->verify_status = 2;
+            $next_year_user->save();
+            // return $next;
+            return response()->json($next,200); 
+        }
+        else
+        {
+            $verify_user = AccountancyFirmInformation::find($id);
+            $verify_user->verify_status = 1;
+            $verify_user->save();
+            // return $verify;
+            return response()->json($verify,200);
+        }
+    }
+
     public function renewSubscribe($id)
     {
         $register_date = date('Y-m-d');
@@ -1235,8 +1295,15 @@ class AccFirmInfController extends Controller
         $data->save();
         return response()->json($data,200);
     }
+
     //check verify
     public function checkVerify($id)
+    {
+        $data = AccountancyFirmInformation::where('id',$id)->get('verify_status');
+        return response()->json($data,200);
+    }
+
+    public function nonAuditCheckVerify($id)
     {
         $data = AccountancyFirmInformation::where('id',$id)->get('verify_status');
         return response()->json($data,200);

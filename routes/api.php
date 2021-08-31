@@ -36,6 +36,7 @@ Route::patch('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 // Mentor
 Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
 Route::patch('/reject_mentor_student/{id}', 'MentorController@reject');
+Route::patch('/renewMentor/{id}', 'MentorController@renewMentor');
 
 Route::resource('/cpa_full_form','CpaFullFormController');
 Route::resource('/cpa_one_reg','CpaOneRegisterController');
@@ -142,11 +143,14 @@ Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResu
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
-// Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
+Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
+Route::get('/getNonAuditDateRange/{id}','AccFirmInfController@nonAuditDateRange');
 Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
+Route::get('/nonAuditCheckVerify/{id}','AccFirmInfController@nonAuditCheckVerify');
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
+// Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
@@ -236,3 +240,5 @@ Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent
 
 Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 
+// Get all courses
+Route::get('/get_courses','CourseController@getCourses');

@@ -90,16 +90,54 @@ class CpaTraAddmissionDirectController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $certificates = '/storage/student_info/'.$name;
-        }else{
+        } 
+        else{
             $certificates=null;
         }
+////Multiple University
+        // if($request->hasfile('uni_certificate'))
+        // {
+        //     foreach($request->file('uni_certificate') as $file)
+        //     {
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/acc_firm/',$name);
+        //     $certificates[] = $name;
+        //     }
+
+        // }else{
+        //     $certificates = null;
+        // }
+
+        // if(isset($request->uni_degree_name))
+        // {
+        //     foreach($request->uni_degree_name as $uni_degree_name){
+        //         $degree_name[] = $uni_degree_name;
+        //     }
+        // }
+        // if(isset($request->uni_name))
+        // {
+        //     foreach($request->uni_name as $uni_name){
+        //         $university_name[] = $uni_name;
+        //     }
+        // }
+        // if(isset($request->uni_roll_no))
+        // {
+        //     foreach($request->uni_roll_no as $uni_roll_no){
+        //         $roll_no[] = $uni_roll_no;
+        //     }
+        // }
+        // if($request->uni_degree_name){
+        //     $student_register->reg_reason = implode(",",$degree_name);
+        //     // $student_register->reg_reason = $request->reg_reason;
+        // }
+////multiple university
+       
 
         $date_of_birth = date('Y-m-d');
         $date = date('Y-m-d');
         $qualified_date = date('Y-m-d');
         $course_date = date('Y-m-d');
 
-        
         $student_info = new StudentInfo();
         $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng         =   $request->name_eng;
@@ -144,15 +182,19 @@ class CpaTraAddmissionDirectController extends Controller
         
         $education_histroy  =   new EducationHistroy();
         $education_histroy->student_info_id = $student_info->id;
-        $education_histroy->university_name = $request->university_name;
-        $education_histroy->degree_name     = $request->degree_name;
+        // $education_histroy->university_name = json_encode($university_name);
+        // $education_histroy->degree_name     =json_encode($degree_name);
+        // $education_histroy->certificate     = json_encode($certificates);
+        // $education_histroy->roll_number     = json_encode($roll_no);
+        $education_histroy->university_name = $request->$university_name;
+        $education_histroy->degree_name     =$request->$degree_name;
         $education_histroy->certificate     = $certificates;
         // $education_histroy->certificate     = json_encode($certificates);
 
         $education_histroy->qualified_date  = $qualified_date;
-        $education_histroy->roll_number     = $request->roll_number;
+        $education_histroy->roll_number     = $request->$roll_no;
         $education_histroy->save();
-
+        
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id          = $request->batch_id;
