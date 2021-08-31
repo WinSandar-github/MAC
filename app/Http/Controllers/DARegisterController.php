@@ -285,7 +285,6 @@ class DARegisterController extends Controller
             $student_infos = $student_infos->where('batch_id',$request->batch);
         }
         $student_infos=$student_infos->get();
-        return $student_infos;
         return response()->json([ 
             'data' => $student_infos,
             // 'test'=>$test
