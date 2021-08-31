@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\StudentRegister;
 use App\StudentInfo;
 use App\StudentCourseReg;
+use App\Course;
+use App\ExamRegister;
 
 class StudentRegisterController extends Controller
 {
@@ -429,6 +431,28 @@ class StudentRegisterController extends Controller
         }
         
     }
+
+    public function getAttendesStudent(Request $request)
+    {
+        
+        $student_infos = StudentRegister::with('student_info','course')->get();
+        return response()->json([
+            'data' => $student_infos
+        ]);
+
+        
+    }
+    public function ‌approveExamList(Request $request)
+    {
+        
+        $student_infos = ExamRegister::with('student_info','course')->get();
+        return response()->json([
+            'data' => $student_infos
+        ]);
+
+        
+    }
+
 
 
     

@@ -125,13 +125,16 @@ class DARegisterController extends Controller
         $student_info->email            =   strtolower($request->email);
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
-        $student_info->verify_code      =   uniqid();
+        // $student_info->verify_code      =   uniqid();
+        // $student_info->verify_code      =   mt_rand(1000,9999);
         // $data = array(
         //     'email' => 'macadmin@gmail.com',
         //     'verify_code' => $student_info['verify_code']
         // );
         // Mail::to($student_info['email'])->send(new ContactMail($data));
+        $student_info->verify_code      =   $request->verify_code;
         $student_info->verify_status    =   1;
+        $student_info->payment_method   =   $request->payment_method;
         $student_info->save();
 
         $student_job_histroy = new StudentJobHistroy;
@@ -165,6 +168,21 @@ class DARegisterController extends Controller
         $student_course->save();
 
         return response()->json($student_info,200);
+    }
+
+    public function send_email(Request $request)
+    {
+        $student_info = new StudentInfo();
+        // $student_info->verify_code = mt_rand(1000,9999);
+        $student_info->verify_code = '1234';
+        // $data = array(
+        //     'email' => 'macadmin@gmail.com',
+        //     'verify_code' => $student_info['verify_code']
+        // );
+        // Mail::to($request['email'])->send(new ContactMail($data));
+        return response()->json([
+            'data' => $student_info->verify_code
+        ],200);
     }
 
     public function show($id)
@@ -266,8 +284,8 @@ class DARegisterController extends Controller
          $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
          $status = $student_register != null ? $student_register->status : null;
-         
-        return response()->json($status,200);
+         print_r($stu_course_reg);
+        //return response()->json($stu_course_reg,200);
 
     }
 
@@ -280,6 +298,7 @@ class DARegisterController extends Controller
 
     public function FilterApplicationList(Request $request)
     {
+        
         $student_infos = StudentCourseReg::with('student_info','batch');
         // $test=StudentInfo::where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc)->get();
         if($request->name!="")
@@ -302,6 +321,7 @@ class DARegisterController extends Controller
             $student_infos = $student_infos->where('batch_id',$request->batch);
         }
         $student_infos=$student_infos->get();
+        return $student_infos;
         return response()->json([ 
             'data' => $student_infos,
             // 'test'=>$test
