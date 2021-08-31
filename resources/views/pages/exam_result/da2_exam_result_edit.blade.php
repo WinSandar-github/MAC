@@ -29,17 +29,17 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="row">
-                                                        
-                                                        <div class="col-md-3 text-left" style="font-weight:bold;">Name</div>
+                                                        <!-- <div class="col-md-1"></div> -->
+                                                        <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
                                                         <div class="col-md-7 text-left">
-                                                            <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
+                                                            <input type="text" name="filter_by_name" class="form-control" placeholder="Student Name">
                                                         </div> 
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="row">
-                                                    
-                                                        <div class="col-md-3 text-left" style="font-weight:bold;">Grade</div>
+                                                    <!-- <div class="col-md-1"></div> -->
+                                                        <div class="col-md-3 text-left" style="font-weight:bold;">Remark</div>
                                                         <div class="col-md-7 text-left">
                                                             <select class="form-control form-select" name="selected_grade_id" id="selected_grade_id">
                                                                 <option value="all" selected>All</option>
@@ -55,7 +55,7 @@
                                                 <div class="col-md-6">
                                                     <div class="row">
                                                     <!-- <div class="col-md-1"></div> -->
-                                                        <div class="col-md-3 text-left" style="font-weight:bold;">Batch</div>
+                                                        <div class="col-md-4 text-left" style="font-weight:bold;">Batch Number</div>
                                                         <div class="col-md-7 text-left">
                                                             <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                                                 <option value="all" selected>All Batches</option>
@@ -87,14 +87,14 @@
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Student Name</th>
                                                             <th class="bold-font-weight" >Exam Type</th>
-                                                            <th class="bold-font-weight" >Grade</th>
-                                                            <th class="bold-font-weight" >Batch Name</th>
+                                                            <th class="bold-font-weight" >Remark</th>
+                                                            <th class="bold-font-weight" >Batch Number</th>
                                                             <th class="bold-font-weight" >Module</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="tbl_exam_pending_result_body" class="hoverTable">
+                                                        <tbody id="tbl_exam_pending_result_body" class="hoverTable text-left">
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -104,14 +104,14 @@
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Student Name</th>
                                                             <th class="bold-font-weight" >Exam Type</th>
-                                                            <th class="bold-font-weight" >Grade</th>
-                                                            <th class="bold-font-weight" >Batch Name</th>
+                                                            <th class="bold-font-weight" >Remark</th>
+                                                            <th class="bold-font-weight" >Batch Number</th>
                                                             <th class="bold-font-weight" >Module</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="tbl_exam_approved_result_body" class="hoverTable">
+                                                        <tbody id="tbl_exam_approved_result_body" class="hoverTable text-left">
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -121,14 +121,14 @@
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Name</th>
+                                                            <th class="bold-font-weight" >Student Name</th>
                                                             <th class="bold-font-weight" >Exam Type</th>
-                                                            <th class="bold-font-weight" >Grade</th>
-                                                            <th class="bold-font-weight" >Batch Name</th>
+                                                            <th class="bold-font-weight" >Remark</th>
+                                                            <th class="bold-font-weight" >Batch Number</th>
                                                             <th class="bold-font-weight" >Module</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="tbl_exam_rejected_result_body" class="hoverTable">
+                                                        <tbody id="tbl_exam_rejected_result_body" class="hoverTable text-left">
                                                         </tbody>
                                                     </table>
                                                 </div>

@@ -45,7 +45,8 @@ class CpaTraAddmissionDirectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
+        // return $request;
         
          $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
@@ -90,6 +91,9 @@ class CpaTraAddmissionDirectController extends Controller
             $file->move(public_path().'/storage/student_info/',$name);
             $certificates = '/storage/student_info/'.$name;
         } 
+        else{
+            $certificates=null;
+        }
 ////Multiple University
         // if($request->hasfile('uni_certificate'))
         // {
@@ -127,6 +131,7 @@ class CpaTraAddmissionDirectController extends Controller
         //     // $student_register->reg_reason = $request->reg_reason;
         // }
 ////multiple university
+       
 
         $date_of_birth = date('Y-m-d');
         $date = date('Y-m-d');
@@ -184,6 +189,7 @@ class CpaTraAddmissionDirectController extends Controller
         $education_histroy->university_name = $request->$university_name;
         $education_histroy->degree_name     =$request->$degree_name;
         $education_histroy->certificate     = $certificates;
+        // $education_histroy->certificate     = json_encode($certificates);
 
         $education_histroy->qualified_date  = $qualified_date;
         $education_histroy->roll_number     = $request->$roll_no;
