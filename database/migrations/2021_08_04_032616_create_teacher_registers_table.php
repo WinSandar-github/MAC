@@ -32,6 +32,7 @@ class CreateTeacherRegistersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->text('exp_desc');
+            $table->date('renew_date')->default(null)->nullable();
             $table->integer('approve_reject_status')->default(0);
             $table->timestamps();
         });

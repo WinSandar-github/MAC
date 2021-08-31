@@ -56,16 +56,47 @@ class DARegisterController extends Controller
             $image = '/storage/student_info/'.$name;
         } 
 
-        if ($request->hasfile('certificate')) {
-            $file = $request->file('certificate');
+        // if ($request->hasfile('certificate')) {
+        //     $file = $request->file('certificate');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_info/',$name);
+        //     $certificate = '/storage/student_info/'.$name;
+        // } 
+
+        if($request->hasfile('certificate'))
+        {
+            foreach($request->file('certificate') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $certificate[] = '/storage/student_info/'.$name;
+            }        
+        }else{
+            $certificate = null;
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
-            $certificate = '/storage/student_info/'.$name;
+            $nrc_front = '/storage/student_info/'.$name;
         } 
 
-        $date_of_birth = date('Y-m-d');
-        $date = date('Y-m-d');
-        $qualified_date = date('Y-m-d');
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        } 
+
+        // $date_of_birth = date('Y-m-d');
+        // $date = date('Y-m-d');
+        // $qualified_date = date('Y-m-d');
+        // $course_date = date('Y-m-d');
+
+        $date_of_birth = $request->date_of_birth;
+        $date = $request->date_of_birth;
+        $qualified_date = $request->qualified_date;
         $course_date = date('Y-m-d');
 
         $student_info = new StudentInfo();
@@ -75,11 +106,14 @@ class DARegisterController extends Controller
         $student_info->nrc_township     =   $request['nrc_township'] ;
         $student_info->nrc_citizen      =    $request['nrc_citizen'] ;
         $student_info->nrc_number       =   $request['nrc_number'];
+        $student_info->nrc_front        =   $nrc_front;
+        $student_info->nrc_back         =   $nrc_back;
         $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
-        $student_info->date_of_birth    =   date('Y-m-d',strtotime($request->date_of_birth)); 
+        // $student_info->date_of_birth    =   date('Y-m-d',strtotime($request->date_of_birth)); 
+        $student_info->date_of_birth    =   $date_of_birth;
         $student_info->address          =   $request->address;
         $student_info->current_address  =   $request->current_address;
         $student_info->phone            =   $request->phone;
@@ -91,13 +125,10 @@ class DARegisterController extends Controller
         $student_info->email            =   strtolower($request->email);
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
-        $student_info->verify_code      =   uniqid();
-        $data = array(
-            'email' => 'macadmin@gmail.com',
-            'verify_code' => $student_info['verify_code']
-        );
-        Mail::to($student_info['email'])->send(new ContactMail($data));
+
         $student_info->verify_status    =   1;
+        $student_info->verify_code      =   $request->verify_code;
+        $student_info->payment_method   =   $request->payment_method;
         $student_info->save();
 
         $student_job_histroy = new StudentJobHistroy;
@@ -115,8 +146,10 @@ class DARegisterController extends Controller
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     = $request->degree_name;
-        $education_histroy->certificate     = $certificate;
-        $education_histroy->qualified_date  = date('Y-m-d',strtotime($request->qualified_date)); 
+        // $education_histroy->certificate     = $certificate;
+        $education_histroy->certificate     = json_encode($certificate);
+        // $education_histroy->qualified_date  = date('Y-m-d',strtotime($request->qualified_date)); 
+        $education_histroy->qualified_date  = $qualified_date; 
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
 
@@ -129,6 +162,21 @@ class DARegisterController extends Controller
         $student_course->save();
 
         return response()->json($student_info,200);
+    }
+
+    public function send_email(Request $request)
+    {
+        $student_info = new StudentInfo();
+        $student_info->verify_code = mt_rand(1000,9999);
+        // $student_info->verify_code = '1234';
+        $data = array(
+            'email' => 'macadmin@gmail.com',
+            'verify_code' => $student_info['verify_code']
+        );
+        Mail::to($request['email'])->send(new ContactMail($data));
+        return response()->json([
+            'data' => $student_info
+        ],200);
     }
 
     public function show($id)
@@ -230,8 +278,8 @@ class DARegisterController extends Controller
          $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
          $status = $student_register != null ? $student_register->status : null;
-         
-        return response()->json($status,200);
+         //print_r($stu_course_reg);
+        return response()->json($stu_course_reg,200);
 
     }
 
@@ -244,6 +292,7 @@ class DARegisterController extends Controller
 
     public function FilterApplicationList(Request $request)
     {
+        
         $student_infos = StudentCourseReg::with('student_info','batch');
         // $test=StudentInfo::where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc)->get();
         if($request->name!="")

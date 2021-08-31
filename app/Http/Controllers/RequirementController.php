@@ -32,6 +32,7 @@ class RequirementController extends Controller
         $requirement->name          = $request->name;
         $requirement->require_exam  =   1;
         // $requirement->course_id     = $request->course_id;
+        $requirement->type     = $request->type;
         $requirement->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -65,6 +66,7 @@ class RequirementController extends Controller
         $requirement->name          = $request->name;
         $requirement->require_exam  =   1;
         // $requirement->course_id     = $request->course_id;
+        $requirement->type     = $request->type;
         $requirement->save();
         return response()->json([
             'message' => "Update Successfully"

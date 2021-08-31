@@ -264,7 +264,8 @@ class PAPPController extends Controller
         $papp->renew_183_recomm=$renew_183_recomm;
         $papp->renew_not_fulltime_recomm=$renew_not_fulltime_recomm;
         $papp->renew_rule_confession=$renew_rule_confession;
-        $papp->renew_status=0;
+        $papp->renew_accepted_date=date('Y-m-d');
+        $papp->renew_status=1;
         $papp->save();        
         return response()->json([
             'message' => "Insert Successfully"

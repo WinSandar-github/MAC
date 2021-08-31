@@ -21,6 +21,9 @@ class CreateStudentRegisterTable extends Migration
             $table->unsignedBigInteger('invoice_id');
             $table->date('invoice_date');
             $table->integer('type');
+            $table->string('batch_no')->nullable();
+            $table->string('part_no')->nullable();
+            $table->string('personal_no')->nullable();
             $table->string('academic_year')->nullable();
             $table->string('direct_access_no')->nullable();
             $table->string('entry_success_no')->nullable();

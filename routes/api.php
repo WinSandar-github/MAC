@@ -122,6 +122,7 @@ Route::resource('/da_register', 'DARegisterController');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
+Route::post('/send_email', 'DARegisterController@send_email');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
@@ -145,6 +146,7 @@ Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
+Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
@@ -153,6 +155,8 @@ Route::get('/get_requirement_id','CourseController@getRequirement');
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
+Route::post('/loginValidate', 'LoginController@loginValidate');
+Route::post('/mobileLogin', 'LoginController@mobileLogin');
 
 //Store DA/CPA Two Application Form
 Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
@@ -223,8 +227,14 @@ Route::post('/update_mentor','StudentRegisterController@updateMentor');
 //Mentor Status
 Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
 
+//Store app and register on student register
+Route::post('store_student_app_reg','StudentRegisterController@store_student_app_reg');
 //Email Verification
 Route::patch('/check_code/{id}', 'DARegisterController@checkCode');
+
+Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
+
+Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 
 // Get all courses
 Route::get('/get_courses','CourseController@getCourses');

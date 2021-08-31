@@ -10,7 +10,9 @@ var passport_modal;
 var attached_modal;
 
 function getCPAFFList(){
-    destroyDatatable("#tbl_cpaff_list", "#tbl_cpaff_list_body");    
+    destroyDatatable("#tbl_cpaff_pending_list", "#tbl_cpaff_pending_list_body");  
+    destroyDatatable("#tbl_cpaff_approved_list", "#tbl_cpaff_approved_list_body");  
+    destroyDatatable("#tbl_cpaff_rejected_list", "#tbl_cpaff_rejected_list_body");    
     show_loader();
     $.ajax({
         url: BACKEND_URL+"/cpa_ff",
@@ -42,6 +44,9 @@ function getCPAFFList(){
                     nrc    +=   element.student_info.nrc_township;
                     nrc    +=   "("+ element.student_info.nrc_citizen+")";
                     nrc    +=   element.student_info.nrc_number;
+                
+                if(element.status==0)
+                {
                 var tr = "<tr>";
                     tr += "<td>" +  + "</td>";
                     tr += "<td ><div class='btn-group'>";
@@ -54,13 +59,52 @@ function getCPAFFList(){
                     tr += "<td>" + status + "</td>";
                     
                     tr += "</tr>";
-                    $("#tbl_cpaff_list_body").append(tr);     
+                    $("#tbl_cpaff_pending_list_body").append(tr);
+                }     
+                else if(element.status==1)
+                {
+                var tr = "<tr>";
+                    tr += "<td>" +  + "</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr +="<button type='button' class='btn btn-primary btn-xs' onClick='showCPAFFList(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + nrc + "</td>";
+                    tr += "<td>" + element.student_info.registration_no+ "</td>";
+                    tr += "<td>" + degree+ "</td>";
+                    tr += "<td>" + status + "</td>";
+                    
+                    tr += "</tr>";
+                    $("#tbl_cpaff_approved_list_body").append(tr);
+                }     
+                else if(element.status==2)
+                {
+                var tr = "<tr>";
+                    tr += "<td>" +  + "</td>";
+                    tr += "<td ><div class='btn-group'>";
+                    tr +="<button type='button' class='btn btn-primary btn-xs' onClick='showCPAFFList(" + element.id + ")'>" +
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + nrc + "</td>";
+                    tr += "<td>" + element.student_info.registration_no+ "</td>";
+                    tr += "<td>" + degree+ "</td>";
+                    tr += "<td>" + status + "</td>";
+                    
+                    tr += "</tr>";
+                    $("#tbl_cpaff_rejected_list_body").append(tr);
+                }     
             });
-            getIndexNumber('#tbl_cpaff_list tr');
-            createDataTable("#tbl_cpaff_list");      
+            getIndexNumber('#tbl_cpaff_pending_list tr');
+            createDataTable("#tbl_cpaff_pending_list");      
+            getIndexNumber('#tbl_cpaff_approved_list tr');
+            createDataTable("#tbl_cpaff_approved_list");      
+            getIndexNumber('#tbl_cpaff_rejected_list tr');
+            createDataTable("#tbl_cpaff_rejected_list");      
         },
         error:function (message){
-            dataMessage(message, "#tbl_cpaff_list", "#tbl_cpaff_list_body");        
+            dataMessage(message, "#tbl_cpaff_pending_list", "#tbl_cpaff_pending_list_body");  
+            dataMessage(message, "#tbl_cpaff_approved_list", "#tbl_cpaff_approved_list_body");         
+            dataMessage(message, "#tbl_cpaff_rejected_list", "#tbl_cpaff_rejected_list_body");   
         }
     });
 }

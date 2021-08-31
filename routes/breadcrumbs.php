@@ -166,7 +166,7 @@ Breadcrumbs::for('audit-firm-initial-accountancy', function ($trail) {
     $trail->push('Accountancy Firm Information(Initial)', route('page.index', 'audit-firm-initial-accountancy'));
 });
 Breadcrumbs::for('audit-firm-list', function ($trail) {
-    $trail->parent('administration');
+    // $trail->parent('administration');
     $trail->push('Audit Firm Registration List', route('page.index', 'audit-firm-list'));
 });
 Breadcrumbs::for('audit-firm-renew-accountancy', function ($trail) {
@@ -197,7 +197,7 @@ Breadcrumbs::for('non-audit-firm-foreign-renew', function ($trail) {
     $trail->push('Foreign Firm Information(Renew)', route('page.index', 'non-audit-firm-foreign-renew'));
 });
 Breadcrumbs::for('non-audit-firm-list', function ($trail) {
-    $trail->parent('administration');
+    // $trail->parent('administration');
     $trail->push('Non_Audit Firm Registration List', route('page.index', 'non-audit-firm-list'));
 });
 Breadcrumbs::for('cpa_part1_registration', function ($trail) {
@@ -376,8 +376,8 @@ Breadcrumbs::for('cpa_list', function ($trail) {
 });
 // CPAFF List
 Breadcrumbs::for('cpa_ff_registration_list', function ($trail) {
-    $trail->parent('administration');
-    $trail->push('CPA Full Fleged Form List', route('page.index', 'cpa_ff_registration_list'));
+    // $trail->parent('administration');
+    $trail->push('CPA Full-Fledged Form List', route('page.index', 'cpa_ff_registration_list'));
 });
 Breadcrumbs::for('cpa_ff_edit', function ($trail) {
     $trail->parent('cpa_ff_registration_list');
@@ -423,7 +423,7 @@ Breadcrumbs::for('cpa_two_mac_edit', function ($trail) {
 
 // PAPP List
 Breadcrumbs::for('papp_registration_list', function ($trail) {
-    $trail->parent('administration');
+    // $trail->parent('administration');
     $trail->push('PAPP Form List', route('page.index', 'papp_registration_list'));
 });
 Breadcrumbs::for('papp_edit', function ($trail) {
@@ -436,9 +436,9 @@ Breadcrumbs::for('သင်တန်း', function ($trail) {
     $trail->parent('administration');
     $trail->push('သင်တန်း', route('page.index', 'course'));
 });
-Breadcrumbs::for('ဘွဲ့လိုအပ်ချက်', function ($trail) {
+Breadcrumbs::for('အရည်အချင်းသတ်မှတ်ချက်', function ($trail) {
     $trail->parent('administration');
-    $trail->push('ဘွဲ့လိုအပ်ချက်', route('page.index', 'requirement_list'));
+    $trail->push('အရည်အချင်းသတ်မှတ်ချက်', route('page.index', 'requirement_list'));
 });
 
 //Mentor
