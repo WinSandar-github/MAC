@@ -1,3 +1,4 @@
+
 @extends('layouts.app', [
     'class' => '',
     'elementActive' => 'course_list'
