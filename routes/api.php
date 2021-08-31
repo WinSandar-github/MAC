@@ -231,3 +231,8 @@ Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
 Route::post('store_student_app_reg','StudentRegisterController@store_student_app_reg');
 //Email Verification
 Route::patch('/check_code/{id}', 'DARegisterController@checkCode');
+
+Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
+
+Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
+

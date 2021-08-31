@@ -262,6 +262,7 @@ class DARegisterController extends Controller
 
     public function FilterApplicationList(Request $request)
     {
+        
         $student_infos = StudentCourseReg::with('student_info','batch');
         // $test=StudentInfo::where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc)->get();
         if($request->name!="")
@@ -284,6 +285,7 @@ class DARegisterController extends Controller
             $student_infos = $student_infos->where('batch_id',$request->batch);
         }
         $student_infos=$student_infos->get();
+        return $student_infos;
         return response()->json([ 
             'data' => $student_infos,
             // 'test'=>$test
