@@ -91,15 +91,9 @@ class DARegisterController extends Controller
         $student_info->email            =   strtolower($request->email);
         $student_info->course_type_id   =   1;
         $student_info->password         =   Hash::make($request->password);
-        // $student_info->verify_code      =   uniqid();
-        // $student_info->verify_code      =   mt_rand(1000,9999);
-        // $data = array(
-        //     'email' => 'macadmin@gmail.com',
-        //     'verify_code' => $student_info['verify_code']
-        // );
-        // Mail::to($student_info['email'])->send(new ContactMail($data));
-        $student_info->verify_code      =   $request->verify_code;
+
         $student_info->verify_status    =   1;
+        $student_info->verify_code      =   $request->verify_code;
         $student_info->payment_method   =   $request->payment_method;
         $student_info->save();
 
@@ -137,15 +131,15 @@ class DARegisterController extends Controller
     public function send_email(Request $request)
     {
         $student_info = new StudentInfo();
-        // $student_info->verify_code = mt_rand(1000,9999);
-        $student_info->verify_code = '1234';
-        // $data = array(
-        //     'email' => 'macadmin@gmail.com',
-        //     'verify_code' => $student_info['verify_code']
-        // );
-        // Mail::to($request['email'])->send(new ContactMail($data));
+        $student_info->verify_code = mt_rand(1000,9999);
+        // $student_info->verify_code = '1234';
+        $data = array(
+            'email' => 'macadmin@gmail.com',
+            'verify_code' => $student_info['verify_code']
+        );
+        Mail::to($request['email'])->send(new ContactMail($data));
         return response()->json([
-            'data' => $student_info->verify_code
+            'data' => $student_info
         ],200);
     }
 
