@@ -19,7 +19,7 @@ class CreateDirectorsOfficersNonAuditsTable extends Migration
             $table->string('name');
             $table->string('position');
             $table->string('passport');
-            $table->string('csc_no');
+            // $table->string('csc_no');
             $table->timestamps();
 
             $table->foreign('accountancy_firm_info_id')
