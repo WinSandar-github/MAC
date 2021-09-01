@@ -46,13 +46,13 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {  
+    {
         // return $request->requirement_id;
         $requirements = [];
         foreach($request->requirement_id as $require){
             array_push($requirements,$require);
-        }   
-        // return $requirements;  
+        }
+        // return $requirements;
 
         $request->validate([
             'name'              => 'required',
@@ -68,7 +68,7 @@ class CourseController extends Controller
             'requirement_id'     =>  'required'
         ]);
         $course = new Course();
-        
+
         $course->name               = $request->name;
         $course->form_fee           = $request->form_fee;
         $course->selfstudy_registration_fee       = $request->selfstudy_registration_fee;
@@ -101,7 +101,7 @@ class CourseController extends Controller
             'data' => $course
         ],200);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -112,7 +112,7 @@ class CourseController extends Controller
     public function edit($id)
     {
     }
-    
+
     /**
      * Update the specified resource in storage.
      *
@@ -125,7 +125,7 @@ class CourseController extends Controller
         $requirements = [];
         foreach($request->requirement_id as $require){
             array_push($requirements,$require);
-        } 
+        }
 
         $course = Course::find($id);
         $course->name               = $request->name;
@@ -144,7 +144,7 @@ class CourseController extends Controller
         return response()->json([
             'message' => "Update Successfully"
         ],200);
-        
+
     }
 
     /**
@@ -196,5 +196,13 @@ class CourseController extends Controller
             ],200);
         }
     }
-    
+
+    public function getCourses()
+    {
+        $courses = Course::get();
+        return response()->json([
+            'data' => $courses
+        ],200);
+    }
+
 }

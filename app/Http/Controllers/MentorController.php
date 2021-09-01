@@ -102,6 +102,7 @@ class MentorController extends Controller
         $mentor->training_absent_reason      = $request->training_absent_reason;
         $mentor->type      = $request->type;
         $mentor->status      = $request->status;
+        $mentor->reg_date = date('Y-m-d');
         $mentor->save();
 
         // $std_info = new StudentInfo();
@@ -254,8 +255,12 @@ class MentorController extends Controller
 
     public function approve($id)
     {
+        $std_info = StudentInfo::where('mentor_id', $id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
         $approve = Mentor::find($id);
         $approve->status = 1;
+        $approve->renew_date = date('Y-m-d');
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -276,5 +281,14 @@ class MentorController extends Controller
     {
         $data = StudentInfo::where('id',$id)->get('approve_reject_status');
         return response()->json($data,200);
+    }
+    public function renewMentor($id)
+    {
+        $approve = Mentor::find($id);
+        $approve->renew_date = date('Y-m-d');
+        $approve->save();
+        return response()->json([
+            'message' => 'You have renewed successfully.'
+        ],200);
     }
 }

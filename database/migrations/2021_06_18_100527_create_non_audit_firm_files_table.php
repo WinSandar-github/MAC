@@ -22,11 +22,12 @@ class CreateNonAuditFirmFilesTable extends Migration
             $table->text('education_certificate')->nullable();
             $table->text('owner_profile')->nullable();
             $table->text('work_exp')->nullable();
-            $table->text('nrc_passport')->nullable();
+            $table->text('nrc_passport_front')->nullable();
+            $table->text('nrc_passport_back')->nullable();
             $table->text('tax_clearance')->nullable();
             $table->text('permit_foreign')->nullable();
             $table->text('financial_statement')->nullable();
-            $table->text('representative')->nullable();
+            // $table->text('representative')->nullable();
             $table->text('certi_or_reg')->nullable();
             $table->text('deeds_memo')->nullable();
             $table->text('certificate_incor')->nullable();
