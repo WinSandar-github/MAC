@@ -19,12 +19,12 @@ class CreateAuditFirmFilesTable extends Migration
             $table->text('ppa_certificate')->nullable();
             $table->text('letterhead')->nullable();
             $table->text('tax_clearance')->nullable();
-            $table->text('representative')->nullable();
+            // $table->text('representative')->nullable();
             $table->text('certi_or_reg')->nullable();
             $table->text('deeds_memo')->nullable();
             $table->text('certificate_incor')->nullable();
-            $table->text('form6_form26_form_e')->nullable();
-            $table->text('form_a1')->nullable();
+            // $table->text('form6_form26_form_e')->nullable();
+            // $table->text('form_a1')->nullable();
             $table->text('tax_reg_certificate')->nullable();
             $table->timestamps();
 

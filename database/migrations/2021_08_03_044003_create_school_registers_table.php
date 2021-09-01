@@ -32,6 +32,8 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->integer('approve_reject_status')->default(0);
+            $table->date('reg_date');
+            $table->date('renew_date')->default(null)->nullable();
             $table->timestamps();
         });
     }
