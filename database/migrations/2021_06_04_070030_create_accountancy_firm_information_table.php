@@ -34,9 +34,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
             $table->integer('status');
-            $table->string('image')->nullable();
-            $table->string('nrc_front')->nullable();
-            $table->string('nrc_back')->nullable();
+            $table->string('image')->nullable();            
             // $table->integer('form_fee');
             // $table->integer('nrc_fee');
             $table->date('register_date');
