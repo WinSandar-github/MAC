@@ -333,10 +333,7 @@ class AccFirmInfController extends Controller
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
         $acc_firm_info->image  = $image;
-        if($request->audit_firm_type_id == 2){
-          $acc_firm_info->nrc_front  = $nrc_front;
-          $acc_firm_info->nrc_back  = $nrc_back;
-        }
+                
         $acc_firm_info->verify_status  = 0;
         $acc_firm_info->save();
 
