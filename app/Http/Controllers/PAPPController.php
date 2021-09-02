@@ -19,6 +19,15 @@ class PAPPController extends Controller
     }
     public function store(Request $request)
     {
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }else{
+            $profile_photo=null;
+        }
+
         if ($request->hasfile('cpa')) {
             $cpa_file = $request->file('cpa');
             $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
@@ -127,6 +136,7 @@ class PAPPController extends Controller
 
         $papp  = new Papp();
         $papp->student_id                   = $request->student_id;
+        $papp->profile_photo                =   $profile_photo;
         $papp->cpa                          =   $cpa;
         $papp->ra                           =   $ra;
         $papp->foreign_degree               =   json_encode($degree);
