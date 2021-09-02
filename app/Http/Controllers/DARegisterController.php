@@ -31,6 +31,7 @@ class DARegisterController extends Controller
     public function store(Request $request)
     {
         
+        
         //$nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
@@ -73,6 +74,19 @@ class DARegisterController extends Controller
             }        
         }else{
             $certificate = null;
+        }
+
+        if($request->hasfile('recommend_letter'))
+        {
+            
+            $file = $request->file('recommend_letter') ;
+        
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $rec_letter = '/storage/student_info/'.$name;
+                 
+        }else{
+            $rec_letter = null;
         }
 
         if ($request->hasfile('nrc_front')) {
@@ -129,6 +143,7 @@ class DARegisterController extends Controller
         $student_info->verify_status    =   1;
         $student_info->verify_code      =   $request->verify_code;
         $student_info->payment_method   =   $request->payment_method;
+        $student_info->recommend_letter =   $rec_letter;
         $student_info->save();
 
         $student_job_histroy = new StudentJobHistroy;
@@ -281,11 +296,9 @@ class DARegisterController extends Controller
          
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
          $status = $student_register != null ? $student_register->status : null;
-
-        // print_r($stu_course_reg);
-        // return response()->json($stu_course_reg,200);
-         return response()->json($status,200);      
-
+ 
+         return response()->json($status,200);
+ 
 
     }
 

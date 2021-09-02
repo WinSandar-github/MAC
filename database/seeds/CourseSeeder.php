@@ -29,7 +29,7 @@ class CourseSeeder extends Seeder
                  
             ),
             array(
-                'name'               => "Diploma In Accountancy Part One"  ,
+                'name'               => "Diploma In Accountancy Part Two"  ,
                 'form_fee'           => 1000,  
                 'selfstudy_registration_fee'       => 25000 ,
                 'privateschool_registration_fee'   => 25000 ,
@@ -43,7 +43,7 @@ class CourseSeeder extends Seeder
                  
             ),
             array(
-                'name'               => "Certified Public Accountant Part Two"  ,
+                'name'               => "Certified Public Accountant Part One"  ,
                 'form_fee'           => 1000,  
                 'selfstudy_registration_fee'       => 25000 ,
                 'privateschool_registration_fee'   => 25000 ,
