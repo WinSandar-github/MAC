@@ -288,7 +288,7 @@
                         <li class="{{ $elementActive == 'requirement_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'requirement_list') }}">
                                 <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('ဘွဲ့လိုအပ်ချက်') }}</span>
+                                <span>{{ __('အရည်အချင်းသတ်မှတ်ချက်') }}</span>
                             </a>
                         </li>
                     </ul>
