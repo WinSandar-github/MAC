@@ -17,8 +17,9 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->id();
             $table->unsignedBigInteger('audit_firm_type_id');
             //$table->unsignedBigInteger('local_foreign_id');
-            $table->unsignedBigInteger('local_foreign_type')->nullable();
+            $table->unsignedBigInteger('local_foreign_type')->nullable();            
             $table->string('accountancy_firm_reg_no');
+            $table->string('profile_photo')->nullable();
             $table->string('accountancy_firm_name');
             $table->string('township');
             $table->string('postcode');
