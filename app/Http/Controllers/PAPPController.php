@@ -61,11 +61,11 @@ class PAPPController extends Controller
         {
             foreach($request->file('foreign_degree') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_papp/',$name);
                 $degree[] = '/storage/student_papp/'.$name;
             }
-        
+
         }else{
             $degree = null;
         }
@@ -167,7 +167,7 @@ class PAPPController extends Controller
         $papp = Papp::where('id',$id)->with('student_info','student_job', 'student_education_histroy')->get();
         return response()->json([
             'data'  => $papp
-        ]);        
+        ]);
     }
 
     public function approve($id)
@@ -176,7 +176,7 @@ class PAPPController extends Controller
         $approve = Papp::find($id);
         if($approve->status==0)
         {
-            $approve->status = 1;            
+            $approve->status = 1;
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
         }
@@ -219,8 +219,6 @@ class PAPPController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_papp/',$name);
             $renew_papp_reg = '/storage/student_papp/'.$name;
-        }else{
-            $renew_papp_reg="";
         }
 
         if ($request->hasfile('renew_micpa')) {
@@ -274,9 +272,10 @@ class PAPPController extends Controller
         $papp->renew_183_recomm=$renew_183_recomm;
         $papp->renew_not_fulltime_recomm=$renew_not_fulltime_recomm;
         $papp->renew_rule_confession=$renew_rule_confession;
+        $papp->profile_photo=$profile_photo;
         $papp->renew_accepted_date=date('Y-m-d');
         $papp->renew_status=1;
-        $papp->save();        
+        $papp->save();
         return response()->json([
             'message' => "You have renewed successfully"
         ],200);
