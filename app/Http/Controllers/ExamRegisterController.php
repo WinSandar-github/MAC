@@ -205,6 +205,7 @@ class ExamRegisterController extends Controller
         $exam->last_ans_module = $request->last_ans_module;
         $exam->date = $date;
         $exam->invoice_date = $invoice_date;
+        $exam->private_school_id = $request->private_school_id;
         $exam->private_school_name = $request->private_school_name;
         $exam->grade = 0;
         $exam->batch_id = $batch_id;

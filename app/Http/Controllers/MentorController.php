@@ -135,11 +135,11 @@ class MentorController extends Controller
         $mentor->reg_date = date('Y-m-d');
         $mentor->save();
 
-        // $std_info = new StudentInfo();
-        // $std_info->mentor_id = $mentor->id;
+        $std_info = new StudentInfo();
+        $std_info->mentor_id = $mentor->id;
         // $std_info->email = $request->email;
         // $std_info->password = Hash::make($request->password);
-        // $std_info->save();
+        $std_info->save();
         return response()->json([
             'message' => "Successfully Added"
         ]);
@@ -284,8 +284,9 @@ class MentorController extends Controller
     // }
 
     public function approve($id)
-    {
+    { 
         $std_info = StudentInfo::where('mentor_id', $id)->first();
+        
         $std_info->approve_reject_status = 1;
         $std_info->save();
         $approve = Mentor::find($id);
