@@ -242,3 +242,7 @@ Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 
 // Get all courses
 Route::get('/get_courses','CourseController@getCourses');
+
+//Unique Email and NRC Check in DA One Application
+Route::post('unique_email', 'DARegisterController@unique_email');
+// Route::post('unique_nrc', 'DARegisterController@unique_nrc');
