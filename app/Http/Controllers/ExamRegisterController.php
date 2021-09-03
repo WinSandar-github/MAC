@@ -91,7 +91,7 @@ class ExamRegisterController extends Controller
         // return response()->json([
         //     'data' => $exam_register
         // ],200);
-        $exam_register = ExamRegister::where('id',$id)->get();
+        $exam_register =  ExamRegister::with('student_info','batch')->where('id',$id)->get();
         return response()->json([
             'data' => $exam_register
         ],200);

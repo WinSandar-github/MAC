@@ -1297,11 +1297,21 @@ class AccFirmInfController extends Controller
         }
     }
 
-    public function renewSubscribe($id)
+    public function renewSubscribe(Request $request)
     {
         $register_date = date('Y-m-d');
-        $data = AccountancyFirmInformation::where('id',$id)->first();
+
+        // profile photo
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $image = '/storage/student_info/'.$name;
+        }
+
+        $data = AccountancyFirmInformation::where('id',$request->id)->first();
         $data->register_date = $register_date;
+        $data->image = $image;
         $data->save();
         return response()->json($data,200);
     }
