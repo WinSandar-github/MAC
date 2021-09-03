@@ -281,12 +281,9 @@ class DARegisterController extends Controller
          
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
          $status = $student_register != null ? $student_register->status : null;
-<<<<<<< HEAD
-         // print_r($stu_course_reg);
-        return response()->json($stu_course_reg,200);
-=======
+         
+         // return response()->json($stu_course_reg,200);
          return response()->json($status,200);
->>>>>>> 78d05fa9d4ce00187c60b12cb19f03d334efb987
 
     }
 
@@ -337,4 +334,27 @@ class DARegisterController extends Controller
             'data' => $data
         ],200);
     }
+
+    public function unique_email(Request $request)
+    {
+        $emailcheck = StudentInfo::where('email', $request['email'])->orWhere('nrc_number', $request['nrc_number'])->first();
+        return $emailcheck;
+        if($emailcheck)
+        {
+            return response()->json([
+                'data' => "please check again!"
+            ],200);
+        }
+    }
+
+    // public function unique_nrc(Request $request)
+    // {
+    //     $nrc_check = StudentInfo::where('nrc_number', '=', $request['nrc_number'])->first();
+    //     if($nrc_check)
+    //     {
+    //         return response()->json([
+    //             'data' => "NRC has been used, please check again!"
+    //         ],200);
+    //     }
+    // }
 }
