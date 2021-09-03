@@ -298,6 +298,14 @@ class AccFirmInfController extends Controller
             $financial_statement = null;
         }
 
+        // profile photo
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $image = '/storage/student_info/'.$name;
+        }
+
         $register_date = date('Y-m-d');
 
         //Main Table
@@ -324,6 +332,8 @@ class AccFirmInfController extends Controller
         // $acc_firm_info->form_fee = $request->form_fee;
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
+        $acc_firm_info->image  = $image;
+                
         $acc_firm_info->verify_status  = 0;
         $acc_firm_info->save();
 
@@ -1214,7 +1224,7 @@ class AccFirmInfController extends Controller
         $currentDate = date("Y-m-d");
         $currentTime = date("H:i:s");
         $currentDate =  date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
-        
+
         if($currentDate >= $accept_date)
         {
             $renew_user = AccountancyFirmInformation::find($id);
@@ -1230,7 +1240,7 @@ class AccFirmInfController extends Controller
             $next_year_user->verify_status = 2;
             $next_year_user->save();
             // return $next;
-            return response()->json($next,200); 
+            return response()->json($next,200);
         }
         else
         {
@@ -1259,7 +1269,7 @@ class AccFirmInfController extends Controller
         $currentDate = date("Y-m-d");
         $currentTime = date("H:i:s");
         $currentDate =  date("Y-m-d H:i:s", strtotime($currentDate . $currentTime));
-        
+
         if($currentDate >= $accept_date)
         {
             $renew_user = AccountancyFirmInformation::find($id);
@@ -1275,7 +1285,7 @@ class AccFirmInfController extends Controller
             $next_year_user->verify_status = 2;
             $next_year_user->save();
             // return $next;
-            return response()->json($next,200); 
+            return response()->json($next,200);
         }
         else
         {

@@ -41,6 +41,28 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+        // profile photo
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $image = '/storage/teacher_info/'.$name;
+        }
+        // nrc front image
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $nrc_front = '/storage/teacher_info/'.$name;
+        }
+        // nrc back image
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $nrc_back = '/storage/teacher_info/'.$name;
+        }
+
         $teacher = new TeacherRegister();
         $teacher->name_mm = $request->name_mm;
         $teacher->name_eng = $request->name_eng;
@@ -54,20 +76,23 @@ class TeacherController extends Controller
         $teacher->nrc_township = $request->nrc_township;
         $teacher->nrc_citizen = $request->nrc_citizen;
         $teacher->nrc_number = $request->nrc_number;
+        $teacher->nrc_front = $nrc_front;
+        $teacher->nrc_back = $nrc_back;
         $teacher->gov_employee = $request->gov_employee;
         $teacher->exp_desc = $request->exp_desc;
+        $teacher->image = $image;
         $degrees = "";$certificates = ""; $diplomas = "";
         foreach($request->degrees as $d){
             $degrees = $degrees . $d . ',';
-           
+
         }
         foreach($request->certificates as $c){
             $certificates = $certificates . $c . ',';
-           
+
         }
         foreach($request->diplomas as $d){
             $diplomas = $diplomas . $d . ',';
-           
+
         }
         $teacher->degrees = rtrim($degrees, ',');
         $teacher->certificates = rtrim($certificates, ',');
@@ -126,7 +151,7 @@ class TeacherController extends Controller
         return response()->json([
             'message' => 'You have renewed successfully.'
         ],200);
-        
+
     }
 
     /**
@@ -189,5 +214,5 @@ class TeacherController extends Controller
         $data = StudentInfo::where('id',$id)->get('approve_reject_status');
         return response()->json($data,200);
     }
-    
+
 }

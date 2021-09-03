@@ -34,6 +34,9 @@ class CreateTeacherRegistersTable extends Migration
             $table->text('exp_desc');
             $table->date('renew_date')->default(null)->nullable();
             $table->integer('approve_reject_status')->default(0);
+            $table->string('image')->nullable();
+            $table->string('nrc_front')->nullable();
+            $table->string('nrc_back')->nullable();
             $table->timestamps();
         });
     }
