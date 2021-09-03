@@ -16,6 +16,7 @@ class CreatePappsTable extends Migration
         Schema::create('papps', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
+            $table->string('profile_photo')->nullable();
             $table->string('cpa')->nullable();
             $table->string('ra')->nullable();
             $table->string('foreign_degree')->nullable();

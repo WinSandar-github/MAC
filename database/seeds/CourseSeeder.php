@@ -15,7 +15,7 @@ class CourseSeeder extends Seeder
     {
         DB::table('courses')->insert([
             array(
-                'name'               => "DA I" ,
+                'name'               => "Diploma In Accountancy Part One" ,
                 'form_fee'           => 1000,  
                 'selfstudy_registration_fee'       => 15000 ,
                 'privateschool_registration_fee'   => 15000 ,
@@ -29,7 +29,7 @@ class CourseSeeder extends Seeder
                  
             ),
             array(
-                'name'               => "DA II"  ,
+                'name'               => "Diploma In Accountancy Part Two"  ,
                 'form_fee'           => 1000,  
                 'selfstudy_registration_fee'       => 25000 ,
                 'privateschool_registration_fee'   => 25000 ,
@@ -43,7 +43,7 @@ class CourseSeeder extends Seeder
                  
             ),
             array(
-                'name'               => "CPA I"  ,
+                'name'               => "Certified Public Accountant Part One"  ,
                 'form_fee'           => 1000,  
                 'selfstudy_registration_fee'       => 25000 ,
                 'privateschool_registration_fee'   => 25000 ,
@@ -57,7 +57,7 @@ class CourseSeeder extends Seeder
                  
             ),
             array(
-                'name'               => "CPA II"  ,
+                'name'               => "Certified Public Accountant Part Two"  ,
                 'form_fee'           => 1000,  
                 'selfstudy_registration_fee'       => 25000 ,
                 'privateschool_registration_fee'   => 25000 ,
