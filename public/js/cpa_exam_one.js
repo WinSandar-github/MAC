@@ -180,20 +180,17 @@ function loadCPAStudentDataForExamCard() {
 
     $.ajax({
         type: "GET",
-        url: BACKEND_URL + "/da_register/" + id,
+        url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
-            console.log("data=", data);
-            var exam_data = data.data;
-            exam_data.forEach(function (element) {
-                console.log("element=", element.student_education_histroy.roll_number);
-                // document.getElementById("student_img").src ='img/user_profile/vIqzOHXj.jpeg';
-                console.log(element.image);
-                document.getElementById('student_img').src = PDF_URL + element.image;
-                $("#roll_no").append(element.student_education_histroy.roll_number);
-                $("#name").append(element.name_mm);
-                $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
-                $("#father_name").append(element.father_name_mm);
-            })
+            var exam_datas = data.data;
+            exam_datas.forEach(function (exam_data) {
+            console.log(exam_data.student_info.image);
+            document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
+            $("#roll_no").append(exam_data.id);
+            $("#name").append(exam_data.student_info.name_mm);
+            $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
+            $("#father_name").append(exam_data.student_info.father_name_mm);
+            });
         }
     })
 }
