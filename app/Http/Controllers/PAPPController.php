@@ -19,6 +19,15 @@ class PAPPController extends Controller
     }
     public function store(Request $request)
     {
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }else{
+            $profile_photo=null;
+        }
+
         if ($request->hasfile('cpa')) {
             $cpa_file = $request->file('cpa');
             $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
@@ -52,11 +61,11 @@ class PAPPController extends Controller
         {
             foreach($request->file('foreign_degree') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_papp/',$name);
                 $degree[] = '/storage/student_papp/'.$name;
             }
-        
+
         }else{
             $degree = null;
         }
@@ -127,6 +136,7 @@ class PAPPController extends Controller
 
         $papp  = new Papp();
         $papp->student_id                   = $request->student_id;
+        $papp->profile_photo                =   $profile_photo;
         $papp->cpa                          =   $cpa;
         $papp->ra                           =   $ra;
         $papp->foreign_degree               =   json_encode($degree);
@@ -157,7 +167,7 @@ class PAPPController extends Controller
         $papp = Papp::where('id',$id)->with('student_info','student_job', 'student_education_histroy')->get();
         return response()->json([
             'data'  => $papp
-        ]);        
+        ]);
     }
 
     public function approve($id)
@@ -166,7 +176,7 @@ class PAPPController extends Controller
         $approve = Papp::find($id);
         if($approve->status==0)
         {
-            $approve->status = 1;            
+            $approve->status = 1;
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
         }
@@ -195,78 +205,85 @@ class PAPPController extends Controller
     public function update(Request $request, $id)
     {
         $papp = Papp::find($id);
-        if ($request->hasfile('renew_file')) {
-            $file = $request->file('renew_file');
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $renew_file = '/storage/student_papp/'.$name;
-        }else{
-            $renew_file="";
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
         }
 
-        if ($request->hasfile('renew_papp_reg')) {
-            $file = $request->file('renew_papp_reg');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $renew_papp_reg = '/storage/student_papp/'.$name;
-        }else{
-            $renew_papp_reg="";
-        }
+        // if ($request->hasfile('renew_file')) {
+        //     $file = $request->file('renew_file');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $renew_file = '/storage/student_papp/'.$name;
+        // }else{
+        //     $renew_file="";
+        // }
 
-        if ($request->hasfile('renew_micpa')) {
-            $file = $request->file('renew_micpa');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $renew_micpa = '/storage/student_papp/'.$name;
-        }else{
-            $renew_micpa="";
-        }
+        // if ($request->hasfile('renew_papp_reg')) {
+        //     $file = $request->file('renew_papp_reg');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $renew_papp_reg = '/storage/student_papp/'.$name;
+        // }
 
-        if ($request->hasfile('renew_cpd')) {
-            $file = $request->file('renew_cpd');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $renew_cpd = '/storage/student_papp/'.$name;
-        }else{
-            $renew_cpd="";
-        }
+        // if ($request->hasfile('renew_micpa')) {
+        //     $file = $request->file('renew_micpa');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $renew_micpa = '/storage/student_papp/'.$name;
+        // }else{
+        //     $renew_micpa="";
+        // }
 
-        if ($request->hasfile('renew_183_recomm')) {
-            $file = $request->file('renew_183_recomm');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $renew_183_recomm = '/storage/student_papp/'.$name;
-        }else{
-            $renew_183_recomm="";
-        }
+        // if ($request->hasfile('renew_cpd')) {
+        //     $file = $request->file('renew_cpd');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $renew_cpd = '/storage/student_papp/'.$name;
+        // }else{
+        //     $renew_cpd="";
+        // }
 
-        if ($request->hasfile('renew_not_fulltime_recomm')) {
-            $file = $request->file('renew_not_fulltime_recomm');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $renew_not_fulltime_recomm = '/storage/student_papp/'.$name;
-        }else{
-            $renew_not_fulltime_recomm="";
-        }
+        // if ($request->hasfile('renew_183_recomm')) {
+        //     $file = $request->file('renew_183_recomm');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $renew_183_recomm = '/storage/student_papp/'.$name;
+        // }else{
+        //     $renew_183_recomm="";
+        // }
 
-        if ($request->hasfile('renew_rule_confession')) {
-            $file = $request->file('renew_rule_confession');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $renew_rule_confession = '/storage/student_papp/'.$name;
-        }else{
-            $renew_cpd="";
-        }
-        $papp->renew_file=$renew_file;
-        $papp->renew_papp_reg=$renew_papp_reg;
-        $papp->renew_micpa=$renew_micpa;
-        $papp->renew_cpd=$renew_cpd;
-        $papp->renew_183_recomm=$renew_183_recomm;
-        $papp->renew_not_fulltime_recomm=$renew_not_fulltime_recomm;
-        $papp->renew_rule_confession=$renew_rule_confession;
+        // if ($request->hasfile('renew_not_fulltime_recomm')) {
+        //     $file = $request->file('renew_not_fulltime_recomm');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $renew_not_fulltime_recomm = '/storage/student_papp/'.$name;
+        // }else{
+        //     $renew_not_fulltime_recomm="";
+        // }
+
+        // if ($request->hasfile('renew_rule_confession')) {
+        //     $file = $request->file('renew_rule_confession');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $renew_rule_confession = '/storage/student_papp/'.$name;
+        // }else{
+        //     $renew_cpd="";
+        // }
+
+        // $papp->renew_file=$renew_file;
+        // $papp->renew_papp_reg=$renew_papp_reg;
+        // $papp->renew_micpa=$renew_micpa;
+        // $papp->renew_cpd=$renew_cpd;
+        // $papp->renew_183_recomm=$renew_183_recomm;
+        // $papp->renew_not_fulltime_recomm=$renew_not_fulltime_recomm;
+        // $papp->renew_rule_confession=$renew_rule_confession;
+        $papp->profile_photo=$profile_photo;
         $papp->renew_accepted_date=date('Y-m-d');
         $papp->renew_status=1;
-        $papp->save();        
+        $papp->save();
         return response()->json([
             'message' => "You have renewed successfully"
         ],200);
