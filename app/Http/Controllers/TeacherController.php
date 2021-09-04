@@ -145,9 +145,73 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $image = '/storage/teacher_info/'.$name;
+        }else{
+            $image =$request->profile_photo;
+        }
+        // nrc front image
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $nrc_front = '/storage/teacher_info/'.$name;
+        }else{
+            $nrc_front =$request->nrc_front;
+        }
+        
+        // nrc back image
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $nrc_back = '/storage/teacher_info/'.$name;
+        }else{
+            $nrc_back =$request->nrc_back;
+        }
         $teacher = TeacherRegister::find($id);
+        $teacher->name_mm = $request->name_mm;
+        $teacher->name_eng = $request->name_eng;
+        $teacher->father_name_mm = $request->father_name_mm;
+        $teacher->father_name_eng = $request->father_name_eng;
+        $teacher->phone = $request->phone_number;
+        $teacher->email = $request->email;
+        $teacher->password = Hash::make($request->password);
+        $teacher->nrc_state_region = $request->nrc_state_region;
+        $teacher->nrc_township = $request->nrc_township;
+        $teacher->nrc_citizen = $request->nrc_citizen;
+        $teacher->nrc_number = $request->nrc_number;
+        $teacher->nrc_front = $nrc_front;
+        $teacher->nrc_back = $nrc_back;
+        $teacher->gov_employee = $request->gov_employee;
+        $teacher->exp_desc = $request->exp_desc;
+        $teacher->image = $image;
+        
+        $degrees = "";$certificates = ""; $diplomas = "";
+        foreach($request->degrees as $d){
+            $degrees = $degrees . $d . ',';
+
+        }
+        foreach($request->certificates as $c){
+            $certificates = $certificates . $c . ',';
+
+        }
+        foreach($request->diplomas as $d){
+            $diplomas = $diplomas . $d . ',';
+
+        }
+        $teacher->degrees = rtrim($degrees, ',');
+        $teacher->certificates = rtrim($certificates, ',');
+        $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->renew_date = date('Y-m-d');
         $teacher->save();
+        $std_info = StudentInfo::where('teacher_id', $id)->first();
+        $std_info->email = $request->email;
+        $std_info->password = Hash::make($request->password);
+        $std_info->save();
         return response()->json([
             'message' => 'You have renewed successfully.'
         ],200);

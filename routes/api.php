@@ -149,7 +149,7 @@ Route::get('/getNonAuditDateRange/{id}','AccFirmInfController@nonAuditDateRange'
 Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
 Route::get('/nonAuditCheckVerify/{id}','AccFirmInfController@nonAuditCheckVerify');
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
-Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
+Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 // Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
@@ -245,3 +245,6 @@ Route::get('/get_courses','CourseController@getCourses');
 
 //Chart
 Route::get('/chart_filter/{type}','DARegisterController@ChartFilter');
+//Unique Email and NRC Check in DA One Application
+Route::post('unique_email', 'DARegisterController@unique_email');
+// Route::post('unique_nrc', 'DARegisterController@unique_nrc');

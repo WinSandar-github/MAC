@@ -466,10 +466,12 @@ function createForm()
 
 function approveMentorStudent(){
   var id = $("input[name = mentor_student_id]").val();
+  console.log(id);
   $.ajax({
       url: BACKEND_URL + "/approve_mentor_student/"+id,
-      type: 'PATCH',
+      type: 'patch',
       success: function(result){
+        console.log(result)
           successMessage("You have approved that user!");
           location.href = FRONTEND_URL + "/mentor_list";
       }
