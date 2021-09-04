@@ -8,6 +8,7 @@ use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentRegister;
 use App\StudentCourseReg;
+use App\ExamRegister;
 use Hash;
 use Illuminate\Support\Facades\DB;
 use Mail;
@@ -347,6 +348,22 @@ class DARegisterController extends Controller
         $data->save();
         return response()->json([
             'data' => $data
+        ],200);
+    }
+
+    public function ChartFilter($type)
+    {
+        if($type==0){
+            $student=StudentCourseReg::with('batch')->where('approve_reject_status',1)->get();
+        }
+        else if($type==1){
+            $student = StudentRegister::where('status', 1)->get();
+        }
+        else if($type==2){
+            $student=ExamRegister::where('status', 1)->get();
+        }
+        return response()->json([ 
+            'data' => $student
         ],200);
     }
 }

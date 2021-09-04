@@ -4,7 +4,7 @@
 ])
 
 @section('content')
-    <div class="content">
+    {{--<div class="content">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
@@ -176,16 +176,49 @@
                 </div>
             </div>
         </div>
+    </div>--}}
+
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4 text-left" style="font-weight:bold;">Type</div>
+                            <div class="col-md-7 text-left">
+                                <select class="form-control form-select" name="selected_type" id="selected_type" onchange="getStudentChart()">                                
+                                    <option value="0" >Student Application</option>
+                                    <option value="1" selected>Student Registration</option>
+                                    <option value="2">Exam Registration</option>
+                                </select>
+                            </div> 
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                        </div>
+                    </div>
+                    <div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-refresh"></i> Update Now
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script>
         $(document).ready(function() {
              // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-
+             getStudentChart();
         });
 
-        
     </script>
 @endpush

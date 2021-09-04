@@ -242,3 +242,6 @@ Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 
 // Get all courses
 Route::get('/get_courses','CourseController@getCourses');
+
+//Chart
+Route::get('/chart_filter/{type}','DARegisterController@ChartFilter');
