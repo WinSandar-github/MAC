@@ -16,6 +16,7 @@ class CreateCPAFFSTable extends Migration
         Schema::create('c_p_a_f_f_s', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
+            $table->string('profile_photo')->nullable();
             $table->string('cpa')->nullable();
             $table->string('ra')->nullable();
             $table->string('foreign_degree')->nullable();

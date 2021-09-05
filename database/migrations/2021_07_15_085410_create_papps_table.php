@@ -50,7 +50,7 @@ class CreatePappsTable extends Migration
             $table->foreign('student_id')
             ->references('id')
             ->on('student_infos')
-            ->onDelete('cascade'); 
+            ->onDelete('cascade');
 
         });
     }

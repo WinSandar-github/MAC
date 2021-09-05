@@ -59,7 +59,7 @@ function getExam(course_code) {
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
 
                     //tr += "<td>" + element.private_school_name + "</td>";
@@ -79,7 +79,7 @@ function getExam(course_code) {
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     
                     //tr += "<td>" + element.private_school_name + "</td>";
@@ -99,7 +99,7 @@ function getExam(course_code) {
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
 
                     //tr += "<td>" + element.private_school_name + "</td>";
@@ -547,7 +547,7 @@ function loadStudent(course_type) {
                     //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + student_grade + "</td>";
@@ -566,7 +566,7 @@ function loadStudent(course_type) {
                     //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + student_grade + "</td>";
@@ -585,7 +585,7 @@ function loadStudent(course_type) {
                     //     "<li class='fa fa-eye fa-sm'></li></button></div></td> ";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='fillMark(" + element.id + "," + element.is_full_module + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + student_grade + "</td>";
