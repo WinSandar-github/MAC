@@ -242,3 +242,7 @@ Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 
 // Get all courses
 Route::get('/get_courses','CourseController@getCourses');
+
+Route::patch('update_profile/{id}','StudentInfoController@updateProfile');
+
+Route::post('update_pwd','LoginController@updatePwd');
