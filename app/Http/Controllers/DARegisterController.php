@@ -351,16 +351,46 @@ class DARegisterController extends Controller
         ],200);
     }
 
-    public function ChartFilter($type)
+    public function ChartFilter(Request $request)
     {
-        if($type==0){
-            $student=StudentCourseReg::with('batch')->where('approve_reject_status',1)->get();
+        if($request->type==0){
+            $student=StudentCourseReg::with('batch')->where('approve_reject_status',1);
+            if($request->from!="")
+            {
+                $from=date('Y-m-d',strtotime($request->from));
+                $student=$student->where('updated_at','>',$from);
+            }
+            if($request->to!=""){
+                $to=date('Y-m-d',strtotime($request->to));
+                $student=$student->where('updated_at','<',$to);
+            }
+            $student=$student->get();
         }
-        else if($type==1){
-            $student = StudentRegister::where('status', 1)->get();
+        else if($request->type==1){
+            $student = StudentRegister::where('status', 1);
+            if($request->from!="")
+            {
+                $from=date('Y-m-d',strtotime($request->from));
+                $student=$student->where('updated_at','>',$from);
+            }
+            if($request->to!=""){
+                $to=date('Y-m-d',strtotime($request->to));
+                $student=$student->where('updated_at','<',$to);
+            }
+            $student=$student->get();
         }
-        else if($type==2){
-            $student=ExamRegister::where('status', 1)->get();
+        else if($request->type==2){
+            $student=ExamRegister::where('status', 1);
+            if($request->from!="")
+            {
+                $from=date('Y-m-d',strtotime($request->from));
+                $student=$student->where('updated_at','>',$from);
+            }
+            if($request->to!=""){
+                $to=date('Y-m-d',strtotime($request->to));
+                $student=$student->where('updated_at','<',$to);
+            }
+            $student=$student->get();
         }
         return response()->json([ 
             'data' => $student
