@@ -12,6 +12,8 @@ class TMSClassSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('t_m_s_classes')->delete();
+
         DB::table('t_m_s_classes')->insert([
             array(
                 'class_name' => 'Upper Myanmar'

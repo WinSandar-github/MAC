@@ -11,6 +11,8 @@ class RegionSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('regions')->delete();
+
         DB::table('regions')->insert([
             array(
                 'region_name_mm' => 'ကချင်ပြည်နယ်'

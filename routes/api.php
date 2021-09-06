@@ -65,6 +65,7 @@ Route::post('/filter_batch','BatchController@FilterBatch');
 //Course
 Route::resource('/course','CourseController');
 Route::get('/filter_course/{course_name}','CourseController@FilterCourse');
+Route::get('/get_main_course', 'CourseController@getMainCourse');
 Route::get('/course_by_course_code/{code}','CourseController@loadCourseByCourseCode');
 Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
