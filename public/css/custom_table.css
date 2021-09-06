@@ -1,0 +1,66 @@
+.table>thead>tr>th{
+    font-size: 14px;
+    font-weight: 700;
+    border: 0;
+    text-transform: none;
+    border-bottom: 3px solid #119264;
+}
+
+tr {
+    cursor: pointer;
+}
+
+tbody tr:nth-child(odd) {
+    background: #F5F5F5
+}
+
+tr.selected {
+    color: #EA4A2D;
+    /*font-weight: bold;*/
+    background-color: #FBFBA5;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    float: right;
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    margin-left: 5px;
+}
+
+.dataTables_scrollHead {
+    padding: 0px;
+    margin: 0px;
+}
+
+thead th {
+    border-bottom: 2px solid #E86156;
+}
+
+tbody tr:hover {
+    background-color: #FFFFCB;
+}
+
+.table {
+    margin-bottom: 0px;
+}
+
+#tbl_course td {
+    white-space: nowrap;
+}
+
+#tbl_course tr:nth-child(odd) {
+    background: #F5F5F5;
+}
+
+.pagination {
+    float: right;
+}

@@ -13,6 +13,8 @@ class LocalForeignSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('modules')->delete();
+
         DB::table('modules')->insert([
             array(
                 'name' => 'Module-1'
@@ -23,7 +25,7 @@ class LocalForeignSeeder extends Seeder
             array(
                 'name' => 'All Module'
             )
-            
+
         ]);
     }
 }
