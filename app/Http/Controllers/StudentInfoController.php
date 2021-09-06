@@ -133,6 +133,7 @@ class StudentInfoController extends Controller
     //Update Da App Form 
     public function update(Request $request, $id)
     {
+        
          
         if ($request->hasfile('image')) {
             $file = $request->file('image');
@@ -237,6 +238,30 @@ class StudentInfoController extends Controller
         $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course_regs'
         ,'exam_registers','student_register','accountancy_firm','school','mentor','teacher','cpa_ff','papp')->first();
         return response()->json(['data' => $student_info],200);
+    }
+
+    public function updateProfile(Request $request,$id){
+          if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $image = '/storage/student_info/'.$name;
+        }else{
+            $image = $request->old_image;
+        }
+        
+        $student_info = StudentInfo::find($id);
+        $student_info->email         = $request->email;
+        $student_info->date_of_birth = $request->date_of_birth;
+        $student_info->phone         = $request->phone;
+        $student_info->address       = $request->address;
+        $student_info->image         = $image;
+        $student_info->save();
+
+        return response()->json([
+            'message' => "Successfully Update Message"
+        ],200);
+
     }
 
      

@@ -66,5 +66,33 @@ class LoginController extends Controller
             ], 401); 
         }
     }
+
+
+    public function updatePwd(Request $request)
+    {
+        $user = StudentInfo::find($request->id);
+        
+        if(Hash::check($request->old_password, $user->password))
+        {
+            $user->password = Hash::make($request->password);
+            $user->save();
+            return response()->json([
+                'message' => 'Your password have been Change Successfully',
+                 
+            ], 200); 
+    
+        }else{
+            return response()->json([
+                'error' => 'old password does not matched',
+                 
+            ], 401); 
+        }
+
+            
+            
+            
+            
+         
+    }
 }
 
