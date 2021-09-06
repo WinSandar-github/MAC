@@ -176,6 +176,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+
+        /*
+         * DataTable Service Provider
+         */
+        \Yajra\DataTables\DataTablesServiceProvider::class,
     ],
 
     /*
@@ -231,7 +236,8 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        
+
+        'Datatables' => Yajra\Datatables\Facades\Datatables::class,
     ],
 
 ];

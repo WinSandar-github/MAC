@@ -13,6 +13,8 @@ class CpaOneTrainingGroundSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('training_grounds')->delete();
+
         DB::table('training_grounds')->insert([
             array(
                 'name' => 'ပြည်ထောင်စုစာရင်းစစ်ရုံး၊ ရန်ကုန်သင်တန်းကျောင်း'
@@ -23,8 +25,8 @@ class CpaOneTrainingGroundSeeder extends Seeder
             array(
                 'name' => 'ကိုယ်တိုင်လေ့လာသင်ယူမယ်သူများ'
             ),
-            
-            
+
+
         ]);
     }
 }
