@@ -4,7 +4,7 @@
 ])
 
 @section('content')
-    <div class="content">
+    {{--<div class="content">
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="card card-stats">
@@ -176,16 +176,195 @@
                 </div>
             </div>
         </div>
+    </div>--}}
+
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card card-stats">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6 text-left" style="font-weight:bold;font-size:25px;">Student Chart</div>
+                            <div class="col-md-5 text-left" style="padding-right:0px;">
+                                <select class="form-control form-select" name="selected_type" id="selected_type" onchange="getStudentChart(true)">                                
+                                    <option value="0" selected>Student Application</option>
+                                    <option value="1">Student Registration</option>
+                                    <option value="2">Exam Registration</option>
+                                </select>
+                            </div> 
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-md-3">Date Range    :</div>
+                            <div class="col-md-2" style="padding-left:0px;">From</div>
+                            <div class="col-md-4" style="padding-left:0px;padding-right:0px">
+                                <input type="text" name="dash_from_date"  id="dash_from_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2" style="padding-left:0px;">To </div>
+                            <div class="col-md-4" style="padding-left:0px;;padding-right:0px">
+                                <input type="text" name="dash_to_date" id="dash_to_date"  class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                            </div>
+                            <div class="col-md-2"  style="vertical-align: top;">
+                                <button type="button" class="btn btn-primary btn-round m-0" onclick="getStudentChart(false)">Search</button>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <canvas id="studentChart" style="width:100%;max-width:600px"></canvas>
+                        </div>
+                    </div>
+                    {{--<div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-refresh"></i> Update Now
+                        </div>
+                    </div>--}}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card card-stats">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-12 text-left"  style="font-weight:bold;font-size:25px;">Mentor Chart</div>
+                           
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-md-3">Date Range    :</div>
+                            <div class="col-md-2" style="padding-left:0px;">From</div>
+                            <div class="col-md-4" style="padding-left:0px;padding-right:0px">
+                                <input type="text" name="dash_from_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2" style="padding-left:0px;">To </div>
+                            <div class="col-md-4" style="padding-left:0px;;padding-right:0px">
+                                <input type="text" name="dash_to_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                            </div>
+                            <div class="col-md-2"  style="vertical-align: top;">
+                                <button type="button" class="btn btn-primary btn-round m-0">Search</button>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <canvas id="mentorChart" style="width:100%;max-width:600px"></canvas>
+                        </div>
+                    </div>
+                    {{--<div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-refresh"></i> Update Now
+                        </div>
+                    </div>--}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card card-stats">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6 text-left" style="font-weight:bold;font-size:25px;">Teacher Chart</div>
+                            
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-md-3">Date Range    :</div>
+                            <div class="col-md-2" style="padding-left:0px;">From</div>
+                            <div class="col-md-4" style="padding-left:0px;padding-right:0px">
+                                <input type="text" name="dash_from_date"  id="dash_from_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2" style="padding-left:0px;">To </div>
+                            <div class="col-md-4" style="padding-left:0px;;padding-right:0px">
+                                <input type="text" name="dash_to_date" id="dash_to_date"  class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                            </div>
+                            <div class="col-md-2"  style="vertical-align: top;">
+                                <button type="button" class="btn btn-primary btn-round m-0" onclick="getStudentChart(false)">Search</button>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <canvas id="teacherChart" style="width:100%;max-width:600px"></canvas>
+                        </div>
+                    </div>
+                    {{--<div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-refresh"></i> Update Now
+                        </div>
+                    </div>--}}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="card card-stats">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-12 text-left"  style="font-weight:bold;font-size:25px;">School Chart</div>
+                           
+                        </div>
+                        <hr>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-md-3">Date Range    :</div>
+                            <div class="col-md-2" style="padding-left:0px;">From</div>
+                            <div class="col-md-4" style="padding-left:0px;padding-right:0px">
+                                <input type="text" name="dash_from_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-2" style="padding-left:0px;">To </div>
+                            <div class="col-md-4" style="padding-left:0px;;padding-right:0px">
+                                <input type="text" name="dash_to_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                            </div>
+                            <div class="col-md-2"  style="vertical-align: top;">
+                                <button type="button" class="btn btn-primary btn-round m-0">Search</button>
+                            </div>
+                        </div><br/>
+                        <div class="row">
+                            <canvas id="schoolChart" style="width:100%;max-width:600px"></canvas>
+                        </div>
+                    </div>
+                    {{--<div class="card-footer ">
+                        <hr>
+                        <div class="stats">
+                            <i class="fa fa-refresh"></i> Update Now
+                        </div>
+                    </div>--}}
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script>
         $(document).ready(function() {
+            $("input[name='dash_from_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-M-Y",
+                allowInput: true,
+            });
+            $("input[name='dash_to_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-M-Y",
+                allowInput: true,
+            });
              // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
-
+             getStudentChart(true);
         });
 
-        
     </script>
 @endpush
