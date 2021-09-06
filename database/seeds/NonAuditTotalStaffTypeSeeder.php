@@ -13,6 +13,8 @@ class NonAuditTotalStaffTypeSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('non_audit_total_staff_types')->delete();
+
         DB::table('non_audit_total_staff_types')->insert([
             array(
                 'name' => 'No of directors who are alse shareholders'
@@ -26,8 +28,8 @@ class NonAuditTotalStaffTypeSeeder extends Seeder
             array(
                 'name' => 'No of non-mangerial level'
             ),
-            
+
         ]);
-        
+
     }
 }

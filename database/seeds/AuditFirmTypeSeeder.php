@@ -13,6 +13,8 @@ class AuditFirmTypeSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('audit_firm_types')->delete();
+
         DB::table('audit_firm_types')->insert([
             array(
                 'name' => 'Audit'
@@ -20,7 +22,7 @@ class AuditFirmTypeSeeder extends Seeder
             array(
                 'name' => 'Non-Audit'
             ),
-            
+
         ]);
     }
 }

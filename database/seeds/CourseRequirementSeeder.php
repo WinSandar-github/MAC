@@ -11,6 +11,8 @@ class CourseRequirementSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('requirements')->delete();
+
         DB::table('requirements')->insert([
             array(
                 'name'  => "အသိအမှတ်ပြုတက္ကသိုလ်တစ်ခုခုမှ ဘွဲ့ရရှိသူများ လျှောက်ထားနိုင်ပါသည်။",

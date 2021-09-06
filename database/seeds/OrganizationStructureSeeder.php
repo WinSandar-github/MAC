@@ -15,6 +15,8 @@ class OrganizationStructureSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('organization_structures')->delete();
+
         DB::table('organization_structures')->insert([
             array(
                 'name' => 'Sole Proprietorship'
