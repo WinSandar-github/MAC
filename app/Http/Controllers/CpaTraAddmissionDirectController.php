@@ -46,9 +46,9 @@ class CpaTraAddmissionDirectController extends Controller
      */
     public function store(Request $request)
     { 
-        // return $request->university_name;
+        return $request->file('certificate');
         
-         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
+        $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
         ->where('nrc_citizen', '=', $request['nrc_citizen'])
         ->where('nrc_number', '=', $request['nrc_number'])
@@ -70,7 +70,20 @@ class CpaTraAddmissionDirectController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $image = '/storage/student_info/'.$name;
-        } 
+        }
+        
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }
 
         if ($request->hasfile('deg_certi_img')) {
 
@@ -83,17 +96,30 @@ class CpaTraAddmissionDirectController extends Controller
             $deg_certi_img = null;
         }
      
-        if ($request->hasfile('certificates')) {
+        // if ($request->hasfile('certificates')) {
          
-            $file = $request->file('certificates');
+        //     $file = $request->file('certificates');
             
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $certificates = '/storage/student_info/'.$name;
-        } 
-        else{
-            $certificates=null;
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_info/',$name);
+        //     $certificates = '/storage/student_info/'.$name;
+        // } 
+        // else{
+        //     $certificates=null;
+        // }
+
+        if($request->hasfile('certificate'))
+        {
+            foreach($request->file('certificate') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $certificate[] = '/storage/student_info/'.$name;
+            }        
+        }else{
+            $certificate = null;
         }
+
         if($request->hasfile('recommend_letter'))
         {
             
@@ -157,6 +183,8 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->nrc_township     =   $request['nrc_township'] ;
         $student_info->nrc_citizen      =    $request['nrc_citizen'] ;
         $student_info->nrc_number       =   $request['nrc_number'];
+        $student_info->nrc_front        =   $nrc_front;
+        $student_info->nrc_back         =   $nrc_back;
         $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
@@ -202,7 +230,7 @@ class CpaTraAddmissionDirectController extends Controller
         // $education_histroy->roll_number     = json_encode($roll_no);
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     =$request->degree_name;
-        $education_histroy->certificate     = $certificates;
+        $education_histroy->certificate     = json_encode($certificate);
         // $education_histroy->certificate     = json_encode($certificates);
 
         $education_histroy->qualified_date  = $qualified_date;
