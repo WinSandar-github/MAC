@@ -13,6 +13,8 @@ class DegreeSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('degrees')->delete();
+
         DB::table('degrees')->insert([
             array(
                 'name'  => "Bcom",
@@ -32,11 +34,11 @@ class DegreeSeeder extends Seeder
              array(
                 'name'  => "ACCA",
              ),
-           
-           
-            ]);     
-           
-           
-            
+
+
+            ]);
+
+
+
     }
 }

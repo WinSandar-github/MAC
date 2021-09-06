@@ -13,6 +13,8 @@ class CurrentCheckServiceSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('current_check_services')->delete();
+
         DB::table('current_check_services')->insert([
             array(
                 'name'  => "အများပိုင်းကုမ္မဏီ",
@@ -49,7 +51,7 @@ class CurrentCheckServiceSeeder extends Seeder
             array(
                 'name'  => "အခြား",
                 'type'  => "1",
-            ),  
+            ),
             array(
                 'name'  => "Government Organization",
                 'type'  => "2",

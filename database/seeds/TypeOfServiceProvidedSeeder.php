@@ -13,11 +13,13 @@ class TypeOfServiceProvidedSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('type_of_service_provideds')->delete();
+
         DB::table('type_of_service_provideds')->insert([
             array(
                 'name' => 'Audit',
                 'audit_firm_type_id' => 1
-                
+
             ),
             array(
                 'name' => 'Non-Audit',
@@ -47,9 +49,9 @@ class TypeOfServiceProvidedSeeder extends Seeder
                 'name' => 'Other',
                 'audit_firm_type_id' => 2
             ),
-            
-            
-            
+
+
+
         ]);
     }
 }
