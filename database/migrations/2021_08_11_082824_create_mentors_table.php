@@ -55,6 +55,9 @@ class CreateMentorsTable extends Migration
             $table->integer('status');
             $table->string('type');
             $table->date('reg_date');
+            $table->string('image')->nullable();
+            $table->string('nrc_front')->nullable();
+            $table->string('nrc_back')->nullable();
             $table->date('renew_date')->default(null)->nullable();
             $table->timestamps();
 

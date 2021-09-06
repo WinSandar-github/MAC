@@ -45,7 +45,7 @@ function GetStudentRegistration(course_code) {
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.registration_no + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
@@ -69,7 +69,7 @@ function GetStudentRegistration(course_code) {
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.registration_no + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
@@ -93,7 +93,7 @@ function GetStudentRegistration(course_code) {
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showRegistration(" + element.id + ',' + "\"" + element.course.code + "\"" + ")'>" +
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-                    tr += "<td>" + element.student_info.name_eng + "</td>";
+                    tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.registration_no + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";

@@ -8,6 +8,7 @@ use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentRegister;
 use App\StudentCourseReg;
+use App\ExamRegister;
 use Hash;
 use Illuminate\Support\Facades\DB;
 use Mail;
@@ -30,6 +31,7 @@ class DARegisterController extends Controller
 
     public function store(Request $request)
     {
+        
         
         //$nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
@@ -73,6 +75,19 @@ class DARegisterController extends Controller
             }        
         }else{
             $certificate = null;
+        }
+
+        if($request->hasfile('recommend_letter'))
+        {
+            
+            $file = $request->file('recommend_letter') ;
+        
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $rec_letter = '/storage/student_info/'.$name;
+                 
+        }else{
+            $rec_letter = null;
         }
 
         if ($request->hasfile('nrc_front')) {
@@ -129,6 +144,7 @@ class DARegisterController extends Controller
         $student_info->verify_status    =   1;
         $student_info->verify_code      =   $request->verify_code;
         $student_info->payment_method   =   $request->payment_method;
+        $student_info->recommend_letter =   $rec_letter;
         $student_info->save();
 
         $student_job_histroy = new StudentJobHistroy;
@@ -281,11 +297,9 @@ class DARegisterController extends Controller
          
          $student_register = StudentRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
          $status = $student_register != null ? $student_register->status : null;
-
-        // print_r($stu_course_reg);
-        // return response()->json($stu_course_reg,200);
-         return response()->json($status,200);      
-
+         
+         // return response()->json($stu_course_reg,200);
+         return response()->json($status,200);
 
     }
 
@@ -336,4 +350,73 @@ class DARegisterController extends Controller
             'data' => $data
         ],200);
     }
+
+    public function ChartFilter(Request $request)
+    {
+        if($request->type==0){
+            $student=StudentCourseReg::with('batch')->where('approve_reject_status',1);
+            if($request->from!="")
+            {
+                $from=date('Y-m-d',strtotime($request->from));
+                $student=$student->where('updated_at','>',$from);
+            }
+            if($request->to!=""){
+                $to=date('Y-m-d',strtotime($request->to));
+                $student=$student->where('updated_at','<',$to);
+            }
+            $student=$student->get();
+        }
+        else if($request->type==1){
+            $student = StudentRegister::where('status', 1);
+            if($request->from!="")
+            {
+                $from=date('Y-m-d',strtotime($request->from));
+                $student=$student->where('updated_at','>',$from);
+            }
+            if($request->to!=""){
+                $to=date('Y-m-d',strtotime($request->to));
+                $student=$student->where('updated_at','<',$to);
+            }
+            $student=$student->get();
+        }
+        else if($request->type==2){
+            $student=ExamRegister::where('status', 1);
+            if($request->from!="")
+            {
+                $from=date('Y-m-d',strtotime($request->from));
+                $student=$student->where('updated_at','>',$from);
+            }
+            if($request->to!=""){
+                $to=date('Y-m-d',strtotime($request->to));
+                $student=$student->where('updated_at','<',$to);
+            }
+            $student=$student->get();
+        }
+        return response()->json([ 
+            'data' => $student
+        ],200);
+    }
+    
+    public function unique_email(Request $request)
+    {
+        $emailcheck = StudentInfo::where('email', $request['email'])->orWhere('nrc_number', $request['nrc_number'])->first();
+        return $emailcheck;
+        if($emailcheck)
+        {
+            return response()->json([
+                'data' => "please check again!"
+            ],200);
+        }
+    }
+
+    // public function unique_nrc(Request $request)
+    // {
+    //     $nrc_check = StudentInfo::where('nrc_number', '=', $request['nrc_number'])->first();
+    //     if($nrc_check)
+    //     {
+    //         return response()->json([
+    //             'data' => "NRC has been used, please check again!"
+    //         ],200);
+    //     }
+    // }
 }

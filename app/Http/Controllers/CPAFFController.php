@@ -18,6 +18,17 @@ class CPAFFController extends Controller
     }
     public function store(Request $request)
     {
+        // return $request;
+        // profile photo
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }else{
+            $profile_photo=null;
+        }
+
         if ($request->hasfile('cpa')) {
             $file = $request->file('cpa');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -42,10 +53,10 @@ class CPAFFController extends Controller
         {
             foreach($request->file('foreign_degree') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/cpa_ff_register/',$name);
                 $foreign_degree[] = '/storage/cpa_ff_register/'.$name;
-            }        
+            }
         }else{
             $foreign_degree = null;
         }
@@ -82,8 +93,8 @@ class CPAFFController extends Controller
         if ($request->hasfile('nrc_front')) {
             $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $nrc_front= '/storage/cpa_ff_register/'.$name;
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front= '/storage/student_info/'.$name;
         }else{
             $nrc_front="";
         }
@@ -91,8 +102,8 @@ class CPAFFController extends Controller
         if ($request->hasfile('nrc_back')) {
             $file = $request->file('nrc_back');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $nrc_back= '/storage/cpa_ff_register/'.$name;
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back= '/storage/student_info/'.$name;
         }else{
             $nrc_back="";
         }
@@ -117,6 +128,7 @@ class CPAFFController extends Controller
 
         $cpa_ff  = new CPAFF();
         $cpa_ff->student_info_id  =   $request->student_info_id;
+        $cpa_ff->profile_photo    =   $profile_photo;
         $cpa_ff->cpa              =   $cpa;
         $cpa_ff->ra               =   $ra;
         $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
@@ -145,7 +157,7 @@ class CPAFFController extends Controller
         ]);
         return $cpa_ff;
 
-        
+
     }
 
     public function approve($id)
@@ -154,7 +166,7 @@ class CPAFFController extends Controller
         $approve = CPAFF::find($id);
         if($approve->status==0)
         {
-            $approve->status = 1;            
+            $approve->status = 1;
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
         }
@@ -182,6 +194,13 @@ class CPAFFController extends Controller
 
     public function update(Request $request, $id)
     {
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }
+
         $cpa_ff = CPAFF::find($id);
         // if ($request->hasfile('renew_file')) {
         //     $file = $request->file('renew_file');
@@ -224,8 +243,9 @@ class CPAFFController extends Controller
         // $cpa_ff->renew_cpd=$renew_cpd;
         // $cpa_ff->renew_cpaff_reg=$renew_cpaff_reg;
         $cpa_ff->renew_accepted_date=date('Y-m-d');
+        $cpa_ff->profile_photo=$profile_photo;
         $cpa_ff->renew_status=1;
-        $cpa_ff->save();        
+        $cpa_ff->save();
         return response()->json([
             'message' => "You have renewed successfully"
         ],200);
@@ -239,7 +259,7 @@ class CPAFFController extends Controller
 
     //     return response()->json([
     //         'message' => "Delete Successfully"
-    //     ],200);   
+    //     ],200);
     // }
 
     public function getCpaffByStuId($stu_id){
@@ -249,5 +269,3 @@ class CPAFFController extends Controller
         ]);
     }
 }
-
-

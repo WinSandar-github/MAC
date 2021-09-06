@@ -62,6 +62,29 @@ class MentorController extends Controller
         // foreach($request->current_check_services as $service){
         //     array_push($current_check_service,$service);
         // }
+
+        // profile photo
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $image = '/storage/student_info/'.$name;
+        }
+        // nrc front image
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }
+        // nrc back image
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }
+
         $mentor = new Mentor();
         $mentor->current_check_service_id = $request->current_check_service_id;
         $mentor->name_mm = $request->name_mm;
@@ -97,19 +120,26 @@ class MentorController extends Controller
         $mentor->internship_accept_no        = $request->internship_accept_no;
         $mentor->current_accept_no           = $request->current_accept_no;
         $mentor->trained_trainees_no         = $request->trained_trainees_no;
-        $mentor->repeat_yearly               = $request->repeat_yearly;
-        $mentor->training_absent             = $request->training_absent;
+        if($request->repeat_yearly != 'undefined'){
+          $mentor->repeat_yearly               = $request->repeat_yearly;
+        }
+        if($request->training_absent != 'undefined'){
+          $mentor->training_absent             = $request->training_absent;
+        }
         $mentor->training_absent_reason      = $request->training_absent_reason;
         $mentor->type      = $request->type;
+        $mentor->image      = $image;
+        $mentor->nrc_front      = $nrc_front;
+        $mentor->nrc_back      = $nrc_back;
         $mentor->status      = $request->status;
         $mentor->reg_date = date('Y-m-d');
         $mentor->save();
 
-        // $std_info = new StudentInfo();
-        // $std_info->mentor_id = $mentor->id;
+        $std_info = new StudentInfo();
+        $std_info->mentor_id = $mentor->id;
         // $std_info->email = $request->email;
         // $std_info->password = Hash::make($request->password);
-        // $std_info->save();
+        $std_info->save();
         return response()->json([
             'message' => "Successfully Added"
         ]);
@@ -254,8 +284,9 @@ class MentorController extends Controller
     // }
 
     public function approve($id)
-    {
+    { 
         $std_info = StudentInfo::where('mentor_id', $id)->first();
+        
         $std_info->approve_reject_status = 1;
         $std_info->save();
         $approve = Mentor::find($id);

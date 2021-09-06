@@ -91,7 +91,7 @@ class ExamRegisterController extends Controller
         // return response()->json([
         //     'data' => $exam_register
         // ],200);
-        $exam_register = ExamRegister::where('id',$id)->get();
+        $exam_register =  ExamRegister::with('student_info','batch')->where('id',$id)->get();
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -205,6 +205,7 @@ class ExamRegisterController extends Controller
         $exam->last_ans_module = $request->last_ans_module;
         $exam->date = $date;
         $exam->invoice_date = $invoice_date;
+        $exam->private_school_id = $request->private_school_id;
         $exam->private_school_name = $request->private_school_name;
         $exam->grade = 0;
         $exam->batch_id = $batch_id;

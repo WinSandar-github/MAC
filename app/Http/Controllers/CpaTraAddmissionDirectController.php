@@ -94,6 +94,18 @@ class CpaTraAddmissionDirectController extends Controller
         else{
             $certificates=null;
         }
+        if($request->hasfile('recommend_letter'))
+        {
+            
+            $file = $request->file('recommend_letter') ;
+        
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $rec_letter = '/storage/student_info/'.$name;
+                 
+        }else{
+            $rec_letter = null;
+        }
 ////Multiple University
         // if($request->hasfile('uni_certificate'))
         // {
@@ -160,6 +172,8 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->date             =   $date;
         $student_info->email            =   $request->email;
         $student_info->password         =   Hash::make($request->password);
+        $student_info->recommend_letter =   $rec_letter;
+
 
         $student_info->course_type_id   = 2 ;
         // CPA
@@ -270,6 +284,8 @@ class CpaTraAddmissionDirectController extends Controller
         }else{
             $image = $request->old_image;
         }
+
+       
 
         if ($request->hasfile('certificates')) {
             $file = $request->file('certificates');
