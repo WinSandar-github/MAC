@@ -8,6 +8,8 @@ use App\StudentInfo;
 use App\StudentCourseReg;
 use App\Course;
 use App\ExamRegister;
+use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Str;
 
 class StudentRegisterController extends Controller
 {
@@ -221,25 +223,58 @@ class StudentRegisterController extends Controller
         ],200);
     }
 
+    // public function FilterRegistration(Request $request){
+    //     $student_register = StudentRegister::with('student_info','course');                            
+    //     if($request->name!="")
+    //     {
+    //         $student_register = $student_register->join('student_infos', 'student_register.student_info_id', '=', 'student_infos.id')
+    //         ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+    //         ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+    //     }
+    //     if($request->status!="all")
+    //     {
+    //         $student_register = $student_register->where('student_register.status',$request->status);
+    //     }
+    //     if($request->batch!="all"){
+    //         $student_register = $student_register->join('student_course_regs', 'student_register.student_info_id', '=', 'student_course_regs.student_info_id')
+    //         ->where('student_course_regs.batch_id',$request->batch);
+    //     }
+    //     $student_register = $student_register->where('form_type', $request->course_code)->get();
+    //     return response()->json([ 'data' => $student_register],200);
+    // }
     public function FilterRegistration(Request $request){
-        $student_register = StudentRegister::with('student_info','course');                            
-        if($request->name!="")
-        {
-            $student_register = $student_register->join('student_infos', 'student_register.student_info_id', '=', 'student_infos.id')
-            ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-            ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+        $student_register = StudentRegister::with('student_info','course')->where('form_type',$request->form_type)
+        // ->join('courses', 'student_register.form_type', '=', 'courses.id')
+        // ->where('courses.code',$request->form_type)
+        ->where('type',$request->reg_type)->get();
+
+        $a= DataTables::of($student_register)
+            ->addColumn('action', function ($student) {
+                return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='showRegistration($student->id,$student->form_type)'>
+                                <li class='fa fa-edit fa-sm'></li>
+                            </button>
+                        </div>";
+            })
+            ->addColumn('name', function ($c){
+                return $c->student_info->name_mm;
+            })
+            ->addColumn('email', function ($student) {
+                return $student->student_info ? Str::limit($student->student_info->email, 50, '...') : '';
+            })
+            ->addColumn('reg_no', function ($student) {
+                return $student->student_info ? Str::limit($student->student_info->registration_no, 50, '...') : '';
+            })
+            ->addColumn('phone', function ($student) {
+                return $student->student_info ? Str::limit($student->student_info->phone, 50, '...') : '';
+            });
+        if($request->is_reg_reason==true){
+            $a=$a->addColumn('reg_reason', function ($student) {
+                return $student->reg_reason ? Str::limit($student->reg_reason, 50, '...') : '';
+            });
         }
-        if($request->status!="all")
-        {
-            $student_register = $student_register->where('student_register.status',$request->status);
-        }
-        if($request->batch!="all"){
-            $student_register = $student_register->join('student_course_regs', 'student_register.student_info_id', '=', 'student_course_regs.student_info_id')
-            ->where('student_course_regs.batch_id',$request->batch);
-        }
-        //$student_register = $student_register->get();
-        $student_register = $student_register->where('form_type', $request->course_code)->get();
-        return response()->json([ 'data' => $student_register],200);
+        $a=$a->make(true);
+        return $a;
     }
 
     public function updateMentor(Request $request)

@@ -105,6 +105,7 @@ Route::get('/show_student_register/{id}','StudentRegisterController@showStudentR
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 Route::post('/filter_registration','StudentRegisterController@FilterRegistration');
+// Route::get('/filter_registration/{type}','StudentRegisterController@FilterRegistration');
 
 Route::post('save_exam','BatchController@saveExam');
 
