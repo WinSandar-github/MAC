@@ -3,9 +3,9 @@ function GetStudentRegistration(course_code) {
     destroyDatatable("#tbl_student_private_school", "#tbl_student_private_school_body");
     destroyDatatable("#tbl_student_mac", "#tbl_student_mac_body");
     var send_data = new FormData();
-    send_data.append('name', $("input[name=filter_by_name_ss]").val());
-    send_data.append('status', $("#selected_status").val());
-    send_data.append('batch', $("#selected_batch_id").val());
+    send_data.append('name', "");
+    send_data.append('status',"all");
+    send_data.append('batch', "all");
     if(course_code=="da_1"){
         course_id=1;
     }
@@ -531,11 +531,11 @@ function approveStudent() {
         success: function (result) {
             console.log(result.data)
             successMessage("You have approved that student!");
-            if (course_code == "da_1") {
+            if (course_code == 1) {
                 location.href = FRONTEND_URL + "/index";
-            } else if (course_code == "da_2") {
+            } else if (course_code == 2) {
                 location.href = FRONTEND_URL + "/da_two_index";
-            } else if (course_code == "cpa_1") {
+            } else if (course_code == 3) {
                 location.href = FRONTEND_URL + "/cpa_one_index";
             } else {
                 location.href = FRONTEND_URL + "/cpa_two_index";
@@ -561,11 +561,11 @@ function rejectStudent() {
         success: function (result) {
             console.log(result)
             successMessage("You have rejected that student!");
-            if (course_code == "da_1") {
+            if (course_code == 1) {
                 location.href = FRONTEND_URL + "/index";
-            } else if (course_code == "da_2") {
+            } else if (course_code == 2) {
                 location.href = FRONTEND_URL + "/da_two_index";
-            } else if (course_code == "cpa_1") {
+            } else if (course_code == 3) {
                 location.href = FRONTEND_URL + "/cpa_one_index";
             } else {
                 location.href = FRONTEND_URL + "/cpa_two_index";

@@ -32,7 +32,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <div class="row">
+                                            {{--<div class="row">
                                                 <div class="col-md-6">
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
@@ -71,7 +71,7 @@
                                                 <div class="col-md-6" style="vertical-align: top;">
                                                     <button type="button" class="btn btn-primary btn-round" onclick="GetStudentRegistration('da_2')" id="search">Search</button>
                                                 </div>
-                                            </div>
+                                            </div>--}}
                                             <ul class="nav nav-tabs" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false" style="font-weight:bold">Registration Mac</a>
@@ -145,7 +145,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </div>                                            
+                                            </div>                                 
                                         </div>
                                     </div>
                                 </div>
@@ -165,7 +165,89 @@
 
 @push('scripts')
 <script>
-    GetStudentRegistration("da_2");
-    loadBatchData("da_2");
+    // GetStudentRegistration("da_2");
+    // loadBatchData("da_2");
+    $(document).ready(function () {
+        $('#tbl_student_mac').DataTable({
+            //scrollX: true,
+            processing: true,
+            serverSide: true,
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            ajax:{ 
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"2",
+                    "reg_type":"2",
+                    "is_reg_reason":false
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'status', name: 'Status'},
+            ],
+        });
+        $('#tbl_student_private_school').DataTable({
+            //scrollX: true,
+            processing: true,
+            serverSide: true,
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            ajax:{ 
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"2",
+                    "reg_type":"1",
+                    "is_reg_reason":false
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'status', name: 'Status'},
+            ],
+        });
+        $('#tbl_student_self_study').DataTable({
+            //scrollX: true,
+            processing: true,
+            serverSide: true,
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            ajax:{ 
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"2",
+                    "reg_type":"0",
+                    "is_reg_reason":true
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'reg_reason', name: 'Registration Reason'},
+                {data: 'status', name: 'Status'},
+            ],
+        });
+    })
+    
 </script>
 @endpush

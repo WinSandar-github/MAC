@@ -19,12 +19,8 @@ function getDAList(course_code) {
         data: send_data,
         contentType: false,
         processData: false,
-        // <<<<<<< HEAD
-        //         success: function (data) {
-        // =======
         success: function (data) {
             EasyLoading.hide();
-            // >>>>>>> ac67ed3c0efebdce43c2dac463280128b110edb1
             var da_data = data.data;
             console.log({
                 data
