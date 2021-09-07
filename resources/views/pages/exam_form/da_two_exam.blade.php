@@ -6,9 +6,9 @@
 <div class="content">
     @include('flash-message')
     <div class="row">
-        <div class="col-md-12">                
+        <div class="col-md-12">
         </div>
-    </div>   
+    </div>
     <div class="row">
         <div class="col-md-12 text-center">
             <!-- <form action="" method="get" enctype="multipart/form-data"> -->
@@ -21,7 +21,7 @@
                         </div>
                         {{--<div class="row">
                             <div class="col-md-8">
-                                
+
                             </div>
                             <div class="col-md-2">
                                 <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
@@ -31,11 +31,11 @@
                             <div class="col-md-2">
                                 <button type="submit" onclick="getExam()" class="btn btn-primary btn-hover-dark m-1" >Search</button>
                             </div>
-                            
+
                         </div>--}}
                     </div>
                     <div class="card-body">
-                        <div class="row"> 
+                        <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
                                 <div class="card-header">
@@ -46,7 +46,7 @@
                                                     <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
                                                     <div class="col-md-7 text-left">
                                                         <input type="text" name="filter_by_name" class="form-control" placeholder="Student Name">
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-5">
@@ -57,7 +57,7 @@
                                                         <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                                             <option value="all" selected>All Batches</option>
                                                         </select>
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -93,7 +93,7 @@
                                                             <th class="bold-font-weight" >Remark</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
-                                                            
+
                                                             <th class="bold-font-weight" >Print</th>
                                                         </tr>
                                                     </thead>
@@ -102,7 +102,7 @@
                                                 </table>
                                             </div>
                                             <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                <table id="tbl_da_approved_exam"class="table table-hover text-nowrap ">
+                                                <table id="tbl_da_approved_exam" class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                         <th class="bold-font-weight" >No</th>
@@ -124,7 +124,7 @@
                                                 </table>
                                             </div>
                                             <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                                <table id="tbl_da_rejected_exam"class="table table-hover text-nowrap ">
+                                                <table id="tbl_da_rejected_exam"class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                         <th class="bold-font-weight" >No</th>
@@ -160,6 +160,64 @@
 @push('scripts')
 <script>
     loadBatchData("da_2");
-    getExam('da_2');
+    //getExam('da_2');
+    $(document).ready(function(){
+      $('#tbl_da_pending_exam').DataTable({
+          processing: true,
+          // serverSide: true,
+          ajax: BACKEND_URL + "/filter/0/2",
+          columns: [
+              {data: null, render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+              }},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.email', name: 'Email'},
+              {data: 'exam_type', name: 'Exam Type'},
+              {data: 'remark', name: 'Remark'},
+              {data: 'status', name: 'Status'},
+              {data: 'print', name: 'Print',orderable: false, searchable: false},
+          ],
+          "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+      });
+
+      $('#tbl_da_approved_exam').DataTable({
+          processing: true,
+          // serverSide: true,
+          ajax: BACKEND_URL + "/filter/1/2",
+          columns: [
+              {data: null, render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+              }},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.email', name: 'Email'},
+              {data: 'exam_type', name: 'Exam Type'},
+              {data: 'remark', name: 'Remark'},
+              {data: 'status', name: 'Status'},
+              {data: 'print', name: 'Print',orderable: false, searchable: false},
+          ],
+          "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+      });
+
+      $('#tbl_da_rejected_exam').DataTable({
+          processing: true,
+          // serverSide: true,
+          ajax: BACKEND_URL + "/filter/2/2",
+          columns: [
+              {data: null, render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+              }},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.email', name: 'Email'},
+              {data: 'exam_type', name: 'Exam Type'},
+              {data: 'remark', name: 'Remark'},
+              {data: 'status', name: 'Status'},
+              {data: 'print', name: 'Print',orderable: false, searchable: false},
+          ],
+          "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+      });
+    });
 </script>
 @endpush

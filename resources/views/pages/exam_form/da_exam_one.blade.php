@@ -100,7 +100,7 @@
                                                 </table>
                                             </div>
                                             <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                <table id="tbl_da_approved_exam"class="table table-hover text-nowrap ">
+                                                <table id="tbl_da_approved_exam"class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -123,7 +123,7 @@
                                                 </table>
                                             </div>
                                             <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                                <table id="tbl_da_rejected_exam"class="table table-hover text-nowrap ">
+                                                <table id="tbl_da_rejected_exam"class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -158,45 +158,68 @@
 @endsection
 @push('scripts')
 <script>
-    //loadBatchData("da_1");
+    loadBatchData("da_1");
     // getExam("da_1");
 
     $(document).ready(function(){
-      // $('#tbl_da_pending_exam').DataTable({​​​​​​​​
-      //   processing:true,
-      //   serverSide: true,
-      //   ajax:BACKEND_URL + "/filter/0/1",
-      //   columns: [
-      //               {​​​​​​​​data:null, render:function (data, type, row, meta) {​​​​​​​​
-      //                 returnmeta.row + meta.settings._iDisplayStart + 1;
-      //               }​​​​​​​​}​​​​​​​​,
-      //               {​​​​​​​​data:'action', name:'action', orderable:false, searchable:false}​​​​​​​​,
-      //               {​​​​​​​​data:'student_info.name_mm', name:'Student Name'}​​​​​​​​,
-      //               {​​​​​​​​data:'batch.name', name:'Batch Name'}​​​​​​​​,
-      //               {​​​​​​​​data:'student_info.email', name:'Email'}​​​​​​​​,
-      //               {​​​​​​​​data:'student_info.phone', name:'Phone Number'}​​​​​​​​,
-      //               {​​​​​​​​data:'nrc', name:'NRC'}​​​​​​​​,
-      //               {​​​​​​​​data:'status', name:'Status'}​​​​​​​​,
-      //             ],
-      //           "dom":'<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-      //   }​​​​​​​​);
 
-        $('#tbl_da_pending_exam').DataTable({
-          processing:true,
-          serverSide: true,
-          ajax:BACKEND_URL + "/filter/0/1",
-          // columns: [
-          //
-          //             {​​​​​​​​data:'id', name:'Student Name'}​​​​​​​​,
-          //             {​​​​​​​​data:'action', name:'action', orderable:false, searchable:false}​​​​​​​​,
-          //             {​​​​​​​​data:'student_info.name_mm', name:'Student Name'}​​​​​​​​,
-          //             {​​​​​​​​data:'batch.name', name:'Batch Name'}​​​​​​​​,
-          //             {​​​​​​​​data:'student_info.email', name:'Email'}​​​​​​​​,
-          //             {​​​​​​​​data:'student_info.phone', name:'Phone Number'}​​​​​​​​,
-          //             {​​​​​​​​data:'nrc', name:'NRC'}​​​​​​​​,
-          //             {​​​​​​​​data:'status', name:'Status'}​​​​​​​​,
-          //           ],
-        });
+      $('#tbl_da_pending_exam').DataTable({
+          processing: true,
+          // serverSide: true,
+          ajax: BACKEND_URL + "/filter/0/1",
+          columns: [
+              {data: null, render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+              }},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.email', name: 'Email'},
+              {data: 'exam_type', name: 'Exam Type'},
+              {data: 'remark', name: 'Remark'},
+              {data: 'status', name: 'Status'},
+              {data: 'print', name: 'Print',orderable: false, searchable: false},
+          ],
+          "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+      });
+
+      $('#tbl_da_approved_exam').DataTable({
+          processing: true,
+          // serverSide: true,
+          ajax: BACKEND_URL + "/filter/1/1",
+          columns: [
+              {data: null, render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+              }},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.email', name: 'Email'},
+              {data: 'exam_type', name: 'Exam Type'},
+              {data: 'remark', name: 'Remark'},
+              {data: 'status', name: 'Status'},
+              {data: 'print', name: 'Print',orderable: false, searchable: false},
+          ],
+          "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+      });
+
+      $('#tbl_da_rejected_exam').DataTable({
+          processing: true,
+          // serverSide: true,
+          ajax: BACKEND_URL + "/filter/2/1",
+          columns: [
+              {data: null, render: function (data, type, row, meta) {
+                  return meta.row + meta.settings._iDisplayStart + 1;
+              }},
+              {data: 'action', name: 'action', orderable: false, searchable: false},
+              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.email', name: 'Email'},
+              {data: 'exam_type', name: 'Exam Type'},
+              {data: 'remark', name: 'Remark'},
+              {data: 'status', name: 'Status'},
+              {data: 'print', name: 'Print',orderable: false, searchable: false},
+          ],
+          "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+      });
+
     });
 </script>
 @endpush
