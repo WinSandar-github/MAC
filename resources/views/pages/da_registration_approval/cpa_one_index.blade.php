@@ -169,7 +169,7 @@
     //loadBatchData("cpa_1");
     $(document).ready(function () {
         $('#tbl_student_mac').DataTable({
-            //scrollX: true,
+            scrollX: true,
             processing: true,
             serverSide: true,
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -195,7 +195,7 @@
             ],
         });
         $('#tbl_student_private_school').DataTable({
-            //scrollX: true,
+            scrollX: true,
             processing: true,
             serverSide: true,
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -221,7 +221,7 @@
             ],
         });
         $('#tbl_student_self_study').DataTable({
-            //scrollX: true,
+            scrollX: true,
             processing: true,
             serverSide: true,
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -246,6 +246,13 @@
                 {data: 'reg_reason', name: 'Registration Reason'},
                 {data: 'status', name: 'Status'},
             ],
+        });
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $.each($.fn.dataTable.tables(true), function(){
+            $(this).DataTable()
+                .columns.adjust()
+                .responsive.recalc();
+        });
         });
     })
 </script>
