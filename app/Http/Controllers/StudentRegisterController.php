@@ -262,7 +262,7 @@ class StudentRegisterController extends Controller
             ->addColumn('action', function ($student) {
                 return "<div class='btn-group'>
                             <button type='button' class='btn btn-primary btn-xs' onclick='showRegistration($student->id,$student->form_type)'>
-                                <li class='fa fa-edit fa-sm'></li>
+                            <li class='fa fa-eye fa-sm'></li>
                             </button>
                         </div>";
             })
