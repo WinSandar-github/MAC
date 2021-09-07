@@ -8,6 +8,8 @@ use App\StudentInfo;
 use App\StudentRegister;
 use App\StudentCourseReg;
 use App\Batch;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class ExamRegisterController extends Controller
 {
@@ -42,14 +44,14 @@ class ExamRegisterController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('student_info_id', $student_info_id)->latest()->get('type');
         $type = $exam_type[0]['type'];
         $batch = StudentCourseReg::where('student_info_id', $student_info_id)->latest()->get('batch_id');
         $batch_id = $batch[0]['batch_id'];
-        
-        // if ($request->hasfile('invoice_image')) 
+
+        // if ($request->hasfile('invoice_image'))
         // {
         //     $file = $request->file('invoice_image');
         //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -58,7 +60,7 @@ class ExamRegisterController extends Controller
         // }
         // $date = date('Y-m-d');
         $invoice_date = date('Y-m-d');
-      
+
         $exam = new ExamRegister();
         $exam->student_info_id = $request->student_id;
         $exam->date = $request->date;
@@ -74,8 +76,8 @@ class ExamRegisterController extends Controller
         $exam->status = 0;
         $exam->save();
 
-     
-        
+
+
         return "You have successfully registerd!";
     }
 
@@ -151,24 +153,43 @@ class ExamRegisterController extends Controller
         ],200);
     }
 
-    public function FilterExamRegistration(Request $request)
-    {
+    // public function FilterExamRegistration(Request $request)
+    // {
+    //     $exam_register = ExamRegister::with('student_info');
+    //     if($request->name!=""){
+    //         $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
+    //         ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+    //         ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+    //     }
+    //     if($request->batch!="all")
+    //     {
+    //         $exam_register = $exam_register->where('batch_id', $request->batch);
+    //     }
+    //     $exam_register =  $exam_register->where('form_type', $request->course_code)->get();
+    //     // $exam_register =  $exam_register->get();
+    //     return response()->json([
+    //         'data' => $exam_register
+    //     ],200);
+    // }
+
+    public function FilterExamRegistration($status , $course_code){
+        //$student_infos = StudentCourseReg::with('student_info','batch')->where('approve_reject_status','=', $status)->where('batch_id','=', $course_code)->get();
         $exam_register = ExamRegister::with('student_info');
-        if($request->name!=""){
-            $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
-            ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-            ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-        }
-        if($request->batch!="all") 
-        {
-            $exam_register = $exam_register->where('batch_id', $request->batch);
-        }
-        $exam_register =  $exam_register->where('form_type', $request->course_code)->get();
-        // $exam_register =  $exam_register->get();
-        return response()->json([
-            'data' => $exam_register
-        ],200);
+            return DataTables::of($exam_register)
+                ->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                    <button type='button' class='btn btn-primary btn-xs' onclick='showDAList($infos->id)'>
+                                        <li class='fa fa-eye fa-sm'></li>
+                                    </button>
+                                </div>";
+                })
+                // ->addColumn('nrc', function ($infos){
+                //     $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                //     return $nrc_result;
+                // })
+                ->make(true);
     }
+
 
     public function viewStudent($id)
     {
@@ -180,25 +201,25 @@ class ExamRegisterController extends Controller
 
     public function cpaExamRegister(Request $request)
     {
-         
+
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('student_info_id', $student_info_id)->latest()->get('type');
         $type = $exam_type[0]['type'];
         $batch = StudentCourseReg::where('student_info_id', $student_info_id)->latest()->get('batch_id');
         $batch_id = $batch[0]['batch_id'];
-        
-       
-        // $student_info_id = $request->student_id;        
-       
+
+
+        // $student_info_id = $request->student_id;
+
         // $batch_id = StudentCourseReg::where('student_info_id', $student_info_id)->first()->batch_id;
         // $exam_type = Batch::where('id',$batch_id)->first()->course_id;
-        
-        
-   
-     
+
+
+
+
         $date = date('Y-m-d');
         $invoice_date = date('Y-m-d');
-      
+
         $exam = new ExamRegister();
         $exam->student_info_id = $request->student_id;
         $exam->last_ans_exam_no= $request->last_ans_exam_no;
@@ -217,13 +238,13 @@ class ExamRegisterController extends Controller
         $exam->save();
 
 
-     
+
         return "You have successfully registerd!";
     }
-    
+
     public function getExamByStudentID($id){
         $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
-        
+
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -233,14 +254,14 @@ class ExamRegisterController extends Controller
     {
         $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
         $student_register = ExamRegister::where('student_info_id',$id)->where('form_type',$stu_course_reg->batch->course_id)->first();
-        
+
          $status = $student_register != NULL ? $student_register->status : null;
-        
+
         return response()->json($status,200);
     }
 
 
-    
+
 
     public function FilterExamRegister(Request $request){
         $student_infos = ExamRegister::with('student_info','batch')->where('form_type',$request->course_code)->where('status',1);
@@ -256,7 +277,7 @@ class ExamRegisterController extends Controller
             $student_infos = $student_infos->where('batch_id', $request->batch);
         }
         $student_infos = $student_infos->get();
-        return response()->json([ 
+        return response()->json([
             'data' => $student_infos
         ],200);
     }
