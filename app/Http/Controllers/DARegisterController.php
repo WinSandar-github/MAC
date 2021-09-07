@@ -358,7 +358,15 @@ class DARegisterController extends Controller
                     $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                     return $nrc_result;
                 })
-                ->rawColumns(['action', 'requirements'])
+                ->addColumn('status', function ($infos){
+                    if($infos->approve_reject_status == 0){
+                        return "PENDING";
+                    }else if($infos->approve_reject_status == 1){
+                        return "APPROVED";
+                    }else{
+                        return "REJECTED";
+                    }
+                })
                 ->make(true);
     }
 
