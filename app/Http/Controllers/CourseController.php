@@ -182,6 +182,13 @@ class CourseController extends Controller
             'data' => $course_type
         ], 200);
     }
+    public function loadCourseByCourseType($course_type_id)
+    {
+        $courses = Course::where('course_type_id',$course_type_id)->with('batches')->get();
+        return response()->json([
+            'data' => $courses
+        ],200);
+    }    
 
     public function getRequirement()
     {
