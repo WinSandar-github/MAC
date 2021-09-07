@@ -14,7 +14,7 @@
             </div>
         </div>       
 
-        {{--<div class="row">
+        <div class="row">
             <div class="col-md-12 text-center">
                 <form action="" method="post" enctype="multipart/form-data">
                     @csrf
@@ -32,7 +32,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <div class="row">
+                                           {{-- <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
@@ -71,7 +71,7 @@
                                                 <div class="col-md-6" style="vertical-align: top;">
                                                     <button type="button" class="btn btn-primary btn-round" onclick="GetStudentRegistration('cpa_2');" id="search">Search</button>
                                                 </div>
-                                            </div>
+                                            </div>--}}
                                             <ul class="nav nav-tabs" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false" style="font-weight:bold">Registration Mac</a>
@@ -154,105 +154,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>--}}
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">{{ __('CPA 2 Registration MAC List') }}</h5>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table id="tbl_student_mac" class="table table-striped nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight" >Action</th>
-                                            <th class="bold-font-weight" >Student Name</th>
-                                            <th class="bold-font-weight" >Email</th>                                        
-                                            <th class="bold-font-weight" >Registration No</th>
-                                            <th class="bold-font-weight" >Phone</th>
-                                            <th class="bold-font-weight" >Registration Reason</th>
-                                            <th class="bold-font-weight" >Status</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbl_student_mac_body" class="hoverTable text-left">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">{{ __('CPA 2 Registration Self Study List') }}</h5>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table id="tbl_student_self_study" class="table table-striped nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight" >Action</th>
-                                            <th class="bold-font-weight" >Student Name</th>
-                                            <th class="bold-font-weight" >Email</th>                                        
-                                            <th class="bold-font-weight" >Registration No</th>
-                                            <th class="bold-font-weight" >Phone</th>
-                                            <th class="bold-font-weight" >Registration Reason</th>
-                                            <th class="bold-font-weight" >Status</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbl_student_self_study_body" class="hoverTable text-left">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">{{ __('CPA 2 Registration Private School List') }}</h5>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table id="tbl_student_private_school" class="table table-striped nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight" >Action</th>
-                                            <th class="bold-font-weight" >Student Name</th>
-                                            <th class="bold-font-weight" >Email</th>                                        
-                                            <th class="bold-font-weight" >Registration No</th>
-                                            <th class="bold-font-weight" >Phone</th>
-                                            <th class="bold-font-weight" >Registration Reason</th>
-                                            <th class="bold-font-weight" >Status</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbl_student_private_school_body" class="hoverTable text-left">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
