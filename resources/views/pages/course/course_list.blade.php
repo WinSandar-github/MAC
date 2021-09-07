@@ -1,3 +1,4 @@
+
 @extends('layouts.app', [
     'class' => '',
     'elementActive' => 'course_list'
@@ -370,18 +371,6 @@
                     });
 
                     $(".course_type").append(opt);
-                }
-            });
-
-            $.ajax({
-                url: BACKEND_URL + '/get_requirement_id',
-                type: 'GET',
-                success: function (response) {
-                    var opt ; //`<option value="" selected >Select</option>`;
-                    $.each(response.data, function (i, v) {
-                        opt += `<option value=${v.id}  >${v.requirement_name}</option>`;
-                    })
-                    $(".requirement_id").append(opt);
                 }
             });
 

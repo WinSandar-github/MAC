@@ -66,6 +66,7 @@ class CourseController extends Controller
             'privateschool_registration_fee' => 'required',
             'mac_registration_fee' => 'required',
             // 'exam_fee' => 'required',
+            'exam_fee' => 'required',
             'tution_fee' => 'required',
             'description' => 'required',
             'course_type_id' => 'required',
@@ -182,6 +183,13 @@ class CourseController extends Controller
             'data' => $course_type
         ], 200);
     }
+    public function loadCourseByCourseType($course_type_id)
+    {
+        $courses = Course::where('course_type_id',$course_type_id)->with('batches')->get();
+        return response()->json([
+            'data' => $courses
+        ],200);
+    }    
 
     public function getRequirement()
     {

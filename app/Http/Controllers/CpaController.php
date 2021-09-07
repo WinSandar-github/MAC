@@ -50,7 +50,6 @@ class CpaController extends Controller
         $student_course->date            = $course_date;
         $student_course->status          = 1;
         $student_course->save();
-
         return $student_info;
     }
 }

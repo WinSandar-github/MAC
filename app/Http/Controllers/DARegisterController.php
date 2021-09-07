@@ -13,6 +13,8 @@ use Hash;
 use Illuminate\Support\Facades\DB;
 use Mail;
 use App\Mail\ContactMail;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class DARegisterController extends Controller
 {
@@ -310,35 +312,62 @@ class DARegisterController extends Controller
 
     }
 
-    public function FilterApplicationList(Request $request)
-    {
+    // public function FilterApplicationList(Request $request)
+    // {
         
-        $student_infos = StudentCourseReg::with('student_info','batch');
-        // $test=StudentInfo::where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc)->get();
-        if($request->name!="")
-        {
-            $student_infos=$student_infos->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id')
-                                        ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-                                        ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-        }
-        if($request->nrc!="" && $request->name=="")
-        {
-            $student_infos=$student_infos->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id')
-                                        // ->where('student_infos.nrc_state_region'.'/'.'student_infos.nrc_township'.'('.'student_infos.nrc_citizen'.')', $request->nrc);
-                                        ->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        }
-        if($request->nrc!="" && $request->name!="")
-        {
-            $student_infos=$student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        }
-        if($request->batch!="all"){
-            $student_infos = $student_infos->where('batch_id',$request->batch);
-        }
-        $student_infos=$student_infos->get();
-        return response()->json([ 
-            'data' => $student_infos,
-            // 'test'=>$test
-        ],200);
+    //     $student_infos = StudentCourseReg::with('student_info','batch');
+    //     // $test=StudentInfo::where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc)->get();
+    //     if($request->name!="")
+    //     {
+    //         $student_infos=$student_infos->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id')
+    //                                     ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+    //                                     ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+    //     }
+    //     if($request->nrc!="" && $request->name=="")
+    //     {
+    //         $student_infos=$student_infos->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id')
+    //                                     // ->where('student_infos.nrc_state_region'.'/'.'student_infos.nrc_township'.'('.'student_infos.nrc_citizen'.')', $request->nrc);
+    //                                     ->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+    //     }
+    //     if($request->nrc!="" && $request->name!="")
+    //     {
+    //         $student_infos=$student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+    //     }
+    //     if($request->batch!="all"){
+    //         $student_infos = $student_infos->where('batch_id',$request->batch);
+    //     }
+    //     $student_infos=$student_infos->get();
+    //     return response()->json([ 
+    //         'data' => $student_infos,
+    //         // 'test'=>$test
+    //     ],200);
+    // }
+
+    public function FilterApplicationList($status , $batch_id){
+        $student_infos = StudentCourseReg::with('student_info','batch')->where('approve_reject_status','=', $status)->where('batch_id','=', $batch_id)->get();
+        
+            return DataTables::of($student_infos)
+                ->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                    <button type='button' class='btn btn-primary btn-xs' onclick='showDAList($infos->id)'>
+                                        <li class='fa fa-eye fa-sm'></li>
+                                    </button>
+                                </div>";
+                })
+                ->addColumn('nrc', function ($infos){
+                    $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                    return $nrc_result;
+                })
+                ->addColumn('status', function ($infos){
+                    if($infos->approve_reject_status == 0){
+                        return "PENDING";
+                    }else if($infos->approve_reject_status == 1){
+                        return "APPROVED";
+                    }else{
+                        return "REJECTED";
+                    }
+                })
+                ->make(true);
     }
 
     public function checkCode($id)

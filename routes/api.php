@@ -102,12 +102,14 @@ Route::resource('/student_mac','StudentMacController');
 Route::apiResource('/descriptions','DescriptionController');
 Route::apiResource('/memberships','MembershipController');
 
+Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 //Student Register Form API
 Route::resource('/student_register','StudentRegisterController');
 Route::get('/show_student_register/{id}','StudentRegisterController@showStudentRegister');
 Route::patch('/approve_student/{id}', 'StudentRegisterController@approveStudent');
 Route::patch('/reject_student/{id}', 'StudentRegisterController@rejectStudent');
 Route::post('/filter_registration','StudentRegisterController@FilterRegistration');
+// Route::get('/filter_registration/{type}','StudentRegisterController@FilterRegistration');
 
 Route::post('save_exam','BatchController@saveExam');
 
@@ -126,7 +128,7 @@ Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister'
 Route::resource('/da_register', 'DARegisterController');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
-Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
+Route::get('/filter_student_info/{status}/{batch_id}','DARegisterController@FilterApplicationList');
 Route::post('/send_email', 'DARegisterController@send_email');
 
 //CPA One Registration
@@ -158,16 +160,17 @@ Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
+Route::get('/course_by_course_type/{course_type_id}','CourseController@loadCourseByCourseType');
 Route::get('/get_requirement_id','CourseController@getRequirement');
-
 Route::post('/cpa_exam_register','ExamRegisterController@cpaExamRegister');
 
+Route::get('/get_current_batch_studentId_student/{id}','ExamRegisterController@getExamByStudentID');
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 Route::post('/loginValidate', 'LoginController@loginValidate');
 Route::post('/mobileLogin', 'LoginController@mobileLogin');
 
 //Store DA/CPA Two Application Form
-Route::post('store_cpa_da_two_app_form','CPAController@store_da_cpa_app_form');
+Route::post('store_cpa_da_two_app_form','CpaController@store_da_cpa_app_form');
 
 //for school registration
 Route::resource('/school','SchoolController');
