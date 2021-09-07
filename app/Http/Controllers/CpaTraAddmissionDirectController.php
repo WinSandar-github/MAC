@@ -46,7 +46,7 @@ class CpaTraAddmissionDirectController extends Controller
      */
     public function store(Request $request)
     { 
-        return $request->file('certificate');
+        
         
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
         ->where('nrc_township', '=', $request['nrc_township'])
