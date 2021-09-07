@@ -109,7 +109,6 @@ function getTeacherInfos(){
     let result = window.location.href;
     let url = new URL(result);
     let id = url.searchParams.get("id");
-    // var id = localStorage.getItem("teacher_id");
     $.ajax({
         type : 'GET',
         url : BACKEND_URL+"/teacher/"+id,
@@ -170,8 +169,6 @@ function approveTeacherRegister(){
     let result = window.location.href;
     let url = new URL(result);
     let id = url.searchParams.get("id");
-    // var id = localStorage.getItem("teacher_id");
-    console.log({id});
     $.ajax({
         url: BACKEND_URL + "/approve_teacher_register",
         data: 'id='+id+"&status=1",

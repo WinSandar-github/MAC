@@ -27,10 +27,9 @@
                             <div class="col-md-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-6">
                                                 <div class="row">
-                                                    <!-- <div class="col-md-1"></div> -->
                                                     <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
                                                     <div class="col-md-7 text-left" style="padding-left:0px;">
                                                         <input type="text" name="filter_by_name" class="form-control" placeholder="Student Name">
@@ -52,7 +51,6 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="row">
-                                                    <!-- <div class="col-md-1"></div> -->
                                                     <div class="col-md-4 text-left" style="font-weight:bold;">NRC</div>
                                                     <div class="col-md-7 text-left" style="padding-left:0px;">
                                                         <input type="text" name="filter_by_nrc" class="form-control" placeholder="eg. ၁/ကမတ(နိုင်)၁၂၃၄၅၆">
@@ -62,7 +60,7 @@
                                             <div class="col-md-6" style="vertical-align: top;">
                                                 <button type="button" class="btn btn-primary btn-round m-0" onclick="getDAList('cpa_2')" id="search">Search</button>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         
                                             <ul class="nav nav-tabs mt-3" role="tablist">
                                                 <li class="nav-item">
@@ -80,7 +78,7 @@
                                     <div class="card-body">
                                     <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                             <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                <table id="tbl_da_pending_list"class="table table-hover text-nowrap ">
+                                                <table id="tbl_da_pending_list"class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -99,7 +97,7 @@
                                                 </table>
                                             </div>
                                             <div class="tab-pane fade show" id="link2" aria-expanded="true">
-                                                <table id="tbl_da_approved_list"class="table table-hover text-nowrap ">
+                                                <table id="tbl_da_approved_list"class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -117,7 +115,7 @@
                                                 </table>
                                             </div>
                                             <div class="tab-pane fade show" id="link3" aria-expanded="true">
-                                                <table id="tbl_da_rejected_list"class="table table-hover text-nowrap ">
+                                                <table id="tbl_da_rejected_list"class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -148,7 +146,68 @@
 @endsection
 @push('scripts')
 <script>
-    getDAList('cpa_2');
-    loadBatchData("cpa_2");
+    // getDAList('cpa_2');
+    // loadBatchData("cpa_2");
+
+    $(document).ready(function () {
+
+        $('#tbl_da_pending_list').DataTable({
+            processing: true,
+            //serverSide: true,
+            ajax: BACKEND_URL + "/filter_student_info/0/4",
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'batch.name', name: 'Batch Name'},
+                {data: 'student_info.email', name: 'Email'},
+                {data: 'student_info.phone', name: 'Phone Number'},
+                {data: 'nrc', name: 'NRC'},
+                {data: 'status', name: 'Status'}
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+
+        $('#tbl_da_approved_list').DataTable({
+            processing: true,
+            //serverSide: true,
+            ajax: BACKEND_URL + "/filter_student_info/1/4",
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'batch.name', name: 'Batch Name'},
+                {data: 'student_info.email', name: 'Email'},
+                {data: 'student_info.phone', name: 'Phone Number'},
+                {data: 'nrc', name: 'NRC'},
+                {data: 'status', name: 'Status'}
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+
+        $('#tbl_da_rejected_list').DataTable({
+            processing: true,
+            //serverSide: true,
+            ajax: BACKEND_URL + "/filter_student_info/2/4",
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'batch.name', name: 'Batch Name'},
+                {data: 'student_info.email', name: 'Email'},
+                {data: 'student_info.phone', name: 'Phone Number'},
+                {data: 'nrc', name: 'NRC'},
+                {data: 'status', name: 'Status'}
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+
+    });
 </script>
 @endpush
