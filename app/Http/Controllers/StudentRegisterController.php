@@ -63,6 +63,13 @@ class StudentRegisterController extends Controller
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
+
+                // $student_register->academic_year=$request->academic_year;
+                // $student_register->direct_access_no=$request->direct_access_no;
+                // $student_register->entry_success_no=$request->entry_success_no;
+                // $student_register->module=$request->module;
+                // $student_register->batch_part_no = $request->batch_part_no;
+
                 $student_register->academic_year=$request->academic_year;
                 $student_register->batch_no = $request->batch_no_self;
                 $student_register->part_no = $request->part_no_self;
@@ -70,11 +77,14 @@ class StudentRegisterController extends Controller
                 $student_register->direct_access_no=$request->direct_access_no;
                 $student_register->entry_success_no=$request->entry_success_no;
                 $student_register->module=$request->module;
-                // $student_register->batch_part_no = $request->batch_part_no;;
-                $student_register->type = $request->type;
+
+		// $student_register->batch_part_no = $request->batch_part_no;;
+
+		$student_register->type = $request->type;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-                // $student_register->mentor_id = $request->mentor_id;
+		
+		// $student_register->mentor_id = $request->mentor_id;
                 // $student_register->current_check_service_id = $request->current_check_service_id;
                 // $student_register->current_check_services_other = $request->current_check_services_other;
                 // $student_register->recommend_file = $recommend_file;
@@ -495,8 +505,4 @@ class StudentRegisterController extends Controller
 
         
     }
-
-
-
-    
 }
