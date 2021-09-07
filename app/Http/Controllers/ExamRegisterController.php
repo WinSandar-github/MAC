@@ -60,7 +60,6 @@ class ExamRegisterController extends Controller
         // }
         // $date = date('Y-m-d');
         $invoice_date = date('Y-m-d');
-
         $exam = new ExamRegister();
         $exam->student_info_id = $request->student_id;
         $exam->date = $request->date;
@@ -244,7 +243,6 @@ class ExamRegisterController extends Controller
 
     public function getExamByStudentID($id){
         $exam_register = ExamRegister::where('student_info_id',$id)->with('course')->get();
-
         return response()->json([
             'data' => $exam_register
         ],200);
