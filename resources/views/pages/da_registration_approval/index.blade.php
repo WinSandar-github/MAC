@@ -192,7 +192,7 @@
                 {data: 'email', name: 'Email'},
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
-                {data: 'status1', name: 'Status'},
+                {data: 'status', name: 'Status'},
             ],
         });
         $('#tbl_student_private_school').DataTable({
@@ -218,7 +218,7 @@
                 {data: 'email', name: 'Email'},
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
-                {data: 'status1', name: 'Status'},
+                {data: 'status', name: 'Status'},
             ],
         });
         $('#tbl_student_self_study').DataTable({
@@ -245,7 +245,7 @@
                 {data: 'reg_no', name: 'Registration No'},
                 {data: 'phone', name: 'Phone'},
                 {data: 'reg_reason', name: 'Registration Reason'},
-                {data: 'status1', name: 'Status'},
+                {data: 'status', name: 'Status'},
             ],
         });
     })
