@@ -65,6 +65,7 @@ Route::post('/filter_batch','BatchController@FilterBatch');
 //Course
 Route::resource('/course','CourseController');
 Route::get('/filter_course/{course_name}','CourseController@FilterCourse');
+Route::get('/get_main_course', 'CourseController@getMainCourse');
 Route::get('/course_by_course_code/{code}','CourseController@loadCourseByCourseCode');
 Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
@@ -97,6 +98,9 @@ Route::get('student_course', 'CourseController@studentCourse');
 Route::resource('/student_selfstudy','StudentSelfStudyController');
 Route::resource('/student_privateschool','StudentPrivateSchoolController');
 Route::resource('/student_mac','StudentMacController');
+
+Route::apiResource('/descriptions','DescriptionController');
+Route::apiResource('/memberships','MembershipController');
 
 //Student Register Form API
 Route::resource('/student_register','StudentRegisterController');

@@ -18,11 +18,11 @@ class CreateMembershipsTable extends Migration
             $table->string('membership_name');
             $table->unsignedBigInteger('requirement_id');
             $table->unsignedBigInteger('description_id');
-            $table->bigInteger('form_fee');
-            $table->bigInteger('registration_fee');
-            $table->bigInteger('yearly_fee');
-            $table->bigInteger('renew_fee');
-            $table->bigInteger('late_fee');
+            $table->bigInteger('form_fee')->nullable();
+            $table->bigInteger('registration_fee')->nullable();
+            $table->bigInteger('yearly_fee')->nullable();
+            $table->bigInteger('renew_fee')->nullable();
+            $table->bigInteger('late_fee')->nullable();
             $table->timestamps();
         });
     }

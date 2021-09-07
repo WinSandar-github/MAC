@@ -12,6 +12,8 @@ class Training_typeSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('training_types')->delete();
+
         DB::table('training_types')->insert([
             array(
                 'training_type_name' => 'Type 1'

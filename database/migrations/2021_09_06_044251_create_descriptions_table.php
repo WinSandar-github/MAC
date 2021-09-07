@@ -15,7 +15,7 @@ class CreateDescriptionsTable extends Migration
     {
         Schema::create('descriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('requirement_name');
+            $table->string('description_name')->collation('utf8mb4_unicode_ci');;
             $table->timestamps();
         });
     }

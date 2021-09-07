@@ -13,6 +13,8 @@ class AuditStaffTypeSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('audit_staff_types')->delete();
+
         DB::table('audit_staff_types')->insert([
             array(
                 'name' => 'No of principals/ partners/ directors',
@@ -20,7 +22,7 @@ class AuditStaffTypeSeeder extends Seeder
             ),
             array(
                 'name' => 'No of audit managers',
-                'assistance' => false    
+                'assistance' => false
             ),
             array(
                 'name' => 'No of audit seniors',
@@ -34,7 +36,7 @@ class AuditStaffTypeSeeder extends Seeder
                 'name' => 'Other',
                 'assistance' => true
             ),
-            
+
         ]);
     }
 }

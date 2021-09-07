@@ -13,7 +13,8 @@ class AuditTotalStaffTypeSeeder extends Seeder
      */
     public function run()
     {
-        
+        DB::table('audit_total_staff_types')->delete();
+
         DB::table('audit_total_staff_types')->insert([
             array(
                 'name' => 'No of principals/ partners'
@@ -27,7 +28,7 @@ class AuditTotalStaffTypeSeeder extends Seeder
             array(
                 'name' => 'No of non-managerial level'
             ),
-            
+
         ]);
     }
 }

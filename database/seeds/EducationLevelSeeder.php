@@ -13,6 +13,8 @@ class EducationLevelSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('education_levels')->delete();
+
         DB::table('education_levels')->insert([
             array(
                 'name' => 'CPA'
@@ -23,8 +25,8 @@ class EducationLevelSeeder extends Seeder
             array(
                 'name' => 'အသိအမှတ်ပြုပြည်ပဘွဲ့'
             ),
-            
-            
+
+
         ]);
     }
 }

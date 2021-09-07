@@ -15,6 +15,8 @@ class TrainingClassSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('training_classes')->delete();
+
         DB::table('training_classes')->insert([
             array(
                 'training_name'=>'ဝန်ထမ်းအဖွဲ့အစည်းအကြီးအမှူးစီမံခန့်ခွဲမှုသင်တန်း',
