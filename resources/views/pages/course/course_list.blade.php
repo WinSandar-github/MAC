@@ -33,7 +33,7 @@
                                     <tr>
                                         <th class="">No</th>
                                         <th class="">Action</th>
-                                        <th class="">Main Course Name</th>
+                                        <th class="">Main_Course_Name</th>
                                         <th class="">Description</th>
                                         <th class="">Created_at</th>
                                         <th class="">Updated_at</th>
@@ -312,7 +312,7 @@
                 columns: [
                     {data: "id", name: 'No', orderable: false, searchable: false},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'name', name: 'name'},
+                    {data: 'course_name', name: 'Main_Course_Name'},
                     {data: 'course_description', name: 'Description'},
                     {data: 'created_at', name: 'Created_at'},
                     {data: 'updated_at', name: 'Updated_at'}

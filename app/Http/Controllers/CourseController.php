@@ -192,7 +192,7 @@ class CourseController extends Controller
     }
 
     public function getMainCourse(){
-        $main_course = CourseType::query();
+        $main_course = CourseType::get();
 
         return DataTables::of($main_course)
             ->addColumn('action', function ($course) {
@@ -214,6 +214,7 @@ class CourseController extends Controller
             ->editColumn('updated_at', function ($c){
                 return $c->updated_at == null ? 'N/A' : $c->updated_at;
             })
+            ->removeColumn('course_code')
             ->make(true);
     }
 
