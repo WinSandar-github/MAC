@@ -108,7 +108,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                    <table id="tbl_student_private_school" class="table table-hover text-nowrap " width="100%">
+                                                    <table id="tbl_student_private_school" class="table table-hover text-nowrap " style="width: 100%">
                                                         <thead>
                                                             <tr>
                                                                 <th class="bold-font-weight">No</th>
@@ -127,7 +127,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade show active" id="link3" aria-expanded="true">
-                                                    <table id="tbl_student_mac" class="table table-hover text-nowrap " width="100%">
+                                                    <table id="tbl_student_mac" class="table table-hover text-nowrap " style="width: 100%">
                                                         <thead>
                                                             <tr>
                                                                 <th class="bold-font-weight">No</th>
@@ -156,39 +156,6 @@
                 </form>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">{{ __('CPA 1 Registration Self Study List') }}</h5>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <table id="tbl_student_self_study" class="table table-striped nowrap">
-                                    <thead>
-                                        <tr>
-                                            <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight" >Action</th>
-                                            <th class="bold-font-weight" >Student Name</th>
-                                            <th class="bold-font-weight" >Email</th>                                        
-                                            <th class="bold-font-weight" >Registration No</th>
-                                            <th class="bold-font-weight" >Phone</th>
-                                            <th class="bold-font-weight" >Registration Reason</th>
-                                            <th class="bold-font-weight" >Status</th>
-                                            
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tbl_student_self_study_body" class="hoverTable text-left">
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
    
@@ -198,7 +165,88 @@
 
 @push('scripts')
 <script>
-    GetStudentRegistration("cpa_1");
+    //GetStudentRegistration("cpa_1");
     //loadBatchData("cpa_1");
+    $(document).ready(function () {
+        $('#tbl_student_mac').DataTable({
+            //scrollX: true,
+            processing: true,
+            serverSide: true,
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            ajax:{ 
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"2",
+                    "is_reg_reason":false
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'status', name: 'Status'},
+            ],
+        });
+        $('#tbl_student_private_school').DataTable({
+            //scrollX: true,
+            processing: true,
+            serverSide: true,
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            ajax:{ 
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"1",
+                    "is_reg_reason":false
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'status', name: 'Status'},
+            ],
+        });
+        $('#tbl_student_self_study').DataTable({
+            //scrollX: true,
+            processing: true,
+            serverSide: true,
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            ajax:{ 
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"0",
+                    "is_reg_reason":true
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'reg_reason', name: 'Registration Reason'},
+                {data: 'status', name: 'Status'},
+            ],
+        });
+    })
 </script>
 @endpush
