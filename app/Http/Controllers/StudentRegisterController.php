@@ -277,6 +277,18 @@ class StudentRegisterController extends Controller
             })
             ->addColumn('phone', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->phone, 50, '...') : '';
+            
+            })
+            ->addColumn('status1', function ($student) {
+                if($student->status==0){
+                    return "PENDING";
+                }
+                else if($student->status==1){
+                    return "APPROVED";
+                }
+                else{
+                    return "REJECTED";
+                }
             });
         if($request->is_reg_reason==true){
             $a=$a->addColumn('reg_reason', function ($student) {
