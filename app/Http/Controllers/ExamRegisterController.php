@@ -352,7 +352,7 @@ class ExamRegisterController extends Controller
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onclick='showCPAOneExam($infos->id)'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='showCPATwoExam($infos->id)'>
                                 <li class='fa fa-eye fa-sm'></li>
                             </button>
                         </div>";
