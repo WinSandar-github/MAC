@@ -258,11 +258,11 @@ class StudentRegisterController extends Controller
         // ->where('courses.code',$request->form_type)
         ->where('type',$request->reg_type)->get();
 
-        $a= DataTables::of($student_register)
+        $datatable= DataTables::of($student_register)
             ->addColumn('action', function ($student) {
                 return "<div class='btn-group'>
                             <button type='button' class='btn btn-primary btn-xs' onclick='showRegistration($student->id,$student->form_type)'>
-                                <li class='fa fa-edit fa-sm'></li>
+                            <li class='fa fa-eye fa-sm'></li>
                             </button>
                         </div>";
             })
@@ -277,14 +277,26 @@ class StudentRegisterController extends Controller
             })
             ->addColumn('phone', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->phone, 50, '...') : '';
+            
+            })
+            ->addColumn('status', function ($student) {
+                if($student->status==0){
+                    return "PENDING";
+                }
+                else if($student->status==1){
+                    return "APPROVED";
+                }
+                else{
+                    return "REJECTED";
+                }
             });
         if($request->is_reg_reason==true){
-            $a=$a->addColumn('reg_reason', function ($student) {
+            $datatable= $datatable->addColumn('reg_reason', function ($student) {
                 return $student->reg_reason ? Str::limit($student->reg_reason, 50, '...') : '';
             });
         }
-        $a=$a->make(true);
-        return $a;
+        $datatable= $datatable->make(true);
+        return  $datatable;
     }
 
     public function updateMentor(Request $request)

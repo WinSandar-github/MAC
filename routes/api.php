@@ -98,6 +98,10 @@ Route::get('student_course', 'CourseController@studentCourse');
 Route::resource('/student_selfstudy','StudentSelfStudyController');
 Route::resource('/student_privateschool','StudentPrivateSchoolController');
 Route::resource('/student_mac','StudentMacController');
+
+Route::apiResource('/descriptions','DescriptionController');
+Route::apiResource('/memberships','MembershipController');
+
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 //Student Register Form API
 Route::resource('/student_register','StudentRegisterController');
