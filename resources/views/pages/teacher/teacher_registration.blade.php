@@ -62,7 +62,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-2" style="vertical-align: top;">
-                                                <button type="button" class="btn btn-primary btn-round mt-0" onclick="getTeacherRegisterList()" id="search">Search</button>
+                                                <button type="button" class="btn btn-primary btn-round mt-0"  id="search_teacher">Search</button>
                                             </div>
                                         </div>
                                         <br/>
@@ -181,7 +181,107 @@
     //             enableTime: false,
     //             dateFormat: "d-m-Y",
     //     });
-    getTeacherRegisterList();
+
+    var ttable_pending = $('#tbl_teacher_pending').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_teacher",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 0
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+               
+
+            ],
+         });
+
+        var ttable_approve =$('#tbl_teacher_approved').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_teacher",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 1
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+
+            ],
+         });
+
+        var ttable_reject =$('#tbl_teacher_rejected').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_teacher",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+
+            ],
+         });
+
+        $("#search_teacher").click(function(){
+       
+            ttable_pending.draw();
+            ttable_approve.draw();
+            ttable_reject.draw();
+
+
+        });
+    // getTeacherRegisterList();
     });
     </script>
     

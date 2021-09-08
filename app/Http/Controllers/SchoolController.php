@@ -12,6 +12,9 @@ use App\SchoolTeacher;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;    
+
 class SchoolController extends Controller
 {
     /**
@@ -369,7 +372,7 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        $school = SchoolRegister::where('id',$id)->with('school_establishers','school_governs','school_members','school_teachers')->get();
+        $school = SchoolRegister::where('id',$id)->with('school_establishers','school_governs','school_members','school_teachers')->first();
         return  response()->json([
             'data' => $school
         ],200);
@@ -729,7 +732,7 @@ class SchoolController extends Controller
 
     public function FilterSchool(Request $request)
     {
-        $school = SchoolRegister::orderBy('created_at','desc');
+        $school = SchoolRegister::where('approve_reject_status',$request->status)->orderBy('created_at','desc');
         if($request->name!=""){
             $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
                         ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -737,10 +740,32 @@ class SchoolController extends Controller
         if($request->nrc!=""){
             $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
-        $school=$school->get();
-        return  response()->json([
-            'data' => $school
-        ],200);
+        $schools=$school->get();
+        return DataTables::of($schools)
+        ->addColumn('action', function ($infos) {
+            return "<div class='btn-group'>
+                            <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                        </div>";
+        })
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+            return $nrc_result;
+        })
+        ->addColumn('status', function ($infos){
+            if($infos->approve_reject_status	 == 0){
+                return "PENDING";
+            }else if($infos->approve_reject_status	 == 1){
+                return "APPROVED";
+            }else{
+                return "REJECTED";
+            }
+        })
+        ->make(true);
+        // return  response()->json([
+        //     'data' => $school
+        // ],200);
     }
 
     public function schoolStatus($id)

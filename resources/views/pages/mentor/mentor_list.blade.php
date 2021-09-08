@@ -53,7 +53,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2" style="vertical-align: top;">
-                                                    <button type="button" class="btn btn-primary btn-round mt-0" onclick="getMentorList()" id="search">Search</button>
+                                                    <button type="button" class="btn btn-primary btn-round mt-0"  id="search_mentor">Search</button>
                                                 </div>
                                             </div>
                                             <br/>
@@ -148,6 +148,114 @@
 @endsection
 @push('scripts')
 <script>
-    getMentorList();
+    $('document').ready(function(){
+        var table_pending = $('#tbl_mentor_pending').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_mentor",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 0
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'm_email', name: 'm_email'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+                {data: 'type', name: 'type'},
+
+            ],
+           
+        });
+
+        var table_approve =$('#tbl_mentor_approved').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_mentor",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 1
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'm_email', name: 'm_email'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+                {data: 'type', name: 'type'},
+
+            ],
+           
+        });
+
+        var table_reject =$('#tbl_mentor_rejected').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_mentor",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'm_email', name: 'm_email'},
+                {data: 'phone_no', name: 'phone_no'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+                {data: 'type', name: 'type'},
+
+            ],
+           
+        });
+
+        $("#search_mentor").click(function(){
+       
+            table_pending.draw();
+            table_approve.draw();
+            table_reject.draw();
+
+
+        });
+
+
+    })
+    // getMentorList();
 </script>
 @endpush
