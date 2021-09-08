@@ -279,4 +279,20 @@ class TeacherController extends Controller
         return response()->json($data,200);
     }
 
+    public function approveTeacher($id)
+    { 
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
+    }
+
+    public function check_payment($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
+        return response()->json($data,200);
+    }
+
 }
