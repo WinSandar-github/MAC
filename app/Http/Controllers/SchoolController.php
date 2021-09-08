@@ -64,6 +64,8 @@ class SchoolController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $business_license = '/storage/student_info/'.$name;
+        }else{
+            $business_license=null;
         } 
 
         if ($request->hasfile('company_reg')) {
@@ -71,105 +73,135 @@ class SchoolController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $company_reg = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $company_reg =null;
+        }  
 
         if ($request->hasfile('org_reg_origin_and_copy')) {
             $file = $request->file('org_reg_origin_and_copy');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $org_reg_origin_and_copy = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $org_reg_origin_and_copy=null;
+        }  
 
         if ($request->hasfile('estiblisher_list_and_bio')) {
             $file = $request->file('estiblisher_list_and_bio');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $estiblisher_list_and_bio = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $estiblisher_list_and_bio=null;
+        }  
 
         if ($request->hasfile('governer_list_and_bio')) {
             $file = $request->file('governer_list_and_bio');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $governer_list_and_bio = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $governer_list_and_bio=null;
+        }  
 
         if ($request->hasfile('org_member_list_and_bio')) {
             $file = $request->file('org_member_list_and_bio');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $org_member_list_and_bio = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $org_member_list_and_bio=null;
+        }  
 
         if ($request->hasfile('teacher_list_and_bio')) {
             $file = $request->file('teacher_list_and_bio');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $teacher_list_and_bio = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $teacher_list_and_bio=null;
+        }  
 
         if ($request->hasfile('teacher_reg_copy')) {
             $file = $request->file('teacher_reg_copy');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $teacher_reg_copy = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $teacher_reg_copy=null;
+        }  
 
         if ($request->hasfile('school_location_attach')) {
             $file = $request->file('school_location_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $school_location_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $school_location_attach=null;
+        }  
 
         if ($request->hasfile('school_building_attach')) {
             $file = $request->file('school_building_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $school_building_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $school_building_attach=null;
+        }  
 
         if ($request->hasfile('classroom_attach')) {
             $file = $request->file('classroom_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $classroom_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $classroom_attach=null;
+        }  
 
         if ($request->hasfile('toilet_attach')) {
             $file = $request->file('toilet_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $toilet_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $toilet_attach=null;
+        }  
         
         if ($request->hasfile('manage_room_attach')) {
             $file = $request->file('manage_room_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $manage_room_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $manage_room_attach=null;
+        }  
 
         if ($request->hasfile('supporting_structure_photo')) {
             $file = $request->file('supporting_structure_photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $supporting_structure_photo = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $supporting_structure_photo=null;
+        }  
 
         if ($request->hasfile('relevant_evidence_contracts')) {
             $file = $request->file('relevant_evidence_contracts');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $relevant_evidence_contracts = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $relevant_evidence_contracts=null;
+        }  
 
         if ($request->hasfile('sch_establish_notes_attach')) {
             $file = $request->file('sch_establish_notes_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $sch_establish_notes_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $sch_establish_notes_attach=null;
+        }  
 
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');

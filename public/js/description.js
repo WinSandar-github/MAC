@@ -3,7 +3,7 @@ function createDescription(){
     var send_data=new FormData();
     send_data.append('description_name',$('#des_name').val());
     // send_data.append('course_id',$('#selected_course_id').val());       
-   
+   show_loader();
     $.ajax({
             url: BACKEND_URL+"/descriptions",
             type: 'post',
@@ -11,7 +11,7 @@ function createDescription(){
             contentType: false,
             processData: false,
             success: function(result){
-                 
+                 EasyLoading.hide();
                 successMessage(result.message);
                 location.reload();
         }
@@ -65,6 +65,7 @@ function showDescription(id) {
     
     $("#description_form").attr('action', 'javascript:updateDescription()');    
     $("input[name=description_id]").val(id);
+    $('#descModalLabel').text('Update Description');
     $.ajax({
         type: "get",
         url: BACKEND_URL+"/descriptions/"+id,
@@ -90,7 +91,7 @@ function showDescription(id) {
 function updateDescription(){
     var id= $("input[name=description_id]").val();    
     var name=$("#des_name").val();
-    alert(name)
+    show_loader();
     
     
     $.ajax({
@@ -101,11 +102,11 @@ function updateDescription(){
            
         },        
         success: function(result){
+            EasyLoading.hide();
             successMessage(result.message);
-            $('#create_description_model').modal('toggle');        
+            // $('#create_description_model').modal('toggle');        
             location.reload();    
-            getRequirement();
-            
+           
         
         }
     });
@@ -114,10 +115,13 @@ function updateDescription(){
 function deleteDescription(description_id){
     var result = confirm("WARNING: This will delete Description  and  Press OK to proceed.");
         if (result) {
+            show_loader();
             $.ajax({
                 type: "DELETE",
                 url: BACKEND_URL+'/descriptions/'+description_id,
                 success: function (result) {
+                    EasyLoading.hide();
+                    
                     successMessage(result.message);
                     location.reload();
                 },

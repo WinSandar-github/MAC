@@ -122,7 +122,8 @@ Route::resource('/exam_register', 'ExamRegisterController');
 Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
+// Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
+Route::get('/filter/{status}/{course_code}', 'ExamRegisterController@FilterExamRegistration');
 Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
