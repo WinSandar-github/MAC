@@ -66,6 +66,10 @@
 <script src="{{ asset('js/course.js') }}"></script>
 <script src="{{ asset('js/batch.js')}}"></script>
 <script src="{{ asset('js/requirement.js')}}"></script>
+<script src="{{ asset('js/description.js')}}"></script>
+<script src="{{ asset('js/membership.js')}}"></script>
+
+
 <script src="{{ asset('js/common.js')}}"></script>
 <script src="{{ asset('js/student.js')}}"></script>
 <script src="{{ asset('js/da_approve_reject.js')}}"></script>

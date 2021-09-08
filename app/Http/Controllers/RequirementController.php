@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Requirement;
 
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
+
 class RequirementController extends Controller
 {
     /**
@@ -14,7 +17,7 @@ class RequirementController extends Controller
      */
     public function index()
     {
-        $requirements = Requirement::with('course')->get();
+        $requirements = Requirement::get();
         return response()->json([
             'data' => $requirements
         ],200);
@@ -28,11 +31,12 @@ class RequirementController extends Controller
      */
     public function store(Request $request)
     {
-        $requirement = new Requirement();
-        $requirement->name          = $request->name;
-        $requirement->require_exam  =   1;
+        // $requirement->require_exam  =   1;
         // $requirement->course_id     = $request->course_id;
-        $requirement->type     = $request->type;
+        // $requirement->type     = $request->type;
+
+        $requirement = new Requirement();
+        $requirement->requirement_name          = $request->requirement_name;
         $requirement->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -62,11 +66,12 @@ class RequirementController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $requirement = Requirement::find($id);
-        $requirement->name          = $request->name;
-        $requirement->require_exam  =   1;
+        // $requirement->require_exam  =   1;
         // $requirement->course_id     = $request->course_id;
-        $requirement->type     = $request->type;
+        // $requirement->type     = $request->type;
+
+        $requirement = Requirement::find($id);
+        $requirement->requirement_name          = $request->requirement_name;
         $requirement->save();
         return response()->json([
             'message' => "Update Successfully"
@@ -105,4 +110,25 @@ class RequirementController extends Controller
             'data' => $requirement
         ],200);
     }
+
+    public function showRequirement()
+    {
+        $requirements = Requirement::get();
+
+        return DataTables::of($requirements)
+            ->addColumn('action', function ($requirement) {
+                return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='showRequirementInfo($requirement->id)'>
+                                <li class='fa fa-edit fa-sm'></li>
+                            </button>
+                             <button type='button' class='btn btn-danger btn-xs' onclick='deleteRequirementInfo(\"$requirement->requirement_name\",$requirement->id)'>
+                                <li class='fa fa-trash fa-sm'></li>
+                            </button>
+                        </div>";
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+   
 }
