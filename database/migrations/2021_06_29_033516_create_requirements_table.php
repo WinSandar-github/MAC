@@ -16,9 +16,9 @@ class CreateRequirementsTable extends Migration
     {
         Schema::create('requirements', function (Blueprint $table) {
             $table->id();
-            $table->text('name')->collation('utf8mb4_unicode_ci');
+            $table->text('requirement_name')->collation('utf8mb4_unicode_ci');
             $table->string('type')->nullable();
-            $table->boolean('require_exam');
+            $table->boolean('require_exam')->nullable();
             // $table->unsignedBigInteger('course_id');
             $table->timestamps();
 

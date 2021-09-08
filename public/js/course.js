@@ -11,7 +11,7 @@ function removeComma(number) {
 
 function createCourse() {
     var send_data = new FormData();
-    send_data.append('name', $("input[name=name]").val());
+    send_data.append('name', $("input[name=course_name]").val());
     send_data.append('form_fee', removeComma($("input[name=form_fee]").val()));
     send_data.append('selfstudy_registration_fee', removeComma($("input[name=selfstudy_registration_fee]").val()));
     send_data.append('privateschool_registration_fee', removeComma($("input[name=privateschool_registration_fee]").val()));
@@ -126,7 +126,7 @@ function showCourseInfo(id) {
             var course_data = data.data;
             console.log('show course', course_data);
             // removeBracketed(course_data.requirement_id,"requirement_id");
-            $('input[name=name]').val(course_data.name);
+            $('input[name=course_name]').val(course_data.course_name);
             $('input[name=form_fee]').val(course_data.form_fee);
             $('input[name=selfstudy_registration_fee]').val(course_data.selfstudy_registration_fee);
             $('input[name=privateschool_registration_fee]').val(course_data.privateschool_registration_fee);

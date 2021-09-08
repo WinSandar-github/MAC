@@ -134,6 +134,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('save_exam', 'BatchController@saveExam');
 });
+Route::get('show_description','DescriptionController@showDescription');
+Route::get('show_requirement','RequirementController@showRequirement');
+Route::get('show_membership/{membership_name}','MembershipController@showMembership');
 
 Route::resource('/batch', 'BatchController');
 Route::resource('/course', 'CourseController');

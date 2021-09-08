@@ -169,7 +169,7 @@
     //loadBatchData("da_1");
     $(document).ready(function () {
         $('#tbl_student_mac').DataTable({
-            //scrollX: true,
+            scrollX: true,
            // dom: '<"float-left"B><"float-right"f>rt<"row"<"col-sm-4"l><"col-sm-4"i><"col-sm-4"p>>',
            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             processing: true,
@@ -196,7 +196,7 @@
             ],
         });
         $('#tbl_student_private_school').DataTable({
-            //scrollX: true,
+            scrollX: true,
             processing: true,
             //serverSide: true,
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -212,7 +212,7 @@
             columns: [
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                },orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name', name: 'Student Name'},
                 {data: 'email', name: 'Email'},
@@ -222,7 +222,7 @@
             ],
         });
         $('#tbl_student_self_study').DataTable({
-            //scrollX: true,
+            scrollX: true,
             processing: true,
             //serverSide: true,
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -238,7 +238,7 @@
             columns: [
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                },orderable: false, searchable: false},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name', name: 'Student Name'},
                 {data: 'email', name: 'Email'},
@@ -247,6 +247,14 @@
                 {data: 'reg_reason', name: 'Registration Reason'},
                 {data: 'status', name: 'Status'},
             ],
+        });
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $.each($.fn.dataTable.tables(true), function(){
+            $(this).DataTable()
+                .columns.adjust()
+                .responsive.recalc();
+        });
         });
     })
     
