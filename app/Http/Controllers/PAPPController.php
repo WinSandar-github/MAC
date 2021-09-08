@@ -211,74 +211,7 @@ class PAPPController extends Controller
             $profile_photo = '/storage/student_info/'.$name;
         }
 
-        // if ($request->hasfile('renew_file')) {
-        //     $file = $request->file('renew_file');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_papp/',$name);
-        //     $renew_file = '/storage/student_papp/'.$name;
-        // }else{
-        //     $renew_file="";
-        // }
-
-        // if ($request->hasfile('renew_papp_reg')) {
-        //     $file = $request->file('renew_papp_reg');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_papp/',$name);
-        //     $renew_papp_reg = '/storage/student_papp/'.$name;
-        // }
-
-        // if ($request->hasfile('renew_micpa')) {
-        //     $file = $request->file('renew_micpa');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_papp/',$name);
-        //     $renew_micpa = '/storage/student_papp/'.$name;
-        // }else{
-        //     $renew_micpa="";
-        // }
-
-        // if ($request->hasfile('renew_cpd')) {
-        //     $file = $request->file('renew_cpd');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_papp/',$name);
-        //     $renew_cpd = '/storage/student_papp/'.$name;
-        // }else{
-        //     $renew_cpd="";
-        // }
-
-        // if ($request->hasfile('renew_183_recomm')) {
-        //     $file = $request->file('renew_183_recomm');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_papp/',$name);
-        //     $renew_183_recomm = '/storage/student_papp/'.$name;
-        // }else{
-        //     $renew_183_recomm="";
-        // }
-
-        // if ($request->hasfile('renew_not_fulltime_recomm')) {
-        //     $file = $request->file('renew_not_fulltime_recomm');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_papp/',$name);
-        //     $renew_not_fulltime_recomm = '/storage/student_papp/'.$name;
-        // }else{
-        //     $renew_not_fulltime_recomm="";
-        // }
-
-        // if ($request->hasfile('renew_rule_confession')) {
-        //     $file = $request->file('renew_rule_confession');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_papp/',$name);
-        //     $renew_rule_confession = '/storage/student_papp/'.$name;
-        // }else{
-        //     $renew_cpd="";
-        // }
-
-        // $papp->renew_file=$renew_file;
-        // $papp->renew_papp_reg=$renew_papp_reg;
-        // $papp->renew_micpa=$renew_micpa;
-        // $papp->renew_cpd=$renew_cpd;
-        // $papp->renew_183_recomm=$renew_183_recomm;
-        // $papp->renew_not_fulltime_recomm=$renew_not_fulltime_recomm;
-        // $papp->renew_rule_confession=$renew_rule_confession;
+        
         if ($request->hasfile('cpa')) {
             $cpa_file = $request->file('cpa');
             $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
@@ -311,74 +244,71 @@ class PAPPController extends Controller
             $degree = null;
         }
 
-        if ($request->hasfile('cpa_ff_recommendation')) {
-            $cpa_ff_file = $request->file('cpa_ff_recommendation');
+        if ($request->hasfile('cpa_ff_file')) {
+            $cpa_ff_file = $request->file('cpa_ff_file');
             $cpa_ff_name  = uniqid().'.'.$cpa_ff_file->getClientOriginalExtension();
             $cpa_ff_file->move(public_path().'/storage/student_papp/',$cpa_ff_name);
             $cpa_ff = '/storage/student_papp/'.$cpa_ff_name;
         }
         else{
-            $cpa_ff="";
+            $cpa_ff=$request->cpa_ff_file;
         }
 
-        if ($request->hasfile('recommendation_183')) {
-            $recomm_183_file = $request->file('recommendation_183');
+        if ($request->hasfile('file_183')) {
+            $recomm_183_file = $request->file('file_183');
             $recomm_183_name  = uniqid().'.'.$recomm_183_file->getClientOriginalExtension();
             $recomm_183_file->move(public_path().'/storage/student_papp/',$recomm_183_name);
             $recomm_183 = '/storage/student_papp/'.$recomm_183_name;
         }else{
-            $recomm_183="";
+            $recomm_183=$request->file_183;
         }
 
-        if ($request->hasfile('not_fulltime_recommendation')) {
-            $not_fulltime_file = $request->file('not_fulltime_recommendation');
+        if ($request->hasfile('not_fulltime_file')) {
+            $not_fulltime_file = $request->file('not_fulltime_file');
             $not_fulltime_name  = uniqid().'.'.$not_fulltime_file->getClientOriginalExtension();
             $not_fulltime_file->move(public_path().'/storage/student_papp/',$not_fulltime_name);
             $not_fulltime= '/storage/student_papp/'.$not_fulltime_name;
         }else{
-            $not_fulltime="";
+            $not_fulltime=$request->not_fulltime_file;
         }
 
-        if ($request->hasfile('work_in_myanmar_confession')) {
-            $work_in_mm_file = $request->file('work_in_myanmar_confession');
+        if ($request->hasfile('work_in_mm_file')) {
+            $work_in_mm_file = $request->file('work_in_mm_file');
             $work_in_mm_name  = uniqid().'.'.$work_in_mm_file->getClientOriginalExtension();
             $work_in_mm_file->move(public_path().'/storage/student_papp/',$work_in_mm_name);
             $work_in_mm= '/storage/student_papp/'.$work_in_mm_name;
         }else{
-            $work_in_mm="";
+            $work_in_mm=$request->work_in_mm_file;
         }
 
-        if ($request->hasfile('rule_confession')) {
-            $rule_file = $request->file('rule_confession');
+        if ($request->hasfile('rule_conf_file')) {
+            $rule_file = $request->file('rule_conf_file');
             $rule_name  = uniqid().'.'.$rule_file->getClientOriginalExtension();
             $rule_file->move(public_path().'/storage/student_papp/',$rule_name);
             $rule = '/storage/student_papp/'.$rule_name;
         }else{
-            $rule="";
+            $rule=$request->rule_conf_file;
         }
 
-        if ($request->hasfile('cpd_record')) {
-            $cpd_file = $request->file('cpd_record');
+        if ($request->hasfile('cpd_record_file')) {
+            $cpd_file = $request->file('cpd_record_file');
             $cpd_name  = uniqid().'.'.$cpd_file->getClientOriginalExtension();
             $cpd_file->move(public_path().'/storage/student_papp/',$cpd_name);
             $cpd = '/storage/student_papp/'.$cpd_name;
         }else{
-            $cpd="";
+            $cpd=$request->cpd_record_file;
         }
 
-        if ($request->hasfile('tax_free_recommendation')) {
-            $tax_free_file = $request->file('tax_free_recommendation');
+        if ($request->hasfile('tax_free_file')) {
+            $tax_free_file = $request->file('tax_free_file');
             $tax_free_name  = uniqid().'.'.$tax_free_file->getClientOriginalExtension();
             $tax_free_file->move(public_path().'/storage/student_papp/',$tax_free_name);
             $tax_free = '/storage/student_papp/'.$tax_free_name;
         }else{
-            $tax_free="";
+            $tax_free=$request->tax_free_file;
         }
         $papp = Papp::find($id);
         $papp->profile_photo=$profile_photo;
-        $papp->cpa                          =   $cpa;
-        $papp->ra                           =   $ra;
-        $papp->foreign_degree               =   json_encode($degree);
         $papp->papp_date                    =   $request->papp_date;
         $papp->use_firm                     =   $request->use_firm;
         $papp->firm_name                    =   $request->firm_name;
