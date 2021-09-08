@@ -39,7 +39,7 @@
                             <div class="col-md-12">
                                 <div class="card">
                                 <div class="card-header">
-                                        <div class="row">
+                                        {{--<div class="row">
                                             <div class="col-md-5">
                                                 <div class="row">
                                                     <!-- <div class="col-md-1"></div> -->
@@ -63,7 +63,7 @@
                                             <div class="col-md-2">
                                                 <button type="submit" onclick="getExam('da_2')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
                                             </div>
-                                        </div>
+                                        </div>--}}
                                         <ul class="nav nav-tabs mt-3" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
@@ -159,7 +159,7 @@
 @endsection
 @push('scripts')
 <script>
-    loadBatchData("da_2");
+    //loadBatchData("da_2");
     //getExam('da_2');
     $(document).ready(function(){
       $('#tbl_da_pending_exam').DataTable({
@@ -218,6 +218,15 @@
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
+
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+          $.each($.fn.dataTable.tables(true), function(){
+              $(this).DataTable()
+                  .columns.adjust()
+                  .responsive.recalc();
+          });
+      });
+
     });
 </script>
 @endpush

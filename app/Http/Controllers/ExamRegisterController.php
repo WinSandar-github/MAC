@@ -177,9 +177,6 @@ class ExamRegisterController extends Controller
         ->where('form_type','=',$course_code)
         ->get();
 
-        //$course = $course_code;
-        //$exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id');
-
         if($course_code == 1){
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
@@ -304,7 +301,7 @@ class ExamRegisterController extends Controller
 
             ->addColumn('print', function ($infos) {
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->batch_id)'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id)'>
                                 <li class='fa fa-print fa-sm'></li>
                             </button>
                         </div>";
@@ -360,7 +357,7 @@ class ExamRegisterController extends Controller
 
             ->addColumn('print', function ($infos) {
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->batch_id)'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id)'>
                                 <li class='fa fa-print fa-sm'></li>
                             </button>
                         </div>";
