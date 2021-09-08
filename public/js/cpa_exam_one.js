@@ -1,4 +1,4 @@
-// function loadCPABatchData(){ 
+// function loadCPABatchData(){
 //     var select = document.getElementById("selected_batch_id");
 //     $.ajax({
 //         url: BACKEND_URL+"/course_by_course_type/2",
@@ -92,7 +92,7 @@ function getCPAExam(course_code) {
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -112,7 +112,7 @@ function getCPAExam(course_code) {
                     tr += "<td>" + element.grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -132,7 +132,7 @@ function getCPAExam(course_code) {
                     tr += "<td>" + element.grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -400,7 +400,7 @@ function loadCPAStudent(course_type) {
                     // tr += "<td>" + element.batch_id+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     //tr += "<td ><div class='btn-group'>";
                     $("#tbl_cpa_exam_pending_result_body").append(tr);
                 }
@@ -418,10 +418,10 @@ function loadCPAStudent(course_type) {
                     // tr += "<td>" + element.batch_id+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     //tr += "<td ><div class='btn-group'>";
                     $("#tbl_cpa_exam_approved_result_body").append(tr);
-                }                          
+                }
                 else if(element.grade==2){
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
@@ -436,10 +436,10 @@ function loadCPAStudent(course_type) {
                     // tr += "<td>" + element.batch_id+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     //tr += "<td ><div class='btn-group'>";
                     $("#tbl_cpa_exam_rejected_result_body").append(tr);
-                }       
+                }
             });
             getIndexNumber('#tbl_cpa_exam_pending_result tr');
             createDataTable("#tbl_cpa_exam_pending_result");
@@ -508,20 +508,27 @@ function getCPAModuleStd() {
                     is_full_module = "Full Module";
                 }
 
-                if(element.grade == 1 )
-                {
-                     $('.ex_res_btn').hide();
-                    $('.pass_fail_btn').hide();
-
-                }
 
                 if (element.grade == 0) {
                     grade = "PENDING";
                 } else if (element.grade == 1) {
                     grade = "PASSED";
-                } else {
+                }
+                else {
                     grade = "FAILED";
                 }
+
+
+                  setTimeout(() => {
+                      if(element.grade == 1 )
+                      {
+
+                          $('.ex_res_btn').hide();
+                          $('.pass_fail_btn').hide();
+
+                      }
+
+                  }, 2000);
 
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);

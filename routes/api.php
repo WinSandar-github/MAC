@@ -80,7 +80,8 @@ Route::resource('/cpa_ff','CPAFFController');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
-
+Route::patch('/approve_cpaff/{id}', 'CPAFFController@approveCpaff');
+Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -121,8 +122,10 @@ Route::resource('/exam_register', 'ExamRegisterController');
 Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
-Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
+// Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
+Route::get('/filter/{status}/{course_code}', 'ExamRegisterController@FilterExamRegistration');
+// Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
+Route::get('/filter_exam_register/{grade}/{course_code}', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
@@ -177,11 +180,15 @@ Route::resource('/school','SchoolController');
 Route::post('/filter_school','SchoolController@FilterSchool');
 Route::post('/approve_school_register/{id}', 'SchoolController@approve_school_register');
 Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_register');
+Route::patch('/approve_school/{id}', 'SchoolController@approveSchool');
+Route::get('/check_payment_school/{id}', 'SchoolController@checkPayment');
+
 //for teacher registration
 Route::resource('/teacher','TeacherController');
 Route::post('/filter_teacher','TeacherController@FilterTeacher');
-
 Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_register');
+Route::patch('/approve_teacher/{id}', 'TeacherController@approveTeacher');
+Route::get('/check_payment_teacher/{id}', 'TeacherController@check_payment');
 
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
