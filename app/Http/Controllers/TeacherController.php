@@ -8,6 +8,9 @@ use App\StudentInfo;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;    
+
 class TeacherController extends Controller
 {
     /**
@@ -245,7 +248,7 @@ class TeacherController extends Controller
 
     public function FilterTeacher(Request $request)
     {
-        $teacher = TeacherRegister::orderBy('created_at','desc');
+        $teacher = TeacherRegister::where('approve_reject_status',$request->status)->orderBy('created_at','desc');
         if($request->name!=""){
             $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
                         ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -253,10 +256,32 @@ class TeacherController extends Controller
         if($request->nrc!=""){
             $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
-        $teacher=$teacher->get();
-        return  response()->json([
-            'data' => $teacher
-        ],200);
+        $teachers=$teacher->get();
+        return DataTables::of($teachers)
+                ->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                    <a href='teacher_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                        <li class='fa fa-eye fa-sm'></li>
+                                    </a>
+                                </div>";
+                })
+                ->addColumn('nrc', function ($infos){
+                    $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                    return $nrc_result;
+                })
+                ->addColumn('status', function ($infos){
+                    if($infos->approve_reject_status	 == 0){
+                        return "PENDING";
+                    }else if($infos->approve_reject_status	 == 1){
+                        return "APPROVED";
+                    }else{
+                        return "REJECTED";
+                    }
+                })
+                ->make(true);
+        // return  response()->json([
+        //     'data' => $teacher
+        // ],200);
     }
 
     // public function FilterTeacher(Request $request)
