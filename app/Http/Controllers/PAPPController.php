@@ -309,7 +309,6 @@ class PAPPController extends Controller
         }
         $papp = Papp::find($id);
         $papp->profile_photo=$profile_photo;
-        $papp->papp_date                    =   $request->papp_date;
         $papp->use_firm                     =   $request->use_firm;
         $papp->firm_name                    =   $request->firm_name;
         $papp->firm_type                    =   $request->firm_type;

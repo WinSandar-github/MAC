@@ -150,8 +150,6 @@ class TeacherController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/teacher_info/',$name);
             $image = '/storage/teacher_info/'.$name;
-        }else{
-            $image =$request->profile_photo;
         }
         // nrc front image
         if ($request->hasfile('nrc_front')) {
@@ -173,17 +171,7 @@ class TeacherController extends Controller
             $nrc_back =$request->nrc_back;
         }
         $teacher = TeacherRegister::find($id);
-        $teacher->name_mm = $request->name_mm;
-        $teacher->name_eng = $request->name_eng;
-        $teacher->father_name_mm = $request->father_name_mm;
-        $teacher->father_name_eng = $request->father_name_eng;
         $teacher->phone = $request->phone_number;
-        $teacher->email = $request->email;
-        $teacher->password = Hash::make($request->password);
-        $teacher->nrc_state_region = $request->nrc_state_region;
-        $teacher->nrc_township = $request->nrc_township;
-        $teacher->nrc_citizen = $request->nrc_citizen;
-        $teacher->nrc_number = $request->nrc_number;
         $teacher->nrc_front = $nrc_front;
         $teacher->nrc_back = $nrc_back;
         $teacher->gov_employee = $request->gov_employee;
@@ -208,10 +196,6 @@ class TeacherController extends Controller
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->renew_date = date('Y-m-d');
         $teacher->save();
-        $std_info = StudentInfo::where('teacher_id', $id)->first();
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
-        $std_info->save();
         return response()->json([
             'message' => 'You have renewed successfully.'
         ],200);
