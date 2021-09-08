@@ -30,79 +30,116 @@ function createBatch(){
 }
 
 function getBatch(){
-    destroyDatatable("#tbl_batch", "#tbl_batch_body"); 
-    var send_data=new FormData();
-    send_data.append('name',$("input[name=filter_by_name]").val());
-    send_data.append('course_name',$('#filter_course_id').val());
-    send_data.append('start_date',$("input[name=filter_by_start_date]").val());
-    send_data.append('end_date',$("input[name=filter_by_end_date]").val());
-    show_loader();
-    $.ajax({
-        url: BACKEND_URL+"/filter_batch",
-        type: 'post',
-        data:send_data,
-        contentType: false,
-        processData: false,
-        success: function(data){
-            EasyLoading.hide();
-            var course_data=data.data;
-            course_data.forEach(function (element) {     
-                if(element.entrance_pass_start_date==null){
-                    start_date="-";
-                }
-                else{
-                    start_date=element.entrance_pass_start_date;
-                }
-                if(element.entrance_pass_end_date==null){
-                    end_date="-";
-                }
-                else{
-                    end_date=element.entrance_pass_end_date;
-                }
-                var tr = "<tr>";
-                tr += "<td>" +  + "</td>";
-                tr += "<td ><div class='btn-group'>";
-                tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchExam(" + element.id + ")'>" +
-                    "<li class='fa fa-graduation-cap fa-sm'></li></button> ";
-                tr+="<button type='button' id='batch_edit"+element.id+"' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
-                    "<li class='fa fa-edit fa-sm'></li></button> ";
-                tr += "<button type='button'  id='batch_delete"+element.id+"'  class='btn btn-danger btn-xs' onClick='deleteBatchInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
-                tr += "<td>" + element.name + "</td>";
-                tr += "<td>" + element.course.name + "</td>";
-                tr += "<td>" + element.start_date + "</td>";
-                tr += "<td>" + element.end_date + "</td>";
-                tr += "<td>" + element.accept_application_start_date + "</td>";
-                tr += "<td>" + element.accept_application_end_date + "</td>";
-                tr += "<td>" + element.mac_reg_start_date + "</td>";
-                tr += "<td>" + element.mac_reg_end_date + "</td>";
-                tr += "<td>" + element.self_reg_start_date + "</td>";
-                tr += "<td>" + element.self_reg_end_date + "</td>";
-                tr += "<td>" + element.private_reg_start_date + "</td>";
-                tr += "<td>" + element.private_reg_end_date + "</td>";
-                
-                tr += "<td>" + start_date + "</td>";
-                tr += "<td>" + end_date + "</td>";           
-                    
-                tr += "</tr>";
-                $("#tbl_batch_body").append(tr);         
-                
-                var b_start_date=new Date(element.start_date);
-                var now=new Date(Date.now());
-                if(now>=b_start_date){
-                    document.getElementById('batch_edit'+element.id).style.display='none';
-                    document.getElementById('batch_delete'+element.id).style.display='none';
-                }
-                
-            });
-            
-            getIndexNumber('#tbl_batch tr');
-            createDataTable("#tbl_batch");      
+
+    $('#tbl_batch').DataTable({
+        scrollX: true,
+        processing: true,
+        serverSide: true,
+        searchable:false,
+        ajax: {
+            "url" : BACKEND_URL + "/filter_batch",
+            "type": "POST" ,
+            "data":  {
+                'name'       :  $("input[name=filter_by_name]").val(),
+                'course_name':  $('#filter_course_id').val(),
+                'start_date' :  $("input[name=filter_by_start_date]").val(),
+                'end_date'   :  $("input[name=filter_by_end_date]").val()
+            }
         },
-        error:function (message){
-            dataMessage(message, "#tbl_batch", "#tbl_batch_body");        
-        }
-    
+        columns: [
+            
+            {data: "id", name: 'No'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'name', name: 'name'}, 
+            {data: 'course.name', name: 'course.name'}, 
+            {data: 'start_date', name: 'start_date'},
+            {data: 'end_date', name: 'end_date'},
+            {data: 'accept_application_start_date', name: 'accept_application_start_date'},
+            {data: 'accept_application_end_date', name: 'accept_application_end_date'},
+            {data: 'mac_reg_start_date', name: 'mac_reg_start_date'},
+            {data: 'mac_reg_end_date', name: 'mac_reg_end_date'},
+            {data: 'self_reg_start_date', name: 'self_reg_start_date'},
+            {data: 'self_reg_end_date', name: 'self_reg_end_date'},
+            {data: 'private_reg_start_date', name: 'private_reg_start_date'},
+            {data: 'private_reg_end_date', name: 'private_reg_end_date'},
+            {data: 'entry_start_date', name: 'entry_start_date'},
+            {data: 'entry_end_date', name: 'entry_end_date'},
+        ],
     });
+
+    // destroyDatatable("#tbl_batch", "#tbl_batch_body"); 
+    // var send_data=new FormData();
+    // send_data.append('name',$("input[name=filter_by_name]").val());
+    // send_data.append('course_name',$('#filter_course_id').val());
+    // send_data.append('start_date',$("input[name=filter_by_start_date]").val());
+    // send_data.append('end_date',$("input[name=filter_by_end_date]").val());
+    // show_loader();
+    // $.ajax({
+    //     url: BACKEND_URL+"/filter_batch",
+    //     type: 'post',
+    //     data:send_data,
+    //     contentType: false,
+    //     processData: false,
+    //     success: function(data){
+    //         EasyLoading.hide();
+    //         var course_data=data.data;
+    //         course_data.forEach(function (element) {     
+    //             if(element.entrance_pass_start_date==null){
+    //                 start_date="-";
+    //             }
+    //             else{
+    //                 start_date=element.entrance_pass_start_date;
+    //             }
+    //             if(element.entrance_pass_end_date==null){
+    //                 end_date="-";
+    //             }
+    //             else{
+    //                 end_date=element.entrance_pass_end_date;
+    //             }
+    //             var tr = "<tr>";
+    //             tr += "<td>" +  + "</td>";
+    //             tr += "<td ><div class='btn-group'>";
+    //             tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showBatchExam(" + element.id + ")'>" +
+    //                 "<li class='fa fa-graduation-cap fa-sm'></li></button> ";
+    //             tr+="<button type='button' id='batch_edit"+element.id+"' class='btn btn-primary btn-xs' onClick='showBatchInfo(" + element.id + ")'>" +
+    //                 "<li class='fa fa-edit fa-sm'></li></button> ";
+    //             tr += "<button type='button'  id='batch_delete"+element.id+"'  class='btn btn-danger btn-xs' onClick='deleteBatchInfo(\"" + encodeURIComponent(element.name) + "\"," + element.id + ")'><li class='fa fa-trash fa-sm' ></li ></button ></div ></td > ";
+    //             tr += "<td>" + element.name + "</td>";
+    //             tr += "<td>" + element.course.name + "</td>";
+    //             tr += "<td>" + element.start_date + "</td>";
+    //             tr += "<td>" + element.end_date + "</td>";
+    //             tr += "<td>" + element.accept_application_start_date + "</td>";
+    //             tr += "<td>" + element.accept_application_end_date + "</td>";
+    //             tr += "<td>" + element.mac_reg_start_date + "</td>";
+    //             tr += "<td>" + element.mac_reg_end_date + "</td>";
+    //             tr += "<td>" + element.self_reg_start_date + "</td>";
+    //             tr += "<td>" + element.self_reg_end_date + "</td>";
+    //             tr += "<td>" + element.private_reg_start_date + "</td>";
+    //             tr += "<td>" + element.private_reg_end_date + "</td>";
+                
+    //             tr += "<td>" + start_date + "</td>";
+    //             tr += "<td>" + end_date + "</td>";           
+                    
+    //             tr += "</tr>";
+    //             $("#tbl_batch_body").append(tr);         
+                
+    //             var b_start_date=new Date(element.start_date);
+    //             var now=new Date(Date.now());
+    //             if(now>=b_start_date){
+    //                 document.getElementById('batch_edit'+element.id).style.display='none';
+    //                 document.getElementById('batch_delete'+element.id).style.display='none';
+    //             }
+                
+    //         });
+            
+    //         getIndexNumber('#tbl_batch tr');
+    //         createDataTable("#tbl_batch");      
+    //     },
+    //     error:function (message){
+    //         dataMessage(message, "#tbl_batch", "#tbl_batch_body");        
+    //     }
+    
+    // });
 }
 
 function showBatchInfo(id) {
