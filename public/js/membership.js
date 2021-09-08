@@ -6,15 +6,36 @@ function getMembership(){
         scrollX: true,
         processing: true,
         serverSide: true,
+        searchable:true,
         ajax: FRONTEND_URL + "/show_membership/all",
+        // initComplete: function () {
+        //     this.api().columns().every( function () {
+        //         var column = this;
+        //         var select = $('<select><option value=""></option></select>')
+        //             .appendTo( $(column.footer()).empty() )
+        //             .on( 'change', function () {
+        //                 var val = $.fn.dataTable.util.escapeRegex(
+        //                     $(this).val()
+        //                 );
+ 
+        //                 column
+        //                     .search( val ? '^'+val+'$' : '', true, false )
+        //                     .draw();
+        //             } );
+ 
+        //         column.data().unique().sort().each( function ( d, j ) {
+        //             select.append( '<option value="'+d+'">'+d+'</option>' )
+        //         } );
+        //     } );
+        // },
         columns: [
             
             {data: "id", name: 'No'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
-            {data: 'membership_name', name: 'name'}, 
+            {data: 'membership_name', name: 'membership_name'}, 
             {data: 'form_fee', name: 'Form Fee'},
             {data: 'registration_fee', name: ' Registration Fee'},
-            {data: 'yearly_fee', name: 'Yearly Fee'},
+            {data: 'yearly_fee', name: 'yearly_fee'},
             {data: 'renew_fee', name: 'Renew Fee'},
             {data: 'late_fee', name: 'Delayed Fee'},
             {data: 'requirements', name: 'Requirement'},
@@ -41,7 +62,7 @@ function createMembership(){
             formData.append('description_id', description);
 
 
-        
+        show_loader();
         $.ajax({
             url: BACKEND_URL+"/memberships",
             type: 'post',
@@ -49,9 +70,11 @@ function createMembership(){
             contentType: false,
             processData: false,
             success: function(result){
-                
+                EasyLoading.hide();
                 successMessage(result.message);
-                location.reload();
+                $('#create_membershp_model').modal('toggle');
+
+                location.reload()
         }
     });
  
@@ -60,6 +83,7 @@ function createMembership(){
 function showMembershipInfo(id) {
 
     $("#membership_form").attr('action', 'javascript:updateMembership()');
+    $('#member_title').text('Update Membership');
     $("input[name=membership_id]").val(id);
     $.ajax({
         type: "get",
@@ -117,6 +141,7 @@ function updateMembership() {
     formData.append('requirement_id', requirement);
     formData.append('description_id', description);
     formData.append('_method','PUT');
+    show_loader();
 
     $.ajax({
         url: BACKEND_URL+"/memberships/"+id,
@@ -125,8 +150,11 @@ function updateMembership() {
         contentType: false,
         processData: false,
         success: function(result){
+            EasyLoading.hide();
             
             successMessage(result.message);
+            $('#create_membership_model').modal('toggle');
+
             location.reload();
     }
 });

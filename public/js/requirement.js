@@ -3,7 +3,7 @@ function createRequirement(){
     send_data.append('requirement_name',$("input[name=name]").val());
     // send_data.append('course_id',$('#selected_course_id').val());       
     send_data.append('type',$('#selected_type').val());       
-    
+    show_loader();
     $.ajax({
             url: BACKEND_URL+"/requirement",
             type: 'post',
@@ -11,7 +11,7 @@ function createRequirement(){
             contentType: false,
             processData: false,
             success: function(result){
-                 
+                EasyLoading.hide();
                 successMessage("Insert Successfully");
                 location.reload();
         }
@@ -65,6 +65,7 @@ function showRequirementInfo(id) {
     
     $("#requirement_form").attr('action', 'javascript:updateRequirement()');    
     $("input[name=requirement_id]").val(id);
+    $('#exampleModalLabel').text('Update Requirement')
     $.ajax({
         type: "get",
         url: BACKEND_URL+"/requirement/"+id,
@@ -91,7 +92,7 @@ function updateRequirement(){
     var name=$("input[name=name]").val();
     // var course_id=$("#selected_course_id").val();
     // var type=$("#selected_type").val();
-    
+    show_loader();
     $.ajax({
         url: BACKEND_URL+"/requirement/"+id,
         type: 'patch',
@@ -101,6 +102,7 @@ function updateRequirement(){
             // type:type
         },        
         success: function(result){
+            EasyLoading.hide();
             successMessage("Update Successfully");
             $('#create_requirement_model').modal('toggle');        
             location.reload();    
@@ -113,13 +115,15 @@ function updateRequirement(){
 
 function deleteRequirementInfo(requirementName,requirementId){
     var result = confirm("WARNING: This will delete Requirement Name " + decodeURIComponent(requirementName) + " and all related data! Press OK to proceed.");
-      
+        show_loader(); 
       if (result) {
         $.ajax({
             type: "DELETE",
             url: BACKEND_URL+'/requirement/'+requirementId,
             success: function (result) {
+                EasyLoading.hide();
                 successMessage("Delete Successfully");
+                location.reload();
                
             },
             error: function (message) {

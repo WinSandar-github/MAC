@@ -146,7 +146,7 @@
                 columns: [
                     {data: "id", name: 'No'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'requirement_name', name: 'name'},
+                    {data: 'requirement_name', name: 'requirement_name'},
                     
                 ],
             });

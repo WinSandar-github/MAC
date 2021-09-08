@@ -36,27 +36,25 @@
                                     <table  id="tbl_membership" class="table table-hover text-nowrap ">
                                         <thead>
                                             <tr>
-                                                <th class="bold-font-weight" >Sr No</th>
-                                                <th class="bold-font-weight" >Action</th>
-                                                <th class="bold-font-weight" >Name</th>  
-                                                <th class="bold-font-weight" >Form Fee</th>   
-                                                <th class="bold-font-weight" >Registration Fee</th>
-                                                <th class="bold-font-weight" >Yearly Fee</th>
-                                                <th class="bold-font-weight" >Renew Fee</th>
-
-                                                <th class="bold-font-weight" >Delayed Fee</th>  
-                                                <th class="bold-font-weight">Requirement</th>
-                                                <th class="bold-font-weight">Description</th>
-
-                                                       
-
+                                                <th>No</th>
+                                                <th>Action</th>
+                                                <th>Name</th>  
+                                                <th>Form Fee</th>   
+                                                <th>Registration Fee</th>
+                                                <th>Yearly Fee</th>
+                                                <th>Renew Fee</th>
+                                                <th>Delayed Fee</th>  
+                                                <th>Requirement</th>
+                                                <th>Description</th>
                                             </tr>
                                             
                                         </thead>
                                         <tbody id="tbl_membership_body">
                                             
                                         </tbody>
-                                    </table>             
+                                       
+                                    </table>            
+                                 
                                      
                                 </div>
                             </div>
@@ -69,19 +67,19 @@
 
     <!-- Modal -->
     <div class="modal fade" id="create_membership_model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
             <form id="membership_form" method="post" action="javascript:createMembership();" enctype="multipart/form-data">
                 <input type="hidden"  name="membership_id" >
                  
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Description</h5>
+                    <h5 class="modal-title" id="member_title">Create Membership</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
+                    <div class="row mb-1">
                         <label class="col-md-1 form-label">{{ __('1.') }}</label>
                         <label class="col-md-2 form-label">{{ __('Membership Name') }}</label>
                         <div class="col-md-9">
@@ -90,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-1">
                         <label class="col-md-1 form-label">{{ __('2.') }}</label>
                         <label class="col-md-2 form-label">{{ __('Form Fee') }}</label>
                         <div class="col-md-9">
@@ -99,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-1">
                         <label class="col-md-1 form-label">{{ __('3.') }}</label>
                         <label class="col-md-2 form-label">{{ __('Registration Fee') }}</label>
                         <div class="col-md-9">
@@ -108,7 +106,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-1">
                         <label class="col-md-1 form-label">{{ __('4.') }}</label>
                         <label class="col-md-2 form-label">{{ __('Yearly Fee') }}</label>
                         <div class="col-md-9">
@@ -117,7 +115,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-1">
                         <label class="col-md-1 form-label">{{ __('5.') }}</label>
                         <label class="col-md-2 form-label">{{ __('Renew Fee') }}</label>
                         <div class="col-md-9">
@@ -126,7 +124,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-1">
                         <label class="col-md-1 form-label">{{ __('6.') }}</label>
                         <label class="col-md-2 form-label">{{ __('Delayed Fee') }}</label>
                         <div class="col-md-9">
@@ -135,7 +133,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-1">
                             <label class="col-md-1 form-label">{{ __('7.') }}</label>
                             <label class="col-md-2 form-label">{{ __('Requirement') }}</label>
                         <div class="col-md-9">
@@ -149,7 +147,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-1">
                             <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-2 form-label">{{ __('Description') }}</label>
                         <div class="col-md-9">
@@ -187,7 +185,8 @@
         // crateModal.addEventListener('show.bs.modal', function (event) {
         //     var button = event.relatedTarget;       
         // });
-        getMembership();
+       getMembership()
+
         var requirement_list;
 
         $('.multiple-requirement').select2({
@@ -222,20 +221,8 @@
             }
         });
 
-        $('#tbl_membership').DataTable({
-            scrollX: true,
-            processing: true,
-            serverSide: true,
-            ajax: FRONTEND_URL + "/show_membership",
-            columns: [
-                {data: "id", name: 'No'},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'requirement_name', name: 'name'},
-                
-            ],
-    });
+       
 
-// getMembership();
         
     });
 
