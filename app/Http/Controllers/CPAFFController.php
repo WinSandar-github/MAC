@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CPAFF;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
+use App\StudentInfo;
 
 class CPAFFController extends Controller
 {
@@ -267,5 +268,21 @@ class CPAFFController extends Controller
         return response()->json([
             'data'  => $cpaff
         ]);
+    }
+
+    public function approveCpaff($id)
+    { 
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
+    }
+
+    public function checkPaymentCpaff($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
+        return response()->json($data,200);
     }
 }
