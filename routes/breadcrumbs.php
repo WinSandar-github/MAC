@@ -445,3 +445,13 @@ Breadcrumbs::for('အရည်အချင်းသတ်မှတ်ချက�
 Breadcrumbs::for('mentor_list', function ($trail) {
     $trail->push('Mentors', route('page.index', 'mentor_list'));
 });
+
+//Exam Entry
+Breadcrumbs::for('entry_exam_list', function ($trail) {
+    $trail->push('Coming Soon...', route('page.index', 'entry_exam_list'));
+});
+
+//qualified test
+Breadcrumbs::for('qualified_test_payment_list', function ($trail) {
+    $trail->push('Coming Soon...', route('page.index', 'qualified_test_payment_list'));
+});
