@@ -65,6 +65,7 @@ class CourseController extends Controller
             'selfstudy_registration_fee' => 'required',
             'privateschool_registration_fee' => 'required',
             'mac_registration_fee' => 'required',
+            // 'exam_fee' => 'required',
             'exam_fee' => 'required',
             'tution_fee' => 'required',
             'description' => 'required',
@@ -245,10 +246,10 @@ class CourseController extends Controller
                     return $course->course_type ? Str::limit($course->course_type->course_description, 50, '...') : '';
                 })
                 ->addColumn('requirements', function ($course) {
-                    $requirements = Requirement::whereIn('id', explode(',', $course->requirement_id))->get('name');
+                    $requirements = Requirement::whereIn('id', explode(',', $course->requirement_id))->get('requirement_name');
 
                     $result = $requirements->map(function ($val) {
-                        return $val->name ? "<small class='d-block '> - " . Str::limit($val->name, 30, '...') . "</small>" : '';
+                        return $val->requirement_name ? "<small class='d-block '> - " . Str::limit($val->name, 30, '...') . "</small>" : '';
                     });
 
                     return str_replace(',', '', implode(',', $result->toArray()));

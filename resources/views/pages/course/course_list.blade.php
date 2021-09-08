@@ -165,7 +165,7 @@
                             <label class="col-md-4 form-label">{{ __('Course Name') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Course Name"
+                                    <input type="text" name="course_name"  class="form-control" placeholder="Course Name"
                                            autocomplete="off" required>
                                 </div>
                             </div>
@@ -367,7 +367,7 @@
                 success: function (response) {
                     var opt = `<option value='' selected >Select</option>`;
                     $.each(response.data, function (i, v) {
-                        opt += `<option value=${v.id}  >${v.name}</option>`;
+                        opt += `<option value=${v.id}  >${v.course_name}</option>`;
                     });
 
                     $(".course_type").append(opt);
@@ -378,9 +378,9 @@
                 url: BACKEND_URL + '/get_requirement_id',
                 type: 'GET',
                 success: function (response) {
-                    var opt = `<option value="" selected >Select</option>`;
+                    var opt ; //`<option value="" selected >Select</option>`;
                     $.each(response.data, function (i, v) {
-                        opt += `<option value=${v.id}  >${v.name}</option>`;
+                        opt += `<option value=${v.id}  >${v.requirement_name}</option>`;
                     })
                     $(".requirement_id").append(opt);
                 }

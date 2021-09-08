@@ -440,6 +440,14 @@ Breadcrumbs::for('အရည်အချင်းသတ်မှတ်ချက�
     $trail->parent('administration');
     $trail->push('အရည်အချင်းသတ်မှတ်ချက်', route('page.index', 'requirement_list'));
 });
+Breadcrumbs::for('ဖော်ပြချက်', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('ဖော်ပြချက်', route('page.index', 'description_list'));
+});
+Breadcrumbs::for('Membership', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('Membership', route('page.index', 'membership_list'));
+});
 
 //Mentor
 Breadcrumbs::for('mentor_list', function ($trail) {
