@@ -16,7 +16,7 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                <form action="{{ url('') }}" method="post" enctype="multipart/form-data">
+                <form   action="{{ url('') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
                         <div class="card-header">
@@ -45,14 +45,14 @@
                                         <div class="card-header">
                                         <div class="row">
                                             <div class="col-md-12 text-center">
-                                                <form method="post" enctype="multipart/form-data">
+                                                <!-- <form method="post" enctype="multipart/form-data"> -->
                                                     <div class="row">
                                                         <div class="col-md-5">
                                                             <div class="row">
                                                                 <div class="col-md-1"></div>
                                                                 <div class="col-md-4 text-left" style="padding-left:0px;font;font-weight:bold;">Batch Number</div>
                                                                 <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
-                                                                    <input type="text" name="filter_by_name" class="form-control" placeholder="Batch Number">
+                                                                    <input type="text" name="filter_by_name" class="form-control filter_by_name" placeholder="Batch Number">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -88,10 +88,10 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-md-2" style="vertical-align: top;">
-                                                            <button type="button" class="btn btn-primary btn-round m-0" onclick="getBatch()" id="search">Search</button>
+                                                            <button type="button" class="btn btn-primary btn-round m-0"   id="search">Search</button>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                <!-- </form> -->
                                             </div>
                                         </div>
                                         </div>
@@ -473,8 +473,56 @@
         }
     });
 
+    var table =  $('#tbl_batch').DataTable({
+        scrollX: true,
+        processing: true,
+        serverSide: true,
+        searching: false,
+        paging:true,
+        ajax: {
+            url  : BACKEND_URL + "/filter_batch",
+            type : "POST" ,
+            data :  function (d) {
+                d.name        =  $("input[name=filter_by_name]").val(),
+                d.course_name =  $('#filter_course_id').val(),
+                d.start_date  =  $("input[name=filter_by_start_date]").val(),
+                d.end_date    =  $("input[name=filter_by_end_date]").val()
+            }
+        },
+        columns: [
+            
+            {data: "id", name: 'No'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'name', name: 'name'}, 
+            {data: 'course.name', name: 'course.name'}, 
+            {data: 'start_date', name: 'start_date'},
+            {data: 'end_date', name: 'end_date'},
+            {data: 'accept_application_start_date', name: 'accept_application_start_date'},
+            {data: 'accept_application_end_date', name: 'accept_application_end_date'},
+            {data: 'mac_reg_start_date', name: 'mac_reg_start_date'},
+            {data: 'mac_reg_end_date', name: 'mac_reg_end_date'},
+            {data: 'self_reg_start_date', name: 'self_reg_start_date'},
+            {data: 'self_reg_end_date', name: 'self_reg_end_date'},
+            {data: 'private_reg_start_date', name: 'private_reg_start_date'},
+            {data: 'private_reg_end_date', name: 'private_reg_end_date'},
+            {data: 'entry_start_date', name: 'entry_start_date'},
+            {data: 'entry_end_date', name: 'entry_end_date'},
+        ],
+    });
+
+   
+    $("#search").click(function(){
+       
+        table.draw();
+    });
+  
+    // function searchBatch(){
+         
+    //     table.draw();
+    // }
+
     loadCourse();
-    getBatch();
+    // getBatch();
     loadCourseToFilter();
    
 </script>
