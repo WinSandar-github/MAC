@@ -177,6 +177,7 @@ class ExamRegisterController extends Controller
         ->where('form_type','=',$course_code)
         ->get();
 
+        // DA One
         if($course_code == 1){
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
@@ -233,6 +234,7 @@ class ExamRegisterController extends Controller
             ->rawColumns(['action', 'print','exam_type','remark','status'])
             ->make(true);
         }
+        // DA Two
         else if($course_code == 2){
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
@@ -289,6 +291,7 @@ class ExamRegisterController extends Controller
             ->rawColumns(['action', 'print','exam_type','remark','status'])
             ->make(true);
         }
+        // CPA One
         else if($course_code == 3){
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
@@ -345,6 +348,7 @@ class ExamRegisterController extends Controller
             ->rawColumns(['action', 'print','exam_type','remark','status'])
             ->make(true);
         }
+        // CPA Two
         else{
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
@@ -475,23 +479,232 @@ class ExamRegisterController extends Controller
 
 
 
-    public function FilterExamRegister(Request $request){
-        $student_infos = ExamRegister::with('student_info','batch')->where('form_type',$request->course_code)->where('status',1);
-        if($request->name!=""){
-            $student_infos = $student_infos->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
-            ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-            ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+    // public function FilterExamRegister(Request $request){
+    //     $student_infos = ExamRegister::with('student_info','batch')->where('form_type',$request->course_code)->where('status',1);
+    //     if($request->name!=""){
+    //       dd("1");
+    //         $student_infos = $student_infos->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
+    //         ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+    //         ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+    //     }
+    //     if($request->grade!="all"){
+    //       dd("2");
+    //         $student_infos = $student_infos->where('grade',$request->grade);
+    //     }
+    //     if($request->batch!="all"){
+    //       dd("3");
+    //         $student_infos = $student_infos->where('batch_id', $request->batch);
+    //     }
+    //     $student_infos = $student_infos->get();
+    //
+    //     return response()->json([
+    //         'data' => $student_infos
+    //     ],200);
+    // }
+
+    public function FilterExamRegister($grade, $course_code){
+        $exam_register = ExamRegister::with('student_info','batch')
+        ->where('status','=',1)
+        ->where('form_type','=',$course_code)
+        ->where('grade','=',$grade)
+        ->get();
+
+        // DA One
+        if($course_code == 1){
+          return DataTables::of($exam_register)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                        </div>";
+            })
+
+            ->addColumn('exam_type', function ($infos){
+                if($infos->exam_type_id == 0){
+                  return "SELF STUDY";
+                }
+                else if($infos->exam_type_id == 1){
+                  return "PRIVATE SCHOOL";
+                }
+                else{
+                  return "MAC STUDENT";
+                }
+            })
+
+            ->addColumn('remark', function ($infos){
+                if($infos->grade == 0){
+                  return "-";
+                }
+                else if($infos->grade == 1){
+                  return "PASSED";
+                }
+                else{
+                  return "FAILED";
+                }
+            })
+
+            ->addColumn('module', function ($infos){
+                if($infos->is_full_module == 0){
+                  return "Module 1";
+                }
+                else if($infos->status == 1){
+                  return "Module 2";
+                }
+                else{
+                  return "Full Module";
+                }
+            })
+            ->rawColumns(['action', 'print','exam_type','remark','module'])
+            ->make(true);
         }
-        if($request->grade!="all"){
-            $student_infos = $student_infos->where('grade',$request->grade);
+        // DA Two
+        else if($course_code == 2){
+          return DataTables::of($exam_register)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                        </div>";
+            })
+
+            ->addColumn('exam_type', function ($infos){
+                if($infos->exam_type_id == 0){
+                  return "SELF STUDY";
+                }
+                else if($infos->exam_type_id == 1){
+                  return "PRIVATE SCHOOL";
+                }
+                else{
+                  return "MAC STUDENT";
+                }
+            })
+
+            ->addColumn('remark', function ($infos){
+                if($infos->grade == 0){
+                  return "-";
+                }
+                else if($infos->grade == 1){
+                  return "PASSED";
+                }
+                else{
+                  return "FAILED";
+                }
+            })
+
+            ->addColumn('module', function ($infos){
+                if($infos->is_full_module == 0){
+                  return "Module 1";
+                }
+                else if($infos->status == 1){
+                  return "Module 2";
+                }
+                else{
+                  return "Full Module";
+                }
+            })
+            ->rawColumns(['action', 'print','exam_type','remark','module'])
+            ->make(true);
         }
-        if($request->batch!="all"){
-            $student_infos = $student_infos->where('batch_id', $request->batch);
+        // CPA One
+        else if($course_code == 3){
+          return DataTables::of($exam_register)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                        </div>";
+            })
+
+            ->addColumn('exam_type', function ($infos){
+                if($infos->exam_type_id == 0){
+                  return "SELF STUDY";
+                }
+                else if($infos->exam_type_id == 1){
+                  return "PRIVATE SCHOOL";
+                }
+                else{
+                  return "MAC STUDENT";
+                }
+            })
+
+            ->addColumn('remark', function ($infos){
+                if($infos->grade == 0){
+                  return "-";
+                }
+                else if($infos->grade == 1){
+                  return "PASSED";
+                }
+                else{
+                  return "FAILED";
+                }
+            })
+
+            ->addColumn('module', function ($infos){
+                if($infos->is_full_module == 0){
+                  return "Module 1";
+                }
+                else if($infos->status == 1){
+                  return "Module 2";
+                }
+                else{
+                  return "Full Module";
+                }
+            })
+            ->rawColumns(['action', 'print','exam_type','remark','module'])
+            ->make(true);
         }
-        $student_infos = $student_infos->get();
-        return response()->json([
-            'data' => $student_infos
-        ],200);
+        // CPA Two
+        else{
+          return DataTables::of($exam_register)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                        </div>";
+            })
+
+            ->addColumn('exam_type', function ($infos){
+                if($infos->exam_type_id == 0){
+                  return "SELF STUDY";
+                }
+                else if($infos->exam_type_id == 1){
+                  return "PRIVATE SCHOOL";
+                }
+                else{
+                  return "MAC STUDENT";
+                }
+            })
+
+            ->addColumn('remark', function ($infos){
+                if($infos->grade == 0){
+                  return "-";
+                }
+                else if($infos->grade == 1){
+                  return "PASSED";
+                }
+                else{
+                  return "FAILED";
+                }
+            })
+
+            ->addColumn('module', function ($infos){
+                if($infos->is_full_module == 0){
+                  return "Module 1";
+                }
+                else if($infos->status == 1){
+                  return "Module 2";
+                }
+                else{
+                  return "Full Module";
+                }
+            })
+            ->rawColumns(['action', 'print','exam_type','remark','module'])
+            ->make(true);
+        }
     }
 
 }

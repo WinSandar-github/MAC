@@ -22,7 +22,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row"> 
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                     <div class="card-header">
@@ -33,7 +33,7 @@
                                                         <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
                                                         <div class="col-md-7 text-left">
                                                             <input type="text" name="filter_by_name" class="form-control" placeholder="Student Name">
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -47,11 +47,11 @@
                                                                 <option value="1" >Pass</option>
                                                                 <option value="2">Fail</option>
                                                             </select>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div><br/>
-                                            <div class="row">    
+                                            <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="row">
                                                     <!-- <div class="col-md-1"></div> -->
@@ -60,7 +60,7 @@
                                                             <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                                                 <option value="all" selected>All Batches</option>
                                                             </select>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -93,7 +93,7 @@
                                                             <th class="bold-font-weight" >Remark</th>
                                                             <th class="bold-font-weight" >Batch Number</th>
                                                             <th class="bold-font-weight" >Module</th>
-                                                            
+
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_cpa_exam_pending_result_body" class="hoverTable text-left">
@@ -101,7 +101,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                    <table id="tbl_cpa_exam_approved_result" class="table table-hover text-nowrap ">
+                                                    <table id="tbl_cpa_exam_approved_result" class="table table-hover text-nowrap " style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -111,7 +111,7 @@
                                                             <th class="bold-font-weight" >Remark</th>
                                                             <th class="bold-font-weight" >Batch Number</th>
                                                             <th class="bold-font-weight" >Module</th>
-                                                            
+
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_cpa_exam_approved_result_body" class="hoverTable text-left">
@@ -119,7 +119,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                                    <table id="tbl_cpa_exam_rejected_result" class="table table-hover text-nowrap ">
+                                                    <table id="tbl_cpa_exam_rejected_result" class="table table-hover text-nowrap " style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -129,7 +129,7 @@
                                                             <th class="bold-font-weight" >Remark</th>
                                                             <th class="bold-font-weight" >Batch Number</th>
                                                             <th class="bold-font-weight" >Module</th>
-                                                            
+
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_cpa_exam_rejected_result_body" class="hoverTable text-left">
@@ -151,7 +151,65 @@
 
 @push('scripts')
 <script>
-	loadCPAStudent('cpa_2');
-    loadBatchData("cpa_2");
+	//loadCPAStudent('cpa_2');
+  loadBatchData("cpa_2");
+
+  $(document).ready(function(){
+    $('#tbl_cpa_exam_pending_result').DataTable({
+        processing: true,
+        // serverSide: true,
+        ajax: BACKEND_URL + "/filter_exam_register/0/4",
+        columns: [
+            {data: null, render: function (data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+            }},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'student_info.name_mm', name: 'Student Name'},
+            {data: 'exam_type', name: 'Exam Type'},
+            {data: 'remark', name: 'Remark'},
+            {data: 'status', name: 'Batch Number'},
+            {data: 'module', name: 'Module'},
+        ],
+        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+    });
+
+    $('#tbl_cpa_exam_approved_result').DataTable({
+        processing: true,
+        // serverSide: true,
+        ajax: BACKEND_URL + "/filter_exam_register/1/4",
+        columns: [
+          {data: null, render: function (data, type, row, meta) {
+              return meta.row + meta.settings._iDisplayStart + 1;
+          }},
+          {data: 'action', name: 'action', orderable: false, searchable: false},
+          {data: 'student_info.name_mm', name: 'Student Name'},
+          {data: 'exam_type', name: 'Exam Type'},
+          {data: 'remark', name: 'Remark'},
+          {data: 'batch.name', name: 'Batch Number'},
+          {data: 'module', name: 'Module'},
+        ],
+        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+    });
+
+    $('#tbl_cpa_exam_rejected_result').DataTable({
+        processing: true,
+        // serverSide: true,
+        ajax: BACKEND_URL + "/filter_exam_register/2/4",
+        columns: [
+          {data: null, render: function (data, type, row, meta) {
+              return meta.row + meta.settings._iDisplayStart + 1;
+          }},
+          {data: 'action', name: 'action', orderable: false, searchable: false},
+          {data: 'student_info.name_mm', name: 'Student Name'},
+          {data: 'exam_type', name: 'Exam Type'},
+          {data: 'remark', name: 'Remark'},
+          {data: 'batch.name', name: 'Batch Number'},
+          {data: 'module', name: 'Module'},
+        ],
+        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+    });
+
+  });
+
 </script>
 @endpush
