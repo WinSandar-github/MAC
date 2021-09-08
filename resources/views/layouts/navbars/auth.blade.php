@@ -250,11 +250,11 @@
                     <b class="caret"></b>
                 </a>
             </li>
-            <li class="">
-                <a href="#">
-                    <i class="nc-icon nc-tap-01"></i>
-                    <p>{{ __('Reporting') }}</p>
-                    <b class="caret"></b>
+            <li class="{{ $elementActive == 'reporting_list' ? 'active' : '' }}">
+                <a href="{{ route('page.index', 'reporting_list') }}">
+                    <i class="nc-icon nc-paper"></i>
+                    <span>{{ __('Reporting') }}</span>
+                    <!-- <b class="caret"></b> -->
                 </a>
             </li>
 
