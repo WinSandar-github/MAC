@@ -177,4 +177,18 @@ class MembershipController extends Controller
             ],200);
         }
     }
+    public function showDescription($membership_name)
+    {
+        $memberships = Membership::where('membership_name', 'like', '%' . $membership_name. '%')->get();
+        return DataTables::of($memberships)->addColumn('descriptions', function ($membership) {
+            $descriptions = Description::whereIn('id',explode(',', $membership->description_id))->get('description_name');
+            
+            $result = $descriptions->map(function ($val) {
+                return $val->description_name;
+            });
+            return str_replace(',', '', implode(',', $result->toArray()));
+        })
+        ->make(true);
+        
+    }
 }
