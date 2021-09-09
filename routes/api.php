@@ -27,6 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
@@ -71,12 +72,14 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
+Route::get('/papp_register_list/{status}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
+Route::get('/cpa_ff_register_list/{status}', 'CPAFFController@FilterCpaffRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
@@ -265,3 +268,6 @@ Route::post('/chart_filter','DARegisterController@ChartFilter');
 //Unique Email and NRC Check in DA One Application
 Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
+
+//show description
+Route::get('showDescription/{membership_name}','MembershipController@showDescription');
