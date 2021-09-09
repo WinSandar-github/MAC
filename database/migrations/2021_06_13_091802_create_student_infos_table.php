@@ -48,7 +48,7 @@ class CreateStudentInfosTable extends Migration
             $table->unsignedBigInteger('accountancy_firm_info_id')->nullable();
             $table->unsignedBigInteger('mentor_id')->nullable();
             $table->string('verify_code')->nullable();
-            $table->boolean('verify_status')->default(0)->nullable();
+            // $table->boolean('verify_status')->default(0)->nullable();
             $table->string('payment_method')->nullable();
             $table->string('recommend_letter')->nullable();
 

@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\CPAFF;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
+use App\StudentInfo;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
-
 
 class CPAFFController extends Controller
 {
@@ -293,6 +293,22 @@ class CPAFFController extends Controller
         ]);
     }
 
+    public function approveCpaff($id)
+    {
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
+    }
+
+    public function checkPaymentCpaff($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
+        return response()->json($data,200);
+    }
+
     public function FilterCpaffRegistration($status){
         $cpa_ff = CPAFF::with('student_info','student_job', 'student_education_histroy')
                       ->where('status','=',$status)
@@ -336,5 +352,5 @@ class CPAFFController extends Controller
 
                         ->rawColumns(['action','nrc','degree','status'])
                         ->make(true);
-    }
+            }
 }

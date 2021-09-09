@@ -8,6 +8,9 @@ use App\StudentInfo;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;    
+
 class MentorController extends Controller
 {
     /**
@@ -255,7 +258,7 @@ class MentorController extends Controller
 
     public function FilterMentor(Request $request)
     {
-        $mentor = Mentor::orderBy('created_at','desc');
+        $mentor = Mentor::where('status',$request->status)->orderBy('created_at','desc')->with('student_info');
         if($request->name!=""){
             $mentor=$mentor->where('name_mm', 'like', '%' . $request->name. '%')
                         ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -263,10 +266,33 @@ class MentorController extends Controller
         if($request->nrc!=""){
             $mentor=$mentor->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
-        $mentor=$mentor->get();
-        return  response()->json([
-            'data' => $mentor
-        ],200);
+        $mentors=$mentor->get();
+
+        return DataTables::of($mentors)
+                ->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                    <button type='button' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                        <li class='fa fa-eye fa-sm'></li>
+                                    </button>
+                                </div>";
+                })
+                ->addColumn('nrc', function ($infos){
+                    $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                    return $nrc_result;
+                })
+                ->addColumn('status', function ($infos){
+                    if($infos->status == 0){
+                        return "PENDING";
+                    }else if($infos->status == 1){
+                        return "APPROVED";
+                    }else{
+                        return "REJECTED";
+                    }
+                })
+                ->make(true);
+        // return  response()->json([
+        //     'data' => $mentor
+        // ],200);
     }
 
     // public function FilterMentor(Request $request)

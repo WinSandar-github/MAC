@@ -540,6 +540,7 @@ function autoLoadAudit(){
                 $("#tbl_non_partner_body").append(tr);
               });
             }
+            
             var director_officer_audit=element.director_officer_non_audits;
             director_officer_audit.forEach(function(item){
               var tr = "<tr>";
@@ -618,20 +619,20 @@ function autoLoadAudit(){
               })
             }
             var cpa_myanmar=element.my_cpa_foreigns;
-           if(cpa_myanmar.length!=0){
-             $('.cpa_myanmar').css('display','block');
-             cpa_myanmar.forEach(function(item){
-              var tr = "<tr>";
-              tr += "<td>" + + "</td>";
-              tr += "<td ><input disabled type='text' value="+item.name+" name='mf_name[]' class='form-control' autocomplete='off'></td>";
-              tr += "<td ><input disabled type='text' value="+item.position+" name='mf_position[]' class='form-control' autocomplete='off'></td>";
-              tr += "<td ><input disabled type='text' value="+item.cpa_passed_reg_no+" name='mf_cpa_passed_reg_no[]' class='form-control' autocomplete='off'></td>";
-              tr += "<td ><input disabled type='text' value="+item.cpa_full_reg_no+" name='mf_cpa_full_reg_no[]' class='form-control' autocomplete='off'></td>";
-              tr += "<td ><input disabled type='text' value="+item.public_practice_reg_no+" name='mf_pub_pra_reg_no[]' class='form-control' autocomplete='off'></td>";
-              tr += "<td ></td>" ;
-              tr += "</tr>";
-              $("#tbl_cpa_myanmar_body").append(tr);
-             })
+            if(cpa_myanmar.length!=0){
+              $('.cpa_myanmar').css('display','block');
+              cpa_myanmar.forEach(function(item){
+                var tr = "<tr>";
+                tr += "<td>" + + "</td>";
+                tr += "<td ><input disabled type='text' value="+item.name+" name='mf_name[]' class='form-control' autocomplete='off'></td>";
+                tr += "<td ><input disabled type='text' value="+item.position+" name='mf_position[]' class='form-control' autocomplete='off'></td>";
+                tr += "<td ><input disabled type='text' value="+item.cpa_passed_reg_no+" name='mf_cpa_passed_reg_no[]' class='form-control' autocomplete='off'></td>";
+                tr += "<td ><input disabled type='text' value="+item.cpa_full_reg_no+" name='mf_cpa_full_reg_no[]' class='form-control' autocomplete='off'></td>";
+                tr += "<td ><input disabled type='text' value="+item.public_practice_reg_no+" name='mf_pub_pra_reg_no[]' class='form-control' autocomplete='off'></td>";
+                tr += "<td ></td>" ;
+                tr += "</tr>";
+                $("#tbl_cpa_myanmar_body").append(tr);
+              })
            }
        });
        getIndexNumber('#tbl_partner tr');

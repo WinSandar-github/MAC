@@ -168,7 +168,7 @@ var EasyLoading = (function(){
      * hide loader
      */
     that.hide = function(){
-        console.log("easy hide")
+      
         component.main.hide();
         if(typeof(that.timer)!='undefined' && that.timer!=null)
             clearTimeout(that.timer);
