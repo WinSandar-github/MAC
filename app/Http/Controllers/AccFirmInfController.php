@@ -21,6 +21,8 @@ use App\StudentInfo;
 use Hash;
 use File;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class AccFirmInfController extends Controller
 {
@@ -333,7 +335,7 @@ class AccFirmInfController extends Controller
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
         $acc_firm_info->image  = $image;
-                
+
         $acc_firm_info->verify_status  = 0;
         $acc_firm_info->save();
 
@@ -1351,5 +1353,141 @@ class AccFirmInfController extends Controller
       return response()->json($non_audit_data,200);
     }
 
+    public function FilterAuditRegistration($status,$firm_type){
+      $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
+                                                        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                                  ->where('status','=',$status)
+                                                  ->where('audit_firm_type_id','=',$firm_type)
+                                                  ->get();
+
+      if($firm_type == 1){
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('township', function ($infos){
+              return $infos->township;
+          })
+
+          ->addColumn('postcode', function ($infos){
+              return $infos->postcode;
+          })
+
+          ->addColumn('city', function ($infos){
+              return $infos->city;
+          })
+
+          ->addColumn('state_region', function ($infos){
+              return $infos->state_region;
+          })
+
+          ->addColumn('telephones', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('h_email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('website', function ($infos){
+              return $infos->website;
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+      else{
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='showNonAuditInfo($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('township', function ($infos){
+              return $infos->township;
+          })
+
+          ->addColumn('postcode', function ($infos){
+              return $infos->postcode;
+          })
+
+          ->addColumn('city', function ($infos){
+              return $infos->city;
+          })
+
+          ->addColumn('state_region', function ($infos){
+              return $infos->state_region;
+          })
+
+          ->addColumn('telephones', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('h_email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('website', function ($infos){
+              return $infos->website;
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+    }
 
 }
