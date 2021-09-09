@@ -291,7 +291,7 @@
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                         <button type="submit" name="save" class="btn btn-primary" form="course_form">Save</button>
                     </div>
-                </form>
+               
             </div>
         </div>
     </div>
@@ -322,25 +322,7 @@
 
             var course_name = $("input[name=filter_name]").val() == "" ? 'all' : $("input[name=filter_name]").val();
 
-            $('#tbl_sub_course').DataTable({
-                scrollX: true,
-                processing: true,
-                serverSide: true,
-                ajax: BACKEND_URL + "/filter_course/all",
-                columns: [
-                    {data: "id", name: 'No'},
-                    {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'name', name: 'name'},
-                    {data: 'description', name: 'Description'},
-                    {data: 'form_fee', name: 'Application Fee'},
-                    {data: 'selfstudy_registration_fee', name: 'Self-Study Registration Fee'},
-                    {data: 'privateschool_registration_fee', name: 'Private School Registration Fee'},
-                    {data: 'mac_registration_fee', name: 'MAC Registration Fee'},
-                    {data: 'exam_fee', name: 'Exam Fee'},
-                    {data: 'tution_fee', name: 'Course Fee'},
-                    {data: 'requirements', name: 'Requirement'},
-                ],
-            });
+            getCourseList();
 
             $('#main_summernote, #sub_summernote').summernote({
                 placeholder: 'Enter Descriptions!',

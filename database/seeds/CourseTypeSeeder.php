@@ -13,7 +13,7 @@ class CourseTypeSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('course_types')->delete();
+        // DB::table('course_types')->delete();
 
         DB::table('course_types')->insert([
             array(

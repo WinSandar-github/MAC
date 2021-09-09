@@ -9,6 +9,28 @@ function removeComma(number) {
     return number_part;
 }
 
+function getCourseList(){
+    $('#tbl_sub_course').DataTable({
+        scrollX: true,
+        processing: true,
+        serverSide: true,
+        ajax: BACKEND_URL + "/filter_course/all",
+        columns: [
+            {data: "id", name: 'No'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'name', name: 'name'},
+            {data: 'description', name: 'Description'},
+            {data: 'form_fee', name: 'Application Fee'},
+            {data: 'selfstudy_registration_fee', name: 'Self-Study Registration Fee'},
+            {data: 'privateschool_registration_fee', name: 'Private School Registration Fee'},
+            {data: 'mac_registration_fee', name: 'MAC Registration Fee'},
+            {data: 'exam_fee', name: 'Exam Fee'},
+            {data: 'tution_fee', name: 'Course Fee'},
+            {data: 'requirements', name: 'Requirement'},
+        ],
+    });
+}
+
 function createCourse() {
     var send_data = new FormData();
     send_data.append('name', $("input[name=course_name]").val());
@@ -22,7 +44,7 @@ function createCourse() {
     send_data.append('code', $("input[name=code]").val());
 
     send_data.append('course_type_id', $('.course_type').val());
-    send_data.append('requirement_id[]', $('.requirement_id').val());
+    send_data.append('requirement_id', $('.requirement_id').val());
 
     // $('select[name="requirement_id[]"]').map(function(){
     //     for (var i = 0; i < $(this).get(0).selected.length; ++i) {
@@ -38,9 +60,11 @@ function createCourse() {
         contentType: false,
         processData: false,
         success: function (result) {
+            
             EasyLoading.hide();
             successMessage("Insert Successfully");
-            location.reload();
+            getCourseList();
+            // location.reload();
         },
         error: function (message) {
             errorMessage(message);
@@ -115,7 +139,7 @@ function getCourse() {
 }
 
 function showCourseInfo(id) {
-    console.log('id', id);
+    
 
     $("#course_form").attr('action', 'javascript:updateCourse()');
     $("input[name=course_id]").val(id);
@@ -217,6 +241,7 @@ function updateCourse() {
             EasyLoading.hide();
             successMessage("Update Successfully");
             $('#create_course_modal').modal('toggle');
+            getCourseList();
             // location.reload();
             getCourse();
 

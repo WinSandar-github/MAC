@@ -8,6 +8,9 @@ use App\StudentInfo;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;    
+
 class TeacherController extends Controller
 {
     /**
@@ -150,8 +153,6 @@ class TeacherController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/teacher_info/',$name);
             $image = '/storage/teacher_info/'.$name;
-        }else{
-            $image =$request->profile_photo;
         }
         // nrc front image
         if ($request->hasfile('nrc_front')) {
@@ -173,17 +174,7 @@ class TeacherController extends Controller
             $nrc_back =$request->nrc_back;
         }
         $teacher = TeacherRegister::find($id);
-        $teacher->name_mm = $request->name_mm;
-        $teacher->name_eng = $request->name_eng;
-        $teacher->father_name_mm = $request->father_name_mm;
-        $teacher->father_name_eng = $request->father_name_eng;
         $teacher->phone = $request->phone_number;
-        $teacher->email = $request->email;
-        $teacher->password = Hash::make($request->password);
-        $teacher->nrc_state_region = $request->nrc_state_region;
-        $teacher->nrc_township = $request->nrc_township;
-        $teacher->nrc_citizen = $request->nrc_citizen;
-        $teacher->nrc_number = $request->nrc_number;
         $teacher->nrc_front = $nrc_front;
         $teacher->nrc_back = $nrc_back;
         $teacher->gov_employee = $request->gov_employee;
@@ -208,10 +199,6 @@ class TeacherController extends Controller
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->renew_date = date('Y-m-d');
         $teacher->save();
-        $std_info = StudentInfo::where('teacher_id', $id)->first();
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
-        $std_info->save();
         return response()->json([
             'message' => 'You have renewed successfully.'
         ],200);
@@ -245,7 +232,7 @@ class TeacherController extends Controller
 
     public function FilterTeacher(Request $request)
     {
-        $teacher = TeacherRegister::orderBy('created_at','desc');
+        $teacher = TeacherRegister::where('approve_reject_status',$request->status)->orderBy('created_at','desc');
         if($request->name!=""){
             $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
                         ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -253,10 +240,32 @@ class TeacherController extends Controller
         if($request->nrc!=""){
             $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
-        $teacher=$teacher->get();
-        return  response()->json([
-            'data' => $teacher
-        ],200);
+        $teachers=$teacher->get();
+        return DataTables::of($teachers)
+                ->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                    <a href='teacher_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                        <li class='fa fa-eye fa-sm'></li>
+                                    </a>
+                                </div>";
+                })
+                ->addColumn('nrc', function ($infos){
+                    $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                    return $nrc_result;
+                })
+                ->addColumn('status', function ($infos){
+                    if($infos->approve_reject_status	 == 0){
+                        return "PENDING";
+                    }else if($infos->approve_reject_status	 == 1){
+                        return "APPROVED";
+                    }else{
+                        return "REJECTED";
+                    }
+                })
+                ->make(true);
+        // return  response()->json([
+        //     'data' => $teacher
+        // ],200);
     }
 
     // public function FilterTeacher(Request $request)
@@ -276,6 +285,22 @@ class TeacherController extends Controller
     public function teacherStatus($id)
     {
         $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        return response()->json($data,200);
+    }
+
+    public function approveTeacher($id)
+    { 
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
+    }
+
+    public function check_payment($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
         return response()->json($data,200);
     }
 

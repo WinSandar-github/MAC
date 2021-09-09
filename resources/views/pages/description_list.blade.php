@@ -67,7 +67,7 @@
                 <input type="hidden"  name="description_id" >
                  
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Create Description</h5>
+                    <h5 class="modal-title" id="descModalLabel">Create Description</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -113,7 +113,7 @@
                 ajax: FRONTEND_URL + "/show_description",
                 columns: [
                     {data: "id", name: 'No'},
-                    {data: 'description_name', name: 'name'},
+                    {data: 'description_name', name: 'description_name'},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
                     
                 ],

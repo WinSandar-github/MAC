@@ -105,6 +105,7 @@ function getSchoolInfos(){
         type : 'GET',
         url : BACKEND_URL+"/school/"+id,
         success : function(data){
+            console.log(data.data)
             $("#name_eng").append(data.data.name_eng);
             $("#name_mm").append(data.data.name_mm);
             let nrc = data.data.nrc_state_region+"/"+data.data.nrc_township+"("+data.data.nrc_citizen+")"+data.data.nrc_number;

@@ -64,7 +64,7 @@ class AccFirmInfController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/acc_firm/',$name);
-                $ppa_certi[] = $name;
+                $ppa_certi[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -77,24 +77,12 @@ class AccFirmInfController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/acc_firm/',$name);
-                $letterhead[] = $name;
+                $letterhead[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
             $letterhead = null;
         }
-    //    if($request->hasfile('representatives'))
-    //     {
-    //         foreach($request->file('representatives') as $file)
-    //         {
-    //         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-    //         $file->move(public_path().'/storage/acc_firm/',$name);
-    //         $representative[] =$name;
-    //         }
-
-    //     }else{
-    //         $representative = null;
-    //     }
 
         if($request->hasfile('certi_or_regs'))
         {
@@ -102,7 +90,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $certi_or_reg[] = $name;
+            $certi_or_reg[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -116,7 +104,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $deeds_memo[] = $name;
+            $deeds_memo[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -130,39 +118,14 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $certi_incor[] = $name;
+            $certi_incor[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
             $certi_incor = null;
         }
 
-        // if($request->hasfile('form6_26e'))
-        // {
-        //     foreach($request->file('form6_26e') as $file)
-        //     {
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/acc_firm/',$name);
-        //     $form6_26e[] = $name;
-        //     }
-
-        // }else{
-        //     $form6_26e = null;
-        // }
-
-        // if($request->hasfile('form_a1'))
-        // {
-        //     foreach($request->file('form_a1') as $file)
-        //     {
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/acc_firm/',$name);
-        //     $form_a1[] = $name;
-        //     }
-
-        // }else{
-        //     $form_a1 = null;
-        // }
-
+    
 
         if($request->hasfile('tax_reg_certificate'))
         {
@@ -170,7 +133,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $tax_reg_certificate[] = $name;
+            $tax_reg_certificate[] = '/storage/acc_firm/'.$name;
             }
 
         }
@@ -183,7 +146,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $pass_photo[] = $name;
+            $pass_photo[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -197,7 +160,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $edu_cert[] = $name;
+            $edu_cert[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -210,7 +173,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $owner_profile[] = $name;
+            $owner_profile[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -224,7 +187,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $work_exp[] = $name;
+            $work_exp[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -238,7 +201,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $nrc_passport_front[] = $name;
+            $nrc_passport_front[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -251,7 +214,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $nrc_passport_back[] = $name;
+            $nrc_passport_back[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -264,7 +227,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $tax_clearance[] = $name;
+            $tax_clearance[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -277,7 +240,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $permit_foreigns[] =$name;
+            $permit_foreigns[] ='/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -291,7 +254,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $financial_statement[] = $name;
+            $financial_statement[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -349,7 +312,7 @@ class AccFirmInfController extends Controller
         //     'verify_code' => $student_info['verify_code']
         // );
         // Mail::to($student_info['email'])->send(new ContactMail($data));
-        $std_info->verify_status    =   1;
+        // $std_info->verify_status    =   1;
         $std_info->save();
 
         //Branch Office
@@ -1181,20 +1144,32 @@ class AccFirmInfController extends Controller
     //Audit Feedback
     public function auditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get();
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get();
         return response()->json($data,200);
     }
 
     // Non Audit Feedback
     public function nonAuditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get();
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get();
         return response()->json($data,200);
     }
 
     public function auditStatus($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get('status');
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                            'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                            'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get('status');
         return response()->json($data,200);
     }
 
@@ -1202,6 +1177,9 @@ class AccFirmInfController extends Controller
     {
         $data = AccountancyFirmInformation::where('id',$id)
                                           ->where('audit_firm_type_id',2)
+                                          ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
                                           ->get('status');
         return response()->json($data,200);
     }
@@ -1299,6 +1277,7 @@ class AccFirmInfController extends Controller
 
     public function renewSubscribe(Request $request)
     {
+        
         $register_date = date('Y-m-d');
 
         // profile photo

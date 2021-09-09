@@ -12,6 +12,9 @@ use App\SchoolTeacher;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;    
+
 class SchoolController extends Controller
 {
     /**
@@ -64,6 +67,8 @@ class SchoolController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $business_license = '/storage/student_info/'.$name;
+        }else{
+            $business_license=null;
         } 
 
         if ($request->hasfile('company_reg')) {
@@ -71,105 +76,135 @@ class SchoolController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $company_reg = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $company_reg =null;
+        }  
 
         if ($request->hasfile('org_reg_origin_and_copy')) {
             $file = $request->file('org_reg_origin_and_copy');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $org_reg_origin_and_copy = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $org_reg_origin_and_copy=null;
+        }  
 
         if ($request->hasfile('estiblisher_list_and_bio')) {
             $file = $request->file('estiblisher_list_and_bio');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $estiblisher_list_and_bio = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $estiblisher_list_and_bio=null;
+        }  
 
         if ($request->hasfile('governer_list_and_bio')) {
             $file = $request->file('governer_list_and_bio');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $governer_list_and_bio = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $governer_list_and_bio=null;
+        }  
 
         if ($request->hasfile('org_member_list_and_bio')) {
             $file = $request->file('org_member_list_and_bio');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $org_member_list_and_bio = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $org_member_list_and_bio=null;
+        }  
 
         if ($request->hasfile('teacher_list_and_bio')) {
             $file = $request->file('teacher_list_and_bio');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $teacher_list_and_bio = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $teacher_list_and_bio=null;
+        }  
 
         if ($request->hasfile('teacher_reg_copy')) {
             $file = $request->file('teacher_reg_copy');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $teacher_reg_copy = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $teacher_reg_copy=null;
+        }  
 
         if ($request->hasfile('school_location_attach')) {
             $file = $request->file('school_location_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $school_location_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $school_location_attach=null;
+        }  
 
         if ($request->hasfile('school_building_attach')) {
             $file = $request->file('school_building_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $school_building_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $school_building_attach=null;
+        }  
 
         if ($request->hasfile('classroom_attach')) {
             $file = $request->file('classroom_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $classroom_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $classroom_attach=null;
+        }  
 
         if ($request->hasfile('toilet_attach')) {
             $file = $request->file('toilet_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $toilet_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $toilet_attach=null;
+        }  
         
         if ($request->hasfile('manage_room_attach')) {
             $file = $request->file('manage_room_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $manage_room_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $manage_room_attach=null;
+        }  
 
         if ($request->hasfile('supporting_structure_photo')) {
             $file = $request->file('supporting_structure_photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $supporting_structure_photo = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $supporting_structure_photo=null;
+        }  
 
         if ($request->hasfile('relevant_evidence_contracts')) {
             $file = $request->file('relevant_evidence_contracts');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $relevant_evidence_contracts = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $relevant_evidence_contracts=null;
+        }  
 
         if ($request->hasfile('sch_establish_notes_attach')) {
             $file = $request->file('sch_establish_notes_attach');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $sch_establish_notes_attach = '/storage/student_info/'.$name;
-        } 
+        }else{
+            $sch_establish_notes_attach=null;
+        }  
 
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
@@ -337,7 +372,7 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        $school = SchoolRegister::where('id',$id)->with('school_establishers','school_governs','school_members','school_teachers')->get();
+        $school = SchoolRegister::where('id',$id)->with('school_establishers','school_governs','school_members','school_teachers')->first();
         return  response()->json([
             'data' => $school
         ],200);
@@ -543,14 +578,8 @@ class SchoolController extends Controller
             $attachment =$request->attachment;
         } 
         $school = SchoolRegister::find($id);
-        $school->name_mm         = $request->name_mm;
-        $school->name_eng        = $request->name_eng;
         $school->nrc_front       = $nrc_front;
         $school->nrc_back        = $nrc_back;
-        $school->father_name_mm  = $request->father_name_mm;
-        $school->father_name_eng = $request->father_name_eng;
-        $school->date_of_birth   = $request->dob;
-        $school->degree          = $request->degree;
         $school->address         = $request->address;
         $school->phone           = $request->phone;
         $school->attachment      = $attachment;
@@ -594,12 +623,6 @@ class SchoolController extends Controller
         $school->manage_room_numbers     = $request->manage_room_numbers;
         $school->manage_room_measurement = $request->manage_room_measurement;
         
-        $school->email            = $request->email;
-        $school->password         = $request->password;
-        $school->nrc_state_region = $request->nrc_state_region;
-        $school->nrc_township     = $request->nrc_township;
-        $school->nrc_citizen      = $request->nrc_citizen;
-        $school->nrc_number       = $request->nrc_number;
         $school_type = "";
         foreach($request->school_type as $type){
             $school_type = $school_type.$type.',';
@@ -608,11 +631,6 @@ class SchoolController extends Controller
         $school->type = rtrim($school_type, ',');
         $school->renew_date = date('Y-m-d');
         $school->save();
-        //Student Info
-        $std_info = StudentInfo::where('school_id', $id)->first();
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
-        $std_info->save();
         //establisher list
         SchoolEstablisher::where('school_id', $id)->delete();
         for($i=0;$i<sizeof($request->establisher_name);$i++){
@@ -714,7 +732,7 @@ class SchoolController extends Controller
 
     public function FilterSchool(Request $request)
     {
-        $school = SchoolRegister::orderBy('created_at','desc');
+        $school = SchoolRegister::where('approve_reject_status',$request->status)->orderBy('created_at','desc');
         if($request->name!=""){
             $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
                         ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -722,15 +740,53 @@ class SchoolController extends Controller
         if($request->nrc!=""){
             $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
-        $school=$school->get();
-        return  response()->json([
-            'data' => $school
-        ],200);
+        $schools=$school->get();
+        return DataTables::of($schools)
+        ->addColumn('action', function ($infos) {
+            return "<div class='btn-group'>
+                            <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                        </div>";
+        })
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+            return $nrc_result;
+        })
+        ->addColumn('status', function ($infos){
+            if($infos->approve_reject_status	 == 0){
+                return "PENDING";
+            }else if($infos->approve_reject_status	 == 1){
+                return "APPROVED";
+            }else{
+                return "REJECTED";
+            }
+        })
+        ->make(true);
+        // return  response()->json([
+        //     'data' => $school
+        // ],200);
     }
 
     public function schoolStatus($id)
     {
         $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        return response()->json($data,200);
+    }
+
+    public function approveSchool($id)
+    { 
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
+    }
+
+    public function checkPayment($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
         return response()->json($data,200);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\CPAFF;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
+use App\StudentInfo;
 
 class CPAFFController extends Controller
 {
@@ -201,47 +202,68 @@ class CPAFFController extends Controller
             $profile_photo = '/storage/student_info/'.$name;
         }
 
+        
+        if ($request->hasfile('cpa_certificate')) {
+            $file = $request->file('cpa_certificate');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $cpa_certificate = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $cpa_certificate=$request->cpa_certificate;
+        }
+
+        if ($request->hasfile('mpa_mem_card')) {
+            $file = $request->file('mpa_mem_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $mpa_mem_card= '/storage/cpa_ff_register/'.$name;
+        }else{
+            $mpa_mem_card=$request->mpa_mem_card;
+        }
+
+        if ($request->hasfile('cpd_record')) {
+            $file = $request->file('cpd_record');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $cpd_record = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $cpd_record=$request->cpd_record;
+        }
+
+        if ($request->hasfile('passport_image')) {
+            $file = $request->file('passport_image');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $passport_image = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $passport_image=$request->passport_image;
+        }
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front= '/storage/student_info/'.$name;
+        }else{
+            $nrc_front=$request->nrc_front;
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back= '/storage/student_info/'.$name;
+        }else{
+            $nrc_back=$request->nrc_back;
+        }
         $cpa_ff = CPAFF::find($id);
-        // if ($request->hasfile('renew_file')) {
-        //     $file = $request->file('renew_file');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
-        //     $renew_file = '/storage/cpa_ff_register/'.$name;
-        // }else{
-        //     $renew_file="";
-        // }
-
-        // if ($request->hasfile('renew_micpa')) {
-        //     $file = $request->file('renew_micpa');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
-        //     $renew_micpa = '/storage/cpa_ff_register/'.$name;
-        // }else{
-        //     $renew_micpa="";
-        // }
-
-        // if ($request->hasfile('renew_cpd')) {
-        //     $file = $request->file('renew_cpd');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
-        //     $renew_cpd = '/storage/cpa_ff_register/'.$name;
-        // }else{
-        //     $renew_cpd="";
-        // }
-
-        // if ($request->hasfile('renew_cpaff_reg')) {
-        //     $file = $request->file('renew_cpaff_reg');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
-        //     $renew_cpaff_reg = '/storage/cpa_ff_register/'.$name;
-        // }else{
-        //     $renew_cpaff_reg="";
-        // }
-
-        // $cpa_ff->renew_file=$renew_file;
-        // $cpa_ff->renew_micpa=$renew_micpa;
-        // $cpa_ff->renew_cpd=$renew_cpd;
-        // $cpa_ff->renew_cpaff_reg=$renew_cpaff_reg;
+        $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+        $cpa_ff->qt_pass          =   $request->qt_pass;
+        $cpa_ff->cpa_certificate=$cpa_certificate;
+        $cpa_ff->mpa_mem_card=$mpa_mem_card;
+        $cpa_ff->cpd_record=$cpd_record;
+        $cpa_ff->passport_image=$passport_image;
+        $cpa_ff->nrc_front        =   $nrc_front;
+        $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->renew_accepted_date=date('Y-m-d');
         $cpa_ff->profile_photo=$profile_photo;
         $cpa_ff->renew_status=1;
@@ -267,5 +289,21 @@ class CPAFFController extends Controller
         return response()->json([
             'data'  => $cpaff
         ]);
+    }
+
+    public function approveCpaff($id)
+    { 
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
+    }
+
+    public function checkPaymentCpaff($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
+        return response()->json($data,200);
     }
 }
