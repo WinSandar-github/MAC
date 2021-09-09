@@ -64,7 +64,7 @@ class AccFirmInfController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/acc_firm/',$name);
-                $ppa_certi[] = $name;
+                $ppa_certi[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -77,7 +77,7 @@ class AccFirmInfController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/acc_firm/',$name);
-                $letterhead[] = $name;
+                $letterhead[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -90,7 +90,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $certi_or_reg[] = $name;
+            $certi_or_reg[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -104,7 +104,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $deeds_memo[] = $name;
+            $deeds_memo[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -118,7 +118,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $certi_incor[] = $name;
+            $certi_incor[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -133,7 +133,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $tax_reg_certificate[] = $name;
+            $tax_reg_certificate[] = '/storage/acc_firm/'.$name;
             }
 
         }
@@ -146,7 +146,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $pass_photo[] = $name;
+            $pass_photo[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -160,7 +160,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $edu_cert[] = $name;
+            $edu_cert[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -173,7 +173,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $owner_profile[] = $name;
+            $owner_profile[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -187,7 +187,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $work_exp[] = $name;
+            $work_exp[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -201,7 +201,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $nrc_passport_front[] = $name;
+            $nrc_passport_front[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -214,7 +214,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $nrc_passport_back[] = $name;
+            $nrc_passport_back[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -227,7 +227,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $tax_clearance[] = $name;
+            $tax_clearance[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -240,7 +240,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $permit_foreigns[] =$name;
+            $permit_foreigns[] ='/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -254,7 +254,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $financial_statement[] = $name;
+            $financial_statement[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -312,7 +312,7 @@ class AccFirmInfController extends Controller
         //     'verify_code' => $student_info['verify_code']
         // );
         // Mail::to($student_info['email'])->send(new ContactMail($data));
-        $std_info->verify_status    =   1;
+        // $std_info->verify_status    =   1;
         $std_info->save();
 
         //Branch Office
