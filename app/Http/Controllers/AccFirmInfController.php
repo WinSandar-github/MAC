@@ -83,18 +83,6 @@ class AccFirmInfController extends Controller
         }else{
             $letterhead = null;
         }
-    //    if($request->hasfile('representatives'))
-    //     {
-    //         foreach($request->file('representatives') as $file)
-    //         {
-    //         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-    //         $file->move(public_path().'/storage/acc_firm/',$name);
-    //         $representative[] =$name;
-    //         }
-
-    //     }else{
-    //         $representative = null;
-    //     }
 
         if($request->hasfile('certi_or_regs'))
         {
@@ -137,32 +125,7 @@ class AccFirmInfController extends Controller
             $certi_incor = null;
         }
 
-        // if($request->hasfile('form6_26e'))
-        // {
-        //     foreach($request->file('form6_26e') as $file)
-        //     {
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/acc_firm/',$name);
-        //     $form6_26e[] = $name;
-        //     }
-
-        // }else{
-        //     $form6_26e = null;
-        // }
-
-        // if($request->hasfile('form_a1'))
-        // {
-        //     foreach($request->file('form_a1') as $file)
-        //     {
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/acc_firm/',$name);
-        //     $form_a1[] = $name;
-        //     }
-
-        // }else{
-        //     $form_a1 = null;
-        // }
-
+    
 
         if($request->hasfile('tax_reg_certificate'))
         {
@@ -1181,20 +1144,32 @@ class AccFirmInfController extends Controller
     //Audit Feedback
     public function auditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get();
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get();
         return response()->json($data,200);
     }
 
     // Non Audit Feedback
     public function nonAuditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get();
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get();
         return response()->json($data,200);
     }
 
     public function auditStatus($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get('status');
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                            'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                            'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get('status');
         return response()->json($data,200);
     }
 
@@ -1202,6 +1177,9 @@ class AccFirmInfController extends Controller
     {
         $data = AccountancyFirmInformation::where('id',$id)
                                           ->where('audit_firm_type_id',2)
+                                          ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
                                           ->get('status');
         return response()->json($data,200);
     }
@@ -1299,6 +1277,7 @@ class AccFirmInfController extends Controller
 
     public function renewSubscribe(Request $request)
     {
+        
         $register_date = date('Y-m-d');
 
         // profile photo
