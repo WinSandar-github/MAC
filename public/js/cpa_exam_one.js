@@ -372,9 +372,9 @@ function loadCPAStudent(course_type) {
                 } else {
                     exam_type_id = "MAC STUDENT";
                 }
-                if (element.is_full_module == 0) {
+                if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
-                } else if (element.is_full_module == 1) {
+                } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
                     is_full_module = "Full Module";
@@ -462,7 +462,7 @@ function fillCPAMark(id, isFullModule) {
     localStorage.setItem("is_full_module", isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
     // console.log(is_full_module)
-    if (is_full_module == 0 || is_full_module == 1) {
+    if (is_full_module == 1 || is_full_module == 2) {
         location.href = FRONTEND_URL + "/cpa_fill_mark_m1&2";
     } else {
         location.href = FRONTEND_URL + "/cpa_fill_mark_full";
@@ -500,9 +500,9 @@ function getCPAModuleStd() {
                 } else {
                     exam_type_id = "MAC STUDENT";
                 }
-                if (element.is_full_module == 0) {
+                if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
-                } else if (element.is_full_module == 1) {
+                } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
                     is_full_module = "Full Module";
@@ -553,7 +553,7 @@ function getCPAModuleStd() {
                         console.log(rData.subjects[1]);
 
                         console.log('is_full_module', module_type);
-                        if (module_type == 0 || module_type == 1) {
+                        if (module_type == 1 || module_type == 2) {
                             for (var i = 0; i < 3; i++) {
                                 var j = i + 1;
                                 var sunject = document.getElementById('subject' + j);
