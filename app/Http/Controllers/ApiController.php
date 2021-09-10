@@ -15,6 +15,8 @@ use App\OrganizationStructure;
 use App\TypeOfServiceProvided;
 use App\StudentCourseReg;
 use App\StudentRegister;
+use App\ExamRegister;
+
 
 use App\StudentInfo;
 
@@ -139,4 +141,32 @@ class ApiController extends Controller
         
         return "Update Serial Number";
     }
+
+    public function generateExamSrNo($batch_id)
+    {
+        
+       
+        $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($batch_id) {
+            $query->where('batch_id', $batch_id);
+        })->with('student_course')->orderBy('name_mm','asc')->get();
+        
+        
+        foreach($student_infos as $key => $student_info){
+           
+            $student_register = ExamRegister::where('student_info_id',$student_info->id)
+                                    ->where('form_type',$student_info->student_course->batch->course->id)
+                                    ->where('status',1)->first();
+                if(!empty($student_register)){
+                    $student_register->sr_no = ++$key;
+
+                    $student_register->save();
+                
+                }
+            }
+            
+        
+        return "Update Serial Number in Exam Registration form";
+    }
+
+    
 }

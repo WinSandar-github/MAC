@@ -165,10 +165,8 @@ class CPAFFController extends Controller
 
     public function approve($id)
     {
-        return "Hello";
         $accepted_date = date('Y-m-d');
         $approve = CPAFF::find($id);
-       
         if($approve->status==0)
         {
             $approve->status = 1;

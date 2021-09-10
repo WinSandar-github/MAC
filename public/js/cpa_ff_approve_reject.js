@@ -302,9 +302,8 @@ function approveCPAFFUser(){
         url: BACKEND_URL + "/approve_cpaff/"+id,
         type: 'patch',
         success: function(result){
-            console.log(result)
-            // successMessage("You have approved that user!");
-            // location.href = FRONTEND_URL + "/cpa_ff_registration_list";
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/cpa_ff_registration_list";
         }
     });
 }

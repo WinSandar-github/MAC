@@ -16,6 +16,7 @@ class CreateExamRegisterTable extends Migration
         Schema::create('exam_register', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
+            $table->bigInteger('sr_no')->nullable();
             $table->string('date');
             // $table->string('invoice_image');
             $table->date('invoice_date');
