@@ -1475,7 +1475,7 @@ class AccFirmInfController extends Controller
         return response()->json($data,200);
     }
 
-    public function approveAuditPayment($id)
+    public function approvePayment($id)
     {
         $std_info = StudentInfo::find($id) ;
         $std_info->payment_method = 'CASH';
