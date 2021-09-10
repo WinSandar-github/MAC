@@ -265,6 +265,8 @@ Route::patch('update_profile/{id}','StudentInfoController@updateProfile');
 Route::post('update_pwd','LoginController@updatePwd');
 //Chart
 Route::post('/chart_filter','DARegisterController@ChartFilter');
+Route::post('/reg_chart_filter','StudentRegisterController@RegChartFilter');
+
 //Unique Email and NRC Check in DA One Application
 Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');

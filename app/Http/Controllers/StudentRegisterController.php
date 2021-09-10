@@ -517,4 +517,15 @@ class StudentRegisterController extends Controller
 
         
     }
+
+    public function RegChartFilter(Request $request)
+    {
+        $student=StudentRegister::where('status',1)
+        ->whereYear('updated_at',$request->year);
+        $student=$student->get();
+        
+        return response()->json([ 
+            'data' => $student
+        ],200);
+    }
 }

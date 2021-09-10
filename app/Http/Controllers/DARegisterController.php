@@ -382,45 +382,19 @@ class DARegisterController extends Controller
 
     public function ChartFilter(Request $request)
     {
-        if($request->type==0){
-            $student=StudentCourseReg::with('batch')->where('approve_reject_status',1);
-            if($request->from!="")
-            {
-                $from=date('Y-m-d',strtotime($request->from));
-                $student=$student->where('updated_at','>',$from);
-            }
-            if($request->to!=""){
-                $to=date('Y-m-d',strtotime($request->to));
-                $student=$student->where('updated_at','<',$to);
-            }
-            $student=$student->get();
-        }
-        else if($request->type==1){
-            $student = StudentRegister::where('status', 1);
-            if($request->from!="")
-            {
-                $from=date('Y-m-d',strtotime($request->from));
-                $student=$student->where('updated_at','>',$from);
-            }
-            if($request->to!=""){
-                $to=date('Y-m-d',strtotime($request->to));
-                $student=$student->where('updated_at','<',$to);
-            }
-            $student=$student->get();
-        }
-        else if($request->type==2){
-            $student=ExamRegister::where('status', 1);
-            if($request->from!="")
-            {
-                $from=date('Y-m-d',strtotime($request->from));
-                $student=$student->where('updated_at','>',$from);
-            }
-            if($request->to!=""){
-                $to=date('Y-m-d',strtotime($request->to));
-                $student=$student->where('updated_at','<',$to);
-            }
-            $student=$student->get();
-        }
+        $student=StudentCourseReg::with('batch')->where('approve_reject_status',1)
+        ->whereYear('updated_at',$request->year);
+        // if($request->from!="")
+        // {
+        //     $from=date('Y-m-d',strtotime($request->from));
+        //     $student=$student->where('updated_at','>',$from);
+        // }
+        // if($request->to!=""){
+        //     $to=date('Y-m-d',strtotime($request->to));
+        //     $student=$student->where('updated_at','<',$to);
+        // }
+        $student=$student->get();
+        
         return response()->json([ 
             'data' => $student
         ],200);
