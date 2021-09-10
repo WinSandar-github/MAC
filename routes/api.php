@@ -265,3 +265,8 @@ Route::post('/chart_filter','DARegisterController@ChartFilter');
 //Unique Email and NRC Check in DA One Application
 Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
+
+Route::get('/generate_personal_no/{batch_id}','ApiController@generatePersonalNo');
+
+Route::get('/generate_sr_no/{batch_id}','ApiController@generateSrNo');
+

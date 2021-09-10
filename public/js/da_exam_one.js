@@ -471,6 +471,7 @@ function chooseBatch() {
     });
 }
 
+
 function loadStudent(course_type) {
     destroyDatatable("#tbl_exam_pending_result", "#tbl_exam_pending_result_body");
     destroyDatatable("#tbl_exam_approved_result", "#tbl_exam_approved_result_body");
