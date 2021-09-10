@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Papp;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
+use App\StudentInfo;
 
 class PAPPController extends Controller
 {
@@ -336,5 +337,21 @@ class PAPPController extends Controller
         return response()->json([
             'data'  => $papp
         ]);
+    }
+
+    public function approvePapp($id)
+    { 
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
+    }
+
+    public function checkPaymentPapp($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
+        return response()->json($data,200);
     }
 }
