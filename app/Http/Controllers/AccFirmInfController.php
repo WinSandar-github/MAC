@@ -127,7 +127,7 @@ class AccFirmInfController extends Controller
             $certi_incor = null;
         }
 
-    
+
 
         if($request->hasfile('tax_reg_certificate'))
         {
@@ -1279,7 +1279,7 @@ class AccFirmInfController extends Controller
 
     public function renewSubscribe(Request $request)
     {
-        
+
         $register_date = date('Y-m-d');
 
         // profile photo
@@ -1467,6 +1467,22 @@ class AccFirmInfController extends Controller
           ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
           ->make(true);
       }
+    }
+
+    public function check_payment($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
+        return response()->json($data,200);
+    }
+
+    public function approveAuditPayment($id)
+    {
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
     }
 
 }

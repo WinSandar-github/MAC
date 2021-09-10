@@ -195,6 +195,8 @@ Route::get('/check_payment_teacher/{id}', 'TeacherController@check_payment');
 
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+Route::get('/check_payment_audit/{id}', 'AccFirmInfController@check_payment');
+Route::patch('/approve_audit_payment/{id}', 'AccFirmInfController@approveAuditPayment');
 
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditFeedback');
 
