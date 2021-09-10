@@ -1,6 +1,9 @@
+const { data } = require("jquery");
+
 function createBatch(){    
     var send_data=new FormData();
     send_data.append('name',$("input[name=name]").val());
+    send_data.append('number',$("input[name=number]").val());
     send_data.append('course_id',$('#selected_course_id').val());
     send_data.append('start_date',$("input[name=start_date]").val());
     send_data.append('end_date',$("input[name=end_date]").val());
@@ -45,12 +48,13 @@ function getBatch(){
                 'start_date' :  $("input[name=filter_by_start_date]").val(),
                 'end_date'   :  $("input[name=filter_by_end_date]").val()
             }
+           
         },
         columns: [
             
             {data: "id", name: 'No'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
-            {data: 'name', name: 'name'}, 
+            {data: 'name', name: 'name'},
             {data: 'course.name', name: 'course.name'}, 
             {data: 'start_date', name: 'start_date'},
             {data: 'end_date', name: 'end_date'},
@@ -64,9 +68,11 @@ function getBatch(){
             {data: 'private_reg_end_date', name: 'private_reg_end_date'},
             {data: 'entry_start_date', name: 'entry_start_date'},
             {data: 'entry_end_date', name: 'entry_end_date'},
+            
         ],
+        
     });
-
+   
     // destroyDatatable("#tbl_batch", "#tbl_batch_body"); 
     // var send_data=new FormData();
     // send_data.append('name',$("input[name=filter_by_name]").val());
@@ -152,6 +158,7 @@ function showBatchInfo(id) {
         success: function (data) {
             var batch_data=data.data;                     
             $('input[name=name]').val(batch_data.name);
+            $("input[name=number]").val(batch_data.number);
             $('#selected_course_id').val(batch_data.course_id);
             $('input[name=start_date]').val(batch_data.start_date);
             $('input[name=end_date]').val(batch_data.end_date);
@@ -184,6 +191,7 @@ function showBatchInfo(id) {
 function updateBatch(){
     var id= $("input[name=batch_id]").val();    
     var name=$("input[name=name]").val();
+    var number=$("input[name=number]").val();
     var course_id=$("#selected_course_id").val();
     var start_date=$("input[name=start_date]").val();
     var end_date=$("input[name=end_date]").val();
@@ -205,6 +213,7 @@ function updateBatch(){
         type: 'patch',
         data:{
             name:name,
+            number:number,
             course_id:course_id,
             start_date:start_date,
             end_date:end_date,
