@@ -66,7 +66,7 @@
                                     <div class="card-body">
                                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                             <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                <table id="tbl_cpa_pending_exam" class="table table-hover text-nowrap ">
+                                                <table id="tbl_cpa_pending_exam" class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -153,6 +153,7 @@
       $('#tbl_cpa_pending_exam').DataTable({
           processing: true,
           // serverSide: true,
+          scrollX:true,
           ajax: BACKEND_URL + "/filter/0/3",
           columns: [
               {data: null, render: function (data, type, row, meta) {
@@ -171,6 +172,7 @@
 
       $('#tbl_cpa_approved_exam').DataTable({
           processing: true,
+          scrollX:true,
           // serverSide: true,
           ajax: BACKEND_URL + "/filter/1/3",
           columns: [
@@ -190,6 +192,7 @@
 
       $('#tbl_cpa_rejected_exam').DataTable({
           processing: true,
+          scrollX:true,
           // serverSide: true,
           ajax: BACKEND_URL + "/filter/2/3",
           columns: [

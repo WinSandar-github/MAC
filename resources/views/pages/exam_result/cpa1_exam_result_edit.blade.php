@@ -26,7 +26,7 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                     <div class="card-header">
-                                            <div class="row">
+                                            {{--<div class="row">
                                                 <div class="col-md-6">
                                                     <div class="row">
                                                         <!-- <div class="col-md-1"></div> -->
@@ -50,8 +50,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div><br/>
-                                            <div class="row">
+                                            </div><br/>--}}
+                                            {{--<div class="row">
                                                 <div class="col-md-6">
                                                     <div class="row">
                                                     <!-- <div class="col-md-1"></div> -->
@@ -66,7 +66,7 @@
                                                 <div class="col-md-6">
                                                     <button type="submit" onclick="loadCPAStudent('cpa_1')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
                                                 </div>
-                                            </div>
+                                            </div>--}}
                                             <br/>
                                             <ul class="nav nav-tabs mt-3" role="tablist">
                                                 <li class="nav-item">
@@ -83,7 +83,7 @@
                                         <div class="card-body">
                                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                                 <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                    <table id="tbl_cpa_exam_pending_result" class="table table-hover text-nowrap ">
+                                                    <table id="tbl_cpa_exam_pending_result" class="table table-hover text-nowrap " style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -152,11 +152,12 @@
 @push('scripts')
 <script>
 	//loadCPAStudent('cpa_1');
-  loadBatchData("cpa_1");
+  //loadBatchData("cpa_1");
 
   $(document).ready(function(){
     $('#tbl_cpa_exam_pending_result').DataTable({
         processing: true,
+        scrollX:true,
         // serverSide: true,
         ajax: BACKEND_URL + "/filter_exam_register/0/3",
         columns: [
@@ -175,6 +176,7 @@
 
     $('#tbl_cpa_exam_approved_result').DataTable({
         processing: true,
+        scrollX:true,
         // serverSide: true,
         ajax: BACKEND_URL + "/filter_exam_register/1/3",
         columns: [
@@ -193,6 +195,7 @@
 
     $('#tbl_cpa_exam_rejected_result').DataTable({
         processing: true,
+        scrollX:true,
         // serverSide: true,
         ajax: BACKEND_URL + "/filter_exam_register/2/3",
         columns: [
@@ -208,6 +211,14 @@
         ],
         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
     });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+  			$.each($.fn.dataTable.tables(true), function(){
+  					$(this).DataTable()
+  							.columns.adjust()
+  							.responsive.recalc();
+  			});
+  	});
 
   });
 

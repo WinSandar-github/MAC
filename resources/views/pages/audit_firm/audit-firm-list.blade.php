@@ -18,7 +18,7 @@
             </div>
         </div>
             <form action="" method="post">
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card ">
@@ -64,15 +64,15 @@
                                                                 <th class="bold-font-weight">Email</th>
                                                                 <th class="bold-font-weight">Website</th>
                                                                 <th class="bold-font-weight">Status</th>
-                                                                
+
                                                             </tr>
-                                                            
+
                                                         </thead>
                                                         <tbody id="tbl_audit_pending_body" class="hoverTable text-left"></tbody>
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                    <table id="tbl_audit_approved" class="table table-hover text-nowrap">
+                                                    <table id="tbl_audit_approved" class="table table-hover text-nowrap" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th class="bold-font-weight">Sr</th>
@@ -87,15 +87,15 @@
                                                                 <th class="bold-font-weight">Email</th>
                                                                 <th class="bold-font-weight">Website</th>
                                                                 <th class="bold-font-weight">Status</th>
-                                                                
+
                                                             </tr>
-                                                            
+
                                                         </thead>
                                                         <tbody id="tbl_audit_approved_body" class="hoverTable text-left"></tbody>
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                                    <table id="tbl_audit_rejected" class="table table-hover text-nowrap">
+                                                    <table id="tbl_audit_rejected" class="table table-hover text-nowrap" style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                                 <th class="bold-font-weight">Sr</th>
@@ -110,9 +110,9 @@
                                                                 <th class="bold-font-weight">Email</th>
                                                                 <th class="bold-font-weight">Website</th>
                                                                 <th class="bold-font-weight">Status</th>
-                                                                
+
                                                             </tr>
-                                                            
+
                                                         </thead>
                                                         <tbody id="tbl_audit_rejected_body" class="hoverTable text-left"></tbody>
                                                     </table>
@@ -122,12 +122,12 @@
                                     </div>
                                 </div>
                             </div>
-                                
+
                             </div>
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -152,6 +152,91 @@
 
 @push('scripts')
 <script>
-getAudit();
+//getAudit();
+
+$(document).ready(function(){
+	$('#tbl_audit_pending').DataTable({
+			processing: true,
+			scrollX:true,
+			// serverSide: true,
+			ajax: BACKEND_URL + "/audit_register_list/0/1",
+			columns: [
+				{data: null, render: function (data, type, row, meta) {
+						return meta.row + meta.settings._iDisplayStart + 1;
+				}},
+				{data: 'action', name: 'action', orderable: false, searchable: false},
+				{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
+				{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
+				{data: 'township', name: 'Township'},
+				{data: 'postcode', name: 'Post Code'},
+				{data: 'city', name: 'City'},
+				{data: 'state_region', name: 'State Region'},
+				{data: 'telephones', name: 'Telephone'},
+				{data: 'h_email', name: 'H Email'},
+				{data: 'website', name: 'Website'},
+				{data: 'status', name: 'Status'},
+			],
+			"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+	});
+
+	$('#tbl_audit_approved').DataTable({
+			processing: true,
+			scrollX:true,
+			// serverSide: true,
+			ajax: BACKEND_URL + "/audit_register_list/1/1",
+			columns: [
+				{data: null, render: function (data, type, row, meta) {
+						return meta.row + meta.settings._iDisplayStart + 1;
+				}},
+				{data: 'action', name: 'action', orderable: false, searchable: false},
+				{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
+				{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
+				{data: 'township', name: 'Township'},
+				{data: 'postcode', name: 'Post Code'},
+				{data: 'city', name: 'City'},
+				{data: 'state_region', name: 'State Region'},
+				{data: 'telephones', name: 'Telephone'},
+				{data: 'h_email', name: 'H Email'},
+				{data: 'website', name: 'Website'},
+				{data: 'status', name: 'Status'},
+			],
+			"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+	});
+
+	$('#tbl_audit_rejected').DataTable({
+			processing: true,
+			scrollX:true,
+			// serverSide: true,
+			ajax: BACKEND_URL + "/audit_register_list/2/1",
+			columns: [
+				{data: null, render: function (data, type, row, meta) {
+						return meta.row + meta.settings._iDisplayStart + 1;
+				}},
+				{data: 'action', name: 'action', orderable: false, searchable: false},
+				{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
+				{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
+				{data: 'township', name: 'Township'},
+				{data: 'postcode', name: 'Post Code'},
+				{data: 'city', name: 'City'},
+				{data: 'state_region', name: 'State Region'},
+				{data: 'telephones', name: 'Telephone'},
+				{data: 'h_email', name: 'H Email'},
+				{data: 'website', name: 'Website'},
+				{data: 'status', name: 'Status'},
+			],
+			"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+	});
+
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+			$.each($.fn.dataTable.tables(true), function(){
+					$(this).DataTable()
+							.columns.adjust()
+							.responsive.recalc();
+			});
+	});
+
+});
+
 </script>
+
 @endpush

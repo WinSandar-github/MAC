@@ -79,7 +79,7 @@
                                     <div class="card-body">
                                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                             <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                <table id="tbl_da_pending_exam" class="table table-hover text-nowrap ">
+                                                <table id="tbl_da_pending_exam" class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -164,6 +164,7 @@
     $(document).ready(function(){
       $('#tbl_da_pending_exam').DataTable({
           processing: true,
+          scrollX:true,
           // serverSide: true,
           ajax: BACKEND_URL + "/filter/0/2",
           columns: [
@@ -183,6 +184,7 @@
 
       $('#tbl_da_approved_exam').DataTable({
           processing: true,
+          scrollX:true,
           // serverSide: true,
           ajax: BACKEND_URL + "/filter/1/2",
           columns: [
@@ -202,6 +204,7 @@
 
       $('#tbl_da_rejected_exam').DataTable({
           processing: true,
+          scrollX:true,
           // serverSide: true,
           ajax: BACKEND_URL + "/filter/2/2",
           columns: [
