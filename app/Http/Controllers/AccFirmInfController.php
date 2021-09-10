@@ -1241,7 +1241,7 @@ class AccFirmInfController extends Controller
         $date = AccountancyFirmInformation::find($id);
         $register_date = Carbon::parse($date->register_date)->format('M');
 
-        $verify = "You are verified!";
+        $verify = "You need to subscribe your Non-Audit service with desire payment method!";
         $next = "Your registeration will start in next year!";
         $renew = "Your registeration is expired! You need to submit new registeration form again.";
 
