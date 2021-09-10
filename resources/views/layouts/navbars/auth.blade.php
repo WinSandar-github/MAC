@@ -298,15 +298,15 @@
                         </li>
                         <li class="{{ $elementActive == 'description_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'description_list') }}">
-                                <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('ဖော်ပြချက်') }}</span>
+                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;">{{ __('ဖော်ပြချက်') }}</span>
                             </a>
                         </li>
                         </li>
                         <li class="{{ $elementActive == 'membership_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'membership_list') }}">
-                                <i class="nc-icon nc-paper"></i>
-                                <span>{{ __('Membership') }}</span>
+                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;font-size:11px;">{{ __('Membership') }}</span>
                             </a>
                         </li>
                     </ul>
