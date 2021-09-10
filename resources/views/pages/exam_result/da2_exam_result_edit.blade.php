@@ -148,9 +148,10 @@
 @push('scripts')
 <script>
 	//loadStudent('da_2');
-  //loadBatchData("da_2");
+//   loadBatchData("da_2");
 
   $(document).ready(function(){
+    localStorage.setItem("course_type","da_2");
     $('#tbl_exam_pending_result').DataTable({
         processing: true,
         scrollX:true,

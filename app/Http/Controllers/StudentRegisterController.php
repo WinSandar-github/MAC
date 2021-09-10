@@ -8,6 +8,7 @@ use App\StudentInfo;
 use App\StudentCourseReg;
 use App\Course;
 use App\ExamRegister;
+
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -499,22 +500,63 @@ class StudentRegisterController extends Controller
 
     public function getAttendesStudent(Request $request)
     {
+      
+        $course = Course::where('code',$request->course_code)->first();
+       
+        $student_infos = StudentRegister::with('student_info','course')
+                        ->where('form_type',$course->id)
+                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
         
-        $student_infos = StudentRegister::with('student_info','course')->get();
-        return response()->json([
-            'data' => $student_infos
-        ]);
+        return DataTables::of($student_infos)
+        
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        ->make(true);
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
 
         
     }
     public function ‌approveExamList(Request $request)
     {
         
-        $student_infos = ExamRegister::with('student_info','course')->get();
-        return response()->json([
-            'data' => $student_infos
-        ]);
+    
+        $course = Course::where('code', $request->course_code)->first();
+        
+
+       
+        $student_infos = ExamRegister::with('student_info','course')
+                        ->where('form_type',$course->id)
+                        ->where('status',1)
+                        ->orWhere('grade',$request->grade)
+                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
+         
+        
+        return DataTables::of($student_infos)
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        ->make(true);
+        
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
 
         
+    }
+
+    public function RegChartFilter(Request $request)
+    {
+        $student=StudentRegister::where('status',1)
+        ->whereYear('updated_at',$request->year);
+        $student=$student->get();
+        
+        return response()->json([ 
+            'data' => $student
+        ],200);
     }
 }

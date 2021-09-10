@@ -545,10 +545,10 @@ class ExamRegisterController extends Controller
             })
 
             ->addColumn('module', function ($infos){
-                if($infos->is_full_module == 0){
+                if($infos->is_full_module == 1){
                   return "Module 1";
                 }
-                else if($infos->status == 1){
+                else if($infos->is_full_module == 2){
                   return "Module 2";
                 }
                 else{
@@ -594,10 +594,10 @@ class ExamRegisterController extends Controller
             })
 
             ->addColumn('module', function ($infos){
-                if($infos->is_full_module == 0){
+                if($infos->is_full_module == 1){
                   return "Module 1";
                 }
-                else if($infos->status == 1){
+                else if($infos->is_full_module == 2){
                   return "Module 2";
                 }
                 else{
@@ -695,7 +695,7 @@ class ExamRegisterController extends Controller
                 if($infos->is_full_module == 0){
                   return "Module 1";
                 }
-                else if($infos->status == 1){
+                else if($infos->is_full_module == 1){
                   return "Module 2";
                 }
                 else{
