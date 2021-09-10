@@ -209,6 +209,8 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->degree_date                  =   date("Y-m-d",strtotime($request->degree_date));
         $student_info->degree_certificate_image     =   $deg_certi_img;
         $student_info->degree_rank                  =   $request->degree_rank;
+        $student_info->verify_code      =   $request->verify_code;
+        $student_info->payment_method   =   $request->payment_method;
         $student_info->save(); 
 
         $student_job_histroy = new StudentJobHistroy;

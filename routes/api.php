@@ -267,9 +267,19 @@ Route::patch('update_profile/{id}','StudentInfoController@updateProfile');
 Route::post('update_pwd','LoginController@updatePwd');
 //Chart
 Route::post('/chart_filter','DARegisterController@ChartFilter');
+Route::post('/reg_chart_filter','StudentRegisterController@RegChartFilter');
+
 //Unique Email and NRC Check in DA One Application
 Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
 
+Route::get('/generate_personal_no/{batch_id}','ApiController@generatePersonalNo');
+
+Route::get('/generate_sr_no/{batch_id}','ApiController@generateSrNo');
+Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
+
+
 //show description
 Route::get('showDescription/{membership_name}','MembershipController@showDescription');
+
+
