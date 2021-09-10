@@ -7,6 +7,8 @@ use App\Papp;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class PAPPController extends Controller
 {
@@ -212,7 +214,7 @@ class PAPPController extends Controller
             $profile_photo = '/storage/student_info/'.$name;
         }
 
-        
+
         if ($request->hasfile('cpa')) {
             $cpa_file = $request->file('cpa');
             $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
@@ -310,7 +312,6 @@ class PAPPController extends Controller
         }
         $papp = Papp::find($id);
         $papp->profile_photo=$profile_photo;
-        $papp->papp_date                    =   $request->papp_date;
         $papp->use_firm                     =   $request->use_firm;
         $papp->firm_name                    =   $request->firm_name;
         $papp->firm_type                    =   $request->firm_type;
@@ -353,5 +354,53 @@ class PAPPController extends Controller
     {
         $data = StudentInfo::where('id',$id)->get();
         return response()->json($data,200);
+    }
+
+    public function FilterPappRegistration($status){
+        $papp = Papp::with('student_info','student_job', 'student_education_histroy')
+                      ->where('status','=',$status)
+                      ->get();
+
+        return DataTables::of($papp)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='showPAPPList($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('nrc', function ($infos){
+              $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+              return $nrc_result;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('use_firm', function ($infos){
+              if($infos->use_firm == 0){
+                return "No Use Frim Name";
+              }
+              else{
+                return "Use Frim Name";
+              }
+          })
+
+          ->addColumn('papp_date', function ($infos){
+              return $infos->papp_date;
+          })
+
+          ->rawColumns(['action','nrc','papp_date','status','use_firm'])
+          ->make(true);
     }
 }

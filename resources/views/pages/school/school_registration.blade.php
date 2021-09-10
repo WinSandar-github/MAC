@@ -63,7 +63,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2" style="vertical-align: top;">
-                                                        <button type="button" class="btn btn-primary btn-round mt-0" onclick="getSchoolRegisterList()" id="search">Search</button>
+                                                        <button type="button" class="btn btn-primary btn-round mt-0"  id="search_school">Search</button>
                                                     </div>
                                                 </div>
                                                 <br/>
@@ -82,7 +82,7 @@
                                             <div class="card-body">
                                                 <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                                     <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                        <table id="tbl_school_pending"class="table table-hover  text-center">
+                                                        <table id="s_school_pending"class="table table-hover  text-center">
                                                             <thead class=" text-nowrap">
                                                                 <tr>
                                                                     <th class="bold-font-weight" >No</th>
@@ -171,7 +171,107 @@
     
     $(document).ready(function (e) {
         // createDatepicker("school_birthone");
-        getSchoolRegisterList();
+        // getSchoolRegisterList();
+        var stable_pending = $('#tbl_school_pending').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_school",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 0
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+               
+
+            ],
+         });
+
+        var stable_approve =$('#tbl_school_approved').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_school",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 1
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+
+            ],
+         });
+
+        var stable_reject =$('#tbl_school_rejected').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_school",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'status', name: 'status'},
+
+            ],
+            
+        });
+
+        $("#search_school").click(function(){
+       
+            stable_pending.draw();
+            stable_approve.draw();
+            stable_reject.draw();
+
+
+        });
         
     });
 

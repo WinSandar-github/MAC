@@ -27,6 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
@@ -71,6 +72,7 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
+Route::get('/papp_register_list/{status}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
@@ -79,6 +81,7 @@ Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
+Route::get('/cpa_ff_register_list/{status}', 'CPAFFController@FilterCpaffRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
@@ -126,7 +129,8 @@ Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 // Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
 Route::get('/filter/{status}/{course_code}', 'ExamRegisterController@FilterExamRegistration');
-Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
+// Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
+Route::get('/filter_exam_register/{grade}/{course_code}', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
@@ -266,3 +270,6 @@ Route::post('/chart_filter','DARegisterController@ChartFilter');
 //Unique Email and NRC Check in DA One Application
 Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
+
+//show description
+Route::get('showDescription/{membership_name}','MembershipController@showDescription');

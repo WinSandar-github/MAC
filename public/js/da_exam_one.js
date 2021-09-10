@@ -683,6 +683,7 @@ function getModuleStd() {
                 } else {
                     grade = "FAILED";
                 }
+                
                 setTimeout(() => {
                     if(element.grade == 1 )
                     {

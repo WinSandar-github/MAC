@@ -22,23 +22,23 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row"> 
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="row">
-                                                        
+
                                                         <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
                                                         <div class="col-md-7 text-left">
                                                             <input type="text" name="filter_by_name" class="form-control" placeholder="Student Name">
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="row">
-                                                    
+
                                                         <div class="col-md-3 text-left" style="font-weight:bold;">Remark</div>
                                                         <div class="col-md-7 text-left">
                                                             <select class="form-control form-select" name="selected_grade_id" id="selected_grade_id">
@@ -47,26 +47,25 @@
                                                                 <option value="1" >Pass</option>
                                                                 <option value="2">Fail</option>
                                                             </select>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div><br/>
-                                            <div class="row">    
+                                            {{--<div class="row">
                                                 <div class="col-md-6">
                                                     <div class="row">
-                                                    <!-- <div class="col-md-1"></div> -->
                                                         <div class="col-md-4 text-left" style="font-weight:bold;">Batch Number</div>
                                                         <div class="col-md-7 text-left">
                                                             <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                                                 <option value="all" selected>All Batches</option>
                                                             </select>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <button type="submit" onclick="loadStudent('da_1')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
                                                 </div>
-                                            </div><br/>
+                                            </div><br/>--}}
                                             <ul class="nav nav-tabs mt-3" role="tablist">
                                                 <li class="nav-item">
                                                     <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
@@ -82,7 +81,7 @@
                                         <div class="card-body">
                                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                                 <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                    <table id="tbl_exam_pending_result" class="table table-hover text-nowrap ">
+                                                    <table id="tbl_exam_pending_result" class="table table-hover text-nowrap " style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -99,7 +98,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                    <table id="tbl_exam_approved_result" class="table table-hover text-nowrap ">
+                                                    <table id="tbl_exam_approved_result" class="table table-hover text-nowrap " style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -116,7 +115,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                                    <table id="tbl_exam_rejected_result" class="table table-hover text-nowrap ">
+                                                    <table id="tbl_exam_rejected_result" class="table table-hover text-nowrap " style="width:100%;">
                                                         <thead>
                                                             <tr>
                                                             <th class="bold-font-weight" >No</th>
@@ -147,7 +146,75 @@
 
 @push('scripts')
 <script>
-	loadStudent('da_1');
-    loadBatchData("da_1");
+	//loadStudent('da_1');
+  //loadBatchData("da_1");
+
+  $(document).ready(function(){
+    $('#tbl_exam_pending_result').DataTable({
+        processing: true,
+        scrollX:true,
+        // serverSide: true,
+        ajax: BACKEND_URL + "/filter_exam_register/0/1",
+        columns: [
+            {data: null, render: function (data, type, row, meta) {
+                return meta.row + meta.settings._iDisplayStart + 1;
+            }},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'student_info.name_mm', name: 'Student Name'},
+            {data: 'exam_type', name: 'Exam Type'},
+            {data: 'remark', name: 'Remark'},
+            {data: 'status', name: 'Batch Number'},
+            {data: 'module', name: 'Module'},
+        ],
+        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+    });
+
+    $('#tbl_exam_approved_result').DataTable({
+        processing: true,
+        scrollX:true,
+        // serverSide: true,
+        ajax: BACKEND_URL + "/filter_exam_register/1/1",
+        columns: [
+          {data: null, render: function (data, type, row, meta) {
+              return meta.row + meta.settings._iDisplayStart + 1;
+          }},
+          {data: 'action', name: 'action', orderable: false, searchable: false},
+          {data: 'student_info.name_mm', name: 'Student Name'},
+          {data: 'exam_type', name: 'Exam Type'},
+          {data: 'remark', name: 'Remark'},
+          {data: 'batch.name', name: 'Batch Number'},
+          {data: 'module', name: 'Module'},
+        ],
+        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+    });
+
+    $('#tbl_exam_rejected_result').DataTable({
+        processing: true,
+        scrollX:true,
+        // serverSide: true,
+        ajax: BACKEND_URL + "/filter_exam_register/2/1",
+        columns: [
+          {data: null, render: function (data, type, row, meta) {
+              return meta.row + meta.settings._iDisplayStart + 1;
+          }},
+          {data: 'action', name: 'action', orderable: false, searchable: false},
+          {data: 'student_info.name_mm', name: 'Student Name'},
+          {data: 'exam_type', name: 'Exam Type'},
+          {data: 'remark', name: 'Remark'},
+          {data: 'batch.name', name: 'Batch Number'},
+          {data: 'module', name: 'Module'},
+        ],
+        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+    });
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        $.each($.fn.dataTable.tables(true), function(){
+            $(this).DataTable()
+                .columns.adjust()
+                .responsive.recalc();
+        });
+    });
+
+  });
 </script>
 @endpush
