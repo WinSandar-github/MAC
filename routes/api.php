@@ -197,11 +197,15 @@ Route::get('/check_payment_teacher/{id}', 'TeacherController@check_payment');
 
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+Route::get('/check_payment_audit/{id}', 'AccFirmInfController@check_payment');
+Route::patch('/approve_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditFeedback');
 
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
+Route::get('/check_payment_non_audit/{id}', 'AccFirmInfController@check_payment');
+Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 //Update Non-Audit register form
 Route::post('/update_acc_firm_info/{id}','AccFirmInfController@update');
@@ -281,5 +285,3 @@ Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
 
 //show description
 Route::get('showDescription/{membership_name}','MembershipController@showDescription');
-
-
