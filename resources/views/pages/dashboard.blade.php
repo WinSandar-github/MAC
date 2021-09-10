@@ -186,7 +186,7 @@
                         <div class="row" style="height: 40px;">
                             <div class="col-md-8 text-left" style="font-weight:bold;font-size:20px;">Student Application Chart</div>
                             <div class="col-md-3 text-left" style="padding-right:0px;">
-                                <select class="form-control form-select" name="selected_year" id="selected_year" onchange="getStudentChart()">                                
+                                <select class="form-control form-select" name="selected_year" id="selected_year" onchange="getStudentChart();drawChart();">                                
                                     {{--<option value="0" selected>Student Application</option>
                                     <option value="1">Student Registration</option>
                                     <option value="2">Exam Registration</option>--}}
@@ -269,11 +269,11 @@
 
     </script>
     <script type="text/javascript">
-// Load google charts
-google.charts.load('current', {'packages':['corechart']});
-google.charts.setOnLoadCallback(drawChart);
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
 
-// Draw the chart and set the chart values
+    // Draw the chart and set the chart values
 
 </script>
 
