@@ -525,9 +525,9 @@ function loadStudent(course_type) {
                 }
 
                 // if(element.exam_register.is_full_module==0){
-                if (element.is_full_module == 0) {
+                if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
-                } else if (element.is_full_module == 1) {
+                } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
                     is_full_module = "Full Module";
@@ -621,9 +621,9 @@ function fillMark(id, isFullModule) {
     localStorage.setItem("is_full_module", isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
     console.log(is_full_module);
-    if (is_full_module == 0) {
+    if (is_full_module == 1) {
         location.href = FRONTEND_URL + "/fill_mark_one";
-    } else if (is_full_module == 1) {
+    } else if (is_full_module == 2) {
         location.href = FRONTEND_URL + "/fill_mark_two";
     } else {
         location.href = FRONTEND_URL + "/fill_mark_full";
@@ -667,9 +667,9 @@ function getModuleStd() {
                 } else {
                     exam_type_id = "MAC STUDENT";
                 }
-                if (element.is_full_module == 0) {
+                if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
-                } else if (element.is_full_module == 1) {
+                } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
                     is_full_module = "Full Module";
@@ -724,7 +724,7 @@ function getModuleStd() {
                             console.log(rData.subjects[1]);
                             
                             console.log('is_full_module',module_type);
-                            if(module_type == 0)
+                            if(module_type == 1)
                             {
                                 for (var i = 0; i < 3; i++) 
                                 {
@@ -745,7 +745,7 @@ function getModuleStd() {
                                     grade.value = rData.grades[i];
                                 }
                             }
-                            else if(module_type == 1){
+                            else if(module_type == 2){
                                 for (var i = 0; i < 2; i++) {
                                     var j = i + 1;
                                     var sunject = document.getElementById('subject' + j);
@@ -762,7 +762,7 @@ function getModuleStd() {
                                     grade.value = rData.grades[i];
                                 }
                             }
-                            else if(module_type == 2){
+                            else if(module_type == 3){
                                 for (var i = 0; i < 5; i++) {
                                     var j = i + 1;
                                     var sunject = document.getElementById('subject' + j);

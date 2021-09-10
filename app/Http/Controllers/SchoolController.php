@@ -578,14 +578,8 @@ class SchoolController extends Controller
             $attachment =$request->attachment;
         } 
         $school = SchoolRegister::find($id);
-        $school->name_mm         = $request->name_mm;
-        $school->name_eng        = $request->name_eng;
         $school->nrc_front       = $nrc_front;
         $school->nrc_back        = $nrc_back;
-        $school->father_name_mm  = $request->father_name_mm;
-        $school->father_name_eng = $request->father_name_eng;
-        $school->date_of_birth   = $request->dob;
-        $school->degree          = $request->degree;
         $school->address         = $request->address;
         $school->phone           = $request->phone;
         $school->attachment      = $attachment;
@@ -629,12 +623,6 @@ class SchoolController extends Controller
         $school->manage_room_numbers     = $request->manage_room_numbers;
         $school->manage_room_measurement = $request->manage_room_measurement;
         
-        $school->email            = $request->email;
-        $school->password         = $request->password;
-        $school->nrc_state_region = $request->nrc_state_region;
-        $school->nrc_township     = $request->nrc_township;
-        $school->nrc_citizen      = $request->nrc_citizen;
-        $school->nrc_number       = $request->nrc_number;
         $school_type = "";
         foreach($request->school_type as $type){
             $school_type = $school_type.$type.',';
@@ -643,11 +631,6 @@ class SchoolController extends Controller
         $school->type = rtrim($school_type, ',');
         $school->renew_date = date('Y-m-d');
         $school->save();
-        //Student Info
-        $std_info = StudentInfo::where('school_id', $id)->first();
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
-        $std_info->save();
         //establisher list
         SchoolEstablisher::where('school_id', $id)->delete();
         for($i=0;$i<sizeof($request->establisher_name);$i++){
