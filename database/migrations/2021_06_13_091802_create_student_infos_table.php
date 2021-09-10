@@ -15,6 +15,7 @@ class CreateStudentInfosTable extends Migration
     {
         Schema::create('student_infos', function (Blueprint $table) {
             $table->id();
+            $table->string('personal_no')->nullable();
             $table->string('name_mm')->nullable();
             $table->string('name_eng')->nullable();
             $table->string('nrc_state_region')->nullable();

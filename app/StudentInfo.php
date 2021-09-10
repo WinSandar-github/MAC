@@ -22,7 +22,7 @@ class StudentInfo extends Model
 
     public function student_course()
     {
-        return $this->hasOne(StudentCourseReg::class,'student_info_id','id');
+        return $this->hasOne(StudentCourseReg::class,'student_info_id','id')->with('batch');
     }
 
     public function student_self_study()
