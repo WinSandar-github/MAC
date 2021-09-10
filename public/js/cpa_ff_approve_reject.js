@@ -251,7 +251,7 @@ function loadCPAFFData(){
                 let certificate = JSON.parse(education_history.certificate);
                 $.each(certificate,function(fileCount,fileName){
                    
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; text-decoration: none;' target='_blank'>View File</a>`);                    
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
                    
                 })
 
