@@ -15,6 +15,7 @@ class CreateStudentRegisterTable extends Migration
     {
         Schema::create('student_register', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('sr_no');
             $table->unsignedBigInteger('student_info_id');
             $table->date('date');
             $table->text('reg_reason')->nullable();

@@ -471,6 +471,7 @@ function chooseBatch() {
     });
 }
 
+
 function loadStudent(course_type) {
     destroyDatatable("#tbl_exam_pending_result", "#tbl_exam_pending_result_body");
     destroyDatatable("#tbl_exam_approved_result", "#tbl_exam_approved_result_body");
@@ -524,9 +525,9 @@ function loadStudent(course_type) {
                 }
 
                 // if(element.exam_register.is_full_module==0){
-                if (element.is_full_module == 0) {
+                if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
-                } else if (element.is_full_module == 1) {
+                } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
                     is_full_module = "Full Module";
@@ -620,9 +621,9 @@ function fillMark(id, isFullModule) {
     localStorage.setItem("is_full_module", isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
     console.log(is_full_module);
-    if (is_full_module == 0) {
+    if (is_full_module == 1) {
         location.href = FRONTEND_URL + "/fill_mark_one";
-    } else if (is_full_module == 1) {
+    } else if (is_full_module == 2) {
         location.href = FRONTEND_URL + "/fill_mark_two";
     } else {
         location.href = FRONTEND_URL + "/fill_mark_full";
@@ -666,9 +667,9 @@ function getModuleStd() {
                 } else {
                     exam_type_id = "MAC STUDENT";
                 }
-                if (element.is_full_module == 0) {
+                if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
-                } else if (element.is_full_module == 1) {
+                } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
                     is_full_module = "Full Module";
@@ -723,7 +724,7 @@ function getModuleStd() {
                             console.log(rData.subjects[1]);
                             
                             console.log('is_full_module',module_type);
-                            if(module_type == 0)
+                            if(module_type == 1)
                             {
                                 for (var i = 0; i < 3; i++) 
                                 {
@@ -744,7 +745,7 @@ function getModuleStd() {
                                     grade.value = rData.grades[i];
                                 }
                             }
-                            else if(module_type == 1){
+                            else if(module_type == 2){
                                 for (var i = 0; i < 2; i++) {
                                     var j = i + 1;
                                     var sunject = document.getElementById('subject' + j);
@@ -761,7 +762,7 @@ function getModuleStd() {
                                     grade.value = rData.grades[i];
                                 }
                             }
-                            else if(module_type == 2){
+                            else if(module_type == 3){
                                 for (var i = 0; i < 5; i++) {
                                     var j = i + 1;
                                     var sunject = document.getElementById('subject' + j);
@@ -792,12 +793,11 @@ function getModuleStd() {
 
 function Exam_Result_Submit() {
     var id = localStorage.getItem("exam_register_id");
+    var course_code = localStorage.getItem("course_code");
     var course_type = localStorage.getItem("course_type");
     var table = document.getElementById("tbl_fillmarks");
     var result_id = $("input[name = result_id]").val();
-    console.log(result_id);
     var totalRowCount = table.rows.length;
-    console.log("row count", totalRowCount);
     var data = new FormData();
     for (var i = 1; i < totalRowCount; i++) {
         data.append('subject[]', $('#subject' + i).val());
@@ -817,13 +817,12 @@ function Exam_Result_Submit() {
             contentType: false,
             processData: false,
             success: function (result) {
-                console.log(result);
                 successMessage("Insert Successfully");
-                if (course_type == "da_1") {
+                if (course_code == 1) {
                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                } else if (course_type == "da_2") {
+                } else if (course_code == 2) {
                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                } else if (course_type == "cpa_1") {
+                } else if (course_code == 3) {
                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                 } else {
                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
@@ -844,11 +843,11 @@ function Exam_Result_Submit() {
             success: function (result) {
                 console.log(result.message);
                 successMessage("Updated Successfully");
-                if (course_type == "da_1") {
+                if (course_code == 1) {
                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                } else if (course_type == "da_2") {
+                } else if (course_code == 2) {
                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                } else if (course_type == "cpa_1") {
+                } else if (course_code == 3) {
                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                 } else {
                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";

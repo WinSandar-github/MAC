@@ -127,7 +127,7 @@ class AccFirmInfController extends Controller
             $certi_incor = null;
         }
 
-    
+
 
         if($request->hasfile('tax_reg_certificate'))
         {
@@ -1242,7 +1242,7 @@ class AccFirmInfController extends Controller
         $date = AccountancyFirmInformation::find($id);
         $register_date = Carbon::parse($date->register_date)->format('M');
 
-        $verify = "You are verified!";
+        $verify = "You need to subscribe your Non-Audit service with desire payment method!";
         $next = "Your registeration will start in next year!";
         $renew = "Your registeration is expired! You need to submit new registeration form again.";
 
@@ -1280,7 +1280,7 @@ class AccFirmInfController extends Controller
 
     public function renewSubscribe(Request $request)
     {
-        
+
         $register_date = date('Y-m-d');
 
         // profile photo
@@ -1468,6 +1468,22 @@ class AccFirmInfController extends Controller
           ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
           ->make(true);
       }
+    }
+
+    public function check_payment($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
+        return response()->json($data,200);
+    }
+
+    public function approvePayment($id)
+    {
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
     }
 
 }

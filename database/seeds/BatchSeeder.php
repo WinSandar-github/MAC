@@ -21,6 +21,7 @@ class BatchSeeder extends Seeder
         DB::table('batches')->insert([
             array(
                     'name'                           => 'Batch One',
+                    'number'                         => 1,
                     'course_id'                      => 1,
                     'start_date'                     => Carbon::now(),
                     'end_date'                       => Carbon::now()->addMonth(),
@@ -43,6 +44,7 @@ class BatchSeeder extends Seeder
             ),
             array(
                     'name'                           => 'Batch Two',
+                    'number'                         => 2,
                     'course_id'                      => 2,
                     'start_date'                     => Carbon::now(),
                     'end_date'                       => Carbon::now()->addMonth(),
@@ -65,6 +67,7 @@ class BatchSeeder extends Seeder
             ),
             array(
                     'name'                         => 'Batch Three',
+                    'number'                       => 3,
                     'course_id'                    => 3,
                     'start_date'                   => Carbon::now(),
                     'end_date'                     => Carbon::now()->addMonth(),
@@ -87,6 +90,7 @@ class BatchSeeder extends Seeder
             ),
             array(
                     'name'                          => 'Batch Four',
+                    'number'                        => 4,
                     'course_id'                     => 4,
                     'start_date'                    => Carbon::now(),
                     'end_date'                      => Carbon::now()->addMonth(),
