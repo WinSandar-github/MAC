@@ -31,6 +31,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->unsignedBigInteger('organization_structure_id');
             $table->string('name_of_sole_proprietor');
             $table->unsignedBigInteger('type_of_service_provided_id');
+            $table->string('other')->nullable();
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
             $table->integer('status');

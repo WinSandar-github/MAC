@@ -19,6 +19,9 @@ class CreateCPAFFSTable extends Migration
             $table->string('profile_photo')->nullable();
             $table->string('cpa')->nullable();
             $table->string('ra')->nullable();
+            $table->string('degree_name')->nullable();
+            $table->string('degree_pass_year')->nullable();
+            $table->string('degree_file')->nullable();
             $table->string('foreign_degree')->nullable();
             $table->boolean('cpa_part_2')->default(0);
             $table->boolean('qt_pass')->default(0);
