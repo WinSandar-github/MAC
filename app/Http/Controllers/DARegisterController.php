@@ -402,14 +402,16 @@ class DARegisterController extends Controller
     
     public function unique_email(Request $request)
     {
-        $emailcheck = StudentInfo::where('email', $request['email'])->orWhere('nrc_number', $request['nrc_number'])->first();
-        return $emailcheck;
-        if($emailcheck)
-        {
-            return response()->json([
-                'data' => "please check again!"
-            ],200);
-        }
+        $emailCheck = StudentInfo::where('email', $request['email'])->first();
+        $nrcCheck = StudentInfo::Where('nrc_state_region', $request['nrc_state_region'])
+                ->orWhere('nrc_township', $request['nrc_township'])
+                ->orWhere('nrc_citizen', $request['nrc_citizen'])
+                ->orWhere('nrc_number', $request['nrc_number'])->first();
+        //return $emailcheck;
+        return response()->json([ 
+            'email' => $emailCheck,
+            'nrc' => $nrcCheck
+        ],200);
     }
 
     // public function unique_nrc(Request $request)
