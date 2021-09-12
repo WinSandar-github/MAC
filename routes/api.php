@@ -277,10 +277,12 @@ Route::post('/reg_chart_filter','StudentRegisterController@RegChartFilter');
 Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
 
+//Generate Serial and Personal Number
 Route::get('/generate_personal_no/{batch_id}','ApiController@generatePersonalNo');
-
 Route::get('/generate_sr_no/{batch_id}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
+Route::get('/generate_app_sr_no/{batch_id}','ApiController@generateAppSrNo');
+
 
 
 //show description
