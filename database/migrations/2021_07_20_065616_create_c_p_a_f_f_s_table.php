@@ -21,10 +21,13 @@ class CreateCPAFFSTable extends Migration
             $table->string('ra')->nullable();
             $table->string('degree_name')->nullable();
             $table->string('degree_pass_year')->nullable();
-            $table->string('degree_file')->nullable();
             $table->string('foreign_degree')->nullable();
-            $table->boolean('cpa_part_2')->default(0);
-            $table->boolean('qt_pass')->default(0);
+            $table->string('pass_batch_no')->nullable();
+            $table->string('pass_personal_no')->nullable();
+            $table->string('qt_pass_date')->nullable();
+            $table->string('qt_pass_seat_no')->nullable();
+            // $table->boolean('cpa_part_2')->default(0);
+            // $table->boolean('qt_pass')->default(0);
             $table->string('cpa_certificate');
             $table->string('mpa_mem_card');
             $table->string('nrc_front');

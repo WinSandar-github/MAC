@@ -147,11 +147,17 @@ class CPAFFController extends Controller
         $cpa_ff->ra               =   $ra;
         $cpa_ff->degree_name      =   json_encode($request->degree_name);
         $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
-        $cpa_ff->degree_file      =   json_encode($degree_file);
-        $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
+        $cpa_ff->foreign_degree   =   json_encode($degree_file);
+
+        $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
+        $cpa_ff->pass_personal_no =   $request->pass_personal_no;
+
+        $cpa_ff->qt_pass_date     =   $request->qt_pass_date;
+        $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
+        // $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
         // $cpa_ff->foreign_degree   =   $foreign_degree;
-        $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
-        $cpa_ff->qt_pass          =   $request->qt_pass;
+        // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+        // $cpa_ff->qt_pass          =   $request->qt_pass;
         $cpa_ff->cpa_certificate  =   $cpa_certificate;
         $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
         $cpa_ff->nrc_front        =   $nrc_front;
