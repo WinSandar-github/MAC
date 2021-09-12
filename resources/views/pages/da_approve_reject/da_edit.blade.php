@@ -58,8 +58,9 @@
                                         <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
                                     </div>
                                     <div class="col-md-6 certificate">
+                                        
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
-                                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button>
+                                        <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
 

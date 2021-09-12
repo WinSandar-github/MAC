@@ -324,8 +324,8 @@
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
                                     </div>
-                                    <div class="col-md-6">
-                                        <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#attached_Modal"><i class="fa fa-paperclip"></i></button>
+                                    <div class="col-md-6 certificate">
+                                        <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#attached_Modal"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
                                 <!-- End Education -->

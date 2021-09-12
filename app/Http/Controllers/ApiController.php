@@ -181,7 +181,7 @@ class ApiController extends Controller
            
             $student_app = StudentCourseReg::where('student_info_id',$student_info->id)
                                     ->where('batch_id',$batch_id)
-                                    ->where('status',1)->first();
+                                    ->where('approve_reject_status',1)->first();
                 if(!empty($student_app)){
                     $student_app->sr_no = ++$key;
 
