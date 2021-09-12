@@ -11,22 +11,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call([UsersTableSeeder::class]);
-        // $this->call([OrganizationStructureSeeder::class]);
-        // $this->call([AuditFirmTypeSeeder::class]);
-        // $this->call([AuditStaffTypeSeeder::class]);
-        // $this->call([AuditTotalStaffTypeSeeder::class]);
-        // $this->call([NonAuditTotalStaffTypeSeeder::class]);
-        // $this->call([TypeOfServiceProvidedSeeder::class]);
-        // $this->call([LocalForeignSeeder::class]);
-        // $this->call([EducationLevelSeeder::class]);
+        $this->call([UsersTableSeeder::class]);
+        $this->call([OrganizationStructureSeeder::class]);
+        $this->call([AuditFirmTypeSeeder::class]);
+        $this->call([AuditStaffTypeSeeder::class]);
+        $this->call([AuditTotalStaffTypeSeeder::class]);
+        $this->call([NonAuditTotalStaffTypeSeeder::class]);
+        $this->call([TypeOfServiceProvidedSeeder::class]);
+        $this->call([LocalForeignSeeder::class]);
+        $this->call([EducationLevelSeeder::class]);
 
-        // $this->call([CourseSeeder::class]);
-        // $this->call([BatchSeeder::class]);
+        $this->call([CourseSeeder::class]);
+        $this->call([BatchSeeder::class]);
         
-        // $this->call([CourseTypeSeeder::class]);
-        // $this->call([CurrentCheckServiceSeeder::class]);
-        // $this->call([CourseRequirementSeeder::class]);
+        $this->call([CourseTypeSeeder::class]);
+        $this->call([CurrentCheckServiceSeeder::class]);
+        $this->call([CourseRequirementSeeder::class]);
         $this->call([AlphabetSeeder::class]);
 
         
