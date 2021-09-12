@@ -23,9 +23,9 @@ class CreateCourseTypesTable extends Migration
         });
 
         //Call Seeder
-        Artisan::call('db:seed', [
-            '--class' => 'CourseTypeSeeder',
-        ]);
+        // Artisan::call('db:seed', [
+        //     '--class' => 'CourseTypeSeeder',
+        // ]);
     }
 
     /**
