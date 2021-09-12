@@ -15,6 +15,7 @@ class CreateStudentCourseRegsTable extends Migration
     {
         Schema::create('student_course_regs', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('sr_no')->nullable();
             $table->unsignedBigInteger('student_info_id');
             $table->unsignedBigInteger('batch_id');
             $table->char('status',1);

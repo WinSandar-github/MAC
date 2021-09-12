@@ -168,5 +168,33 @@ class ApiController extends Controller
         return "Update Serial Number in Exam Registration form";
     }
 
+    public function generateAppSrNo($batch_id)
+    {
+        
+       
+        $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($batch_id) {
+            $query->where('batch_id', $batch_id);
+        })->with('student_course')->orderBy('name_mm','asc')->get();
+        
+        
+        foreach($student_infos as $key => $student_info){
+           
+            $student_app = StudentCourseReg::where('student_info_id',$student_info->id)
+                                    ->where('batch_id',$batch_id)
+                                    ->where('approve_reject_status',1)->first();
+                if(!empty($student_app)){
+                    $student_app->sr_no = ++$key;
+
+                    $student_app->save();
+                
+                }
+            }
+            
+        
+        return "Update Serial Number in Application form";
+    }
+
+    
+
     
 }
