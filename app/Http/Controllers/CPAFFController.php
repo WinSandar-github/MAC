@@ -129,15 +129,35 @@ class CPAFFController extends Controller
             $passport_image="";
         }
 
+        if($request->hasfile('degree_file'))
+        {
+            foreach($request->file('degree_file') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $degree_file[] = '/storage/cpa_ff_register/'.$name;
+            }        
+        }else{
+            $degree_file = null;
+        }
         $cpa_ff  = new CPAFF();
         $cpa_ff->student_info_id  =   $request->student_info_id;
         $cpa_ff->profile_photo    =   $profile_photo;
         $cpa_ff->cpa              =   $cpa;
         $cpa_ff->ra               =   $ra;
-        $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
+        $cpa_ff->degree_name      =   json_encode($request->degree_name);
+        $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
+        $cpa_ff->foreign_degree   =   json_encode($degree_file);
+
+        $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
+        $cpa_ff->pass_personal_no =   $request->pass_personal_no;
+
+        $cpa_ff->qt_pass_date     =   $request->qt_pass_date;
+        $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
+        // $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
         // $cpa_ff->foreign_degree   =   $foreign_degree;
-        $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
-        $cpa_ff->qt_pass          =   $request->qt_pass;
+        // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+        // $cpa_ff->qt_pass          =   $request->qt_pass;
         $cpa_ff->cpa_certificate  =   $cpa_certificate;
         $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
         $cpa_ff->nrc_front        =   $nrc_front;

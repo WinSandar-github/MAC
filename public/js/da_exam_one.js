@@ -471,6 +471,7 @@ function chooseBatch() {
     });
 }
 
+
 function loadStudent(course_type) {
     destroyDatatable("#tbl_exam_pending_result", "#tbl_exam_pending_result_body");
     destroyDatatable("#tbl_exam_approved_result", "#tbl_exam_approved_result_body");
@@ -792,12 +793,11 @@ function getModuleStd() {
 
 function Exam_Result_Submit() {
     var id = localStorage.getItem("exam_register_id");
+    var course_code = localStorage.getItem("course_code");
     var course_type = localStorage.getItem("course_type");
     var table = document.getElementById("tbl_fillmarks");
     var result_id = $("input[name = result_id]").val();
-    console.log(result_id);
     var totalRowCount = table.rows.length;
-    console.log("row count", totalRowCount);
     var data = new FormData();
     for (var i = 1; i < totalRowCount; i++) {
         data.append('subject[]', $('#subject' + i).val());
@@ -817,13 +817,12 @@ function Exam_Result_Submit() {
             contentType: false,
             processData: false,
             success: function (result) {
-                console.log(result);
                 successMessage("Insert Successfully");
-                if (course_type == "da_1") {
+                if (course_code == 1) {
                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                } else if (course_type == "da_2") {
+                } else if (course_code == 2) {
                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                } else if (course_type == "cpa_1") {
+                } else if (course_code == 3) {
                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                 } else {
                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
@@ -844,11 +843,11 @@ function Exam_Result_Submit() {
             success: function (result) {
                 console.log(result.message);
                 successMessage("Updated Successfully");
-                if (course_type == "da_1") {
+                if (course_code == 1) {
                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                } else if (course_type == "da_2") {
+                } else if (course_code == 2) {
                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                } else if (course_type == "cpa_1") {
+                } else if (course_code == 3) {
                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                 } else {
                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";

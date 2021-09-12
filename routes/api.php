@@ -197,11 +197,15 @@ Route::get('/check_payment_teacher/{id}', 'TeacherController@check_payment');
 
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+Route::get('/check_payment_audit/{id}', 'AccFirmInfController@check_payment');
+Route::patch('/approve_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditFeedback');
 
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
+Route::get('/check_payment_non_audit/{id}', 'AccFirmInfController@check_payment');
+Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 //Update Non-Audit register form
 Route::post('/update_acc_firm_info/{id}','AccFirmInfController@update');
@@ -272,6 +276,14 @@ Route::post('/reg_chart_filter','StudentRegisterController@RegChartFilter');
 //Unique Email and NRC Check in DA One Application
 Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
+
+//Generate Serial and Personal Number
+Route::get('/generate_personal_no/{batch_id}','ApiController@generatePersonalNo');
+Route::get('/generate_sr_no/{batch_id}','ApiController@generateSrNo');
+Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
+Route::get('/generate_app_sr_no/{batch_id}','ApiController@generateAppSrNo');
+
+
 
 //show description
 Route::get('showDescription/{membership_name}','MembershipController@showDescription');
