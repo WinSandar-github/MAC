@@ -86,7 +86,7 @@
 
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="tbl_mentor_pending_body" class="hoverTable text-left">
+                                                        <tbody id="tbl_mentor_pending_body" class="hoverTable text-left" >
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -261,7 +261,9 @@
 
 
         });
-
+        createDataTable('#tbl_mentor_pending');
+        createDataTable('#tbl_mentor_approved');
+        createDataTable('#tbl_mentor_rejected');
 
     })
     // getMentorList();
