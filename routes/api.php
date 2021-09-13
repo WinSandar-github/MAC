@@ -76,7 +76,7 @@ Route::get('/papp_register_list/{status}', 'PAPPController@FilterPappRegistratio
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
-Route::patch('/approve_papp/{id}', 'PAPPController@approvePapp');
+Route::patch('/approve_papp_payment/{id}', 'PAPPController@approvePapp');
 Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
 
 //cpa_ff
