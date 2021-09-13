@@ -9,7 +9,7 @@ use Hash;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Str;
-use Yajra\DataTables\Facades\DataTables;    
+use Yajra\DataTables\Facades\DataTables;
 
 class MentorController extends Controller
 {
@@ -48,12 +48,13 @@ class MentorController extends Controller
             return "NRC has been used, please check again!";
         }
 
-        $email = $request->email;
-        $emailcheck = StudentInfo::where('email', '=', $email)->first();
-        if($emailcheck)
-        {
-            return "Email has been used, please check again!";
-        }
+        // $email = $request->email;
+        // $emailcheck = StudentInfo::where('email', '=', $email)->first();
+        // if($emailcheck)
+        // {
+        //     return "Email has been used, please check again!";
+        // }
+        
         // $request->validate([
         //     'name_eng' => 'required',
         //     'email'    => 'required',
@@ -310,9 +311,9 @@ class MentorController extends Controller
     // }
 
     public function approve($id)
-    { 
+    {
         $std_info = StudentInfo::where('mentor_id', $id)->first();
-        
+
         $std_info->approve_reject_status = 1;
         $std_info->save();
         $approve = Mentor::find($id);
@@ -348,7 +349,7 @@ class MentorController extends Controller
             $nrc_front = '/storage/student_info/'.$name;
         }else{
             $nrc_front =$request->nrc_front;
-        } 
+        }
 
         if ($request->hasfile('nrc_back')) {
             $file = $request->file('nrc_back');
@@ -357,7 +358,7 @@ class MentorController extends Controller
             $nrc_back = '/storage/student_info/'.$name;
         }else{
             $nrc_back =$request->nrc_back;
-        }  
+        }
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
