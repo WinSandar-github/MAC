@@ -1,4 +1,4 @@
-// function loadCPABatchData(){ 
+// function loadCPABatchData(){
 //     var select = document.getElementById("selected_batch_id");
 //     $.ajax({
 //         url: BACKEND_URL+"/course_by_course_type/2",
@@ -92,7 +92,7 @@ function getCPAExam(course_code) {
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -112,7 +112,7 @@ function getCPAExam(course_code) {
                     tr += "<td>" + element.grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -132,7 +132,7 @@ function getCPAExam(course_code) {
                     tr += "<td>" + element.grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printCPAOneExamCard(" + element.student_info.id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -372,9 +372,9 @@ function loadCPAStudent(course_type) {
                 } else {
                     exam_type_id = "MAC STUDENT";
                 }
-                if (element.is_full_module == 0) {
+                if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
-                } else if (element.is_full_module == 1) {
+                } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
                     is_full_module = "Full Module";
@@ -400,7 +400,7 @@ function loadCPAStudent(course_type) {
                     // tr += "<td>" + element.batch_id+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     //tr += "<td ><div class='btn-group'>";
                     $("#tbl_cpa_exam_pending_result_body").append(tr);
                 }
@@ -418,10 +418,10 @@ function loadCPAStudent(course_type) {
                     // tr += "<td>" + element.batch_id+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     //tr += "<td ><div class='btn-group'>";
                     $("#tbl_cpa_exam_approved_result_body").append(tr);
-                }                          
+                }
                 else if(element.grade==2){
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
@@ -436,10 +436,10 @@ function loadCPAStudent(course_type) {
                     // tr += "<td>" + element.batch_id+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     //tr += "<td ><div class='btn-group'>";
                     $("#tbl_cpa_exam_rejected_result_body").append(tr);
-                }       
+                }
             });
             getIndexNumber('#tbl_cpa_exam_pending_result tr');
             createDataTable("#tbl_cpa_exam_pending_result");
@@ -462,7 +462,7 @@ function fillCPAMark(id, isFullModule) {
     localStorage.setItem("is_full_module", isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
     // console.log(is_full_module)
-    if (is_full_module == 0 || is_full_module == 1) {
+    if (is_full_module == 1 || is_full_module == 2) {
         location.href = FRONTEND_URL + "/cpa_fill_mark_m1&2";
     } else {
         location.href = FRONTEND_URL + "/cpa_fill_mark_full";
@@ -500,28 +500,35 @@ function getCPAModuleStd() {
                 } else {
                     exam_type_id = "MAC STUDENT";
                 }
-                if (element.is_full_module == 0) {
+                if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
-                } else if (element.is_full_module == 1) {
+                } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
                     is_full_module = "Full Module";
                 }
 
-                if(element.grade == 1 )
-                {
-                     $('.ex_res_btn').hide();
-                    $('.pass_fail_btn').hide();
-
-                }
 
                 if (element.grade == 0) {
                     grade = "PENDING";
                 } else if (element.grade == 1) {
                     grade = "PASSED";
-                } else {
+                }
+                else {
                     grade = "FAILED";
                 }
+
+
+                  setTimeout(() => {
+                      if(element.grade == 1 )
+                      {
+
+                          $('.ex_res_btn').hide();
+                          $('.pass_fail_btn').hide();
+
+                      }
+
+                  }, 2000);
 
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
@@ -546,7 +553,7 @@ function getCPAModuleStd() {
                         console.log(rData.subjects[1]);
 
                         console.log('is_full_module', module_type);
-                        if (module_type == 0 || module_type == 1) {
+                        if (module_type == 1 || module_type == 2) {
                             for (var i = 0; i < 3; i++) {
                                 var j = i + 1;
                                 var sunject = document.getElementById('subject' + j);

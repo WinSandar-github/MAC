@@ -21,6 +21,8 @@ use App\StudentInfo;
 use Hash;
 use File;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
 
 class AccFirmInfController extends Controller
 {
@@ -64,7 +66,7 @@ class AccFirmInfController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/acc_firm/',$name);
-                $ppa_certi[] = $name;
+                $ppa_certi[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -77,24 +79,12 @@ class AccFirmInfController extends Controller
             {
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/acc_firm/',$name);
-                $letterhead[] = $name;
+                $letterhead[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
             $letterhead = null;
         }
-    //    if($request->hasfile('representatives'))
-    //     {
-    //         foreach($request->file('representatives') as $file)
-    //         {
-    //         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-    //         $file->move(public_path().'/storage/acc_firm/',$name);
-    //         $representative[] =$name;
-    //         }
-
-    //     }else{
-    //         $representative = null;
-    //     }
 
         if($request->hasfile('certi_or_regs'))
         {
@@ -102,7 +92,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $certi_or_reg[] = $name;
+            $certi_or_reg[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -116,7 +106,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $deeds_memo[] = $name;
+            $deeds_memo[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -130,38 +120,13 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $certi_incor[] = $name;
+            $certi_incor[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
             $certi_incor = null;
         }
 
-        // if($request->hasfile('form6_26e'))
-        // {
-        //     foreach($request->file('form6_26e') as $file)
-        //     {
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/acc_firm/',$name);
-        //     $form6_26e[] = $name;
-        //     }
-
-        // }else{
-        //     $form6_26e = null;
-        // }
-
-        // if($request->hasfile('form_a1'))
-        // {
-        //     foreach($request->file('form_a1') as $file)
-        //     {
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/acc_firm/',$name);
-        //     $form_a1[] = $name;
-        //     }
-
-        // }else{
-        //     $form_a1 = null;
-        // }
 
 
         if($request->hasfile('tax_reg_certificate'))
@@ -170,7 +135,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $tax_reg_certificate[] = $name;
+            $tax_reg_certificate[] = '/storage/acc_firm/'.$name;
             }
 
         }
@@ -183,7 +148,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $pass_photo[] = $name;
+            $pass_photo[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -197,7 +162,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $edu_cert[] = $name;
+            $edu_cert[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -210,7 +175,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $owner_profile[] = $name;
+            $owner_profile[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -224,7 +189,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $work_exp[] = $name;
+            $work_exp[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -238,7 +203,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $nrc_passport_front[] = $name;
+            $nrc_passport_front[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -251,7 +216,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $nrc_passport_back[] = $name;
+            $nrc_passport_back[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -264,7 +229,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $tax_clearance[] = $name;
+            $tax_clearance[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -277,7 +242,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $permit_foreigns[] =$name;
+            $permit_foreigns[] ='/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -291,7 +256,7 @@ class AccFirmInfController extends Controller
             {
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/acc_firm/',$name);
-            $financial_statement[] = $name;
+            $financial_statement[] = '/storage/acc_firm/'.$name;
             }
 
         }else{
@@ -325,6 +290,7 @@ class AccFirmInfController extends Controller
         $acc_firm_info->local_foreign_type        = $request->local_foreign_type;
         $acc_firm_info->organization_structure_id    = $request->org_stru_id;
         $acc_firm_info->type_of_service_provided_id  = $request->t_s_p_id;
+        $acc_firm_info->other  = $request->other;
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
         $acc_firm_info->declaration                  = $request->declaration;
@@ -333,7 +299,7 @@ class AccFirmInfController extends Controller
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
         $acc_firm_info->image  = $image;
-                
+
         $acc_firm_info->verify_status  = 0;
         $acc_firm_info->save();
 
@@ -349,7 +315,7 @@ class AccFirmInfController extends Controller
         //     'verify_code' => $student_info['verify_code']
         // );
         // Mail::to($student_info['email'])->send(new ContactMail($data));
-        $std_info->verify_status    =   1;
+        // $std_info->verify_status    =   1;
         $std_info->save();
 
         //Branch Office
@@ -1181,20 +1147,32 @@ class AccFirmInfController extends Controller
     //Audit Feedback
     public function auditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get();
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get();
         return response()->json($data,200);
     }
 
     // Non Audit Feedback
     public function nonAuditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get();
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get();
         return response()->json($data,200);
     }
 
     public function auditStatus($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get('status');
+        $data = AccountancyFirmInformation::where('id',$id)
+                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                            'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                            'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                            ->get('status');
         return response()->json($data,200);
     }
 
@@ -1202,6 +1180,9 @@ class AccFirmInfController extends Controller
     {
         $data = AccountancyFirmInformation::where('id',$id)
                                           ->where('audit_firm_type_id',2)
+                                          ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
                                           ->get('status');
         return response()->json($data,200);
     }
@@ -1261,7 +1242,7 @@ class AccFirmInfController extends Controller
         $date = AccountancyFirmInformation::find($id);
         $register_date = Carbon::parse($date->register_date)->format('M');
 
-        $verify = "You are verified!";
+        $verify = "You need to subscribe your Non-Audit service with desire payment method!";
         $next = "Your registeration will start in next year!";
         $renew = "Your registeration is expired! You need to submit new registeration form again.";
 
@@ -1299,6 +1280,7 @@ class AccFirmInfController extends Controller
 
     public function renewSubscribe(Request $request)
     {
+
         $register_date = date('Y-m-d');
 
         // profile photo
@@ -1351,5 +1333,157 @@ class AccFirmInfController extends Controller
       return response()->json($non_audit_data,200);
     }
 
+    public function FilterAuditRegistration($status,$firm_type){
+      $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
+                                                        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                                  ->where('status','=',$status)
+                                                  ->where('audit_firm_type_id','=',$firm_type)
+                                                  ->get();
+
+      if($firm_type == 1){
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('township', function ($infos){
+              return $infos->township;
+          })
+
+          ->addColumn('postcode', function ($infos){
+              return $infos->postcode;
+          })
+
+          ->addColumn('city', function ($infos){
+              return $infos->city;
+          })
+
+          ->addColumn('state_region', function ($infos){
+              return $infos->state_region;
+          })
+
+          ->addColumn('telephones', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('h_email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('website', function ($infos){
+              return $infos->website;
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+      else{
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='showNonAuditInfo($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('township', function ($infos){
+              return $infos->township;
+          })
+
+          ->addColumn('postcode', function ($infos){
+              return $infos->postcode;
+          })
+
+          ->addColumn('city', function ($infos){
+              return $infos->city;
+          })
+
+          ->addColumn('state_region', function ($infos){
+              return $infos->state_region;
+          })
+
+          ->addColumn('telephones', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('h_email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('website', function ($infos){
+              return $infos->website;
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+    }
+
+    public function check_payment($id)
+    {
+        $data = StudentInfo::where('id',$id)->get();
+        return response()->json($data,200);
+    }
+
+    public function approvePayment($id)
+    {
+        $std_info = StudentInfo::find($id) ;
+        $std_info->payment_method = 'CASH';
+        $std_info->save();
+        return response()->json([
+            'data' => $std_info,
+        ],200);
+    }
 
 }

@@ -149,6 +149,7 @@
     $(document).ready(function () {
 
         $('#tbl_da_pending_list').DataTable({
+            scrollX: true,
             processing: true,
             //serverSide: true,
             ajax: BACKEND_URL + "/filter_student_info/0/2",
@@ -168,6 +169,7 @@
         });
 
         $('#tbl_da_approved_list').DataTable({
+            scrollX: true,
             processing: true,
             //serverSide: true,
             ajax: BACKEND_URL + "/filter_student_info/1/2",
@@ -187,6 +189,7 @@
         });
 
         $('#tbl_da_rejected_list').DataTable({
+            scrollX: true,
             processing: true,
             //serverSide: true,
             ajax: BACKEND_URL + "/filter_student_info/2/2",
@@ -203,6 +206,14 @@
                 {data: 'status', name: 'Status'}
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+            $.each($.fn.dataTable.tables(true), function(){
+                $(this).DataTable()
+                    .columns.adjust()
+                    .responsive.recalc();
+            });
         });
 
     });

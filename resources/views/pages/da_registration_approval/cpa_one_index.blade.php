@@ -9,10 +9,10 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <div class="col-md-12">   
+            <div class="col-md-12">
             {{ Breadcrumbs::render('cpa_one_registration_list') }}
             </div>
-        </div>       
+        </div>
 
         <div class="row">
             <div class="col-md-12 text-center">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                
+
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
@@ -40,7 +40,7 @@
                                                         <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
                                                             <input type="text" name="filter_by_name_ss" class="form-control" placeholder="Student Name">
                                                         </div>
-                                                    </div> 
+                                                    </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="row">
@@ -49,7 +49,7 @@
                                                             <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                                                 <option value="all" selected>All Batches</option>
                                                             </select>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div><br/>
@@ -65,7 +65,7 @@
                                                                 <option value="1">Approved</option>
                                                                 <option value="2">Rejected</option>
                                                             </select>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6" style="vertical-align: top;">
@@ -93,17 +93,17 @@
                                                                 <th class="bold-font-weight">No</th>
                                                                 <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Student Name</th>
-                                                                <th class="bold-font-weight" >Email</th>                                        
+                                                                <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >Registration Reason</th>
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                
+
                                                             </tr>
-                                                            
+
                                                         </thead>
                                                         <tbody id="tbl_student_self_study_body"  class="hoverTable text-left">
-                                                            
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -114,15 +114,15 @@
                                                                 <th class="bold-font-weight">No</th>
                                                                 <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Student Name</th>
-                                                                <th class="bold-font-weight" >Email</th>                                        
+                                                                <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                             </tr>
-                                                            
+
                                                         </thead>
                                                         <tbody id="tbl_student_private_school_body"  class="hoverTable text-left">
-                                                            
+
                                                         </tbody>
                                                     </table>
                                                 </div>
@@ -133,24 +133,24 @@
                                                                 <th class="bold-font-weight">No</th>
                                                                 <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Student Name</th>
-                                                                <th class="bold-font-weight" >Email</th>                                        
+                                                                <th class="bold-font-weight" >Email</th>
                                                                 <th class="bold-font-weight" >Registration No</th>
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                             </tr>
-                                                            
+
                                                         </thead>
                                                         <tbody id="tbl_student_mac_body"  class="hoverTable text-left">
-                                                            
+
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                                            
+
                         </div>
                     </div>
                 </form>
@@ -158,7 +158,7 @@
         </div>
     </div>
 
-   
+
 
 
 @endsection
@@ -169,11 +169,11 @@
     //loadBatchData("cpa_1");
     $(document).ready(function () {
         $('#tbl_student_mac').DataTable({
-            //scrollX: true,
+            scrollX: true,
             processing: true,
             serverSide: true,
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-            ajax:{ 
+            ajax:{
                 "url":BACKEND_URL + "/filter_registration",
                 "method":"POST",
                 "data":{
@@ -195,11 +195,11 @@
             ],
         });
         $('#tbl_student_private_school').DataTable({
-            //scrollX: true,
+            scrollX: true,
             processing: true,
             serverSide: true,
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-            ajax:{ 
+            ajax:{
                 "url":BACKEND_URL + "/filter_registration",
                 "method":"POST",
                 "data":{
@@ -221,11 +221,11 @@
             ],
         });
         $('#tbl_student_self_study').DataTable({
-            //scrollX: true,
+            scrollX: true,
             processing: true,
             serverSide: true,
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-            ajax:{ 
+            ajax:{
                 "url":BACKEND_URL + "/filter_registration",
                 "method":"POST",
                 "data":{
@@ -247,6 +247,13 @@
                 {data: 'status', name: 'Status'},
             ],
         });
+        // $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+        //   $.each($.fn.dataTable.tables(true), function(){
+        //       $(this).DataTable()
+        //           .columns.adjust()
+        //           .responsive.recalc();
+        //   });
+        // });
     })
 </script>
 @endpush

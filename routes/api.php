@@ -27,6 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
@@ -71,16 +72,21 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
+Route::get('/papp_register_list/{status}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
+Route::patch('/approve_papp_payment/{id}', 'PAPPController@approvePapp');
+Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
+Route::get('/cpa_ff_register_list/{status}', 'CPAFFController@FilterCpaffRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
-
+Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
+Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -98,6 +104,10 @@ Route::get('student_course', 'CourseController@studentCourse');
 Route::resource('/student_selfstudy','StudentSelfStudyController');
 Route::resource('/student_privateschool','StudentPrivateSchoolController');
 Route::resource('/student_mac','StudentMacController');
+
+Route::apiResource('/descriptions','DescriptionController');
+Route::apiResource('/memberships','MembershipController');
+
 Route::get('/get_exam_student/{id}','ExamRegisterController@getExamByStudentID');
 //Student Register Form API
 Route::resource('/student_register','StudentRegisterController');
@@ -117,8 +127,10 @@ Route::resource('/exam_register', 'ExamRegisterController');
 Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
-Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
+// Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
+Route::get('/filter/{status}/{course_code}', 'ExamRegisterController@FilterExamRegistration');
+// Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
+Route::get('/filter_exam_register/{grade}/{course_code}', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
@@ -173,19 +185,27 @@ Route::resource('/school','SchoolController');
 Route::post('/filter_school','SchoolController@FilterSchool');
 Route::post('/approve_school_register/{id}', 'SchoolController@approve_school_register');
 Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_register');
+Route::patch('/approve_school/{id}', 'SchoolController@approveSchool');
+Route::get('/check_payment_school/{id}', 'SchoolController@checkPayment');
+
 //for teacher registration
 Route::resource('/teacher','TeacherController');
 Route::post('/filter_teacher','TeacherController@FilterTeacher');
-
 Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_register');
+Route::patch('/approve_teacher/{id}', 'TeacherController@approveTeacher');
+Route::get('/check_payment_teacher/{id}', 'TeacherController@check_payment');
 
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+Route::get('/check_payment_audit/{id}', 'AccFirmInfController@check_payment');
+Route::patch('/approve_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditFeedback');
 
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
+Route::get('/check_payment_non_audit/{id}', 'AccFirmInfController@check_payment');
+Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 //Update Non-Audit register form
 Route::post('/update_acc_firm_info/{id}','AccFirmInfController@update');
@@ -251,6 +271,19 @@ Route::patch('update_profile/{id}','StudentInfoController@updateProfile');
 Route::post('update_pwd','LoginController@updatePwd');
 //Chart
 Route::post('/chart_filter','DARegisterController@ChartFilter');
+Route::post('/reg_chart_filter','StudentRegisterController@RegChartFilter');
+
 //Unique Email and NRC Check in DA One Application
 Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
+
+//Generate Serial and Personal Number
+Route::get('/generate_personal_no/{batch_id}','ApiController@generatePersonalNo');
+Route::get('/generate_sr_no/{batch_id}','ApiController@generateSrNo');
+Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
+Route::get('/generate_app_sr_no/{batch_id}','ApiController@generateAppSrNo');
+
+
+
+//show description
+Route::get('showDescription/{membership_name}','MembershipController@showDescription');

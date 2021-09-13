@@ -10,13 +10,17 @@ use Illuminate\Database\Eloquent\Builder;
 use App\StudentCourseReg;
 use App\ExamRegister; 
 
+use Illuminate\Support\Str;
+use Yajra\DataTables\Facades\DataTables;
+
 
 class BatchController extends Controller
 {
     public function index()
     {
         $batches = Batch::with('course')->get();
-         return response()->json([
+     
+        return response()->json([
             'data'  => $batches
         ]);
     }
@@ -33,6 +37,7 @@ class BatchController extends Controller
         ]);        
         $batch = new Batch;
         $batch->name            = $request->name;
+        $batch->number           = $request->number;
         $batch->course_id       = $request->course_id;
         $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
         $batch->end_date        = date('Y-m-d',strtotime($request->end_date));
@@ -70,6 +75,7 @@ class BatchController extends Controller
     {
         $batch = Batch::find($id);
         $batch->name            = $request->name;
+        $batch->number           = $request->number;
         $batch->course_id       = $request->course_id;
         $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
         $batch->end_date        = date('Y-m-d',strtotime($request->end_date));
@@ -182,8 +188,43 @@ class BatchController extends Controller
             $batches=$batches->where('end_date','<=',$e_date);
         }
         $batches=$batches->get();
-        return response()->json([
-            'data'  => $batches
-        ]);
+        return DataTables::of($batches)
+        ->addColumn('action', function ($batch) {
+            if(Carbon::now() >= $batch->start_date){
+                return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' onClick='showBatchExam($batch->id)'>
+                                <li class='fa fa-graduation-cap fa-sm'></li>
+                            </button> 
+                        </div>";
+            }else{
+                return 
+                "<div class='btn-group'>
+                    
+                    <button type='button' id='batch_edit.$batch->id' class='btn btn-primary btn-xs' onClick='showBatchInfo($batch->id)'>
+                        <li class='fa fa-edit fa-sm'></li>
+                    </button> 
+                    <button type='button'  id='batch_delete.$batch->id'  class='btn btn-danger btn-xs' onClick='deleteBatchInfo(\"$batch->name\", $batch->id)'>
+                    <li class='fa fa-trash fa-sm' ></li >
+                    </button >
+                </div >"
+                ;
+                 
+            }
+        })
+        ->addColumn('entry_start_date', function ($batch){
+            if($batch->entrance_pass_start_date == null){
+                return "-";
+            }else{
+                return  $batch->entrance_pass_start_date;
+            }
+        })
+        ->addColumn('entry_end_date', function ($batch){
+            if($batch->entrance_pass_end_date == null){
+                return "-";
+            }else{
+                return  $batch->entrance_pass_end_date;
+            }
+        })
+        ->make(true);
     }
 }    

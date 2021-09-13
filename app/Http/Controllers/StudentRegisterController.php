@@ -8,6 +8,7 @@ use App\StudentInfo;
 use App\StudentCourseReg;
 use App\Course;
 use App\ExamRegister;
+
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
 
@@ -258,11 +259,11 @@ class StudentRegisterController extends Controller
         // ->where('courses.code',$request->form_type)
         ->where('type',$request->reg_type)->get();
 
-        $a= DataTables::of($student_register)
+        $datatable= DataTables::of($student_register)
             ->addColumn('action', function ($student) {
                 return "<div class='btn-group'>
                             <button type='button' class='btn btn-primary btn-xs' onclick='showRegistration($student->id,$student->form_type)'>
-                                <li class='fa fa-edit fa-sm'></li>
+                            <li class='fa fa-eye fa-sm'></li>
                             </button>
                         </div>";
             })
@@ -277,14 +278,26 @@ class StudentRegisterController extends Controller
             })
             ->addColumn('phone', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->phone, 50, '...') : '';
+            
+            })
+            ->addColumn('status', function ($student) {
+                if($student->status==0){
+                    return "PENDING";
+                }
+                else if($student->status==1){
+                    return "APPROVED";
+                }
+                else{
+                    return "REJECTED";
+                }
             });
         if($request->is_reg_reason==true){
-            $a=$a->addColumn('reg_reason', function ($student) {
+            $datatable= $datatable->addColumn('reg_reason', function ($student) {
                 return $student->reg_reason ? Str::limit($student->reg_reason, 50, '...') : '';
             });
         }
-        $a=$a->make(true);
-        return $a;
+        $datatable= $datatable->make(true);
+        return  $datatable;
     }
 
     public function updateMentor(Request $request)
@@ -487,22 +500,63 @@ class StudentRegisterController extends Controller
 
     public function getAttendesStudent(Request $request)
     {
+      
+        $course = Course::where('code',$request->course_code)->first();
+       
+        $student_infos = StudentRegister::with('student_info','course')
+                        ->where('form_type',$course->id)
+                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
         
-        $student_infos = StudentRegister::with('student_info','course')->get();
-        return response()->json([
-            'data' => $student_infos
-        ]);
+        return DataTables::of($student_infos)
+        
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        ->make(true);
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
 
         
     }
     public function ‌approveExamList(Request $request)
     {
         
-        $student_infos = ExamRegister::with('student_info','course')->get();
-        return response()->json([
-            'data' => $student_infos
-        ]);
+    
+        $course = Course::where('code', $request->course_code)->first();
+        
+
+       
+        $student_infos = ExamRegister::with('student_info','course')
+                        ->where('form_type',$course->id)
+                        ->where('status',1)
+                        ->orWhere('grade',$request->grade)
+                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
+         
+        
+        return DataTables::of($student_infos)
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        ->make(true);
+        
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
 
         
+    }
+
+    public function RegChartFilter(Request $request)
+    {
+        $student=StudentRegister::where('status',1)
+        ->whereYear('updated_at',$request->year);
+        $student=$student->get();
+        
+        return response()->json([ 
+            'data' => $student
+        ],200);
     }
 }

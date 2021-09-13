@@ -270,7 +270,13 @@ function loadPAPPData(){
                 $("#degree_name").append(education_history.degree_name);
                 $("#qualified_date").append(education_history.qualified_date);
                 $("#roll_number").append(education_history.roll_number);
-                $("#certificate").append(education_history.certificate);
+                // $("#certificate").append(education_history.certificate);
+                let certificate = JSON.parse(education_history.certificate);
+                $.each(certificate,function(fileCount,fileName){
+                   
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
+                   
+                })
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);

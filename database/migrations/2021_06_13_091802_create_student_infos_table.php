@@ -15,6 +15,7 @@ class CreateStudentInfosTable extends Migration
     {
         Schema::create('student_infos', function (Blueprint $table) {
             $table->id();
+            $table->string('personal_no')->nullable();
             $table->string('name_mm')->nullable();
             $table->string('name_eng')->nullable();
             $table->string('nrc_state_region')->nullable();
@@ -48,7 +49,7 @@ class CreateStudentInfosTable extends Migration
             $table->unsignedBigInteger('accountancy_firm_info_id')->nullable();
             $table->unsignedBigInteger('mentor_id')->nullable();
             $table->string('verify_code')->nullable();
-            $table->boolean('verify_status')->default(0)->nullable();
+            // $table->boolean('verify_status')->default(0)->nullable();
             $table->string('payment_method')->nullable();
             $table->string('recommend_letter')->nullable();
 

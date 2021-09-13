@@ -52,11 +52,11 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->requirement_id;
-        $requirements = [];
-        foreach ($request->requirement_id as $require) {
-            array_push($requirements, $require);
-        }
+        
+        // $requirements = [];
+        // foreach ($request->requirement_id as $require) {
+        //     array_push($requirements, $require);
+        // }
         // return $requirements;
 
         $request->validate([
@@ -65,7 +65,8 @@ class CourseController extends Controller
             'selfstudy_registration_fee' => 'required',
             'privateschool_registration_fee' => 'required',
             'mac_registration_fee' => 'required',
-            'exam_fee' => 'required',
+            // 'exam_fee' => 'required',
+            // 'exam_fee' => 'required',
             'tution_fee' => 'required',
             'description' => 'required',
             'course_type_id' => 'required',
@@ -84,8 +85,8 @@ class CourseController extends Controller
         $course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
         $course->code = $request->code;
-        // $course->requirement_id     = $request->requirement_id;
-        $course->requirement_id = json_encode($requirements);
+        $course->requirement_id     = $request->requirement_id;
+        // $course->requirement_id = json_encode($requirements);
 
         $course->save();
         return response()->json([
@@ -246,10 +247,10 @@ class CourseController extends Controller
                     return $course->course_type ? Str::limit($course->course_type->course_description, 50, '...') : '';
                 })
                 ->addColumn('requirements', function ($course) {
-                    $requirements = Requirement::whereIn('id', explode(',', $course->requirement_id))->get('name');
+                    $requirements = Requirement::whereIn('id', explode(',', $course->requirement_id))->get('requirement_name');
 
                     $result = $requirements->map(function ($val) {
-                        return $val->name ? "<small class='d-block '> - " . Str::limit($val->name, 30, '...') . "</small>" : '';
+                        return $val->requirement_name ? "<small class='d-block '> - " . Str::limit($val->requirement_name, 30, '...') . "</small>" : '';
                     });
 
                     return str_replace(',', '', implode(',', $result->toArray()));
