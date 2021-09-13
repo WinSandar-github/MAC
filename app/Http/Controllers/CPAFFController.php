@@ -316,7 +316,7 @@ class CPAFFController extends Controller
     public function approveCpaff($id)
     {
         $std_info = StudentInfo::find($id) ;
-        $std_info->payment_method = 'CASH';
+        $std_info->payment_method = 'CPAFF';
         $std_info->save();
         return response()->json([
             'data' => $std_info,
