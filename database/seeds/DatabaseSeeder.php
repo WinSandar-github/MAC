@@ -23,18 +23,18 @@ class DatabaseSeeder extends Seeder
 
         $this->call([CourseSeeder::class]);
         $this->call([BatchSeeder::class]);
-        
+
         $this->call([CourseTypeSeeder::class]);
         $this->call([CurrentCheckServiceSeeder::class]);
         $this->call([CourseRequirementSeeder::class]);
         $this->call([AlphabetSeeder::class]);
 
-        
+
         // $this->call([TrainingClassSeeder::class]);
         // $this->call([RegionSeeder::class]);
         // $this->call([Training_typeSeeder::class]);
         // $this->call([TMSClassSeeder::class]);
-        
+
         // $this->call([ModuleSeeder::class]);
         // $this->call([CpaOneTrainingGroundSeeder::class]);
 
@@ -45,7 +45,7 @@ class DatabaseSeeder extends Seeder
 
 
 
-        
+
         //factory(App\MoodleModel\MdlUser::class)->create();
     }
 }
