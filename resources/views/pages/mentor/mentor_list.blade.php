@@ -72,7 +72,7 @@
                                         <div class="card-body">
                                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                                 <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                    <table id="tbl_mentor_pending"class="table table-hover  text-center">
+                                                    <table id="tbl_mentor_pending"class="table table-hover  text-center" style="width:100%;">
                                                         <thead class=" text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
@@ -83,7 +83,7 @@
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Type</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_mentor_pending_body" class="hoverTable text-left">
@@ -91,7 +91,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                    <table id="tbl_mentor_approved"class="table table-hover  text-center">
+                                                    <table id="tbl_mentor_approved"class="table table-hover  text-center" style="width:100%;">
                                                         <thead class=" text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
@@ -102,7 +102,7 @@
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Type</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_mentor_approved_body" class="hoverTable text-left">
@@ -110,7 +110,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                                    <table id="tbl_mentor_rejected"class="table table-hover  text-center">
+                                                    <table id="tbl_mentor_rejected"class="table table-hover  text-center" style="width:100%;">
                                                         <thead class=" text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
@@ -121,7 +121,7 @@
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Type</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_mentor_rejected_body" class="hoverTable text-left">
@@ -163,7 +163,7 @@
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
                     d.status    = 0
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -178,7 +178,7 @@
                 {data: 'type', name: 'type'},
 
             ],
-           
+
         });
 
         var table_approve =$('#tbl_mentor_approved').DataTable({
@@ -195,7 +195,7 @@
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
                     d.status    = 1
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -210,7 +210,7 @@
                 {data: 'type', name: 'type'},
 
             ],
-           
+
         });
 
         var table_reject =$('#tbl_mentor_rejected').DataTable({
@@ -227,7 +227,7 @@
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
                     d.status    = 2
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -242,11 +242,19 @@
                 {data: 'type', name: 'type'},
 
             ],
-           
+
+        });
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+            $.each($.fn.dataTable.tables(true), function(){
+                $(this).DataTable()
+                    .columns.adjust()
+                    .responsive.recalc();
+            });
         });
 
         $("#search_mentor").click(function(){
-       
+
             table_pending.draw();
             table_approve.draw();
             table_reject.draw();
