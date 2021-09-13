@@ -72,7 +72,7 @@
                                         <div class="card-body">
                                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                                 <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                    <table id="tbl_mentor_pending"class="table table-hover  text-center">
+                                                    <table id="tbl_mentor_pending"class="table table-hover  text-center" style="width:100%;">
                                                         <thead class=" text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
@@ -86,12 +86,12 @@
                                                                 
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="tbl_mentor_pending_body" class="hoverTable text-left">
+                                                        <tbody id="tbl_mentor_pending_body" class="hoverTable text-left" >
                                                         </tbody>
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                    <table id="tbl_mentor_approved"class="table table-hover  text-center">
+                                                    <table id="tbl_mentor_approved"class="table table-hover  text-center" style="width:100%;">
                                                         <thead class=" text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
@@ -110,7 +110,7 @@
                                                     </table>
                                                 </div>
                                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                                    <table id="tbl_mentor_rejected"class="table table-hover  text-center">
+                                                    <table id="tbl_mentor_rejected"class="table table-hover  text-center" style="width:100%;">
                                                         <thead class=" text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
@@ -253,7 +253,9 @@
 
 
         });
-
+        createDataTable('#tbl_mentor_pending');
+        createDataTable('#tbl_mentor_approved');
+        createDataTable('#tbl_mentor_rejected');
 
     })
     // getMentorList();
