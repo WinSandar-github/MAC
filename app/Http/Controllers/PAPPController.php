@@ -343,7 +343,7 @@ class PAPPController extends Controller
     public function approvePapp($id)
     { 
         $std_info = StudentInfo::find($id) ;
-        $std_info->payment_method = 'CASH';
+        $std_info->payment_method = 'PAPP';
         $std_info->save();
         return response()->json([
             'data' => $std_info,
