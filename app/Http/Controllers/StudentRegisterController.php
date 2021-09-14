@@ -254,9 +254,9 @@ class StudentRegisterController extends Controller
     //     return response()->json([ 'data' => $student_register],200);
     // }
     public function FilterRegistration(Request $request){
-        $student_register = StudentRegister::with('student_info','course')->where('form_type',$request->form_type)
-        // ->join('courses', 'student_register.form_type', '=', 'courses.id')
-        // ->where('courses.code',$request->form_type)
+        $student_register = StudentRegister::with('student_info','course')
+        ->where('form_type',$request->form_type)
+        ->where('status','=', $request->status)
         ->where('type',$request->reg_type)->get();
 
         $datatable= DataTables::of($student_register)
