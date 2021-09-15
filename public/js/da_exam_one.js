@@ -67,7 +67,7 @@ function getExam(course_code) {
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -81,13 +81,13 @@ function getExam(course_code) {
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
-                    
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -107,7 +107,7 @@ function getExam(course_code) {
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -121,7 +121,7 @@ function getExam(course_code) {
 //                         data:"",
 //                         success:function(courses){
 //                             var course=courses.data;
-                            
+
 //                             if(course.code=="da_1")
 //                             {
 //                                 if(element.status==0){
@@ -210,10 +210,10 @@ function getExam(course_code) {
 //                                 tr += "</tr>";
 //                                 $("#tbl_da_exam_two_body").append(tr);
 //                             }
-                            
+
 //                             getIndexNumber('#tbl_da_exam_one tr');
 //                             createDataTable(".tbl_da_exam_one");
-                            
+
 //                             getIndexNumber('#tbl_da_exam_two tr');
 //                             createDataTable(".tbl_da_exam_two");
 //                         }
@@ -258,6 +258,29 @@ function loadDAExamData() {
     $("#exam_type").html("");
     $("#student_grade").html("");
     $("#student_status").html("");
+    $("#exam_department").html("");
+
+    $("#university_name").html("");
+    $("#degree_name").html("");
+    $("#qualified_date").html("");
+    $("#roll_number").html("");
+    $("#certificate").html("");
+
+    $("#name_eng").html("");
+    $("#name_mm").html("");
+    $("#nrc").html("");
+    $("#father_name_mm").html("");
+    $("#father_name_eng").html("");
+    $("#race").html("");
+    $("#religion").html("");
+    $("#date_of_birth").html("");
+    $("#address").html("");
+    $("#current_address").html("");
+    $("#phone").html("");
+    $("#email").html("");
+    $("#gov_staff").html("");
+    $("#image").html("");
+    $("#registration_no").html("");
 
     $("input[name = student_id]").val(id);
 
@@ -266,7 +289,7 @@ function loadDAExamData() {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(exam_data);
+            console.log(">>>",exam_data);
             exam_data.forEach(function (element) {
                 if (element.exam_type_id == 0) {
                     exam_type_id = "SELF STUDY";
@@ -289,10 +312,33 @@ function loadDAExamData() {
                 } else {
                     grade = "FAILED";
                 }
+
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
+
+                $("#name_eng").append(element.student_info.name_eng);
+                $("#name_mm").append(element.student_info.name_mm);
+                $("#nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
+                $("#father_name_mm").append(element.student_info.father_name_mm);
+                $("#father_name_eng").append(element.student_info.father_name_eng);
+                $("#race").append(element.student_info.race);
+                $("#religion").append(element.student_info.religion);
+                $("#date_of_birth").append(element.student_info.date_of_birth);
+                $("#address").append(element.student_info.address);
+                $("#current_address").append(element.student_info.current_address);
+                $("#phone").append(element.student_info.phone);
+                $("#email").append(element.student_info.email);
+                $("#gov_staff").append(element.student_info.gov_staff);
+                $("#image").attr('src',PDF_URL+element.student_info.image);
+                $("#registration_no").append(element.student_info.registration_no);
+
+                $("#university_name").append(element.student_info.student_education_histroy.university_name);
+                $("#degree_name").append(element.student_info.student_education_histroy.degree_name);
+                $("#qualified_date").append(element.student_info.student_education_histroy.qualified_date);
+                $("#roll_number").append(element.student_info.student_education_histroy.roll_number);
+
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -300,6 +346,7 @@ function loadDAExamData() {
                     document.getElementById("approve").style.display = 'none';
                     document.getElementById("reject").style.display = 'none';
                 }
+                $("#exam_department").append(element.exam_department.name);
             })
         }
     })
@@ -389,17 +436,17 @@ function rejectDATwoExam() {
     });
 }
 
-function loadBatchData(course_code){ 
-    var select = document.getElementById("selected_batch_id"); 
-    show_loader(); 
+function loadBatchData(course_code){
+    var select = document.getElementById("selected_batch_id");
+    show_loader();
     $.ajax({
         url: BACKEND_URL + "/course_by_course_code/" + course_code,
         type: 'get',
         contentType: false,
         processData: false,
          success: function(data){
-             
-            var course_data=data.data;            
+
+            var course_data=data.data;
             console.log('course_data',course_data);
             course_data.forEach(function (element) {
                 element.batches.forEach(function (batch) {
@@ -408,13 +455,13 @@ function loadBatchData(course_code){
                     option.value = batch.id;
                     select.add(option, 0);
                 });
-            });  
+            });
             EasyLoading.hide();
 
         },
         error:function (message){
             EasyLoading.hide();
-                   
+
         }
     });
 }
@@ -441,7 +488,7 @@ function SearchByID() {
                 tr += "<td>" + element.grade + "</td>";
                 tr += "<td>" + element.status + "</td>";
                 tr += "<td>" + element.batch_id + "</td>";
-                
+
                 tr += "<td ><div class='btn-group'>";
                 tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -477,7 +524,7 @@ function loadStudent(course_type) {
     destroyDatatable("#tbl_exam_approved_result", "#tbl_exam_approved_result_body");
     destroyDatatable("#tbl_exam_rejected_result", "#tbl_exam_rejected_result_body");
     localStorage.setItem("course_type",course_type);
-    
+
     if(course_type=="da_1"){
         course_id=1;
     }
@@ -555,7 +602,7 @@ function loadStudent(course_type) {
                     //tr += "<td>" + status+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     // tr += "<td ><div class='btn-group'>";
                     $("#tbl_exam_pending_result_body").append(tr);
                 }
@@ -574,7 +621,7 @@ function loadStudent(course_type) {
                     //tr += "<td>" + status+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     // tr += "<td ><div class='btn-group'>";
                     $("#tbl_exam_approved_result_body").append(tr);
                 }
@@ -593,12 +640,12 @@ function loadStudent(course_type) {
                     //tr += "<td>" + status+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     // tr += "<td ><div class='btn-group'>";
                     $("#tbl_exam_rejected_result_body").append(tr);
                 }
-                
-            });            
+
+            });
             getIndexNumber('#tbl_exam_pending_result tr');
             createDataTable("#tbl_exam_pending_result");
             getIndexNumber('#tbl_exam_approved_result tr');
@@ -657,7 +704,7 @@ function getModuleStd() {
 // =======
 //                 if(element.status==0){
 //                     status="PENDING";
-                   
+
 // >>>>>>> ac67ed3c0efebdce43c2dac463280128b110edb1
                 }
                 if (element.exam_type_id == 0) {
@@ -675,7 +722,7 @@ function getModuleStd() {
                     is_full_module = "Full Module";
                 }
 
-                
+
 
                 if (element.grade == 0) {
                     grade = "PENDING";
@@ -684,18 +731,18 @@ function getModuleStd() {
                 } else {
                     grade = "FAILED";
                 }
-                
+
                 setTimeout(() => {
                     if(element.grade == 1 )
                     {
-                         
+
                         $('.ex_res_btn').hide();
                         $('.pass_fail_btn').hide();
 
                     }
-                    
+
                 }, 2000);
-                 
+
                 $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
@@ -722,23 +769,23 @@ function getModuleStd() {
                             console.log('search_exam_result',JSON.parse(result.data.result));
                             var rData=JSON.parse(result.data.result);
                             console.log(rData.subjects[1]);
-                            
+
                             console.log('is_full_module',module_type);
                             if(module_type == 1)
                             {
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var sunject=document.getElementById('subject'+j);
                                     sunject.value = rData.subjects[i];
                                 }
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var mark=document.getElementById('mark'+j);
                                     mark.value = rData.marks[i];
                                 }
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var grade=document.getElementById('grade'+j);
@@ -781,7 +828,7 @@ function getModuleStd() {
                             }
                         }else{
                             $('.pass_fail_btn').hide();
-                        } 
+                        }
                     },
                 error:function (message){
                     console.log(message);

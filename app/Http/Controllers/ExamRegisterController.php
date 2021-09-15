@@ -7,6 +7,7 @@ use App\ExamRegister;
 use App\StudentInfo;
 use App\StudentRegister;
 use App\StudentCourseReg;
+use App\ExamDepartment;
 use App\Batch;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -44,7 +45,6 @@ class ExamRegisterController extends Controller
      */
     public function store(Request $request)
     {
-
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('student_info_id', $student_info_id)->latest()->get('type');
         $type = $exam_type[0]['type'];
@@ -72,6 +72,7 @@ class ExamRegisterController extends Controller
         $exam->is_full_module = $request->is_full_module;
         $exam->exam_type_id = $type;
         $exam->form_type = $request->form_type;
+        $exam->exam_department = $request->exam_department;
         $exam->status = 0;
         $exam->save();
 
@@ -92,7 +93,8 @@ class ExamRegisterController extends Controller
         // return response()->json([
         //     'data' => $exam_register
         // ],200);
-        $exam_register =  ExamRegister::with('student_info','batch')->where('id',$id)->get();
+        $exam_register =  ExamRegister::with('student_info','batch','exam_department')->where('id',$id)->get();
+
         return response()->json([
             'data' => $exam_register
         ],200);

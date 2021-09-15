@@ -19,6 +19,7 @@
                             <div class="col-md-4 ">
                                 <center>
                                     <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+                                    <br/><span class='text-info'>Profile Picture</span>
                                 </center>
                                 <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -207,7 +208,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Government Staff</p>
+                                        <p class="ml-2" style="font-weight:bold">နိုင်ငံ့ဝန်ထမ်း</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="gov_staff"></span>
@@ -222,7 +223,18 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
-
+                                <div class="row">
+                                    <label for="" class="col-md-6 col-form-label">နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အရှေ့)</label>
+                                    <label for="" class="col-md-6 col-form-label ">နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အနောက်)</label>
+                                </div><br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">                            
+                                    </div>                  
+                                </div>
                                 <input type="hidden" name="student_course_id" >
 
                                 <div class="row mt-5 justify-content-center" id="approve_reject"> 
