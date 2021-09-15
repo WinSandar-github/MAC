@@ -281,8 +281,8 @@ class SchoolController extends Controller
         $school->manage_room_numbers     = $request->manage_room_numbers;
         $school->manage_room_measurement = $request->manage_room_measurement;
         
-        $school->email            = $request->email;
-        $school->password         = $request->password;
+        $school->email            = strtolower($request->email);
+        $school->password         = Hash::make($request->password);
         $school->nrc_state_region = $request->nrc_state_region;
         $school->nrc_township     = $request->nrc_township;
         $school->nrc_citizen      = $request->nrc_citizen;
@@ -299,8 +299,8 @@ class SchoolController extends Controller
         //Student Info
         $std_info = new StudentInfo();
         $std_info->school_id = $school->id;
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
+        $std_info->email     = strtolower($request->email);
+        $std_info->password  = Hash::make($request->password);
         $std_info->save();
 
         //establisher list
