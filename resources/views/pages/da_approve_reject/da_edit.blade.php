@@ -250,10 +250,6 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label for="" class="col-md-6 col-form-label">နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အရှေ့)</label>
-                                    <label for="" class="col-md-6 col-form-label ">နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အနောက်)</label>
-                                </div><br>
-                                <div class="row">
                                     <div class="col-md-6">
                                         <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 
                                     </div>

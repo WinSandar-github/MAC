@@ -260,28 +260,6 @@ function loadDAExamData() {
     $("#student_status").html("");
     $("#exam_department").html("");
 
-    $("#university_name").html("");
-    $("#degree_name").html("");
-    $("#qualified_date").html("");
-    $("#roll_number").html("");
-    $("#certificate").html("");
-
-    $("#name_eng").html("");
-    $("#name_mm").html("");
-    $("#nrc").html("");
-    $("#father_name_mm").html("");
-    $("#father_name_eng").html("");
-    $("#race").html("");
-    $("#religion").html("");
-    $("#date_of_birth").html("");
-    $("#address").html("");
-    $("#current_address").html("");
-    $("#phone").html("");
-    $("#email").html("");
-    $("#gov_staff").html("");
-    $("#image").html("");
-    $("#registration_no").html("");
-
     $("#name_eng").html("");
     $("#name_mm").html("");
     $("#nrc").html("");
@@ -347,27 +325,6 @@ function loadDAExamData() {
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
-
-                $("#name_eng").append(element.student_info.name_eng);
-                $("#name_mm").append(element.student_info.name_mm);
-                $("#nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
-                $("#father_name_mm").append(element.student_info.father_name_mm);
-                $("#father_name_eng").append(element.student_info.father_name_eng);
-                $("#race").append(element.student_info.race);
-                $("#religion").append(element.student_info.religion);
-                $("#date_of_birth").append(element.student_info.date_of_birth);
-                $("#address").append(element.student_info.address);
-                $("#current_address").append(element.student_info.current_address);
-                $("#phone").append(element.student_info.phone);
-                $("#email").append(element.student_info.email);
-                $("#gov_staff").append(element.student_info.gov_staff);
-                $("#image").attr('src',PDF_URL+element.student_info.image);
-                $("#registration_no").append(element.student_info.registration_no);
-
-                $("#university_name").append(element.student_info.student_education_histroy.university_name);
-                $("#degree_name").append(element.student_info.student_education_histroy.degree_name);
-                $("#qualified_date").append(element.student_info.student_education_histroy.qualified_date);
-                $("#roll_number").append(element.student_info.student_education_histroy.roll_number);
 
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
