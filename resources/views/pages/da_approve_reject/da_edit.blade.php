@@ -13,12 +13,13 @@
         <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
                 @csrf
-                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
                                 <center>
                                     <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+                                    <br/><span class='text-info'>Profile Picture</span>
                                 </center>
                                 <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -62,10 +63,14 @@
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
-                                </div>
-
-                                <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Job</h5>
-                        
+                                </div>             
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2"  style="font-weight:bold">Job</h5>
+                            </div>
+                            <div class="card-body pt-0">
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Job Name</p>
@@ -123,8 +128,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Student Information</h5>
+                            </div>
+                            <div class="card-body pt-0">
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
@@ -139,6 +150,22 @@
                                     </div>
                                     <div class="col-md-6">
                                         <span id="nrc"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">NRC Front</p>
+                                    </div>
+                                    <div class="col-md-6 nrc_front">
+                                        
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">NRC Back</p>
+                                    </div>
+                                    <div class="col-md-6 nrc_back">
+                                        
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -207,7 +234,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Government Staff</p>
+                                        <p class="ml-2" style="font-weight:bold">နိုင်ငံ့ဝန်ထမ်း</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="gov_staff"></span>
@@ -222,7 +249,14 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
-
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">                            
+                                    </div>                  
+                                </div>
                                 <input type="hidden" name="student_course_id" >
 
                                 <div class="row mt-5 justify-content-center" id="approve_reject"> 
@@ -231,16 +265,17 @@
                                 </div>
                                 <!-- Attached Certificate -->
                                 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-                                  <div class="modal-dialog modal-lg" role="document" > 
+                                    <div class="modal-dialog modal-lg" role="document" > 
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <embed id="attach_file"  width="700px" height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>                   
+                        </div>
+                    </div>
                     </div>
                 </div>
             </form>

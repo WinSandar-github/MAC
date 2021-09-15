@@ -67,7 +67,7 @@ function getExam(course_code) {
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -81,13 +81,13 @@ function getExam(course_code) {
                         "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
-                    
+
                     //tr += "<td>" + element.private_school_name + "</td>";
                     tr += "<td>" + exam_type_id + "</td>";
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -107,7 +107,7 @@ function getExam(course_code) {
                     tr += "<td>" + grade + "</td>";
                     tr += "<td>" + status + "</td>";
                     // tr += "<td>" + element.batch_id+ "</td>";
-                    
+
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id + ',' + element.batch_id + ")'>" +
                         "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
@@ -121,7 +121,7 @@ function getExam(course_code) {
 //                         data:"",
 //                         success:function(courses){
 //                             var course=courses.data;
-                            
+
 //                             if(course.code=="da_1")
 //                             {
 //                                 if(element.status==0){
@@ -210,10 +210,10 @@ function getExam(course_code) {
 //                                 tr += "</tr>";
 //                                 $("#tbl_da_exam_two_body").append(tr);
 //                             }
-                            
+
 //                             getIndexNumber('#tbl_da_exam_one tr');
 //                             createDataTable(".tbl_da_exam_one");
-                            
+
 //                             getIndexNumber('#tbl_da_exam_two tr');
 //                             createDataTable(".tbl_da_exam_two");
 //                         }
@@ -258,6 +258,37 @@ function loadDAExamData() {
     $("#exam_type").html("");
     $("#student_grade").html("");
     $("#student_status").html("");
+    $("#exam_department").html("");
+
+    $("#name_eng").html("");
+    $("#name_mm").html("");
+    $("#nrc").html("");
+    $("#father_name_mm").html("");
+    $("#father_name_eng").html("");
+    $("#race").html("");
+    $("#religion").html("");
+    $("#date_of_birth").html("");
+    $("#address").html("");
+    $("#current_address").html("");
+    $("#phone").html("");
+    $("#email").html("");
+    $("#gov_staff").html("");
+    $("#image").html("");
+    $("#registration_no").html("");
+
+    $("#university_name").html("");
+    $("#degree_name").html("");
+    $("#qualified_date").html("");
+    $("#roll_number").html("");
+    $("#certificate").html("");
+
+    $("#name").html("");
+    $("#position").html("");
+    $("#department").html("");
+    $("#organization").html("");
+    $("#company_name").html("");
+    $("#salary").html("");
+    $("#office_address").html("");
 
     $("input[name = student_id]").val(id);
 
@@ -266,7 +297,7 @@ function loadDAExamData() {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(exam_data);
+            console.log(">>>",exam_data);
             exam_data.forEach(function (element) {
                 if (element.exam_type_id == 0) {
                     exam_type_id = "SELF STUDY";
@@ -289,10 +320,12 @@ function loadDAExamData() {
                 } else {
                     grade = "FAILED";
                 }
+
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
+
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -300,6 +333,52 @@ function loadDAExamData() {
                     document.getElementById("approve").style.display = 'none';
                     document.getElementById("reject").style.display = 'none';
                 }
+
+                element = element.student_info;
+                var education_history = element.student_education_histroy;
+                var job = element.student_job;
+                $("#id").append(element.id);
+                // document.getElementById('image').src = PDF_URL + element.image;
+                $("#name_eng").append(element.name_eng);
+                $("#name_mm").append(element.name_mm);
+                $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
+                $("#father_name_mm").append(element.father_name_mm);
+                $("#father_name_eng").append(element.father_name_eng);
+                $("#race").append(element.race);
+                $("#religion").append(element.religion);
+                $("#date_of_birth").append(element.date_of_birth);
+                $("#address").append(element.address);
+                $("#current_address").append(element.current_address);
+                $("#phone").append(element.phone);
+                $("#email").append(element.email);
+                $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
+                $("#image").append(element.image);
+                $("#registration_no").append(element.registration_no);
+
+                $("#university_name").append(education_history.university_name);
+                $("#degree_name").append(education_history.degree_name);
+                $("#qualified_date").append(education_history.qualified_date);
+                $("#roll_number").append(education_history.roll_number);
+
+                let certificate = JSON.parse(education_history.certificate);
+                $.each(certificate,function(fileCount,fileName){
+                    
+                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
+                    
+                })
+
+                $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+
+                $("#name").append(job.name);
+                $("#position").append(job.position);
+                $("#department").append(job.department);
+                $("#organization").append(job.organization);
+                $("#company_name").append(job.company_name);
+                $("#salary").append(job.salary);
+                $("#office_address").append(job.office_address);
+                attached_file = element.student_education_histroy.certificate;
+                $("#exam_department").append(element.exam_department.name);
             })
         }
     })
@@ -321,7 +400,7 @@ function loadStudentDataForExamCard() {
         success: function (data) {
             var exam_datas = data.data;
             exam_datas.forEach(function (exam_data) {
-            document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
+            // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
             $("#roll_no").append(exam_data.id);
             $("#name").append(exam_data.student_info.name_mm);
             $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
@@ -389,17 +468,17 @@ function rejectDATwoExam() {
     });
 }
 
-function loadBatchData(course_code){ 
-    var select = document.getElementById("selected_batch_id"); 
-    show_loader(); 
+function loadBatchData(course_code){
+    var select = document.getElementById("selected_batch_id");
+    show_loader();
     $.ajax({
         url: BACKEND_URL + "/course_by_course_code/" + course_code,
         type: 'get',
         contentType: false,
         processData: false,
          success: function(data){
-             
-            var course_data=data.data;            
+
+            var course_data=data.data;
             console.log('course_data',course_data);
             course_data.forEach(function (element) {
                 element.batches.forEach(function (batch) {
@@ -408,13 +487,13 @@ function loadBatchData(course_code){
                     option.value = batch.id;
                     select.add(option, 0);
                 });
-            });  
+            });
             EasyLoading.hide();
 
         },
         error:function (message){
             EasyLoading.hide();
-                   
+
         }
     });
 }
@@ -441,7 +520,7 @@ function SearchByID() {
                 tr += "<td>" + element.grade + "</td>";
                 tr += "<td>" + element.status + "</td>";
                 tr += "<td>" + element.batch_id + "</td>";
-                
+
                 tr += "<td ><div class='btn-group'>";
                 tr += "<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.id + ")'>" +
                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
@@ -477,7 +556,7 @@ function loadStudent(course_type) {
     destroyDatatable("#tbl_exam_approved_result", "#tbl_exam_approved_result_body");
     destroyDatatable("#tbl_exam_rejected_result", "#tbl_exam_rejected_result_body");
     localStorage.setItem("course_type",course_type);
-    
+
     if(course_type=="da_1"){
         course_id=1;
     }
@@ -555,7 +634,7 @@ function loadStudent(course_type) {
                     //tr += "<td>" + status+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     // tr += "<td ><div class='btn-group'>";
                     $("#tbl_exam_pending_result_body").append(tr);
                 }
@@ -574,7 +653,7 @@ function loadStudent(course_type) {
                     //tr += "<td>" + status+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     // tr += "<td ><div class='btn-group'>";
                     $("#tbl_exam_approved_result_body").append(tr);
                 }
@@ -593,12 +672,12 @@ function loadStudent(course_type) {
                     //tr += "<td>" + status+ "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + is_full_module + "</td>";
-                    
+
                     // tr += "<td ><div class='btn-group'>";
                     $("#tbl_exam_rejected_result_body").append(tr);
                 }
-                
-            });            
+
+            });
             getIndexNumber('#tbl_exam_pending_result tr');
             createDataTable("#tbl_exam_pending_result");
             getIndexNumber('#tbl_exam_approved_result tr');
@@ -636,6 +715,37 @@ function getModuleStd() {
     console.log('exam',id);
     var module_type = localStorage.getItem("is_full_module");
     // $("input[name = batch_id]").val(id);
+
+    $("#name_eng").html("");
+    $("#name_mm").html("");
+    $("#nrc").html("");
+    $("#father_name_mm").html("");
+    $("#father_name_eng").html("");
+    $("#race").html("");
+    $("#religion").html("");
+    $("#date_of_birth").html("");
+    $("#address").html("");
+    $("#current_address").html("");
+    $("#phone").html("");
+    $("#email").html("");
+    $("#gov_staff").html("");
+    $("#image").html("");
+    $("#registration_no").html("");
+
+    $("#university_name").html("");
+    $("#degree_name").html("");
+    $("#qualified_date").html("");
+    $("#roll_number").html("");
+    $("#certificate").html("");
+
+    $("#name").html("");
+    $("#position").html("");
+    $("#department").html("");
+    $("#organization").html("");
+    $("#company_name").html("");
+    $("#salary").html("");
+    $("#office_address").html("");
+
     $.ajax({
         url: BACKEND_URL + "/std/" + id,
         type: 'get',
@@ -657,7 +767,7 @@ function getModuleStd() {
 // =======
 //                 if(element.status==0){
 //                     status="PENDING";
-                   
+
 // >>>>>>> ac67ed3c0efebdce43c2dac463280128b110edb1
                 }
                 if (element.exam_type_id == 0) {
@@ -675,7 +785,7 @@ function getModuleStd() {
                     is_full_module = "Full Module";
                 }
 
-                
+
 
                 if (element.grade == 0) {
                     grade = "PENDING";
@@ -684,25 +794,70 @@ function getModuleStd() {
                 } else {
                     grade = "FAILED";
                 }
-                
+
                 setTimeout(() => {
                     if(element.grade == 1 )
                     {
-                         
+
                         $('.ex_res_btn').hide();
                         $('.pass_fail_btn').hide();
 
                     }
-                    
+
                 }, 2000);
                  
-                $("#std_name").append(std.name_eng);
+                // $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
                 // $("#student_grade").append(element.grade);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
                 $("#is_full_module").append(is_full_module);
+
+                // element = element.student_info;
+                var education_history = std.student_education_histroy;
+                var job = std.student_job;
+                $("#id").append(std.id);
+                // document.getElementById('image').src = PDF_URL + std.image;
+                $("#name_eng").append(std.name_eng);
+                $("#name_mm").append(std.name_mm);
+                $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
+                $("#father_name_mm").append(std.father_name_mm);
+                $("#father_name_eng").append(std.father_name_eng);
+                $("#race").append(std.race);
+                $("#religion").append(std.religion);
+                $("#date_of_birth").append(std.date_of_birth);
+                $("#address").append(std.address);
+                $("#current_address").append(std.current_address);
+                $("#phone").append(std.phone);
+                $("#email").append(std.email);
+                $("#gov_staff").append(std.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
+                $("#image").append(std.image);
+                $("#registration_no").append(std.registration_no);
+
+                $("#university_name").append(education_history.university_name);
+                $("#degree_name").append(education_history.degree_name);
+                $("#qualified_date").append(education_history.qualified_date);
+                $("#roll_number").append(education_history.roll_number);
+
+                let certificate = JSON.parse(education_history.certificate);
+                $.each(certificate,function(fileCount,fileName){
+                    
+                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
+                    
+                })
+
+                $(".nrc_front").append(`<a href='${PDF_URL+std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL+std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+
+                $("#name").append(job.name);
+                $("#position").append(job.position);
+                $("#department").append(job.department);
+                $("#organization").append(job.organization);
+                $("#company_name").append(job.company_name);
+                $("#salary").append(job.salary);
+                $("#office_address").append(job.office_address);
+                attached_file = std.student_education_histroy.certificate;
             });
 
             $.ajax({
@@ -722,23 +877,23 @@ function getModuleStd() {
                             console.log('search_exam_result',JSON.parse(result.data.result));
                             var rData=JSON.parse(result.data.result);
                             console.log(rData.subjects[1]);
-                            
+
                             console.log('is_full_module',module_type);
                             if(module_type == 1)
                             {
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var sunject=document.getElementById('subject'+j);
                                     sunject.value = rData.subjects[i];
                                 }
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var mark=document.getElementById('mark'+j);
                                     mark.value = rData.marks[i];
                                 }
-                                for (var i = 0; i < 3; i++) 
+                                for (var i = 0; i < 3; i++)
                                 {
                                     var j=i+1;
                                     var grade=document.getElementById('grade'+j);
@@ -781,7 +936,7 @@ function getModuleStd() {
                             }
                         }else{
                             $('.pass_fail_btn').hide();
-                        } 
+                        }
                     },
                 error:function (message){
                     console.log(message);

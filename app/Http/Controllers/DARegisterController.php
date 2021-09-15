@@ -15,6 +15,7 @@ use Mail;
 use App\Mail\ContactMail;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
+use App\Course;
 
 class DARegisterController extends Controller
 {
@@ -174,6 +175,7 @@ class DARegisterController extends Controller
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
+        $student_course->type            = $request->type;
         //$student_course->date            = date('Y-m-d',strtotime($request->degree_date)); 
         $student_course->date            = $course_date; 
         $student_course->status          = 1;
@@ -343,8 +345,21 @@ class DARegisterController extends Controller
     //     ],200);
     // }
 
-    public function FilterApplicationList($status , $batch_id){
-        $student_infos = StudentCourseReg::with('student_info','batch')->where('approve_reject_status','=', $status)->where('batch_id','=', $batch_id)->get();
+    public function FilterApplicationList(Request $request){
+    
+        $course  = Course::where('code',$request->course_code)->first();
+       
+        //  $student_infos = StudentCourseReg::with('student_info','batch')
+        //                     ->where('approve_reject_status','=', $status)
+        //                     ->where('batch_id','=', $batch_id);
+        $student_infos = StudentCourseReg::whereHas('batch', function ($query) use ($course) {
+            $query->where('course_id', $course->id);
+            })->where('approve_reject_status','=', $request->status)
+              ->where('qt_entry','=',0) 
+              ->with('student_info','batch');
+ 
+
+        $student_infos = $student_infos->get();
         
             return DataTables::of($student_infos)
                 ->addColumn('action', function ($infos) {
@@ -400,13 +415,27 @@ class DARegisterController extends Controller
         ],200);
     }
     
+    // public function unique_email(Request $request)
+    // {
+    //     $emailCheck = StudentInfo::where('email', $request['email'])->first();
+    //     $nrcCheck = StudentInfo::Where('nrc_state_region', $request['nrc_state_region'])
+    //             ->orWhere('nrc_township', $request['nrc_township'])
+    //             ->orWhere('nrc_citizen', $request['nrc_citizen'])
+    //             ->orWhere('nrc_number', $request['nrc_number'])->first();
+    //     //return $emailcheck;
+    //     return response()->json([ 
+    //         'email' => $emailCheck,
+    //         'nrc' => $nrcCheck
+    //     ],200);
+    // }
+
     public function unique_email(Request $request)
     {
         $emailCheck = StudentInfo::where('email', $request['email'])->first();
         $nrcCheck = StudentInfo::Where('nrc_state_region', $request['nrc_state_region'])
-                ->orWhere('nrc_township', $request['nrc_township'])
-                ->orWhere('nrc_citizen', $request['nrc_citizen'])
-                ->orWhere('nrc_number', $request['nrc_number'])->first();
+                ->Where('nrc_township', $request['nrc_township'])
+                ->Where('nrc_citizen', $request['nrc_citizen'])
+                ->Where('nrc_number', $request['nrc_number'])->first();
         //return $emailcheck;
         return response()->json([ 
             'email' => $emailCheck,

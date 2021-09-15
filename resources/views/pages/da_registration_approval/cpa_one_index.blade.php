@@ -83,74 +83,235 @@
                                                     <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false" style="font-weight:bold">Registration Private Shool</a>
                                                 </li>
                                             </ul>
+                                            
                                         </div>
                                         <div class="card-body">
                                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
 	                                            <div class="tab-pane fade" id="link1" aria-expanded="true">
-                                                    <table id="tbl_student_self_study" class="table table-hover text-nowrap " style="width: 100%">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="bold-font-weight">No</th>
-                                                                <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >Student Name</th>
-                                                                <th class="bold-font-weight" >Email</th>
-                                                                <th class="bold-font-weight" >Registration No</th>
-                                                                <th class="bold-font-weight" >Phone</th>
-                                                                <th class="bold-font-weight" >Registration Reason</th>
-                                                                <th class="bold-font-weight" >Status</th>
+                                                <div class="card-header">
+                                                    
+                                                    <ul class="nav nav-tabs" role="tablist">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" data-toggle="tab" href="#study1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#study2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" data-toggle="tab" href="#study3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                    <div class="card-body">
+                                                        <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                                            <div class="tab-pane fade show active" id="study1" aria-expanded="true">
+                                                                <table id="tbl_self_study_pending_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="bold-font-weight">No</th>
+                                                                            <th class="bold-font-weight" >Action</th>
+                                                                            <th class="bold-font-weight" >Student Name</th>
+                                                                            <th class="bold-font-weight" >Email</th>
+                                                                            <th class="bold-font-weight" >Registration No</th>
+                                                                            <th class="bold-font-weight" >Phone</th>
+                                                                            <th class="bold-font-weight" >Registration Reason</th>
+                                                                            <th class="bold-font-weight" >Status</th>
 
-                                                            </tr>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbl_self_study_pending_list_body" class="hoverTable text-left">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane fade show" id="study2" aria-expanded="true">
+                                                                <table id="tbl_self_study_approved_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="bold-font-weight">No</th>
+                                                                            <th class="bold-font-weight" >Action</th>
+                                                                            <th class="bold-font-weight" >Student Name</th>
+                                                                            <th class="bold-font-weight" >Email</th>
+                                                                            <th class="bold-font-weight" >Registration No</th>
+                                                                            <th class="bold-font-weight" >Phone</th>
+                                                                            <th class="bold-font-weight" >Registration Reason</th>
+                                                                            <th class="bold-font-weight" >Status</th>
 
-                                                        </thead>
-                                                        <tbody id="tbl_student_self_study_body"  class="hoverTable text-left">
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbl_self_study_approved_list_body" class="hoverTable text-left">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane fade show" id="study3" aria-expanded="true">
+                                                                <table id="tbl_self_study_rejected_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="bold-font-weight">No</th>
+                                                                            <th class="bold-font-weight" >Action</th>
+                                                                            <th class="bold-font-weight" >Student Name</th>
+                                                                            <th class="bold-font-weight" >Email</th>
+                                                                            <th class="bold-font-weight" >Registration No</th>
+                                                                            <th class="bold-font-weight" >Phone</th>
+                                                                            <th class="bold-font-weight" >Registration Reason</th>
+                                                                            <th class="bold-font-weight" >Status</th>
 
-                                                        </tbody>
-                                                    </table>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbl_self_study_rejected_list_body" class="hoverTable text-left">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                    <table id="tbl_student_private_school" class="table table-hover text-nowrap " style="width: 100%">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="bold-font-weight">No</th>
-                                                                <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >Student Name</th>
-                                                                <th class="bold-font-weight" >Email</th>
-                                                                <th class="bold-font-weight" >Registration No</th>
-                                                                <th class="bold-font-weight" >Phone</th>
-                                                                <th class="bold-font-weight" >Status</th>
-                                                            </tr>
-
-                                                        </thead>
-                                                        <tbody id="tbl_student_private_school_body"  class="hoverTable text-left">
-
-                                                        </tbody>
-                                                    </table>
+                                                    <div class="card-header">
+                                                        
+                                                        <ul class="nav nav-tabs" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" data-toggle="tab" href="#private1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#private2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#private3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                        <div class="card-body">
+                                                            <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                                                <div class="tab-pane fade show active" id="private1" aria-expanded="true">
+                                                                    <table id="tbl_private_school_pending_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="bold-font-weight">No</th>
+                                                                                <th class="bold-font-weight" >Action</th>
+                                                                                <th class="bold-font-weight" >Student Name</th>
+                                                                                <th class="bold-font-weight" >Email</th>
+                                                                                <th class="bold-font-weight" >Registration No</th>
+                                                                                <th class="bold-font-weight" >Phone</th>
+                                                                                <th class="bold-font-weight" >Status</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="tbl_private_school_pending_list_body" class="hoverTable text-left">
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="tab-pane fade show" id="private2" aria-expanded="true">
+                                                                    <table id="tbl_private_school_approved_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="bold-font-weight">No</th>
+                                                                                <th class="bold-font-weight" >Action</th>
+                                                                                <th class="bold-font-weight" >Student Name</th>
+                                                                                <th class="bold-font-weight" >Email</th>
+                                                                                <th class="bold-font-weight" >Registration No</th>
+                                                                                <th class="bold-font-weight" >Phone</th>
+                                                                                <th class="bold-font-weight" >Status</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="tbl_private_school_approved_list_body" class="hoverTable text-left">
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="tab-pane fade show" id="private3" aria-expanded="true">
+                                                                    <table id="tbl_private_school_rejected_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="bold-font-weight">No</th>
+                                                                                <th class="bold-font-weight" >Action</th>
+                                                                                <th class="bold-font-weight" >Student Name</th>
+                                                                                <th class="bold-font-weight" >Email</th>
+                                                                                <th class="bold-font-weight" >Registration No</th>
+                                                                                <th class="bold-font-weight" >Phone</th>
+                                                                                <th class="bold-font-weight" >Status</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody id="tbl_private_school_rejected_list_body" class="hoverTable text-left">
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                 </div>
                                                 <div class="tab-pane fade show active" id="link3" aria-expanded="true">
-                                                    <table id="tbl_student_mac" class="table table-hover text-nowrap " style="width: 100%">
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="bold-font-weight">No</th>
-                                                                <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >Student Name</th>
-                                                                <th class="bold-font-weight" >Email</th>
-                                                                <th class="bold-font-weight" >Registration No</th>
-                                                                <th class="bold-font-weight" >Phone</th>
-                                                                <th class="bold-font-weight" >Status</th>
-                                                            </tr>
-
-                                                        </thead>
-                                                        <tbody id="tbl_student_mac_body"  class="hoverTable text-left">
-
-                                                        </tbody>
-                                                    </table>
+                                                    <div class="card-header">
+                                                    
+                                                        <ul class="nav nav-tabs" role="tablist">
+                                                            <li class="nav-item">
+                                                                <a class="nav-link active" data-toggle="tab" href="#maccheck1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#maccheck2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                                            </li>
+                                                            <li class="nav-item">
+                                                                <a class="nav-link" data-toggle="tab" href="#maccheck3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                                            <div class="tab-pane fade show active" id="maccheck1" aria-expanded="true">
+                                                                <table id="tbl_mac_pending_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="bold-font-weight">No</th>
+                                                                            <th class="bold-font-weight" >Action</th>
+                                                                            <th class="bold-font-weight" >Student Name</th>
+                                                                            <th class="bold-font-weight" >Email</th>
+                                                                            <th class="bold-font-weight" >Registration No</th>
+                                                                            <th class="bold-font-weight" >Phone</th>
+                                                                            <th class="bold-font-weight" >Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbl_mac_pending_list_body" class="hoverTable text-left">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane fade show" id="maccheck2" aria-expanded="true">
+                                                                <table id="tbl_mac_approved_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="bold-font-weight">No</th>
+                                                                            <th class="bold-font-weight" >Action</th>
+                                                                            <th class="bold-font-weight" >Student Name</th>
+                                                                            <th class="bold-font-weight" >Email</th>
+                                                                            <th class="bold-font-weight" >Registration No</th>
+                                                                            <th class="bold-font-weight" >Phone</th>
+                                                                            <th class="bold-font-weight" >Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbl_mac_approved_list_body" class="hoverTable text-left">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                            <div class="tab-pane fade show" id="maccheck3" aria-expanded="true">
+                                                                <table id="tbl_mac_rejected_list" class="table table-hover text-nowrap " style="width:100%;">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th class="bold-font-weight">No</th>
+                                                                            <th class="bold-font-weight" >Action</th>
+                                                                            <th class="bold-font-weight" >Student Name</th>
+                                                                            <th class="bold-font-weight" >Email</th>
+                                                                            <th class="bold-font-weight" >Registration No</th>
+                                                                            <th class="bold-font-weight" >Phone</th>
+                                                                            <th class="bold-font-weight" >Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tbl_mac_rejected_list_body" class="hoverTable text-left">
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </div>                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                            
                         </div>
                     </div>
                 </form>
@@ -167,19 +328,49 @@
 <script>
     //GetStudentRegistration("cpa_1");
     //loadBatchData("cpa_1");
-    $(document).ready(function () {
-        $('#tbl_student_mac').DataTable({
+     $(document).ready(function () {
+       
+        $('#tbl_mac_pending_list').DataTable({
             scrollX: true,
             processing: true,
             serverSide: true,
+            responsive: true,
+                ajax:{
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"2",
+                    "is_reg_reason":false,
+                    "status":"0"
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'status', name: 'Status'},
+            ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_mac_approved_list').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            responsive: true,
             ajax:{
                 "url":BACKEND_URL + "/filter_registration",
                 "method":"POST",
                 "data":{
                     "form_type":"3",
                     "reg_type":"2",
-                    "is_reg_reason":false
+                    "is_reg_reason":false,
+                    "status":"1"
                 }
             },
             columns: [
@@ -193,19 +384,49 @@
                 {data: 'phone', name: 'Phone'},
                 {data: 'status', name: 'Status'},
             ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
-        $('#tbl_student_private_school').DataTable({
+        $('#tbl_mac_rejected_list').DataTable({
             scrollX: true,
             processing: true,
             serverSide: true,
+            responsive: true,
+             ajax:{
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"2",
+                    "is_reg_reason":false,
+                    "status":"2"
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'status', name: 'Status'},
+            ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_private_school_pending_list').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            responsive: true,
             ajax:{
                 "url":BACKEND_URL + "/filter_registration",
                 "method":"POST",
                 "data":{
                     "form_type":"3",
                     "reg_type":"1",
-                    "is_reg_reason":false
+                    "is_reg_reason":false,
+                    "status":"0"
                 }
             },
             columns: [
@@ -219,22 +440,81 @@
                 {data: 'phone', name: 'Phone'},
                 {data: 'status', name: 'Status'},
             ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
-        $('#tbl_student_self_study').DataTable({
+        $('#tbl_private_school_approved_list').DataTable({
             scrollX: true,
             processing: true,
             serverSide: true,
-            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            responsive: true,
             ajax:{
                 "url":BACKEND_URL + "/filter_registration",
                 "method":"POST",
                 "data":{
                     "form_type":"3",
-                    "reg_type":"0",
-                    "is_reg_reason":true
+                    "reg_type":"1",
+                    "is_reg_reason":false,
+                    "status":"1"
                 }
             },
             columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'status', name: 'Status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_private_school_rejected_list').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            ajax:{
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"1",
+                    "is_reg_reason":false,
+                    "status":"2"
+                }
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'status', name: 'Status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+       
+        $('#tbl_self_study_pending_list').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            responsive: true,
+                ajax:{
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"0",
+                    "is_reg_reason":true,
+                    "status":"0"
+                }
+            },
+                columns: [
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }, orderable: false, searchable: false},
@@ -246,14 +526,76 @@
                 {data: 'reg_reason', name: 'Registration Reason'},
                 {data: 'status', name: 'Status'},
             ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
-        // $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        //   $.each($.fn.dataTable.tables(true), function(){
-        //       $(this).DataTable()
-        //           .columns.adjust()
-        //           .responsive.recalc();
-        //   });
-        // });
+        $('#tbl_self_study_approved_list').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            responsive: true,
+                ajax:{
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"0",
+                    "is_reg_reason":true,
+                    "status":"1"
+                }
+            },
+                columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'reg_reason', name: 'Registration Reason'},
+                {data: 'status', name: 'Status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+
+        $('#tbl_self_study_rejected_list').DataTable({
+            scrollX: true,
+            processing: true,
+            serverSide: true,
+            responsive: true,
+                ajax:{
+                "url":BACKEND_URL + "/filter_registration",
+                "method":"POST",
+                "data":{
+                    "form_type":"3",
+                    "reg_type":"0",
+                    "is_reg_reason":true,
+                    "status":"2"
+                }
+            },
+                columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }, orderable: false, searchable: false},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name', name: 'Student Name'},
+                {data: 'email', name: 'Email'},
+                {data: 'reg_no', name: 'Registration No'},
+                {data: 'phone', name: 'Phone'},
+                {data: 'reg_reason', name: 'Registration Reason'},
+                {data: 'status', name: 'Status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+            $.each($.fn.dataTable.tables(true), function(){
+                $(this).DataTable()
+                    .columns.adjust()
+                    //.responsive.recalc()
+                    
+            });
+        });
+        
     })
 </script>
 @endpush
