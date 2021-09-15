@@ -24,6 +24,7 @@
                                 <div class="card-body">
                                     <center>
                                         <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+                                        <br/><span class='text-info'>Profile Picture</span>
                                     </center>
                                     <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -131,28 +132,7 @@
                                             <span id="office_address"></span>
                                         </div>
                                     </div>
-
-                                    <input type="hidden" name="student_course_id" >
-
-
-
-                                    <div class="row mt-5 justify-content-center">
-                                        <button type="submit"  id="reject" name="save" class="btn btn-danger"  onclick="rejectDATwoExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                        <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveDATwoExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-
-                                    </div>
-                                    <!-- Attached Certificate -->
-                                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-                                      <div class="modal-dialog modal-lg" role="document" >
-                                        <div class="modal-content">
-                                            <div class="modal-body">
-                                                <embed id="attach_file"  width="700px" height="500px">
-                                            </div>
-                                        </div>
-                                      </div>
-                                    </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -259,7 +239,7 @@
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6">
-                                            <p class="ml-2" style="font-weight:bold">Government Staff</p>
+                                            <p class="ml-2" style="font-weight:bold">နိုင်ငံ့ဝန်ထမ်း</p>
                                         </div>
                                         <div class="col-md-6">
                                             <span id="gov_staff"></span>
@@ -274,6 +254,15 @@
                                             <span id="registration_no"></span>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">                            
+                                        </div>                  
+                                    </div>
+                                    <input type="hidden" name="student_course_id" >
                                 </div>
                             </div>
                             <div class="card">
@@ -332,9 +321,8 @@
                                 </div>
                             </div>
                         </div>
-
+                        </div>
                     </div>
-                </div>
               </form>
             </div>
         </div>
