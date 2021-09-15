@@ -130,35 +130,106 @@ function showRegistration(studentId, course_code) {
 function loadStudentSelfStudy() {
     var id = localStorage.getItem("student_id");
     var course_code = localStorage.getItem("course_code");
-    $("#student_name").html("");
-    // $("#student_nrc").html("");
-    $("#student_dob").html("");
-    $("#student_father").html("");
-    $("#student_email").html("");
-    $("#student_phone").html("");
+    // $("#student_name").html("");
+    // // $("#student_nrc").html("");
+    // $("#student_dob").html("");
+    // $("#student_father").html("");
+    // $("#student_email").html("");
+    // $("#student_phone").html("");
     $("#student_registration_no").html("");
     $("#student_registration_reason").html("");
 
-    console.log({
-        id
-    });
+    $("#name_eng").html("");
+    $("#name_mm").html("");
+    $("#nrc").html("");
+    $("#father_name_mm").html("");
+    $("#father_name_eng").html("");
+    $("#race").html("");
+    $("#religion").html("");
+    $("#date_of_birth").html("");
+    $("#address").html("");
+    $("#current_address").html("");
+    $("#phone").html("");
+    $("#email").html("");
+    $("#gov_staff").html("");
+    $("#image").html("");
+    $("#registration_no").html("");
+
+    $("#university_name").html("");
+    $("#degree_name").html("");
+    $("#qualified_date").html("");
+    $("#roll_number").html("");
+    $("#certificate").html("");
+
+    $("#name").html("");
+    $("#position").html("");
+    $("#department").html("");
+    $("#organization").html("");
+    $("#company_name").html("");
+    $("#salary").html("");
+    $("#office_address").html("");
+
+    $("input[name = student_course_id]").val(id);
     $.ajax({
         type: "GET",
         url: BACKEND_URL + "/show_student_register/" + id,
         success: function (data) {
             var element = data.data;
-            console.log({
-                element
-            });
-            $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
-            $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
-            $("#student_dob").append(element.student_info.date_of_birth);
-            $("#student_father").append(element.student_info.father_name_eng);
-            $("#student_email").append(element.student_info.email);
-            $("#student_phone").append(element.student_info.phone);
+            // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
+            // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
+            // $("#student_dob").append(element.student_info.date_of_birth);
+            // $("#student_father").append(element.student_info.father_name_eng);
+            // $("#student_email").append(element.student_info.email);
+            // $("#student_phone").append(element.student_info.phone);
             $("#student_registration_no").append(element.student_info.registration_no);
             $("#student_registration_reason").append(element.reg_reason);
             $("input[name = student_register_id]").val(element.id);
+
+            element = element.student_info;
+            var education_history = element.student_education_histroy;
+            var job = element.student_job;
+            $("#id").append(element.id);
+            document.getElementById('image').src = PDF_URL + element.image;
+            $("#name_eng").append(element.name_eng);
+            $("#name_mm").append(element.name_mm);
+            $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
+            $("#father_name_mm").append(element.father_name_mm);
+            $("#father_name_eng").append(element.father_name_eng);
+            $("#race").append(element.race);
+            $("#religion").append(element.religion);
+            $("#date_of_birth").append(element.date_of_birth);
+            $("#address").append(element.address);
+            $("#current_address").append(element.current_address);
+            $("#phone").append(element.phone);
+            $("#email").append(element.email);
+            $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
+            $("#image").append(element.image);
+            $("#registration_no").append(element.registration_no);
+
+            $("#university_name").append(education_history.university_name);
+            $("#degree_name").append(education_history.degree_name);
+            $("#qualified_date").append(education_history.qualified_date);
+            $("#roll_number").append(education_history.roll_number);
+
+            let certificate = JSON.parse(education_history.certificate);
+            $.each(certificate,function(fileCount,fileName){
+                
+                    $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
+                
+            })
+
+            $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+            $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+
+            $("#name").append(job.name);
+            $("#position").append(job.position);
+            $("#department").append(job.department);
+            $("#organization").append(job.organization);
+            $("#company_name").append(job.company_name);
+            $("#salary").append(job.salary);
+            $("#office_address").append(job.office_address);
+            attached_file = element.student_education_histroy.certificate;
+
             // if (course_code == "da_1") {
             //     $("#student_registration_reason").append(item.reg_reason);
             //     $("input[name = student_register_id]").val(item.id);
