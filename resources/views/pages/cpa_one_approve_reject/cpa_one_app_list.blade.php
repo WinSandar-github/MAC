@@ -154,7 +154,7 @@
             scrollX: true,
             processing: true,
             //serverSide: true,
-            ajax: BACKEND_URL + "/filter_student_info/0/3",
+            ajax: BACKEND_URL + "/filter_student_info/0/3/0",
             columns: [
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
@@ -174,7 +174,7 @@
             scrollX: true,
             processing: true,
             //serverSide: true,
-            ajax: BACKEND_URL + "/filter_student_info/1/3",
+            ajax: BACKEND_URL + "/filter_student_info/1/3/0",
             columns: [
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
@@ -194,7 +194,7 @@
             scrollX: true,
             processing: true,
             //serverSide: true,
-            ajax: BACKEND_URL + "/filter_student_info/2/3",
+            ajax: BACKEND_URL + "/filter_student_info/2/3/0",
             columns: [
                {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;

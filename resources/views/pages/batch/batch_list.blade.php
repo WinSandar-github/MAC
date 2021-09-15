@@ -482,7 +482,6 @@
             }
         }
     });
-
     var table =  $('#tbl_batch').DataTable({
         scrollX: true,
         processing: true,
