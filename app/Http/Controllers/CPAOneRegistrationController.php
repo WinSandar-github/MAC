@@ -78,6 +78,8 @@ class CpaOneRegistrationController extends Controller
                 $no_crime=null;
             }
 
+           
+
 
        
         $cpa_one_reg = new CpaOneRegistration();

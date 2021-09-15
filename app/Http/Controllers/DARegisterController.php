@@ -404,9 +404,9 @@ class DARegisterController extends Controller
     {
         $emailCheck = StudentInfo::where('email', $request['email'])->first();
         $nrcCheck = StudentInfo::Where('nrc_state_region', $request['nrc_state_region'])
-                ->orWhere('nrc_township', $request['nrc_township'])
-                ->orWhere('nrc_citizen', $request['nrc_citizen'])
-                ->orWhere('nrc_number', $request['nrc_number'])->first();
+                ->Where('nrc_township', $request['nrc_township'])
+                ->Where('nrc_citizen', $request['nrc_citizen'])
+                ->Where('nrc_number', $request['nrc_number'])->first();
         //return $emailcheck;
         return response()->json([ 
             'email' => $emailCheck,
