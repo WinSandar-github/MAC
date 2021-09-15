@@ -9,10 +9,10 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <div class="col-md-12">   
-                   
+            <div class="col-md-12">
+
             </div>
-        </div>       
+        </div>
 
         <div class="row">
             <div class="col-md-12 text-center">
@@ -131,7 +131,8 @@
                                             <span id="office_address"></span>
                                         </div>
                                     </div>
-                                </div>
+                                  </div>
+                              </div>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -292,6 +293,14 @@
                                             <span id="student_status"></span>
                                         </div>
                                     </div>
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6">
+                                            <p class="ml-2" style="font-weight:bold">စာဖြေဌာန</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="exam_department"></span>
+                                        </div>
+                                    </div>
 
                                     <input type="hidden" name="student_id">
                                     
@@ -305,6 +314,8 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- statr -->
+
                     </div>
                 </form>
             </div>

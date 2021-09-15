@@ -9,10 +9,10 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <div class="col-md-12">   
-                   
+            <div class="col-md-12">
+
             </div>
-        </div>       
+        </div>
 
         <div class="row">
             <div class="col-md-12 text-center">
@@ -131,7 +131,28 @@
                                             <span id="office_address"></span>
                                         </div>
                                     </div>
+
+                                    <input type="hidden" name="student_course_id" >
+
+
+
+                                    <div class="row mt-5 justify-content-center">
+                                        <button type="submit"  id="reject" name="save" class="btn btn-danger"  onclick="rejectDATwoExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                        <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveDATwoExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+
+                                    </div>
+                                    <!-- Attached Certificate -->
+                                    <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+                                      <div class="modal-dialog modal-lg" role="document" >
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <embed id="attach_file"  width="700px" height="500px">
+                                            </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -292,7 +313,14 @@
                                             <span id="student_status"></span>
                                         </div>
                                     </div>
-
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6">
+                                            <p class="ml-2" style="font-weight:bold">စာဖြေဌာန</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="exam_department"></span>
+                                        </div>
+                                    </div>
                                     <input type="hidden" name="student_id">
                                     
                                     <div class="row mt-5 justify-content-center"> 
@@ -304,8 +332,10 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                </form>
+                </div>
+              </form>
             </div>
         </div>
     </div>
