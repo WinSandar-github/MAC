@@ -14,10 +14,10 @@
         <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
                 @csrf
-                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4 ">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
                                 <center>
                                     <img src="" id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
@@ -35,7 +35,7 @@
                                 </div>
                                 <!-- CPA Modal-->
                                 <div id="cpaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header"> 
                                             <h5 class="modal-title text-center">CPA</h5>
@@ -48,7 +48,7 @@
                                             <embed id="cpa"  width="100%" height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
 
                                 <!-- RA -->
@@ -62,7 +62,7 @@
                                 </div>
                                 <!--RA Modal --> 
                                 <div id="raModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
                                             <h5 class="modal-title text-center">RA</h5>
@@ -74,7 +74,7 @@
                                             <embed id="ra" width="100%" height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
 
                                 <!-- Foreign Degree -->
@@ -91,7 +91,7 @@
                                 </div>
                                 <!--Foreign Modal --> 
                                 <div id="fdModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
                                             <h5 class="modal-title text-center">Foreign Degree</h5>
@@ -103,7 +103,7 @@
                                             <embed id="foreign_degree"  src="" width="100%"  height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
                                 
 
@@ -121,13 +121,13 @@
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">CPA Certificate</p>
                                     </div>
-                                   <div class="col-md-6">
+                                    <div class="col-md-6">
                                         <button type="button" id="cpa_certi_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
                                 <!--CPA Certificate Modal --> 
                                 <div id="capp_certi_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
                                             <h5 class="modal-title text-center">CAPP Certificate</h5>
@@ -140,7 +140,7 @@
                                             <embed id="cpa_certificate"  width="100%"  height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
 
                                 <!--MPA Member Card-->
@@ -154,7 +154,7 @@
                                 </div>
                                 <!--MPA Member Card Modal --> 
                                 <div id="mpa_mem_card_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
                                             <h5 class="modal-title text-center">MPA Member Card</h5>
@@ -167,7 +167,7 @@
                                             <embed id="mpa_mem_card" width="100%" height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
 
                                 <!--NRC Card(Front) --> 
@@ -181,7 +181,7 @@
                                 </div>
                                 <!--NRC Card(Front) Modal --> 
                                 <div id="nrc_front_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
                                             <h5 class="modal-title text-center">NRC Card(Front)</h5>
@@ -194,7 +194,7 @@
                                             <embed id="nrc_front"  width="100%" height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
 
                                 <!--NRC Card(Back) --> 
@@ -208,7 +208,7 @@
                                 </div>
                                 <!--NRC Card(Back) Modal --> 
                                 <div id="nrc_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
                                             <h5 class="modal-title text-center">NRC Card(Back)</h5>
@@ -221,7 +221,7 @@
                                             <embed id="nrc_back" width="100%" height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
 
                                 <!--CPD Record Modal-->
@@ -233,9 +233,9 @@
                                         <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpd_record_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                 <!--CPD Record Modal-->
+                                    <!--CPD Record Modal-->
                                 <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
                                             <h5 class="modal-title text-center">CPD Record</h5>
@@ -247,10 +247,10 @@
                                         <embed id="cpd_record"  width="100%" height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
 
-                                 <!--Passport Image-->
+                                    <!--Passport Image-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Passport Image</p>
@@ -259,9 +259,9 @@
                                         <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#passport_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                 <!--Passport Image Modal-->
+                                    <!--Passport Image Modal-->
                                 <div id="passport_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
                                             <h5 class="modal-title text-center">Passport Image</h5>
@@ -273,7 +273,7 @@
                                         <embed id="passport_image"  width="100%" height="500px">
                                         </div>
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
@@ -283,11 +283,14 @@
                                     <div class="col-md-6">
                                         <span id="status"></span>
                                     </div>
-                                </div>
-                                <!-- End CPA_FF Info -->
-
-                                <!-- Start Education -->
-                                <h5 class="border-bottom pb-2 mt-5" style="font-weight:bold">Education</h5>
+                                </div>          
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">Education</h5>
+                            </div>
+                            <div class="card-body pt-0">
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Universtry Name</p>
@@ -328,13 +331,15 @@
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#attached_Modal"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
-                                <!-- End Education -->
-
-                                
                             </div>
-                            
-                            <div class="col-md-8">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Basic Info</h5>
+                            </div>
+                            <div class="card-body pt-0">
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
@@ -432,11 +437,13 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
-
-                                <!-- Start Job -->
-
-                                <h5 class="border-bottom pb-2 mt-5" style="font-weight:bold">Job</h5>
-                        
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">Job</h5>
+                            </div>
+                            <div class="card-body pt-0">
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Job Name</p>
@@ -518,7 +525,7 @@
                                   </div>
                                 </div>
                             </div>
-                        </div>                   
+                        </div>
                     </div>
                 </div>
             </form>

@@ -43,7 +43,7 @@
                                     <div class="card-body">
                                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                             <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                <table id="tbl_papp_pending_list"class="table table-hover text-nowrap " >
+                                                <table id="tbl_papp_pending_list"class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
