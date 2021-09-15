@@ -14,11 +14,11 @@
         <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
                 @csrf
-                 <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-4 ">
-                                <center>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body">
+                            <center>
                                     <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->
@@ -382,13 +382,16 @@
                                     <div class="col-md-6">
                                         <span id="status"></span>
                                     </div>
-                                </div>
-                                <!-- End Papp Info -->
-
+                                </div>             
                             </div>
-                            
-                            <div class="col-md-8">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Basic Info</h5>
+                            </div>
+                            <div class="card-body pt-0">
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
@@ -486,10 +489,14 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
-
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">Job</h5>
+                            </div>
+                            <div class="card-body pt-0">
                                 <!-- Start Job -->
-
-                                <h5 class="border-bottom pb-2 mt-5" style="font-weight:bold">Job</h5>
                         
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
@@ -547,10 +554,14 @@
                                         <span id="office_address"></span>
                                     </div>
                                 </div>
-                                <!-- End Job -->
-
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">Education</h5>
+                            </div>
+                            <div class="card-body pt-0">
                                 <!-- Start Education -->
-                                <h5 class="border-bottom pb-2 mt-5" style="font-weight:bold">Education</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Universtry Name</p>
@@ -620,11 +631,11 @@
                                     <button type="submit" name="save" class="btn btn-danger"  onclick="rejectPAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                     <button type="submit" name="save" class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>                                    
                                 </div>
-                                
                             </div>
-                        </div>                   
+                        </div>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>
