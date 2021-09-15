@@ -178,7 +178,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-             
+                $student_register->private_school_name=$request->private_school_name;
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;

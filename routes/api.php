@@ -283,8 +283,7 @@ Route::get('/generate_sr_no/{batch_id}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
 Route::get('/generate_app_sr_no/{batch_id}','ApiController@generateAppSrNo');
 
+
+
 //show description
 Route::get('showDescription/{membership_name}','MembershipController@showDescription');
-
-// Exam Department
-Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
