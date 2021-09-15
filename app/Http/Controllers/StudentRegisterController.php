@@ -22,8 +22,8 @@ class StudentRegisterController extends Controller
 
     public function store(Request $request)
     {
-        
-      
+
+
         $date = date('Y-m-d');
         if($request->date){
             $date = $request->date;
@@ -32,7 +32,7 @@ class StudentRegisterController extends Controller
         }
         $invoice_date = date('Y-m-d');
 
-        
+
 
         switch ($request->type) {
             case 0:
@@ -55,12 +55,12 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
-                
+
                 if($request->reg_reason){
                     $student_register->reg_reason = implode(",",$registration_reason);
                     // $student_register->reg_reason = $request->reg_reason;
                 }
-                
+
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
@@ -84,7 +84,7 @@ class StudentRegisterController extends Controller
 		$student_register->type = $request->type;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-		
+
 		// $student_register->mentor_id = $request->mentor_id;
                 // $student_register->current_check_service_id = $request->current_check_service_id;
                 // $student_register->current_check_services_other = $request->current_check_services_other;
@@ -162,7 +162,7 @@ class StudentRegisterController extends Controller
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;;
                 $student_register->invoice_date = $invoice_date;
-                $student_register->type = $request->type;                
+                $student_register->type = $request->type;
                 $student_register->academic_year=$request->academic_year;
                 $student_register->batch_no = $request->batch_no_mac;
                 $student_register->part_no = $request->part_no_mac;
@@ -178,13 +178,13 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-             
+
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
         }
-            
-        
+
+
     }
 
     public function show($id)
@@ -193,7 +193,7 @@ class StudentRegisterController extends Controller
         return response()->json([
             'data' => $student_register
         ],200);
-        
+
     }
     public function showStudentRegister($id)
     {
@@ -201,7 +201,7 @@ class StudentRegisterController extends Controller
         return response()->json([
             'data' => $student_register
         ],200);
-        
+
     }
 
 
@@ -235,7 +235,7 @@ class StudentRegisterController extends Controller
     }
 
     // public function FilterRegistration(Request $request){
-    //     $student_register = StudentRegister::with('student_info','course');                            
+    //     $student_register = StudentRegister::with('student_info','course');
     //     if($request->name!="")
     //     {
     //         $student_register = $student_register->join('student_infos', 'student_register.student_info_id', '=', 'student_infos.id')
@@ -278,7 +278,7 @@ class StudentRegisterController extends Controller
             })
             ->addColumn('phone', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->phone, 50, '...') : '';
-            
+
             })
             ->addColumn('status', function ($student) {
                 if($student->status==0){
@@ -302,7 +302,7 @@ class StudentRegisterController extends Controller
 
     public function updateMentor(Request $request)
     {
-         
+
         if ($request->hasfile('recommend_file')) {
             $file = $request->file('recommend_file');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -314,14 +314,14 @@ class StudentRegisterController extends Controller
         }
 
         $student_register =  StudentRegister::where('student_info_id',$request->student_id)->latest()->first();
-            
+
         $student_register->mentor_id = $request->mentor_id;
         $student_register->current_check_service_id = $request->current_check_service_id;
         $student_register->current_check_services_other = $request->current_check_services_other;
         $student_register->recommend_file = $recommend_file;
         $student_register->save();
 
-         
+
         return response()->json([
             'message' => "Successfully"
         ]);
@@ -341,20 +341,20 @@ class StudentRegisterController extends Controller
         $student_info = StudentInfo::find($request->student_id);
         $student_info->approve_reject_status = 1;
         if($request->direct_degree)
-        { 
-            $student_info->direct_degree                =   $request->direct_degree; 
+        {
+            $student_info->direct_degree                =   $request->direct_degree;
             $student_info->degree_date                  =   date("Y-m-d",strtotime($request->degree_date));
             $student_info->degree_certificate_image     =   $deg_certi_img;
             $student_info->degree_rank                  =   $request->degree_rank;
         }
         $student_info->save();
-         
+
         $student_course = new StudentCourseReg();
-        $student_course->student_info_id = $student_info->id;   
+        $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
-        $student_course->approve_reject_status = 1; 
+        $student_course->approve_reject_status = 1;
         $student_course->save();
 
         switch ($request->type) {
@@ -378,7 +378,7 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
-                
+
                 if($request->reg_reason){
                     $student_register->reg_reason = implode(",",$registration_reason);
                     // $student_register->reg_reason = $request->reg_reason;
@@ -435,7 +435,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-              
+
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
@@ -474,10 +474,10 @@ class StudentRegisterController extends Controller
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;;
                 $student_register->invoice_date = $invoice_date;
-                $student_register->type = $request->type;     
+                $student_register->type = $request->type;
                 $student_register->batch_no = $request->batch_no_mac;
                 $student_register->part_no = $request->part_no_mac;
-                $student_register->personal_no = $request->personal_no_mac;           
+                $student_register->personal_no = $request->personal_no_mac;
                 $student_register->academic_year=$request->academic_year;
                 $student_register->direct_access_no=$request->direct_access_no;
                 $student_register->entry_success_no=$request->entry_success_no;
@@ -490,25 +490,25 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-             
+
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
         }
-        
+
     }
 
     public function getAttendesStudent(Request $request)
     {
-      
+
         $course = Course::where('code',$request->course_code)->first();
-       
+
         $student_infos = StudentRegister::with('student_info','course')
                         ->where('form_type',$course->id)
                         ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
-        
+
         return DataTables::of($student_infos)
-        
+
         ->addColumn('nrc', function ($infos){
             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
             return $nrc_result;
@@ -518,35 +518,35 @@ class StudentRegisterController extends Controller
         //     'data' => $student_infos
         // ]);
 
-        
+
     }
     public function ‌approveExamList(Request $request)
     {
-        
-    
-        $course = Course::where('code', $request->course_code)->first();
-        
 
-       
+
+        $course = Course::where('code', $request->course_code)->first();
+
+
+
         $student_infos = ExamRegister::with('student_info','course')
                         ->where('form_type',$course->id)
                         ->where('status',1)
                         ->orWhere('grade',$request->grade)
                         ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
-         
-        
+
+
         return DataTables::of($student_infos)
         ->addColumn('nrc', function ($infos){
             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
             return $nrc_result;
         })
         ->make(true);
-        
+
         // return response()->json([
         //     'data' => $student_infos
         // ]);
 
-        
+
     }
 
     public function RegChartFilter(Request $request)
@@ -554,8 +554,8 @@ class StudentRegisterController extends Controller
         $student=StudentRegister::where('status',1)
         ->whereYear('updated_at',$request->year);
         $student=$student->get();
-        
-        return response()->json([ 
+
+        return response()->json([
             'data' => $student
         ],200);
     }
