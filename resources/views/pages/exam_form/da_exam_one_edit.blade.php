@@ -8,11 +8,6 @@
 
     <div class="content">
         @include('flash-message')
-        <div class="row">
-            <div class="col-md-12">
-
-            </div>
-        </div>
 
         <div class="row">
             <div class="col-md-12 text-center">
@@ -24,6 +19,7 @@
                                 <div class="card-body">
                                     <center>
                                         <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+                                        <br/><span class='text-info'>Profile Picture</span>
                                     </center>
                                     <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -131,8 +127,7 @@
                                             <span id="office_address"></span>
                                         </div>
                                     </div>
-                                  </div>
-                              </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-8">
@@ -239,7 +234,7 @@
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6">
-                                            <p class="ml-2" style="font-weight:bold">Government Staff</p>
+                                            <p class="ml-2" style="font-weight:bold">နိုင်ငံ့ဝန်ထမ်း</p>
                                         </div>
                                         <div class="col-md-6">
                                             <span id="gov_staff"></span>
@@ -314,9 +309,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- statr -->
-
                     </div>
+                    
                 </form>
             </div>
         </div>
