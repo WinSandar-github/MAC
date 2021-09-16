@@ -120,6 +120,18 @@ class CpaTraAddmissionDirectController extends Controller
             $certificate = null;
         }
 
+        if ($request->hasfile('da_pass_certificate')) {
+            $file = $request->file('da_pass_certificate');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_one/',$name);
+            $da_pass_certificate = '/storage/cpa_one/'.$name;
+        }
+        else{
+            $da_pass_certificate = null;
+        }
+
+        
+
         if($request->hasfile('recommend_letter'))
         {
             
@@ -171,7 +183,9 @@ class CpaTraAddmissionDirectController extends Controller
 ////multiple university
        
 
-        $date_of_birth = date('Y-m-d');
+        $date_of_birth = $request->date_of_birth;
+        $da_pass_date  = $request->da_pass_date;
+        $degree_date = $request->degree_date;
         $date = date('Y-m-d');
         $qualified_date = date('Y-m-d');
         $course_date = date('Y-m-d');
@@ -205,8 +219,11 @@ class CpaTraAddmissionDirectController extends Controller
 
         $student_info->course_type_id   = 2 ;
         // CPA
+        $student_info->da_pass_date                 =   $da_pass_date;
+        $student_info->da_pass_roll_number          =   $request->da_pass_roll_number;
+        $student_info->da_pass_certificate          =   $da_pass_certificate;
         $student_info->direct_degree                =   $request->direct_degree; 
-        $student_info->degree_date                  =   date("Y-m-d",strtotime($request->degree_date));
+        $student_info->degree_date                  =   $degree_date;
         $student_info->degree_certificate_image     =   $deg_certi_img;
         $student_info->degree_rank                  =   $request->degree_rank;
         $student_info->verify_code      =   $request->verify_code;
@@ -245,6 +262,7 @@ class CpaTraAddmissionDirectController extends Controller
         $student_course->date            = $course_date;
         $student_course->status          = 1;
         $student_course->approve_reject_status = 0;
+        $student_course->type           = $request->type;
         if($request->qt_entry){
             $student_course->qt_entry      = $request->qt_entry;
         }

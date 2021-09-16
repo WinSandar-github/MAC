@@ -185,7 +185,7 @@ function loadCPAStudentDataForExamCard() {
             var exam_datas = data.data;
             exam_datas.forEach(function (exam_data) {
             console.log(exam_data.student_info.image);
-            document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
+            // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
             $("#roll_no").append(exam_data.id);
             $("#name").append(exam_data.student_info.name_mm);
             $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
@@ -338,7 +338,7 @@ function loadCPAExamData() {
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
-                document.getElementById('image').src = PDF_URL + element.image;
+                // document.getElementById('image').src = PDF_URL + element.image;
                 $("#name_eng").append(element.name_eng);
                 $("#name_mm").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
@@ -645,7 +645,7 @@ function getCPAModuleStd() {
                 var education_history = std.student_education_histroy;
                 var job = std.student_job;
                 $("#id").append(std.id);
-                document.getElementById('image').src = PDF_URL + std.image;
+                // document.getElementById('image').src = PDF_URL + std.image;
                 $("#name_eng").append(std.name_eng);
                 $("#name_mm").append(std.name_mm);
                 $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
