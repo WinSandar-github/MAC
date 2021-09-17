@@ -31,7 +31,6 @@ function getExam(course_code) {
             });
             var da_data = data.data;
             da_data.forEach(function (element) {
-// <<<<<<< HEAD
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -297,7 +296,7 @@ function loadDAExamData() {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(">>>",exam_data);
+            console.log("exam >>>",exam_data);
             exam_data.forEach(function (element) {
                 if (element.exam_type_id == 0) {
                     exam_type_id = "SELF STUDY";
@@ -334,6 +333,8 @@ function loadDAExamData() {
                     document.getElementById("reject").style.display = 'none';
                 }
 
+                $("#exam_department").append(element.exam_department.name);
+
                 element = element.student_info;
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
@@ -362,9 +363,9 @@ function loadDAExamData() {
 
                 let certificate = JSON.parse(education_history.certificate);
                 $.each(certificate,function(fileCount,fileName){
-                    
-                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
-                    
+
+                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
                 })
 
                 $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
@@ -378,7 +379,7 @@ function loadDAExamData() {
                 $("#salary").append(job.salary);
                 $("#office_address").append(job.office_address);
                 attached_file = element.student_education_histroy.certificate;
-                $("#exam_department").append(element.exam_department.name);
+
             })
         }
     })
@@ -805,7 +806,7 @@ function getModuleStd() {
                     }
 
                 }, 2000);
-                 
+
                 // $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
@@ -842,9 +843,9 @@ function getModuleStd() {
 
                 let certificate = JSON.parse(education_history.certificate);
                 $.each(certificate,function(fileCount,fileName){
-                    
-                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
-                    
+
+                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
                 })
 
                 $(".nrc_front").append(`<a href='${PDF_URL+std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
