@@ -159,12 +159,21 @@
     //     }
     // }
     $(document).ready(function () {
+   
 
         $('#tbl_da_pending_list').DataTable({
             scrollX: true,
             processing: true,
-            // serverSide: true,
-            ajax: BACKEND_URL + "/filter_student_info/0/1",
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_student_info",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 0,
+                    d.course_code = 'da_1'
+             
+            }
+            },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
@@ -183,8 +192,16 @@
         $('#tbl_da_approved_list').DataTable({
             scrollX: true,
             processing: true,
-            // serverSide: true,
-            ajax: BACKEND_URL + "/filter_student_info/1/1",
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_student_info",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 1  ,
+                    d.course_code = 'da_1'
+                }
+             
+            },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
@@ -203,8 +220,16 @@
         $('#tbl_da_rejected_list').DataTable({
             scrollX: true,
             processing: true,
-            // serverSide: true,
-            ajax: BACKEND_URL + "/filter_student_info/2/1",
+            serverSide: true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_student_info",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 2,
+                    d.course_code = 'da_1'
+                }
+             
+            },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;

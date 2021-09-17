@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class StudentCourseReg extends Model
 {
    
-    protected $fillable = ['student_info_id','batch_id','status','date','qt_entry'];
+    protected $fillable = ['student_info_id','type','batch_id','status','date','qt_entry'];
     
     public function batch(){
         return $this->belongsTo(Batch::class)->with('course');

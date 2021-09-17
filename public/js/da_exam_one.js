@@ -31,7 +31,6 @@ function getExam(course_code) {
             });
             var da_data = data.data;
             da_data.forEach(function (element) {
-// <<<<<<< HEAD
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -260,12 +259,6 @@ function loadDAExamData() {
     $("#student_status").html("");
     $("#exam_department").html("");
 
-    $("#university_name").html("");
-    $("#degree_name").html("");
-    $("#qualified_date").html("");
-    $("#roll_number").html("");
-    $("#certificate").html("");
-
     $("#name_eng").html("");
     $("#name_mm").html("");
     $("#nrc").html("");
@@ -282,6 +275,20 @@ function loadDAExamData() {
     $("#image").html("");
     $("#registration_no").html("");
 
+    $("#university_name").html("");
+    $("#degree_name").html("");
+    $("#qualified_date").html("");
+    $("#roll_number").html("");
+    $("#certificate").html("");
+
+    $("#name").html("");
+    $("#position").html("");
+    $("#department").html("");
+    $("#organization").html("");
+    $("#company_name").html("");
+    $("#salary").html("");
+    $("#office_address").html("");
+
     $("input[name = student_id]").val(id);
 
     $.ajax({
@@ -289,7 +296,7 @@ function loadDAExamData() {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(">>>",exam_data);
+            console.log("exam >>>",exam_data);
             exam_data.forEach(function (element) {
                 if (element.exam_type_id == 0) {
                     exam_type_id = "SELF STUDY";
@@ -318,27 +325,6 @@ function loadDAExamData() {
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
 
-                $("#name_eng").append(element.student_info.name_eng);
-                $("#name_mm").append(element.student_info.name_mm);
-                $("#nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
-                $("#father_name_mm").append(element.student_info.father_name_mm);
-                $("#father_name_eng").append(element.student_info.father_name_eng);
-                $("#race").append(element.student_info.race);
-                $("#religion").append(element.student_info.religion);
-                $("#date_of_birth").append(element.student_info.date_of_birth);
-                $("#address").append(element.student_info.address);
-                $("#current_address").append(element.student_info.current_address);
-                $("#phone").append(element.student_info.phone);
-                $("#email").append(element.student_info.email);
-                $("#gov_staff").append(element.student_info.gov_staff);
-                $("#image").attr('src',PDF_URL+element.student_info.image);
-                $("#registration_no").append(element.student_info.registration_no);
-
-                $("#university_name").append(element.student_info.student_education_histroy.university_name);
-                $("#degree_name").append(element.student_info.student_education_histroy.degree_name);
-                $("#qualified_date").append(element.student_info.student_education_histroy.qualified_date);
-                $("#roll_number").append(element.student_info.student_education_histroy.roll_number);
-
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -346,7 +332,54 @@ function loadDAExamData() {
                     document.getElementById("approve").style.display = 'none';
                     document.getElementById("reject").style.display = 'none';
                 }
+
                 $("#exam_department").append(element.exam_department.name);
+
+                element = element.student_info;
+                var education_history = element.student_education_histroy;
+                var job = element.student_job;
+                $("#id").append(element.id);
+                // document.getElementById('image').src = PDF_URL + element.image;
+                $("#name_eng").append(element.name_eng);
+                $("#name_mm").append(element.name_mm);
+                $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
+                $("#father_name_mm").append(element.father_name_mm);
+                $("#father_name_eng").append(element.father_name_eng);
+                $("#race").append(element.race);
+                $("#religion").append(element.religion);
+                $("#date_of_birth").append(element.date_of_birth);
+                $("#address").append(element.address);
+                $("#current_address").append(element.current_address);
+                $("#phone").append(element.phone);
+                $("#email").append(element.email);
+                $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
+                $("#image").append(element.image);
+                $("#registration_no").append(element.registration_no);
+
+                $("#university_name").append(education_history.university_name);
+                $("#degree_name").append(education_history.degree_name);
+                $("#qualified_date").append(education_history.qualified_date);
+                $("#roll_number").append(education_history.roll_number);
+
+                let certificate = JSON.parse(education_history.certificate);
+                $.each(certificate,function(fileCount,fileName){
+
+                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
+                })
+
+                $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+
+                $("#name").append(job.name);
+                $("#position").append(job.position);
+                $("#department").append(job.department);
+                $("#organization").append(job.organization);
+                $("#company_name").append(job.company_name);
+                $("#salary").append(job.salary);
+                $("#office_address").append(job.office_address);
+                attached_file = element.student_education_histroy.certificate;
+
             })
         }
     })
@@ -368,7 +401,7 @@ function loadStudentDataForExamCard() {
         success: function (data) {
             var exam_datas = data.data;
             exam_datas.forEach(function (exam_data) {
-            document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
+            // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
             $("#roll_no").append(exam_data.id);
             $("#name").append(exam_data.student_info.name_mm);
             $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
@@ -683,6 +716,37 @@ function getModuleStd() {
     console.log('exam',id);
     var module_type = localStorage.getItem("is_full_module");
     // $("input[name = batch_id]").val(id);
+
+    $("#name_eng").html("");
+    $("#name_mm").html("");
+    $("#nrc").html("");
+    $("#father_name_mm").html("");
+    $("#father_name_eng").html("");
+    $("#race").html("");
+    $("#religion").html("");
+    $("#date_of_birth").html("");
+    $("#address").html("");
+    $("#current_address").html("");
+    $("#phone").html("");
+    $("#email").html("");
+    $("#gov_staff").html("");
+    $("#image").html("");
+    $("#registration_no").html("");
+
+    $("#university_name").html("");
+    $("#degree_name").html("");
+    $("#qualified_date").html("");
+    $("#roll_number").html("");
+    $("#certificate").html("");
+
+    $("#name").html("");
+    $("#position").html("");
+    $("#department").html("");
+    $("#organization").html("");
+    $("#company_name").html("");
+    $("#salary").html("");
+    $("#office_address").html("");
+
     $.ajax({
         url: BACKEND_URL + "/std/" + id,
         type: 'get',
@@ -743,13 +807,58 @@ function getModuleStd() {
 
                 }, 2000);
 
-                $("#std_name").append(std.name_eng);
+                // $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
                 $("#exam_type").append(exam_type_id);
                 // $("#student_grade").append(element.grade);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
                 $("#is_full_module").append(is_full_module);
+
+                // element = element.student_info;
+                var education_history = std.student_education_histroy;
+                var job = std.student_job;
+                $("#id").append(std.id);
+                // document.getElementById('image').src = PDF_URL + std.image;
+                $("#name_eng").append(std.name_eng);
+                $("#name_mm").append(std.name_mm);
+                $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
+                $("#father_name_mm").append(std.father_name_mm);
+                $("#father_name_eng").append(std.father_name_eng);
+                $("#race").append(std.race);
+                $("#religion").append(std.religion);
+                $("#date_of_birth").append(std.date_of_birth);
+                $("#address").append(std.address);
+                $("#current_address").append(std.current_address);
+                $("#phone").append(std.phone);
+                $("#email").append(std.email);
+                $("#gov_staff").append(std.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
+                $("#image").append(std.image);
+                $("#registration_no").append(std.registration_no);
+
+                $("#university_name").append(education_history.university_name);
+                $("#degree_name").append(education_history.degree_name);
+                $("#qualified_date").append(education_history.qualified_date);
+                $("#roll_number").append(education_history.roll_number);
+
+                let certificate = JSON.parse(education_history.certificate);
+                $.each(certificate,function(fileCount,fileName){
+
+                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
+                })
+
+                $(".nrc_front").append(`<a href='${PDF_URL+std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL+std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+
+                $("#name").append(job.name);
+                $("#position").append(job.position);
+                $("#department").append(job.department);
+                $("#organization").append(job.organization);
+                $("#company_name").append(job.company_name);
+                $("#salary").append(job.salary);
+                $("#office_address").append(job.office_address);
+                attached_file = std.student_education_histroy.certificate;
             });
 
             $.ajax({

@@ -167,7 +167,7 @@ function loadData() {
                 $("#current_address").append(element.current_address);
                 $("#phone").append(element.phone);
                 $("#email").append(element.email);
-                $("#gov_staff").append(element.gov_staff);
+                $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
                 $("#image").append(element.image);
                 $("#registration_no").append(element.registration_no);
 
@@ -182,7 +182,9 @@ function loadData() {
                      $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
                    
                 })
-               
+
+                $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);
