@@ -208,7 +208,7 @@ function loadCPAFFData(){
                 $("#current_address").append(element.student_info.current_address);
                 $("#phone").append(element.student_info.phone);
                 $("#email").append(element.student_info.email);
-                $("#gov_staff").append(element.student_info.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
+                $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#image").append(element.student_info.image);
                 $("#registration_no").append(element.student_info.registration_no);
 
