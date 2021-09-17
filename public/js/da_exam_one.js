@@ -339,7 +339,7 @@ function loadDAExamData() {
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
-                // document.getElementById('image').src = PDF_URL + element.image;
+                document.getElementById('image').src = PDF_URL + element.image;
                 $("#name_eng").append(element.name_eng);
                 $("#name_mm").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
@@ -353,7 +353,7 @@ function loadDAExamData() {
                 $("#phone").append(element.phone);
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
-                $("#image").append(element.image);
+                // $("#image").append(element.image);
                 $("#registration_no").append(element.registration_no);
 
                 $("#university_name").append(education_history.university_name);
@@ -819,7 +819,7 @@ function getModuleStd() {
                 var education_history = std.student_education_histroy;
                 var job = std.student_job;
                 $("#id").append(std.id);
-                // document.getElementById('image').src = PDF_URL + std.image;
+                document.getElementById('image').src = PDF_URL + std.image;
                 $("#name_eng").append(std.name_eng);
                 $("#name_mm").append(std.name_mm);
                 $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
@@ -833,7 +833,7 @@ function getModuleStd() {
                 $("#phone").append(std.phone);
                 $("#email").append(std.email);
                 $("#gov_staff").append(std.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
-                $("#image").append(std.image);
+                // $("#image").append(std.image);
                 $("#registration_no").append(std.registration_no);
 
                 $("#university_name").append(education_history.university_name);
