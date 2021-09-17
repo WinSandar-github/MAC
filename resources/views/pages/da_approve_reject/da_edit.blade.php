@@ -249,6 +249,14 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Register Date</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="date"></span>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 

@@ -170,6 +170,7 @@ function loadData() {
                 $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
                 $("#image").append(element.image);
                 $("#registration_no").append(element.registration_no);
+                $("#date").append(element.date);
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
