@@ -48,8 +48,8 @@ class MembershipController extends Controller
      
         $membership = new Membership();
         $membership->membership_name          = $request->membership_name;
-        $membership->requirement_id           = $request->requirement_id;
-        $membership->description_id           = $request->description_id;
+        $membership->requirement              = $request->requirement;
+        $membership->description              = $request->description;
         $membership->form_fee                 = $request->form_fee;
         $membership->registration_fee         = $request->registration_fee;
         $membership->yearly_fee               = $request->yearly_fee;
@@ -76,6 +76,8 @@ class MembershipController extends Controller
         ],200);
     }
 
+    
+
     /**
      * Update the specified resource in storage.
      *
@@ -97,8 +99,8 @@ class MembershipController extends Controller
         // }
         $membership = Membership::find($id);
         $membership->membership_name          = $request->membership_name;
-        $membership->requirement_id           = $request->requirement_id;
-         $membership->description_id           = $request->description_id;
+        $membership->requirement         = $request->requirement;
+         $membership->description          = $request->description;
         $membership->form_fee                 = $request->form_fee;
         $membership->registration_fee         = $request->registration_fee;
         $membership->yearly_fee               = $request->yearly_fee;
@@ -139,37 +141,47 @@ class MembershipController extends Controller
             return DataTables::of($memberships)
                 ->addColumn('action', function ($membership) {
                     return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-xs' onclick='showMembershipInfo($membership->id)'>
+                                <a  href='membership_edit/$membership->id' class='btn btn-primary btn-xs member_edit' >
                                     <li class='fa fa-edit fa-sm'></li>
-                                </button>
+                                </a>
                                  <button type='button' class='btn btn-danger btn-xs' onclick='deleteMembershipInfo(\"$membership->name\", $membership->id)'>
                                     <li class='fa fa-trash fa-sm'></li>
                                 </button>
                             </div>";
                 })
-                ->addColumn('requirements', function ($membership) {
+                  ->addColumn('requirements', function ($membership) {
                    
-                    // $requirements = Requirement::whereIn('id', json_decode($membership->requirement_id))->get('requirement_name');
-                    $requirements = Requirement::whereIn('id',explode(',', $membership->description_id))->get('requirement_name');
-
-                    $result = $requirements->map(function ($val) {
-                        return $val->requirement_name ? "<small class='d-block '> - " . Str::limit($val->requirement_name, 30, '...') . "</small>" : '';
-                    });
-
-                    return str_replace(',', '', implode(',', $result->toArray()));
+                    return "<div>$membership->requirement</div>";
                 })
                 ->addColumn('descriptions', function ($membership) {
-                    // $descriptions = Description::whereIn('id',json_decode($membership->description_id))->get('description_name');
-                    $descriptions = Description::whereIn('id',explode(',', $membership->description_id))->get('description_name');
-                    
-                    $result = $descriptions->map(function ($val) {
-                        return $val->description_name ? "<small class='d-block '> - " . Str::limit($val->description_name, 30, '...') . "</small>" : '';
-                    });
-
-                    return str_replace(',', '', implode(',', $result->toArray()));
+                   
+                    return "<div>$membership->description</div>";
                 })
-                ->rawColumns(['action', 'requirements','descriptions'])
+                ->rawColumns(['action','requirements','descriptions'])
                 ->make(true);
+                // ->addColumn('requirements', function ($membership) {
+                   
+                //     // $requirements = Requirement::whereIn('id', json_decode($membership->requirement_id))->get('requirement_name');
+                //     $requirements = Requirement::whereIn('id',explode(',', $membership->description_id))->get('requirement_name');
+
+                //     $result = $requirements->map(function ($val) {
+                //         return $val->requirement_name ? "<small class='d-block '> - " . Str::limit($val->requirement_name, 30, '...') . "</small>" : '';
+                //     });
+
+                //     return str_replace(',', '', implode(',', $result->toArray()));
+                // })
+                // ->addColumn('descriptions', function ($membership) {
+                //     // $descriptions = Description::whereIn('id',json_decode($membership->description_id))->get('description_name');
+                //     $descriptions = Description::whereIn('id',explode(',', $membership->description_id))->get('description_name');
+                    
+                //     $result = $descriptions->map(function ($val) {
+                //         return $val->description_name ? "<small class='d-block '> - " . Str::limit($val->description_name, 30, '...') . "</small>" : '';
+                //     });
+
+                //     return str_replace(',', '', implode(',', $result->toArray()));
+                // })
+                // ->rawColumns(['action', 'requirements','descriptions'])
+                // ->make(true);
         }else{
             $courses = Course::where('name', 'like', '%' . $course_name. '%')->with('batches')->get();
             return response()->json([
@@ -208,4 +220,19 @@ class MembershipController extends Controller
         ->make(true);
         
     }
+
+
+    public function membership_edit($id)
+    {
+         
+        
+         return view('pages.membership_edit');
+    }
+
+
+    
+     
+
+
+    
 }

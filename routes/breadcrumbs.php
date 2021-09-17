@@ -449,6 +449,11 @@ Breadcrumbs::for('Membership', function ($trail) {
     $trail->push('Membership', route('page.index', 'membership_list'));
 });
 
+Breadcrumbs::for('Membership Edit', function ($trail) {
+    $trail->parent('Membership');
+    $trail->push('Membership Edit', route('page.index', 'membership_edit'));
+});
+
 //Mentor
 Breadcrumbs::for('mentor_list', function ($trail) {
     $trail->push('Mentors', route('page.index', 'mentor_list'));

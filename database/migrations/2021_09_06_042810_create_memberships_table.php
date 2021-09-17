@@ -16,13 +16,15 @@ class CreateMembershipsTable extends Migration
         Schema::create('memberships', function (Blueprint $table) {
             $table->id();
             $table->string('membership_name');
-            $table->string('requirement_id');
-            $table->string('description_id');
+            $table->text('requirement');
+            $table->text('description')->nullable();
             $table->bigInteger('form_fee')->nullable();
             $table->bigInteger('registration_fee')->nullable();
             $table->bigInteger('yearly_fee')->nullable();
             $table->bigInteger('renew_fee')->nullable();
             $table->bigInteger('late_fee')->nullable();
+            $table->bigInteger('late_feb_fee')->nullable();
+            $table->bigInteger('expire_fee')->nullable();
             $table->timestamps();
         });
     }

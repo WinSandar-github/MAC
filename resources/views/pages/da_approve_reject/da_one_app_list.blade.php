@@ -11,15 +11,17 @@
         </div>
     </div>   
     <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-12 ">
             <form action="" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="title">{{ __('DA One Application List') }}</h5>
+                                <h5 class="title text-center">{{ __('DA One Application List') }}</h5>
+                                <!-- <a href="#" onclick="generateSrNo('da_1')"  class="float-right btn btn-sm btn-success">တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်</a> -->
                             </div>
+                            
                         </div>
                         <!-- <div class="row">
                             <div class="col-md-6">
@@ -240,6 +242,8 @@
                     .responsive.recalc();
             });
         });
+
+       
 
     });
 </script>
