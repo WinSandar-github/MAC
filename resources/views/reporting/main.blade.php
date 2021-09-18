@@ -32,16 +32,20 @@
     <link rel="stylesheet" href="{{ asset('css/custom_table.css') }}">
 </head>
 
-<body class="{{ $class }}">
+<body class=" ">
 
-@auth()
-    @include('layouts.page_templates.auth')
-    {{-- @include('layouts.navbars.fixed-plugin') --}}
-@endauth
+ 
+<div class="main-wrapper">
 
-@guest
-    @include('layouts.page_templates.guest')
-@endguest
+ <div class="section"> <!-- section-padding mt-n10 -->
+    <div class="container mt-5"> <!-- container-fluid p-4 -->
+        @yield('content')
+    </div>
+</div>
+
+</div>
+   
+ 
 
 <!-- Sharrre libray -->
 <script src="{{ asset('plugins/jquery/jquery.js') }}"></script>
@@ -82,8 +86,6 @@
 <script src="{{ asset('js/cpa_exam_one.js')}}"></script>
 <script src="{{ asset('js/mentor.js') }}"></script>
 <script src="{{ asset('js/chart.js') }}"></script>
-<script src="{{ asset('js/report.js') }}"></script>
-
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('js/select2/select2.min.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>

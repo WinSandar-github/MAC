@@ -167,9 +167,10 @@ function loadData() {
                 $("#current_address").append(element.current_address);
                 $("#phone").append(element.phone);
                 $("#email").append(element.email);
-                $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
+                $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#image").append(element.image);
                 $("#registration_no").append(element.registration_no);
+                $("#date").append(element.date);
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);

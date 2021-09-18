@@ -104,8 +104,14 @@ class PageController extends Controller
         else if (view()->exists("pages.qualified_test.{$page}")) {
             return view("pages.qualified_test.{$page}");
         }
+         
 
         return abort(404);
         
     }
+
+   
 }
+
+
+
