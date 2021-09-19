@@ -74,13 +74,6 @@ class ExamRegisterController extends Controller
         $exam->form_type = $request->form_type;
         $exam->exam_department = $request->exam_department;
         $exam->status = 0;
-        $exam->exam_reg_date = $request->exam_reg_date;
-        $last_ans_module = "";
-        foreach($request->last_ans_module as $module){
-            $last_ans_module = $last_ans_module.$module.',';
-                
-        }
-        $exam->last_ans_module = rtrim($last_ans_module, ',');
         $exam->save();
 
 

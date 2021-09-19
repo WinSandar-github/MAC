@@ -16,7 +16,7 @@ class CreateMembershipsTable extends Migration
         Schema::create('memberships', function (Blueprint $table) {
             $table->id();
             $table->string('membership_name');
-            $table->text('requirement');
+            $table->text('requirement')->nullable();
             $table->text('description')->nullable();
             $table->bigInteger('form_fee')->nullable();
             $table->bigInteger('registration_fee')->nullable();
