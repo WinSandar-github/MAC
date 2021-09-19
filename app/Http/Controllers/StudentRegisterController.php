@@ -178,7 +178,6 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
-
                 $student_register->save();
                 return "You have successfully registerd!";
                 break;
@@ -256,9 +255,10 @@ class StudentRegisterController extends Controller
     public function FilterRegistration(Request $request){
         $student_register = StudentRegister::with('student_info','course')
         ->where('form_type',$request->form_type)
-        ->where('status','=', $request->status)
-        ->where('type',$request->reg_type)->get();
-
+        ->where('status',$request->status)
+        ->where('type',$request->reg_type)
+        ->get();
+      
         $datatable= DataTables::of($student_register)
             ->addColumn('action', function ($student) {
                 return "<div class='btn-group'>
@@ -271,7 +271,7 @@ class StudentRegisterController extends Controller
                 return $c->student_info->name_mm;
             })
             ->addColumn('email', function ($student) {
-                return $student->student_info ? Str::limit($student->student_info->email, 50, '...') : '';
+               return $student->student_info ? Str::limit($student->student_info->email, 50, '...') : '';
             })
             ->addColumn('reg_no', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->registration_no, 50, '...') : '';
