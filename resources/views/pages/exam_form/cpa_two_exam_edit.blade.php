@@ -245,6 +245,14 @@
                                             {{--<p>{{ $user->gov_staff == 0 ? 'No' : 'Yes'}}</p>--}}
                                         </div>
                                     </div>
+                                    <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
+                                        <div class="col-md-6">
+                                            <p class="ml-2" style="font-weight:bold">အထက်လူကြီး၏ထောက်ခံစာ</p>
+                                        </div>
+                                        <div class="col-md-6 recommend_letter">
+                                            
+                                        </div>
+                                    </div>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6">
                                             <p class="ml-2" style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</p>

@@ -27,4 +27,9 @@ class Papp extends Model
         return $this->belongsTo(EducationHistroy::class,'student_id','student_info_id');
     }
 
+    public function student_register()
+    {
+        return $this->belongsTo(StudentRegister::class,'student_id','student_info_id')->with('course');
+    }
+
 }
