@@ -174,7 +174,7 @@ class CPAFFController extends Controller
 
     public function show($id)
     {
-        $cpaff = CPAFF::where('id',$id)->with('student_info','student_job', 'student_education_histroy')->get();
+        $cpaff = CPAFF::where('id',$id)->with('student_info','student_job', 'student_education_histroy','student_register')->get();
         return response()->json([
             'data'  => $cpaff
         ]);
