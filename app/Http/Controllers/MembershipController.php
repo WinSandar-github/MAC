@@ -196,33 +196,10 @@ class MembershipController extends Controller
     public function showDescription($membership_name)
     {
        
-        if($membership_name=='audit firm'){
-            $memberships = Membership::where('membership_name', 'like', $membership_name. '%')->get();
-            
-        }else{
-            $memberships = Membership::where('membership_name','like', '%' . $membership_name. '%')->get();
-        }
-        return DataTables::of($memberships)
-        ->addColumn('descriptions', function ($membership) {
-            $descriptions = Description::whereIn('id',explode(',', $membership->description_id))->get('description_name');
-            
-            $result = $descriptions->map(function ($val) {
-                return $val->description_name;
-            });
-            return str_replace(',', '', implode(',', $result->toArray()));
-        })
-        ->addColumn('requirements', function ($membership) {
-                   
-             $requirements = Requirement::whereIn('id',explode(',', $membership->description_id))->get('requirement_name');
-
-            $result = $requirements->map(function ($val) {
-                return $val->requirement_name;
-            });
-
-            return str_replace(',', '', implode(',', $result->toArray()));
-        })
-        ->make(true);
-        
+        $memberships = Membership::where('membership_name', 'like', $membership_name. '%')->get();
+        return response()->json([
+            'data' => $memberships
+        ],200);
     }
 
 
