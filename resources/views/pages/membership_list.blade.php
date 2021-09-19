@@ -22,7 +22,7 @@
                         
                                 <div class="float-right">
                                     
-                                    <button type="button" id="create_btn" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_membership_model">Create</button>
+                                    <!-- <button type="button" id="create_btn" class="btn btn-primary btn-round" data-toggle="modal" data-target="#create_membership_model">Create</button> -->
                                 </div>
                                 <h5 class="card-title">{{ __('Membership List') }}</h5>
                            
@@ -67,7 +67,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="create_membership_model" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable" style="overflow: auto">
             <div class="modal-content">
             <form id="membership_form" method="post" action="javascript:createMembership();" enctype="multipart/form-data">
                 <input type="hidden"  name="membership_id" >
@@ -138,12 +138,14 @@
                             <label class="col-md-2 form-label">{{ __('Requirement') }}</label>
                         <div class="col-md-9">
                             <div class="form-group">
-                                <select name="requirement_id[]"
+                                <!-- <select name="requirement_id[]"
                                         class="form-control requirement_id multiple-requirement" multiple="multiple"
                                         required style="width:100%">
 
 
-                                </select>
+                                </select> -->
+                                <textarea   name="requirement" id="requirement"  width="100%"
+                                              height="auto"></textarea>
                             </div>
                         </div>
                     </div>
@@ -151,13 +153,15 @@
                             <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-2 form-label">{{ __('Description') }}</label>
                         <div class="col-md-9">
-                            <div class="form-group">
-                                <select name="description_id[]"
+                            <div class="form-group ">
+                                <!-- <select name="description_id[]"
                                         class="form-control description_id multiple-requirement" multiple="multiple"
                                         required style="width:100%">
 
 
-                                </select>
+                                </select> -->
+                                <textarea   name="description" id="mem_desc" width="100%"
+                                              height="auto"></textarea>
                             </div>
                         </div>
                     </div>
@@ -185,13 +189,26 @@
         // crateModal.addEventListener('show.bs.modal', function (event) {
         //     var button = event.relatedTarget;       
         // });
-       getMembership()
-
+     
         var requirement_list;
+        getMembership();
 
-        $('.multiple-requirement').select2({
-                placeholder: "Select Requirement"
-            });
+        // $('.multiple-requirement').select2({
+        //         placeholder: "Select Requirement"
+        //     });
+
+    $('#mem_desc').summernote({
+       placeholder: 'your Message' 
+    });
+
+    $('#requirement').summernote({
+       placeholder: 'your Message',
+       
+    });
+
+    // $('.summernote').summernote();
+
+
 
 
 

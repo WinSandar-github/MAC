@@ -133,6 +133,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/mark/{id}', 'ExamResultController@update');
 
     Route::post('save_exam', 'BatchController@saveExam');
+
+    Route::get('attend_app_list','ReportController@attendAppList');
+    Route::get('membership_edit/{id}','MembershipController@membership_edit');
 });
 Route::get('show_description','DescriptionController@showDescription');
 Route::get('show_requirement','RequirementController@showRequirement');
