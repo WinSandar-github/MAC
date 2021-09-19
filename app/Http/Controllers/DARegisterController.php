@@ -152,7 +152,7 @@ class DARegisterController extends Controller
 
         $student_job_histroy = new StudentJobHistroy;
         $student_job_histroy->student_info_id   = $student_info->id;
-        $student_job_histroy->name              = $request->name;
+        $student_job_histroy->name              = $request->current_job;
         $student_job_histroy->position          = $request->position;
         $student_job_histroy->department        = $request->department;
         $student_job_histroy->organization      = $request->organization;
