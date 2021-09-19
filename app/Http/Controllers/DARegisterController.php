@@ -176,6 +176,8 @@ class DARegisterController extends Controller
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
         $student_course->type            = $request->type;
+        $student_course->mac_type            = $request->mac_type;
+        
         //$student_course->date            = date('Y-m-d',strtotime($request->degree_date)); 
         $student_course->date            = $course_date; 
         $student_course->status          = 1;

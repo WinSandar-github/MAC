@@ -150,12 +150,16 @@ class MembershipController extends Controller
                             </div>";
                 })
                   ->addColumn('requirements', function ($membership) {
+                    return $membership->requirement ? "<small class='d-block '>".Str::limit($membership->requirement, 30, '...')."</small>" : '';
+
                    
-                    return "<div>$membership->requirement</div>";
+                    // return "<div>Str::limit($membership->requirement,30,...)</div>";
                 })
                 ->addColumn('descriptions', function ($membership) {
+                       return $membership->description ? "<small class='d-block '>".Str::limit($membership->description, 30, '...')."</small>" : '';
+
                    
-                    return "<div>$membership->description</div>";
+                    // return "<div>$membership->description</div>";
                 })
                 ->rawColumns(['action','requirements','descriptions'])
                 ->make(true);
