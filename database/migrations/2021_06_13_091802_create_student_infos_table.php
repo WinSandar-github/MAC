@@ -42,6 +42,7 @@ class CreateStudentInfosTable extends Migration
             $table->string('direct_degree')->nullable();
             $table->string('degree_rank')->nullable();
             $table->string('degree_date')->nullable();
+            $table->string('acca_cima')->nullable();
             $table->string('da_pass_date')->nullable();
             $table->string('da_pass_certificate')->nullable();
             $table->string('da_pass_roll_number')->nullable();
