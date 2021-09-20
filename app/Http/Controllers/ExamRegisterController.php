@@ -554,7 +554,7 @@ class ExamRegisterController extends Controller
                   return "Module 2";
                 }
                 else{
-                  return "Full Module";
+                  return "All Module";
                 }
             })
             ->rawColumns(['action', 'print','exam_type','remark','module'])
@@ -603,7 +603,7 @@ class ExamRegisterController extends Controller
                   return "Module 2";
                 }
                 else{
-                  return "Full Module";
+                  return "All Module";
                 }
             })
             ->rawColumns(['action', 'print','exam_type','remark','module'])
@@ -652,7 +652,7 @@ class ExamRegisterController extends Controller
                   return "Module 2";
                 }
                 else{
-                  return "Full Module";
+                  return "All Module";
                 }
             })
             ->rawColumns(['action', 'print','exam_type','remark','module'])
@@ -701,7 +701,7 @@ class ExamRegisterController extends Controller
                   return "Module 2";
                 }
                 else{
-                  return "Full Module";
+                  return "All Module";
                 }
             })
             ->rawColumns(['action', 'print','exam_type','remark','module'])

@@ -263,6 +263,8 @@ class CpaTraAddmissionDirectController extends Controller
         $student_course->status          = 1;
         $student_course->approve_reject_status = 0;
         $student_course->type           = $request->type;
+        $student_course->mac_type           = $request->mac_type;
+
         if($request->qt_entry){
             $student_course->qt_entry      = $request->qt_entry;
         }

@@ -47,9 +47,11 @@ function getMembership(){
 }
 
 function createMembership(){
+
+   
         
-        var requirement =  $('.requirement_id').val();
-        var description =  $('.description_id').val();
+        // var requirement =  $('.requirement_id').val();
+        // var description =  $('.description_id').val();
    
         let formData = new FormData();
             formData.append('membership_name',$('input[name=membership_name]').val()) ;
@@ -58,8 +60,8 @@ function createMembership(){
             formData.append('yearly_fee',$('input[name=yearly_fee]').val());
             formData.append('renew_fee',$('input[name=renew_fee]').val());
             formData.append('late_fee',$('input[name=late_fee]').val());
-            formData.append('requirement_id', requirement);
-            formData.append('description_id', description);
+            formData.append('requirement', $('#requirement').summernote('code'));
+            formData.append('description', $('#mem_desc').summernote('code'));
 
 
         show_loader();
@@ -99,6 +101,10 @@ function showMembershipInfo(id) {
             $('input[name=yearly_fee]').val(res_member.yearly_fee);
             $('input[name=renew_fee]').val(res_member.renew_fee);
             $('input[name=late_fee]').val(res_member.late_fee);
+            res_member.description !== null &&  $('#mem_desc').summernote("editor.pasteHTML",res_member.description);
+            res_member.requirement !== null && $('#requirement').summernote('editor.pasteHTML',res_member.requirement);
+        
+
          
 
             // var req_arr = JSON.parse(res_member.requirement_id);
@@ -108,11 +114,11 @@ function showMembershipInfo(id) {
             
             // //change string to array
             // var req_arr = [...req_str];
-            console.log(res_member.requirement_id.split(','))
-            $('.requirement_id').select2().val(res_member.requirement_id.split(',')).trigger('change');
-            $('.description_id').select2().val(res_member.description_id.split(',')).trigger('change');
+            // console.log(res_member.requirement_id.split(','))
+            // $('.requirement_id').select2().val(res_member.requirement_id.split(',')).trigger('change');
+            // $('.description_id').select2().val(res_member.description_id.split(',')).trigger('change');
 
-            $('#create_membership_model').modal('toggle');
+            // $('#create_membership_model').modal('toggle');
             
         },
         
@@ -138,8 +144,8 @@ function updateMembership() {
     formData.append('yearly_fee',$('input[name=yearly_fee]').val());
     formData.append('renew_fee',$('input[name=renew_fee]').val());
     formData.append('late_fee',$('input[name=late_fee]').val());
-    formData.append('requirement_id', requirement);
-    formData.append('description_id', description);
+    formData.append('requirement', $('#requirement').summernote('code'));
+    formData.append('description', $('#mem_desc').summernote('code'));
     formData.append('_method','PUT');
     show_loader();
 
@@ -153,9 +159,9 @@ function updateMembership() {
             EasyLoading.hide();
             
             successMessage(result.message);
-            $('#create_membership_model').modal('toggle');
+            // $('#create_membership_model').modal('toggle');
 
-            location.reload();
+            location.href = FRONTEND_URL+'/membership_list';
     }
 });
 

@@ -306,13 +306,13 @@ function loadCPAExamData() {
                     status = "REJECTED";
                 }
 
-                if (element.exam_type_id == 0) {
-                    exam_type_id = "SELF STUDY";
-                } else if (element.exam_type_id == 1) {
-                    exam_type_id = "PRIVATE SCHOOL";
-                } else {
-                    exam_type_id = "MAC STUDENT";
-                }
+                // if (element.exam_type_id == 0) {
+                //     exam_type_id = "SELF STUDY";
+                // } else if (element.exam_type_id == 1) {
+                //     exam_type_id = "PRIVATE SCHOOL";
+                // } else {
+                //     exam_type_id = "MAC STUDENT";
+                // }
 
                 if (element.grade == 0) {
                     grade = "-";
@@ -320,6 +320,16 @@ function loadCPAExamData() {
                     grade = "PASSED";
                 } else {
                     grade = "FAILED";
+                }
+
+                if (element.form_type == 1) {
+                    exam_type_id = "DA - I";
+                } else if (element.form_type == 2) {
+                    exam_type_id = "DA - II";
+                } else if (element.form_type == 3) {
+                    exam_type_id = "CPA - I";
+                } else {
+                    exam_type_id = "CPA - II";
                 }
 
                 $("#school_name").append(element.private_school_name);
@@ -338,7 +348,7 @@ function loadCPAExamData() {
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
-                // document.getElementById('image').src = PDF_URL + element.image;
+                document.getElementById('image').src = PDF_URL + element.image;
                 $("#name_eng").append(element.name_eng);
                 $("#name_mm").append(element.name_mm);
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
@@ -351,9 +361,19 @@ function loadCPAExamData() {
                 $("#current_address").append(element.current_address);
                 $("#phone").append(element.phone);
                 $("#email").append(element.email);
-                $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
-                $("#image").append(element.image);
-                $("#registration_no").append(element.registration_no);
+                $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
+                // $("#image").append(element.image);
+                $("#registration_no").append(element.student_register[0].personal_no);
+
+                if(element.gov_staff == 1){
+                    $(".recommend_row").show();
+                    let recommend_letter = JSON.parse(element.recommend_letter);
+                    $.each(recommend_letter,function(fileCount,fileName){
+                        $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    })
+                }else{
+                    $(".recommend_row").hide();
+                }
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -452,7 +472,7 @@ function loadCPAStudent(course_type) {
                 } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
-                    is_full_module = "Full Module";
+                    is_full_module = "All Module";
                 }
                 if (element.grade == 0) {
                     student_grade = "-";
@@ -597,21 +617,30 @@ function getCPAModuleStd() {
                 } else {
                     status = "REJECTED";
                 }
-                if (element.exam_type_id == 0) {
-                    exam_type_id = "SELF STUDY";
-                } else if (element.exam_type_id == 1) {
-                    exam_type_id = "PRIVATE SCHOOL";
-                } else {
-                    exam_type_id = "MAC STUDENT";
-                }
+                // if (element.exam_type_id == 0) {
+                //     exam_type_id = "SELF STUDY";
+                // } else if (element.exam_type_id == 1) {
+                //     exam_type_id = "PRIVATE SCHOOL";
+                // } else {
+                //     exam_type_id = "MAC STUDENT";
+                // }
                 if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
                 } else if (element.is_full_module == 2) {
                     is_full_module = "Module 2";
                 } else {
-                    is_full_module = "Full Module";
+                    is_full_module = "All Module";
                 }
 
+                if (element.form_type == 1) {
+                    exam_type_id = "DA - I";
+                } else if (element.form_type == 2) {
+                    exam_type_id = "DA - II";
+                } else if (element.form_type == 3) {
+                    exam_type_id = "CPA - I";
+                } else {
+                    exam_type_id = "CPA - II";
+                }
 
                 if (element.grade == 0) {
                     grade = "PENDING";
@@ -645,7 +674,7 @@ function getCPAModuleStd() {
                 var education_history = std.student_education_histroy;
                 var job = std.student_job;
                 $("#id").append(std.id);
-                // document.getElementById('image').src = PDF_URL + std.image;
+                document.getElementById('image').src = PDF_URL + std.image;
                 $("#name_eng").append(std.name_eng);
                 $("#name_mm").append(std.name_mm);
                 $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
@@ -658,9 +687,19 @@ function getCPAModuleStd() {
                 $("#current_address").append(std.current_address);
                 $("#phone").append(std.phone);
                 $("#email").append(std.email);
-                $("#gov_staff").append(std.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
-                $("#image").append(std.image);
-                $("#registration_no").append(std.registration_no);
+                $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
+                // $("#image").append(std.image);
+                $("#registration_no").append(std.student_register[0].personal_no);
+
+                if(std.gov_staff == 1){
+                    $(".recommend_row").show();
+                    let recommend_letter = JSON.parse(std.recommend_letter);
+                    $.each(recommend_letter,function(fileCount,fileName){
+                        $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    })
+                }else{
+                    $(".recommend_row").hide();
+                }
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);

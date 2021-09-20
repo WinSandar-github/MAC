@@ -152,7 +152,7 @@ class DARegisterController extends Controller
 
         $student_job_histroy = new StudentJobHistroy;
         $student_job_histroy->student_info_id   = $student_info->id;
-        $student_job_histroy->name              = $request->name;
+        $student_job_histroy->name              = $request->current_job;
         $student_job_histroy->position          = $request->position;
         $student_job_histroy->department        = $request->department;
         $student_job_histroy->organization      = $request->organization;
@@ -176,6 +176,8 @@ class DARegisterController extends Controller
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
         $student_course->type            = $request->type;
+        $student_course->mac_type            = $request->mac_type;
+        
         //$student_course->date            = date('Y-m-d',strtotime($request->degree_date)); 
         $student_course->date            = $course_date; 
         $student_course->status          = 1;

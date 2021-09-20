@@ -167,10 +167,20 @@ function loadData() {
                 $("#current_address").append(element.current_address);
                 $("#phone").append(element.phone);
                 $("#email").append(element.email);
-                $("#gov_staff").append(element.gov_staff == 0 ? "ဟုတ်" : "မဟုတ်");
-                $("#image").append(element.image);
-                $("#registration_no").append(element.registration_no);
+                $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
+                // $("#image").append(element.image);
+                $("#registration_no").append(element.student_register[0].personal_no);
                 $("#date").append(element.date);
+
+                if(element.gov_staff == 1){
+                    $(".recommend_row").show();
+                    let recommend_letter = JSON.parse(element.recommend_letter);
+                    $.each(recommend_letter,function(fileCount,fileName){
+                        $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    })
+                }else{
+                    $(".recommend_row").hide();
+                }
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);

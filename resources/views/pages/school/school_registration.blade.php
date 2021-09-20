@@ -17,139 +17,111 @@
                 {{ Breadcrumbs::render('school_registration') }}
             </div>
         </div>
-            <form action="" method="post">
-            @csrf
-
+        <form action="" method="post">
+        @csrf
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
-                            <div class="card-header ">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <h5 class="card-title text-center">{{ __('School Registration Lists') }}</h5>
-                                    </div>
+                        <div class="card-header ">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="title" align="center">{{ __('School Registration Lists') }}</h5>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <!-- <div class="col-md-9">
-                                    <nav class="nav flex-column">
-                                        <a class="nav-link active" href="{{ route('page.index', 'school-register-form1') }}">ကျောင်းဖွင့်လှစ်လုပ်ကိုင်ခွင့်လျှောက်လွှာ</a>
-                                        <a class="nav-link active" href="{{ route('page.index', 'school-register-form2') }}">သင်တန်းကျောင်းအချက်အလက်များ</a>
-                                        <a class="nav-link active" href="{{ route('page.index', 'school-register-form3') }}">အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ </a>
-                                        <a class="nav-link active" href="{{ route('page.index', 'school-register-form4') }}">ကျောင်းမှတ်ပုံတင်သက်တမ်းတိုးလျှောက်လွှာ</a>
-                                    </nav>
-                                </div> -->
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card">
-                                            <div class="card-header">
-                                                <div class="row">
-                                                    <div class="col-md-5">
-                                                        <div class="row">
-                                                            <!-- <div class="col-md-1"></div> -->
-                                                            <div class="col-md-4 text-left" style="font-weight:bold;">School Name</div>
-                                                            <div class="col-md-7 text-left" style="padding-left:0px;">
-                                                                <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-5">
-                                                        <div class="row">
-                                                            <!-- <div class="col-md-1"></div> -->
-                                                            <div class="col-md-3 text-left" style="font-weight:bold;">NRC</div>
-                                                            <div class="col-md-7 text-left" style="padding-left:0px;">
-                                                                <input type="text" name="filter_by_nrc" class="form-control" placeholder="eg. ၁/ကမတ(နိုင်)၁၂၃၄၅၆">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-2" style="vertical-align: top;">
-                                                        <button type="button" class="btn btn-primary btn-round mt-0"  id="search_school">Search</button>
-                                                    </div>
-                                                </div>
-                                                <br/>
-                                                <ul class="nav nav-tabs mt-3" role="tablist">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="card-body">
-                                                <div class="tab-space tab-content tab-no-active-fill-tab-content">
-                                                    <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                                        <table id="tbl_school_pending"class="table table-hover  text-center" style="width:100%;">
-                                                            <thead class=" text-nowrap">
-                                                                <tr>
-                                                                    <th class="bold-font-weight" >No</th>
-                                                                    <th class="bold-font-weight" >Action</th>
-                                                                    <th class="bold-font-weight" >School Name</th>
-                                                                    <th class="bold-font-weight" >Email</th>
-                                                                    <th class="bold-font-weight" >Phone Number</th>
-                                                                    <th class="bold-font-weight" >NRC</th>
-                                                                    <th class="bold-font-weight" >Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="tbl_school_pending_body" class="hoverTable text-left" style="width:100%;">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                                        <table id="tbl_school_approved"class="table table-hover  text-center" style="width:100%;">
-                                                            <thead class=" text-nowrap">
-                                                                <tr>
-                                                                    <th class="bold-font-weight" >No</th>
-                                                                    <th class="bold-font-weight" >Action</th>
-                                                                    <th class="bold-font-weight" >School Name</th>
-                                                                    <th class="bold-font-weight" >Email</th>
-                                                                    <th class="bold-font-weight" >Phone Number</th>
-                                                                    <th class="bold-font-weight" >NRC</th>
-                                                                    <th class="bold-font-weight" >Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="tbl_school_approved_body" class="hoverTable text-left">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                                        <table id="tbl_school_rejected"class="table table-hover  text-center" style="width:100%;">
-                                                            <thead class=" text-nowrap">
-                                                                <tr>
-                                                                    <th class="bold-font-weight" >No</th>
-                                                                    <th class="bold-font-weight" >Action</th>
-                                                                    <th class="bold-font-weight" >School Name</th>
-                                                                    <th class="bold-font-weight" >Email</th>
-                                                                    <th class="bold-font-weight" >Phone Number</th>
-                                                                    <th class="bold-font-weight" >NRC</th>
-                                                                    <th class="bold-font-weight" >Status</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody id="tbl_school_rejected_body" class="hoverTable text-left">
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <!-- <div class="col-md-1"></div> -->
+                                        <div class="col-md-4 text-left" style="font-weight:bold;">School Name</div>
+                                        <div class="col-md-7 text-left" style="padding-left:0px;">
+                                            <input type="text" name="filter_by_name" class="form-control" placeholder="Name">
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <!-- <div class="col-md-1"></div> -->
+                                        <div class="col-md-3 text-left" style="font-weight:bold;">NRC</div>
+                                        <div class="col-md-7 text-left" style="padding-left:0px;">
+                                            <input type="text" name="filter_by_nrc" class="form-control" placeholder="eg. ၁/ကမတ(နိုင်)၁၂၃၄၅၆">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2" style="vertical-align: top;">
+                                    <button type="button" class="btn btn-primary btn-round mt-0"  id="search_school">Search</button>
+                                </div>
                             </div>
-
-
-                            <div class="card-footer ">
-
+                            <ul class="nav nav-tabs mt-3" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#link3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                    <table id="tbl_school_pending"class="table table-hover  text-center" style="width:100%;">
+                                        <thead class=" text-nowrap">
+                                            <tr>
+                                                <th class="bold-font-weight" >No</th>
+                                                <th class="bold-font-weight" >Action</th>
+                                                <th class="bold-font-weight" >School Name</th>
+                                                <th class="bold-font-weight" >Email</th>
+                                                <th class="bold-font-weight" >Phone Number</th>
+                                                <th class="bold-font-weight" >NRC</th>
+                                                <th class="bold-font-weight" >Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbl_school_pending_body" class="hoverTable text-left" style="width:100%;">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                    <table id="tbl_school_approved"class="table table-hover  text-center" style="width:100%;">
+                                        <thead class=" text-nowrap">
+                                            <tr>
+                                                <th class="bold-font-weight" >No</th>
+                                                <th class="bold-font-weight" >Action</th>
+                                                <th class="bold-font-weight" >School Name</th>
+                                                <th class="bold-font-weight" >Email</th>
+                                                <th class="bold-font-weight" >Phone Number</th>
+                                                <th class="bold-font-weight" >NRC</th>
+                                                <th class="bold-font-weight" >Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbl_school_approved_body" class="hoverTable text-left">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                    <table id="tbl_school_rejected"class="table table-hover  text-center" style="width:100%;">
+                                        <thead class=" text-nowrap">
+                                            <tr>
+                                                <th class="bold-font-weight" >No</th>
+                                                <th class="bold-font-weight" >Action</th>
+                                                <th class="bold-font-weight" >School Name</th>
+                                                <th class="bold-font-weight" >Email</th>
+                                                <th class="bold-font-weight" >Phone Number</th>
+                                                <th class="bold-font-weight" >NRC</th>
+                                                <th class="bold-font-weight" >Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbl_school_rejected_body" class="hoverTable text-left">
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </form>
-
     </div>
 
 
@@ -175,8 +147,8 @@
         var stable_pending = $('#tbl_school_pending').DataTable({
             scrollX: true,
             processing: true,
-            serverSide: true,
-            searching: false,
+            // serverSide: true,
+            // searching: false,
             paging:true,
             ajax: {
                 url  : BACKEND_URL + "/filter_school",
@@ -206,8 +178,8 @@
         var stable_approve =$('#tbl_school_approved').DataTable({
             scrollX: true,
             processing: true,
-            serverSide: true,
-            searching: false,
+            // serverSide: true,
+            // searching: false,
             paging:true,
             ajax: {
                 url  : BACKEND_URL + "/filter_school",
@@ -236,8 +208,8 @@
         var stable_reject =$('#tbl_school_rejected').DataTable({
             scrollX: true,
             processing: true,
-            serverSide: true,
-            searching: false,
+            // serverSide: true,
+            // searching: false,
             paging:true,
             ajax: {
                 url  : BACKEND_URL + "/filter_school",
@@ -264,7 +236,7 @@
 
         });
 
-				$('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+	    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             $.each($.fn.dataTable.tables(true), function(){
                 $(this).DataTable()
                     .columns.adjust()
@@ -280,9 +252,6 @@
 
 
         });
-        createDataTable('#tbl_school_pending');
-        createDataTable('#tbl_school_approved');
-        createDataTable('#tbl_school_rejected');
     });
 
 </script>
