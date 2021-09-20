@@ -167,7 +167,7 @@ class PAPPController extends Controller
 
     public function show($id)
     {
-        $papp = Papp::where('id',$id)->with('student_info','student_job', 'student_education_histroy')->get();
+        $papp = Papp::where('id',$id)->with('student_info','student_job', 'student_education_histroy','student_register')->get();
         return response()->json([
             'data'  => $papp
         ]);

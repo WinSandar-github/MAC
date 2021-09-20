@@ -228,7 +228,17 @@ function loadPAPPData(){
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#image").append(element.student_info.image);
-                $("#registration_no").append(element.student_info.registration_no);
+                $("#registration_no").append(element.student_register.personal_no);
+
+                if(element.student_info.gov_staff == 1){
+                    $(".recommend_row").show();
+                    let recommend_letter = JSON.parse(element.student_info.recommend_letter);
+                    $.each(recommend_letter,function(fileCount,fileName){
+                        $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    })
+                }else{
+                    $(".recommend_row").hide();
+                }
 
                 if(element.cpa!=null && element.cpa!=""){
                     $("#cpa").append(element.cpa);

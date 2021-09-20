@@ -14,7 +14,7 @@ class StudentCourseReg extends Model
     }
 
     public function student_info(){
-        return $this->hasOne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy');
+        return $this->hasOne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy','student_register');
     }
 
 
