@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             {{--<div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="row">
                                         <div class="col-md-1"></div>
                                         <div class="col-md-4 text-left" style="padding-left:20px;font-weight:bold;">Student Name</div>
@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="row">
                                         <div class="col-md-4 text-left" style="padding-left:20px;font-weight:bold;">Batch Number</div>
                                         <div class="col-md-7 text-left"  style="padding-right:0px;padding-left:0px;">
@@ -44,6 +44,9 @@
                                             </select>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary btn-round m-0" onclick="GetStudentRegistration('da_1');" id="search">Search</button>
                                 </div>
                             </div><br/>
                             <div class="row">
@@ -61,8 +64,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6" style="vertical-align: top;">
-                                    <button type="button" class="btn btn-primary btn-round" onclick="GetStudentRegistration('da_1');" id="search">Search</button>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-primary btn-round m-0" onclick="GetStudentRegistration('da_1');" id="search">Search</button>
                                 </div>
                             </div>--}}
                             <ul class="nav nav-tabs mt-3" role="tablist">
@@ -654,7 +657,7 @@
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
         $.each($.fn.dataTable.tables(true), function(){
             $(this).DataTable()
-                .columns.adjust()
+                .columns.adjust();
                 //.responsive.recalc();
         });
         });
