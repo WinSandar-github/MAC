@@ -314,6 +314,12 @@ function loadCPAExamData() {
                 //     exam_type_id = "MAC STUDENT";
                 // }
 
+                if (element.exam_type_id == 1) {
+                    $(".is_private_row").show();
+                } else {
+                    $(".is_private_row").hide();
+                }
+
                 if (element.grade == 0) {
                     grade = "-";
                 } else if (element.grade == 1) {
@@ -617,13 +623,13 @@ function getCPAModuleStd() {
                 } else {
                     status = "REJECTED";
                 }
-                // if (element.exam_type_id == 0) {
-                //     exam_type_id = "SELF STUDY";
-                // } else if (element.exam_type_id == 1) {
-                //     exam_type_id = "PRIVATE SCHOOL";
-                // } else {
-                //     exam_type_id = "MAC STUDENT";
-                // }
+
+                if (element.exam_type_id == 1) {
+                    $(".is_private_row").show();
+                } else {
+                    $(".is_private_row").hide();
+                }
+
                 if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
                 } else if (element.is_full_module == 2) {

@@ -304,6 +304,13 @@ function loadDAExamData() {
                 // } else {
                 //     exam_type_id = "MAC STUDENT";
                 // }
+
+                if (element.exam_type_id == 1) {
+                    $(".is_private_row").show();
+                } else {
+                    $(".is_private_row").hide();
+                }
+
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -732,7 +739,6 @@ function fillMark(id, isFullModule) {
 
 function getModuleStd() {
     var id = localStorage.getItem("exam_register_id");
-    console.log('exam',id);
     var module_type = localStorage.getItem("is_full_module");
     // $("input[name = batch_id]").val(id);
 
@@ -771,12 +777,10 @@ function getModuleStd() {
         type: 'get',
         data: "",
         success: function (data) {
-            console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
                 var std = element.student_info;
-                // console.log(std)
-// <<<<<<< HEAD
+
                 if (element.status == 0) {
                     status = "PENDING";
                     $('.pass_fail_btn').hide();
@@ -784,19 +788,14 @@ function getModuleStd() {
                     status = "APPROVED";
                 } else {
                     status = "REJECTED";
-// =======
-//                 if(element.status==0){
-//                     status="PENDING";
-
-// >>>>>>> ac67ed3c0efebdce43c2dac463280128b110edb1
                 }
-                // if (element.exam_type_id == 0) {
-                //     exam_type_id = "SELF STUDY";
-                // } else if (element.exam_type_id == 1) {
-                //     exam_type_id = "PRIVATE SCHOOL";
-                // } else {
-                //     exam_type_id = "MAC STUDENT";
-                // }
+                
+                if (element.exam_type_id == 1) {
+                    $(".is_private_row").show();
+                } else {
+                    $(".is_private_row").hide();
+                }
+
                 if (element.is_full_module == 1) {
                     is_full_module = "Module 1";
                 } else if (element.is_full_module == 2) {
@@ -846,8 +845,7 @@ function getModuleStd() {
                 var education_history = std.student_education_histroy;
                 var job = std.student_job;
                 $("#id").append(std.id);
-                console.log(std)
-                // document.getElementById('image').src = PDF_URL + std.image;
+                document.getElementById('image').src = PDF_URL + std.image;
                 $("#name_eng").append(std.name_eng);
                 $("#name_mm").append(std.name_mm);
                 $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
@@ -897,6 +895,17 @@ function getModuleStd() {
                 $("#salary").append(job.salary);
                 $("#office_address").append(job.office_address);
                 attached_file = std.student_education_histroy.certificate;
+
+                console.log(element);
+                var i=1;
+
+                var tr = "<tr>";
+                tr += "<td>" + i++ +"</td>";
+                tr += "<td>" + element.student_info.subject_name + "</td>";
+                tr += "<td><input type='text' name='mark"+i+"' id='mark"+i+"' class='form-control' required></td>";
+                tr += "<td><input type='text' name='grade"+i+"' id='grade"+i+"' class='form-control' required></td>";
+                tr += "</tr>";
+                $(".tbl_fillmarks_body").append(tr);
             });
 
             $.ajax({
