@@ -288,3 +288,9 @@ Route::get('showDescription/{membership_name}','MembershipController@showDescrip
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
+
+// subject
+Route::get('getSubject/{course_id}','SubjectController@getSubject');
+
+// education history
+Route::get('getEducationHistory/{student_info_id}','TeacherController@getEducationHistory');
