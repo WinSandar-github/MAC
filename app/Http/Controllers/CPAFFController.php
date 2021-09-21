@@ -286,6 +286,16 @@ class CPAFFController extends Controller
             $cpa_certificate="";
         }
 
+        if ($request->hasfile('cpa_certificate_back')) {
+            $file = $request->file('cpa_certificate_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $cpa_certificate_back = '/storage/cpa_ff_register/'.$name;
+        }
+        else{
+            $cpa_certificate_back="";
+        }
+
         if ($request->hasfile('mpa_mem_card')) {
             $file = $request->file('mpa_mem_card');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -331,6 +341,24 @@ class CPAFFController extends Controller
             $passport_image="";
         }
 
+        if ($request->hasfile('three_years_full')) {
+            $file = $request->file('three_years_full');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $three_years_full = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $three_years_full="";
+        }
+
+        if ($request->hasfile('letter')) {
+            $file = $request->file('letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $letter = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $letter="";
+        }
+
         if($request->hasfile('degree_file'))
         {
             foreach($request->file('degree_file') as $file)
@@ -367,6 +395,15 @@ class CPAFFController extends Controller
         $cpa_ff->cpd_record       =   $cpd_record;
         $cpa_ff->passport_image   =   $passport_image;
         $cpa_ff->status           =  0;
+        //save to cpaff
+        $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
+        $cpa_ff->address          =   $request->address;
+        $cpa_ff->phone            =   $request->phone;
+        $cpa_ff->contact_mail     =   $request->contact_mail;
+        $cpa_ff->form_type        =   $request->form_type;
+        $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
+        $cpa_ff->three_years_full   =   $three_years_full;
+        $cpa_ff->letter   =   $letter;
         $cpa_ff->save();
 
         return response()->json([
@@ -510,6 +547,13 @@ class CPAFFController extends Controller
 
     public function getCpaffByStuId($stu_id){
         $cpaff = CPAFF::where('student_info_id',$stu_id)->first();
+        return response()->json([
+            'data'  => $cpaff
+        ]);
+    }
+
+    public function getCpaff($stu_id){
+        $cpaff = StudentInfo::where('id',$stu_id)->first();
         return response()->json([
             'data'  => $cpaff
         ]);
