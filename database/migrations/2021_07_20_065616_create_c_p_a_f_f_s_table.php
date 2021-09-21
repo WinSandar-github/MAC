@@ -59,6 +59,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('cpa_certificate_back')->nullable();
             $table->string('three_years_full')->nullable();
             $table->string('letter')->nullable();
+            $table->string('fine_person')->nullable();
 
             $table->timestamps();
         });
