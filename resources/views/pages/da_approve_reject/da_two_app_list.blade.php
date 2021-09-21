@@ -21,7 +21,7 @@
                                 <h5 class="title">{{ __('DA Two Application List') }}</h5>
                             </div>
                         </div>
-                        <!-- <div class="row">
+                        <div class="row">
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
@@ -51,10 +51,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6" style="vertical-align: top;">
-                                <button type="button" class="btn btn-primary btn-round m-0" onclick="getDAList('da_2')" id="search">Search</button>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary btn-round m-0" onclick="da2_reload();" id="search">Search</button>
                             </div>
-                        </div> -->
+                        </div>
                         <ul class="nav nav-tabs mt-3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
@@ -135,10 +135,13 @@
 @push('scripts')
 <script>
     // getDAList('da_2');
-    // loadBatchData("da_2");
+    loadBatchData("da_2");
+    var pending_datatable;
+    var approved_datatable;
+    var rejected_datatable;
     $(document).ready(function () {
 
-        $('#tbl_da_pending_list').DataTable({
+        pending_datatable=$('#tbl_da_pending_list').DataTable({
             scrollX: true,
             processing: true,
             //serverSide: true,
@@ -147,7 +150,10 @@
                 type : "POST" ,
                 data :  function (d) {
                     d.status       = 0,
-                    d.course_code = 'da_2'
+                    d.course_code = 'da_2',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.nrc =    $("input[name=filter_by_nrc]").val(),
+                    d.batch= $("#selected_batch_id").val()
                 }
              
             },
@@ -166,7 +172,7 @@
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
-        $('#tbl_da_approved_list').DataTable({
+        approved_datatable=$('#tbl_da_approved_list').DataTable({
             scrollX: true,
             processing: true,
             serverSide: true,
@@ -175,7 +181,10 @@
                 type : "POST" ,
                 data :  function (d) {
                     d.status       = 1,
-                    d.course_code = 'da_2'
+                    d.course_code = 'da_2',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.nrc =    $("input[name=filter_by_nrc]").val(),
+                    d.batch= $("#selected_batch_id").val()
                 }
              
             },
@@ -194,7 +203,7 @@
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
-        $('#tbl_da_rejected_list').DataTable({
+        rejected_datatable=$('#tbl_da_rejected_list').DataTable({
             scrollX: true,
             processing: true,
             serverSide: true,
@@ -203,7 +212,10 @@
                 type : "POST" ,
                 data :  function (d) {
                     d.status       = 2,
-                    d.course_code = 'da_2'
+                    d.course_code = 'da_2',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.nrc =    $("input[name=filter_by_nrc]").val(),
+                    d.batch= $("#selected_batch_id").val()
                 }
              
             },
@@ -225,11 +237,15 @@
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             $.each($.fn.dataTable.tables(true), function(){
                 $(this).DataTable()
-                    .columns.adjust()
-                    .responsive.recalc();
+                    .columns.adjust();
             });
         });
 
     });
+    function da2_reload(){
+        pending_datatable.ajax.reload();
+        approved_datatable.ajax.reload();
+        rejected_datatable.ajax.reload();
+    }
 </script>
 @endpush
