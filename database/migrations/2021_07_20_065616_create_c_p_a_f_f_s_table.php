@@ -15,7 +15,7 @@ class CreateCPAFFSTable extends Migration
     {
         Schema::create('c_p_a_f_f_s', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('student_info_id');
+            $table->unsignedBigInteger('student_info_id')->nullable();
             $table->string('profile_photo')->nullable();
             $table->string('cpa')->nullable();
             $table->string('ra')->nullable();
@@ -42,7 +42,24 @@ class CreateCPAFFSTable extends Migration
             $table->string('renew_cpaff_reg')->default(null)->nullable();
             $table->date('renew_accepted_date')->default(null)->nullable();
             $table->boolean('renew_status')->default(null)->nullable();
-            $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');            
+            $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
+
+            //adding for other
+            $table->string('total_hours')->nullable();          
+            $table->string('cpa2_pass_date')->nullable();          
+            $table->string('reg_no')->nullable();          
+            $table->string('country')->nullable();          
+            $table->string('government')->nullable();          
+            $table->string('roll_no')->nullable();
+            $table->string('cpa_batch_no')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('contact_mail')->nullable();
+            $table->string('form_type')->nullable();
+            $table->string('cpa_certificate_back')->nullable();
+            $table->string('three_years_full')->nullable();
+            $table->string('letter')->nullable();
+
             $table->timestamps();
         });
     }
