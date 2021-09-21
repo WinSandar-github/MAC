@@ -33,7 +33,7 @@
                             </div>
 
                         </div>--}}
-                        <!-- <div class="row">
+                        <div class="row">
                             <div class="col-md-5">
                                 <div class="row">
                                     <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-md-5">
                                 <div class="row">
-                                    <div class="col-md-5 text-left" style="font-weight:bold;">Batch Number</div>
+                                    <div class="col-md-5 text-left" style="font-weight:bold;">Batch</div>
                                     <div class="col-md-7 text-left pl-0">
                                         <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                             <option value="all" selected>All Batches</option>
@@ -53,9 +53,9 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" onclick="getExam('da_1')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
+                                <button type="submit" onclick="da1_reload()" class="btn btn-primary btn-round m-0" >Search</button>
                             </div>
-                        </div> -->
+                        </div> 
                         <ul class="nav nav-tabs mt-3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
@@ -148,16 +148,28 @@
 @endsection
 @push('scripts')
 <script>
-    //loadBatchData("da_1");
+    loadBatchData("da_1");
     // getExam("da_1");
-
+    var pending_datatable;
+    var approved_datatable;
+    var rejected_datatable;
     $(document).ready(function(){
 
-      $('#tbl_da_pending_exam').DataTable({
+        pending_datatable=$('#tbl_da_pending_exam').DataTable({
           processing: true,
           // serverSide: true,
           scrollX:true,
-          ajax: BACKEND_URL + "/filter/0/1",
+          ajax: {
+                url  : BACKEND_URL + "/filter",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 0,
+                    d.course_code = '1',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
           columns: [
               {data: null, render: function (data, type, row, meta) {
                   return meta.row + meta.settings._iDisplayStart + 1;
@@ -173,11 +185,21 @@
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
 
-      $('#tbl_da_approved_exam').DataTable({
+      approved_datatable=$('#tbl_da_approved_exam').DataTable({
           processing: true,
           scrollX:true,
           // serverSide: true,
-          ajax: BACKEND_URL + "/filter/1/1",
+          ajax: {
+                url  : BACKEND_URL + "/filter",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 1,
+                    d.course_code = '1',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
           columns: [
               {data: null, render: function (data, type, row, meta) {
                   return meta.row + meta.settings._iDisplayStart + 1;
@@ -193,11 +215,21 @@
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
 
-      $('#tbl_da_rejected_exam').DataTable({
+      rejected_datatable=$('#tbl_da_rejected_exam').DataTable({
           processing: true,
           scrollX:true,
           // serverSide: true,
-          ajax: BACKEND_URL + "/filter/2/1",
+          ajax: {
+                url  : BACKEND_URL + "/filter",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 2,
+                    d.course_code = '1',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
           columns: [
               {data: null, render: function (data, type, row, meta) {
                   return meta.row + meta.settings._iDisplayStart + 1;
@@ -216,11 +248,15 @@
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
           $.each($.fn.dataTable.tables(true), function(){
               $(this).DataTable()
-                  .columns.adjust()
-                  .responsive.recalc();
+                  .columns.adjust();
           });
       });
 
     });
+    function da1_reload(){
+        pending_datatable.ajax.reload();
+        approved_datatable.ajax.reload();
+        rejected_datatable.ajax.reload();
+    }
 </script>
 @endpush
