@@ -137,6 +137,15 @@ class PAPPController extends Controller
             $tax_free="";
         }
 
+        if ($request->hasfile('letter')) {
+            $file = $request->file('letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $letter = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $letter="";
+        }
+
         $papp  = new Papp();
         $papp->student_id                   = $request->student_id;
         $papp->profile_photo                =   $profile_photo;
@@ -158,7 +167,13 @@ class PAPPController extends Controller
         $papp->tax_year                     =   $request->tax_year;
         $papp->tax_free_recommendation      =   $tax_free;
         $papp->status                       =  0;
-            $papp->save();
+        //save to papp
+        $papp->cpa_batch_no     =   $request->cpa_batch_no;
+        $papp->address          =   $request->address;
+        $papp->phone            =   $request->phone;
+        $papp->contact_mail     =   $request->contact_mail;
+        $papp->letter   =   $letter;
+        $papp->save();
 
         return response()->json([
             'message' => "You have successfully registerd!"
