@@ -189,16 +189,31 @@ class ExamRegisterController extends Controller
       $exam_register =  $exam_register->get();
         // DA One
         $datatable=DataTables::of($exam_register)        
+          // ->addColumn('exam_type', function ($infos){
+          //     if($infos->exam_type_id == 0){
+          //       return "SELF STUDY";
+          //     }
+          //     else if($infos->exam_type_id == 1){
+          //       return "PRIVATE SCHOOL";
+          //     }
+          //     else{
+          //       return "MAC STUDENT";
+          //     }
+          // })
+
           ->addColumn('exam_type', function ($infos){
-              if($infos->exam_type_id == 0){
-                return "SELF STUDY";
-              }
-              else if($infos->exam_type_id == 1){
-                return "PRIVATE SCHOOL";
-              }
-              else{
-                return "MAC STUDENT";
-              }
+            if($infos->form_type == 1){
+              return "DA - I";
+            }
+            else if($infos->form_type == 2){
+              return "DA - II";
+            }
+            else if($infos->form_type == 3){
+              return "CPA - I";
+            }
+            else{
+              return "CPA - II";
+            }
           })
 
           ->addColumn('remark', function ($infos){
@@ -300,7 +315,7 @@ class ExamRegisterController extends Controller
 
     public function viewStudent($id)
     {
-        $exam_register = ExamRegister::where('id', $id)->with('student_info')->get();
+        $exam_register = ExamRegister::where('id', $id)->with('student_info','subjects')->get();
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -410,16 +425,31 @@ class ExamRegisterController extends Controller
         // DA One
         $datatable=DataTables::of($exam_register)
 
+          // ->addColumn('exam_type', function ($infos){
+          //     if($infos->exam_type_id == 0){
+          //       return "SELF STUDY";
+          //     }
+          //     else if($infos->exam_type_id == 1){
+          //       return "PRIVATE SCHOOL";
+          //     }
+          //     else{
+          //       return "MAC STUDENT";
+          //     }
+          // })
+
           ->addColumn('exam_type', function ($infos){
-              if($infos->exam_type_id == 0){
-                return "SELF STUDY";
-              }
-              else if($infos->exam_type_id == 1){
-                return "PRIVATE SCHOOL";
-              }
-              else{
-                return "MAC STUDENT";
-              }
+            if($infos->form_type == 1){
+              return "DA - I";
+            }
+            else if($infos->form_type == 2){
+              return "DA - II";
+            }
+            else if($infos->form_type == 3){
+              return "CPA - I";
+            }
+            else{
+              return "CPA - II";
+            }
           })
 
           ->addColumn('remark', function ($infos){
@@ -442,7 +472,7 @@ class ExamRegisterController extends Controller
                 return "Module 2";
               }
               else{
-                return "Full Module";
+                return "All Module";
               }
           });
           if($request->course_code==1){
