@@ -214,10 +214,7 @@ function loadCPAFFData(){
 
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
-                    let recommend_letter = JSON.parse(element.student_info.recommend_letter);
-                    $.each(recommend_letter,function(fileCount,fileName){
-                        $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                    })
+                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else{
                     $(".recommend_row").hide();
                 }

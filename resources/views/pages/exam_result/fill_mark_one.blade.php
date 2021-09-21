@@ -367,15 +367,15 @@
                             </div>  
                             <div class="card-footer "> 
                                 <div class="modal-footer">
-                                    <button type="submit" name="save" class="btn btn-primary ex_res_btn">Submit</button>
+                                    <!-- <button type="submit" name="save" class="btn btn-primary ex_res_btn">Submit</button> -->
                                     
                                 <!-- {!! Form::close() !!} -->
-                                </form>
-                                <div class="pass_fail_btn" style="display:none;">
-                                        <button class=" btn  btn-danger " onClick="javascript:failExam();">Fail</button>
-                                        <button  class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
+                                <div class="pass_fail_btn">
+                                        <button type="submit" class=" btn  btn-danger " onClick="javascript:failExam();">Fail</button>
+                                        <button type="submit" class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
                                     </div>
                                 </div>
+                                </form>
                             </div>
                         </div>
                     </div>

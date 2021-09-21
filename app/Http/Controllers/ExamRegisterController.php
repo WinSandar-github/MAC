@@ -198,16 +198,31 @@ class ExamRegisterController extends Controller
                         </div>";
             })
 
+            // ->addColumn('exam_type', function ($infos){
+            //     if($infos->exam_type_id == 0){
+            //       return "SELF STUDY";
+            //     }
+            //     else if($infos->exam_type_id == 1){
+            //       return "PRIVATE SCHOOL";
+            //     }
+            //     else{
+            //       return "MAC STUDENT";
+            //     }
+            // })
+
             ->addColumn('exam_type', function ($infos){
-                if($infos->exam_type_id == 0){
-                  return "SELF STUDY";
-                }
-                else if($infos->exam_type_id == 1){
-                  return "PRIVATE SCHOOL";
-                }
-                else{
-                  return "MAC STUDENT";
-                }
+              if($infos->form_type == 1){
+                return "DA - I";
+              }
+              else if($infos->form_type == 2){
+                return "DA - II";
+              }
+              else if($infos->form_type == 3){
+                return "CPA - I";
+              }
+              else{
+                return "CPA - II";
+              }
             })
 
             ->addColumn('remark', function ($infos){
@@ -255,16 +270,31 @@ class ExamRegisterController extends Controller
                         </div>";
             })
 
+            // ->addColumn('exam_type', function ($infos){
+            //     if($infos->exam_type_id == 0){
+            //       return "SELF STUDY";
+            //     }
+            //     else if($infos->exam_type_id == 1){
+            //       return "PRIVATE SCHOOL";
+            //     }
+            //     else{
+            //       return "MAC STUDENT";
+            //     }
+            // })
+
             ->addColumn('exam_type', function ($infos){
-                if($infos->exam_type_id == 0){
-                  return "SELF STUDY";
-                }
-                else if($infos->exam_type_id == 1){
-                  return "PRIVATE SCHOOL";
-                }
-                else{
-                  return "MAC STUDENT";
-                }
+              if($infos->form_type == 1){
+                return "DA - I";
+              }
+              else if($infos->form_type == 2){
+                return "DA - II";
+              }
+              else if($infos->form_type == 3){
+                return "CPA - I";
+              }
+              else{
+                return "CPA - II";
+              }
             })
 
             ->addColumn('remark', function ($infos){
@@ -312,16 +342,31 @@ class ExamRegisterController extends Controller
                         </div>";
             })
 
+            // ->addColumn('exam_type', function ($infos){
+            //     if($infos->exam_type_id == 0){
+            //       return "SELF STUDY";
+            //     }
+            //     else if($infos->exam_type_id == 1){
+            //       return "PRIVATE SCHOOL";
+            //     }
+            //     else{
+            //       return "MAC STUDENT";
+            //     }
+            // })
+
             ->addColumn('exam_type', function ($infos){
-                if($infos->exam_type_id == 0){
-                  return "SELF STUDY";
-                }
-                else if($infos->exam_type_id == 1){
-                  return "PRIVATE SCHOOL";
-                }
-                else{
-                  return "MAC STUDENT";
-                }
+              if($infos->form_type == 1){
+                return "DA - I";
+              }
+              else if($infos->form_type == 2){
+                return "DA - II";
+              }
+              else if($infos->form_type == 3){
+                return "CPA - I";
+              }
+              else{
+                return "CPA - II";
+              }
             })
 
             ->addColumn('remark', function ($infos){
@@ -369,16 +414,31 @@ class ExamRegisterController extends Controller
                         </div>";
             })
 
+            // ->addColumn('exam_type', function ($infos){
+            //     if($infos->exam_type_id == 0){
+            //       return "SELF STUDY";
+            //     }
+            //     else if($infos->exam_type_id == 1){
+            //       return "PRIVATE SCHOOL";
+            //     }
+            //     else{
+            //       return "MAC STUDENT";
+            //     }
+            // })
+
             ->addColumn('exam_type', function ($infos){
-                if($infos->exam_type_id == 0){
-                  return "SELF STUDY";
-                }
-                else if($infos->exam_type_id == 1){
-                  return "PRIVATE SCHOOL";
-                }
-                else{
-                  return "MAC STUDENT";
-                }
+              if($infos->form_type == 1){
+                return "DA - I";
+              }
+              else if($infos->form_type == 2){
+                return "DA - II";
+              }
+              else if($infos->form_type == 3){
+                return "CPA - I";
+              }
+              else{
+                return "CPA - II";
+              }
             })
 
             ->addColumn('remark', function ($infos){
@@ -412,7 +472,7 @@ class ExamRegisterController extends Controller
 
     public function viewStudent($id)
     {
-        $exam_register = ExamRegister::where('id', $id)->with('student_info')->get();
+        $exam_register = ExamRegister::where('id', $id)->with('student_info','subjects')->get();
         return response()->json([
             'data' => $exam_register
         ],200);
@@ -522,16 +582,31 @@ class ExamRegisterController extends Controller
                         </div>";
             })
 
+            // ->addColumn('exam_type', function ($infos){
+            //     if($infos->exam_type_id == 0){
+            //       return "SELF STUDY";
+            //     }
+            //     else if($infos->exam_type_id == 1){
+            //       return "PRIVATE SCHOOL";
+            //     }
+            //     else{
+            //       return "MAC STUDENT";
+            //     }
+            // })
+
             ->addColumn('exam_type', function ($infos){
-                if($infos->exam_type_id == 0){
-                  return "SELF STUDY";
-                }
-                else if($infos->exam_type_id == 1){
-                  return "PRIVATE SCHOOL";
-                }
-                else{
-                  return "MAC STUDENT";
-                }
+              if($infos->form_type == 1){
+                return "DA - I";
+              }
+              else if($infos->form_type == 2){
+                return "DA - II";
+              }
+              else if($infos->form_type == 3){
+                return "CPA - I";
+              }
+              else{
+                return "CPA - II";
+              }
             })
 
             ->addColumn('remark', function ($infos){
@@ -571,16 +646,31 @@ class ExamRegisterController extends Controller
                         </div>";
             })
 
+            // ->addColumn('exam_type', function ($infos){
+            //     if($infos->exam_type_id == 0){
+            //       return "SELF STUDY";
+            //     }
+            //     else if($infos->exam_type_id == 1){
+            //       return "PRIVATE SCHOOL";
+            //     }
+            //     else{
+            //       return "MAC STUDENT";
+            //     }
+            // })
+
             ->addColumn('exam_type', function ($infos){
-                if($infos->exam_type_id == 0){
-                  return "SELF STUDY";
-                }
-                else if($infos->exam_type_id == 1){
-                  return "PRIVATE SCHOOL";
-                }
-                else{
-                  return "MAC STUDENT";
-                }
+              if($infos->form_type == 1){
+                return "DA - I";
+              }
+              else if($infos->form_type == 2){
+                return "DA - II";
+              }
+              else if($infos->form_type == 3){
+                return "CPA - I";
+              }
+              else{
+                return "CPA - II";
+              }
             })
 
             ->addColumn('remark', function ($infos){
@@ -620,16 +710,31 @@ class ExamRegisterController extends Controller
                         </div>";
             })
 
+            // ->addColumn('exam_type', function ($infos){
+            //     if($infos->exam_type_id == 0){
+            //       return "SELF STUDY";
+            //     }
+            //     else if($infos->exam_type_id == 1){
+            //       return "PRIVATE SCHOOL";
+            //     }
+            //     else{
+            //       return "MAC STUDENT";
+            //     }
+            // })
+
             ->addColumn('exam_type', function ($infos){
-                if($infos->exam_type_id == 0){
-                  return "SELF STUDY";
-                }
-                else if($infos->exam_type_id == 1){
-                  return "PRIVATE SCHOOL";
-                }
-                else{
-                  return "MAC STUDENT";
-                }
+              if($infos->form_type == 1){
+                return "DA - I";
+              }
+              else if($infos->form_type == 2){
+                return "DA - II";
+              }
+              else if($infos->form_type == 3){
+                return "CPA - I";
+              }
+              else{
+                return "CPA - II";
+              }
             })
 
             ->addColumn('remark', function ($infos){
@@ -645,10 +750,10 @@ class ExamRegisterController extends Controller
             })
 
             ->addColumn('module', function ($infos){
-                if($infos->is_full_module == 0){
+                if($infos->is_full_module == 1){
                   return "Module 1";
                 }
-                else if($infos->status == 1){
+                else if($infos->status == 2){
                   return "Module 2";
                 }
                 else{
@@ -669,16 +774,31 @@ class ExamRegisterController extends Controller
                         </div>";
             })
 
+            // ->addColumn('exam_type', function ($infos){
+            //     if($infos->exam_type_id == 0){
+            //       return "SELF STUDY";
+            //     }
+            //     else if($infos->exam_type_id == 1){
+            //       return "PRIVATE SCHOOL";
+            //     }
+            //     else{
+            //       return "MAC STUDENT";
+            //     }
+            // })
+
             ->addColumn('exam_type', function ($infos){
-                if($infos->exam_type_id == 0){
-                  return "SELF STUDY";
-                }
-                else if($infos->exam_type_id == 1){
-                  return "PRIVATE SCHOOL";
-                }
-                else{
-                  return "MAC STUDENT";
-                }
+              if($infos->form_type == 1){
+                return "DA - I";
+              }
+              else if($infos->form_type == 2){
+                return "DA - II";
+              }
+              else if($infos->form_type == 3){
+                return "CPA - I";
+              }
+              else{
+                return "CPA - II";
+              }
             })
 
             ->addColumn('remark', function ($infos){
@@ -694,10 +814,10 @@ class ExamRegisterController extends Controller
             })
 
             ->addColumn('module', function ($infos){
-                if($infos->is_full_module == 0){
+                if($infos->is_full_module == 1){
                   return "Module 1";
                 }
-                else if($infos->is_full_module == 1){
+                else if($infos->is_full_module == 2){
                   return "Module 2";
                 }
                 else{

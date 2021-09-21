@@ -373,10 +373,7 @@ function loadCPAExamData() {
 
                 if(element.gov_staff == 1){
                     $(".recommend_row").show();
-                    let recommend_letter = JSON.parse(element.recommend_letter);
-                    $.each(recommend_letter,function(fileCount,fileName){
-                        $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                    })
+                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else{
                     $(".recommend_row").hide();
                 }
@@ -617,7 +614,7 @@ function getCPAModuleStd() {
                 console.log('ee', element);
                 if (element.status == 0) {
                     status = "PENDING";
-                    $('.pass_fail_btn').hide();
+                    //$('.pass_fail_btn').hide();
                 } else if (element.status == 1) {
                     status = "APPROVED";
                 } else {
@@ -662,8 +659,8 @@ function getCPAModuleStd() {
                       if(element.grade == 1 )
                       {
 
-                          $('.ex_res_btn').hide();
-                          $('.pass_fail_btn').hide();
+                        //   $('.ex_res_btn').hide();
+                        //   $('.pass_fail_btn').hide();
 
                       }
 
@@ -699,10 +696,7 @@ function getCPAModuleStd() {
 
                 if(std.gov_staff == 1){
                     $(".recommend_row").show();
-                    let recommend_letter = JSON.parse(std.recommend_letter);
-                    $.each(recommend_letter,function(fileCount,fileName){
-                        $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                    })
+                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else{
                     $(".recommend_row").hide();
                 }
@@ -731,64 +725,189 @@ function getCPAModuleStd() {
                 $("#office_address").append(job.office_address);
                 attached_file = std.student_education_histroy.certificate;
 
+                var subjects = element.subjects;
+                var i=1;
+                subjects.forEach(function (subj) {
+                    if (element.is_full_module == subj.module_id) {
+                        var tr = "<tr>";
+                        tr += "<td>" + i +"</td>";
+                        tr += "<td><input type='text' name='subject"+i+"' id='subject"+i+"' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><input type='text' name='mark"+i+"' id='mark"+i+"' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade"+i+"' id='grade"+i+"' class='form-control' required></td>";
+                        tr += "</tr>";
+                        $(".tbl_fillmarks_body").append(tr);
+                        i++;
+                    }else if (element.is_full_module == 3 || element.is_full_module == 0 ){
+                        var tr = "<tr>";
+                        tr += "<td>" + i +"</td>";
+                        tr += "<td><input type='text' name='subject"+i+"' id='subject"+i+"' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><input type='text' name='mark"+i+"' id='mark"+i+"' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade"+i+"' id='grade"+i+"' class='form-control' required></td>";
+                        tr += "</tr>";
+                        $(".tbl_fillmarks_body").append(tr);
+                        i++;
+                    }
+                })
+
             });
             $.ajax({
                 url: BACKEND_URL + "/search_exam_result/" + id,
                 type: 'get',
                 data: "",
                 success: function (result) {
+                        if(result.data !=null)
+                        {
+                            // $('.ex_res_btn').hide();
 
-                    if (result.data != null) {
-                        $('.ex_res_btn').hide();
+                            // $('.pass_fail_btn').show();
 
-                        $('.pass_fail_btn').show();
-                        $("input[name = result_id]").val(result.data.id);
-                        console.log('search_exam_result', result.data.id);
-                        var rData = JSON.parse(result.data.result);
-                        console.log(rData.subjects[1]);
+                            $('.pass_fail_btn').hide();
 
-                        console.log('is_full_module', module_type);
-                        if (module_type == 1 || module_type == 2) {
-                            for (var i = 0; i < 3; i++) {
-                                var j = i + 1;
-                                var sunject = document.getElementById('subject' + j);
-                                sunject.value = rData.subjects[i];
+                            $("input[name = result_id]").val(result.data.id);
+                            //console.log('search_exam_result',JSON.parse(result.data.result));
+
+                            var rData=JSON.parse(result.data.result);
+                            var row_length = rData.subjects.length;
+
+                            console.log('is_full_module',module_type);
+                            if(module_type == 1)
+                            {
+                                for (var i = 0; i < row_length; i++)
+                                {
+                                    var j=i+1;
+                                    var sunject=document.getElementById('subject'+j);
+                                    sunject.value = rData.subjects[i];
+                                    sunject.setAttribute("readonly", "true");
+                                }
+                                for (var i = 0; i < row_length; i++)
+                                {
+                                    var j=i+1;
+                                    var mark=document.getElementById('mark'+j);
+                                    mark.value = rData.marks[i];
+                                    mark.setAttribute("readonly", "true");
+                                }
+                                for (var i = 0; i < row_length; i++)
+                                {
+                                    var j=i+1;
+                                    var grade=document.getElementById('grade'+j);
+                                    grade.value = rData.grades[i];
+                                    grade.setAttribute("readonly", "true");
+                                }
                             }
-                            for (var i = 0; i < 3; i++) {
-                                var j = i + 1;
-                                var mark = document.getElementById('mark' + j);
-                                mark.value = rData.marks[i];
+                            else if(module_type == 2){
+                                for (var i = 0; i < row_length; i++) {
+                                    var j = i + 1;
+                                    var subject = document.getElementById('subject' + j);
+                                    subject.value = rData.subjects[i];
+                                    subject.setAttribute("readonly", "true");
+                                }
+                                for (var i = 0; i < row_length; i++) {
+                                    var j = i + 1;
+                                    var mark = document.getElementById('mark' + j);
+                                    mark.value = rData.marks[i];
+                                    mark.setAttribute("readonly", "true");
+                                }
+                                for (var i = 0; i < row_length; i++) {
+                                    var j = i + 1;
+                                    var grade = document.getElementById('grade' + j);
+                                    grade.value = rData.grades[i];
+                                    grade.setAttribute("readonly", "true");
+                                }
                             }
-                            for (var i = 0; i < 3; i++) {
-                                var j = i + 1;
-                                var grade = document.getElementById('grade' + j);
-                                grade.value = rData.grades[i];
+                            else if(module_type == 3){
+                                for (var i = 0; i < row_length; i++) {
+                                    var j = i + 1;
+                                    var subject = document.getElementById('subject' + j);
+                                    subject.value = rData.subjects[i];
+                                    subject.setAttribute("readonly", "true");
+                                }
+                                for (var i = 0; i < row_length; i++) {
+                                    var j = i + 1;
+                                    var mark = document.getElementById('mark' + j);
+                                    mark.value = rData.marks[i];
+                                    mark.setAttribute("readonly", "true");
+                                }
+                                for (var i = 0; i < row_length; i++) {
+                                    var j = i + 1;
+                                    var grade = document.getElementById('grade' + j);
+                                    grade.value = rData.grades[i];
+                                    grade.setAttribute("readonly", "true");
+                                }
                             }
-                        } else {
-                            for (var i = 0; i < 6; i++) {
-                                var j = i + 1;
-                                var sunject = document.getElementById('subject' + j);
-                                sunject.value = rData.subjects[i];
-                            }
-                            for (var i = 0; i < 6; i++) {
-                                var j = i + 1;
-                                var mark = document.getElementById('mark' + j);
-                                mark.value = rData.marks[i];
-                            }
-                            for (var i = 0; i < 6; i++) {
-                                var j = i + 1;
-                                var grade = document.getElementById('grade' + j);
-                                grade.value = rData.grades[i];
-                            }
+                        }else{
+                            // $('.pass_fail_btn').hide();
                         }
-                    } else {
-                        $('.pass_fail_btn').hide();
-                    }
-                },
-                error: function (message) {
+                    },
+                error:function (message){
                     console.log(message);
-                }
+                    }
             });
+            // $.ajax({
+            //     url: BACKEND_URL + "/search_exam_result/" + id,
+            //     type: 'get',
+            //     data: "",
+            //     success: function (result) {
+            //         console.log(result);
+            //         if (result.data != null) {
+            //             // $('.ex_res_btn').hide();
+
+            //             // $('.pass_fail_btn').show();
+
+            //             $('.pass_fail_btn').hide();
+
+            //             $("input[name = result_id]").val(result.data.id);
+            //             console.log('search_exam_result', result.data.id);
+            //             var rData = JSON.parse(result.data.result);
+            //             console.log(rData.subjects[1]);
+
+            //             console.log('is_full_module', module_type);
+            //             if (module_type == 1 || module_type == 2) {
+            //                 for (var i = 0; i < 3; i++) {
+            //                     var j = i + 1;
+            //                     var subject = document.getElementById('subject' + j);
+            //                     subject.value = rData.subjects[i];
+            //                     subject.setAttribute("readonly", "true");
+            //                 }
+            //                 for (var i = 0; i < 3; i++) {
+            //                     var j = i + 1;
+            //                     var mark = document.getElementById('mark' + j);
+            //                     mark.value = rData.marks[i];
+            //                     mark.setAttribute("readonly", "true");
+            //                 }
+            //                 for (var i = 0; i < 3; i++) {
+            //                     var j = i + 1;
+            //                     var grade = document.getElementById('grade' + j);
+            //                     grade.value = rData.grades[i];
+            //                     grade.setAttribute("readonly", "true");
+            //                 }
+            //             } else {
+            //                 for (var i = 0; i < 6; i++) {
+            //                     var j = i + 1;
+            //                     var subject = document.getElementById('subject' + j);
+            //                     subject.value = rData.subjects[i];
+            //                     subject.setAttribute("readonly", "true");
+            //                 }
+            //                 for (var i = 0; i < 6; i++) {
+            //                     var j = i + 1;
+            //                     var mark = document.getElementById('mark' + j);
+            //                     mark.value = rData.marks[i];
+            //                     mark.setAttribute("readonly", "true");
+            //                 }
+            //                 for (var i = 0; i < 6; i++) {
+            //                     var j = i + 1;
+            //                     var grade = document.getElementById('grade' + j);
+            //                     grade.value = rData.grades[i];
+            //                     grade.setAttribute("readonly", "true");
+            //                 }
+            //             }
+            //         } else {
+            //             // $('.pass_fail_btn').hide();
+            //         }
+            //     },
+            //     error: function (message) {
+            //         console.log(message);
+            //     }
+            // });
         }
     });
 }
