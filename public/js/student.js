@@ -184,6 +184,11 @@ function loadStudentSelfStudy() {
             $("#student_registration_no").append(element.student_info.registration_no);
             $("#student_registration_reason").append(element.reg_reason);
             $("input[name = student_register_id]").val(element.id);
+            if (element.status == 0) {
+                document.getElementById("approve_reject").style.display = "block";
+            } else {
+                document.getElementById("approve_reject").style.display = "none";
+            }
 
             $("#registration_no").append(element.personal_no);
             element = element.student_info;
@@ -208,10 +213,7 @@ function loadStudentSelfStudy() {
 
             if(element.gov_staff == 1){
                 $(".recommend_row").show();
-                let recommend_letter = JSON.parse(element.recommend_letter);
-                $.each(recommend_letter,function(fileCount,fileName){
-                    $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                })
+                $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
             }else{
                 $(".recommend_row").hide();
             }

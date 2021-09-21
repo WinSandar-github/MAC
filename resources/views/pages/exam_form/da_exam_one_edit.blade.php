@@ -273,7 +273,7 @@
                                     <h5 class="border-bottom pb-2" style="font-weight:bold">Basic Info</h5>
                                 </div>
                                 <div class="card-body pt-0">
-                                    <div class="row m-2 mt-3 border-bottom">
+                                    <div class="row m-2 mt-3 border-bottom is_private_row">
                                         <div class="col-md-6">
                                             <p class="ml-2" style="font-weight:bold">Private School Name</p>
                                         </div>
