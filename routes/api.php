@@ -128,9 +128,9 @@ Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 // Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
-Route::get('/filter/{status}/{course_code}', 'ExamRegisterController@FilterExamRegistration');
+Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
 // Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
-Route::get('/filter_exam_register/{grade}/{course_code}', 'ExamRegisterController@FilterExamRegister');
+Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
@@ -288,3 +288,9 @@ Route::get('showDescription/{membership_name}','MembershipController@showDescrip
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
+
+// subject
+Route::get('getSubject/{course_id}','SubjectController@getSubject');
+
+// education history
+Route::get('getEducationHistory/{student_info_id}','TeacherController@getEducationHistory');

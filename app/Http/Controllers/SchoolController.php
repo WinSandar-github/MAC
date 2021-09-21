@@ -48,6 +48,7 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
+        print_r($request->school_type);
         if ($request->hasfile('nrc_front')) {
             $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -295,7 +296,7 @@ class SchoolController extends Controller
         }
         $school->type = rtrim($school_type, ',');
         $school->save();
-
+       
         //Student Info
         $std_info = new StudentInfo();
         $std_info->school_id = $school->id;
@@ -314,7 +315,7 @@ class SchoolController extends Controller
             $establisher->ph_number    = $request->establisher_ph_number[$i];
             $establisher->email        = $request->establisher_email[$i];
             $establisher->school_id    = $school->id;
-            $establisher->save();
+           $establisher->save();
         }
 
         //govern list
@@ -359,9 +360,9 @@ class SchoolController extends Controller
             $teacher->save();
         }
  
-        return response()->json([
-            'message' => 'Success Registration.'
-        ],200);
+        // return response()->json([
+        //     'message' => 'Success Registration.'
+        // ],200);
     }
 
     /**

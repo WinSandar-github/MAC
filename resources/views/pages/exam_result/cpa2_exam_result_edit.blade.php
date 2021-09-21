@@ -20,35 +20,18 @@
                                     <h5 class="title" style="padding-left: 330px;">{{ __('CPA 2 Exam Result List') }}</h5>
                                 </div>
                             </div>
-                            {{--<div class="row">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
                                     <div class="row">
-                                        <!-- <div class="col-md-1"></div> -->
+
                                         <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
                                         <div class="col-md-7 text-left">
                                             <input type="text" name="filter_by_name" class="form-control" placeholder="Student Name">
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="row">
-                                    <!-- <div class="col-md-1"></div> -->
-                                        <div class="col-md-3 text-left" style="font-weight:bold;">Remark</div>
-                                        <div class="col-md-7 text-left">
-                                            <select class="form-control form-select" name="selected_grade_id" id="selected_grade_id">
-                                                <option value="all" selected>All</option>
-                                                <option value="0">Pending</option>
-                                                <option value="1" >Pass</option>
-                                                <option value="2">Fail</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><br/>--}}
-                            {{--<div class="row">
-                                <div class="col-md-6">
-                                    <div class="row">
-                                    <!-- <div class="col-md-1"></div> -->
                                         <div class="col-md-4 text-left" style="font-weight:bold;">Batch Number</div>
                                         <div class="col-md-7 text-left">
                                             <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
@@ -57,10 +40,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <button type="submit" onclick="loadCPAStudent('cpa_2')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
+                                <div class="col-md-2">
+                                    <button type="submit" onclick="cpa2_reload()" class="btn btn-primary btn-round m-0" >Search</button>
                                 </div>
-                            </div>--}}
+                            </div><br/>
                             <ul class="nav nav-tabs mt-3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
@@ -141,14 +124,26 @@
 @push('scripts')
 <script>
 	//loadCPAStudent('cpa_2');
-  //loadBatchData("cpa_2");
-
+    loadBatchData("cpa_2");
+    var pending_datatable;
+    var approved_datatable;
+    var rejected_datatable;
   $(document).ready(function(){
-    $('#tbl_cpa_exam_pending_result').DataTable({
+    pending_datatable=$('#tbl_cpa_exam_pending_result').DataTable({
         processing: true,
         // serverSide: true,
         scrollX:true,
-        ajax: BACKEND_URL + "/filter_exam_register/0/4",
+        ajax: {
+                url  : BACKEND_URL + "/filter_exam_register",
+                type : "POST" ,
+                data :  function (d) {
+                    d.grade       = 0,
+                    d.course_code = '4',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
         columns: [
             {data: null, render: function (data, type, row, meta) {
                 return meta.row + meta.settings._iDisplayStart + 1;
@@ -163,11 +158,21 @@
         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
     });
 
-    $('#tbl_cpa_exam_approved_result').DataTable({
+    approved_datatable=$('#tbl_cpa_exam_approved_result').DataTable({
         processing: true,
         scrollX:true,
         // serverSide: true,
-        ajax: BACKEND_URL + "/filter_exam_register/1/4",
+        ajax: {
+                url  : BACKEND_URL + "/filter_exam_register",
+                type : "POST" ,
+                data :  function (d) {
+                    d.grade       = 1,
+                    d.course_code = '4',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
         columns: [
           {data: null, render: function (data, type, row, meta) {
               return meta.row + meta.settings._iDisplayStart + 1;
@@ -182,11 +187,21 @@
         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
     });
 
-    $('#tbl_cpa_exam_rejected_result').DataTable({
+    rejected_datatable=$('#tbl_cpa_exam_rejected_result').DataTable({
         processing: true,
         scrollX:true,
         // serverSide: true,
-        ajax: BACKEND_URL + "/filter_exam_register/2/4",
+        ajax: {
+                url  : BACKEND_URL + "/filter_exam_register",
+                type : "POST" ,
+                data :  function (d) {
+                    d.grade       = 2,
+                    d.course_code = '4',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
         columns: [
           {data: null, render: function (data, type, row, meta) {
               return meta.row + meta.settings._iDisplayStart + 1;
@@ -204,12 +219,15 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
   			$.each($.fn.dataTable.tables(true), function(){
   					$(this).DataTable()
-  							.columns.adjust()
-  							.responsive.recalc();
+  							.columns.adjust();
   			});
   	});
 
   });
-
+  function cpa2_reload(){
+        pending_datatable.ajax.reload();
+        approved_datatable.ajax.reload();
+        rejected_datatable.ajax.reload();
+    }
 </script>
 @endpush

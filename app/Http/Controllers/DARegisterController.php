@@ -350,41 +350,51 @@ class DARegisterController extends Controller
     public function FilterApplicationList(Request $request){
     
         $course  = Course::where('code',$request->course_code)->first();
-       
         //  $student_infos = StudentCourseReg::with('student_info','batch')
         //                     ->where('approve_reject_status','=', $status)
         //                     ->where('batch_id','=', $batch_id);
-        $student_infos = StudentCourseReg::whereHas('batch', function ($query) use ($course) {
+        $student_infos = StudentCourseReg::with('student_info','batch')->whereHas('batch', function ($query) use ($course) {
             $query->where('course_id', $course->id);
-            })->where('approve_reject_status','=', $request->status)
-              ->where('qt_entry','=',0) 
-              ->with('student_info','batch');
- 
-
-        $student_infos = $student_infos->get();
+            })->where('student_course_regs.approve_reject_status','=', $request->status)
+              ->where('qt_entry','=',0)
+              ->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id') ; 
+        if($request->batch!="all"){
+            $student_infos = $student_infos->where('batch_id',$request->batch);
+        }       
+        if($request->nrc!="")
+        {
+            $student_infos=$student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+        }
+        if($request->name!="")
+        {
+            $student_infos=$student_infos ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+                                        ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+        }
         
-            return DataTables::of($student_infos)
-                ->addColumn('action', function ($infos) {
-                    return "<div class='btn-group'>
-                                    <button type='button' class='btn btn-primary btn-xs' onclick='showDAList($infos->id)'>
-                                        <li class='fa fa-eye fa-sm'></li>
-                                    </button>
-                                </div>";
-                })
-                ->addColumn('nrc', function ($infos){
-                    $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
-                    return $nrc_result;
-                })
-                ->addColumn('status', function ($infos){
-                    if($infos->approve_reject_status == 0){
-                        return "PENDING";
-                    }else if($infos->approve_reject_status == 1){
-                        return "APPROVED";
-                    }else{
-                        return "REJECTED";
-                    }
-                })
-                ->make(true);
+        $student_infos = $student_infos->get();
+    
+        return DataTables::of($student_infos)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-xs' onclick='showDAList($infos->id)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->approve_reject_status == 0){
+                    return "PENDING";
+                }else if($infos->approve_reject_status == 1){
+                    return "APPROVED";
+                }else{
+                    return "REJECTED";
+                }
+            })
+            ->make(true);
     }
 
     public function checkCode($id)

@@ -113,54 +113,67 @@ function getTeacherInfos(){
         type : 'GET',
         url : BACKEND_URL+"/teacher/"+id,
         success : function(data){
-            $("#name_eng").append(data.data.name_eng);
-            $("#name_mm").append(data.data.name_mm);
-            let nrc = data.data.nrc_state_region+"/"+data.data.nrc_township+"("+data.data.nrc_citizen+")"+data.data.nrc_number;
-            $("#nrc").append(nrc);
-            $("#father_name_eng").append(data.data.father_name_eng);
-            $("#father_name_mm").append(data.data.father_name_mm);
-            $("#phone").append(data.data.phone);
-            $("#email").append(data.data.email);
-            var degrees = data.data.degrees.split(',');
-            var certificates = data.data.certificates.split(',');
-            var diplomas = data.data.diplomas.split(',');
-            $.each(degrees, function( index, value ) {
-                var tr = "<tr>";
-                tr += `<td> ${ index += 1 } </td>`;
-                tr += `<td> ${ value } </td>`;
-                tr += "</tr>";
-                $("#tbl_degree_body").append(tr);
+            $.each(data.data, function( index, value ) {
+                document.getElementById('image').src = PDF_URL + value.image;
+                $("#name_eng").append(value.name_eng);
+                $("#name_mm").append(value.name_mm);
+                let nrc = value.nrc_state_region+"/"+value.nrc_township+"("+value.nrc_citizen+")"+value.nrc_number;
+                $("#nrc").append(nrc);
+                $("#father_name_eng").append(value.father_name_eng);
+                $("#father_name_mm").append(value.father_name_mm);
+                $("#phone").append(value.phone);
+                $("#email").append(value.email);
+                var certificates = value.certificates.split(',');
+                var diplomas = value.diplomas.split(',');
+                $.each(certificates, function( index_y, item ) {
+                    var tr = "<tr>";
+                    tr += `<td> ${ index_y += 1 } </td>`;
+                    tr += `<td> ${ item } </td>`;
+                    tr += "</tr>";
+                    $("#tbl_certificate_body").append(tr);
+                });
+                $.each(diplomas, function( index_z, item ) {
+                    var tr = "<tr>";
+                    tr += `<td> ${ index_z += 1 } </td>`;
+                    tr += `<td> ${ item } </td>`;
+                    tr += "</tr>";
+                    $("#tbl_diploma_body").append(tr);
+                });
+                if(value.approve_reject_status != 0){
+                    $("#approve_reject").hide();
+                }
+                else{
+                    $("#approve_reject").show();
+                }
+                $("#exp_desc").append(value.exp_desc);
+                if(value.gov_employee == 1){
+                    $('input:radio[name=radio1]').attr('checked',true);
+                    $('input[name="radio2"]').attr('disabled', 'disabled');
+                    $('.recommend_row').show();
+                    $(".recommend_letter").append(`<a href='${PDF_URL+value.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                   
+                    
+                }
+                else{
+                    $('input:radio[name=radio2]').attr('checked',true);
+                    $('input[name="radio1"]').attr('disabled', 'disabled');
+                    $('.recommend_row').hide();
+                }
+                $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $("#race").append(value.race);
+                $("#religion").append(value.religion);
+                $("#date_of_birth").append(value.date_of_birth);
+                $("#address").append(value.address);
+                $("#current_address").append(value.current_address);
+                $("#position").append(value.position);
+                $("#department").append(value.department);
+                $("#organization").append(value.organization);
+                loadEductaionHistory(value.student_info.id);
+                //loadSchoolName(value.school_id);
             });
-            $.each(certificates, function( index, value ) {
-                var tr = "<tr>";
-                tr += `<td> ${ index += 1 } </td>`;
-                tr += `<td> ${ value } </td>`;
-                tr += "</tr>";
-                $("#tbl_certificate_body").append(tr);
-            });
-            $.each(diplomas, function( index, value ) {
-                var tr = "<tr>";
-                tr += `<td> ${ index += 1 } </td>`;
-                tr += `<td> ${ value } </td>`;
-                tr += "</tr>";
-                $("#tbl_diploma_body").append(tr);
-            });
-            if(data.data.approve_reject_status != 0){
-                $("#approve_reject").hide();
-            }
-            else{
-                $("#approve_reject").show();
-            }
-            $("#exp_desc").append(data.data.exp_desc);
-            if(data.data.gov_employee == 1){
-                $('input:radio[name=radio1]').attr('checked',true);
-                $('input[name="radio2"]').attr('disabled', 'disabled');
-            }
-            else{
-                $('input:radio[name=radio2]').attr('checked',true);
-                $('input[name="radio1"]').attr('disabled', 'disabled');
-            }
            
+            
         }
     });
 }
@@ -194,3 +207,21 @@ function rejectTeacherRegister(){
         }
     });
 }
+
+  function loadEductaionHistory(student_info_id){
+      console.log(student_info_id)
+    $.ajax({
+        type : 'GET',
+        url : BACKEND_URL+"/getEducationHistory/"+student_info_id,
+        success: function(result){
+            $.each(result.data, function( index, value ) {
+                var tr = "<tr>";
+                tr += `<td> ${ index += 1 } </td>`;
+                tr += `<td> ${ value.university_name } </td>`;
+                tr += `<td><a href='${PDF_URL+value.certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a></td>`;
+                tr += "</tr>";
+                $("#tbl_degree_body").append(tr);
+            });
+        }
+    });
+  }
