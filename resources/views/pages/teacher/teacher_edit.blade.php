@@ -19,6 +19,11 @@
                 @csrf
                  <div class="card">
                     <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-10"></div>
+                        <label class="col-md-2 col-form-label" style="font-weight:bold">ဆရာပုံစံ-၁</label>
+                                                    
+                    </div>
                         <center>
                             <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                             <br/><span class='text-info'>Profile Picture</span>
@@ -160,44 +165,47 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
-                                        <div class="col-md-6">
-                                            <p class="ml-2" style="font-weight:bold">အထက်လူကြီး၏ထောက်ခံစာ</p>
+                                <div class="recommend_row" style="display:none">
+                                        <div class="row m-2 mt-3 border-bottom ">
+                                            <div class="col-md-6">
+                                                <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာ ဌာနအကြီးအကဲ၏ ခွင့်ပြုမိန့်</p>
+                                            </div>
+                                            <div class="col-md-6 recommend_letter">
+                                                
+                                            </div>
                                         </div>
-                                        <div class="col-md-6 recommend_letter">
-                                            
+                                        <div class="row m-2 mt-3 border-bottom">
+                                            <div class="col-md-6">
+                                                <p class="ml-2" style="font-weight:bold">ရာထူး</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span id="position"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row m-2 mt-3 border-bottom">
+                                            <div class="col-md-6">
+                                                <p class="ml-2" style="font-weight:bold">ဌာန</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span id="department"></span>
+                                            </div>
+                                        </div>
+                                        <div class="row m-2 mt-3 border-bottom">
+                                            <div class="col-md-6">
+                                                <p class="ml-2" style="font-weight:bold">ရုံးစိုက်ရာဒေသ</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span id="organization"></span>
+                                            </div>
                                         </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">ရာထူး</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="position"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">ဌာန</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="department"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">ရုံးစိုက်ရာဒေသ</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="organization"></span>
-                                    </div>
-                                </div>
+                                
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">သင်ကြားမည့်သင်တန်းကျောင်းအမည်</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="organization"></span>
+                                        <span id="school_name"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3">
@@ -214,7 +222,9 @@
                                             <thead class="text-nowrap table-primary">
                                                 <tr>
                                                     <th class="bold-font-weight" >စဉ်</th>
-                                                    <th class="bold-font-weight" >လက်မှတ်ရ ပြည်သူ့စာရင်းကိုင်သင်တန်း</th>
+                                                    <th class="bold-font-weight" >ဘာသာရပ်များ</th>
+                                                    <th class="bold-font-weight" >ဘာသာရပ်ကြေး</th>
+                                                    <th class="bold-font-weight" >ငွေပေးချေမှု</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_certificate_body" class="hoverTable">
@@ -231,7 +241,9 @@
                                             <thead class="text-nowrap table-primary">
                                                 <tr>
                                                     <th class="bold-font-weight" >စဉ်</th>
-                                                    <th class="bold-font-weight" >ဒီပလိုမာစာရင်းကိုင်သင်တန်း</th>
+                                                    <th class="bold-font-weight" >ဘာသာရပ်များ</th>
+                                                    <th class="bold-font-weight" >ဘာသာရပ်ကြေး</th>
+                                                    <th class="bold-font-weight" >ငွေပေးချေမှု</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_diploma_body" class="hoverTable">
@@ -247,12 +259,21 @@
                                         <span id="exp_desc"></span>
                                     </div>
                                 </div>
+                                <input type="hidden" id="student_info_id">
+                                <input type="hidden" id="teacher_id">
                                 <div class="row mt-5 justify-content-center" id="approve_reject" style="display:none;">                                    
 
                                     <button  id="reject" class="btn btn-danger"  onclick="rejectTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
                                     <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
                                 </div>
-                                
+                                <div class="row m-2 mt-3 border-bottom period" style="display:none;">
+                                            <div class="col-md-6">
+                                                <p class="ml-2" style="font-weight:bold">This certificate is valid for the period</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <span id="period_time"></span>
+                                            </div>
+                                </div>
                             </div>
                         </div>                   
                     </div>
