@@ -221,6 +221,8 @@ function getTeacherInfos(){
                     var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
                     $('#period_time').text(period+" to 31-12-"+now.getFullYear());
                 }
+                $('#student_info_id').val(value.student_info.id);
+                $('#teacher_id').val(value.id);
             });
            
             
@@ -232,9 +234,11 @@ function approveTeacherRegister(){
     let result = window.location.href;
     let url = new URL(result);
     let id = url.searchParams.get("id");
+    var student_info_id=$('#student_info_id').val();
+    var teacher_id=$('#teacher_id').val();
     $.ajax({
         url: BACKEND_URL + "/approve_teacher_register",
-        data: 'id='+id+"&status=1",
+        data: 'id='+id+"&status=1"+"&student_info_id="+student_info_id,
         type: 'post',
         success: function(result){
             successMessage('You have approved that user!');
