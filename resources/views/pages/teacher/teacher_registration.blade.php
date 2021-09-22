@@ -260,7 +260,7 @@
             $.each($.fn.dataTable.tables(true), function(){
                 $(this).DataTable()
                     .columns.adjust()
-                    .responsive.recalc();
+                    //.responsive.recalc();
             });
         });
 
