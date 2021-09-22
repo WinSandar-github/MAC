@@ -83,7 +83,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Type</th>
+                                                <!-- <th class="bold-font-weight" >Type</th> -->
 
                                             </tr>
                                         </thead>
@@ -102,7 +102,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Type</th>
+                                                <!-- <th class="bold-font-weight" >Type</th> -->
 
                                             </tr>
                                         </thead>
@@ -121,7 +121,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Type</th>
+                                                <!-- <th class="bold-font-weight" >Type</th> -->
 
                                             </tr>
                                         </thead>
@@ -167,7 +167,7 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                {data: 'type', name: 'type'},
+                // {data: 'type', name: 'type'},
 
             ],
 
@@ -199,7 +199,7 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                {data: 'type', name: 'type'},
+                // {data: 'type', name: 'type'},
 
             ],
 
@@ -231,7 +231,7 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                {data: 'type', name: 'type'},
+                // {data: 'type', name: 'type'},
 
             ],
 
