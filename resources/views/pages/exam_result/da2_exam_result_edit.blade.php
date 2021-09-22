@@ -20,7 +20,7 @@
                                     <h5 class="title" style="padding-left: 330px;">{{ __('DA 2 Exam Result List') }}</h5>
                                 </div>
                             </div>
-                            <div class="row">
+                            {{--<div class="row">
                                 <div class="col-md-5">
                                     <div class="row">
 
@@ -43,7 +43,7 @@
                                 <div class="col-md-2">
                                     <button type="submit" onclick="da2_reload()" class="btn btn-primary btn-round m-0" >Search</button>
                                 </div>
-                            </div><br/>
+                            </div><br/>--}}
                             <ul class="nav nav-tabs mt-3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
@@ -121,7 +121,7 @@
 @push('scripts')
 <script>
 	//loadStudent('da_2');
-    loadBatchData("da_2");
+    //loadBatchData("da_2");
     var pending_datatable;
     var approved_datatable;
     var rejected_datatable;
@@ -137,8 +137,8 @@
                 data :  function (d) {
                     d.grade       = 0,
                     d.course_code = '2',
-                    d.name =    $("input[name=filter_by_name]").val(),
-                    d.batch= $("#selected_batch_id").val()
+                    d.name =    "",
+                    d.batch= "all"
                 }
              
             },
@@ -166,8 +166,8 @@
                 data :  function (d) {
                     d.grade       = 1,
                     d.course_code = '2',
-                    d.name =    $("input[name=filter_by_name]").val(),
-                    d.batch= $("#selected_batch_id").val()
+                    d.name =    "",
+                    d.batch= "all"
                 }
              
             },
@@ -195,8 +195,8 @@
                 data :  function (d) {
                     d.grade       = 2,
                     d.course_code = '2',
-                    d.name =    $("input[name=filter_by_name]").val(),
-                    d.batch= $("#selected_batch_id").val()
+                    d.name =    "",
+                    d.batch= "all"
                 }
              
             },

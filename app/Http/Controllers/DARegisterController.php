@@ -346,36 +346,43 @@ class DARegisterController extends Controller
     public function FilterApplicationList(Request $request){
     
         $course  = Course::where('code',$request->course_code)->first();
-
         //  $student_infos = StudentCourseReg::with('student_info','batch')
         //                     ->where('approve_reject_status','=', 1)
         //                     ->where('batch_id','=', $batch_id);
-
+        
         $student_infos = StudentCourseReg::with('student_info','batch')
                         ->whereHas('batch', function ($query) use ($course) {
                             $query->where('course_id', $course->id);
                         })
+                        ->whereHas('student_info', function($q) use ($request){
+                            if($request->name !== ""){
+                                $q->where('name_mm', 'like', "%" . $request->name . "%")
+                                ->orWhere('name_eng', 'like', "%" . $request->name . "%");
+                            }
+                            if($request->nrc != "")
+                            {
+                                $query->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+                            }
+                            if($request->batch != "all"){
+                                $query->where('batch_id', $request->batch);
+                            }
+                        })
                         ->where('student_course_regs.approve_reject_status','=', $request->status)
-                        ->where('qt_entry','=',0)
-                        ->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id') ;
-
-        if($request->batch != "all"){
-            $student_infos = $student_infos->where('batch_id', $request->batch);
-        }
-        
-        if($request->nrc!="")
-        {
-            $student_infos=$student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        }
-
-        if($request->name!="")
-        {
-            $student_infos=$student_infos ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-                                        ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-        }
-        
-        $student_infos = $student_infos->get();
-    
+                        ->where('qt_entry','=',0)->get();
+                        // ->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id') ;
+        // if($request->batch != "all"){
+        //     $student_infos = $student_infos->where('batch_id', $request->batch);
+        // }
+        // if($request->nrc != "")
+        // {
+        //     $student_infos = $student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+        // }
+        // if($request->name != "")
+        // {
+        //     $student_infos = $student_infos->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+        //                                 ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+        // }
+        // $student_infos = $student_infos->get();
         return DataTables::of($student_infos)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>

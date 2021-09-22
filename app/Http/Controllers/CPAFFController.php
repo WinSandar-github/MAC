@@ -169,8 +169,23 @@ class CPAFFController extends Controller
             }else{
                 $degree_file = null;
             }
+            //save to std info
+            $std_info = new StudentInfo();
+            //$std_info->cpaff_id         =   $cpa_ff->id;
+            $std_info->email            =   strtolower($request->email);
+            $std_info->password         =   Hash::make($request->password);
+            $std_info->name_mm          =   $request->name_mm;
+            $std_info->name_eng          =   $request->name_eng;
+            $std_info->nrc_state_region =   $request->nrc_state_region;
+            $std_info->nrc_township     =   $request->nrc_township;
+            $std_info->nrc_citizen      =   $request->nrc_citizen;
+            $std_info->nrc_number       =   $request->nrc_number;
+            $std_info->father_name_mm   =   $request->father_name_mm;
+            $std_info->father_name_eng   =   $request->father_name_eng;
+            $std_info->save();
+
             $cpa_ff  = new CPAFF();
-            $cpa_ff->student_info_id  =   $cpa_ff->id;
+            $cpa_ff->student_info_id  =   $std_info->id;
             $cpa_ff->profile_photo    =   $profile_photo;
             $cpa_ff->cpa              =   $cpa;
             $cpa_ff->ra               =   $ra;
@@ -206,19 +221,10 @@ class CPAFFController extends Controller
             $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
             $cpa_ff->save();
 
-            //save to std info
-            $std_info = new StudentInfo();
-            $std_info->cpaff_id         =   $std_info->id;
-            $std_info->email            =   strtolower($request->email);
-            $std_info->password         =   Hash::make($request->password);
-            $std_info->name_mm          =   $request->name_mm;
-            $std_info->nrc_state_region =   $request->nrc_state_region;
-            $std_info->nrc_township     =   $request->nrc_township;
-            $std_info->nrc_citizen      =   $request->nrc_citizen;
-            $std_info->nrc_number       =   $request->nrc_number;
-            $std_info->father_name_mm   =   $request->father_name_mm;
-            $std_info->save();
-
+            $student_data = StudentInfo::find($std_info->id) ;
+            $student_data->cpaff_id = $cpa_ff->id;
+            $student_data->save();
+            
             return response()->json([
                 'message' => "You have successfully registerd!"
             ],200);
