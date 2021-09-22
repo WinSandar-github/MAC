@@ -117,7 +117,7 @@
 
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသက္ကရာဇ်') }}</label>
 	                                      <div class="col-md-8">
                                             <div class="form-group">
                                                         <input type="text" name="date_of_birth" id="date_of_birth" placeholder="dd-mm-yyyy" class="form-control" required="">
@@ -152,7 +152,7 @@
 	                                    </div>
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
-	                                      <label class="col-md-2 col-form-label">{{ __('CPA PAPP	မှတ်ပုံတင်အမှတ်/ရက်စွဲ') }}</label>
+	                                      <label class="col-md-2 col-form-label">{{ __('CPA	မှတ်ပုံတင်အမှတ်/ရက်စွဲ') }}</label>
 	                                        <div class="col-md-4">
                                                 <div class="form-group">
                                                         <input type="text" name="cpa_reg_no" id="cpa_reg_no" class="form-control"  required="">
