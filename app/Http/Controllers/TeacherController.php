@@ -122,6 +122,7 @@ class TeacherController extends Controller
         $teacher->department = $request->department;
         $teacher->organization = $request->organization;
         $teacher->school_id = $request->selected_school_id;
+        $teacher->school_type = $request->school_type;
         $teacher->save();
         
         //Student Info
@@ -212,6 +213,25 @@ class TeacherController extends Controller
         }else{
             $nrc_back =$request->nrc_back;
         }
+        if ($request->hasfile('recommend_letter')) {
+            $file = $request->file('recommend_letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $recommend_letter = '/storage/teacher_info/'.$name;
+        }else{
+            $recommend_letter=$request->recommend_letter;
+        }
+        if ($request->hasfile('degrees_certificates')) {
+            foreach($request->file('degrees_certificates') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/teacher_info/',$name);
+                 $degrees_certificates[] = $name;
+             }
+            
+        }else{
+            $degrees_certificates='null';
+        }
         $teacher = TeacherRegister::find($id);
         $teacher->phone = $request->phone_number;
         $teacher->nrc_front = $nrc_front;
@@ -220,24 +240,34 @@ class TeacherController extends Controller
         $teacher->exp_desc = $request->exp_desc;
         $teacher->image = $image;
         
-        $degrees = "";$certificates = ""; $diplomas = "";
-        foreach($request->degrees as $d){
-            $degrees = $degrees . $d . ',';
-
-        }
-        foreach($request->certificates as $c){
-            $certificates = $certificates . $c . ',';
-
-        }
-        foreach($request->diplomas as $d){
-            $diplomas = $diplomas . $d . ',';
-
-        }
-        $teacher->degrees = rtrim($degrees, ',');
-        $teacher->certificates = rtrim($certificates, ',');
-        $teacher->diplomas = rtrim($diplomas, ',');
+        $teacher->certificates = json_encode($request->certificates);
+        $teacher->diplomas = json_encode($request->diplomas);
+        $teacher->address = $request->address;
+        $teacher->recommend_letter = $recommend_letter;
+        $teacher->position = $request->position;
+        $teacher->department = $request->department;
+        $teacher->organization = $request->organization;
+        $teacher->school_id = $request->selected_school_id;
+        $teacher->school_type = $request->school_type;
         $teacher->renew_date = date('Y-m-d');
+        $teacher->payment_method = null;
+        $teacher->approve_reject_status = 0;
         $teacher->save();
+
+        if($degrees_certificates!='null'){
+
+            $degrees_certificates=implode(',', $degrees_certificates);
+            $new_degrees_certificates= explode(',',$degrees_certificates);
+            for($i=0;$i < sizeof($request->degrees);$i++){
+       
+                $education_histroy  =   new EducationHistroy();
+                $education_histroy->student_info_id = $request->student_info_id;
+                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->certificate        ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+                $education_histroy->save();
+            }
+        }
+        
         return response()->json([
             'message' => 'You have renewed successfully.'
         ],200);
@@ -261,7 +291,6 @@ class TeacherController extends Controller
         $std_info->approve_reject_status = 1;
         $std_info->save();
         $teacher = TeacherRegister::find($request->id);
-        $teacher->renew_date = date('Y-m-d');
         $teacher->approve_reject_status = $request->status;
         $teacher->save();
         return response()->json([
@@ -271,7 +300,8 @@ class TeacherController extends Controller
 
     public function FilterTeacher(Request $request)
     {
-        $teacher = TeacherRegister::where('approve_reject_status',$request->status)->orderBy('created_at','desc');
+        $teacher = TeacherRegister::where('approve_reject_status',$request->status)
+        ->orderBy('created_at','desc');
         if($request->name!=""){
             $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
                         ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -299,6 +329,13 @@ class TeacherController extends Controller
                         return "APPROVED";
                     }else{
                         return "REJECTED";
+                    }
+                })
+                ->addColumn('payment_method', function ($infos){
+                    if($infos->payment_method	 == ""){
+                        return "Payment Incomplete";
+                    }else{
+                        return "Payment Complete";
                     }
                 })
                 ->make(true);
@@ -332,6 +369,10 @@ class TeacherController extends Controller
         $std_info = StudentInfo::find($id) ;
         $std_info->payment_method = 'CASH';
         $std_info->save();
+        $teacher = TeacherRegister::find($std_info->teacher_id);
+        $teacher->payment_method = 'CASH';
+        $teacher->renew_date = date('Y-m-d');
+        $teacher->save();
         return response()->json([
             'data' => $std_info,
         ],200);
