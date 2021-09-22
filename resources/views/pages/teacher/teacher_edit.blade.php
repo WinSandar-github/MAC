@@ -19,15 +19,26 @@
                 @csrf
                  <div class="card">
                     <div class="card-body">
+                        <center>
+                            <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+                            <br/><span class='text-info'>Profile Picture</span>
+                        </center>
                         <div class="row">
                            
                             <div class="col-md-12 text-left">
                                 <h5 class="border-bottom pb-2 text-center" style="font-weight:bold">Teacher Information</h5>
-                                
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">အီးမေးလ်</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="email"></span>
+                                    </div>
+                                </div>
                                 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2 text-bold" style="font-weight:bold">၁။ အမည်(မြန်မာ) / အမည်(အင်္ဂလိပ်)</p>
+                                        <p class="ml-2 text-bold" style="font-weight:bold">အမည်(မြန်မာ) / အမည်(အင်္ဂလိပ်)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="name_mm"></span> / <span id="name_eng"></span>
@@ -36,7 +47,7 @@
                                 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">၂။ အဘအမည်(မြန်မာ) / အဘအမည်(အင်္ဂလိပ်)</p>
+                                        <p class="ml-2" style="font-weight:bold">အဘအမည်(မြန်မာ) / အဘအမည်(အင်္ဂလိပ်)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
@@ -44,7 +55,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">၃။ နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</p>
+                                        <p class="ml-2" style="font-weight:bold">နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="nrc"></span>
@@ -52,7 +63,47 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">၄။ ဖုန်းနံပါတ်</p>
+                                        <p class="ml-2" style="font-weight:bold">နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အရှေ့)</p>
+                                    </div>
+                                    <div class="col-md-6 nrc_front">
+                                        
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အနောက်)</p>
+                                    </div>
+                                    <div class="col-md-6 nrc_back">
+                                        
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">လူမျိုး</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="race"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">ကိုးကွယ်သည့်ဘာသာ</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="religion"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">မွေးသက္ကရာဇ်</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="date_of_birth"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">ဖုန်းနံပါတ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="phone"></span>
@@ -60,22 +111,33 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">၅။ အီးမေးလ်</p>
+                                        <p class="ml-2" style="font-weight:bold">ဆက်သွယ်ရန်လိပ်စာ</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="email"></span>
+                                        <span id="address"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">၆။ ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)</p>
+                                        <p class="ml-2" style="font-weight:bold">အမြဲတမ်းနေရပ်လိပ်စာ</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="current_address"></span>
+                                    </div>
+                                </div>
+                            
+                                
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">ပညာအရည်အချင်း (ရရှိထားသော တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <table id="tbl_degree"class="table table-bordered table-hover text-center">
                                             <thead class="text-nowrap table-primary">
                                                 <tr>
                                                     <th class="bold-font-weight" >စဉ်</th>
-                                                    <th class="bold-font-weight" >ပညာအရည်အချင်း</th>
+                                                    <th class="bold-font-weight" >တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ</th>
+                                                    <th class="bold-font-weight" >Attached Certificate</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tbl_degree_body" class="hoverTable">
@@ -85,7 +147,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">၇။ နိုင်ငံ့ဝန်ထမ်း ဟုတ်/မဟုတ်</p>
+                                        <p class="ml-2" style="font-weight:bold">နိုင်ငံ့ဝန်ထမ်း ဟုတ်/မဟုတ်</p>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-check form-check-inline">
@@ -98,9 +160,49 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
+                                        <div class="col-md-6">
+                                            <p class="ml-2" style="font-weight:bold">အထက်လူကြီး၏ထောက်ခံစာ</p>
+                                        </div>
+                                        <div class="col-md-6 recommend_letter">
+                                            
+                                        </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">ရာထူး</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="position"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">ဌာန</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="department"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">ရုံးစိုက်ရာဒေသ</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="organization"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">သင်ကြားမည့်သင်တန်းကျောင်းအမည်</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="organization"></span>
+                                    </div>
+                                </div>
                                 <div class="row m-2 mt-3">
                                     <div class="col-md-12">
-                                        <p class="ml-2" style="font-weight:bold">၈။ သင်ကြားမည့်သင်တန်းနှင့် ဘာသာရပ်များ</p>
+                                        <p class="ml-2" style="font-weight:bold">သင်ကြားမည့်သင်တန်းနှင့် ဘာသာရပ်များ</p>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3">
@@ -139,7 +241,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">၉။ သင်ကြားမည့်ဘာသာရပ်အတွက် သင်ကြားမှုနှင့် အခြားအတွေ့အကြုံများ</p>
+                                        <p class="ml-2" style="font-weight:bold">သင်ကြားမည့်ဘာသာရပ်အတွက် သင်ကြားမှုနှင့် အခြားအတွေ့အကြုံများ</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="exp_desc"></span>

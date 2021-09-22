@@ -56,6 +56,7 @@ class CreateStudentInfosTable extends Migration
             // $table->boolean('verify_status')->default(0)->nullable();
             $table->string('payment_method')->nullable();
             $table->string('recommend_letter')->nullable();
+            $table->unsignedBigInteger('cpaff_id')->nullable();
 
             $table->foreign('course_type_id')->references('id')->on('course_types')->onDelete('cascade');
             $table->timestamps();

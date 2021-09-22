@@ -191,7 +191,9 @@ class EntryExamController extends Controller
             $student_course->status          = 1;
             $student_course->approve_reject_status = 0;
             $student_course->type           = $request->type;
-            $student_course->mac_type           = $request->mac_type;
+            if($request->type == 2){
+              $student_course->mac_type           = $request->mac_type;
+            }
             $student_course->qt_entry      = 1;
             $student_course->save();
                
@@ -214,7 +216,9 @@ class EntryExamController extends Controller
             $student_course->status          = 1;
             $student_course->approve_reject_status = 0;
             $student_course->type           = $request->type;
-            $student_course->mac_type           = $request->mac_type;
+            if($request->type == 2){
+              $student_course->mac_type           = $request->mac_type;
+            }
             $student_course->save();
                
             return response()->json([

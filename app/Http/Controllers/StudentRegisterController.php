@@ -32,8 +32,6 @@ class StudentRegisterController extends Controller
         }
         $invoice_date = date('Y-m-d');
 
-
-
         switch ($request->type) {
             case 0:
                 if(isset($request->reg_reason))

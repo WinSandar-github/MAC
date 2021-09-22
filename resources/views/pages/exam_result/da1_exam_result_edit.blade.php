@@ -20,8 +20,8 @@
                                     <h5 class="title" style="padding-left: 330px;">{{ __('DA 1 Exam Result List') }}</h5>
                                 </div>
                             </div>
-                            {{--<div class="row">
-                                <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-md-5">
                                     <div class="row">
 
                                         <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
@@ -30,23 +30,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-
-                                        <div class="col-md-3 text-left" style="font-weight:bold;">Remark</div>
-                                        <div class="col-md-7 text-left">
-                                            <select class="form-control form-select" name="selected_grade_id" id="selected_grade_id">
-                                                <option value="all" selected>All</option>
-                                                <option value="0">Pending</option>
-                                                <option value="1" >Pass</option>
-                                                <option value="2">Fail</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><br/>--}}
-                            {{--<div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <div class="row">
                                         <div class="col-md-4 text-left" style="font-weight:bold;">Batch Number</div>
                                         <div class="col-md-7 text-left">
@@ -56,10 +40,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <button type="submit" onclick="loadStudent('da_1')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
+                                <div class="col-md-2">
+                                    <button type="submit" onclick="da1_reload()" class="btn btn-primary btn-round m-0" >Search</button>
                                 </div>
-                            </div><br/>--}}
+                            </div><br/>
                             <ul class="nav nav-tabs mt-3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
@@ -137,16 +121,28 @@
 @push('scripts')
 <script>
 	//loadStudent('da_1');
-//   loadBatchData("da_1");
-
+   loadBatchData("da_1");
+    var pending_datatable;
+    var approved_datatable;
+    var rejected_datatable;
   $(document).ready(function(){
     localStorage.setItem("course_type","da_1");
       
-    $('#tbl_exam_pending_result').DataTable({
+    pending_datatable=$('#tbl_exam_pending_result').DataTable({
         processing: true,
         scrollX:true,
         // serverSide: true,
-        ajax: BACKEND_URL + "/filter_exam_register/0/1",
+        ajax: {
+                url  : BACKEND_URL + "/filter_exam_register",
+                type : "POST" ,
+                data :  function (d) {
+                    d.grade       = 0,
+                    d.course_code = '1',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
         columns: [
             {data: null, render: function (data, type, row, meta) {
                 return meta.row + meta.settings._iDisplayStart + 1;
@@ -161,11 +157,21 @@
         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
     });
 
-    $('#tbl_exam_approved_result').DataTable({
+    approved_datatable=$('#tbl_exam_approved_result').DataTable({
         processing: true,
         scrollX:true,
         // serverSide: true,
-        ajax: BACKEND_URL + "/filter_exam_register/1/1",
+        ajax: {
+                url  : BACKEND_URL + "/filter_exam_register",
+                type : "POST" ,
+                data :  function (d) {
+                    d.grade       = 1,
+                    d.course_code = '1',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
         columns: [
           {data: null, render: function (data, type, row, meta) {
               return meta.row + meta.settings._iDisplayStart + 1;
@@ -180,11 +186,21 @@
         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
     });
 
-    $('#tbl_exam_rejected_result').DataTable({
+    rejected_datatable=$('#tbl_exam_rejected_result').DataTable({
         processing: true,
         scrollX:true,
         // serverSide: true,
-        ajax: BACKEND_URL + "/filter_exam_register/2/1",
+        ajax: {
+                url  : BACKEND_URL + "/filter_exam_register",
+                type : "POST" ,
+                data :  function (d) {
+                    d.grade       = 2,
+                    d.course_code = '1',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
         columns: [
           {data: null, render: function (data, type, row, meta) {
               return meta.row + meta.settings._iDisplayStart + 1;
@@ -202,11 +218,15 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
         $.each($.fn.dataTable.tables(true), function(){
             $(this).DataTable()
-                .columns.adjust()
-                .responsive.recalc();
+                .columns.adjust();
         });
     });
 
   });
+  function da1_reload(){
+        pending_datatable.ajax.reload();
+        approved_datatable.ajax.reload();
+        rejected_datatable.ajax.reload();
+    }
 </script>
 @endpush

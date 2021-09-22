@@ -9,6 +9,7 @@ use App\EducationHistroy;
 use App\StudentInfo;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
+use Hash;
 
 class CPAFFController extends Controller
 {
@@ -21,6 +22,207 @@ class CPAFFController extends Controller
     }
     public function store(Request $request)
     {
+        if($request->form_type == 1)
+        {
+            if ($request->hasfile('profile_photo')) {
+                $file = $request->file('profile_photo');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $profile_photo = '/storage/student_info/'.$name;
+            }else{
+                $profile_photo=null;
+            }
+
+            if ($request->hasfile('cpa')) {
+                $file = $request->file('cpa');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $cpa = '/storage/cpa_ff_register/'.$name;
+            }
+            else{
+                $cpa = null;
+            }
+
+            if ($request->hasfile('ra')) {
+                $file = $request->file('ra');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $ra = '/storage/cpa_ff_register/'.$name;
+            }
+            else{
+                $ra = null;
+            }
+
+            if($request->hasfile('foreign_degree'))
+            {
+                foreach($request->file('foreign_degree') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                    $foreign_degree[] = '/storage/cpa_ff_register/'.$name;
+                }
+            }else{
+                $foreign_degree = null;
+            }
+
+            // if ($request->hasfile('foreign_degree')) {
+            //     $file = $request->file('foreign_degree');
+            //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            //     $foreign_degree = $name;
+            // }
+            // else{
+            //     $foreign_degree=null;
+            // }
+
+            if ($request->hasfile('cpa_certificate')) {
+                $file = $request->file('cpa_certificate');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $cpa_certificate = '/storage/cpa_ff_register/'.$name;
+            }
+            else{
+                $cpa_certificate="";
+            }
+
+            if ($request->hasfile('cpa_certificate_back')) {
+                $file = $request->file('cpa_certificate_back');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $cpa_certificate_back = '/storage/cpa_ff_register/'.$name;
+            }
+            else{
+                $cpa_certificate_back="";
+            }
+
+            if ($request->hasfile('mpa_mem_card')) {
+                $file = $request->file('mpa_mem_card');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $mpa_mem_card = '/storage/cpa_ff_register/'.$name;
+            }else{
+                $mpa_mem_card="";
+            }
+
+            if ($request->hasfile('nrc_front')) {
+                $file = $request->file('nrc_front');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $nrc_front= '/storage/student_info/'.$name;
+            }else{
+                $nrc_front="";
+            }
+
+            if ($request->hasfile('nrc_back')) {
+                $file = $request->file('nrc_back');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $nrc_back= '/storage/student_info/'.$name;
+            }else{
+                $nrc_back="";
+            }
+
+            if ($request->hasfile('cpd_record')) {
+                $file = $request->file('cpd_record');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $cpd_record = '/storage/cpa_ff_register/'.$name;
+            }else{
+                $cpd_record="";
+            }
+
+            if ($request->hasfile('passport_image')) {
+                $file = $request->file('passport_image');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $passport_image = '/storage/cpa_ff_register/'.$name;
+            }else{
+                $passport_image="";
+            }
+
+            if ($request->hasfile('three_years_full')) {
+                $file = $request->file('three_years_full');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $three_years_full = '/storage/cpa_ff_register/'.$name;
+            }else{
+                $three_years_full="";
+            }
+
+            if ($request->hasfile('letter')) {
+                $file = $request->file('letter');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $letter = '/storage/cpa_ff_register/'.$name;
+            }else{
+                $letter="";
+            }
+
+            if($request->hasfile('degree_file'))
+            {
+                foreach($request->file('degree_file') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                    $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                    $degree_file[] = '/storage/cpa_ff_register/'.$name;
+                }        
+            }else{
+                $degree_file = null;
+            }
+            $cpa_ff  = new CPAFF();
+            $cpa_ff->student_info_id  =   $cpa_ff->id;
+            $cpa_ff->profile_photo    =   $profile_photo;
+            $cpa_ff->cpa              =   $cpa;
+            $cpa_ff->ra               =   $ra;
+            $cpa_ff->degree_name      =   json_encode($request->degree_name);
+            $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
+            $cpa_ff->foreign_degree   =   json_encode($degree_file);
+
+            $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
+            $cpa_ff->pass_personal_no =   $request->pass_personal_no;
+
+            $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
+            $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
+            // $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
+            // $cpa_ff->foreign_degree   =   $foreign_degree;
+            // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+            // $cpa_ff->qt_pass          =   $request->qt_pass;
+            $cpa_ff->cpa_certificate  =   $cpa_certificate;
+            $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
+            $cpa_ff->nrc_front        =   $nrc_front;
+            $cpa_ff->nrc_back         =   $nrc_back;
+            $cpa_ff->cpd_record       =   $cpd_record;
+            $cpa_ff->passport_image   =   $passport_image;
+            $cpa_ff->three_years_full   =   $three_years_full;
+            $cpa_ff->letter   =   $letter;
+            $cpa_ff->status           =  0;
+
+            //save to cpaff
+            $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
+            $cpa_ff->address          =   $request->address;
+            $cpa_ff->phone            =   $request->phone;
+            $cpa_ff->contact_mail     =   $request->contact_mail;
+            $cpa_ff->form_type        =   $request->form_type;
+            $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
+            $cpa_ff->save();
+
+            //save to std info
+            $std_info = new StudentInfo();
+            $std_info->cpaff_id         =   $std_info->id;
+            $std_info->email            =   strtolower($request->email);
+            $std_info->password         =   Hash::make($request->password);
+            $std_info->name_mm          =   $request->name_mm;
+            $std_info->nrc_state_region =   $request->nrc_state_region;
+            $std_info->nrc_township     =   $request->nrc_township;
+            $std_info->nrc_citizen      =   $request->nrc_citizen;
+            $std_info->nrc_number       =   $request->nrc_number;
+            $std_info->father_name_mm   =   $request->father_name_mm;
+            $std_info->save();
+
+            return response()->json([
+                'message' => "You have successfully registerd!"
+            ],200);
+        }
         // return $request;
         // profile photo
         if ($request->hasfile('profile_photo')) {
@@ -84,6 +286,16 @@ class CPAFFController extends Controller
             $cpa_certificate="";
         }
 
+        if ($request->hasfile('cpa_certificate_back')) {
+            $file = $request->file('cpa_certificate_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $cpa_certificate_back = '/storage/cpa_ff_register/'.$name;
+        }
+        else{
+            $cpa_certificate_back="";
+        }
+
         if ($request->hasfile('mpa_mem_card')) {
             $file = $request->file('mpa_mem_card');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -129,6 +341,24 @@ class CPAFFController extends Controller
             $passport_image="";
         }
 
+        if ($request->hasfile('three_years_full')) {
+            $file = $request->file('three_years_full');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $three_years_full = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $three_years_full="";
+        }
+
+        if ($request->hasfile('letter')) {
+            $file = $request->file('letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $letter = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $letter="";
+        }
+
         if($request->hasfile('degree_file'))
         {
             foreach($request->file('degree_file') as $file)
@@ -152,7 +382,7 @@ class CPAFFController extends Controller
         $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
         $cpa_ff->pass_personal_no =   $request->pass_personal_no;
 
-        $cpa_ff->qt_pass_date     =   $request->qt_pass_date;
+        $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
         $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
         // $cpa_ff->foreign_degree   =   json_encode($foreign_degree);
         // $cpa_ff->foreign_degree   =   $foreign_degree;
@@ -165,6 +395,15 @@ class CPAFFController extends Controller
         $cpa_ff->cpd_record       =   $cpd_record;
         $cpa_ff->passport_image   =   $passport_image;
         $cpa_ff->status           =  0;
+        //save to cpaff
+        $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
+        $cpa_ff->address          =   $request->address;
+        $cpa_ff->phone            =   $request->phone;
+        $cpa_ff->contact_mail     =   $request->contact_mail;
+        $cpa_ff->form_type        =   $request->form_type;
+        $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
+        $cpa_ff->three_years_full   =   $three_years_full;
+        $cpa_ff->letter   =   $letter;
         $cpa_ff->save();
 
         return response()->json([
@@ -278,10 +517,10 @@ class CPAFFController extends Controller
             $nrc_back=$request->nrc_back;
         }
         $cpa_ff = CPAFF::find($id);
-        $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
-        $cpa_ff->qt_pass          =   $request->qt_pass;
+        // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+        // $cpa_ff->qt_pass          =   $request->qt_pass;
         $cpa_ff->cpa_certificate=$cpa_certificate;
-        $cpa_ff->mpa_mem_card=$mpa_mem_card;
+        // $cpa_ff->mpa_mem_card=$mpa_mem_card;
         $cpa_ff->cpd_record=$cpd_record;
         $cpa_ff->passport_image=$passport_image;
         $cpa_ff->nrc_front        =   $nrc_front;
@@ -291,7 +530,7 @@ class CPAFFController extends Controller
         $cpa_ff->renew_status=1;
         $cpa_ff->save();
         return response()->json([
-            'message' => "You have renewed successfully"
+            'message' => "Your renew subscription is successfully"
         ],200);
 
      }
@@ -308,6 +547,13 @@ class CPAFFController extends Controller
 
     public function getCpaffByStuId($stu_id){
         $cpaff = CPAFF::where('student_info_id',$stu_id)->first();
+        return response()->json([
+            'data'  => $cpaff
+        ]);
+    }
+
+    public function getCpaff($stu_id){
+        $cpaff = StudentInfo::where('id',$stu_id)->first();
         return response()->json([
             'data'  => $cpaff
         ]);

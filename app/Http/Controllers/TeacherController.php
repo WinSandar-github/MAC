@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\TeacherRegister;
 use App\StudentInfo;
+use App\EducationHistroy;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -65,14 +66,30 @@ class TeacherController extends Controller
             $file->move(public_path().'/storage/teacher_info/',$name);
             $nrc_back = '/storage/teacher_info/'.$name;
         }
-
+        if ($request->hasfile('recommend_letter')) {
+            $file = $request->file('recommend_letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $recommend_letter = '/storage/teacher_info/'.$name;
+        }else{
+            $recommend_letter=null;
+        }
+        if ($request->hasfile('degrees_certificates')) {
+            foreach($request->file('degrees_certificates') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/teacher_info/',$name);
+                 $degrees_certificates[] = $name;
+             }
+            
+        }
         $teacher = new TeacherRegister();
         $teacher->name_mm = $request->name_mm;
         $teacher->name_eng = $request->name_eng;
         $teacher->father_name_mm = $request->father_name_mm;
         $teacher->father_name_eng = $request->father_name_eng;
         $teacher->reg_date = date('Y-m-d');
-        $teacher->phone = $request->phone_number;
+        $teacher->phone = $request->phone;
         $teacher->email = $request->email;
         $teacher->password = Hash::make($request->password);
         $teacher->nrc_state_region = $request->nrc_state_region;
@@ -84,11 +101,7 @@ class TeacherController extends Controller
         $teacher->gov_employee = $request->gov_employee;
         $teacher->exp_desc = $request->exp_desc;
         $teacher->image = $image;
-        $degrees = "";$certificates = ""; $diplomas = "";
-        foreach($request->degrees as $d){
-            $degrees = $degrees . $d . ',';
-
-        }
+        $certificates = ""; $diplomas = "";
         foreach($request->certificates as $c){
             $certificates = $certificates . $c . ',';
 
@@ -97,17 +110,43 @@ class TeacherController extends Controller
             $diplomas = $diplomas . $d . ',';
 
         }
-        $teacher->degrees = rtrim($degrees, ',');
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
+        $teacher->race = $request->race;
+        $teacher->religion = $request->religion;
+        $teacher->date_of_birth = $request->date_of_birth;
+        $teacher->address = $request->address;
+        $teacher->current_address = $request->current_address;
+        $teacher->recommend_letter = $recommend_letter;
+        $teacher->position = $request->position;
+        $teacher->department = $request->department;
+        $teacher->organization = $request->organization;
+        $teacher->school_id = $request->selected_school_id;
         $teacher->save();
-
+        
         //Student Info
-        $std_info = new StudentInfo();
-        $std_info->teacher_id = $teacher->id;
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
-        $std_info->save();
+        $std_info =StudentInfo::where('school_id','!=','NULL')->where('email','=', $request->email)->get();
+        if(sizeof($std_info)!=0){
+            $std_info =StudentInfo::find($std_info->id);
+            $std_info->teacher_id = $teacher->id;
+            $std_info->save();
+        }else{
+            $std_info = new StudentInfo();
+            $std_info->teacher_id = $teacher->id;
+            $std_info->email = $request->email;
+            $std_info->password = Hash::make($request->password);
+            $std_info->save();
+        }
+        $degrees_certificates=implode(',', $degrees_certificates);
+        $new_degrees_certificates= explode(',',$degrees_certificates);
+        for($i=0;$i < sizeof($request->degrees);$i++){
+       
+            $education_histroy  =   new EducationHistroy();
+            $education_histroy->student_info_id = $std_info->id;
+            $education_histroy->university_name = $request->degrees[$i];
+            $education_histroy->certificate        ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+            $education_histroy->save();
+        }
 
         return response()->json([
             'message' => 'Success Registration.'
@@ -122,7 +161,7 @@ class TeacherController extends Controller
      */
     public function show($id)
     {
-        $teacher = TeacherRegister::find($id);
+        $teacher = TeacherRegister::with('student_info')->where('id',$id)->get();
         return  response()->json([
             'data' => $teacher
         ],200);
@@ -303,5 +342,11 @@ class TeacherController extends Controller
         $data = StudentInfo::where('id',$id)->get();
         return response()->json($data,200);
     }
-
+    public function getEducationHistory($student_info_id)
+    {
+        $data = EducationHistroy::where('student_info_id',$student_info_id)->get();
+        return response()->json([
+            'data' => $data
+        ],200);
+    }
 }

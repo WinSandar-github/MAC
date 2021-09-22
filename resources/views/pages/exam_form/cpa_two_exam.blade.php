@@ -32,7 +32,7 @@
                                 <button type="submit" onclick="getCPAExam()" class="btn btn-primary btn-hover-dark m-1" >Search</button>
                             </div>
                         </div>--}}
-                        {{--<div class="row">
+                        <div class="row">
                             <div class="col-md-5">
                                 <div class="row">
                                     <!-- <div class="col-md-1"></div> -->
@@ -54,9 +54,9 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button type="submit" onclick="getCPAExam('cpa_2')" class="btn btn-primary btn-hover-dark m-0" >Search</button>
+                                <button type="submit" onclick="cpa2_reload()" class="btn btn-primary btn-round m-0" >Search</button>
                             </div>
-                        </div>--}}
+                        </div>
                         <ul class="nav nav-tabs mt-3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
@@ -148,15 +148,27 @@
 @endsection
 @push('scripts')
 <script>
-    //loadBatchData("cpa_2");
+    loadBatchData("cpa_2");
     //getCPAExam('cpa_2');
-
+    var pending_datatable;
+    var approved_datatable;
+    var rejected_datatable;
     $(document).ready(function(){
-      $('#tbl_cpa_pending_exam').DataTable({
+        pending_datatable=$('#tbl_cpa_pending_exam').DataTable({
           processing: true,
           // serverSide: true,
           scrollX:true,
-          ajax: BACKEND_URL + "/filter/0/4",
+          ajax: {
+                url  : BACKEND_URL + "/filter",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 0,
+                    d.course_code = '4',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
           columns: [
               {data: null, render: function (data, type, row, meta) {
                   return meta.row + meta.settings._iDisplayStart + 1;
@@ -172,11 +184,21 @@
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
 
-      $('#tbl_cpa_approved_exam').DataTable({
+      approved_datatable=$('#tbl_cpa_approved_exam').DataTable({
           processing: true,
           // serverSide: true,
           scrollX:true,
-          ajax: BACKEND_URL + "/filter/1/4",
+          ajax: {
+                url  : BACKEND_URL + "/filter",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 1,
+                    d.course_code = '4',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
           columns: [
               {data: null, render: function (data, type, row, meta) {
                   return meta.row + meta.settings._iDisplayStart + 1;
@@ -192,11 +214,21 @@
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
 
-      $('#tbl_cpa_rejected_exam').DataTable({
+      rejected_datatable=$('#tbl_cpa_rejected_exam').DataTable({
           processing: true,
           // serverSide: true,
           scrollX:true,
-          ajax: BACKEND_URL + "/filter/2/4",
+          ajax: {
+                url  : BACKEND_URL + "/filter",
+                type : "POST" ,
+                data :  function (d) {
+                    d.status       = 2,
+                    d.course_code = '4',
+                    d.name =    $("input[name=filter_by_name]").val(),
+                    d.batch= $("#selected_batch_id").val()
+                }
+             
+            },
           columns: [
               {data: null, render: function (data, type, row, meta) {
                   return meta.row + meta.settings._iDisplayStart + 1;
@@ -215,11 +247,15 @@
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
           $.each($.fn.dataTable.tables(true), function(){
               $(this).DataTable()
-                  .columns.adjust()
-                  .responsive.recalc();
+                  .columns.adjust();
           });
       });
 
     });
+    function cpa2_reload(){
+        pending_datatable.ajax.reload();
+        approved_datatable.ajax.reload();
+        rejected_datatable.ajax.reload();
+    }
 </script>
 @endpush
