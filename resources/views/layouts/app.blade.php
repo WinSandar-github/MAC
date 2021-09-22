@@ -55,6 +55,17 @@
 <script src="{{ asset('js/bootstrap/bootstrap.min.js')}}"></script>
 <script src="{{ asset('js/bootstrap/popper.min.js')}}"></script>
 <script src="{{ asset('js/flatpickr/flatpickr.js')}}"></script>
+
+<script src="{{ asset("vendor/jquery-validation/dist/jquery.validate.min.js") }}"></script>
+<script src="{{ asset("vendor/jquery-validation/dist/additional-methods.min.js") }}"></script>
+
+<!-- Plugins JS -->
+<script src="{{ asset('assets/js/plugins/swiper-bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/jquery.magnific-popup.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/video-playlist.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/ajax-contact.js') }}"></script>
+<script src="{{ asset("assets/js/plugins/jasny-bootstrap.min.js")  }}"></script>
+
 <script src="{{ asset('EasyLoading/jquery-ui.min.js')}}"></script>
 <script src="{{ asset('EasyLoading/js/easy-loading.js')}}"></script>
 <script src="{{ asset('js/easyloading.js') }}"></script>
@@ -68,6 +79,8 @@
 <script src="{{ asset('js/requirement.js')}}"></script>
 <script src="{{ asset('js/description.js')}}"></script>
 <script src="{{ asset('js/membership.js')}}"></script>
+<script src="{{ asset('js/entry_exam.js')}}"></script>
+
 
 
 <script src="{{ asset('js/common.js')}}"></script>

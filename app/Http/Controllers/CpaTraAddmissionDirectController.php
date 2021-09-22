@@ -144,7 +144,7 @@ class CpaTraAddmissionDirectController extends Controller
         }else{
             $rec_letter = null;
         }
-////Multiple University
+    ///Multiple University
         // if($request->hasfile('uni_certificate'))
         // {
         //     foreach($request->file('uni_certificate') as $file)
@@ -228,6 +228,7 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->degree_rank                  =   $request->degree_rank;
         $student_info->verify_code      =   $request->verify_code;
         $student_info->payment_method   =   $request->payment_method;
+        $student_info->acca_cima        =   $request->acca_cima;
         $student_info->save(); 
 
         $student_job_histroy = new StudentJobHistroy;

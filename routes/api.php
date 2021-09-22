@@ -85,6 +85,7 @@ Route::get('/cpa_ff_register_list/{status}', 'CPAFFController@FilterCpaffRegistr
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
+Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 
@@ -128,9 +129,9 @@ Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
 Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
 Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 // Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
-Route::get('/filter/{status}/{course_code}', 'ExamRegisterController@FilterExamRegistration');
+Route::post('/filter', 'ExamRegisterController@FilterExamRegistration');
 // Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
-Route::get('/filter_exam_register/{grade}/{course_code}', 'ExamRegisterController@FilterExamRegister');
+Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister');
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
@@ -288,6 +289,17 @@ Route::get('showDescription/{membership_name}','MembershipController@showDescrip
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
+//cpa entry exam
+Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
+Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
+
+
+Route::post('entry_exam_filter','EntryExamController@entryExamFilter');
+
+Route::post('/filter_entry_exam_result', 'EntryExamController@filterEntryExamResult');
+
+
+
 
 // subject
 Route::get('getSubject/{course_id}','SubjectController@getSubject');

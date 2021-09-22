@@ -42,6 +42,7 @@ class CreateStudentInfosTable extends Migration
             $table->string('direct_degree')->nullable();
             $table->string('degree_rank')->nullable();
             $table->string('degree_date')->nullable();
+            $table->string('acca_cima')->nullable();
             $table->string('da_pass_date')->nullable();
             $table->string('da_pass_certificate')->nullable();
             $table->string('da_pass_roll_number')->nullable();
@@ -55,6 +56,7 @@ class CreateStudentInfosTable extends Migration
             // $table->boolean('verify_status')->default(0)->nullable();
             $table->string('payment_method')->nullable();
             $table->string('recommend_letter')->nullable();
+            $table->unsignedBigInteger('cpaff_id')->nullable();
 
             $table->foreign('course_type_id')->references('id')->on('course_types')->onDelete('cascade');
             $table->timestamps();

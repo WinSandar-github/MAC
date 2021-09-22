@@ -461,7 +461,17 @@ Breadcrumbs::for('mentor_list', function ($trail) {
 
 //Exam Entry
 Breadcrumbs::for('entry_exam_list', function ($trail) {
-    $trail->push('Coming Soon...', route('page.index', 'entry_exam_list'));
+    $trail->parent('administration');
+    // $trail->push('Coming Soon...', route('page.index', 'entry_exam_list'));
+    $trail->push('entry_exam_list', route('page.index', 'entry_exam_list'));
+
+});
+
+Breadcrumbs::for('entry_exam_result_list', function ($trail) {
+    $trail->parent('home');
+    // $trail->push('Coming Soon...', route('page.index', 'entry_exam_list'));
+    $trail->push('entry_exam_result_list', route('page.index', 'entry_exam_result_list'));
+
 });
 
 //qualified test
