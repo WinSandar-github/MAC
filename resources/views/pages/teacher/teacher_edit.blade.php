@@ -259,6 +259,8 @@
                                         <span id="exp_desc"></span>
                                     </div>
                                 </div>
+                                <input type="hidden" id="student_info_id">
+                                <input type="hidden" id="teacher_id">
                                 <div class="row mt-5 justify-content-center" id="approve_reject" style="display:none;">                                    
 
                                     <button  id="reject" class="btn btn-danger"  onclick="rejectTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
