@@ -222,4 +222,6 @@ class CpaOneRegisterController extends Controller
         ],200);
 
     }
+
+   
 }

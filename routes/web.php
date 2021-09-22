@@ -136,6 +136,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('attend_app_list','ReportController@attendAppList');
     Route::get('membership_edit/{id}','MembershipController@membership_edit');
+    
+    Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail');
+    Route::get('entry_exam_result','EntryExamController@entryExamResult');
+
 });
 Route::get('show_description','DescriptionController@showDescription');
 Route::get('show_requirement','RequirementController@showRequirement');
