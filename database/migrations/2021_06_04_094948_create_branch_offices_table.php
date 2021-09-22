@@ -17,6 +17,7 @@ class CreateBranchOfficesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('accountancy_firm_info_id');
             $table->string('branch_name')->nullable();
+            $table->string('branch_address')->nullable();
             $table->string('township')->nullable();
             $table->string('postcode')->nullable();
             $table->string('city')->nullable();
@@ -29,7 +30,7 @@ class CreateBranchOfficesTable extends Migration
             $table->foreign('accountancy_firm_info_id')
             ->references('id')
             ->on('accountancy_firm_information')
-            ->onDelete('cascade');    
+            ->onDelete('cascade');
         });
     }
 
