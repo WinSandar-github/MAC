@@ -267,7 +267,10 @@ class TeacherController extends Controller
                 $education_histroy->save();
             }
         }
-        
+        $std_info = StudentInfo::find($request->student_info_id);
+        $std_info->payment_method = null;
+        $std_info->approve_reject_status = 0;
+        $std_info->save();
         return response()->json([
             'message' => 'You have renewed successfully.'
         ],200);
