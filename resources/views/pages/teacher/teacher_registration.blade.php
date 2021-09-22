@@ -76,8 +76,9 @@
                                                 <th class="bold-font-weight" >Email</th>     
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
+                                                <th class="bold-font-weight" >Register Date</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                
+                                                <th class="bold-font-weight" >Payment Status</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_teacher_pending_body" class="hoverTable text-left">
@@ -94,8 +95,9 @@
                                                 <th class="bold-font-weight" >Email</th>     
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
+                                                <th class="bold-font-weight" >Register Date</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                
+                                                <th class="bold-font-weight" >Payment Status</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_teacher_approved_body" class="hoverTable text-left">
@@ -112,8 +114,9 @@
                                                 <th class="bold-font-weight" >Email</th>     
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
+                                                <th class="bold-font-weight" >Register Date</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                
+                                                <th class="bold-font-weight" >Payment Status</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_teacher_rejected_body" class="hoverTable text-left">
@@ -184,8 +187,9 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'reg_date', name: 'reg_date'},
                 {data: 'status', name: 'status'},
-               
+                {data: 'payment_method', name: 'payment_method'},
 
             ],
          });
@@ -215,8 +219,9 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'reg_date', name: 'reg_date'},
                 {data: 'status', name: 'status'},
-
+                {data: 'payment_method', name: 'payment_method'},
             ],
          });
 
@@ -245,8 +250,9 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'reg_date', name: 'reg_date'},
                 {data: 'status', name: 'status'},
-
+                {data: 'payment_method', name: 'payment_method'},
             ],
          });
 
