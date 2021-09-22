@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3">စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း</h5>
                         </div>
                     </div>
                 </div>
@@ -17,7 +17,7 @@
                             <div class="col-md-12 pl-2">
                                
                                
-                                <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Public သို့ထုတ်ပေးမည်</button>
+                                <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                
                             </div>
                         
@@ -29,7 +29,7 @@
                             <table width="100%" id="tbl_exam_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
-                                        <th class="bold-font-weight" >Serial umber</th>
+                                        <th class="bold-font-weight" >Serial number</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
                                         

@@ -24,10 +24,15 @@ class ReportController extends Controller
         $student_infos = ExamRegister::where('form_type',$current_course->active_batch[0]->course->id)
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
                         ->where('exam_type_id','!=',3)
-                        ->with('student_info')->where('status',1)
-                        ->orderBy('student_infos.name_mm','asc')->select('exam_register.*')->get();
+                        ->where('status',1)
+                        ->with('student_info')
+                        ->orderBy('student_infos.name_mm','asc')->select('exam_register.*');
 
-     
+        $request->grade &&  $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
+
+         $student_infos =  $student_infos->get(); 
+       
+ 
           return DataTables::of($student_infos)
                 ->addColumn('nrc', function ($infos){
                     $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
@@ -69,5 +74,10 @@ class ReportController extends Controller
     {
         $course = Course::where('code',$code)->first();
         return view('reporting.exam_list',compact('course'));
+    }
+    public function  examResultList($code)  
+    {
+        $course = Course::where('code',$code)->first();
+        return view('reporting.exam_result_list',compact('course'));
     }
 }    

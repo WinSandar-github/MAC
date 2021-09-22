@@ -111,7 +111,7 @@ class ApiController extends Controller
             ->where('status',1)->first();
 
             if(!empty($student_register)){
-                $student_info->personal_no = $batch_id.'/('.$course->course_type->course_code.')/'.$student_register->sr_no;
+                $student_info->personal_no = $batch_id.'('.$course->course_type->course_code.')/'.$student_register->sr_no;
                 $student_info->save();
 
             }

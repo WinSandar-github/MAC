@@ -520,7 +520,6 @@ class StudentRegisterController extends Controller
     }
     public function ‌approveExamList(Request $request)
     {
-       
         $course = Course::where('code', $request->course_code)->first();
         
 
@@ -529,7 +528,11 @@ class StudentRegisterController extends Controller
                         ->where('form_type',$course->id)
                         ->where('status',1)
                         ->whereNotNull('sr_no')
-                        ->orWhere('grade',$request->grade)->orderBy('sr_no','asc')->get();
+                        ->orderBy('sr_no','asc');
+
+        $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
+        
+        $student_infos =  $student_infos->get(); 
 
 
         return DataTables::of($student_infos)
