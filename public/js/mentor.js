@@ -26,16 +26,31 @@ function loadService(){
 
 function createMentor()
 {
-    var send_data = new FormData();
-    var nrc_state_region = $("#nrc_state_region").val();
-    var nrc_township = $("#nrc_township").val();
-    var nrc_citizen = $("#nrc_citizen").val();
+    if($("input[name=password]").val()!=$("input[name=confirm_password]").val())
+    {
+        alert("Your password and confirm password do not match!");
+        return;
+    }
+    var send_data=new FormData();
+    //$('#image')[0].files[0];
+    var profile_photo = $("input[name=profile_photo]")[0].files[0];
+    var nrc_front = $("input[name=nrc_front]")[0].files[0];
+    var nrc_back = $("input[name=nrc_back]")[0].files[0];
+    var papp_attachment = $("input[name=papp_attachment]")[0].files[0];
+    var attachment_file = $("input[name=attachment_file]")[0].files[0];
+
+    send_data.append('profile_photo',profile_photo);
+    send_data.append('nrc_front', nrc_front);
+    send_data.append('nrc_back', nrc_back);
+    send_data.append('papp_attachment', papp_attachment);
+    send_data.append('attachment_file', attachment_file);
+  
     send_data.append('name_mm', $("input[name=name_mm]").val());
     send_data.append('name_eng', $("input[name=name_eng]").val());
-    send_data.append('nrc_state_region', nrc_state_region);
-    send_data.append('nrc_township', nrc_township);
-    send_data.append('nrc_citizen', nrc_citizen);
-    send_data.append('nrc_number', $("input[name=nrc_number]").val());
+    send_data.append('nrc_state_region', $("#nrc_state_region").val());
+    send_data.append('nrc_township', $("#nrc_township ").val());
+    send_data.append('nrc_citizen', $("#nrc_citizen").val());
+    send_data.append('nrc_number', $("#nrc_number").val());
     send_data.append('father_name_mm', $("input[name=father_name_mm]").val());
     send_data.append('father_name_eng', $("input[name=father_name_eng]").val());
     send_data.append('race', $("input[name=race]").val());
@@ -46,10 +61,11 @@ function createMentor()
     send_data.append('ra_cpa_personal_no', $("input[name=ra_cpa_personal_no]").val());
     send_data.append('cpa_reg_no', $("input[name=cpa_reg_no]").val());
     send_data.append('cpa_reg_date', $("input[name=cpa_reg_date]").val());
-    send_data.append('ppa_reg_no', $("input[name=ppa_reg_no]").val());
-    send_data.append('ppa_reg_date', $("input[name=ppa_reg_date]").val());
-    send_data.append('address', $("input[name=address]").val());
+    send_data.append('papp_reg_no', $("input[name=papp_reg_no]").val());
+    send_data.append('papp_reg_date', $("input[name=papp_reg_date]").val());
+    send_data.append('address', $("textarea[name=address]").val());
     send_data.append('phone_no', $("input[name=phone_no]").val());
+    send_data.append('fax_no', $("input[name=fax_no]").val());
     send_data.append('fax_no', $("input[name=fax_no]").val());
     send_data.append('m_email', $("input[name=m_email]").val());
     send_data.append('audit_firm_name', $("input[name=audit_firm_name]").val());
@@ -57,19 +73,23 @@ function createMentor()
     send_data.append('audit_structure', $("input[name=audit_structure]").val());
     send_data.append('audit_staff_no', $("input[name=audit_staff_no]").val());
     send_data.append('current_check_service_id',$('#selected_service_id').val());
+
     send_data.append('current_check_services_other', $("input[name=current_check_services_other]").val());
-    $(':radio:checked').map(function(){send_data.append('experience',$(this).val())});
+    //$(':radio:checked').map(function(){send_data.append('experience',$(this).val())});
+    send_data.append('experience', $("input[name=experience]:checked").val());
     send_data.append('started_teaching_year', $("input[name=started_teaching_year]").val());
     send_data.append('current_accept_no', $("input[name=current_accept_no]").val());
     send_data.append('trained_trainees_no', $("input[name=trained_trainees_no]").val());
     send_data.append('internship_accept_no', $("input[name=internship_accept_no]").val());
-    $(':radio:checked').map(function(){send_data.append('repeat_yearly',$(this).val())});
-    $(':radio:checked').map(function(){send_data.append('training_absent',$(this).val())});
-    send_data.append('training_absent_reason', $("input[name=training_absent_reason]").val());
-    // send_data.append('email', $("input[name=email]").val());
-    // send_data.append('password', $("input[name=password]").val());
-    send_data.append('status', $("input[name=status]").val());
+    //$(':radio:checked').map(function(){send_data.append('repeat_yearly',$(this).val())});
+    //$(':radio:checked').map(function(){send_data.append('training_absent',$(this).val())});
+    send_data.append('repeat_yearly', $("input[name=repeat_yearly]:checked").val());
+    send_data.append('training_absent', $("input[name=training_absent]:checked").val());
+    send_data.append('training_absent_reason', $("textarea[name=training_absent_reason]").val());
+    send_data.append('email', $("input[name=email]").val());
+    send_data.append('password', $("input[name=password]").val());
     send_data.append('type', $("input[name=type]").val());
+    send_data.append('status', $("input[name=status]").val());
 
     $.ajax({
         url: BACKEND_URL+"/mentor",
@@ -135,8 +155,8 @@ function loadMentorStudent()
             $("#ra_cpa_personal_no").val(mentor_data.ra_cpa_personal_no);
             $("#cpa_reg_no").val(mentor_data.cpa_reg_no);
             $("#cpa_reg_date").val(mentor_data.cpa_reg_date);
-            $("#ppa_reg_no").val(mentor_data.ppa_reg_no);
-            $("#ppa_reg_date").val(mentor_data.ppa_reg_date);
+            $("#papp_reg_no").val(mentor_data.papp_reg_no);
+            $("#papp_reg_date").val(mentor_data.papp_reg_date);
             $("#address").val(mentor_data.address);
             $("#phone_no").val(mentor_data.phone_no);
             $("#fax_no").val(mentor_data.fax_no);
@@ -145,16 +165,7 @@ function loadMentorStudent()
             $("#audit_started_date").val(mentor_data.audit_started_date);
             $("#audit_structure").val(mentor_data.audit_structure);
             $("#audit_staff_no").val(mentor_data.audit_staff_no);
-            $("#selected_service_id").val(mentor_data.current_check_service_id);
-
-            // validate for other service field
-            if(mentor_data.current_check_service_id == 9){
-              $(".check-service-other").css('display','block');
-              $("#current_check_services_other").val(mentor_data.current_check_services_other);
-            }
-            else{
-              $(".check-service-other").css('display','none');
-            }
+            // $("#selected_service_id").val(mentor_data.current_check_service_id);
 
             // validate for experience radio button checked
             if(mentor_data.experience == 1)
@@ -177,11 +188,12 @@ function loadMentorStudent()
                 $('input:radio[name=experience][value=0]').attr('checked',true);
                 $('input:radio[name=experience][value=1]').attr('disabled',true);
                 $('#start_teaching').css('display','none');
-                $('#accept_amount').css('display','none');
+                $('#accept_amount').css('display','block');
                 $('#current_accept').css('display','none');
                 $('#trained_trainees').css('display','none');
-                $('#yearly').css('display','none');
+                $('#yearly').css('display','block');
                 $('#absent_training').css('display','none');
+                $("#internship_accept_no").val(mentor_data.internship_accept_no);
             }
 
             // validate for repeat_yearly radio button checked
@@ -209,6 +221,48 @@ function loadMentorStudent()
               $('#absent_reason').css('display','none');
             }
 
+            var current_check_service = mentor_data.current_check_service_id;
+            current_check_service = current_check_service.split(",");
+
+            var current_check_service_data = data.current_check_service;
+
+            var current_check_service_result = [];
+            var reach = 0;
+            current_check_service_data.forEach(function(data){
+              for(var i=0; i<current_check_service.length; i++){
+
+                if(current_check_service[i] == data.id){
+                  current_check_service_result.push(" " + data.name + " ");
+                }
+
+                if(current_check_service[i] == 9){
+                  reach = 1;
+                }
+
+              }
+            })
+
+            if(reach == 1){
+              $("#other_service").css('display','block');
+              $("#current_check_services_other").val(mentor_data.current_check_services_other);
+            }
+            else{
+              $("#other_service").css('display','none');
+            }
+
+            $("#current_check_service_id").val(current_check_service_result.toString());
+
+            document.getElementById('image').src = PDF_URL + mentor_data.image;
+            $(".nrc_front").append(`<a href='${PDF_URL+mentor_data.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+            $(".nrc_back").append(`<a href='${PDF_URL+mentor_data.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            $(".papp_attachment").append(`<a href='${PDF_URL+mentor_data.papp_attachment}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+            $(".attachment_file").append(`<a href='${PDF_URL+mentor_data.attachment_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+
+            if(mentor_data.status == 0){
+              document.getElementById("approve_reject_btn").style.display = "block";
+            }else{
+              document.getElementById("approve_reject_btn").style.display = "none";
+            }
         }
     });
 }
