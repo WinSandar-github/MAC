@@ -49,8 +49,11 @@ class CpaController extends Controller
         $student_course->batch_id        = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->type            = $request->type;
-        $student_course->mac_type            = $request->mac_type;
-        $student_course->status          = 1;
+        if($request->type == 2){
+
+            $student_course->mac_type            = $request->mac_type;
+        }
+        $student_course->status          = 0;
         $student_course->save();
         return $student_info;
     }

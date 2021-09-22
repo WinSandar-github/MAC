@@ -289,6 +289,17 @@ Route::get('showDescription/{membership_name}','MembershipController@showDescrip
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
+//cpa entry exam
+Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
+Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
+
+
+Route::post('entry_exam_filter','EntryExamController@entryExamFilter');
+
+Route::post('/filter_entry_exam_result', 'EntryExamController@filterEntryExamResult');
+
+
+
 
 // subject
 Route::get('getSubject/{course_id}','SubjectController@getSubject');
