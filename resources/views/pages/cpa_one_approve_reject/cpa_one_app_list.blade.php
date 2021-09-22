@@ -21,7 +21,7 @@
                                 <h5 class="title">{{ __('CPA One Application List') }}</h5>
                             </div>
                         </div>
-                        <div class="row">
+                        {{--<div class="row">
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-4 text-left" style="font-weight:bold;">Student Name</div>
@@ -54,7 +54,7 @@
                             <div class="col-md-6" style="vertical-align: top;">
                                 <button type="button" class="btn btn-primary btn-round" onclick="cpa1_reload();" id="search">Search</button>
                             </div>
-                        </div>
+                        </div>--}}
                         
                         <ul class="nav nav-tabs mt-3" role="tablist">
                             <li class="nav-item">
@@ -136,7 +136,7 @@
 @push('scripts')
 <script>
     // getDAList('cpa_1');
-    loadBatchData("cpa_1");
+    //loadBatchData("cpa_1");
     var pending_datatable;
     var approved_datatable;
     var rejected_datatable;
@@ -152,9 +152,9 @@
                 data :  function (d) {
                     d.status       = 0,
                     d.course_code = 'cpa_1',
-                    d.name =    $("input[name=filter_by_name]").val(),
-                    d.nrc =    $("input[name=filter_by_nrc]").val(),
-                    d.batch= $("#selected_batch_id").val()
+                    d.name =    "",
+                    d.nrc =    "",
+                    d.batch="all"
                 }
              
             },
@@ -183,9 +183,9 @@
                 data :  function (d) {
                     d.status       = 1,
                     d.course_code = 'cpa_1',
-                    d.name =    $("input[name=filter_by_name]").val(),
-                    d.nrc =    $("input[name=filter_by_nrc]").val(),
-                    d.batch= $("#selected_batch_id").val()
+                    d.name =    "",
+                    d.nrc =    "",
+                    d.batch="all"
                 }
              
             },
@@ -214,9 +214,9 @@
                 data :  function (d) {
                     d.status       = 2,
                     d.course_code = 'cpa_1',
-                    d.name =    $("input[name=filter_by_name]").val(),
-                    d.nrc =    $("input[name=filter_by_nrc]").val(),
-                    d.batch= $("#selected_batch_id").val()
+                    d.name =    "",
+                    d.nrc =    "",
+                    d.batch="all"
                 }
              
             },
