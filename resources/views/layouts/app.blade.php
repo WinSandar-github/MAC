@@ -79,6 +79,8 @@
 <script src="{{ asset('js/requirement.js')}}"></script>
 <script src="{{ asset('js/description.js')}}"></script>
 <script src="{{ asset('js/membership.js')}}"></script>
+<script src="{{ asset('js/entry_exam.js')}}"></script>
+
 
 
 <script src="{{ asset('js/common.js')}}"></script>

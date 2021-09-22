@@ -34,14 +34,13 @@ class DARegisterController extends Controller
 
     public function store(Request $request)
     {
-        
-        
         //$nrc = $request['nrc_state_region'] .'/'. $request['nrc_township'] . $request['nrc_citizen'] . $request['nrc_number'];
         $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
-        ->where('nrc_township', '=', $request['nrc_township'])
-        ->where('nrc_citizen', '=', $request['nrc_citizen'])
-        ->where('nrc_number', '=', $request['nrc_number'])
-        ->first();
+            ->where('nrc_township', '=', $request['nrc_township'])
+            ->where('nrc_citizen', '=', $request['nrc_citizen'])
+            ->where('nrc_number', '=', $request['nrc_number'])
+            ->first();
+        
         if($data)
         {
             return "NRC has been used, please check again!";
@@ -82,13 +81,10 @@ class DARegisterController extends Controller
 
         if($request->hasfile('recommend_letter'))
         {
-            
             $file = $request->file('recommend_letter') ;
-        
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-                $file->move(public_path().'/storage/student_info/',$name);
-                $rec_letter = '/storage/student_info/'.$name;
-                 
+            $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+            $file->move(public_path().'/storage/student_info/',$name);
+            $rec_letter = '/storage/student_info/'.$name;
         }else{
             $rec_letter = null;
         }
@@ -122,7 +118,7 @@ class DARegisterController extends Controller
         $student_info->name_eng         =   $request->name_eng;
         $student_info->nrc_state_region =   $request['nrc_state_region'];
         $student_info->nrc_township     =   $request['nrc_township'] ;
-        $student_info->nrc_citizen      =    $request['nrc_citizen'] ;
+        $student_info->nrc_citizen      =   $request['nrc_citizen'] ;
         $student_info->nrc_number       =   $request['nrc_number'];
         $student_info->nrc_front        =   $nrc_front;
         $student_info->nrc_back         =   $nrc_back;
@@ -176,7 +172,7 @@ class DARegisterController extends Controller
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
         $student_course->type            = $request->type;
-        $student_course->mac_type            = $request->mac_type;
+        $student_course->mac_type        = $request->mac_type;
         
         //$student_course->date            = date('Y-m-d',strtotime($request->degree_date)); 
         $student_course->date            = $course_date; 
@@ -350,21 +346,28 @@ class DARegisterController extends Controller
     public function FilterApplicationList(Request $request){
     
         $course  = Course::where('code',$request->course_code)->first();
+
         //  $student_infos = StudentCourseReg::with('student_info','batch')
-        //                     ->where('approve_reject_status','=', $status)
+        //                     ->where('approve_reject_status','=', 1)
         //                     ->where('batch_id','=', $batch_id);
-        $student_infos = StudentCourseReg::with('student_info','batch')->whereHas('batch', function ($query) use ($course) {
-            $query->where('course_id', $course->id);
-            })->where('student_course_regs.approve_reject_status','=', $request->status)
-              ->where('qt_entry','=',0)
-              ->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id') ; 
-        if($request->batch!="all"){
-            $student_infos = $student_infos->where('batch_id',$request->batch);
-        }       
+
+        $student_infos = StudentCourseReg::with('student_info','batch')
+                        ->whereHas('batch', function ($query) use ($course) {
+                            $query->where('course_id', $course->id);
+                        })
+                        ->where('student_course_regs.approve_reject_status','=', $request->status)
+                        ->where('qt_entry','=',0)
+                        ->join('student_infos', 'student_course_regs.student_info_id', '=', 'student_infos.id') ;
+
+        if($request->batch != "all"){
+            $student_infos = $student_infos->where('batch_id', $request->batch);
+        }
+        
         if($request->nrc!="")
         {
             $student_infos=$student_infos->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
         }
+
         if($request->name!="")
         {
             $student_infos=$student_infos ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')

@@ -122,6 +122,12 @@
                                 <span style="font-weight:normal;font-size:11px;">{{ __('DA 2 Exam List') }}</span>
                             </a>
                         </li>
+                        <li class="{{ $elementActive == 'entry_exam_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'entry_exam_list') }}">
+                                <i class="nc-icon nc-tap-01"></i>
+                                <span>{{ __('Entry Exam List') }}</span>
+                            </a>
+                        </li>
                         <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_exam_one') }}">
                                 <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
@@ -162,6 +168,12 @@
                             <a href="{{ route('page.index', 'qualified_test_list') }}">
                                 <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
                                 <span style="font-size:11px;font-weight:normal;">{{ __('Qualified Test List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'entry_exam_result' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'entry_exam_result') }}">
+                                <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;font-size:11px;">{{ __('Entry Exam Result List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'cpa1_exam_result_edit' ? 'active' : '' }}">
@@ -243,12 +255,7 @@
                     <b class="caret"></b>
                 </a>
             </li> --}}
-            <li class="{{ $elementActive == 'entry_exam_list' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'entry_exam_list') }}">
-                    <i class="nc-icon nc-tap-01"></i>
-                    <span>{{ __('Entry Exam List') }}</span>
-                </a>
-            </li>
+       
             <li class="{{ $elementActive == 'qualified_test_payment_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'qualified_test_payment_list') }}">
                     <i class="nc-icon nc-tap-01"></i>
