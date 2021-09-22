@@ -124,7 +124,7 @@
                                             <th class="bold-font-weight" >Status</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tbl_da_rejected_list_body" class="hoverTable text-left">
+                                    <tbody id="tbl_attend_list" class="hoverTable text-left">
                                     </tbody>
                                 </table>
                             </div>
