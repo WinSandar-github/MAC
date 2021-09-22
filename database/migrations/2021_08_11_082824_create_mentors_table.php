@@ -39,7 +39,7 @@ class CreateMentorsTable extends Migration
             $table->text('address');
             $table->string('phone_no');
             $table->string('m_email');
-            $table->string('fax_no');
+            $table->string('fax_no')->nullable();
             $table->string('audit_firm_name');
             $table->string('audit_started_date');
             $table->string('audit_structure');
