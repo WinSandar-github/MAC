@@ -123,6 +123,7 @@ class TeacherController extends Controller
         $teacher->organization = $request->organization;
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
+        $teacher->renew_date = date('Y-m-d');
         $teacher->save();
         
         //Student Info
