@@ -519,10 +519,10 @@ class CPAFFController extends Controller
             $nrc_back=$request->nrc_back;
         }
         $cpa_ff = CPAFF::find($id);
-        $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
-        $cpa_ff->qt_pass          =   $request->qt_pass;
+        // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+        // $cpa_ff->qt_pass          =   $request->qt_pass;
         $cpa_ff->cpa_certificate=$cpa_certificate;
-        $cpa_ff->mpa_mem_card=$mpa_mem_card;
+        // $cpa_ff->mpa_mem_card=$mpa_mem_card;
         $cpa_ff->cpd_record=$cpd_record;
         $cpa_ff->passport_image=$passport_image;
         $cpa_ff->nrc_front        =   $nrc_front;
@@ -532,7 +532,7 @@ class CPAFFController extends Controller
         $cpa_ff->renew_status=1;
         $cpa_ff->save();
         return response()->json([
-            'message' => "You have renewed successfully"
+            'message' => "Your renew subscription is successfully"
         ],200);
 
      }
