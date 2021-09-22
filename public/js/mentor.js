@@ -515,7 +515,7 @@ function showMentorStudent(mentorID){
 
 function createForm()
 {
-    location.href = "/mentor_create";
+    location.href = FRONTEND_URL + "/mentor_create";
 }
 
 function approveMentorStudent(){
@@ -527,7 +527,9 @@ function approveMentorStudent(){
       success: function(result){
         console.log(result)
           successMessage("You have approved that user!");
-          location.href = FRONTEND_URL + "/mentor_list";
+          setInterval(() => {
+            location.href = FRONTEND_URL + "/mentor_list";
+          }, 3000);
       }
   });
 }
