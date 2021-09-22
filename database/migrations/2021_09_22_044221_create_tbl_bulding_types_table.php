@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSchoolTeachers extends Migration
+class CreateTblBuldingTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,14 @@ class CreateSchoolTeachers extends Migration
      */
     public function up()
     {
-        Schema::create('school_teachers', function (Blueprint $table) {
+        Schema::create('tbl_bulding_types', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('school_id');
-            $table->string('name');
-            $table->string('nrc');
-            $table->string('registration_no');
-            $table->string('education');
-            $table->string('subject');
-            $table->string('ph_number');
-            $table->string('email');
-            $table->string('teacher_reg_copy')->nullable();
+            $table->string('bulding_type')->nullable();
+            $table->string('building_measurement')->nullable();
+            $table->integer('floor_numbers')->default(0);
+            $table->string('school_building_attach')->nullable();
             $table->timestamps();
-
             $table->foreign('school_id')
             ->references('id')
             ->on('school_registers')
@@ -40,6 +35,6 @@ class CreateSchoolTeachers extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_teachers');
+        Schema::dropIfExists('tbl_bulding_types');
     }
 }

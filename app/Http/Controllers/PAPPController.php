@@ -344,7 +344,7 @@ class PAPPController extends Controller
         $papp->renew_status=1;
         $papp->save();
         return response()->json([
-            'message' => "You have renewed successfully"
+            'message' => "Your renew subscription is successfully"
         ],200);
 
      }
