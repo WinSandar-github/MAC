@@ -113,7 +113,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၆။') }}</span>လူမျိူး/ကိုးကွယ်သည့်ဘာသာ</label>
+                            <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၆။') }}</span>လူမျိုး/ကိုးကွယ်သည့်ဘာသာ</label>
                             <div class="col-md-8">
                             <div class="row">
                                 <div class="col-md-6">
