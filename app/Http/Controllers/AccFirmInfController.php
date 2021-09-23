@@ -1341,7 +1341,7 @@ class AccFirmInfController extends Controller
                                                   ->where('status','=',$status)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
-
+                                                  
       if($firm_type == 1){
         return DataTables::of($acc_firm_info)
           ->addColumn('action', function ($infos) {
@@ -1410,9 +1410,9 @@ class AccFirmInfController extends Controller
         return DataTables::of($acc_firm_info)
           ->addColumn('action', function ($infos) {
               return "<div class='btn-group'>
-                          <button type='button' class='btn btn-primary btn-xs' onclick='showNonAuditInfo($infos->id)'>
+                          <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
                               <li class='fa fa-eye fa-sm'></li>
-                          </button>
+                          </a>
                           <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
                               <li class='fa fa-trash fa-sm'></li>
                           </button>
