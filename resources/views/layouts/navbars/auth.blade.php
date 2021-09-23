@@ -297,6 +297,13 @@
                             </a>
                         </li>
 
+                        <li class="{{ $elementActive == 'exam_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'exam_list') }}">
+                                <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;">{{ __('စာမေးပွဲ') }}</span>
+                            </a>
+                        </li>
+
                         <li class="{{ $elementActive == 'requirement_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'requirement_list') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>

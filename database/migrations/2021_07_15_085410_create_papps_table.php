@@ -53,7 +53,6 @@ class CreatePappsTable extends Migration
             // $table->string('contact_mail')->nullable();
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
-            $table->string('contact_mail')->nullable();
 
             $table->timestamps();
 
