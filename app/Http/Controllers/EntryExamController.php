@@ -182,6 +182,7 @@ class EntryExamController extends Controller
             $entry_exam->exam_type_id    = 3;
             $entry_exam->status          = 0;
             $entry_exam->grade            = 0;
+            $entry_exam->form_type      = 3;
             $entry_exam->save();
 
             $student_course = new StudentCourseReg();

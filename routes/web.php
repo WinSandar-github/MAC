@@ -134,13 +134,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('save_exam', 'BatchController@saveExam');
 
-    Route::get('attend_app_list','ReportController@attendAppList');
+    Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
+    Route::get('attend_exam_list/{course_code}','ReportController@attendExamList');
+    Route::get('exam_result_list/{course_code}','ReportController@examResultList');
+
+
+    
     Route::get('membership_edit/{id}','MembershipController@membership_edit');
 
     Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
-
+    
 });
+Route::post('show_registration_list','ReportController@showRegistrationList');
+Route::post('show_exam_list','ReportController@showExamList');
+
 Route::get('show_description','DescriptionController@showDescription');
 Route::get('show_requirement','RequirementController@showRequirement');
 Route::get('show_membership/{membership_name}','MembershipController@showMembership');
