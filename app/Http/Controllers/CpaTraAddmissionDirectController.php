@@ -144,7 +144,7 @@ class CpaTraAddmissionDirectController extends Controller
         }else{
             $rec_letter = null;
         }
-////Multiple University
+    ///Multiple University
         // if($request->hasfile('uni_certificate'))
         // {
         //     foreach($request->file('uni_certificate') as $file)
