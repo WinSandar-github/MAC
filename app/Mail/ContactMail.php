@@ -29,6 +29,9 @@ class ContactMail extends Mailable
     public function build()
     {
         // return $this->view('view.name');
-        return $this->from($this->data['email'])->subject($this->data['verify_code'])->view('email')->with('data', $this->data);
+        return $this->from($this->data['email'])
+                    ->subject("Email Verification code")
+                    ->view('email')
+                    ->with('data', $this->data);
     }
 }
