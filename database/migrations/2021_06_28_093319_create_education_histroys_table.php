@@ -16,7 +16,7 @@ class CreateEducationHistroysTable extends Migration
         Schema::create('education_histroys', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
-            $table->string('university_name');
+            $table->string('university_name')->nullable();
             $table->string('degree_name')->nullable();
             $table->string('qualified_date')->nullable();
             $table->string('roll_number',30)->nullable();
