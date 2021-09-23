@@ -370,9 +370,10 @@
 
                         <div class="row mb-3">
                             <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၁၈။') }}</span>ယခင်အလုပ်သင်ကြားပေးမှုအတွေ့အကြုံ ရှိ/မရှိ</label>
-                            <div class="col-md-8">
+                            <div class="col-md-4">
                                 <div class="form-check">
                                     <div class="row">
+                                        <div class="col-md-1"></div>
                                         <div class="col-md-4">
                                             <input type="radio" class="form-check-input mr-3" value="1" id="experience_yes" name="experience" >
                                             <label class="form-check-label " for="">ရှိ</label>
@@ -429,6 +430,7 @@
                                 <div class="col-md-4">
                                     <div class="form-check">
                                         <div class="row">
+                                            <div class="col-md-1"></div>
                                             <div class="col-md-4">
                                                 <input type="radio" class="form-check-input mr-3" id="yes" value="1" name="repeat_yearly" >
                                                 <label class="form-check-label " for="">ရှိ</label>
@@ -451,6 +453,7 @@
                                 <div class="col-md-4">
                                     <div class="form-check">
                                         <div class="row">
+                                            <div class="col-md-1"></div>
                                             <div class="col-md-4">
                                                 <input type="radio" class="form-check-input mr-3" id="training_absent_yes" value="1" name="training_absent" >
                                                 <label class="form-check-label " for="">ရှိ</label>
@@ -614,15 +617,22 @@
         $(document).on('keydown', '#father_name_mm', function () {
             myanmarLetterOnly($(this));
         });
-
-        function myanmarLetterOnly( self )
-        {
-            val = self.val();
-            if ( /[a-zA-Z0-9]+$/.test( val ) ) {
-              self.val( val.replace(/[a-zA-Z0-9]+$/, '') );
-            }
-        }
     });
+
+    function myanmarLetterOnly( self )
+    {
+        val = self.val();
+        if ( /[a-zA-Z0-9]+$/.test( val ) ) {
+          self.val( val.replace(/[a-zA-Z0-9]+$/, '') );
+        }
+    }
+
+    function en2mm(num) {
+        var nums = {0: '၀', 1: '၁', 2: '၂', 3: '၃', 4: '၄', 5: '၅', 6: '၆', 7: '၇', 8: '၈', 9: '၉'};
+        return num.replace(/([0-9])/g, function (s, key) {
+            return nums[key] || s;
+        });
+    }
 
 </script>
 @endpush
