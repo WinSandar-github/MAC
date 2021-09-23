@@ -17,16 +17,16 @@ class NonAuditTotalStaffTypeSeeder extends Seeder
 
         DB::table('non_audit_total_staff_types')->insert([
             array(
-                'name' => 'No of directors who are alse shareholders'
+                'name' => 'No. of directors who are also shareholders'
             ),
             array(
-                'name' => 'No of directors who are not shareholders'
+                'name' => 'No. of directors who are not shareholders'
             ),
             array(
-                'name' => 'No of managerial level staff'
+                'name' => 'No. of managerial level staff'
             ),
             array(
-                'name' => 'No of non-mangerial level'
+                'name' => 'No. of non-managerial level'
             ),
 
         ]);
