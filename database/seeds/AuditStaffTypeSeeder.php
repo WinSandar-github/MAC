@@ -17,15 +17,15 @@ class AuditStaffTypeSeeder extends Seeder
 
         DB::table('audit_staff_types')->insert([
             array(
-                'name' => 'No of principals/ partners/ directors',
+                'name' => 'No. of principals/ partners/ directors',
                 'assistance' => false
             ),
             array(
-                'name' => 'No of audit managers',
+                'name' => 'No. of audit managers',
                 'assistance' => false
             ),
             array(
-                'name' => 'No of audit seniors',
+                'name' => 'No. of audit seniors',
                 'assistance' => false
             ),
             array(
