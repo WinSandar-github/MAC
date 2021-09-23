@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="text-center m-3" style="font-weight:bold">တက်ရောက်ခွင့်ရသူများစာရင်း</h3>
+                            <h5 class="text-center m-3" style="font-weight:bold">စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း</h5>
                         </div>
                     </div>
                 </div>
@@ -16,11 +16,8 @@
                     <div class="row"> 
                             <div class="col-md-12 pl-2">
                                
-                                @if($course->code === "da_1" || $course->code === "cpa_1")
-                                <button   onclick="generatePersonalNo('{{$course->code}}')" class="pull-right
-                                    btn btn-sm btn-success">ကိုယ်ပိုင်နံပါတ် ထုတ်ပေးမည်</button>
-                                @endif
-                                <button   onclick="generateSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
+                               
+                                <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                
                             </div>
                         
@@ -29,7 +26,7 @@
                           
                            
                         
-                            <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
+                            <table width="100%" id="tbl_exam_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
                                         <th class="bold-font-weight" >Serial number</th>
@@ -66,14 +63,15 @@
         
 showAppList = (course_code) =>{
     
-    var table_app = $('#tbl_application').DataTable({
+    var table_app = $('#tbl_exam_list').DataTable({
         scrollX: true,
         processing: true,
-        serverSide: true,
+        serverSide: false,
         searching: false,
         paging:false,
+        
         ajax: {
-            url  : FRONTEND_URL + "/show_registration_list",
+            url  : FRONTEND_URL + "/show_exam_list",
             type : "POST" ,
             data :  function (d) {
                 d.code        =  course_code
