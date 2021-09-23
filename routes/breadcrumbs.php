@@ -152,6 +152,9 @@ Breadcrumbs::for('school-register-form4', function ($trail) {
 Breadcrumbs::for('batch_list', function ($trail) {
     $trail->push('Batch', route('page.index', 'batch_list'));
 });
+Breadcrumbs::for('exam_list', function ($trail) {
+    $trail->push('Exam', route('page.index', 'exam_list'));
+});
 Breadcrumbs::for('course_list', function ($trail) {
     $trail->push('Course', route('page.index', 'course_list'));
 });
