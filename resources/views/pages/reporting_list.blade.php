@@ -227,6 +227,7 @@
                                 </button>
                             </div>
                         </div>
+                       
                         <div class="card card-stats arrow-up-left" id="cpa_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
                             <h5 class="card-header">CPA Section</h5><hr class="header_hr">
                             <div class="card-body ">
@@ -665,6 +666,173 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-block btn-color btn-flat p-3" name="sr_personal_btn">
+                                    တက်ရောက်ခွင့်ရသူများနှင့်ကိုယ်ပိုင်နံပါတ် ထုတ်ပြန့်ခြင်း
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-block btn-color btn-flat p-3" name="exam_btn">
+                                    စာမေးပွဲဖြေဆိုခွင့်ရသူများ ထုတ်ပြန့်ခြင်း
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card card-stats arrow-up-right" id="generate_sr_personal_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
+                            <h5 class="card-header">တက်ရောက်ခွင့်ရသူများနှင့်ကိုယ်ပိုင်နံပါတ် ထုတ်ပြန့်ခြင်း</h5><hr class="header_hr">
+                            <div class="card-body ">
+                                {{-- <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-3" align="center">From</div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-3" align="center">To</div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('attend_app_list/da_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Da One တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('attend_app_list/da_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Da Two တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                   
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('attend_app_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Cpa One တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('attend_app_list/cpa_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Cpa Two တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card card-stats arrow-up-right" id="generate_exam_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
+                            <h5 class="card-header">စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း ထုတ်ပြန့်ခြင်း</h5><hr class="header_hr">
+                            <div class="card-body ">
+                                {{-- <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-3" align="center">From</div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-3" align="center">To</div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('attend_exam_list/da_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Da One စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('attend_exam_list/da_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Da Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                   
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('attend_exam_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Cpa One စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('attend_exam_list/cpa_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Cpa Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-block btn-color btn-flat p-3" name="exam_result_btn">
+                                    စာမေးပွဲအောင်စာရင်း ထုတ်ပြန်ခြင်း
+                                </button>
+                            </div>
+                           
+                        </div>
+                        <div class="card card-stats arrow-up-right" id="generate_exam_result_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
+                            <h5 class="card-header">စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန့်ခြင်း</h5><hr class="header_hr">
+                            <div class="card-body ">
+                                {{-- <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-3" align="center">From</div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-3" align="center">To</div>
+                                            <div class="col-md-6">
+                                                <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> --}}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('exam_result_list/da_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Da One စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('exam_result_list/da_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Da Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                   
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('exam_result_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Cpa One စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <a target="_blank" href="{{url('exam_result_list/cpa_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
+                                            Cpa Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                        </a>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -769,6 +937,10 @@
                 $("#teacher_school_card").hide();
                 $("#da_card").hide();
                 $("#cpa_qulified_test_card").hide();
+                $('#generate_sr_personal_card').hide();
+                $('#generate_exam_card').hide();
+
+                
             })
 
             $("button[name=firm_name_btn]").click( function(){
@@ -786,6 +958,12 @@
                 $("#teacher_school_card").hide();
                 $("#da_card").hide();
                 $("#cpa_qulified_test_card").hide();
+                $('#generate_sr_personal_card').hide();
+                $('#generate_exam_card').hide();
+                $("#generate_exam_result_card").hide();
+
+
+
             })
 
             $("button[name=cpa_btn]").click( function(){
@@ -803,6 +981,12 @@
                 $("#teacher_school_card").hide();
                 $("#da_card").hide();
                 $("#cpa_qulified_test_card").hide();
+                $('#generate_sr_personal_card').hide();
+                $('#generate_exam_card').hide();
+                $("#generate_exam_result_card").hide();
+
+
+
             })
 
             $("button[name=article_btn]").click( function(){
@@ -820,6 +1004,12 @@
                 $("#teacher_school_card").hide();
                 $("#da_card").hide();
                 $("#cpa_qulified_test_card").hide();
+                $('#generate_sr_personal_card').hide();
+                $('#generate_exam_card').hide();
+                $("#generate_exam_result_card").hide();
+
+
+
             })
 
             $("button[name=artical_mentor_btn]").click( function(){
@@ -837,6 +1027,12 @@
                 $("#teacher_school_card").hide();
                 $("#da_card").hide();
                 $("#cpa_qulified_test_card").hide();
+                $('#generate_sr_personal_card').hide();
+                $('#generate_exam_card').hide();
+                $("#generate_exam_result_card").hide();
+
+
+
             })
 
             $("button[name=teacher_school_btn]").click( function(){
@@ -854,6 +1050,12 @@
                 $("#artical_mentor_card").hide();
                 $("#da_card").hide();
                 $("#cpa_qulified_test_card").hide();
+                $('#generate_sr_personal_card').hide();
+                $('#generate_exam_card').hide();
+                $("#generate_exam_result_card").hide();
+
+
+
             })
 
             $("button[name=da_btn]").click( function(){
@@ -871,8 +1073,14 @@
                 $("#artical_mentor_card").hide();
                 $("#teacher_school_card").hide();
                 $("#cpa_qulified_test_card").hide();
-            })
+                $('#generate_sr_personal_card').hide();
+                $('#generate_exam_card').hide();
+                $("#generate_exam_result_card").hide();
 
+
+
+            })
+            
             $("button[name=cpa_qulified_test_btn]").click( function(){
                 if(clicks % 2 == 0){
                     $("#cpa_qulified_test_card").show();
@@ -888,6 +1096,76 @@
                 $("#artical_mentor_card").hide();
                 $("#teacher_school_card").hide();
                 $("#da_card").hide();
+                $('#generate_sr_personal_card').hide();
+                $('#generate_exam_card').hide();
+                $("#generate_exam_result_card").hide();
+
+
+
+            })
+            $("button[name=sr_personal_btn]").click( function(){
+                if(clicks % 2 == 0){
+                    $("#generate_sr_personal_card").show();
+                }
+                else{
+                    $("#generate_sr_personal_card").hide();
+                }
+                clicks++;
+                $("#cpa_papp_card").hide();
+                $("#firm_name_card").hide();
+                $("#cpa_card").hide();
+                $("#article_card").hide();
+                $("#artical_mentor_card").hide();
+                $("#teacher_school_card").hide();
+                $("#da_card").hide();
+                $("#cpa_qulified_test_card").hide();
+                $('#generate_exam_card').hide();
+                $("#generate_exam_result_card").hide();
+
+
+
+            })
+            $("button[name=exam_btn]").click( function(){
+                if(clicks % 2 == 0){
+                    $("#generate_exam_card").show();
+                }
+                else{
+                    $("#generate_exam_card").hide();
+                }
+                clicks++;
+                $("#cpa_papp_card").hide();
+                $("#firm_name_card").hide();
+                $("#cpa_card").hide();
+                $("#article_card").hide();
+                $("#artical_mentor_card").hide();
+                $("#teacher_school_card").hide();
+                $("#da_card").hide();
+                $("#cpa_qulified_test_card").hide();
+                $('#generate_sr_personal_card').hide();
+                $("#generate_exam_result_card").hide();
+
+
+
+            })
+            $("button[name=exam_result_btn]").click( function(){
+                if(clicks % 2 == 0){
+                    $("#generate_exam_result_card").show();
+                }
+                else{
+                    $("#generate_exam_result_card").hide();
+                }
+                clicks++;
+                $("#cpa_papp_card").hide();
+                $("#firm_name_card").hide();
+                $("#cpa_card").hide();
+                $("#article_card").hide();
+                $("#artical_mentor_card").hide();
+                $("#teacher_school_card").hide();
+                $("#da_card").hide();
+                $("#cpa_qulified_test_card").hide();
+                $('#generate_exam_card').hide();
+
+
             })
 
         });

@@ -17,16 +17,16 @@ class AuditTotalStaffTypeSeeder extends Seeder
 
         DB::table('audit_total_staff_types')->insert([
             array(
-                'name' => 'No of principals/ partners'
+                'name' => 'No. of principals/ partners'
             ),
             array(
-                'name' => 'No of directors who are not principals/ partners'
+                'name' => 'No. of directors who are not principals/ partners'
             ),
             array(
-                'name' => 'No of managerial level staff	'
+                'name' => 'No. of managerial level staff'
             ),
             array(
-                'name' => 'No of non-managerial level'
+                'name' => 'No. of non-managerial level'
             ),
 
         ]);
