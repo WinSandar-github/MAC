@@ -176,17 +176,26 @@ class ExamRegisterController extends Controller
     public function FilterExamRegistration(Request $request){
         $exam_register = ExamRegister::with('student_info')
         ->where('status','=',$request->status)
-        ->where('form_type','=',$request->course_code);
-      if($request->batch!="all")
-      {
-          $exam_register = $exam_register->where('batch_id', $request->batch);
-      }
-      if($request->name!=""){
-          $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
-          ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-          ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-      }
-      $exam_register =  $exam_register->get();
+        ->whereHas('student_info', function($q) use ($request){
+          if($request->name !== ""){
+              $q->where('name_mm', 'like', "%" . $request->name . "%")
+              ->orWhere('name_eng', 'like', "%" . $request->name . "%");
+          }
+          if($request->batch != "all"){
+              $query->where('batch_id', $request->batch);
+          }
+        })
+        ->where('form_type','=',$request->course_code)->get();
+      // if($request->batch!="all")
+      // {
+      //     $exam_register = $exam_register->where('batch_id', $request->batch);
+      // }
+      // if($request->name!=""){
+      //     $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
+      //     ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+      //     ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+      // }
+      // $exam_register =  $exam_register->get();
         // DA One
         $datatable=DataTables::of($exam_register)        
           // ->addColumn('exam_type', function ($infos){
@@ -411,17 +420,26 @@ class ExamRegisterController extends Controller
         $exam_register = ExamRegister::with('student_info','batch')
         ->where('status','=',1)
         ->where('form_type','=',$request->course_code)
-        ->where('grade','=',$request->grade);
-        if($request->batch!="all")
-        {
-            $exam_register = $exam_register->where('batch_id', $request->batch);
-        }
-        if($request->name!=""){
-            $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
-            ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-            ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-        }
-        $exam_register =  $exam_register->get();
+        ->whereHas('student_info', function($q) use ($request){
+          if($request->name !== ""){
+              $q->where('name_mm', 'like', "%" . $request->name . "%")
+              ->orWhere('name_eng', 'like', "%" . $request->name . "%");
+          }
+          if($request->batch != "all"){
+              $query->where('batch_id', $request->batch);
+          }
+        })
+        ->where('grade','=',$request->grade)->get();
+        // if($request->batch!="all")
+        // {
+        //     $exam_register = $exam_register->where('batch_id', $request->batch);
+        // }
+        // if($request->name!=""){
+        //     $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
+        //     ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+        //     ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+        // }
+        // $exam_register =  $exam_register->get();
         // DA One
         $datatable=DataTables::of($exam_register)
 

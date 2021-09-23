@@ -5,11 +5,11 @@
 
 @section('content')
     <div class="content">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('mentor_list') }}
             </div>
-        </div>
+        </div> -->
         <form action="" method="post">
             @csrf
 
@@ -35,7 +35,7 @@
                                     <h5 class="title" align="center">{{ __('Mentor Lists (MAC)') }}</h5>
                                 </div>
                             </div>
-                            <div class="row mt-3">
+                            {{--<div class="row mt-3">
                                 <div class="col-md-5">
                                     <div class="row">
                                         <!-- <div class="col-md-1"></div> -->
@@ -57,7 +57,7 @@
                                 <div class="col-md-2" style="vertical-align: top;">
                                     <button type="button" class="btn btn-primary btn-round mt-0"  id="search_mentor">Search</button>
                                 </div>
-                            </div>
+                            </div>--}}
                             <ul class="nav nav-tabs mt-3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
@@ -83,7 +83,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Type</th>
+                                                <!-- <th class="bold-font-weight" >Type</th> -->
 
                                             </tr>
                                         </thead>
@@ -102,7 +102,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Type</th>
+                                                <!-- <th class="bold-font-weight" >Type</th> -->
 
                                             </tr>
                                         </thead>
@@ -121,7 +121,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Type</th>
+                                                <!-- <th class="bold-font-weight" >Type</th> -->
 
                                             </tr>
                                         </thead>
@@ -167,7 +167,7 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                {data: 'type', name: 'type'},
+                // {data: 'type', name: 'type'},
 
             ],
 
@@ -199,7 +199,7 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                {data: 'type', name: 'type'},
+                // {data: 'type', name: 'type'},
 
             ],
 
@@ -231,7 +231,7 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                {data: 'type', name: 'type'},
+                // {data: 'type', name: 'type'},
 
             ],
 

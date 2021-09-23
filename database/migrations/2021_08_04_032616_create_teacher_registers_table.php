@@ -42,10 +42,12 @@ class CreateTeacherRegistersTable extends Migration
             $table->string('address');
             $table->string('current_address');
             $table->string('recommend_letter')->nullable();
-            $table->string('position');
-            $table->string('department');
-            $table->string('organization');
+            $table->string('position')->nullable();
+            $table->string('department')->nullable();
+            $table->string('organization')->nullable();
             $table->integer('school_id')->nullable();
+            $table->integer('school_type');
+            $table->string('payment_method')->nullable();
             $table->timestamps();
         });
     }
