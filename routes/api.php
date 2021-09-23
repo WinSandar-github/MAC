@@ -306,3 +306,6 @@ Route::get('getSubject/{course_id}','SubjectController@getSubject');
 
 // education history
 Route::get('getEducationHistory/{student_info_id}','TeacherController@getEducationHistory');
+
+// education history
+Route::post('checkEmail','SchoolController@checkEmail');

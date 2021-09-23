@@ -14,6 +14,7 @@ use App\tbl_bulding_type;
 use App\tbl_classroom;
 use App\tbl_manage_room_numbers;
 use App\tbl_toilet_type;
+use App\EducationHistroy;
 
 use Hash;
 use Illuminate\Support\Facades\DB;
@@ -233,8 +234,6 @@ class SchoolController extends Controller
         $school->school_location_attach      = $school_location_attach;
         $school->sch_establish_notes_attach  = json_encode($sch_establish_notes_attach);
         
-       
-        
         $school->email            = strtolower($request->email);
         $school->password         = Hash::make($request->password);
         $school->nrc_state_region = $request->nrc_state_region;
@@ -255,10 +254,11 @@ class SchoolController extends Controller
         $school->save();
        
         //Student Info
-        $std_info =StudentInfo::where('teacher','!=','NULL')->where('email','=', $request->email)->get();
-        if(sizeof($std_info)!=0){
-            $std_info =StudentInfo::find($std_info->id);
+        
+        if($request->student_info_id!=0){
+            $std_info =StudentInfo::find($request->student_info_id);
             $std_info->school_id = $school->id;
+            $std_info->password = Hash::make($request->password);
             $std_info->save();
         }else{
             $std_info = new StudentInfo();
@@ -308,23 +308,28 @@ class SchoolController extends Controller
         }
 
         //member list
-        for($i=0;$i<sizeof($request->member_name);$i++){
-            $member = new SchoolMember();
-            $member->name            = $request->member_name[$i];
-            $member->nrc             = $request->member_nrc[$i];
-            $member->cpa_papp_no     = $request->member_cpa_papp_no[$i];
-            $member->education       = $request->member_education[$i];
-            $member->responsibility  = $request->member_responsibility[$i];
-            $member->ph_number       = $request->member_ph_number[$i];
-            $member->email           = $request->member_email[$i];
-            $member->school_id       = $school->id;
-            $member->save();
+        if($request->school_type!=""){
+            for($i=0;$i<sizeof($request->member_name);$i++){
+                $member = new SchoolMember();
+                $member->name            = $request->member_name[$i];
+                $member->nrc             = $request->member_nrc[$i];
+                $member->cpa_papp_no     = $request->member_cpa_papp_no[$i];
+                $member->education       = $request->member_education[$i];
+                $member->responsibility  = $request->member_responsibility[$i];
+                $member->ph_number       = $request->member_ph_number[$i];
+                $member->email           = $request->member_email[$i];
+                $member->school_id       = $school->id;
+                $member->save();
+            }
         }
+        
 
         //teacher list
         $teacher_reg_copy=implode(',', $teacher_reg_copy);
         $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
-        for($i=0;$i<sizeof($request->teacher_name);$i++){
+        
+        for($i=0;$i<sizeof($request->teacher_registration_no);$i++){
+            
             $teacher = new SchoolTeacher();
             $teacher->name             = $request->teacher_name[$i];
             $teacher->nrc              = $request->teacher_nrc[$i];
@@ -827,5 +832,20 @@ class SchoolController extends Controller
     {
         $data = StudentInfo::where('id',$id)->get();
         return response()->json($data,200);
+    }
+    public function checkEmail(Request $request){
+        $std_info =StudentInfo::where('teacher_id','!=','NULL')->where('email','=',$request->email)->get();
+        return response()->json($std_info,200);
+
+        // $emailCheck = StudentInfo::where('email', $request['email'])->first();
+        // $nrcCheck = StudentInfo::Where('nrc_state_region', $request['nrc_state_region'])
+        //         ->Where('nrc_township', $request['nrc_township'])
+        //         ->Where('nrc_citizen', $request['nrc_citizen'])
+        //         ->Where('nrc_number', $request['nrc_number'])->first();
+        // //return $emailcheck;
+        // return response()->json([ 
+        //     'email' => $emailCheck,
+        //     'nrc' => $nrcCheck
+        // ],200);
     }
 }
