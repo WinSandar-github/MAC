@@ -129,6 +129,29 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Payment Method</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="payment_method">Cash</span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Status</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="payment_status">Paid</span>
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-8">
                         <div class="card">
