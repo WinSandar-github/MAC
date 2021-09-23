@@ -98,13 +98,23 @@ function createMentor()
         contentType: false,
         processData: false,
         success: function(result){
-            successMessage("You have successfully registerd!");
-            location.href = "/mentor_list";
+            // successMessage("You have successfully registerd!");
+            // location.href = "/mentor_list";
+            //EasyLoading.hide();
+            successMessage(result.message);
+            resetForm("#mentor_register_form");
+            location.href = FRONTEND_URL+'/mentor_list';
         },
         error:function (message){
             errorMessage(message);
         }
     });
+}
+
+function resetForm(form){
+  var form = $(form)[0];
+  $(form).removeClass('was-validated');
+  form.reset();
 }
 
 $('#updateMentor').submit(function(e){
