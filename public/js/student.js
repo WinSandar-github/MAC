@@ -198,11 +198,10 @@ function loadStudentSelfStudy() {
             } else {
                 document.getElementById("approve_reject").style.display = "none";
             }
-
-            $("#registration_no").append(element.personal_no);
             element = element.student_info;
             var education_history = element.student_education_histroy;
-            var job = element.student_job;
+            var job = element.student_job;           
+            $("#registration_no").append(element.personal_no);
             $("#id").append(element.id);
             document.getElementById('image').src = PDF_URL + element.image;
             $("#name_eng").append(element.name_eng);
