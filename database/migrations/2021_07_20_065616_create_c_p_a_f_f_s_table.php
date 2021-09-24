@@ -60,6 +60,16 @@ class CreateCPAFFSTable extends Migration
             $table->string('three_years_full')->nullable();
             $table->string('letter')->nullable();
             $table->string('fine_person')->nullable();
+            $table->string('email')->nullable();
+            $table->string('name_mm')->nullable();
+            $table->string('name_eng')->nullable();
+            $table->string('nrc_state_region')->nullable();
+            $table->string('nrc_township')->nullable();
+            $table->string('nrc_citizen')->nullable();
+            $table->string('nrc_number')->nullable();
+            $table->string('father_name_mm')->nullable();
+            $table->string('father_name_eng')->nullable();
+            // $table->string('payment_method')->nullable();
 
             $table->timestamps();
         });
