@@ -80,4 +80,300 @@ class ReportController extends Controller
         $course = Course::where('code',$code)->first();
         return view('reporting.exam_result_list',compact('course'));
     }
+
+    public function cpa_ff_report1()  
+    {
+        return view('reporting.cpa_ff_papp.cpa_ff_report1');
+    }
+
+    public function cpa_ff_report2()  
+    {
+        return view('reporting.cpa_ff_papp.cpa_ff_report2');
+    }
+    
+    public function cpa_ff_report3()  
+    {
+        return view('reporting.cpa_ff_papp.cpa_ff_report3');
+    }
+
+    public function cpa_ff_report4()  
+    {
+        return view('reporting.cpa_ff_papp.cpa_ff_report4');
+    }
+
+    public function cpa_ff_report5()  
+    {
+        return view('reporting.cpa_ff_papp.cpa_ff_report5');
+    }
+
+    public function cpa_ff_report6()  
+    {
+        return view('reporting.cpa_ff_papp.cpa_ff_report6');
+    }
+
+    public function cpa_ff_report7()  
+    {
+        return view('reporting.cpa_ff_papp.cpa_ff_report7');
+    }
+
+    public function cpa_ff_report8()  
+    {
+        return view('reporting.cpa_ff_papp.cpa_ff_report8');
+    }
+
+    public function audit_firm_report1()  
+    {
+        return view('reporting.firm_name.audit_firm_report1');
+    }
+
+    public function audit_firm_report2()  
+    {
+        return view('reporting.firm_name.audit_firm_report2');
+    }
+    
+    public function audit_firm_report3()  
+    {
+        return view('reporting.firm_name.audit_firm_report3');
+    }
+
+    public function audit_firm_report4()  
+    {
+        return view('reporting.firm_name.audit_firm_report4');
+    }
+
+    public function audit_firm_report5()  
+    {
+        return view('reporting.firm_name.audit_firm_report5');
+    }
+
+    public function naudit_firm_report1()  
+    {
+        return view('reporting.firm_name.naudit_firm_report1');
+    }
+
+    public function naudit_firm_report2()  
+    {
+        return view('reporting.firm_name.naudit_firm_report2');
+    }
+    
+    public function naudit_firm_report3()  
+    {
+        return view('reporting.firm_name.naudit_firm_report3');
+    }
+
+    public function naudit_firm_report4()  
+    {
+        return view('reporting.firm_name.naudit_firm_report4');
+    }
+
+    public function naudit_firm_report5()  
+    {
+        return view('reporting.firm_name.naudit_firm_report5');
+    }
+
+    public function naudit_firm_report6()  
+    {
+        return view('reporting.firm_name.naudit_firm_report6');
+    }
+
+    public function cpa_report1()  
+    {
+        return view('reporting.cpa.cpa_report1');
+    }
+
+    public function cpa_report2()  
+    {
+        return view('reporting.cpa.cpa_report2');
+    }
+
+    public function cpa_report3()  
+    {
+        return view('reporting.cpa.cpa_report3');
+    }
+
+    public function cpa_report4()  
+    {
+        return view('reporting.cpa.cpa_report4');
+    }
+
+    public function cpa_report5()  
+    {
+        return view('reporting.cpa.cpa_report5');
+    }
+
+    public function cpa_report6()  
+    {
+        return view('reporting.cpa.cpa_report6');
+    }
+
+    public function cpa_report7()  
+    {
+        return view('reporting.cpa.cpa_report7');
+    }
+
+    public function cpa_report8()  
+    {
+        return view('reporting.cpa.cpa_report8');
+    }
+
+    public function cpa_report9()  
+    {
+        return view('reporting.cpa.cpa_report9');
+    }
+
+    public function cpa_report10()  
+    {
+        return view('reporting.cpa.cpa_report10');
+    }
+
+    public function firm_article_report1()  
+    {
+        return view('reporting.article.firm_article_report1');
+    }
+
+    public function firm_article_report2()  
+    {
+        return view('reporting.article.firm_article_report2');
+    }
+
+    public function firm_article_report3()  
+    {
+        return view('reporting.article.firm_article_report3');
+    }
+
+    public function firm_article_report4()  
+    {
+        return view('reporting.article.firm_article_report4');
+    }
+
+
+    public function firm_article_report5()  
+    {
+        return view('reporting.article.firm_article_report5');
+    }
+
+    public function gov_article_report1()  
+    {
+        return view('reporting.article.gov_article_report1');
+    }
+
+    public function gov_article_report2()  
+    {
+        return view('reporting.article.gov_article_report2');
+    }
+
+    public function gov_article_report3()  
+    {
+        return view('reporting.article.gov_article_report3');
+    }
+
+    public function gov_article_report4()  
+    {
+        return view('reporting.article.gov_article_report4');
+    }
+
+    public function gov_article_report5()  
+    {
+        return view('reporting.article.gov_article_report5');
+    }
+
+    public function mentor_report1()  
+    {
+        return view('reporting.mentor.mentor_report1');
+    }
+    
+    public function mentor_report2()  
+    {
+        return view('reporting.mentor.mentor_report2');
+    }
+    
+    public function mentor_report3()  
+    {
+        return view('reporting.mentor.mentor_report3');
+    }
+
+    public function mentor_report4()  
+    {
+        return view('reporting.mentor.mentor_report4');
+    }
+
+    public function mentor_report5()  
+    {
+        return view('reporting.mentor.mentor_report5');
+    }
+
+    public function mentor_report6()  
+    {
+        return view('reporting.mentor.mentor_report6');
+    }
+
+    public function s_t_report1()  
+    {
+        return view('reporting.school_teacher.s_t_report1');
+    }
+
+    public function s_t_report2()  
+    {
+        return view('reporting.school_teacher.s_t_report2');
+    }
+
+    public function s_t_report3()  
+    {
+        return view('reporting.school_teacher.s_t_report3');
+    }
+    
+    public function da_report1()  
+    {
+        return view('reporting.da.da_report3');
+    }
+
+    public function da_report2()  
+    {
+        return view('reporting.da.da_report2');
+    }
+
+    public function da_report3()  
+    {
+        return view('reporting.da.da_report3');
+    }
+
+    public function da_report4()  
+    {
+        return view('reporting.da.da_report4');
+    }
+
+    public function da_report5()  
+    {
+        return view('reporting.da.da_report5');
+    }
+
+    public function da_report6()  
+    {
+        return view('reporting.da.da_report6');
+    }
+
+    public function da_report7()  
+    {
+        return view('reporting.da.da_report7');
+    }
+
+    public function da_report8()  
+    {
+        return view('reporting.da.da_report8');
+    }
+
+    public function da_report9()  
+    {
+        return view('reporting.da.da_report9');
+    }
+
+    public function qualified_report1()  
+    {
+        return view('reporting.cpa.qualified_report1');
+    }
+
+    public function qualified_report2()  
+    {
+        return view('reporting.cpa.qualified_report2');
+    }
 }    
