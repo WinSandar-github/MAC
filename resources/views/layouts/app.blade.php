@@ -96,6 +96,8 @@
 <script src="{{ asset('js/mentor.js') }}"></script>
 <script src="{{ asset('js/chart.js') }}"></script>
 <script src="{{ asset('js/report.js') }}"></script>
+<script src="{{ asset('js/exam.js') }}"></script>
+
 
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('js/select2/select2.min.js') }}"></script>

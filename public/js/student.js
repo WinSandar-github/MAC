@@ -183,6 +183,15 @@ function loadStudentSelfStudy() {
             // $("#student_phone").append(element.student_info.phone);
             $("#student_registration_no").append(element.student_info.registration_no);
             $("#student_registration_reason").append(element.reg_reason);
+            if(element.module=="1"){
+                $("#module_name").append("Module 1");
+            } 
+            else if(element.module=="2"){
+                $("#module_name").append("Module 2");
+            } 
+            else if(element.module=="3"){
+                $("#module_name").append("All Module");
+            }            
             $("input[name = student_register_id]").val(element.id);
             if (element.status == 0) {
                 document.getElementById("approve_reject").style.display = "block";

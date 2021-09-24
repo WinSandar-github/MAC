@@ -16,13 +16,13 @@ class CreateStudentJobHistroysTable extends Migration
         Schema::create('student_job_histroys', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
-            $table->string('name');
-            $table->string('position');
-            $table->string('department');
-            $table->string('organization');
-            $table->string('company_name');
-            $table->string('salary');
-            $table->string('office_address');
+            $table->string('name')->nullable();
+            $table->string('position')->nullable();
+            $table->string('department')->nullable();
+            $table->string('organization')->nullable();
+            $table->string('company_name')->nullable();
+            $table->string('salary')->nullable();
+            $table->string('office_address')->nullable();
 
             $table->timestamps();
 
