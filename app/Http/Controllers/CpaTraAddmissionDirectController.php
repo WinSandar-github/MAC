@@ -254,7 +254,7 @@ class CpaTraAddmissionDirectController extends Controller
         // $education_histroy->certificate     = json_encode($certificates);
 
         $education_histroy->qualified_date  = $qualified_date;
-        $education_histroy->roll_number     = $request->roll_no;
+        $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
         
         $student_course = new StudentCourseReg();
