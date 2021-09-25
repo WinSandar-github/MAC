@@ -369,7 +369,7 @@ function loadCPAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.student_register[0].personal_no);
+                $("#registration_no").append(element.personal_no);
 
                 if(element.gov_staff == 1){
                     $(".recommend_row").show();
@@ -692,7 +692,7 @@ function getCPAModuleStd() {
                 $("#email").append(std.email);
                 $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(std.image);
-                $("#registration_no").append(std.student_register[0].personal_no);
+                $("#registration_no").append(std.personal_no);
 
                 if(std.gov_staff == 1){
                     $(".recommend_row").show();
