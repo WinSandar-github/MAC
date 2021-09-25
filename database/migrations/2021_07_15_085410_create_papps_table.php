@@ -50,7 +50,7 @@ class CreatePappsTable extends Migration
             $table->string('reg_no')->nullable();
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
-            $table->string('contact_mail')->nullable();
+            // $table->string('contact_mail')->nullable();
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
 

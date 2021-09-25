@@ -375,9 +375,13 @@ function autoLoadAudit(){
         }
         else if(element.status==1){
             status="Approve";
+            $("#reject_audit_btn").css('display','none');
+            $("#approve_audit_btn").css('display','none');
         }
         else{
             status="Reject";
+            $("#reject_audit_btn").css('display','none');
+            $("#approve_audit_btn").css('display','none');
         }
 
         if(element.local_foreign_id==1){
@@ -481,7 +485,7 @@ function autoLoadAudit(){
               for(var i=0;i<ppa_certificate_file.length;i++){
                 $(".ppa_certis_partnership").append(`<a href='${PDF_URL+ppa_certificate_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
-            }else $(".ppa_certis_partnership").append("<span class='text-primary'>no file</span>");
+            }else $(".ppa_certis_partnership").append("<span class='text-primary'>No file</span>");
 
             if(item.certi_or_reg!="null"){
               var certi_or_reg_file = removeBracketedAudit(item.certi_or_reg,"certi_or_regs_partnership");
@@ -819,9 +823,9 @@ function rejectAuditFirm(){
   });
 }
 
-function approveNonAuditFirm(){
+function approveNonAuditFirm(id){
 
-  var id = $("input[name = audit_firm_id]").val();
+  //var id = $("input[name = audit_firm_id]").val();
   $.ajax({
       url: BACKEND_URL + "/approve_non_auditfirm/"+id,
       type: 'patch',
@@ -832,8 +836,8 @@ function approveNonAuditFirm(){
   });
 }
 
-function rejectNonAuditFirm(){
-  var id = $("input[name = audit_firm_id]").val();
+function rejectNonAuditFirm(id){
+  //var id = $("input[name = audit_firm_id]").val();
   $.ajax({
       url: BACKEND_URL +"/reject_non_auditfirm/"+id,
       type: 'patch',
@@ -1003,7 +1007,7 @@ function loadNonAuditOrganization(){
        if(element.id!=3){
         var radio_data="<div class='col-md-2'>"+
         "<input type='radio' name='org_stru_id' autofocus value="+element.id+" id=org"+element.id+" onclick='getOrganization()'>"+
-        " <label class='form-check-label'>"+element.name+"</label>";
+        "<label class='form-check-label'>"+element.name+"</label>";
        }else{
         var radio_data="<div class='col-md-3'>"+
         "<input type='radio' name='org_stru_id' autofocus value="+element.id+" id=org"+element.id+" onclick='getOrganization()'>"+

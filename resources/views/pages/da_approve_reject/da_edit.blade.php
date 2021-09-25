@@ -266,7 +266,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">အထက်လူကြီး၏ထောက်ခံစာ</p>
+                                        <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာဌာနအကြီးအကဲ၏ထောက်ခံစာ</p>
                                     </div>
                                     <div class="col-md-6 recommend_letter">
                                         

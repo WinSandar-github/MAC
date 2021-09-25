@@ -88,7 +88,7 @@
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
-                                            <th class="bold-font-weight" >Print</th>
+                                            {{--<th class="bold-font-weight" >Print</th>--}}
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_pending_exam_body" class="hoverTable text-left">
@@ -132,7 +132,7 @@
                                             <th class="bold-font-weight" >Remark</th>
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
-                                            <th class="bold-font-weight" >Print</th>
+                                            {{--<th class="bold-font-weight" >Print</th>--}}
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_rejected_exam_body" class="hoverTable text-left">
@@ -180,7 +180,6 @@
               {data: 'exam_type', name: 'Exam Type'},
               {data: 'remark', name: 'Remark'},
               {data: 'status', name: 'Status'},
-              {data: 'print', name: 'Print',orderable: false, searchable: false},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
@@ -240,7 +239,6 @@
               {data: 'exam_type', name: 'Exam Type'},
               {data: 'remark', name: 'Remark'},
               {data: 'status', name: 'Status'},
-              {data: 'print', name: 'Print',orderable: false, searchable: false},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
