@@ -5,7 +5,7 @@
 
 
 @prepend('styles')
-
+<!-- 
     <style>
 
         @media print {
@@ -21,7 +21,7 @@
             top: 0;
         }
         }
-    </style>
+    </style> -->
 @endprepend
 
 
@@ -36,7 +36,8 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <form action="javascript:void()" method="post" enctype="multipart/form-data">
-                <input type="hidden" id="entry_result" value="1">
+                <input type="hidden" id="entry_result" value="2">
+
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
@@ -345,9 +346,9 @@
                                     
                                   
                                         <div class="row mt-5 justify-content-center approve_reject"> 
-                                            <button type="button" id="print" class="btn btn-primary btn-round"  onclick="PrintExamCard()" style="height:40px; width:100px;">Print</button>
-                                            <button type="submit"  id="reject" name="save" class="btn btn-danger"  onclick="rejectEntryExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                            <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveEntryExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                            
+                                            <button type="submit"  id="pass" name="save" class="btn btn-danger"  onclick="failEntryExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Fail</button>
+                                            <button type="submit" id="fail" name="save" class="btn btn-primary" onclick="passEntryExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>Pass</button>
                                             
                                     </div>
                                 </div>

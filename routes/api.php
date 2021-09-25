@@ -283,7 +283,7 @@ Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
 
 //Generate Serial and Personal Number
-Route::get('/generate_personal_no/{batch_id}','ApiController@generatePersonalNo');
+Route::get('/generate_personal_no/{code}','ApiController@generatePersonalNo');
 Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
@@ -313,6 +313,12 @@ Route::get('getSubject/{course_id}','SubjectController@getSubject');
 
 // education history
 Route::get('getEducationHistory/{student_info_id}','TeacherController@getEducationHistory');
+
+
+//Pass or fail  student
+Route::patch('/pass_entry_exam/{id}', 'EntryExamController@passEntryExam');
+Route::patch('/fail_entry_exam/{id}', 'EntryExamController@failEntryExam');
+
 
 // education history
 Route::post('checkEmail','SchoolController\SchoolController@checkEmail');

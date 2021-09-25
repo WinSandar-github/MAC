@@ -74,16 +74,32 @@ function loadEntryDetail(id) {
                 // $("#student_grade").append(grade);
                 // $("#student_status").append(status);
 
-                if (element.status == 0) {
-                    document.getElementById("approve").style.display = 'block';
-                    document.getElementById("reject").style.display = 'block';
-                    document.getElementById("print").style.display = 'none';
+                console.log($('#entry_result').val())
+                if ($('#entry_result').val() == 1) {
+
+                    if (element.status == 0) {
+                        document.getElementById("approve").style.display = 'block';
+                        document.getElementById("reject").style.display = 'block';
+                        document.getElementById("print").style.display = 'none';
+
+                    } else {
+                        document.getElementById("print").style.display = 'block';
+                        document.getElementById("approve").style.display = 'none';
+                        document.getElementById("reject").style.display = 'none';
+                    }
 
                 } else {
-                    document.getElementById("print").style.display = 'block';
-                    document.getElementById("approve").style.display = 'none';
-                    document.getElementById("reject").style.display = 'none';
+                    if (element.grade == 1) {
+                        document.getElementById("pass").style.display = 'none';
+                        document.getElementById("fail").style.display = 'none';
+
+                    } else {
+                        document.getElementById("pass").style.display = 'block';
+                        document.getElementById("fail").style.display = 'block';
+                    }
+
                 }
+
 
                 // $("#exam_department").append(element.exam_department.name);
 
@@ -155,7 +171,6 @@ function loadEntryDetail(id) {
                     let exams = data.data;
 
                     var exam = exams.filter(exam => { if (exam.exam_type_id == 2 && exam.batch_id == element.batch.id) return true });
-                    console.log(exam)
 
                     $('#exam_date').text(exam[0].exam_start_date);
                     $('#exam_time').text(`နံနက် ${exam[0].exam_start_time} နာရီ မှ ${exam[0].exam_end_time} နာရီ အထိ`);
@@ -216,3 +231,34 @@ async function get_exam_info() {
     let data = await response.json()
     return data;
 }
+
+
+
+function passEntryExam() {
+    var id = $("input[name = student_id]").val();
+    $.ajax({
+        url: BACKEND_URL + "/pass_entry_exam/" + id,
+        type: 'PATCH',
+        success: function (result) {
+            console.log(result)
+            successMessage("You have approved that form!");
+            location.href = FRONTEND_URL + "/entry_exam_result";
+            getExam();
+        }
+    });
+}
+
+function failEntryExam() {
+    var id = $("input[name = student_id]").val();
+    $.ajax({
+        url: BACKEND_URL + "/fail_entry_exam/" + id,
+        type: 'PATCH',
+        success: function (result) {
+
+            successMessage("You have rejected that form!");
+            location.href = FRONTEND_URL + "/entry_exam_result";
+            getExam();
+        }
+    });
+}
+

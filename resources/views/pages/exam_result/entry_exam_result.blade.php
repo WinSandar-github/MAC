@@ -80,7 +80,7 @@
                                         <thead>
                                             <tr>
                                             <th class="bold-font-weight" >No</th>
-                                            <!-- <th class="bold-font-weight" >Action</th> -->
+                                            <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Exam Type</th>
                                             <th class="bold-font-weight" >Remark</th>
@@ -98,7 +98,7 @@
                                         <thead>
                                             <tr>
                                             <th class="bold-font-weight" >No</th>
-                                            <!-- <th class="bold-font-weight" >Action</th> -->
+                                            <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Exam Type</th>
                                             <th class="bold-font-weight" >Remark</th>
@@ -115,7 +115,7 @@
                                         <thead>
                                             <tr>
                                             <th class="bold-font-weight" >No</th>
-                                            <!-- <th class="bold-font-weight" >Action</th> -->
+                                            <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Exam Type</th>
                                             <th class="bold-font-weight" >Remark</th>
@@ -159,7 +159,7 @@
             {data: null, render: function (data, type, row, meta) {
                 return meta.row + meta.settings._iDisplayStart + 1;
             }},
-            // {data: 'action', name: 'action', orderable: false, searchable: false},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'exam_type', name: 'Exam Type'},
             {data: 'remark', name: 'Remark'},
@@ -185,7 +185,7 @@
           {data: null, render: function (data, type, row, meta) {
               return meta.row + meta.settings._iDisplayStart + 1;
           }},
-        //   {data: 'action', name: 'action', orderable: false, searchable: false},
+          {data: 'action', name: 'action', orderable: false, searchable: false},
           {data: 'student_info.name_mm', name: 'Student Name'},
           {data: 'exam_type', name: 'Exam Type'},
           {data: 'remark', name: 'Remark'},
@@ -211,7 +211,7 @@
           {data: null, render: function (data, type, row, meta) {
               return meta.row + meta.settings._iDisplayStart + 1;
           }},
-        //   {data: 'action', name: 'action', orderable: false, searchable: false},
+          {data: 'action', name: 'action', orderable: false, searchable: false},
           {data: 'student_info.name_mm', name: 'Student Name'},
           {data: 'exam_type', name: 'Exam Type'},
           {data: 'remark', name: 'Remark'},
