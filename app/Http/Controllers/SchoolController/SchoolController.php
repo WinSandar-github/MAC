@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SchoolController;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\SchoolRegister;
 use App\StudentInfo;
@@ -128,7 +129,7 @@ class SchoolController extends Controller
              {
                  $name  = uniqid().'.'.$file->getClientOriginalExtension();
                  $file->move(public_path().'/storage/student_info/',$name);
-                 $sch_establish_notes_attach[] = $name;
+                 $sch_establish_notes_attach[] =$name;
              }
             
         }else{
@@ -416,7 +417,9 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        $school = SchoolRegister::where('id',$id)->with('school_establishers','school_governs','school_members','school_teachers')->first();
+        $school = SchoolRegister::where('id',$id)
+        ->with('school_establishers','school_governs','school_members','school_teachers','student_info',
+        'school_branch','bulding_type','classroom','toilet_type','manage_room_numbers')->first();
         return  response()->json([
             'data' => $school
         ],200);
@@ -750,12 +753,12 @@ class SchoolController extends Controller
         //
     }
 
-    public function approve_school_register(Request $request, $id)
+    public function approve_school_register(Request $request)
     {
-        $std_info = StudentInfo::where('school_id', $id)->first();
+        $std_info = StudentInfo::find($request->student_info_id);
         $std_info->approve_reject_status = 1;
         $std_info->save();
-        $school = SchoolRegister::find($id);
+        $school = SchoolRegister::find($request->id);
         $school->approve_reject_status = 1;
         $school->renew_date = date('Y-m-d');
         $school->save();
@@ -806,6 +809,13 @@ class SchoolController extends Controller
                 return "REJECTED";
             }
         })
+        ->addColumn('payment_method', function ($infos){
+            if($infos->payment_method	 == ""){
+                return "Payment Incomplete";
+            }else{
+                return "Payment Complete";
+            }
+        })
         ->make(true);
         // return  response()->json([
         //     'data' => $school
@@ -823,6 +833,10 @@ class SchoolController extends Controller
         $std_info = StudentInfo::find($id) ;
         $std_info->payment_method = 'CASH';
         $std_info->save();
+        $school = SchoolRegister::find($std_info->school_id);
+        $school->payment_method = 'CASH';
+        $school->renew_date = date('Y-m-d');
+        $school->save();
         return response()->json([
             'data' => $std_info,
         ],200);
@@ -834,18 +848,23 @@ class SchoolController extends Controller
         return response()->json($data,200);
     }
     public function checkEmail(Request $request){
-        $std_info =StudentInfo::where('teacher_id','!=','NULL')->where('email','=',$request->email)->get();
-        return response()->json($std_info,200);
-
-        // $emailCheck = StudentInfo::where('email', $request['email'])->first();
-        // $nrcCheck = StudentInfo::Where('nrc_state_region', $request['nrc_state_region'])
-        //         ->Where('nrc_township', $request['nrc_township'])
-        //         ->Where('nrc_citizen', $request['nrc_citizen'])
-        //         ->Where('nrc_number', $request['nrc_number'])->first();
-        // //return $emailcheck;
-        // return response()->json([ 
-        //     'email' => $emailCheck,
-        //     'nrc' => $nrcCheck
-        // ],200);
+        $std_info =StudentInfo::where('email','=',$request->email)->get();
+        $data =StudentInfo::where('school_id','=','NULL')
+                            ->where('teacher_id','!=','NULL')
+                            ->get();
+        $status=2;
+        if(sizeof($std_info)){
+            
+            if(sizeof($data)){
+                return response()->json($data,200);
+            }else{
+                return response()->json($status,200);
+            }
+           
+        }
+        else{
+            return response()->json($status,200);
+        }
+    
     }
 }
