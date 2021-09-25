@@ -25,6 +25,11 @@ class EntryExamController extends Controller
     {
        return view("pages.entry_exam.entry_exam_detail");
     }
+    public function entryExamResultDetail($id)
+    {
+       return view("pages.exam_result.entry_exam_result_detail");
+    }
+   
     public function cpaOneEntryExam(Request $request)
     {
         
@@ -203,7 +208,8 @@ class EntryExamController extends Controller
             ],200);
         
     }
-
+     
+  //မလိုတော့ပြန်ဘူး gg
     public function cpaOneEntryApp(Request $request)
     {
         
@@ -227,7 +233,7 @@ class EntryExamController extends Controller
             ],200);
         
     }
-
+  //end
     public function entryExamFilter(Request $request)
     {
         $exam_register = ExamRegister::with('student_info','batch')
@@ -271,6 +277,7 @@ class EntryExamController extends Controller
     }
 
     public function filterEntryExamResult(Request $request){
+ 
         $exam_register = ExamRegister::with('student_info','batch')
         ->where('status','=',1)
         ->where('grade','=',$request->grade)
@@ -281,12 +288,11 @@ class EntryExamController extends Controller
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                            <a href='entry_exam_result_detail/$infos->id' class='btn btn-primary btn-xs' >
                                 <li class='fa fa-eye fa-sm'></li>
-                            </button>
+                            </a>
                         </div>";
             })
-
             ->addColumn('exam_type', function ($infos){
                 if($infos->exam_type_id == 0){
                   return "SELF STUDY";
@@ -326,6 +332,49 @@ class EntryExamController extends Controller
             ->make(true);
        
         
+    }
+
+    public function passEntryExam($id)
+    {
+      $course_date = date('Y-m-d');
+
+        $exam_register = ExamRegister::find($id);
+        $exam_register->grade = 1;
+        $exam_register->save();
+
+        $student_info = StudentInfo::find($exam_register->student_info_id);
+        $student_info->approve_reject_status  =  1;
+        $student_info->save();
+
+        
+        $course_date = date('Y-m-d');
+
+        $course_register = StudentCourseReg::where('student_info_id',$student_info->id)->first();
+        
+        $student_course = new StudentCourseReg();
+        $student_course->student_info_id    = $student_info->id;
+        $student_course->batch_id           = $course_register->batch_id;
+        $student_course->date               = $course_register->date;
+        $student_course->status             = 1;
+        $student_course->approve_reject_status = 1;
+        $student_course->type           = $course_register->type;
+        if($course_register->type == 2){
+          $student_course->mac_type           = $course_register->mac_type;
+        }
+        $student_course->save();
+        return response()->json([
+            'message' => "You have successfully pass that Student!"
+        ],200);
+    }
+
+    public function failEntryExam($id)
+    {
+        $exam_register = ExamRegister::find($id);
+        $exam_register->grade = 2;
+        $exam_register->save();
+        return response()->json([
+            'message' => "You have successfully fail that Student!"
+        ],200);
     }
      
 }

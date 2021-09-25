@@ -20,7 +20,6 @@ class ReportController extends Controller
          
         $current_course = Course::where('code',$request->code)->with('active_batch')->first();
       
-        
         $student_infos = ExamRegister::where('form_type',$current_course->active_batch[0]->course->id)
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
                         ->where('exam_type_id','!=',3)
@@ -28,7 +27,9 @@ class ReportController extends Controller
                         ->with('student_info')
                         ->orderBy('student_infos.name_mm','asc')->select('exam_register.*');
 
-        $request->grade &&  $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
+        $
+        $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
+        $request->exam_type_id &&  $student_infos =  $student_infos->Where('exam_type_id',$request->exam_type_id);
 
          $student_infos =  $student_infos->get(); 
        
@@ -45,14 +46,15 @@ class ReportController extends Controller
 
     public function showRegistrationList(Request $request)
     {
-         
+        
         $current_course = Course::where('code',$request->code)->with('active_batch')->first();
       
         
         $student_infos = StudentRegister::where('form_type',$current_course->active_batch[0]->course->id)
-                        ->join('student_infos', 'student_infos.id', '=', 'student_register.student_info_id')
+                        ->join('student_infos','student_infos.id','=','student_registers.student_info_id')
                         ->with('student_info')->where('status',1)
-                        ->orderBy('student_infos.name_mm','asc')->select('student_register.*')->get();
+                        ->orderBy('student_infos.name_mm','asc')
+                        ->orderBy('type','asc')->select('student_register.*')->get();
 
      
           return DataTables::of($student_infos)
@@ -74,6 +76,12 @@ class ReportController extends Controller
     {
         $course = Course::where('code',$code)->first();
         return view('reporting.exam_list',compact('course'));
+    }
+
+    public function currentEntryExamList($code)  
+    {
+        $course = Course::where('code',$code)->first();
+        return view('reporting.current_entry_exam_list',compact('course'));
     }
     public function  examResultList($code)  
     {

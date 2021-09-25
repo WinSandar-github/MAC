@@ -15,6 +15,8 @@ class StudentRegister extends Model
         return $this->belongsTo(StudentInfo::class,'student_info_id','id')->orderBy('name_mm','asc')->with('student_job','student_education_histroy');
     }
 
+     
+
     public function course()
     {
         return $this->belongsTo(Course::class,'form_type','id');

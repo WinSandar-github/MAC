@@ -137,6 +137,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
     Route::get('attend_exam_list/{course_code}','ReportController@attendExamList');
     Route::get('exam_result_list/{course_code}','ReportController@examResultList');
+    Route::get('current_entry_exam_list/{course_code}','ReportController@currentEntryExamList');
+
 
 
     
@@ -144,6 +146,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
+    Route::get('entry_exam_result_detail/{id}','EntryExamController@entryExamResultDetail');
+
     
 });
 Route::post('show_registration_list','ReportController@showRegistrationList');

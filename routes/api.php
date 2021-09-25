@@ -314,3 +314,10 @@ Route::get('getSubject/{course_id}','SubjectController@getSubject');
 
 // education history
 Route::get('getEducationHistory/{student_info_id}','TeacherController@getEducationHistory');
+
+
+//Pass or fail  student
+Route::patch('/pass_entry_exam/{id}', 'EntryExamController@passEntryExam');
+Route::patch('/fail_entry_exam/{id}', 'EntryExamController@failEntryExam');
+
+
