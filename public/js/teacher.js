@@ -263,7 +263,7 @@ function rejectTeacherRegister(){
 }
 
   function loadEductaionHistory(student_info_id){
-      console.log(student_info_id)
+      
     $.ajax({
         type : 'GET',
         url : BACKEND_URL+"/getEducationHistory/"+student_info_id,

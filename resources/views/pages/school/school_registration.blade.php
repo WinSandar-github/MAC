@@ -76,6 +76,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
+                                                <th class="bold-font-weight" >Payment Status</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_school_pending_body" class="hoverTable text-left" style="width:100%;">
@@ -93,6 +94,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
+                                                <th class="bold-font-weight" >Payment Status</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_school_approved_body" class="hoverTable text-left">
@@ -110,6 +112,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
+                                                <th class="bold-font-weight" >Payment Status</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_school_rejected_body" class="hoverTable text-left">
@@ -170,7 +173,7 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-
+                {data: 'payment_method', name: 'payment_method'},
 
             ],
          });
@@ -201,7 +204,7 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-
+                {data: 'payment_method', name: 'payment_method'},
             ],
          });
 
@@ -231,7 +234,7 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-
+                {data: 'payment_method', name: 'payment_method'},
             ],
 
         });
@@ -240,7 +243,7 @@
             $.each($.fn.dataTable.tables(true), function(){
                 $(this).DataTable()
                     .columns.adjust()
-                    .responsive.recalc();
+                    //.responsive.recalc();
             });
         });
 
