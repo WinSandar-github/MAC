@@ -253,7 +253,7 @@ function rejectCPATwoExam() {
 
 function loadCPAExamData() {
     var id = localStorage.getItem("student_id");
-    // console.log(id);
+    console.log(id);
     $("#school_name").html("");
     $("#exam_type").html("");
     $("#student_grade").html("");
@@ -296,9 +296,8 @@ function loadCPAExamData() {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            
+            console.log(exam_data);
             exam_data.forEach(function (element) {
-                console.log('element',element);
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -353,7 +352,6 @@ function loadCPAExamData() {
 
                 element = element.student_info;
                 var education_history = element.student_education_histroy;
-                console.log('education_history',education_history);
                 var job = element.student_job;
                 $("#id").append(element.id);
                 document.getElementById('image').src = PDF_URL + element.image;
@@ -371,13 +369,7 @@ function loadCPAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                if(element.personal_no==null){
-                    personal_no = "-";
-                    $("#registration_no").append(personal_no);
-                }else{
-                    $("#registration_no").append(element.personal_no);
-                }
-                
+                $("#registration_no").append(element.personal_no);
 
                 if(element.gov_staff == 1){
                     $(".recommend_row").show();
@@ -619,7 +611,7 @@ function getCPAModuleStd() {
             var da_data = data.data;
             da_data.forEach(function (element) {
                 var std = element.student_info;
-                console.log('std', std);
+                console.log('ee', element);
                 if (element.status == 0) {
                     status = "PENDING";
                     //$('.pass_fail_btn').hide();
