@@ -144,6 +144,95 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
+
+    // CPA(FF)/PAPP Report
+
+    Route::get('cpa_ff_report1','ReportController@cpa_ff_report1');
+    Route::get('cpa_ff_report2','ReportController@cpa_ff_report2');
+    Route::get('cpa_ff_report3','ReportController@cpa_ff_report3');
+    Route::get('cpa_ff_report4','ReportController@cpa_ff_report4');
+    Route::get('cpa_ff_report5','ReportController@cpa_ff_report5');
+    Route::get('cpa_ff_report6','ReportController@cpa_ff_report6');
+    Route::get('cpa_ff_report7','ReportController@cpa_ff_report7');
+    Route::get('cpa_ff_report8','ReportController@cpa_ff_report8');
+
+    //Firm Name Section Report
+    //Audit Firm
+    Route::get('audit_firm_report1','ReportController@audit_firm_report1');
+    Route::get('audit_firm_report2','ReportController@audit_firm_report2');
+    Route::get('audit_firm_report3','ReportController@audit_firm_report3');
+    Route::get('audit_firm_report4','ReportController@audit_firm_report4');
+    Route::get('audit_firm_report5','ReportController@audit_firm_report5');
+
+
+    //Non Audit Firm
+    Route::get('naudit_firm_report1','ReportController@naudit_firm_report1');
+    Route::get('naudit_firm_report2','ReportController@naudit_firm_report2');
+    Route::get('naudit_firm_report3','ReportController@naudit_firm_report3');
+    Route::get('naudit_firm_report4','ReportController@naudit_firm_report4');
+    Route::get('naudit_firm_report5','ReportController@naudit_firm_report5');
+    Route::get('naudit_firm_report6','ReportController@naudit_firm_report6');
+
+     // CPA Report
+
+    Route::get('cpa_report1','ReportController@cpa_report1');
+    Route::get('cpa_report2','ReportController@cpa_report2');
+    Route::get('cpa_report3','ReportController@cpa_report3');
+    Route::get('cpa_report4','ReportController@cpa_report4');
+    Route::get('cpa_report5','ReportController@cpa_report5');
+    Route::get('cpa_report6','ReportController@cpa_report6');
+    Route::get('cpa_report7','ReportController@cpa_report7');
+    Route::get('cpa_report8','ReportController@cpa_report8');
+    Route::get('cpa_report9','ReportController@cpa_report9');
+    Route::get('cpa_report10','ReportController@cpa_report10');
+
+    // Article Report
+
+    Route::get('firm_article_report1','ReportController@firm_article_report1');
+    Route::get('firm_article_report2','ReportController@firm_article_report2');
+    Route::get('firm_article_report3','ReportController@firm_article_report3');
+    Route::get('firm_article_report4','ReportController@firm_article_report4');
+    Route::get('firm_article_report5','ReportController@firm_article_report5');
+
+    // Gov Article Report
+
+    Route::get('gov_article_report1','ReportController@gov_article_report1');
+    Route::get('gov_article_report2','ReportController@gov_article_report2');
+    Route::get('gov_article_report3','ReportController@gov_article_report3');
+    Route::get('gov_article_report4','ReportController@gov_article_report4');
+    Route::get('gov_article_report5','ReportController@gov_article_report5');
+
+    // Gov Mentor Report
+
+    Route::get('mentor_report1','ReportController@mentor_report1');
+    Route::get('mentor_report2','ReportController@mentor_report2');
+    Route::get('mentor_report3','ReportController@mentor_report3');
+    Route::get('mentor_report4','ReportController@mentor_report4');
+    Route::get('mentor_report5','ReportController@mentor_report5');
+    Route::get('mentor_report6','ReportController@mentor_report6');
+
+    // School/Teacher Report
+
+    Route::get('s_t_report1','ReportController@s_t_report1');
+    Route::get('s_t_report2','ReportController@s_t_report2');
+    Route::get('s_t_report3','ReportController@s_t_report3');
+
+     // DA Report
+
+    Route::get('da_report1','ReportController@da_report1');
+    Route::get('da_report2','ReportController@da_report2');
+    Route::get('da_report3','ReportController@da_report3');
+    Route::get('da_report4','ReportController@da_report4');
+    Route::get('da_report5','ReportController@da_report5');
+    Route::get('da_report6','ReportController@da_report6');
+    Route::get('da_report7','ReportController@da_report7');
+    Route::get('da_report8','ReportController@da_report8');
+    Route::get('da_report9','ReportController@da_report9');
+
+     // CPA Qualified Report
+
+    Route::get('qualified_report1','ReportController@qualified_report1');
+    Route::get('qualified_report2','ReportController@qualified_report2');
     
 });
 Route::post('show_registration_list','ReportController@showRegistrationList');
