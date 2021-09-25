@@ -26,9 +26,8 @@ class EntryExamController extends Controller
        return view("pages.entry_exam.entry_exam_detail");
     }
     public function cpaOneEntryExam(Request $request)
-    {
-        
-            
+    {       
+      // return($request->roll_number);
             $data = StudentInfo::where('nrc_state_region', '=', $request['nrc_state_region'])
             ->where('nrc_township', '=', $request['nrc_township'])
             ->where('nrc_citizen', '=', $request['nrc_citizen'])
@@ -90,11 +89,7 @@ class EntryExamController extends Controller
             }else{
                 $certificate = null;
             }
-    
-             
-    
-            
-    
+
             if($request->hasfile('recommend_letter'))
             {
                 
@@ -106,8 +101,7 @@ class EntryExamController extends Controller
                      
             }else{
                 $rec_letter = null;
-            }
-         
+            }        
            
     
             $date_of_birth = $request->date_of_birth;
@@ -172,7 +166,7 @@ class EntryExamController extends Controller
             
     
             $education_histroy->qualified_date  = $qualified_date;
-            $education_histroy->roll_number     = $request->roll_no;
+            $education_histroy->roll_number     = $request->roll_number;
             $education_histroy->save();
             
             $entry_exam = new ExamRegister();
