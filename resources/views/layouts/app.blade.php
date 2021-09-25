@@ -74,6 +74,7 @@
 <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0')}}"></script>
 <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
 <script src="{{ asset('js/audit_firm.js')}}"></script>
+<script src="{{ asset('js/non_audit_firm.js')}}"></script>
 <script src="{{ asset('js/course.js') }}"></script>
 <script src="{{ asset('js/batch.js')}}"></script>
 <script src="{{ asset('js/requirement.js')}}"></script>
@@ -96,6 +97,8 @@
 <script src="{{ asset('js/mentor.js') }}"></script>
 <script src="{{ asset('js/chart.js') }}"></script>
 <script src="{{ asset('js/report.js') }}"></script>
+<script src="{{ asset('js/exam.js') }}"></script>
+
 
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('js/select2/select2.min.js') }}"></script>

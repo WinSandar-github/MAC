@@ -62,6 +62,11 @@ Route::post('/filter_requirement','RequirementController@FilterRequirement');
 Route::resource('/batch','BatchController');
 Route::post('/filter_batch','BatchController@FilterBatch');
 
+
+//Exam
+Route::resource('/exam','ExamController');
+Route::post('/filter_exam','ExamController@FilterExam');
+
 //Course
 Route::resource('/course','CourseController');
 Route::get('/filter_course/{course_name}','CourseController@FilterCourse');
@@ -296,6 +301,9 @@ Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
 Route::post('entry_exam_filter','EntryExamController@entryExamFilter');
 
 Route::post('/filter_entry_exam_result', 'EntryExamController@filterEntryExamResult');
+Route::get('get_batch/{course_id}','BatchController@getBatch');
+
+Route::get('get_exam_type','ExamController@getExamType');
 
 
 

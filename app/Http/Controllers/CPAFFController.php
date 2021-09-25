@@ -174,14 +174,16 @@ class CPAFFController extends Controller
             //$std_info->cpaff_id         =   $cpa_ff->id;
             $std_info->email            =   strtolower($request->email);
             $std_info->password         =   Hash::make($request->password);
-            $std_info->name_mm          =   $request->name_mm;
-            $std_info->name_eng          =   $request->name_eng;
-            $std_info->nrc_state_region =   $request->nrc_state_region;
-            $std_info->nrc_township     =   $request->nrc_township;
-            $std_info->nrc_citizen      =   $request->nrc_citizen;
-            $std_info->nrc_number       =   $request->nrc_number;
-            $std_info->father_name_mm   =   $request->father_name_mm;
-            $std_info->father_name_eng   =   $request->father_name_eng;
+            $std_info->approve_reject_status = 0;
+            $std_info->name_mm = $request->name_mm;
+            $std_info->name_eng = $request->name_eng;
+            $std_info->nrc_state_region = $request->nrc_state_region;
+            $std_info->nrc_township = $request->nrc_township;
+            $std_info->nrc_citizen = $request->nrc_citizen;
+            $std_info->nrc_number = $request->nrc_number;
+            $std_info->name_eng = $request->name_eng;
+            $std_info->father_name_mm = $request->father_name_mm;
+            $std_info->father_name_eng = $request->father_name_eng;
             $std_info->save();
 
             $cpa_ff  = new CPAFF();
@@ -219,6 +221,16 @@ class CPAFFController extends Controller
             $cpa_ff->contact_mail     =   $request->contact_mail;
             $cpa_ff->form_type        =   $request->form_type;
             $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
+
+            $cpa_ff->email             =   strtolower($request->email);
+            $cpa_ff->name_mm           =   $request->name_mm;
+            $cpa_ff->name_eng          =   $request->name_eng;
+            $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
+            $cpa_ff->nrc_township      =   $request->nrc_township;
+            $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
+            $cpa_ff->nrc_number        =   $request->nrc_number;
+            $cpa_ff->father_name_mm    =   $request->father_name_mm;
+            $cpa_ff->father_name_eng   =   $request->father_name_eng;
             $cpa_ff->save();
 
             $student_data = StudentInfo::find($std_info->id) ;
@@ -522,6 +534,12 @@ class CPAFFController extends Controller
         }else{
             $nrc_back=$request->nrc_back;
         }
+
+        // $std_info = StudentInfo::find($request->student_info_id);
+        // $std_info->payment_method = null;
+        // $std_info->approve_reject_status = 0;
+        // $std_info->save();
+
         $cpa_ff = CPAFF::find($id);
         // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
         // $cpa_ff->qt_pass          =   $request->qt_pass;
@@ -534,7 +552,10 @@ class CPAFFController extends Controller
         $cpa_ff->renew_accepted_date=date('Y-m-d');
         $cpa_ff->profile_photo=$profile_photo;
         $cpa_ff->renew_status=1;
+        // $cpa_ff->payment_method=null;
+        $cpa_ff->status  =  0;
         $cpa_ff->save();
+
         return response()->json([
             'message' => "Your renew subscription is successfully"
         ],200);
@@ -570,6 +591,10 @@ class CPAFFController extends Controller
         $std_info = StudentInfo::find($id) ;
         $std_info->payment_method = 'CPAFF';
         $std_info->save();
+        // $cpaff = CPAFF::find($std_info->cpaff_id);
+        // $cpaff->payment_method = 'CPAFF';
+        // $cpaff->renew_accepted_date = date('Y-m-d');
+        // $cpaff->save();
         return response()->json([
             'data' => $std_info,
         ],200);
