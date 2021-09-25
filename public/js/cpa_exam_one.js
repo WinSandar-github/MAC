@@ -296,8 +296,9 @@ function loadCPAExamData() {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(exam_data);
+            
             exam_data.forEach(function (element) {
+                console.log('exam_data',element);
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -338,7 +339,7 @@ function loadCPAExamData() {
                     exam_type_id = "CPA - II";
                 }
 
-                $("#school_name").append(element.private_school_name);
+                $("#school_name").append(element.student_info.student_register[0].private_school_name);
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
@@ -611,7 +612,7 @@ function getCPAModuleStd() {
             var da_data = data.data;
             da_data.forEach(function (element) {
                 var std = element.student_info;
-                console.log('ee', element);
+                console.log('std', std);
                 if (element.status == 0) {
                     status = "PENDING";
                     //$('.pass_fail_btn').hide();
@@ -667,7 +668,7 @@ function getCPAModuleStd() {
                   }, 2000);
 
                 // $("#std_name").append(std.name_eng);
-                $("#school_name").append(element.private_school_name);
+                $("#school_name").append(std.student_register[0].private_school_name);
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
