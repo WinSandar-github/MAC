@@ -27,9 +27,9 @@ class CpaController extends Controller
             $file->move(public_path().'/storage/student_info/',$name);
             $deg_certi_img = '/storage/student_info/'.$name;
        
-    }else{
-        $deg_certi_img = null;
-    }
+        }else{
+            $deg_certi_img = null;
+        }
 
         $course_date = date('Y-m-d');
 
