@@ -136,14 +136,16 @@ function loadData() {
     $("#company_name").html("");
     $("#salary").html("");
     $("#office_address").html("");
-
     $("input[name = student_course_id]").val(id);
+    $('.course').html("");
+    var course_html;
     $.ajax({
         type: "GET",
         url: BACKEND_URL + "/da_register/" + id,
         success: function (data) {
+            console.log("data",data);
             var student = data.data;
-            console.log(student)
+            console.log(student[0].student_info.id)
             student.forEach(function (student_course) {
                 let element = student_course.student_info;
                 if (student_course.approve_reject_status == 0) {
@@ -169,9 +171,9 @@ function loadData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.student_register == 0 ? "N/A" : element.student_register[0].personal_no);
+                $("#registration_no").append(element.student_register == 0 ? "N/A" : element.personal_no);
                 $("#date").append(element.date);
-
+                $("#batch_name").append(student_course.batch.name);
                 if(element.gov_staff == 1){
                     $(".recommend_row").show();
                     element.recommend_letter == null 
@@ -205,6 +207,25 @@ function loadData() {
                 $("#office_address").append(job.office_address);
                 attached_file = element.student_education_histroy.certificate;
                 //document.getElementById('attach_file').src=attached_file;
+                $.ajax({
+                    url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
+                    type: 'get',
+                    success: function (result) {
+                        console.log("result",result.data.length);
+                        if(result.data.length!=0){
+                            result.data.forEach(function(course){
+                                course_html += `<tr>
+                                                    <td>${course.course.name}</td>
+                                                    <td>${course.batch.name}</td>
+                                                    <td>${formatDate(course.updated_at)}</td>
+                                                </tr>`
+                            });
+                            console.log(result.data,"course html");                            
+                            $('.course').html(course_html)
+                        }
+                    }
+                });
+                
             })
         }
     })

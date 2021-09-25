@@ -288,6 +288,14 @@
                                         <span id="date"></span>
                                     </div>
                                 </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Batch</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="batch_name"></span>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 
@@ -313,7 +321,24 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>    
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-border">
+                                    <thead>
+                                        <th>Course Name</th>
+                                        <th>Batch Name</th>
+                                        <th>Success Year</th>
+                                    </thead>
+                                    <tbody class="course">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>                    
                     </div>
                     </div>
                 </div>

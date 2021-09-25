@@ -168,7 +168,8 @@ function loadStudentSelfStudy() {
     $("#company_name").html("");
     $("#salary").html("");
     $("#office_address").html("");
-
+    $('.course').html("");
+    var course_html;
     $("input[name = student_course_id]").val(id);
     $.ajax({
         type: "GET",
@@ -218,7 +219,8 @@ function loadStudentSelfStudy() {
             $("#email").append(element.email);
             $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
             // $("#image").append(element.image);
-
+            //$("#batch_name").append(element.name);
+            console.log("b name",data.data);
             if(element.gov_staff == 1){
                 $(".recommend_row").show();
                 $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -249,7 +251,24 @@ function loadStudentSelfStudy() {
             $("#salary").append(job.salary);
             $("#office_address").append(job.office_address);
             attached_file = element.student_education_histroy.certificate;
-
+            $.ajax({
+                url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
+                type: 'get',
+                success: function (result) {
+                    console.log("result",result.data.length);
+                    if(result.data.length!=0){
+                        result.data.forEach(function(course){
+                            course_html += `<tr>
+                                                <td>${course.course.name}</td>
+                                                <td>${course.batch.name}</td>
+                                                <td>${formatDate(course.updated_at)}</td>
+                                            </tr>`
+                        });
+                        console.log(result.data,"course html");                            
+                        $('.course').html(course_html)
+                    }
+                }
+            });
             // if (course_code == "da_1") {
             //     $("#student_registration_reason").append(item.reg_reason);
             //     $("input[name = student_register_id]").val(item.id);
