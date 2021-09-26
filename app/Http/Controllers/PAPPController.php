@@ -342,6 +342,7 @@ class PAPPController extends Controller
         $papp->tax_free_recommendation      =   $tax_free;
         $papp->renew_accepted_date=date('Y-m-d');
         $papp->renew_status=1;
+        $papp->status=0;
         $papp->save();
         return response()->json([
             'message' => "Your renew subscription is successfully"

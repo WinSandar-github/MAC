@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -187,12 +186,12 @@ Route::post('/mobileLogin', 'LoginController@mobileLogin');
 Route::post('store_cpa_da_two_app_form','CpaController@store_da_cpa_app_form');
 
 //for school registration
-Route::resource('/school','SchoolController');
-Route::post('/filter_school','SchoolController@FilterSchool');
-Route::post('/approve_school_register/{id}', 'SchoolController@approve_school_register');
-Route::post('/reject_school_register/{id}', 'SchoolController@reject_school_register');
-Route::patch('/approve_school/{id}', 'SchoolController@approveSchool');
-Route::get('/check_payment_school/{id}', 'SchoolController@checkPayment');
+Route::resource('/school','SchoolController\SchoolController');
+Route::post('/filter_school','SchoolController\SchoolController@FilterSchool');
+Route::post('/approve_school_register', 'SchoolController\SchoolController@approve_school_register');
+Route::post('/reject_school_register/{id}', 'SchoolController\SchoolController@reject_school_register');
+Route::patch('/approve_school/{id}', 'SchoolController\SchoolController@approveSchool');
+Route::get('/check_payment_school/{id}', 'SchoolController\SchoolController@checkPayment');
 
 //for teacher registration
 Route::resource('/teacher','TeacherController');
@@ -249,7 +248,7 @@ Route::get('user_profile/{id}','StudentInfoController@userProfile');
 Route::get('get_type/{id}', 'StudentRegisterController@getType');
 
 //School Status
-Route::get('getSchoolStatus/{id}', 'SchoolController@schoolStatus');
+Route::get('getSchoolStatus/{id}', 'SchoolController\SchoolController@schoolStatus');
 
 //Teacher Status
 Route::get('getTeacherStatus/{id}', 'TeacherController@teacherStatus');
@@ -287,7 +286,7 @@ Route::post('unique_email', 'DARegisterController@unique_email');
 // Route::post('unique_nrc', 'DARegisterController@unique_nrc');
 
 //Generate Serial and Personal Number
-Route::get('/generate_personal_no/{batch_id}','ApiController@generatePersonalNo');
+Route::get('/generate_personal_no/{code}','ApiController@generatePersonalNo');
 Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
@@ -317,3 +316,12 @@ Route::get('getSubject/{course_id}','SubjectController@getSubject');
 
 // education history
 Route::get('getEducationHistory/{student_info_id}','TeacherController@getEducationHistory');
+
+
+//Pass or fail  student
+Route::patch('/pass_entry_exam/{id}', 'EntryExamController@passEntryExam');
+Route::patch('/fail_entry_exam/{id}', 'EntryExamController@failEntryExam');
+
+
+// education history
+Route::post('checkEmail','SchoolController\SchoolController@checkEmail');
