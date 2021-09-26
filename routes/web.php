@@ -165,11 +165,16 @@ Route::resource('/course', 'CourseController');
 // Teacher
 // Route::get('teacher_registration', 'TeacherController@FilterTeacher');
 
-
 Route::get('/show_non_audit_firm_info/{id}','nonAuditFirmShowInfoController@showNonAuditFirmInfo');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_ff_register_form1', 'CpaController@cpa_ff_registration_form1');
     // Route::get('cpa_ff_registration','CpaController@cpa_ff_registration')->name('cpa_ff_registration');
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+
+    // Main Course Controller
+    Route::post("/main_course", "CourseController\MainCourseController@store");
+    Route::get("/main_course/{id}", "CourseController\MainCourseController@show");
+    Route::patch("/main_course/{id}", "CourseController\MainCourseController@update");
+    Route::delete("/main_course/{id}", "CourseController\MainCourseController@destory");
 });
