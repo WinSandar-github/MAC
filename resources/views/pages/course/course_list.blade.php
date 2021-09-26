@@ -101,10 +101,10 @@
                 <form id="main_course_form" method="post" action="javascript:createMainCourse();"
                       enctype="multipart/form-data">
                     @csrf
-                    <input type="hidden" name="course_id">
+                    <input type="hidden" name="main_course_id">
 
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Main Course</h5>
+                        <h5 class="modal-title" id="mainModalLabel">Create Main Course</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -117,7 +117,7 @@
                             <label class="col-md-3 form-label">{{ __('1.Course Name') }}</label>
                             <div class="col-md-9">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Course Name"
+                                    <input type="text" name="main_course_name" class="form-control" placeholder="Course Name"
                                            autocomplete="off" required>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                             <label class="col-md-3 form-label">{{ __('2.Description') }}</label>
                             <div class="col-md-9">
                                 <div class="form-group">
-                                    <textarea id="main_summernote" name="description" class="" width="100%"
+                                    <textarea id="main_summernote" name="main_course_description" class="" width="100%"
                                               height="auto"></textarea>
                                     <!-- <input type="text" name="description" class="form-control"  placeholder="Description" autocomplete="off" required> -->
                                 </div>
@@ -138,7 +138,7 @@
 
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                        <button type="submit" name="save" class="btn btn-primary" form="course_form">Save</button>
+                        <button type="submit" name="save" class="btn btn-primary" form="main_course_form">Save</button>
                     </div>
                 </form>
             </div>
@@ -154,14 +154,26 @@
                     @csrf
                     <input type="hidden" name="course_id">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Course</h5>
+                        <h5 class="modal-title" id="subModalLabel">Create Course</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
+
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('1.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Main Course Name') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <select name="course_type" class="form-control course_type" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('2.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Course Name') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -172,7 +184,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('2.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('3.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Description') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -184,7 +196,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('3.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('4.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Application Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -195,7 +207,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('4.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('5.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Self-Study Registration Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -206,7 +218,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Private School Registration Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -217,7 +229,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
                             <label class="col-md-4 form-label">{{ __('MAC Registration Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -238,11 +250,22 @@
                         </div>--}}
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Course Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <input type="text" name="tution_fee" class="form-control" placeholder="Course Fee"
+                                           autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Exam Registration Fee') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="exam_fee" class="form-control" placeholder="Exam Registration Fee"
                                            autocomplete="off" required>
                                 </div>
                             </div>
@@ -260,27 +283,13 @@
                         </div>--}}
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('8.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Show In Menu') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <select name="course_type" class="form-control course_type" required>
-
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Requirement') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <select name="requirement_id[]"
                                             class="form-control requirement_id multiple-requirement" multiple="multiple"
                                             required style="width:100%">
-
-
                                     </select>
                                 </div>
                             </div>
@@ -301,6 +310,16 @@
 @push('scripts')
     <script>
         $(document).ready(function () {
+
+            // reset modal
+            $('.modal').on('hidden.bs.modal', function (event) {
+                $(this).find('form').trigger('reset');
+                $('#main_summernote').summernote('code', '');
+                $('#sub_summernote').summernote('code', '');
+                $('#mainModalLabel').text("Create Main Course");
+                $('#subModalLabel').text("Create Course");
+            });
+
             var requirement_list;
             getRequirementCourse();
 
