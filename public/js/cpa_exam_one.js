@@ -30,17 +30,17 @@ function getCPAExam(course_code) {
     var send_data = new FormData();
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('batch', batch);
-    if(course_code=="da_1"){
-        course_id=1;
+    if (course_code == "da_1") {
+        course_id = 1;
     }
-    else if(course_code=="da_2"){
-        course_id=2;
+    else if (course_code == "da_2") {
+        course_id = 2;
     }
-    else if(course_code=="cpa_1"){
-        course_id=3;
+    else if (course_code == "cpa_1") {
+        course_id = 3;
     }
-    else if(course_code=="cpa_2"){
-        course_id=4;
+    else if (course_code == "cpa_2") {
+        course_id = 4;
     }
     send_data.append('course_code', course_id);
     $.ajax({
@@ -165,13 +165,19 @@ function showCPATwoExam(studentId) {
     location.href = FRONTEND_URL + "/cpa_two_exam_edit";
 }
 
-function printCPAOneExamCard(studentId) {
+function printCPAOneExamCard(studentId, exam_id) {
+
+
     localStorage.setItem("student_id", studentId);
+    localStorage.setItem("exam_id", exam_id);
+
     location.href = FRONTEND_URL + "/cpa1_examcard";
 }
 
 function loadCPAStudentDataForExamCard() {
     var id = localStorage.getItem("student_id");
+    var exam_id = localStorage.getItem("exam_id");
+
     $("#roll_no").html("");
     $("#name").html("");
     $("#nrc").html("");
@@ -180,16 +186,21 @@ function loadCPAStudentDataForExamCard() {
 
     $.ajax({
         type: "GET",
-        url: BACKEND_URL + "/exam_register/" + id,
+        url: BACKEND_URL + "/exam_register/" + exam_id,
         success: function (data) {
+
             var exam_datas = data.data;
+            console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
-            console.log(exam_data.student_info.image);
-            // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
-            $("#roll_no").append(exam_data.id);
-            $("#name").append(exam_data.student_info.name_mm);
-            $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
-            $("#father_name").append(exam_data.student_info.father_name_mm);
+                console.log(exam_data);
+                // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
+                $("#roll_no").append(exam_data.id);
+                $("#name").append(exam_data.student_info.name_mm);
+                $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
+                $("#father_name").append(exam_data.student_info.father_name_mm);
+                $('#exam_department').text(exam_data.exam_department.name)
+                $('#roll_no').text(exam_data.student_info.cpersonal_no)
+
             });
         }
     })
@@ -371,10 +382,10 @@ function loadCPAExamData() {
                 // $("#image").append(element.image);
                 $("#registration_no").append(element.personal_no);
 
-                if(element.gov_staff == 1){
+                if (element.gov_staff == 1) {
                     $(".recommend_row").show();
-                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                }else{
+                    $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                } else {
                     $(".recommend_row").hide();
                 }
 
@@ -384,14 +395,14 @@ function loadCPAExamData() {
                 $("#roll_number").append(education_history.roll_number);
 
                 let certificate = JSON.parse(education_history.certificate);
-                $.each(certificate,function(fileCount,fileName){
-                    
-                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
-                    
+                $.each(certificate, function (fileCount, fileName) {
+
+                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
                 })
 
-                $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_front").append(`<a href='${PDF_URL + element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL + element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);
@@ -428,21 +439,21 @@ function loadCPAStudent(course_type) {
     localStorage.setItem("course_type", course_type);
     //var id = localStorage.getItem("batch_id");
     // console.log(id);
-    if(course_type=="da_1"){
-        course_id=1;
+    if (course_type == "da_1") {
+        course_id = 1;
     }
-    else if(course_type=="da_2"){
-        course_id=2;
+    else if (course_type == "da_2") {
+        course_id = 2;
     }
-    else if(course_type=="cpa_1"){
-        course_id=3;
+    else if (course_type == "cpa_1") {
+        course_id = 3;
     }
-    else if(course_type=="cpa_2"){
-        course_id=4;
+    else if (course_type == "cpa_2") {
+        course_id = 4;
     }
-    var send_data=new FormData();
-    send_data.append('course_code',course_id);
-    send_data.append('batch',$("#selected_batch_id").val());
+    var send_data = new FormData();
+    send_data.append('course_code', course_id);
+    send_data.append('batch', $("#selected_batch_id").val());
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('grade', $('#selected_grade_id').val());
     console.log($("#selected_batch_id").val());
@@ -484,7 +495,7 @@ function loadCPAStudent(course_type) {
                 } else {
                     student_grade = "FAILED";
                 }
-                if(element.grade==0){
+                if (element.grade == 0) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
                     tr += "<td ><div class='btn-group'>";
@@ -502,7 +513,7 @@ function loadCPAStudent(course_type) {
                     //tr += "<td ><div class='btn-group'>";
                     $("#tbl_cpa_exam_pending_result_body").append(tr);
                 }
-                else if(element.grade==1){
+                else if (element.grade == 1) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
                     tr += "<td ><div class='btn-group'>";
@@ -520,7 +531,7 @@ function loadCPAStudent(course_type) {
                     //tr += "<td ><div class='btn-group'>";
                     $("#tbl_cpa_exam_approved_result_body").append(tr);
                 }
-                else if(element.grade==2){
+                else if (element.grade == 2) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
                     tr += "<td ><div class='btn-group'>";
@@ -571,7 +582,7 @@ function getCPAModuleStd() {
     destroyDatatable("#tbl_cpa_exam_result", "#tbl_cpa_exam_result_body");
     var id = localStorage.getItem("exam_register_id");
     var module_type = localStorage.getItem("is_full_module");
-    
+
     $("#name_eng").html("");
     $("#name_mm").html("");
     $("#nrc").html("");
@@ -655,16 +666,15 @@ function getCPAModuleStd() {
                 }
 
 
-                  setTimeout(() => {
-                      if(element.grade == 1 )
-                      {
+                setTimeout(() => {
+                    if (element.grade == 1) {
 
                         //   $('.ex_res_btn').hide();
                         //   $('.pass_fail_btn').hide();
 
-                      }
+                    }
 
-                  }, 2000);
+                }, 2000);
 
                 // $("#std_name").append(std.name_eng);
                 $("#school_name").append(element.private_school_name);
@@ -694,10 +704,10 @@ function getCPAModuleStd() {
                 // $("#image").append(std.image);
                 $("#registration_no").append(std.personal_no);
 
-                if(std.gov_staff == 1){
+                if (std.gov_staff == 1) {
                     $(".recommend_row").show();
-                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                }else{
+                    $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                } else {
                     $(".recommend_row").hide();
                 }
 
@@ -707,14 +717,14 @@ function getCPAModuleStd() {
                 $("#roll_number").append(education_history.roll_number);
 
                 let certificate = JSON.parse(education_history.certificate);
-                $.each(certificate,function(fileCount,fileName){
-                    
-                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
-                    
+                $.each(certificate, function (fileCount, fileName) {
+
+                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
                 })
 
-                $(".nrc_front").append(`<a href='${PDF_URL+std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_front").append(`<a href='${PDF_URL + std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL + std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);
@@ -726,23 +736,23 @@ function getCPAModuleStd() {
                 attached_file = std.student_education_histroy.certificate;
 
                 var subjects = element.subjects;
-                var i=1;
+                var i = 1;
                 subjects.forEach(function (subj) {
                     if (element.is_full_module == subj.module_id) {
                         var tr = "<tr>";
-                        tr += "<td>" + i +"</td>";
-                        tr += "<td><input type='text' name='subject"+i+"' id='subject"+i+"' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
-                        tr += "<td><input type='text' name='mark"+i+"' id='mark"+i+"' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade"+i+"' id='grade"+i+"' class='form-control' required></td>";
+                        tr += "<td>" + i + "</td>";
+                        tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
-                    }else if (element.is_full_module == 3 || element.is_full_module == 0 ){
+                    } else if (element.is_full_module == 3 || element.is_full_module == 0) {
                         var tr = "<tr>";
-                        tr += "<td>" + i +"</td>";
-                        tr += "<td><input type='text' name='subject"+i+"' id='subject"+i+"' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
-                        tr += "<td><input type='text' name='mark"+i+"' id='mark"+i+"' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade"+i+"' id='grade"+i+"' class='form-control' required></td>";
+                        tr += "<td>" + i + "</td>";
+                        tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
@@ -755,92 +765,87 @@ function getCPAModuleStd() {
                 type: 'get',
                 data: "",
                 success: function (result) {
-                        if(result.data !=null)
-                        {
-                            // $('.ex_res_btn').hide();
+                    if (result.data != null) {
+                        // $('.ex_res_btn').hide();
 
-                            // $('.pass_fail_btn').show();
+                        // $('.pass_fail_btn').show();
 
-                            $('.pass_fail_btn').hide();
+                        $('.pass_fail_btn').hide();
 
-                            $("input[name = result_id]").val(result.data.id);
-                            //console.log('search_exam_result',JSON.parse(result.data.result));
+                        $("input[name = result_id]").val(result.data.id);
+                        //console.log('search_exam_result',JSON.parse(result.data.result));
 
-                            var rData=JSON.parse(result.data.result);
-                            var row_length = rData.subjects.length;
+                        var rData = JSON.parse(result.data.result);
+                        var row_length = rData.subjects.length;
 
-                            console.log('is_full_module',module_type);
-                            if(module_type == 1)
-                            {
-                                for (var i = 0; i < row_length; i++)
-                                {
-                                    var j=i+1;
-                                    var sunject=document.getElementById('subject'+j);
-                                    sunject.value = rData.subjects[i];
-                                    sunject.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++)
-                                {
-                                    var j=i+1;
-                                    var mark=document.getElementById('mark'+j);
-                                    mark.value = rData.marks[i];
-                                    mark.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++)
-                                {
-                                    var j=i+1;
-                                    var grade=document.getElementById('grade'+j);
-                                    grade.value = rData.grades[i];
-                                    grade.setAttribute("readonly", "true");
-                                }
+                        console.log('is_full_module', module_type);
+                        if (module_type == 1) {
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var sunject = document.getElementById('subject' + j);
+                                sunject.value = rData.subjects[i];
+                                sunject.setAttribute("readonly", "true");
                             }
-                            else if(module_type == 2){
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var subject = document.getElementById('subject' + j);
-                                    subject.value = rData.subjects[i];
-                                    subject.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var mark = document.getElementById('mark' + j);
-                                    mark.value = rData.marks[i];
-                                    mark.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var grade = document.getElementById('grade' + j);
-                                    grade.value = rData.grades[i];
-                                    grade.setAttribute("readonly", "true");
-                                }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var mark = document.getElementById('mark' + j);
+                                mark.value = rData.marks[i];
+                                mark.setAttribute("readonly", "true");
                             }
-                            else if(module_type == 3){
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var subject = document.getElementById('subject' + j);
-                                    subject.value = rData.subjects[i];
-                                    subject.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var mark = document.getElementById('mark' + j);
-                                    mark.value = rData.marks[i];
-                                    mark.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var grade = document.getElementById('grade' + j);
-                                    grade.value = rData.grades[i];
-                                    grade.setAttribute("readonly", "true");
-                                }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var grade = document.getElementById('grade' + j);
+                                grade.value = rData.grades[i];
+                                grade.setAttribute("readonly", "true");
                             }
-                        }else{
-                            // $('.pass_fail_btn').hide();
                         }
-                    },
-                error:function (message){
-                    console.log(message);
+                        else if (module_type == 2) {
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var subject = document.getElementById('subject' + j);
+                                subject.value = rData.subjects[i];
+                                subject.setAttribute("readonly", "true");
+                            }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var mark = document.getElementById('mark' + j);
+                                mark.value = rData.marks[i];
+                                mark.setAttribute("readonly", "true");
+                            }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var grade = document.getElementById('grade' + j);
+                                grade.value = rData.grades[i];
+                                grade.setAttribute("readonly", "true");
+                            }
+                        }
+                        else if (module_type == 3) {
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var subject = document.getElementById('subject' + j);
+                                subject.value = rData.subjects[i];
+                                subject.setAttribute("readonly", "true");
+                            }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var mark = document.getElementById('mark' + j);
+                                mark.value = rData.marks[i];
+                                mark.setAttribute("readonly", "true");
+                            }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var grade = document.getElementById('grade' + j);
+                                grade.value = rData.grades[i];
+                                grade.setAttribute("readonly", "true");
+                            }
+                        }
+                    } else {
+                        // $('.pass_fail_btn').hide();
                     }
+                },
+                error: function (message) {
+                    console.log(message);
+                }
             });
             // $.ajax({
             //     url: BACKEND_URL + "/search_exam_result/" + id,
