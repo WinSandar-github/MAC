@@ -235,12 +235,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('qualified_report2','ReportController@qualified_report2');
     
 });
-
 Route::post('show_registration_list','ReportController@showRegistrationList');
 Route::post('show_exam_list','ReportController@showExamList');
+
 Route::get('show_description','DescriptionController@showDescription');
 Route::get('show_requirement','RequirementController@showRequirement');
 Route::get('show_membership/{membership_name}','MembershipController@showMembership');
+
 Route::resource('/batch', 'BatchController');
 Route::resource('/course', 'CourseController');
 
@@ -256,10 +257,4 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_ff_register_form1', 'CpaController@cpa_ff_registration_form1');
     // Route::get('cpa_ff_registration','CpaController@cpa_ff_registration')->name('cpa_ff_registration');
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
-
-    // Main Course Controller
-    Route::post("/main_course", "CourseController\MainCourseController@store");
-    Route::get("/main_course/{id}", "CourseController\MainCourseController@show");
-    Route::patch("/main_course/{id}", "CourseController\MainCourseController@update");
-    Route::delete("/main_course/{id}", "CourseController\MainCourseController@destory");
 });
