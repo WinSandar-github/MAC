@@ -183,7 +183,12 @@ function loadStudentSelfStudy() {
             // $("#student_email").append(element.student_info.email);
             // $("#student_phone").append(element.student_info.phone);
             $("#student_registration_no").append(element.student_info.registration_no);
-            $("#student_registration_reason").append(element.reg_reason);
+            if(element.reg_reason){
+                $("#student_registration_reason").append(element.reg_reason);
+            }else{
+                $("#student_registration_reason").append("-");
+            }
+            
             if(element.module=="1"){
                 $("#module_name").append("Module 1");
             } 
@@ -192,37 +197,44 @@ function loadStudentSelfStudy() {
             } 
             else if(element.module=="3"){
                 $("#module_name").append("All Module");
-            }            
+            }      
+
             $("input[name = student_register_id]").val(element.id);
             if (element.status == 0) {
                 document.getElementById("approve_reject").style.display = "block";
             } else {
                 document.getElementById("approve_reject").style.display = "none";
             }
-            element = element.student_info;
-            var education_history = element.student_education_histroy;
-            var job = element.student_job;           
-            $("#registration_no").append(element.personal_no);
-            $("#id").append(element.id);
-            document.getElementById('image').src = PDF_URL + element.image;
-            $("#name_eng").append(element.name_eng);
-            $("#name_mm").append(element.name_mm);
-            $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
-            $("#father_name_mm").append(element.father_name_mm);
-            $("#father_name_eng").append(element.father_name_eng);
-            $("#race").append(element.race);
-            $("#religion").append(element.religion);
-            $("#date_of_birth").append(element.date_of_birth);
-            $("#address").append(element.address);
-            $("#current_address").append(element.current_address);
-            $("#phone").append(element.phone);
-            $("#email").append(element.email);
-            $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
+            var student_info_data = element.student_info;
+            var education_history = student_info_data.student_education_histroy;
+            var job = student_info_data.student_job;  
+            console.log('personal_no',student_info_data.personal_no); 
+            if(student_info_data.personal_no){
+                $("#registration_no").append(student_info_data.personal_no);
+            }else{
+                $("#registration_no").append("-");
+            }
+            
+            $("#id").append(student_info_data.id);
+            document.getElementById('image').src = PDF_URL + student_info_data.image;
+            $("#name_eng").append(student_info_data.name_eng);
+            $("#name_mm").append(student_info_data.name_mm);
+            $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + element.nrc_number);
+            $("#father_name_mm").append(student_info_data.father_name_mm);
+            $("#father_name_eng").append(student_info_data.father_name_eng);
+            $("#race").append(student_info_data.race);
+            $("#religion").append(student_info_data.religion);
+            $("#date_of_birth").append(student_info_data.date_of_birth);
+            $("#address").append(student_info_data.address);
+            $("#current_address").append(student_info_data.current_address);
+            $("#phone").append(student_info_data.phone);
+            $("#email").append(student_info_data.email);
+            $("#gov_staff").append(student_info_data.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
             // $("#image").append(element.image);
 
-            if(element.gov_staff == 1){
+            if(student_info_data.gov_staff == 1){
                 $(".recommend_row").show();
-                $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                $(".recommend_letter").append(`<a href='${PDF_URL+student_info_data.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
             }else{
                 $(".recommend_row").hide();
             }
@@ -239,8 +251,8 @@ function loadStudentSelfStudy() {
                 
             })
 
-            $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-            $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+            $(".nrc_front").append(`<a href='${PDF_URL+student_info_data.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+            $(".nrc_back").append(`<a href='${PDF_URL+student_info_data.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
             $("#name").append(job.name);
             $("#position").append(job.position);
@@ -249,7 +261,7 @@ function loadStudentSelfStudy() {
             $("#company_name").append(job.company_name);
             $("#salary").append(job.salary);
             $("#office_address").append(job.office_address);
-            attached_file = element.student_education_histroy.certificate;
+            attached_file = student_info_data.student_education_histroy.certificate;
 
             // if (course_code == "da_1") {
             //     $("#student_registration_reason").append(item.reg_reason);
