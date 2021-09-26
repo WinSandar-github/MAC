@@ -394,4 +394,11 @@ class TeacherController extends Controller
             'data' => $data
         ],200);
     }
+    public function getTeacher($id)
+    {
+        $data = TeacherRegister::where('id',$id)->get();
+        return response()->json([
+            'data' => $data
+        ],200);
+    }
 }
