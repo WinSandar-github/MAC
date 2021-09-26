@@ -175,6 +175,7 @@ function loadStudentSelfStudy() {
         type: "GET",
         url: BACKEND_URL + "/show_student_register/" + id,
         success: function (data) {
+            console.log(data,"yy");
             var element = data.data;
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);

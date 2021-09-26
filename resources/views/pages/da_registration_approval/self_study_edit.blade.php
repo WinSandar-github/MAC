@@ -315,14 +315,14 @@
                                             <span id="module_name"></span>
                                         </div>
                                     </div>
-                                    <div class="row m-2 mt-3 border-bottom">
+                                   {{-- <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Batch</p>
                                         </div>
                                         <div class="col-md-6 text-left">
                                             <span id="batch_name"></span>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                     <input type="hidden" name="student_id">
                                     <input type="hidden" name="student_register_id">
                                     <div class="row mt-5 justify-content-center" id="approve_reject"> 
