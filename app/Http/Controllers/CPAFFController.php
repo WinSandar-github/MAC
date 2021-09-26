@@ -85,15 +85,15 @@ class CPAFFController extends Controller
                 $cpa_certificate="";
             }
 
-            if ($request->hasfile('cpa_certificate_back')) {
-                $file = $request->file('cpa_certificate_back');
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $cpa_certificate_back = '/storage/cpa_ff_register/'.$name;
-            }
-            else{
-                $cpa_certificate_back="";
-            }
+            // if ($request->hasfile('cpa_certificate_back')) {
+            //     $file = $request->file('cpa_certificate_back');
+            //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            //     $cpa_certificate_back = '/storage/cpa_ff_register/'.$name;
+            // }
+            // else{
+            //     $cpa_certificate_back="";
+            // }
 
             if ($request->hasfile('mpa_mem_card')) {
                 $file = $request->file('mpa_mem_card');
@@ -102,6 +102,15 @@ class CPAFFController extends Controller
                 $mpa_mem_card = '/storage/cpa_ff_register/'.$name;
             }else{
                 $mpa_mem_card="";
+            }
+
+            if ($request->hasfile('mpa_mem_card_back')) {
+                $file = $request->file('mpa_mem_card_back');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $mpa_mem_card_back = '/storage/cpa_ff_register/'.$name;
+            }else{
+                $mpa_mem_card_back="";
             }
 
             if ($request->hasfile('nrc_front')) {
@@ -131,14 +140,14 @@ class CPAFFController extends Controller
                 $cpd_record="";
             }
 
-            if ($request->hasfile('passport_image')) {
-                $file = $request->file('passport_image');
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $passport_image = '/storage/cpa_ff_register/'.$name;
-            }else{
-                $passport_image="";
-            }
+            // if ($request->hasfile('passport_image')) {
+            //     $file = $request->file('passport_image');
+            //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            //     $passport_image = '/storage/cpa_ff_register/'.$name;
+            // }else{
+            //     $passport_image="";
+            // }
 
             if ($request->hasfile('three_years_full')) {
                 $file = $request->file('three_years_full');
@@ -206,10 +215,11 @@ class CPAFFController extends Controller
             // $cpa_ff->qt_pass          =   $request->qt_pass;
             $cpa_ff->cpa_certificate  =   $cpa_certificate;
             $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
+            $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
             $cpa_ff->nrc_front        =   $nrc_front;
             $cpa_ff->nrc_back         =   $nrc_back;
             $cpa_ff->cpd_record       =   $cpd_record;
-            $cpa_ff->passport_image   =   $passport_image;
+            // $cpa_ff->passport_image   =   $passport_image;
             $cpa_ff->three_years_full   =   $three_years_full;
             $cpa_ff->letter   =   $letter;
             $cpa_ff->status           =  0;
@@ -220,7 +230,7 @@ class CPAFFController extends Controller
             $cpa_ff->phone            =   $request->phone;
             $cpa_ff->contact_mail     =   $request->contact_mail;
             $cpa_ff->form_type        =   $request->form_type;
-            $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
+            // $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
 
             $cpa_ff->email             =   strtolower($request->email);
             $cpa_ff->name_mm           =   $request->name_mm;
@@ -304,15 +314,15 @@ class CPAFFController extends Controller
             $cpa_certificate="";
         }
 
-        if ($request->hasfile('cpa_certificate_back')) {
-            $file = $request->file('cpa_certificate_back');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpa_certificate_back = '/storage/cpa_ff_register/'.$name;
-        }
-        else{
-            $cpa_certificate_back="";
-        }
+        // if ($request->hasfile('cpa_certificate_back')) {
+        //     $file = $request->file('cpa_certificate_back');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $cpa_certificate_back = '/storage/cpa_ff_register/'.$name;
+        // }
+        // else{
+        //     $cpa_certificate_back="";
+        // }
 
         if ($request->hasfile('mpa_mem_card')) {
             $file = $request->file('mpa_mem_card');
@@ -321,6 +331,15 @@ class CPAFFController extends Controller
             $mpa_mem_card = '/storage/cpa_ff_register/'.$name;
         }else{
             $mpa_mem_card="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_back')) {
+            $file = $request->file('mpa_mem_card_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $mpa_mem_card_back = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $mpa_mem_card_back="";
         }
 
         if ($request->hasfile('nrc_front')) {
@@ -350,14 +369,14 @@ class CPAFFController extends Controller
             $cpd_record="";
         }
 
-        if ($request->hasfile('passport_image')) {
-            $file = $request->file('passport_image');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $passport_image = '/storage/cpa_ff_register/'.$name;
-        }else{
-            $passport_image="";
-        }
+        // if ($request->hasfile('passport_image')) {
+        //     $file = $request->file('passport_image');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $passport_image = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $passport_image="";
+        // }
 
         if ($request->hasfile('three_years_full')) {
             $file = $request->file('three_years_full');
@@ -408,10 +427,11 @@ class CPAFFController extends Controller
         // $cpa_ff->qt_pass          =   $request->qt_pass;
         $cpa_ff->cpa_certificate  =   $cpa_certificate;
         $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
+        $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
         $cpa_ff->nrc_front        =   $nrc_front;
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->cpd_record       =   $cpd_record;
-        $cpa_ff->passport_image   =   $passport_image;
+        // $cpa_ff->passport_image   =   $passport_image;
         $cpa_ff->status           =  0;
         //save to cpaff
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
@@ -419,7 +439,7 @@ class CPAFFController extends Controller
         $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->form_type        =   $request->form_type;
-        $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
+        // $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
         $cpa_ff->three_years_full   =   $three_years_full;
         $cpa_ff->letter   =   $letter;
         $cpa_ff->save();
@@ -500,6 +520,15 @@ class CPAFFController extends Controller
             $mpa_mem_card=$request->mpa_mem_card;
         }
 
+        if ($request->hasfile('mpa_mem_card_back')) {
+            $file = $request->file('mpa_mem_card_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $mpa_mem_card_back= '/storage/cpa_ff_register/'.$name;
+        }else{
+            $mpa_mem_card_back=$request->mpa_mem_card_back;
+        }
+
         if ($request->hasfile('cpd_record')) {
             $file = $request->file('cpd_record');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -509,14 +538,14 @@ class CPAFFController extends Controller
             $cpd_record=$request->cpd_record;
         }
 
-        if ($request->hasfile('passport_image')) {
-            $file = $request->file('passport_image');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $passport_image = '/storage/cpa_ff_register/'.$name;
-        }else{
-            $passport_image=$request->passport_image;
-        }
+        // if ($request->hasfile('passport_image')) {
+        //     $file = $request->file('passport_image');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $passport_image = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $passport_image=$request->passport_image;
+        // }
         if ($request->hasfile('nrc_front')) {
             $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -544,9 +573,10 @@ class CPAFFController extends Controller
         // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
         // $cpa_ff->qt_pass          =   $request->qt_pass;
         $cpa_ff->cpa_certificate=$cpa_certificate;
-        // $cpa_ff->mpa_mem_card=$mpa_mem_card;
+        $cpa_ff->mpa_mem_card=$mpa_mem_card;
+        $cpa_ff->mpa_mem_card_back=$mpa_mem_card_back;
         $cpa_ff->cpd_record=$cpd_record;
-        $cpa_ff->passport_image=$passport_image;
+        // $cpa_ff->passport_image=$passport_image;
         $cpa_ff->nrc_front        =   $nrc_front;
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->renew_accepted_date=date('Y-m-d');
