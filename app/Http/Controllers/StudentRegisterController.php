@@ -499,7 +499,7 @@ class StudentRegisterController extends Controller
     public function getAttendesStudent(Request $request)
     {
 
-        $course = Course::where('code',$request->course_code)->first();
+        $course = Course::where('code',$request->course_code)->with('course_type')->first();
 
         $student_infos = StudentRegister::with('student_info','course')
                         ->where('form_type',$course->id)
@@ -511,6 +511,13 @@ class StudentRegisterController extends Controller
             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
             return $nrc_result;
         })
+        ->addColumn('cpersonal_no', function ($infos){
+            $cpersonal_no = $infos->course->course_type->course_code == "da" 
+            ? $infos->student_info->personal_no
+            : $infos->student_info->cpersonal_no;
+            return $cpersonal_no;
+        })
+        ->rawColumns(['action','nrc','cpersonal_no'])
         ->make(true);
         // return response()->json([
         //     'data' => $student_infos
