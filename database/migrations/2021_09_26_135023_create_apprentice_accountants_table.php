@@ -17,9 +17,9 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('student_info_id');
             $table->integer('article_form_type');
-            $table->bool('apprentice_exp')->nullable();
+            $table->boolean('apprentice_exp')->nullable();
             $table->text('apprentice_exp_file')->nullable();
-            $table->bool('gov_staff');
+            $table->boolean('gov_staff');
             $table->string('gov_position')->nullable();
             $table->date('gov_joining_date')->nullable();
             $table->string('request_papp');
@@ -28,7 +28,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('ex_papp')->nullable();
             $table->date('exp_start_date')->nullable();
             $table->date('exp_end_date')->nullable();
-            $table->bool('accept_policy');
+            $table->boolean('accept_policy');
             $table->timestamps();
 
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
