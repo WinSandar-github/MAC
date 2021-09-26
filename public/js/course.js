@@ -32,14 +32,14 @@ function getCourseList(){
 }
 
 function createMainCourse(){
-    var course_name = $("input[name=cousre_name]").val();
-    var course_description = $("input[name=cousre_description]").val();
+    var course_name = $("input[name=main_cousre_name]").val();
+    var course_description = $("input[name=main_cousre_description]").val();
     var formData = new FormData(document.getElementById("main_course_form"));
 
     if(course_name !== "" && course_description !== ""){
         show_loader();
         $.ajax({
-            url : "/main_course",
+            url : FRONTEND_URL + "/main_course",
             type : 'post',
             data : formData,
             contentType : false,
@@ -176,7 +176,7 @@ function showMainCourseInfo(id){
     $('input[name=main_course_id]').val(id);
     $.ajax({
         type : "get",
-        url: "/main_course/" + id,
+        url : FRONTEND_URL + "/main_course/" + id,
         success: function (result) {
             $('input[name=main_course_name]').val(result.course_name);
             $('#main_summernote').summernote('code', result.course_description);
@@ -253,8 +253,11 @@ function updateMainCourse(){
     var formData = new FormData(document.getElementById('main_course_form'));
     $.ajax({
         type : 'patch',
-        url : '/main_course' + id,
-        data : formData,
+        url : FRONTEND_URL + '/main_course/' + id,
+        data : {
+            main_course_name : formData.get('main_course_name'),
+            main_course_description : formData.get("main_course_description")
+        },
         success: function (result) {
             successMessage(result.message);
             setInterval(()=>{
@@ -330,7 +333,7 @@ function deleteMainCourseInfo(courseName, id){
         if (result.isConfirmed) {
             $.ajax({
                 type: "DELETE",
-                url: 'main_course/' + id,
+                url : FRONTEND_URL + 'main_course/' + id,
                 success: function (result) {
                     Swal.fire({
                         title : 'Deleted',

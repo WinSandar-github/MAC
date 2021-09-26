@@ -17,8 +17,6 @@ use App\StudentCourseReg;
 use App\StudentRegister;
 use App\ExamRegister;
 use App\Course;
-
-
 use App\StudentInfo;
 
 class ApiController extends Controller
