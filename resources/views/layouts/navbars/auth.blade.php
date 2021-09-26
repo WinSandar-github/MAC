@@ -124,8 +124,8 @@
                         </li>
                         <li class="{{ $elementActive == 'entry_exam_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'entry_exam_list') }}">
-                                <i class="nc-icon nc-tap-01"></i>
-                                <span>{{ __('Entry Exam List') }}</span>
+                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;font-size:11px;">{{ __('Entry Exam List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">

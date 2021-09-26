@@ -437,59 +437,83 @@ function loadStudentDataForExamCard() {
 }
 
 function approveDAOneExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have approved that form!");
-            location.href = FRONTEND_URL + "/da_exam_one";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/approve_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have approved that form!");
+                location.href = FRONTEND_URL + "/da_exam_one";
+                getExam();
+            }
+        });
+    }
 }
 
 function rejectDAOneExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/reject_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have rejected that form!");
-            location.href = FRONTEND_URL + "/da_exam_one";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/reject_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have rejected that form!");
+                location.href = FRONTEND_URL + "/da_exam_one";
+                getExam();
+            }
+        });
+    }
 }
 
 function approveDATwoExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have approved that form!");
-            location.href = FRONTEND_URL + "/da_two_exam";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/approve_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have approved that form!");
+                location.href = FRONTEND_URL + "/da_two_exam";
+                getExam();
+            }
+        });
+    }
 }
 
 function rejectDATwoExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/reject_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have rejected that form!");
-            location.href = FRONTEND_URL + "/da_two_exam";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/reject_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have rejected that form!");
+                location.href = FRONTEND_URL + "/da_two_exam";
+                getExam();
+            }
+        });
+    }
 }
 
 function loadBatchData(course_code){

@@ -630,60 +630,71 @@ function loadStudentSelfStudy() {
 // }
 
 function approveStudent() {
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_register_id]").val();
 
-    var id = $("input[name = student_register_id]").val();
-
-    var course_code = localStorage.getItem("course_code");
-    console.log(id);
-    $.ajax({
-        url: BACKEND_URL + "/approve_student/" + id,
-        type: 'patch',
-        success: function (result) {
-            console.log(result.data)
-            successMessage("You have approved that student!");
-            if (course_code == 1) {
-                location.href = FRONTEND_URL + "/index";
-            } else if (course_code == 2) {
-                location.href = FRONTEND_URL + "/da_two_index";
-            } else if (course_code == 3) {
-                location.href = FRONTEND_URL + "/cpa_one_index";
-            } else {
-                location.href = FRONTEND_URL + "/cpa_two_index";
+        var course_code = localStorage.getItem("course_code");
+        console.log(id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_student/" + id,
+            type: 'patch',
+            success: function (result) {
+                console.log(result.data)
+                successMessage("You have approved that student!");
+                if (course_code == 1) {
+                    location.href = FRONTEND_URL + "/index";
+                } else if (course_code == 2) {
+                    location.href = FRONTEND_URL + "/da_two_index";
+                } else if (course_code == 3) {
+                    location.href = FRONTEND_URL + "/cpa_one_index";
+                } else {
+                    location.href = FRONTEND_URL + "/cpa_two_index";
+                }
+                // getStudentSelfStudy();
+                // getStudentPrivateSchool();
+                // getStudentMac();
+                GetStudentRegistration(course_code);
+            },
+            error: function (e) {
+                console.log(e);
             }
-            // getStudentSelfStudy();
-            // getStudentPrivateSchool();
-            // getStudentMac();
-            GetStudentRegistration(course_code);
-        },
-        error: function (e) {
-            console.log(e);
-        }
-    });
+        });
+    }
 }
 
 function rejectStudent() {
-    var id = $("input[name = student_register_id]").val();
-    var course_code = localStorage.getItem("course_code");
-    console.log(id)
-    $.ajax({
-        url: BACKEND_URL + "/reject_student/" + id,
-        type: 'patch',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have rejected that student!");
-            if (course_code == 1) {
-                location.href = FRONTEND_URL + "/index";
-            } else if (course_code == 2) {
-                location.href = FRONTEND_URL + "/da_two_index";
-            } else if (course_code == 3) {
-                location.href = FRONTEND_URL + "/cpa_one_index";
-            } else {
-                location.href = FRONTEND_URL + "/cpa_two_index";
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_register_id]").val();
+        var course_code = localStorage.getItem("course_code");
+        console.log(id)
+        $.ajax({
+            url: BACKEND_URL + "/reject_student/" + id,
+            type: 'patch',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have rejected that student!");
+                if (course_code == 1) {
+                    location.href = FRONTEND_URL + "/index";
+                } else if (course_code == 2) {
+                    location.href = FRONTEND_URL + "/da_two_index";
+                } else if (course_code == 3) {
+                    location.href = FRONTEND_URL + "/cpa_one_index";
+                } else {
+                    location.href = FRONTEND_URL + "/cpa_two_index";
+                }
+                // getStudentSelfStudy();
+                // getStudentPrivateSchool();
+                // getStudentMac();
+                GetStudentRegistration(course_code);
             }
-            // getStudentSelfStudy();
-            // getStudentPrivateSchool();
-            // getStudentMac();
-            GetStudentRegistration(course_code);
-        }
-    });
+        });
+    }
 }

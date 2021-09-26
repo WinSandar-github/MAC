@@ -232,81 +232,92 @@ function loadData() {
 }
 
 function approveUser() {
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+
+        var id = $("input[name = student_course_id]").val();
+
+        console.log('approvedaid', id);
+        $.ajax({
+            url: BACKEND_URL + "/approve/" + id,
+            type: 'patch',
+            success: function (result) {
+                let url;
+                if (result) {
+
+                    switch (result.code) {
+                        case 'da_1':
+                            url = '/da_one_app_list';
+                            break;
+                        case 'da_2':
+                            url = '/da_two_app_list';
+                            break;
+                        case 'cpa_1':
+                            url = '/cpa_one_app_list';
+                            break;
+                        case 'cpa_2':
+                            url = '/cpa_two_app_list';
+                            break;
+                        default:
+                            url = '/da_one_app_list';
+                            break;
 
 
-    var id = $("input[name = student_course_id]").val();
 
-    console.log('approvedaid', id);
-    $.ajax({
-        url: BACKEND_URL + "/approve/" + id,
-        type: 'patch',
-        success: function (result) {
-            let url;
-            if (result) {
-
-                switch (result.code) {
-                    case 'da_1':
-                        url = '/da_one_app_list';
-                        break;
-                    case 'da_2':
-                        url = '/da_two_app_list';
-                        break;
-                    case 'cpa_1':
-                        url = '/cpa_one_app_list';
-                        break;
-                    case 'cpa_2':
-                        url = '/cpa_two_app_list';
-                        break;
-                    default:
-                        url = '/da_one_app_list';
-                        break;
-
-
-
+                    }
+                    successMessage("You have approved that user!");
+                    location.href = FRONTEND_URL + url;
                 }
-                successMessage("You have approved that user!");
-                location.href = FRONTEND_URL + url;
             }
-        }
-    });
+        });
+    }
 }
 
 function rejectUser() {
-    var id = $("input[name = student_course_id]").val();
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_course_id]").val();
 
-    $.ajax({
-        url: BACKEND_URL + "/reject/" + id,
-        type: 'patch',
-        success: function (result) {
-            let url;
-            if (result) {
+        $.ajax({
+            url: BACKEND_URL + "/reject/" + id,
+            type: 'patch',
+            success: function (result) {
+                let url;
+                if (result) {
 
-                switch (result.code) {
-                    case 'da_1':
-                        url = '/da_one_app_list';
-                        break;
-                    case 'da_2':
-                        url = '/da_two_app_list';
-                        break;
-                    case 'cpa_1':
-                        url = '/cpa_one_app_list';
-                        break;
-                    case 'cpa_2':
-                        url = '/cpa_two_app_list';
-                        break;
-                    default:
-                        url = '/da_one_app_list';
-                        break;
+                    switch (result.code) {
+                        case 'da_1':
+                            url = '/da_one_app_list';
+                            break;
+                        case 'da_2':
+                            url = '/da_two_app_list';
+                            break;
+                        case 'cpa_1':
+                            url = '/cpa_one_app_list';
+                            break;
+                        case 'cpa_2':
+                            url = '/cpa_two_app_list';
+                            break;
+                        default:
+                            url = '/da_one_app_list';
+                            break;
 
 
 
+                    }
+                    successMessage("You have rejected that user!");
+                    location.href = FRONTEND_URL + url;
                 }
-                successMessage("You have rejected that user!");
-                location.href = FRONTEND_URL + url;
+                // location.href = FRONTEND_URL + "/da_one_app_list";
             }
-            // location.href = FRONTEND_URL + "/da_one_app_list";
-        }
-    });
+        });
+    }        
 }
 
 
