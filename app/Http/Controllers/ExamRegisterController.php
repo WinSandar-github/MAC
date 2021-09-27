@@ -261,7 +261,7 @@ class ExamRegisterController extends Controller
         {
           $datatable=$datatable->addColumn('print', function ($infos) {
               return "<div class='btn-group'>
-                          <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->batch_id)'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                               <li class='fa fa-print fa-sm'></li>
                           </button>
                       </div>";
@@ -280,7 +280,7 @@ class ExamRegisterController extends Controller
             {
               $datatable=$datatable->addColumn('print', function ($infos) {
                   return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->batch_id)'>
+                              <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                                   <li class='fa fa-print fa-sm'></li>
                               </button>
                           </div>";
@@ -299,7 +299,7 @@ class ExamRegisterController extends Controller
             {
               $datatable=$datatable->addColumn('print', function ($infos) {
                   return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id)'>
+                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                                   <li class='fa fa-print fa-sm'></li>
                               </button>
                           </div>";
@@ -318,7 +318,7 @@ class ExamRegisterController extends Controller
             {
               $datatable=$datatable->addColumn('print', function ($infos) {
                   return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id)'>
+                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                                   <li class='fa fa-print fa-sm'></li>
                               </button>
                           </div>";

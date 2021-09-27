@@ -165,24 +165,27 @@ function showCPATwoExam(studentId) {
     location.href = FRONTEND_URL + "/cpa_two_exam_edit";
 }
 
-function printCPAOneExamCard(studentId, exam_id) {
-
+function printCPAOneExamCard(studentId, exam_id,form_type) {
 
     localStorage.setItem("student_id", studentId);
     localStorage.setItem("exam_id", exam_id);
-
-    location.href = FRONTEND_URL + "/cpa1_examcard";
+    if(form_type==3)
+    {
+        location.href = FRONTEND_URL + "/cpa1_examcard";
+    }
+    else {
+        location.href = FRONTEND_URL + "/cpa2_examcard";
+    }
 }
 
 function loadCPAStudentDataForExamCard() {
-    var id = localStorage.getItem("student_id");
+    //var id = localStorage.getItem("student_id");
     var exam_id = localStorage.getItem("exam_id");
 
     $("#roll_no").html("");
     $("#name").html("");
     $("#nrc").html("");
-    console.log(id);
-    $("input[name = student_info_id]").val(id);
+   // $("input[name = student_info_id]").val(id);
 
     $.ajax({
         type: "GET",
@@ -192,9 +195,10 @@ function loadCPAStudentDataForExamCard() {
             var exam_datas = data.data;
             console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
-                console.log(exam_data);
-                // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
-                $("#roll_no").append(exam_data.id);
+                document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
+                var batch_no=mm2en(exam_data.batch.number.toString());
+                $("#batch_no").append(batch_no);
+                $("#cpa_roll_no").append(exam_data.student_info.personal_no);
                 $("#name").append(exam_data.student_info.name_mm);
                 $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
                 $("#father_name").append(exam_data.student_info.father_name_mm);
