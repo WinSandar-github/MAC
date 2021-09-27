@@ -102,6 +102,10 @@ class StudentInfo extends Model
         
     }
 
+    public function article(){
+        return $this->hasMany(ApprenticeAccountant::class,'student_info_id','id');
+        
+    }
 
     
 }  

@@ -334,30 +334,37 @@ function loadFile(file) {
 }
 
 function approvePAPPUser(){
-
-    var id = $("input[name = papp_id]").val();
-    console.log('approvepappid',id);
-    $.ajax({
-        url: BACKEND_URL + "/approve_papp/"+id,
-        type: 'patch',
-        success: function(result){
-            successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/papp_registration_list";
-        }
-    });
+    if(!confirm('Are you sure you want to approve this user?')){
+        return;
+    }else{
+        var id = $("input[name = papp_id]").val();
+        console.log('approvepappid',id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_papp/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                location.href = FRONTEND_URL + "/papp_registration_list";
+            }
+        });
+    }
 }
 
 function rejectPAPPUser(){ 
-    var id = $("input[name = papp_id]").val();
-    console.log('rejectpappid',id);
-    $.ajax({
-        url: BACKEND_URL +"/reject_papp/"+id,
-        type: 'patch',
-        success: function(result){
-            successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/papp_registration_list";
-        }
-    });
+    if(!confirm('Are you sure you want to reject this user?')){
+        return;
+    }else{
+        var id = $("input[name = papp_id]").val();
+        console.log('rejectpappid',id);
+        $.ajax({
+            url: BACKEND_URL +"/reject_papp/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have rejected that user!");
+                location.href = FRONTEND_URL + "/papp_registration_list";
+            }
+        });
+    }
 }
 
 window.onclick = function(event) {
