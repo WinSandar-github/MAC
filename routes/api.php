@@ -325,3 +325,8 @@ Route::patch('/fail_entry_exam/{id}', 'EntryExamController@failEntryExam');
 
 // education history
 Route::post('checkEmail','SchoolController\SchoolController@checkEmail');
+
+// Apprentice Accountant
+Route::get('/acc_app', 'ArticleController\ArticleController@index');
+Route::get('/acc_app/{id}', 'ArticleController\ArticleController@show');
+Route::post('/acc_app', 'ArticleController\ArticleController@store');
