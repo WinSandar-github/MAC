@@ -370,16 +370,20 @@ function autoLoadAudit(){
          // console.log('audit_firm',element);
          // console.log('non_audit_firm',element);
 
+         document.getElementById('profile_photo').src = PDF_URL + element.image;
         if(element.status==0){
           status="Pending";
+          $("#status").addClass("text-warning fw-bolder");
         }
         else if(element.status==1){
-            status="Approve";
+            status="Approved";
+            $("#status").addClass("text-success fw-bolder");
             $("#reject_audit_btn").css('display','none');
             $("#approve_audit_btn").css('display','none');
         }
         else{
-            status="Reject";
+            status="Rejected";
+            $("#status").addClass("text-danger fw-bolder");
             $("#reject_audit_btn").css('display','none');
             $("#approve_audit_btn").css('display','none');
         }
@@ -592,30 +596,6 @@ function autoLoadAudit(){
           });
         }
 
-        // audit_file.forEach(function(item){
-        //   // if(item.tax_clearance!="nulaudit_file.forEach(function(){
-        //
-        //   //   var tax_clearance_file = removeBracketedAudit(item.tax_clearance,"tax_clearances_partnership");
-        //   //   for(var i=0;i<tax_clearance_file.length;i++){
-        //   //     $(".tax_clearances_partnership").append(`<a href='${PDF_URL+tax_clearance_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-        //   //   }
-        //   // }else $(".tax_clearances_partnership").append("<span class='text-primary'>no file</span>");
-        //
-        //
-        //   if(item.certificate_incor!="null"){
-        //     removeBracketedAudit(item.certificate_incor,"certificate_incors");
-        //   }else $(".certificate_incors").append("<span class='text-primary'>no file</span>");
-        //
-        //   if(item.form6_form26_form_e!="null"){
-        //     removeBracketedAudit(item.form6_form26_form_e,"form6_26e");
-        //   }else $(".form6_26e").append("<span class='text-primary'>no file</span>");
-        //
-        //   if(item.form_a1!="null"){
-        //     removeBracketedAudit(item.form_a1,"form_a1");
-        //   }else $(".form_a1").append("<span class='text-primary'>no file</span>");
-        //
-        // });
-
         // for Sole Proprietor/Partners/Shareholders
         if(element.firm_owner_audits.length!=0){
           var firm_owner_audit=element.firm_owner_audits;
@@ -797,55 +777,75 @@ function autoLoadAudit(){
 }
 
 function approveAuditFirm(){
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return;
+  }
+  else{
+    var id = $("input[name = audit_firm_id]").val();
+    // console.log('approveaudit_firm',id);
+    $.ajax({
+        url: BACKEND_URL + "/approve_auditfirm/"+id,
+        type: 'patch',
+        success: function(result){
+          // console.log(result)
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/audit-firm-list";
+        }
+    });
+  }
 
-  var id = $("input[name = audit_firm_id]").val();
-  // console.log('approveaudit_firm',id);
-  $.ajax({
-      url: BACKEND_URL + "/approve_auditfirm/"+id,
-      type: 'patch',
-      success: function(result){
-        // console.log(result)
-          successMessage("You have approved that user!");
-          location.href = FRONTEND_URL + "/audit-firm-list";
-      }
-  });
 }
 
 function rejectAuditFirm(){
-  var id = $("input[name = audit_firm_id]").val();
-  $.ajax({
-      url: BACKEND_URL +"/reject_auditfirm/"+id,
-      type: 'patch',
-      success: function(result){
-          successMessage("You have rejected that user!");
-          location.href = FRONTEND_URL + "/audit-firm-list";
-      }
-  });
+  if (!confirm('Are you sure you want to reject this firm ?')){
+    return;
+  }
+  else{
+    var id = $("input[name = audit_firm_id]").val();
+    $.ajax({
+        url: BACKEND_URL +"/reject_auditfirm/"+id,
+        type: 'patch',
+        success: function(result){
+            successMessage("You have rejected that user!");
+            location.href = FRONTEND_URL + "/audit-firm-list";
+        }
+    });
+  }
+
 }
 
 function approveNonAuditFirm(id){
-
-  //var id = $("input[name = audit_firm_id]").val();
-  $.ajax({
-      url: BACKEND_URL + "/approve_non_auditfirm/"+id,
-      type: 'patch',
-      success: function(result){
-          successMessage("You have approved that user!");
-          location.href = FRONTEND_URL + "/non-audit-firm-list";
-      }
-  });
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return;
+  }
+  else{
+    //var id = $("input[name = audit_firm_id]").val();
+    $.ajax({
+        url: BACKEND_URL + "/approve_non_auditfirm/"+id,
+        type: 'patch',
+        success: function(result){
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
+        }
+    });
+  }
 }
 
 function rejectNonAuditFirm(id){
-  //var id = $("input[name = audit_firm_id]").val();
-  $.ajax({
-      url: BACKEND_URL +"/reject_non_auditfirm/"+id,
-      type: 'patch',
-      success: function(result){
-          successMessage("You have rejected that user!");
-          location.href = FRONTEND_URL + "/non-audit-firm-list";
-      }
-  });
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return ;
+  }
+  else{
+    //var id = $("input[name = audit_firm_id]").val();
+    $.ajax({
+        url: BACKEND_URL +"/reject_non_auditfirm/"+id,
+        type: 'patch',
+        success: function(result){
+            successMessage("You have rejected that user!");
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
+        }
+    });
+  }
 }
 
 function removeBracketedAudit(file,divname){

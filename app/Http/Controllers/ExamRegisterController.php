@@ -345,6 +345,7 @@ class ExamRegisterController extends Controller
 
     public function cpaExamRegister(Request $request)
     {
+      // return($request->last_ans_module);
 
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('student_info_id', $student_info_id)->latest()->get('type');
@@ -361,13 +362,14 @@ class ExamRegisterController extends Controller
 
 
 
-        $date = date('Y-m-d');
+        $date = date('d-M-Y');
         $invoice_date = date('Y-m-d');
 
         $exam = new ExamRegister();
+        
         $exam->student_info_id = $request->student_id;
         $exam->last_ans_exam_no= $request->last_ans_exam_no;
-        $exam->last_ans_module = $request->last_ans_module;
+
         $exam->date = $date;
         $exam->invoice_date = $invoice_date;
         $exam->private_school_id = $request->private_school_id;
@@ -375,6 +377,7 @@ class ExamRegisterController extends Controller
         $exam->grade = 0;
         $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
+        $exam->exam_department = $request->exam_department;
         //exam type id mean mac self study private school
         $exam->exam_type_id = $type;
         $exam->form_type = $request->form_type;

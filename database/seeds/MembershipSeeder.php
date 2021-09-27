@@ -138,7 +138,7 @@ class MembershipSeeder extends Seeder
             ),
             array(
                 'membership_name' => 'Article',
-                'requirement'     => '<p>စာရင်းကိုင်အလုပ်သင် မှတ်ပုံတင်ရန်အတွက် အောက်ဖော်ပြပါ ရုံးအမိန့်အမှတ် (၁၄၂) အားဖတ်ရှုရန်လိုအပ်ပါသည်။</p>',
+                'requirement'     => '<p>စာရင်းကိုင်အလုပ်သင် မှတ်ပုံတင်ရန်အတွက် <a href="https://demo.aggademo.me/MAC/public/storage/article/142.pdf" target="_blank">ဤရုံးအမိန့်အမှတ် (၁၄၂) </a> အားဖတ်ရှုရန်လိုအပ်ပါသည်။</p>',
                 'description'     => NULL,
                 'form_fee'        => NULL,
                 'registration_fee'=> '5000',

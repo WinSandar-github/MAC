@@ -320,20 +320,23 @@ class AccFirmInfController extends Controller
         $std_info->save();
 
         //Branch Office
-        for($i=0;$i<sizeof($request->bo_branch_name);$i++){
-            $branch_office = new BranchOffice();
-            $branch_office->branch_name = $request->bo_branch_name[$i];
-            $branch_office->branch_address = $request->bo_address[$i];
-            $branch_office->township    = $request->bo_township[$i];
-            $branch_office->postcode    = $request->bo_post_code[$i];
-            $branch_office->city        = $request->bo_city[$i];
-            $branch_office->state_region= $request->bo_state_region[$i];
-            $branch_office->phones  = $request->bo_phone[$i];
-            $branch_office->email       = $request->bo_email[$i];
-            $branch_office->website      = $request->bo_website[$i];
-            $branch_office->accountancy_firm_info_id = $acc_firm_info->id;
-            $branch_office->save();
+        if($request->bo_branch_name){
+          for($i=0;$i<sizeof($request->bo_branch_name);$i++){
+              $branch_office = new BranchOffice();
+              $branch_office->branch_name = $request->bo_branch_name[$i];
+              $branch_office->branch_address = $request->bo_address[$i];
+              $branch_office->township    = $request->bo_township[$i];
+              $branch_office->postcode    = $request->bo_post_code[$i];
+              $branch_office->city        = $request->bo_city[$i];
+              $branch_office->state_region= $request->bo_state_region[$i];
+              $branch_office->phones  = $request->bo_phone[$i];
+              $branch_office->email       = $request->bo_email[$i];
+              $branch_office->website      = $request->bo_website[$i];
+              $branch_office->accountancy_firm_info_id = $acc_firm_info->id;
+              $branch_office->save();
+          }
         }
+
 
 
         if($request->audit_firm_type_id == 1){
@@ -354,29 +357,29 @@ class AccFirmInfController extends Controller
 
              }
 
-
-
-
             //Audit
-            for($i=0;$i<sizeof($request->foa_name);$i++){
-                $firm_owner_audit = new FirmOwnershipAudit();
-                $firm_owner_audit->name                     = $request->foa_name[$i];
-                $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
-                $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
-                $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
-                $firm_owner_audit->save();
+            if($request->foa_name){
+              for($i=0;$i<sizeof($request->foa_name);$i++){
+                  $firm_owner_audit = new FirmOwnershipAudit();
+                  $firm_owner_audit->name                     = $request->foa_name[$i];
+                  $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
+                  $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
+                  $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
+                  $firm_owner_audit->save();
+              }
             }
 
-            for($i=0;$i<sizeof($request->do_name);$i++){
-                $director_officer = new DirectorsOfficersAudit();
-                $director_officer->name                     = $request->do_name[$i];
-                $director_officer->position                 = $request->do_position[$i];
-                $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
-                $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
-                $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
-                $director_officer->save();
+            if($request->do_name){
+              for($i=0;$i<sizeof($request->do_name);$i++){
+                  $director_officer = new DirectorsOfficersAudit();
+                  $director_officer->name                     = $request->do_name[$i];
+                  $director_officer->position                 = $request->do_position[$i];
+                  $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
+                  $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
+                  $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
+                  $director_officer->save();
+              }
             }
-
 
             for($i=0;$i<sizeof($request->as_part_time);$i++){
                 $audit_staff = new AuditStaff();
@@ -1341,7 +1344,7 @@ class AccFirmInfController extends Controller
                                                   ->where('status','=',$status)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
-                                                  
+
       if($firm_type == 1){
         return DataTables::of($acc_firm_info)
           ->addColumn('action', function ($infos) {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\AccountancyFirmInformation;
 use App\BranchOffice;
 use App\FirmOwnershipNonAudit;
@@ -18,7 +19,7 @@ use App\NonAuditFirmFile;
 use App\StudentInfo;
 use App\OrganizationStructure;
 
-class nonAuditFirmShowInfoController extends Controller
+class ShowNonAuditFirmInfoController extends Controller
 {
   public function showNonAuditFirmInfo($id)
   {

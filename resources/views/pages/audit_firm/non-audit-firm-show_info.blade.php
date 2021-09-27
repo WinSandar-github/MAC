@@ -71,7 +71,7 @@
 																								</div>
 																							</div>
 
-	                                            <div class="row  pl-4 mt-3">
+	                                            <div class="row  pl-4 mt-5">
 	                                                <h5 class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Address Of Practice(Head Office)') }}</h5>
 	                                            </div>
 																							<div class="row  pl-4">
@@ -252,6 +252,7 @@
 	                                                        <table id="tbl_branch" class="table  table-responsive table-bordered branch_non_audit text-nowrap" >
 	                                                            <thead>
 	                                                                <tr>
+																																			<th class="font-weight-bold">Sr</th>
 	                                                                    <th class="font-weight-bold">Name</th>
 																																			<th class="font-weight-bold">Address</th>
 	                                                                    <th class="font-weight-bold">Township</th>
@@ -269,9 +270,13 @@
 	                                                                </tr>
 	                                                            <thead>
 	                                                            <tbody id="tbl_branch_body">
+																																@php $no = 1; @endphp
 																																@if($branch_offices)
 																																	@foreach($branch_offices as $branch_off)
 																																		<tr>
+																																			<td>
+																																				{{$no++}}
+																																			</td>
 																																			<td>
 																																				{{$branch_off->branch_name}}
 																																			</td>
