@@ -244,12 +244,16 @@ function showDaTwoExam(studentId) {
     location.href = FRONTEND_URL + "/da_two_exam_edit";
 }
 
-function printExamCard(studentId, batch_id) {
+function printExamCard(studentId, exam_id,form_type) {
 
     localStorage.setItem("student_id", studentId);
-
-    localStorage.setItem("batch_id_for_examcard", batch_id);
-    location.href = FRONTEND_URL + "/da1_examcard";
+    localStorage.setItem("exam_id", exam_id);
+    if(form_type==1){
+        location.href = FRONTEND_URL + "/da1_examcard";
+    }
+    else {
+        location.href = FRONTEND_URL + "/da2_examcard";
+    }
 }
 
 function loadDAExamData() {
@@ -411,28 +415,33 @@ function loadDAExamData() {
 }
 
 function loadStudentDataForExamCard() {
-    var id = localStorage.getItem("student_id");
-    var batch_id = localStorage.getItem("batch_id_for_examcard");
-    console.log('batch_id', batch_id);
+    var exam_id = localStorage.getItem("exam_id");
+
     $("#roll_no").html("");
     $("#name").html("");
     $("#nrc").html("");
-    console.log(id);
-    //$("input[name = student_info_id]").val(id);
+   // $("input[name = student_info_id]").val(id);
 
     $.ajax({
         type: "GET",
-        url: BACKEND_URL + "/exam_register/" + id,
+        url: BACKEND_URL + "/exam_register/" + exam_id,
         success: function (data) {
+
             var exam_datas = data.data;
+            console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
-                // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
-                $("#roll_no").append(exam_data.id);
+                console.log(exam_data);
+                document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
+                
+                var batch_no=mm2en(exam_data.batch.number.toString());
+                $("#batch_no").append(batch_no);
+                $("#da_roll_no").append(exam_data.student_info.personal_no);
                 $("#name").append(exam_data.student_info.name_mm);
                 $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
-                $("#exam_date").append(exam_data.batch.exam_start_date);
-                $("#exam_place").append(exam_data.batch.exam_place);
-                $("#exam_time").append(exam_data.batch.exam_time);
+                $("#father_name").append(exam_data.student_info.father_name_mm);
+                $('#exam_department').text(exam_data.exam_department.name)
+                $('#roll_no').text(exam_data.student_info.cpersonal_no)
+
             });
         }
     })

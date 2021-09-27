@@ -21,8 +21,8 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <h5 class="title" style="padding-left: 130px;">မြန်မာနိုင်ငံစာရင်းကောင်စီ</h5>
-                                <h5 class="title" style="padding-left: 130px;">လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း) သင်တန်း၊ အမှတ်စဉ် - ၄၃ စာမေးပွဲ </h5>
-                                <h5 class="title" style="padding-left: 130px;">ဖြေဆိုခွင့်ကတ်ပြား </h5>
+                                <h5 class="title" style="padding-left: 130px;">လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း) သင်တန်း၊ အမှတ်စဉ် - <span id="batch_no"></span></h5>
+                                <h5 class="title" style="padding-left: 130px;"> စာမေးပွဲ ဖြေဆိုခွင့်ကတ်ပြား </h5>
                             </div>
                             <div class="col-md-2 d-md-flex justify-content-md-end" id="print_btn">
                                 <button type="button" class="btn btn-primary btn-round"  onclick="PrintExamCard()" style="height:40px; width:100px;">Print</button>
@@ -32,7 +32,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <label  style="font-weight:bold">စာမေးပွဲခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="roll_no"></label>)
+                                <label  style="font-weight:bold">စာမေးပွဲခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="cpa_roll_no"></label>)
                             </div>
                             <div>
                                
