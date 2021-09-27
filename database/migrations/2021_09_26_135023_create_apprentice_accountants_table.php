@@ -29,6 +29,11 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->date('exp_start_date')->nullable();
             $table->date('exp_end_date')->nullable();
             $table->boolean('accept_policy');
+            $table->date('resign_date')->nullable();
+            $table->string('resign_reason')->nullable();
+            $table->string('recent_org')->nullable();
+            $table->text('resign_approve_file')->nullable();
+            $table->boolean('know_policy')->nullable();
             $table->timestamps();
 
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
