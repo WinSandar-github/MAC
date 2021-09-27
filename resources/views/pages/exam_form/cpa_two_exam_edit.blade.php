@@ -342,7 +342,25 @@
                                 </div>
                                     
                                 </div>
+                                <div class="card">
+                                <div class="card-header">
+                                    <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-border">
+                                        <thead>
+                                            <th>Course Name</th>
+                                            <th>Batch Name</th>
+                                            <th>Success Year</th>
+                                        </thead>
+                                        <tbody class="course">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div> 
                             </div>
+                            
                         </div>
                     </div>
                 </form>

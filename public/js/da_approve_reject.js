@@ -214,10 +214,11 @@ function loadData() {
                         console.log("result",result.data.length);
                         if(result.data.length!=0){
                             result.data.forEach(function(course){
+                                var success_year=new Date(course.updated_at);
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
-                                                    <td>${formatDate(course.updated_at)}</td>
+                                                    <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
                             console.log(result.data,"course html");                            
