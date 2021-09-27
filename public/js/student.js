@@ -27,10 +27,10 @@ function GetStudentRegistration(course_code) {
         processData: false,
         success: function (data) {
             var student_data = data.data;
-            console.log("stu data", student_data);
+            // console.log("stu data", student_data);
             student_data.forEach(function (element) {
-                console.log(element.id,"id");
-                console.log("stu element", element);
+                // console.log(element.id,"id");
+                // console.log("stu element", element);
                 if (element.type == 0) {
                     var status;
                     if (element.status == 0) {
@@ -175,9 +175,9 @@ function loadStudentSelfStudy() {
         type: "GET",
         url: BACKEND_URL + "/show_student_register/" + id,
         success: function (data) {
-            console.log(data,"yy");
+            // console.log(data,"yy");
             var element = data.data;
-            console.log('element',element);
+            // console.log('element',element);
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
             // $("#student_dob").append(element.student_info.date_of_birth);
@@ -210,9 +210,12 @@ function loadStudentSelfStudy() {
             var student_info_data = element.student_info;
             var education_history = student_info_data.student_education_histroy;
             var job = student_info_data.student_job;  
-            console.log('personal_no',student_info_data.personal_no); 
-            if(student_info_data.personal_no){
+
+            // console.log('personal_no',student_info_data.personal_no); 
+            if(student_info_data.course_type_id==1 ){
                 $("#registration_no").append(student_info_data.personal_no);
+            }else if(student_info_data.course_type_id==2){
+                $("#registration_no").append(student_info_data.cpersonal_no);
             }else{
                 $("#registration_no").append("-");
             }
@@ -234,8 +237,8 @@ function loadStudentSelfStudy() {
             $("#gov_staff").append(student_info_data.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
             // $("#image").append(element.image);
             //$("#batch_name").append(element.name);
-            console.log("b name",data.data);
-            if(element.gov_staff == 1){
+            // console.log("student_info_data",student_info_data);
+            if(student_info_data.gov_staff == 1){
                 $(".recommend_row").show();
                 $(".recommend_letter").append(`<a href='${PDF_URL+student_info_data.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
             }else{
@@ -264,12 +267,12 @@ function loadStudentSelfStudy() {
             $("#company_name").append(job.company_name);
             $("#salary").append(job.salary);
             $("#office_address").append(job.office_address);
-            attached_file = element.student_education_histroy.certificate;
+            // attached_file = element.student_education_histroy.certificate;
             $.ajax({
                 url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
                 type: 'get',
                 success: function (result) {
-                    console.log("result",result.data.length);
+                    // console.log("result",result.data.length);
                     if(result.data.length!=0){
                         result.data.forEach(function(course){
                             course_html += `<tr>
@@ -278,7 +281,7 @@ function loadStudentSelfStudy() {
                                                 <td>${formatDate(course.updated_at)}</td>
                                             </tr>`
                         });
-                        console.log(result.data,"course html");                            
+                        // console.log(result.data,"course html");                            
                         $('.course').html(course_html)
                     }
                 }
@@ -652,12 +655,12 @@ function approveStudent() {
         var id = $("input[name = student_register_id]").val();
 
         var course_code = localStorage.getItem("course_code");
-        console.log(id);
+        // console.log(id);
         $.ajax({
             url: BACKEND_URL + "/approve_student/" + id,
             type: 'patch',
             success: function (result) {
-                console.log(result.data)
+                // console.log(result.data)
                 successMessage("You have approved that student!");
                 if (course_code == 1) {
                     location.href = FRONTEND_URL + "/index";
@@ -688,12 +691,12 @@ function rejectStudent() {
     else{
         var id = $("input[name = student_register_id]").val();
         var course_code = localStorage.getItem("course_code");
-        console.log(id)
+        // console.log(id)
         $.ajax({
             url: BACKEND_URL + "/reject_student/" + id,
             type: 'patch',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have rejected that student!");
                 if (course_code == 1) {
                     location.href = FRONTEND_URL + "/index";

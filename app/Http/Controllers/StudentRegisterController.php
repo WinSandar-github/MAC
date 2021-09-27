@@ -432,6 +432,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
                 $student_register->cpa_one_access_no = $request->cpa_one_access_no;
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
+                $student_register->module=$request->module;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 

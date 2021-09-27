@@ -181,7 +181,7 @@ function loadCPAStudentDataForExamCard() {
     $("#roll_no").html("");
     $("#name").html("");
     $("#nrc").html("");
-    console.log(id);
+    // console.log(id);
     $("input[name = student_info_id]").val(id);
 
     $.ajax({
@@ -190,9 +190,9 @@ function loadCPAStudentDataForExamCard() {
         success: function (data) {
 
             var exam_datas = data.data;
-            console.log(exam_datas)
+            // console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
-                console.log(exam_data);
+                // console.log(exam_data);
                 // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
                 $("#roll_no").append(exam_data.id);
                 $("#name").append(exam_data.student_info.name_mm);
@@ -217,7 +217,7 @@ function approveCPAOneExam() {
             url: BACKEND_URL + "/approve_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have approved that form!");
                 location.href = FRONTEND_URL + "/cpa_exam_one";
                 getCPAExam();
@@ -237,7 +237,7 @@ function rejectCPAOneExam() {
             url: BACKEND_URL + "/reject_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have rejected that form!");
                 location.href = FRONTEND_URL + "/cpa_exam_one";
                 getCPAExam();
@@ -257,7 +257,7 @@ function approveCPATwoExam() {
             url: BACKEND_URL + "/approve_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have approved that form!");
                 location.href = FRONTEND_URL + "/cpa_two_exam";
                 getCPAExam();
@@ -277,7 +277,7 @@ function rejectCPATwoExam() {
             url: BACKEND_URL + "/reject_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have rejected that form!");
                 location.href = FRONTEND_URL + "/cpa_two_exam";
                 getCPAExam();
@@ -288,7 +288,7 @@ function rejectCPATwoExam() {
 
 function loadCPAExamData() {
     var id = localStorage.getItem("student_id");
-    console.log(id);
+    // console.log(id);
     $("#school_name").html("");
     $("#exam_type").html("");
     $("#student_grade").html("");
@@ -333,7 +333,7 @@ function loadCPAExamData() {
             var exam_data = data.data;
             
             exam_data.forEach(function (element) {
-                console.log('exam_data',element);
+                // console.log('exam_data',element);
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -378,6 +378,7 @@ function loadCPAExamData() {
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
+                $("#exam_department").append(element.exam_department.name);
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -385,9 +386,10 @@ function loadCPAExamData() {
                     document.getElementById("approve").style.display = 'none';
                     document.getElementById("reject").style.display = 'none';
                 }
+                // $("#exam_department").append(element.exam_department.name);
 
                 element = element.student_info;
-                console.log('element',element)
+                // console.log('element',element)
 
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
@@ -410,8 +412,10 @@ function loadCPAExamData() {
                 if(element.course_type_id==1){
                     $("#registration_no").append(element.personal_no);
 
-                }else{
+                }else if(element.course_type_id==2){
                     $("#registration_no").append(element.cpersonal_no);
+                }else{
+                    $("#registration_no").append("-");
                 }
                 
 
@@ -452,12 +456,12 @@ function loadCPAExamData() {
 
 function chooseCPABatch() {
     var id = $('#cpa_batch_id').val();
-    console.log(id);
+    // console.log(id);
     $.ajax({
         url: BACKEND_URL + "/exam_register/" + id,
         type: 'get',
         success: function (result) {
-            console.log(result);
+            // console.log(result);
             localStorage.setItem("batch_id", id);
             location.href = FRONTEND_URL + "/cpa_exam_result_edit";
             // loadStudent();
@@ -489,7 +493,7 @@ function loadCPAStudent(course_type) {
     send_data.append('batch', $("#selected_batch_id").val());
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('grade', $('#selected_grade_id').val());
-    console.log($("#selected_batch_id").val());
+    // console.log($("#selected_batch_id").val());
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
         type: 'post',
@@ -497,7 +501,7 @@ function loadCPAStudent(course_type) {
         contentType: false,
         processData: false,
         success: function (data) {
-            console.log("course", data);
+            // console.log("course", data);
             var da_data = data.data;
             da_data.forEach(function (element) {
                 if (element.status == 0) {
@@ -599,7 +603,7 @@ function loadCPAStudent(course_type) {
 }
 
 function fillCPAMark(id, isFullModule) {
-    console.log("exam_register_id", id);
+    // console.log("exam_register_id", id);
     localStorage.setItem("exam_register_id", id);
     localStorage.setItem("is_full_module", isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
@@ -651,11 +655,11 @@ function getCPAModuleStd() {
         type: 'get',
         data: "",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
                 var std = element.student_info;
-                console.log('std', std);
+                // console.log('std', std);
                 if (element.status == 0) {
                     status = "PENDING";
                     //$('.pass_fail_btn').hide();
@@ -817,7 +821,7 @@ function getCPAModuleStd() {
                         var rData = JSON.parse(result.data.result);
                         var row_length = rData.subjects.length;
 
-                        console.log('is_full_module', module_type);
+                        // console.log('is_full_module', module_type);
                         if (module_type == 1) {
                             for (var i = 0; i < row_length; i++) {
                                 var j = i + 1;

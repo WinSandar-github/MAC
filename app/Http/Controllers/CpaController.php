@@ -34,6 +34,11 @@ class CpaController extends Controller
         $course_date = date('Y-m-d');
 
         $student_info = StudentInfo::find($request->student_id);
+        if($request->da_pass_roll_number){
+            $student_info->da_pass_date                 =   $request->da_pass_date;
+            $student_info->da_pass_roll_number          =   $request->da_pass_roll_number;
+        }
+        
         $student_info->approve_reject_status = 0;
         if($request->direct_degree)
         { 

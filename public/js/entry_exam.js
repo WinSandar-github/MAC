@@ -43,7 +43,7 @@ function loadEntryDetail(id) {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(exam_data)
+            // console.log(exam_data)
             exam_data.forEach(function (element) {
 
                 // if (element.exam_type_id == 0) {
@@ -70,7 +70,7 @@ function loadEntryDetail(id) {
 
 
                 // $("#school_name").append(element.private_school_name);
-                $("#exam_type").append("cpa one Entry Exam");
+                $("#exam_type").append("CPA One Entry Exam");
                 // $("#student_grade").append(grade);
                 $("#student_status").append(status);
 
