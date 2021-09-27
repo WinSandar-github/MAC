@@ -98,6 +98,9 @@ class PageController extends Controller
         else if (view()->exists("pages.exam_form.{$page}")) {
             return view("pages.exam_form.{$page}");
         }
+        else if (view()->exists("pages.exam_cards.{$page}")) {
+            return view("pages.exam_cards.{$page}");
+        }
         else if (view()->exists("pages.exam_result.{$page}")) {
             return view("pages.exam_result.{$page}");
         }

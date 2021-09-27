@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <!-- @php $currend_date =  date("Y-m-d"); @endphp -->
-                @php $currend_date =  date("2021-10-25"); @endphp
+                @php $currend_date =  date("2021-11-25"); @endphp
 
                  <div class="card-body">
                     <div class="row"> 
@@ -26,7 +26,7 @@
                                
                                 <button   onclick="generateSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                 @endif
-                                @endif   
+                            @endif   
                             </div>
                         
 

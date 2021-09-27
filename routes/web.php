@@ -111,8 +111,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
 
     //exam cards
-    Route::get('da1_examcard', 'ExamCardsController@DA1_ExamCard');
-    Route::get('cpa1_examcard', 'ExamCardsController@CPA1_ExamCard');
+    // Route::get('da1_examcard', 'ExamCardsController@DA1_ExamCard');
+    // Route::get('cpa1_examcard', 'ExamCardsController@CPA1_ExamCard');
 
     // CPA_FF Form
     Route::patch('/approve_cpa_one_self_study/{id}', 'CPAOneRegistrationController@approve');
