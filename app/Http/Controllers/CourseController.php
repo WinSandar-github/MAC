@@ -74,7 +74,6 @@ class CourseController extends Controller
             'requirement_id' => 'required'
         ]);
         $course = new Course();
-
         $course->name = $request->name;
         $course->form_fee = $request->form_fee;
         $course->selfstudy_registration_fee = $request->selfstudy_registration_fee;
@@ -205,10 +204,10 @@ class CourseController extends Controller
         return DataTables::of($main_course)
             ->addColumn('action', function ($course) {
                 return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-xs' onclick='showCourseInfo($course->id)'>
+                                <button type='button' class='btn btn-primary btn-xs' onclick='showMainCourseInfo($course->id)'>
                                     <li class='fa fa-edit fa-sm'></li>
                                 </button>
-                                 <button type='button' class='btn btn-danger btn-xs' onclick='deleteCourseInfo(\"$course->name\", $course->id)'>
+                                 <button type='button' class='btn btn-danger btn-xs' onclick='deleteMainCourseInfo(\"$course->course_name\", $course->id)'>
                                     <li class='fa fa-trash fa-sm'></li>
                                 </button>
                             </div>";
@@ -222,6 +221,7 @@ class CourseController extends Controller
             ->editColumn('updated_at', function ($c){
                 return $c->updated_at == null ? 'N/A' : $c->updated_at;
             })
+            ->rawColumns(['action', 'course_description'])
             ->removeColumn('course_code')
             ->make(true);
     }
@@ -255,7 +255,7 @@ class CourseController extends Controller
 
                     return str_replace(',', '', implode(',', $result->toArray()));
                 })
-                ->rawColumns(['action', 'requirements'])
+                ->rawColumns(['action', 'description', 'requirements'])
                 ->make(true);
         }else{
             $courses = Course::where('name', 'like', '%' . $course_name. '%')->with('batches')->get();
