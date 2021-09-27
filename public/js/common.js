@@ -16,7 +16,11 @@ function ConfirmSubmit() {
         document.getElementById("submit_btn").disabled = true;
     }
 }
-
+function formatDate(date) {
+    var income_date = date.split('-');
+    var date = income_date[2] + '-' + income_date[1] + '-' + income_date[0];
+    return date;
+}
 
 function addRowCPAFF(tbody) {
     var newRow = $("<tr>");

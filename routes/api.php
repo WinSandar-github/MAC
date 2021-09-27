@@ -126,7 +126,7 @@ Route::post('save_exam','BatchController@saveExam');
 
 //DA2 Exam Register Form API
 Route::resource('/exam_register', 'ExamRegisterController');
-
+Route::get('/get_passed_exam_student/{id}','ExamRegisterController@getPassedExamByStudentID');
 //DA Exam Form 1 API
 Route::resource('/exam_register', 'ExamRegisterController');
 Route::get('/std/{id}', 'ExamRegisterController@viewStudent');
@@ -230,7 +230,7 @@ Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
 
 //Pass or fail student
 Route::patch('/pass_exam/{id}', 'ExamResultController@passExam');
-Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
+Route::patch('/fail_exam/{id}', 'ExamResultController@rejectExam');
 
 // Route::apiResource('mentor','MentorController');
 Route::resource('mentor','MentorController');
@@ -258,6 +258,9 @@ Route::post('/update_mentor','StudentRegisterController@updateMentor');
 
 //Mentor Status
 Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
+
+//Mentor Api
+// Route::get('getMentor', 'MentorController@getMentor');
 
 //Store app and register on student register
 Route::post('store_student_app_reg','StudentRegisterController@store_student_app_reg');

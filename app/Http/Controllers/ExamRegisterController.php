@@ -299,7 +299,7 @@ class ExamRegisterController extends Controller
             {
               $datatable=$datatable->addColumn('print', function ($infos) {
                   return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id)'>
+                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id)'>
                                   <li class='fa fa-print fa-sm'></li>
                               </button>
                           </div>";
@@ -396,6 +396,14 @@ class ExamRegisterController extends Controller
         ],200);
 
     }
+
+    public function getPassedExamByStudentID($id){
+      $exam_register = ExamRegister::where('student_info_id',$id)->where('grade',1)->with('course','batch')->get();
+      return response()->json([
+          'data' => $exam_register
+      ],200);
+
+  }
     public function getExamStatus($id)
     {
         $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
