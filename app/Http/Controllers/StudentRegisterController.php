@@ -32,8 +32,29 @@ class StudentRegisterController extends Controller
         }
         $invoice_date = date('Y-m-d');
 
+
+        if($request->remain_module == 1 || $request->main_module == 2 )
+        {
+        $course_date = date('Y-m-d');
+
+            $student_info = StudentInfo::find($request->student_id);
+            $student_info->approve_reject_status = 1;
+            $student_info->save();
+
+            
+
+            $student_course = new StudentCourseReg();
+            $student_course->student_info_id = $student_info->id;
+            $student_course->batch_id        = $request->batch_id;
+            $student_course->date            = $course_date;
+            $student_course->status          = 1;
+            $student_course->approve_reject_status = 1;
+            $student_course->save();
+            
+        }
         switch ($request->type) {
             case 0:
+                
                 if(isset($request->reg_reason))
                 {
                     foreach($request->reg_reason as $reg_reason){
