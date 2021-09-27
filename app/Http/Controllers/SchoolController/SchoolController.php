@@ -243,16 +243,16 @@ class SchoolController extends Controller
         $school->nrc_number       = $request->nrc_number;
         $school->reg_date = date('Y-m-d');
         $school->renew_date = date('Y-m-d');
-        $school_type = "";
-        if($request->school_type!=""){
-            foreach($request->school_type as $type){
-                $school_type = $school_type.$type.',';
+        // $school_type = "";
+        // if($request->school_type!=""){
+        //     foreach($request->school_type as $type){
+        //         $school_type = $school_type.$type.',';
                
-            }
-            $school->type = rtrim($school_type, ',');
-        }
-        
-         $school->save();
+        //     }
+        //     $school->type = rtrim($school_type, ',');
+        // }
+        $school->type = $request->school_type;
+        $school->save();
         
         
        
@@ -311,7 +311,7 @@ class SchoolController extends Controller
         }
 
         //member list
-        if($request->school_type!=""){
+        if($request->school_type=="တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း"){
             for($i=0;$i<sizeof($request->member_name);$i++){
                 $member = new SchoolMember();
                 $member->name            = $request->member_name[$i];
@@ -346,19 +346,29 @@ class SchoolController extends Controller
             $teacher->save();
         }
         //branch_school
-        $branch_school_attach=implode(',', $branch_school_attach);
-        $new_branch_school_attach= explode(',',$branch_school_attach);
-        $branch_sch_letter=implode(',', $branch_sch_letter);
-        $new_branch_sch_letter= explode(',',$branch_sch_letter);
-        for($i=0;$i<sizeof($request->branch_school_address);$i++){
-            $branch_school = new tbl_branch_school();
-            $branch_school->branch_school_address= $request->branch_school_address[$i];
-            $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
-            $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-            $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
-            $branch_school->school_id       = $school->id;
-            $branch_school->save();
+        if($branch_school_attach!=null){
+            $branch_school_attach=implode(',', $branch_school_attach);
+            $new_branch_school_attach= explode(',',$branch_school_attach);
+            
         }
+        if($branch_sch_letter!=null){
+           
+            $branch_sch_letter=implode(',', $branch_sch_letter);
+            $new_branch_sch_letter= explode(',',$branch_sch_letter);
+        }
+        if($request->branch_school_address!=null){
+            for($i=0;$i<sizeof($request->branch_school_address);$i++){
+            
+                $branch_school = new tbl_branch_school();
+                $branch_school->branch_school_address= $request->branch_school_address[$i];
+                $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
+                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                $branch_school->school_id       = $school->id;
+                $branch_school->save();
+            }
+        }
+        
         //bulding_type
         $school_building_attach=implode(',', $school_building_attach);
         $new_school_building_attach= explode(',',$school_building_attach);
@@ -762,16 +772,19 @@ class SchoolController extends Controller
         $std_info->save();
         $school = SchoolRegister::find($request->id);
         $school->approve_reject_status = 1;
-        $school->renew_date = date('Y-m-d');
+        //$school->renew_date = date('Y-m-d');
         $school->save();
         return response()->json([
             'message' => 'You have approved this user.'
         ],200);
     }
 
-    public function reject_school_register(Request $request, $id)
+    public function reject_school_register(Request $request)
     {
-        $school = SchoolRegister::find($id);
+        $std_info = StudentInfo::find($request->student_info_id);
+        $std_info->approve_reject_status = 2;
+        $std_info->save();
+        $school = SchoolRegister::find($request->id);
         $school->approve_reject_status = 2;
         $school->save();
         return response()->json([

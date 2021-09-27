@@ -272,5 +272,5 @@ class CourseController extends Controller
             'data' => $courses
         ], 200);
     }
-
+    
 }
