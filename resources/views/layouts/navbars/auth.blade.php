@@ -248,7 +248,12 @@
                                 <span style="font-weight:normal;font-size:11px;">{{ __('Mentors') }}</span>
                             </a>
                         </li>
-                        
+                        <li class="{{ $elementActive == 'mentor_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'article_list') }}">
+                                <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;font-size:11px;">{{ __('Article') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
