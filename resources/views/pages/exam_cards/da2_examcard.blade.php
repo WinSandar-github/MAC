@@ -21,7 +21,7 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <h5 class="title" style="padding-left: 130px;">မြန်မာနိုင်ငံစာရင်းကောင်စီ</h5>
-                                <h5 class="title" style="padding-left: 130px;font-weight:bold;" >ဒီပလိုမာစာရင်းကိုင် (ပထမပိုင်း) သင်တန်း အမှတ်စဥ်- <span id="batch_no"></span></h5>
+                                <h5 class="title" style="padding-left: 130px;font-weight:bold;" >ဒီပလိုမာစာရင်းကိုင် (ဒုတိယပိုင်း) သင်တန်း အမှတ်စဥ်- <span id="batch_no"></span></h5>
                                 <h5 class="title" style="padding-left: 130px;font-weight:bold;">စာမေးပွဲ ဖြေဆိုခွင့်ကတ်ပြား </h5>
                             </div>
                             <div class="col-md-2 d-md-flex justify-content-md-end" id="print_btn">
@@ -176,6 +176,6 @@
         window.print();
         document.body.innerHTML=backup;
     }
-    loadStudentDataForExamCard();    
+    loadStudentDataForExamCard();
 </script>
 @endpush
