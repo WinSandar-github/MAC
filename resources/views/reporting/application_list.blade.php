@@ -26,7 +26,7 @@
                                
                                 <button   onclick="generateSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                 @endif
-                                @endif   
+                            @endif   
                             </div>
                         
 

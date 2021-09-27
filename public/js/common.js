@@ -1,10 +1,10 @@
-var BACKEND_URL="http://localhost:8000/api";
-var FRONTEND_URL="http://localhost:8000";
-var PDF_URL="http://localhost:8000";
+// var BACKEND_URL="http://localhost:8000/api";
+// var FRONTEND_URL="http://localhost:8000";
+// var PDF_URL="http://localhost:8000";
 
-// var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
-// var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
-// var PDF_URL = "https://demo.aggademo.me/MAC/public";
+var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
+var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
+var PDF_URL = "https://demo.aggademo.me/MAC/public";
 
 var counter = 0;
 
@@ -21,7 +21,13 @@ function formatDate(date) {
     var date = income_date[2] + '-' + income_date[1] + '-' + income_date[0];
     return date;
 }
-
+function mm2en(num) {
+    var nums= { 0: '၀', 1: '၁', 2: '၂', 3: '၃', 4:'၄', 5: '၅', 6: '၆', 7:'၇', 8:'၈', 9:'၉' };
+    return num.replace(/([0-9])/g, function(s, key) {
+        console.log(nums[key] || s);
+        return nums[key] || s;
+    });
+}
 function addRowCPAFF(tbody) {
     var newRow = $("<tr>");
     var cols = "";
