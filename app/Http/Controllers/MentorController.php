@@ -441,4 +441,16 @@ class MentorController extends Controller
             'message' => 'You have renewed successfully.'
         ],200);
     }
+
+    // public function getMentor()
+    // {
+    //     $mentor = Mentor::all();
+    //     $current_check_service = CurrentCheckService::all();
+    //     return  response()->json([
+    //         'mentor' => $mentor,
+    //         'current_check_service' => $current_check_service
+    //     ],200);
+    // }
+
+
 }

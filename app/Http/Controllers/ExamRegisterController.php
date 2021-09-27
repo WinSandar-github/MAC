@@ -256,15 +256,17 @@ class ExamRegisterController extends Controller
                             <li class='fa fa-eye fa-sm'></li>
                         </button>
                     </div>";
-        })
-
-        ->addColumn('print', function ($infos) {
-            return "<div class='btn-group'>
-                        <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->batch_id)'>
-                            <li class='fa fa-print fa-sm'></li>
-                        </button>
-                    </div>";
         });
+        if($request->status==1)
+        {
+          $datatable=$datatable->addColumn('print', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
+                              <li class='fa fa-print fa-sm'></li>
+                          </button>
+                      </div>";
+          });
+        }
       }
       else if($request->course_code == 2){
         $datatable=$datatable->addColumn('action', function ($infos) {
@@ -273,15 +275,17 @@ class ExamRegisterController extends Controller
                                   <li class='fa fa-eye fa-sm'></li>
                               </button>
                           </div>";
-              })
-  
-              ->addColumn('print', function ($infos) {
+              });
+            if($request->status==1)
+            {
+              $datatable=$datatable->addColumn('print', function ($infos) {
                   return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->batch_id)'>
+                              <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                                   <li class='fa fa-print fa-sm'></li>
                               </button>
                           </div>";
               });
+            }
       }
       else if($request->course_code == 3){
         $datatable=$datatable->addColumn('action', function ($infos) {
@@ -290,15 +294,17 @@ class ExamRegisterController extends Controller
                                   <li class='fa fa-eye fa-sm'></li>
                               </button>
                           </div>";
-              })
-  
-              ->addColumn('print', function ($infos) {
+              });
+            if($request->status==1)
+            {
+              $datatable=$datatable->addColumn('print', function ($infos) {
                   return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id)'>
+                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                                   <li class='fa fa-print fa-sm'></li>
                               </button>
                           </div>";
               });
+            }
       }
       else {
         $datatable=$datatable->addColumn('action', function ($infos) {
@@ -307,17 +313,24 @@ class ExamRegisterController extends Controller
                                   <li class='fa fa-eye fa-sm'></li>
                               </button>
                           </div>";
-              })
-  
-              ->addColumn('print', function ($infos) {
+              });
+            if($request->status==1)
+            {
+              $datatable=$datatable->addColumn('print', function ($infos) {
                   return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id)'>
+                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                                   <li class='fa fa-print fa-sm'></li>
                               </button>
                           </div>";
               });
+            }
       }
-      $datatable=$datatable->rawColumns(['action', 'print','exam_type','remark','status'])->make(true);
+      if($request->status==1){
+        $datatable=$datatable->rawColumns(['action', 'print','exam_type','remark','status'])->make(true);
+      }
+      else{
+      $datatable=$datatable->rawColumns(['action', 'exam_type','remark','status'])->make(true);
+      }
       return $datatable;
     }
 
@@ -380,6 +393,14 @@ class ExamRegisterController extends Controller
         ],200);
 
     }
+
+    public function getPassedExamByStudentID($id){
+      $exam_register = ExamRegister::where('student_info_id',$id)->where('grade',1)->with('course','batch')->get();
+      return response()->json([
+          'data' => $exam_register
+      ],200);
+
+  }
     public function getExamStatus($id)
     {
         $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();

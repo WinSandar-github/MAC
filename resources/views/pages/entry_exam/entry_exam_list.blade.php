@@ -14,13 +14,13 @@
             </div>
         </div>  
         <div class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-12">
             <!-- <form action="" method="get" enctype="multipart/form-data"> -->
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="title">{{ __('CPA One Entry Exam Registration List') }}</h5>
+                                <h5 class="title text-center">{{ __('CPA One Entry Exam Registration List') }}</h5>
                             </div>
                         </div>
                         {{--<div class="row">
@@ -98,6 +98,15 @@
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                {{--    <div class="row  justify-content-end m-1 ">
+
+                                        <a target="_blank" href="{{url('current_entry_exam_list/cpa_1')}}" class="p-2 btn btn-sm  text-center mb-1  " >
+                                                စာမေးပွဲဖြေဆိုခွင့်ရသူများ ထုတ်ပြန်ခြင်း
+                                        </a>
+                                    </div>
+                                --}}
+                                
+                              
                                 <table id="tbl_approved_entry_exam"class="table table-hover text-nowrap " style="width:100%;">
                                     <thead>
                                     <tr>

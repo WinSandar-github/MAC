@@ -17,8 +17,6 @@ use App\StudentCourseReg;
 use App\StudentRegister;
 use App\ExamRegister;
 use App\Course;
-
-
 use App\StudentInfo;
 
 class ApiController extends Controller
@@ -97,59 +95,76 @@ class ApiController extends Controller
     {
         
        
-        $course = Course::where('code',$code)->with('active_batch','course_type')->first();
-        $batch_id = $course->active_batch[0]->id;
+        $current_course = Course::where('code',$code)->with('active_batch','course_type')->first();
+         $batch_id = $current_course->active_batch[0]->id;
+
+        $student_registers = StudentRegister::where('form_type',$current_course->active_batch[0]->course->id)
+        ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
+        ->where('student_register.status',1)
+        ->orderBy('student_infos.name_mm','asc')
+        ->orderBy('student_register.type','asc')
+        ->with('student_info')
+        ->select('student_infos.name_mm','student_register.*')->get();
+                        
         
         
-        $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
-            $query->where('batch_id', $course->active_batch[0]->id);
-        })->with('student_course')->orderBy('name_mm','asc')->get();
+        // $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
+        //     $query->where('batch_id', $course->active_batch[0]->id);
+        // })->with('student_course')->orderBy('name_mm','asc')->orderBy('->get();
 
-        foreach($student_infos as $key => $student_info){
-            $student_register = StudentRegister::where('student_info_id',$student_info->id)
-            ->where('form_type',$student_info->student_course->batch->course->id)
-            ->where('status',1)->first();
+        $count = 0;
+        foreach($student_registers as $key => $student_register){
+            // $stu_register = StudentRegister::where('id',$student_register->id)
+            // ->where('form_type',$student_info->student_course->batch->course->id)
+            // ->where('status',1)->first();
 
-            if(!empty($student_register)){
-                $student_info->personal_no = $batch_id.'('.$course->course_type->course_code.')/'.$student_register->sr_no;
+           
+                $student_register->sr_no = ++$count;
+
+                $student_register->save();
+                
+                $student_info = StudentInfo::where('id',$student_register->student_info_id)->first();
+                if($current_course->course_type->course_code == "da"){
+
+                    $student_info->personal_no = $batch_id.'('.$current_course->course_type->course_code.')/'.$student_register->sr_no;
+                }else{
+                    $student_info->cpersonal_no = $batch_id.'/'.$student_register->sr_no;
+                } 
                 $student_info->save();
-
-            }
+              
             
 
         }
-        return $student_infos;
+        return $student_register;
     }
 
     public function generateSrNo($code)
     {
         
         $course = Course::where('code',$code)->with('active_batch')->first();
-       
-        
-        $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
-            $query->where('batch_id', $course->active_batch[0]->id);
-        })->with('student_course_regs')->orderBy('name_mm','asc')->get();
-
+        $student_registers = StudentRegister::where('form_type',$current_course->active_batch[0]->course->id)
+        ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
+        ->where('student_register.status',1)
+        ->orderBy('student_infos.name_mm','asc')
+        ->orderBy('student_register.type','asc')
+        ->with('student_info')
+        ->select('student_infos.name_mm','student_register.*')->get();
         $count = 0;
-        foreach($student_infos as $key => $student_info){
-            
-            $student_register = StudentRegister::where('student_info_id',$student_info->id)
-                                    ->where('form_type',$course->active_batch[0]->course->id)
-                                    ->where('status',1)->first();
-          
-                                    
-                if(!empty($student_register)){
-                    
-                    $student_register->sr_no = ++$count;
+        foreach($student_registers as $key => $student_register){
+            // $stu_register = StudentRegister::where('id',$student_register->id)
+            // ->where('form_type',$student_info->student_course->batch->course->id)
+            // ->where('status',1)->first();
 
-                    $student_register->save();
-                   
-                }
+           
+                $student_register->sr_no = ++$count;
+
+                $student_register->save();
                 
-            }
-            
-        
+                
+
+        }
+                        
+       
         return "Update Serial Number";
     }
 
@@ -157,6 +172,9 @@ class ApiController extends Controller
     {
         
         $course = Course::where('code',$code)->with('active_batch')->first();
+        
+        
+        
        
         $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
             $query->where('batch_id', $course->active_batch[0]->id);
@@ -165,16 +183,16 @@ class ApiController extends Controller
         $count = 0;
         foreach($student_infos as $key => $student_info){
            
-            $student_register = ExamRegister::where('student_info_id',$student_info->id)
+            $exam_register = ExamRegister::where('student_info_id',$student_info->id)
                                     ->where('form_type',$course->active_batch[0]->id)
                                     ->where('status',1)
                                     ->where('exam_type_id','!=',3)
                                     ->first();
 
-                if(!empty($student_register)){
-                    $student_register->sr_no = ++$count;
+                if(!empty($exam_register)){
+                    $exam_register->sr_no = ++$count;
 
-                    $student_register->save();
+                    $exam_register->save();
                 
                 }
             }

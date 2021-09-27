@@ -36,6 +36,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <form action="javascript:void()" method="post" enctype="multipart/form-data">
+                <input type="hidden" id="entry_result" value="1">
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
@@ -493,7 +494,7 @@
     $('document').ready(function(){
         var url = location.pathname;
         var id = url.substring(url.lastIndexOf('/')+1);
-        console.log(id)
+         
         loadEntryDetail(id);
        
 
