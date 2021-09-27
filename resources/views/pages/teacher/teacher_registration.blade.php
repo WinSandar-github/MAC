@@ -67,7 +67,7 @@
                         <div class="card-body">
                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                 <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                    <table id="tbl_teacher_pending"class="table table-hover  text-center" style="width:100%;">
+                                    <table id="tbl_teacher_pending" class="table table-hover  text-center" style="width:100%;">
                                         <thead class=" text-nowrap">
                                             <tr>
                                                 <th class="bold-font-weight" >No</th>
@@ -86,7 +86,7 @@
                                     </table>
                                 </div>
                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                    <table id="tbl_teacher_approved"class="table table-hover  text-center" style="width:100%;">
+                                    <table id="tbl_teacher_approved" class="table table-hover  text-center" style="width:100%;">
                                         <thead class=" text-nowrap">
                                             <tr>
                                                 <th class="bold-font-weight" >No</th>
@@ -105,7 +105,7 @@
                                     </table>
                                 </div>
                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                    <table id="tbl_teacher_rejected"class="table table-hover  text-center" style="width:100%;">
+                                    <table id="tbl_teacher_rejected" class="table table-hover  text-center" style="width:100%;">
                                         <thead class=" text-nowrap">
                                             <tr>
                                                 <th class="bold-font-weight" >No</th>
