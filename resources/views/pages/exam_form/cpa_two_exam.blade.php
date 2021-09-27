@@ -19,6 +19,9 @@
                                 <h5 class="title">{{ __('CPA 2 Exam Registration List') }}</h5>
                             </div>
                         </div>
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary btn-round m-0" onclick="window.location.href='cpa2_exam_result_edit'">Go to Exam Result List</button>
+                        </div>
                         {{--<div class="row">
                             <div class="col-md-8">
 

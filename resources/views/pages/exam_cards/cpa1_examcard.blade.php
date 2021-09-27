@@ -87,7 +87,7 @@
                                         <label class="col-form-label"  style="font-weight:bold">စာစစ်ဌာန </label>
                                     </div>
                                     <div class="col-md-6  text-center">
-                                        <label class="col-form-label" id=""  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                        <label class="col-form-label" id="exam_department"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div><br/><br/><br/><br/><br/>
                                 <!-- <div class="row">

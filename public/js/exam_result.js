@@ -61,49 +61,61 @@ function getResult()
 
 
 function passExam(){
-    var id = localStorage.getItem("exam_register_id");
-    var course_type = localStorage.getItem("course_type");
-    var course_code = localStorage.getItem("course_code");
+    if(!confirm("Are you sure you want to pass this student?"))
+    {
+        return;
+    }
+    else{
+        var id = localStorage.getItem("exam_register_id");
+        var course_type = localStorage.getItem("course_type");
+        var course_code = localStorage.getItem("course_code");
 
-    $.ajax({
-        url: BACKEND_URL + "/pass_exam/"+id,
-        type: 'PATCH',
-        success: function(result){
-            console.log(result)
-            successMessage("You have pass that Student!");
-            if (course_code == 1) {
-                location.href = FRONTEND_URL + "/da1_exam_result_edit";
-            } else if (course_code == 2) {
-                location.href = FRONTEND_URL + "/da2_exam_result_edit";
-            } else if (course_code == 3) {
-                location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
-            } else {
-                location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+        $.ajax({
+            url: BACKEND_URL + "/pass_exam/"+id,
+            type: 'PATCH',
+            success: function(result){
+                console.log(result)
+                successMessage("You have pass that Student!");
+                if (course_code == 1) {
+                    location.href = FRONTEND_URL + "/da1_exam_result_edit";
+                } else if (course_code == 2) {
+                    location.href = FRONTEND_URL + "/da2_exam_result_edit";
+                } else if (course_code == 3) {
+                    location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+                } else {
+                    location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 function failExam(){
-    var id = localStorage.getItem("exam_register_id");
-    var course_type = localStorage.getItem("course_type");
+    if(!confirm("Are you sure you want to fail this student?"))
+    {
+        return;
+    }
+    else{
+        var id = localStorage.getItem("exam_register_id");
+        var course_type = localStorage.getItem("course_type");
 
-    $.ajax({
-        url:  BACKEND_URL + "/fail_exam/"+id,
-        type: 'PATCH',
-        success: function(result){
-            console.log(result)
-            successMessage("You have fail that form!");
-            if (course_code == 1) {
-                location.href = FRONTEND_URL + "/da1_exam_result_edit";
-            } else if (course_code == 2) {
-                location.href = FRONTEND_URL + "/da2_exam_result_edit";
-            } else if (course_code == 3) {
-                location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
-            } else {
-                location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+        $.ajax({
+            url:  BACKEND_URL + "/fail_exam/"+id,
+            type: 'PATCH',
+            success: function(result){
+                console.log(result)
+                successMessage("You have fail that form!");
+                if (course_code == 1) {
+                    location.href = FRONTEND_URL + "/da1_exam_result_edit";
+                } else if (course_code == 2) {
+                    location.href = FRONTEND_URL + "/da2_exam_result_edit";
+                } else if (course_code == 3) {
+                    location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+                } else {
+                    location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+                }
             }
-        }
-    });
+        });
+    }
 }
 

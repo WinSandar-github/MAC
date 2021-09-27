@@ -5,17 +5,17 @@ function getExam(course_code) {
     var batch = $("#selected_batch_id").val();
     var send_data = new FormData();
     send_data.append('name', $("input[name=filter_by_name]").val());
-    if(course_code=="da_1"){
-        course_id=1;
+    if (course_code == "da_1") {
+        course_id = 1;
     }
-    else if(course_code=="da_2"){
-        course_id=2;
+    else if (course_code == "da_2") {
+        course_id = 2;
     }
-    else if(course_code=="cpa_1"){
-        course_id=3;
+    else if (course_code == "cpa_1") {
+        course_id = 3;
     }
-    else if(course_code=="cpa_2"){
-        course_id=4;
+    else if (course_code == "cpa_2") {
+        course_id = 4;
     }
     send_data.append('course_code', course_id);
     send_data.append('batch', batch);
@@ -113,111 +113,111 @@ function getExam(course_code) {
                     tr += "</tr>";
                     $("#tbl_da_rejected_exam_body").append(tr);
                 }
-// =======
-//                     $.ajax({
-//                         url: BACKEND_URL+"/course/"+element.form_type,
-//                         type: 'get',
-//                         data:"",
-//                         success:function(courses){
-//                             var course=courses.data;
+                // =======
+                //                     $.ajax({
+                //                         url: BACKEND_URL+"/course/"+element.form_type,
+                //                         type: 'get',
+                //                         data:"",
+                //                         success:function(courses){
+                //                             var course=courses.data;
 
-//                             if(course.code=="da_1")
-//                             {
-//                                 if(element.status==0){
-//                                     status="PENDING";
-//                                 }
-//                                 else if(element.status==1){
-//                                     status="APPROVED";
-//                                 }
-//                                 else{
-//                                     status="REJECTED";
-//                                 }
-//                                 if(element.exam_type_id == 0){
-//                                     exam_type_id = "SELF STUDY";
-//                                 }
-//                                 else if(element.exam_type_id==1){
-//                                     exam_type_id="PRIVATE SCHOOL";
-//                                 }
-//                                 else{
-//                                     exam_type_id="MAC STUDENT";
-//                                 }
-//                                 if(element.grade == 0){
-//                                     grade = "-";
-//                                 }
-//                                 else if(element.grade==1){
-//                                     grade="PASSED";
-//                                 }
-//                                 else{
-//                                     grade="FAILED";
-//                                 }
-//                                 var tr = "<tr>";
-//                                 tr += "<td>" +  + "</td>";
-//                                 tr += "<td>" + element.student_info.name_eng + "</td>";
-//                                 tr += "<td>" + exam_type_id + "</td>";
-//                                 tr += "<td>" + grade + "</td>";
-//                                 tr += "<td>" + status+ "</td>";
-//                                 tr += "<td ><div class='btn-group'>";
-//                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
-//                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-//                                 tr += "<td ><div class='btn-group'>";
-//                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id+','+ element.batch_id + ")'>" +
-//                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
-//                                 tr += "</tr>";
-//                                 $("#tbl_da_exam_one_body").append(tr);
-//                             }
-//                             else if(course.code=="da_2")
-//                             {
-//                                 if(element.status==0){
-//                                     status="PENDING";
-//                                 }
-//                                 else if(element.status==1){
-//                                     status="APPROVED";
-//                                 }
-//                                 else{
-//                                     status="REJECTED";
-//                                 }
-//                                 if(element.exam_type_id == 0){
-//                                     exam_type_id = "SELF STUDY";
-//                                 }
-//                                 else if(element.exam_type_id==1){
-//                                     exam_type_id="PRIVATE SCHOOL";
-//                                 }
-//                                 else{
-//                                     exam_type_id="MAC STUDENT";
-//                                 }
-//                                 if(element.grade == 0){
-//                                     grade = "-";
-//                                 }
-//                                 else if(element.grade==1){
-//                                     grade="PASSED";
-//                                 }
-//                                 else{
-//                                     grade="FAILED";
-//                                 }
-//                                 var tr = "<tr>";
-//                                 tr += "<td>" +  + "</td>";
-//                                 tr += "<td>" + element.student_info.name_eng + "</td>";
-//                                 tr += "<td>" + exam_type_id + "</td>";
-//                                 tr += "<td>" + grade + "</td>";
-//                                 tr += "<td>" + status+ "</td>";
-//                                 tr += "<td ><div class='btn-group'>";
-//                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDaTwoExam(" + element.id + ")'>" +
-//                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
-//                                 tr += "<td ><div class='btn-group'>";
-//                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id +','+ element.batch_id + ")'>" +
-//                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
-//                                 tr += "</tr>";
-//                                 $("#tbl_da_exam_two_body").append(tr);
-//                             }
+                //                             if(course.code=="da_1")
+                //                             {
+                //                                 if(element.status==0){
+                //                                     status="PENDING";
+                //                                 }
+                //                                 else if(element.status==1){
+                //                                     status="APPROVED";
+                //                                 }
+                //                                 else{
+                //                                     status="REJECTED";
+                //                                 }
+                //                                 if(element.exam_type_id == 0){
+                //                                     exam_type_id = "SELF STUDY";
+                //                                 }
+                //                                 else if(element.exam_type_id==1){
+                //                                     exam_type_id="PRIVATE SCHOOL";
+                //                                 }
+                //                                 else{
+                //                                     exam_type_id="MAC STUDENT";
+                //                                 }
+                //                                 if(element.grade == 0){
+                //                                     grade = "-";
+                //                                 }
+                //                                 else if(element.grade==1){
+                //                                     grade="PASSED";
+                //                                 }
+                //                                 else{
+                //                                     grade="FAILED";
+                //                                 }
+                //                                 var tr = "<tr>";
+                //                                 tr += "<td>" +  + "</td>";
+                //                                 tr += "<td>" + element.student_info.name_eng + "</td>";
+                //                                 tr += "<td>" + exam_type_id + "</td>";
+                //                                 tr += "<td>" + grade + "</td>";
+                //                                 tr += "<td>" + status+ "</td>";
+                //                                 tr += "<td ><div class='btn-group'>";
+                //                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showExam(" + element.id + ")'>" +
+                //                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                //                                 tr += "<td ><div class='btn-group'>";
+                //                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id+','+ element.batch_id + ")'>" +
+                //                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                //                                 tr += "</tr>";
+                //                                 $("#tbl_da_exam_one_body").append(tr);
+                //                             }
+                //                             else if(course.code=="da_2")
+                //                             {
+                //                                 if(element.status==0){
+                //                                     status="PENDING";
+                //                                 }
+                //                                 else if(element.status==1){
+                //                                     status="APPROVED";
+                //                                 }
+                //                                 else{
+                //                                     status="REJECTED";
+                //                                 }
+                //                                 if(element.exam_type_id == 0){
+                //                                     exam_type_id = "SELF STUDY";
+                //                                 }
+                //                                 else if(element.exam_type_id==1){
+                //                                     exam_type_id="PRIVATE SCHOOL";
+                //                                 }
+                //                                 else{
+                //                                     exam_type_id="MAC STUDENT";
+                //                                 }
+                //                                 if(element.grade == 0){
+                //                                     grade = "-";
+                //                                 }
+                //                                 else if(element.grade==1){
+                //                                     grade="PASSED";
+                //                                 }
+                //                                 else{
+                //                                     grade="FAILED";
+                //                                 }
+                //                                 var tr = "<tr>";
+                //                                 tr += "<td>" +  + "</td>";
+                //                                 tr += "<td>" + element.student_info.name_eng + "</td>";
+                //                                 tr += "<td>" + exam_type_id + "</td>";
+                //                                 tr += "<td>" + grade + "</td>";
+                //                                 tr += "<td>" + status+ "</td>";
+                //                                 tr += "<td ><div class='btn-group'>";
+                //                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='showDaTwoExam(" + element.id + ")'>" +
+                //                                     "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                //                                 tr += "<td ><div class='btn-group'>";
+                //                                 tr+="<button type='button' class='btn btn-primary btn-xs' onClick='printExamCard(" + element.student_info.id +','+ element.batch_id + ")'>" +
+                //                                 "<li class='fa fa-print fa-sm'></li></button></div ></td > ";
+                //                                 tr += "</tr>";
+                //                                 $("#tbl_da_exam_two_body").append(tr);
+                //                             }
 
-//                             getIndexNumber('#tbl_da_exam_one tr');
-//                             createDataTable(".tbl_da_exam_one");
+                //                             getIndexNumber('#tbl_da_exam_one tr');
+                //                             createDataTable(".tbl_da_exam_one");
 
-//                             getIndexNumber('#tbl_da_exam_two tr');
-//                             createDataTable(".tbl_da_exam_two");
-//                         }
-//                     })
-//>>>>>>> ac67ed3c0efebdce43c2dac463280128b110edb1
+                //                             getIndexNumber('#tbl_da_exam_two tr');
+                //                             createDataTable(".tbl_da_exam_two");
+                //                         }
+                //                     })
+                //>>>>>>> ac67ed3c0efebdce43c2dac463280128b110edb1
             });
             getIndexNumber('#tbl_da_pending_exam tr');
             createDataTable("#tbl_da_pending_exam");
@@ -245,7 +245,9 @@ function showDaTwoExam(studentId) {
 }
 
 function printExamCard(studentId, batch_id) {
+
     localStorage.setItem("student_id", studentId);
+
     localStorage.setItem("batch_id_for_examcard", batch_id);
     location.href = FRONTEND_URL + "/da1_examcard";
 }
@@ -372,10 +374,10 @@ function loadDAExamData() {
                 // $("#image").append(element.image);
                 $("#registration_no").append(element.personal_no);
 
-                if(element.gov_staff == 1){
+                if (element.gov_staff == 1) {
                     $(".recommend_row").show();
-                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                }else{
+                    $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                } else {
                     $(".recommend_row").hide();
                 }
 
@@ -385,14 +387,14 @@ function loadDAExamData() {
                 $("#roll_number").append(education_history.roll_number);
 
                 let certificate = JSON.parse(education_history.certificate);
-                $.each(certificate,function(fileCount,fileName){
+                $.each(certificate, function (fileCount, fileName) {
 
-                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
                 })
 
-                $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_front").append(`<a href='${PDF_URL + element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL + element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);
@@ -424,75 +426,99 @@ function loadStudentDataForExamCard() {
         success: function (data) {
             var exam_datas = data.data;
             exam_datas.forEach(function (exam_data) {
-            // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
-            $("#roll_no").append(exam_data.id);
-            $("#name").append(exam_data.student_info.name_mm);
-            $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
-            $("#exam_date").append(exam_data.batch.exam_start_date);
-            $("#exam_place").append(exam_data.batch.exam_place);
-            $("#exam_time").append(exam_data.batch.exam_time);
+                // document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
+                $("#roll_no").append(exam_data.id);
+                $("#name").append(exam_data.student_info.name_mm);
+                $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
+                $("#exam_date").append(exam_data.batch.exam_start_date);
+                $("#exam_place").append(exam_data.batch.exam_place);
+                $("#exam_time").append(exam_data.batch.exam_time);
             });
         }
     })
 }
 
 function approveDAOneExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have approved that form!");
-            location.href = FRONTEND_URL + "/da_exam_one";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/approve_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have approved that form!");
+                location.href = FRONTEND_URL + "/da_exam_one";
+                getExam();
+            }
+        });
+    }
 }
 
 function rejectDAOneExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/reject_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have rejected that form!");
-            location.href = FRONTEND_URL + "/da_exam_one";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/reject_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have rejected that form!");
+                location.href = FRONTEND_URL + "/da_exam_one";
+                getExam();
+            }
+        });
+    }
 }
 
 function approveDATwoExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have approved that form!");
-            location.href = FRONTEND_URL + "/da_two_exam";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/approve_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have approved that form!");
+                location.href = FRONTEND_URL + "/da_two_exam";
+                getExam();
+            }
+        });
+    }
 }
 
 function rejectDATwoExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/reject_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have rejected that form!");
-            location.href = FRONTEND_URL + "/da_two_exam";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/reject_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have rejected that form!");
+                location.href = FRONTEND_URL + "/da_two_exam";
+                getExam();
+            }
+        });
+    }
 }
 
-function loadBatchData(course_code){
+function loadBatchData(course_code) {
     var select = document.getElementById("selected_batch_id");
     show_loader();
     $.ajax({
@@ -500,10 +526,10 @@ function loadBatchData(course_code){
         type: 'get',
         contentType: false,
         processData: false,
-         success: function(data){
+        success: function (data) {
 
-            var course_data=data.data;
-            console.log('course_data',course_data);
+            var course_data = data.data;
+            console.log('course_data', course_data);
             course_data.forEach(function (element) {
                 element.batches.forEach(function (batch) {
                     var option = document.createElement('option');
@@ -515,7 +541,7 @@ function loadBatchData(course_code){
             EasyLoading.hide();
 
         },
-        error:function (message){
+        error: function (message) {
             EasyLoading.hide();
 
         }
@@ -579,26 +605,26 @@ function loadStudent(course_type) {
     destroyDatatable("#tbl_exam_pending_result", "#tbl_exam_pending_result_body");
     destroyDatatable("#tbl_exam_approved_result", "#tbl_exam_approved_result_body");
     destroyDatatable("#tbl_exam_rejected_result", "#tbl_exam_rejected_result_body");
-    localStorage.setItem("course_type",course_type);
+    localStorage.setItem("course_type", course_type);
 
-    if(course_type=="da_1"){
-        course_id=1;
+    if (course_type == "da_1") {
+        course_id = 1;
     }
-    else if(course_type=="da_2"){
-        course_id=2;
+    else if (course_type == "da_2") {
+        course_id = 2;
     }
-    else if(course_type=="cpa_1"){
-        course_id=3;
+    else if (course_type == "cpa_1") {
+        course_id = 3;
     }
-    else if(course_type=="cpa_2"){
-        course_id=4;
+    else if (course_type == "cpa_2") {
+        course_id = 4;
     }
-    var send_data=new FormData();
-    send_data.append('course_code',course_id);
-    send_data.append('batch',$("#selected_batch_id").val());
-    send_data.append('name',$("input[name=filter_by_name]").val());
-    send_data.append('grade',$('#selected_grade_id').val());
-    console.log($("input[name=filter_by_name]").val(),$('#selected_grade_id').val());
+    var send_data = new FormData();
+    send_data.append('course_code', course_id);
+    send_data.append('batch', $("#selected_batch_id").val());
+    send_data.append('name', $("input[name=filter_by_name]").val());
+    send_data.append('grade', $('#selected_grade_id').val());
+    console.log($("input[name=filter_by_name]").val(), $('#selected_grade_id').val());
     show_loader();
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
@@ -608,7 +634,7 @@ function loadStudent(course_type) {
         processData: false,
         success: function (data) {
             var da_data = data.data;
-            console.log({da_data});
+            console.log({ da_data });
             da_data.forEach(function (element) {
                 if (element.status == 0) {
                     status = "PENDING";
@@ -643,7 +669,7 @@ function loadStudent(course_type) {
                 } else {
                     student_grade = "FAILED";
                 }
-                if(element.grade == 0){
+                if (element.grade == 0) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
                     tr += "<td ><div class='btn-group'>";
@@ -662,7 +688,7 @@ function loadStudent(course_type) {
                     // tr += "<td ><div class='btn-group'>";
                     $("#tbl_exam_pending_result_body").append(tr);
                 }
-                else if(element.grade == 1){
+                else if (element.grade == 1) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
                     tr += "<td ><div class='btn-group'>";
@@ -681,7 +707,7 @@ function loadStudent(course_type) {
                     // tr += "<td ><div class='btn-group'>";
                     $("#tbl_exam_approved_result_body").append(tr);
                 }
-                else if(element.grade == 2){
+                else if (element.grade == 2) {
                     var tr = "<tr>";
                     tr += "<td>" + +"</td>";
                     tr += "<td ><div class='btn-group'>";
@@ -710,7 +736,7 @@ function loadStudent(course_type) {
             createDataTable("#tbl_exam_rejected_result");
             EasyLoading.hide();
         },
-        error:function (message){
+        error: function (message) {
             EasyLoading.hide();
             dataMessage(message, "#tbl_exam_pending_result", "#tbl_exam_pending_result_body");
             dataMessage(message, "#tbl_exam_approved_result", "#tbl_exam_approved_result_body");
@@ -786,7 +812,7 @@ function getModuleStd() {
                 } else {
                     status = "REJECTED";
                 }
-                
+
                 if (element.exam_type_id == 1) {
                     $(".is_private_row").show();
                 } else {
@@ -820,8 +846,7 @@ function getModuleStd() {
                 }
 
                 setTimeout(() => {
-                    if(element.grade == 1 )
-                    {
+                    if (element.grade == 1) {
 
                         // $('.ex_res_btn').hide();
                         //$('.pass_fail_btn').hide();
@@ -859,10 +884,10 @@ function getModuleStd() {
                 // $("#image").append(std.image);
                 $("#registration_no").append(std.personal_no);
 
-                if(std.gov_staff == 1){
+                if (std.gov_staff == 1) {
                     $(".recommend_row").show();
-                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                }else{
+                    $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                } else {
                     $(".recommend_row").hide();
                 }
 
@@ -872,14 +897,14 @@ function getModuleStd() {
                 $("#roll_number").append(education_history.roll_number);
 
                 let certificate = JSON.parse(education_history.certificate);
-                $.each(certificate,function(fileCount,fileName){
+                $.each(certificate, function (fileCount, fileName) {
 
-                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
                 })
 
-                $(".nrc_front").append(`<a href='${PDF_URL+std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_front").append(`<a href='${PDF_URL + std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL + std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);
@@ -891,24 +916,24 @@ function getModuleStd() {
                 attached_file = std.student_education_histroy.certificate;
 
                 var subjects = element.subjects;
-                var i=1;
+                var i = 1;
                 console.log(element.is_full_module);
                 subjects.forEach(function (subj) {
                     if (element.is_full_module == subj.module_id) {
                         var tr = "<tr>";
-                        tr += "<td>" + i +"</td>";
-                        tr += "<td><input type='text' name='subject"+i+"' id='subject"+i+"' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
-                        tr += "<td><input type='text' name='mark"+i+"' id='mark"+i+"' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade"+i+"' id='grade"+i+"' class='form-control' required></td>";
+                        tr += "<td>" + i + "</td>";
+                        tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
-                    }else if (element.is_full_module == 3 || element.is_full_module == 0 ){
+                    } else if (element.is_full_module == 3 || element.is_full_module == 0) {
                         var tr = "<tr>";
-                        tr += "<td>" + i +"</td>";
-                        tr += "<td><input type='text' name='subject"+i+"' id='subject"+i+"' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
-                        tr += "<td><input type='text' name='mark"+i+"' id='mark"+i+"' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade"+i+"' id='grade"+i+"' class='form-control' required></td>";
+                        tr += "<td>" + i + "</td>";
+                        tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
@@ -921,92 +946,87 @@ function getModuleStd() {
                 type: 'get',
                 data: "",
                 success: function (result) {
-                        if(result.data !=null)
-                        {
-                            // $('.ex_res_btn').hide();
+                    if (result.data != null) {
+                        // $('.ex_res_btn').hide();
 
-                            // $('.pass_fail_btn').show();
+                        // $('.pass_fail_btn').show();
 
-                            $('.pass_fail_btn').hide();
+                        $('.pass_fail_btn').hide();
 
-                            $("input[name = result_id]").val(result.data.id);
-                            //console.log('search_exam_result',JSON.parse(result.data.result));
-                            var rData=JSON.parse(result.data.result);
-                            var row_length = rData.subjects.length;
-                            //console.log(rData.subjects[1]);
+                        $("input[name = result_id]").val(result.data.id);
+                        //console.log('search_exam_result',JSON.parse(result.data.result));
+                        var rData = JSON.parse(result.data.result);
+                        var row_length = rData.subjects.length;
+                        //console.log(rData.subjects[1]);
 
-                            console.log('is_full_module',module_type);
-                            if(module_type == 1)
-                            {
-                                for (var i = 0; i < row_length; i++)
-                                {
-                                    var j=i+1;
-                                    var sunject=document.getElementById('subject'+j);
-                                    sunject.value = rData.subjects[i];
-                                    sunject.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++)
-                                {
-                                    var j=i+1;
-                                    var mark=document.getElementById('mark'+j);
-                                    mark.value = rData.marks[i];
-                                    mark.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++)
-                                {
-                                    var j=i+1;
-                                    var grade=document.getElementById('grade'+j);
-                                    grade.value = rData.grades[i];
-                                    grade.setAttribute("readonly", "true");
-                                }
+                        console.log('is_full_module', module_type);
+                        if (module_type == 1) {
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var sunject = document.getElementById('subject' + j);
+                                sunject.value = rData.subjects[i];
+                                sunject.setAttribute("readonly", "true");
                             }
-                            else if(module_type == 2){
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var subject = document.getElementById('subject' + j);
-                                    subject.value = rData.subjects[i];
-                                    subject.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var mark = document.getElementById('mark' + j);
-                                    mark.value = rData.marks[i];
-                                    mark.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var grade = document.getElementById('grade' + j);
-                                    grade.value = rData.grades[i];
-                                    grade.setAttribute("readonly", "true");
-                                }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var mark = document.getElementById('mark' + j);
+                                mark.value = rData.marks[i];
+                                mark.setAttribute("readonly", "true");
                             }
-                            else if(module_type == 3){
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var subject = document.getElementById('subject' + j);
-                                    subject.value = rData.subjects[i];
-                                    subject.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var mark = document.getElementById('mark' + j);
-                                    mark.value = rData.marks[i];
-                                    mark.setAttribute("readonly", "true");
-                                }
-                                for (var i = 0; i < row_length; i++) {
-                                    var j = i + 1;
-                                    var grade = document.getElementById('grade' + j);
-                                    grade.value = rData.grades[i];
-                                    grade.setAttribute("readonly", "true");
-                                }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var grade = document.getElementById('grade' + j);
+                                grade.value = rData.grades[i];
+                                grade.setAttribute("readonly", "true");
                             }
-                        }else{
-                            // $('.pass_fail_btn').hide();
                         }
-                    },
-                error:function (message){
-                    console.log(message);
+                        else if (module_type == 2) {
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var subject = document.getElementById('subject' + j);
+                                subject.value = rData.subjects[i];
+                                subject.setAttribute("readonly", "true");
+                            }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var mark = document.getElementById('mark' + j);
+                                mark.value = rData.marks[i];
+                                mark.setAttribute("readonly", "true");
+                            }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var grade = document.getElementById('grade' + j);
+                                grade.value = rData.grades[i];
+                                grade.setAttribute("readonly", "true");
+                            }
+                        }
+                        else if (module_type == 3) {
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var subject = document.getElementById('subject' + j);
+                                subject.value = rData.subjects[i];
+                                subject.setAttribute("readonly", "true");
+                            }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var mark = document.getElementById('mark' + j);
+                                mark.value = rData.marks[i];
+                                mark.setAttribute("readonly", "true");
+                            }
+                            for (var i = 0; i < row_length; i++) {
+                                var j = i + 1;
+                                var grade = document.getElementById('grade' + j);
+                                grade.value = rData.grades[i];
+                                grade.setAttribute("readonly", "true");
+                            }
+                        }
+                    } else {
+                        // $('.pass_fail_btn').hide();
                     }
+                },
+                error: function (message) {
+                    console.log(message);
+                }
             });
         }
     });
