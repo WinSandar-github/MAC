@@ -71,7 +71,7 @@
 																								</div>
 																							</div>
 
-	                                            <div class="row  pl-4 mt-3">
+	                                            <div class="row  pl-4 mt-5">
 	                                                <h5 class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Address Of Practice(Head Office)') }}</h5>
 	                                            </div>
 																							<div class="row  pl-4">

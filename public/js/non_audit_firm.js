@@ -7,7 +7,6 @@ function loadAttachFiles(firm_id){
       non_audit_data.forEach(function(element){
         document.getElementById('profile_photo').src = PDF_URL + element.image;
         var non_audit_file=element.non_audit_firm_file;
-        console.log("non_audit_file >>>",non_audit_file);
         if(element.organization_structure_id == 1){
           non_audit_file.forEach(function(item){
             // for Sole Proprietorship
