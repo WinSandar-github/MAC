@@ -470,18 +470,25 @@ Breadcrumbs::for('entry_exam_list', function ($trail) {
 
 });
 
-//Qualified Test
-Breadcrumbs::for('qualified_test_exam_list', function ($trail) {
-    $trail->parent('administration');
-    // $trail->push('Coming Soon...', route('page.index', 'entry_exam_list'));
-    $trail->push('qualified_test_exam_list', route('page.index', 'qualified_test_exam_list'));
-
-});
-
 Breadcrumbs::for('entry_exam_result_list', function ($trail) {
     $trail->parent('home');
     // $trail->push('Coming Soon...', route('page.index', 'entry_exam_list'));
     $trail->push('entry_exam_result_list', route('page.index', 'entry_exam_result_list'));
+
+});
+
+//Qualified Test
+Breadcrumbs::for('Qualified Test List', function ($trail) {
+    $trail->parent('administration');
+    // $trail->push('Coming Soon...', route('page.index', 'entry_exam_list'));
+    $trail->push('Qualified Test List', route('page.index', 'qualified_test_list'));
+
+});
+
+Breadcrumbs::for('Qualified Test Result List', function ($trail) {
+    $trail->parent('administration');
+    // $trail->push('Coming Soon...', route('page.index', 'entry_exam_list'));
+    $trail->push('Qualified Test Result List', route('page.index', 'qualified_test_result_list'));
 
 });
 
