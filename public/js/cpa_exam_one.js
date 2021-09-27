@@ -196,7 +196,8 @@ function loadCPAStudentDataForExamCard() {
             console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
-                $("#batch_no").append(exam_data.batch.number);
+                var batch_no=mm2en(exam_data.batch.number.toString());
+                $("#batch_no").append(batch_no);
                 $("#cpa_roll_no").append(exam_data.student_info.personal_no);
                 $("#name").append(exam_data.student_info.name_mm);
                 $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
