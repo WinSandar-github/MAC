@@ -186,7 +186,7 @@ class CpaTraAddmissionDirectController extends Controller
         $date_of_birth = $request->date_of_birth;
         $da_pass_date  = $request->da_pass_date;
         $degree_date = $request->degree_date;
-        $date = date('Y-m-d');
+        $date = date('d-M-Y');
         $qualified_date = date('Y-m-d');
         $course_date = date('Y-m-d');
 

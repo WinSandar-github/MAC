@@ -114,6 +114,7 @@ class StudentRegisterController extends Controller
                 $student_register->batch_no = $request->batch_no_private;
                 $student_register->part_no = $request->part_no_private;
                 $student_register->personal_no = $request->personal_no_private;
+                $student_register->module=$request->module;
                 $student_register->direct_access_no = $request->direct_access_no;
                 $student_register->entry_success_no = $request->entry_success_no;
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
@@ -431,6 +432,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
                 $student_register->cpa_one_access_no = $request->cpa_one_access_no;
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
+                $student_register->module=$request->module;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
