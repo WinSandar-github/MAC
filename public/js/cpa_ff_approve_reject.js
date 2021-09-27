@@ -146,6 +146,7 @@ function loadCPAFFData(){
     $("#degree").html("");
     $("#cpa_certificate").html("");
     $("#mpa_mem_card").html("");
+    $("#mpa_mem_card_back").html("");
     $("#nrc_front").html("");
     $("#nrc_back").html("");
     $("#cpd_record").html("");
@@ -242,6 +243,7 @@ function loadCPAFFData(){
                 $("#degree").append(degree);
                 $("#cpa_certificate").append(element.cpa_certificate);
                 $("#mpa_mem_card").append(element.mpa_mem_card);
+                $("#mpa_mem_card_back").append(element.mpa_mem_card_back);
                 $("#nrc_front").append(element.nrc_front);
                 $("#nrc_back").append(element.nrc_back);
                 $("#cpd_record").append(element.cpd_record);
@@ -273,6 +275,7 @@ function loadCPAFFData(){
                 // foreign_modal=element.foreign_degree;
                 cpa_certificate_modal=PDF_URL+element.cpa_certificate;
                 mpa_modal=PDF_URL+element.mpa_mem_card;
+                mpa_modal_back=PDF_URL+element.mpa_mem_card_back;
                 nrc_front_modal=PDF_URL+element.nrc_front;
                 nrc_back_modal=PDF_URL+element.nrc_back;
                 cpd_record_modal=PDF_URL+element.cpd_record;
@@ -283,6 +286,7 @@ function loadCPAFFData(){
                 // document.getElementById('foreign_degree').src=foreign_modal;
                 document.getElementById('cpa_certificate').src=cpa_certificate_modal;
                 document.getElementById('mpa_mem_card').src=mpa_modal;
+                document.getElementById('mpa_mem_card_back').src=mpa_modal_back;
                 document.getElementById('nrc_front').src=nrc_front_modal;
                 document.getElementById('nrc_back').src=nrc_back_modal;
                 document.getElementById('cpd_record').src=cpd_record_modal;
@@ -307,30 +311,37 @@ function loadFile(file) {
 }
 
 function approveCPAFFUser(){
-
-    var id = $("input[name = cpaff_id]").val();
-    console.log('approvecpaid',id);
-    $.ajax({
-        url: BACKEND_URL + "/approve_cpaff/"+id,
-        type: 'patch',
-        success: function(result){
-            successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/cpa_ff_registration_list";
-        }
-    });
+    if(!confirm('Are you sure you want to approve this user?')){
+        return;
+    }else{
+        var id = $("input[name = cpaff_id]").val();
+        console.log('approvecpaid',id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_cpaff/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                location.href = FRONTEND_URL + "/cpa_ff_registration_list";
+            }
+        });
+    }
 }
 
 function rejectCPAFFUser(){ 
-    var id = $("input[name = cpaff_id]").val();
-    console.log('rejectcpaid',id);
-    $.ajax({
-        url: BACKEND_URL +"/reject_cpaff/"+id,
-        type: 'patch',
-        success: function(result){
-            successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/cpa_ff_registration_list";
-        }
-    });
+    if(!confirm('Are you sure you want to reject this user?')){
+        return;
+    }else{
+        var id = $("input[name = cpaff_id]").val();
+        console.log('rejectcpaid',id);
+        $.ajax({
+            url: BACKEND_URL +"/reject_cpaff/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have rejected that user!");
+                location.href = FRONTEND_URL + "/cpa_ff_registration_list";
+            }
+        });
+    }
 }
 
 window.onclick = function(event) {
@@ -352,6 +363,10 @@ window.onclick = function(event) {
     }
     if (event.target == document.getElementById("mpa_mem_card_Modal") && mpa_modal!=null) { 
         document.getElementById('mpa_mem_card').src=mpa_modal;
+        
+    }
+    if (event.target == document.getElementById("mpa_mem_card_back_Modal") && mpa_modal_back!=null) { 
+        document.getElementById('mpa_mem_card_back').src=mpa_modal_back;
         
     }
     if (event.target == document.getElementById("nrc_front_Modal") && nrc_front_modal!=null) {
