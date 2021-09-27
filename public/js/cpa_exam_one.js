@@ -352,6 +352,8 @@ function loadCPAExamData() {
                 }
 
                 element = element.student_info;
+                console.log('element',element)
+
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
@@ -370,7 +372,13 @@ function loadCPAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.personal_no);
+                if(element.course_type_id==1){
+                    $("#registration_no").append(element.personal_no);
+
+                }else{
+                    $("#registration_no").append(element.cpersonal_no);
+                }
+                
 
                 if(element.gov_staff == 1){
                     $(".recommend_row").show();
@@ -693,7 +701,13 @@ function getCPAModuleStd() {
                 $("#email").append(std.email);
                 $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(std.image);
-                $("#registration_no").append(std.personal_no);
+                if(std.course_type_id==1){
+                    $("#registration_no").append(std.personal_no);
+
+                }else{
+                    $("#registration_no").append(std.cpersonal_no);
+                }
+                
 
                 if(std.gov_staff == 1){
                     $(".recommend_row").show();

@@ -56,7 +56,7 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        print_r($request->school_type);
+        
         if ($request->hasfile('nrc_front')) {
             $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -252,7 +252,9 @@ class SchoolController extends Controller
             $school->type = rtrim($school_type, ',');
         }
         
-        $school->save();
+         $school->save();
+        
+        
        
         //Student Info
         

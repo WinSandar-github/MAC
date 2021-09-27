@@ -12,7 +12,6 @@
                         </div>
                     </div>
                 </div>
-              
                 <div class="card-body">
                     <div class="row"> 
                             <div class="col-md-12 pl-2">
@@ -75,7 +74,8 @@ showAppList = (course_code) =>{
             url  : FRONTEND_URL + "/show_exam_list",
             type : "POST" ,
             data :  function (d) {
-                d.code        =  course_code
+                d.code        =  course_code,
+                d.exam_type_id = 3
                 
             }
         },
