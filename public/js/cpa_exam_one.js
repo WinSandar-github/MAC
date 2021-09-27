@@ -207,59 +207,83 @@ function loadCPAStudentDataForExamCard() {
 }
 
 function approveCPAOneExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have approved that form!");
-            location.href = FRONTEND_URL + "/cpa_exam_one";
-            getCPAExam();
-        }
-    });
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/approve_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have approved that form!");
+                location.href = FRONTEND_URL + "/cpa_exam_one";
+                getCPAExam();
+            }
+        });
+    }
 }
 
 function rejectCPAOneExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/reject_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have rejected that form!");
-            location.href = FRONTEND_URL + "/cpa_exam_one";
-            getCPAExam();
-        }
-    });
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/reject_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have rejected that form!");
+                location.href = FRONTEND_URL + "/cpa_exam_one";
+                getCPAExam();
+            }
+        });
+    }
 }
 
 function approveCPATwoExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have approved that form!");
-            location.href = FRONTEND_URL + "/cpa_two_exam";
-            getCPAExam();
-        }
-    });
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/approve_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have approved that form!");
+                location.href = FRONTEND_URL + "/cpa_two_exam";
+                getCPAExam();
+            }
+        });
+    }
 }
 
 function rejectCPATwoExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/reject_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have rejected that form!");
-            location.href = FRONTEND_URL + "/cpa_two_exam";
-            getCPAExam();
-        }
-    });
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/reject_exam/" + id,
+            type: 'PATCH',
+            success: function (result) {
+                console.log(result)
+                successMessage("You have rejected that form!");
+                location.href = FRONTEND_URL + "/cpa_two_exam";
+                getCPAExam();
+            }
+        });
+    }
 }
 
 function loadCPAExamData() {
