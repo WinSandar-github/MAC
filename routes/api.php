@@ -230,7 +230,7 @@ Route::get('/get_exam_status/{id}','ExamRegisterController@getExamStatus');
 
 //Pass or fail student
 Route::patch('/pass_exam/{id}', 'ExamResultController@passExam');
-Route::patch('/fail_exam/{id}', 'ExamResultController@failExam');
+Route::patch('/fail_exam/{id}', 'ExamResultController@rejectExam');
 
 // Route::apiResource('mentor','MentorController');
 Route::resource('mentor','MentorController');
