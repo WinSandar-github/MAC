@@ -529,29 +529,42 @@ function createForm()
 }
 
 function approveMentorStudent(){
-  var id = $("input[name = mentor_student_id]").val();
-  console.log(id);
-  $.ajax({
-      url: BACKEND_URL + "/approve_mentor_student/"+id,
-      type: 'patch',
-      success: function(result){
-        console.log(result)
-          successMessage("You have approved that user!");
-          setInterval(() => {
-            location.href = FRONTEND_URL + "/mentor_list";
-          }, 3000);
-      }
-  });
+  if (!confirm('Are you sure you want to approve this mentor?'))
+  {
+      return;
+  }
+  else{
+      var id = $("input[name = mentor_student_id]").val();
+      console.log(id);
+      $.ajax({
+          url: BACKEND_URL + "/approve_mentor_student/"+id,
+          type: 'patch',
+          success: function(result){
+            console.log(result)
+              successMessage("You have approved that user!");
+              setInterval(() => {
+                location.href = FRONTEND_URL + "/mentor_list";
+              }, 3000);
+          }
+      });
+  }
+  
 }
 
 function rejectMentorStudent(){
-  var id = $("input[name = mentor_student_id]").val();
-  $.ajax({
-      url: BACKEND_URL +"/reject_mentor_student/"+id,
-      type: 'patch',
-      success: function(result){
-          successMessage("You have rejected that user!");
-          location.href = FRONTEND_URL + "/mentor_list";
-      }
-  });
+  if (!confirm('Are you sure you want to reject this mentor?'))
+  {
+      return;
+  }
+  else{
+    var id = $("input[name = mentor_student_id]").val();
+    $.ajax({
+        url: BACKEND_URL +"/reject_mentor_student/"+id,
+        type: 'patch',
+        success: function(result){
+            successMessage("You have rejected that user!");
+            location.href = FRONTEND_URL + "/mentor_list";
+        }
+    });
+  }
 }

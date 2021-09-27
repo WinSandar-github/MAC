@@ -189,16 +189,16 @@ Route::post('store_cpa_da_two_app_form','CpaController@store_da_cpa_app_form');
 Route::resource('/school','SchoolController\SchoolController');
 Route::post('/filter_school','SchoolController\SchoolController@FilterSchool');
 Route::post('/approve_school_register', 'SchoolController\SchoolController@approve_school_register');
-Route::post('/reject_school_register/{id}', 'SchoolController\SchoolController@reject_school_register');
+Route::post('/reject_school_register', 'SchoolController\SchoolController@reject_school_register');
 Route::patch('/approve_school/{id}', 'SchoolController\SchoolController@approveSchool');
 Route::get('/check_payment_school/{id}', 'SchoolController\SchoolController@checkPayment');
 
 //for teacher registration
-Route::resource('/teacher','TeacherController');
-Route::post('/filter_teacher','TeacherController@FilterTeacher');
-Route::post('/approve_teacher_register', 'TeacherController@approve_teacher_register');
-Route::patch('/approve_teacher/{id}', 'TeacherController@approveTeacher');
-Route::get('/check_payment_teacher/{id}', 'TeacherController@check_payment');
+Route::resource('/teacher','TeacherController\TeacherController');
+Route::post('/filter_teacher','TeacherController\TeacherController@FilterTeacher');
+Route::post('/approve_teacher_register', 'TeacherController\TeacherController@approve_teacher_register');
+Route::patch('/approve_teacher/{id}', 'TeacherController\TeacherController@approveTeacher');
+Route::get('/check_payment_teacher/{id}', 'TeacherController\TeacherController@check_payment');
 
 //Audit DATA
 Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
@@ -251,7 +251,7 @@ Route::get('get_type/{id}', 'StudentRegisterController@getType');
 Route::get('getSchoolStatus/{id}', 'SchoolController\SchoolController@schoolStatus');
 
 //Teacher Status
-Route::get('getTeacherStatus/{id}', 'TeacherController@teacherStatus');
+Route::get('getTeacherStatus/{id}', 'TeacherController\TeacherController@teacherStatus');
 
 Route::post('/update_mentor','StudentRegisterController@updateMentor');
 
@@ -312,10 +312,10 @@ Route::get('get_exam_type','ExamController@getExamType');
 
 
 // subject
-Route::get('getSubject/{course_id}','SubjectController@getSubject');
+Route::post('getSubject','SubjectController\SubjectController@getSubject');
 
 // education history
-Route::get('getEducationHistory/{student_info_id}','TeacherController@getEducationHistory');
+Route::get('getEducationHistory/{student_info_id}','TeacherController\TeacherController@getEducationHistory');
 
 
 //Pass or fail  student
@@ -325,3 +325,11 @@ Route::patch('/fail_entry_exam/{id}', 'EntryExamController@failEntryExam');
 
 // education history
 Route::post('checkEmail','SchoolController\SchoolController@checkEmail');
+
+// Apprentice Accountant
+Route::get('/acc_app', 'ArticleController\ArticleController@index');
+Route::get('/acc_app/{id}', 'ArticleController\ArticleController@show');
+Route::post('/article_firm_register', 'ArticleController\ArticleController@store');
+Route::post('/filter_article','ArticleController\ArticleController@FilterArticle');
+Route::patch('/approve_article/{id}', 'ArticleController\ArticleController@approve');
+Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject');

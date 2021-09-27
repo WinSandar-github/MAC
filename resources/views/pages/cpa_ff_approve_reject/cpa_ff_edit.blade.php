@@ -146,7 +146,7 @@
                                 <!--MPA Member Card-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">MPA Member Card</p>
+                                        <p class="ml-2" style="font-weight:bold">MPA Member Card(Front)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_Modal"><i class="fa fa-paperclip"></i></button>
@@ -157,7 +157,7 @@
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                            <h5 class="modal-title text-center">MPA Member Card</h5>
+                                            <h5 class="modal-title text-center">MPA Member Card(Front)</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -165,6 +165,33 @@
                                         <div class="modal-body">
                                             <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
                                             <embed id="mpa_mem_card" width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <!--MPA Member Card back-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">MPA Member Card(Back)</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_back_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                <!--MPA Member Card back Modal --> 
+                                <div id="mpa_mem_card_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">                                            
+                                            <h5 class="modal-title text-center">MPA Member Card(Back)</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
+                                            <embed id="mpa_mem_card_back" width="100%" height="500px">
                                         </div>
                                     </div>
                                     </div>
@@ -251,14 +278,14 @@
                                 </div>
 
                                     <!--Passport Image-->
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Passport Image</p>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#passport_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
-                                </div>
+                                </div>--}}
                                     <!--Passport Image Modal-->
                                 <div id="passport_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">

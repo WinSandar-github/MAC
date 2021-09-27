@@ -43,7 +43,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('renew_cpaff_reg')->default(null)->nullable();
             $table->date('renew_accepted_date')->default(null)->nullable();
             $table->boolean('renew_status')->default(null)->nullable();
-            $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
+            // $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
 
             //adding for other
             $table->string('total_hours')->nullable();          

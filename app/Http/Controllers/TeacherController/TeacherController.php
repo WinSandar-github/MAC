@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\TeacherController;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\TeacherRegister;
 use App\StudentInfo;
@@ -127,18 +128,13 @@ class TeacherController extends Controller
         $teacher->save();
         
         //Student Info
-        $std_info =StudentInfo::where('school_id','!=','NULL')->where('email','=', $request->email)->get();
-        if(sizeof($std_info)!=0){
-            $std_info =StudentInfo::find($std_info->id);
-            $std_info->teacher_id = $teacher->id;
-            $std_info->save();
-        }else{
-            $std_info = new StudentInfo();
-            $std_info->teacher_id = $teacher->id;
-            $std_info->email = $request->email;
-            $std_info->password = Hash::make($request->password);
-            $std_info->save();
-        }
+        
+        $std_info = new StudentInfo();
+        $std_info->teacher_id = $teacher->id;
+        $std_info->email = $request->email;
+        $std_info->password = Hash::make($request->password);
+        $std_info->save();
+        
         $degrees_certificates=implode(',', $degrees_certificates);
         $new_degrees_certificates= explode(',',$degrees_certificates);
         for($i=0;$i < sizeof($request->degrees);$i++){
@@ -292,7 +288,7 @@ class TeacherController extends Controller
     public function approve_teacher_register(Request $request)
     {
         $std_info = StudentInfo::find($request->student_info_id);
-        $std_info->approve_reject_status = 1;
+        $std_info->approve_reject_status = $request->status;
         $std_info->save();
         $teacher = TeacherRegister::find($request->id);
         $teacher->approve_reject_status = $request->status;
