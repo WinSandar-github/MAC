@@ -124,8 +124,14 @@
                         </li>
                         <li class="{{ $elementActive == 'entry_exam_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'entry_exam_list') }}">
-                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
-                                <span style="font-weight:normal;font-size:11px;">{{ __('Entry Exam List') }}</span>
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('Entry Exam List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'qualified_test_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'qualified_test_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('Qualified Test List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">
@@ -164,10 +170,10 @@
                                 <span style="font-weight:normal;font-size:11px;">{{ __('DA 2 Exam Result List') }}</span>
                             </a>
                         </li>
-                        <li  class="{{ $elementActive == 'qualified_test_list' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'qualified_test_list') }}">
+                        <li  class="{{ $elementActive == 'qualified_test_result_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'qualified_test_result_list') }}">
                                 <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
-                                <span style="font-size:11px;font-weight:normal;">{{ __('Qualified Test List') }}</span>
+                                <span style="font-size:11px;font-weight:normal;">{{ __('Qualified Test Result List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'entry_exam_result' ? 'active' : '' }}">
