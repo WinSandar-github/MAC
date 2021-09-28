@@ -198,12 +198,12 @@ function loadCPAStudentDataForExamCard() {
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
                 var batch_no=mm2en(exam_data.batch.number.toString());
                 $("#batch_no").append(batch_no);
-                $("#cpa_roll_no").append(exam_data.student_info.personal_no);
+                $("#cpa_roll_no").append(exam_data.student_info.cpersonal_no);
                 $("#name").append(exam_data.student_info.name_mm);
                 $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
                 $("#father_name").append(exam_data.student_info.father_name_mm);
                 $('#exam_department').text(exam_data.exam_department?.name);
-                $('#roll_no').text(exam_data.student_info.cpersonal_no);
+                // $('#roll_no').text(exam_data.student_info.cpersonal_no);
 
             });
         }
@@ -415,14 +415,14 @@ function loadCPAExamData() {
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
                 console.log(element.course_type_id,"aa");
-                if(element.course_type_id==1){
-                    $("#registration_no").append(element.personal_no);
+                // if(element.course_type_id==1){
+                //     $("#registration_no").append(element.personal_no);
 
-                }else if(element.course_type_id==2){
+                // }else if(element.course_type_id==2){
                     $("#registration_no").append(element.cpersonal_no);
-                }else{
-                    $("#registration_no").append("-");
-                }
+                // }else{
+                //     $("#registration_no").append("-");
+                // }
                 
 
                 if (element.gov_staff == 1) {
