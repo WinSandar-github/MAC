@@ -302,7 +302,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        {{--<div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
                             </div>
@@ -318,7 +318,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div> 
+                        </div> --}}
                     </div>
                 </div>
 

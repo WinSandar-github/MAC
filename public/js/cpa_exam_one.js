@@ -471,6 +471,14 @@ function loadCPAExamData() {
                             console.log(result.data,"course html");                            
                             $('.course').html(course_html)
                         }
+                        else{
+                            $('#tbl_course').DataTable( {
+                                "bPaginate": false,
+                                "bLengthChange": false,
+                                "bInfo" : false,
+                                searching:false,
+                            });
+                        }
                     }
                 });
                 
