@@ -165,12 +165,11 @@
                 url  : BACKEND_URL + "/filter_exam_register",
                 type : "POST" ,
                 data :  function (d) {
-                    d.grade       = 1,
+                    d.grade = 1,
                     d.course_code = '1',
-                    d.name =    "",
+                    d.name = "",
                     d.batch= "all"
                 }
-             
             },
         columns: [
           {data: null, render: function (data, type, row, meta) {

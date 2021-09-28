@@ -47,8 +47,8 @@ class CertificateSeeder extends Seeder
                         <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;">
                             <p>
                                 {{ studentName }} (အဖအမည် - {{ abaName }}၊ နိုင်ငံသားစိစစ်ရေးကတ်အမှတ် - {{ nrcNumber }})
-                                သည် {{ year }}
-                                ခုနှစ်၊ {{ monthMM }} အတွင်း ကျင်းပခဲ့သော {{ courseName }} စာမေးပွဲတွင် {{ grade }}
+                                သည် {{ examYear }}
+                                ခုနှစ်၊ {{ examMonth }} အတွင်း ကျင်းပခဲ့သော {{ courseName }} စာမေးပွဲတွင် {{ grade }}
                                 အဆင့်ဖြင့်ဖြေဆိုအောင်မြင်ပါသဖြင့် ဤဂုဏ်ပြုလက်မှတ်ကို ချီးမြှင့်လိုက်သည်။
                             </p>
                         </td>
