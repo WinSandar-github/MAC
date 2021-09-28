@@ -414,6 +414,7 @@ function loadCPAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
+                console.log(element.course_type_id,"aa");
                 if(element.course_type_id==1){
                     $("#registration_no").append(element.personal_no);
 
