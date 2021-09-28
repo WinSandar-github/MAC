@@ -202,7 +202,7 @@ function loadCPAStudentDataForExamCard() {
                 $("#name").append(exam_data.student_info.name_mm);
                 $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
                 $("#father_name").append(exam_data.student_info.father_name_mm);
-                $('#exam_department').text(exam_data.exam_department.name);
+                $('#exam_department').text(exam_data.exam_department?.name);
                 $('#roll_no').text(exam_data.student_info.cpersonal_no);
 
             });
@@ -383,7 +383,7 @@ function loadCPAExamData() {
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
-                $("#exam_department").append(element.exam_department.name);
+                $("#exam_department").append(element.exam_department?.name);
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
