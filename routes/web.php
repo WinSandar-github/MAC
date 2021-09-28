@@ -141,14 +141,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-    
+
     Route::get('membership_edit/{id}','MembershipController@membership_edit');
 
     Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
     Route::get('entry_exam_result_detail/{id}','EntryExamController@entryExamResultDetail');
 
-    
+
 });
 Route::post('show_registration_list','ReportController@showRegistrationList');
 Route::post('show_exam_list','ReportController@showExamList');
@@ -165,7 +165,8 @@ Route::resource('/course', 'CourseController');
 // Teacher
 // Route::get('teacher_registration', 'TeacherController@FilterTeacher');
 
-Route::get('/show_non_audit_firm_info/{id}','nonAuditFirmShowInfoController@showNonAuditFirmInfo');
+
+Route::get('/show_non_audit_firm_info/{id}','ShowNonAuditFirmInfoController@showNonAuditFirmInfo');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_ff_register_form1', 'CpaController@cpa_ff_registration_form1');

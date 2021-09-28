@@ -163,7 +163,7 @@
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'exam_type', name: 'Exam Type'},
             {data: 'remark', name: 'Remark'},
-            {data: 'status', name: 'Batch Number'},
+            {data: 'batch.name', name: 'Batch Number'},
             
         ],
         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

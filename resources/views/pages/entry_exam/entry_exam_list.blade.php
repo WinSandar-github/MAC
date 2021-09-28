@@ -23,6 +23,11 @@
                                 <h5 class="title text-center">{{ __('CPA One Entry Exam Registration List') }}</h5>
                             </div>
                         </div>
+
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary btn-round m-0" onclick="window.location.href='entry_exam_result'">Go to Exam Result List</button>
+                        </div>
+
                         {{--<div class="row">
                             <div class="col-md-8">
 

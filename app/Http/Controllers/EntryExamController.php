@@ -246,9 +246,9 @@ class EntryExamController extends Controller
                         </div>";
             })
             ->addColumn('status', function ($infos){
-              if($infos->approve_reject_status == 0){
+              if($infos->status == 0){
                   return "PENDING";
-              }else if($infos->approve_reject_status == 1){
+              }else if($infos->status == 1){
                   return "APPROVED";
               }else{
                   return "REJECTED";
@@ -293,9 +293,11 @@ class EntryExamController extends Controller
                 }
                 else if($infos->exam_type_id == 1){
                   return "PRIVATE SCHOOL";
+                }else if($infos->exam_type_id == 2){
+                  return "MAC STUDENT";
                 }
                 else{
-                  return "MAC STUDENT";
+                  return "CPA One Entry Exam";
                 }
             })
 
