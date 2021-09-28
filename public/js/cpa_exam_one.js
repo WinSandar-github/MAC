@@ -383,7 +383,8 @@ function loadCPAExamData() {
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
-                $("#exam_department").append(element.exam_department.name);
+                console.log(element);
+                $("#exam_department").append(element.exam_department?.name);
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -414,6 +415,7 @@ function loadCPAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
+                console.log(element.course_type_id,"aa");
                 if(element.course_type_id==1){
                     $("#registration_no").append(element.personal_no);
 
