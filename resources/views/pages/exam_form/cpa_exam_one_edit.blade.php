@@ -334,30 +334,31 @@
                                     
                                     <input type="hidden" name="student_id">
                                     
-                                    <div class="row mt-5 justify-content-center"> 
-                                        <button type="submit" id="reject" name="save" class="btn btn-danger"  onclick="rejectCPAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                        <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveCPAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-                                    </div>
+                                    
                                 </div>
                                     
                                 </div>
                                 <div class="card">
-                                <div class="card-header">
-                                    <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
-                                </div>
-                                <div class="card-body">
-                                    <table class="table table-border">
-                                        <thead>
-                                            <th>Course Name</th>
-                                            <th>Batch Name</th>
-                                            <th>Success Year</th>
-                                        </thead>
-                                        <tbody class="course">
+                                    <div class="card-header">
+                                        <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <table class="table table-border" id="tbl_course">
+                                            <thead>
+                                                <th>Course Name</th>
+                                                <th>Batch Name</th>
+                                                <th>Success Year</th>
+                                            </thead>
+                                            <tbody class="course">
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div> 
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="row mt-5 justify-content-center"> 
+                                        <button type="submit" id="reject" name="save" class="btn btn-danger"  onclick="rejectCPAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                        <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveCPAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                    </div>
+                                </div> 
                             </div>
                             
                         </div>

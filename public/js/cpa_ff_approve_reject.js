@@ -168,8 +168,14 @@ function loadCPAFFData(){
         url: BACKEND_URL+"/cpa_ff/"+id,
         success: function (data) {
             var student=data.data;
-           
+            console.log(student.length);
+            
             student.forEach(function(element){
+                if(element.status==0){
+                    document.getElementById("cpaff_approve_reject").style.display = "block";
+                } else {
+                    document.getElementById("cpaff_approve_reject").style.display = "none";
+                }
                 console.log('loaddata',element);
                 if(element.cpa_part_2==1){
                     var degree = "CPA Part 2 Pass";
