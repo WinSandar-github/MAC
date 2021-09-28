@@ -432,7 +432,7 @@ function loadStudentCourse(course_id){
         url: BACKEND_URL+"/course/"+id,
         success: function (result) {
           var data=result.data;
-          all_course.push(data.name);
+          all_course.push((data.code).toUpperCase().replace("_", " "));
           $("#attend_course").val(all_course.toString());
           
         }
@@ -441,4 +441,4 @@ function loadStudentCourse(course_id){
       
     })
     
-  }
+}
