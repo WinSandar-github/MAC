@@ -148,15 +148,23 @@ function loadData() {
             // console.log("student",student);
             // console.log(student[0].student_info.id)
             student.forEach(function (student_course) {
+
                 console.log("student_course",student_course);
+
+                let current_course = student_course.batch.course;
+                console.log("current_course",current_course);
+
                 let element = student_course.student_info;
+
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";
                 } else {
                     document.getElementById("approve_reject").style.display = "none";
                 }
+
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
+
                 $("#id").append(element.id);
                 document.getElementById('image').src = PDF_URL + element.image;
                 $("#name_eng").append(element.name_eng);
@@ -173,7 +181,13 @@ function loadData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.student_register == 0 ? "N/A" : element.personal_no);
+                if(current_course.course_type_id==1){
+                    $("#registration_no").append(element.personal_no);
+                }else if(current_course.course_type_id==2){
+                    $("#registration_no").append(element.cpersonal_no);
+                }else{
+                    $("#registration_no").append("-");
+                }
                 $("#date").append(element.date);
                 $("#batch_name").append(student_course.batch.name);
                 if(element.gov_staff == 1){

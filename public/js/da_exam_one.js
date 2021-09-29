@@ -304,6 +304,7 @@ function loadDAExamData() {
         success: function (data) {
             var exam_data = data.data;
             exam_data.forEach(function (element) {
+                console.log('element',element);
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -357,8 +358,10 @@ function loadDAExamData() {
                 }
 
                 $("#exam_department").append(element.exam_department.name);
-
+                
+                let course_type_id = element.course.course_type_id;
                 element = element.student_info;
+                console.log('student_info',element);
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
@@ -377,7 +380,14 @@ function loadDAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.personal_no);
+                if(course_type_id ==1){
+                    $("#registration_no").append(element.personal_no);
+                }else if(course_type_id ==2){
+                    $("#registration_no").append(element.cpersonal_no);
+                }else{
+                    $("#registration_no").append("-");
+                }
+                
 
                 if (element.gov_staff == 1) {
                     $(".recommend_row").show();
@@ -839,8 +849,10 @@ function getModuleStd() {
         success: function (data) {
             var da_data = data.data;
             da_data.forEach(function (element) {
+                console.log('element',element)
+                let course_type_id = element.course.course_type_id;
                 var std = element.student_info;
-
+                console.log('student_info',std)
                 if (element.status == 0) {
                     status = "PENDING";
                     //$('.pass_fail_btn').hide();
@@ -919,7 +931,14 @@ function getModuleStd() {
                 $("#email").append(std.email);
                 $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(std.image);
-                $("#registration_no").append(std.personal_no);
+                if(course_type_id==1){
+                    $("#registration_no").append(std.personal_no);
+                }else if(course_type_id==2){
+                    $("#registration_no").append(std.cpersonal_no);
+                }else{
+                    $("#registration_no").append("-");
+                }
+                
 
                 if (std.gov_staff == 1) {
                     $(".recommend_row").show();

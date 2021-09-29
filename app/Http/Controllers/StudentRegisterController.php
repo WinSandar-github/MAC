@@ -195,7 +195,7 @@ class StudentRegisterController extends Controller
     }
     public function showStudentRegister($id)
     {
-        $student_register = StudentRegister::where('id',$id)->with('student_info')->first();
+        $student_register = StudentRegister::where('id',$id)->with('student_info','course')->first();
         return response()->json([
             'data' => $student_register
         ],200);

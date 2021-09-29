@@ -392,10 +392,10 @@ function loadCPAExamData() {
                     document.getElementById("reject").style.display = 'none';
                 }
                 // $("#exam_department").append(element.exam_department.name);
-
+                let course_type_id = element.course.course_type_id;
                 element = element.student_info;
                 // console.log('element_student_info',element)
-                let current_stu_reg=element.student_register.slice(-1);
+                // let current_stu_reg=element.student_register.slice(-1);
                 // console.log('current_stu_reg',current_stu_reg)
 
                 var education_history = element.student_education_histroy;
@@ -416,11 +416,11 @@ function loadCPAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                console.log(element.course_type_id,"aa");
-                if(element.course_type_id==1){
+                console.log("course_type_id",course_type_id);
+                if(course_type_id==1){
                     $("#registration_no").append(element.personal_no);
 
-                }else if(current_stu_reg[0].course.course_type_id==2){
+                }else if(course_type_id==2){
                     $("#registration_no").append(element.cpersonal_no);
                 }else{
                     $("#registration_no").append("-");
@@ -694,8 +694,9 @@ function getCPAModuleStd() {
             // console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
+                console.log('element', element);
                 var std = element.student_info;
-                console.log('std', std);
+                console.log('student_info', std);
                 if (element.status == 0) {
                     status = "PENDING";
                     //$('.pass_fail_btn').hide();
