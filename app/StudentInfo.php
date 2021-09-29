@@ -107,5 +107,8 @@ class StudentInfo extends Model
         
     }
 
-    
+    public function gov_article(){
+        return $this->hasMany(ApprenticeAccountantGov::class,'student_info_id','id');
+        
+    }
 }  

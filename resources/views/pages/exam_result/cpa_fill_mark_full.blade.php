@@ -20,7 +20,7 @@
                                 <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Universtry Name</p>
+                                        <p class="ml-2" style="font-weight:bold">University Name</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="university_name"></span>
@@ -169,7 +169,7 @@
                                         <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
+                                        <span id="father_name_eng"></span> / <span id="father_name_mm"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -302,7 +302,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
+                        {{--<div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
                             </div>
@@ -318,7 +318,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                        </div> 
+                        </div> --}}
                     </div>
                 </div>
 
