@@ -15,8 +15,7 @@ class CreateSubscribersTable extends Migration
     {
         Schema::create('subscribers', function (Blueprint $table) {
             $table->id();
-            $table->integer('student_info_id')->unsigned();
-            $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
+            $table->unsignedBigInteger('student_info_id');
             $table->string('tranid')->nullable();
             $table->tinyInteger('is_subscribed');
             $table->datetime('valid_date');

@@ -22,7 +22,11 @@ class CertificateController extends Controller
                         )
                 ->first();
 
-        list($exam_month, $exam_year) = explode('-', $student->date);
+        if($student == null){
+            return "<h1 style='color:red;'>Selected User not found in Database.</h1>";
+        }
+
+        list($exam_month, $exam_year) = explode('-', $student->date ?? "Jan-2021");
 
         list($curYear, $curMth, $curDay) = explode('-', date('Y-M-d'));
 
