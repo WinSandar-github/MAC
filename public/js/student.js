@@ -269,9 +269,10 @@ function loadStudentSelfStudy() {
             $("#office_address").append(job.office_address);
             // attached_file = element.student_education_histroy.certificate;
             $.ajax({
-                url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
+                url: BACKEND_URL + "/get_passed_exam_student/"+student_info_data.id,
                 type: 'get',
-                success: function (result) {   
+                success: function (result) { 
+                    console.log(result);  
                     if(result.data.length!=0){
                         result.data.forEach(function(course){
                             var success_year=new Date(course.updated_at);
@@ -280,9 +281,16 @@ function loadStudentSelfStudy() {
                                                 <td>${course.batch.name}</td>
                                                 <td>${success_year.getFullYear()}</td>
                                             </tr>`
-                        });
-                        // console.log(result.data,"course html");                            
+                        });                          
                         $('.course').html(course_html)
+                    }
+                    else{
+                        $('#tbl_course').DataTable( {
+                            "bPaginate": false,
+                            "bLengthChange": false,
+                            "bInfo" : false,
+                            searching:false,
+                        });
                     }
                 }
             });
