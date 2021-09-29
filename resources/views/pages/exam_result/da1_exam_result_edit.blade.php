@@ -6,9 +6,9 @@
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="col-md-12">
+           {{-- <div class="col-md-12">
                 {{ Breadcrumbs::render('exam_result_list') }}
-            </div>
+            </div>--}}
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
@@ -165,12 +165,11 @@
                 url  : BACKEND_URL + "/filter_exam_register",
                 type : "POST" ,
                 data :  function (d) {
-                    d.grade       = 1,
+                    d.grade = 1,
                     d.course_code = '1',
-                    d.name =    "",
+                    d.name = "",
                     d.batch= "all"
                 }
-             
             },
         columns: [
           {data: null, render: function (data, type, row, meta) {

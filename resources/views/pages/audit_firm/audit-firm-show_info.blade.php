@@ -28,35 +28,43 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="border-bottom pb-2 mt-3 text-center" style="font-weight:bold">Audit Firm Information</h5>
-                                            <div class="row border-bottom pl-4">
-                                                <label class="col-md-4 form-label" style="font-weight:bold">{{ __('Accountancy Firm Registration No') }}</label>
-                                                <label class="col-md-1 form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <input type="hidden" name="audit_firm_type_id">
-                                                        <input type="hidden" name="local_foreign_id">
-                                                        <input type="hidden" name="accountancy_firm_id">
-                                                        <span id="accountancy_firm_reg_no"></span>
-                                                        <!-- <input type="text" name="accountancy_firm_reg_no" class="form-control" autocomplete="off"> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row border-bottom pl-4">
+                                            <div class="row">
+																							<div class="col-md-4 text-center">
+																								<img id="profile_photo" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+																								<br/><span class='text-info'>Profile Picture</span>
+																							</div>
+																							<div class="col-md-8">
+																								<div class="row border-bottom pl-4">
+		                                                <label class="col-md-4 form-label" style="font-weight:bold">{{ __('Accountancy Firm Registration No') }}</label>
+		                                                <label class="col-md-1 form-label">{{ __(':') }}</label>
+		                                                <div class="col-md-7">
+		                                                    <div class="form-group">
+		                                                        <input type="hidden" name="audit_firm_type_id">
+		                                                        <input type="hidden" name="local_foreign_id">
+		                                                        <input type="hidden" name="accountancy_firm_id">
+		                                                        <span id="accountancy_firm_reg_no"></span>
+		                                                        <!-- <input type="text" name="accountancy_firm_reg_no" class="form-control" autocomplete="off"> -->
+		                                                    </div>
+		                                                </div>
+		                                            </div>
+		                                            <div class="row border-bottom pl-4">
 
-                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Accountancy Firm Name') }}</label>
-                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <span id="accountancy_firm_name"></span>
-                                                        <!-- <input type="text" name="accountancy_firm_name"  class="form-control " autocomplete="off"> -->
-                                                    </div>
-                                                </div>
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
+		                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Accountancy Firm Name') }}</label>
+		                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+		                                                <div class="col-md-7">
+		                                                    <div class="form-group">
+		                                                        <span id="accountancy_firm_name"></span>
+		                                                        <!-- <input type="text" name="accountancy_firm_name"  class="form-control " autocomplete="off"> -->
+		                                                    </div>
+		                                                </div>
+		                                                @error('name')
+		                                                    <span class="invalid-feedback" role="alert">
+		                                                        <strong>{{ $message }}</strong>
+		                                                    </span>
+		                                                @enderror
+		                                            </div>
+																							</div>
+																						</div>
 
                                             <div class="row  pl-4 mt-2">
                                                 <h5 class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Address Of Practice(Head Office)') }}</h5>
@@ -194,7 +202,8 @@
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
                                                 <div class="col-md-7">
                                                     <div class="form-group">
-                                                        <span id="status"></span>
+                                                        <span id="status" style="font-size:20px;">
+																												</span>
                                                     </div>
                                                 </div>
                                             </div>

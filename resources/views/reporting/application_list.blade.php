@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <!-- @php $currend_date =  date("Y-m-d"); @endphp -->
-                @php $currend_date =  date("2021-11-25"); @endphp
+                @php $currend_date =  date("2021-10-28"); @endphp
 
                  <div class="card-body">
                     <div class="row"> 

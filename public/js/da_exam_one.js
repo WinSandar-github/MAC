@@ -296,7 +296,8 @@ function loadDAExamData() {
     $("#office_address").html("");
 
     $("input[name = student_id]").val(id);
-
+    $('.course').html("");
+    var course_html;
     $.ajax({
         type: "GET",
         url: BACKEND_URL + "/exam_register/" + id,
@@ -408,7 +409,34 @@ function loadDAExamData() {
                 $("#salary").append(job.salary);
                 $("#office_address").append(job.office_address);
                 attached_file = element.student_education_histroy.certificate;
-
+                $.ajax({
+                    url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
+                    type: 'get',
+                    success: function (result) {
+                        console.log("result",result.data.length);
+                        if(result.data.length!=0){
+                            result.data.forEach(function(course){
+                                var success_year=new Date(course.updated_at);
+                                course_html += `<tr>
+                                                    <td>${course.course.name}</td>
+                                                    <td>${course.batch.name}</td>
+                                                    <td>${success_year.getFullYear()}</td>
+                                                </tr>`
+                            });
+                            console.log(result.data,"course html");                            
+                            $('.course').html(course_html)
+                        }
+                        else{
+                            $('#tbl_course').DataTable( {
+                                "bPaginate": false,
+                                "bLengthChange": false,
+                                "bInfo" : false,
+                                searching:false,
+                            });
+                        }
+                    }
+                });
+                
             })
         }
     })
