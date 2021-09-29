@@ -976,6 +976,7 @@ function getModuleStd() {
                         i++;
                     }
                 })
+                
             });
 
             $.ajax({
@@ -983,7 +984,13 @@ function getModuleStd() {
                 type: 'get',
                 data: "",
                 success: function (result) {
+                    console.log("result",result);
                     if (result.data != null) {
+                        var tr = "<tr id='row_total_mark' >";
+                        tr += "<td colspan='2' style='text-align:center'>Total Marks</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left'></td>";
+                        tr += "</tr>";
+                        $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();
 
                         // $('.pass_fail_btn').show();
@@ -1057,6 +1064,13 @@ function getModuleStd() {
                                 grade.setAttribute("readonly", "true");
                             }
                         }
+                        var total_mark=0;
+                        for (var i = 0; i < row_length; i++) {
+                            var mark=parseInt(rData.marks[i]);
+                            console.log(rData.marks[i]);
+                            total_mark += mark;
+                        }
+                        $('#total_mark').append(total_mark);
                     } else {
                         // $('.pass_fail_btn').hide();
                     }
@@ -1069,73 +1083,73 @@ function getModuleStd() {
     });
 }
 
-function Exam_Result_Submit() {
-    var id = localStorage.getItem("exam_register_id");
-    var course_code = localStorage.getItem("course_code");
-    var course_type = localStorage.getItem("course_type");
-    var table = document.getElementById("tbl_fillmarks");
-    var result_id = $("input[name = result_id]").val();
-    var totalRowCount = table.rows.length;
-    // var totalRowCount = $('#tbl_fillmarks >tbody >tr').length;
-    console.log(totalRowCount);
-    var data = new FormData();
-    for (var i = 1; i < totalRowCount; i++) {
-        data.append('subject[]', $('#subject' + i).val());
-    }
-    for (var i = 1; i < totalRowCount; i++) {
-        data.append('mark[]', $('#mark' + i).val());
-    }
-    for (var i = 1; i < totalRowCount; i++) {
-        data.append('grade[]', $('#grade' + i).val());
-    }
-    data.append('exam_register_id', id);
-    if (result_id == "") {
-        $.ajax({
-            url: BACKEND_URL + "/exam_result",
-            type: 'post',
-            data: data,
-            contentType: false,
-            processData: false,
-            success: function (result) {
-                //successMessage("Insert Successfully");
-                if (course_code == 1) {
-                    location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                } else if (course_code == 2) {
-                    location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                } else if (course_code == 3) {
-                    location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
-                } else {
-                    location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
-                }
-            },
-            error: function (message) {
-                console.log(message);
-            }
-        });
-    } else {
-        data.append('_method', 'PUT');
-        $.ajax({
-            url: BACKEND_URL + "/exam_result/" + result_id,
-            type: 'post',
-            data: data,
-            contentType: false,
-            processData: false,
-            success: function (result) {
-                console.log(result.message);
-                //successMessage("Updated Successfully");
-                if (course_code == 1) {
-                    location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                } else if (course_code == 2) {
-                    location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                } else if (course_code == 3) {
-                    location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
-                } else {
-                    location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
-                }
-            },
-            error: function (message) {
-                console.log(message);
-            }
-        });
-    }
-}
+// function Exam_Result_Submit() {
+//     var id = localStorage.getItem("exam_register_id");
+//     var course_code = localStorage.getItem("course_code");
+//     var course_type = localStorage.getItem("course_type");
+//     var table = document.getElementById("tbl_fillmarks");
+//     var result_id = $("input[name = result_id]").val();
+//     var totalRowCount = table.rows.length;
+//     // var totalRowCount = $('#tbl_fillmarks >tbody >tr').length;
+//     console.log(totalRowCount);
+//     var data = new FormData();
+//     for (var i = 1; i < totalRowCount; i++) {
+//         data.append('subject[]', $('#subject' + i).val());
+//     }
+//     for (var i = 1; i < totalRowCount; i++) {
+//         data.append('mark[]', $('#mark' + i).val());
+//     }
+//     for (var i = 1; i < totalRowCount; i++) {
+//         data.append('grade[]', $('#grade' + i).val());
+//     }
+//     data.append('exam_register_id', id);
+//     if (result_id == "") {
+//         $.ajax({
+//             url: BACKEND_URL + "/exam_result",
+//             type: 'post',
+//             data: data,
+//             contentType: false,
+//             processData: false,
+//             success: function (result) {
+//                 //successMessage("Insert Successfully");
+//                 if (course_code == 1) {
+//                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
+//                 } else if (course_code == 2) {
+//                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
+//                 } else if (course_code == 3) {
+//                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+//                 } else {
+//                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+//                 }
+//             },
+//             error: function (message) {
+//                 console.log(message);
+//             }
+//         });
+//     } else {
+//         data.append('_method', 'PUT');
+//         $.ajax({
+//             url: BACKEND_URL + "/exam_result/" + result_id,
+//             type: 'post',
+//             data: data,
+//             contentType: false,
+//             processData: false,
+//             success: function (result) {
+//                 console.log(result.message);
+//                 //successMessage("Updated Successfully");
+//                 if (course_code == 1) {
+//                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
+//                 } else if (course_code == 2) {
+//                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
+//                 } else if (course_code == 3) {
+//                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
+//                 } else {
+//                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
+//                 }
+//             },
+//             error: function (message) {
+//                 console.log(message);
+//             }
+//         });
+//     }
+// }
