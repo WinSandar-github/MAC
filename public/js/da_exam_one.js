@@ -961,7 +961,7 @@ function getModuleStd() {
                         tr += "<td>" + i + "</td>";
                         tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
@@ -970,7 +970,7 @@ function getModuleStd() {
                         tr += "<td>" + i + "</td>";
                         tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
@@ -1091,7 +1091,6 @@ function examResultSubmit() {
     var result_id = $("input[name = result_id]").val();
     var totalRowCount = table.rows.length;
     // var totalRowCount = $('#tbl_fillmarks >tbody >tr').length;
-    console.log(totalRowCount);
     var data = new FormData();
     for (var i = 1; i < totalRowCount; i++) {
         data.append('subject[]', $('#subject' + i).val());
@@ -1135,7 +1134,6 @@ function examResultSubmit() {
             contentType: false,
             processData: false,
             success: function (result) {
-                console.log(result.message);
                 //successMessage("Updated Successfully");
                 if (course_code == 1) {
                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
