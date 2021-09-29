@@ -331,8 +331,8 @@
                                     
                                 </div>
                                 <!-- {!! Form::close() !!} -->
-                                <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">    
-
+                                {{--<form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">--}}
+                                <form  method="post" action="javascript:void();" enctype="multipart/form-data"> 
                                     <input type="hidden" name="result_id">
                                     <div class="row">
                                         <table class="table mark table-bordered input-table" id="tbl_fillmarks" width="100%" style="margin: 3% 3% 0 3%;">
