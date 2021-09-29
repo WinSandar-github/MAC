@@ -186,7 +186,7 @@ class CpaTraAddmissionDirectController extends Controller
         $date_of_birth = $request->date_of_birth;
         $da_pass_date  = $request->da_pass_date;
         $degree_date = $request->degree_date;
-        $date = date('Y-m-d');
+        $date = date('d-M-Y');
         $qualified_date = date('Y-m-d');
         $course_date = date('Y-m-d');
 
@@ -254,7 +254,7 @@ class CpaTraAddmissionDirectController extends Controller
         // $education_histroy->certificate     = json_encode($certificates);
 
         $education_histroy->qualified_date  = $qualified_date;
-        $education_histroy->roll_number     = $request->roll_no;
+        $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
         
         $student_course = new StudentCourseReg();
@@ -264,8 +264,11 @@ class CpaTraAddmissionDirectController extends Controller
         $student_course->status          = 1;
         $student_course->approve_reject_status = 0;
         $student_course->type           = $request->type;
-        $student_course->mac_type           = $request->mac_type;
+        // $student_course->mac_type           = $request->mac_type;
+        if($request->type == 2){
 
+            $student_course->mac_type            = $request->mac_type;
+        }
         if($request->qt_entry){
             $student_course->qt_entry      = $request->qt_entry;
         }

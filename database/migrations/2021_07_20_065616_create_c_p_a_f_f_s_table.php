@@ -28,12 +28,13 @@ class CreateCPAFFSTable extends Migration
             $table->string('qt_pass_seat_no')->nullable();
             // $table->boolean('cpa_part_2')->default(0);
             // $table->boolean('qt_pass')->default(0);
-            $table->string('cpa_certificate');
-            $table->string('mpa_mem_card');
-            $table->string('nrc_front');
-            $table->string('nrc_back');
-            $table->string('cpd_record');
-            $table->string('passport_image');
+            $table->string('cpa_certificate')->nullable();
+            $table->string('mpa_mem_card')->nullable();
+            $table->string('mpa_mem_card_back')->nullable();
+            $table->string('nrc_front')->nullable();
+            $table->string('nrc_back')->nullable();
+            $table->string('cpd_record')->nullable();
+            // $table->string('passport_image');
             $table->date('accepted_date')->default(null)->nullable();
             $table->boolean('status')->default(0);
             $table->string('renew_file')->default(null)->nullable();
@@ -42,7 +43,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('renew_cpaff_reg')->default(null)->nullable();
             $table->date('renew_accepted_date')->default(null)->nullable();
             $table->boolean('renew_status')->default(null)->nullable();
-            $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
+            // $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
 
             //adding for other
             $table->string('total_hours')->nullable();          
@@ -56,10 +57,20 @@ class CreateCPAFFSTable extends Migration
             $table->string('phone')->nullable();
             $table->string('contact_mail')->nullable();
             $table->string('form_type')->nullable();
-            $table->string('cpa_certificate_back')->nullable();
+            // $table->string('cpa_certificate_back')->nullable();
             $table->string('three_years_full')->nullable();
             $table->string('letter')->nullable();
             $table->string('fine_person')->nullable();
+            $table->string('email')->nullable();
+            $table->string('name_mm')->nullable();
+            $table->string('name_eng')->nullable();
+            $table->string('nrc_state_region')->nullable();
+            $table->string('nrc_township')->nullable();
+            $table->string('nrc_citizen')->nullable();
+            $table->string('nrc_number')->nullable();
+            $table->string('father_name_mm')->nullable();
+            $table->string('father_name_eng')->nullable();
+            // $table->string('payment_method')->nullable();
 
             $table->timestamps();
         });

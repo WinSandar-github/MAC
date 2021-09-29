@@ -31,6 +31,34 @@ function getCourseList(){
     });
 }
 
+function createMainCourse(){
+    var course_name = $("input[name=main_cousre_name]").val();
+    var course_description = $("input[name=main_cousre_description]").val();
+    var formData = new FormData(document.getElementById("main_course_form"));
+
+    if(course_name !== "" && course_description !== ""){
+        show_loader();
+        $.ajax({
+            url : FRONTEND_URL + "/main_course",
+            type : 'post',
+            data : formData,
+            contentType : false,
+            processData : false,
+            success: function (result) {
+                EasyLoading.hide();
+                successMessage(result.message);
+                setInterval(()=>{
+                    window.location.reload();
+                }, 3000);
+            },
+            error: function (response) {
+                EasyLoading.hide();
+                errorMessage(response.responseJSON.message);
+            }
+        });
+    }
+}
+
 function createCourse() {
     var send_data = new FormData();
     send_data.append('name', $("input[name=course_name]").val());
@@ -42,7 +70,7 @@ function createCourse() {
     send_data.append('tution_fee', removeComma($("input[name=tution_fee]").val()));
     send_data.append('description', $("input[name=description]").val());
     send_data.append('code', $("input[name=code]").val());
-
+    send_data.append('exam_fee', $("input[name=exam_fee]").val());
     send_data.append('course_type_id', $('.course_type').val());
     send_data.append('requirement_id', $('.requirement_id').val());
 
@@ -63,13 +91,16 @@ function createCourse() {
             
             EasyLoading.hide();
             successMessage("Insert Successfully");
-            getCourseList();
+            setInterval(() => {
+                window.location.reload();
+            }, 3000);
+            // getCourseList();
             // location.reload();
         },
         error: function (message) {
+            EasyLoading.hide();
             errorMessage(message);
         }
-
     });
 }
 
@@ -138,9 +169,26 @@ function getCourse() {
     });
 }
 
-function showCourseInfo(id) {
-    
+function showMainCourseInfo(id){
+    $("#main_course_form").get(0).reset();
+    $('#mainModalLabel').text("Update Main Course");
+    $("#main_course_form").attr('action', 'javascript:updateMainCourse()');
+    $('input[name=main_course_id]').val(id);
+    $.ajax({
+        type : "get",
+        url : FRONTEND_URL + "/main_course/" + id,
+        success: function (result) {
+            $('input[name=main_course_name]').val(result.course_name);
+            $('#main_summernote').summernote('code', result.course_description);
+            $('#main_course_modal').modal('toggle');
+        },
+        error: function (res) {
+            errorMessage(res.responseJSON.message);
+        }
+    });
+}
 
+function showCourseInfo(id) {
     $("#course_form").attr('action', 'javascript:updateCourse()');
     $("input[name=course_id]").val(id);
     $.ajax({
@@ -200,6 +248,28 @@ function showCourseInfo(id) {
 //     }
 // }
 
+function updateMainCourse(){
+    var id = $('input[name=main_course_id]').val();
+    var formData = new FormData(document.getElementById('main_course_form'));
+    $.ajax({
+        type : 'patch',
+        url : FRONTEND_URL + '/main_course/' + id,
+        data : {
+            main_course_name : formData.get('main_course_name'),
+            main_course_description : formData.get("main_course_description")
+        },
+        success: function (result) {
+            successMessage(result.message);
+            setInterval(()=>{
+                window.location.reload();
+            }, 3000);
+        },
+        error: function (response) {
+            errorMessage(response.responseJSON.message);
+        }
+    });
+}
+
 function updateCourse() {
     var id = $("input[name=course_id]").val();
     var name = $("input[name=name]").val();
@@ -250,6 +320,37 @@ function updateCourse() {
     });
 }
 
+function deleteMainCourseInfo(courseName, id){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                type: "DELETE",
+                url : FRONTEND_URL + 'main_course/' + id,
+                success: function (result) {
+                    Swal.fire({
+                        title : 'Deleted',
+                        text : result.message,
+                        icon : 'success',
+                    }).then( () => {
+                        window.location.reload();
+                    });
+                },
+                error: function (res) {
+                    errorMessage(res.responseJSON.message);
+                }
+            });
+        }
+      })
+}
+
 function deleteCourseInfo(courseName, courseId) {
     var result = confirm("WARNING: This will delete Course Name " + decodeURIComponent(courseName) + " and all related data! Press OK to proceed.");
     if (result) {
@@ -281,8 +382,6 @@ function loadCourse() {
                 option.text = element.name;
                 option.value = element.id;
                 select.add(option, 1);
-
-
             });
         },
         error: function (message) {

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\SchoolController;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\SchoolRegister;
 use App\StudentInfo;
@@ -14,6 +15,7 @@ use App\tbl_bulding_type;
 use App\tbl_classroom;
 use App\tbl_manage_room_numbers;
 use App\tbl_toilet_type;
+use App\EducationHistroy;
 
 use Hash;
 use Illuminate\Support\Facades\DB;
@@ -54,7 +56,7 @@ class SchoolController extends Controller
      */
     public function store(Request $request)
     {
-        print_r($request->school_type);
+        
         if ($request->hasfile('nrc_front')) {
             $file = $request->file('nrc_front');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -127,7 +129,7 @@ class SchoolController extends Controller
              {
                  $name  = uniqid().'.'.$file->getClientOriginalExtension();
                  $file->move(public_path().'/storage/student_info/',$name);
-                 $sch_establish_notes_attach[] = $name;
+                 $sch_establish_notes_attach[] =$name;
              }
             
         }else{
@@ -233,8 +235,6 @@ class SchoolController extends Controller
         $school->school_location_attach      = $school_location_attach;
         $school->sch_establish_notes_attach  = json_encode($sch_establish_notes_attach);
         
-       
-        
         $school->email            = strtolower($request->email);
         $school->password         = Hash::make($request->password);
         $school->nrc_state_region = $request->nrc_state_region;
@@ -243,22 +243,25 @@ class SchoolController extends Controller
         $school->nrc_number       = $request->nrc_number;
         $school->reg_date = date('Y-m-d');
         $school->renew_date = date('Y-m-d');
-        $school_type = "";
-        if($request->school_type!=""){
-            foreach($request->school_type as $type){
-                $school_type = $school_type.$type.',';
+        // $school_type = "";
+        // if($request->school_type!=""){
+        //     foreach($request->school_type as $type){
+        //         $school_type = $school_type.$type.',';
                
-            }
-            $school->type = rtrim($school_type, ',');
-        }
-        
+        //     }
+        //     $school->type = rtrim($school_type, ',');
+        // }
+        $school->type = $request->school_type;
         $school->save();
+        
+        
        
         //Student Info
-        $std_info =StudentInfo::where('teacher','!=','NULL')->where('email','=', $request->email)->get();
-        if(sizeof($std_info)!=0){
-            $std_info =StudentInfo::find($std_info->id);
+        
+        if($request->student_info_id!=0){
+            $std_info =StudentInfo::find($request->student_info_id);
             $std_info->school_id = $school->id;
+            $std_info->password = Hash::make($request->password);
             $std_info->save();
         }else{
             $std_info = new StudentInfo();
@@ -308,23 +311,28 @@ class SchoolController extends Controller
         }
 
         //member list
-        for($i=0;$i<sizeof($request->member_name);$i++){
-            $member = new SchoolMember();
-            $member->name            = $request->member_name[$i];
-            $member->nrc             = $request->member_nrc[$i];
-            $member->cpa_papp_no     = $request->member_cpa_papp_no[$i];
-            $member->education       = $request->member_education[$i];
-            $member->responsibility  = $request->member_responsibility[$i];
-            $member->ph_number       = $request->member_ph_number[$i];
-            $member->email           = $request->member_email[$i];
-            $member->school_id       = $school->id;
-            $member->save();
+        if($request->school_type=="တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း"){
+            for($i=0;$i<sizeof($request->member_name);$i++){
+                $member = new SchoolMember();
+                $member->name            = $request->member_name[$i];
+                $member->nrc             = $request->member_nrc[$i];
+                $member->cpa_papp_no     = $request->member_cpa_papp_no[$i];
+                $member->education       = $request->member_education[$i];
+                $member->responsibility  = $request->member_responsibility[$i];
+                $member->ph_number       = $request->member_ph_number[$i];
+                $member->email           = $request->member_email[$i];
+                $member->school_id       = $school->id;
+                $member->save();
+            }
         }
+        
 
         //teacher list
         $teacher_reg_copy=implode(',', $teacher_reg_copy);
         $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
-        for($i=0;$i<sizeof($request->teacher_name);$i++){
+        
+        for($i=0;$i<sizeof($request->teacher_registration_no);$i++){
+            
             $teacher = new SchoolTeacher();
             $teacher->name             = $request->teacher_name[$i];
             $teacher->nrc              = $request->teacher_nrc[$i];
@@ -338,19 +346,29 @@ class SchoolController extends Controller
             $teacher->save();
         }
         //branch_school
-        $branch_school_attach=implode(',', $branch_school_attach);
-        $new_branch_school_attach= explode(',',$branch_school_attach);
-        $branch_sch_letter=implode(',', $branch_sch_letter);
-        $new_branch_sch_letter= explode(',',$branch_sch_letter);
-        for($i=0;$i<sizeof($request->branch_school_address);$i++){
-            $branch_school = new tbl_branch_school();
-            $branch_school->branch_school_address= $request->branch_school_address[$i];
-            $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
-            $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-            $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
-            $branch_school->school_id       = $school->id;
-            $branch_school->save();
+        if($branch_school_attach!=null){
+            $branch_school_attach=implode(',', $branch_school_attach);
+            $new_branch_school_attach= explode(',',$branch_school_attach);
+            
         }
+        if($branch_sch_letter!=null){
+           
+            $branch_sch_letter=implode(',', $branch_sch_letter);
+            $new_branch_sch_letter= explode(',',$branch_sch_letter);
+        }
+        if($request->branch_school_address!=null){
+            for($i=0;$i<sizeof($request->branch_school_address);$i++){
+            
+                $branch_school = new tbl_branch_school();
+                $branch_school->branch_school_address= $request->branch_school_address[$i];
+                $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
+                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                $branch_school->school_id       = $school->id;
+                $branch_school->save();
+            }
+        }
+        
         //bulding_type
         $school_building_attach=implode(',', $school_building_attach);
         $new_school_building_attach= explode(',',$school_building_attach);
@@ -411,7 +429,9 @@ class SchoolController extends Controller
      */
     public function show($id)
     {
-        $school = SchoolRegister::where('id',$id)->with('school_establishers','school_governs','school_members','school_teachers')->first();
+        $school = SchoolRegister::where('id',$id)
+        ->with('school_establishers','school_governs','school_members','school_teachers','student_info',
+        'school_branch','bulding_type','classroom','toilet_type','manage_room_numbers')->first();
         return  response()->json([
             'data' => $school
         ],200);
@@ -745,23 +765,26 @@ class SchoolController extends Controller
         //
     }
 
-    public function approve_school_register(Request $request, $id)
+    public function approve_school_register(Request $request)
     {
-        $std_info = StudentInfo::where('school_id', $id)->first();
+        $std_info = StudentInfo::find($request->student_info_id);
         $std_info->approve_reject_status = 1;
         $std_info->save();
-        $school = SchoolRegister::find($id);
+        $school = SchoolRegister::find($request->id);
         $school->approve_reject_status = 1;
-        $school->renew_date = date('Y-m-d');
+        //$school->renew_date = date('Y-m-d');
         $school->save();
         return response()->json([
             'message' => 'You have approved this user.'
         ],200);
     }
 
-    public function reject_school_register(Request $request, $id)
+    public function reject_school_register(Request $request)
     {
-        $school = SchoolRegister::find($id);
+        $std_info = StudentInfo::find($request->student_info_id);
+        $std_info->approve_reject_status = 2;
+        $std_info->save();
+        $school = SchoolRegister::find($request->id);
         $school->approve_reject_status = 2;
         $school->save();
         return response()->json([
@@ -801,6 +824,13 @@ class SchoolController extends Controller
                 return "REJECTED";
             }
         })
+        ->addColumn('payment_method', function ($infos){
+            if($infos->payment_method	 == ""){
+                return "Payment Incomplete";
+            }else{
+                return "Payment Complete";
+            }
+        })
         ->make(true);
         // return  response()->json([
         //     'data' => $school
@@ -818,6 +848,10 @@ class SchoolController extends Controller
         $std_info = StudentInfo::find($id) ;
         $std_info->payment_method = 'CASH';
         $std_info->save();
+        $school = SchoolRegister::find($std_info->school_id);
+        $school->payment_method = 'CASH';
+        $school->renew_date = date('Y-m-d');
+        $school->save();
         return response()->json([
             'data' => $std_info,
         ],200);
@@ -827,5 +861,25 @@ class SchoolController extends Controller
     {
         $data = StudentInfo::where('id',$id)->get();
         return response()->json($data,200);
+    }
+    public function checkEmail(Request $request){
+        $std_info =StudentInfo::where('email','=',$request->email)->get();
+        $data =StudentInfo::where('school_id','=','NULL')
+                            ->where('teacher_id','!=','NULL')
+                            ->get();
+        $status=2;
+        if(sizeof($std_info)){
+            
+            if(sizeof($data)){
+                return response()->json($data,200);
+            }else{
+                return response()->json($status,200);
+            }
+           
+        }
+        else{
+            return response()->json($status,200);
+        }
+    
     }
 }

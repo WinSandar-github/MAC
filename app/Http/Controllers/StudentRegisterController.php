@@ -114,6 +114,7 @@ class StudentRegisterController extends Controller
                 $student_register->batch_no = $request->batch_no_private;
                 $student_register->part_no = $request->part_no_private;
                 $student_register->personal_no = $request->personal_no_private;
+                $student_register->module=$request->module;
                 $student_register->direct_access_no = $request->direct_access_no;
                 $student_register->entry_success_no = $request->entry_success_no;
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
@@ -431,6 +432,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
                 $student_register->cpa_one_access_no = $request->cpa_one_access_no;
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
+                $student_register->module=$request->module;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
@@ -499,7 +501,7 @@ class StudentRegisterController extends Controller
     public function getAttendesStudent(Request $request)
     {
 
-        $course = Course::where('code',$request->course_code)->first();
+        $course = Course::where('code',$request->course_code)->with('course_type')->first();
 
         $student_infos = StudentRegister::with('student_info','course')
                         ->where('form_type',$course->id)
@@ -511,6 +513,13 @@ class StudentRegisterController extends Controller
             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
             return $nrc_result;
         })
+        ->addColumn('cpersonal_no', function ($infos){
+            $cpersonal_no = $infos->course->course_type->course_code == "da" 
+            ? $infos->student_info->personal_no
+            : $infos->student_info->cpersonal_no;
+            return $cpersonal_no;
+        })
+        ->rawColumns(['action','nrc','cpersonal_no'])
         ->make(true);
         // return response()->json([
         //     'data' => $student_infos

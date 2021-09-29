@@ -227,4 +227,12 @@ class BatchController extends Controller
         })
         ->make(true);
     }
+
+    public function getBatch($course_id)
+    {
+        $batch = Batch::where('course_id',$course_id)->get();
+        return response()->json([
+            'data' => $batch
+        ],200);
+    }
 }    

@@ -115,64 +115,23 @@ function getTeacherInfos(){
         success : function(data){
             $.each(data.data, function( index, value ) {
                 document.getElementById('image').src = PDF_URL + value.image;
-                $("#name_eng").append(value.name_eng);
-                $("#name_mm").append(value.name_mm);
+                $("#name").append(value.name_eng+'/'+value.name_mm);
+                
                 let nrc = value.nrc_state_region+"/"+value.nrc_township+"("+value.nrc_citizen+")"+value.nrc_number;
                 $("#nrc").append(nrc);
-                $("#father_name_eng").append(value.father_name_eng);
-                $("#father_name_mm").append(value.father_name_mm);
+                $("#father").append(value.father_name_eng+'/'+value.father_name_mm);
+                
                 $("#phone").append(value.phone);
                 $("#email").append(value.email);
-                var payment_status;
-                if(value.payment_method!=null){
-                    payment_status="ပြီး";
-                }else{
-                    payment_status="မပြီး";
-                }
-                if(value.certificates.search(/[\'"[\]']+/g)==0){
-                    var newcertificates=loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''));
-                    var newdiplomas=loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''));
-                    $.each(newcertificates, function( index_y, item ) {
-                        var tr = "<tr>";
-                        tr += `<td> ${ index_y += 1 } </td>`;
-                        tr += `<td> ${ item } </td>`;
-                        tr += `<td>30000 </td>`;
-                        tr += `<td>`+payment_status +`</td>`;
-                        tr += "</tr>";
-                        $("#tbl_certificate_body").append(tr);
-                    });
-                    $.each(newdiplomas, function( index_z, item ) {
-                        var tr = "<tr>";
-                        tr += `<td> ${  index_z+=1 } </td>`;
-                        tr += `<td> ${ item } </td>`;
-                        tr += `<td>20000 </td>`;
-                        tr += `<td>`+payment_status +`</td>`;
-                        tr += "</tr>";
-                        $("#tbl_diploma_body").append(tr);
-                    });
-                }else{
-                    var certificates = value.certificates.split(',');
-                    var diplomas = value.diplomas.split(',');
-                    $.each(certificates, function( index_y, item ) {
-                        var tr = "<tr>";
-                        tr += `<td> ${ index_y += 1 } </td>`;
-                        tr += `<td> ${ item } </td>`;
-                        tr += `<td>30000 </td>`;
-                        tr += `<td>`+payment_status +`</td>`;
-                        tr += "</tr>";
-                        $("#tbl_certificate_body").append(tr);
-                    });
-                    $.each(diplomas, function( index_z, item ) {
-                        var tr = "<tr>";
-                        tr += `<td> ${ index_z += 1 } </td>`;
-                        tr += `<td> ${ item } </td>`;
-                        tr += `<td>20000 </td>`;
-                        tr += `<td>`+payment_status +`</td>`;
-                        tr += "</tr>";
-                        $("#tbl_diploma_body").append(tr);
-                    });
-                }
                 
+                if(value.certificates.search(/[\'"[\]']+/g)==0){
+                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate");
+                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma");
+                    
+                }else{
+                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate");
+                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma");
+                }
                 
                 
                 
@@ -188,18 +147,17 @@ function getTeacherInfos(){
                     $('input[name="radio2"]').attr('disabled', 'disabled');
                     $('.recommend_row').show();
                     if(value.recommend_letter!=""){
-                        $(".recommend_letter").append(`<a href='${PDF_URL+value.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                        $(".recommend_letter").append(`<a href='${PDF_URL+value.recommend_letter}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
                     }
                    
-                    
                 }
                 else{
                     $('input:radio[name=radio2]').attr('checked',true);
                     $('input[name="radio1"]').attr('disabled', 'disabled');
                     $('.recommend_row').hide();
                 }
-                $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_front").append(`<a href='${PDF_URL+data.data.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL+data.data.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
                 $("#race").append(value.race);
                 $("#religion").append(value.religion);
                 $("#date_of_birth").append(value.date_of_birth);
@@ -212,7 +170,7 @@ function getTeacherInfos(){
                 if(value.school_type==0){
                     $("#school_name").append("Individual");
                 }else{
-                    loadSchoolName(value.school_id);
+                   loadSchoolName(value.school_id);
                 }
                 if(value.payment_method!=null){
                     $('.period').show();
@@ -236,52 +194,101 @@ function approveTeacherRegister(){
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
     var teacher_id=$('#teacher_id').val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_teacher_register",
-        data: 'id='+id+"&status=1"+"&student_info_id="+student_info_id,
-        type: 'post',
-        success: function(result){
-            successMessage('You have approved that user!');
-            location.href = FRONTEND_URL + '/teacher_registration';
-        }
-    });
+    var check = confirm("Are you sure?");
+    if (check == true) {
+        $.ajax({
+            url: BACKEND_URL + "/approve_teacher_register",
+            data: 'id='+id+"&status=1"+"&student_info_id="+student_info_id,
+            type: 'post',
+            success: function(result){
+                successMessage('You have approved that user!');
+                location.href = FRONTEND_URL + '/teacher_registration';
+            }
+        });
+    }
+    
 }
 
 function rejectTeacherRegister(){
     let result = window.location.href;
     let url = new URL(result);
     let id = url.searchParams.get("id");
-    $.ajax({
-        url: BACKEND_URL + "/approve_teacher_register",
-        data: 'id='+id+"&status=2",
-        type: 'post',
-        success: function(result){
-            successMessage('You have rejected that user!');
-            location.href = '/teacher_registration';
-        }
-    });
+    var student_info_id=$('#student_info_id').val();
+    var teacher_id=$('#teacher_id').val();
+    var check = confirm("Are you sure?");
+    if (check == true) {
+        $.ajax({
+            url: BACKEND_URL + "/approve_teacher_register",
+            data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id,
+            type: 'post',
+            success: function(result){
+                successMessage('You have rejected that user!');
+                location.href = '/teacher_registration';
+            }
+        });
+    } 
+    
 }
 
-  function loadEductaionHistory(student_info_id){
-      console.log(student_info_id)
+  function loadCertificates(name,payment_status,tbody){
+    var name=name.split(',');
+    // return name;
+    var row=0;
+    var payment_status;
+    if(payment_status!=null){
+        payment_status="ပြီး";
+    }else{
+        payment_status="မပြီး";
+    }
+    $.each(name, function( index, id ){
+        $.ajax({
+            url : BACKEND_URL+"/getSubject",
+            data: 'subject_id='+id,
+            type: 'post',
+            success: function (result) {
+                $.each(result.data, function( index, value ){
+                        if(index=='cpa_1' || index=='cpa_2'){
+                            $.each(value, function(key, val){
+                                var tr = "<tr>";
+                                tr += `<td> ${ row += 1 } </td>`;
+                                tr += `<td> ${ index.toUpperCase().replace("_", " ") } </td>`;
+                                tr += `<td> ${ val.subject_name } </td>`;
+                                tr += `<td>30000 </td>`;
+                                tr += `<td>`+payment_status +`</td>`;
+                                tr += "</tr>";
+                                $(tbody).append(tr);
+                            });
+                            
+                        }else{
+                            $.each(value, function(key, val){
+                                var tr = "<tr>";
+                                tr += `<td> ${ row += 1 } </td>`;
+                                tr += `<td> ${ index.toUpperCase().replace("_", " ") } </td>`;
+                                tr += `<td> ${ val.subject_name } </td>`;
+                                tr += `<td>20000 </td>`;
+                                tr += `<td>`+payment_status +`</td>`;
+                                tr += "</tr>";
+                                $(tbody).append(tr);
+                            });
+                            
+                        }
+                        
+                    
+                    
+                    
+                });
+            },
+            error: function (result) {
+            },
+        });
+    });
+}
+function loadSchoolName(school_id){
     $.ajax({
         type : 'GET',
-        url : BACKEND_URL+"/getEducationHistory/"+student_info_id,
-        success: function(result){
-            $.each(result.data, function( index, value ) {
-                var tr = "<tr>";
-                tr += `<td> ${ index += 1 } </td>`;
-                tr += `<td> ${ value.university_name } </td>`;
-                tr += `<td><a href='${PDF_URL+value.certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a></td>`;
-                tr += "</tr>";
-                $("#tbl_degree_body").append(tr);
-            });
+        url : BACKEND_URL+"/school/"+school_id,
+        success: function (result) {
+            $('#school_name').append(result.data.school_name);
         }
-    });
-  }
-  function loadCertificates(name){
-    var name=name.split(',');
-    return name;
-    
-    
+    });    
 }

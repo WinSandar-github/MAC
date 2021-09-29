@@ -27,10 +27,10 @@ function GetStudentRegistration(course_code) {
         processData: false,
         success: function (data) {
             var student_data = data.data;
-            console.log("stu data", student_data);
+            // console.log("stu data", student_data);
             student_data.forEach(function (element) {
-                console.log(element.id,"id");
-                console.log("stu element", element);
+                // console.log(element.id,"id");
+                // console.log("stu element", element);
                 if (element.type == 0) {
                     var status;
                     if (element.status == 0) {
@@ -168,13 +168,16 @@ function loadStudentSelfStudy() {
     $("#company_name").html("");
     $("#salary").html("");
     $("#office_address").html("");
-
+    $('.course').html("");
+    var course_html;
     $("input[name = student_course_id]").val(id);
     $.ajax({
         type: "GET",
         url: BACKEND_URL + "/show_student_register/" + id,
         success: function (data) {
+            // console.log(data,"yy");
             var element = data.data;
+            // console.log('element',element);
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
             // $("#student_dob").append(element.student_info.date_of_birth);
@@ -182,38 +185,62 @@ function loadStudentSelfStudy() {
             // $("#student_email").append(element.student_info.email);
             // $("#student_phone").append(element.student_info.phone);
             $("#student_registration_no").append(element.student_info.registration_no);
-            $("#student_registration_reason").append(element.reg_reason);
+            if(element.reg_reason){
+                $("#student_registration_reason").append(element.reg_reason);
+            }else{
+                $("#student_registration_reason").append("-");
+            }
+            
+            if(element.module=="1"){
+                $("#module_name").append("Module 1");
+            } 
+            else if(element.module=="2"){
+                $("#module_name").append("Module 2");
+            } 
+            else if(element.module=="3"){
+                $("#module_name").append("All Module");
+            }      
+
             $("input[name = student_register_id]").val(element.id);
             if (element.status == 0) {
                 document.getElementById("approve_reject").style.display = "block";
             } else {
                 document.getElementById("approve_reject").style.display = "none";
             }
+            var student_info_data = element.student_info;
+            var education_history = student_info_data.student_education_histroy;
+            var job = student_info_data.student_job;  
 
-            $("#registration_no").append(element.personal_no);
-            element = element.student_info;
-            var education_history = element.student_education_histroy;
-            var job = element.student_job;
-            $("#id").append(element.id);
-            document.getElementById('image').src = PDF_URL + element.image;
-            $("#name_eng").append(element.name_eng);
-            $("#name_mm").append(element.name_mm);
-            $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
-            $("#father_name_mm").append(element.father_name_mm);
-            $("#father_name_eng").append(element.father_name_eng);
-            $("#race").append(element.race);
-            $("#religion").append(element.religion);
-            $("#date_of_birth").append(element.date_of_birth);
-            $("#address").append(element.address);
-            $("#current_address").append(element.current_address);
-            $("#phone").append(element.phone);
-            $("#email").append(element.email);
-            $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
+            // console.log('personal_no',student_info_data.personal_no); 
+            if(student_info_data.course_type_id==1 ){
+                $("#registration_no").append(student_info_data.personal_no);
+            }else if(student_info_data.course_type_id==2){
+                $("#registration_no").append(student_info_data.cpersonal_no);
+            }else{
+                $("#registration_no").append("-");
+            }
+            
+            $("#id").append(student_info_data.id);
+            document.getElementById('image').src = PDF_URL + student_info_data.image;
+            $("#name_eng").append(student_info_data.name_eng);
+            $("#name_mm").append(student_info_data.name_mm);
+            $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + element.nrc_number);
+            $("#father_name_mm").append(student_info_data.father_name_mm);
+            $("#father_name_eng").append(student_info_data.father_name_eng);
+            $("#race").append(student_info_data.race);
+            $("#religion").append(student_info_data.religion);
+            $("#date_of_birth").append(student_info_data.date_of_birth);
+            $("#address").append(student_info_data.address);
+            $("#current_address").append(student_info_data.current_address);
+            $("#phone").append(student_info_data.phone);
+            $("#email").append(student_info_data.email);
+            $("#gov_staff").append(student_info_data.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
             // $("#image").append(element.image);
-
-            if(element.gov_staff == 1){
+            //$("#batch_name").append(element.name);
+            // console.log("student_info_data",student_info_data);
+            if(student_info_data.gov_staff == 1){
                 $(".recommend_row").show();
-                $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                $(".recommend_letter").append(`<a href='${PDF_URL+student_info_data.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
             }else{
                 $(".recommend_row").hide();
             }
@@ -230,8 +257,8 @@ function loadStudentSelfStudy() {
                 
             })
 
-            $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-            $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+            $(".nrc_front").append(`<a href='${PDF_URL+student_info_data.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+            $(".nrc_back").append(`<a href='${PDF_URL+student_info_data.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
             $("#name").append(job.name);
             $("#position").append(job.position);
@@ -240,8 +267,33 @@ function loadStudentSelfStudy() {
             $("#company_name").append(job.company_name);
             $("#salary").append(job.salary);
             $("#office_address").append(job.office_address);
-            attached_file = element.student_education_histroy.certificate;
-
+            // attached_file = element.student_education_histroy.certificate;
+            $.ajax({
+                url: BACKEND_URL + "/get_passed_exam_student/"+student_info_data.id,
+                type: 'get',
+                success: function (result) { 
+                    console.log(result);  
+                    if(result.data.length!=0){
+                        result.data.forEach(function(course){
+                            var success_year=new Date(course.updated_at);
+                            course_html += `<tr>
+                                                <td>${course.course.name}</td>
+                                                <td>${course.batch.name}</td>
+                                                <td>${success_year.getFullYear()}</td>
+                                            </tr>`
+                        });                          
+                        $('.course').html(course_html)
+                    }
+                    else{
+                        $('#tbl_course').DataTable( {
+                            "bPaginate": false,
+                            "bLengthChange": false,
+                            "bInfo" : false,
+                            searching:false,
+                        });
+                    }
+                }
+            });
             // if (course_code == "da_1") {
             //     $("#student_registration_reason").append(item.reg_reason);
             //     $("input[name = student_register_id]").val(item.id);
@@ -603,60 +655,71 @@ function loadStudentSelfStudy() {
 // }
 
 function approveStudent() {
+    if (!confirm('Are you sure you want to approve this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_register_id]").val();
 
-    var id = $("input[name = student_register_id]").val();
-
-    var course_code = localStorage.getItem("course_code");
-    console.log(id);
-    $.ajax({
-        url: BACKEND_URL + "/approve_student/" + id,
-        type: 'patch',
-        success: function (result) {
-            console.log(result.data)
-            successMessage("You have approved that student!");
-            if (course_code == 1) {
-                location.href = FRONTEND_URL + "/index";
-            } else if (course_code == 2) {
-                location.href = FRONTEND_URL + "/da_two_index";
-            } else if (course_code == 3) {
-                location.href = FRONTEND_URL + "/cpa_one_index";
-            } else {
-                location.href = FRONTEND_URL + "/cpa_two_index";
+        var course_code = localStorage.getItem("course_code");
+        // console.log(id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_student/" + id,
+            type: 'patch',
+            success: function (result) {
+                // console.log(result.data)
+                successMessage("You have approved that student!");
+                if (course_code == 1) {
+                    location.href = FRONTEND_URL + "/index";
+                } else if (course_code == 2) {
+                    location.href = FRONTEND_URL + "/da_two_index";
+                } else if (course_code == 3) {
+                    location.href = FRONTEND_URL + "/cpa_one_index";
+                } else {
+                    location.href = FRONTEND_URL + "/cpa_two_index";
+                }
+                // getStudentSelfStudy();
+                // getStudentPrivateSchool();
+                // getStudentMac();
+                GetStudentRegistration(course_code);
+            },
+            error: function (e) {
+                console.log(e);
             }
-            // getStudentSelfStudy();
-            // getStudentPrivateSchool();
-            // getStudentMac();
-            GetStudentRegistration(course_code);
-        },
-        error: function (e) {
-            console.log(e);
-        }
-    });
+        });
+    }
 }
 
 function rejectStudent() {
-    var id = $("input[name = student_register_id]").val();
-    var course_code = localStorage.getItem("course_code");
-    console.log(id)
-    $.ajax({
-        url: BACKEND_URL + "/reject_student/" + id,
-        type: 'patch',
-        success: function (result) {
-            console.log(result)
-            successMessage("You have rejected that student!");
-            if (course_code == 1) {
-                location.href = FRONTEND_URL + "/index";
-            } else if (course_code == 2) {
-                location.href = FRONTEND_URL + "/da_two_index";
-            } else if (course_code == 3) {
-                location.href = FRONTEND_URL + "/cpa_one_index";
-            } else {
-                location.href = FRONTEND_URL + "/cpa_two_index";
+    if (!confirm('Are you sure you want to reject this student?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = student_register_id]").val();
+        var course_code = localStorage.getItem("course_code");
+        // console.log(id)
+        $.ajax({
+            url: BACKEND_URL + "/reject_student/" + id,
+            type: 'patch',
+            success: function (result) {
+                // console.log(result)
+                successMessage("You have rejected that student!");
+                if (course_code == 1) {
+                    location.href = FRONTEND_URL + "/index";
+                } else if (course_code == 2) {
+                    location.href = FRONTEND_URL + "/da_two_index";
+                } else if (course_code == 3) {
+                    location.href = FRONTEND_URL + "/cpa_one_index";
+                } else {
+                    location.href = FRONTEND_URL + "/cpa_two_index";
+                }
+                // getStudentSelfStudy();
+                // getStudentPrivateSchool();
+                // getStudentMac();
+                GetStudentRegistration(course_code);
             }
-            // getStudentSelfStudy();
-            // getStudentPrivateSchool();
-            // getStudentMac();
-            GetStudentRegistration(course_code);
-        }
-    });
+        });
+    }
 }

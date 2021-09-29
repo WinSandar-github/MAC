@@ -19,6 +19,9 @@
                                 <h5 class="title">{{ __('DA 2 Exam Registration List') }}</h5>
                             </div>
                         </div>
+                        <div class="col-md-12 text-right">
+                            <button class="btn btn-primary btn-round m-0" onclick="window.location.href='da2_exam_result_edit'">Go to Exam Result List</button>
+                        </div>
                         {{--<div class="row">
                             <div class="col-md-8">
 
@@ -88,7 +91,7 @@
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
-                                            <th class="bold-font-weight" >Print</th>
+                                            {{--<th class="bold-font-weight" >Print</th>--}}
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_pending_exam_body" class="hoverTable text-left">
@@ -132,7 +135,7 @@
                                             <th class="bold-font-weight" >Remark</th>
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
-                                            <th class="bold-font-weight" >Print</th>
+                                            {{--<th class="bold-font-weight" >Print</th>--}}
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_rejected_exam_body" class="hoverTable text-left">
@@ -180,7 +183,6 @@
               {data: 'exam_type', name: 'Exam Type'},
               {data: 'remark', name: 'Remark'},
               {data: 'status', name: 'Status'},
-              {data: 'print', name: 'Print',orderable: false, searchable: false},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
@@ -240,7 +242,6 @@
               {data: 'exam_type', name: 'Exam Type'},
               {data: 'remark', name: 'Remark'},
               {data: 'status', name: 'Status'},
-              {data: 'print', name: 'Print',orderable: false, searchable: false},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });

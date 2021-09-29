@@ -6,9 +6,9 @@
 @section('content')
     <div class="content">
         <div class="row">
-            <div class="col-md-12">
+           {{-- <div class="col-md-12">
                 {{ Breadcrumbs::render('exam_result_list') }}
-            </div>
+            </div>--}}
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
@@ -66,7 +66,7 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Exam Type</th>
-                                            <th class="bold-font-weight" >Remark</th>
+                                            <th class="bold-font-weight" >Grade</th>
                                             <th class="bold-font-weight" >Batch Number</th>
                                             <th class="bold-font-weight" >Module</th>
                                             </tr>
@@ -83,7 +83,7 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Exam Type</th>
-                                            <th class="bold-font-weight" >Remark</th>
+                                            <th class="bold-font-weight" >Grade</th>
                                             <th class="bold-font-weight" >Batch Number</th>
                                             <th class="bold-font-weight" >Module</th>
                                             </tr>
@@ -100,7 +100,7 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Exam Type</th>
-                                            <th class="bold-font-weight" >Remark</th>
+                                            <th class="bold-font-weight" >Grade</th>
                                             <th class="bold-font-weight" >Batch Number</th>
                                             <th class="bold-font-weight" >Module</th>
                                             </tr>
@@ -150,7 +150,7 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'exam_type', name: 'Exam Type'},
-            {data: 'remark', name: 'Remark'},
+            {data: 'remark', name: 'Grade'},
             {data: 'status', name: 'Batch Number'},
             {data: 'module', name: 'Module'},
         ],
@@ -165,12 +165,11 @@
                 url  : BACKEND_URL + "/filter_exam_register",
                 type : "POST" ,
                 data :  function (d) {
-                    d.grade       = 1,
+                    d.grade = 1,
                     d.course_code = '1',
-                    d.name =    "",
+                    d.name = "",
                     d.batch= "all"
                 }
-             
             },
         columns: [
           {data: null, render: function (data, type, row, meta) {
@@ -179,7 +178,7 @@
           {data: 'action', name: 'action', orderable: false, searchable: false},
           {data: 'student_info.name_mm', name: 'Student Name'},
           {data: 'exam_type', name: 'Exam Type'},
-          {data: 'remark', name: 'Remark'},
+          {data: 'remark', name: 'Grade'},
           {data: 'batch.name', name: 'Batch Number'},
           {data: 'module', name: 'Module'},
         ],
@@ -208,7 +207,7 @@
           {data: 'action', name: 'action', orderable: false, searchable: false},
           {data: 'student_info.name_mm', name: 'Student Name'},
           {data: 'exam_type', name: 'Exam Type'},
-          {data: 'remark', name: 'Remark'},
+          {data: 'remark', name: 'Grade'},
           {data: 'batch.name', name: 'Batch Number'},
           {data: 'module', name: 'Module'},
         ],

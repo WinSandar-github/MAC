@@ -109,7 +109,7 @@ class DARegisterController extends Controller
         // $course_date = date('Y-m-d');
 
         $date_of_birth = $request->date_of_birth;
-        $date = $request->date_of_birth;
+        $date = date('d-M-Y');;
         $qualified_date = $request->qualified_date;
         $course_date = date('Y-m-d');
 
@@ -185,13 +185,14 @@ class DARegisterController extends Controller
     public function send_email(Request $request)
     {
         $student_info = new StudentInfo();
-        // $student_info->verify_code = '1234';
-        $student_info->verify_code = mt_rand(1000,9999);
-        $data = array(
-            'email' => 'no-reply@oagmac.gov.mm',
-            'verify_code' => $student_info['verify_code']
-        );
-        Mail::to($request['email'])->send(new ContactMail($data));
+        $student_info->verify_code = '1234';
+
+        // $student_info->verify_code = mt_rand(1000,9999);
+        // $data = array(
+        //     'email' => 'macadmin@gmail.com',
+        //     'verify_code' => $student_info['verify_code']
+        // );
+        // Mail::to($request['email'])->send(new ContactMail($data));
         
         return response()->json([
             'data' => $student_info

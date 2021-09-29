@@ -1,5 +1,5 @@
 function loadEntryDetail(id) {
-            
+
     $("#school_name").html("");
     $("#exam_type").html("");
     $("#student_grade").html("");
@@ -37,15 +37,15 @@ function loadEntryDetail(id) {
     $("#office_address").html("");
 
     $("input[name = student_id]").val(id);
-        
+
     $.ajax({
         type: "GET",
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(exam_data)
+            // console.log(exam_data)
             exam_data.forEach(function (element) {
-               
+
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -53,13 +53,13 @@ function loadEntryDetail(id) {
                 // } else {
                 //     exam_type_id = "MAC STUDENT";
                 // }
-                // if (element.status == 0) {
-                //     status = "PENDING";
-                // } else if (element.status == 1) {
-                //     status = "APPROVED";
-                // } else {
-                //     status = "REJECTED";
-                // }
+                if (element.status == 0) {
+                    status = "PENDING";
+                } else if (element.status == 1) {
+                    status = "APPROVED";
+                } else {
+                    status = "REJECTED";
+                }
                 // if (element.grade == 0) {
                 //     grade = "-";
                 // } else if (element.grade == 1) {
@@ -67,28 +67,44 @@ function loadEntryDetail(id) {
                 // } else {
                 //     grade = "FAILED";
                 // }
-                
+
 
                 // $("#school_name").append(element.private_school_name);
-                $("#exam_type").append("cpa one Entry Exam");
+                $("#exam_type").append("CPA One Entry Exam");
                 // $("#student_grade").append(grade);
-                // $("#student_status").append(status);
+                $("#student_status").append(status);
 
-                if (element.status == 0) {
-                    document.getElementById("approve").style.display = 'block';
-                    document.getElementById("reject").style.display = 'block';
-                    document.getElementById("print").style.display = 'none';
+                console.log($('#entry_result').val())
+                if ($('#entry_result').val() == 1) {
+
+                    if (element.status == 0) {
+                        document.getElementById("approve").style.display = 'block';
+                        document.getElementById("reject").style.display = 'block';
+                        document.getElementById("print").style.display = 'none';
+
+                    } else {
+                        document.getElementById("print").style.display = 'block';
+                        document.getElementById("approve").style.display = 'none';
+                        document.getElementById("reject").style.display = 'none';
+                    }
 
                 } else {
-                    document.getElementById("print").style.display = 'block';
-                    document.getElementById("approve").style.display = 'none';
-                    document.getElementById("reject").style.display = 'none';
+                    if (element.grade == 1) {
+                        document.getElementById("pass").style.display = 'none';
+                        document.getElementById("fail").style.display = 'none';
+
+                    } else {
+                        document.getElementById("pass").style.display = 'block';
+                        document.getElementById("fail").style.display = 'block';
+                    }
+
                 }
+
 
                 // $("#exam_department").append(element.exam_department.name);
 
                 let student_info = element.student_info;
-                
+
                 var education_history = student_info.student_education_histroy;
                 var job = student_info.student_job;
                 $("#id").append(student_info.id);
@@ -109,13 +125,13 @@ function loadEntryDetail(id) {
                 // $("#image").append(student_info.image);
                 // $("#registration_no").append(student_info?.student_register[0]?.personal_no);
 
-                if(student_info.gov_staff == 1){
+                if (student_info.gov_staff == 1) {
                     $(".recommend_row").show();
-                    let recommend_letter = JSON.parse(student_info.recommend_letter);
-                    $.each(recommend_letter,function(fileCount,fileName){
-                        $(".recommend_letter").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                    })
-                }else{
+                    // let recommend_letter = JSON.parse(student_info.recommend_letter);
+                    // $.each(recommend_letter,function(fileCount,fileName){
+                    $(".recommend_letter").append(`<a href='${PDF_URL + student_info.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    // })
+                } else {
                     $(".recommend_row").hide();
                 }
 
@@ -125,14 +141,14 @@ function loadEntryDetail(id) {
                 $("#roll_number").append(education_history.roll_number);
 
                 let certificate = JSON.parse(education_history.certificate);
-                $.each(certificate,function(fileCount,fileName){
+                $.each(certificate, function (fileCount, fileName) {
 
-                        $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
                 })
 
-                $(".nrc_front").append(`<a href='${PDF_URL+student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_front").append(`<a href='${PDF_URL + student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL + student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);
@@ -143,17 +159,25 @@ function loadEntryDetail(id) {
                 $("#office_address").append(job.office_address);
                 attached_file = student_info.student_education_histroy.certificate;
 
-            
+
                 //show Exam Card Data
                 document.getElementById('student_img').src = PDF_URL + student_info.image;
-                
+
                 $('#exam_batch_no').text(element.batch.number);
                 $('#exam_roll_no').text(12)
                 $('#exam_student_name').text(student_info.name_mm);
                 $('#exam_student_nrc').text(student_info.nrc_state_region + "/" + student_info.nrc_township + "(" + student_info.nrc_citizen + ")" + student_info.nrc_number);
-                $('#exam_date').text('၃-၂-၂၀၁၉ (တနင်္ဂနွေနေ့)');
-                $('#exam_time').text('နံနက် ၉း၀၀ နာရီ မှ ၁၁း၀၀ နာရီ အထိ');
-                $('#exam_place').text('Yangon');
+                get_exam_info().then(data => {
+                    let exams = data.data;
+
+                    var exam = exams.filter(exam => { if (exam.exam_type_id == 2 && exam.batch_id == element.batch.id) return true });
+                    console.log('exam',exam)
+
+                    $('#exam_date').text(exam[0].exam_start_date);
+                    $('#exam_time').text(`နံနက် ${exam[0].exam_start_time} နာရီ မှ ${exam[0].exam_end_time} နာရီ အထိ`);
+                    $('#exam_place').text(exam[0].exam_place);
+
+                })
 
             })
         }
@@ -182,7 +206,7 @@ function rejectEntryExam() {
         url: BACKEND_URL + "/reject_exam/" + id,
         type: 'PATCH',
         success: function (result) {
-            
+
             successMessage("You have rejected that form!");
             location.href = FRONTEND_URL + "/entry_exam_list";
             getExam();
@@ -191,13 +215,51 @@ function rejectEntryExam() {
 }
 
 
-function PrintExamCard(){
-     
-    var backup=document.body.innerHTML;        
-     
-    var divcontent=document.getElementById("printdiv").innerHTML;
-    document.body.innerHTML=divcontent;
+function PrintExamCard() {
+
+    var backup = document.body.innerHTML;
+
+    var divcontent = document.getElementById("printdiv").innerHTML;
+    document.body.innerHTML = divcontent;
     window.print();
-    document.body.innerHTML=backup;
+    document.body.innerHTML = backup;
 }
- 
+
+
+
+async function get_exam_info() {
+    let response = await fetch(BACKEND_URL + "/exam/")
+    let data = await response.json()
+    return data;
+}
+
+
+
+function passEntryExam() {
+    var id = $("input[name = student_id]").val();
+    $.ajax({
+        url: BACKEND_URL + "/pass_entry_exam/" + id,
+        type: 'PATCH',
+        success: function (result) {
+            console.log(result)
+            successMessage("You have approved that form!");
+            location.href = FRONTEND_URL + "/entry_exam_result";
+            getExam();
+        }
+    });
+}
+
+function failEntryExam() {
+    var id = $("input[name = student_id]").val();
+    $.ajax({
+        url: BACKEND_URL + "/fail_entry_exam/" + id,
+        type: 'PATCH',
+        success: function (result) {
+
+            successMessage("You have rejected that form!");
+            location.href = FRONTEND_URL + "/entry_exam_result";
+            getExam();
+        }
+    });
+}
+

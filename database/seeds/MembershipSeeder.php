@@ -136,7 +136,22 @@ class MembershipSeeder extends Seeder
                 'renew_cpa_subject_fee' =>NULL,
                 'renew_da_subject_fee' =>NULL       
             ),
-
+            array(
+                'membership_name' => 'Article',
+                'requirement'     => '<p>စာရင်းကိုင်အလုပ်သင် မှတ်ပုံတင်ရန်အတွက် <a href="https://demo.aggademo.me/MAC/public/storage/article/142.pdf" target="_blank">ဤရုံးအမိန့်အမှတ် (၁၄၂) </a> အားဖတ်ရှုရန်လိုအပ်ပါသည်။</p>',
+                'description'     => NULL,
+                'form_fee'        => NULL,
+                'registration_fee'=> '5000',
+                'yearly_fee'      => NULL,
+                'renew_fee'       => NULL,
+                'late_fee'        => NULL,
+                'late_feb_fee'    => NULL,
+                'expire_fee'      => NULL ,
+                'cpa_subject_fee' =>NULL,
+                'da_subject_fee'  =>NULL,
+                'renew_cpa_subject_fee' =>NULL,
+                'renew_da_subject_fee' =>NULL       
+            ),
 
         ]);
     }

@@ -124,8 +124,14 @@
                         </li>
                         <li class="{{ $elementActive == 'entry_exam_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'entry_exam_list') }}">
-                                <i class="nc-icon nc-tap-01"></i>
+                                <i class="nc-icon nc-paper"></i>
                                 <span>{{ __('Entry Exam List') }}</span>
+                            </a>
+                        </li>
+                        <li class="{{ $elementActive == 'qualified_test_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'qualified_test_list') }}">
+                                <i class="nc-icon nc-paper"></i>
+                                <span>{{ __('Qualified Test List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'cpa_exam_one' ? 'active' : '' }}">
@@ -164,10 +170,10 @@
                                 <span style="font-weight:normal;font-size:11px;">{{ __('DA 2 Exam Result List') }}</span>
                             </a>
                         </li>
-                        <li  class="{{ $elementActive == 'qualified_test_list' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'qualified_test_list') }}">
+                        <li  class="{{ $elementActive == 'qualified_test_result_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'qualified_test_result_list') }}">
                                 <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
-                                <span style="font-size:11px;font-weight:normal;">{{ __('Qualified Test List') }}</span>
+                                <span style="font-size:11px;font-weight:normal;">{{ __('Qualified Test Result List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'entry_exam_result' ? 'active' : '' }}">
@@ -242,7 +248,12 @@
                                 <span style="font-weight:normal;font-size:11px;">{{ __('Mentors') }}</span>
                             </a>
                         </li>
-                        
+                        <li class="{{ $elementActive == 'mentor_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'article_list') }}">
+                                <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;font-size:11px;">{{ __('Article') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
@@ -294,6 +305,13 @@
                             <a href="{{ route('page.index', 'batch_list') }}">
                                 <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
                                 <span style="font-weight:normal;">{{ __('သင်တန်းအမှတ်စဥ်') }}</span>
+                            </a>
+                        </li>
+
+                        <li class="{{ $elementActive == 'exam_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'exam_list') }}">
+                                <i class="nc-icon nc-paper"  style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;">{{ __('စာမေးပွဲ') }}</span>
                             </a>
                         </li>
 

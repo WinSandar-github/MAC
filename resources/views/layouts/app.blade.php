@@ -17,11 +17,13 @@
     <link href="{{ asset('css/bootstrap/font-awesome.min.css')}}" rel="stylesheet">
     <link href="{{ asset('paper/css/bootstrap.min.css')}}" rel="stylesheet"/>
     <link href="{{ asset('paper/css/paper-dashboard.css?v=2.0.0')}}" rel="stylesheet"/>
+    <link  href="{{ asset("plugins/sweetalert2/sweetalert2.css") }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css')}}" rel="stylesheet"/>
     <link href="{{ asset('paper/demo/demo.css')}}" rel="stylesheet"/>
     <link href="{{ asset('css/flatpickr/flatpickr.min.css')}}" rel="stylesheet">
     <link href="{{ asset('css/select2/select2.css') }}" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+{{--    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">--}}
+    <link href="{{ asset("plugins/summernote/summernote.min.css") }}" rel="stylesheet">
     <link href="{{ asset('css/treeview.css')}}" rel="stylesheet"/>
     <link href="{{ asset('plugins/toastr/toastr.min.css')}}" rel="stylesheet">
     <!-- DataTables -->
@@ -52,12 +54,14 @@
 <script src="{{ asset('js/dataTables/dataTables.bootstrap5.min.js')}}"></script>
 
 <!-- bootstrap JS -->
-<script src="{{ asset('js/bootstrap/bootstrap.min.js')}}"></script>
 <script src="{{ asset('js/bootstrap/popper.min.js')}}"></script>
+<script src="{{ asset('js/bootstrap/bootstrap.min.js')}}"></script>
 <script src="{{ asset('js/flatpickr/flatpickr.js')}}"></script>
-
 <script src="{{ asset("vendor/jquery-validation/dist/jquery.validate.min.js") }}"></script>
 <script src="{{ asset("vendor/jquery-validation/dist/additional-methods.min.js") }}"></script>
+<script src="{{ asset("plugins/sweetalert2/sweetalert2.all.js") }}"></script>
+{{--<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>--}}
+<script src="{{ asset("plugins/summernote/summernote.min.js") }}"></script>
 
 <!-- Plugins JS -->
 <script src="{{ asset('assets/js/plugins/swiper-bundle.min.js') }}"></script>
@@ -74,14 +78,13 @@
 <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0')}}"></script>
 <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
 <script src="{{ asset('js/audit_firm.js')}}"></script>
+<script src="{{ asset('js/non_audit_firm.js')}}"></script>
 <script src="{{ asset('js/course.js') }}"></script>
 <script src="{{ asset('js/batch.js')}}"></script>
 <script src="{{ asset('js/requirement.js')}}"></script>
 <script src="{{ asset('js/description.js')}}"></script>
 <script src="{{ asset('js/membership.js')}}"></script>
 <script src="{{ asset('js/entry_exam.js')}}"></script>
-
-
 
 <script src="{{ asset('js/common.js')}}"></script>
 <script src="{{ asset('js/student.js')}}"></script>
@@ -96,11 +99,9 @@
 <script src="{{ asset('js/mentor.js') }}"></script>
 <script src="{{ asset('js/chart.js') }}"></script>
 <script src="{{ asset('js/report.js') }}"></script>
-
+<script src="{{ asset('js/exam.js') }}"></script>
 <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
 <script src="{{ asset('js/select2/select2.min.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-
 <script type="text/javascript">
     $(document).ready(function () {
         $(document).on('show.bs.modal', '#ApprovalModal', function (e) {

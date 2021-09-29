@@ -65,7 +65,7 @@
                   </div>
 
                   <div class="row mb-3">
-                    <label class="col-md-3 col-form-label"><span class="pull-left">{{ __('၃။') }}</span>လူမျိူး/ဘာသာ</label>
+                    <label class="col-md-3 col-form-label"><span class="pull-left">{{ __('၃။') }}</span>လူမျိုး/ဘာသာ</label>
                     <div class="col-md-9">
                       <div class="row">
                         <div class="col-md-6">

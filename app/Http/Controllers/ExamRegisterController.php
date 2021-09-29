@@ -174,151 +174,153 @@ class ExamRegisterController extends Controller
     // }
 
     public function FilterExamRegistration(Request $request){
+
         $exam_register = ExamRegister::with('student_info')
-        ->where('status','=',$request->status)
-        ->whereHas('student_info', function($q) use ($request){
-          if($request->name !== ""){
-              $q->where('name_mm', 'like', "%" . $request->name . "%")
-              ->orWhere('name_eng', 'like', "%" . $request->name . "%");
-          }
-          if($request->batch != "all"){
-              $query->where('batch_id', $request->batch);
-          }
-        })
-        ->where('form_type','=',$request->course_code)->get();
-      // if($request->batch!="all")
-      // {
-      //     $exam_register = $exam_register->where('batch_id', $request->batch);
-      // }
-      // if($request->name!=""){
-      //     $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
-      //     ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-      //     ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-      // }
-      // $exam_register =  $exam_register->get();
+                            ->where('status','=',$request->status)
+                            ->whereHas('student_info', function($q) use ($request){
+                                if($request->name !== ""){
+                                    $q->where('name_mm', 'like', "%" . $request->name . "%")
+                                        ->orWhere('name_eng', 'like', "%" . $request->name . "%");
+                                }
+                                
+                                if($request->batch != "all"){
+                                    $query->where('batch_id', $request->batch);
+                                }
+                            })
+                            ->where('form_type','=',$request->course_code)->get();
+      
+        // if($request->batch!="all")
+        // {
+        //     $exam_register = $exam_register->where('batch_id', $request->batch);
+        // }
+        // if($request->name!=""){
+        //     $exam_register =  $exam_register->join('student_infos', 'exam_register.student_info_id', '=', 'student_infos.id')
+        //     ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
+        //     ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
+        // }
+        // $exam_register =  $exam_register->get();
+
         // DA One
-        $datatable=DataTables::of($exam_register)        
-          // ->addColumn('exam_type', function ($infos){
-          //     if($infos->exam_type_id == 0){
-          //       return "SELF STUDY";
-          //     }
-          //     else if($infos->exam_type_id == 1){
-          //       return "PRIVATE SCHOOL";
-          //     }
-          //     else{
-          //       return "MAC STUDENT";
-          //     }
-          // })
+        $datatable=DataTables::of($exam_register)
+            ->addColumn('exam_type', function ($infos){
+                if($infos->form_type == 1){
+                  return "DA - I";
+                }
+                else if($infos->form_type == 2){
+                    return "DA - II";
+                }
+                else if($infos->form_type == 3){
+                    return "CPA - I";
+                }
+                else{
+                    return "CPA - II";
+                }
+            })
+            ->addColumn('remark', function ($infos){
+                if($infos->grade == 0){
+                    return "-";
+                }
+                else if($infos->grade == 1){
+                    return "PASSED";
+                }
+                else{
+                    return "FAILED";
+                }
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->status == 0){
+                    return "PENDING";
+                }
+                else if($infos->status == 1){
+                    return "APPROVED";
+                }
+                else{
+                    return "REJECTED";
+                }
+            });
 
-          ->addColumn('exam_type', function ($infos){
-            if($infos->form_type == 1){
-              return "DA - I";
-            }
-            else if($infos->form_type == 2){
-              return "DA - II";
-            }
-            else if($infos->form_type == 3){
-              return "CPA - I";
-            }
-            else{
-              return "CPA - II";
-            }
-          })
+        if($request->course_code == 1) {
+            $datatable=$datatable->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='showExam($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </button>
+                        </div>";
+            });
 
-          ->addColumn('remark', function ($infos){
-              if($infos->grade == 0){
-                return "-";
-              }
-              else if($infos->grade == 1){
-                return "PASSED";
-              }
-              else{
-                return "FAILED";
-              }
-          })
+            if($request->status==1)
+            {
+                $datatable=$datatable->addColumn('print', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='printExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
+                                    <li class='fa fa-print fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+            }
+        } else if($request->course_code == 2) {
+            $datatable=$datatable->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showDaTwoExam($infos->id)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+                if($request->status==1)
+                {
+                $datatable=$datatable->addColumn('print', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='printExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
+                                    <li class='fa fa-print fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+                }
+        } else if($request->course_code == 3) {
+            $datatable=$datatable->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showCPAOneExam($infos->id)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+                if($request->status==1)
+                {
+                $datatable=$datatable->addColumn('print', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
+                                    <li class='fa fa-print fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+                }
+        } else {
+            $datatable=$datatable->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showCPATwoExam($infos->id)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+                if($request->status==1)
+                {
+                $datatable=$datatable->addColumn('print', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
+                                    <li class='fa fa-print fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+                }
+        }
 
-          ->addColumn('status', function ($infos){
-              if($infos->status == 0){
-                return "PENDING";
-              }
-              else if($infos->status == 1){
-                return "APPROVED";
-              }
-              else{
-                return "REJECTED";
-              }
-          });
-      if($request->course_code == 1)
-      {
-        $datatable=$datatable->addColumn('action', function ($infos) {
-            return "<div class='btn-group'>
-                        <button type='button' class='btn btn-primary btn-xs' onclick='showExam($infos->id)'>
-                            <li class='fa fa-eye fa-sm'></li>
-                        </button>
-                    </div>";
-        })
+        if($request->status==1){
+            $datatable=$datatable->rawColumns(['action', 'print','exam_type','remark','status'])->make(true);
+        } else {
+            $datatable=$datatable->rawColumns(['action', 'exam_type','remark','status'])->make(true);
+        }
 
-        ->addColumn('print', function ($infos) {
-            return "<div class='btn-group'>
-                        <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->batch_id)'>
-                            <li class='fa fa-print fa-sm'></li>
-                        </button>
-                    </div>";
-        });
-      }
-      else if($request->course_code == 2){
-        $datatable=$datatable->addColumn('action', function ($infos) {
-                  return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='showDaTwoExam($infos->id)'>
-                                  <li class='fa fa-eye fa-sm'></li>
-                              </button>
-                          </div>";
-              })
-  
-              ->addColumn('print', function ($infos) {
-                  return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printExamCard($infos->student_info_id,$infos->batch_id)'>
-                                  <li class='fa fa-print fa-sm'></li>
-                              </button>
-                          </div>";
-              });
-      }
-      else if($request->course_code == 3){
-        $datatable=$datatable->addColumn('action', function ($infos) {
-                  return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='showCPAOneExam($infos->id)'>
-                                  <li class='fa fa-eye fa-sm'></li>
-                              </button>
-                          </div>";
-              })
-  
-              ->addColumn('print', function ($infos) {
-                  return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id)'>
-                                  <li class='fa fa-print fa-sm'></li>
-                              </button>
-                          </div>";
-              });
-      }
-      else {
-        $datatable=$datatable->addColumn('action', function ($infos) {
-                  return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='showCPATwoExam($infos->id)'>
-                                  <li class='fa fa-eye fa-sm'></li>
-                              </button>
-                          </div>";
-              })
-  
-              ->addColumn('print', function ($infos) {
-                  return "<div class='btn-group'>
-                              <button type='button' class='btn btn-primary btn-xs' onclick='printCPAOneExamCard($infos->student_info_id)'>
-                                  <li class='fa fa-print fa-sm'></li>
-                              </button>
-                          </div>";
-              });
-      }
-      $datatable=$datatable->rawColumns(['action', 'print','exam_type','remark','status'])->make(true);
-      return $datatable;
+        return $datatable;
     }
 
 
@@ -332,6 +334,7 @@ class ExamRegisterController extends Controller
 
     public function cpaExamRegister(Request $request)
     {
+      // return($request->last_ans_module);
 
         $student_info_id = $request->student_id;
         $exam_type = StudentRegister::where('student_info_id', $student_info_id)->latest()->get('type');
@@ -348,13 +351,14 @@ class ExamRegisterController extends Controller
 
 
 
-        $date = date('Y-m-d');
+        $date = date('d-M-Y');
         $invoice_date = date('Y-m-d');
 
         $exam = new ExamRegister();
+        
         $exam->student_info_id = $request->student_id;
         $exam->last_ans_exam_no= $request->last_ans_exam_no;
-        $exam->last_ans_module = $request->last_ans_module;
+
         $exam->date = $date;
         $exam->invoice_date = $invoice_date;
         $exam->private_school_id = $request->private_school_id;
@@ -362,6 +366,7 @@ class ExamRegisterController extends Controller
         $exam->grade = 0;
         $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
+        $exam->exam_department = $request->exam_department;
         //exam type id mean mac self study private school
         $exam->exam_type_id = $type;
         $exam->form_type = $request->form_type;
@@ -380,6 +385,14 @@ class ExamRegisterController extends Controller
         ],200);
 
     }
+
+    public function getPassedExamByStudentID($id){
+      $exam_register = ExamRegister::where('student_info_id',$id)->where('grade',1)->with('course','batch')->get();
+      return response()->json([
+          'data' => $exam_register
+      ],200);
+
+  }
     public function getExamStatus($id)
     {
         $stu_course_reg = StudentCourseReg::where('student_info_id',$id)->with('batch')->latest()->first();
@@ -494,19 +507,30 @@ class ExamRegisterController extends Controller
               }
           });
           if($request->course_code==1){
-            $datatable=$datatable
+            $datatable = $datatable
             ->addColumn('action', function ($infos) {
+                if($infos->grade == 1){
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                                <a class='btn btn-info btn-sm p' href='". route('certificate', ['id' => $infos->student_info_id]) . "'>
+                                    <li class='fa fa-file-text-o fa-sm'></li>
+                                </a>
+                            </div>";
+                }
+
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onclick='fillMark($infos->id,$infos->is_full_module)'>
-                                <li class='fa fa-eye fa-sm'></li>
-                            </button>
-                        </div>";
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
             });
           }
           else if($request->course_code==2){
             $datatable=$datatable->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='fillMark($infos->id,$infos->is_full_module)'>
                                 <li class='fa fa-eye fa-sm'></li>
                             </button>
                         </div>";
@@ -515,7 +539,7 @@ class ExamRegisterController extends Controller
           else if($request->course_code==1){
             $datatable=$datatable->addColumn('action', function ($infos) {
                       return "<div class='btn-group'>
-                                  <button type='button' class='btn btn-primary btn-xs' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
+                                  <button type='button' class='btn btn-primary btn-sm' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
                                       <li class='fa fa-eye fa-sm'></li>
                                   </button>
                               </div>";
@@ -524,7 +548,7 @@ class ExamRegisterController extends Controller
           else{
             $datatable=$datatable->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
                                 <li class='fa fa-eye fa-sm'></li>
                             </button>
                         </div>";

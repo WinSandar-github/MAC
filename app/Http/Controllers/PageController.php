@@ -51,6 +51,9 @@ class PageController extends Controller
         else if (view()->exists("pages.batch.{$page}")) {
             return view("pages.batch.{$page}");
         }
+        else if (view()->exists("pages.exam.{$page}")) {
+            return view("pages.exam.{$page}");
+        }
         else if (view()->exists("pages.course.{$page}")) {
             return view("pages.course.{$page}");
         }
@@ -94,6 +97,9 @@ class PageController extends Controller
         }
         else if (view()->exists("pages.exam_form.{$page}")) {
             return view("pages.exam_form.{$page}");
+        }
+        else if (view()->exists("pages.exam_cards.{$page}")) {
+            return view("pages.exam_cards.{$page}");
         }
         else if (view()->exists("pages.exam_result.{$page}")) {
             return view("pages.exam_result.{$page}");
