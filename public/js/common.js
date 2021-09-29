@@ -827,6 +827,11 @@ function successMessage(message) {
     toastr.success(message);
 }
 
+function errorMessage(message) {
+    toastr.options = toastOptions;
+    toastr.error(message);
+}
+
 function createDataTable(table) {
 
     $(table).DataTable({
