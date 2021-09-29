@@ -177,7 +177,7 @@ function loadStudentSelfStudy() {
         success: function (data) {
             // console.log(data,"yy");
             var element = data.data;
-            // console.log('element',element);
+            console.log('element',element);
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
             // $("#student_dob").append(element.student_info.date_of_birth);
@@ -211,7 +211,7 @@ function loadStudentSelfStudy() {
             var education_history = student_info_data.student_education_histroy;
             var job = student_info_data.student_job;  
 
-            // console.log('personal_no',student_info_data.personal_no); 
+            console.log('student_info_data',student_info_data); 
             if(student_info_data.course_type_id==1 ){
                 $("#registration_no").append(student_info_data.personal_no);
             }else if(student_info_data.course_type_id==2){
@@ -224,7 +224,7 @@ function loadStudentSelfStudy() {
             document.getElementById('image').src = PDF_URL + student_info_data.image;
             $("#name_eng").append(student_info_data.name_eng);
             $("#name_mm").append(student_info_data.name_mm);
-            $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + element.nrc_number);
+            $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + student_info_data.nrc_number);
             $("#father_name_mm").append(student_info_data.father_name_mm);
             $("#father_name_eng").append(student_info_data.father_name_eng);
             $("#race").append(student_info_data.race);

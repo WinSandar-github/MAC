@@ -143,10 +143,12 @@ function loadData() {
         type: "GET",
         url: BACKEND_URL + "/da_register/" + id,
         success: function (data) {
-            console.log("data",data);
+            // console.log("data",data);
             var student = data.data;
-            console.log(student[0].student_info.id)
+            // console.log("student",student);
+            // console.log(student[0].student_info.id)
             student.forEach(function (student_course) {
+                console.log("student_course",student_course);
                 let element = student_course.student_info;
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";
@@ -221,7 +223,7 @@ function loadData() {
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
-                            console.log(result.data,"course html");                            
+                            // console.log(result.data,"course html");                            
                             $('.course').html(course_html)
                         }
                     }
