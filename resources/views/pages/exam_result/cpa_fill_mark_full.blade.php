@@ -389,8 +389,8 @@
                                     
                                     <div class="pass_fail_btn">
                                             
-                                        <button type="submit" class=" btn  btn-danger" onClick="javascript:failExam();">Fail</button>
-                                        <button type="submit" class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
+                                        <button type="submit" class=" btn  btn-danger " value="fail">Fail</button>
+                                        <button type="submit" class=" btn btn-primary" value="pass">Pass</button>
                                     </div>
 
                                     </form>
@@ -480,7 +480,7 @@
                                                 <h5  style="font-weight:bold;margin:auto" >အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
                                                 
                                             </div>
-                                            <form  method="post" action="javascript:examResultSubmit();" enctype="multipart/form-data">    
+                                            <form  method="post" action="javascript:examResultSubmit(this);" enctype="multipart/form-data">    
 
                                                 
                                                 <input type="hidden" name="result_id">
