@@ -503,7 +503,7 @@
                                                                 <input type="text" name="mark1" id="mark1" class="form-control" value="{{ old('mark1') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade1" id="grade1" class="form-control" value="{{ old('grade1') }}" required>
+                                                                <input type="text" name="grade1" id="grade1" class="form-control" value="{{ old('grade1') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -515,7 +515,7 @@
                                                                 <input type="text" name="mark2" id="mark2" class="form-control" value="{{ old('mark2') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade2" id="grade2" class="form-control" value="{{ old('grade2') }}" required>
+                                                                <input type="text" name="grade2" id="grade2" class="form-control" value="{{ old('grade2') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -527,7 +527,7 @@
                                                                 <input type="text" name="mark3" id="mark3" class="form-control" value="{{ old('mark3') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade3" id="grade3" class="form-control" value="{{ old('grade3') }}" required>
+                                                                <input type="text" name="grade3" id="grade3" class="form-control" value="{{ old('grade3') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -539,7 +539,7 @@
                                                                 <input type="text" name="mark4" id="mark4" class="form-control" value="{{ old('mark4') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade4" id="grade4" class="form-control" value="{{ old('grade4') }}" required>
+                                                                <input type="text" name="grade4" id="grade4" class="form-control" value="{{ old('grade4') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -551,7 +551,7 @@
                                                                 <input type="text" name="mark5" id="mark5" class="form-control" value="{{ old('mark5') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade5" id="grade5" class="form-control" value="{{ old('grade5') }}" required>
+                                                                <input type="text" name="grade5" id="grade5" class="form-control" value="{{ old('grade5') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -563,7 +563,7 @@
                                                                 <input type="text" name="mark6" id="mark6" class="form-control" value="{{ old('mark6') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade6" id="grade6" class="form-control" value="{{ old('grade6') }}" required>
+                                                                <input type="text" name="grade6" id="grade6" class="form-control" value="{{ old('grade6') }}">
                                                             </td>
                                                         </tr>
                                                     </table>

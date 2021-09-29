@@ -68,19 +68,17 @@ function passExam(){
     else{
         var id = localStorage.getItem("exam_register_id");
         var course_type = localStorage.getItem("course_type");
-        var course_code = localStorage.getItem("course_code");
-
         $.ajax({
             url: BACKEND_URL + "/pass_exam/"+id,
             type: 'PATCH',
             success: function(result){
-                console.log(result)
-                successMessage("You have pass that Student!");
-                if (course_code == 1) {
+                //aggaio
+                successMessage(result.message);
+                if (course_type == 'da_1') {
                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                } else if (course_code == 2) {
+                } else if (course_type == 'da_2') {
                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                } else if (course_code == 3) {
+                } else if (course_type == 'cpa_1') {
                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                 } else {
                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
@@ -98,18 +96,17 @@ function failExam(){
     else{
         var id = localStorage.getItem("exam_register_id");
         var course_type = localStorage.getItem("course_type");
-
         $.ajax({
             url:  BACKEND_URL + "/fail_exam/"+id,
             type: 'PATCH',
             success: function(result){
-                console.log(result)
-                successMessage("You have fail that form!");
-                if (course_code == 1) {
+                //aggaio
+                errorMessage(result.message);
+                if (course_type == 'da_1') {
                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                } else if (course_code == 2) {
+                } else if (course_type == 'da_2') {
                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                } else if (course_code == 3) {
+                } else if (course_type == 'cpa_1') {
                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                 } else {
                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
