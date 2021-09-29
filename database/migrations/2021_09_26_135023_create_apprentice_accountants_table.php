@@ -22,6 +22,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->boolean('gov_staff');
             $table->string('gov_position')->nullable();
             $table->string('gov_joining_date')->nullable();
+            $table->string('m_email')->nullable();
             $table->string('request_papp');
             $table->string('exam_pass_date')->nullable();
             $table->string('exam_pass_batch')->nullable();
