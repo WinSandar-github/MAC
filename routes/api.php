@@ -334,6 +334,8 @@ Route::post('/filter_firm_article','ArticleController\ArticleController@FilterAr
 Route::patch('/approve_article/{id}', 'ArticleController\ArticleController@approve');
 Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject');
 
+//payment
+Route::get('get_fees/{id}','CourseController@getFees');
 Route::post('/article_gov_register', 'ArticleController\ArticleController@saveGovArticle');
 Route::post('/filter_gov_article','ArticleController\ArticleController@FilterGovArticle');
 Route::patch('/approve_gov_article/{id}', 'ArticleController\ArticleController@approveGov');

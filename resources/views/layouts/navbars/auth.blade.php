@@ -34,22 +34,10 @@
                                 <span style="font-weight:normal;font-size:11px;">{{ __('DA 1 Application List') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'da_two_app_list' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'da_two_app_list') }}">
-                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
-                                <span style="font-weight:normal;font-size:11px;">{{ __('DA 2 Application List') }}</span>
-                            </a>
-                        </li>
                         <li class="{{ $elementActive == 'cpa_one_app_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_one_app_list') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span style="font-weight:normal;font-size:11px;">{{ __('CPA 1 Application List') }}</span>
-                            </a>
-                        </li>
-                        <li class="{{ $elementActive == 'cpa_two_app_list' ? 'active' : '' }}">
-                            <a href="{{ route('page.index', 'cpa_two_app_list') }}">
-                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
-                                <span style="font-weight:normal;font-size:11px;">{{ __('CPA 2 Application List') }}</span>
                             </a>
                         </li>
                     </ul>
