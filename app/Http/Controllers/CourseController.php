@@ -272,5 +272,13 @@ class CourseController extends Controller
             'data' => $courses
         ], 200);
     }
+
+    public function getFees($course_id)
+    {
+        $fee = Course::where('id',$course_id)->get();
+        return response()->json([
+            'data' => $fee
+        ],200);
+    }
     
 }
