@@ -216,6 +216,106 @@ function loadGovArticle()
             $("#address").val(student_info.address);
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
+            
+            $("#resign_date").val(data.resign_date);
+            $("#resign_reason").val(data.resign_reason);
+            $("#recent_name").val(data.recent_name);
+
+            document.getElementById('image').src = PDF_URL + student_info.image;
+            $(".nrc_front").append(`<a href='${PDF_URL+student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+            $(".nrc_back").append(`<a href='${PDF_URL+student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+
+            let certificate = JSON.parse(student_info.student_education_histroy.certificate);
+                $.each(certificate,function(fileCount,fileName){
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
+                   
+                })
+
+            $(".resign_approve_file").append(`<a href='${PDF_URL+data.resign_approve_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+
+            if(data.status == 0){
+              document.getElementById("approve_reject_btn").style.display = "block";
+            }else{
+              document.getElementById("approve_reject_btn").style.display = "none";
+            }
+        }
+    });
+}
+
+function approveGovArticle(){
+    if (!confirm('Are you sure you want to approve this article?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = article_id]").val();
+        console.log(id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_gov_article/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                setInterval(() => {
+                location.href = FRONTEND_URL + "/article_list";
+                }, 3000);
+            }
+        });
+    }
+}
+  
+function rejectGovArticle(){
+    if (!confirm('Are you sure you want to reject this article?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = article_id]").val();
+        $.ajax({
+            url: BACKEND_URL +"/reject_gov_article/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have rejected that user!");
+                location.href = FRONTEND_URL + "/article_list";
+            }
+        });
+    }
+}
+
+function showResignArticle(id){
+    localStorage.setItem("article_id",id);
+    location.href=FRONTEND_URL+"/resign_article_show";
+}
+
+function loadResignArticle()
+{
+    var id = localStorage.getItem("article_id");
+    $("input[name = article_id]").val(id);
+    $.ajax({
+        url: BACKEND_URL + "/resign_article_show/"+id,
+        type: 'get',
+        data:"",
+        success: function(data){
+            console.log(data);
+            var student_info=data.student_info;
+
+            var student_reg = student_info.student_register
+            var lastest_row = student_reg.length - 1;
+
+            $('#name_mm').val(student_info.name_mm);
+            $("#name_eng").val(student_info.name_eng);
+            $("#nrc_state_region").val(student_info.nrc_state_region);
+            $("#nrc_township").val(student_info.nrc_township);
+            $("#nrc_citizen").val(student_info.nrc_citizen);
+            $("#nrc_number").val(student_info.nrc_number);
+            $("#father_name_mm").val(student_info.father_name_mm);
+            $("#father_name_eng").val(student_info.father_name_eng);
+            $("#race").val(student_info.race);
+            $("#religion").val(student_info.religion);
+            $("#date_of_birth").val(student_info.date_of_birth);
+            $("#education").val(student_info.student_education_histroy.degree_name);
+            $("#address").val(student_info.address);
+            $("#phone_no").val(student_info.phone);
+            $("#m_email").val(data.m_email);
             if(data.married == 1)
             {
                 $('input:radio[name=married][value=1]').attr('checked',true);
@@ -260,7 +360,7 @@ function loadGovArticle()
     });
 }
 
-function approveGovArticle(){
+function approveResignArticle(){
     if (!confirm('Are you sure you want to approve this article?'))
     {
         return;
@@ -269,7 +369,7 @@ function approveGovArticle(){
         var id = $("input[name = article_id]").val();
         console.log(id);
         $.ajax({
-            url: BACKEND_URL + "/approve_gov_article/"+id,
+            url: BACKEND_URL + "/approve_resign_article/"+id,
             type: 'patch',
             success: function(result){
                 successMessage("You have approved that user!");
@@ -281,7 +381,7 @@ function approveGovArticle(){
     }
 }
   
-function rejectGovArticle(){
+function rejectResignArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
     {
         return;
@@ -289,7 +389,7 @@ function rejectGovArticle(){
     else{
         var id = $("input[name = article_id]").val();
         $.ajax({
-            url: BACKEND_URL +"/reject_gov_article/"+id,
+            url: BACKEND_URL +"/reject_resign_article/"+id,
             type: 'patch',
             success: function(result){
                 successMessage("You have rejected that user!");

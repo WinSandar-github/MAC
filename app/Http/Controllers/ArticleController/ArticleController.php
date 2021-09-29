@@ -276,4 +276,101 @@ class ArticleController extends Controller
         ],200);
     }
 
+    public function saveResignArticle(Request $request)
+    {
+        $acc_app = new ApprenticeAccountant();
+        $acc_app->student_info_id = $request->student_info_id;
+
+        if ($request->hasfile('resign_approve_attach')) {
+            $file = $request->file('resign_approve_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $resign_approve_attach = '/storage/student_info/'.$name;
+        }
+
+        $acc_app->resign_date = $request->resign_date;
+        $acc_app->resign_reason = $request->resign_reason;
+        $acc_app->recent_org = $request->recent_org;
+        $acc_app->m_email = $request->m_email;
+        $acc_app->resign_approve_file = $resign_approve_attach;
+        $acc_app->know_policy = $request->know_policy;
+        $acc_app->article_form_type = 0;
+        $acc_app->gov_staff = 0;
+        // return $acc_app;
+        if($acc_app->save()){
+            return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
+        }
+        return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
+    }
+
+    public function showResignArticle($id)
+    {
+        if($id != ""){
+
+            $app_acc = ApprenticeAccountant::where('id', $id)->with('student_info')->first();
+
+            return response()->json($app_acc, 200, $this->header, $this->options) ;
+
+        }
+
+        return response()->json(['message' => 'No INFO PROVIDE FORM CLIENT!'], 500, $this->header, $this->options);
+    }
+
+    public function FilterResignArticle(Request $request)
+    {
+        $article = ApprenticeAccountant::where('status',$request->status)->with('student_info')->get();
+
+        return DataTables::of($article)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-xs' onclick='showGovArticle($infos->id)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
+            })
+            ->addColumn('name_mm', function ($infos){
+                return $infos->student_info->name_mm;
+            })
+            ->addColumn('m_email', function ($infos){
+                return $infos->student_info->m_email;
+            })
+            ->addColumn('phone_no', function ($infos){
+                return $infos->student_info->phone;
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->status == 0){
+                    return "PENDING";
+                }else if($infos->status == 1){
+                    return "APPROVED";
+                }else{
+                    return "REJECTED";
+                }
+            })
+            ->make(true);
+    }
+
+    public function approveResign($id)
+    {
+        $approve = ApprenticeAccountant::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
+    public function rejectResign($id)
+    {
+        $reject = ApprenticeAccountant::find($id);
+        $reject->status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
 }

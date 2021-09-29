@@ -339,3 +339,9 @@ Route::post('/filter_gov_article','ArticleController\ArticleController@FilterGov
 Route::patch('/approve_gov_article/{id}', 'ArticleController\ArticleController@approveGov');
 Route::patch('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
 Route::get('/gov_article_show/{id}', 'ArticleController\ArticleController@showGovArticle');
+
+Route::post('/article_resign_register', 'ArticleController\ArticleController@saveResignArticle');
+Route::post('/filter_resign_article','ArticleController\ArticleController@FilterResignArticle');
+Route::patch('/approve_resign_article/{id}', 'ArticleController\ArticleController@approveResign');
+Route::patch('/reject_resign_article/{id}', 'ArticleController\ArticleController@rejectResign');
+Route::get('/resign_article_show/{id}', 'ArticleController\ArticleController@showResignArticle');
