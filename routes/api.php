@@ -333,3 +333,6 @@ Route::post('/article_firm_register', 'ArticleController\ArticleController@store
 Route::post('/filter_article','ArticleController\ArticleController@FilterArticle');
 Route::patch('/approve_article/{id}', 'ArticleController\ArticleController@approve');
 Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject');
+
+// Qualified Test
+Route::apiResource('/qualifiedtest','QualifiedTest\QualifiedTestController');
