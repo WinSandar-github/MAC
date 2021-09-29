@@ -143,9 +143,7 @@ function loadData() {
         type: "GET",
         url: BACKEND_URL + "/da_register/" + id,
         success: function (data) {
-            console.log("data",data);
             var student = data.data;
-            console.log(student[0].student_info.id)
             student.forEach(function (student_course) {
                 let element = student_course.student_info;
                 if (student_course.approve_reject_status == 0) {

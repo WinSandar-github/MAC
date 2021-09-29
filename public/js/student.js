@@ -219,12 +219,11 @@ function loadStudentSelfStudy() {
             }else{
                 $("#registration_no").append("-");
             }
-            
             $("#id").append(student_info_data.id);
             document.getElementById('image').src = PDF_URL + student_info_data.image;
             $("#name_eng").append(student_info_data.name_eng);
             $("#name_mm").append(student_info_data.name_mm);
-            $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + element.nrc_number);
+            $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + student_info_data.nrc_number);
             $("#father_name_mm").append(student_info_data.father_name_mm);
             $("#father_name_eng").append(student_info_data.father_name_eng);
             $("#race").append(student_info_data.race);
@@ -271,8 +270,7 @@ function loadStudentSelfStudy() {
             $.ajax({
                 url: BACKEND_URL + "/get_passed_exam_student/"+student_info_data.id,
                 type: 'get',
-                success: function (result) { 
-                    console.log(result);  
+                success: function (result) {  
                     if(result.data.length!=0){
                         result.data.forEach(function(course){
                             var success_year=new Date(course.updated_at);
@@ -661,14 +659,11 @@ function approveStudent() {
     }
     else{
         var id = $("input[name = student_register_id]").val();
-
         var course_code = localStorage.getItem("course_code");
-        // console.log(id);
         $.ajax({
             url: BACKEND_URL + "/approve_student/" + id,
             type: 'patch',
             success: function (result) {
-                // console.log(result.data)
                 successMessage("You have approved that student!");
                 if (course_code == 1) {
                     location.href = FRONTEND_URL + "/index";
