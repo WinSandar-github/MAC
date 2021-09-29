@@ -51,9 +51,9 @@ function getCPAExam(course_code) {
         processData: false,
         success: function (data) {
             var da_data = data.data;
-            console.log({
-                da_data
-            });
+            // console.log({
+            //     da_data
+            // });
             da_data.forEach(function (element) {
                 if (element.status == 0) {
                     status = "PENDING";
@@ -198,12 +198,12 @@ function loadCPAStudentDataForExamCard() {
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
                 var batch_no=mm2en(exam_data.batch.number.toString());
                 $("#batch_no").append(batch_no);
-                $("#cpa_roll_no").append(exam_data.student_info.personal_no);
+                $("#cpa_roll_no").append(exam_data.student_info.cpersonal_no);
                 $("#name").append(exam_data.student_info.name_mm);
                 $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
                 $("#father_name").append(exam_data.student_info.father_name_mm);
                 $('#exam_department').text(exam_data.exam_department?.name);
-                $('#roll_no').text(exam_data.student_info.cpersonal_no);
+                // $('#roll_no').text(exam_data.student_info.cpersonal_no);
 
             });
         }
@@ -338,7 +338,6 @@ function loadCPAExamData() {
             var exam_data = data.data;
             
             exam_data.forEach(function (element) {
-                console.log('exam_data',element);
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -416,7 +415,7 @@ function loadCPAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                console.log("course_type_id",course_type_id);
+                
                 if(course_type_id==1){
                     $("#registration_no").append(element.personal_no);
 
@@ -461,7 +460,6 @@ function loadCPAExamData() {
                     url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
                     type: 'get',
                     success: function (result) {
-                        console.log("result",result.data.length);
                         if(result.data.length!=0){
                             result.data.forEach(function(course){
                                 var success_year=new Date(course.updated_at);
@@ -470,8 +468,7 @@ function loadCPAExamData() {
                                                     <td>${course.batch.name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
-                            });
-                            console.log(result.data,"course html");                            
+                            });                           
                             $('.course').html(course_html)
                         }
                         else{
@@ -694,9 +691,10 @@ function getCPAModuleStd() {
             // console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
-                console.log('element', element);
+                // console.log('element', element);
+                let course_type_id = element.course.course_type_id;
                 var std = element.student_info;
-                console.log('student_info', std);
+                // console.log('student_info', std);
                 if (element.status == 0) {
                     status = "PENDING";
                     //$('.pass_fail_btn').hide();
@@ -777,11 +775,11 @@ function getCPAModuleStd() {
                 $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(std.image);
                 let student_register = std.student_register.slice(-1);
-                console.log('student_register',student_register);
-                if(student_register[0].course.course_type_id==1){
+                // console.log('student_register',student_register);
+                if(course_type_id==1){
                     $("#registration_no").append(std.personal_no);
 
-                }else if(student_register[0].course.course_type_id==2){
+                }else if(course_type_id==2){
                     $("#registration_no").append(std.cpersonal_no);
                 }else{
                     $("#registration_no").append("-");
@@ -850,6 +848,11 @@ function getCPAModuleStd() {
                 data: "",
                 success: function (result) {
                     if (result.data != null) {
+                        var tr = "<tr id='row_total_mark' >";
+                        tr += "<td colspan='2' style='text-align:center'>Total Marks</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left'></td>";
+                        tr += "</tr>";
+                        $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();
 
                         // $('.pass_fail_btn').show();
@@ -923,6 +926,13 @@ function getCPAModuleStd() {
                                 grade.setAttribute("readonly", "true");
                             }
                         }
+                        var total_mark=0;
+                        for (var i = 0; i < row_length; i++) {
+                            var mark=parseInt(rData.marks[i]);
+                            // console.log(rData.marks[i]);
+                            total_mark += mark;
+                        }
+                        $('#total_mark').append(total_mark);
                     } else {
                         // $('.pass_fail_btn').hide();
                     }

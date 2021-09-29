@@ -507,16 +507,24 @@ class ExamRegisterController extends Controller
               }
           });
           if($request->course_code==1){
-            $datatable=$datatable
+            $datatable = $datatable
             ->addColumn('action', function ($infos) {
+                if($infos->grade == 1){
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                                <a class='btn btn-info btn-sm p' href='". route('certificate', ['id' => $infos->student_info_id]) . "'>
+                                    <li class='fa fa-file-text-o fa-sm'></li>
+                                </a>
+                            </div>";
+                }
+
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-sm' onclick='fillMark($infos->id,$infos->is_full_module)'>
-                                <li class='fa fa-eye fa-sm'></li>
-                            </button>
-                            <a class='btn btn-info btn-sm' href='". route('certificate', ['id' => $infos->student_info_id]) . "'>
-                                <li class='fa fa-file-text-o fa-sm'></li>
-                            </a>
-                        </div>";
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
             });
           }
           else if($request->course_code==2){
