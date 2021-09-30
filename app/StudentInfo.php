@@ -9,7 +9,7 @@ class StudentInfo extends Model
     protected $fillable = ['name_mm','name_eng','nrc_state_region','nrc_township','nrc_citizen','nrc_number','nrc_front','nrc_back','father_name_mm','father_name_eng','race','religion',
     'date_of_birth','address','current_address','phone','gov_staff','image','registration_no','date','approve_reject_status','email','password','accountancy_firm_info_id'];
 
-      
+
     public function student_job()
     {
         return $this->hasOne(StudentJobHistroy::class,'student_info_id','id');
@@ -68,12 +68,17 @@ class StudentInfo extends Model
 
     public function cpa_one_direct(){
         return $this->hasOne(CpaOneTrainingAddmissionDirect::class,'student_info_id','id');
-        
+
     }
 
     public function accountancy_firm(){
         return $this->belongsTo(AccountancyFirmInformation::class,'accountancy_firm_info_id','id');
-        
+
+    }
+
+    public function firm_ownerships_audits(){
+        return $this->belongsTo(FirmOwnershipAudit::class,'accountancy_firm_info_id','accountancy_firm_info_id');
+
     }
 
      public function exam_registers()
@@ -89,26 +94,26 @@ class StudentInfo extends Model
 
     public function school(){
         return $this->belongsTo(SchoolRegister::class);
-        
+
     }
 
     public function mentor(){
         return $this->belongsTo(Mentor::class);
-        
+
     }
 
     public function teacher(){
         return $this->belongsTo(TeacherRegister::class);
-        
+
     }
 
     public function article(){
         return $this->hasMany(ApprenticeAccountant::class,'student_info_id','id');
-        
+
     }
 
     public function gov_article(){
         return $this->hasMany(ApprenticeAccountantGov::class,'student_info_id','id');
-        
+
     }
-}  
+}
