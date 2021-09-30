@@ -28,7 +28,7 @@
                                     <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Universtry Name</p>
+                                            <p class="ml-2" style="font-weight:bold">University Name</p>
                                         </div>
                                         <div class="col-md-6 text-left">
                                             <span id="university_name"></span>
@@ -165,10 +165,10 @@
                                 <div class="card-body pt-0">
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
+                                            <p class="ml-2 text-bold" style="font-weight:bold">Name(Myanmar) / Name(Eng)</p>
                                         </div>
                                         <div class="col-md-6 text-left">
-                                            <span id="name_eng"></span> / <span id="name_mm"></span>
+                                        <span id="name_mm"></span> / <span id="name_eng"></span>
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -200,7 +200,7 @@
                                             <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
                                         </div>
                                         <div class="col-md-6 text-left">
-                                            <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
+                                            <span  id="father_name_eng"></span> / <span id="father_name_mm"></span>
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">

@@ -124,6 +124,22 @@
                             </div>
                         </div>
 
+                        <div id="certificate_row">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span></label>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="ml-2" style="font-weight:bold" align="left">Certificate</p>
+                                        </div>
+                                        <div class="col-md-3 certificate">
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၅။') }}</span>လူမျိုး/ဘာသာ</label>
                             <div class="col-md-9">

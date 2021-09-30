@@ -177,7 +177,7 @@ function loadStudentSelfStudy() {
         success: function (data) {
             // console.log(data,"yy");
             var element = data.data;
-            // console.log('element',element);
+            console.log('element',element);
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
             // $("#student_dob").append(element.student_info.date_of_birth);
@@ -209,22 +209,20 @@ function loadStudentSelfStudy() {
             }
             var student_info_data = element.student_info;
             var education_history = student_info_data.student_education_histroy;
-            var job = student_info_data.student_job;  
+            var job = student_info_data.student_job;
 
-            // console.log('personal_no',student_info_data.personal_no); 
-            if(student_info_data.course_type_id==1 ){
+            if(element.course.course_type_id==1 ){
                 $("#registration_no").append(student_info_data.personal_no);
-            }else if(student_info_data.course_type_id==2){
+            }else if(element.course.course_type_id==2){
                 $("#registration_no").append(student_info_data.cpersonal_no);
             }else{
                 $("#registration_no").append("-");
             }
-            
             $("#id").append(student_info_data.id);
             document.getElementById('image').src = PDF_URL + student_info_data.image;
             $("#name_eng").append(student_info_data.name_eng);
             $("#name_mm").append(student_info_data.name_mm);
-            $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + element.nrc_number);
+            $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + student_info_data.nrc_number);
             $("#father_name_mm").append(student_info_data.father_name_mm);
             $("#father_name_eng").append(student_info_data.father_name_eng);
             $("#race").append(student_info_data.race);
@@ -271,8 +269,7 @@ function loadStudentSelfStudy() {
             $.ajax({
                 url: BACKEND_URL + "/get_passed_exam_student/"+student_info_data.id,
                 type: 'get',
-                success: function (result) { 
-                    console.log(result);  
+                success: function (result) {  
                     if(result.data.length!=0){
                         result.data.forEach(function(course){
                             var success_year=new Date(course.updated_at);
@@ -661,14 +658,11 @@ function approveStudent() {
     }
     else{
         var id = $("input[name = student_register_id]").val();
-
         var course_code = localStorage.getItem("course_code");
-        // console.log(id);
         $.ajax({
             url: BACKEND_URL + "/approve_student/" + id,
             type: 'patch',
             success: function (result) {
-                // console.log(result.data)
                 successMessage("You have approved that student!");
                 if (course_code == 1) {
                     location.href = FRONTEND_URL + "/index";

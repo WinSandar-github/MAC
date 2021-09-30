@@ -15,17 +15,9 @@
                 <div class="card-body">
                     <div class="row"> 
                             <div class="col-md-12 pl-2">
-                               
-                               
                                 <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
-                               
                             </div>
-                        
-
-                        <div class="col-md-12">
-                          
-                           
-                        
+                        <div class="col-md-12">                       
                             <table width="100%" id="tbl_exam_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
