@@ -636,22 +636,43 @@ function autoLoadAudit(){
               $("#tbl_director_body").append(tr);
             });
           }
+
           if(element.audit_total_staffs.length!=0 ){
             var audit_total_staff=element.audit_total_staffs;
+            var total_audit = 0;
+            var total_non_audit = 0;
+            var total_audit_nonaudit = 0;
             audit_total_staff.forEach(function(item){
+              total_audit += parseInt(item.audit_staff);
+              total_non_audit += parseInt(item.non_audit_staff);
+              total_audit_nonaudit += parseInt(item.total);
+
               $("input[id=total_staff"+item.audit_total_staff_type_id +"]").val(item.total);
               $("input[id=audit_staff"+item.audit_total_staff_type_id +"]").val(item.audit_staff);
               $("input[id=nonaudit_staff"+item.audit_total_staff_type_id +"]").val(item.non_audit_staff);
             })
-
+            $("#audit_total").text(total_audit);
+            $("#non_audit_total").text(total_non_audit);
+            $("#audit_nonaudit_total").text(total_audit_nonaudit);
           }
+
           if(element.audit_staffs.length!=0){
             var audit_staff=element.audit_staffs;
+            var full_time = 0;
+            var part_time = 0;
+            var total = 0;
             audit_staff.forEach(function(item){
+              full_time += parseInt(item.full_time);
+              part_time += parseInt(item.part_time);
+              total += parseInt(item.total);
               $("input[id=audit_total"+item.audit_staff_type_id+"]").val(item.total);
               $("input[id=full_time"+item.audit_staff_type_id+"]").val(item.full_time);
               $("input[id=part_time"+item.audit_staff_type_id+"]").val(item.part_time);
             })
+
+            $("#full_time_total").text(full_time);
+            $("#part_time_total").text(part_time);
+            $("#full_part_total").text(total);
           }
 
           // Types Of Service Provided
@@ -938,16 +959,18 @@ function loadAuditTotalStaff(){
       audit_total_staff.forEach(function(element){
             var tr = "<tr>";
             tr += "<td class='font-weight-bold'>" + element.name + "</td>";
-            tr += "<td><input type='hidden' value="+element.id+" name='ats_audit_total_staff_type_id[]'><input disabled type='number' value='0' name='ats_total[]' class='form-control' id=total_staff"+element.id+"></td>";
             tr += "<td><input disabled type='number' value='0' name='ats_audit_staff[]' class='form-control' id=audit_staff"+element.id+"></td>";
             tr += "<td><input disabled type='number' value='0' name='ats_non_audit_staff[]' class='form-control' id=nonaudit_staff"+element.id+"></td>";
+            tr += "<td><input type='hidden' value="+element.id+" name='ats_audit_total_staff_type_id[]'><input disabled type='number' value='0' name='ats_total[]' class='form-control' id=total_staff"+element.id+"></td>";
             tr += "</tr>";
             $("#tbl_audit_total_staff_body").append(tr);
 
       })
 
     }
+
   });
+
 }
 
 function loadAuditStaff(){
@@ -961,9 +984,9 @@ function loadAuditStaff(){
     audit_staff.forEach(function(element){
           var tr = "<tr>";
           tr += "<td class='font-weight-bold'>" + element.name + "</td>";
-          tr += "<td><input type='hidden' value="+element.id+" name='as_audit_staff_type_id[]'><input disabled type='number' value='0' name='as_total[]' class='form-control' id=audit_total"+element.id+"></td>";
           tr += "<td><input disabled type='number' value='0' name='as_full_time[]' class='form-control' id=full_time"+element.id+"></td>";
           tr += "<td><input disabled type='number' value='0' name='as_part_time[]' class='form-control' id=part_time"+element.id+"></td>";
+          tr += "<td><input type='hidden' value="+element.id+" name='as_audit_staff_type_id[]'><input disabled type='number' value='0' name='as_total[]' class='form-control' id=audit_total"+element.id+"></td>";
           tr += "</tr>";
           $("#tbl_audit_staff_body").append(tr);
 
