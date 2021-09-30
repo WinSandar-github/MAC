@@ -818,7 +818,8 @@ function getCPAModuleStd() {
                     if (element.is_full_module == subj.module_id) {
                         var tr = "<tr>";
                         tr += "<td>" + i + "</td>";
-                        tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        // tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><textarea name='subject" + i + "' id='subject" + i + "'  class='form-control'  rows=1 style='height:auto; width:100%;' required readonly>" + subj.subject_name + "</textarea></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
                         tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
@@ -827,7 +828,8 @@ function getCPAModuleStd() {
                     } else if (element.is_full_module == 3 || element.is_full_module == 0) {
                         var tr = "<tr>";
                         tr += "<td>" + i + "</td>";
-                        tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        // tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><textarea name='subject" + i + "' id='subject" + i + "'  class='form-control'  rows=1 style='height:auto; width:100%;' required readonly>" + subj.subject_name + "</textarea></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
                         tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
