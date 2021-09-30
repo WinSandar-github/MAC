@@ -155,6 +155,19 @@ class StudentInfoController extends Controller
             $certificate = $request->old_certificate;
         }
 
+        if($request->hasfile('recommend_letter'))
+        {
+            $file = $request->file('recommend_letter') ;
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $rec_letter = '/storage/student_info/'.$name;
+        }else{
+            $rec_letter = $request->old_rec_letter;
+        }
+        $date_of_birth = $request->date_of_birth;
+        $date = date('d-M-Y');;
+        $qualified_date = $request->qualified_date;
+        $course_date = date('Y-m-d');
         $student_info = StudentInfo::find($id);
         $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng          =   $request->name_eng;
@@ -166,7 +179,7 @@ class StudentInfoController extends Controller
         $student_info->father_name_eng  =   $request->father_name_eng;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
-        $student_info->date_of_birth    =   $request->date_of_birth;
+        $student_info->date_of_birth    =   $date_of_birth;
         $student_info->address          =   $request->address;
         $student_info->current_address  =   $request->current_address;
         $student_info->phone            =   $request->phone;
@@ -174,14 +187,15 @@ class StudentInfoController extends Controller
         $student_info->image            =   $image;
         $student_info->registration_no  =   $request->registration_no;
         $student_info->approve_reject_status = 0;
-        $student_info->date             =   date("Y-m-d");
+        $student_info->date             =   $date;
+        $student_info->recommend_letter =   $rec_letter;
+
 
         // $student_info->email            =   $request->email;
         // $student_info->password         =   Hash::make($request->password);
         $student_info->save();
 
-        StudentJobHistroy::where('student_info_id',$id)->delete();
-        $student_job_histroy = new StudentJobHistroy;
+        $student_job_histroy = StudentJobHistroy::where('student_info_id',$id)->first();
         $student_job_histroy->student_info_id   = $student_info->id;
         $student_job_histroy->name              = $request->job_name;
         $student_job_histroy->position          = $request->position;
@@ -192,23 +206,28 @@ class StudentInfoController extends Controller
         $student_job_histroy->office_address    = $request->office_address;
         $student_job_histroy->save();
 
-        EducationHistroy::where('student_info_id',$id)->delete();
-        $education_histroy  =   new EducationHistroy();
+        $education_histroy  =   EducationHistroy::where('student_info_id',$id)->first();
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     = $request->degree_name;
         $education_histroy->certificate     = $certificate;
-        $education_histroy->qualified_date  = date("Y-m-d",strtotime($request->qualified_date));
+        $education_histroy->qualified_date  = $qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
 
 
-        StudentCourseReg::where('student_info_id',$id)->delete();
-        $student_course = new StudentCourseReg();
+        $student_course = StudentCourseReg::where('student_info_id',$id)->first();
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
-        $student_info->approve_reject_status = 0;
+        $student_course->approve_reject_status = 0;
         $student_course->status          = 1;
+        $student_course->type            = $request->dtype;
+        $student_course->date            = $course_date;
+
+        if($request->dtype == 2){
+
+        }
+        $student_course->mac_type        = $request->mac_dtype;
         $student_course->save();
 
         return response()->json($student_info,200);
