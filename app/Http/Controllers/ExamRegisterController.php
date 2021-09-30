@@ -536,7 +536,7 @@ class ExamRegisterController extends Controller
                         </div>";
             });
           }
-          else if($request->course_code==1){
+          else if($request->course_code==3){
             $datatable=$datatable->addColumn('action', function ($infos) {
                       return "<div class='btn-group'>
                                   <button type='button' class='btn btn-primary btn-sm' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
