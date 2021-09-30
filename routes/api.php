@@ -336,6 +336,7 @@ Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject
 
 // Qualified Test
 Route::apiResource('/qualifiedtest','QualifiedTest\QualifiedTestController');
+Route::post('/get_qualifiedtest_user','QualifiedTest\QualifiedTestController@get_user');
 
 //payment
 Route::get('get_fees/{id}','CourseController@getFees');

@@ -18,6 +18,7 @@ class CreateSubjectsTable extends Migration
             $table->string('subject_name');
             $table->unsignedBigInteger('course_id');
             $table->unsignedBigInteger('module_id');
+            $table->integer('sr_no');
             $table->timestamps();
         });
     }

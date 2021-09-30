@@ -173,9 +173,9 @@ function loadData() {
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
                 if (current_course.course_type_id == 1) {
-                    $("#registration_no").append(element.personal_no);
+                    $("#registration_no").append((element.personal_no== null || element.personal_no== "")?"-":element.personal_no);
                 } else if (current_course.course_type_id == 2) {
-                    $("#registration_no").append(element.cpersonal_no);
+                    $("#registration_no").append((element.cpersonal_no== null || element.cpersonal_no== "")?"-":element.cpersonal_no);
                 } else {
                     $("#registration_no").append("-");
                 }
