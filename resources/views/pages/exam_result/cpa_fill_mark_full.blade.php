@@ -331,8 +331,7 @@
                                     
                                 </div>
                                 <!-- {!! Form::close() !!} -->
-                                {{--<form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">--}}
-                                <form  method="post" action="javascript:void();" enctype="multipart/form-data"> 
+                                <form  method="post" action="javascript:examResultSubmit();" enctype="multipart/form-data">
                                     <input type="hidden" name="result_id">
                                     <div class="row">
                                         <table class="table mark table-bordered input-table" id="tbl_fillmarks" width="100%" style="margin: 3% 3% 0 3%;">
@@ -390,8 +389,8 @@
                                     
                                     <div class="pass_fail_btn">
                                             
-                                        <button type="submit" class=" btn  btn-danger" onClick="javascript:failExam();">Fail</button>
-                                        <button type="submit" class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
+                                        <button type="submit" class=" btn  btn-danger " value="fail">Fail</button>
+                                        <button type="submit" class=" btn btn-primary" value="pass">Pass</button>
                                     </div>
 
                                     </form>
@@ -481,7 +480,7 @@
                                                 <h5  style="font-weight:bold;margin:auto" >အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
                                                 
                                             </div>
-                                            <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">    
+                                            <form  method="post" action="javascript:examResultSubmit(this);" enctype="multipart/form-data">    
 
                                                 
                                                 <input type="hidden" name="result_id">
@@ -503,7 +502,7 @@
                                                                 <input type="text" name="mark1" id="mark1" class="form-control" value="{{ old('mark1') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade1" id="grade1" class="form-control" value="{{ old('grade1') }}" required>
+                                                                <input type="text" name="grade1" id="grade1" class="form-control" value="{{ old('grade1') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -515,7 +514,7 @@
                                                                 <input type="text" name="mark2" id="mark2" class="form-control" value="{{ old('mark2') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade2" id="grade2" class="form-control" value="{{ old('grade2') }}" required>
+                                                                <input type="text" name="grade2" id="grade2" class="form-control" value="{{ old('grade2') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -527,7 +526,7 @@
                                                                 <input type="text" name="mark3" id="mark3" class="form-control" value="{{ old('mark3') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade3" id="grade3" class="form-control" value="{{ old('grade3') }}" required>
+                                                                <input type="text" name="grade3" id="grade3" class="form-control" value="{{ old('grade3') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -539,7 +538,7 @@
                                                                 <input type="text" name="mark4" id="mark4" class="form-control" value="{{ old('mark4') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade4" id="grade4" class="form-control" value="{{ old('grade4') }}" required>
+                                                                <input type="text" name="grade4" id="grade4" class="form-control" value="{{ old('grade4') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -551,7 +550,7 @@
                                                                 <input type="text" name="mark5" id="mark5" class="form-control" value="{{ old('mark5') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade5" id="grade5" class="form-control" value="{{ old('grade5') }}" required>
+                                                                <input type="text" name="grade5" id="grade5" class="form-control" value="{{ old('grade5') }}">
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -563,7 +562,7 @@
                                                                 <input type="text" name="mark6" id="mark6" class="form-control" value="{{ old('mark6') }}" required>
                                                             </td>
                                                             <td width="20%">
-                                                                <input type="text" name="grade6" id="grade6" class="form-control" value="{{ old('grade6') }}" required>
+                                                                <input type="text" name="grade6" id="grade6" class="form-control" value="{{ old('grade6') }}">
                                                             </td>
                                                         </tr>
                                                     </table>

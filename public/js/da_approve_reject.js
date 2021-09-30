@@ -4,10 +4,7 @@ function getDAList(course_code) {
     destroyDatatable("#tbl_da_pending_list", "#tbl_da_pending_list_body");
     destroyDatatable("#tbl_da_approved_list", "#tbl_da_approved_list_body");
     destroyDatatable("#tbl_da_rejected_list", "#tbl_da_rejected_list_body");
-    // console.log($("input[name=filter_by_nrc]").val());
     // var tab = document.getElementById('link1');
-
-    // console.log('tab', tab);
     var send_data = new FormData();
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('nrc', $("input[name=filter_by_nrc]").val());
@@ -22,13 +19,13 @@ function getDAList(course_code) {
         success: function (data) {
             EasyLoading.hide();
             var da_data = data.data;
-            console.log({
-                data
-            });
+            // console.log({
+            //     data
+            // });
             let da_one_list = da_data.filter(function (v) {
                 return v.batch.course.code == course_code
             })
-            console.log(da_one_list)
+            // console.log(da_one_list)
             da_one_list.forEach(function (element) {
                 var status;
                 if (element.approve_reject_status == 0) {
@@ -50,7 +47,7 @@ function getDAList(course_code) {
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number + "</td>";
                     tr += "<td>" + status + "</td>";
-                   
+
                     tr += "</tr>";
                     $("#tbl_da_pending_list_body").append(tr);
                 } else if (element.approve_reject_status == 1) {
@@ -65,7 +62,7 @@ function getDAList(course_code) {
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number + "</td>";
                     tr += "<td>" + status + "</td>";
-                    
+
                     tr += "</tr>";
                     $("#tbl_da_approved_list_body").append(tr);
                 } else if (element.approve_reject_status == 2) {
@@ -73,14 +70,14 @@ function getDAList(course_code) {
                     tr += "<td>" + +"</td>";
                     tr += "<td ><div class='btn-group'>";
                     tr += "<button type='button' class='btn btn-primary btn-xs' onClick='showDAList(" + element.id + ")'>" +
-                            "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
+                        "<li class='fa fa-eye fa-sm'></li></button></div ></td > ";
                     tr += "<td>" + element.student_info.name_mm + "</td>";
                     tr += "<td>" + element.batch.name + "</td>";
                     tr += "<td>" + element.student_info.email + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number + "</td>";
                     tr += "<td>" + status + "</td>";
-                    
+
                     tr += "</tr>";
                     $("#tbl_da_rejected_list_body").append(tr);
                 }
@@ -145,14 +142,20 @@ function loadData() {
         success: function (data) {
             var student = data.data;
             student.forEach(function (student_course) {
+
+                let current_course = student_course.batch.course;
+
                 let element = student_course.student_info;
+
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";
                 } else {
                     document.getElementById("approve_reject").style.display = "none";
                 }
+
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
+
                 $("#id").append(element.id);
                 document.getElementById('image').src = PDF_URL + element.image;
                 $("#name_eng").append(element.name_eng);
@@ -169,15 +172,21 @@ function loadData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.student_register == 0 ? "N/A" : element.personal_no);
+                if (current_course.course_type_id == 1) {
+                    $("#registration_no").append(element.personal_no);
+                } else if (current_course.course_type_id == 2) {
+                    $("#registration_no").append(element.cpersonal_no);
+                } else {
+                    $("#registration_no").append("-");
+                }
                 $("#date").append(element.date);
                 $("#batch_name").append(student_course.batch.name);
-                if(element.gov_staff == 1){
+                if (element.gov_staff == 1) {
                     $(".recommend_row").show();
-                    element.recommend_letter == null 
+                    element.recommend_letter == null
                         ? $(".recommend_letter").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
-                        : $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                }else{
+                        : $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                } else {
                     $(".recommend_row").hide();
                 }
 
@@ -187,14 +196,14 @@ function loadData() {
                 $("#roll_number").append(education_history.roll_number);
 
                 let certificate = JSON.parse(education_history.certificate);
-                $.each(certificate,function(fileCount,fileName){
-                   
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
-                   
+                $.each(certificate, function (fileCount, fileName) {
+
+                    $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
                 })
 
-                $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_front").append(`<a href='${PDF_URL + element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL + element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);
@@ -206,48 +215,43 @@ function loadData() {
                 attached_file = element.student_education_histroy.certificate;
                 //document.getElementById('attach_file').src=attached_file;
                 $.ajax({
-                    url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
+                    url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
                     type: 'get',
                     success: function (result) {
-                        console.log("result",result.data.length);
-                        if(result.data.length!=0){
-                            result.data.forEach(function(course){
-                                var success_year=new Date(course.updated_at);
+                        if (result.data.length != 0) {
+                            result.data.forEach(function (course) {
+                                var success_year = new Date(course.updated_at);
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
-                            console.log(result.data,"course html");                            
                             $('.course').html(course_html)
                         }
-                        else{
-                            $('#tbl_course').DataTable( {
+                        else {
+                            $('#tbl_course').DataTable({
                                 "bPaginate": false,
                                 "bLengthChange": false,
-                                "bInfo" : false,
-                                searching:false,
+                                "bInfo": false,
+                                searching: false,
                             });
                         }
                     }
                 });
-                
+
             })
         }
     })
 }
 
 function approveUser() {
-    if (!confirm('Are you sure you want to approve this student?'))
-    {
+    if (!confirm('Are you sure you want to approve this student?')) {
         return;
     }
-    else{
+    else {
 
         var id = $("input[name = student_course_id]").val();
-
-        console.log('approvedaid', id);
         $.ajax({
             url: BACKEND_URL + "/approve/" + id,
             type: 'patch',
@@ -284,16 +288,24 @@ function approveUser() {
 }
 
 function rejectUser() {
-    if (!confirm('Are you sure you want to reject this student?'))
-    {
+
+
+    if (!confirm('Are you sure you want to reject this student?')) {
         return;
     }
-    else{
-        var id = $("input[name = student_course_id]").val();
+    else {
+        var formData = new FormData();
+        formData.append('remark', $('#remark').val());
+        formData.append('_method', 'PATCH')
+        var id = $("#student_info_id").val();
+
 
         $.ajax({
             url: BACKEND_URL + "/reject/" + id,
-            type: 'patch',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function (result) {
                 let url;
                 if (result) {
@@ -324,7 +336,7 @@ function rejectUser() {
                 // location.href = FRONTEND_URL + "/da_one_app_list";
             }
         });
-    }        
+    }
 }
 
 

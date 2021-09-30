@@ -139,7 +139,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('exam_result_list/{course_code}','ReportController@examResultList');
     Route::get('current_entry_exam_list/{course_code}','ReportController@currentEntryExamList');
     Route::get('membership_edit/{id}','MembershipController@membership_edit');
-    Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail');
+    Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail')->name('entry_exam_detail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
     Route::get('entry_exam_result_detail/{id}','EntryExamController@entryExamResultDetail');
 

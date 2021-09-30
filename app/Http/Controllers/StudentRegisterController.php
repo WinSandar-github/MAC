@@ -22,8 +22,8 @@ class StudentRegisterController extends Controller
 
     public function store(Request $request)
     {
-
-
+        
+         
         $date = date('Y-m-d');
         if($request->date){
             $date = $request->date;
@@ -32,8 +32,29 @@ class StudentRegisterController extends Controller
         }
         $invoice_date = date('Y-m-d');
 
+
+        if($request->remain_module == 1 || $request->remain_module == 2 )
+        {
+            $course_date = date('Y-m-d');
+
+            $student_info = StudentInfo::find($request->student_id);
+            $student_info->approve_reject_status = 1;
+            $student_info->save();
+
+            
+
+            $student_course = new StudentCourseReg();
+            $student_course->student_info_id = $student_info->id;
+            $student_course->batch_id        = $request->batch_id;
+            $student_course->date            = $course_date;
+            $student_course->status          = 1;
+            $student_course->approve_reject_status = 1;
+            $student_course->save();
+            
+        }
         switch ($request->type) {
             case 0:
+                
                 if(isset($request->reg_reason))
                 {
                     foreach($request->reg_reason as $reg_reason){
@@ -75,11 +96,11 @@ class StudentRegisterController extends Controller
                 $student_register->personal_no = $request->personal_no_self;
                 $student_register->direct_access_no=$request->direct_access_no;
                 $student_register->entry_success_no=$request->entry_success_no;
-                $student_register->module=$request->module;
+                $student_register->module=          $request->module;
 
 		// $student_register->batch_part_no = $request->batch_part_no;;
 
-		$student_register->type = $request->type;
+		        $student_register->type = $request->type;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
@@ -120,6 +141,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
                 $student_register->cpa_one_access_no = $request->cpa_one_access_no;
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
+                $student_register->module             = $request->module;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
@@ -195,7 +217,7 @@ class StudentRegisterController extends Controller
     }
     public function showStudentRegister($id)
     {
-        $student_register = StudentRegister::where('id',$id)->with('student_info')->first();
+        $student_register = StudentRegister::where('id',$id)->with('student_info','course')->first();
         return response()->json([
             'data' => $student_register
         ],200);
@@ -348,11 +370,16 @@ class StudentRegisterController extends Controller
         }
         $student_info->save();
 
+        $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
+
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
+        $student_course->type            = $old_course->type;
+        $student_course->mac_type          = $old_course->mac_type;
+
         $student_course->approve_reject_status = 1;
         $student_course->save();
 

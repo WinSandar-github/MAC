@@ -364,6 +364,18 @@ class CpaTraAddmissionDirectController extends Controller
             $deg_certi_img = $request->old_deg_certi;
         }
 
+        if ($request->hasfile('recommend_letter')) {
+
+            $file = $request->file('recommend_letter');
+
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $rec_letter[] = '/storage/student_info/'.$name;
+            
+        }else{
+            $rec_letter = $request->old_rec_letter;
+        }
+
       
 
         $date_of_birth = date('Y-m-d');
@@ -389,19 +401,23 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->gov_staff        =   $request->gov_staff;
         $student_info->image            =   $image;
         $student_info->registration_no  =   $request->registration_no;
+        $student_info->recommend_letter =   $request->rec_letter;
         $student_info->approve_reject_status = 0;
         $student_info->date             =   date("Y-m-d");
 
           // CPA
+          
           $student_info->direct_degree                =   $request->direct_degree; 
-          $student_info->degree_date                  =   date("Y-m-d",strtotime($request->degree_date));
-          $student_info->degree_certificate_image     =   $deg_certi_img;
+           $student_info->degree_certificate_image     =   $deg_certi_img;
           $student_info->degree_rank                  =   $request->degree_rank;
+          $student_info->verify_code      =   $request->verify_code;
+          $student_info->payment_method   =   $request->payment_method;
+          $student_info->acca_cima        =   $request->acca_cima;
        
         $student_info->save(); 
          
-        StudentJobHistroy::where('student_info_id',$id)->delete();
-        $student_job_histroy = new StudentJobHistroy;
+         
+        $student_job_histroy = StudentJobHistroy::where('student_info_id',$id)->first();
         $student_job_histroy->student_info_id   = $student_info->id;
         $student_job_histroy->name              = $request->job_name;
         $student_job_histroy->position          = $request->position;
@@ -412,8 +428,7 @@ class CpaTraAddmissionDirectController extends Controller
         $student_job_histroy->office_address    = $request->office_address;
         $student_job_histroy->save();
 
-        EducationHistroy::where('student_info_id',$id)->delete();
-        $education_histroy  =   new EducationHistroy();
+        $education_histroy  =   EducationHistroy::where('student_info_id',$id)->first();
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
@@ -423,28 +438,33 @@ class CpaTraAddmissionDirectController extends Controller
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
        
-
-        StudentCourseReg::where('student_info_id',$id)->delete();
-        $student_course = new StudentCourseReg();
+ 
+        $student_course = StudentCourseReg::where('student_info_id',$id)->first();
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->approve_reject_status = 0;
         $student_course->status          = 1;
+        $student_course->type           = $request->attend_place;
+        // $student_course->mac_type           = $request->mac_type;
+        if($request->attend_place == 2){
+
+            $student_course->mac_type            = $request->mac_type;
+        }
         $student_course->save();
 
-        CpaOneTrainingAddmissionDirect::where('student_info_id',$id)->delete();
-        $cpa_tra_add_direct = new CpaOneTrainingAddmissionDirect();
-        $cpa_tra_add_direct->student_info_id  = $student_info->id;
-        $cpa_tra_add_direct->certificate      = $certificates;  
-        $cpa_tra_add_direct->da_pass_year     =   $request->da_pass_year;
-        $cpa_tra_add_direct->da_pass_month    =   $request->da_pass_month;
-        $cpa_tra_add_direct->da_pass_roll_number  =   $request->da_pass_roll_number;
-        $cpa_tra_add_direct->acca_cima_pass_level        =   $request->acca_cima_pass_level;
-        $cpa_tra_add_direct->acca_cima_exam_year         =   $request->acca_cima_exam_year;
-        $cpa_tra_add_direct->acca_cima_exam_month        =   $request->acca_cima_exam_month;
-        $cpa_tra_add_direct->acca_cima_reg_no            =   $request->acca_cima_reg_no;
-        $cpa_tra_add_direct->save();
+        // CpaOneTrainingAddmissionDirect::where('student_info_id',$id)->delete();
+        // $cpa_tra_add_direct = new CpaOneTrainingAddmissionDirect();
+        // $cpa_tra_add_direct->student_info_id  = $student_info->id;
+        // $cpa_tra_add_direct->certificate      = $certificates;  
+        // $cpa_tra_add_direct->da_pass_year     =   $request->da_pass_year;
+        // $cpa_tra_add_direct->da_pass_month    =   $request->da_pass_month;
+        // $cpa_tra_add_direct->da_pass_roll_number  =   $request->da_pass_roll_number;
+        // $cpa_tra_add_direct->acca_cima_pass_level        =   $request->acca_cima_pass_level;
+        // $cpa_tra_add_direct->acca_cima_exam_year         =   $request->acca_cima_exam_year;
+        // $cpa_tra_add_direct->acca_cima_exam_month        =   $request->acca_cima_exam_month;
+        // $cpa_tra_add_direct->acca_cima_reg_no            =   $request->acca_cima_reg_no;
+        // $cpa_tra_add_direct->save();
 
         return response()->json($student_info,200);
  
