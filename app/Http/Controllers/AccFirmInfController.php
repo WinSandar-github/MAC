@@ -294,6 +294,9 @@ class AccFirmInfController extends Controller
         $acc_firm_info->other  = $request->other;
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
+        if($request->dir_passport_csc){
+          $acc_firm_info->dir_passport_csc = $request->dir_passport_csc;
+        }
         $acc_firm_info->declaration                  = $request->declaration;
         $acc_firm_info->status   = 0;
         // $acc_firm_info->form_fee = $request->form_fee;
