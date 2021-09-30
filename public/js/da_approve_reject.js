@@ -4,10 +4,7 @@ function getDAList(course_code) {
     destroyDatatable("#tbl_da_pending_list", "#tbl_da_pending_list_body");
     destroyDatatable("#tbl_da_approved_list", "#tbl_da_approved_list_body");
     destroyDatatable("#tbl_da_rejected_list", "#tbl_da_rejected_list_body");
-    // console.log($("input[name=filter_by_nrc]").val());
     // var tab = document.getElementById('link1');
-
-    // console.log('tab', tab);
     var send_data = new FormData();
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('nrc', $("input[name=filter_by_nrc]").val());
@@ -22,13 +19,13 @@ function getDAList(course_code) {
         success: function (data) {
             EasyLoading.hide();
             var da_data = data.data;
-            console.log({
-                data
-            });
+            // console.log({
+            //     data
+            // });
             let da_one_list = da_data.filter(function (v) {
                 return v.batch.course.code == course_code
             })
-            console.log(da_one_list)
+            // console.log(da_one_list)
             da_one_list.forEach(function (element) {
                 var status;
                 if (element.approve_reject_status == 0) {
@@ -145,14 +142,20 @@ function loadData() {
         success: function (data) {
             var student = data.data;
             student.forEach(function (student_course) {
+
+                let current_course = student_course.batch.course;
+
                 let element = student_course.student_info;
+
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";
                 } else {
                     document.getElementById("approve_reject").style.display = "none";
                 }
+
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
+
                 $("#id").append(element.id);
                 document.getElementById('image').src = PDF_URL + element.image;
                 $("#name_eng").append(element.name_eng);
@@ -169,7 +172,13 @@ function loadData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.student_register == 0 ? "N/A" : element.personal_no);
+                if(current_course.course_type_id==1){
+                    $("#registration_no").append(element.personal_no);
+                }else if(current_course.course_type_id==2){
+                    $("#registration_no").append(element.cpersonal_no);
+                }else{
+                    $("#registration_no").append("-");
+                }
                 $("#date").append(element.date);
                 $("#batch_name").append(student_course.batch.name);
                 if(element.gov_staff == 1){
@@ -209,7 +218,6 @@ function loadData() {
                     url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
                     type: 'get',
                     success: function (result) {
-                        console.log("result",result.data.length);
                         if(result.data.length!=0){
                             result.data.forEach(function(course){
                                 var success_year=new Date(course.updated_at);
@@ -218,8 +226,7 @@ function loadData() {
                                                     <td>${course.batch.name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
-                            });
-                            console.log(result.data,"course html");                            
+                            });                            
                             $('.course').html(course_html)
                         }
                         else{
@@ -246,8 +253,6 @@ function approveUser() {
     else{
 
         var id = $("input[name = student_course_id]").val();
-
-        console.log('approvedaid', id);
         $.ajax({
             url: BACKEND_URL + "/approve/" + id,
             type: 'patch',
