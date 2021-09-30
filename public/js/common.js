@@ -916,3 +916,12 @@ function numberRows() {
         $(this).children(":eq(0)").html(idx + 1);
     });
 }
+function thousands_separators(num) {
+    var num_parts = num.toString().split(".");
+    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return num_parts.join(".");
+}
+function removeComma(number){
+    var number_part=parseInt(number.split(',').join(""));
+    return number_part;
+}

@@ -126,14 +126,18 @@ function getTeacherInfos(){
                 
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
                     loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate");
-                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma");
+                    
                     
                 }else{
                     loadCertificates(value.certificates,value.payment_method,"#tbl_certificate");
+                    
+                }
+                if(value.diplomas.search(/[\'"[\]']+/g)==0){
+                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma");
+                    
+                }else{
                     loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma");
                 }
-                
-                
                 
                 if(value.approve_reject_status != 0){
                     $("#approve_reject").hide();
@@ -156,8 +160,8 @@ function getTeacherInfos(){
                     $('input[name="radio1"]').attr('disabled', 'disabled');
                     $('.recommend_row').hide();
                 }
-                $(".nrc_front").append(`<a href='${PDF_URL+data.data.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+data.data.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
                 $("#race").append(value.race);
                 $("#religion").append(value.religion);
                 $("#date_of_birth").append(value.date_of_birth);
@@ -178,6 +182,7 @@ function getTeacherInfos(){
                     var period_date=value.renew_date.split('-');
                     var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
                     $('#period_time').text(period+" to 31-12-"+now.getFullYear());
+                    $("#payment_date").val(value.payment_date);
                 }
                 $('#student_info_id').val(value.student_info.id);
                 $('#teacher_id').val(value.id);
@@ -215,74 +220,80 @@ function rejectTeacherRegister(){
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
     var teacher_id=$('#teacher_id').val();
-    var check = confirm("Are you sure?");
-    if (check == true) {
-        $.ajax({
-            url: BACKEND_URL + "/approve_teacher_register",
-            data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id,
-            type: 'post',
-            success: function(result){
-                successMessage('You have rejected that user!');
-                location.href = '/teacher_registration';
-            }
-        });
-    } 
+    $.ajax({
+        url: BACKEND_URL + "/approve_teacher_register",
+        data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id,
+        type: 'post',
+        success: function(result){
+            successMessage('You have rejected that user!');
+            location.href = '/teacher_registration';
+        }
+    });
     
 }
 
-  function loadCertificates(name,payment_status,tbody){
+function loadCertificates(name,payment_status,tbody){
     var name=name.split(',');
-    // return name;
-    var row=0;
+    
     var payment_status;
     if(payment_status!=null){
         payment_status="ပြီး";
     }else{
         payment_status="မပြီး";
     }
+    var sum;
     $.each(name, function( index, id ){
         $.ajax({
             url : BACKEND_URL+"/getSubject",
             data: 'subject_id='+id,
             type: 'post',
             success: function (result) {
+               
                 $.each(result.data, function( index, value ){
-                        if(index=='cpa_1' || index=='cpa_2'){
-                            $.each(value, function(key, val){
-                                var tr = "<tr>";
-                                tr += `<td> ${ row += 1 } </td>`;
-                                tr += `<td> ${ index.toUpperCase().replace("_", " ") } </td>`;
-                                tr += `<td> ${ val.subject_name } </td>`;
-                                tr += `<td>30000 </td>`;
-                                tr += `<td>`+payment_status +`</td>`;
-                                tr += "</tr>";
-                                $(tbody).append(tr);
-                            });
-                            
+                    
+                        var tr = "<tr>";
+                        tr += `<td> ${ value.code.toUpperCase().replace("_", " ") } </td>`;
+                        tr += `<td> ${ value.subject_name } </td>`;
+                        if(value.code=='cpa_1' || value.code=='cpa_2'){
+                            tr += `<td>`+thousands_separators(value.cpa_subject_fee)+`</td>`;
+                            sum=value.cpa_subject_fee*name.length
                         }else{
-                            $.each(value, function(key, val){
-                                var tr = "<tr>";
-                                tr += `<td> ${ row += 1 } </td>`;
-                                tr += `<td> ${ index.toUpperCase().replace("_", " ") } </td>`;
-                                tr += `<td> ${ val.subject_name } </td>`;
-                                tr += `<td>20000 </td>`;
-                                tr += `<td>`+payment_status +`</td>`;
-                                tr += "</tr>";
-                                $(tbody).append(tr);
-                            });
+                            tr += `<td>`+thousands_separators(value.da_subject_fee)+`</td>`;
                             
                         }
                         
-                    
-                    
+                        tr += `<td>`+payment_status +`</td>`;
+                        tr += "</tr>";
+                        $(tbody).append(tr);
                     
                 });
+                
+                sumTotalAmount();
             },
             error: function (result) {
             },
         });
     });
+    
 }
+function sumTotalAmount(){
+    
+    let sum = 0;
+    var row_cpa = document.getElementById('tbl_certificate').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+    var row_da = document.getElementById('tbl_diploma').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
+    
+    $('#tbl_certificate tbody').each(function() {
+        sum += removeComma($(this).find('td:eq(2)').html())*row_cpa;
+        
+     });
+     $('#tbl_diploma tbody').each(function() {
+        sum += removeComma($(this).find('td:eq(2)').html())*row_da;
+        
+     });
+     
+     $('#subject_total_amount').val(thousands_separators(sum));
+}
+
 function loadSchoolName(school_id){
     $.ajax({
         type : 'GET',
@@ -291,4 +302,110 @@ function loadSchoolName(school_id){
             $('#school_name').append(result.data.school_name);
         }
     });    
+}
+function loadSubjectFee(membership_name,index,value,payment_status,tbody){
+            // var tr = "<tr>";
+            // $.each(course_data, function(index, value){
+                
+            //     tr += `<td> ${ index.toUpperCase().replace("_", " ") } </td>`;
+            //     $.each(value, function(key, val){
+                
+            //         tr += `<td> ${ val.subject_name } </td>`;
+                   
+                    
+            //     });
+            //     $.ajax({
+            //         type: "get",
+            //         url: BACKEND_URL+"/showDescription/"+membership_name,
+            //         success: function (result) {
+            //         var data=result.data;
+            //         var cpa_subject_fee=0;
+            //         var da_subject_fee=0;
+            //         $.each(data, function( index1, value1 ){
+            //             cpa_subject_fee +=value1.cpa_subject_fee;
+            //             da_subject_fee +=value1.da_subject_fee;
+                        
+            //                 if(index=='cpa_1' || index=='cpa_2'){
+            //                     tr += `<td >`+cpa_subject_fee+`</td>`;
+                            
+            //                 }else{
+            //                     tr += `<td>`+da_subject_fee+`</td>`;
+            //                 }
+            //         })
+            //         }
+            //     });
+            //     tr += `<td></td>`;
+            //     tr += "</tr>";
+            //     $(tbody).append(tr);
+                
+            // });
+     var all_subject={};
+     var all_subject2={};
+     var total=0,test=[];
+     
+    $.ajax({
+        type: "get",
+        url: BACKEND_URL+"/showDescription/"+membership_name,
+        success: function (result) {
+          var data=result.data;
+          //loadTotal()
+          var cpa_subject_fee=0;
+          var da_subject_fee=0;
+          var tr = "<tr>";
+            $.each(value, function(key, val){
+                
+                tr += `<td> ${ index.toUpperCase().replace("_", " ") } </td>`;
+                tr += `<td> ${ val.subject_name } </td>`;
+                
+                
+            });
+            $.each(data, function( index1, value1 ){
+                cpa_subject_fee +=value1.cpa_subject_fee;
+                da_subject_fee +=value1.da_subject_fee;
+                //all_subject={code:index,subjet_fee1:cpa_subject_fee,subjet_fee2:da_subject_fee};
+                
+                // all_subject.push(index+":"+cpa_subject_fee)
+                // all_subject.push(index+":"+da_subject_fee)
+                test.push(cpa_subject_fee)
+                if(index=='cpa_1' || index=='cpa_2'){
+                    tr += `<td ><input type="hidden" id='test' value=`+cpa_subject_fee+`>`+cpa_subject_fee+`</td>`;
+                    all_subject={subjet_fee1:cpa_subject_fee};
+                    //console.log(data.length)
+                    ;
+                    
+                }else{
+                    tr += `<td>`+da_subject_fee+`</td>`;
+                    all_subject2={code:index,subjet_fee2:da_subject_fee};
+                }
+            })
+            $.each(value, function(key, val){
+               
+                
+                tr += `<td>`+payment_status +`</td>`;
+                tr += "</tr>";
+                $(tbody).append(tr);
+                
+            });
+            //$('#subject_total_amount').append(total);
+          //console.log(test.length)
+          //console.log(all_subject2)
+          var tt=0;
+          for(subjet_fee1 in all_subject) {
+            if(all_subject.hasOwnProperty(subjet_fee1)) {
+                var value = all_subject[subjet_fee1];
+                tt += parseInt(all_subject[subjet_fee1])
+                console.log(value+value);
+                //do something with value;
+                }
+        }
+            
+        }
+      })
+      
+      
+}
+function loadTotal(){
+    var allTableData = document.getElementById('tbl_certificate');
+    var totalNumbeOfRows = allTableData.rows.length;
+    console.log(totalNumbeOfRows);
 }
