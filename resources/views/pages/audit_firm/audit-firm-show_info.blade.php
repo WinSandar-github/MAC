@@ -350,7 +350,7 @@
                                                                         </div>
                                                                     </div>
 
-                                                                    <div class="row mb-3">
+                                                                    {{--<div class="row mb-3">
                                                                         <div class="form-group">
                                                                             <label class="form-label">(d)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
                                                                         </div>
@@ -364,7 +364,7 @@
 																																						</div>
 																																					</div>
                                                                         </div>
-                                                                    </div>
+                                                                    </div>--}}
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -771,16 +771,22 @@
                                                                 <thead>
                                                                     <tr disabled>
                                                                         <th class="font-weight-bold" ></th>
-                                                                        <th class="font-weight-bold">Total</th>
                                                                         <th class="font-weight-bold">Audit Staff</th>
                                                                         <th class="font-weight-bold">Non-Audit Staff</th>
-
+																																				<th class="font-weight-bold">Total</th>
                                                                     </tr>
-
                                                                 </thead>
                                                                 <tbody id="tbl_audit_total_staff_body">
 
                                                                 </tbody>
+																																<tfoot id="tbl_audit_total_staff_footer">
+																																	<tr>
+																																			<td class="font-weight-bold" >Total Staff</td>
+																																			<td class="font-weight-bold" id="audit_total"></td>
+																																			<td class="font-weight-bold" id="non_audit_total"></td>
+																																			<td class="font-weight-bold" id="audit_nonaudit_total"></td>
+																																	</tr>
+                                                                </tfoot>
                                                             </table>
                                                         </div>
                                                     </div>
@@ -799,16 +805,23 @@
                                                                     <thead>
                                                                         <tr>
                                                                             <th class="font-weight-bold" ></th>
-                                                                            <th class="font-weight-bold">Total</th>
                                                                             <th class="font-weight-bold" >Full Time</th>
                                                                             <th class="font-weight-bold" >Part Time</th>
-
+																																						<th class="font-weight-bold">Total</th>
                                                                         </tr>
 
                                                                     </thead>
                                                                     <tbody id="tbl_audit_staff_body">
 
                                                                     </tbody>
+																																		<tfoot id="tbl_audit_staff_footer">
+																																			<tr>
+																																					<td class="font-weight-bold" >Total</td>
+																																					<td class="font-weight-bold" id="full_time_total"></td>
+																																					<td class="font-weight-bold" id="part_time_total"></td>
+																																					<td class="font-weight-bold" id="full_part_total"></td>
+																																			</tr>
+		                                                                </tfoot>
                                                                 </table>
                                                             </div>
                                                         </div>
@@ -892,5 +905,7 @@
     loadAuditTotalStaff();
     loadAuditStaff();
     autoLoadAudit();
+
+
 </script>
 @endpush
