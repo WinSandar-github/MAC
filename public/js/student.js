@@ -4,19 +4,19 @@ function GetStudentRegistration(course_code) {
     destroyDatatable("#tbl_student_mac", "#tbl_student_mac_body");
     var send_data = new FormData();
     send_data.append('name', "");
-    send_data.append('status',"all");
+    send_data.append('status', "all");
     send_data.append('batch', "all");
-    if(course_code=="da_1"){
-        course_id=1;
+    if (course_code == "da_1") {
+        course_id = 1;
     }
-    else if(course_code=="da_2"){
-        course_id=2;
+    else if (course_code == "da_2") {
+        course_id = 2;
     }
-    else if(course_code=="cpa_1"){
-        course_id=3;
+    else if (course_code == "cpa_1") {
+        course_id = 3;
     }
-    else if(course_code=="cpa_2"){
-        course_id=4;
+    else if (course_code == "cpa_2") {
+        course_id = 4;
     }
     send_data.append('course_code', course_id);
     $.ajax({
@@ -29,7 +29,7 @@ function GetStudentRegistration(course_code) {
             var student_data = data.data;
             console.log("stu data", student_data);
             student_data.forEach(function (element) {
-                console.log(element.id,"id");
+                console.log(element.id, "id");
                 console.log("stu element", element);
                 if (element.type == 0) {
                     var status;
@@ -51,7 +51,7 @@ function GetStudentRegistration(course_code) {
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + element.reg_reason + "</td>";
                     tr += "<td>" + status + "</td>";
-                    
+
                     tr += "</tr>";
                     $("#tbl_student_self_study_body").append(tr);
 
@@ -74,7 +74,7 @@ function GetStudentRegistration(course_code) {
                     tr += "<td>" + element.student_info.registration_no + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + status + "</td>";
-                   
+
                     tr += "</tr>";
                     $("#tbl_student_private_school_body").append(tr);
 
@@ -98,7 +98,7 @@ function GetStudentRegistration(course_code) {
                     tr += "<td>" + element.student_info.registration_no + "</td>";
                     tr += "<td>" + element.student_info.phone + "</td>";
                     tr += "<td>" + status + "</td>";
-                    
+
                     tr += "</tr>";
                     $("#tbl_student_mac_body").append(tr);
 
@@ -175,7 +175,7 @@ function loadStudentSelfStudy() {
         type: "GET",
         url: BACKEND_URL + "/show_student_register/" + id,
         success: function (data) {
-            console.log(data,"yy");
+            console.log(data, "yy");
             var element = data.data;
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
@@ -185,15 +185,15 @@ function loadStudentSelfStudy() {
             // $("#student_phone").append(element.student_info.phone);
             $("#student_registration_no").append(element.student_info.registration_no);
             $("#student_registration_reason").append(element.reg_reason);
-            if(element.module=="1"){
+            if (element.module == "1") {
                 $("#module_name").append("Module 1");
-            } 
-            else if(element.module=="2"){
+            }
+            else if (element.module == "2") {
                 $("#module_name").append("Module 2");
-            } 
-            else if(element.module=="3"){
+            }
+            else if (element.module == "3") {
                 $("#module_name").append("All Module");
-            }            
+            }
             $("input[name = student_register_id]").val(element.id);
             if (element.status == 0) {
                 document.getElementById("approve_reject").style.display = "block";
@@ -202,8 +202,9 @@ function loadStudentSelfStudy() {
             }
             element = element.student_info;
             var education_history = element.student_education_histroy;
-            var job = element.student_job;           
-            $("#registration_no").append(element.personal_no);
+            var job = element.student_job;
+
+            $("#registration_no").append(element.cpersonal_no);
             $("#id").append(element.id);
             document.getElementById('image').src = PDF_URL + element.image;
             $("#name_eng").append(element.name_eng);
@@ -221,11 +222,11 @@ function loadStudentSelfStudy() {
             $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
             // $("#image").append(element.image);
             //$("#batch_name").append(element.name);
-            console.log("b name",data.data);
-            if(element.gov_staff == 1){
+            console.log("b name", data.data);
+            if (element.gov_staff == 1) {
                 $(".recommend_row").show();
-                $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-            }else{
+                $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+            } else {
                 $(".recommend_row").hide();
             }
 
@@ -235,14 +236,14 @@ function loadStudentSelfStudy() {
             $("#roll_number").append(education_history.roll_number);
 
             let certificate = JSON.parse(education_history.certificate);
-            $.each(certificate,function(fileCount,fileName){
-                
-                    $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
-                
+            $.each(certificate, function (fileCount, fileName) {
+
+                $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
             })
 
-            $(".nrc_front").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
-            $(".nrc_back").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+            $(".nrc_front").append(`<a href='${PDF_URL + element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
+            $(".nrc_back").append(`<a href='${PDF_URL + element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
 
             $("#name").append(job.name);
             $("#position").append(job.position);
@@ -253,19 +254,19 @@ function loadStudentSelfStudy() {
             $("#office_address").append(job.office_address);
             attached_file = element.student_education_histroy.certificate;
             $.ajax({
-                url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
+                url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
                 type: 'get',
                 success: function (result) {
-                    console.log("result",result.data.length);
-                    if(result.data.length!=0){
-                        result.data.forEach(function(course){
+                    console.log("result", result.data.length);
+                    if (result.data.length != 0) {
+                        result.data.forEach(function (course) {
                             course_html += `<tr>
                                                 <td>${course.course.name}</td>
                                                 <td>${course.batch.name}</td>
                                                 <td>${formatDate(course.updated_at)}</td>
                                             </tr>`
                         });
-                        console.log(result.data,"course html");                            
+                        console.log(result.data, "course html");
                         $('.course').html(course_html)
                     }
                 }
@@ -631,11 +632,10 @@ function loadStudentSelfStudy() {
 // }
 
 function approveStudent() {
-    if (!confirm('Are you sure you want to approve this student?'))
-    {
+    if (!confirm('Are you sure you want to approve this student?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = student_register_id]").val();
 
         var course_code = localStorage.getItem("course_code");
@@ -668,11 +668,10 @@ function approveStudent() {
 }
 
 function rejectStudent() {
-    if (!confirm('Are you sure you want to reject this student?'))
-    {
+    if (!confirm('Are you sure you want to reject this student?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = student_register_id]").val();
         var course_code = localStorage.getItem("course_code");
         console.log(id)
