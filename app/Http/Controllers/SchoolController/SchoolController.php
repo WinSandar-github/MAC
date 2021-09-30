@@ -864,21 +864,23 @@ class SchoolController extends Controller
     }
     public function checkEmail(Request $request){
         $std_info =StudentInfo::where('email','=',$request->email)->get();
-        $data =StudentInfo::where('school_id','=','NULL')
-                            ->where('teacher_id','!=','NULL')
+        $data =StudentInfo::where('email','=',$request->email)
+                            ->where('school_id','=',null)
+                            ->where('teacher_id','!=',null)
                             ->get();
-        $status=2;
+        $status1=1;
+        $status2=2;
         if(sizeof($std_info)){
             
-            if(sizeof($data)){
+             if(sizeof($data)){
                 return response()->json($data,200);
-            }else{
-                return response()->json($status,200);
-            }
+             }else{
+                return response()->json($status1,200);
+             }
            
         }
         else{
-            return response()->json($status,200);
+            return response()->json($status2,200);
         }
     
     }

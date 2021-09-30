@@ -27,10 +27,7 @@ class MembershipSeeder extends Seeder
                 'late_fee'        => '300000',   
                 'late_feb_fee'    => '300000' ,
                 'expire_fee'      => '30000' ,
-                'cpa_subject_fee' =>NULL,
-                'da_subject_fee'  =>NULL,
-                'renew_cpa_subject_fee' =>NULL,
-                'renew_da_subject_fee' =>NULL   
+                'reconnected_fee' =>NULL  
             ),
             array(
                 'membership_name' => 'Non-Audit',
@@ -43,10 +40,7 @@ class MembershipSeeder extends Seeder
                 'late_fee'        => '30000',
                 'late_feb_fee'    => '300000',
                 'expire_fee'      => '30000'  ,
-                'cpa_subject_fee' =>NULL,
-                'da_subject_fee'  =>NULL,
-                'renew_cpa_subject_fee' =>NULL,
-                'renew_da_subject_fee' =>NULL         
+                'reconnected_fee' =>NULL           
             ),
             array(
                 'membership_name' => 'CPA (Full Fluged)',
@@ -62,10 +56,7 @@ class MembershipSeeder extends Seeder
                 'late_fee'        => '10000',
                 'late_feb_fee'    => '100000',
                 'expire_fee'      => '10000'  ,
-                'cpa_subject_fee' =>NULL,
-                'da_subject_fee'  =>NULL,
-                'renew_cpa_subject_fee' =>NULL,
-                'renew_da_subject_fee' =>NULL         
+                'reconnected_fee' =>NULL           
             ),
             array(
                 'membership_name' => 'PAPP',
@@ -79,10 +70,7 @@ class MembershipSeeder extends Seeder
                 'late_fee'        => '50000',
                 'late_feb_fee'    => '500000',
                 'expire_fee'      => '110000',
-                'cpa_subject_fee' =>NULL,
-                'da_subject_fee'  =>NULL,
-                'renew_cpa_subject_fee' =>NULL,
-                'renew_da_subject_fee' =>NULL        
+                'reconnected_fee' =>NULL          
             ),
             array(
                 'membership_name' => 'School',
@@ -95,10 +83,7 @@ class MembershipSeeder extends Seeder
                 'late_fee'        => '80000',
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => '100000',
-                'cpa_subject_fee' =>NULL,
-                'da_subject_fee' =>NULL,
-                'renew_cpa_subject_fee' =>NULL,
-                'renew_da_subject_fee' =>NULL           
+                'reconnected_fee' =>NULL             
             ),
             array(
                 'membership_name' => 'Teacher',
@@ -111,10 +96,7 @@ class MembershipSeeder extends Seeder
                 'late_fee'        => NULL,
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL,
-                'cpa_subject_fee' =>'30000',
-                'da_subject_fee' =>'20000',
-                'renew_cpa_subject_fee' =>NULL,
-                'renew_da_subject_fee' =>NULL        
+                'reconnected_fee' =>'10000'         
             ),
             array(
                 'membership_name' => 'Mentor',
@@ -131,10 +113,7 @@ class MembershipSeeder extends Seeder
                 'late_fee'        => NULL,
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL ,
-                'cpa_subject_fee' =>NULL,
-                'da_subject_fee'  =>NULL,
-                'renew_cpa_subject_fee' =>NULL,
-                'renew_da_subject_fee' =>NULL       
+                'reconnected_fee' =>'10000'         
             ),
             array(
                 'membership_name' => 'Article',
@@ -147,10 +126,7 @@ class MembershipSeeder extends Seeder
                 'late_fee'        => NULL,
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL ,
-                'cpa_subject_fee' =>NULL,
-                'da_subject_fee'  =>NULL,
-                'renew_cpa_subject_fee' =>NULL,
-                'renew_da_subject_fee' =>NULL       
+                'reconnected_fee' =>NULL         
             ),
 
         ]);
