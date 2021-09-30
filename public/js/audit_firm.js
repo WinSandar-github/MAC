@@ -676,7 +676,8 @@ function autoLoadAudit(){
           }
 
           // Types Of Service Provided
-          $('#type_service'+element.type_of_service_provided_id).prop("checked", true);
+          console.log(">>>>",element.type_of_service_provided_id);
+          //$('#type_service'+element.type_of_service_provided_id).prop("checked", true);
 
             var firm_owner_non_audit=element.firm_owner_non_audits;
             if(firm_owner_non_audit.length!=0){
@@ -931,12 +932,12 @@ function loadAuditTypeOfService(){
       type_service_provided.forEach(function(element){
         if(element.audit_firm_type_id==1){
           var radio_data="<div class='col-md-2'>"+
-          "<input disabled type='radio' name='t_s_p_id' value="+element.id+" id=type_service"+element.id+">"+
+          "<input disabled type='checkbox' name='t_s_p_id' value="+element.id+" id=type_service"+element.id+">"+
           " <label class='form-check-label'>"+element.name+"</label>";
           $('.type_service_provided').append(radio_data);
         }else{
           var tr = "<tr>";
-          tr += "<td><input disabled type='radio' name='t_s_p_id' value="+element.id+" id=type_service"+element.id+">"+
+          tr += "<td><input disabled checkbox='radio' name='t_s_p_id' value="+element.id+" id=type_service"+element.id+">"+
                 " <label class='form-check-label'>"+element.name+"</label>";
           tr += "</tr>";
           $('#tbl_type_service_body').append(tr);

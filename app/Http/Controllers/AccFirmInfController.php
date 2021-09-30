@@ -273,6 +273,13 @@ class AccFirmInfController extends Controller
 
         $register_date = date('Y-m-d');
 
+        // $t_s_p_id_ary = array();
+        // if($request->t_s_p_id){
+        //   foreach($request->t_s_p_id as $val){
+        //     array_push($t_s_p_id_ary,$val);
+        //   }
+        // }
+
         //Main Table
         $acc_firm_info = new AccountancyFirmInformation();
         // $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
