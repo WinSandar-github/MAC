@@ -825,7 +825,7 @@ function getCPAModuleStd() {
                         tr += "<td>" + i + "</td>";
                         tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
@@ -834,7 +834,7 @@ function getCPAModuleStd() {
                         tr += "<td>" + i + "</td>";
                         tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
