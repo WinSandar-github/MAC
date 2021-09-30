@@ -102,7 +102,7 @@ class ArticleController extends Controller
 
     public function FilterArticle(Request $request)
     {
-        $article = ApprenticeAccountant::where('status',$request->status)->with('student_info')->get();
+        $article = ApprenticeAccountant::where('status',$request->status)->where('article_form_type' ,'<>', 0)->with('student_info')->get();
 
         return DataTables::of($article)
             ->addColumn('action', function ($infos) {
@@ -163,11 +163,23 @@ class ArticleController extends Controller
         $acc_app->student_info_id = $request->student_info_id;
         $acc_app->labor_registration_no = $request->labor_registration_no;
 
-        if ($request->hasfile('labor_registration_attach')) {
-            $file = $request->file('labor_registration_attach');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $labor_registration_attach = '/storage/student_info/'.$name;
+        // if ($request->hasfile('labor_registration_attach')) {
+        //     $file = $request->file('labor_registration_attach');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_info/',$name);
+        //     $labor_registration_attach = '/storage/student_info/'.$name;
+        // }
+
+        if($request->hasfile('labor_registration_attach'))
+        {
+            foreach($request->file('labor_registration_attach') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $labor_registration_attach[] = '/storage/student_info/'.$name;
+            }        
+        }else{
+            $labor_registration_attach = null;
         }
         
         if ($request->hasfile('recommend_attach')) {
@@ -195,7 +207,7 @@ class ArticleController extends Controller
         $acc_app->tempory_address = $request->tempory_address;
         $acc_app->m_email = $request->m_email;
         $acc_app->permanent_address = $request->permanent_address;
-        $acc_app->labor_registration_attach = $labor_registration_attach;
+        $acc_app->labor_registration_attach = json_encode($labor_registration_attach) ;
         $acc_app->recommend_attach = $recommend_attach;
         $acc_app->police_attach = $police_attach;
         $acc_app->accept_policy = $request->accept_policy;
@@ -318,12 +330,12 @@ class ArticleController extends Controller
 
     public function FilterResignArticle(Request $request)
     {
-        $article = ApprenticeAccountant::where('status',$request->status)->with('student_info')->get();
+        $article = ApprenticeAccountant::where('status',$request->status)->where('article_form_type', 0)->with('student_info')->get();
 
         return DataTables::of($article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-xs' onclick='showGovArticle($infos->id)'>
+                                <button type='button' class='btn btn-primary btn-xs' onclick='showResignArticle($infos->id)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
                             </div>";

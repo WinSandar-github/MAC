@@ -305,7 +305,7 @@
                         <input type="hidden" name="article_id" >
                         <div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
-                                <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectFirmArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                 <button type="" name="article_approve" class="btn btn-primary" onclick="approveGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>

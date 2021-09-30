@@ -195,7 +195,7 @@ function loadGovArticle()
         type: 'get',
         data:"",
         success: function(data){
-            console.log(data);
+            console.log(data.resign_date);
             var student_info=data.student_info;
 
             var student_reg = student_info.student_register
@@ -217,9 +217,26 @@ function loadGovArticle()
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
             
-            $("#resign_date").val(data.resign_date);
-            $("#resign_reason").val(data.resign_reason);
-            $("#recent_name").val(data.recent_name);
+            if(data.married == 1)
+            {
+                $('input:radio[name=married][value=1]').attr('checked',true);
+                $('input:radio[name=married][value=0]').attr('disabled',true);
+                $('#married_row').css('display','block');
+                $("#married_name").val(data.married_name);
+                $("#married_job").val(data.married_job);
+            }
+            else{
+                $('input:radio[name=married][value=0]').attr('checked',true);
+                $('input:radio[name=married][value=1]').attr('disabled',true);
+                $('#married_row').css('display','none');
+            }
+            $("#permanent_address").val(data.permanent_address);
+            $("#tempory_address").val(data.tempory_address);
+            $("#current_address").val(data.current_address);
+            $("#home_address").val(data.home_address);
+            $("#father_address").val(data.father_address);
+            $("#father_job").val(data.father_job);
+            $("#labor_registration_no").val(data.labor_registration_no);
 
             document.getElementById('image').src = PDF_URL + student_info.image;
             $(".nrc_front").append(`<a href='${PDF_URL+student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
@@ -231,7 +248,15 @@ function loadGovArticle()
                    
                 })
 
-            $(".resign_approve_file").append(`<a href='${PDF_URL+data.resign_approve_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+            let labor_registration_attach = JSON.parse(data.labor_registration_attach);
+                $.each(labor_registration_attach, function (fileCount, fileName) {
+                    $(".labor_registration_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
+                })
+
+            //$(".labor_registration_attach").append(`<a href='${PDF_URL+data.labor_registration_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
+            $(".recommend_attach").append(`<a href='${PDF_URL+data.recommend_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            $(".police_attach").append(`<a href='${PDF_URL+data.police_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
 
             if(data.status == 0){
               document.getElementById("approve_reject_btn").style.display = "block";
@@ -316,26 +341,10 @@ function loadResignArticle()
             $("#address").val(student_info.address);
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
-            if(data.married == 1)
-            {
-                $('input:radio[name=married][value=1]').attr('checked',true);
-                $('input:radio[name=married][value=0]').attr('disabled',true);
-                $('#married_row').css('display','block');
-                $("#married_name").val(data.married_name);
-                $("#married_job").val(data.married_job);
-            }
-            else{
-                $('input:radio[name=married][value=0]').attr('checked',true);
-                $('input:radio[name=married][value=1]').attr('disabled',true);
-                $('#married_row').css('display','none');
-            }
-            $("#permanent_address").val(data.permanent_address);
-            $("#tempory_address").val(data.tempory_address);
-            $("#current_address").val(data.current_address);
-            $("#home_address").val(data.home_address);
-            $("#father_address").val(data.father_address);
-            $("#father_job").val(data.father_job);
-            $("#labor_registration_no").val(data.labor_registration_no);
+
+            $("#resign_date").val(data.resign_date);
+            $("#resign_reason").val(data.resign_reason);
+            $("#recent_org").val(data.recent_org);
 
             document.getElementById('image').src = PDF_URL + student_info.image;
             $(".nrc_front").append(`<a href='${PDF_URL+student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
@@ -347,9 +356,7 @@ function loadResignArticle()
                    
                 })
 
-            $(".labor_registration_attach").append(`<a href='${PDF_URL+data.labor_registration_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
-            $(".recommend_attach").append(`<a href='${PDF_URL+data.recommend_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
-            $(".police_attach").append(`<a href='${PDF_URL+data.police_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            $(".resign_approve_file").append(`<a href='${PDF_URL+data.resign_approve_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
 
             if(data.status == 0){
               document.getElementById("approve_reject_btn").style.display = "block";

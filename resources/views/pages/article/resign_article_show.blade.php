@@ -174,27 +174,28 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3" style="margin-left: 100px">
+                        <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၀။') }}</span>အီးမေးလ်လိပ်စာ</label>
                             <div class="col-md-9">
                                 <input type="text" name="m_email" id="m_email" class="form-control" readonly>
                             </div>
+                        </div>
 
-                        <div class="row mb-3" style="margin-left: 100px">
+                        <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၁။') }}</span>ဖုန်းနံပါတ်</label>
                             <div class="col-md-9">
                                 <input type="text" name="phone_no" id="phone_no" class="form-control" readonly>
                             </div>
                         </div>
 
-                        <div class="row mb-3" style="margin-left: 100px">
+                        <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('(၁၂။)') }}</span>အလုပ်သင်ဆင်းသည့်ဌာနအဖွဲ့အစည်း(သို့မဟုတ်)Firm</label>
                             <div class="col-md-9">
                                 <input type="text" name="recent_org" id="recent_org" class="form-control" readonly>
                             </div>
                         </div>
 
-                        <div class="row mb-3" style="margin-left: 100px">
+                        <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span>Firm တွင် အလုပ်သင်ဆင်းနေသူဖြစ်ပါက သက်ဆိုင်ရာ PAPP ၏နုတ်ထွက်ခွင့်ပြုသည့် အကြောင်းကြားစာပူးတွဲတင်ပြရန်</label>
                             <div class="col-md-9">
                                 <div class="row">
@@ -211,8 +212,8 @@
                         <input type="hidden" name="article_id" >
                         <div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
-                                <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectFirmArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                <button type="" name="article_approve" class="btn btn-primary" onclick="approveGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectResignArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <button type="" name="article_approve" class="btn btn-primary" onclick="approveResignArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>
 
@@ -238,7 +239,7 @@
 @push('scripts')
 <script src="{{ asset('js/article.js') }}"></script>
 <script>
-    loadGovArticle();
+    loadResignArticle();
 </script>
 <script>
 
