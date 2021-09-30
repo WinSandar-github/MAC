@@ -413,7 +413,7 @@
                                         <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
+                                        <span id="father_name_eng"></span> / <span id="father_name_mm"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -572,7 +572,7 @@
                                 <!-- Start Education -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Universtry Name</p>
+                                        <p class="ml-2" style="font-weight:bold">University Name</p>
                                     </div>
                                     <div class="col-md-6">
                                         <span id="university_name"></span>
@@ -636,8 +636,8 @@
                                 <input type="hidden" name="papp_id" >
 
                                 <div class="row mt-5 justify-content-center"> 
-                                    <button type="submit" name="save" class="btn btn-danger"  onclick="rejectPAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                    <button type="submit" name="save" class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>                                    
+                                    <button type="submit" name="save" id='reject' class="btn btn-danger"  onclick="rejectPAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                    <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>                                    
                                 </div>
                             </div>
                         </div>

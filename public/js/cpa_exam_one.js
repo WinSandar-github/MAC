@@ -193,17 +193,17 @@ function loadCPAStudentDataForExamCard() {
         success: function (data) {
 
             var exam_datas = data.data;
-            console.log(exam_datas)
+            // console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
                 var batch_no=mm2en(exam_data.batch.number.toString());
                 $("#batch_no").append(batch_no);
-                $("#cpa_roll_no").append(exam_data.student_info.personal_no);
+                $("#cpa_roll_no").append(exam_data.student_info.cpersonal_no);
                 $("#name").append(exam_data.student_info.name_mm);
                 $("#nrc").append(exam_data.student_info.nrc_state_region + "/" + exam_data.student_info.nrc_township + "(" + exam_data.student_info.nrc_citizen + ")" + exam_data.student_info.nrc_number);
                 $("#father_name").append(exam_data.student_info.father_name_mm);
-                $('#exam_department').text(exam_data.exam_department.name)
-                $('#roll_no').text(exam_data.student_info.cpersonal_no)
+                $('#exam_department').text(exam_data.exam_department?.name);
+                // $('#roll_no').text(exam_data.student_info.cpersonal_no);
 
             });
         }
@@ -221,7 +221,7 @@ function approveCPAOneExam() {
             url: BACKEND_URL + "/approve_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have approved that form!");
                 location.href = FRONTEND_URL + "/cpa_exam_one";
                 getCPAExam();
@@ -241,7 +241,7 @@ function rejectCPAOneExam() {
             url: BACKEND_URL + "/reject_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have rejected that form!");
                 location.href = FRONTEND_URL + "/cpa_exam_one";
                 getCPAExam();
@@ -261,7 +261,7 @@ function approveCPATwoExam() {
             url: BACKEND_URL + "/approve_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have approved that form!");
                 location.href = FRONTEND_URL + "/cpa_two_exam";
                 getCPAExam();
@@ -281,7 +281,7 @@ function rejectCPATwoExam() {
             url: BACKEND_URL + "/reject_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
+                // console.log(result)
                 successMessage("You have rejected that form!");
                 location.href = FRONTEND_URL + "/cpa_two_exam";
                 getCPAExam();
@@ -292,7 +292,7 @@ function rejectCPATwoExam() {
 
 function loadCPAExamData() {
     var id = localStorage.getItem("student_id");
-    console.log(id);
+    // console.log(id);
     $("#school_name").html("");
     $("#exam_type").html("");
     $("#student_grade").html("");
@@ -329,14 +329,16 @@ function loadCPAExamData() {
     $("#office_address").html("");
 
     $("input[name = student_id]").val(id);
-
+    $('.course').html("");
+    var course_html;
     $.ajax({
         type: "GET",
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(exam_data);
+            
             exam_data.forEach(function (element) {
+                // console.log('exam_data',element);
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -377,10 +379,11 @@ function loadCPAExamData() {
                     exam_type_id = "CPA - II";
                 }
 
-                $("#school_name").append(element.private_school_name);
+                $("#school_name").append(element.student_info.student_register[0].private_school_name);
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
+                $("#exam_department").append(element.exam_department?.name);
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -388,8 +391,11 @@ function loadCPAExamData() {
                     document.getElementById("approve").style.display = 'none';
                     document.getElementById("reject").style.display = 'none';
                 }
+                // $("#exam_department").append(element.exam_department.name);
 
                 element = element.student_info;
+                // console.log('element',element)
+
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
@@ -408,7 +414,16 @@ function loadCPAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.personal_no);
+                console.log(element.course_type_id,"aa");
+                // if(element.course_type_id==1){
+                //     $("#registration_no").append(element.personal_no);
+
+                // }else if(element.course_type_id==2){
+                    $("#registration_no").append(element.cpersonal_no);
+                // }else{
+                //     $("#registration_no").append("-");
+                // }
+                
 
                 if (element.gov_staff == 1) {
                     $(".recommend_row").show();
@@ -440,6 +455,34 @@ function loadCPAExamData() {
                 $("#salary").append(job.salary);
                 $("#office_address").append(job.office_address);
                 attached_file = element.student_education_histroy.certificate;
+                $.ajax({
+                    url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
+                    type: 'get',
+                    success: function (result) {
+                        console.log("result",result.data.length);
+                        if(result.data.length!=0){
+                            result.data.forEach(function(course){
+                                var success_year=new Date(course.updated_at);
+                                course_html += `<tr>
+                                                    <td>${course.course.name}</td>
+                                                    <td>${course.batch.name}</td>
+                                                    <td>${success_year.getFullYear()}</td>
+                                                </tr>`
+                            });
+                            console.log(result.data,"course html");                            
+                            $('.course').html(course_html)
+                        }
+                        else{
+                            $('#tbl_course').DataTable( {
+                                "bPaginate": false,
+                                "bLengthChange": false,
+                                "bInfo" : false,
+                                searching:false,
+                            });
+                        }
+                    }
+                });
+                
             })
         }
     })
@@ -447,12 +490,12 @@ function loadCPAExamData() {
 
 function chooseCPABatch() {
     var id = $('#cpa_batch_id').val();
-    console.log(id);
+    // console.log(id);
     $.ajax({
         url: BACKEND_URL + "/exam_register/" + id,
         type: 'get',
         success: function (result) {
-            console.log(result);
+            // console.log(result);
             localStorage.setItem("batch_id", id);
             location.href = FRONTEND_URL + "/cpa_exam_result_edit";
             // loadStudent();
@@ -484,7 +527,7 @@ function loadCPAStudent(course_type) {
     send_data.append('batch', $("#selected_batch_id").val());
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('grade', $('#selected_grade_id').val());
-    console.log($("#selected_batch_id").val());
+    // console.log($("#selected_batch_id").val());
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
         type: 'post',
@@ -492,7 +535,7 @@ function loadCPAStudent(course_type) {
         contentType: false,
         processData: false,
         success: function (data) {
-            console.log("course", data);
+            // console.log("course", data);
             var da_data = data.data;
             da_data.forEach(function (element) {
                 if (element.status == 0) {
@@ -594,7 +637,7 @@ function loadCPAStudent(course_type) {
 }
 
 function fillCPAMark(id, isFullModule) {
-    console.log("exam_register_id", id);
+    // console.log("exam_register_id", id);
     localStorage.setItem("exam_register_id", id);
     localStorage.setItem("is_full_module", isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
@@ -646,11 +689,11 @@ function getCPAModuleStd() {
         type: 'get',
         data: "",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             var da_data = data.data;
             da_data.forEach(function (element) {
                 var std = element.student_info;
-                console.log('ee', element);
+                // console.log('std', std);
                 if (element.status == 0) {
                     status = "PENDING";
                     //$('.pass_fail_btn').hide();
@@ -705,7 +748,7 @@ function getCPAModuleStd() {
                 }, 2000);
 
                 // $("#std_name").append(std.name_eng);
-                $("#school_name").append(element.private_school_name);
+                $("#school_name").append(std.student_register[0].private_school_name);
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
@@ -730,7 +773,13 @@ function getCPAModuleStd() {
                 $("#email").append(std.email);
                 $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(std.image);
-                $("#registration_no").append(std.personal_no);
+                if(std.course_type_id==1){
+                    $("#registration_no").append(std.personal_no);
+
+                }else{
+                    $("#registration_no").append(std.cpersonal_no);
+                }
+                
 
                 if (std.gov_staff == 1) {
                     $(".recommend_row").show();
@@ -771,7 +820,7 @@ function getCPAModuleStd() {
                         tr += "<td>" + i + "</td>";
                         tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
@@ -780,7 +829,7 @@ function getCPAModuleStd() {
                         tr += "<td>" + i + "</td>";
                         tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
-                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control' required></td>";
+                        tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         i++;
@@ -794,6 +843,11 @@ function getCPAModuleStd() {
                 data: "",
                 success: function (result) {
                     if (result.data != null) {
+                        var tr = "<tr id='row_total_mark' >";
+                        tr += "<td colspan='2' style='text-align:center'>Total Marks</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left'></td>";
+                        tr += "</tr>";
+                        $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();
 
                         // $('.pass_fail_btn').show();
@@ -806,7 +860,7 @@ function getCPAModuleStd() {
                         var rData = JSON.parse(result.data.result);
                         var row_length = rData.subjects.length;
 
-                        console.log('is_full_module', module_type);
+                        // console.log('is_full_module', module_type);
                         if (module_type == 1) {
                             for (var i = 0; i < row_length; i++) {
                                 var j = i + 1;
@@ -867,6 +921,13 @@ function getCPAModuleStd() {
                                 grade.setAttribute("readonly", "true");
                             }
                         }
+                        var total_mark=0;
+                        for (var i = 0; i < row_length; i++) {
+                            var mark=parseInt(rData.marks[i]);
+                            console.log(rData.marks[i]);
+                            total_mark += mark;
+                        }
+                        $('#total_mark').append(total_mark);
                     } else {
                         // $('.pass_fail_btn').hide();
                     }

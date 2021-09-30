@@ -21,14 +21,21 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->text('apprentice_exp_file')->nullable();
             $table->boolean('gov_staff');
             $table->string('gov_position')->nullable();
-            $table->date('gov_joining_date')->nullable();
+            $table->string('gov_joining_date')->nullable();
+            $table->string('m_email')->nullable();
             $table->string('request_papp');
-            $table->date('exam_pass_date')->nullable();
+            $table->string('exam_pass_date')->nullable();
             $table->string('exam_pass_batch')->nullable();
             $table->string('ex_papp')->nullable();
-            $table->date('exp_start_date')->nullable();
-            $table->date('exp_end_date')->nullable();
+            $table->string('exp_start_date')->nullable();
+            $table->string('exp_end_date')->nullable();
             $table->boolean('accept_policy');
+            $table->string('resign_date')->nullable();
+            $table->string('resign_reason')->nullable();
+            $table->string('recent_org')->nullable();
+            $table->text('resign_approve_file')->nullable();
+            $table->boolean('know_policy')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
 
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');

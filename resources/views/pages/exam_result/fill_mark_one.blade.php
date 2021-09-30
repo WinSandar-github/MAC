@@ -20,7 +20,7 @@
                                 <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Universtry Name</p>
+                                        <p class="ml-2" style="font-weight:bold">University Name</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="university_name"></span>
@@ -169,7 +169,7 @@
                                         <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
+                                        <span id="father_name_eng"></span> / <span id="father_name_mm"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -313,7 +313,7 @@
                                     <h5  style="font-weight:bold;margin:auto" >အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h5>
                                 </div>
                                     <!-- {!! Form::open(array('route' => 'exam_result.store','method'=>'POST','files' => 'true')) !!} -->
-                                <form  method="post" action="javascript:Exam_Result_Submit();" enctype="multipart/form-data">  
+                                <form  method="post" action="javascript:examResultSubmit(this);" enctype="multipart/form-data">
                                     <input type="hidden" name="result_id">
                                     <div class="row">
                                         <table class="table mark table-bordered input-table" id="tbl_fillmarks" width="100%" style="margin: 3% 3% 0 3%;">
@@ -325,7 +325,11 @@
                                                     <th width="20%">Grade</th>
                                                 </tr>
                                             </thead>
-                                            <tbody class="tbl_fillmarks_body"></tbody>
+                                            <tbody class="tbl_fillmarks_body hoverTable text-left"></tbody>
+                                            <!-- <tr>
+                                                <td colspan="2"><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>
+                                                <td colspan="2"><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>
+                                            </tr> -->
                                             <!-- <tr>
                                                 <td width="10%">1</td>
                                                 <td width="40%">
@@ -371,8 +375,8 @@
                                     
                                 <!-- {!! Form::close() !!} -->
                                 <div class="pass_fail_btn">
-                                        <button type="submit" class=" btn  btn-danger " onClick="javascript:failExam();">Fail</button>
-                                        <button type="submit" class=" btn btn-primary" onClick="javascript:passExam();">Pass</button>
+                                        <button type="submit" class=" btn  btn-danger " value="fail">Fail</button>
+                                        <button type="submit" class=" btn btn-primary" value="pass">Pass</button>
                                     </div>
                                 </div>
                                 </form>

@@ -43,7 +43,7 @@ function loadEntryDetail(id) {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            console.log(exam_data)
+            // console.log(exam_data)
             exam_data.forEach(function (element) {
 
                 // if (element.exam_type_id == 0) {
@@ -53,13 +53,13 @@ function loadEntryDetail(id) {
                 // } else {
                 //     exam_type_id = "MAC STUDENT";
                 // }
-                // if (element.status == 0) {
-                //     status = "PENDING";
-                // } else if (element.status == 1) {
-                //     status = "APPROVED";
-                // } else {
-                //     status = "REJECTED";
-                // }
+                if (element.status == 0) {
+                    status = "PENDING";
+                } else if (element.status == 1) {
+                    status = "APPROVED";
+                } else {
+                    status = "REJECTED";
+                }
                 // if (element.grade == 0) {
                 //     grade = "-";
                 // } else if (element.grade == 1) {
@@ -70,9 +70,9 @@ function loadEntryDetail(id) {
 
 
                 // $("#school_name").append(element.private_school_name);
-                $("#exam_type").append("cpa one Entry Exam");
+                $("#exam_type").append("CPA One Entry Exam");
                 // $("#student_grade").append(grade);
-                // $("#student_status").append(status);
+                $("#student_status").append(status);
 
                 console.log($('#entry_result').val())
                 if ($('#entry_result').val() == 1) {
@@ -171,6 +171,7 @@ function loadEntryDetail(id) {
                     let exams = data.data;
 
                     var exam = exams.filter(exam => { if (exam.exam_type_id == 2 && exam.batch_id == element.batch.id) return true });
+                    console.log('exam',exam)
 
                     $('#exam_date').text(exam[0].exam_start_date);
                     $('#exam_time').text(`နံနက် ${exam[0].exam_start_time} နာရီ မှ ${exam[0].exam_end_time} နာရီ အထိ`);

@@ -230,15 +230,23 @@ class EntryExamController extends Controller
   //end
     public function entryExamFilter(Request $request)
     {
-        $exam_register = ExamRegister::with('student_info','batch')
-        ->where('status','=',$request->status)
-        ->where('exam_type_id','=',3)
-        ->get();
+        $exam_register = ExamRegister::with('student_info','course:id,code,name_mm', 'batch:id,name_mm')
+            ->where('status','=',$request->status)
+            ->where('exam_type_id','=',3)
+            ->get();
       
-       
-       
-          return DataTables::of($exam_register)
+        return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
+                if($infos->grade == 1){
+                    return "<div class='btn-group'>
+                                <a href='" . route("entry_exam_detail", ['id' => $infos->id]) . "'class='btn btn-primary btn-xs'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                                <a href='#' class='btn btn-info btn-xs' >
+                                    <li class='fa fa-file-text-o fa-sm'></li>
+                                </a>
+                            </div>";
+                }
                 return "<div class='btn-group'>
                             <a href='entry_exam_detail/$infos->id' class='btn btn-primary btn-xs' >
                                 <li class='fa fa-eye fa-sm'></li>
@@ -246,9 +254,9 @@ class EntryExamController extends Controller
                         </div>";
             })
             ->addColumn('status', function ($infos){
-              if($infos->approve_reject_status == 0){
+              if($infos->status == 0){
                   return "PENDING";
-              }else if($infos->approve_reject_status == 1){
+              }else if($infos->status == 1){
                   return "APPROVED";
               }else{
                   return "REJECTED";
@@ -272,15 +280,26 @@ class EntryExamController extends Controller
 
     public function filterEntryExamResult(Request $request){
  
-        $exam_register = ExamRegister::with('student_info','batch')
-        ->where('status','=',1)
-        ->where('grade','=',$request->grade)
-        ->where('exam_type_id','=',3)
-        ->get();
+        $exam_register = ExamRegister::with('student_info', 'course:id,code,name_mm','batch:id,name_mm')
+                        ->where('status','=',1)
+                        ->where('grade','=',$request->grade)
+                        ->where('exam_type_id','=',3)
+                        ->get();
  
         
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
+
+                if($infos->grade == 1){
+                    return "<div class='btn-group'>
+                                <a href='" . route("entry_exam_detail", ['id' => $infos->id]) . "'class='btn btn-primary btn-xs'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                                <a href='#' class='btn btn-info btn-xs' >
+                                    <li class='fa fa-file-text-o fa-sm'></li>
+                                </a>
+                            </div>";
+                }
                 return "<div class='btn-group'>
                             <a href='entry_exam_result_detail/$infos->id' class='btn btn-primary btn-xs' >
                                 <li class='fa fa-eye fa-sm'></li>
@@ -293,9 +312,11 @@ class EntryExamController extends Controller
                 }
                 else if($infos->exam_type_id == 1){
                   return "PRIVATE SCHOOL";
+                }else if($infos->exam_type_id == 2){
+                  return "MAC STUDENT";
                 }
                 else{
-                  return "MAC STUDENT";
+                  return "CPA One Entry Exam";
                 }
             })
 
@@ -370,5 +391,4 @@ class EntryExamController extends Controller
             'message' => "You have successfully fail that Student!"
         ],200);
     }
-     
 }
