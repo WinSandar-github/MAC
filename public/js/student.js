@@ -211,10 +211,17 @@ function loadStudentSelfStudy() {
             var education_history = student_info_data.student_education_histroy;
             var job = student_info_data.student_job;
 
+            // if (element.course.course_type_id == 1) {
+            //     $("#registration_no").append(student_info_data.personal_no);
+            // } else if (element.course.course_type_id == 2) {
+            //     $("#registration_no").append(student_info_data.cpersonal_no);
+            // } else {
+            //     $("#registration_no").append("-");
+            // }
             if (element.course.course_type_id == 1) {
-                $("#registration_no").append(student_info_data.personal_no);
+                $("#registration_no").append((student_info_data.personal_no== null || student_info_data.personal_no== "")?"-":student_info_data.personal_no);
             } else if (element.course.course_type_id == 2) {
-                $("#registration_no").append(student_info_data.cpersonal_no);
+                $("#registration_no").append((student_info_data.cpersonal_no== null || student_info_data.cpersonal_no== "")?"-":student_info_data.cpersonal_no);
             } else {
                 $("#registration_no").append("-");
             }
