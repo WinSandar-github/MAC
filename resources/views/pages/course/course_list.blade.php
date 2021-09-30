@@ -86,8 +86,9 @@
                                                 MAC Registration Fee</th>
                                             <th class="">Exam Fee</th>
                                         <th class="">Course Fee</th>
-                                            <th class="
-                                                ">Requirement</th>
+                                        <th class="">CPA One Subject Fee</th>
+                                        <th class="">DA One Subject Fee</th>
+                                        <th class="">Requirement</th>
                                     </tr>
                                     </thead>
                                     <tbody id="tbl_course_body"
@@ -268,9 +269,28 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('CPA One Subject Fee') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="cpa_subject_fee" class="form-control" placeholder="CPA One Subject Fee"
+                                           autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('DA One Subject Fee') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="da_subject_fee" class="form-control" placeholder="DA One Subject Fee"
+                                           autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Exam Registration Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -292,7 +312,7 @@
                         </div> --}}
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('12.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Requirement') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
