@@ -9,6 +9,9 @@ class StudentInfo extends Model
     protected $fillable = ['name_mm','name_eng','nrc_state_region','nrc_township','nrc_citizen','nrc_number','nrc_front','nrc_back','father_name_mm','father_name_eng','race','religion',
     'date_of_birth','address','current_address','phone','gov_staff','image','registration_no','date','approve_reject_status','email','password','accountancy_firm_info_id'];
 
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
       
     public function student_job()
     {
