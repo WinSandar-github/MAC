@@ -18,6 +18,7 @@ class CreateCourseTypesTable extends Migration
             $table->id();
             $table->string('course_code');
             $table->string('course_name');
+            $table->string('course_name_mm');
             $table->longText("course_description");
             $table->timestamps();
         });

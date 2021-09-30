@@ -334,6 +334,10 @@ Route::post('/filter_firm_article','ArticleController\ArticleController@FilterAr
 Route::patch('/approve_article/{id}', 'ArticleController\ArticleController@approve');
 Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject');
 
+// Qualified Test
+Route::apiResource('/qualifiedtest','QualifiedTest\QualifiedTestController');
+Route::post('/get_qualifiedtest_user','QualifiedTest\QualifiedTestController@get_user');
+
 //payment
 Route::get('get_fees/{id}','CourseController@getFees');
 Route::post('/article_gov_register', 'ArticleController\ArticleController@saveGovArticle');

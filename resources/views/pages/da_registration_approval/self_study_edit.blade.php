@@ -165,10 +165,10 @@
                                 <div class="card-body pt-0">
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
+                                            <p class="ml-2 text-bold" style="font-weight:bold">Name(Myanmar) / Name(Eng)</p>
                                         </div>
                                         <div class="col-md-6 text-left">
-                                            <span id="name_eng"></span> / <span id="name_mm"></span>
+                                        <span id="name_mm"></span> / <span id="name_eng"></span>
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">

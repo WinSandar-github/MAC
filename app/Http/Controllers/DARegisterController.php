@@ -288,11 +288,13 @@ class DARegisterController extends Controller
         ],200);
     }
 
-    public function reject($id)
+    public function reject($id,Request $request)
     {
+        
          
         $stu_course_reg = StudentCourseReg::find($id);
         $stu_course_reg->approve_reject_status =2;
+        $stu_course_reg->remark = $request->remark;
         $stu_course_reg->save();
         $approve = StudentInfo::where('id',$stu_course_reg->student_info_id)->first();
         $approve->approve_reject_status = 2;
