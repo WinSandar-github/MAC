@@ -82,15 +82,8 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Email</th>
-
-                                            {{--<th class="bold-font-weight" >Private School Name</th>--}}
-                                           {{-- <th class="bold-font-weight" >Exam Type</th> --}}
-                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
-                                            <th class="bold-font-weight" >Remark</th> 
+                                            {{-- <th class="bold-font-weight" >Remark</th>  --}}
                                             <th class="bold-font-weight" >Status</th>
-                                            <!-- <th class="bold-font-weight" >Batch ID</th> -->
-
-                                            {{-- <th class="bold-font-weight" >Print</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_pending_exam_body" class="hoverTable text-left">
@@ -114,15 +107,8 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Email</th>
-
-                                            {{--<th class="bold-font-weight" >Private School Name</th>--}}
-                                           {{-- <th class="bold-font-weight" >Exam Type</th> --}}
-                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
-                                            <th class="bold-font-weight" >Remark</th> 
+                                            {{-- <th class="bold-font-weight" >Remark</th>  --}}
                                             <th class="bold-font-weight" >Status</th>
-                                            <!-- <th class="bold-font-weight" >Batch ID</th> -->
-
-                                            {{-- <th class="bold-font-weight" >Print</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_approved_exam_body" class="hoverTable text-left">
@@ -137,15 +123,8 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Email</th>
-
-                                            {{--<th class="bold-font-weight" >Private School Name</th>--}}
-                                           {{-- <th class="bold-font-weight" >Exam Type</th> --}}
-                                            {{--<th class="bold-font-weight" >Batch Name</th>--}}
-                                            <th class="bold-font-weight" >Remark</th> 
+                                            {{-- <th class="bold-font-weight" >Remark</th>  --}}
                                             <th class="bold-font-weight" >Status</th>
-                                            <!-- <th class="bold-font-weight" >Batch ID</th> -->
-
-                                            {{-- <th class="bold-font-weight" >Print</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_rejected_exam_body" class="hoverTable text-left">
@@ -167,97 +146,91 @@
 
 @push('scripts')
 <script>
-    //  $(document).ready(function(){
+     $(document).ready(function(){
 
-    //     $('#tbl_pending_entry_exam').DataTable({
-    //         processing: true,
-    //         // serverSide: true,
-    //         scrollX:true,
-    //         ajax: {
-    //                     url  : BACKEND_URL + "/entry_exam_filter",
-    //                     type : "POST" ,
-    //                     data :  function (d) {
-    //                         d.status       = 0  
-    //                     }
+        $('#tbl_pending_entry_exam').DataTable({
+            processing: true,
+            // serverSide: true,
+            scrollX:true,
+            ajax: {
+                        url  : BACKEND_URL + "/get_qualifiedtest_user",
+                        type : "post",
+                        data :  function (d) {
+                            d.status       = 0  
+                        }
+                    },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'studentinfo.name_mm', name: 'Student Name'},
+                {data: 'studentinfo.email', name: 'Email'},
+                {data: 'status', name: 'Status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_approved_entry_exam').DataTable({
+            processing: true,
+            // serverSide: true,
+            scrollX:true,
+            ajax: {
+                        url  : BACKEND_URL + "/get_qualifiedtest_user",
+                        type : "POST" ,
+                        data :  function (d) {
+                            d.status       = 1
+                        }
                     
-    //                 },
-    //         columns: [
-    //             {data: null, render: function (data, type, row, meta) {
-    //                 return meta.row + meta.settings._iDisplayStart + 1;
-    //             }},
-    //             {data: 'action', name: 'action', orderable: false, searchable: false},
-    //             {data: 'student_info.name_mm', name: 'Student Name'},
-    //             {data: 'student_info.email', name: 'Email'},
-    //             {data: 'remark', name: 'remark'},
-    //             {data: 'status', name: 'Status'},
+                    },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'studentinfo.name_mm', name: 'Student Name'},
+                {data: 'studentinfo.email', name: 'Email'},
+                {data: 'status', name: 'Status'},
 
-    //             // {data: 'print', name: 'Print',orderable: false, searchable: false},
-    //         ],
-    //         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-    //     });
-    //     $('#tbl_approved_entry_exam').DataTable({
-    //         processing: true,
-    //         // serverSide: true,
-    //         scrollX:true,
-    //         ajax: {
-    //                     url  : BACKEND_URL + "/entry_exam_filter",
-    //                     type : "POST" ,
-    //                     data :  function (d) {
-    //                         d.status       = 1
-    //                     }
+                // {data: 'print', name: 'Print',orderable: false, searchable: false},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_rejected_entry_exam').DataTable({
+            processing: true,
+            // serverSide: true,
+            scrollX:true,
+            ajax: {
+                        url  : BACKEND_URL + "/get_qualifiedtest_user",
+                        type : "POST" ,
+                        data :  function (d) {
+                            d.status       = 2
+                        }
                     
-    //                 },
-    //         columns: [
-    //             {data: null, render: function (data, type, row, meta) {
-    //                 return meta.row + meta.settings._iDisplayStart + 1;
-    //             }},
-    //             {data: 'action', name: 'action', orderable: false, searchable: false},
-    //             {data: 'student_info.name_mm', name: 'Student Name'},
-    //             {data: 'student_info.email', name: 'Email'},
-    //             {data: 'remark', name: 'remark'},
-    //             {data: 'status', name: 'Status'},
+                    },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'studentinfo.name_mm', name: 'Student Name'},
+                {data: 'studentinfo.email', name: 'Email'},
+                {data: 'status', name: 'Status'},
 
-    //             // {data: 'print', name: 'Print',orderable: false, searchable: false},
-    //         ],
-    //         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-    //     });
-    //     $('#tbl_rejected_entry_exam').DataTable({
-    //         processing: true,
-    //         // serverSide: true,
-    //         scrollX:true,
-    //         ajax: {
-    //                     url  : BACKEND_URL + "/entry_exam_filter",
-    //                     type : "POST" ,
-    //                     data :  function (d) {
-    //                         d.status       = 2
-    //                     }
-                    
-    //                 },
-    //         columns: [
-    //             {data: null, render: function (data, type, row, meta) {
-    //                 return meta.row + meta.settings._iDisplayStart + 1;
-    //             }},
-    //             {data: 'action', name: 'action', orderable: false, searchable: false},
-    //             {data: 'student_info.name_mm', name: 'Student Name'},
-    //             {data: 'student_info.email', name: 'Email'},
-    //             {data: 'remark', name: 'remark'},
-    //             {data: 'status', name: 'Status'},
+                // {data: 'print', name: 'Print',orderable: false, searchable: false},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
 
-    //             // {data: 'print', name: 'Print',orderable: false, searchable: false},
-    //         ],
-    //         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-    //     });
-
-    //     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-    //         $.each($.fn.dataTable.tables(true), function(){
-    //             $(this).DataTable()
-    //                 .columns.adjust()
-    //                 .responsive.recalc();
-    //         });
-    //     });
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+            $.each($.fn.dataTable.tables(true), function(){
+                $(this).DataTable()
+                    .columns.adjust()
+                    .responsive.recalc();
+            });
+        });
 
     
 
-    // });
+    });
 </script>
 @endpush

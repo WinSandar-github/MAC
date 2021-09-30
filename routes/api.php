@@ -336,6 +336,7 @@ Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject
 
 // Qualified Test
 Route::apiResource('/qualifiedtest','QualifiedTest\QualifiedTestController');
+Route::post('/get_qualifiedtest_user','QualifiedTest\QualifiedTestController@get_user');
 
 //payment
 Route::get('get_fees/{id}','CourseController@getFees');
@@ -344,3 +345,4 @@ Route::post('/filter_gov_article','ArticleController\ArticleController@FilterGov
 Route::patch('/approve_gov_article/{id}', 'ArticleController\ArticleController@approveGov');
 Route::patch('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
 Route::get('/gov_article_show/{id}', 'ArticleController\ArticleController@showGovArticle');
+//

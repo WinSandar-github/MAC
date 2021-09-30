@@ -32,7 +32,8 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->unsignedBigInteger('organization_structure_id');
             $table->string('name_of_sole_proprietor');
             $table->string('dir_passport_csc')->nullable();
-            $table->unsignedBigInteger('type_of_service_provided_id');
+            //$table->unsignedBigInteger('type_of_service_provided_id');
+            $table->string('type_of_service_provided_id')->nullable();
             $table->string('other')->nullable();
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
@@ -54,10 +55,10 @@ class CreateAccountancyFirmInformationTable extends Migration
             // ->on('local_foreigns')
             // ->onDelete('cascade');
 
-            $table->foreign('type_of_service_provided_id')
-            ->references('id')
-            ->on('type_of_service_provideds')
-            ->onDelete('cascade');
+            // $table->foreign('type_of_service_provided_id')
+            // ->references('id')
+            // ->on('type_of_service_provideds')
+            // ->onDelete('cascade');
 
             $table->foreign('organization_structure_id')
             ->references('id')
