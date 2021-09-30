@@ -417,10 +417,10 @@ function loadCPAExamData() {
                 // $("#image").append(element.image);
                 
                 if(course_type_id==1){
-                    $("#registration_no").append(element.personal_no);
+                    $("#registration_no").append((element.personal_no==null || element.personal_no=="")? '-':element.personal_no);
 
                 }else if(course_type_id==2){
-                    $("#registration_no").append(element.cpersonal_no);
+                    $("#registration_no").append((element.cpersonal_no==null || element.cpersonal_no=="")? '-':element.cpersonal_no);
                 }else{
                     $("#registration_no").append("-");
                 }
@@ -777,10 +777,10 @@ function getCPAModuleStd() {
                 let student_register = std.student_register.slice(-1);
                 // console.log('student_register',student_register);
                 if(course_type_id==1){
-                    $("#registration_no").append(std.personal_no);
+                    $("#registration_no").append((std.personal_no==null || std.personal_no=="")? '-':std.personal_no);
 
                 }else if(course_type_id==2){
-                    $("#registration_no").append(std.cpersonal_no);
+                    $("#registration_no").append((std.cpersonal_no==null || std.cpersonal_no=="")? '-':std.cpersonal_no);
                 }else{
                     $("#registration_no").append("-");
                 }
@@ -823,7 +823,8 @@ function getCPAModuleStd() {
                     if (element.is_full_module == subj.module_id) {
                         var tr = "<tr>";
                         tr += "<td>" + i + "</td>";
-                        tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        // tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><textarea name='subject" + i + "' id='subject" + i + "'  class='form-control'  rows=1 style='height:auto; width:100%;' required readonly>" + subj.subject_name + "</textarea></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
                         tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
@@ -832,7 +833,8 @@ function getCPAModuleStd() {
                     } else if (element.is_full_module == 3 || element.is_full_module == 0) {
                         var tr = "<tr>";
                         tr += "<td>" + i + "</td>";
-                        tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        // tr += "<td><input type='text' name='subject" + i + "' id='subject" + i + "' value='" + subj.subject_name + "' class='form-control' required readonly></td>";
+                        tr += "<td><textarea name='subject" + i + "' id='subject" + i + "'  class='form-control'  rows=1 style='height:auto; width:100%;' required readonly>" + subj.subject_name + "</textarea></td>";
                         tr += "<td><input type='text' name='mark" + i + "' id='mark" + i + "' class='form-control' required></td>";
                         tr += "<td><input type='text' name='grade" + i + "' id='grade" + i + "' class='form-control'></td>";
                         tr += "</tr>";
