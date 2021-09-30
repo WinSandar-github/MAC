@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'papp_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -38,16 +39,16 @@
                                                                         <th class="less-font-weight" rowspan="2">စဥ်</th>
                                                                         <th class="less-font-weight" rowspan="2">‌အကြောင်းအရာ</th>
                                                                         <th class="less-font-weight" colspan="2"></th>
-                                                                        
-                                                                        
+
+
                                                                     </tr>
-                                                                    
+
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
                                                                         <td>၁။</td>
                                                                         <td>မိမိ၏စာရင်းလုပ်ငန်းအတွက် အများသိရှိစေရန်ကြော်ငြာရာတွင် မိမိကိုယ်တိုင်တာဝန်ခံဆောင်ရွက်ပေးနိုင်သည်ထက် သို့မဟုတ် အတွေ့အကြုံထက် ပိုမိုထုတ်ဖော်ခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -56,12 +57,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၂။</td>
                                                                         <td>အခြားစာရင်းလုပ်ငန်းလုပ်ကိုင်သူအား ထိခိုက်နစ်နာစေသည့် အချက်အလက်ဖြင့် မိမိလုပ်ငန်းကို ကြော်ငြာခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -70,12 +71,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၃။</td>
                                                                         <td>Global network/ Association name အသုံးပြု၍ စာရင်းစစ်လုပ်ငန်းများအတွက် ကြော်ငြာခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -84,12 +85,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၄။</td>
                                                                         <td>မိမိဝန်ဆောင်မှုမပေးသည့်အခြား Client များ အမည်စာရင်းများအား ထည့်သွင်း ကြော်ငြာခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -98,12 +99,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၅။</td>
                                                                         <td>လုပ်ငန်းအပ်နှံသူ၏ အမြတ်/ ဝင်ငွေပေါ်တွင် အခြေတည်၍ လုပ်ခငွေ/အခကြေးငွေတောင်းယူခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -112,12 +113,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၆။</td>
                                                                         <td>ကောင်စီကလိုအပ်၍ တောင်းဆိုသည့် စာရင်းများနှင့်စပ်လျဥ်းသည့် အချက်အလက်များကို တင်ပြပေးရန် ပျက်ကွက်ခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -126,12 +127,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၇။</td>
                                                                         <td>မိမိတစ်ဦးတည်းသာ သိရှိစေသော အကြောင်းအချက်များကို အလုပ်ရှင် ခွင့်ပြုချက်မရဘဲ သို့မဟုတ် တည်ဆဲဥပဒေတစ်ရပ်အရ မဟုတ်ဘဲ အခြားသူထံထုတ်ဖော်အသိပေးခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -140,12 +141,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၈။</td>
                                                                         <td>မိမိအားပေးအပ်သည့် စာရင်းပညာဆိုင်ရာ အလုပ်ဝတ္တရားများကို ဆောင်ရွက်ရာတွင် ထိုက်သင့်သော သတိပြုခြင်းမရှိဘဲ ဆောင်ရွက်ခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -154,12 +155,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၉။</td>
                                                                         <td>မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၂(ဍ) ပါ သတ်မှတ်ပြဌာန်းသည့် စာရင်းလုပ်ငန်းများ၊Statutory Audit(including component auditor performance),Forensic Audit,Review Engagement,Assurance Engagement, Agreed upon Audit Procedures(including Independent Internal Audit)စာရင်းလုပ်ငန်းများနှင့် မြန်မာနိုင်ငံစာရင်းကောင်စီက အခါအားလျော်စွာ သတ်မှတ်သည့်လုပ်ငန်းများကို အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်သူမဟုတ်သူများနှင့် တွဲဖက်ဖွဲ့စည်းဆောင်ရွက်ခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -168,12 +169,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၁၀။</td>
                                                                         <td>စာရင်းဖော်ပြချက်၊ ကြေညာချက်၊ လုပ်ငန်းအလားအလာညွှန်းတမ်း၊ ရှင်းတမ်း၊ အစီရင်ခံစာငွေစာရင်းစာအုပ်၊ လက်မှတ် သို့မဟုတ် ပုံစံတွင် ပြင်ပစာရင်းစစ်အဖြစ် ထောက်ခံလက်မှတ်ရေးထိုးခြင်းများ</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -182,12 +183,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၁၁။</td>
                                                                         <td>စဥ်(၉)နှင့်(၁၀)ပါ စာရင်းလုပ်ငန်းအမျိုးအစားများအား သက်တမ်းရှိသည့် အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်ခွင့်လက်မှတ်မရှိဘဲ လုပ်ကိုင်ခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -196,12 +197,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၁၂။</td>
                                                                         <td>စာရင်းစစ်လုပ်ငန်းအမည်ဖြင့် မှတ်ပုံတင်ထားသည့် စာရင်းစစ်လုပ်ငန်းအဖွဲ့ဝင်ဖြစ်သူသည် အခြားစာရင်းစစ်လုပ်ငန်းတစ်ခု၌ အဖွဲ့ဝင်အဖြစ်သော်လည်းကောင်း၊ မိမိကိုယ်ပိုင်စာရင်းစစ်လုပ်ငန်းအဖြစ်သော်လည်းကောင်း ဆောင်ရွက်ခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -210,12 +211,12 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၁၃။</td>
                                                                         <td>စာရင်းစစ်အစီရင်ခံစာတွင်လက်မှတ်ရေးထိုးရာ၌ အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်သူတစ်ဦးသည် အများပြည်သူပေးသို့ စာရင်းဝန်ဆောင်မှုပေးသည့် စာရင်းလုပ်ငန်းအဖွဲ့တစ်ခုထက်ပို၍ လက်မှတ်ထိုးခြင်း</td>
-                                                                        
+
                                                                         <td>
                                                                             <input type="radio" value="yes" name="report_yes" id="report_yes" class="">
                                                                             <label class="form-check-label">ရှိ</label>
@@ -224,7 +225,7 @@
                                                                             <input type="radio" value="no" name="report_yes" id="report_no" class="">
                                                                             <label class="form-check-label">မရှိ</label>
                                                                         </td>
-                                                                        
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>၁၄။</td>
@@ -455,13 +456,13 @@
                                         <div class="col-md-11 d-md-flex justify-content-md-end">
                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                         </div>
-                                    </div>	
-                                
+                                    </div>
+
                             </div>
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -486,12 +487,12 @@
 
 @push('scripts')
 <script>
-    
+
     $(document).ready(function (e) {
         createDatepicker("pappinitial_dateone");
         createDatepicker("pappinitial_datetwo");
         createDatepicker("pappinitial_datethree");
-        
+
     });
 
     </script>

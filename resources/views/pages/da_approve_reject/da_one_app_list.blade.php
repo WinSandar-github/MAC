@@ -1,15 +1,16 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'da_one_app_list'
 ])
 @section('content')
 <div class="content">
     @include('flash-message')
     <div class="row">
-        {{--<div class="col-md-12"> 
-        {{ Breadcrumbs::render('da_list') }}               
+        {{--<div class="col-md-12">
+        {{ Breadcrumbs::render('da_list') }}
         </div>--}}
-    </div>   
+    </div>
     <div class="row">
         <div class="col-md-12 ">
             <form action="" method="post" enctype="multipart/form-data">
@@ -21,7 +22,7 @@
                                 <h5 class="title text-center">{{ __('DA One Application List') }}</h5>
                                 <!-- <a href="#" onclick="generateSrNo('da_1')"  class="float-right btn btn-sm btn-success">တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်</a> -->
                             </div>
-                            
+
                         </div>
                         {{--<div class="row">
                             <div class="col-md-6">
@@ -41,9 +42,9 @@
                                         <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                             <option value="all" selected>All Batches</option>
                                         </select>
-                                    </div> 
+                                    </div>
                                 </div>
-                            </div>                                            
+                            </div>
                         </div><br/>
                         <div class="row">
                             <div class="col-md-6">
@@ -81,11 +82,11 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Batch Number</th>
-                                            <th class="bold-font-weight" >Email</th>     
+                                            <th class="bold-font-weight" >Email</th>
                                             <th class="bold-font-weight" >Phone Number</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Status</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_pending_list_body" class="hoverTable text-left">
@@ -100,7 +101,7 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Batch Number</th>
-                                            <th class="bold-font-weight" >Email</th>     
+                                            <th class="bold-font-weight" >Email</th>
                                             <th class="bold-font-weight" >Phone Number</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Status</th>
@@ -118,7 +119,7 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Batch Number</th>
-                                            <th class="bold-font-weight" >Email</th>     
+                                            <th class="bold-font-weight" >Email</th>
                                             <th class="bold-font-weight" >Phone Number</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Status</th>
@@ -152,7 +153,7 @@
     var approved_datatable;
     var rejected_datatable;
     $(document).ready(function () {
-   
+
 
         pending_datatable=$('#tbl_da_pending_list').DataTable({
             scrollX: true,
@@ -198,7 +199,7 @@
                     d.nrc =    "",
                     d.batch="all"
                 }
-             
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -229,7 +230,7 @@
                     d.nrc =    "",
                     d.batch="all"
                 }
-             
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -253,7 +254,7 @@
             });
         });
 
-       
+
 
     });
     function da1_reload(){

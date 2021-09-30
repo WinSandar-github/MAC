@@ -1,7 +1,7 @@
 
 function getExam( ) {
     var table_exam =  $('#tbl_exam').DataTable({
-        scrollX: true,
+        // scrollX: true,
         processing: true,
         serverSide: true,
         searching: false,
@@ -17,7 +17,6 @@ function getExam( ) {
             }
         },
         columns: [
-            
             {data: "id", name: 'No'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'course.name', name: 'course.name'}, 
@@ -26,13 +25,9 @@ function getExam( ) {
             {data: 'exam_end_date', name: 'end_date'},
             {data: 'exam_start_time', name: 'exam_start_time'},
             {data: 'exam_end_time', name: 'exam_end_time'},
-            {data: 'exam_place', name: 'exam_place'},
-
-           
+            {data: 'exam_place', name: 'exam_place'},           
         ],
     });
-
-    
 }
 
 function createExam(){    
@@ -45,7 +40,6 @@ function createExam(){
     send_data.append('exam_start_time',$("input[name=exam_start_time]").val());
     send_data.append('exam_end_time',$("input[name=exam_end_time]").val());
     send_data.append('exam_place',$("input[name=exam_place]").val());
-    
     show_loader();
     $.ajax({
             url: BACKEND_URL+"/exam",
@@ -54,10 +48,17 @@ function createExam(){
             contentType: false,
             processData: false,
             success: function(result){          
-                EasyLoading.hide();       
-                successMessage("Insert Successfully");
-                location.reload();
-        }
+                EasyLoading.hide();
+                
+                successMessage(result.message);
+
+                setInterval(() => {
+                    window.location.reload();
+                }, 3000);
+            },
+            error: function(res){
+                errorMessage(res.responseJSON.message);
+            }
     });
 }
 

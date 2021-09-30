@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'non_audit_firm_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -91,12 +92,12 @@
                                                         <input type="text" name="website" class="form-control" placeholder="Website Address" >
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('4') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Branch Office') }}</label>
-                                                
+
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label"></label>
@@ -138,11 +139,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('5') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Sole Proprietor/Partners/Shareholders') }}</label>
-                                                
+
                                             </div>
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
@@ -159,7 +160,7 @@
                                                                                 <input type="button" class="btn btn-primary btn-sm" onclick='addRowPartnerByNonAudit("non_partner_renew")' value="+">
                                                                             </th>
                                                                         </tr>
-                                                                        
+
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
@@ -177,7 +178,7 @@
                                                 <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('6') }}</label>
                                                     <label class="col-md-4 col-form-label">{{ __('Director(s)/Officer(s)') }}</label>
-                                                    
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
@@ -195,7 +196,7 @@
                                                                                 <input type="button" class="btn btn-primary btn-sm" onclick='addRowDirectorByNonAudit("non_director_renew")' value="+">
                                                                             </th>
                                                                         </tr>
-                                                                        
+
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
@@ -214,8 +215,8 @@
                                                 <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('7') }}</label>
                                                     <label class="col-md-4 col-form-label">{{ __('Organization Structure') }}</label>
-                                                    
-                                                    
+
+
                                                 </div>
                                                 <div class='row'>
                                                     <div class='col-md-2'></div>
@@ -247,7 +248,7 @@
                                                 <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('8') }}</label>
                                                     <label class="col-md-8 col-form-label">{{ __('Name Of Managing Director') }}</label>
-                                                    
+
                                                 </div>
                                                 <div class="row">
                                                         <label class="col-md-1 col-form-label"></label>
@@ -260,7 +261,7 @@
                                                 <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('9') }}</label>
                                                     <label class="col-md-4 col-form-label">{{ __('Total Staff') }}</label>
-                                                    
+
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
@@ -272,9 +273,9 @@
                                                                         <tr>
                                                                             <th class="less-font-weight" ></th>
                                                                             <th class="less-font-weight" rowspan="2">Number</th>
-                                                                            
+
                                                                         </tr>
-                                                                        
+
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
@@ -282,39 +283,39 @@
                                                                                 No of directors who are alse shareholders
                                                                             </td>
                                                                             <td><input type="number" value="" name="shareholder_no" id="principal_total" class="form-control"></td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
                                                                             No of directors who are not shareholders
                                                                             </td>
                                                                             <td><input type="number" value="" name="non_shareholder_no" id="non_principal_total" class="form-control"></td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
                                                                             No of managerial level staff
                                                                             </td>
                                                                             <td><input type="number" value="" name="managerial_level_number" id="managerial_level_number" class="form-control"></td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
                                                                             No of non-mangerial level
                                                                             </td>
                                                                             <td><input type="number" value="" name="non-mangerial_level_number" id="non-mangerial_level_number" class="form-control"></td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
                                                                             Total Staff
                                                                             </td>
                                                                             <td><input type="number" value="" name="total_staff_number" id="total_staff_number" class="form-control"></td>
-                                                                            
+
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -325,7 +326,7 @@
                                                     <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('10') }}</label>
                                                     <label class="col-md-10 col-form-label">{{ __('Particulars Of Directors/ Staff Members Who Is A Myanmar CPA') }}</label>
-                                                    
+
                                                 </div>
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
@@ -345,7 +346,7 @@
                                                                                     <input type="button" class="btn btn-primary btn-sm" onclick='addRowDirectorCPA("director_cpa_renew")' value="+">
                                                                                 </th>
                                                                             </tr>
-                                                                            
+
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
@@ -366,7 +367,7 @@
                                                     <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('11') }}</label>
                                                     <label class="col-md-4 col-form-label">{{ __('Types Of Service Provided') }}</label>
-                                                    
+
                                                     </div>
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
@@ -377,9 +378,9 @@
                                                                         <thead>
                                                                             <tr>
                                                                                 <th class="less-font-weight" rowspan="2">Accountancy Services(Non-Audit)</th>
-                                                                                
+
                                                                             </tr>
-                                                                            
+
                                                                         </thead>
                                                                         <tbody>
                                                                             <tr>
@@ -387,42 +388,42 @@
                                                                                     <input type="checkbox" name="accounting_service" id="accounting_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="accounting_service">
                                                                                     <label class="form-check-label">Accounting</label>
                                                                                 </td>
-                                                                                
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
                                                                                     <input type="checkbox" name="advisory_service" id="advisory_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="advisory_service">
                                                                                     <label class="form-check-label">Advisory</label>
                                                                                 </td>
-                                                                                
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
                                                                                     <input type="checkbox" name="taxation_service" id="taxation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="taxation_service">
                                                                                     <label class="form-check-label">Taxation</label>
                                                                                 </td>
-                                                                                
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
                                                                                     <input type="checkbox" name="liquidation_service" id="liquidation_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="liquidation_service">
                                                                                     <label class="form-check-label">Liquidation</label>
                                                                                 </td>
-                                                                                
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
                                                                                     <input type="checkbox" name="accounting_system_service" id="accounting_system_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="accounting_system">
                                                                                     <label class="form-check-label">Accounting System</label>
                                                                                 </td>
-                                                                                
+
                                                                             </tr>
                                                                             <tr>
                                                                                 <td>
                                                                                     <input type="checkbox" name="other_service" id="other_service" class=" @error('date_of_birth') is-invalid @enderror" autofocus value="other_service">
                                                                                     <label class="form-check-label">Others</label>
                                                                                 </td>
-                                                                                
+
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
@@ -439,20 +440,20 @@
                                                             (managing director) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
                                                         </div>
                                                     </div>
-                                                    
-                                                    
-                                                    
+
+
+
                                                     </div>
-                                                
+
                                                     <div class="row">
                                                         <div class="col-md-8"></div>
                                                         <div class="col-md-1">
                                                             <label class="form-check-label text-right">Date:</label>
                                                         </div>
                                                         <div class="col-md-2">
-                                                        
+
                                                             <div class="form-group">
-                                                                
+
                                                                 <input type="date" name="foreign_date" id="foreign_date" class="form-control @error('date_of_birth') is-invalid @enderror" autofocus value="">
                                                             </div>
                                                         </div>
@@ -466,7 +467,7 @@
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>

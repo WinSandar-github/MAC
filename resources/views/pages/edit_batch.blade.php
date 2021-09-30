@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'batch'
 ])
 
@@ -63,7 +64,7 @@
                                     <input type="hidden" value="{{ $batch->class_id }}" class="class_id">
                                     @foreach ($classes as $class)
                                         <div class="form-check-inline float-left">
-                                            <input type="checkbox" class="form-check-input float-left" name="class[]" value="{{ $class->id }}" @php 
+                                            <input type="checkbox" class="form-check-input float-left" name="class[]" value="{{ $class->id }}" @php
                                                 foreach (json_decode($batch->class_id) as $c){
                                                     if ($c == $class->id){
                                                         echo "checked";

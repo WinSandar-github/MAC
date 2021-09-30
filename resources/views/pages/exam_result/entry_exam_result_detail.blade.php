@@ -1,11 +1,12 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'da_exam_one'
 ])
 
 
 @prepend('styles')
-<!-- 
+<!--
     <style>
 
         @media print {
@@ -85,11 +86,11 @@
                                             <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
                                         </div>
                                         <div class="col-md-6 certificate text-left">
-                                            
+
                                             <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
                                             <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button> -->
                                         </div>
-                                    </div>             
+                                    </div>
                                 </div>
                             </div>
                             <div class="card">
@@ -183,7 +184,7 @@
                                             <p class="ml-2" style="font-weight:bold">NRC Front</p>
                                         </div>
                                         <div class="col-md-6 nrc_front text-left">
-                                            
+
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -191,7 +192,7 @@
                                             <p class="ml-2" style="font-weight:bold">NRC Back</p>
                                         </div>
                                         <div class="col-md-6 text-left nrc_back">
-                                            
+
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -272,7 +273,7 @@
                                             <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာဌာနအကြီးအကဲ၏ထောက်ခံစာ</p>
                                         </div>
                                         <div class="col-md-6 recommend_letter text-left">
-                                            
+
                                         </div>
                                     </div>
                                     {{--    <div class="row m-2 mt-3 border-bottom">
@@ -282,15 +283,15 @@
                                             <div class="col-md-6">
                                                 <span id="registration_no"></span>
                                             </div>
-                                        </div> 
+                                        </div>
                                     --}}
                                     <div class="row">
                                         <div class="col-md-6 text-left">
-                                            <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 
+                                            <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt="">
                                         </div>
                                         <div class="col-md-6 text-left">
-                                            <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">                            
-                                        </div>                  
+                                            <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">
+                                        </div>
                                     </div>
                                     <input type="hidden" name="student_course_id" >
                                 </div>
@@ -324,7 +325,7 @@
                                                 <span id="student_grade"></span>
                                             </div>
                                         </div>
-                                    --}}    
+                                    --}}
                                         <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Status</p>
@@ -343,16 +344,16 @@
                                     </div> --}}
 
                                     <input type="hidden" name="student_id">
-                                    
-                                  
-                                        <div class="row mt-5 justify-content-center approve_reject"> 
-                                            
+
+
+                                        <div class="row mt-5 justify-content-center approve_reject">
+
                                             <button type="submit"  id="pass" name="save" class="btn btn-danger"  onclick="failEntryExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>Fail</button>
                                             <button type="submit" id="fail" name="save" class="btn btn-primary" onclick="passEntryExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>Pass</button>
-                                            
+
                                     </div>
                                 </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -371,7 +372,7 @@
                                 <h5 class="title" style="padding-left: 130px;font-weight:bold;" >လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း) သင်တန်း အမှတ်စဥ်- <span id="exam_batch_no"></span> </h5>
                                 <h5 class="title" style="padding-left: 130px;font-weight:bold;">ဝင်ခွင့်စာမေးပွဲ ဖြေဆိုခွင့်လက်မှတ်</h5>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -427,7 +428,7 @@
                                         <label class="col-form-label"  style="font-weight:bold">နေ့ရက် ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_date"  style="border-bottom: 1px dotted black;width:300px;"></label>     
+                                        <label class="col-form-label" id="exam_date"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                         <!-- <input type="text" name="roll_no" id="3" class="form-control" placeholder="nrc"> -->
                                     </div>
                                 </div>
@@ -439,7 +440,7 @@
                                         <label class="col-form-label"  style="font-weight:bold">အချိန် ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_time"  style="border-bottom: 1px dotted black;width:300px;"></label>  
+                                        <label class="col-form-label" id="exam_time"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                         <!-- <input type="text" name="roll_no"  id="4" class="form-control" placeholder="nrc"> -->
                                     </div>
                                 </div>
@@ -451,7 +452,7 @@
                                         <label class="col-form-label"  style="font-weight:bold">နေရာ ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>  
+                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                         <!-- <input type="text" name="roll_no"  id="5" class="form-control" placeholder="nrc"> -->
                                     </div>
                                 </div>
@@ -488,19 +489,19 @@
         </div>
     </div>
 
-    
+
 @endsection
 @push('scripts')
 <script>
     $('document').ready(function(){
         var url = location.pathname;
         var id = url.substring(url.lastIndexOf('/')+1);
-         
-        loadEntryDetail(id);
-       
 
-       
-       
+        loadEntryDetail(id);
+
+
+
+
 })
 
 </script>

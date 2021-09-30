@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'teacher_registration'
 ])
 @section('content')
@@ -15,27 +16,27 @@
                 <li class="breadcrumb-item active">ဆရာပုံစံ-၁</li>
             </ol>
         </div>
-    </div>  
+    </div>
     <div class="row">
         <div class="col-md-12">
             <form action="javascript:void();" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                         <div class="col-md-6">
-                            
+
                                 <div class="card card-success card-outline">
                                     <div class="card-header">
-                                        
-                                        
+
+
                                     </div>
                                     <div class="card-body box-profile">
-                                        
+
                                         <div class="text-center">
                                             <img class="profile-user-img img-fluid img-circle" id="image" alt="User profile picture">
                                         </div>
 
                                         <h5 class="profile-username text-center" id="name"></h5>
-                                        
+
                                         <p class="text-muted text-center" id="email"></p>
                                         <hr>
                                         <div class="row mt-3 ">
@@ -102,7 +103,7 @@
                                                 <span id="religion"></span>
                                             </div>
                                         </div>
-                                        
+
 
                                     </div>
                                 <!-- /.card-body -->
@@ -110,12 +111,12 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card card-success card-outline">
-                                
+
                                 <div class="card-header">
-                                    
-                                    
+
+
                                 </div>
-                                
+
                                 <div class="card-body">
                                     <h6 class="mb-3">
                                         <i class="fa fa-graduation-cap"></i> ပညာအရည်အချင်း
@@ -133,7 +134,7 @@
                                         </table>
 
                                     <hr>
-                                    
+
                                     <div class="row mt-3 border-bottom ">
                                         <div class="col-md-6">
                                             <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ </p>
@@ -171,7 +172,7 @@
                                                     <p style="font-weight:bold">သက်ဆိုင်ရာ ဌာနအကြီးအကဲ၏ ခွင့်ပြုမိန့်</p>
                                                 </div>
                                                 <div class="col-md-6 recommend_letter">
-                                                    
+
                                                 </div>
                                             </div>
                                             <div class="row mt-3 ">
@@ -199,8 +200,8 @@
                                                 </div>
                                             </div>
                                     </div>
-                                        
-                                    
+
+
                                 </div>
                             </div>
                         </div>
@@ -208,12 +209,12 @@
                 <div class="row">
                     <div class="col-md-12">
                             <div class="card card-success card-outline">
-                                
+
                                 <div class="card-header">
-                                    
-                                    
+
+
                                 </div>
-                                
+
                                 <div class="card-body">
                                     <div class="row mt-3 ">
                                         <div class="col-md-6">
@@ -234,7 +235,7 @@
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        
+
                                         <div class="col-md-12">
                                             <table id="tbl_certificate"class="table table-bordered table-hover text-center">
                                                 <thead class="text-nowrap table-success">
@@ -257,7 +258,7 @@
                                         </div>
                                     </div>
                                     <div class="row  mt-3 ">
-                                        
+
                                         <div class="col-md-12">
                                             <table id="tbl_diploma"class="table table-bordered table-hover text-center">
                                                 <thead class="text-nowrap table-success">
@@ -290,8 +291,8 @@
                                             <div class="col-md-6">
                                                 <span id="period_time"></span>
                                             </div>
-                                    </div>    
-                                    
+                                    </div>
+
                                 </div>
                             </div>
                     </div>
@@ -302,20 +303,20 @@
                             <input type="hidden" id="student_info_id">
                             <input type="hidden" id="teacher_id">
                             <center>
-                                    
-                                    <div class="row justify-content-center" >                                    
+
+                                    <div class="row justify-content-center" >
 
                                         <button  id="reject" class="btn btn-danger"  onclick="rejectTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
                                         <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
                                     </div>
                             </center>
-                                            
+
                         </div>
                     </div>
                  </div>
             </form>
         </div>
-       
+
     </div>
 </div>
  <!-- Attached Certificate -->
@@ -331,7 +332,7 @@
       <div class="modal-body">
         <div class="attachment"></div>
       </div>
-              
+
     </div>
   </div>
 </div>

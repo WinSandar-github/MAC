@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'papp_registration'
 ])
 
@@ -19,18 +20,18 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-8 col-form-label">{{ __('လျှောက်ထားသူ၏ကိုယ်ရေးအချက်အလက်(အင်္ဂလိပ်ဘာသာဖြင့်ဖြည့်စွက်ပေးပါရန်)') }}</label>
-	                                      
+
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
@@ -92,9 +93,9 @@
 	                                              <input type="text" name="father_name" class="form-control" >
 	                                          </div>
 	                                      </div>
-                                          
+
 	                                  </div>
-                                      
+
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
                                           <label class="col-md-1 col-form-label">{{ __('(ဃ)') }}</label>
@@ -122,10 +123,10 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-                                          
-                                          
-	                                  
-                      
+
+
+
+
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
                                           <label class="col-md-1 col-form-label">{{ __('(စ)') }}</label>
@@ -136,8 +137,8 @@
                                                     </div>
                                                 </div>
 	                                      </div>
-	                                 
-                                        
+
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <label class="col-md-2 col-form-label">{{ __('တယ်လီဖုန်းနံပါတ်') }}</label>
@@ -147,7 +148,7 @@
                                                 </div>
                                             </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <label class="col-md-2 col-form-label">{{ __('Fax နံပါတ်') }}</label>
@@ -157,7 +158,7 @@
                                                 </div>
                                             </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <label class="col-md-2 col-form-label">{{ __('အီးမေးလ်') }}</label>
@@ -167,18 +168,18 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
 	                                      <label class="col-md-5 form-check-label">{{ __('ကျွန်ုပ်သည် ပြည်ထောင်စုသမ္မတမြန်မာနိုင်ငံသားဖြစ်ပြီး ကျွန်ုပ်အား ') }}</label>
 	                                      <div class="col-md-2">
                                             <div class="form-group">
-                                                    <input type="text" name="" class="form-control" > 
+                                                    <input type="text" name="" class="form-control" >
                                                     </div>
                                                 </div>
                                                 <label class="col-md-3 col-form-label">ခုနှစ်အတွက်</label>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <div class="col-md-8">
@@ -196,17 +197,17 @@
                                                 </div>
                                                 <label class="col-md-1 col-form-label">ခုနှစ်</label>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <label class="col-md-8 col-form-label">မှတ်ပုံတင်ပေးပါရန် လျှောက်ထားပါသည်။</label>
-	                                      
+
 	                                    </div><br/>
-                                        
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
 	                                      <label class="col-md-8 col-form-label">{{ __('ကျွန်ုပ်သည်အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်ရာတွင်') }}</label>
-	                                      
+
 	                                    </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
@@ -214,10 +215,10 @@
                                                     <div >
                                                     <input type="checkbox" name="" >
                                                     <label class="form-check-label col-form-label">လုပ်ငန်းအမည် Firm Name အသုံးမပြူပါ။</label>
-                                                       
+
                                                     </div>
                                                 </div>
-                                                
+
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
@@ -225,7 +226,7 @@
                                                     <input type="checkbox" name="" >
                                                     <label class="form-check-label col-form-label">အသုံးပြုမည့်လုပ်ငန်းအမည် Firm Name, လုပ်ငန်းအမျိုးအစားနှင့် မိမိ၏အဆင့်မှာအောက်ပါအတိုင်းဖြစ်ပါသည်</label>
                                                 </div>
-                                                
+
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-2"></div>
@@ -238,7 +239,7 @@
                                                     <div class="form-group">
                                                         <input type="text" name="" class="form-control" >
                                                     </div>
-                                                    
+
                                                 </div>
                                         </div>
                                         <div class="row">
@@ -252,7 +253,7 @@
                                                     <div class="form-group">
                                                         <input type="text" name="" class="form-control" >
                                                     </div>
-                                                    
+
                                                 </div>
                                         </div>
                                         <div class="row">
@@ -266,10 +267,10 @@
                                                     <div class="form-group">
                                                         <input type="text" name="" class="form-control" >
                                                     </div>
-                                                    
+
                                                 </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-6">
@@ -280,27 +281,27 @@
                                                     <div class="form-group">
                                                         <input type="text" name="" class="form-control" >
                                                     </div>
-                                                    
+
                                                 </div>
-                                               
-                                                
+
+
                                         </div>
-                                        
+
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
                                             <label class="col-md-8 col-form-label">{{ __('အောက်ပါစာရွက်စာတမ်းများကို ပူးတွဲတင်ပြလျှက် လျှောက်ထားပါသည်') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-1">(က)</div>
                                                 <div class="col-md-5 col-form-label">
                                                     လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ပြည့်မီ)မှတ်ပုံတင်လက်မှတ်
-                                                   
+
                                                 </div>
                                                 <div class="col-md-4">
                                                 <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                                 </div>
                                         </div>
@@ -309,36 +310,36 @@
                                                 <div class="col-md-1">(ခ)</div>
                                                 <div class="col-md-5 col-form-label">
                                                     မှတ်ပုံတင်မည့် ပြက္ခဒိန်နှစ်မတိုင်မီနှစ်တွင် မြန်မာနိုင်ငံ၌ ၁၈၃ ရက်ထက်မနည်းနေထိုင်သူဖြစ်ကြောင်းဝန်ခံချက်
-                                                       
+
                                                 </div>
                                                 <div class="col-md-4">
                                                 <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                                 </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-1 col-form-label">(ဂ)</div>
                                                 <div class="col-md-5 col-form-label">
                                                     အခြားလုပ်ငန်းအဖွဲ့အစည်းတစ်ရပ်ရပ်တွင် အချိန်ပြည့် တာဝန်ထမ်းဆောင်နေသူ မဟုတ်ကြောင်းခံဝန်ချက်
-                                                   
+
                                                 </div>
                                                 <div class="col-md-4">
                                                 <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                                 </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-1 col-form-label">(ဃ)</label>
                                             <label class="col-md-5 col-form-label">{{ __('လျှောက်ထားသည့်နှစ်အတွက် အများပြည်သူစာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းကို မိမိ၏ အဓိကအသက်မွေးဝမ်းကျောင်းလုပ်ငန်းအဖြစ် မြန်မာနိုင်ငံအတွင်းတွင်လုပ်ကိုင်မည်ဖြစ်ကြောင်းခံဝန်ချက်') }}</label>
                                             <div class="col-md-4">
                                             <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                                 </div>
                                         </div>
@@ -360,12 +361,12 @@
                                             <label class="col-md-5 col-form-label">{{ __('စတင်လျှောက်ထားသည့်နေ့မတိုင်မီ ၁၂ လအတွင်း စဥ်ဆက်မပြတ်လေ့လာသင်ယူမှု(Continuous Professional Development-CPD)မှတ်တမ်း') }}</label>
                                             <div class="col-md-4">
                                             <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                                 </div>
                                         </div>
-                                        
-                                        
+
+
                                         <div class="row">
                                                 <div class="col-md-1"></div>
                                                 <div class="col-md-1">(ဆ)</div>
@@ -376,23 +377,23 @@
                                         <div class="row">
                                             <div class="col-md-2"></div>
                                             <div class="col-md-9 col-form-label">အခွန်ပေးဆောင်မှု အထောက်အထားရှိလျှင် (သို့မဟုတ်) အခွန်ကင်းရှင်းကြောင်းထောက်ခံချက်</div>
-                                            
+
                                         </div>
                                         <div class="row">
                                             <div class="col-md-7"></div>
                                             <div class="col-md-4">
                                             <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                                 </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
                                             <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
-                                            
+
                                         </div>
-                                        
-                                        
+
+
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-6 col-form-label">{{ __('ရက်စွဲ') }}</label>
@@ -402,18 +403,18 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-11 d-md-flex justify-content-md-end">
                                                 <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                             </div>
-                                        </div>	
-                                
+                                        </div>
+
                             </div>
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -438,12 +439,12 @@
 
 @push('scripts')
 <script>
-    
+
     $(document).ready(function (e) {
         createDatepicker("pappinitial_dateone");
         createDatepicker("pappinitial_datetwo");
         createDatepicker("pappinitial_datethree");
-        
+
     });
 
     </script>

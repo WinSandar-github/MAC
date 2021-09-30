@@ -1,5 +1,3 @@
-const { data } = require("jquery");
-
 function createBatch() {
     var send_data = new FormData();
     send_data.append('name', $("input[name=name]").val());

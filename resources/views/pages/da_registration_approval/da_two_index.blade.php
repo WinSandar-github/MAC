@@ -1,6 +1,7 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'da_two_index'
+    'parentElement' => '',
+    'elementActive' => 'da_two_reg'
 ])
 
 @section('content')
@@ -8,11 +9,11 @@
 
     <div class="content">
         @include('flash-message')
-        <div class="row">
-            {{--<div class="col-md-12">   
+      {{--  <div class="row">
+            --}}{{--<div class="col-md-12">
             {{ Breadcrumbs::render('DA 2 Registration List') }}
-            </div>--}}
-        </div>       
+            </div>--}}{{--
+        </div>--}}
 
         <div class="row">
             <div class="col-md-12 text-center">
@@ -33,7 +34,7 @@
                                         <div class="col-md-7" style="padding-right:0px;padding-left:0px;">
                                             <input type="text" name="filter_by_name_ss" class="form-control" placeholder="Student Name">
                                         </div>
-                                    </div> 
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row">
@@ -42,7 +43,7 @@
                                             <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                                 <option value="all" selected>All Batches</option>
                                             </select>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
                             </div><br/>
@@ -58,7 +59,7 @@
                                                 <option value="1">Approved</option>
                                                 <option value="2">Rejected</option>
                                             </select>
-                                        </div> 
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6" style="vertical-align: top;">
@@ -76,7 +77,7 @@
                                     <a class="nav-link" data-toggle="tab" href="#link2" role="tablist" aria-expanded="false" style="font-weight:bold">Registration Private Shool</a>
                                 </li>
                             </ul>
-                            
+
                         </div>
                         <div class="card-body">
                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
@@ -158,7 +159,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="link2" aria-expanded="true">
                                     <div class="card-header">
-                                        
+
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#privatecheck1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
@@ -229,7 +230,7 @@
                                 </div>
                                 <div class="tab-pane fade show active" id="link3" aria-expanded="true">
                                     <div class="card-header">
-                                    
+
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
                                                 <a class="nav-link active" data-toggle="tab" href="#maccheck1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
@@ -298,7 +299,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>                                            
+                            </div>
                         </div>
                         </div>
                     </div>
@@ -307,7 +308,7 @@
         </div>
     </div>
 
-   
+
 
 
 @endsection
@@ -322,7 +323,7 @@
         //     processing: true,
         //     serverSide: true,
         //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     ajax:{ 
+        //     ajax:{
         //         "url":BACKEND_URL + "/filter_registration",
         //         "method":"POST",
         //         "data":{
@@ -348,7 +349,7 @@
         //     processing: true,
         //     serverSide: true,
         //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     ajax:{ 
+        //     ajax:{
         //         "url":BACKEND_URL + "/filter_registration",
         //         "method":"POST",
         //         "data":{
@@ -374,7 +375,7 @@
         //     processing: true,
         //     serverSide: true,
         //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     ajax:{ 
+        //     ajax:{
         //         "url":BACKEND_URL + "/filter_registration",
         //         "method":"POST",
         //         "data":{
@@ -564,7 +565,7 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
-       
+
         $('#tbl_self_study_pending_list').DataTable({
             scrollX: true,
             processing: true,
@@ -661,6 +662,6 @@
         });
         });
     })
-    
+
 </script>
 @endpush

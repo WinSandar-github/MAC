@@ -9,6 +9,7 @@
 
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'registered_user_list'
 ])
 

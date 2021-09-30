@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'school_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -44,7 +45,7 @@
 	                                              <input type="text" name="nrc"  class="form-control  @error('name') is-invalid @enderror" autofocus>
 	                                          </div>
 	                                      </div>
-	                                      
+
 	                                  </div>
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
@@ -54,9 +55,9 @@
 	                                              <input type="text" name="father_name" class="form-control"  >
 	                                          </div>
 	                                      </div>
-                                          
+
 	                                  </div>
-                                      
+
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('ကျောင်းအမည်') }}</label>
@@ -85,9 +86,9 @@
                                                     <input type="checkbox" name="" >
                                                     <label class="form-check-label">CPA II</label>
 	                                        </div>
-	                                     
+
 	                                  </div>
-                                        
+
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ') }}</label>
@@ -115,13 +116,13 @@
                                                 </div>
                                             </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
                                             <label class="col-md-8 col-form-label">{{ __('ယခင်မှတ်ပုံတင်ထားသည့်အချက်အလက်များမှပြောင်းလဲလိုသည့်အချက်အလက်များ') }}</label>
-                                            
+
                                         </div>
-                                        
+
                                         <div class="row">
 	                                      <label class="col-md-3 col-form-label"></label>
 	                                      <div class="col-md-8">
@@ -165,9 +166,9 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-10 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
-                                            
+
                                         </div>
-                                        
+
                                         <div class="row">
                                             <label class="col-md-8 col-form-label"></label>
                                             <label class="col-md-1 col-form-label">{{ __('အမည်') }}</label>
@@ -176,12 +177,12 @@
                                                     <input type="text" id="date" class="form-control" >
                                                 </div>
                                             </div>
-                                           
+
 	                                    </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-10 col-form-label">{{ __('မှတ်ချက်။လျှောက်လွှာကြေး ၁၀၀၀၀ကျပ်၊မှတ်ပုံတင်ကြေး ၅၀၀,၀၀၀ကျပ်၊နှစ်စဥ်ကြေး ၃၀၀,၀၀၀ကျပ်၊နောက်ကျကြေး ၁,၆၀၁,၀၀၀ကျပ်၊သက်တမ်းပြတ်ကြေး ၁၀၀,၀၀၀ကျပ်') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                             <div class="col-md-11 d-md-flex justify-content-md-end">
@@ -192,7 +193,7 @@
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -217,11 +218,11 @@
 
 @push('scripts')
 <script>
-    
+
     $(document).ready(function (e) {
         createDatepicker("school_birthone");
-        
-        
+
+
     });
 
 </script>

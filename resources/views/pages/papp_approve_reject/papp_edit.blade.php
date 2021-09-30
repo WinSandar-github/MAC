@@ -1,15 +1,16 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'papp_registration_list'
 ])
 @section('content')
 <div class="content">
     @include('flash-message')
-    <div class="row">
-        <div class="col-md-12">   
-        {{ Breadcrumbs::render('papp_edit') }}             
+    {{--<div class="row">
+        <div class="col-md-12">
+        {{ Breadcrumbs::render('papp_edit') }}
         </div>
-    </div>  
+    </div>--}}
     <div class="row">
         <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
@@ -37,7 +38,7 @@
                                 <div id="cpaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">                                            
+                                    <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -63,7 +64,7 @@
                                         <button type="button" id="ra_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#raModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                <!--RA Modal --> 
+                                <!--RA Modal -->
                                 <div id="raModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -88,11 +89,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <span class="foreign_degree">
-                                            
+
                                             </span>
                                     </div>
                                 </div>
-                                <!--Foreign Modal --> 
+                                <!--Foreign Modal -->
                                 <div id="fdModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -108,7 +109,7 @@
                                     </div>
                                   </div>
                                 </div>
-                                
+
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
@@ -126,7 +127,7 @@
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Firm Name</p>
-                                    </div>                                    
+                                    </div>
                                     <div class="col-md-6">
                                         <span id="firm_name"></span>
                                     </div>
@@ -134,7 +135,7 @@
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Firm Type</p>
-                                    </div>                                    
+                                    </div>
                                     <div class="col-md-6">
                                         <span id="firm_type"></span>
                                     </div>
@@ -142,7 +143,7 @@
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2"style="font-weight:bold">Firm Level</p>
-                                    </div>                                    
+                                    </div>
                                     <div class="col-md-6">
                                         <span id="firm_step"></span>
                                     </div>
@@ -156,7 +157,7 @@
                                     </div>
                                 </div>
 
-                                <!--CPA FF Recommendation --> 
+                                <!--CPA FF Recommendation -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">CPA FF Recommendation</p>
@@ -165,11 +166,11 @@
                                         <button type="button" id="cpaff_rec_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpa_ff_recommendation_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                <!--CPA FF Recommendation Modal--> 
+                                <!--CPA FF Recommendation Modal-->
                                 <div id="cpa_ff_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">                                            
+                                    <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -199,7 +200,7 @@
                                 <div id="recommendation_183_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">                                            
+                                    <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -229,7 +230,7 @@
                                 <div id="not_fulltime_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -259,7 +260,7 @@
                                 <div id="work_in_myanmar_confession_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -289,7 +290,7 @@
                                 <div id="rule_confession_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -319,7 +320,7 @@
                                 <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">                                            
+                                    <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -349,7 +350,7 @@
                                 <div id="tax_free_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">                                            
+                                    <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -382,7 +383,7 @@
                                     <div class="col-md-6">
                                         <span id="status"></span>
                                     </div>
-                                </div>             
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -486,7 +487,7 @@
                                         <p class="ml-2" style="font-weight:bold">အထက်လူကြီး၏ထောက်ခံစာ</p>
                                     </div>
                                     <div class="col-md-6 recommend_letter">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -505,7 +506,7 @@
                             </div>
                             <div class="card-body pt-0">
                                 <!-- Start Job -->
-                        
+
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Job Name</p>
@@ -615,7 +616,7 @@
                                 <div id="attached_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
@@ -635,9 +636,9 @@
 
                                 <input type="hidden" name="papp_id" >
 
-                                <div class="row mt-5 justify-content-center"> 
+                                <div class="row mt-5 justify-content-center">
                                     <button type="submit" name="save" id='reject' class="btn btn-danger"  onclick="rejectPAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                    <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>                                    
+                                    <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                                 </div>
                             </div>
                         </div>
