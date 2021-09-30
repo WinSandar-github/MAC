@@ -1,18 +1,17 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'cpa_one_index'
+    'parentElement' => '',
+    'elementActive' => 'cpa_one_reg'
 ])
 
 @section('content')
-
-
     <div class="content">
         @include('flash-message')
-        <div class="row">
+       {{-- <div class="row">
             <div class="col-md-12">
             {{ Breadcrumbs::render('cpa_one_registration_list') }}
             </div>
-        </div>
+        </div>--}}
 
         <div class="row">
             <div class="col-md-12 text-center">
@@ -295,7 +294,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>                                            
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -313,7 +312,7 @@
     //GetStudentRegistration("cpa_1");
     //loadBatchData("cpa_1");
      $(document).ready(function () {
-       
+
         $('#tbl_mac_pending_list').DataTable({
             scrollX: true,
             processing: true,
@@ -482,7 +481,7 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
-       
+
         $('#tbl_self_study_pending_list').DataTable({
             scrollX: true,
             processing: true,
@@ -576,10 +575,10 @@
                 $(this).DataTable()
                     .columns.adjust()
                     //.responsive.recalc()
-                    
+
             });
         });
-        
+
     })
 </script>
 @endpush

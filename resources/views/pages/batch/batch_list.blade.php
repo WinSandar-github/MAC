@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'batch_list'
 ])
 
@@ -8,11 +9,11 @@
 
     <div class="content">
         @include('flash-message')
-        <div class="row">
+       {{-- <div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('သင်တန်းအပတ်စဥ်') }}
             </div>
-        </div>       
+        </div>   --}}
 
         <div class="row">
             <div class="col-md-12 text-center">
@@ -24,22 +25,22 @@
                                 <div class="col-md-12">
                                     <h5 class="card-title">{{ __('Batch List') }}</h5>
                                 </div>
-                                
+
                             </div>
                             <div class="row">
                                 <div class="col-md-8">
-                                    
+
                                 </div>
                                 <div class="col-md-4 d-md-flex justify-content-md-end">
                                     <button type="button" class="btn btn-primary btn-round" id="create_btn" data-toggle="modal" data-target="#create_batch_modal">Create</button>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="card-body">
-                            
+
                             <div class="row">
-                                
+
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
@@ -96,7 +97,7 @@
                                         </div>
                                         </div>
                                         <div class="card-body">
-                                        <hr size="5" width="95%" color="#F5F5F5"> 
+                                        <hr size="5" width="95%" color="#F5F5F5">
                                             <table id="tbl_batch" class="table table-hover text-nowrap ">
                                                 <thead >
                                                     <tr>
@@ -104,25 +105,25 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Batch Name</th>
                                                         <th class="bold-font-weight" >Batch Number</th>
-                                                        <th class="bold-font-weight" >Course Name</th> 
+                                                        <th class="bold-font-weight" >Course Name</th>
                                                         <th class="bold-font-weight">Batch Start Date</th>
                                                         <th class="bold-font-weight">Batch End Date</th>
                                                         <th class="bold-font-weight">Application Accept Start Date</th>
-                                                        <th class="bold-font-weight">Application Accept End Date</th>   
+                                                        <th class="bold-font-weight">Application Accept End Date</th>
                                                         <th class="bold-font-weight">MAC Registration Start Date</th>
-                                                        <th class="bold-font-weight">MAC Registration End Date</th>  
+                                                        <th class="bold-font-weight">MAC Registration End Date</th>
                                                         <th class="bold-font-weight">Self Registration Start Date</th>
-                                                        <th class="bold-font-weight">Self Registration End Date</th>  
+                                                        <th class="bold-font-weight">Self Registration End Date</th>
                                                         <th class="bold-font-weight">Private Registration Start Date</th>
                                                         <th class="bold-font-weight">Private Registration Endt Date</th>
-                                                        <th class="bold-font-weight">Entrance Pass Start Date</th>                                                       
+                                                        <th class="bold-font-weight">Entrance Pass Start Date</th>
                                                         <th class="bold-font-weight">Entrance Pass End Date</th>
-                                                        
+
                                                     </tr>
-                                                    
+
                                                 </thead>
                                                 <tbody id="tbl_batch_body" class="hoverTable text-left">
-                                                    
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -154,7 +155,7 @@
                         <label class="col-md-1 form-label">{{ __('1.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Batch Name') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="name" class="form-control" placeholder="Batch Name" autocomplete="off" required>
                             </div>
                         </div>
@@ -163,7 +164,7 @@
                         <label class="col-md-1 form-label">{{ __('2.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Batch Number') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="number" name="number" class="form-control" placeholder="Batch Number" autocomplete="off" required>
                             </div>
                         </div>
@@ -172,7 +173,7 @@
                         <label class="col-md-1 form-label">{{ __('3.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Course Name') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <select class="form-control form-select" name="course_id" id="selected_course_id" style="width: 100%;" required>
                                     <option value="" disabled selected>Select Course</option>
                                 </select>
@@ -183,7 +184,7 @@
                         <label class="col-md-1 form-label">{{ __('4.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Batch Start Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="start_date" class="form-control"  placeholder="DD-MMM-YYYY">
                             </div>
                         </div>
@@ -192,7 +193,7 @@
                         <label class="col-md-1 form-label">{{ __('5.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Batch End Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -202,7 +203,7 @@
                         <label class="col-md-1 form-label">{{ __('6.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Application Accept Start Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="app_acc_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -212,7 +213,7 @@
                         <label class="col-md-1 form-label">{{ __('7.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Application Accept End Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="app_acc_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -222,7 +223,7 @@
                         <label class="col-md-1 form-label">{{ __('8.') }}</label>
                         <label class="col-md-4 form-label">{{ __('MAC Registration Start Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="mac_reg_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -231,7 +232,7 @@
                         <label class="col-md-1 form-label">{{ __('9.') }}</label>
                         <label class="col-md-4 form-label">{{ __('MAC Registration End Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="mac_reg_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -240,7 +241,7 @@
                         <label class="col-md-1 form-label">{{ __('10.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Self Registration Start Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="self_reg_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -249,7 +250,7 @@
                         <label class="col-md-1 form-label">{{ __('11.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Self Registration End Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="self_reg_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -258,7 +259,7 @@
                         <label class="col-md-1 form-label">{{ __('12.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Private Registration Start Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="private_reg_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -267,23 +268,23 @@
                         <label class="col-md-1 form-label">{{ __('13.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Private Registration End Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="private_reg_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
                     </div>
                     <input type="hidden"  value="1" name="moodle_course_id" class="form-control"  autocomplete="off">
-                                                  
+
                     <input type="hidden" value="1" name="publish_status" class="form-control" autocomplete="off">
-                            
-                    
+
+
                     <div class="row" id="entrance_pass"  style="display:none; padding-left:15px;padding-right:15px">
                         <div>
                             <div class="row" >
                                 <label class="col-md-1 form-label">{{ __('14.') }}</label>
                                 <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
                                 <div class="col-md-7">
-                                    <div class="form-group">                                
+                                    <div class="form-group">
                                         <input type="text" name="entrance_pass_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
                                     </div>
                                 </div>
@@ -292,20 +293,20 @@
                                 <label class="col-md-1 form-label">{{ __('15.') }}</label>
                                 <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
                                 <div class="col-md-7">
-                                    <div class="form-group">                                
+                                    <div class="form-group">
                                         <input type="text" name="entrance_pass_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY">
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="modal-footer">
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                     <button type="submit" class="btn btn-primary"  form="batch_form">Save</button>
                 </div>
-            </form>    
+            </form>
             </div>
         </div>
     </div>
@@ -316,7 +317,7 @@
             <div class="modal-content">
             <form id="exam_form" method="post" action="javascript:createExam();" enctype="multipart/form-data">
                     <!-- @csrf -->
-                <input type="hidden" name="batch_id" id="batch_id">   
+                <input type="hidden" name="batch_id" id="batch_id">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Create Exam </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -324,12 +325,12 @@
                     </button>
                 </div>
                 <div class="card-body">
-                 
+
                     <div class="row">
                         <label class="col-md-1 form-label">{{ __('1.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Exam Registration Start Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="exam_start_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -338,7 +339,7 @@
                         <label class="col-md-1 form-label">{{ __('2.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Exam Registration End Date') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="exam_end_date" class="form-control" autocomplete="off" placeholder="DD-MMM-YYYY" required>
                             </div>
                         </div>
@@ -347,7 +348,7 @@
                         <label class="col-md-1 form-label">{{ __('3.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Exam Place') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="exam_place" class="form-control" autocomplete="off" placeholder="Place" required>
                             </div>
                         </div>
@@ -356,7 +357,7 @@
                         <label class="col-md-1 form-label">{{ __('4.') }}</label>
                         <label class="col-md-4 form-label">{{ __('Exam Time') }}</label>
                         <div class="col-md-7">
-                            <div class="form-group">                                
+                            <div class="form-group">
                                 <input type="text" name="exam_time" class="form-control" autocomplete="off" placeholder="Exam Time" required>
                             </div>
                         </div>
@@ -367,7 +368,7 @@
                     <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                     <button type="submit" class="btn btn-primary" form="exam_form">Save</button>
                 </div>
-            </form>    
+            </form>
             </div>
         </div>
     </div>
@@ -378,7 +379,7 @@
 @push('scripts')
 <script>
 
-    
+
 </script>
 
 <script type="text/javascript">
@@ -436,7 +437,7 @@
                 allowInput: true,
         });
         $("input[name='app_acc_end_date']").flatpickr({
-        
+
                 enableTime: false,
                 dateFormat: "d-M-Y",
                 allowInput: true,
@@ -475,10 +476,10 @@
                 dateFormat: "d-M-Y",
                 allowInput: true,
         });
-        
+
         window.onclick = function(event) {
             if (event.target == document.getElementById("create_btn")) {
-                document.getElementById("batch_form").reset();  
+                document.getElementById("batch_form").reset();
             }
         }
     });
@@ -499,12 +500,12 @@
             }
         },
         columns: [
-            
+
             {data: "id", name: 'No'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
-            {data: 'name', name: 'name'}, 
-            {data: 'number', name: 'number'}, 
-            {data: 'course.name', name: 'course.name'}, 
+            {data: 'name', name: 'name'},
+            {data: 'number', name: 'number'},
+            {data: 'course.name', name: 'course.name'},
             {data: 'start_date', name: 'start_date'},
             {data: 'end_date', name: 'end_date'},
             {data: 'accept_application_start_date', name: 'accept_application_start_date'},
@@ -520,20 +521,20 @@
         ],
     });
 
-   
+
     $("#search").click(function(){
-       
+
         table.draw();
     });
-  
+
     // function searchBatch(){
-         
+
     //     table.draw();
     // }
 
     loadCourse();
     // getBatch();
     loadCourseToFilter();
-   
+
 </script>
 @endpush

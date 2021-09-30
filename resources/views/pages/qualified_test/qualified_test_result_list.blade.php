@@ -1,5 +1,6 @@
 @extends('layouts.app', [
 'class' => '',
+'parentElement' => 'exam_result',
 'elementActive' => 'qualified_test_result_list'
 ])
 
@@ -146,7 +147,7 @@
         //                 url  : BACKEND_URL + "/filter_entry_exam_result",
         //                 type : "POST" ,
         //                 data :  function (d) {
-        //                     d.grade       = 0  
+        //                     d.grade       = 0
         //                 }
 
         //             },
@@ -172,7 +173,7 @@
         //                 url  : BACKEND_URL + "/filter_entry_exam_result",
         //                 type : "POST" ,
         //                 data :  function (d) {
-        //                     d.grade       = 1  
+        //                     d.grade       = 1
         //                 }
 
         //             },
@@ -198,7 +199,7 @@
         //                 url  : BACKEND_URL + "/filter_entry_exam_result",
         //                 type : "POST" ,
         //                 data :  function (d) {
-        //                     d.grade       = 2  
+        //                     d.grade       = 2
         //                 }
 
         //         },

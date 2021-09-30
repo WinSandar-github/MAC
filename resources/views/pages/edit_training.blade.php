@@ -1,15 +1,16 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'training'
 ])
 
 @section('content')
     <div class="content">
-        <div class="row">
+        {{--<div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('edit_training_class') }}
             </div>
-        </div>
+        </div>--}}
         <div class="row">
             <div class="col-md-12 text-center">
                 <form action="{{ route('training_update.update', $training_class['id']) }}" method="POST" enctype="multipart/form-data">

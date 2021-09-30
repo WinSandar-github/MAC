@@ -1,18 +1,19 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => 'exam_reg',
     'elementActive' => 'entry_exam_list'
 ])
 
 @section('content')
     <div class="content">
         @include('flash-message')
-        
+
         {{-- <div class="row">
-            <div class="col-md-12">   
+            <div class="col-md-12">
                 {{ Breadcrumbs::render('entry_exam_list') }}
             </div>
         </div>   --}}
-        
+
         <div class="row">
         <div class="col-md-12">
             <!-- <form action="" method="get" enctype="multipart/form-data"> -->
@@ -91,7 +92,7 @@
                                             {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                            {{-- <th class="bold-font-weight" >Exam Type</th> --}}
                                             {{--<th class="bold-font-weight" >Batch Name</th>--}}
-                                            <th class="bold-font-weight" >Remark</th> 
+                                            <th class="bold-font-weight" >Remark</th>
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
@@ -110,8 +111,8 @@
                                         </a>
                                     </div>
                                 --}}
-                                
-                              
+
+
                                 <table id="tbl_approved_entry_exam"class="table table-hover text-nowrap " style="width:100%;">
                                     <thead>
                                     <tr>
@@ -123,7 +124,7 @@
                                             {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                            {{-- <th class="bold-font-weight" >Exam Type</th> --}}
                                             {{--<th class="bold-font-weight" >Batch Name</th>--}}
-                                            <th class="bold-font-weight" >Remark</th> 
+                                            <th class="bold-font-weight" >Remark</th>
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
@@ -146,7 +147,7 @@
                                             {{--<th class="bold-font-weight" >Private School Name</th>--}}
                                            {{-- <th class="bold-font-weight" >Exam Type</th> --}}
                                             {{--<th class="bold-font-weight" >Batch Name</th>--}}
-                                            <th class="bold-font-weight" >Remark</th> 
+                                            <th class="bold-font-weight" >Remark</th>
                                             <th class="bold-font-weight" >Status</th>
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
@@ -162,10 +163,10 @@
                 </div>
             <!-- </form> -->
         </div>
-    </div>    
+    </div>
     </div>
 
-   
+
 
 
 @endsection
@@ -182,9 +183,9 @@
                         url  : BACKEND_URL + "/entry_exam_filter",
                         type : "POST" ,
                         data :  function (d) {
-                            d.status       = 0  
+                            d.status       = 0
                         }
-                    
+
                     },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -210,7 +211,7 @@
                         data :  function (d) {
                             d.status       = 1
                         }
-                    
+
                     },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -236,7 +237,7 @@
                         data :  function (d) {
                             d.status       = 2
                         }
-                    
+
                     },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -261,7 +262,7 @@
             });
         });
 
-    
+
 
 });
 </script>

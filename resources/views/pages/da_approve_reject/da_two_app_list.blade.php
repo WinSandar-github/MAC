@@ -1,15 +1,16 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'da_two_app_list'
 ])
 @section('content')
 <div class="content">
     @include('flash-message')
     <div class="row">
-        {{--<div class="col-md-12"> 
-        {{ Breadcrumbs::render('da_list') }}               
+        {{--<div class="col-md-12">
+        {{ Breadcrumbs::render('da_list') }}
         </div>--}}
-    </div>   
+    </div>
     <div class="row">
         <div class="col-md-12 text-center">
             <form action="" method="post" enctype="multipart/form-data">
@@ -38,9 +39,9 @@
                                         <select class="form-control form-select" name="selected_batch_id" id="selected_batch_id">
                                             <option value="all" selected>All Batches</option>
                                         </select>
-                                    </div> 
+                                    </div>
                                 </div>
-                            </div>                                            
+                            </div>
                         </div><br/>
                         <div class="row">
                             <div class="col-md-6">
@@ -77,11 +78,11 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Batch Number</th>
-                                            <th class="bold-font-weight" >Email</th>     
+                                            <th class="bold-font-weight" >Email</th>
                                             <th class="bold-font-weight" >Phone Number</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Status</th>
-                                            
+
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_da_pending_list_body" class="hoverTable text-left">
@@ -96,7 +97,7 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Batch Number</th>
-                                            <th class="bold-font-weight" >Email</th>     
+                                            <th class="bold-font-weight" >Email</th>
                                             <th class="bold-font-weight" >Phone Number</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Status</th>
@@ -114,7 +115,7 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Batch Number</th>
-                                            <th class="bold-font-weight" >Email</th>     
+                                            <th class="bold-font-weight" >Email</th>
                                             <th class="bold-font-weight" >Phone Number</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Status</th>
@@ -155,7 +156,7 @@
                     d.nrc =    "",
                     d.batch="all"
                 }
-             
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -186,7 +187,7 @@
                     d.nrc =    "",
                     d.batch="all"
                 }
-             
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -217,7 +218,7 @@
                     d.nrc =    "",
                     d.batch="all"
                 }
-             
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {

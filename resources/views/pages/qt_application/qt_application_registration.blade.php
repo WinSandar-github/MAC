@@ -8,6 +8,7 @@
 
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'qt_application_registration'
 ])
 
@@ -36,8 +37,8 @@
                                 <label class="col-md-3 col-form-label ">{{ __('') }}</label>
                             </div>
                         </div>
-                        <div class="card-body m-1">                           
-                            
+                        <div class="card-body m-1">
+
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
                                 <label class="col-md-2 col-form-label">{{ __('အမည်') }}</label>
@@ -88,7 +89,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
                                 <label class="col-md-2 col-form-label">{{ __('အဘအမည်') }}</label>
@@ -97,7 +98,7 @@
                                         <input type="text" name="father_name" class="form-control" placeholder="အဘအမည်" required>
                                     </div>
                                 </div>
-                            </div>   
+                            </div>
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
@@ -107,7 +108,7 @@
                                     <input type="text" name="nationality" class="form-control" placeholder="လူမျိုး" required>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
@@ -127,7 +128,7 @@
                                         <input type="text" name="date_of_birth" class="form-control" placeholder="မွေးသက္ကရာဇ်" required>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
@@ -137,7 +138,7 @@
                                     <textarea class="form-control " name="address" rows="3" placeholder="အမြဲတမ်းနေထိုင်သည့်လိပ်စာ" required></textarea>
                                     </div>
                                 </div>
-                            </div>              
+                            </div>
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
@@ -147,7 +148,7 @@
                                     <textarea class="form-control " name="contact_address" rows="3" placeholder="ဆက်သွယ်ရန်လိပ်စာ" required></textarea>
                                     </div>
                                 </div>
-                            </div>          
+                            </div>
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၉။') }}</label>
@@ -205,24 +206,24 @@
                                 <div class="col-md-8">
                                     <table class="table in_counrty_education table-bordered input-table">
                                         <thead>
-                                            <tr>     
-                                                <th class="less-font-weight text-center" width="10%">စဉ်</th>                                                   
-                                                <th class="less-font-weight text-center" width="40%">ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း</th> 
-                                                <th class="less-font-weight text-center" width="40%">ပူးတွဲတင်ပြရမည့် လက်မှတ်မိတ္တူမှန်</th>                                                       
+                                            <tr>
+                                                <th class="less-font-weight text-center" width="10%">စဉ်</th>
+                                                <th class="less-font-weight text-center" width="40%">ပြည်တွင်းမှရရှိသည့် ပညာအရည်အချင်း</th>
+                                                <th class="less-font-weight text-center" width="40%">ပူးတွဲတင်ပြရမည့် လက်မှတ်မိတ္တူမှန်</th>
                                                 <th class="less-font-weight text-center" width="10%"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowInCountryEducation("in_counrty_education")' value="+"></td>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                                                                                
+
                                         </tbody>
                                     </table>
                                 </div>
-                            </div></br>                        
+                            </div></br>
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၁၅။') }}</label>
                                 <label class="col-md-10 col-form-label">{{ __('နိုင်ငံကြားတိုင်းပြည်မှပေးအပ်သည့်ပညာအရည်အချင်း (ACCA/ CIMA ခွဲခြားဖော်ပြရန်နှင့် လက်မှတ်မိတ္တမှန် ပူးတွဲတင်ပြရန်)') }}</label><br>
-                            </div>    
+                            </div>
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label" ></label>
@@ -243,7 +244,7 @@
                                         <input type="text" name="" class="form-control" placeholder="ဆက်သွယ်ရန်လိပ်စာ" required>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <div class="row">
                                 <label class="col-md-2 col-form-label">{{ __('') }}</label>
@@ -253,7 +254,7 @@
                                         <input type="text" name="" class="form-control" placeholder="အီးမေးလ်" required>
                                     </div>
                                 </div>
-                            </div> 
+                            </div>
 
                             <div class="row">
                                 <label class="col-md-1 col-form-label" >{{ __('') }}</label>
@@ -275,8 +276,8 @@
                                         <input type="text" name="" class="form-control" placeholder="မှတ်ပုံတင်အမှတ်" required>
                                     </div>
                                 </div>
-                            </div></br>                                                        
-                            
+                            </div></br>
+
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၁၆။') }}</label>
                                 <label class="col-md-3 col-form-label">{{ __('လျှောက်ထားသူကျွန်တော်/ကျွန်မ') }}</label>
@@ -291,7 +292,7 @@
                                         <input type="text" name="" class="form-control"  required>
                                     </div>
                                 </div>
-                                
+
                             </div>
 
                             <div class="row">
@@ -302,7 +303,7 @@
                                         <input type="text" name="" class="form-control"  required>
                                     </div>
                                 </div>
-                                <label class="col-md-7 col-form-label">{{ __('လ တွင်ကျင်းပသည့်အရည်အချင်းစစ်စာမေးပွဲကို ဝင်ရောက်ဖြေဆိုရန်လျှောက်ထားခြင်းဖြစ်ပါသည်။') }}</label>                                
+                                <label class="col-md-7 col-form-label">{{ __('လ တွင်ကျင်းပသည့်အရည်အချင်းစစ်စာမေးပွဲကို ဝင်ရောက်ဖြေဆိုရန်လျှောက်ထားခြင်းဖြစ်ပါသည်။') }}</label>
                             </div></br>
 
                             <div class="row">
@@ -313,7 +314,7 @@
                                         <input type="text" name="" class="form-control" required>
                                     </div>
                                 </div>
-                                <label class="col-md-7 col-form-label" >{{ __('သည် ပြည်ထောင်စုမြန်မာနိုင်ငံသားဖြစ်ကြောင်းနှင့် အခြားနိုင်ငံသားအဖြစ် ခံယူထားခြင်း') }}</label>                               
+                                <label class="col-md-7 col-form-label" >{{ __('သည် ပြည်ထောင်စုမြန်မာနိုင်ငံသားဖြစ်ကြောင်းနှင့် အခြားနိုင်ငံသားအဖြစ် ခံယူထားခြင်း') }}</label>
                             </div>
                             <div class="row">
                                 <label class="col-md-1 col-form-label"></label>
@@ -321,7 +322,7 @@
                             </div>
                             <div class="row">
                                 <label class="col-md-1 col-form-label">{{ __('၁၈။') }}</label>
-                                <label class="col-md-11 col-form-label">{{ __('အထက်ဖော်ပြပါ အချက်အလက်အားလုံးမှန်ကန်ပါသည်။ မမှန်မကန်ဖော်ပြပါက စာမေးပွဲဖြေဆိုခွင့်မရှိကြောင်းနှင့် ဖြေဆိုအောင်မြင်ပါကလည်း မြန်မာနိုင်ငံ') }}</label>                                        
+                                <label class="col-md-11 col-form-label">{{ __('အထက်ဖော်ပြပါ အချက်အလက်အားလုံးမှန်ကန်ပါသည်။ မမှန်မကန်ဖော်ပြပါက စာမေးပွဲဖြေဆိုခွင့်မရှိကြောင်းနှင့် ဖြေဆိုအောင်မြင်ပါကလည်း မြန်မာနိုင်ငံ') }}</label>
                             </div>
                             <div class="row">
                                 <label class="col-md-1 col-form-label"></label>
@@ -337,7 +338,7 @@
                                                 <input type="text" name="register_date" class="form-control" placeholder="dd/mm/yyyy" required>
                                             </div>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="col-md-3"></div>
                                 <div class="col-md-3">
@@ -345,8 +346,8 @@
                                         <input type="text" name="" class="form-control" placeholder="လျှောက်ထားသူအမည်" required>
                                     </div>
                                 </div>
-                            </div></br>                                                       
-                            
+                            </div></br>
+
                         </div>
 
                         <div class="card-footer ">
