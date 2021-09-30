@@ -28,14 +28,20 @@ class QualifiedTestController extends Controller
         
         if($data)
         {
-            return "NRC has been used, please check again!";
+            return response()->json([
+                'message' => "မှတ်ပုံတင်ရှိပြီးသားဖြစ်ပါသည်",
+                'status' => 'nrcexit'
+            ],202);
         }
 
         $email = $request->email;
         $emailcheck = StudentInfo::where('email', '=', $email)->first();
         if($emailcheck)
         {
-            return "Email has been used, please check again!";
+            return response()->json([
+                'message' => "Email အသုံပြုပြီးသားဖြစ်ပါသည်",
+                'status' => 'emailexit'
+            ],202);
         }
 
         if ($request->hasfile('image')) {
@@ -104,7 +110,7 @@ class QualifiedTestController extends Controller
             $qualifiedtest = new QualifiedTest;
             $qualifiedtest->student_info_id             = $student_info->id;
             $qualifiedtest->current_job                 = $request->current_job;
-            $qualifiedtest->local_education             = $request->edu_status_local;
+            $qualifiedtest->local_education             = json_encode($request->edu_status_local);
             $qualifiedtest->foreign_education           = $request->edu_status_foreign;
             $qualifiedtest->organization_name           = $request->organization_name;
             $qualifiedtest->organization_address        = $request->organization_address;
@@ -116,7 +122,7 @@ class QualifiedTestController extends Controller
             $qualifiedtest->local_education_certificate = json_encode($certificate);
             $qualifiedtest->save();
             return response()->json([
-                'message' => "You have successfully rejected that user!",
+                'message' => "You have successfully register",
             ],200);
         }
     }
