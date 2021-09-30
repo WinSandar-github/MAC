@@ -71,12 +71,17 @@ class StudentInfo extends Model
 
     public function cpa_one_direct(){
         return $this->hasOne(CpaOneTrainingAddmissionDirect::class,'student_info_id','id');
-        
+
     }
 
     public function accountancy_firm(){
         return $this->belongsTo(AccountancyFirmInformation::class,'accountancy_firm_info_id','id');
-        
+
+    }
+
+    public function firm_ownerships_audits(){
+        return $this->belongsTo(FirmOwnershipAudit::class,'accountancy_firm_info_id','accountancy_firm_info_id');
+
     }
 
      public function exam_registers()
@@ -92,26 +97,26 @@ class StudentInfo extends Model
 
     public function school(){
         return $this->belongsTo(SchoolRegister::class);
-        
+
     }
 
     public function mentor(){
         return $this->belongsTo(Mentor::class);
-        
+
     }
 
     public function teacher(){
         return $this->belongsTo(TeacherRegister::class);
-        
+
     }
 
     public function article(){
         return $this->hasMany(ApprenticeAccountant::class,'student_info_id','id');
-        
+
     }
 
     public function gov_article(){
         return $this->hasMany(ApprenticeAccountantGov::class,'student_info_id','id');
-        
+
     }
-}  
+}
