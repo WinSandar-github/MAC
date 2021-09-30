@@ -190,13 +190,13 @@ class BatchController extends Controller
         $batches=$batches->get();
         return DataTables::of($batches)
         ->addColumn('action', function ($batch) {
-            if(Carbon::now() >= $batch->start_date){
-                return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onClick='showBatchExam($batch->id)'>
-                                <li class='fa fa-graduation-cap fa-sm'></li>
-                            </button> 
-                        </div>";
-            }else{
+            // if(Carbon::now() >= $batch->start_date){
+            //     return "<div class='btn-group'>
+            //                 <button type='button' class='btn btn-primary btn-xs' onClick='showBatchExam($batch->id)'>
+            //                     <li class='fa fa-graduation-cap fa-sm'></li>
+            //                 </button> 
+            //             </div>";
+            // }else{
                 return 
                 "<div class='btn-group'>
                     
@@ -209,7 +209,7 @@ class BatchController extends Controller
                 </div >"
                 ;
                  
-            }
+            // }
         })
         ->addColumn('entry_start_date', function ($batch){
             if($batch->entrance_pass_start_date == null){
