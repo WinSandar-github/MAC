@@ -382,9 +382,9 @@ function loadDAExamData() {
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
                 if(course_type_id ==1){
-                    $("#registration_no").append(element.personal_no);
+                    $("#registration_no").append((element.personal_no==null || element.personal_no=="")? '-':element.personal_no);
                 }else if(course_type_id ==2){
-                    $("#registration_no").append(element.cpersonal_no);
+                    $("#registration_no").append((element.cpersonal_no==null || element.cpersonal_no=="")? '-':element.cpersonal_no);
                 }else{
                     $("#registration_no").append("-");
                 }
@@ -918,9 +918,9 @@ function getModuleStd() {
                 $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(std.image);
                 if(course_type_id==1){
-                    $("#registration_no").append(std.personal_no);
+                    $("#registration_no").append((std.personal_no==null || std.personal_no=="")? '-':std.personal_no);
                 }else if(course_type_id==2){
-                    $("#registration_no").append(std.cpersonal_no);
+                    $("#registration_no").append((std.cpersonal_no==null || std.cpersonal_no=="")? '-':std.cpersonal_no);
                 }else{
                     $("#registration_no").append("-");
                 }

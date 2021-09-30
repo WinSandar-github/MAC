@@ -6,13 +6,14 @@ use App\StudentInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\QualifiedTest;
+use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Hash;
 
 class QualifiedTestController extends Controller
 {
     public function index()
     {
-        //
+
     }
     public function create()
     {
@@ -141,5 +142,52 @@ class QualifiedTestController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function get_user(Request $request){
+        $qt = QualifiedTest::with('studentinfo')
+            ->where('approve_reject_status',$request->status)
+            ->get();
+      
+        return DataTables::of($qt)
+            ->addColumn('action', function ($infos) {
+                if($infos->grade == 1){
+                    return "<div class='btn-group'>
+                                <a href='" . route("entry_exam_detail", ['id' => $infos->id]) . "'class='btn btn-primary btn-xs'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                                <a href='#' class='btn btn-info btn-xs' >
+                                    <li class='fa fa-file-text-o fa-sm'></li>
+                                </a>
+                            </div>";
+                }
+                return "<div class='btn-group'>
+                            <a href='entry_exam_detail/$infos->id' class='btn btn-primary btn-xs' >
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                        </div>";
+            })
+            ->addColumn('status', function ($infos){
+              if($infos->approve_reject_status == 0){
+                  return "PENDING";
+              }else if($infos->approve_reject_status == 1){
+                  return "APPROVED";
+              }else{
+                  return "REJECTED";
+              }
+            })
+            // ->addColumn('remark', function ($infos){
+            //     if($infos->grade == 0){
+            //       return "-";
+            //     }
+            //     else if($infos->grade == 1){
+            //       return "PASSED";
+            //     }
+            //     else{
+            //       return "FAILED";
+            //     }
+            // })
+            // , 'print','exam_type''module'
+            ->rawColumns(['action','status'])
+            ->make(true);
     }
 }

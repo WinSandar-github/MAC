@@ -16,6 +16,7 @@ use App\Mail\ContactMail;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use App\Course;
+use App\Invoice;
 
 class DARegisterController extends Controller
 {
@@ -178,6 +179,17 @@ class DARegisterController extends Controller
         $student_course->date            = $course_date; 
         $student_course->status          = 1;
         $student_course->save();
+
+        //invoice
+        $invNo = str_pad($student_info->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $student_info->id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->name_eng        = $request->name_eng;
+        $invoice->email           = $request->email;
+        $invoice->status          = 0;
+        $invoice->save();
 
         return response()->json($student_info,200);
     }

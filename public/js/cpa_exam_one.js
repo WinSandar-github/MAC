@@ -417,10 +417,10 @@ function loadCPAExamData() {
                 // $("#image").append(element.image);
                 
                 if(course_type_id==1){
-                    $("#registration_no").append(element.personal_no);
+                    $("#registration_no").append((element.personal_no==null || element.personal_no=="")? '-':element.personal_no);
 
                 }else if(course_type_id==2){
-                    $("#registration_no").append(element.cpersonal_no);
+                    $("#registration_no").append((element.cpersonal_no==null || element.cpersonal_no=="")? '-':element.cpersonal_no);
                 }else{
                     $("#registration_no").append("-");
                 }
@@ -777,10 +777,10 @@ function getCPAModuleStd() {
                 let student_register = std.student_register.slice(-1);
                 // console.log('student_register',student_register);
                 if(course_type_id==1){
-                    $("#registration_no").append(std.personal_no);
+                    $("#registration_no").append((std.personal_no==null || std.personal_no=="")? '-':std.personal_no);
 
                 }else if(course_type_id==2){
-                    $("#registration_no").append(std.cpersonal_no);
+                    $("#registration_no").append((std.cpersonal_no==null || std.cpersonal_no=="")? '-':std.cpersonal_no);
                 }else{
                     $("#registration_no").append("-");
                 }
