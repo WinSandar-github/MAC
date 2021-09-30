@@ -21,6 +21,7 @@ class BatchSeeder extends Seeder
         DB::table('batches')->insert([
             array(
                     'name'                           => 'Batch One',
+                    'name_mm'                        => 'အမှတ်စဥ် - ၁',
                     'number'                         => 1,
                     'course_id'                      => 1,
                     'start_date'                     => Carbon::now(),
@@ -44,6 +45,7 @@ class BatchSeeder extends Seeder
             ),
             array(
                     'name'                           => 'Batch Two',
+                    'name_mm'                        => 'အမှတ်စဥ် - ၂',
                     'number'                         => 2,
                     'course_id'                      => 2,
                     'start_date'                     => Carbon::now(),
@@ -67,6 +69,7 @@ class BatchSeeder extends Seeder
             ),
             array(
                     'name'                         => 'Batch Three',
+                    'name_mm'                        => 'အမှတ်စဥ် - ၃',
                     'number'                       => 3,
                     'course_id'                    => 3,
                     'start_date'                   => Carbon::now(),
@@ -90,6 +93,7 @@ class BatchSeeder extends Seeder
             ),
             array(
                     'name'                          => 'Batch Four',
+                    'name_mm'                        => 'အမှတ်စဥ် - ၄',
                     'number'                        => 4,
                     'course_id'                     => 4,
                     'start_date'                    => Carbon::now(),

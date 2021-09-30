@@ -24,7 +24,7 @@
                                 <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Education</h5>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Universtry Name</p>
+                                        <p class="ml-2" style="font-weight:bold">University Name</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="university_name"></span>
@@ -196,7 +196,7 @@
                                         <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="father_name_mm"></span> / <span id="father_name_eng"></span>
+                                        <span  id="father_name_eng"></span> / <span id="father_name_mm"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -304,12 +304,16 @@
                                         <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">                            
                                     </div>                  
                                 </div>
-                                <input type="hidden" name="student_course_id" >
+                                <input type="hidden" name="student_course_id" id="student_info_id">
 
-                                <div class="row mt-5 justify-content-center" id="approve_reject"> 
-                                    <button type="submit" name="save" id="reject" class="btn btn-danger"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <!-- <div class="row mt-5 justify-content-center" id="approve_reject"> 
+                                    <button type="submit" name="save" id="reject" class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                     <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-                                </div>
+                                Button trigger modal 
+ 
+
+                                </div> -->
+                                
                                 <!-- Attached Certificate -->
                                 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
                                     <div class="modal-dialog modal-lg" role="document" > 
@@ -323,20 +327,24 @@
                             </div>
                         </div>    
                         <div class="card">
-                            <div class="card-header">
-                                <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
-                            </div>
-                            <div class="card-body">
-                                <table class="table table-border">
-                                    <thead>
-                                        <th>Course Name</th>
-                                        <th>Batch Name</th>
-                                        <th>Success Year</th>
-                                    </thead>
-                                    <tbody class="course">
+                                <div class="card-header">
+                                    <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-border" id="tbl_course">
+                                        <thead>
+                                            <th>Course Name</th>
+                                            <th>Batch Name</th>
+                                            <th>Success Year</th>
+                                        </thead>
+                                        <tbody class="course">
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            <div class="row mt-5 justify-content-center" id="approve_reject"> 
+                                <button type="submit" name="save" id="reject" class="btn btn-danger"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>                   
                     </div>
@@ -346,6 +354,40 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Remark</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="remark-form"  method="post" action="javascript:rejectUser()" enctype="multipart/form-data">
+      @csrf
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+                        <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" form="remark-form">Reject</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
+
 @endsection
 @push('scripts')
 <script>

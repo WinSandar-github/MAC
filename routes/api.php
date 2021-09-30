@@ -330,6 +330,17 @@ Route::post('checkEmail','SchoolController\SchoolController@checkEmail');
 Route::get('/acc_app', 'ArticleController\ArticleController@index');
 Route::get('/acc_app/{id}', 'ArticleController\ArticleController@show');
 Route::post('/article_firm_register', 'ArticleController\ArticleController@store');
-Route::post('/filter_article','ArticleController\ArticleController@FilterArticle');
+Route::post('/filter_firm_article','ArticleController\ArticleController@FilterArticle');
 Route::patch('/approve_article/{id}', 'ArticleController\ArticleController@approve');
 Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject');
+
+// Qualified Test
+Route::apiResource('/qualifiedtest','QualifiedTest\QualifiedTestController');
+
+//payment
+Route::get('get_fees/{id}','CourseController@getFees');
+Route::post('/article_gov_register', 'ArticleController\ArticleController@saveGovArticle');
+Route::post('/filter_gov_article','ArticleController\ArticleController@FilterGovArticle');
+Route::patch('/approve_gov_article/{id}', 'ArticleController\ArticleController@approveGov');
+Route::patch('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
+Route::get('/gov_article_show/{id}', 'ArticleController\ArticleController@showGovArticle');

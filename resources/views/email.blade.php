@@ -1,2 +1,1 @@
-<p>This is your verification code.</p>
-<p>{{ $data['verify_code'] }}</p>
+<p>This is your verification code.<b class="ms-3">{{ $data['verify_code'] }}</b></p>
