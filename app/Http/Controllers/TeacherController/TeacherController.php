@@ -249,6 +249,7 @@ class TeacherController extends Controller
         $teacher->renew_date = date('Y-m-d');
         $teacher->payment_method = null;
         $teacher->approve_reject_status = 0;
+        $teacher->reason = null;
         $teacher->save();
 
         if($degrees_certificates!='null'){
@@ -292,6 +293,7 @@ class TeacherController extends Controller
         $std_info->save();
         $teacher = TeacherRegister::find($request->id);
         $teacher->approve_reject_status = $request->status;
+        $teacher->reason = $request->reason;
         $teacher->save();
         return response()->json([
             'message' => 'You have approved this user.'
@@ -360,7 +362,7 @@ class TeacherController extends Controller
 
     public function teacherStatus($id)
     {
-        $data = StudentInfo::where('id',$id)->get('approve_reject_status');
+        $data = StudentInfo::where('id',$id)->with('teacher')->get();
         return response()->json($data,200);
     }
 
@@ -372,6 +374,7 @@ class TeacherController extends Controller
         $teacher = TeacherRegister::find($std_info->teacher_id);
         $teacher->payment_method = 'CASH';
         $teacher->renew_date = date('Y-m-d');
+        $teacher->payment_date = date('Y-m-d');
         $teacher->save();
         return response()->json([
             'data' => $std_info,

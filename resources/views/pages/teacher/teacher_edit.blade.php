@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-md-12">
             <form action="javascript:void();" method="post" enctype="multipart/form-data">
-                @csrf
+                <!--@csrf-->
                 <div class="row">
                         <div class="col-md-6">
                             
@@ -239,7 +239,7 @@
                                             <table id="tbl_certificate"class="table table-bordered table-hover text-center">
                                                 <thead class="text-nowrap table-success">
                                                     <tr>
-                                                        <th class="bold-font-weight" >စဉ်</th>
+                                                        <!-- <th class="bold-font-weight" >စဉ်</th> -->
                                                         <th class="bold-font-weight" >သင်တန်းအမည်</th>
                                                         <th class="bold-font-weight" >ဘာသာရပ်များ</th>
                                                         <th class="bold-font-weight" >ဘာသာရပ်ကြေး</th>
@@ -262,7 +262,7 @@
                                             <table id="tbl_diploma"class="table table-bordered table-hover text-center">
                                                 <thead class="text-nowrap table-success">
                                                     <tr>
-                                                        <th class="bold-font-weight" >စဉ်</th>
+                                                        <!-- <th class="bold-font-weight" >စဉ်</th> -->
                                                         <th class="bold-font-weight" >သင်တန်းအမည်</th>
                                                         <th class="bold-font-weight" >ဘာသာရပ်များ</th>
                                                         <th class="bold-font-weight" >ဘာသာရပ်ကြေး</th>
@@ -275,6 +275,22 @@
                                         </div>
                                     </div>
                                     <hr>
+                                    <div class="row mt-5 border-bottom">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold">ဘာသာရပ်ကြေး စုစုပေါင်း</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type='text' id="subject_total_amount" class="form-control" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-5 border-bottom period" style="display:none;">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold">ငွေပေးချေသည့် ရက်စွဲ</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type='text' id="payment_date" class="form-control" disabled>
+                                        </div>
+                                    </div>
                                     <div class="row mt-5 border-bottom">
                                         <div class="col-md-6">
                                             <p style="font-weight:bold">သင်ကြားမည့်ဘာသာရပ်အတွက် သင်ကြားမှုနှင့် အခြားအတွေ့အကြုံများ</p>
@@ -302,45 +318,61 @@
                             <input type="hidden" id="student_info_id">
                             <input type="hidden" id="teacher_id">
                             <center>
-                                    
+                            
                                     <div class="row justify-content-center" >                                    
-
-                                        <button  id="reject" class="btn btn-danger"  onclick="rejectTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
-                                        <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
+                                    
+                                        <button type="button" class="btn btn-danger"   style="width : 20%" data-toggle="modal" id="smallButton" data-target="#myModal"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
+                                        <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();" style="width : 20%" ><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
                                     </div>
                             </center>
                                             
                         </div>
                     </div>
                  </div>
+                 
+
+                 
+</div>
             </form>
         </div>
        
     </div>
 </div>
- <!-- Attached Certificate -->
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">လျှောက်ထားသူ/အဖွဲ့အစည်း၏နောက်ခံသမိုင်း</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="attachment"></div>
-      </div>
-              
+ 
+<!-- small modal -->
+<form method="post" action="javascript:rejectTeacherRegister();" enctype="multipart/form-data">
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+
+            <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Reject Reason</h4>
+                    <button type="button" class="btn btn-close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <textarea class="form-control " name="reason" rows="100" cols='100' required></textarea>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                </div>
+
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+</form>
 @endsection
 @push('scripts')
 <script src="{{asset('js/teacher.js')}}"></script>
 <script src="{{asset('js/school.js')}}"></script>
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+
 <script>
     getTeacherInfos();
+    
 </script>
 @endpush

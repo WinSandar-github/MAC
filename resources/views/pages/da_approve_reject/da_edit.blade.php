@@ -6,9 +6,9 @@
 <div class="content">
     @include('flash-message')
     <div class="row">
-        <div class="col-md-12">        
+        <div class="col-md-12">
         </div>
-    </div>   
+    </div>
     <div class="row">
         <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
@@ -59,11 +59,11 @@
                                         <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
                                     </div>
                                     <div class="col-md-6 text-left certificate">
-                                        
+
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
-                                </div>             
+                                </div>
                             </div>
                         </div>
                         <div class="card">
@@ -149,7 +149,7 @@
                                     <div class="col-md-6 text-left">
                                         <span id="payment_status">Paid</span>
                                     </div>
-                                </div>                                
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,7 +180,7 @@
                                         <p class="ml-2" style="font-weight:bold">NRC Front</p>
                                     </div>
                                     <div class="col-md-6 text-left nrc_front">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -188,7 +188,7 @@
                                         <p class="ml-2" style="font-weight:bold">NRC Back</p>
                                     </div>
                                     <div class="col-md-6 text-left nrc_back">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -269,7 +269,7 @@
                                         <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာဌာနအကြီးအကဲ၏ထောက်ခံစာ</p>
                                     </div>
                                     <div class="col-md-6 text-left recommend_letter">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -298,25 +298,25 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 text-left">
-                                        <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 
+                                        <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt="">
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">                            
-                                    </div>                  
+                                        <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">
+                                    </div>
                                 </div>
                                 <input type="hidden" name="student_course_id" id="student_info_id">
 
-                                <!-- <div class="row mt-5 justify-content-center" id="approve_reject"> 
+                                <!-- <div class="row mt-5 justify-content-center" id="approve_reject">
                                     <button type="submit" name="save" id="reject" class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                     <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-                                Button trigger modal 
- 
+                                Button trigger modal
+
 
                                 </div> -->
-                                
+
                                 <!-- Attached Certificate -->
                                 <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
-                                    <div class="modal-dialog modal-lg" role="document" > 
+                                    <div class="modal-dialog modal-lg" role="document" >
                                     <div class="modal-content">
                                         <div class="modal-body">
                                             <embed id="attach_file"  width="700px" height="500px">
@@ -325,7 +325,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
                         <div class="card">
                                 <div class="card-header">
                                     <h5 class="border-bottom pb-2"  style="font-weight:bold">Course History</h5>
@@ -345,10 +345,9 @@
                             <div class="row mt-5 justify-content-center" id="approve_reject"> 
                                 <button type="submit" name="save" id="reject" class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                
-                                <!-- <button type="submit" name="save" id="reject" class="btn btn-danger"  onclick="rejectUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button> -->
-                                <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                 <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
-                        </div>                   
+                        </div>
                     </div>
                     </div>
                 </div>

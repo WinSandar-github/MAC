@@ -88,8 +88,18 @@
                                     </div>
                                 </div>
                             </div>
+                           
                             <div class="row mb-1">
-                                    <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                                <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                                <label class="col-md-2 form-label">{{ __('Reconnected Fee') }}</label>
+                                <div class="col-md-9">
+                                    <div class="form-group">                                
+                                        <input type="number" name="reconnected_fee" class="form-control" id="reconnected_fee" placeholder="Reconnected Fee" autocomplete="off"> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                    <label class="col-md-1 form-label">{{ __('8.') }}</label>
                                     <label class="col-md-2 form-label">{{ __('Requirement') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
@@ -105,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="row mb-1">
-                                    <label class="col-md-1 form-label">{{ __('8.') }}</label>
+                                    <label class="col-md-1 form-label">{{ __('9.') }}</label>
                                     <label class="col-md-2 form-label">{{ __('Description') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group ">

@@ -49,6 +49,8 @@ class CreateSchoolRegistersTable extends Migration
             $table->date('reg_date');
             $table->date('renew_date')->default(null)->nullable();
             $table->string('payment_method')->nullable();
+            $table->string('payment_date')->nullable();
+            $table->text('reason')->nullable();
             $table->timestamps();
         });
     }
