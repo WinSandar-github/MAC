@@ -26,9 +26,9 @@ function getExam(course_code) {
         contentType: false,
         processData: false,
         success: function (data) {
-            console.log({
-                data
-            });
+            // console.log({
+            //     data
+            // });
             var da_data = data.data;
             da_data.forEach(function (element) {
                 if (element.status == 0) {
@@ -258,7 +258,7 @@ function printExamCard(studentId, exam_id,form_type) {
 
 function loadDAExamData() {
     var id = localStorage.getItem("student_id");
-    console.log(id);
+    // console.log(id);
     $("#school_name").html("");
     $("#exam_type").html("");
     $("#student_grade").html("");
@@ -304,6 +304,7 @@ function loadDAExamData() {
         success: function (data) {
             var exam_data = data.data;
             exam_data.forEach(function (element) {
+                // console.log('element',element);
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -357,8 +358,11 @@ function loadDAExamData() {
                 }
 
                 $("#exam_department").append(element.exam_department.name);
+                
+                let course_type_id = element.course.course_type_id;
 
                 element = element.student_info;
+
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
                 $("#id").append(element.id);
@@ -377,7 +381,14 @@ function loadDAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                $("#registration_no").append(element.personal_no);
+                if(course_type_id ==1){
+                    $("#registration_no").append(element.personal_no);
+                }else if(course_type_id ==2){
+                    $("#registration_no").append(element.cpersonal_no);
+                }else{
+                    $("#registration_no").append("-");
+                }
+                
 
                 if (element.gov_staff == 1) {
                     $(".recommend_row").show();
@@ -413,7 +424,6 @@ function loadDAExamData() {
                     url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
                     type: 'get',
                     success: function (result) {
-                        console.log("result",result.data.length);
                         if(result.data.length!=0){
                             result.data.forEach(function(course){
                                 var success_year=new Date(course.updated_at);
@@ -422,8 +432,7 @@ function loadDAExamData() {
                                                     <td>${course.batch.name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
-                            });
-                            console.log(result.data,"course html");                            
+                            });                           
                             $('.course').html(course_html)
                         }
                         else{
@@ -456,9 +465,7 @@ function loadStudentDataForExamCard() {
         success: function (data) {
 
             var exam_datas = data.data;
-            console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
-                console.log(exam_data);
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
                 
                 var batch_no=mm2en(exam_data.batch.number.toString());
@@ -486,7 +493,6 @@ function approveDAOneExam() {
             url: BACKEND_URL + "/approve_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
                 successMessage("You have approved that form!");
                 location.href = FRONTEND_URL + "/da_exam_one";
                 getExam();
@@ -506,7 +512,6 @@ function rejectDAOneExam() {
             url: BACKEND_URL + "/reject_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
                 successMessage("You have rejected that form!");
                 location.href = FRONTEND_URL + "/da_exam_one";
                 getExam();
@@ -526,7 +531,6 @@ function approveDATwoExam() {
             url: BACKEND_URL + "/approve_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
                 successMessage("You have approved that form!");
                 location.href = FRONTEND_URL + "/da_two_exam";
                 getExam();
@@ -546,7 +550,6 @@ function rejectDATwoExam() {
             url: BACKEND_URL + "/reject_exam/" + id,
             type: 'PATCH',
             success: function (result) {
-                console.log(result)
                 successMessage("You have rejected that form!");
                 location.href = FRONTEND_URL + "/da_two_exam";
                 getExam();
@@ -566,7 +569,6 @@ function loadBatchData(course_code) {
         success: function (data) {
 
             var course_data = data.data;
-            console.log('course_data', course_data);
             course_data.forEach(function (element) {
                 element.batches.forEach(function (batch) {
                     var option = document.createElement('option');
@@ -587,7 +589,6 @@ function loadBatchData(course_code) {
 
 function SearchByID() {
     var id = $('#selected_batch_id').val();
-    console.log('id', id);
     destroyDatatable("#tbl_da_exam_one", "#tbl_da_exam_one_body");
     $.ajax({
         url: BACKEND_URL + "/filter/" + id,
@@ -596,7 +597,6 @@ function SearchByID() {
         success: function (data) {
             var da_data = data.data;
             da_data.forEach(function (element) {
-                console.log(element)
                 var tr = "<tr>";
                 tr += "<td>" + +"</td>";
                 tr += "<td ><div class='btn-group'>";
@@ -625,7 +625,6 @@ function SearchByID() {
 
 function chooseBatch() {
     var id = $('#selected_batch_id').val();
-    // console.log(id)
     $.ajax({
         url: BACKEND_URL + "/exam_register/" + id,
         type: 'get',
@@ -661,7 +660,7 @@ function loadStudent(course_type) {
     send_data.append('batch', $("#selected_batch_id").val());
     send_data.append('name', $("input[name=filter_by_name]").val());
     send_data.append('grade', $('#selected_grade_id').val());
-    console.log($("input[name=filter_by_name]").val(), $('#selected_grade_id').val());
+    // console.log($("input[name=filter_by_name]").val(), $('#selected_grade_id').val());
     show_loader();
     $.ajax({
         url: BACKEND_URL + "/filter_exam_register",
@@ -671,7 +670,7 @@ function loadStudent(course_type) {
         processData: false,
         success: function (data) {
             var da_data = data.data;
-            console.log({ da_data });
+            // console.log({ da_data });
             da_data.forEach(function (element) {
                 if (element.status == 0) {
                     status = "PENDING";
@@ -786,7 +785,6 @@ function fillMark(id, isFullModule) {
     localStorage.setItem("exam_register_id", id);
     localStorage.setItem("is_full_module", isFullModule);
     var is_full_module = localStorage.getItem("is_full_module");
-    console.log(is_full_module);
     if (is_full_module == 1) {
         location.href = FRONTEND_URL + "/fill_mark_one";
     } else if (is_full_module == 2) {
@@ -839,8 +837,8 @@ function getModuleStd() {
         success: function (data) {
             var da_data = data.data;
             da_data.forEach(function (element) {
+                let course_type_id = element.course.course_type_id;
                 var std = element.student_info;
-
                 if (element.status == 0) {
                     status = "PENDING";
                     //$('.pass_fail_btn').hide();
@@ -919,7 +917,14 @@ function getModuleStd() {
                 $("#email").append(std.email);
                 $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(std.image);
-                $("#registration_no").append(std.personal_no);
+                if(course_type_id==1){
+                    $("#registration_no").append(std.personal_no);
+                }else if(course_type_id==2){
+                    $("#registration_no").append(std.cpersonal_no);
+                }else{
+                    $("#registration_no").append("-");
+                }
+                
 
                 if (std.gov_staff == 1) {
                     $(".recommend_row").show();
@@ -954,7 +959,6 @@ function getModuleStd() {
 
                 var subjects = element.subjects;
                 var i = 1;
-                console.log(element.is_full_module);
                 subjects.forEach(function (subj) {
                     if (element.is_full_module == subj.module_id) {
                         var tr = "<tr>";
@@ -984,7 +988,6 @@ function getModuleStd() {
                 type: 'get',
                 data: "",
                 success: function (result) {
-                    console.log("result",result);
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
                         tr += "<td colspan='2' style='text-align:center'>Total Marks</td>";
@@ -1002,8 +1005,6 @@ function getModuleStd() {
                         var rData = JSON.parse(result.data.result);
                         var row_length = rData.subjects.length;
                         //console.log(rData.subjects[1]);
-
-                        console.log('is_full_module', module_type);
                         if (module_type == 1) {
                             for (var i = 0; i < row_length; i++) {
                                 var j = i + 1;
@@ -1067,7 +1068,6 @@ function getModuleStd() {
                         var total_mark=0;
                         for (var i = 0; i < row_length; i++) {
                             var mark=parseInt(rData.marks[i]);
-                            console.log(rData.marks[i]);
                             total_mark += mark;
                         }
                         $('#total_mark').append(total_mark);

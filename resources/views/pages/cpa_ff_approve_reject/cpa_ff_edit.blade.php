@@ -173,7 +173,7 @@
                                 <!--MPA Member Card back-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">MPA Member Card(Back)</p>
+                                        <p class="ml-2" style="font-weight:bold">MICPA Member Card(Back)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_back_Modal"><i class="fa fa-paperclip"></i></button>
@@ -184,7 +184,7 @@
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">                                            
-                                            <h5 class="modal-title text-center">MPA Member Card(Back)</h5>
+                                            <h5 class="modal-title text-center">MICPA Member Card(Back)</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>

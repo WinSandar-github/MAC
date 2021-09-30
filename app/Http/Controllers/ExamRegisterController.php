@@ -92,7 +92,7 @@ class ExamRegisterController extends Controller
         // return response()->json([
         //     'data' => $exam_register
         // ],200);
-        $exam_register = ExamRegister::with('student_info', 'batch', 'exam_department')->where('id', $id)->get();
+        $exam_register =  ExamRegister::with('student_info','batch','exam_department','course')->where('id',$id)->get();
 
         return response()->json([
             'data' => $exam_register
@@ -303,7 +303,7 @@ class ExamRegisterController extends Controller
 
     public function viewStudent($id)
     {
-        $exam_register = ExamRegister::where('id', $id)->with('student_info', 'subjects')->get();
+        $exam_register = ExamRegister::where('id', $id)->with('student_info','subjects','course')->get();
         return response()->json([
             'data' => $exam_register
         ], 200);
