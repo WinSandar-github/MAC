@@ -141,12 +141,15 @@ function loadData() {
         url: BACKEND_URL + "/da_register/" + id,
         success: function (data) {
             var student = data.data;
+
             student.forEach(function (student_course) {
+                console.log('student_course',student_course)
 
                 let current_course = student_course.batch.course;
                 console.log('current_course',current_course)
 
                 let element = student_course.student_info;
+                console.log('student_info',element)
 
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";
@@ -190,6 +193,20 @@ function loadData() {
                 } else {
                     $(".recommend_row").hide();
                 }
+
+                if(!element.da_pass_roll_number){
+                    $(".da_two_pass_info").hide();                    
+                }else{
+                    $(".da_two_pass_info").show(); 
+                    if(element.da_pass_certificate==null){
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                    }else{
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(element.da_pass_date);
+                    $(".da_pass_roll_number").append(element.da_pass_roll_number);
+                }
+                
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);

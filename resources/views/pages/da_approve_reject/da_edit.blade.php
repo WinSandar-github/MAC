@@ -63,7 +63,38 @@
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
-                                </div>             
+                                </div> 
+
+                                <div class="da_two_pass_info">
+                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Passed the DA Part-Two Exam</h5>
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Certificate of Passed the DA Part-Two Exam</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_pass_certificate">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Passed the Date</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_pass_date">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Passed Roll-Number</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_pass_roll_number">                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                            
                             </div>
                         </div>
                         <div class="card">
