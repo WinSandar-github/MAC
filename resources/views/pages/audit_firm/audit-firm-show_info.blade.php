@@ -28,44 +28,52 @@
                             </div>
                             <div class="card-body">
                                 <h5 class="border-bottom pb-2 mt-3 text-center" style="font-weight:bold">Audit Firm Information</h5>
-                                            <div class="row border-bottom pl-4">
-                                                <label class="col-md-4 form-label" style="font-weight:bold">{{ __('Accountancy Firm Registration No') }}</label>
-                                                <label class="col-md-1 form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <input type="hidden" name="audit_firm_type_id">
-                                                        <input type="hidden" name="local_foreign_id">
-                                                        <input type="hidden" name="accountancy_firm_id">
-                                                        <span id="accountancy_firm_reg_no"></span>
-                                                        <!-- <input type="text" name="accountancy_firm_reg_no" class="form-control" autocomplete="off"> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row border-bottom pl-4">
+                                            <div class="row">
+																							<div class="col-md-4 text-center">
+																								<img id="profile_photo" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+																								<br/><span class='text-info'>Profile Picture</span>
+																							</div>
+																							<div class="col-md-8">
+																								<div class="row border-bottom pl-4">
+		                                                <label class="col-md-4 form-label" style="font-weight:bold">{{ __('Accountancy Firm Registration No') }}</label>
+		                                                <label class="col-md-1 form-label">{{ __(':') }}</label>
+		                                                <div class="col-md-7">
+		                                                    <div class="form-group">
+		                                                        <input type="hidden" name="audit_firm_type_id">
+		                                                        <input type="hidden" name="local_foreign_id">
+		                                                        <input type="hidden" name="accountancy_firm_id">
+		                                                        <span id="accountancy_firm_reg_no"></span>
+		                                                        <!-- <input type="text" name="accountancy_firm_reg_no" class="form-control" autocomplete="off"> -->
+		                                                    </div>
+		                                                </div>
+		                                            </div>
+		                                            <div class="row border-bottom pl-4">
 
-                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Accountancy Firm Name') }}</label>
-                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
-                                                    <div class="form-group">
-                                                        <span id="accountancy_firm_name"></span>
-                                                        <!-- <input type="text" name="accountancy_firm_name"  class="form-control " autocomplete="off"> -->
-                                                    </div>
-                                                </div>
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
+		                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Accountancy Firm Name') }}</label>
+		                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+		                                                <div class="col-md-7">
+		                                                    <div class="form-group">
+		                                                        <span id="accountancy_firm_name"></span>
+		                                                        <!-- <input type="text" name="accountancy_firm_name"  class="form-control " autocomplete="off"> -->
+		                                                    </div>
+		                                                </div>
+		                                                @error('name')
+		                                                    <span class="invalid-feedback" role="alert">
+		                                                        <strong>{{ $message }}</strong>
+		                                                    </span>
+		                                                @enderror
+		                                            </div>
+																							</div>
+																						</div>
 
                                             <div class="row  pl-4 mt-2">
                                                 <h5 class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Address Of Practice(Head Office)') }}</h5>
                                             </div>
 																						<div class="row  pl-4">
                                                 <div class="col-md-2"></div>
-                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Address') }}</label>
+                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Address') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="head_office_address"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -74,9 +82,9 @@
                                             </div>
                                             <div class="row  pl-4">
                                                 <div class="col-md-2"></div>
-                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Township') }}</label>
+                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Township') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="township"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -85,9 +93,9 @@
                                             </div>
                                             <div class="row  pl-4">
                                                 <div class="col-md-2"></div>
-                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Post Code') }}</label>
+                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Post Code') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="post_code"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -96,9 +104,9 @@
                                             </div>
                                             <div class="row  pl-4">
                                                 <div class="col-md-2"></div>
-                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('City') }}</label>
+                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('City') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="city"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -107,9 +115,9 @@
                                             </div>
                                             <div class="row  pl-4">
                                                 <div class="col-md-2"></div>
-                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('State') }}</label>
+                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('State') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="state"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -118,9 +126,9 @@
                                             </div>
                                             <div class="row  pl-4">
                                                 <div class="col-md-2"></div>
-                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Phone Number') }}</label>
+                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Phone Number') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="phone_no"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -129,9 +137,9 @@
                                             </div>
                                             <div class="row  pl-4">
                                                 <div class="col-md-2"></div>
-                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Email') }}</label>
+                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Email') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="email"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -140,9 +148,9 @@
                                             </div>
                                             <div class="row  pl-4 border-bottom">
                                                 <div class="col-md-2"></div>
-                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Website') }}</label>
+                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Website') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="website"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -154,9 +162,9 @@
 
                                             <div class="row  pl-4 mt-2 border-bottom">
                                                 <!-- <div class="col-md-2"></div> -->
-                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
+                                                <label class="col-md-5 col-form-label" style="font-weight:bold">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="name_sole_proprietor"></span>
                                                         <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
@@ -166,9 +174,9 @@
 
                                             <div class="row pl-4 mt-2 border-bottom">
                                                 <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
-                                                <label class="col-md-4 col-form-label font-weight-bold">{{ __('Declaration') }}</label>
+                                                <label class="col-md-5 col-form-label font-weight-bold">{{ __('Declaration(Sole Proprietor/Mangaging Partner)') }}</label>
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                                <div class="col-md-7">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <span id="declaration"></span>
                                                         <!-- I <input type="text" name="declaration" class="" autocomplete="off" >
@@ -194,7 +202,8 @@
                                                 <label class="col-md-1 col-form-label">{{ __(':') }}</label>
                                                 <div class="col-md-7">
                                                     <div class="form-group">
-                                                        <span id="status"></span>
+                                                        <span id="status" style="font-size:20px;">
+																												</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -360,312 +369,314 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                            </div>
 
-                                                <div id="partnership">
-                                                    <div class="row border-bottom">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-11">
-                                                            <div class="card">
-                                                                <div class="card-body">
-                                                                    <div class="row">
-                                                                        <label class="col-md-12 col-form-label"><b>For Partnership</b></label>
-                                                                    </div>
+	                                          <div id="partnership">
+	                                              <div class="row border-bottom">
+	                                                  <div class="col-md-1"></div>
+	                                                  <div class="col-md-11">
+	                                                      <div class="card">
+	                                                          <div class="card-body">
+	                                                              <div class="row">
+	                                                                  <label class="col-md-12 col-form-label"><b>For Partnership</b></label>
+	                                                              </div>
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(a)Copy of Public Practice Accountant Certificate all partners</label>
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(a)Copy of Public Practice Accountant Certificate all partners</label>
 
-                                                                        </div>
-                                                                    </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="controls9">
-                                                                        <div class="entry9">
-                                                                            <div class="row mb-3">
-																																							<div class="col-md-2 ppa_certis_partnership">
+	                                                              <div class="controls9">
+	                                                                  <div class="entry9">
+	                                                                      <div class="row mb-3">
+																																					<div class="col-md-2 ppa_certis_partnership">
 
-																																							</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+																																					</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(b)Copy of Certificate or Registration, if any</label>
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(b)Copy of Certificate or Registration, if any</label>
 
-                                                                        </div>
-                                                                    </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="controls10">
-                                                                        <div class="entry10">
-                                                                            <div class="row mb-3">
-																																							<div class="col-md-2 certi_or_regs_partnership">
+	                                                              <div class="controls10">
+	                                                                  <div class="entry10">
+	                                                                      <div class="row mb-3">
+																																					<div class="col-md-2 certi_or_regs_partnership">
 
-																																							</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+																																					</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(c)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(c)Copy of signed Partnership Deeds/ Memorandum of Agreement</label>
 
-                                                                        </div>
-                                                                    </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="controls11">
-                                                                        <div class="entry11">
-                                                                            <div class="row mb-3">
-																																							<div class="col-md-2 deeds_memos_partnership">
+	                                                              <div class="controls11">
+	                                                                  <div class="entry11">
+	                                                                      <div class="row mb-3">
+																																					<div class="col-md-2 deeds_memos_partnership">
 
-																																							</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+																																					</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(d)Copy of stationery/letterhead to be used in signing of auditor's report</label>
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(d)Copy of stationery/letterhead to be used in signing of auditor's report</label>
 
-                                                                        </div>
-                                                                    </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="controls12">
-                                                                        <div class="entry12">
-                                                                            <div class="row mb-3">
-																																							<div class="col-md-2 letterheads_partnership">
+	                                                              <div class="controls12">
+	                                                                  <div class="entry12">
+	                                                                      <div class="row mb-3">
+																																					<div class="col-md-2 letterheads_partnership">
 
-																																							</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+																																					</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(e)Copy of Tax clearance from Internal Revenue Department</label>
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(e)Copy of Tax clearance from Internal Revenue Department</label>
 
-                                                                        </div>
-                                                                    </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="controls13">
-                                                                        <div class="entry13">
-                                                                            <div class="row mb-3">
-																																							<div class="col-md-2 tax_clearances_partnership">
+	                                                              <div class="controls13">
+	                                                                  <div class="entry13">
+	                                                                      <div class="row mb-3">
+																																					<div class="col-md-2 tax_clearances_partnership">
 
-																																							</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(f)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="controls14">
-                                                                        <div class="entry14">
-                                                                            <div class="row mb-3">
-																																							<div class="col-md-2 representatives_partnership">
-
-																																							</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div id="company">
-                                                    <div class="row border-bottom">
-                                                        <div class="col-md-1"></div>
-                                                        <div class="col-md-11">
-                                                            <div class="card" style="padding:30px;">
-                                                                <div class="card-body">
-                                                                    <div class="row">
-                                                                        <label class="col-md-12 col-form-label"><b>For Company Incorporated</b></label>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(a)Copy of Public Practice Accountant Certificate all shareholders</label>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="controls19">
-                                                                        <div class="entry19">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-2 ppa_certis_company">
-																																								</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+																																					</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
 
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(b)Copy of Certificate of Incorporation</label>
+																															{{--<div class="row mb-3">
+                                                                  <div class="form-group">
+                                                                      <label class="form-label">(f)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
 
-                                                                        </div>
-                                                                    </div>
+                                                                  </div>
+                                                              </div>--}}
 
-                                                                    <div class="controls20">
-                                                                        <div class="entry20">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-2 certificate_incors_company">
-																																								</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                              {{--<div class="controls14">
+                                                                  <div class="entry14">
+                                                                      <div class="row mb-3">
+																																				<div class="col-md-2 representatives_partnership">
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(c)Copy of signed Memorandum of Associations and Articles of Associations or constitution</label>
+																																				</div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>--}}
 
-                                                                        </div>
-                                                                    </div>
+	                                                          </div>
+	                                                      </div>
+	                                                  </div>
+	                                              </div>
+	                                          </div>
 
-                                                                    <div class="controls21">
-                                                                        <div class="entry21">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-2 memorandums_company">
-																																								</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+	                                          <div id="company">
+	                                              <div class="row border-bottom">
+	                                                  <div class="col-md-1"></div>
+	                                                  <div class="col-md-11">
+	                                                      <div class="card" style="padding:30px;">
+	                                                          <div class="card-body">
+	                                                              <div class="row">
+	                                                                  <label class="col-md-12 col-form-label"><b>For Company Incorporated</b></label>
+	                                                              </div>
 
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(d)Copy of commercial tax registration certificate</label>
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(a)Copy of Public Practice Accountant Certificate all shareholders</label>
 
-                                                                        </div>
-                                                                    </div>
+	                                                                  </div>
+	                                                              </div>
 
-                                                                    <div class="controls22">
-                                                                        <div class="entry22">
-                                                                            <div class="row mb-3">
-																																							<div class="col-md-2 comercial_tax_reg">
-																																							</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(e)Copy of stationery/letterhead to be used in signing of auditor's report</label>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="controls23">
-                                                                        <div class="entry23">
-                                                                            <div class="row mb-3">
-																																								<div class="col-md-2 stationery_letterhead_company">
-																																								</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(f)Copy of Tax clearance from Internal Revenue Department</label>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="controls24">
-                                                                        <div class="entry24">
-                                                                            <div class="row mb-3">
-																																								<div class="col-md-2 tax_clearance_company">
-																																								</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    {{--<div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(g)Copy of stationery/letterhead to be used in signing of auditor's report</label>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="controls25">
-                                                                        <div class="entry25">
-                                                                            <div class="row mb-3">
-																																								<div class="col-md-2 letterheads_company">
-																																								</div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-
-                                                                                    <span class="tax_clearances"></span>
-                                                                                </div>
-
-                                                                    </div>
-                                                                    <div class="controls26">
-                                                                        <div class="entry26">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input disabled type="file" class="form-control" name="tax_clearances[]">
-
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button disabled class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls26","entry26")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="row mb-3">
-                                                                        <div class="form-group">
-                                                                            <label class="form-label">(i)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-
-                                                                                    <span class="representatives"></span>
-                                                                                </div>
-
-                                                                    </div>
-                                                                    <div class="controls27">
-                                                                        <div class="entry27">
-                                                                            <div class="row mb-3">
-                                                                                <div class="col-md-11 col-auto">
-                                                                                    <input disabled type="file" class="form-control" name="representatives[]">
-
-                                                                                </div>
-                                                                                <div class="col-md-1 col-auto">
-                                                                                    <button disabled class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls27","entry27")'>
-                                                                                        <i class="fa fa-plus"></i>
-                                                                                    </button>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>--}}
+	                                                              <div class="controls19">
+	                                                                  <div class="entry19">
+	                                                                      <div class="row mb-3">
+	                                                                          <div class="col-md-2 ppa_certis_company">
+																																						</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
 
 
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(b)Copy of Certificate of Incorporation</label>
+
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="controls20">
+	                                                                  <div class="entry20">
+	                                                                      <div class="row mb-3">
+	                                                                          <div class="col-md-2 certificate_incors_company">
+																																						</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(c)Copy of signed Memorandum of Associations and Articles of Associations or constitution</label>
+
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="controls21">
+	                                                                  <div class="entry21">
+	                                                                      <div class="row mb-3">
+	                                                                          <div class="col-md-2 memorandums_company">
+																																						</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(d)Copy of commercial tax registration certificate</label>
+
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="controls22">
+	                                                                  <div class="entry22">
+	                                                                      <div class="row mb-3">
+																																					<div class="col-md-2 comercial_tax_reg">
+																																					</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(e)Copy of stationery/letterhead to be used in signing of auditor's report</label>
+
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="controls23">
+	                                                                  <div class="entry23">
+	                                                                      <div class="row mb-3">
+																																						<div class="col-md-2 stationery_letterhead_company">
+																																						</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(f)Copy of Tax clearance from Internal Revenue Department</label>
+
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="controls24">
+	                                                                  <div class="entry24">
+	                                                                      <div class="row mb-3">
+																																						<div class="col-md-2 tax_clearance_company">
+																																						</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              {{--<div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(g)Copy of stationery/letterhead to be used in signing of auditor's report</label>
+
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="controls25">
+	                                                                  <div class="entry25">
+	                                                                      <div class="row mb-3">
+																																						<div class="col-md-2 letterheads_company">
+																																						</div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
+
+	                                                                  </div>
+	                                                              </div>
+	                                                              <div class="row mb-3">
+	                                                                <div class="col-md-11 col-auto">
+
+	                                                                    <span class="tax_clearances"></span>
+	                                                                </div>
+
+	                                                              </div>
+	                                                              <div class="controls26">
+	                                                                  <div class="entry26">
+	                                                                      <div class="row mb-3">
+	                                                                          <div class="col-md-11 col-auto">
+	                                                                              <input disabled type="file" class="form-control" name="tax_clearances[]">
+
+	                                                                          </div>
+	                                                                          <div class="col-md-1 col-auto">
+	                                                                              <button disabled class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls26","entry26")'>
+	                                                                                  <i class="fa fa-plus"></i>
+	                                                                              </button>
+	                                                                          </div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>
+
+	                                                              <div class="row mb-3">
+	                                                                  <div class="form-group">
+	                                                                      <label class="form-label">(i)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
+
+	                                                                  </div>
+	                                                              </div>
+	                                                              <div class="row mb-3">
+	                                                              <div class="col-md-11 col-auto">
+
+	                                                              <span class="representatives"></span>
+	                                                              </div>
+
+	                                                              </div>
+	                                                              <div class="controls27">
+	                                                                  <div class="entry27">
+	                                                                      <div class="row mb-3">
+	                                                                          <div class="col-md-11 col-auto">
+	                                                                              <input disabled type="file" class="form-control" name="representatives[]">
+
+	                                                                          </div>
+	                                                                          <div class="col-md-1 col-auto">
+	                                                                              <button disabled class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls27","entry27")'>
+	                                                                                  <i class="fa fa-plus"></i>
+	                                                                              </button>
+	                                                                          </div>
+	                                                                      </div>
+	                                                                  </div>
+	                                                              </div>--}}
+
+
+	                                                          </div>
+	                                                      </div>
+	                                                  </div>
+	                                              </div>
+	                                          </div>
                                             <div class="row pl-4 mt-2">
                                                 <!-- <label class="col-md-1 col-form-label">{{ __('6') }}</label> -->
                                                 <label class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Sole Proprietor/Partners/Shareholders') }}</label>
@@ -680,8 +691,8 @@
                                                                     <tr>
                                                                         <th class="font-weight-bold">Sr</th>
                                                                         <th class="font-weight-bold" >Name</th>
-                                                                        <th class="font-weight-bold" >Public Private Reg.No</th>
-                                                                        <th class="font-weight-bold" colspan="2">Have authority to sing Auditors' report?</th>
+                                                                        <th class="font-weight-bold" >Public Practice Reg.No</th>
+                                                                        <th class="font-weight-bold" colspan="2">Have authority to sign Auditors' report?</th>
                                                                         <th class="font-weight-bold" >
                                                                             <button disabled class="btn btn-primary btn-sm" type="button" onclick='addRowPartner("partner_list")'>
                                                                                 <i class="fa fa-plus"></i>
@@ -701,7 +712,7 @@
                                             </div>
                                             <div class="row pl-4 mt-2">
                                                 <!-- <label class="col-md-1 col-form-label">{{ __('7') }}</label> -->
-                                                <label class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Director(s)/Officer(s)') }}</label>
+                                                <label class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Director(s)/Officer(s)/Sole Proprietor') }}</label>
 
                                             </div>
                                             <div class="row border-bottom">
@@ -715,7 +726,7 @@
                                                                         <th class="font-weight-bold">Name</th>
                                                                         <th class="font-weight-bold">Position</th>
                                                                         <th class="font-weight-bold" >CPA Reg.No/Qualification</th>
-                                                                        <th class="font-weight-bold" >Public Private Reg.No</th>
+                                                                        <th class="font-weight-bold" >Public Practice Reg.No</th>
                                                                         <th class="font-weight-bold">
                                                                             <button disabled class="btn btn-primary btn-sm" type="button" onclick='addRowDirector("director")'>
                                                                                 <i class="fa fa-plus"></i>
