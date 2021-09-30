@@ -101,10 +101,16 @@ class SchoolController extends Controller
         }
 
         if ($request->hasfile('own_type_letter')) {
-            $file = $request->file('own_type_letter');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $own_type_letter = '/storage/student_info/'.$name;
+            foreach($request->file('own_type_letter') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $own_type_letter[] = $name;
+             }
+            // $file = $request->file('own_type_letter');
+            // $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            // $file->move(public_path().'/storage/student_info/',$name);
+            // $own_type_letter[] = '/storage/student_info/'.$name;
         }
         if ($request->hasfile('degrees_certificates')) {
             foreach($request->file('degrees_certificates') as $file)
@@ -230,7 +236,7 @@ class SchoolController extends Controller
         $school->attend_course               = json_encode($request->attend_course);
         $school->school_address              = $request->school_address;
         $school->own_type                    = $request->own_type;
-        $school->own_type_letter             = $own_type_letter;
+        $school->own_type_letter             = json_encode($own_type_letter);
         $school->business_license            = json_encode($business_license);
         $school->school_location_attach      = $school_location_attach;
         $school->sch_establish_notes_attach  = json_encode($sch_establish_notes_attach);
@@ -293,7 +299,7 @@ class SchoolController extends Controller
             $establisher->ph_number    = $request->establisher_ph_number[$i];
             $establisher->email        = $request->establisher_email[$i];
             $establisher->school_id    = $school->id;
-           $establisher->save();
+            $establisher->save();
         }
 
         //govern list
@@ -351,19 +357,21 @@ class SchoolController extends Controller
             $new_branch_school_attach= explode(',',$branch_school_attach);
             
         }
-        if($branch_sch_letter!=null){
-           
-            $branch_sch_letter=implode(',', $branch_sch_letter);
-            $new_branch_sch_letter= explode(',',$branch_sch_letter);
-        }
+        
         if($request->branch_school_address!=null){
-            for($i=0;$i<sizeof($request->branch_school_address);$i++){
             
+            if($branch_sch_letter!=null){
+                
+                $branch_sch_letter[]=implode(',', $branch_sch_letter);
+                $new_branch_sch_letter[]= explode(',',$branch_sch_letter);
+                
+            }
+            for($i=0;$i<sizeof($request->branch_school_address);$i++){
                 $branch_school = new tbl_branch_school();
                 $branch_school->branch_school_address= $request->branch_school_address[$i];
                 $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
                 $branch_school->school_id       = $school->id;
                 $branch_school->save();
             }
