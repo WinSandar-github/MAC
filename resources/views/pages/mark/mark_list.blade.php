@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'mark_list'
 ])
 
@@ -22,7 +23,7 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <div class="row"> 
+                            <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-body">
@@ -34,7 +35,7 @@
                                                       <th class="less-font-weight" >Student Name</th>
                                                       <th class="less-font-weight" >Student Info ID</th>
                                                       <th class="less-font-weight" >Registeration ID</th>
-                                                      
+
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -49,7 +50,7 @@
                                                 	        <td>{!! $mark->student_info->name_eng !!}</td>
                                                 	        <td>{!! $mark->student_info_id !!}</td>
                                                 	        <td>{!! $mark->registeration_id !!}</td>
-                                                	        
+
                                                 	    </tr>
                                                 	@endforeach
                                                 </tbody>

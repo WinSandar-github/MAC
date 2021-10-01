@@ -4,9 +4,13 @@
 .link{
     left: 10px !important;
 }
-.active span{
-    color:#57cbef;
-}
+/*.active span{*/
+/*    color:#57cbef;*/
+/*}*/
+
+/*.nav li.active>a i{*/
+/*    color:#57cbef;*/
+/*}*/
 
 #sole-proprietorship,#partnership,#company,.cpa_myanmar,.self_study_container{
     display: none;

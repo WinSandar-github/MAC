@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'mark_list'
 ])
 
@@ -9,17 +10,17 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <div class="col-md-12">   
-                   
+            <div class="col-md-12">
+
             </div>
-        </div>       
+        </div>
 
         <div class="row">
             <div class="col-md-12 text-center">
                 <form method="post">
                     {{ csrf_field() }}
                     <div class="card">
-                        
+
                         <div class="card-body">
                             <div class="row">
 
@@ -83,12 +84,12 @@
                                                             @foreach($result['grade'] as $key => $g)
                                                             {!! Form::text('grade[]', $g, ['class' => 'form-control']) !!}
                                                             @endforeach
-                                                        </td> 
+                                                        </td>
                                                     </tr>
                                                 </table>
                                             </div>
-                                        </div>  
-                                        <div class="card-footer"> 
+                                        </div>
+                                        <div class="card-footer">
                                             <div class="modal-footer">
                                                 <button type="submit" name="save" class="btn btn-primary">Submit</button>
                                             </div>
@@ -96,7 +97,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>                     
+                        </div>
                     </div>
                 </form>
             </div>

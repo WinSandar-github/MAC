@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'exam_result_list'
 ])
 
@@ -9,7 +10,7 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <div class="col-md-12 text-center">        
+            <div class="col-md-12 text-center">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card">
@@ -55,11 +56,11 @@
                                         <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
                                     </div>
                                     <div class="col-md-6 text-left certificate">
-                                        
+
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
-                                </div>             
+                                </div>
                             </div>
                         </div>
                         <div class="card">
@@ -153,7 +154,7 @@
                                         <p class="ml-2" style="font-weight:bold">NRC Front</p>
                                     </div>
                                     <div class="col-md-6 text-left nrc_front">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -161,7 +162,7 @@
                                         <p class="ml-2" style="font-weight:bold">NRC Back</p>
                                     </div>
                                     <div class="col-md-6 text-left nrc_back">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -242,7 +243,7 @@
                                         <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာဌာနအကြီးအကဲ၏ထောက်ခံစာ</p>
                                     </div>
                                     <div class="col-md-6 text-left recommend_letter">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -311,7 +312,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <h5  style="font-weight:bold;margin:auto" >အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h5>
-                                    
+
                                 </div>
                                 <!-- {!! Form::close() !!} -->
                                 <form  method="post" action="javascript:examResultSubmit(this);" enctype="multipart/form-data">
@@ -319,7 +320,7 @@
                                     <input type="hidden" name="result_id">
                                     <div class="row">
                                         <table class="table mark table-bordered input-table" id="tbl_fillmarks" width="100%" style="margin: 3% 3% 0 3%;">
-                                            <thead>    
+                                            <thead>
                                                 <tr>
                                                     <th width="10%">စဉ်</th>
                                                     <th width="40%">Subject Name</th>
@@ -366,13 +367,13 @@
                                             </tr> -->
                                         </table>
                                     </div>
-                            </div>  
-                            <div class="card-footer"> 
+                            </div>
+                            <div class="card-footer">
                                 <div class="modal-footer ">
                                     <!-- <button type="submit" name="save" class="btn btn-primary ex_res_btn">Submit</button> -->
-                                    
+
                                     <div class="pass_fail_btn">
-                                            
+
                                         <button type="submit" class=" btn  btn-danger " value="fail">Fail</button>
                                         <button type="submit" class=" btn btn-primary" value="pass">Pass</button>
                                     </div>

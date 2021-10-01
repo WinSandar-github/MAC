@@ -340,3 +340,6 @@
 .error{
   color: #ef8157;
 }
+.modal-dialog{
+  margin-top: auto !important;
+}

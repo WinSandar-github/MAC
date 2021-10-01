@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'index'
 ])
 
@@ -9,10 +10,10 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <!-- <div class="col-md-12">   
-            {{ Breadcrumbs::render('index') }}             
+            <!-- <div class="col-md-12">
+            {{ Breadcrumbs::render('index') }}
             </div> -->
-        </div>       
+        </div>
 
         <div class="row" id="printdiv">
             <div class="col-md-12 text-center">
@@ -35,7 +36,7 @@
                                 <label  style="font-weight:bold">စာမေးပွဲခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="da_roll_no"></label>)
                             </div>
                             <div>
-                               
+
                             </div>
                         </div>  <br/>
                         <div class="row">
@@ -76,7 +77,7 @@
                                     </div>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="father_name"  style="border-bottom: 1px dotted black;width:300px;"></label>
-                                       
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -103,8 +104,8 @@
                                         <label class="col-form-label">နေ့ရက် ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_date"  style="border-bottom: 1px dotted black;width:300px;"></label>     
-                                        
+                                        <label class="col-form-label" id="exam_date"  style="border-bottom: 1px dotted black;width:300px;"></label>
+
                                     </div>
                                 </div> -->
                                 <!-- <div class="row">
@@ -115,8 +116,8 @@
                                         <label class="col-form-label">အချိန် ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_time"  style="border-bottom: 1px dotted black;width:300px;"></label>  
-                                     
+                                        <label class="col-form-label" id="exam_time"  style="border-bottom: 1px dotted black;width:300px;"></label>
+
                                     </div>
                                 </div> -->
                                 <!-- <div class="row">
@@ -127,8 +128,8 @@
                                         <label class="col-form-label">နေရာ ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>  
-                                        
+                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
+
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +170,7 @@
 @push('scripts')
 <script>
     function PrintExamCard(){
-        var backup=document.body.innerHTML;        
+        var backup=document.body.innerHTML;
         document.getElementById("print_btn").remove();
         var divcontent=document.getElementById("printdiv").innerHTML;
         document.body.innerHTML=divcontent;

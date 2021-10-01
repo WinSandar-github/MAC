@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'audit_firm_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -91,13 +92,13 @@
                                                         <input type="text" name="website" class="form-control" placeholder="Website Address" >
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('4') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('Branch Office') }}</label>
-                                                
-                                            </div>    
+
+                                            </div>
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label"></label>
                                                 <div class="col-md-10">
@@ -141,8 +142,8 @@
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('5') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Organization Structure') }}</label>
-                                                
-                                                
+
+
                                             </div>
                                             <div class='row'>
                                                 <div class='col-md-2'></div>
@@ -174,7 +175,7 @@
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('6') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Sole Proprietor/Partners/Shareholders') }}</label>
-                                                
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-1"></div>
@@ -192,7 +193,7 @@
                                                                             <input type="button" class="btn btn-primary btn-sm" onclick='addRowPartner("partner_renew")' value="+">
                                                                         </th>
                                                                     </tr>
-                                                                    
+
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
@@ -218,7 +219,7 @@
                                             <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('7') }}</label>
                                             <label class="col-md-4 col-form-label">{{ __('Director(s)/Officer(s)') }}</label>
-                                            
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-1"></div>
@@ -237,7 +238,7 @@
                                                                             <input type="button" class="btn btn-primary btn-sm"onclick='addRowDirector("director_renew")' value="+">
                                                                         </th>
                                                                     </tr>
-                                                                    
+
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
@@ -257,7 +258,7 @@
                                             <div class="row">
                                     <label class="col-md-1 col-form-label">{{ __('8') }}</label>
                                     <label class="col-md-10 col-form-label">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
-                                                
+
                                 </div>
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label"></label>
@@ -270,7 +271,7 @@
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('9') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Total Staff') }}</label>
-                                                
+
                                             </div>
                                             <div class="row">
                                                 <div class="col-md-1"></div>
@@ -284,9 +285,9 @@
                                                                         <th class="less-font-weight" rowspan="2">Total</th>
                                                                         <th class="less-font-weight" rowspan="2">Audit Staff</th>
                                                                         <th class="less-font-weight" rowspan="2">Non-Audit Staff</th>
-                                                                        
+
                                                                     </tr>
-                                                                    
+
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr>
@@ -297,10 +298,10 @@
                                                                         <td><input type="number" value="" name="principal_audit" id="principal_audit" class="form-control"></td>
                                                                         <td>
                                                                             <input type="number" value="" name="principal_non_audit" id="principal_non_audit" class="form-control">
-                                                                            
+
                                                                         </td>
-                                                                        
-                                                                        
+
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
@@ -310,10 +311,10 @@
                                                                         <td><input type="number" value="" name="non_principal_audit" id="non_principal_audit" class="form-control"></td>
                                                                         <td>
                                                                             <input type="number" value="" name="non_principal_non_audit" id="non_principal_non_audit" class="form-control">
-                                                                            
+
                                                                         </td>
-                                                                        
-                                                                        
+
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
@@ -323,10 +324,10 @@
                                                                         <td><input type="number" value="" name="managerial_level_audit" id="managerial_level_audit" class="form-control"></td>
                                                                         <td>
                                                                             <input type="number" value="" name="managerial_level_non_audit" id="managerial_level_non_audit" class="form-control">
-                                                                            
+
                                                                         </td>
-                                                                        
-                                                                        
+
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
@@ -336,10 +337,10 @@
                                                                         <td><input type="number" value="" name="non-mangerial_level_audit" id="non-mangerial_level_audit" class="form-control"></td>
                                                                         <td>
                                                                             <input type="number" value="" name="non-mangerial_level_non_audit" id="non-mangerial_level_non_audit" class="form-control">
-                                                                            
+
                                                                         </td>
-                                                                        
-                                                                        
+
+
                                                                     </tr>
                                                                     <tr>
                                                                         <td>
@@ -349,10 +350,10 @@
                                                                         <td><input type="number" value="" name="total_staff_audit" id="total_staff_audit" class="form-control"></td>
                                                                         <td>
                                                                             <input type="number" value="" name="total_staff_non_audit" id="total_staff_non_audit" class="form-control">
-                                                                            
+
                                                                         </td>
-                                                                        
-                                                                        
+
+
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
@@ -363,7 +364,7 @@
                                                 <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('10') }}</label>
                                                 <label class="col-md-4 col-form-label">{{ __('Audit Staff') }}</label>
-                                                
+
                                             </div>
                                                 <div class="row">
                                                     <div class="col-md-1"></div>
@@ -377,9 +378,9 @@
                                                                             <th class="less-font-weight" rowspan="2">Total</th>
                                                                             <th class="less-font-weight" rowspan="2">Full Time</th>
                                                                             <th class="less-font-weight" rowspan="2">Part Time</th>
-                                                                            
+
                                                                         </tr>
-                                                                        
+
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
@@ -390,10 +391,10 @@
                                                                             <td><input type="number" value="" name="director_full_time" id="director_full_time" class="form-control"></td>
                                                                             <td>
                                                                                 <input type="number" value="" name="director_part_time" id="director_part_time" class="form-control">
-                                                                                
+
                                                                             </td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -403,10 +404,10 @@
                                                                             <td><input type="number" value="" name="audit_manager_full_time" id="audit_manager_full_time" class="form-control"></td>
                                                                             <td>
                                                                                 <input type="number" value="" name="audit_manager_part_time" id="audit_manager_part_time" class="form-control">
-                                                                                
+
                                                                             </td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -416,10 +417,10 @@
                                                                             <td><input type="number" value="" name="audit_senior_full_time" id="audit_senior_full_time" class="form-control"></td>
                                                                             <td>
                                                                                 <input type="number" value="" name="audit_senior_part_time" id="audit_senior_part_time" class="form-control">
-                                                                                
+
                                                                             </td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td rowspan="2">
@@ -427,28 +428,28 @@
                                                                                 <ul>
                                                                                     <li>CPA Apprenticeship</li>
                                                                                     <li>Others</li>
-                                                                                    
+
                                                                                 </ul>
                                                                             </td>
                                                                             <td><input type="number" value="" name="audit_assistant_cpa_total" id="audit_assistant_cpa_total" class="form-control"></td>
                                                                             <td><input type="number" value="" name="audit_assistant_cpa_full_time" id="audit_assistant_cpa_full_time" class="form-control"></td>
                                                                             <td>
                                                                                 <input type="number" value="" name="audit_assistant_cpa_part_time" id="audit_assistant_cpa_part_time" class="form-control">
-                                                                                
+
                                                                             </td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
-                                                                            
+
                                                                             <td><input type="number" value="" name="audit_assistant_others_total" id="audit_assistant_others_total" class="form-control"></td>
                                                                             <td><input type="number" value="" name="audit_assistant_others_full_time" id="audit_assistant_others_full_time" class="form-control"></td>
                                                                             <td>
                                                                                 <input type="number" value="" name="audit_assistant_others_part_time" id="audit_assistant_others_part_time" class="form-control">
-                                                                                
+
                                                                             </td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                         <tr>
                                                                             <td>
@@ -458,10 +459,10 @@
                                                                             <td><input type="number" value="" name="audit_staff_full_time" id="audit_staff_full_time" class="form-control"></td>
                                                                             <td>
                                                                                 <input type="number" value="" name="audit_staff_part_time" id="audit_staff_part_time" class="form-control">
-                                                                                
+
                                                                             </td>
-                                                                            
-                                                                            
+
+
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -484,8 +485,8 @@
                                                             <label class="form-check-label">Non Audit</label>
                                                         </div>
                                                     </div>
-                                                
-                                                
+
+
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-md-1 col-form-label">{{ __('12') }}</label>
@@ -496,12 +497,12 @@
                                                             (sole proprietor/ managing partner) representing all the members of the firm, confirm that the particulars stated in this form, attached supporting documents are correct.
                                                         </div>
                                                     </div>
-                                                
+
                                                 </div>
-                                            
+
                                                 <div class="row">
                                                     <div class="col-md-8"></div>
-                                                    
+
                                                     <div class="col-md-1">
                                                         <div class="form-group">
                                                             <label class="form-check-label">Date:</label>
@@ -522,7 +523,7 @@
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>

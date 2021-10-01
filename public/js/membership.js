@@ -101,6 +101,7 @@ function showMembershipInfo(id) {
             $('input[name=yearly_fee]').val(res_member.yearly_fee);
             $('input[name=renew_fee]').val(res_member.renew_fee);
             $('input[name=late_fee]').val(res_member.late_fee);
+            $('input[name=reconnected_fee]').val(res_member.reconnected_fee);
             res_member.description !== null &&  $('#mem_desc').summernote("editor.pasteHTML",res_member.description);
             res_member.requirement !== null && $('#requirement').summernote('editor.pasteHTML',res_member.requirement);
         
@@ -144,6 +145,7 @@ function updateMembership() {
     formData.append('yearly_fee',$('input[name=yearly_fee]').val());
     formData.append('renew_fee',$('input[name=renew_fee]').val());
     formData.append('late_fee',$('input[name=late_fee]').val());
+    formData.append('reconnected_fee',$('input[name=reconnected_fee]').val());
     formData.append('requirement', $('#requirement').summernote('code'));
     formData.append('description', $('#mem_desc').summernote('code'));
     formData.append('_method','PUT');

@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'index'
 ])
 
@@ -9,10 +10,10 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <!-- <div class="col-md-12">   
-            {{ Breadcrumbs::render('index') }}             
+            <!-- <div class="col-md-12">
+            {{ Breadcrumbs::render('index') }}
             </div> -->
-        </div>       
+        </div>
 
 
         <div class="row" id="printdiv">
@@ -25,7 +26,7 @@
                                 <h5 class="title" style="padding-left: 130px;">လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း) သင်တန်း၊ အမှတ်စဉ် - ၄၃ စာမေးပွဲ </h5>
                                 <h5 class="title" style="padding-left: 130px;">ဖြေဆိုခွင့်ကတ်ပြား </h5>
                             </div>
-                           
+
                         </div>
                     </div>
                     <div class="card-body">
@@ -34,7 +35,7 @@
                                 <label  style="font-weight:bold">စာမေးပွဲခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="roll_no"></label>)
                             </div>
                             <div>
-                               
+
                             </div>
                         </div>  <br/>
                         <div class="row">
@@ -75,7 +76,7 @@
                                     </div>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="father_name"  style="border-bottom: 1px dotted black;width:300px;"></label>
-                                       
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -102,8 +103,8 @@
                                         <label class="col-form-label">နေ့ရက် ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_date"  style="border-bottom: 1px dotted black;width:300px;"></label>     
-                                        
+                                        <label class="col-form-label" id="exam_date"  style="border-bottom: 1px dotted black;width:300px;"></label>
+
                                     </div>
                                 </div> -->
                                 <!-- <div class="row">
@@ -114,8 +115,8 @@
                                         <label class="col-form-label">အချိန် ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_time"  style="border-bottom: 1px dotted black;width:300px;"></label>  
-                                     
+                                        <label class="col-form-label" id="exam_time"  style="border-bottom: 1px dotted black;width:300px;"></label>
+
                                     </div>
                                 </div> -->
                                 <!-- <div class="row">
@@ -126,8 +127,8 @@
                                         <label class="col-form-label">နေရာ ၊</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>  
-                                        
+                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
+
                                     </div>
                                 </div>
                             </div>
@@ -167,6 +168,6 @@
 
 @push('scripts')
 <script>
-     
+
 </script>
 @endpush

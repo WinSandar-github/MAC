@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'da_part2_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -32,7 +33,7 @@
                                             <div class="col-md-3">
                                                 <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                                 <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                             </div>
                                         </div><br>
@@ -53,7 +54,7 @@
 	                                        </div>
                                         </div>
                                         <div class="row">
-                                            
+
                                         </div>
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
@@ -112,9 +113,9 @@
 	                                              <input type="text" name="father_name" class="form-control" placeholder="မြန်မာ/အင်္ဂလိပ်" >
 	                                          </div>
 	                                      </div>
-                                          
+
 	                                  </div>
-                                      
+
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('လူမျိူး/ဘာသာ') }}</label>
@@ -124,7 +125,7 @@
                                                 </div>
                                             </div>
 	                                  </div>
-	                                  
+
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
@@ -134,8 +135,8 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                  
-                                        
+
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း') }}</label>
@@ -145,7 +146,7 @@
                                                 </div>
                                             </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('ရာထူး/ဌာန/ရုံးစိုက်ရာဒေသ ') }}</label>
@@ -174,7 +175,7 @@
                                                         <input type="radio" name="" value="no"> No
                                             </div>
 	                                    </div>
-                                        
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁၀။') }}</label>
 	                                      <label class="col-md-3 col-form-label">{{ __('ဆက်သွယ်ရန်လိပ်စာ/ဖုန်းနံပါတ်/အီးမေးလ်') }}</label>
@@ -205,12 +206,12 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၁၂။') }}</label>
                                             <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-8 col-form-label">{{ __('မြန်မာနိုင်ငံစာရင်းကောင်စီကချမှတ်သည့်စည်းကမ်းများကို လိုက်နာမည်ဖြစ်ကြောင်း ဝန်ခံလျှက် လျှောက်ထားအပ်ပါသည်။') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
@@ -220,7 +221,7 @@
                                                     <input type="text" name="date3" class="form-control" placeholder="dd-mm-yyyy">
                                                 </div>
                                             </div>
-                                           
+
 	                                    </div>
                                         <div class="row">
                                             <div class="col-md-11 d-md-flex justify-content-md-end">
@@ -230,7 +231,7 @@
 							</div>
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'school_registration'
 ])
 @section('content')
@@ -23,23 +24,23 @@
 <div class="content">
     @include('flash-message')
     <div class="row">
-        <div class="col-md-12">        
+        <div class="col-md-12">
         </div>
-    </div>   
+    </div>
     <div class="row">
         <div class="col-md-12">
             <form action="javascript:void();" method="post" enctype="multipart/form-data">
                 @csrf
-                
+
                 <div class="row">
                         <div class="col-md-6">
-                            
+
                                 <div class="card card-success card-outline">
                                     <div class="card-header">
-                                        
+
                                         <div class="row mb-2">
                                             <div class="col-sm-6">
-                                                
+
                                             </div>
                                             <div class="col-sm-6">
                                                 <ol class="breadcrumb float-sm-right card">
@@ -49,13 +50,13 @@
                                         </div>
                                     </div>
                                     <div class="card-body box-profile">
-                                        
+
                                         <div class="text-center">
                                             <img class="profile-user-img img-fluid img-circle" id="image" alt="User profile picture">
                                         </div>
 
                                         <h5 class="profile-username text-center" id="name"></h5>
-                                        
+
                                         <p class="text-muted text-center" id="email"></p>
                                         <hr>
                                         <ul class="list-group list-group-unbordered mb-3">
@@ -118,7 +119,7 @@
                                             </li>
                                             <li class="list-group-item">
                                                 <b>အဘအမည်(မြန်မာ)/အဘအမည်(အင်္ဂလိပ်)</b> <span id="father" class="float-right"></span>
-                                            </li> 
+                                            </li>
                                             <li class="list-group-item">
                                                 <b>မွေးသက္ကရာဇ်</b> <span id="date_of_birth" class="float-right"></span>
                                             </li>
@@ -133,14 +134,14 @@
                         </div>
                         <div class="col-md-6">
                             <div class="card card-success card-outline">
-                                
+
                                 <div class="card-header">
-                                    
+
                                     <ol class="breadcrumb float-sm-right card">
                                         <li class="breadcrumb-item active">ကျောင်းပုံစံ-၁</li>
                                     </ol>
                                 </div>
-                                
+
                                 <div class="card-body">
                                     <h6 class="mb-3">
                                         <i class="fa fa-graduation-cap"></i> ပညာအရည်အချင်း
@@ -177,23 +178,23 @@
                                     <div class="school-type" style="display:none;">
                                         <p class="mb-3 mt-3 " style="font-weight:bold">လုပ်ငန်းဖွဲ့စည်းမှုကျောင်းပုံစံ</p>
                                         <div class="col-md-12">
-                                           
+
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-check mt-2 form-check-inline">
                                                             <input class="form-check-input" type="radio" name="school_type1"
                                                                 value='တစ်ဦးတည်းပိုင်လုပ်ငန်း' > တစ်ဦးတည်းပိုင်လုပ်ငန်း
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-check mt-2 form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="school_type2" 
+                                                            <input class="form-check-input" type="radio" name="school_type2"
                                                                 value='နိုင်ငံသားများပိုင်အစုစပ်လုပ်ငန်း' > နိုင်ငံသားများပိုင်အစုစပ်လုပ်ငန်း
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -202,7 +203,7 @@
                                                         <div class="form-check mt-2 form-check-inline">
                                                             <input class="form-check-input" type="radio" name="school_type3" id=""
                                                                 value='တည်ဆဲကုမ္ပဏီများအက်ဥပဒေအရတည်ထောင်ထားသောကုမ္ပဏီလီမိတက်' > တည်ဆဲကုမ္ပဏီများအက်ဥပဒေအရတည်ထောင်ထားသောကုမ္ပဏီလီမိတက်
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -211,7 +212,7 @@
                                                         <div class="form-check mt-2 form-check-inline">
                                                             <input class="form-check-input" type="radio" name="school_type4" id=""
                                                                 value='တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း' > တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း
-                                                            
+
                                                         </div>
                                                     </div>
                                                 </div>
@@ -237,7 +238,7 @@
                                 <div class="active tab-pane" id="activity">
                                         <div class="row mb-2">
                                             <div class="col-sm-6">
-                                                
+
                                             </div>
                                             <div class="col-sm-6">
                                                 <ol class="breadcrumb float-sm-right card">
@@ -253,7 +254,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <input type="text" id="school_name" class="form-control" readonly>
-                                                
+
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -262,7 +263,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <input type="text" id="attend_course" class="form-control" readonly>
-                                                
+
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -271,7 +272,7 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <input type="text" id="school_address" class="form-control" readonly>
-                                                
+
                                             </div>
                                         </div>
                                         <div class="row mt-3">
@@ -304,27 +305,27 @@
                                             </div>
                                             </div>
                                         </div>
-                                        
-                                        
-                                    
-                                    <!-- /.user-block -->
-                                    
-                                    <p>
-                                       
-                                    </p>
-                                    
 
-                                    
+
+
+                                    <!-- /.user-block -->
+
+                                    <p>
+
+                                    </p>
+
+
+
                                     </div>
                                     <!-- /.post -->
 
                                     <!-- Post -->
                                     <div class="post clearfix">
-                                    
-                                    
+
+
                                     <p><strong>ကျောင်းခွဲတည်နေရာလိပ်စာ</strong></p>
-                                    
-                                
+
+
                                         <div class="col-md-12">
                                                 <table class="table tbl_branch_school table-bordered " style="width:100%;">
                                                     <thead  class="text-nowrap table-success">
@@ -334,7 +335,7 @@
                                                             <th class="less-font-weight text-center"  >ဓါတ်ပုံနှင့်တကွဖော်ပြချက်</th>
                                                             <th class="less-font-weight text-center">ပိုင်ဆိုင်မှုပုံစံ</th>
                                                             <th class="less-font-weight text-center"  >သက်ဆိုင်သည့် အထောက်အထား စာချုပ်စာတမ်းများ</th>
-                                                            
+
                                                         </tr>
                                                     </thead>
                                                     <tbody class="tbl_branch_school_body">
@@ -342,17 +343,17 @@
                                                     </tboddy>
                                                 </table>
                                         </div>
-                                    
-                                    
+
+
                                     </div>
                                     <!-- /.post -->
 
                                     <!-- Post -->
                                     <div class="post">
-                                    
+
 
                                         <h5>ပူးတွဲတင်ပြသည့်အထောက်အထားများ</h5>
-                                        
+
                                         <p><strong>လုပ်ငန်းလိုင်စင်/ကုမ္ပဏီမှတ်ပုံတင်လက်မှတ်/အဖွဲ့အစည်း၏မှတ်ပုံတင်လက်မှတ်မူရင်းနှင့်မိတ္တူ</strong></p>
                                         <div class="business_license"></div>
                                         <p><strong>ကျောင်းတည်ထောင်ခြင်းအတွက်ရွေးချယ်ထားသည့်လုပ်ငန်းဖွဲ့စည်းမှုပုံစံအရပူးတွဲတင်ပြရမည့်အထောက်အထားများ(အစုအစပ်သဘောတူညီချက်/သင်းဖွဲ့စည်းမျဉ်း/သင်းဖွဲ့မှတ်တမ်း၊ဉပဒေနှင့်အညီရေးဆွဲပြုစုထားသောအခြားစာချုပ်စာတမ်းများ)</strong></p>
@@ -364,7 +365,7 @@
                                 <div class="tab-pane" id="timeline">
                                         <div class="row mb-2">
                                             <div class="col-sm-6">
-                                                
+
                                             </div>
                                             <div class="col-sm-6">
                                                 <ol class="breadcrumb float-sm-right card">
@@ -373,7 +374,7 @@
                                             </div>
                                         </div>
                                     <div class="post clearfix mb-5">
-                                        
+
                                         <div class="mb-5">
                                             <p><strong>ကျောင်းတည်ထောင်သူပုဂ္ဂိုလ်(များ)</strong></p>
                                             <div class="col-md-12">
@@ -388,7 +389,7 @@
                                                         <th class="less-font-weight text-center">ဆက်သွယ်ရန်လိပ်စာ</th>
                                                         <th class="less-font-weight text-center">ဖုန်းနံပါတ်</th>
                                                         <th class="less-font-weight text-center">အီးမေးလ်</th>
-                                                        
+
                                                     </tr>
                                                     </thead>
                                                     <tbody class="tbl_sch_established_persons_body">
@@ -399,7 +400,7 @@
                                         </div>
                                         <div class="mb-2">
                                             <input type="hidden" id="student_info_id">
-                                    
+
                                             <p><strong>ကျောင်းစီမံအုပ်ချုပ်သူများ</strong> </p>
                                             <div class="col-md-12">
                                                 <table class="table tbl_sch_governs table-bordered input-table">
@@ -413,7 +414,7 @@
                                                         <th class="less-font-weight text-center">တာဝန်</th>
                                                         <th class="less-font-weight text-center">ဖုန်းနံပါတ်</th>
                                                         <th class="less-font-weight text-center">အီးမေးလ်</th>
-                                                        
+
                                                     </tr>
                                                     </thead>
                                                     <tbody class="tbl_sch_governs_body">
@@ -423,11 +424,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+
                                     <div class="organization mb-5" style="display:none;">
                                         <div class="row mb-2">
                                                 <div class="col-sm-6">
-                                                    
+
                                                 </div>
                                                 <div class="col-sm-6">
                                                     <ol class="breadcrumb float-sm-right card">
@@ -436,7 +437,7 @@
                                                 </div>
                                         </div>
                                         <div class="post clearfix">
-                                        
+
                                             <p><strong>အဖွဲ့အစည်းဖြစ်ပါကအဖွဲ့အစည်း၏အလုပ်အမှုဆောင်အဖွဲ့ဝင်များ၏အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ</strong></p>
                                             <div class="col-md-12">
                                                 <table class="table tbl_member_list_biography table-bordered " style="width:100%">
@@ -450,7 +451,7 @@
                                                         <th class="less-font-weight text-center">တာဝန်</th>
                                                         <th class="less-font-weight text-center">ဖုန်းနံပါတ်</th>
                                                         <th class="less-font-weight text-center">အီးမေးလ်</th>
-                                                        
+
                                                     </tr>
                                                     </thead>
                                                     <tbody class="tbl_member_list_biography_body">
@@ -458,12 +459,12 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        
+
                                         </div>
                                     </div>
                                     <div class="row mb-2">
                                             <div class="col-sm-6">
-                                                
+
                                             </div>
                                             <div class="col-sm-6">
                                                 <ol class="breadcrumb float-sm-right card">
@@ -472,7 +473,7 @@
                                             </div>
                                     </div>
                                     <div class="post clearfix">
-                                    
+
                                         <p><strong>သင်တန်းဆရာများ၏အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ</strong></p>
                                         <div class="col-md-12">
                                             <table class="table tbl_teacher_list_biography table-bordered" style="width:100%">
@@ -487,7 +488,7 @@
                                                         <th class="less-font-weight text-center">ဖုန်းနံပါတ်</th>
                                                         <th class="less-font-weight text-center">အီးမေးလ်</th>
                                                         <th class="less-font-weight text-center">သင်တန်းဆရာမှတ်ပုံတင်မိတ္တူ</th>
-                                                        
+
                                                     </tr>
                                                     </thead>
                                                     <tbody class="tbl_teacher_list_biography_body" >
@@ -495,7 +496,7 @@
                                                     </tbody>
                                             </table>
                                         </div>
-                                    
+
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
@@ -503,7 +504,7 @@
                                 <div class="tab-pane" id="settings">
                                         <div class="row mb-2">
                                             <div class="col-sm-6">
-                                                
+
                                             </div>
                                             <div class="col-sm-6">
                                                 <ol class="breadcrumb float-sm-right card">
@@ -512,7 +513,7 @@
                                             </div>
                                         </div>
                                     <div class="post">
-                                        
+
                                         <p><strong>ကျောင်းအဆောက်အဦ(အဆောက်အဦအမျိုးအစား၊အတိုင်းအတာ၊အထပ်အရေအတွက် စသည်)</strong></p>
                                         <table class="table tbl_bulding_type table-bordered input-table">
                                                 <thead  class="text-nowrap table-success">
@@ -522,17 +523,17 @@
                                                         <th class="less-font-weight text-center" >အတိုင်းအတာ</th>
                                                         <th class="less-font-weight text-center"  >အထပ်အရေအတွက်</th>
                                                         <th class="less-font-weight text-center"  >ဓါတ်ပုံနှင့်တကွဖော်ပြချက်</th>
-                                                        
+
                                                     </tr>
                                                 </thead>
                                                 <tbody class="tbl_bulding_type_body">
 
                                                 </tboddy>
                                             </table>
-                                        
+
                                     </div>
                                     <div class="post clearfix">
-                                    
+
                                         <p><strong>စာသင်ခန်း(အခန်းအရေအတွက်၊အတိုင်းအတာ၊ဝင်ဆံ့သင်တန်းသား၊လေအေးပေးစက်)</strong></p>
                                         <table class="table tbl_classroom table-bordered input-table">
                                                 <thead  class="text-nowrap table-success">
@@ -543,17 +544,17 @@
                                                         <th class="less-font-weight text-center"  >ဝင်ဆံ့သင်တန်းသား</th>
                                                         <th class="less-font-weight text-center" >လေအေးပေးစက်</th>
                                                         <th class="less-font-weight text-center"  >ဓါတ်ပုံနှင့်တကွဖော်ပြချက်</th>
-                                                        
+
                                                     </tr>
                                                 </thead>
                                                 <tbody class="tbl_classroom_body">
 
                                                 </tboddy>
                                         </table>
-                                    
+
                                     </div>
                                     <div class="post clearfix">
-                                    
+
                                     <!-- /.user-block -->
                                         <p><strong>သန့်စင်ခန်း(အမျိုးအစား၊အရေအတွက်)</strong></p>
                                         <table class="table tbl_toilet_type table-bordered input-table">
@@ -563,17 +564,17 @@
                                                     <th class="less-font-weight text-center"  >အမျိုးအစား</th>
                                                     <th class="less-font-weight text-center"  >အရေအတွက်</th>
                                                     <th class="less-font-weight text-center"  >ဓါတ်ပုံနှင့်တကွဖော်ပြချက်</th>
-                                                    
+
                                                 </tr>
                                             </thead>
                                             <tbody class="tbl_toilet_type_body">
 
                                             </tboddy>
                                         </table>
-                                    
+
                                     </div>
                                     <div class="post clearfix">
-                                    
+
                                         <p><strong>စီမံရုံးခန်း(အခန်းအရေအတွက်၊အတိုင်းအတာ)</strong></p>
                                         <table class="table tbl_manage_room_numbers table-bordered input-table">
                                                         <thead  class="text-nowrap table-success">
@@ -582,16 +583,16 @@
                                                                 <th class="less-font-weight text-center"  >အခန်းအရေအတွက်</th>
                                                                 <th class="less-font-weight text-center"  >အတိုင်းအတာ</th>
                                                                 <th class="less-font-weight text-center"  >ဓါတ်ပုံနှင့်တကွဖော်ပြချက်</th>
-                                                                
+
                                                             </tr>
                                                         </thead>
                                                         <tbody class="tbl_manage_room_numbers_body">
 
                                                         </tboddy>
                                         </table>
-                                    
+
                                     </div>
-                                    
+
                                 </div>
                                 <!-- /.tab-pane -->
                                 </div>
@@ -606,31 +607,31 @@
                             <!-- <div class="row">
                                 <div class="col-md-10"></div>
                                 <label class="col-md-2 col-form-label" style="font-weight:bold">ကျောင်းပုံစံ-၁</label>
-                                                            
+
                             </div> -->
-                            
+
                             <div class="row">
-                                
+
                                 <div class="col-md-12 ">
-                                    
-                                    
+
+
                                     <input type="hidden" name="student_info_id" >
 
-                                    <div class="row justify-content-center" >                                     
+                                    <div class="row justify-content-center" >
 
                                         <button  id="reject" class="btn btn-danger"  onclick="rejectSchoolRegister();" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
                                         <button id="approve" class="btn btn-primary" onclick="approveSchoolRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
                                     </div>
-                                    
+
                                 </div>
-                            </div>                   
+                            </div>
                         </div>
                     </div>
                  </div>
-                 
+
             </form>
         </div>
-       
+
     </div>
 </div>
  <!-- Attached Certificate -->
@@ -646,7 +647,7 @@
       <div class="modal-body">
         <div class="attachment"></div>
       </div>
-              
+
     </div>
   </div>
 </div>
@@ -658,6 +659,6 @@
 
 <script>
     getSchoolInfos();
-   
+
 </script>
 @endpush

@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'da_exam_one'
 ])
 
@@ -59,11 +60,11 @@
                                             <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
                                         </div>
                                         <div class="col-md-6 text-left certificate">
-                                            
+
                                             <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button> -->
                                             <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" onclick="file_read('certificate')"><i class="fa fa-paperclip"></i></button> -->
                                         </div>
-                                    </div>             
+                                    </div>
                                 </div>
                             </div>
                             <div class="card">
@@ -149,7 +150,7 @@
                                         <div class="col-md-6 text-left">
                                             <span id="payment_status">Paid</span>
                                         </div>
-                                    </div>                                
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +181,7 @@
                                             <p class="ml-2" style="font-weight:bold">NRC Front</p>
                                         </div>
                                         <div class="col-md-6 text-left nrc_front">
-                                            
+
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -188,7 +189,7 @@
                                             <p class="ml-2" style="font-weight:bold">NRC Back</p>
                                         </div>
                                         <div class="col-md-6 text-left nrc_back">
-                                            
+
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -269,7 +270,7 @@
                                             <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာဌာနအကြီးအကဲ၏ထောက်ခံစာ</p>
                                         </div>
                                         <div class="col-md-6 text-left recommend_letter">
-                                            
+
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -282,11 +283,11 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6 text-left">
-                                            <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt=""> 
+                                            <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt="">
                                         </div>
                                         <div class="col-md-6 text-left">
-                                            <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">                            
-                                        </div>                  
+                                            <img class="nrc-style" id="nrc_back_img"  accept="image/png,image/jpeg" alt="">
+                                        </div>
                                     </div>
                                     <input type="hidden" name="student_course_id" >
                                 </div>
@@ -336,11 +337,11 @@
                                             <span id="exam_department"></span>
                                         </div>
                                     </div>
-                                    
+
                                     <input type="hidden" name="student_id">
-                                    
+
                                 </div>
-                                    
+
                                 </div>
                                 <div class="card">
                                     <div class="card-header">
@@ -358,13 +359,13 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                   
-                                    <div class="row mt-5 justify-content-center"> 
+
+                                    <div class="row mt-5 justify-content-center">
                                         <button type="submit"  id="reject" name="save" class="btn btn-danger"  onclick="rejectDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                         <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveDAOneExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-                                        
+
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                         </div>

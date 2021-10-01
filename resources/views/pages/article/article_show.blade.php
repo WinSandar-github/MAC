@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'Article_list'
 ])
 <!-- Bootstrap CSS -->
@@ -104,14 +105,14 @@
                                     <p class="ml-2" style="font-weight:bold" align="left">NRC Front</p>
                                 </div>
                                 <div class="col-md-4 nrc_front">
-                                
+
                                 </div>
 
                                 <div class="col-md-2">
                                 <p class="ml-2" style="font-weight:bold" align="left">NRC Back</p>
                                 </div>
                                 <div class="col-md-4 nrc_back">
-                                
+
                                 </div>
                             </div>
                             </div>
@@ -133,7 +134,7 @@
                                             <p class="ml-2" style="font-weight:bold" align="left">Certificate</p>
                                         </div>
                                         <div class="col-md-3 certificate">
-                                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +195,7 @@
                                             <p class="ml-2" style="font-weight:bold" align="left">Attachment</p>
                                         </div>
                                         <div class="col-md-3 exp_attachment">
-                                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -256,7 +257,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
 
                         <div id="previous_papp_date_row" style="display:none;">
                             <div class="row mb-3">
@@ -325,7 +326,7 @@
 <script>
 
   $(document).ready(function (e) {
-    
+
   });
 
 </script>

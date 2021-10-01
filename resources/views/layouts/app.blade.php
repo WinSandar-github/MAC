@@ -31,12 +31,9 @@
     <link href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/css/easy-loading.css') }}" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ asset('css/custom_table.css') }}">
 </head>
-
 <body class="{{ $class }}">
-
     @auth()
         @include('layouts.page_templates.auth')
         {{-- @include('layouts.navbars.fixed-plugin') --}}
@@ -76,7 +73,8 @@
     <script src="{{ asset('js/easyloading.js') }}"></script>
     <script src="{{ asset('paper/js/plugins/chartjs.min.js') }}"></script>
     <script src="{{ asset('paper/js/plugins/bootstrap-notify.js') }}"></script>
-    <script src="{{ asset('paper/js/paper-dashboard.min.js?v=2.0.0') }}"></script>
+    <script src="{{ asset('paper/js/plugins/bootstrap-notify.js') }}"></script>
+    <script src="{{ asset('paper/js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('assets/myanmarnrc.js') }}"></script>
     <script src="{{ asset('js/audit_firm.js') }}"></script>
     <script src="{{ asset('js/non_audit_firm.js') }}"></script>
@@ -103,6 +101,7 @@
     <script src="{{ asset('js/exam.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('js/select2/select2.min.js') }}"></script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $(document).on('show.bs.modal', '#ApprovalModal', function(e) {

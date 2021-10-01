@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'mentor_list'
 ])
 <!-- Bootstrap CSS -->
@@ -25,7 +26,7 @@
         </div> -->
             <form method="post" id="mentor_register_form" action="javascript:createMentor();" enctype="multipart/form-data">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card border-success mb-3" style="padding:3% 5% 3% 5%;">
@@ -349,7 +350,7 @@
                             </div>
                             </div>
                         </div>
-                        
+
                         <div id="check_service_other" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('') }}</label>
@@ -387,7 +388,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div id="started_teaching" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('') }}</span>စာရင်းကိုင်အလုပ်သင်များအား အလုပ်သင်ကြားပေးမှု စတင်ခဲ့သည့်ခုနှစ်</label>
@@ -527,7 +528,7 @@
     loadService();
 </script>
 <script>
-    
+
     $(document).ready(function (e) {
 
         $('#selected_service_id').select2({
@@ -592,8 +593,8 @@
                 dateFormat: "d-M-Y",
                 allowInput: true
         });
-        
-        
+
+
         $("input[id*='nrc_number'], text[id*='nrc_number']").change(function(e) {
             myanmarLetterOnly($(this));
         });

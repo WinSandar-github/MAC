@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'lms_accounts'
 ])
 
@@ -23,7 +24,7 @@
                             <input type="hidden" id="user-id" value="{{ $user_by_id->id }}">
                             <div class="container">
                                 <div class="form-group">
-                                    <div class="row col-md-12"> 
+                                    <div class="row col-md-12">
                                         <label class="col-md-2 col-form-label">Username</label>
                                         <div class="col-md-5">
                                             <input type="text" name="username" class="form-control" autocomplete="off" value="{{ $user_by_id->firstname.' '.$user_by_id->lastname }}">
@@ -31,11 +32,11 @@
                                                 <input type="checkbox" name="suspended" value="">
                                                 <label for="">Suspended account</label>
                                             </div>
-                                        </div>                                         
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group" hidden>
-                                    <div class="row col-md-12" > 
+                                    <div class="row col-md-12" >
                                         <label class="col-md-2 col-form-label">Choose an authentication method</label>
                                         <div class="col-md-5">
                                             <input type="text" name="auth" class="form-control" value="manual">
@@ -43,7 +44,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="row col-md-12" > 
+                                    <div class="row col-md-12" >
                                         <label class="col-md-2 col-form-label">Password</label>
                                         <div class="col-md-5">
                                             <input type="password" name="password" class="form-control" id="showPassword">
@@ -55,7 +56,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="row col-md-12" > 
+                                    <div class="row col-md-12" >
                                         <label class="col-md-2 col-form-label">First name</label>
                                         <div class="col-md-5">
                                             <input type="text" name="firstname" class="form-control" autocomplete="off" value="{{ $user_by_id->firstname }}">
@@ -69,7 +70,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="row col-md-12" > 
+                                    <div class="row col-md-12" >
                                         <label class="col-md-2 col-form-label">Last name</label>
                                         <div class="col-md-5">
                                             <input type="text" name="lastname" class="form-control" autocomplete="off" value="{{ $user_by_id->lastname }}">
@@ -83,7 +84,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="row col-md-12" > 
+                                    <div class="row col-md-12" >
                                         <label class="col-md-2 col-form-label">Email address</label>
                                         <div class="col-md-5">
                                             <input type="email" name="email" class="form-control" autocomplete="off" value="{{ $user_by_id->email }}" required>
@@ -97,7 +98,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group" hidden>
-                                    <div class="row col-md-12" > 
+                                    <div class="row col-md-12" >
                                         <label class="col-md-2 col-form-label">Email display</label>
                                         <div class="col-md-5">
                                             <input type="text" name="maildisplay" class="form-control" autocomplete="off" value=2>
@@ -123,11 +124,11 @@
     <script type="text/javascript">
         $('document').ready( function() {
             var suspended_val = <?php echo $user_by_id->suspended; ?>;
-            // Make suspended checkbox status check or not according to value returned from controller // 
+            // Make suspended checkbox status check or not according to value returned from controller //
             if ( suspended_val == 1 ) {
                 $('input[name="suspended"]').prop("checked", true).val(1);
             } else {
-                $('input[name="suspended"]').prop("checked", false).val(0); 
+                $('input[name="suspended"]').prop("checked", false).val(0);
             }
 
             $('#togglePassword').on('click', function() {
@@ -137,15 +138,15 @@
                 } else {
                     x.type = "password";
                 }
-            });   
-            
+            });
+
             $('input[name="suspended"]').on('click', function() {
                 if( $(this).prop("checked") == true ) {
                     $(this).val(1);
                 } else  {
                     $(this).val(0);
                 }
-            })        
+            })
         });
     </script>
 @endpush

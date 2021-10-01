@@ -11,19 +11,22 @@
     </div>
     <div class="sidebar-wrapper">
         <ul class="nav">
+            {{--Dashboard--}}
             <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'dashboard') }}">
                     <i class="nc-icon nc-bank"></i>
                     <span>{{ __('Dashboard') }}</span>
                 </a>
             </li>
-            <li class="{{ $elementActive == 'studentapplication' ? 'active' : '' }}">
+
+            {{--Application Form--}}
+            <li class="{{ $elementActive == 'da_one_app_list' || $elementActive == 'cpa_one_app_list' ? 'active' : '' }}">
                 <a data-toggle="collapse" href="#studentapplication">
                     <i class="nc-icon nc-tap-01"></i>
                     <p>{{ __('Student Application') }}</p>
                     <b class="caret"></b>
                 </a>
-                <div class="collapse in" id="studentapplication">
+                <div class="collapse {{ $elementActive == 'da_one_app_list' || $elementActive == 'cpa_one_app_list' ? 'show' : 'in' }}" id="studentapplication">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'da_one_app_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_one_app_list') }}">
@@ -43,46 +46,45 @@
                 </div>
             </li>
 
-            <li class="{{ $elementActive == 'studentregistration' ? 'active' : '' }}">
+            {{--Registration Form--}}
+            <li class="{{ $elementActive == 'da_one_reg' || $elementActive == 'da_two_reg' || $elementActive == 'cpa_one_reg' || $elementActive == 'cpa_two_reg' ? 'active' : '' }}">
                 <a data-toggle="collapse" href="#studentregistration">
                     <i class="nc-icon nc-tap-01"></i>
                     <p>{{ __('Student Registration') }}</p>
                     <b class="caret"></b>
                 </a>
-                <div class="collapse in" id="studentregistration">
+                <div class="collapse {{ $elementActive == 'da_one_reg' || $elementActive == 'da_two_reg' || $elementActive == 'cpa_one_reg' || $elementActive == 'cpa_two_reg' ? 'show' : 'in' }}" id="studentregistration">
                     <ul class="nav">
-                        <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
+                        <li class="{{ $elementActive == 'da_one_reg' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'index') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span
                                     style="font-weight:normal;font-size:11px;">{{ __('DA 1 Registration List') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'da_two_index' ? 'active' : '' }}">
+                        <li class="{{ $elementActive == 'da_two_reg' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_two_index') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span
                                     style="font-weight:normal;font-size:11px;">{{ __('DA 2 Registration List') }}</span>
                             </a>
                         </li>
-                        {{-- <li class="{{ $elementActive == 'index' ? 'active' : '' }}">
+                        {{--<li class="{{ $elementActive == 'index' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'index') }}">
-                                <i class="nc-icon nc-paper"  style="font-size:18px;"></i>
+                                <i class="nc-icon nc-paper" style="font-size:18px;"></i>
                                 <span>{{ __('DA Registration Form') }}</span>
                             </a>
-                        </li> --}}
-
+                        </li>--}}
                         <!-- CPA One -->
-                        <li class="{{ $elementActive == 'cpa_one_index' ? 'active' : '' }}">
+                        <li class="{{ $elementActive == 'cpa_one_reg' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_one_index') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span
                                     style="font-weight:normal;font-size:11px;">{{ __('CPA 1 Registration List') }}</span>
                             </a>
                         </li>
-
                         <!-- CPA Two -->
-                        <li class="{{ $elementActive == 'cpa_two_index' ? 'active' : '' }}">
+                        <li class="{{ $elementActive == 'cpa_two_reg' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_two_index') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span
@@ -93,13 +95,14 @@
                 </div>
             </li>
 
-            <li class="{{ $elementActive == 'examregisteration' ? 'active' : '' }}">
+            {{--Exam Registration Form--}}
+            <li class="{{ $parentElement == 'exam_reg' ? 'active' : '' }}">
                 <a data-toggle="collapse" href="#examregisteration">
                     <i class="nc-icon nc-tap-01"></i>
                     <p>{{ __('Exam Registration') }}</p>
                     <b class="caret"></b>
                 </a>
-                <div class="collapse in" id="examregisteration">
+                <div class="collapse {{ $parentElement == 'exam_reg' ? 'show' : 'in' }}" id="examregisteration">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'da_exam_one' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da_exam_one') }}">
@@ -115,13 +118,13 @@
                         </li>
                         <li class="{{ $elementActive == 'entry_exam_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'entry_exam_list') }}">
-                                <i class="nc-icon nc-paper"></i>
+                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span style="font-weight:normal;font-size:11px;">{{ __('Entry Exam List') }}</span>
                             </a>
                         </li>
                         <li class="{{ $elementActive == 'qualified_test_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'qualified_test_list') }}">
-                                <i class="nc-icon nc-paper"></i>
+                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span style="font-weight:normal;font-size:11px;">{{ __('Qualified Test List') }}</span>
                             </a>
                         </li>
@@ -141,13 +144,14 @@
                 </div>
             </li>
 
-            <li class="{{ $elementActive == 'examresults' ? 'active' : '' }}">
+            {{--Exam Result--}}
+            <li class="{{ $parentElement == 'exam_result' ? 'active' : '' }}">
                 <a data-toggle="collapse" href="#examresults">
                     <i class="nc-icon nc-tap-01"></i>
                     <p>{{ __('Exam Results') }}</p>
                     <b class="caret"></b>
                 </a>
-                <div class="collapse in" id="examresults">
+                <div class="collapse {{ $parentElement == 'exam_result' ? 'show' : 'in' }}" id="examresults">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'da1_exam_result_edit' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'da1_exam_result_edit') }}">
@@ -194,13 +198,14 @@
                 </div>
             </li>
 
-            <li class="{{ $elementActive == 'membership' ? 'active' : '' }}">
+            {{--Membership--}}
+            <li class="{{ $parentElement == 'membership' ? 'active' : '' }}">
                 <a data-toggle="collapse" href="#membership">
                     <i class="nc-icon nc-tap-01"></i>
                     <p>{{ __('Membership') }}</p>
                     <b class="caret"></b>
                 </a>
-                <div class="collapse in" id="membership">
+                <div class="collapse {{ $parentElement == 'membership' ? 'show' : 'in' }}" id="membership">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'cpa_ff_registration_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_ff_registration_list') }}">
@@ -245,7 +250,7 @@
                                 <span style="font-weight:normal;font-size:11px;">{{ __('Mentors') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'mentor_list' ? 'active' : '' }}">
+                        <li class="{{ $elementActive == 'article_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'article_list') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span style="font-weight:normal;font-size:11px;">{{ __('Article') }}</span>
@@ -255,14 +260,13 @@
                 </div>
             </li>
 
-
-            {{-- <li class="{{ $elementActive == 'exam_entry_list' ? 'active' : '' }}">
+            <li class="{{ $elementActive == 'exam_entry_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'exam_entry_list') }}">
                     <i class="nc-icon nc-tap-01"></i>
                     <p>{{ __('Entry Exam List') }}</p>
                     <b class="caret"></b>
                 </a>
-            </li> --}}
+            </li>
 
             <li class="{{ $elementActive == 'qualified_test_payment_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'qualified_test_payment_list') }}">
@@ -270,6 +274,7 @@
                     <p>{{ __('QT Payment List') }}</p>
                 </a>
             </li>
+
             <li class="{{ $elementActive == 'reporting_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'reporting_list') }}">
                     <i class="nc-icon nc-paper"></i>
@@ -289,7 +294,7 @@
                         <li class="{{ $elementActive == 'administration' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'administration') }}">
                                 <i class="fa fa-user-o" aria-hidden="true text-white"
-                                    style="font-size:18px;font-weight:normal;"></i>
+                                   style="font-size:18px;font-weight:normal;"></i>
                                 <span style="font-weight:normal;">{{ __('အသုံးပြုသူများ') }}</span>
                             </a>
                         </li>
@@ -325,19 +330,16 @@
                                 <span style="font-weight:normal;">{{ __('ဖော်ပြချက်') }}</span>
                             </a>
                         </li>
-            </li>
-            <li class="{{ $elementActive == 'membership_list' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'membership_list') }}">
-                    <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
-                    <span style="font-weight:normal;font-size:11px;">{{ __('Membership') }}</span>
-                </a>
+                        </li>
+                        <li class="{{ $elementActive == 'membership_list' ? 'active' : '' }}">
+                            <a href="{{ route('page.index', 'membership_list') }}">
+                                <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
+                                <span style="font-weight:normal;font-size:11px;">{{ __('Membership') }}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>
-    </li>
-
-
-
-    </ul>
-</div>
 </div>
