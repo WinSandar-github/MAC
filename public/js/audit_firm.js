@@ -676,8 +676,13 @@ function autoLoadAudit(){
           }
 
           // Types Of Service Provided
-          console.log(">>>>",element.type_of_service_provided_id);
-          //$('#type_service'+element.type_of_service_provided_id).prop("checked", true);
+
+          var t_s_p_arr = element.type_of_service_provided_id.split(',');
+          t_s_p_arr.forEach(function(item){
+            console.log("item >>>",item);
+            $('input[name=t_s_p_id][value="'+item+'"]').attr("checked", true);
+            $('input[name=t_s_p_id][value="'+item+'"]').siblings("label").css("font-weight","bold");
+          });
 
             var firm_owner_non_audit=element.firm_owner_non_audits;
             if(firm_owner_non_audit.length!=0){
