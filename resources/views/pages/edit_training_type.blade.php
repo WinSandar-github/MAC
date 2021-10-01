@@ -1,19 +1,17 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'training_type'
 ])
 
 @section('content')
     <div class="content">
-        <div class="row">
-<<<<<<< HEAD
+        {{--<div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('edit_training_type') }}
             </div>
-        </div>
+        </div>--}}
         <div class="row">
-=======
->>>>>>> 956e7043820bb1df64b9c363d9517b368351031e
             <div class="col-md-12 text-center">
                 @foreach ($training_type as $training)
                     <form action="{{ route('training_type.update' , $training->id) }}" method="POST" enctype="multipart/form-data">

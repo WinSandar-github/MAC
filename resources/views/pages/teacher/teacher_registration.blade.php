@@ -7,19 +7,20 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => 'membership',
     'elementActive' => 'teacher_registration'
 ])
 
 @section('content')
     <div class="content">
-        <div class="row">
+        {{--<div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('teacher_registration') }}
             </div>
-        </div>
+        </div>--}}
         <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
@@ -73,7 +74,7 @@
                                                 <th class="bold-font-weight" >No</th>
                                                 <th class="bold-font-weight" >Action</th>
                                                 <th class="bold-font-weight" >Teacher Name</th>
-                                                <th class="bold-font-weight" >Email</th>     
+                                                <th class="bold-font-weight" >Email</th>
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Register Date</th>
@@ -243,7 +244,7 @@
                                                 <th class="bold-font-weight" >No</th>
                                                 <th class="bold-font-weight" >Action</th>
                                                 <th class="bold-font-weight" >Teacher Name</th>
-                                                <th class="bold-font-weight" >Email</th>     
+                                                <th class="bold-font-weight" >Email</th>
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Register Date</th>
@@ -357,10 +358,10 @@
     $(document).ready(function (e) {
     //    $('#image').change(function(){
     //         let reader = new FileReader();
-    //         reader.onload = (e) => { 
-    //             $('#preview-image-before-upload').attr('src', e.target.result); 
+    //         reader.onload = (e) => {
+    //             $('#preview-image-before-upload').attr('src', e.target.result);
     //         }
-    //         reader.readAsDataURL(this.files[0]); 
+    //         reader.readAsDataURL(this.files[0]);
     //    });
 
     //     $("input[name='register_date']").flatpickr({
@@ -382,7 +383,7 @@
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
                     d.status    = 0
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -414,7 +415,7 @@
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
                     d.status    = 1
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -445,7 +446,7 @@
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
                     d.status    = 2
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -471,7 +472,7 @@
         });
 
         $("#search_teacher").click(function(){
-       
+
             ttable_pending.draw();
             ttable_approve.draw();
             ttable_reject.draw();
@@ -481,5 +482,5 @@
     // getTeacherRegisterList();
     });
     </script>
-    
+
 @endpush

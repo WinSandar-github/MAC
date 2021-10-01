@@ -1,15 +1,16 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'cpa_ff_registration_list'
 ])
 @section('content')
 <div class="content">
     @include('flash-message')
     <div class="row">
-        <div class="col-md-12">   
-        {{ Breadcrumbs::render('cpa_ff_edit') }}             
+        <div class="col-md-12">
+        {{ Breadcrumbs::render('cpa_ff_edit') }}
         </div>
-    </div>  
+    </div>
     <div class="row">
         <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
@@ -23,7 +24,7 @@
                                 </center>
                                 <!-- Start CPA_FF Info -->
                                 <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA Full Fleged Info</h5>
-                                
+
                                 <!-- CPA -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
@@ -37,7 +38,7 @@
                                 <div id="cpaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header"> 
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">CPA</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -60,11 +61,11 @@
                                         <button type="button" id="ra_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#raModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                <!--RA Modal --> 
+                                <!--RA Modal -->
                                 <div id="raModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">RA</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -84,16 +85,16 @@
                                     </div>
                                     <div class="col-md-6">
                                         <span class="foreign_degree">
-                                            
+
                                         </span>
-                                        
+
                                     </div>
                                 </div>
-                                <!--Foreign Modal --> 
+                                <!--Foreign Modal -->
                                 <div id="fdModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">Foreign Degree</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -105,7 +106,7 @@
                                     </div>
                                     </div>
                                 </div>
-                                
+
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
@@ -125,11 +126,11 @@
                                         <button type="button" id="cpa_certi_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                <!--CPA Certificate Modal --> 
+                                <!--CPA Certificate Modal -->
                                 <div id="capp_certi_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">CAPP Certificate</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -152,11 +153,11 @@
                                         <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                <!--MPA Member Card Modal --> 
+                                <!--MPA Member Card Modal -->
                                 <div id="mpa_mem_card_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">MPA Member Card(Front)</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -179,11 +180,11 @@
                                         <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_back_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                <!--MPA Member Card back Modal --> 
+                                <!--MPA Member Card back Modal -->
                                 <div id="mpa_mem_card_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">MICPA Member Card(Back)</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -197,7 +198,7 @@
                                     </div>
                                 </div>
 
-                                <!--NRC Card(Front) --> 
+                                <!--NRC Card(Front) -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">NRC Card(Front)</p>
@@ -206,11 +207,11 @@
                                         <button type="button" id="nrc_fornt_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_front_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                <!--NRC Card(Front) Modal --> 
+                                <!--NRC Card(Front) Modal -->
                                 <div id="nrc_front_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">NRC Card(Front)</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -224,7 +225,7 @@
                                     </div>
                                 </div>
 
-                                <!--NRC Card(Back) --> 
+                                <!--NRC Card(Back) -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">NRC Card(Back)</p>
@@ -233,11 +234,11 @@
                                         <button type="button" id="nrc_back_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_back_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                <!--NRC Card(Back) Modal --> 
+                                <!--NRC Card(Back) Modal -->
                                 <div id="nrc_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">NRC Card(Back)</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -264,7 +265,7 @@
                                 <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">CPD Record</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -290,7 +291,7 @@
                                 <div id="passport_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                        <div class="modal-header">                                            
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">Passport Image</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
@@ -310,7 +311,7 @@
                                     <div class="col-md-6">
                                         <span id="status"></span>
                                     </div>
-                                </div>          
+                                </div>
                             </div>
                         </div>
                         <div class="card">
@@ -461,7 +462,7 @@
                                         <p class="ml-2" style="font-weight:bold">အထက်လူကြီး၏ထောက်ခံစာ</p>
                                     </div>
                                     <div class="col-md-6 recommend_letter">
-                                        
+
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -539,15 +540,15 @@
 
                                 <input type="hidden" name="cpaff_id" >
 
-                                <div class="row mt-5 justify-content-center" id="cpaff_approve_reject"> 
+                                <div class="row mt-5 justify-content-center" id="cpaff_approve_reject">
                                     <button type="submit" name="save" class="btn btn-danger"  onclick="rejectCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                    <button type="submit" name="save" class="btn btn-primary" onclick="approveCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>                                    
+                                    <button type="submit" name="save" class="btn btn-primary" onclick="approveCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                                 </div>
                                 <!-- Attached Certificate -->
                                 <div id="attached_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">                                            
+                                    <div class="modal-header">
                                             <h5 class="modal-title text-center">Attached Certificate</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>

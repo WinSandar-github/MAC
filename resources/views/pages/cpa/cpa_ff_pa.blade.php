@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'cpa_ff_pa'
 ])
 
@@ -19,25 +20,25 @@
         </div>
         <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                         <div class="card-header ">
-                            
+
                         </div>
                         <div class="card-body">
                             <div class="col-md-9">
                                     <nav class="nav flex-column">
                                         <a class="nav-link active" href="{{ route('page.index', 'cpa_ff_pa_form1') }}">Certificate of Certified Public Accountant (Full-Fledged)</a>
                                         <a class="nav-link active" href="{{ route('page.index', 'cpa_ff_pa_form2') }}">Certificate of Professional Account in Public Practice</a>
-                                        
+
                                     </nav>
                             </div>
                         </div>
 
-                        
-                        
+
+
                     </div>
                 </div>
             </div>
@@ -63,10 +64,10 @@
     $(document).ready(function (e) {
        $('#image').change(function(){
             let reader = new FileReader();
-            reader.onload = (e) => { 
-                $('#preview-image-before-upload').attr('src', e.target.result); 
+            reader.onload = (e) => {
+                $('#preview-image-before-upload').attr('src', e.target.result);
             }
-            reader.readAsDataURL(this.files[0]); 
+            reader.readAsDataURL(this.files[0]);
        });
 
        $("input[name='register_date']").flatpickr({
@@ -99,8 +100,8 @@
                 dateFormat: "d-m-Y",
         });
 
-       
+
     });
     </script>
-    
+
 @endpush

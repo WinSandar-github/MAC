@@ -1,15 +1,16 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'administration'
 ])
 
-@section('content') 
+@section('content')
     <div class="content">
-        <div class="row">
+        {{--<div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('administration') }}
             </div>
-        </div>
+        </div>--}}
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -72,7 +73,7 @@
                                         <div class="col-md-9 mt-4">
                                             <nav class="nav flex-column">
                                                 <a class="nav-link active" href="{{ route('page.index', 'manage_course_category') }}">Manage Course & Categories</a>
-                                                
+
                                             </nav>
                                         </div>
                                     </div>

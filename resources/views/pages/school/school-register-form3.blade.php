@@ -7,35 +7,36 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'school_registration'
 ])
 
 @section('content')
     <div class="content">
-        <div class="row">
+        {{--<div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('school-register-form3') }}
             </div>
-        </div>
+        </div>--}}
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-10 col-form-label">{{ __('ကျောင်းတည်ထောင်သူပုဂ္ဂိုလ်(များ)နှင့်ကျောင်းစီမံအုပ်ချုပ်သူများ၏အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ') }}</label>
-	                                      
+
 	                                    </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <label class="col-md-10 col-form-label">{{ __('ကျောင်းတည်ထောင်သူပုဂ္ဂိုလ်(များ)') }}</label>
-	                                      
+
 	                                    </div>
                                         <div class="row">
                                             <div class="col-md-1"></div>
@@ -49,7 +50,7 @@
                                                                     <th class="less-font-weight" rowspan="2">အမည်</th>
                                                                     <th class="less-font-weight" rowspan="2">နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
                                                                     <th class="less-font-weight" rowspan="2">CPA(P)/CPA(FF)PPA No.</th>
-                                                                    
+
                                                                     <th class="less-font-weight" rowspan="2">ပညာအရည်အချင်း</th>
                                                                     <th class="less-font-weight" rowspan="2">ဆက်သွယ်ရန်လိပ်စာ</th>
                                                                     <th class="less-font-weight" rowspan="2">ဖုန်းနံပါတ်/အီးမေးလ်</th>
@@ -57,7 +58,7 @@
                                                                         <input type="button" class="btn btn-primary btn-sm" onclick='addRowSchoolFounder("school_founder")' value="+">
                                                                     </th>
                                                                 </tr>
-                                                                
+
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
@@ -87,7 +88,7 @@
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
 	                                      <label class="col-md-10 col-form-label">{{ __('ကျောင်းစီမံအုပ်ချုပ်သူများ') }}</label>
-	                                      
+
 	                                    </div>
                                         <div class="row">
                                             <div class="col-md-1"></div>
@@ -108,7 +109,7 @@
                                                                         <input type="button" class="btn btn-primary btn-sm" onclick='addRowSchoolManager("school_manager")' value="+">
                                                                     </th>
                                                                 </tr>
-                                                                
+
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
@@ -138,9 +139,9 @@
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၂။') }}</label>
 	                                      <label class="col-md-10 col-form-label">{{ __('အဖွဲ့အစည်း၏အလုပ်အမှုဆောင်အဖွဲ့ဝင်များ၏အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ') }}</label>
-	                                      
+
 	                                    </div>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-10">
@@ -160,7 +161,7 @@
                                                                         <input type="button" class="btn btn-primary btn-sm" onclick='addRowSchoolExecutive("school_executive")' value="+">
                                                                     </th>
                                                                 </tr>
-                                                                
+
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
@@ -190,9 +191,9 @@
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၃။') }}</label>
 	                                      <label class="col-md-10 col-form-label">{{ __('သင်တန်းဆရာများ၏အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ') }}</label>
-	                                      
+
 	                                    </div>
-                                        
+
                                         <div class="row">
                                             <div class="col-md-1"></div>
                                             <div class="col-md-10">
@@ -212,7 +213,7 @@
                                                                         <input type="button" class="btn btn-primary btn-sm" onclick='addRowSchoolTeacher("school_teacher")' value="+">
                                                                     </th>
                                                                 </tr>
-                                                                
+
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
@@ -242,7 +243,7 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-10 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                             <label class="col-md-8 col-form-label"></label>
@@ -252,7 +253,7 @@
                                                     <input type="text" id="date" class="form-control" >
                                                 </div>
                                             </div>
-                                           
+
 	                                    </div>
                                         <div class="row">
                                             <div class="col-md-11 d-md-flex justify-content-md-end">
@@ -263,7 +264,7 @@
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -288,11 +289,11 @@
 
 @push('scripts')
 <script>
-    
+
     $(document).ready(function (e) {
         createDatepicker("school_birthone");
-        
-        
+
+
     });
 
 </script>

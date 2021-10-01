@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => 'membership',
     'elementActive' => 'article_list'
 ])
 
@@ -16,7 +17,7 @@
                                     <h5 class="title">{{ __('Article Lists (MAC)') }}</h5>
                                 </div>
                             </div>
-                        
+
                             <ul class="nav nav-tabs mt-3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Firm Article</a>

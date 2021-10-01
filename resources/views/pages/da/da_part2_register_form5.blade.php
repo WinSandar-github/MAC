@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'da_part2_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -32,8 +33,8 @@
                                             </div><br>
 
                                             <div class="row">
-                                                <div class="col-md-4"></div>  
-                                                <div class="col-md-4"></div>                                    
+                                                <div class="col-md-4"></div>
+                                                <div class="col-md-4"></div>
                                                 <div class="col-md-3">
                                                     <div class="row">
                                                         <label class="col-md-4 col-form-label">{{ __('ရက်စွဲ') }}</label>
@@ -42,7 +43,7 @@
                                                                 <input type="text" name="register_date" class="form-control" placeholder="dd/mm/yyyy" required>
                                                             </div>
                                                         </div>
-                                                    </div>                                    
+                                                    </div>
                                                 </div>
                                             </div><br>
 
@@ -125,7 +126,7 @@
                                                         <input type="text" name="father_name" class="form-control" placeholder="အဘအမည်(မြန်မာ)" >
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
 
                                             <div class="row">
@@ -136,10 +137,10 @@
                                                         <input type="text" name="father_name" class="form-control" placeholder="အဘအမည်(အင်္ဂလိပ်)">
                                                     </div>
                                                 </div>
-                                                
-                                            </div>                                           
-                                            
-                                        
+
+                                            </div>
+
+
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('စာမေးပွဲအမည်') }}</label>
@@ -173,7 +174,7 @@
                                                 <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('အောင်မြင်') }}</label>
                                                 <div class="col-md-8">
-                                                    <div class="form-group">   
+                                                    <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <label class="col-md-8 form-check-label" for="all_modules">All Modules</label>
@@ -187,7 +188,7 @@
                                                                 <label class="col-md-8 form-check-label" for="module2">Module 2</label>
                                                                 <input class="col-md-2 form-check-input" type="checkbox" value="" id="module2"/>
                                                             </div>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div></br>
@@ -196,7 +197,7 @@
                                                 <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('ပြန်လည်ဖြေဆိုအောင်မြင်') }}</label>
                                                 <div class="col-md-8">
-                                                    <div class="form-group">   
+                                                    <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <label class="col-md-8 form-check-label" for="all_modules">All Modules</label>
@@ -210,7 +211,7 @@
                                                                 <label class="col-md-8 form-check-label" for="module2">Module 2</label>
                                                                 <input class="col-md-2 form-check-input" type="checkbox" value="" id="module2"/>
                                                             </div>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div></br>
@@ -229,7 +230,7 @@
                                                 <label class="col-md-1 col-form-label">{{ __('၉။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('ကျရှုံး') }}</label>
                                                 <div class="col-md-8">
-                                                    <div class="form-group">   
+                                                    <div class="form-group">
                                                         <div class="row">
                                                             <div class="col-md-4">
                                                                 <label class="col-md-8 form-check-label" for="all_modules">All Modules</label>
@@ -243,7 +244,7 @@
                                                                 <label class="col-md-8 form-check-label" for="module2">Module 2</label>
                                                                 <input class="col-md-2 form-check-input" type="checkbox" value="" id="module2"/>
                                                             </div>
-                                                        </div> 
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div></br>
@@ -257,7 +258,7 @@
                                                             </div>
                                                         </div>
                                             </div></br>
-                                        
+
                                             <div class="row">
                                                 <label class="col-md-1 col-form-label">{{ __('၁၀။') }}</label>
                                                 <label class="col-md-2 col-form-label">{{ __('ဖုန်းနံပါတ်') }}</label>
@@ -276,9 +277,9 @@
                                                         <textarea class="form-control " name="" rows="3" placeholder="နေရပ်လိပ်စာ" required></textarea>
                                                         </div>
                                                     </div>
-                                            </div></br>                                           
-                                            
-                                            <div class="row">                                                                                       
+                                            </div></br>
+
+                                            <div class="row">
                                                 <div class="col-md-8"></div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -289,10 +290,10 @@
 
                                             <div class="row">
                                             <div class="col-md-1"></div>
-                                                <label class="col-md-10 col-form-label">{{ __('အထက်ဖော်ပြပါအမှတ်စဉ် ၁ မှ ၁၁ တို့တွင် ဖော်ပြထားချက်များအားစိစစ်ပြီးမှန်ကန်ကြောင်း တွေ့ရပါသည်။') }}</label>                                                
+                                                <label class="col-md-10 col-form-label">{{ __('အထက်ဖော်ပြပါအမှတ်စဉ် ၁ မှ ၁၁ တို့တွင် ဖော်ပြထားချက်များအားစိစစ်ပြီးမှန်ကန်ကြောင်း တွေ့ရပါသည်။') }}</label>
                                             </div>
 
-                                            <div class="row">                                                                                       
+                                            <div class="row">
                                                 <div class="col-md-8"></div>
                                                 <div class="col-md-3">
                                                     <div class="form-group">
@@ -301,7 +302,7 @@
                                                 </div>
                                             </div></br>
 
-                                            <div class="row">                                                                                       
+                                            <div class="row">
                                                 <div class="col-md-8"></div>
                                                 <label class="col-md-3 col-form-label">{{ __('ဉီးစီးအရာရှိ') }}</label>
                                             </div></br>
@@ -314,7 +315,7 @@
 							</div>
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>

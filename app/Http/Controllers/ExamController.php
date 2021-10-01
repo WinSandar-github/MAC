@@ -34,24 +34,24 @@ class ExamController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-           
             'exam_start_date' => 'required',
             'exam_end_date' => 'required',
-        ]);        
+        ]);
+
         $exam = new Exam;
         $exam->batch_id           = $request->batch_id;
-        $exam->course_id       =  $request->course_id;
+        $exam->course_id          =  $request->course_id;
         $exam->exam_type_id       =  $request->exam_type_id; 
-        $exam->exam_start_date      =  $request->exam_start_date;
-        $exam->exam_end_date        =  $request->exam_end_date;
-        $exam->exam_start_time      =  $request->exam_start_time;
-        $exam->exam_end_time        =  $request->exam_end_time;
-        $exam->exam_place      =  $request->exam_place;
-        
-        $exam->save();
-        return response()->json([
-            'message' => "Insert Successfully"
-        ],200);
+        $exam->exam_start_date    =  $request->exam_start_date;
+        $exam->exam_end_date      =  $request->exam_end_date;
+        $exam->exam_start_time    =  $request->exam_start_time;
+        $exam->exam_end_time      =  $request->exam_end_time;
+        $exam->exam_place         =  $request->exam_place;
+        if($exam->save()){
+            return response()->json(['message' => "Insert Successfully"],200);
+        }else{
+            return response()->json(['message' => "Error While Data Save!"], 500);
+        }
     }
 
     /**
