@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'batch'
 ])
 
@@ -106,7 +107,7 @@
                                                            <div>{{ $tmsclass->class_name }}</div>
                                                        @endif
                                                    @endforeach
-                                                @endforeach    
+                                                @endforeach
                                             </td>
                                             <td rowspan="1">{{ $batch->from }}</td>
                                             <td rowspan="1">{{ $batch->to }}</td>

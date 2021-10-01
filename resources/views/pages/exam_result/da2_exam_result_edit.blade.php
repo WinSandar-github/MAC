@@ -1,5 +1,6 @@
 @extends('layouts.app', [
 'class' => '',
+'parentElement' => 'exam_result',
 'elementActive' => 'da2_exam_result_edit'
 ])
 
@@ -43,15 +44,15 @@
                         <ul class="nav nav-tabs mt-3" role="tablist">
                             <li class="nav-item">
                                 <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist"
-                                    aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
+                                   aria-expanded="false" style="font-weight:bold" id="pending">Pending List</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#link2" role="tablist"
-                                    aria-expanded="true" style="font-weight:bold">Passed List</a>
+                                   aria-expanded="true" style="font-weight:bold">Passed List</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-toggle="tab" href="#link3" role="tablist"
-                                    aria-expanded="false" style="font-weight:bold">Failed List</a>
+                                   aria-expanded="false" style="font-weight:bold">Failed List</a>
                             </li>
                         </ul>
                     </div>
@@ -59,17 +60,17 @@
                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
                             <div class="tab-pane fade show active" id="link1" aria-expanded="true">
                                 <table id="tbl_exam_pending_result" class="table table-hover text-nowrap "
-                                    style="width:100%;">
+                                       style="width:100%;">
                                     <thead>
-                                        <tr>
-                                            <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight">Action</th>
-                                            <th class="bold-font-weight">Student Name</th>
-                                            <th class="bold-font-weight">Course Name</th>
-                                            <th class="bold-font-weight">Batch</th>
-                                            <th class="bold-font-weight">Module</th>
-                                            <th class="bold-font-weight">Grade</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="bold-font-weight">No</th>
+                                        <th class="bold-font-weight">Action</th>
+                                        <th class="bold-font-weight">Student Name</th>
+                                        <th class="bold-font-weight">Course Name</th>
+                                        <th class="bold-font-weight">Batch</th>
+                                        <th class="bold-font-weight">Module</th>
+                                        <th class="bold-font-weight">Grade</th>
+                                    </tr>
                                     </thead>
                                     <tbody id="tbl_exam_pending_result_body" class="hoverTable text-left">
                                     </tbody>
@@ -77,17 +78,17 @@
                             </div>
                             <div class="tab-pane fade" id="link2" aria-expanded="true">
                                 <table id="tbl_exam_approved_result" class="table table-hover text-nowrap "
-                                    style="width:100%;">
+                                       style="width:100%;">
                                     <thead>
-                                        <tr>
-                                            <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight">Action</th>
-                                            <th class="bold-font-weight">Student Name</th>
-                                            <th class="bold-font-weight">Course Name</th>
-                                            <th class="bold-font-weight">Batch</th>
-                                            <th class="bold-font-weight">Module</th>
-                                            <th class="bold-font-weight">Grade</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="bold-font-weight">No</th>
+                                        <th class="bold-font-weight">Action</th>
+                                        <th class="bold-font-weight">Student Name</th>
+                                        <th class="bold-font-weight">Course Name</th>
+                                        <th class="bold-font-weight">Batch</th>
+                                        <th class="bold-font-weight">Module</th>
+                                        <th class="bold-font-weight">Grade</th>
+                                    </tr>
                                     </thead>
                                     <tbody id="tbl_exam_approved_result_body" class="hoverTable text-left">
                                     </tbody>
@@ -95,17 +96,17 @@
                             </div>
                             <div class="tab-pane fade" id="link3" aria-expanded="true">
                                 <table id="tbl_exam_rejected_result" class="table table-hover text-nowrap "
-                                    style="width:100%;">
+                                       style="width:100%;">
                                     <thead>
-                                        <tr>
-                                            <th class="bold-font-weight">No</th>
-                                            <th class="bold-font-weight">Action</th>
-                                            <th class="bold-font-weight">Student Name</th>
-                                            <th class="bold-font-weight">Course Name</th>
-                                            <th class="bold-font-weight">Batch</th>
-                                            <th class="bold-font-weight">Module</th>
-                                            <th class="bold-font-weight">Grade</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="bold-font-weight">No</th>
+                                        <th class="bold-font-weight">Action</th>
+                                        <th class="bold-font-weight">Student Name</th>
+                                        <th class="bold-font-weight">Course Name</th>
+                                        <th class="bold-font-weight">Batch</th>
+                                        <th class="bold-font-weight">Module</th>
+                                        <th class="bold-font-weight">Grade</th>
+                                    </tr>
                                     </thead>
                                     <tbody id="tbl_exam_rejected_result_body" class="hoverTable text-left">
                                     </tbody>
@@ -127,7 +128,7 @@
         var pending_datatable;
         var approved_datatable;
         var rejected_datatable;
-        $(document).ready(function() {
+        $(document).ready(function () {
             localStorage.setItem("course_type", "da_2");
             pending_datatable = $('#tbl_exam_pending_result').DataTable({
                 processing: true,
@@ -136,7 +137,7 @@
                 ajax: {
                     url: BACKEND_URL + "/filter_exam_register",
                     type: "POST",
-                    data: function(d) {
+                    data: function (d) {
                         d.grade = 0,
                             d.course_code = '2',
                             d.name = "",
@@ -145,11 +146,11 @@
 
                 },
                 columns: [{
-                        data: null,
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
                     {
                         data: 'action',
                         name: 'action',
@@ -187,7 +188,7 @@
                 ajax: {
                     url: BACKEND_URL + "/filter_exam_register",
                     type: "POST",
-                    data: function(d) {
+                    data: function (d) {
                         d.grade = 1,
                             d.course_code = '2',
                             d.name = "",
@@ -196,11 +197,11 @@
 
                 },
                 columns: [{
-                        data: null,
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
                     {
                         data: 'action',
                         name: 'action',
@@ -238,7 +239,7 @@
                 ajax: {
                     url: BACKEND_URL + "/filter_exam_register",
                     type: "POST",
-                    data: function(d) {
+                    data: function (d) {
                         d.grade = 2,
                             d.course_code = '2',
                             d.name = "",
@@ -247,11 +248,11 @@
 
                 },
                 columns: [{
-                        data: null,
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }
+                },
                     {
                         data: 'action',
                         name: 'action',
@@ -282,8 +283,8 @@
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
 
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-                $.each($.fn.dataTable.tables(true), function() {
+            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                $.each($.fn.dataTable.tables(true), function () {
                     $(this).DataTable()
                         .columns.adjust();
                 });

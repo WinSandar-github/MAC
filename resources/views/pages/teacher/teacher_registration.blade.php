@@ -7,19 +7,20 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => 'membership',
     'elementActive' => 'teacher_registration'
 ])
 
 @section('content')
     <div class="content">
-        <div class="row">
+        {{--<div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('teacher_registration') }}
             </div>
-        </div>
+        </div>--}}
         <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
@@ -73,7 +74,7 @@
                                                 <th class="bold-font-weight" >No</th>
                                                 <th class="bold-font-weight" >Action</th>
                                                 <th class="bold-font-weight" >Teacher Name</th>
-                                                <th class="bold-font-weight" >Email</th>     
+                                                <th class="bold-font-weight" >Email</th>
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Register Date</th>
@@ -368,7 +369,7 @@
                     d.status    = 0,
                     d.initial_status= 0
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -403,7 +404,7 @@
                     d.status    = 1,
                     d.initial_status= 0
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -436,7 +437,7 @@
                     d.status    = 2,
                     d.initial_status= 0
                 }
-            
+
             },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -564,5 +565,5 @@
         
     });
     </script>
-    
+
 @endpush

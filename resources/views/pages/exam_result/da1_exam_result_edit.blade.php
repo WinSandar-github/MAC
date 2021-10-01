@@ -1,11 +1,12 @@
 @extends('layouts.app', [
 'class' => '',
+'parentElement' => 'exam_result',
 'elementActive' => 'da1_exam_result_edit'
 ])
 
 @section('content')
     <div class="content">
-        
+
         {{-- <div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('exam_result_list') }}

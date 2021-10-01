@@ -1,15 +1,17 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => 'membership',
     'elementActive' => 'cpa_ff_registration_list'
 ])
 @section('content')
 <div class="content">
     @include('flash-message')
-    <div class="row">
+
+    {{--<div class="row">
         <div class="col-md-12">
         {{ Breadcrumbs::render('cpa_ff_registration_list') }}
         </div>
-    </div>
+    </div>--}}
 
     <div class="row">
         <div class="col-md-12 text-center">

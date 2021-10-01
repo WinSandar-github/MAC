@@ -8,6 +8,7 @@
 
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'user_register'
 ])
 
@@ -414,10 +415,10 @@
     $(document).ready(function (e) {
        $('#image').change(function(){
         let reader = new FileReader();
-        reader.onload = (e) => { 
-            $('#preview-image-before-upload').attr('src', e.target.result); 
+        reader.onload = (e) => {
+            $('#preview-image-before-upload').attr('src', e.target.result);
         }
-        reader.readAsDataURL(this.files[0]); 
+        reader.readAsDataURL(this.files[0]);
        });
 
         $("input[name='date_of_birth']").flatpickr({

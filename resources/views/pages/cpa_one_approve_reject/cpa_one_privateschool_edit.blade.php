@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'cpa_one_registration_list'
 ])
 
@@ -9,17 +10,17 @@
     <div class="content">
         @include('flash-message')
         <div class="row">
-            <div class="col-md-12">   
+            <div class="col-md-12">
             {{ Breadcrumbs::render('cpa_one_privateschool_edit') }}
             </div>
-        </div>       
+        </div>
 
         <div class="row">
             <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card">
-                        
+
                         <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 ">
@@ -52,10 +53,10 @@
                                     </div>
                                 </div>
 
-                                
+
 
                                 <h5 class="border-bottom pb-2 mt-4" style="font-weight:bold">Registration Information</h5>
-                                
+
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Direct Access No</p>
@@ -96,7 +97,7 @@
                                         <span id="fail_exam"></span>
                                     </div>
                                 </div>
-                                
+
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Resigned</p>
@@ -137,11 +138,11 @@
                                         <span id="entrance_exam_no"></span>
                                     </div>
                                 </div> -->
-                                
-                                <!-- End CPA_FF Info -->                               
+
+                                <!-- End CPA_FF Info -->
 
                             </div>
-                            
+
                             <div class="col-md-8">
                                 <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">Basic Information Of Private School Student</h5>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -240,7 +241,7 @@
                                         <p class="ml-2 text-bold" style="font-weight:bold">Education Level</p>
                                     </div>
                                     <div class="col-md-6">
-                                        <span id="education"></span> 
+                                        <span id="education"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -270,15 +271,15 @@
 
                                 <input type="hidden" name="cpa_one_student_id" >
 
-                                <div class="row mt-5 justify-content-center"> 
+                                <div class="row mt-5 justify-content-center">
                                     <button type="submit" name="save" class="btn btn-primary" onclick="approveCPAOneStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
                                     <button type="submit" name="save" class="btn btn-danger"  onclick="rejectCPAOneStudent()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                 </div>
-                                
+
                             </div>
                         </div>
-                                            
+
                         </div>
                     </div>
                 </form>
@@ -286,7 +287,7 @@
         </div>
     </div>
 
-   
+
 
 
 @endsection
@@ -294,7 +295,7 @@
 @push('scripts')
 <script>
     loadCPAOnePrivateSchoolStudentData();
-    
+
 
 </script>
 @endpush

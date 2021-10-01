@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'papp_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -131,12 +132,12 @@
                                                 <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                             </div>
                                         </div>
-                                
+
                             </div>
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -161,12 +162,12 @@
 
 @push('scripts')
 <script>
-    
+
     $(document).ready(function (e) {
         createDatepicker("pappinitial_dateone");
         createDatepicker("pappinitial_datetwo");
         createDatepicker("pappinitial_datethree");
-        
+
     });
 
     </script>

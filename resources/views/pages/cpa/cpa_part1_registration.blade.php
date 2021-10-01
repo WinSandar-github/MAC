@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'cpa_part1_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="col-md-9">
@@ -35,13 +36,13 @@
                                         <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form4') }}">မှတ်ပုံတင်ခွင့်လျှောက်လွှာ(နှစ်ဟောင်းမှတက်ခွင့်ရသူများ)</a>
                                         <a class="nav-link active" href="{{ route('page.index', 'cpa-part1-register-form5') }}">သင်တန်းစာမေးပွဲဖြေဆိုခွင့်လျှောက်လွှာ</a>
                                     </nav>
-                                </div>	
-                                
+                                </div>
+
                             </div>
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>

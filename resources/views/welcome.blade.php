@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => 'login-page',
+    'parentElement' => '',
     'elementActive' => ''
 ])
 
