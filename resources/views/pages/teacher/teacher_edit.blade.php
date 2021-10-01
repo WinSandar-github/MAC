@@ -12,7 +12,7 @@
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right card">
-                <li class="breadcrumb-item active">ဆရာပုံစံ-၁</li>
+                <li class="breadcrumb-item active"><span class='form-name'></span></li>
             </ol>
         </div>
     </div>  
@@ -353,7 +353,7 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <textarea class="form-control " name="reason" rows="100" cols='100' required></textarea>
+                    <textarea class="form-control " id="reason" rows="100" cols='100' required></textarea>
                 </div>
 
                 <!-- Modal footer -->

@@ -51,6 +51,7 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('payment_method')->nullable();
             $table->string('payment_date')->nullable();
             $table->text('reason')->nullable();
+            $table->integer('initial_status')->default(0);
             $table->timestamps();
         });
     }
