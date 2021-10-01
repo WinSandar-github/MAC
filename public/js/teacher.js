@@ -179,13 +179,18 @@ function getTeacherInfos(){
                 if(value.payment_method!=null){
                     $('.period').show();
                     var now=new Date();
-                    var period_date=value.renew_date.split('-');
+                    var period_date=value.payment_date.split('-');
                     var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
                     $('#period_time').text(period+" to 31-12-"+now.getFullYear());
                     $("#payment_date").val(value.payment_date);
                 }
                 $('#student_info_id').val(value.student_info.id);
                 $('#teacher_id').val(value.id);
+                if(value.initial_status==0){
+                    $('.form-name').append('ဆရာပုံစံ-၁');
+                }else{
+                    $('.form-name').append('ဆရာပုံစံ-၂');
+                }
             });
            
             
@@ -220,9 +225,10 @@ function rejectTeacherRegister(){
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
     var teacher_id=$('#teacher_id').val();
+    var reason=$("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/approve_teacher_register",
-        data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id,
+        data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id+"&reason="+reason,
         type: 'post',
         success: function(result){
             successMessage('You have rejected that user!');
