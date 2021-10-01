@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'mentor_registration'
 ])
 
@@ -14,17 +15,17 @@
     <div class="content">
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
-									
+
                             <div >
-                                        
+
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၁။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('အမည်(မြန်မာ/အင်္ဂလိပ်)') }}</label>
@@ -82,9 +83,9 @@
                                                     <input type="text" name="father_name" class="form-control" placeholder="" >
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
-                                      
+
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('လူမျိူး/ဘာသာ') }}</label>
@@ -94,7 +95,7 @@
                                                 </div>
                                             </div>
 	                                  </div>
-	                                  
+
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
@@ -104,8 +105,8 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                  
-                                        
+
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း') }}</label>
@@ -115,7 +116,7 @@
                                                 </div>
                                             </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('RA/CPA အောင်မြင်သောနှစ်/ ကိုယ်ပိုင်အမှတ်') }}</label>
@@ -228,14 +229,14 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၁၈။') }}</label>
                                             <label class="col-md-8 col-form-label">{{ __('လက်ရှိလက်ခံဆောင်ရွက်စစ်ဆေးပေးရသည့်လုပ်ငန်းများ') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-2"></div>
                                                 <div class="col-md-5 col-form-label">
                                                     <div class="form-group">
                                                     (က)အများပိုင်ကုမ္ပဏီ
-                                                       
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -386,7 +387,7 @@
                                             <div class="col-md-2">
                                                     <input type="radio" name="" class="" value="no"> No
                                             </div>
-	                                        
+
 	                                    </div>
                                         <div class="row">
                                         <label class="col-md-1 col-form-label"></label>
@@ -400,21 +401,21 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၂၆။') }}</label>
                                             <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
-                                            
+
                                         </div>
-                                        
-                                        
+
+
                                         <div class="row">
                                         <div class="col-md-11 d-md-flex justify-content-md-end">
                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                         </div>
                                     </div>
-                                
+
                             </div>
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -439,14 +440,14 @@
 
 @push('scripts')
 <script>
-    
+
     $(document).ready(function (e) {
         createDatepicker("mentor_birthone");
         createDatepicker("mentor_dateone");
         createDatepicker("mentor_datetwo");
         createDatepicker("mentor_datethree");
         createDatepicker("mentor_datefour");
-        
+
     });
 
 </script>

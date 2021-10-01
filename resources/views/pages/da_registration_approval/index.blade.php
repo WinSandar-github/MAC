@@ -1,6 +1,7 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'index'
+    'parentElement' => '',
+    'elementActive' => 'da_one_reg'
 ])
 
 @section('content')
@@ -8,11 +9,11 @@
 
     <div class="content">
         @include('flash-message')
-        <div class="row">
-            {{--<div class="col-md-12">
+        {{--<div class="row">
+            --}}{{--<div class="col-md-12">
                 {{ Breadcrumbs::render('DA 1 Registration List') }}
-            </div>--}}
-        </div>
+            </div>--}}{{--
+        </div>--}}
 
         <div class="row">
             <div class="col-md-12 text-center">

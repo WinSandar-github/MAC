@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'papp_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="col-md-9">
@@ -33,13 +34,13 @@
                                             <a class="nav-link active" href="{{ route('page.index', 'papp_register_initial_form2') }}">အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းလုပ်ကိုင်သူများ ဖြည့်သွင်းပေးရန်အချက်များ</a>
                                             <a class="nav-link active" href="{{ route('page.index', 'papp_register_initial_form3') }}">ကိုယ်တိုင်ခံဝန်ချက်</a>
                                         </nav>
-                                </div>	
-                                
+                                </div>
+
                             </div>
 
 
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>

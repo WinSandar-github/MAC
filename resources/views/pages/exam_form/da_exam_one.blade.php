@@ -1,14 +1,15 @@
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'da_exam_one'
+    'parentElement' => 'exam_reg',
+    'elementActive' => 'da_exam_one',
 ])
 @section('content')
 <div class="content">
     @include('flash-message')
-    <div class="row">
+   {{-- <div class="row">
         <div class="col-md-12">
         </div>
-    </div>
+    </div>--}}
     <div class="row">
         <div class="col-md-12 text-center">
             <!-- <form action="" method="get" enctype="multipart/form-data"> -->
@@ -171,7 +172,7 @@
                     d.name =    "",
                     d.batch= "all"
                 }
-             
+
             },
           columns: [
               {data: null, render: function (data, type, row, meta) {
@@ -200,7 +201,7 @@
                     d.name =    "",
                     d.batch= "all"
                 }
-             
+
             },
           columns: [
               {data: null, render: function (data, type, row, meta) {
@@ -230,7 +231,7 @@
                     d.name =    "",
                     d.batch= "all"
                 }
-             
+
             },
           columns: [
               {data: null, render: function (data, type, row, meta) {

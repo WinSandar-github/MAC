@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => 'exam_reg',
     'elementActive' => 'qualified_test_list'
 ])
 
@@ -8,11 +9,11 @@
 
     <div class="content">
         @include('flash-message')
-        <div class="row">
-            <div class="col-md-12">   
+        {{--<div class="row">
+            <div class="col-md-12">
                 {{ Breadcrumbs::render('Qualified Test List') }}
             </div>
-        </div>  
+        </div> --}}
         <div class="row">
         <div class="col-md-12">
             <!-- <form action="" method="get" enctype="multipart/form-data"> -->
@@ -98,8 +99,8 @@
                                         </a>
                                     </div>
                                 --}}
-                                
-                              
+
+
                                 <table id="tbl_approved_entry_exam"class="table table-hover text-nowrap " style="width:100%;">
                                     <thead>
                                     <tr>
@@ -136,10 +137,10 @@
                 </div>
             <!-- </form> -->
         </div>
-    </div>    
+    </div>
     </div>
 
-   
+
 
 
 @endsection
@@ -156,7 +157,7 @@
                         url  : BACKEND_URL + "/get_qualifiedtest_user",
                         type : "post",
                         data :  function (d) {
-                            d.status       = 0  
+                            d.status       = 0
                         }
                     },
             columns: [
@@ -180,7 +181,7 @@
                         data :  function (d) {
                             d.status       = 1
                         }
-                    
+
                     },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -205,7 +206,7 @@
                         data :  function (d) {
                             d.status       = 2
                         }
-                    
+
                     },
             columns: [
                 {data: null, render: function (data, type, row, meta) {
@@ -229,7 +230,7 @@
             });
         });
 
-    
+
 
     });
 </script>

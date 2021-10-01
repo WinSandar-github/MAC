@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'mentor_list'
 ])
 
@@ -34,7 +35,7 @@
                                     <div class="card">
                                     <div class="card-header">
                                         <div class="row">
-                                            
+
                                                 <div class="col-md-4">
                                                     <div class="row">
                                                         <div class="col-md-1"></div>
@@ -56,7 +57,7 @@
                                                 <div class="col-md-2" style="vertical-align: top;">
                                                     <button type="submit" class="btn btn-primary btn-round">Search</button>
                                                 </div>
-                                            
+
                                         </div>
                                     </div>
                                     <div class="card-body">

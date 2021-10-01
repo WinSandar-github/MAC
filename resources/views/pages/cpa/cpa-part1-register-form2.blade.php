@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'cpa_part1_registration'
 ])
 
@@ -19,12 +20,12 @@
         </div>
             <form action="" method="post">
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card-body">
                                 <div class="row">
@@ -32,7 +33,7 @@
                                             <div class="col-md-3 text-center">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                         </div>
                                         </div><br>
@@ -102,9 +103,9 @@
 	                                              <input type="text" name="father_name" class="form-control" placeholder="အဘအမည်" >
 	                                          </div>
 	                                      </div>
-                                          
+
 	                                  </div>
-                                      
+
 	                                  <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၄။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('လူမျိူး/ဘာသာ') }}</label>
@@ -114,7 +115,7 @@
                                                 </div>
                                             </div>
 	                                  </div>
-	                                  
+
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၅။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('မွေးသဣရာဇ်') }}</label>
@@ -124,8 +125,8 @@
                                                     </div>
                                                 </div>
 	                                    </div>
-	                                  
-                                        
+
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၆။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('ပညာအရည်အချင်း') }}</label>
@@ -135,7 +136,7 @@
                                                 </div>
                                             </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၇။') }}</label>
 	                                      <label class="col-md-2 col-form-label">{{ __('ရာထူး/ဌာန/ရုံးစိုက်ရာဒေသ ') }}</label>
@@ -148,7 +149,7 @@
 	                                    <div class="row">
 	                                      <label class="col-md-1 col-form-label">{{ __('၈။') }}</label>
 	                                      <label class="col-md-3 col-form-label">{{ __('နိုင်ငံ့ဝန်ထမ်း ဟုတ်/ မဟုတ်ပါ') }}</label>
-	                                      
+
                                             <div class="col-md-2">
                                                         <input type="radio" name="" value="yes"> Yes
                                             </div>
@@ -165,21 +166,21 @@
                                                 </div>
                                             </div>
 	                                    </div>
-	                                    
+
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၁၀။') }}</label>
                                             <label class="col-md-8 col-form-label">{{ __('စာရင်းကိုင်အလုပ်သင်အဖြစ်ဆောင်ရွက်ရန်အဆိုပြုချက်{တစ်ခုကိုရွေးချယ်ရန်}') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-3"></div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                     (က)သင်တန်းကာလအတွင်းအောက်ပါအတိုင်းအလုပ်သင်ဆင်းလိုပါသည်။
-                                                       
+
                                                     </div>
                                                 </div>
-                                                
+
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4"></div>
@@ -202,44 +203,44 @@
                                                         <label>(ခ)ဒုတိယပိုင်းစာမေးပွဲအောင်မြင်ပြီးမှအလုပ်သင်ဆင်းလိုပါသည်။  </label>
                                             </div>
                                         </div>
-                                        
-                                            
+
+
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၁၁။') }}</label>
                                             <label class="col-md-8 col-form-label">{{ __('အစိုးရဌာနတွင်အလုပ်သင်ဆင်းလိုကြောင်းအဆိုပြုသူများအတွက် ပူးတွဲတင်ပြရမည့်စာရွက်စာတမ်းများ') }}</label>
-                                            
+
                                         </div>
                                             <div class="row">
                                                 <div class="col-md-3"></div>
-                                                
+
                                                 <div class="col-md-8">
                                                     <div >
                                                         <label class="form-check-label">(က)အကျင့်စာရိတ္တ ကောင်းမွန်ကြောင်းထောက်ခံချက်</label>
                                                     </div>
-                                                    
+
                                                 </div>
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-3"></div>
-                                                
+
                                                 <div class="col-md-8">
                                                     <div>
                                                         <label class="form-check-label">(ခ)ပြစ်မှုကင်းရှင်းကြောင်းထောက်ခံချက်</label>
                                                     </div>
-                                                    
+
                                                 </div>
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၁၂။') }}</label>
                                             <label class="col-md-8 col-form-label">{{ __('မှတ်ပုံတင်ရသည့်အကြောင်းအရင်း') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                                 <div class="col-md-3"></div>
                                                 <div class="col-md-4">
-                                                    
+
                                                     <label class="form-check-label">(က)ယခုနှစ်တက်ရောက်ရရှိခြင်း</label>
-                                                    
+
                                                 </div>
                                                 <div class="col-md-2">
                                                     <input type="checkbox" value="ယခုနှစ်တက်ရောက်ရရှိခြင်း">
@@ -252,7 +253,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                    <div class="form-group">
-                                                        
+
                                                         <input type="text" class="form-control">
                                                    </div>
                                             </div>
@@ -264,7 +265,7 @@
                                             </div>
                                             <div class="col-md-3">
                                                    <div class="form-group">
-                                                        
+
                                                         <input type="text" class="form-control">
                                                    </div>
                                             </div>
@@ -273,7 +274,7 @@
                                             <div class="col-md-3"></div>
                                             <div class="col-md-4">
                                                    <label>(ခ)သင်တန်းတက်ရောက်ခဲ့ပြီးစာမေးပွဲဝင်ရောက်မဖြေဆိုခြင်း</label>
-                                                   
+
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" value="သင်တန်းတက်ရောက်ခဲ့ပြီးစာမေးပွဲဝင်ရောက်မဖြေဆိုခြင်း">
@@ -283,7 +284,7 @@
                                             <div class="col-md-3"></div>
                                             <div class="col-md-4">
                                                    <label>(ဂ)သင်တန်းတက်ရောက်ချိန် ၆၀% မပြည့်ခြင်း</label>
-                                                   
+
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" value="သင်တန်းတက်ရောက်ချိန် ၆၀% မပြည့်ခြင်း">
@@ -293,7 +294,7 @@
                                             <div class="col-md-3"></div>
                                             <div class="col-md-4">
                                                    <label>(ဃ)စာမေးပွဲကျရှုံးခြင်း</label>
-                                                   
+
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" value="စာမေးပွဲကျရှုံးခြင်း">
@@ -303,7 +304,7 @@
                                             <div class="col-md-3"></div>
                                             <div class="col-md-4">
                                                    <label>(င)သင်တန်းမှနုတ်ထွက်ခဲ့ခြင်း</label>
-                                                   
+
                                             </div>
                                             <div class="col-md-2">
                                                 <input type="checkbox" value="သင်တန်းမှနုတ်ထွက်ခဲ့ခြင်း">
@@ -312,7 +313,7 @@
                                         <div class="row">
                                             <div class="col-md-3"></div>
                                             <label class="col-md-2 col-form-label">{{ __('(စ)ဖြေဆိုမည့် Module') }}</label>
-                                            
+
                                             <div class="col-md-2">
                                                     <input type="checkbox" value="Module 1">
                                                     <label class="form-check-label">Module 1 </label>
@@ -329,7 +330,7 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၁၃။') }}</label>
                                             <label class="col-md-8 col-form-label">{{ __('အပိုဒ် ၁၁ ပါ(ခ)/(ဂ)/(ဃ)/(င) အတွက်') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
 	                                      <label class="col-md-1 col-form-label"></label>
@@ -343,12 +344,12 @@
                                         <div class="row">
                                             <label class="col-md-1 col-form-label">{{ __('၁၄။') }}</label>
                                             <label class="col-md-4 col-form-label">{{ __('အထက်ဖော်ပြပါအချက်အလက်အားလုံးမှန်ကန်ပါသည်။') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-8 col-form-label">{{ __('မြန်မာနိုင်ငံစာရင်းကောင်စီကချမှတ်သည့်စည်းကမ်းများကို လိုက်နာမည်ဖြစ်ကြောင်း ဝန်ခံလျှက် လျှောက်ထားအပ်ပါသည်။') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
@@ -358,12 +359,12 @@
                                                     <input type="text" name="cpaone_datetwo" placeholder="dd-mm-yyyy" class="form-control" >
                                                 </div>
                                             </div>
-                                           
+
 	                                    </div>
                                         <div class="row">
                                             <label class="col-md-1 col-form-label"></label>
                                             <label class="col-md-10 col-form-label">{{ __('မှတ်ချက်။	လက်မှတ်ရပြည်သူ့စာရင်းကိုင်မှတ်ပုံတင်ခွင့်(လျှောက်လွှာကြေး ၁၀၀၀ကျပ်၊မှတ်ပုံတင်ကြေး ၁၀၀၀၀ကျပ်၊သင်တန်းကြေး ၃၅၀၀၀ကျပ်)') }}</label>
-                                            
+
                                         </div>
                                         <div class="row">
                                             <div class="col-md-11 d-md-flex justify-content-md-end">
@@ -372,7 +373,7 @@
                                         </div>
                             </div>
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>
@@ -397,7 +398,7 @@
 
 @push('scripts')
 <script>
-    
+
     $(document).ready(function (e) {
         createDatepicker("cpaone_dateone");
         createDatepicker("cpaone_datetwo");

@@ -25,10 +25,7 @@ class CreateMembershipsTable extends Migration
             $table->bigInteger('late_fee')->nullable();
             $table->bigInteger('late_feb_fee')->nullable();
             $table->bigInteger('expire_fee')->nullable();
-            $table->bigInteger('cpa_subject_fee')->nullable();
-            $table->bigInteger('da_subject_fee')->nullable();
-            $table->bigInteger('renew_cpa_subject_fee')->nullable();
-            $table->bigInteger('renew_da_subject_fee')->nullable();
+            $table->bigInteger('reconnected_fee')->nullable();
             $table->timestamps();
         });
     }

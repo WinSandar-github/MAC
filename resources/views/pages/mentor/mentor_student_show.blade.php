@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'mentor_list'
 ])
 
@@ -106,14 +107,14 @@
                             <p class="ml-2" style="font-weight:bold" align="left">NRC Front</p>
                         </div>
                         <div class="col-md-4 nrc_front">
-                          
+
                         </div>
 
                         <div class="col-md-2">
                           <p class="ml-2" style="font-weight:bold" align="left">NRC Back</p>
                         </div>
                         <div class="col-md-4 nrc_back">
-                          
+
                         </div>
                       </div>
                     </div>
@@ -183,7 +184,7 @@
                             <p class="ml-2" style="font-weight:bold" align="left">Attachment</p>
                         </div>
                         <div class="col-md-3 papp_attachment">
-                          
+
                         </div>
                       </div>
                     </div>
@@ -272,7 +273,7 @@
                             <p class="ml-2" style="font-weight:bold" align="left">Attachment</p>
                         </div>
                         <div class="col-md-3 attachment_file">
-                          
+
                         </div>
                       </div>
                     </div>

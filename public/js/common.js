@@ -1,7 +1,7 @@
 // var BACKEND_URL = "http://localhost:8000/api";
 // var FRONTEND_URL = "http://localhost:8000";
 // var PDF_URL = "http://localhost:8000";
-
+//
 var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
 var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
 var PDF_URL = "https://demo.aggademo.me/MAC/public";
@@ -915,4 +915,13 @@ function numberRows() {
     $('table tbody tr').each(function (idx) {
         $(this).children(":eq(0)").html(idx + 1);
     });
+}
+function thousands_separators(num) {
+    var num_parts = num.toString().split(".");
+    num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return num_parts.join(".");
+}
+function removeComma(number){
+    var number_part=parseInt(number.split(',').join(""));
+    return number_part;
 }
