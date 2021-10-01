@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'Gov Article_list'
 ])
 <!-- Bootstrap CSS -->
@@ -98,7 +99,7 @@
                                             <p class="ml-2" style="font-weight:bold" align="left">Certificate</p>
                                         </div>
                                         <div class="col-md-3 certificate">
-                                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -133,14 +134,14 @@
                                         <p class="ml-2" style="font-weight:bold" align="left">NRC Front</p>
                                     </div>
                                     <div class="col-md-4 nrc_front">
-                                    
+
                                     </div>
 
                                     <div class="col-md-2">
                                     <p class="ml-2" style="font-weight:bold" align="left">NRC Back</p>
                                     </div>
                                     <div class="col-md-4 nrc_back">
-                                    
+
                                     </div>
                                 </div>
                             </div>
@@ -213,7 +214,7 @@
                                 <input type="text" name="home_address" id="home_address" class="form-control" readonly>
                             </div>
                         </div>
-                            
+
                         <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၁။') }}</span>ကြီးပြင်းရာမြို့နယ်</label>
                             <div class="col-md-9">
@@ -268,7 +269,7 @@
                                         <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
                                     </div>
                                     <div class="col-md-3 mt-1 labor_registration_attach">
-                                    
+
                                     </div>
                                 </div>
                             </div>
@@ -282,7 +283,7 @@
                                         <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
                                     </div>
                                     <div class="col-md-3 mt-1 recommend_attach">
-                                    
+
                                     </div>
                                 </div>
                             </div>
@@ -296,7 +297,7 @@
                                         <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
                                     </div>
                                     <div class="col-md-3 mt-1 police_attach">
-                                    
+
                                     </div>
                                 </div>
                             </div>
@@ -337,7 +338,7 @@
 <script>
 
   $(document).ready(function (e) {
-    
+
   });
 
 </script>

@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'audit_firm_registration'
 ])
 
@@ -14,20 +15,20 @@
     <div class="content">
         <div class="row mb-3">
             <div class="col-md-12">
-               
+
                 {{ Breadcrumbs::render('audit_firm_registration') }}
- 
+
 
             </div>
         </div>
             <form >
             @csrf
-            
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                             <div class="card-header ">
-                                
+
                             </div>
                             <div class="card_body">
                                 <ul class="nav nav-tabs" role="tablist">
@@ -44,47 +45,47 @@
                                 <div class="tab-space tab-content tab-no-active-fill-tab-content mt-4">
 	                                <div class="tab-pane fade show active m-5" id="link1" aria-expanded="true">
                                         <div class="row">
-                                            
+
                                             <div class="col-md-9">
                                                 <nav class="nav flex-column">
                                                     <a class="nav-link active" href="{{ route('page.index', 'audit-firm-initial-accountancy') }}"> Accountancy Firm Information</a>
-                                                    
-                                                    
+
+
                                                 </nav>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade m-5" id="link2" aria-expanded="true">
                                         <div class="row">
-                                            
+
                                             <div class="col-md-9">
                                                 <nav class="nav flex-column">
                                                     <a class="nav-link active" href="{{ route('page.index', 'audit-firm-renew-accountancy') }}"> Accountancy Firm</a>
-                                                   
-                                                    
+
+
                                                 </nav>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="tab-pane fade m-5" id="link3" aria-expanded="true">
                                         <div class="row">
-                                            
+
                                             <div class="col-md-9">
                                                 <nav class="nav flex-column">
                                                     <a class="nav-link active" href="{{ route('page.index', 'audit-firm-list') }}"> Audit Firm List</a>
-                                                   
-                                                    
+
+
                                                 </nav>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                             </div>
-                                
-                            
+
+
                             <div class="card-footer ">
-                                
+
                             </div>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 @extends('layouts.app', [
 'class' => '',
+'parentElement' => 'exam_result',
 'elementActive' => 'cpa2_exam_result_edit'
 ])
 

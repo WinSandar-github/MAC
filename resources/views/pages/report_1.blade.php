@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'report_1'
 ])
 
@@ -36,7 +37,7 @@
                                         <th>ကျား</th>
                                         <th>မ</th>
                                         <th>ပေါင်း</th>
-                                    </tr>  
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     <tr>

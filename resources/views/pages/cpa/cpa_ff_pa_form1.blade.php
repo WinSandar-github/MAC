@@ -7,6 +7,7 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'cpa_ff_pa'
 ])
 
@@ -23,14 +24,14 @@
                 <div class="col-md-12">
                     <div class="card custom-border-top card-stats">
                         <div class="card-header ">
-                            
+
                         </div>
                         <div class="card-body p-5">
-                            <div class="row">                                        
-                                        <label class="col-md-12 col-form-label text-center" style="font-size: 18px; font-weight: bold;">REPUBLIC OF THE UNION OF MYANMAR</label>                                        
+                            <div class="row">
+                                        <label class="col-md-12 col-form-label text-center" style="font-size: 18px; font-weight: bold;">REPUBLIC OF THE UNION OF MYANMAR</label>
                                     </div>
 
-                                    <div class="row">                                        
+                                    <div class="row">
                                         <label class="col-md-12 col-form-label text-center" style="font-size: 18px; font-weight: bold;">MYANMAR ACCOUNTANCY COUNCIL</label>
                                     </div>
 
@@ -39,18 +40,18 @@
                                         <div class="col-md-4 text-center">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                         </div>
-                                        <div class="col-md-4"></div>                                
-                                    </div><br> 
+                                        <div class="col-md-4"></div>
+                                    </div><br>
 
-                                    <div class="row">                                        
-                                        <label class="col-md-12 col-form-label text-center" style="font-size: 18px; font-weight: bold;">Certificate of Certified Public Accountant (Full-Fledged)</label>                                        
-                                    </div>
-                                    
-                                    <div class="row">                                        
-                                        <label class="col-md-12 col-form-label text-center" style="font-size: 15px; font-weight: bold;">(NOT FOR AUDID AND ASSUARNCE SERVICES)</label>                                        
+                                    <div class="row">
+                                        <label class="col-md-12 col-form-label text-center" style="font-size: 18px; font-weight: bold;">Certificate of Certified Public Accountant (Full-Fledged)</label>
                                     </div>
 
-                                    <div class="row mt-5">                                                                                
+                                    <div class="row">
+                                        <label class="col-md-12 col-form-label text-center" style="font-size: 15px; font-weight: bold;">(NOT FOR AUDID AND ASSUARNCE SERVICES)</label>
+                                    </div>
+
+                                    <div class="row mt-5">
                                         <div class="col-md-4">
                                             <div class="row">
                                                 <label class="col-md-4 col-form-label">{{ __('Serial No:') }}</label>
@@ -59,7 +60,7 @@
                                                         <input type="text" name="serial_no" class="form-control" placeholder="Serial No" required>
                                                     </div>
                                                 </div>
-                                            </div>                                    
+                                            </div>
                                         </div>
                                         <div class="col-md-4" style="margin-left: 316px;">
                                             <div class="row">
@@ -69,7 +70,7 @@
                                                         <input type="text" name="register_date" class="form-control" placeholder="dd/mm/yyyy" required>
                                                     </div>
                                                 </div>
-                                            </div>                                    
+                                            </div>
                                         </div>
                                     </div></br>
 
@@ -93,46 +94,46 @@
                                         </div>
                                     </div>
 
-                                    <div class="row">   
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <label class=" col-form-label " >{{ __(',has been registered as Certified Public Accountant (Full-Fledged) under section 27 of the Myanmar Accountancy Council Law.') }}</label>
-                                        </div>                           
+                                        </div>
                                     </div>
 
-                                    <div class="row">   
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <label class=" col-form-label " >{{ __('This certificate is valid for the years mentioned on the reverse.') }}</label>
-                                        </div>                           
+                                        </div>
                                     </div>
-                                    <div class="row mt-5">                                        
+                                    <div class="row mt-5">
                                         <div class="col-md-3 text-center">
                                             <img id="preview-image-before-upload" src="{{ asset('img/logo/no_photo.png') }}" alt="preview image" style="max-height: 150px;">
                                             <div class=" mt-3 mb-3 col-auto">
-                                                <input type="file" class="form-control" />                                            
+                                                <input type="file" class="form-control" />
                                             </div>
                                         </div>
-                                        <div class="col-md-5">                                            
-                                                                                        
+                                        <div class="col-md-5">
+
                                         </div>
                                         <div class="col-md-4 pt-5">
                                             <div class="form-group">
                                                 <input type="text" name="" class="form-control" placeholder="Registrar Name" required>
                                             </div>
                                         </div>
-                                    </div></br> 
+                                    </div></br>
 
-                                    <div class="row mt-5">                                        
-                                        <label class="col-md-12 col-form-label text-center" style="font-size: 16px; font-weight: bold;">YEARS VALID FOR REGISTRATION, NOT FOR AUDIT AND ASSURANCE SERVICE</label>                                        
+                                    <div class="row mt-5">
+                                        <label class="col-md-12 col-form-label text-center" style="font-size: 16px; font-weight: bold;">YEARS VALID FOR REGISTRATION, NOT FOR AUDIT AND ASSURANCE SERVICE</label>
                                     </div>
 
-                                    <div class="row"> 
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <table class="table cpa-ff table-bordered">
                                                 <thead class="text-center">
                                                     <tr>
                                                         <th class="less-font-weight" rowspan="2" width="">Sr No.</th>
                                                         <th class="less-font-weight" colspan="2" width="">Period</th>
-                                                        
+
                                                         <th class="less-font-weight" rowspan="2" width="">Receipt No. and date for which registration fees paid</th>
                                                         <th class="less-font-weight" rowspan="2" width="">Signature of the Registrar and Office Seal</th>
                                                         <th rowspan="2"><input type="button" class="btn btn-primary btn-sm btn-plus" onclick='addRowCPAFF("cpa-ff")' value="+"></th>
@@ -140,11 +141,11 @@
                                                     <tr>
                                                         <th class="less-font-weight" width="">From</th>
                                                         <th class="less-font-weight" width="">To</th>
-                                                        
+
                                                     </tr>
                                                 </thead>
-                                                <tbody>                                                   
-                                                    
+                                                <tbody>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -154,11 +155,11 @@
                                         <div class="col-md-12 d-md-flex justify-content-md-end">
                                             <button type="submit" class="btn btn-info btn-round">{{ __('Save') }}</button>
                                         </div>
-                                    </div>   
+                                    </div>
                         </div>
 
-                        
-                        
+
+
                     </div>
                 </div>
             </div>
@@ -182,14 +183,14 @@
 @push('scripts')
 <script type="text/javascript">
     $(document).ready(function (e) {
-         
-           
+
+
        $('#image').change(function(){
             let reader = new FileReader();
-            reader.onload = (e) => { 
-                $('#preview-image-before-upload').attr('src', e.target.result); 
+            reader.onload = (e) => {
+                $('#preview-image-before-upload').attr('src', e.target.result);
             }
-            reader.readAsDataURL(this.files[0]); 
+            reader.readAsDataURL(this.files[0]);
        });
 
        $("input[name='register_date']").flatpickr({
@@ -222,8 +223,8 @@
                 dateFormat: "d-m-Y",
         });
 
-       
+
     });
     </script>
-    
+
 @endpush

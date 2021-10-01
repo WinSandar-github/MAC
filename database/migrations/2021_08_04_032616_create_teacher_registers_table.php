@@ -48,6 +48,8 @@ class CreateTeacherRegistersTable extends Migration
             $table->integer('school_id')->nullable();
             $table->integer('school_type');
             $table->string('payment_method')->nullable();
+            $table->string('payment_date')->nullable();
+            $table->text('reason')->nullable();
             $table->timestamps();
         });
     }

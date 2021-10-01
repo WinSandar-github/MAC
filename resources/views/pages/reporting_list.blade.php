@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'reporting_list'
 ])
 
@@ -47,7 +48,7 @@
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('cpa_ff_report1')}}" class="btn btn-block sub-btn-col  btn-flat p-3" name="">
                                             ကနဦးမှတ်ပုံတင်ခွင့်ပြုသောရက်စွဲ (Initial Registration Date) အရ <br>PA လုပ်သက်အများအနည်းအလိုက် PA List ကိုထုတ်ကြည့်ခြင်း။
-                                        </a>            
+                                        </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('cpa_ff_report2')}}" class="btn btn-block sub-btn-col  btn-flat p-3" name="">
@@ -227,7 +228,7 @@
                                 </button>
                             </div>
                         </div>
-                       
+
                         <div class="card card-stats arrow-up-left" id="cpa_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
                             <h5 class="card-header">CPA Section</h5><hr class="header_hr">
                             <div class="card-body ">
@@ -357,7 +358,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <a target="_blank" href="{{url('firm_article_report3')}}" class="btn btn-block sub-btn-col  btn-flat p-3" name="">
-                                                    အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်း <br>(သို့မဟုတ်) Audit Firm Name အောက်တွင် အလုပ်သင်ဆင်းနေသူများစာရင်း။<br> ( CPA I, CPA II , CPA Pass, CPA QT အလိုက်/ အလုပ်သင် ကာလ <br>သတ်မှတ်ချက်အလိုက်-ကိုယ်ပိုင်အမှတ်/နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ် အပါအဝင်) 
+                                                    အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်း <br>(သို့မဟုတ်) Audit Firm Name အောက်တွင် အလုပ်သင်ဆင်းနေသူများစာရင်း။<br> ( CPA I, CPA II , CPA Pass, CPA QT အလိုက်/ အလုပ်သင် ကာလ <br>သတ်မှတ်ချက်အလိုက်-ကိုယ်ပိုင်အမှတ်/နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ် အပါအဝင်)
                                                 </a>
                                             </div>
                                             <div class="col-md-6">
@@ -710,7 +711,7 @@
                                             Da Two တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
                                         </a>
                                     </div>
-                                   
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -723,7 +724,7 @@
                                             Cpa Two တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
                                         </a>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -759,7 +760,7 @@
                                             Da Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
                                         </a>
                                     </div>
-                                   
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -772,7 +773,7 @@
                                             Cpa Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
                                         </a>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -782,7 +783,7 @@
                                     စာမေးပွဲအောင်စာရင်း ထုတ်ပြန်ခြင်း
                                 </button>
                             </div>
-                           
+
                         </div>
                         <div class="card card-stats arrow-up-right" id="generate_exam_result_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
                             <h5 class="card-header">စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန့်ခြင်း</h5><hr class="header_hr">
@@ -816,7 +817,7 @@
                                             Da Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
                                         </a>
                                     </div>
-                                   
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -829,7 +830,7 @@
                                             Cpa Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
                                         </a>
                                     </div>
-                                   
+
                                 </div>
                             </div>
                         </div>
@@ -940,7 +941,7 @@
                 $('#generate_sr_personal_card').hide();
                 $('#generate_exam_card').hide();
 
-                
+
             })
 
             $("button[name=firm_name_btn]").click( function(){
@@ -1080,7 +1081,7 @@
 
 
             })
-            
+
             $("button[name=cpa_qulified_test_btn]").click( function(){
                 if(clicks % 2 == 0){
                     $("#cpa_qulified_test_card").show();

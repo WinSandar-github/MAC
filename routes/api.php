@@ -351,3 +351,5 @@ Route::post('/filter_resign_article','ArticleController\ArticleController@Filter
 Route::patch('/approve_resign_article/{id}', 'ArticleController\ArticleController@approveResign');
 Route::patch('/reject_resign_article/{id}', 'ArticleController\ArticleController@rejectResign');
 Route::get('/resign_article_show/{id}', 'ArticleController\ArticleController@showResignArticle');
+
+Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');

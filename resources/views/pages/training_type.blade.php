@@ -1,5 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => '',
     'elementActive' => 'training_type'
 ])
 
@@ -8,7 +9,7 @@
         @include('flash-message')
         <div class="row">
             <div class="col-md-12">
-                {{ Breadcrumbs::render('training_type') }} 
+                {{ Breadcrumbs::render('training_type') }}
             </div>
         </div>
         <div class="row">
@@ -30,7 +31,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($training_types as $training_type) 
+                                    @foreach ($training_types as $training_type)
                                         <tr>
                                             <td>{{ $training_type->id }}</td>
                                             <td>{{ $training_type->training_type_name }}</td>

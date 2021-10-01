@@ -99,13 +99,14 @@ class MembershipController extends Controller
         // }
         $membership = Membership::find($id);
         $membership->membership_name          = $request->membership_name;
-        $membership->requirement         = $request->requirement;
-         $membership->description          = $request->description;
+        $membership->requirement              = $request->requirement;
+        $membership->description              = $request->description;
         $membership->form_fee                 = $request->form_fee;
         $membership->registration_fee         = $request->registration_fee;
         $membership->yearly_fee               = $request->yearly_fee;
         $membership->renew_fee                = $request->renew_fee;
         $membership->late_fee                 = $request->late_fee;
+        $membership->reconnected_fee          = $request->reconnected_fee;
         $membership->save();
 
         return response()->json([

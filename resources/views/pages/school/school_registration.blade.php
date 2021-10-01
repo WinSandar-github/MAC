@@ -7,16 +7,17 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
+    'parentElement' => 'membership',
     'elementActive' => 'school_registration'
 ])
 
 @section('content')
     <div class="content">
-        <div class="row">
+        {{--<div class="row">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('school_registration') }}
             </div>
-        </div>
+        </div>--}}
         <form action="" method="post">
         @csrf
             <div class="row">

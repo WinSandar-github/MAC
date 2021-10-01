@@ -1,5 +1,6 @@
 @extends('layouts.app', [
 'class' => '',
+'parentElement' => 'exam_result',
 'elementActive' => 'cpa1_exam_result_edit'
 ])
 
@@ -59,7 +60,7 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
-                            
+
                             <div class="tab-pane fade show active" id="link1" aria-expanded="true">
                                 <table id="tbl_cpa_exam_pending_result" class="table table-hover text-nowrap "
                                     style="width:100%;">
