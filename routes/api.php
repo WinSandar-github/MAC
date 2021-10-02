@@ -351,5 +351,16 @@ Route::post('/filter_resign_article','ArticleController\ArticleController@Filter
 Route::patch('/approve_resign_article/{id}', 'ArticleController\ArticleController@approveResign');
 Route::patch('/reject_resign_article/{id}', 'ArticleController\ArticleController@rejectResign');
 Route::get('/resign_article_show/{id}', 'ArticleController\ArticleController@showResignArticle');
+Route::post('/save_contract_date', 'ArticleController\ArticleController@saveContractDate');
+Route::post('/save_done_form', 'ArticleController\ArticleController@saveDoneForm');
+Route::post('/filter_done_article','ArticleController\ArticleController@filterDoneArticle');
+
+Route::post('/save_gov_contract_date', 'ArticleController\ArticleController@saveGovContractDate');
+Route::post('/save_gov_done_form', 'ArticleController\ArticleController@saveGovDoneForm');
+Route::post('/filter_gov_done_article','ArticleController\ArticleController@filterGovDoneArticle');
+Route::patch('/approve_done_gov_article/{id}', 'ArticleController\ArticleController@approveDoneGov');
+Route::patch('/reject_done_gov_article/{id}', 'ArticleController\ArticleController@rejectDoneGov');
+Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@approveDone');
+Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
 
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');

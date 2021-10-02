@@ -122,7 +122,7 @@
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="ml-2" style="font-weight:bold" align="left">Certificate</p>
+                                            <p class="ml-2" style="font-weight:bold" align="left">ပညာအရည်အချင်းမိတ္တူ</p>
                                         </div>
                                         <div class="col-md-3 certificate">
                                         

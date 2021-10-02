@@ -16,7 +16,7 @@ class CreateApprenticeAccountantsTable extends Migration
         Schema::create('apprentice_accountants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
-            $table->integer('article_form_type');
+            $table->string('article_form_type');
             $table->boolean('apprentice_exp')->nullable();
             $table->text('apprentice_exp_file')->nullable();
             $table->boolean('gov_staff')->nullable();
@@ -24,6 +24,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('gov_joining_date')->nullable();
             $table->string('m_email')->nullable();
             $table->string('request_papp')->nullable();
+            $table->string('request_papp_attach')->nullable();
             $table->string('exam_pass_date')->nullable();
             $table->string('exam_pass_batch')->nullable();
             $table->string('ex_papp')->nullable();
@@ -36,6 +37,11 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->text('resign_approve_file')->nullable();
             $table->boolean('know_policy')->nullable();
             $table->boolean('status')->default(0);
+            $table->string('contract_start_date')->nullable();
+            $table->string('contract_end_date')->nullable();
+            $table->string('done_form_attach')->nullable();
+            $table->boolean('done_status')->default(0);
+            $table->boolean('resign_status')->default(0);
             $table->timestamps();
 
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
