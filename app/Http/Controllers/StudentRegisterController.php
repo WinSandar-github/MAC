@@ -52,6 +52,17 @@ class StudentRegisterController extends Controller
             $student_course->save();
             
         }
+        
+        if ($request->hasfile('recommendation_letter')) {
+            $file = $request->file('recommendation_letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $recommendation_letter = '/storage/student_info/'.$name;
+
+            $student_info=StudentInfo::find($request->student_id);
+            $student_info->recommend_letter =   $recommendation_letter;
+            $student_info->save();
+        }
         switch ($request->type) {
             case 0:
                 
@@ -123,7 +134,6 @@ class StudentRegisterController extends Controller
                 else{
                     $recommend_file="";
                 }
-
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;

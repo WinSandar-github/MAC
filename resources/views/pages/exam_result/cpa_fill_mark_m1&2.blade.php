@@ -315,7 +315,7 @@
 
                                 </div>
                                 <!-- {!! Form::close() !!} -->
-                                <form  method="post" action="javascript:examResultSubmit(this);" enctype="multipart/form-data">
+                                <form  method="post" action="javascript:examResultSubmit();" enctype="multipart/form-data">
 
                                     <input type="hidden" name="result_id">
                                     <div class="row">

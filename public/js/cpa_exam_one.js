@@ -635,10 +635,11 @@ function loadCPAStudent(course_type) {
     });
 }
 
-function fillCPAMark(id, isFullModule) {
+function fillCPAMark(id, isFullModule,course_type) {
     // console.log("exam_register_id", id);
     localStorage.setItem("exam_register_id", id);
     localStorage.setItem("is_full_module", isFullModule);
+    localStorage.setItem("course_type", course_type);
     var is_full_module = localStorage.getItem("is_full_module");
     // console.log(is_full_module)
     if (is_full_module == 1 || is_full_module == 2) {
