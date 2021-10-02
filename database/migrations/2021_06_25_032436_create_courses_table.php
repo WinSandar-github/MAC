@@ -23,7 +23,7 @@ class CreateCoursesTable extends Migration
             $table->integer('mac_registration_fee');
             $table->integer('exam_fee');
             $table->integer('tution_fee');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('course_type_id');
             $table->string('code','20');
             $table->string('requirement_id');
