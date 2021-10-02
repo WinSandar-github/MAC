@@ -282,8 +282,6 @@ function updateMainCourse(){
 }
 
 function updateCourse() {
-    
-    console.log( $("input[name=description]").val(),"AA");
     var id = $("input[name=course_id]").val();
     var name = $("input[name=course_name]").val();
     var name_mm = $("input[name=course_name_mm]").val();
@@ -297,11 +295,12 @@ function updateCourse() {
     var registration_end_date = $("input[name=registration_end_date]").val()
     var description = $("input[name=description]").val();
     var code = $("input[name=code]").val();
-
+    
     var course_type_id = $('.course_type').val();
     var requirement_id = $('.requirement_id').val();
     var cpa_subject_fee=$("input[name=cpa_subject_fee]").val();
     var da_subject_fee=$("input[name=da_subject_fee]").val();
+    console.log('requirement_id',requirement_id);
     show_loader();
 
     $.ajax({
@@ -326,12 +325,13 @@ function updateCourse() {
             da_subject_fee:da_subject_fee
         },
         success: function (result) {
+            
             EasyLoading.hide();
             successMessage("Update Successfully");
             $('#create_course_modal').modal('toggle');
-            getCourseList();
-            // location.reload();
-            getCourse();
+            //getCourseList();
+            //window.location.reload();
+            // getCourse();
 
 
         }
