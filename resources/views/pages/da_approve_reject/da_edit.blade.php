@@ -343,10 +343,10 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            <div class="row mt-5 justify-content-center" id="approve_reject">
-                              <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#myModal"><i class="fa fa-paperclip"></i></button>
-
-                                <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                            <div class="row mt-5 justify-content-center" id="approve_reject"> 
+                                <button type="submit" name="save" id="reject" class="btn btn-danger"  data-toggle="modal" data-target="#exampleModal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                               
+                                 <button type="submit" name="save" id="approve" class="btn btn-primary" onclick="approveUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>
                     </div>
@@ -363,7 +363,7 @@
   <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Remark</h5>
+        <h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
