@@ -315,7 +315,7 @@ Route::get('get_exam_type','ExamController@getExamType');
 Route::post('getSubject','SubjectController\SubjectController@getSubject');
 
 // education history
-Route::get('getEducationHistory/{student_info_id}','TeacherController\TeacherController@getEducationHistory');
+Route::post('getEducationHistory','TeacherController\TeacherController@getEducationHistory');
 
 
 //Pass or fail  student

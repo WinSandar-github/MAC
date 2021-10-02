@@ -130,8 +130,9 @@ function getSchoolInfos(){
             }
             $(".nrc_front").append(`<a href='${PDF_URL+data.data.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
             $(".nrc_back").append(`<a href='${PDF_URL+data.data.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
-            loadEductaionHistory(data.data.student_info.id);
+            loadEductaionHistory(data.data.id);
             removeBracketed(data.data.attachment,"attachment");
+            removeBracketed(data.data.own_type_letter,"own_type_letter");
             $("#school_name").val(data.data.school_name);
             $("#school_address").val(data.data.school_address);
             $("#school_location_attach").append(`<a href='${PDF_URL+data.data.school_location_attach}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
@@ -153,7 +154,7 @@ function getSchoolInfos(){
                 $('input[id=private]').attr('disabled', 'disabled');
                 $('input[id=rent]').attr('disabled', 'disabled');
             }
-            //loadSchoolBranch(data.data.id);
+            
             var school_branch=data.data.school_branch;
             $.each(school_branch, function( index, value ) {
                 var tr = "<tr>";
@@ -336,7 +337,11 @@ function getSchoolInfos(){
             }
             
             loadStudentCourse(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
-            
+            if(data.data.initial_status==0){
+                //$('.form-name').append('ဆရာပုံစံ-၁');
+            }else{
+                $('.form-name').append('ကျောင်းပုံစံ-၆');
+            }
         }
     });
 }
@@ -366,18 +371,16 @@ function rejectSchoolRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
-    var check = confirm("Are you sure?");
-    if (check == true) {
-        $.ajax({
-            url: BACKEND_URL + "/reject_school_register",
-            data: 'id='+id+"&student_info_id="+student_info_id,
-            type: 'post',
-            success: function(result){
-                successMessage(result.message);
-                location.href = '/school_registration';
-            }
-        });
-    }
+    var reason=$("#reason").val();
+    $.ajax({
+        url: BACKEND_URL + "/reject_school_register",
+        data: 'id='+id+"&student_info_id="+student_info_id+"&reason="+reason,
+        type: 'post',
+        success: function(result){
+            successMessage(result.message);
+            location.href = '/school_registration';
+        }
+    });
     
 }
 
@@ -393,11 +396,12 @@ function viewAttach(){
     $(".attachment").append(content);
     $("#exampleModal").modal('toggle');
 }
-function loadEductaionHistory(student_info_id){
+function loadEductaionHistory(id){
       
     $.ajax({
-        type : 'GET',
-        url : BACKEND_URL+"/getEducationHistory/"+student_info_id,
+        type : 'POST',
+        url : BACKEND_URL+"/getEducationHistory",
+        data: 'school_id='+id,
         success: function(result){
             $.each(result.data, function( index, value ) {
                 var tr = "<tr>";
@@ -416,7 +420,7 @@ function removeBracketed(file,divname){
     var new_file=file.replace(/[\'"[\]']+/g, '');
     var split_new_file=new_file.split(',');
     for(var i=0;i<split_new_file.length;i++){
-        var file=`<a href='${PDF_URL+'//storage/student_info/'+split_new_file[i]}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`;
+        var file=`<a href='${PDF_URL+'/storage/student_info/'+split_new_file[i]}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`;
         $("."+divname).append(file);
       }
 }

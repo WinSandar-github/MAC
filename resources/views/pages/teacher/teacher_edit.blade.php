@@ -16,10 +16,11 @@
                 <li class="breadcrumb-item active"><span class='form-name'></span></li>
             </ol>
         </div>
+    </div>
         <div class="row">
             <div class="col-md-12">
                 <form action="javascript:void();" method="post" enctype="multipart/form-data">
-                    <!--@csrf-->
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
 
@@ -346,7 +347,7 @@
     </div>
 
                 
-    <!-- small modal -->
+    <!-- modal -->
     <form method="post" action="javascript:rejectTeacherRegister();" enctype="multipart/form-data">
         <div class="modal" id="myModal">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -377,7 +378,7 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('js/teacher.js') }}"></script>
-    <script src="{{ asset('js/school.js') }}"></script>
+    
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 
     <script>
