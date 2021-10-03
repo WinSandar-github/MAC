@@ -147,7 +147,7 @@
                                 <!--MPA Member Card-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">MPA Member Card(Front)</p>
+                                        <p class="ml-2" style="font-weight:bold">MICPA Member Card(Front)</p>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_Modal"><i class="fa fa-paperclip"></i></button>
@@ -158,7 +158,7 @@
                                     <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-center">MPA Member Card(Front)</h5>
+                                            <h5 class="modal-title text-center">MICPA Member Card(Front)</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -277,7 +277,14 @@
                                     </div>
                                     </div>
                                 </div>
-
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">CPD Total Hours</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="cpd_total_hour"></span>
+                                    </div>
+                                </div>
                                     <!--Passport Image-->
                                 {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
@@ -287,6 +294,56 @@
                                         <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#passport_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>--}}
+                                <!--Three Year-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">စာရင်းကိုင်အလုပ်သင်လုပ်သက်(၃)နှစ်ပြည့်ကြောင်းရုံးအမိန့်</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="three_year_full_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#three_year_full_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                    <!--Three Year Modal-->
+                                <div id="three_year_full_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">စာရင်းကိုင်အလုပ်သင်လုပ်သက်(၃)နှစ်ပြည့်ကြောင်းရုံးအမိန့်</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <embed id="three_years_full"  width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!--Letter-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">ကိုယ်တိုင်ဝန်ခံချက်</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="letter_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#letter_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                    <!--Letter Modal-->
+                                <div id="letter_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">ကိုယ်တိုင်ဝန်ခံချက်</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <embed id="letter"  width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
                                     <!--Passport Image Modal-->
                                 <div id="passport_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">

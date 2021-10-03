@@ -511,7 +511,7 @@
                                                 <h5  style="font-weight:bold;margin:auto" >အမှတ်ပေးရန်ဖြည့်သွင်းပါ</h3>
 
                                             </div>
-                                            <form  method="post" action="javascript:examResultSubmit(this);" enctype="multipart/form-data">
+                                            <form  method="post" action="javascript:examResultSubmit();" enctype="multipart/form-data">
 
 
                                                 <input type="hidden" name="result_id">

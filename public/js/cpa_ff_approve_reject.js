@@ -8,6 +8,8 @@ var nrc_back_modal;
 var cpd_record_modal;
 var passport_modal;
 var attached_modal;
+var three_years_full_modal;
+var letter_modal;
 
 function getCPAFFList(){
     destroyDatatable("#tbl_cpaff_pending_list", "#tbl_cpaff_pending_list_body");  
@@ -221,7 +223,7 @@ function loadCPAFFData(){
 
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
-                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    $(".recommend_letter").append(`<a href='${PDF_URL+element.student_info.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else{
                     $(".recommend_row").hide();
                 }
@@ -255,8 +257,8 @@ function loadCPAFFData(){
                 $("#cpd_record").append(element.cpd_record);
                 $("#passport_image").append(element.passport_image);
                 $("#status").append(status);
-                
-
+                $("#cpd_total_hour").append(element.total_hours);
+                $("#three_years_full").append(element.three_years_full);
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
                 $("#qualified_date").append(education_history.qualified_date);
@@ -286,7 +288,9 @@ function loadCPAFFData(){
                 nrc_back_modal=PDF_URL+element.nrc_back;
                 cpd_record_modal=PDF_URL+element.cpd_record;
                 passport_modal=PDF_URL+element.passport_image;
+                three_years_full_modal=PDF_URL+element.three_years_full;
                 attached_modal=PDF_URL+element.student_education_histroy.certificate;
+                letter_modal=PDF_URL+element.letter;
                 document.getElementById('cpa').src=cpa_modal;
                 document.getElementById('ra').src=ra_modal;
                 // document.getElementById('foreign_degree').src=foreign_modal;
@@ -298,6 +302,8 @@ function loadCPAFFData(){
                 document.getElementById('cpd_record').src=cpd_record_modal;
                 document.getElementById('passport_image').src=passport_modal;
                 document.getElementById('attached_file').src=attached_modal;
+                document.getElementById('three_years_full').src=three_years_full_modal;
+                document.getElementById('letter').src=letter_modal;
             })
         }
     })

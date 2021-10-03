@@ -142,7 +142,8 @@ class TeacherController extends Controller
             $education_histroy  =   new EducationHistroy();
             $education_histroy->student_info_id = $std_info->id;
             $education_histroy->university_name = $request->degrees[$i];
-            $education_histroy->certificate        ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+            $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+            $education_histroy->teacher_id      = $teacher->id;
             $education_histroy->save();
         }
 
@@ -399,12 +400,20 @@ class TeacherController extends Controller
         $data = StudentInfo::where('id',$id)->get();
         return response()->json($data,200);
     }
-    public function getEducationHistory($student_info_id)
+    public function getEducationHistory(Request $request)
     {
-        $data = EducationHistroy::where('student_info_id',$student_info_id)->get();
-        return response()->json([
-            'data' => $data
-        ],200);
+        if($request->school_id){
+            $data = EducationHistroy::where('school_id',$request->school_id)->get();
+            return response()->json([
+                'data' => $data
+            ],200);
+        }else{
+            $data = EducationHistroy::where('teacher_id',$request->teacher_id)->get();
+            return response()->json([
+                'data' => $data
+            ],200);
+        }
+        
     }
     public function getTeacher($id)
     {

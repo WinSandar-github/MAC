@@ -37,6 +37,7 @@ class BatchController extends Controller
         ]);        
         $batch = new Batch;
         $batch->name            = $request->name;
+        $batch->name_mm           = $request->name_mm;
         $batch->number           = $request->number;
         $batch->course_id       = $request->course_id;
         $batch->start_date      = date('Y-m-d',strtotime($request->start_date));
@@ -75,6 +76,7 @@ class BatchController extends Controller
     {
         $batch = Batch::find($id);
         $batch->name            = $request->name;
+        $batch->name_mm           = $request->name_mm;
         $batch->number           = $request->number;
         $batch->course_id       = $request->course_id;
         $batch->start_date      = date('Y-m-d',strtotime($request->start_date));

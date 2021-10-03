@@ -457,7 +457,7 @@ class ExamRegisterController extends Controller
             $datatable = $datatable->addColumn('action', function ($infos) {
                 if ($infos->grade == 1) { // grade = 1 is Passed List
                     return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
                                 <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
@@ -467,7 +467,7 @@ class ExamRegisterController extends Controller
                 }
 
                 return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
                             </div>";
@@ -476,7 +476,7 @@ class ExamRegisterController extends Controller
             $datatable = $datatable->addColumn('action', function ($infos) {
                 if ($infos->grade == 1) { // grade = 1 is passed list
                     return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
                                 <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
@@ -486,7 +486,7 @@ class ExamRegisterController extends Controller
                 }
 
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-sm' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                 <li class='fa fa-eye fa-sm'></li>
                             </button>
                         </div>";
@@ -495,7 +495,7 @@ class ExamRegisterController extends Controller
             $datatable = $datatable->addColumn('action', function ($infos) {
                 if($infos->grade == 1 ){
                     return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
                                 <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
@@ -504,7 +504,7 @@ class ExamRegisterController extends Controller
                             </div>";
                 }
                 return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='fillCPAMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
                             </div>";
@@ -513,7 +513,7 @@ class ExamRegisterController extends Controller
             $datatable = $datatable->addColumn('action', function ($infos) {
                 if($infos->grade == 1 ){
                     return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module)'>
+                                <button type='button' class='btn btn-primary btn-sm mr-3' onclick='fillMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
                                 <a class='btn btn-info btn-sm p' target='_blank' title='Certificate' href='" . route('certificate', ['id' => $infos->student_info_id, 'course_code' => $infos->course->code]) . "'>
@@ -522,7 +522,7 @@ class ExamRegisterController extends Controller
                             </div>";
                 }
                 return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-sm' onclick='fillCPAMark($infos->id,$infos->is_full_module)'>
+                            <button type='button' class='btn btn-primary btn-sm' onclick='fillCPAMark($infos->id,$infos->is_full_module,$infos->form_type)'>
                                 <li class='fa fa-eye fa-sm'></li>
                             </button>
                         </div>";
