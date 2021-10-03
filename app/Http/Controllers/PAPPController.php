@@ -128,6 +128,24 @@ class PAPPController extends Controller
             $cpd="";
         }
 
+        if ($request->hasfile('mpa_mem_card_front')) {
+            $mpa_mem_card_front_file = $request->file('mpa_mem_card_front');
+            $mpa_mem_card_front_name  = uniqid().'.'.$mpa_mem_card_front_file->getClientOriginalExtension();
+            $mpa_mem_card_front_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_front_name);
+            $mpa_mem_card_front = '/storage/student_papp/'.$mpa_mem_card_front_name;
+        }else{
+            $mpa_mem_card_front="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_back')) {
+            $mpa_mem_card_back_file = $request->file('mpa_mem_card_back');
+            $mpa_mem_card_back_name  = uniqid().'.'.$mpa_mem_card_back_file->getClientOriginalExtension();
+            $mpa_mem_card_back_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_back_name);
+            $mpa_mem_card_back = '/storage/student_papp/'.$mpa_mem_card_back_name;
+        }else{
+            $mpa_mem_card_back="";
+        }
+
         if ($request->hasfile('tax_free_recommendation')) {
             $tax_free_file = $request->file('tax_free_recommendation');
             $tax_free_name  = uniqid().'.'.$tax_free_file->getClientOriginalExtension();
@@ -164,6 +182,9 @@ class PAPPController extends Controller
         $papp->work_in_myanmar_confession   =   $work_in_mm;
         $papp->rule_confession              =   $rule;
         $papp->cpd_record                   =   $cpd;
+        $papp->cpd_hours                    =   $request->cpd_hours;
+        $papp->mpa_mem_card_front           =   $mpa_mem_card_front;
+        $papp->mpa_mem_card_back            =   $mpa_mem_card_back;
         $papp->tax_year                     =   $request->tax_year;
         $papp->tax_free_recommendation      =   $tax_free;
         $papp->status                       =  0;
