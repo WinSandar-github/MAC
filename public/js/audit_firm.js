@@ -676,8 +676,13 @@ function autoLoadAudit(){
           }
 
           // Types Of Service Provided
-          console.log(">>>>",element.type_of_service_provided_id);
-          //$('#type_service'+element.type_of_service_provided_id).prop("checked", true);
+
+          var t_s_p_arr = JSON.parse(element.type_of_service_provided_id);
+
+          t_s_p_arr.forEach(function(item){
+            $('input[name=t_s_p_id][value='+item+']').attr("checked", true);
+            $('input[name=t_s_p_id][value='+item+']').siblings("label").css("font-weight","bold");
+          });
 
             var firm_owner_non_audit=element.firm_owner_non_audits;
             if(firm_owner_non_audit.length!=0){
@@ -824,9 +829,15 @@ function rejectAuditFirm(){
   }
   else{
     var id = $("input[name = audit_firm_id]").val();
+    var formData = new FormData();
+    formData.append('remark', $('#remark').val());
+
     $.ajax({
         url: BACKEND_URL +"/reject_auditfirm/"+id,
-        type: 'patch',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
         success: function(result){
             successMessage("You have rejected that user!");
             location.href = FRONTEND_URL + "/audit-firm-list";
@@ -859,9 +870,14 @@ function rejectNonAuditFirm(id){
   }
   else{
     //var id = $("input[name = audit_firm_id]").val();
+    var formData = new FormData();
+    formData.append('remark', $('#remark').val());
     $.ajax({
         url: BACKEND_URL +"/reject_non_auditfirm/"+id,
-        type: 'patch',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
         success: function(result){
             successMessage("You have rejected that user!");
             location.href = FRONTEND_URL + "/non-audit-firm-list";
