@@ -119,4 +119,10 @@ class StudentInfo extends Model
         return $this->hasMany(ApprenticeAccountantGov::class,'student_info_id','id');
 
     }
+
+    public function exam_results()
+    {
+        return $this->hasMany(ExamResult::class,'student_info_id','id');
+
+    }
 }

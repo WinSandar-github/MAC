@@ -204,6 +204,7 @@ class CPAFFController extends Controller
             $cpa_ff->nrc_front        =   $nrc_front;
             $cpa_ff->nrc_back         =   $nrc_back;
             $cpa_ff->cpd_record       =   $cpd_record;
+            $cpa_ff->total_hours      =   $request->total_hours;
             // $cpa_ff->passport_image   =   $passport_image;
             $cpa_ff->three_years_full   =   $three_years_full;
             $cpa_ff->letter   =   $letter;
@@ -433,7 +434,7 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_front        =   $nrc_front;
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->cpd_record       =   $cpd_record;
-        // $cpa_ff->passport_image   =   $passport_image;
+        $cpa_ff->total_hours      =   $request->total_hours;
         $cpa_ff->status           =  0;
         //save to cpaff
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
