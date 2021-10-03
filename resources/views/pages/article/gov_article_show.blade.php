@@ -96,7 +96,7 @@
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="ml-2" style="font-weight:bold" align="left">Certificate</p>
+                                            <p class="ml-2" style="font-weight:bold" align="left">ပညာအရည်အချင်းမိတ္တူ</p>
                                         </div>
                                         <div class="col-md-3 certificate">
 
@@ -151,6 +151,20 @@
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၆။') }}</span>အလုပ်သမားမှတ်ပုံတင်အမှတ်</label>
                             <div class="col-md-9">
                                 <input type="text" name="labor_registration_no" id="labor_registration_no" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span>အလုပ်သမားမှတ်ပုံတင်ကတ်ပြား</label>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
+                                    </div>
+                                    <div class="col-md-3 mt-1 labor_registration_attach">
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -262,21 +276,7 @@
                         </div>
 
                         <div class="row mb-3" style="margin-left: 100px">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('(က)') }}</span>အလုပ်သမားမှတ်ပုံတင်ကတ်ပြား</label>
-                            <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
-                                    </div>
-                                    <div class="col-md-3 mt-1 labor_registration_attach">
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3" style="margin-left: 100px">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('(ခ)') }}</span>အကျင့်စာရိတ္တကောင်းမွန်ကြောင်း ရပ်ကွက်အုပ်ချုပ်ရေးမှူးရုံးမှထောက်ခံစာ</label>
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('(က)') }}</span>အကျင့်စာရိတ္တကောင်းမွန်ကြောင်း ရပ်ကွက်အုပ်ချုပ်ရေးမှူးရုံးမှထောက်ခံစာ</label>
                             <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-3">
@@ -290,7 +290,7 @@
                         </div>
 
                         <div class="row mb-3" style="margin-left: 100px">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('(ဂ)') }}</span>ပြစ်မှုကင်းရှင်းကြောင်း ရဲစခန်းထောက်ခံစာ</label>
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('(ခ)') }}</span>ပြစ်မှုကင်းရှင်းကြောင်း ရဲစခန်းထောက်ခံစာ</label>
                             <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-3">
@@ -303,11 +303,34 @@
                             </div>
                         </div>
 
+                        <div id="done_form_row" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၁၄။') }}</span>Done Form Attachment</label>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="ml-3" style="font-weight:bold" align="left">Attachment</p>
+                                        </div>
+                                        <div class="col-md-3 done_form_attach">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <input type="hidden" name="article_id" >
                         <div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
-                                <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectFirmArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                <button type="" name="article_approve" class="btn btn-primary" onclick="approveGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <!-- <button type="" name="article_approve" class="btn btn-primary" onclick="approveGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button> -->
+                            </div>
+                        </div>
+
+                        <div id="done_form_approve_reject_btn" style="display:none;">
+                            <div class="row mt-5 justify-content-center">
+                                <button type="" name="article_done_reject" class="btn btn-danger"  onclick="rejectDoneGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <button type="" name="article_done_approve" class="btn btn-primary" onclick="approveDoneGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>
 

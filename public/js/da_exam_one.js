@@ -781,9 +781,10 @@ function loadStudent(course_type) {
     });
 }
 
-function fillMark(id, isFullModule) {
+function fillMark(id, isFullModule,course_type) {
     localStorage.setItem("exam_register_id", id);
     localStorage.setItem("is_full_module", isFullModule);
+    localStorage.setItem("course_type", course_type);
     var is_full_module = localStorage.getItem("is_full_module");
     if (is_full_module == 1) {
         location.href = FRONTEND_URL + "/fill_mark_one";
@@ -1086,7 +1087,6 @@ function getModuleStd() {
 }
 
 function examResultSubmit() {
-    
     console.log(document.activeElement.value,"e");
     var pass_fail=document.activeElement.value;
     if(!confirm("Are you sure you want to "+pass_fail+" this student?"))
@@ -1095,7 +1095,6 @@ function examResultSubmit() {
     }
     else{
         var id = localStorage.getItem("exam_register_id");
-        var course_code = localStorage.getItem("course_code");
         var course_type = localStorage.getItem("course_type");
         var table = document.getElementById("tbl_fillmarks");
         var result_id = $("input[name = result_id]").val();
@@ -1138,11 +1137,11 @@ function examResultSubmit() {
                             success: function(result){
                                 //aggaio
                                 errorMessage(result.message);
-                                if (course_type == 'da_1') {
+                                if (course_type == 1) {
                                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                                } else if (course_type == 'da_2') {
+                                } else if (course_type == 2) {
                                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                                } else if (course_type == 'cpa_1') {
+                                } else if (course_type == 3) {
                                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                                 } else {
                                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
@@ -1160,11 +1159,11 @@ function examResultSubmit() {
                             success: function(result){
                                 //aggaio
                                 successMessage(result.message); 
-                                if (course_type == 'da_1') {
+                                if (course_type == 1) {
                                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                                } else if (course_type == 'da_2') {
+                                } else if (course_type == 2) {
                                     location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                                } else if (course_type == 'cpa_1') {
+                                } else if (course_type == 3) {
                                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                                 } else {
                                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
@@ -1191,11 +1190,11 @@ function examResultSubmit() {
                 processData: false,
                 success: function (result) {
                     //successMessage("Updated Successfully");
-                    if (course_code == 1) {
+                    if (course_type == 1) {
                         location.href = FRONTEND_URL + "/da1_exam_result_edit";
-                    } else if (course_code == 2) {
+                    } else if (course_type == 2) {
                         location.href = FRONTEND_URL + "/da2_exam_result_edit";
-                    } else if (course_code == 3) {
+                    } else if (course_type == 3) {
                         location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                     } else {
                         location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
