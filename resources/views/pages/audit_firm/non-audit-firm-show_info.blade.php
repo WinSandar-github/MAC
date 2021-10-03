@@ -181,7 +181,7 @@
 	                                            </div>
 	                                            <div class="row pl-4 mt-2 border-bottom">
 	                                                <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
-	                                                <label class="col-md-4 col-form-label font-weight-bold">{{ __('Declaration') }}</label>
+	                                                <label class="col-md-4 col-form-label font-weight-bold">{{ __('Declaration(Managing Director)') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
 	                                                <div class="col-md-7">
 	                                                    <div class="form-group">
@@ -228,7 +228,7 @@
 
 	                                            <div class="row  pl-4 mt-2 border-bottom">
 	                                                <!-- <div class="col-md-2"></div> -->
-	                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Name Of Sole Proprietor/Managing Partner') }}</label>
+	                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Name Of Managing Director') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
 	                                                <div class="col-md-7">
 	                                                    <div class="form-group">
@@ -768,27 +768,34 @@
 																																			</div>
 																																	</div>
 
-	                                                                <div class="row mb-3">
-	                                                                    <div class="form-group">
-	                                                                        <label class="form-label">(b)Copy of Permit under Section 27A of Myanmar Companies Act (For Only Foreign Company)</label>
+	                                                                @if($item->local_foreign_type == 2)
+																																	<div id="for_foreign_firm_type">
+																																		<div class="row mb-3">
+																																				<div class="form-group">
+																																						<label class="form-label">(b)Copy of Permit under Section 27A of Myanmar Companies Act (For Only Foreign Company)</label>
+																																				</div>
+																																		</div>
+																																		<div class="controls9">
+																																				<div class="entry9">
+																																						<div class="row mb-3">
+																																							<div class="col-md-2 permit_foreign_company">
 
-	                                                                    </div>
-	                                                                </div>
-
-																																	<div class="controls9">
-																																			<div class="entry9">
-																																					<div class="row mb-3">
-																																						<div class="col-md-2 permit_foreign_company">
-
+																																							</div>
 																																						</div>
-																																					</div>
-																																			</div>
+																																				</div>
+																																		</div>
 																																	</div>
+																																	@endif
+
+
 
 	                                                                <div class="row mb-3">
 	                                                                    <div class="form-group">
-	                                                                        <label class="form-label">(c)Copy of recent audited financial statements</label>
-
+	                                                                        @if($item->local_foreign_type == 2)
+																																						<label class="form-label">(c)Copy of recent audited financial statements</label>
+																																					@else
+																																						<label class="form-label">(b)Copy of recent audited financial statements</label>
+																																					@endif
 	                                                                    </div>
 	                                                                </div>
 
@@ -804,8 +811,11 @@
 
 	                                                                <div class="row mb-3">
 	                                                                    <div class="form-group">
-	                                                                        <label class="form-label">(d)Copy of commercial tax registration certificate</label>
-
+																																				@if($item->local_foreign_type == 2)
+																																					<label class="form-label">(d)Copy of commercial tax registration certificate</label>
+																																				@else
+																																					<label class="form-label">(c)Copy of commercial tax registration certificate</label>
+																																				@endif
 	                                                                    </div>
 	                                                                </div>
 
@@ -821,7 +831,11 @@
 
 	                                                                <div class="row mb-3">
 	                                                                    <div class="form-group">
-	                                                                        <label class="form-label">(e)Copy of letterhead to be used</label>
+																																				@if($item->local_foreign_type == 2)
+																																					<label class="form-label">(e)Copy of letterhead to be used</label>
+																																				@else
+																																					<label class="form-label">(d)Copy of letterhead to be used</label>
+																																				@endif
 
 	                                                                    </div>
 	                                                                </div>
@@ -830,7 +844,6 @@
 																																			<div class="entry9">
 																																					<div class="row mb-3">
 																																						<div class="col-md-2 letterheads_company">
-
 																																						</div>
 																																					</div>
 																																			</div>
@@ -838,8 +851,11 @@
 
 	                                                                <div class="row mb-3">
 	                                                                    <div class="form-group">
-	                                                                        <label class="form-label">(f)Copy of Education Certificates of the professional staff</label>
-
+																																				@if($item->local_foreign_type == 2)
+																																					<label class="form-label">(f)Copy of Education Certificates of the professional staff</label>
+																																				@else
+																																					<label class="form-label">(e)Copy of Education Certificates of the professional staff</label>
+																																				@endif
 	                                                                    </div>
 	                                                                </div>
 																																	<div class="controls9">
@@ -854,15 +870,17 @@
 
 	                                                                <div class="row mb-3">
 	                                                                    <div class="form-group">
-	                                                                        <label class="form-label">(g)Letter outlining past work experiences of the professional staff</label>
-
+																																					@if($item->local_foreign_type == 2)
+																																						<label class="form-label">(g)Letter outlining past work experiences of the professional staff</label>
+																																					@else
+																																						<label class="form-label">(f)Letter outlining past work experiences of the professional staff</label>
+																																					@endif
 	                                                                    </div>
 	                                                                </div>
 																																	<div class="controls9">
 																																			<div class="entry9">
 																																					<div class="row mb-3">
 																																						<div class="col-md-2 work_exp_company">
-
 																																						</div>
 																																					</div>
 																																			</div>
@@ -870,15 +888,18 @@
 
 	                                                                <div class="row mb-3">
 	                                                                    <div class="form-group">
-	                                                                        <label class="form-label">(h)Copy of shareholder’s and directors’ NRC Card/ Passport</label>
-
+																																					@if($item->local_foreign_type == 2)
+																																						<label class="form-label">(h)Copy of shareholder’s and directors’ NRC Card/ Passport</label>
+																																					@else
+																																						<label class="form-label">(g)Copy of shareholder’s and directors’ NRC Card/ Passport</label>
+																																					@endif
 	                                                                    </div>
 	                                                                </div>
 
 																																	<div class="controls9">
 																																			<div class="entry9">
 																																					<div class="row mb-3">
-																																						<div class="col-md-2">
+																																						<div class="col-md-3">
 																																							<label>NRC Front</label>
 																																						</div>
 																																						<div class="col-md-2 nrc_passport_front_company">
@@ -886,10 +907,10 @@
 																																						</div>
 																																					</div>
 																																					<div class="row mb-3">
-																																						<div class="col-md-2">
+																																						<div class="col-md-3">
 																																							<label>NRC Back</label>
 																																						</div>
-																																						<div class="col-md-2 nrc_passport_back_partnersip">
+																																						<div class="col-md-2 nrc_passport_back_company">
 
 																																						</div>
 																																					</div>
@@ -898,8 +919,11 @@
 
 	                                                                <div class="row mb-3">
 	                                                                    <div class="form-group">
-	                                                                        <label class="form-label">(i)Copy of Tax clearance from Internal Revenue Department</label>
-
+																																					@if($item->local_foreign_type == 2)
+																																						<label class="form-label">(i)Copy of Tax clearance from Internal Revenue Department</label>
+																																					@else
+																																						<label class="form-label">(h)Copy of Tax clearance from Internal Revenue Department</label>
+																																					@endif
 	                                                                    </div>
 	                                                                </div>
 
@@ -913,33 +937,20 @@
 																																			</div>
 																																	</div>
 
-	                                                                <div class="row mb-3">
+	                                                                {{--<div class="row mb-3">
 	                                                                    <div class="form-group">
 	                                                                        <label class="form-label">(j)Representative Letter and Copy of representative's NRC Card if Not Self-Registration</label>
 
 	                                                                    </div>
-	                                                                </div>
-	                                                                <div class="row mb-3">
+	                                                                </div>--}}
+	                                                                {{--<div class="row mb-3">
 	                                                                            <div class="col-md-11 col-auto">
 
 	                                                                                <span class="representatives" ></span>
 	                                                                            </div>
 
-	                                                                </div>
-	                                                                <div class="controls28">
-	                                                                    <div class="entry28">
-	                                                                        <div class="row mb-3">
-	                                                                            <div class="col-md-11 col-auto">
-	                                                                                <input disabled type="file" class="form-control" name="representatives[]">
-	                                                                            </div>
-	                                                                            <div class="col-md-1 col-auto">
-	                                                                                <button disabled class="btn btn-primary btn-add btn-sm custom-btn" type="button" onclick='addInputFile("controls28","entry28")'>
-	                                                                                    <i class="fa fa-plus"></i>
-	                                                                                </button>
-	                                                                            </div>
-	                                                                        </div>
-	                                                                    </div>
-	                                                                </div>
+	                                                                </div>--}}
+
 	                                                            </div>
 	                                                        </div>
 	                                                    </div>
@@ -965,8 +976,12 @@
 	                                                                    </tr>
 	                                                                </thead>
 	                                                                <tbody id="tbl_non_audit_number_body">
+																																		@php $total_amt=0; @endphp
 																																		@if($total_staff)
 																																			@foreach($total_staff as $staff)
+																																				<?php
+																																					$total_amt += $staff->total;
+																																				 ?>
 																																				<tr>
 																																					<td>
 																																						@foreach($total_staff_type as $staff_type)
@@ -982,6 +997,16 @@
 																																			@endforeach
 																																		@endif
 	                                                                </tbody>
+																																	<tbody>
+																																		<tr>
+																																			<td>
+																																				Total
+																																			</td>
+																																			<td>
+																																				{{$total_amt}}
+																																			</td>
+																																		</tr>
+																																	</tbody>
 	                                                            </table>
 	                                                        </div>
 	                                                    </div>
@@ -1014,25 +1039,34 @@
 																																					<td>
 																																						<input disabled type="checkbox" name="t_s_p_id" value="{{$service->id}}" id="{{$service->id}}"
 																																						<?php
-																																							if($service->id == $item->type_of_service_provided_id){
-																																								echo "checked";
+																																							$t_s_p_ary = json_decode($item->type_of_service_provided_id);
+																																							foreach ($t_s_p_ary as $value) {
+																																								$str_arr = preg_split ("/\,/", $value);
 																																							}
-																																							else {
-																																								echo "";
+																																							foreach($str_arr as $each_t_s_p_id){
+																																								if($service->id == $each_t_s_p_id){
+																																									echo "checked";
+																																								}
+																																								else {
+																																									echo "";
+																																								}
 																																							}
 																																						?>
 																																						/>
-																																						@if($service->id == $item->type_of_service_provided_id)
-																																							<label class='form-check-label' style="font-weight:bold;">{{$service->name}}</label>
-																																						@else
-																																							<label class='form-check-label'>{{$service->name}}</label>
-																																						@endif
 
+																																						<label class='form-check-label'>{{$service->name}}</label>
 																																					</td>
 																																				</tr>
 																																			@endforeach
 																																		@endif
 	                                                                </tbody>
+																																	@if($item->other != '')
+																																	<tfoot>
+																																		<tr>
+																																			<td>{{$item->other}}</td>
+																																		</tr>
+																																	</tfoot>
+																																	@endif
 	                                                            </table>
 	                                                        </div>
 	                                                    </div>
@@ -1170,6 +1204,9 @@
 			else if(checked_org_structure == 3){
 				$("#company").css("display","block");
 			}
+
+			// set checkbox label text to bold which are checked
+			$("input[name=t_s_p_id]:checked").siblings("label").css("font-weight","bold");
 		});
     //loadNonAuditStaff();
     //loadNonAuditOrganization();
