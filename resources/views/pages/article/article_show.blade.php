@@ -131,7 +131,7 @@
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="ml-2" style="font-weight:bold" align="left">Certificate</p>
+                                            <p class="ml-2" style="font-weight:bold" align="left">ပညာအရည်အချင်းမိတ္တူ</p>
                                         </div>
                                         <div class="col-md-3 certificate">
 
@@ -203,7 +203,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၉။') }}</span>ပုဂ္ဂလိကနှင့် အစိုးရဌာနအဖွဲအစည်းများ၊ အခြားဌာနအဖွဲ့အစည်းများ၊ ကုမ္ပဏီများ၊ Non Audit Service လုပ်ငန်းများတွင် အချိန်ပြည့်/ အချန်ပိုင်းဝန်ထမ်း အဖြစ်ဆောင်ရွက်နေခြင်း ရှိ/မရှိ</label>
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၉။') }}</span>ပုဂ္ဂလိကနှင့် အစိုးရဌာနအဖွဲအစည်းများ၊ အခြားဌာနအဖွဲ့အစည်းများ၊ ကုမ္ပဏီများ၊ Non Audit Service လုပ်ငန်းများတွင် အချိန်ပြည့်/ အချိန်ပိုင်းဝန်ထမ်း အဖြစ်ဆောင်ရွက်နေခြင်း ရှိ/မရှိ</label>
                             <div class="col-md-2">
                             <input type="radio" id="gov_staff_yes" value="1" name="gov_staff" > Yes
                             </div>
@@ -249,6 +249,20 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span></label>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
+                                    </div>
+                                    <div class="col-md-3 mt-1 request_papp_attach">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="previous_papp_name_row" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၃။') }}</span>ယခင်အလုပ်သင်ကြားခဲ့သည့် PAPP အမည်</label>
@@ -291,11 +305,34 @@
                             </div>
                         </div>
 
+                        <div id="done_form_row" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၁၆။') }}</span>Done Form Attachment</label>
+                                <div class="col-md-8">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="ml-3" style="font-weight:bold" align="left">Attachment</p>
+                                        </div>
+                                        <div class="col-md-3 done_form_attach">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <input type="hidden" name="article_id" >
                         <div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
                                 <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                <button type="" name="article_approve" class="btn btn-primary" onclick="approveArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                <!-- <button type="" name="article_approve" class="btn btn-primary" onclick="approveArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button> -->
+                            </div>
+                        </div>
+
+                        <div id="done_form_approve_reject_btn" style="display:none;">
+                            <div class="row mt-5 justify-content-center">
+                                <button type="" name="article_done_reject" class="btn btn-danger"  onclick="rejectDoneArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <button type="" name="article_done_approve" class="btn btn-primary" onclick="approveDoneArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>
 
