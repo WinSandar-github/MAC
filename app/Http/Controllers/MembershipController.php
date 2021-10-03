@@ -45,7 +45,7 @@ class MembershipController extends Controller
         // foreach ($request->description_id as $description) {
         //     array_push($descriptions, (int)$description);
         // }
-     
+
         $membership = new Membership();
         $membership->membership_name          = $request->membership_name;
         $membership->requirement              = $request->requirement;
@@ -55,6 +55,7 @@ class MembershipController extends Controller
         $membership->yearly_fee               = $request->yearly_fee;
         $membership->renew_fee                = $request->renew_fee;
         $membership->late_fee                 = $request->late_fee;
+
         $membership->save();
 
         return response()->json([
@@ -76,7 +77,7 @@ class MembershipController extends Controller
         ],200);
     }
 
-    
+
 
     /**
      * Update the specified resource in storage.
@@ -103,10 +104,25 @@ class MembershipController extends Controller
         $membership->description              = $request->description;
         $membership->form_fee                 = $request->form_fee;
         $membership->registration_fee         = $request->registration_fee;
+        //
+        $membership->reg_fee_sole         = $request->reg_fee_sole;
+        $membership->reg_fee_partner         = $request->reg_fee_partner;
+        //
         $membership->yearly_fee               = $request->yearly_fee;
         $membership->renew_fee                = $request->renew_fee;
+        //
+        $membership->renew_fee_sole         = $request->renew_fee_sole;
+        $membership->renew_fee_partner         = $request->renew_fee_partner;
+        //
         $membership->late_fee                 = $request->late_fee;
         $membership->reconnected_fee          = $request->reconnected_fee;
+        ///
+        $membership->late_fee_within_jan_sole                 = $request->late_fee_within_jan_sole;
+        $membership->late_fee_within_jan_partner                 = $request->late_fee_within_jan_partner;
+        $membership->late_fee_feb_to_apr_sole                 = $request->late_fee_feb_to_apr_sole;
+        $membership->late_fee_feb_to_apr_partner                 = $request->late_fee_feb_to_apr_partner;
+        $membership->reconnect_fee_sole                 = $request->reconnect_fee_sole;
+        $membership->reconnect_fee_partner                 = $request->reconnect_fee_partner;
         $membership->save();
 
         return response()->json([
@@ -132,12 +148,12 @@ class MembershipController extends Controller
 
     public function showMembership($membership_name)
     {
-        
-        
+
+
         if($membership_name == 'all') {
 
             $memberships = Membership::get();
-           
+
 
             return DataTables::of($memberships)
                 ->addColumn('action', function ($membership) {
@@ -153,19 +169,19 @@ class MembershipController extends Controller
                   ->addColumn('requirements', function ($membership) {
                     return $membership->requirement ? "<small class='d-block '>".Str::limit($membership->requirement, 30, '...')."</small>" : '';
 
-                   
+
                     // return "<div>Str::limit($membership->requirement,30,...)</div>";
                 })
                 ->addColumn('descriptions', function ($membership) {
                        return $membership->description ? "<small class='d-block '>".Str::limit($membership->description, 30, '...')."</small>" : '';
 
-                   
+
                     // return "<div>$membership->description</div>";
                 })
                 ->rawColumns(['action','requirements','descriptions'])
                 ->make(true);
                 // ->addColumn('requirements', function ($membership) {
-                   
+
                 //     // $requirements = Requirement::whereIn('id', json_decode($membership->requirement_id))->get('requirement_name');
                 //     $requirements = Requirement::whereIn('id',explode(',', $membership->description_id))->get('requirement_name');
 
@@ -178,7 +194,7 @@ class MembershipController extends Controller
                 // ->addColumn('descriptions', function ($membership) {
                 //     // $descriptions = Description::whereIn('id',json_decode($membership->description_id))->get('description_name');
                 //     $descriptions = Description::whereIn('id',explode(',', $membership->description_id))->get('description_name');
-                    
+
                 //     $result = $descriptions->map(function ($val) {
                 //         return $val->description_name ? "<small class='d-block '> - " . Str::limit($val->description_name, 30, '...') . "</small>" : '';
                 //     });
@@ -196,7 +212,7 @@ class MembershipController extends Controller
     }
     public function showDescription($membership_name)
     {
-       
+
         $memberships = Membership::where('membership_name', 'like', $membership_name. '%')->get();
         return response()->json([
             'data' => $memberships
@@ -206,15 +222,14 @@ class MembershipController extends Controller
 
     public function membership_edit($id)
     {
-         
-        
-         return view('pages.membership_edit');
+         $membership_id = $id;
+         return view('pages.membership_edit',compact('membership_id'));
     }
 
 
-    
-     
 
 
-    
+
+
+
 }
