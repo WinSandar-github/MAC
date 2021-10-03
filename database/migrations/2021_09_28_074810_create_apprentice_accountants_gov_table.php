@@ -33,6 +33,11 @@ class CreateApprenticeAccountantsGovTable extends Migration
             $table->string('police_attach')->nullable();
             $table->boolean('accept_policy')->nullable();
             $table->boolean('status')->default(0);
+            $table->string('contract_start_date')->nullable();
+            $table->string('contract_end_date')->nullable();
+            $table->string('done_form_attach')->nullable();
+            $table->boolean('done_status')->default(0);
+            $table->boolean('resign_status')->default(0);
             $table->timestamps();
 
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
