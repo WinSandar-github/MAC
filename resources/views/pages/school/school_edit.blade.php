@@ -112,24 +112,7 @@
                                                         <span  id="phone"></span>
                                                     </div>
                                             </div>
-                                            <!-- <li class="list-group-item">
-                                                 <span id="nrc" class="float-right"></span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အရှေ့)</b> <span class="nrc_front float-right" ></span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အနောက်)</b> <span class="nrc_back float-right" ></span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>အဘအမည်(မြန်မာ)/အဘအမည်(အင်္ဂလိပ်)</b> <span id="father" class="float-right"></span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>မွေးသက္ကရာဇ်</b> <span id="date_of_birth" class="float-right"></span>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <b>ဖုန်းနံပါတ်</b> <span id="phone" class="float-right"></span>
-                                            </li>-->
+                                            
                                         </ul>
 
                                     </div>
@@ -188,7 +171,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-check mt-2 form-check-inline">
                                                             <input class="form-check-input" type="radio" name="school_type1"
-                                                                value='တစ်ဦးတည်းပိုင်လုပ်ငန်း' > တစ်ဦးတည်းပိုင်လုပ်ငန်း
+                                                                value='PCS' > တစ်ဦးတည်းပိုင်လုပ်ငန်း
 
                                                         </div>
                                                     </div>
@@ -197,7 +180,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-check mt-2 form-check-inline">
                                                             <input class="form-check-input" type="radio" name="school_type2"
-                                                                value='နိုင်ငံသားများပိုင်အစုစပ်လုပ်ငန်း' > နိုင်ငံသားများပိုင်အစုစပ်လုပ်ငန်း
+                                                                value='PCP' > နိုင်ငံသားများပိုင်အစုစပ်လုပ်ငန်း
 
                                                         </div>
                                                     </div>
@@ -206,7 +189,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-check mt-2 form-check-inline">
                                                             <input class="form-check-input" type="radio" name="school_type3" id=""
-                                                                value='တည်ဆဲကုမ္ပဏီများအက်ဥပဒေအရတည်ထောင်ထားသောကုမ္ပဏီလီမိတက်' > တည်ဆဲကုမ္ပဏီများအက်ဥပဒေအရတည်ထောင်ထားသောကုမ္ပဏီလီမိတက်
+                                                                value='PCC' > တည်ဆဲကုမ္ပဏီများအက်ဥပဒေအရတည်ထောင်ထားသောကုမ္ပဏီလီမိတက်
 
                                                         </div>
                                                     </div>
