@@ -66,7 +66,7 @@
                                     </div>
                                 </div> 
 
-                                <div class="da_two_pass_info">
+                                <div class="da_two_pass_info" style="display:none">
                                     <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Passed the DA Part-Two Exam</h5>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">

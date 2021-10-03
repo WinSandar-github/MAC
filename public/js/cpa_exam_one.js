@@ -338,6 +338,7 @@ function loadCPAExamData() {
             var exam_data = data.data;
             
             exam_data.forEach(function (element) {
+                console.log('exam_data',element);
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -431,7 +432,7 @@ function loadCPAExamData() {
                     $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 } else {
                     $(".recommend_row").hide();
-                }
+                }                
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -443,7 +444,21 @@ function loadCPAExamData() {
 
                     $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+                });
+
+                if(!element.da_pass_roll_number){
+                    $(".da_two_pass_info").hide();                    
+                }else{
+                    $(".da_two_pass_info").show(); 
+                    if(element.da_pass_certificate==null){
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                    }else{
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(element.da_pass_date);
+                    $(".da_pass_roll_number").append(element.da_pass_roll_number);
+                }
+
 
                 $(".nrc_front").append(`<a href='${PDF_URL + element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
                 $(".nrc_back").append(`<a href='${PDF_URL + element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
@@ -803,7 +818,20 @@ function getCPAModuleStd() {
 
                     $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+                });
+
+                if(!std.da_pass_roll_number){
+                    $(".da_two_pass_info").hide();                    
+                }else{
+                    $(".da_two_pass_info").show(); 
+                    if(std.da_pass_certificate==null){
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                    }else{
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + std.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(std.da_pass_date);
+                    $(".da_pass_roll_number").append(std.da_pass_roll_number);
+                }
 
                 $(".nrc_front").append(`<a href='${PDF_URL + std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
                 $(".nrc_back").append(`<a href='${PDF_URL + std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
