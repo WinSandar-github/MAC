@@ -283,13 +283,13 @@
                 </a>
             </li>
 
-            <li class="{{ $elementActive == '' ? 'active' : '' }}">
+            <li class="{{ $parentElement == 'administrator' ? 'active' : '' }}">
                 <a data-toggle="collapse" href="#adminstration" class="nav-link">
                     <i class="nc-icon nc-bullet-list-67"></i>
                     <p>{{ __('Administraion') }}</p>
                     <b class="caret"></b>
                 </a>
-                <div class="collapse in" id="adminstration">
+                <div class="collapse {{ $parentElement == 'administrator' ? 'show' : 'in' }}" id="adminstration">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'administration' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'administration') }}">

@@ -3,7 +3,6 @@ function getMembership(){
     var course_name = $("input[name=filter_name]").val() == "" ? 'all' : $("input[name=filter_name]").val();
 
     $('#tbl_membership').DataTable({
-        scrollX: true,
         processing: true,
         serverSide: true,
         searchable:true,
