@@ -11,6 +11,7 @@ use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentRegister;
 use App\StudentCourseReg;
+use App\Invoice;
 
 
 class CpaTraAddmissionDirectController extends Controller
@@ -288,6 +289,15 @@ class CpaTraAddmissionDirectController extends Controller
         // $cpa_tra_add_direct->acca_cima_exam_month        =   $request->acca_cima_exam_month;
         // $cpa_tra_add_direct->acca_cima_reg_no            =   $request->acca_cima_reg_no;
         // $cpa_tra_add_direct->save();
+            
+        //invoice
+        $invNo = str_pad($student_course->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $student_info->id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
         
         return response()->json([
             $data => $student_info
