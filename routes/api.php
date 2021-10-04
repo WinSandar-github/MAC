@@ -198,7 +198,7 @@ Route::get('/check_payment_school/{id}', 'SchoolController\SchoolController@chec
 Route::resource('/teacher','TeacherController\TeacherController');
 Route::post('/filter_teacher','TeacherController\TeacherController@FilterTeacher');
 Route::post('/approve_teacher_register', 'TeacherController\TeacherController@approve_teacher_register');
-Route::patch('/approve_teacher/{id}', 'TeacherController\TeacherController@approveTeacher');
+Route::patch('/approve_teacher', 'TeacherController\TeacherController@approveTeacher');
 Route::get('/check_payment_teacher/{id}', 'TeacherController\TeacherController@check_payment');
 
 //Audit DATA
@@ -375,3 +375,5 @@ Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@
 Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
 
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
+
+Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
