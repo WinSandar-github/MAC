@@ -3,19 +3,18 @@
 @section('content')
 <div class="row">
     <div class="col-md-12 text-center">
-            <input type="hidden" id="course_code" name="course_code" value={{$course->code}}  >
-            <div class="card">
+             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">CPA One ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">အရည်အချင်းစစ် ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row"> 
                             <div class="col-md-12 pl-2">
-                                <button   onclick="generateEntranceExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
+                            <button   onclick="generateQTSrNo()" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                 
                             </div>
                         <div class="col-md-12">                       
@@ -54,7 +53,7 @@
               showAppList(course_code);
         })
         
-showAppList = (course_code) =>{
+    showAppList = (course_code) =>{
     
     var table_app = $('#tbl_exam_list').DataTable({
         scrollX: true,
@@ -64,7 +63,7 @@ showAppList = (course_code) =>{
         paging:false,
         
         ajax: {
-            url  : FRONTEND_URL + "/show_entrance_exam_list",
+            url  : FRONTEND_URL + "/show_qualifiedtest_list",
             type : "POST" ,
             data :  function (d) {
                 d.code        =  course_code
