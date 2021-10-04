@@ -22,25 +22,57 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '1000',
                 'registration_fee'=> '100000',
+                //
+                'reg_fee_sole'      => NULL,
+                'reg_fee_partner'      => NULL,
+                //
                 'yearly_fee'      => '100000',
                 'renew_fee'       => '100000',
-                'late_fee'        => '300000',   
+                //
+                'renew_fee_sole'      => NULL,
+                'renew_fee_partner'      => NULL,
+                //
+                'late_fee'        => NULL,
+                //
+                'late_fee_within_jan_sole' => '30000',
+                'late_fee_within_jan_partner' => '100000',
+                'late_fee_feb_to_apr_sole' => '300000',
+                'late_fee_feb_to_apr_partner' => '1000000',
+                'reconnect_fee_sole' => '30000',
+                'reconnect_fee_partner' => '100000',
+                //
                 'late_feb_fee'    => '300000' ,
                 'expire_fee'      => '30000' ,
-                'reconnected_fee' =>NULL  
+                'reconnected_fee' =>NULL
             ),
             array(
                 'membership_name' => 'Non-Audit',
                 'requirement'     => '<p>Non-Audit Service လုပ်ကိုင်သည့် နိုင်ငံသား/ နိုင်ငံခြားသား</p>',
                 'description'     => NULL,
                 'form_fee'        => '10000',
-                'registration_fee'=> '100000',
+                'registration_fee'=> NULL,
+                //
+                'reg_fee_sole'      => '100000',
+                'reg_fee_partner'      => '300000',
+                //
                 'yearly_fee'      => '100000',
-                'renew_fee'       => '100000',
-                'late_fee'        => '30000',
+                'renew_fee'       => NULL,
+                //
+                'renew_fee_sole'      => '100000',
+                'renew_fee_partner'      => '300000',
+                //
+                'late_fee'        => NULL,
+                //
+                'late_fee_within_jan_sole' => '30000',
+                'late_fee_within_jan_partner' => '100000',
+                'late_fee_feb_to_apr_sole' => '300000',
+                'late_fee_feb_to_apr_partner' => '1000000',
+                'reconnect_fee_sole' => '30000',
+                'reconnect_fee_partner' => '100000',
+                //
                 'late_feb_fee'    => '300000',
                 'expire_fee'      => '30000'  ,
-                'reconnected_fee' =>NULL           
+                'reconnected_fee' =>NULL
             ),
             array(
                 'membership_name' => 'CPA (Full Fluged)',
@@ -51,12 +83,28 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '1000',
                 'registration_fee'=> '10000',
+                //
+                'reg_fee_sole'      => '100000',
+                'reg_fee_partner'      => '300000',
+                //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => '10000',
+                //
+                'renew_fee_sole'      => '100000',
+                'renew_fee_partner'      => '300000',
+                //
                 'late_fee'        => '10000',
+                //
+                'late_fee_within_jan_sole' => NULL,
+                'late_fee_within_jan_partner' => NULL,
+                'late_fee_feb_to_apr_sole' => NULL,
+                'late_fee_feb_to_apr_partner' => NULL,
+                'reconnect_fee_sole' => NULL,
+                'reconnect_fee_partner' => NULL,
+                //
                 'late_feb_fee'    => '100000',
                 'expire_fee'      => '10000'  ,
-                'reconnected_fee' =>NULL           
+                'reconnected_fee' =>NULL
             ),
             array(
                 'membership_name' => 'PAPP',
@@ -65,12 +113,28 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '10000',
                 'registration_fee'=> '30000',
+                //
+                'reg_fee_sole'      => '100000',
+                'reg_fee_partner'      => '300000',
+                //
                 'yearly_fee'      => '100000',
                 'renew_fee'       => '40000',
+                //
+                'renew_fee_sole'      => '100000',
+                'renew_fee_partner'      => '300000',
+                //
                 'late_fee'        => '50000',
+                //
+                'late_fee_within_jan_sole' => NULL,
+                'late_fee_within_jan_partner' => NULL,
+                'late_fee_feb_to_apr_sole' => NULL,
+                'late_fee_feb_to_apr_partner' => NULL,
+                'reconnect_fee_sole' => NULL,
+                'reconnect_fee_partner' => NULL,
+                //
                 'late_feb_fee'    => '500000',
                 'expire_fee'      => '110000',
-                'reconnected_fee' =>NULL          
+                'reconnected_fee' =>NULL
             ),
             array(
                 'membership_name' => 'School',
@@ -78,12 +142,28 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '1000',
                 'registration_fee'=> '500000',
+                //
+                'reg_fee_sole'      => '100000',
+                'reg_fee_partner'      => '300000',
+                //
                 'yearly_fee'      => '300000',
                 'renew_fee'       => '500000',
+                //
+                'renew_fee_sole'      => '100000',
+                'renew_fee_partner'      => '300000',
+                //
                 'late_fee'        => '80000',
+                //
+                'late_fee_within_jan_sole' => NULL,
+                'late_fee_within_jan_partner' => NULL,
+                'late_fee_feb_to_apr_sole' => NULL,
+                'late_fee_feb_to_apr_partner' => NULL,
+                'reconnect_fee_sole' => NULL,
+                'reconnect_fee_partner' => NULL,
+                //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => '100000',
-                'reconnected_fee' =>NULL             
+                'reconnected_fee' =>NULL
             ),
             array(
                 'membership_name' => 'Teacher',
@@ -91,12 +171,28 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => NULL,
                 'registration_fee'=> '50000',
+                //
+                'reg_fee_sole'      => '100000',
+                'reg_fee_partner'      => '300000',
+                //
                 'yearly_fee'      => '10000',
                 'renew_fee'       => '30000',
+                //
+                'renew_fee_sole'      => '100000',
+                'renew_fee_partner'      => '300000',
+                //
                 'late_fee'        => NULL,
+                //
+                'late_fee_within_jan_sole' => NULL,
+                'late_fee_within_jan_partner' => NULL,
+                'late_fee_feb_to_apr_sole' => NULL,
+                'late_fee_feb_to_apr_partner' => NULL,
+                'reconnect_fee_sole' => NULL,
+                'reconnect_fee_partner' => NULL,
+                //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL,
-                'reconnected_fee' =>'10000'         
+                'reconnected_fee' =>'10000'
             ),
             array(
                 'membership_name' => 'Mentor',
@@ -108,12 +204,28 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => NULL,
                 'registration_fee'=> NULL,
+                //
+                'reg_fee_sole'      => '100000',
+                'reg_fee_partner'      => '300000',
+                //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => NULL,
+                //
+                'renew_fee_sole'      => '100000',
+                'renew_fee_partner'      => '300000',
+                //
                 'late_fee'        => NULL,
+                //
+                'late_fee_within_jan_sole' => NULL,
+                'late_fee_within_jan_partner' => NULL,
+                'late_fee_feb_to_apr_sole' => NULL,
+                'late_fee_feb_to_apr_partner' => NULL,
+                'reconnect_fee_sole' => NULL,
+                'reconnect_fee_partner' => NULL,
+                //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL ,
-                'reconnected_fee' =>'10000'         
+                'reconnected_fee' =>'10000'
             ),
             array(
                 'membership_name' => 'Article',
@@ -121,12 +233,28 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => NULL,
                 'registration_fee'=> '5000',
+                //
+                'reg_fee_sole'      => '100000',
+                'reg_fee_partner'      => '300000',
+                //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => NULL,
+                //
+                'renew_fee_sole'      => '100000',
+                'renew_fee_partner'      => '300000',
+                //
                 'late_fee'        => NULL,
+                //
+                'late_fee_within_jan_sole' => NULL,
+                'late_fee_within_jan_partner' => NULL,
+                'late_fee_feb_to_apr_sole' => NULL,
+                'late_fee_feb_to_apr_partner' => NULL,
+                'reconnect_fee_sole' => NULL,
+                'reconnect_fee_partner' => NULL,
+                //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL ,
-                'reconnected_fee' =>NULL         
+                'reconnected_fee' =>NULL
             ),
 
         ]);

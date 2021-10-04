@@ -29,9 +29,9 @@ Route::resource('/acc_firm_info','AccFirmInfController');
 Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
-Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
-Route::patch('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
 // Mentor
 Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
