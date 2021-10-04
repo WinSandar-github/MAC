@@ -273,6 +273,11 @@ function loadMentorStudent()
             }else{
               document.getElementById("approve_reject_btn").style.display = "none";
             }
+
+            if(mentor_data.status == 2){
+              $("#reject_reason_row").css('display','block');
+              $("#reject_reason").val(mentor_data.reject_reason);
+            }
         }
     });
 }
@@ -551,20 +556,35 @@ function approveMentorStudent(){
   
 }
 
+// function rejectMentorStudent(){
+//   if (!confirm('Are you sure you want to reject this mentor?'))
+//   {
+//       return;
+//   }
+//   else{
+//     var id = $("input[name = mentor_student_id]").val();
+//     $.ajax({
+//         url: BACKEND_URL +"/reject_mentor_student/"+id,
+//         type: 'patch',
+//         success: function(result){
+//             successMessage("You have rejected that user!");
+//             location.href = FRONTEND_URL + "/mentor_list";
+//         }
+//     });
+//   }
+// }
+
 function rejectMentorStudent(){
-  if (!confirm('Are you sure you want to reject this mentor?'))
-  {
-      return;
-  }
-  else{
-    var id = $("input[name = mentor_student_id]").val();
-    $.ajax({
-        url: BACKEND_URL +"/reject_mentor_student/"+id,
-        type: 'patch',
-        success: function(result){
-            successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/mentor_list";
-        }
-    });
-  }
+  var id = $("input[name = mentor_student_id]").val();
+  var reason=$("#reason").val();
+  $.ajax({
+      url: BACKEND_URL + "/reject_mentor_student",
+      data: 'id='+id+"&reason="+reason,
+      type: 'post',
+      success: function(result){
+          successMessage('You have rejected that user!');
+          location.href = FRONTEND_URL + "/mentor_list";
+      }
+  });
+  
 }
