@@ -186,8 +186,6 @@ class DARegisterController extends Controller
         $invoice = new Invoice();
         $invoice->student_info_id = $student_info->id;
         $invoice->invoiceNo       = $invNo;
-        $invoice->name_eng        = $request->name_eng;
-        $invoice->email           = $request->email;
         $invoice->status          = 0;
         $invoice->save();
 
