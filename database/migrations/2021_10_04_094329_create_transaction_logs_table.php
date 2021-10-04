@@ -13,7 +13,7 @@ class CreateTransactionLogsTable extends Migration
      */
     public function up()
     {
-        Schema::create('translation_logs', function (Blueprint $table) {
+        Schema::create('transaction_logs', function (Blueprint $table) {
             $table->id();
             $table->string('student_info_id');
             $table->string('paymentType');
