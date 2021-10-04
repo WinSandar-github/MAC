@@ -838,6 +838,7 @@ function getModuleStd() {
         success: function (data) {
             var da_data = data.data;
             da_data.forEach(function (element) {
+                // console.log('element',element);
                 let course_type_id = element.course.course_type_id;
                 var std = element.student_info;
                 if (element.status == 0) {
@@ -944,7 +945,20 @@ function getModuleStd() {
 
                     $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+                });
+
+                if(!std.da_pass_roll_number){
+                    $(".da_two_pass_info").hide();                    
+                }else{
+                    $(".da_two_pass_info").show(); 
+                    if(std.da_pass_certificate==null){
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                    }else{
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + std.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(std.da_pass_date);
+                    $(".da_pass_roll_number").append(std.da_pass_roll_number);
+                }
 
                 $(".nrc_front").append(`<a href='${PDF_URL + std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
                 $(".nrc_back").append(`<a href='${PDF_URL + std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
