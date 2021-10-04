@@ -59,7 +59,6 @@ class AccFirmInfController extends Controller
      */
     public function store(Request $request)
     {
-
         if($request->hasfile('ppa_certis'))
         {
             foreach($request->file('ppa_certis') as $file)
@@ -273,12 +272,10 @@ class AccFirmInfController extends Controller
 
         $register_date = date('Y-m-d');
 
-        // $t_s_p_id_ary = array();
-        // if($request->t_s_p_id){
-        //   foreach($request->t_s_p_id as $val){
-        //     array_push($t_s_p_id_ary,$val);
-        //   }
-        // }
+        $t_s_p_ary = array();
+        foreach($request->t_s_p_id as $val){
+          array_push($t_s_p_ary,$val);
+        }
 
         //Main Table
         $acc_firm_info = new AccountancyFirmInformation();
@@ -297,7 +294,7 @@ class AccFirmInfController extends Controller
         //$acc_firm_info->local_foreign_id        = $request->local_foreign_id;
         $acc_firm_info->local_foreign_type        = $request->local_foreign_type;
         $acc_firm_info->organization_structure_id    = $request->org_stru_id;
-        $acc_firm_info->type_of_service_provided_id  = $request->t_s_p_id;
+        $acc_firm_info->type_of_service_provided_id  = json_encode($t_s_p_ary);
         $acc_firm_info->other  = $request->other;
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
@@ -531,10 +528,11 @@ class AccFirmInfController extends Controller
         ],200);
     }
 
-    public function reject($id)
+    public function reject($id,Request $request)
     {
         $reject = AccountancyFirmInformation::find($id);
         $reject->status = 2;
+        $reject->remark = $request->remark;
         $reject->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"

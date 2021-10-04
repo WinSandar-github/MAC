@@ -165,6 +165,13 @@ function loadAttachFiles(firm_id){
                 $(".financial_company").append(`<a href='${PDF_URL+financial_statement_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
             }else $(".financial_company").append("<span class='text-warning pl-4'>No file</span>");
+            
+            if(item.tax_reg_certificate!="null"){
+              var tax_reg_certificate_file = removeBracketedNonAudit(item.tax_reg_certificate);
+              for(var i=0;i<tax_reg_certificate_file.length;i++){
+                $(".tax_reg_certi_company").append(`<a href='${PDF_URL+tax_reg_certificate_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+              }
+            }else $(".tax_reg_certi_company").append("<span class='text-warning pl-4'>No file</span>");
 
             if(item.letterhead!="null"){
               var letterhead_file = removeBracketedNonAudit(item.letterhead);

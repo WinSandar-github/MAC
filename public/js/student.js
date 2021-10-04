@@ -250,6 +250,29 @@ function loadStudentSelfStudy() {
                 $(".recommend_row").hide();
             }
 
+            if(element.internship){
+                
+                console.log("internship",element.internship);
+                $(".internship_program_row").show();
+                $("#internship_program").append(element.internship);                
+            }else{
+                $(".internship_program_row").hide();
+            }
+
+            if(element.good_behavior){
+                $(".good_morale_file_row").show();
+                $(".good_morale_file").append(`<a href='${PDF_URL + element.good_behavior}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+            }else{
+                $(".good_morale_file_row").hide();
+            }
+
+            if(element.no_crime){
+                $(".no_crime_file_row").show();
+                $(".no_crime_file").append(`<a href='${PDF_URL + element.no_crime}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+            }else{
+                $(".no_crime_file_row").hide();
+            }
+
             $("#university_name").append(education_history.university_name);
             $("#degree_name").append(education_history.degree_name);
             $("#qualified_date").append(education_history.qualified_date);
@@ -260,7 +283,20 @@ function loadStudentSelfStudy() {
 
                 $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-            })
+            });
+
+            if(!student_info_data.da_pass_roll_number){
+                $(".da_two_pass_info").hide();                    
+            }else{
+                $(".da_two_pass_info").show(); 
+                if(student_info_data.da_pass_certificate==null){
+                    $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                }else{
+                    $(".da_pass_certificate").append(`<a href='${PDF_URL + student_info_data.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                }
+                $(".da_pass_date").append(student_info_data.da_pass_date);
+                $(".da_pass_roll_number").append(student_info_data.da_pass_roll_number);
+            }
 
             $(".nrc_front").append(`<a href='${PDF_URL + student_info_data.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
             $(".nrc_back").append(`<a href='${PDF_URL + student_info_data.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);

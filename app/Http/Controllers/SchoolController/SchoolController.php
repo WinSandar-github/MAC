@@ -1251,7 +1251,7 @@ class SchoolController extends Controller
 
     public function checkPayment($id)
     {
-        $data = StudentInfo::where('id',$id)->get();
+        $data = SchoolRegister::where('id',$id)->get();
         return response()->json($data,200);
     }
     public function checkEmail(Request $request){
