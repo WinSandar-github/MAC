@@ -325,13 +325,13 @@
                         <div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
                                 <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                <!-- <button type="" name="article_approve" class="btn btn-primary" onclick="approveArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button> -->
+                                <button type="" name="article_approve" class="btn btn-primary" onclick="approveArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>
 
                         <div id="done_form_approve_reject_btn" style="display:none;">
                             <div class="row mt-5 justify-content-center">
-                                <button type="" name="article_done_reject" class="btn btn-danger"  onclick="rejectDoneArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <!-- <button type="" name="article_done_reject" class="btn btn-danger"  onclick="rejectDoneArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button> -->
                                 <button type="" name="article_done_approve" class="btn btn-primary" onclick="approveDoneArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>

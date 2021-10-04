@@ -20,8 +20,9 @@ function saveContractDate(){
         var contract_end_date = new Date(year + 3, month, day);
     }else if(article_form_type == "c12"){
         var contract_end_date = new Date(year + 2, month, day);
+    }else if(article_form_type == "c2_pass_1yr"){
+        var contract_end_date = new Date(year + 1, month, day);
     }
-    
 
     contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
 
@@ -195,7 +196,7 @@ function loadArticle()
 
             if(data.done_form_attach != null){
                 $("#done_form_row").show();
-                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
 
                 if(data.done_status == 0){
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
@@ -209,26 +210,26 @@ function loadArticle()
     });
 }
 
-// function approveArticle(){
-//     if (!confirm('Are you sure you want to approve this article?'))
-//     {
-//         return;
-//     }
-//     else{
-//         var id = $("input[name = article_id]").val();
-//         console.log(id);
-//         $.ajax({
-//             url: BACKEND_URL + "/approve_article/"+id,
-//             type: 'patch',
-//             success: function(result){
-//                 successMessage("You have approved that user!");
-//                 setInterval(() => {
-//                 location.href = FRONTEND_URL + "/article_list";
-//                 }, 3000);
-//             }
-//         });
-//     }
-// }
+function approveArticle(){
+    if (!confirm('Are you sure you want to approve this article?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = article_id]").val();
+        console.log(id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_article/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                setInterval(() => {
+                location.href = FRONTEND_URL + "/article_list";
+                }, 3000);
+            }
+        });
+    }
+}
   
 function rejectArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
@@ -417,7 +418,7 @@ function loadGovArticle()
 
             if(data.done_form_attach != null){
                 $("#done_form_row").show();
-                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
 
                 if(data.done_status == 0){
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
@@ -431,26 +432,26 @@ function loadGovArticle()
     });
 }
 
-// function approveGovArticle(){
-//     if (!confirm('Are you sure you want to approve this article?'))
-//     {
-//         return;
-//     }
-//     else{
-//         var id = $("input[name = article_id]").val();
-//         console.log(id);
-//         $.ajax({
-//             url: BACKEND_URL + "/approve_gov_article/"+id,
-//             type: 'patch',
-//             success: function(result){
-//                 successMessage("You have approved that user!");
-//                 setInterval(() => {
-//                 location.href = FRONTEND_URL + "/article_list";
-//                 }, 3000);
-//             }
-//         });
-//     }
-// }
+function approveGovArticle(){
+    if (!confirm('Are you sure you want to approve this article?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = article_id]").val();
+        console.log(id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_gov_article/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                setInterval(() => {
+                location.href = FRONTEND_URL + "/article_list";
+                }, 3000);
+            }
+        });
+    }
+}
   
 function rejectGovArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
