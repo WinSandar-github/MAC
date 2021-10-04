@@ -12,7 +12,7 @@ class StudentInfo extends Model
     protected $hidden = [
         'password', 'remember_token',
     ];
-      
+
     public function student_job()
     {
         return $this->hasOne(StudentJobHistroy::class,'student_info_id','id');
@@ -80,7 +80,7 @@ class StudentInfo extends Model
     }
 
     public function firm_ownerships_audits(){
-        return $this->belongsTo(FirmOwnershipAudit::class,'accountancy_firm_info_id','accountancy_firm_info_id');
+        return $this->hasMany(FirmOwnershipAudit::class,'accountancy_firm_info_id','accountancy_firm_info_id');
 
     }
 

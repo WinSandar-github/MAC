@@ -9,45 +9,51 @@ function saveContractDate(){
     article_form_type = $("#article_form_type").val();
     contract_start_date = $("input[name=contract_start_date]").val();
 
-    let months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    if(contract_start_date){
 
-    var start_date=new Date(contract_start_date);
-    var year = start_date.getFullYear();
-    var month = start_date.getMonth();
-    var day = start_date.getDate();
+        let months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    if(article_form_type == "c2_pass_3yr"){
-        var contract_end_date = new Date(year + 3, month, day);
-    }else if(article_form_type == "c12"){
-        var contract_end_date = new Date(year + 2, month, day);
-    }
-    
+        var start_date=new Date(contract_start_date);
+        var year = start_date.getFullYear();
+        var month = start_date.getMonth();
+        var day = start_date.getDate();
 
-    contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
-
-    var data = new FormData();
-    data.append('id', id);
-    data.append('contract_start_date', contract_start_date);
-    data.append('contract_end_date', contract_end_date);
-
-    show_loader();
-    $.ajax({
-        type: "POST",
-        data: data,
-        url: BACKEND_URL + "/save_contract_date",
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (result) {
-            EasyLoading.hide();
-            successMessage("You have successfully registered.");
-            location.reload();
-        },
-        error: function (message) {
-            EasyLoading.hide();
-            errorMessage(message);
+        if(article_form_type == "c2_pass_3yr"){
+            var contract_end_date = new Date(year + 3, month, day);
+        }else if(article_form_type == "c12"){
+            var contract_end_date = new Date(year + 2, month, day);
+        }else if(article_form_type == "c2_pass_1yr"){
+            var contract_end_date = new Date(year + 1, month, day);
         }
-    });
+
+        contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
+
+        var data = new FormData();
+        data.append('id', id);
+        data.append('contract_start_date', contract_start_date);
+        data.append('contract_end_date', contract_end_date);
+
+        show_loader();
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: BACKEND_URL + "/save_contract_date",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                EasyLoading.hide();
+                successMessage("You have successfully registered.");
+                location.reload();
+            },
+            error: function (message) {
+                EasyLoading.hide();
+                errorMessage(message);
+            }
+        });
+    }else{
+        alert("Please select date.");
+    }
 }
 
 function showArticle(id){
@@ -195,7 +201,7 @@ function loadArticle()
 
             if(data.done_form_attach != null){
                 $("#done_form_row").show();
-                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
 
                 if(data.done_status == 0){
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
@@ -209,26 +215,26 @@ function loadArticle()
     });
 }
 
-// function approveArticle(){
-//     if (!confirm('Are you sure you want to approve this article?'))
-//     {
-//         return;
-//     }
-//     else{
-//         var id = $("input[name = article_id]").val();
-//         console.log(id);
-//         $.ajax({
-//             url: BACKEND_URL + "/approve_article/"+id,
-//             type: 'patch',
-//             success: function(result){
-//                 successMessage("You have approved that user!");
-//                 setInterval(() => {
-//                 location.href = FRONTEND_URL + "/article_list";
-//                 }, 3000);
-//             }
-//         });
-//     }
-// }
+function approveArticle(){
+    if (!confirm('Are you sure you want to approve this article?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = article_id]").val();
+        console.log(id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_article/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                setInterval(() => {
+                location.href = FRONTEND_URL + "/article_list";
+                }, 3000);
+            }
+        });
+    }
+}
   
 function rejectArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
@@ -295,41 +301,44 @@ function showGovContractDate(info){
 function saveGovContractDate(){
     id = $("#gov_article_id").val();
     contract_start_date = $("input[name=contract_gov_start_date]").val();
+    if(contract_start_date){
+        let months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
-    let months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var start_date=new Date(contract_start_date);
+        var year = start_date.getFullYear();
+        var month = start_date.getMonth();
+        var day = start_date.getDate();
 
-    var start_date=new Date(contract_start_date);
-    var year = start_date.getFullYear();
-    var month = start_date.getMonth();
-    var day = start_date.getDate();
+        var contract_end_date = new Date(year + 2, month, day);
 
-    var contract_end_date = new Date(year + 2, month, day);
+        contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
 
-    contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
+        var data = new FormData();
+        data.append('id', id);
+        data.append('contract_start_date', contract_start_date);
+        data.append('contract_end_date', contract_end_date);
 
-    var data = new FormData();
-    data.append('id', id);
-    data.append('contract_start_date', contract_start_date);
-    data.append('contract_end_date', contract_end_date);
-
-    show_loader();
-    $.ajax({
-        type: "POST",
-        data: data,
-        url: BACKEND_URL + "/save_gov_contract_date",
-        cache: false,
-        contentType: false,
-        processData: false,
-        success: function (result) {
-            EasyLoading.hide();
-            successMessage("You have successfully registered.");
-            location.reload();
-        },
-        error: function (message) {
-            EasyLoading.hide();
-            errorMessage(message);
-        }
-    });
+        show_loader();
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: BACKEND_URL + "/save_gov_contract_date",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                EasyLoading.hide();
+                successMessage("You have successfully registered.");
+                location.reload();
+            },
+            error: function (message) {
+                EasyLoading.hide();
+                errorMessage(message);
+            }
+        });
+    }else{
+        alert("Please select date.");
+    }
 }
 
 function showGovArticle(id){
@@ -417,7 +426,7 @@ function loadGovArticle()
 
             if(data.done_form_attach != null){
                 $("#done_form_row").show();
-                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+                $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
 
                 if(data.done_status == 0){
                     document.getElementById("done_form_approve_reject_btn").style.display = "block";
@@ -431,26 +440,26 @@ function loadGovArticle()
     });
 }
 
-// function approveGovArticle(){
-//     if (!confirm('Are you sure you want to approve this article?'))
-//     {
-//         return;
-//     }
-//     else{
-//         var id = $("input[name = article_id]").val();
-//         console.log(id);
-//         $.ajax({
-//             url: BACKEND_URL + "/approve_gov_article/"+id,
-//             type: 'patch',
-//             success: function(result){
-//                 successMessage("You have approved that user!");
-//                 setInterval(() => {
-//                 location.href = FRONTEND_URL + "/article_list";
-//                 }, 3000);
-//             }
-//         });
-//     }
-// }
+function approveGovArticle(){
+    if (!confirm('Are you sure you want to approve this article?'))
+    {
+        return;
+    }
+    else{
+        var id = $("input[name = article_id]").val();
+        console.log(id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_gov_article/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                setInterval(() => {
+                location.href = FRONTEND_URL + "/article_list";
+                }, 3000);
+            }
+        });
+    }
+}
   
 function rejectGovArticle(){
     if (!confirm('Are you sure you want to reject this article?'))

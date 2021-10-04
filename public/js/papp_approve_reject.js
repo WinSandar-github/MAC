@@ -181,6 +181,7 @@ function loadPAPPData(){
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
+                console.log('element',element);
                 var education_history = element.student_education_histroy;               
                 var job = element.student_job;
                 if(element.status==0){
@@ -269,6 +270,7 @@ function loadPAPPData(){
                 $("#work_in_myanmar_confession").append(element.work_in_myanmar_confession);
                 $("#rule_confession").append(element.rule_confession);
                 $("#cpd_record").append(element.cpd_record);
+                $("#cpd_hours").append(element.cpd_hours);
                 $("#tax_free_recommendation").append(element.tax_free_recommendation);
                 $("#tax_year").append(element.tax_year);
                 $("#status").append(status);                
@@ -303,7 +305,10 @@ function loadPAPPData(){
                 rule_confession_modal=element.rule_confession;
                 cpd_record_modal=element.cpd_record;
                 tax_free_modal=element.tax_free_recommendation;
+                mpa_mem_card_front_modal=PDF_URL+element.mpa_mem_card_front;
+                mpa_mem_card_back_modal=PDF_URL+element.mpa_mem_card_back;
                 attached_modal=element.student_education_histroy.certificate;
+
                 document.getElementById('cpa').src=PDF_URL+cpa_modal;
                 document.getElementById('ra').src=PDF_URL+ra_modal;
                 document.getElementById('foreign_degree').src=PDF_URL+foreign_modal;
@@ -314,6 +319,8 @@ function loadPAPPData(){
                 document.getElementById('rule_confession').src=PDF_URL+rule_confession_modal;
                 document.getElementById('cpd_record').src=PDF_URL+cpd_record_modal;
                 document.getElementById('tax_free').src=PDF_URL+tax_free_modal;
+                document.getElementById('mpa_mem_card_front').src=mpa_mem_card_front_modal;
+                document.getElementById('mpa_mem_card_back').src=mpa_mem_card_back_modal;
                 document.getElementById('attached_file').src=PDF_URL+attached_modal;
             })
         }

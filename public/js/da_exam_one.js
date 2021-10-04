@@ -244,11 +244,11 @@ function showDaTwoExam(studentId) {
     location.href = FRONTEND_URL + "/da_two_exam_edit";
 }
 
-function printExamCard(studentId, exam_id,form_type) {
+function printExamCard(studentId, exam_id, form_type) {
 
     localStorage.setItem("student_id", studentId);
     localStorage.setItem("exam_id", exam_id);
-    if(form_type==1){
+    if (form_type == 1) {
         location.href = FRONTEND_URL + "/da1_examcard";
     }
     else {
@@ -358,7 +358,7 @@ function loadDAExamData() {
                 }
 
                 $("#exam_department").append(element.exam_department.name);
-                
+
                 let course_type_id = element.course.course_type_id;
 
                 element = element.student_info;
@@ -381,14 +381,14 @@ function loadDAExamData() {
                 $("#email").append(element.email);
                 $("#gov_staff").append(element.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(element.image);
-                if(course_type_id ==1){
-                    $("#registration_no").append((element.personal_no==null || element.personal_no=="")? '-':element.personal_no);
-                }else if(course_type_id ==2){
-                    $("#registration_no").append((element.cpersonal_no==null || element.cpersonal_no=="")? '-':element.cpersonal_no);
-                }else{
+                if (course_type_id == 1) {
+                    $("#registration_no").append((element.personal_no == null || element.personal_no == "") ? '-' : element.personal_no);
+                } else if (course_type_id == 2) {
+                    $("#registration_no").append((element.cpersonal_no == null || element.cpersonal_no == "") ? '-' : element.cpersonal_no);
+                } else {
                     $("#registration_no").append("-");
                 }
-                
+
 
                 if (element.gov_staff == 1) {
                     $(".recommend_row").show();
@@ -421,31 +421,31 @@ function loadDAExamData() {
                 $("#office_address").append(job.office_address);
                 attached_file = element.student_education_histroy.certificate;
                 $.ajax({
-                    url: BACKEND_URL + "/get_passed_exam_student/"+element.id,
+                    url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
                     type: 'get',
                     success: function (result) {
-                        if(result.data.length!=0){
-                            result.data.forEach(function(course){
-                                var success_year=new Date(course.updated_at);
+                        if (result.data.length != 0) {
+                            result.data.forEach(function (course) {
+                                var success_year = new Date(course.updated_at);
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
-                            });                           
+                            });
                             $('.course').html(course_html)
                         }
-                        else{
-                            $('#tbl_course').DataTable( {
+                        else {
+                            $('#tbl_course').DataTable({
                                 "bPaginate": false,
                                 "bLengthChange": false,
-                                "bInfo" : false,
-                                searching:false,
+                                "bInfo": false,
+                                searching: false,
                             });
                         }
                     }
                 });
-                
+
             })
         }
     })
@@ -457,7 +457,7 @@ function loadStudentDataForExamCard() {
     $("#roll_no").html("");
     $("#name").html("");
     $("#nrc").html("");
-   // $("input[name = student_info_id]").val(id);
+    // $("input[name = student_info_id]").val(id);
 
     $.ajax({
         type: "GET",
@@ -467,8 +467,8 @@ function loadStudentDataForExamCard() {
             var exam_datas = data.data;
             exam_datas.forEach(function (exam_data) {
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
-                
-                var batch_no=mm2en(exam_data.batch.number.toString());
+
+                var batch_no = mm2en(exam_data.batch.number.toString());
                 $("#batch_no").append(batch_no);
                 $("#da_roll_no").append(exam_data.student_info.personal_no);
                 $("#name").append(exam_data.student_info.name_mm);
@@ -483,11 +483,10 @@ function loadStudentDataForExamCard() {
 }
 
 function approveDAOneExam() {
-    if (!confirm('Are you sure you want to approve this student?'))
-    {
+    if (!confirm('Are you sure you want to approve this student?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = student_id]").val();
         $.ajax({
             url: BACKEND_URL + "/approve_exam/" + id,
@@ -502,11 +501,10 @@ function approveDAOneExam() {
 }
 
 function rejectDAOneExam() {
-    if (!confirm('Are you sure you want to reject this student?'))
-    {
+    if (!confirm('Are you sure you want to reject this student?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = student_id]").val();
         $.ajax({
             url: BACKEND_URL + "/reject_exam/" + id,
@@ -521,11 +519,10 @@ function rejectDAOneExam() {
 }
 
 function approveDATwoExam() {
-    if (!confirm('Are you sure you want to approve this student?'))
-    {
+    if (!confirm('Are you sure you want to approve this student?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = student_id]").val();
         $.ajax({
             url: BACKEND_URL + "/approve_exam/" + id,
@@ -540,11 +537,10 @@ function approveDATwoExam() {
 }
 
 function rejectDATwoExam() {
-    if (!confirm('Are you sure you want to reject this student?'))
-    {
+    if (!confirm('Are you sure you want to reject this student?')) {
         return;
     }
-    else{
+    else {
         var id = $("input[name = student_id]").val();
         $.ajax({
             url: BACKEND_URL + "/reject_exam/" + id,
@@ -781,7 +777,7 @@ function loadStudent(course_type) {
     });
 }
 
-function fillMark(id, isFullModule,course_type) {
+function fillMark(id, isFullModule, course_type) {
     localStorage.setItem("exam_register_id", id);
     localStorage.setItem("is_full_module", isFullModule);
     localStorage.setItem("course_type", course_type);
@@ -838,6 +834,7 @@ function getModuleStd() {
         success: function (data) {
             var da_data = data.data;
             da_data.forEach(function (element) {
+                // console.log('element',element);
                 let course_type_id = element.course.course_type_id;
                 var std = element.student_info;
                 if (element.status == 0) {
@@ -918,14 +915,14 @@ function getModuleStd() {
                 $("#email").append(std.email);
                 $("#gov_staff").append(std.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 // $("#image").append(std.image);
-                if(course_type_id==1){
-                    $("#registration_no").append((std.personal_no==null || std.personal_no=="")? '-':std.personal_no);
-                }else if(course_type_id==2){
-                    $("#registration_no").append((std.cpersonal_no==null || std.cpersonal_no=="")? '-':std.cpersonal_no);
-                }else{
+                if (course_type_id == 1) {
+                    $("#registration_no").append((std.personal_no == null || std.personal_no == "") ? '-' : std.personal_no);
+                } else if (course_type_id == 2) {
+                    $("#registration_no").append((std.cpersonal_no == null || std.cpersonal_no == "") ? '-' : std.cpersonal_no);
+                } else {
                     $("#registration_no").append("-");
                 }
-                
+
 
                 if (std.gov_staff == 1) {
                     $(".recommend_row").show();
@@ -944,7 +941,20 @@ function getModuleStd() {
 
                     $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+                });
+
+                if (!std.da_pass_roll_number) {
+                    $(".da_two_pass_info").hide();
+                } else {
+                    $(".da_two_pass_info").show();
+                    if (std.da_pass_certificate == null) {
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                    } else {
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + std.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(std.da_pass_date);
+                    $(".da_pass_roll_number").append(std.da_pass_roll_number);
+                }
 
                 $(".nrc_front").append(`<a href='${PDF_URL + std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
                 $(".nrc_back").append(`<a href='${PDF_URL + std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
@@ -983,7 +993,7 @@ function getModuleStd() {
                         i++;
                     }
                 })
-                
+
             });
 
             $.ajax({
@@ -993,8 +1003,8 @@ function getModuleStd() {
                 success: function (result) {
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
-                        tr += "<td colspan='2' style='text-align:center'>Total Marks</td>";
-                        tr += "<td colspan='2' id='total_mark' style='text-align:left'></td>";
+                        tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.data.total_mark + "</td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();
@@ -1068,12 +1078,12 @@ function getModuleStd() {
                                 grade.setAttribute("readonly", "true");
                             }
                         }
-                        var total_mark=0;
-                        for (var i = 0; i < row_length; i++) {
-                            var mark=parseInt(rData.marks[i]);
-                            total_mark += mark;
-                        }
-                        $('#total_mark').append(total_mark);
+                        // var total_mark=0;
+                        // for (var i = 0; i < row_length; i++) {
+                        //     var mark=parseInt(rData.marks[i]);
+                        //     total_mark += mark;
+                        // }
+                        // $('#total_mark').append(total_mark);
                     } else {
                         // $('.pass_fail_btn').hide();
                     }
@@ -1087,13 +1097,12 @@ function getModuleStd() {
 }
 
 function examResultSubmit() {
-    console.log(document.activeElement.value,"e");
-    var pass_fail=document.activeElement.value;
-    if(!confirm("Are you sure you want to "+pass_fail+" this student?"))
-    {
+    console.log(document.activeElement.value, "e");
+    var pass_fail = document.activeElement.value;
+    if (!confirm("Are you sure you want to " + pass_fail + " this student?")) {
         return;
     }
-    else{
+    else {
         var id = localStorage.getItem("exam_register_id");
         var course_type = localStorage.getItem("course_type");
         var table = document.getElementById("tbl_fillmarks");
@@ -1110,6 +1119,13 @@ function examResultSubmit() {
         for (var i = 1; i < totalRowCount; i++) {
             data.append('grade[]', $('#grade' + i).val());
         }
+        var total_mark = 0;
+        for (var i = 1; i < totalRowCount; i++) {
+            console.log($('#mark' + i).val());
+            var mark = parseInt($('#mark' + i).val());
+            total_mark += mark;
+        }
+        data.append('total_mark', total_mark);
         data.append('exam_register_id', id);
         if (result_id == "") {
             $.ajax({
@@ -1130,11 +1146,11 @@ function examResultSubmit() {
                     // } else {
                     //     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
                     // }
-                    if(pass_fail=="fail"){
+                    if (pass_fail == "fail") {
                         $.ajax({
-                            url:  BACKEND_URL + "/fail_exam/"+id,
+                            url: BACKEND_URL + "/fail_exam/" + id,
                             type: 'PATCH',
-                            success: function(result){
+                            success: function (result) {
                                 //aggaio
                                 errorMessage(result.message);
                                 if (course_type == 1) {
@@ -1152,13 +1168,13 @@ function examResultSubmit() {
                             }
                         });
                     }
-                    else{
+                    else {
                         $.ajax({
-                            url: BACKEND_URL + "/pass_exam/"+id,
+                            url: BACKEND_URL + "/pass_exam/" + id,
                             type: 'PATCH',
-                            success: function(result){
+                            success: function (result) {
                                 //aggaio
-                                successMessage(result.message); 
+                                successMessage(result.message);
                                 if (course_type == 1) {
                                     location.href = FRONTEND_URL + "/da1_exam_result_edit";
                                 } else if (course_type == 2) {
@@ -1167,14 +1183,14 @@ function examResultSubmit() {
                                     location.href = FRONTEND_URL + "/cpa1_exam_result_edit";
                                 } else {
                                     location.href = FRONTEND_URL + "/cpa2_exam_result_edit";
-                                }                               
+                                }
                             },
                             error: function (message) {
                                 console.log(message);
                             }
                         });
                     }
-                    
+
                 },
                 error: function (message) {
                     console.log(message);

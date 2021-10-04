@@ -98,8 +98,8 @@
                             <label class="col-md-4 form-label">{{ __('Batch Name') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <select class="form-control form-select" name="batch_id" id="selected_ebatch_id"
-                                        style="width: 100%;" required>
+                                    <select class="form-control form-select " name="batch_id" id="selected_ebatch_id"
+                                        style="width: 100%;" >
                                         <option value="" disabled selected>Select Batch</option>
                                     </select>
                                 </div>

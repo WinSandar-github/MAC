@@ -11,6 +11,7 @@ use App\EducationHistroy;
 use App\StudentRegister;
 use App\StudentCourseReg;
 use App\ExamRegister;
+use App\Invoice;
 
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -196,6 +197,15 @@ class EntryExamController extends Controller
             }
             $student_course->qt_entry      = 1;
             $student_course->save();
+
+            //invoice
+            $invNo = str_pad($student_course->id, 20, "0", STR_PAD_LEFT);
+
+            $invoice = new Invoice();
+            $invoice->student_info_id = $student_info->id;
+            $invoice->invoiceNo       = $invNo;
+            $invoice->status          = 0;
+            $invoice->save();
                
             return response()->json([
                 $data => $student_info
@@ -234,6 +244,8 @@ class EntryExamController extends Controller
             ->where('status','=',$request->status)
             ->where('exam_type_id','=',3)
             ->get();
+
+            
       
         return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
@@ -285,8 +297,7 @@ class EntryExamController extends Controller
                         ->where('grade','=',$request->grade)
                         ->where('exam_type_id','=',3)
                         ->get();
- 
-        
+         
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
 

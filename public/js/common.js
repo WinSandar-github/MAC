@@ -921,8 +921,8 @@ function thousands_separators(num) {
     num_parts[0] = num_parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     return num_parts.join(".");
 }
-function removeComma(number){
-    var number_part=parseInt(number.split(',').join(""));
+function removeComma(number) {
+    var number_part = parseInt(number.split(',').join(""));
     return number_part;
 }
 function convert(num) {

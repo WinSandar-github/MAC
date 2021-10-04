@@ -349,9 +349,20 @@ class MentorController extends Controller
         ],200);
     }
 
-    public function reject($id)
+    // public function reject($id)
+    // {
+    //     $reject = Mentor::find($id);
+    //     $reject->status = 2;
+    //     $reject->save();
+    //     return response()->json([
+    //         'message' => "You have successfully rejected that user!"
+    //     ],200);
+    // }
+
+    public function reject(Request $request)
     {
-        $reject = Mentor::find($id);
+        $reject = Mentor::find($request->id);
+        $reject->reject_reason = $request->reason;
         $reject->status = 2;
         $reject->save();
         return response()->json([
