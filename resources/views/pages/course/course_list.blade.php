@@ -192,7 +192,16 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('2.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Course Name(မြန်မာ)') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="course_name_mm" class="form-control" placeholder="Course Name(မြန်မာ)"
+                                        autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('3.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Description') }}</label>

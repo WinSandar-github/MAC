@@ -29,9 +29,9 @@ Route::resource('/acc_firm_info','AccFirmInfController');
 Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
-Route::patch('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
-Route::patch('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
 // Mentor
 Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
@@ -325,7 +325,7 @@ Route::get('get_exam_type','ExamController@getExamType');
 Route::post('getSubject','SubjectController\SubjectController@getSubject');
 
 // education history
-Route::get('getEducationHistory/{student_info_id}','TeacherController\TeacherController@getEducationHistory');
+Route::post('getEducationHistory','TeacherController\TeacherController@getEducationHistory');
 
 
 //Pass or fail  student
@@ -355,4 +355,22 @@ Route::post('/filter_gov_article','ArticleController\ArticleController@FilterGov
 Route::patch('/approve_gov_article/{id}', 'ArticleController\ArticleController@approveGov');
 Route::patch('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
 Route::get('/gov_article_show/{id}', 'ArticleController\ArticleController@showGovArticle');
+
+Route::post('/article_resign_register', 'ArticleController\ArticleController@saveResignArticle');
+Route::post('/filter_resign_article','ArticleController\ArticleController@FilterResignArticle');
+Route::patch('/approve_resign_article/{id}', 'ArticleController\ArticleController@approveResign');
+Route::patch('/reject_resign_article/{id}', 'ArticleController\ArticleController@rejectResign');
+Route::get('/resign_article_show/{id}', 'ArticleController\ArticleController@showResignArticle');
+Route::post('/save_contract_date', 'ArticleController\ArticleController@saveContractDate');
+Route::post('/save_done_form', 'ArticleController\ArticleController@saveDoneForm');
+Route::post('/filter_done_article','ArticleController\ArticleController@filterDoneArticle');
+
+Route::post('/save_gov_contract_date', 'ArticleController\ArticleController@saveGovContractDate');
+Route::post('/save_gov_done_form', 'ArticleController\ArticleController@saveGovDoneForm');
+Route::post('/filter_gov_done_article','ArticleController\ArticleController@filterGovDoneArticle');
+Route::patch('/approve_done_gov_article/{id}', 'ArticleController\ArticleController@approveDoneGov');
+Route::patch('/reject_done_gov_article/{id}', 'ArticleController\ArticleController@rejectDoneGov');
+Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@approveDone');
+Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
+
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');

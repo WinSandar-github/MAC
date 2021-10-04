@@ -856,7 +856,9 @@
                                             Cpa Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
                                         </a>
                                     </div>
-                                    <div class="row">
+                                </div>
+
+                                <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('publishes_entrance_exam_result/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
                                             Cpa One ဝင်ခွင့်စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
@@ -868,8 +870,7 @@
                                         </a>
                                     </div>
 
-                                </div>
-
+                            
                                 </div>
                             </div>
                         </div>

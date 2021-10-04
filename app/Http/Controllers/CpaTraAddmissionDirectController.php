@@ -187,7 +187,6 @@ class CpaTraAddmissionDirectController extends Controller
         $da_pass_date  = $request->da_pass_date;
         $degree_date = $request->degree_date;
         $date = date('d-M-Y');
-        $qualified_date = date('Y-m-d');
         $course_date = date('Y-m-d');
 
         $student_info = new StudentInfo();
@@ -253,7 +252,7 @@ class CpaTraAddmissionDirectController extends Controller
         $education_histroy->certificate     = json_encode($certificate);
         // $education_histroy->certificate     = json_encode($certificates);
 
-        $education_histroy->qualified_date  = $qualified_date;
+        $education_histroy->qualified_date  = $request->qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
         

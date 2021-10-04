@@ -28,6 +28,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->string('telephones');
             $table->string('h_email');
             $table->string('website');
+            $table->string('remark')->nullable();
             $table->string('managing_director')->nullable();
             $table->unsignedBigInteger('organization_structure_id');
             $table->string('name_of_sole_proprietor');

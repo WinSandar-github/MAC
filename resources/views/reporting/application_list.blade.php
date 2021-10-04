@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <!-- @php $currend_date =  date("Y-m-d"); @endphp -->
-                @php $currend_date =  date("2021-10-30"); @endphp
+                @php $currend_date =  date("2021-12-10"); @endphp
 
                  <div class="card-body">
                     <div class="row"> 
@@ -40,7 +40,7 @@
                                         <th class="bold-font-weight" >Serial number</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
-                                        
+                                        <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                         <th class="bold-font-weight" >ကိုယ်ပိုင်နံပါတ်</th>
 
                                     </tr>
@@ -52,6 +52,17 @@
                                             <td>{{++$count}}</td>
                                             <td>{{$student_register->name_mm}}</td>
                                             <td>{{$student_register->student_info->nrc_state_region. "/" . $student_register->student_info->nrc_township . "(" . $student_register->student_info->nrc_citizen . ")" . $student_register->student_info->nrc_number}}</td>
+                                            <td>
+                                                @if($course->code === "da_1")
+                                                    ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
+                                                @elseif($course->code === "da_2" )                               
+                                                    ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
+                                                @elseif($course->code === "cpa_1" )                               
+                                                    လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
+                                                @else                             
+                                                    လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)                                                
+                                                @endif
+                                            </td>
                                             <td>{{ $course->course_type->course_code == "da" 
                                                 ? $student_register->student_info->personal_no
                                                 : $student_register->student_info->cpersonal_no}}</td>

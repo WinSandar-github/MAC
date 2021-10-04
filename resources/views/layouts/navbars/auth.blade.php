@@ -6,7 +6,7 @@
             </div>
         </a>
         <a href="{{ route('page.index', 'dashboard') }}" class="simple-text logo-normal">
-            {{ __('MAC') }}
+            {{ __('DPRMS') }}
         </a>
     </div>
     <div class="sidebar-wrapper">

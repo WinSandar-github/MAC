@@ -64,6 +64,7 @@ function createMainCourse() {
 function createCourse() {
     var send_data = new FormData();
     send_data.append('name', $("input[name=course_name]").val());
+    send_data.append('name_mm', $("input[name=course_name_mm]").val());
     send_data.append('form_fee', removeComma($("input[name=form_fee]").val()));
     send_data.append('selfstudy_registration_fee', removeComma($("input[name=selfstudy_registration_fee]").val()));
     send_data.append('privateschool_registration_fee', removeComma($("input[name=privateschool_registration_fee]").val()));
@@ -72,6 +73,7 @@ function createCourse() {
     send_data.append('tution_fee', removeComma($("input[name=tution_fee]").val()));
     send_data.append('cpa_subject_fee', removeComma($("input[name=cpa_subject_fee]").val()));
     send_data.append('da_subject_fee', removeComma($("input[name=da_subject_fee]").val()));
+
     send_data.append('description', $("input[name=description]").val());
     send_data.append('code', $("input[name=code]").val());
     send_data.append('exam_fee', $("input[name=exam_fee]").val());
@@ -204,7 +206,8 @@ function showCourseInfo(id) {
             var course_data = data.data;
             console.log('show course', course_data);
             // removeBracketed(course_data.requirement_id,"requirement_id");
-            $('input[name=course_name]').val(course_data.course_name);
+            $('input[name=course_name]').val(course_data.name);
+            $('input[name=course_name_mm]').val(course_data.name_mm);
             $('input[name=form_fee]').val(course_data.form_fee);
             $('input[name=selfstudy_registration_fee]').val(course_data.selfstudy_registration_fee);
             $('input[name=privateschool_registration_fee]').val(course_data.privateschool_registration_fee);
@@ -280,7 +283,8 @@ function updateMainCourse() {
 
 function updateCourse() {
     var id = $("input[name=course_id]").val();
-    var name = $("input[name=name]").val();
+    var name = $("input[name=course_name]").val();
+    var name_mm = $("input[name=course_name_mm]").val();
     var form_fee = $("input[name=form_fee]").val();
     var selfstudy_registration_fee = $("input[name=selfstudy_registration_fee]").val();
     var privateschool_registration_fee = $("input[name=privateschool_registration_fee]").val();
@@ -294,8 +298,11 @@ function updateCourse() {
 
     var course_type_id = $('.course_type').val();
     var requirement_id = $('.requirement_id').val();
+    // var cpa_subject_fee = $("input[name=cpa_subject_fee]").val();
+    // var da_subject_fee = $("input[name=da_subject_fee]").val();
     var cpa_subject_fee = $("input[name=cpa_subject_fee]").val();
     var da_subject_fee = $("input[name=da_subject_fee]").val();
+    console.log('requirement_id', requirement_id);
     show_loader();
 
     $.ajax({
@@ -303,6 +310,7 @@ function updateCourse() {
         type: 'patch',
         data: {
             name: name,
+            name_mm: name_mm,
             form_fee: form_fee,
             selfstudy_registration_fee: selfstudy_registration_fee,
             privateschool_registration_fee: privateschool_registration_fee,
@@ -319,12 +327,13 @@ function updateCourse() {
             da_subject_fee: da_subject_fee
         },
         success: function (result) {
+
             EasyLoading.hide();
             successMessage("Update Successfully");
             $('#create_course_modal').modal('toggle');
-            getCourseList();
-            // location.reload();
-            getCourse();
+            //getCourseList();
+            //window.location.reload();
+            // getCourse();
 
 
         }

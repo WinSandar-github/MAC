@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <form action="javascript:void()" method="post" enctype="multipart/form-data">
-                            <input type="hide" name="fill_mark" id="fill_mark" value="fill_mark">  
+                            <input type="hidden" name="fill_mark" id="fill_mark" value="fill_mark">  
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">

@@ -343,28 +343,32 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-10">
-                                <h5 class="title" style="padding-left: 130px;font-weight:bold;" >လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း) သင်တန်း အမှတ်စဥ်- <span id="exam_batch_no"></span> </h5>
-                                <h5 class="title" style="padding-left: 130px;font-weight:bold;">ဝင်ခွင့်စာမေးပွဲ ဖြေဆိုခွင့်လက်မှတ်</h5>
+                            <h5 class="title" style="padding-left: 130px;font-weight:bold;" >မြန်မာနိုင်ငံစာရင်းကောင်စီ <span id="exam_batch_no"></span> </h5>
+
+                                <h5 class="title" style="padding-left: 130px;font-weight:bold;" >လက်မှတ်ရပြည်သူ့စာရင်းကိုင်များအဖြစ် မှတ်ပုံတင်ရန် အရည်အချင်းစစ်စာမေးပွဲ <span id="exam_batch_no"></span> </h5>
+                                <h5 class="title" style="padding-left: 130px;font-weight:bold;">ဖြေဆိုခွင့်ကတ်ပြား</h5>
+
+                                
+
                             </div>
 
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8"> </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 d-md-flex justify-content-md-end">
-                                <label   style="font-weight:bold">စာမေးပွဲခုံနံပါတ်</label>
+                            <!-- <div class="col-lg-8 col-md-8 col-sm-8"> </div> -->
+                            <div class="col-lg-6 col-md col-sm-6 d-md-flex justify-content-center">
+                                <label class="mr-3"   style="font-weight:bold">ခုံနံပါတ်</label>
+                               ( <span class="px-2" id="exam_roll_no"></span> )
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2">
+                            <!-- <div class="col-lg-6 col-md-6 col-sm-6>
                                 <!-- <input type="text" name="roll_no" class="form-control" placeholder="Roll No."> -->
-                                <label class="col-form-label" style="border: 1px solid black;width:100px;" id="exam_roll_no"></label>
-                            </div>
+                                <!-- <label class="col-form-label" style="border: 1px solid black;width:100px;" id="exam_roll_no"></label> -->
+                            </div> -->
                         </div>  <br/>
                         <div class="row">
-                            <div class="col-md-3">
-                                <img id="student_img" alt="preview image" width="200" height="200">
-                            </div>
-                            <div class="col-md-8">
+                            
+                            <div class="col-md-10 offset-md-1">
                                 <div class="row">
                                     <div class="col-md-1 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">၁။</label>
@@ -390,73 +394,60 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">စာမေးပွဲကျင်းပမည့်</label>
+                                    <div class="col-md-1 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">၃။</label>
+                                    </div>
+                                    <div class="col-md-5 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">အဖအမည်</label>
+                                    </div>
+                                    <div class="col-md-6  text-center">
+                                        <label class="col-form-label" id="father_name"  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                        <!-- <input type="text" name="roll_no"  id="2" class="form-control" placeholder="nrc"> -->
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-1 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">(က)</label>
+                                        <label class="col-form-label"  style="font-weight:bold">၄။</label>
                                     </div>
                                     <div class="col-md-5 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">နေ့ရက် ၊</label>
+                                        <label class="col-form-label"  style="font-weight:bold">စာစစ်ဌာန</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_date"  style="border-bottom: 1px dotted black;width:300px;"></label>
-                                        <!-- <input type="text" name="roll_no" id="3" class="form-control" placeholder="nrc"> -->
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-1 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">(ခ)</label>
-                                    </div>
-                                    <div class="col-md-5 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">အချိန် ၊</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="col-form-label" id="exam_time"  style="border-bottom: 1px dotted black;width:300px;"></label>
-                                        <!-- <input type="text" name="roll_no"  id="4" class="form-control" placeholder="nrc"> -->
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-1 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">(ဂ)</label>
-                                    </div>
-                                    <div class="col-md-5 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">နေရာ ၊</label>
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
-                                        <!-- <input type="text" name="roll_no"  id="5" class="form-control" placeholder="nrc"> -->
+                                        <!-- <input type="text" name="roll_no"  id="2" class="form-control" placeholder="nrc"> -->
                                     </div>
                                 </div>
+                                <div class="row mt-5">
+                                    <div class="col-md-5 ml-5">
+                                        <img id="student_img" alt="preview image" width="200" height="200">
+                                    </div>
+                                    <div class="col-md-6 pull-left" style="margin-top: 130px;">
+                                        <label class="col-form-label"  style="font-weight:bold">ညွှန်ကြားရေးမှူး</label><br/>
+                                        <label class="col-form-label"  style="font-weight:bold">မြန်မာနိုင်ငံစာရင်းကောင်စီရုံး</label>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-4">
+                                    <div class="col-md-12 border-dark border">
+                                        <h6 class="text-left py-3">ဖြေဆိုသူများသတိပြုရန်</h6>
+                                        <p style="text-indent: 40px;" >
+                                            နိုင်ငံသားစိစစ်ရေးကတ်ပြား(သို့မဟုတ်) အမျိုးသားမှတ်ပုံတင်ကတ်ပြားနှင့် ဤ ဖြေဆိုခွင့်ကတ်ပြား ယူဆောင်လာခြင်း 
+                                            မပြုသူအား စာမေးပွဲ ဝင်ရောက်ဖြေဆိုခွင့်ပြုမည် မဟုတ်ပါ။ စာမေးပွဲစတင်ကျင်းပသည် အချိန်မှစ၍ နာရီဝက်ကျော် 
+                                            နှောက်ကျပါက စာမေးပွဲ ဖြေဆိုခွင့်ပြုမည် မဟုတ်ပါ။ လက်ကိုင်ဖုန်းများးကို စာမေးပွဲခန်းအတွင်းသို့ ယူဆောင်ခွင့်မပြုပါ။
+                                            ငွေကြေးနှင့် အဖိုးတန်ပစ္စည်းများ ပျောက်ဆုံးမူအတွက် မြန်မာနိုင်ငံစာရင်းကောင်စီရုံးမှ တာဝန်မယူပါ။</p>
+
+                                    
+
+                                    </div>
+                                
+
+                                </div>
+                                                          
+                              
                             </div>
+                           
                         </div>  </br>
-                        <div class="row">
-                            <div class="col-md-2">
-                                <label class="col-form-label"  style="font-weight:bold">မှတ်ချက် ။</label>
-                            </div>
-                            <div class="col-md-10 text-left">
-                                <label class="col-form-label"  style="font-weight:bold">(၁) ဤလက်မှတ်နှင့် နိုင်ငံသားစိစစ်ရေးကတ်ပြားပါရှိမှသာလျှင် စာမေးပွဲဖြေဆိုခွင့်ပြုမည်။</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-10 text-left">
-                                <label class="col-form-label"  style="font-weight:bold">(၂) စာမေးပွဲစတင်ကျင်းပသည့်အချိန်မှစ၍ နာရီဝက်ကျော်နောက်ကျပါက စာမေးပွဲဖြေဆိုခွင့်ပြုမည်မဟုတ်ပါ။ စာမေးပွဲစည်းကမ်း အကျဥ်းချုပ်ကို ကျောဖက်တွင်ဖော်ပြထားပါသည်။</label>
-                            </div>
-                        </div><br/><br/><br/><br/><br/><br/>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="col-form-label"  style="font-weight:bold">ဖြေဆိုသူလက်မှတ်</label><br/>
-                                <label class="col-form-label"  style="font-weight:bold">(သက်ဆိုင်ရာဝန်ထမ်း၏ရှေ့မှောက်တွင် ရေးထိုးရမည်။)</label>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="col-form-label"  style="font-weight:bold">ညွှန်ကြားရေးမှူး</label><br/>
-                                <label class="col-form-label"  style="font-weight:bold">မြန်မာနိုင်ငံစာရင်းကောင်စီရုံး</label>
-                            </div>
-                        </div><br/><br/>
+                       
                     </div>
                 </div>
             </div>
