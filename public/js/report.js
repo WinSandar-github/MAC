@@ -61,3 +61,21 @@ function generateExamSrNo(code) {
 }
 
 
+function generateEntranceExamSrNo(code) {
+
+    show_loader();
+    $.ajax({
+        url: BACKEND_URL + "/generate_entrance_exam_sr_no/" + code,
+        type: 'get',
+        contentType: false,
+        processData: false,
+        success: function (result) {
+            EasyLoading.hide();
+            successMessage("Update Serial Number");
+            // location.reload();
+
+        }
+    });
+}
+
+

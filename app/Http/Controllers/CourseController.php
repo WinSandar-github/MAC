@@ -179,12 +179,11 @@ class CourseController extends Controller
 
     public function getCourseType()
     {
-        $course_type = CourseType::all();
+        $course_type = CourseType::get();
         return response()->json([
             'data' => $course_type
         ], 200);
     }
-    
     public function loadCourseByCourseType($course_type_id)
     {
         $courses = Course::where('course_type_id',$course_type_id)->with('batches')->get();

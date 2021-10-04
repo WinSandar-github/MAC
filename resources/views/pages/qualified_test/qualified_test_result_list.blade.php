@@ -71,56 +71,53 @@
                     <div class="card-body">
                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
                             <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                <table id="tbl_cpa_exam_pending_result" class="table table-hover text-nowrap "
+                                <table id="tbl_qt_result_pending" class="table table-hover text-nowrap "
                                     style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th class="bold-font-weight">No</th>
                                             <th class="bold-font-weight">Action</th>
                                             <th class="bold-font-weight">Student Name</th>
-                                            <th class="bold-font-weight">Course Name</th>
-                                            <th class="bold-font-weight">Batch</th>
-                                            <th class="bold-font-weight">Module</th>
+                                            <th class="bold-font-weight" >Local Education</th>
+                                            <th class="bold-font-weight" >Foreign Education</th>
                                             <th class="bold-font-weight">Grade</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tbl_cpa_exam_pending_result_body" class="hoverTable text-left">
+                                    <tbody id="tbl_qt_result_pending_body" class="hoverTable text-left">
                                     </tbody>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="link2" aria-expanded="true">
-                                <table id="tbl_cpa_exam_approved_result" class="table table-hover text-nowrap "
+                                <table id="tbl_qt_result_passed" class="table table-hover text-nowrap "
                                     style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th class="bold-font-weight">No</th>
                                             <th class="bold-font-weight">Action</th>
                                             <th class="bold-font-weight">Student Name</th>
-                                            <th class="bold-font-weight">Course Name</th>
-                                            <th class="bold-font-weight">Batch</th>
-                                            <th class="bold-font-weight">Module</th>
+                                            <th class="bold-font-weight" >Local Education</th>
+                                            <th class="bold-font-weight" >Foreign Education</th>
                                             <th class="bold-font-weight">Grade</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tbl_cpa_exam_approved_result_body" class="hoverTable text-left">
+                                    <tbody id="tbl_qt_result_passed_body" class="hoverTable text-left">
                                     </tbody>
                                 </table>
                             </div>
                             <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                <table id="tbl_cpa_exam_rejected_result" class="table table-hover text-nowrap "
+                                <table id="tbl_qt_result_failed" class="table table-hover text-nowrap "
                                     style="width:100%;">
                                     <thead>
                                         <tr>
                                             <th class="bold-font-weight">No</th>
                                             <th class="bold-font-weight">Action</th>
                                             <th class="bold-font-weight">Student Name</th>
-                                            <th class="bold-font-weight">Course Name</th>
-                                            <th class="bold-font-weight">Batch</th>
-                                            <th class="bold-font-weight">Module</th>
+                                            <th class="bold-font-weight" >Local Education</th>
+                                            <th class="bold-font-weight" >Foreign Education</th>
                                             <th class="bold-font-weight">Grade</th>
                                         </tr>
                                     </thead>
-                                    <tbody id="tbl_cpa_exam_rejected_result_body" class="hoverTable text-left">
+                                    <tbody id="tbl_qt_result_failed_body" class="hoverTable text-left">
                                     </tbody>
                                 </table>
                             </div>
@@ -135,96 +132,95 @@
 
 @push('scripts')
     <script>
-        //loadCPAStudent('cpa_1');
-        //loadBatchData("cpa_1");
 
-        //   $(document).ready(function(){
-        //     $('#tbl_cpa_exam_pending_result').DataTable({
-        //         processing: true,
-        //         scrollX:true,
-        //         // serverSide: true,
-        //         ajax: {
-        //                 url  : BACKEND_URL + "/filter_entry_exam_result",
-        //                 type : "POST" ,
-        //                 data :  function (d) {
-        //                     d.grade       = 0
-        //                 }
+    $(document).ready(function(){
 
-        //             },
-        //         columns: [
-        //             {data: null, render: function (data, type, row, meta) {
-        //                 return meta.row + meta.settings._iDisplayStart + 1;
-        //             }},
-        //             {data: 'action', name: 'action', orderable: false, searchable: false},
-        //             {data: 'student_info.name_mm', name: 'Student Name'},
-        //             {data: 'exam_type', name: 'Exam Type'},
-        //             {data: 'remark', name: 'Remark'},
-        //             {data: 'status', name: 'Batch Number'},
+        $('#tbl_qt_result_pending').DataTable({
+            processing: true,
+            // serverSide: true,
+            scrollX:true,
+            ajax: {
+                        url  : BACKEND_URL + "/filter_qualified_test_result",
+                        type : "post",
+                        data :  function (d) {
+                            d.grade       = 0
+                        }
+                    },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'local_edu', name: 'Local Education'},
+                {data: 'foreign_edu', name: 'Foreign Education'},
+                {data: 'remark', name: 'Grade'},
 
-        //         ],
-        //         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     });
+               
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_qt_result_passed').DataTable({
+            processing: true,
+            // serverSide: true,
+            scrollX:true,
+            ajax: {
+                        url  : BACKEND_URL + "/filter_qualified_test_result",
+                        type : "POST" ,
+                        data :  function (d) {
+                            d.grade       = 1
+                        }
 
-        //     $('#tbl_cpa_exam_approved_result').DataTable({
-        //         processing: true,
-        //         scrollX:true,
-        //         // serverSide: true,
-        //         ajax: {
-        //                 url  : BACKEND_URL + "/filter_entry_exam_result",
-        //                 type : "POST" ,
-        //                 data :  function (d) {
-        //                     d.grade       = 1
-        //                 }
+                    },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                 {data: 'local_edu', name: 'Local Education'},
+                {data: 'foreign_edu', name: 'Foreign Education'},
+                {data: 'remark', name: 'Grade'},
 
-        //             },
-        //         columns: [
-        //           {data: null, render: function (data, type, row, meta) {
-        //               return meta.row + meta.settings._iDisplayStart + 1;
-        //           }},
-        //           {data: 'action', name: 'action', orderable: false, searchable: false},
-        //           {data: 'student_info.name_mm', name: 'Student Name'},
-        //           {data: 'exam_type', name: 'Exam Type'},
-        //           {data: 'remark', name: 'Remark'},
-        //           {data: 'batch.name', name: 'Batch Number'},
+                // {data: 'print', name: 'Print',orderable: false, searchable: false},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+        $('#tbl_qt_result_failed').DataTable({
+            processing: true,
+            // serverSide: true,
+            scrollX:true,
+            ajax: {
+                        url  : BACKEND_URL + "/filter_qualified_test_result",
+                        type : "POST" ,
+                        data :  function (d) {
+                            d.grade       = 2
+                        }
 
-        //         ],
-        //         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     });
+                    },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                 {data: 'local_edu', name: 'Local Education'},
+                {data: 'foreign_edu', name: 'Foreign Education'},
+                {data: 'remark', name: 'Grade'},
 
-        //     $('#tbl_cpa_exam_rejected_result').DataTable({
-        //         processing: true,
-        //         scrollX:true,
-        //         // serverSide: true,
-        //         ajax: {
-        //                 url  : BACKEND_URL + "/filter_entry_exam_result",
-        //                 type : "POST" ,
-        //                 data :  function (d) {
-        //                     d.grade       = 2
-        //                 }
+                // {data: 'print', name: 'Print',orderable: false, searchable: false},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
 
-        //         },
-        //         columns: [
-        //           {data: null, render: function (data, type, row, meta) {
-        //               return meta.row + meta.settings._iDisplayStart + 1;
-        //           }},
-        //           {data: 'action', name: 'action', orderable: false, searchable: false},
-        //           {data: 'student_info.name_mm', name: 'Student Name'},
-        //           {data: 'exam_type', name: 'Exam Type'},
-        //           {data: 'remark', name: 'Remark'},
-        //           {data: 'batch.name', name: 'Batch Number'},
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+            $.each($.fn.dataTable.tables(true), function(){
+                $(this).DataTable()
+                    .columns.adjust()
+                    .responsive.recalc();
+            });
+        });
+    });    
 
-        //         ],
-        //         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        //     });
-
-        //     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-        //   			$.each($.fn.dataTable.tables(true), function(){
-        //   					$(this).DataTable()
-        //   							.columns.adjust()
-        //   							.responsive.recalc();
-        //   			});
-        //   	});
-
-        //   });
     </script>
 @endpush

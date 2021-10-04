@@ -6,18 +6,31 @@ use App\StudentInfo;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\QualifiedTest;
+use App\ExamResult;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+
 
 class QualifiedTestController extends Controller
 {
     public function index()
     {
+        
 
     }
     public function create()
     {
         //
+    }
+
+    public function qualifyTestDetail($id)
+    {
+       return view("pages.qualified_test.qualified_test_detail");
+    }
+    public function qualifyTestFillMark($id)
+    {
+       return view("pages.qualified_test.qt_fill_mark");
     }
     public function store(Request $request)
     {
@@ -121,6 +134,7 @@ class QualifiedTestController extends Controller
             $qualifiedtest->approve_reject_status       = $request->approve_reject_status;
             $qualifiedtest->know_policy                 = $request->submit_confirm_policy;
             $qualifiedtest->local_education_certificate = json_encode($certificate);
+            $qualifiedtest->office_address             = $request->office_address;
             $qualifiedtest->save();
             return response()->json([
                 'message' => "You have successfully register",
@@ -129,8 +143,11 @@ class QualifiedTestController extends Controller
     }
     public function show($id)
     {
-        //
-    }
+        $qualified_test =  QualifiedTest::where('id',$id)->with('student_info')->first();
+        return response()->json([
+            'data' => $qualified_test
+        ],200);
+     }
     public function edit($id)
     {
         //
@@ -140,31 +157,32 @@ class QualifiedTestController extends Controller
         //
     }
     public function destroy($id)
+   
     {
         //
     }
     public function get_user(Request $request){
-        $qt = QualifiedTest::with('studentinfo')
+        $qt = QualifiedTest::with('student_info')
             ->where('approve_reject_status',$request->status)
             ->get();
-      
+        ;
+          
+            
+
+
+    
         return DataTables::of($qt)
             ->addColumn('action', function ($infos) {
-                if($infos->grade == 1){
+               
                     return "<div class='btn-group'>
-                                <a href='" . route("entry_exam_detail", ['id' => $infos->id]) . "'class='btn btn-primary btn-xs'>
+                                <a href='qualify_test_detail/$infos->id' class='btn btn-primary btn-xs'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </a>
-                                <a href='#' class='btn btn-info btn-xs' >
-                                    <li class='fa fa-file-text-o fa-sm'></li>
-                                </a>
-                            </div>";
-                }
-                return "<div class='btn-group'>
-                            <a href='entry_exam_detail/$infos->id' class='btn btn-primary btn-xs' >
-                                <li class='fa fa-eye fa-sm'></li>
-                            </a>
-                        </div>";
+                                </div>";
+                                // <a href='#' class='btn btn-info btn-xs' >
+                                //     <li class='fa fa-file-text-o fa-sm'></li>
+                                // </a>
+              
             })
             ->addColumn('status', function ($infos){
               if($infos->approve_reject_status == 0){
@@ -174,6 +192,14 @@ class QualifiedTestController extends Controller
               }else{
                   return "REJECTED";
               }
+            })
+            ->addColumn('local_edu', function ($infos) {
+                $local_arr = [];
+                $local_edu_arr = json_decode($infos->local_education);
+                foreach($local_edu_arr as $local){
+                    array_push($local_arr,"<p> - " . Str::limit($local, 30, '...') . "</p>");
+                }
+                return str_replace(',', '', implode(',', $local_arr));
             })
             // ->addColumn('remark', function ($infos){
             //     if($infos->grade == 0){
@@ -187,7 +213,199 @@ class QualifiedTestController extends Controller
             //     }
             // })
             // , 'print','exam_type''module'
-            ->rawColumns(['action','status'])
+            ->rawColumns(['action','status','local_edu'])
             ->make(true);
     }
+
+    public function approveQT($id)
+    {
+        $approve = QualifiedTest::find($id);
+        $approve->approve_reject_status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that form!"
+        ], 200);
+    }
+
+    public function rejectQT($id)
+    {
+        $reject = QualifiedTest::find($id);
+        $reject->approve_reject_status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that form!"
+        ], 200);
+    }
+
+    public function filterQTResult(Request $request){
+      
+ 
+        $qualified_test = QualifiedTest::with('student_info')
+                        ->where('approve_reject_status','=',1)
+                        ->where('grade','=',$request->grade)
+                         ->get();
+ 
+ 
+        
+          return DataTables::of($qualified_test)
+                ->addColumn('action', function ($infos) {
+
+                    
+                    return "<div class='btn-group'>
+                                <a href='qt_fill_mark/$infos->id' class='btn btn-primary btn-xs' >
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                            </div>";
+                })
+                ->addColumn('remark', function ($infos){
+                    if($infos->grade == 0){
+                        return "-";
+                    }
+                    else if($infos->grade == 1){
+                        return "PASSED";
+                    }
+                    else{
+                        return "FAIED";
+                    }
+                })
+                ->addColumn('foreign_edu', function ($infos){
+                    if($infos->foreign_education == 0){
+                        return "ACCA";
+                    }
+                     
+                    else{
+                        return "CIMA";
+                    }
+                })
+                ->addColumn('local_edu', function ($infos) {
+                    $local_arr = [];
+                    $local_edu_arr = json_decode($infos->local_education);
+                    foreach($local_edu_arr as $local){
+                        array_push($local_arr,"<p> - " . Str::limit($local, 30, '...') . "</p>");
+                    }
+                    return str_replace(',', '', implode(',', $local_arr));
+                })
+                ->rawColumns(['action','remark','local_edu','foreign_edu'])
+                ->make(true);
+                
+                // ->addColumn('exam_type', function ($infos){
+                   
+                //     return "Qualified Test";
+                //     } 
+                // })
+        
+    }
+
+    public function fillMarkQt(Request $request)
+    {
+        
+        foreach($request->subject as $sub)
+        {
+            $subjects[] = $sub;
+        }
+        foreach($request->mark as $m)
+        {
+            $marks[] = $m;
+        }
+        foreach($request->grade as $g)
+        {
+            $grades[] = $g;
+        }
+        $date = date('Y-m-d');               
+        
+       
+        $qualified_test = QualifiedTest::where('id',$request->id)->first();
+        if($request->pass_fail === 'pass')
+        {
+            $qualified_test->grade = 1;
+        }else
+        {
+            $qualified_test->grade = 2;
+
+        }
+      
+        $qualified_test->save();
+         
+         
+        $date = date('Y-m-d');
+        $exam_result=new ExamResult;                
+        $exam_result->student_info_id=$qualified_test->student_info_id;
+        $exam_result->registeration_id=$qualified_test->id;
+        $exam_result->result=json_encode(['subjects'=>$subjects,'marks'=>$marks,'grades'=>$grades]);;
+        $exam_result->date=$date;
+        $exam_result->save();
+
+        return response()->json($exam_result,200);
+    }
+
+    public function currentQualifiedTestList()  
+    {
+         
+        return view('reporting.current_qualifiedtest_list');
+    }
+
+    public function publishesQualifiedTestResult()  
+    {
+         
+        return view('reporting.publishes_qualifiedtest_result');
+    }
+
+    public function qualifiedTestResultList()  
+    {
+         
+        return view('reporting.qualifiedtest_result_list');
+    }
+
+    public function generateQtSrNo()
+    {
+        
+        $qualified_tests = QualifiedTest::where('qualified_tests.approve_reject_status',1)
+                            ->join('student_infos','student_infos.id','=','qualified_tests.student_info_id')              
+                            ->orderBy('student_infos.name_mm','asc')
+                            ->with('student_info')
+                            ->select('qualified_tests.*')
+                            ->get();
+        
+        $count = 0;
+        foreach($qualified_tests as $key => $qt){
+                $qt->sr_no = ++$count;
+                $qt->save();    
+        }
+        return "Update Serial Number in Qualified form";
+    }
+
+    public function showPublishQTList(Request $request)
+    {
+         
+        
+        $qualified_tests = QualifiedTest::join('student_infos','student_infos.id','=','qualified_tests.student_info_id')              
+        ->where('qualified_tests.approve_reject_status',1)
+        ->orderBy('student_infos.name_mm','asc')
+        ->with('student_info')
+        ->select('qualified_tests.*');
+
+        $request->grade && $qualified_tests =  $qualified_tests->Where('grade',$request->grade);
+
+        $qualified_tests = $qualified_tests->get();
+       
+          return DataTables::of($qualified_tests)
+                ->addColumn('nrc', function ($infos){
+                    $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                    return $nrc_result;
+                })
+                ->addColumn('status', function ($infos) {
+                    if ($infos->approve_reject_status == 0) {
+                        return "PENDING";
+                    } else if ($infos->approve_reject_status == 1) {
+                        return "APPROVED";
+                    } else {
+                        return "REJECTED";
+                    }
+                })
+                ->make(true);
+         
+
+    }
+
+
 }
