@@ -363,4 +363,6 @@ Route::patch('/reject_done_gov_article/{id}', 'ArticleController\ArticleControll
 Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@approveDone');
 Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
 
+// Payment
+Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
