@@ -109,7 +109,10 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Exam Form 1 Approve/Reject
     Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
     Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-
+    
+    //Qualify test Approve/Reject
+    Route::patch('/approve_qt/{id}', 'QualifiedTest\QualifiedTestController@approveQT');
+    Route::patch('/reject_qt/{id}', 'QualifiedTest\QualifiedTestController@rejectQT');
     //exam cards
     // Route::get('da1_examcard', 'ExamCardsController@DA1_ExamCard');
     // Route::get('cpa1_examcard', 'ExamCardsController@CPA1_ExamCard');
@@ -137,11 +140,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
     Route::get('attend_exam_list/{course_code}','ReportController@attendExamList');
     Route::get('exam_result_list/{course_code}','ReportController@examResultList');
-    Route::get('current_entry_exam_list/{course_code}','ReportController@currentEntryExamList');
+    
     Route::get('membership_edit/{id}','MembershipController@membership_edit');
     Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail')->name('entry_exam_detail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
     Route::get('entry_exam_result_detail/{id}','EntryExamController@entryExamResultDetail');
+    //Entrance Exam 
+    Route::get('publishes_entrance_exam_list/{course_code}','ReportController@currentEntryExamList');
+    Route::post('show_entrance_exam_list','ReportController@showEntranceExamList');
+    Route::get('publishes_entrance_exam_result/{course_code}','ReportController@publishesEntranceExamResult');
+
 
     // CPA(FF)/PAPP Report
     Route::get('cpa_ff_report1','ReportController@cpa_ff_report1');
@@ -222,10 +230,18 @@ Route::group(['middleware' => 'auth'], function () {
     // CPA Qualified Report
     Route::get('qualified_report1','ReportController@qualified_report1');
     Route::get('qualified_report2','ReportController@qualified_report2');
+    Route::get('qualify_test_detail/{id}','QualifiedTest\QualifiedTestController@qualifyTestDetail');
+    Route::get('qt_fill_mark/{id}','QualifiedTest\QualifiedTestController@qualifyTestFillMark');
+    Route::get('publishes_qualifiedtest_list','QualifiedTest\QualifiedTestController@currentQualifiedTestList');
+    Route::get('publishes_qualifiedtest_result','QualifiedTest\QualifiedTestController@publishesQualifiedTestResult');
+    
 });
+Route::post('show_qualifiedtest_list','QualifiedTest\QualifiedTestController@showPublishQTList');
 
 Route::post('show_registration_list','ReportController@showRegistrationList');
 Route::post('show_exam_list','ReportController@showExamList');
+
+
 Route::get('show_description','DescriptionController@showDescription');
 Route::get('show_requirement','RequirementController@showRequirement');
 Route::get('show_membership/{membership_name}','MembershipController@showMembership');
