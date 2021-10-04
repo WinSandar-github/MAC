@@ -852,8 +852,8 @@ function getCPAModuleStd() {
                 success: function (result) {
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
-                        tr += "<td colspan='2' style='text-align:center'>Total Marks</td>";
-                        tr += "<td colspan='2' id='total_mark' style='text-align:left'></td>";
+                        tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>"+result.data.total_mark+"</td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();
@@ -929,13 +929,13 @@ function getCPAModuleStd() {
                                 grade.setAttribute("readonly", "true");
                             }
                         }
-                        var total_mark=0;
-                        for (var i = 0; i < row_length; i++) {
-                            var mark=parseInt(rData.marks[i]);
-                            // console.log(rData.marks[i]);
-                            total_mark += mark;
-                        }
-                        $('#total_mark').append(total_mark);
+                        // var total_mark=0;
+                        // for (var i = 0; i < row_length; i++) {
+                        //     var mark=parseInt(rData.marks[i]);
+                        //     // console.log(rData.marks[i]);
+                        //     total_mark += mark;
+                        // }
+                        // $('#total_mark').append(total_mark);
                     } else {
                         // $('.pass_fail_btn').hide();
                     }
