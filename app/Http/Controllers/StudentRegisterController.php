@@ -572,18 +572,23 @@ class StudentRegisterController extends Controller
     }
     public function ‌approveExamList(Request $request)
     {
-        $course = Course::where('code', $request->course_code)->first();
+         $course = Course::where('code', $request->course_code)->first();
         
 
 
         $student_infos = ExamRegister::with('student_info','course')
                         ->where('form_type',$course->id)
                         ->where('status',1)
-                        ->whereNotNull('sr_no')
-                        ->orderBy('sr_no','asc');
+                        ->whereNotNull('sr_no');
+                       
 
-        $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
-        
+        if($request->grade){
+            $student_infos =  $student_infos->Where('grade',$request->grade)->orderby('total_mark','desc');
+            
+        }else{
+            $student_infos =  $student_infos->orderBy('sr_no','asc');
+            
+        }
         $student_infos =  $student_infos->get(); 
 
 
