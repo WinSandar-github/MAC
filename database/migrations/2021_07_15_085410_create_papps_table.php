@@ -32,6 +32,9 @@ class CreatePappsTable extends Migration
             $table->string('work_in_myanmar_confession');
             $table->string('rule_confession');
             $table->string('cpd_record');
+            $table->string('cpd_hours');
+            $table->string('mpa_mem_card_front');
+            $table->string('mpa_mem_card_back');            
             $table->string('tax_year');
             $table->string('tax_free_recommendation');
             $table->date('accepted_date')->default(null)->nullable();

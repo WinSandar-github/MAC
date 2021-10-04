@@ -13,27 +13,27 @@
                     </div>
                 </div>
                 <!-- @php $currend_date =  date("Y-m-d"); @endphp -->
-                @php $currend_date =  date("2021-10-30"); @endphp
+                @php $currend_date =  date("2021-12-10"); @endphp
 
                  <div class="card-body">
-                    <div class="row"> 
+                    <div class="row">
                             <div class="col-md-12 pl-2">
-                            @if($currend_date > $course->active_batch[0]->mac_reg_end_date)      
+                            @if($currend_date > $course->active_batch[0]->mac_reg_end_date)
                                 @if($course->code === "da_1" || $course->code === "cpa_1" )
                                 <button   onclick="generatePersonalNo('{{$course->code}}')" class="pull-right
                                     btn btn-sm btn-success">ကိုယ်ပိုင်နံပါတ် ထုတ်ပေးမည်</button>
                                 @else
-                               
+
                                 <button   onclick="generateSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                 @endif
-                            @endif   
+                            @endif
                             </div>
-                        
+
 
                         <div class="col-md-12">
-                          
-                           
-                        
+
+
+
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
@@ -55,15 +55,15 @@
                                             <td>
                                                 @if($course->code === "da_1")
                                                     ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
-                                                @elseif($course->code === "da_2" )                               
+                                                @elseif($course->code === "da_2" )
                                                     ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                @elseif($course->code === "cpa_1" )                               
+                                                @elseif($course->code === "cpa_1" )
                                                     လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
-                                                @else                             
-                                                    လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)                                                
+                                                @else
+                                                    လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
                                                 @endif
                                             </td>
-                                            <td>{{ $course->course_type->course_code == "da" 
+                                            <td>{{ $course->course_type->course_code == "da"
                                                 ? $student_register->student_info->personal_no
                                                 : $student_register->student_info->cpersonal_no}}</td>
                                         </tr>
@@ -72,10 +72,10 @@
                             </table>
                         </div>
                     </div>
-                            
-                    
+
+
                 </div>
-                   
+
             </div>
     </div>
 </div>
@@ -87,12 +87,12 @@
 <script>
         $('document').ready(function(){
             var course_code = $('#course_code').val();
-            
+
             //   showAppList(course_code);
         })
-        
+
 // showAppList = (course_code) =>{
-    
+
 //     var table_app = $('#tbl_application').DataTable({
 //         scrollX: true,
 //         processing: true,
@@ -104,7 +104,7 @@
 //             type : "POST" ,
 //             data :  function (d) {
 //                 d.code        =  course_code
-                
+
 //             }
 //         },
 //         columns: [
@@ -112,11 +112,11 @@
 //                 console.log(meta)
 //                     // return meta.row + meta.settings._iDisplayStart + 1;
 //                 }},
-//             {data: 'student_info.name_mm', name: 'name_mm'}, 
-//             {data: 'nrc', name: 'nrc'}, 
+//             {data: 'student_info.name_mm', name: 'name_mm'},
+//             {data: 'nrc', name: 'nrc'},
 //             {data: 'student_info.personal_no', name: 'personal_no'},
-            
-            
+
+
 //         ],
 //         sort: function( row, type, set, meta ) {
 //             return row[meta.col][1];
@@ -125,7 +125,7 @@
 
 //     });
 
-    
+
 // }
         </script>
 

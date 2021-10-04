@@ -7,6 +7,7 @@ use App\Papp;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
+use App\Invoice;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -128,6 +129,24 @@ class PAPPController extends Controller
             $cpd="";
         }
 
+        if ($request->hasfile('mpa_mem_card_front')) {
+            $mpa_mem_card_front_file = $request->file('mpa_mem_card_front');
+            $mpa_mem_card_front_name  = uniqid().'.'.$mpa_mem_card_front_file->getClientOriginalExtension();
+            $mpa_mem_card_front_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_front_name);
+            $mpa_mem_card_front = '/storage/student_papp/'.$mpa_mem_card_front_name;
+        }else{
+            $mpa_mem_card_front="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_back')) {
+            $mpa_mem_card_back_file = $request->file('mpa_mem_card_back');
+            $mpa_mem_card_back_name  = uniqid().'.'.$mpa_mem_card_back_file->getClientOriginalExtension();
+            $mpa_mem_card_back_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_back_name);
+            $mpa_mem_card_back = '/storage/student_papp/'.$mpa_mem_card_back_name;
+        }else{
+            $mpa_mem_card_back="";
+        }
+
         if ($request->hasfile('tax_free_recommendation')) {
             $tax_free_file = $request->file('tax_free_recommendation');
             $tax_free_name  = uniqid().'.'.$tax_free_file->getClientOriginalExtension();
@@ -147,7 +166,7 @@ class PAPPController extends Controller
         }
 
         $papp  = new Papp();
-        $papp->student_id                   = $request->student_id;
+        $papp->student_id                   =   $request->student_id;
         $papp->profile_photo                =   $profile_photo;
         $papp->cpa                          =   $cpa;
         $papp->ra                           =   $ra;
@@ -164,6 +183,9 @@ class PAPPController extends Controller
         $papp->work_in_myanmar_confession   =   $work_in_mm;
         $papp->rule_confession              =   $rule;
         $papp->cpd_record                   =   $cpd;
+        $papp->cpd_hours                    =   $request->cpd_hours;
+        $papp->mpa_mem_card_front           =   $mpa_mem_card_front;
+        $papp->mpa_mem_card_back            =   $mpa_mem_card_back;
         $papp->tax_year                     =   $request->tax_year;
         $papp->tax_free_recommendation      =   $tax_free;
         $papp->status                       =  0;
@@ -174,6 +196,15 @@ class PAPPController extends Controller
         $papp->contact_mail     =   $request->contact_mail;
         $papp->letter   =   $letter;
         $papp->save();
+
+        //invoice
+        $invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
 
         return response()->json([
             'message' => "You have successfully registerd!"
@@ -325,6 +356,25 @@ class PAPPController extends Controller
         }else{
             $tax_free=$request->tax_free_file;
         }
+
+        // if ($request->hasfile('mpa_mem_card_front')) {
+        //     $mpa_mem_card_front_file = $request->file('mpa_mem_card_front');
+        //     $mpa_mem_card_front_name  = uniqid().'.'.$mpa_mem_card_front_file->getClientOriginalExtension();
+        //     $mpa_mem_card_front_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_front_name);
+        //     $mpa_mem_card_front = '/storage/student_papp/'.$mpa_mem_card_front_name;
+        // }else{
+        //     $mpa_mem_card_front=$request->mpa_mem_card_front;
+        // }
+
+        // if ($request->hasfile('mpa_mem_card_back')) {
+        //     $mpa_mem_card_back_file = $request->file('mpa_mem_card_back');
+        //     $mpa_mem_card_back_name  = uniqid().'.'.$mpa_mem_card_back_file->getClientOriginalExtension();
+        //     $mpa_mem_card_back_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_back_name);
+        //     $mpa_mem_card_back = '/storage/student_papp/'.$mpa_mem_card_back_name;
+        // }else{
+        //     $mpa_mem_card_back=$request->mpa_mem_card_back;
+        // }
+
         $papp = Papp::find($id);
         $papp->profile_photo=$profile_photo;
         $papp->use_firm                     =   $request->use_firm;
@@ -338,8 +388,11 @@ class PAPPController extends Controller
         $papp->work_in_myanmar_confession   =   $work_in_mm;
         $papp->rule_confession              =   $rule;
         $papp->cpd_record                   =   $cpd;
+        // $papp->cpd_hours                    =   $request->cpd_hours;;
         $papp->tax_year                     =   $request->tax_year;
         $papp->tax_free_recommendation      =   $tax_free;
+        // $papp->mpa_mem_card_front           =   $mpa_mem_card_front;
+        // $papp->mpa_mem_card_back            =   $mpa_mem_card_back;
         $papp->renew_accepted_date=date('Y-m-d');
         $papp->renew_status=1;
         $papp->status=0;
