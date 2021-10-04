@@ -8,10 +8,10 @@ use App\TeacherRegister;
 use App\StudentInfo;
 use App\EducationHistroy;
 use Hash;
-use Illuminate\Support\Facades\DB;
-
+use DB;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;    
+use Carbon\Carbon;
 
 class TeacherController extends Controller
 {
@@ -23,8 +23,10 @@ class TeacherController extends Controller
     public function index()
     {
         $teacher = TeacherRegister::orderBy('created_at','desc')->get();
+        $count_invoice_no=DB::table('teacher_registers')->select(DB::raw('COUNT(invoice_no) as count_invoice_no'))->get();
         return  response()->json([
-            'data' => $teacher
+            'data' => $teacher,
+            'count_invoice_no'=>$count_invoice_no
         ],200);
     }
 
@@ -102,7 +104,7 @@ class TeacherController extends Controller
         $teacher->gov_employee = $request->gov_employee;
         $teacher->exp_desc = $request->exp_desc;
         $teacher->image = $image;
-        $teacher->renew_date = date('Y-m-d');
+        
         $certificates = ""; $diplomas = "";
         foreach($request->certificates as $c){
             $certificates = $certificates . $c . ',';
@@ -248,11 +250,15 @@ class TeacherController extends Controller
         $teacher->organization = $request->organization;
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
-        $teacher->renew_date = date('Y-m-d');
-        $teacher->payment_method = null;
         $teacher->approve_reject_status = 0;
         $teacher->initial_status = $request->initial_status;
         $teacher->reason = null;
+        if($request->payment_date!=null){
+            $teacher->renew_date = date('Y-m-d');
+            
+        }
+        $teacher->payment_method = null;
+        $teacher->payment_date = null;
         $teacher->save();
 
        
@@ -361,14 +367,17 @@ class TeacherController extends Controller
                     }else if($infos->approve_reject_status	 == 1){
                         return "APPROVED";
                     }else{
+                        
                         return "REJECTED";
                     }
                 })
                 ->addColumn('payment_method', function ($infos){
                     if($infos->payment_method	 == ""){
                         return "Payment Incomplete";
+                       
                     }else{
                         return "Payment Complete";
+                       
                     }
                 })
                 ->addColumn('payment_date', function ($infos){
@@ -377,10 +386,63 @@ class TeacherController extends Controller
                     }else if($infos->payment_method == "" && $infos->payment_date	 != ""){
                         return "";
                     }else{
-                        return $infos->payment_date.' to 31-12-'.date('Y');
+                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->payment_date);
+                        return $monthName = $date->format('d-m-Y').' to 31-12-'.date('Y');
                     }
                 })
-                
+                ->addColumn('card', function ($infos) {
+                    $btn='';
+                    if($infos->payment_method != ""){
+                        $btn = "<div class='btn-group'>
+                                    <a href='teacher_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                                        <li class='fa fa-id-card-o fa-sm'></li>
+                                    </a>
+                                </div>";
+                        return $btn;
+                        
+                    }else{
+                        return $btn;
+                    }
+                    
+                })
+                ->addColumn('remark', function ($infos){
+                    if($infos->cessation_reason == ""){
+                        return "";
+                       
+                    }else{
+                        return $infos->cessation_reason;
+                       
+                    }
+                })
+                ->addColumn('reason', function ($infos){
+                    if($infos->reason == ""){
+                        return "";
+                       
+                    }else{
+                        return $infos->reason;
+                       
+                    }
+                })
+                // ->addColumn('renew_payment_method', function ($infos){
+                //     if($infos->renew_payment_date	 == ""){
+                //         return "Payment Incomplete";
+                       
+                //     }else{
+                //         return "Payment Complete";
+                       
+                //     }
+                // })
+                // ->addColumn('renew_payment_date', function ($infos){
+                //     if($infos->renew_payment_date	 == ""){
+                //         return "";
+                //     }else if( $infos->renew_payment_date	 != ""){
+                //         return "";
+                //     }else{
+                //         $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->renew_payment_date);
+                //         return $monthName = $date->format('d-m-Y').' to 31-12-'.date('Y');
+                //     }
+                // })
+                ->rawColumns(['card','action'])
                 ->make(true);
         // return  response()->json([
         //     'data' => $teacher
@@ -407,18 +469,15 @@ class TeacherController extends Controller
         return response()->json($data,200);
     }
 
-    public function approveTeacher($id)
+    public function approveTeacher(Request $request)
     { 
-        $std_info = StudentInfo::find($id) ;
-        $std_info->payment_method = 'CASH';
-        $std_info->save();
-        $teacher = TeacherRegister::find($std_info->teacher_id);
+        $teacher = TeacherRegister::find($request->id);
         $teacher->payment_method = 'CASH';
-        $teacher->renew_date = date('Y-m-d');
-        $teacher->payment_date = date('Y-m-d');
+        $teacher->invoice_no = $request->invoice_no;
+        $teacher->payment_date = $request->current_date;
         $teacher->save();
         return response()->json([
-            'data' => $std_info,
+            'data' => $teacher,
         ],200);
     }
 
@@ -447,6 +506,20 @@ class TeacherController extends Controller
         $data = TeacherRegister::where('id',$id)->get();
         return response()->json([
             'data' => $data
+        ],200);
+    }
+    public function cessation_teacher_register(Request $request)
+    {
+        $std_info = StudentInfo::find($request->student_info_id);
+        $std_info->approve_reject_status = $request->status;
+        $std_info->save();
+        $teacher = TeacherRegister::find($request->id);
+        $teacher->approve_reject_status = $request->status;
+        $teacher->cessation_reason = $request->cessation_reason;
+        $teacher->initial_status = $request->initial_status;
+        $teacher->save();
+        return response()->json([
+            'message' => 'You have approved this user.'
         ],200);
     }
 }

@@ -30,29 +30,7 @@
                                     <h5 class="title" align="center">{{ __('Teacher Registration Lists') }}</h5>
                                 </div>
                             </div>
-                            <!-- <div class="row mt-3">
-                                <div class="col-md-5">
-                                    <div class="row">
-                                        
-                                        <div class="col-md-4 text-left" style="font-weight:bold;">Teacher Name</div>
-                                        <div class="col-md-7 text-left" style="padding-left:0px;">
-                                            <input type="text" name="filter_by_name" class="form-control" placeholder="Teacher Name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="row">
-                                        
-                                        <div class="col-md-3 text-left" style="font-weight:bold;">NRC</div>
-                                        <div class="col-md-7 text-left" style="padding-left:0px;">
-                                            <input type="text" name="filter_by_nrc" class="form-control" placeholder="eg. ၁/ကမတ(နိုင်)၁၂၃၄၅၆">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-2" style="vertical-align: top;">
-                                    <button type="button" class="btn btn-primary btn-round mt-0"  id="search_teacher">Search</button>
-                                </div>
-                            </div> -->
+                            
                             <ul class="nav nav-tabs mt-3" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-toggle="tab" href="#link1" role="tablist" aria-expanded="false" style="font-weight:bold" id="pending">Initial List</a>
@@ -68,23 +46,7 @@
                         <div class="card-body">
                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                 <div class="tab-pane fade show active" id="link1" aria-expanded="true">
-                                    <!-- <table id="tbl_teacher_pending" class="table table-hover  text-center" style="width:100%;">
-                                        <thead class=" text-nowrap">
-                                            <tr>
-                                                <th class="bold-font-weight" >No</th>
-                                                <th class="bold-font-weight" >Action</th>
-                                                <th class="bold-font-weight" >Teacher Name</th>
-                                                <th class="bold-font-weight" >Email</th>
-                                                <th class="bold-font-weight" >Phone Number</th>
-                                                <th class="bold-font-weight" >NRC</th>
-                                                <th class="bold-font-weight" >Register Date</th>
-                                                <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Payment Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tbl_teacher_pending_body" class="hoverTable text-left">
-                                        </tbody>
-                                    </table> -->
+                                   
                                     <div class="card-header">
                                         <ul class="nav nav-tabs" role="tablist">
                                             <li class="nav-item">
@@ -114,6 +76,8 @@
                                                                 <th class="bold-font-weight" >Expire Period Time</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
+                                                                <th class="bold-font-weight" >Teacher Card</th>
+                                                                
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_teacher_initial_pending_body" class="hoverTable">
@@ -134,7 +98,8 @@
                                                             <th class="bold-font-weight" >Expire Period Time</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
-
+                                                            <th class="bold-font-weight" >Teacher Card</th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_initial_approved_body" class="hoverTable">
@@ -155,6 +120,8 @@
                                                             <th class="bold-font-weight" >Expire Period time</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
+                                                            <th class="bold-font-weight" >Teacher Card</th>
+                                                            <th class="bold-font-weight" >Remark</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_initial_rejected_body" class="hoverTable">
@@ -194,6 +161,8 @@
                                                                 <th class="bold-font-weight" >Expire Period time</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
+                                                                <th class="bold-font-weight" >Teacher Card</th>
+                                                                
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_teacher_renew_pending_body" class="hoverTable">
@@ -214,7 +183,8 @@
                                                             <th class="bold-font-weight" >Expire Period time</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
-
+                                                            <th class="bold-font-weight" >Teacher Card</th>
+                                                            
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_renew_approved_body" class="hoverTable">
@@ -235,6 +205,8 @@
                                                             <th class="bold-font-weight" >Expire Period time</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
+                                                            <th class="bold-font-weight" >Teacher Card</th>
+                                                            <th class="bold-font-weight" >Remark</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_renew_rejected_body" class="hoverTable">
@@ -246,24 +218,7 @@
                                     
                                 </div>
                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                
-                                    <div class="card-header">
-                                        <ul class="nav nav-tabs" role="tablist">
-                                            <li class="nav-item">
-                                                <a class="nav-link active" data-toggle="tab" href="#cessation1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#cessation2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#cessation3" role="tablist" aria-expanded="false" style="font-weight:bold">Reject List</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="tab-space tab-content tab-no-active-fill-tab-content">
-                                            <div class="tab-pane fade show active" id="cessation1" aria-expanded="true">
-                                                <table id="tbl_teacher_cessation_pending" class="table table-hover  text-center" style="width:100%;">
+                                            <table id="tbl_teacher_cessation_pending" class="table table-hover  text-center" style="width:100%;">
                                                         <thead class=" text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
@@ -276,56 +231,13 @@
                                                                 <th class="bold-font-weight" >Expire Period time</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
+                                                                <th class="bold-font-weight" >Teacher Card</th>
+                                                                <th class="bold-font-weight" >Remark</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_teacher_cessation_pending_body" class="hoverTable text-left">
                                                         </tbody>
                                                 </table>
-                                            </div>
-                                            <div class="tab-pane fade show" id="cessation2" aria-expanded="true">
-                                                <table id="tbl_teacher_cessation_approved" class="table table-hover text-nowrap " style="width:100%;">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="bold-font-weight" >No</th>
-                                                            <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Teacher Name</th>
-                                                            <th class="bold-font-weight" >Email</th>     
-                                                            <th class="bold-font-weight" >Phone Number</th>
-                                                            <th class="bold-font-weight" >NRC</th>
-                                                            <th class="bold-font-weight" >Register Date</th>
-                                                            <th class="bold-font-weight" >Expire Period time</th>
-                                                            <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Payment Status</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbl_teacher_cessation_approved_body" class="hoverTable text-left">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="tab-pane fade show" id="cessation3" aria-expanded="true">
-                                                <table id="tbl_teacher_cessation_rejected" class="table table-hover text-nowrap " style="width:100%;">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="bold-font-weight" >No</th>
-                                                            <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >Teacher Name</th>
-                                                            <th class="bold-font-weight" >Email</th>     
-                                                            <th class="bold-font-weight" >Phone Number</th>
-                                                            <th class="bold-font-weight" >NRC</th>
-                                                            <th class="bold-font-weight" >Register Date</th>
-                                                            <th class="bold-font-weight" >Expire Period time</th>
-                                                            <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Payment Status</th>
-
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="tbl_teacher_cessation_rejected_body" class="hoverTable text-left">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -384,7 +296,7 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
-
+                {data: 'card', name: 'card'},
             ],
             
          });
@@ -419,6 +331,7 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
             ],
          });
 
@@ -452,6 +365,8 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
+                {data: 'reason', name: 'reason'},
             ],
         });
         $('#tbl_teacher_renew_pending').DataTable({
@@ -484,7 +399,7 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
-
+                {data: 'card', name: 'card'},
             ],
             
          });
@@ -519,6 +434,7 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
             ],
          });
 
@@ -552,6 +468,42 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
+                {data: 'reason', name: 'reason'},
+            ],
+        });
+        $('#tbl_teacher_cessation_pending').DataTable({
+            scrollX: true,
+            processing: true,
+            // serverSide: true,
+            // searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filter_teacher",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2,
+                    d.initial_status= 2
+                }
+            
+            },
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'reg_date', name: 'reg_date'},
+                {data: 'payment_date', name: 'payment_date'},
+                {data: 'status', name: 'status'},
+                {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
+                {data: 'remark', name: 'remark'},
             ],
         });
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
