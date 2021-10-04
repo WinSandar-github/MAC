@@ -45,8 +45,10 @@ class PaymentController extends Controller
         if($id != ""){
             
             $invoice = Invoice::where('student_info_id', $id)->first();
+            
+            $invNo = str_pad( date('Ymd') . "-" . Str::upper(Str::random(5)) . '-' . $invoice->student_info_id, 20, "0", STR_PAD_LEFT);
 
-            $invoice->invoiceNo = $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $invoice->student_info_id, 20, "0", STR_PAD_LEFT);
+            $invoice->invoiceNo = mb_strlen($invNo) > 20 ? substr($invNo, -20) : $invNo;
 
             return response()->json($invoice, 200);
         }
@@ -55,12 +57,13 @@ class PaymentController extends Controller
 
     public function saveTransation(Request $req)
     {
-        return $req ;
-
         try {
             if($req){
+
+                $stu = Invoice::where('email', $req->userDefined2)->first();
+
                 $trans = new Transaction();
-                $trans->student_info_id = $req->student_info_id;
+                $trans->student_info_id = $stu->student_info_id;
                 $trans->paymentType = $req->paymentType;
                 $trans->marchantID = $req->marchantID;
                 $trans->respCode = $req->respCode;
