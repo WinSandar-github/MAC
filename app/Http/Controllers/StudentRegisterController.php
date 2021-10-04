@@ -49,8 +49,21 @@ class StudentRegisterController extends Controller
             $student_course->date            = $course_date;
             $student_course->status          = 1;
             $student_course->approve_reject_status = 1;
+            $student_course->type            = $request->type;
+            $student_course->mac_type        = $request->mac_type;
             $student_course->save();
             
+        }
+        
+        if ($request->hasfile('recommendation_letter')) {
+            $file = $request->file('recommendation_letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $recommendation_letter = '/storage/student_info/'.$name;
+
+            $student_info=StudentInfo::find($request->student_id);
+            $student_info->recommend_letter =   $recommendation_letter;
+            $student_info->save();
         }
         switch ($request->type) {
             case 0:
@@ -123,7 +136,6 @@ class StudentRegisterController extends Controller
                 else{
                     $recommend_file="";
                 }
-
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
@@ -370,15 +382,19 @@ class StudentRegisterController extends Controller
         }
         $student_info->save();
 
-        $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
+        
+        // $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
         $student_course->batch_id        = $request->batch_id;
         $student_course->date            = $course_date;
         $student_course->status          = 1;
-        $student_course->type            = $old_course->type;
-        $student_course->mac_type          = $old_course->mac_type;
+        $student_course->type            = $request->type;
+        if($request->type == 2){
+
+            $student_course->mac_type          = $request->mac_type;
+        }
 
         $student_course->approve_reject_status = 1;
         $student_course->save();

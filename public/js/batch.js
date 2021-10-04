@@ -1,6 +1,7 @@
 function createBatch() {
     var send_data = new FormData();
     send_data.append('name', $("input[name=name]").val());
+    send_data.append('name_mm', $("input[name=name_mm]").val());
     send_data.append('number', $("input[name=number]").val());
     send_data.append('course_id', $('#selected_course_id').val());
     send_data.append('start_date', $("input[name=start_date]").val());
@@ -156,6 +157,7 @@ function showBatchInfo(id) {
         success: function (data) {
             var batch_data = data.data;
             $('input[name=name]').val(batch_data.name);
+            $('input[name=name_mm]').val(batch_data.name_mm);
             $("input[name=number]").val(batch_data.number);
             $('#selected_course_id').val(batch_data.course_id);
             $('input[name=start_date]').val(batch_data.start_date);
@@ -257,13 +259,14 @@ function deleteBatchInfo(batchName, batchId) {
 
 $('#selected_course_id').on('change', function (e) {
     var course_id = this.value;
+    console.log(course_id);
     $.ajax({
         url: BACKEND_URL + "/course/" + course_id,
         type: 'get',
         data: "",
         success: function (data) {
-            console.log(data.data[0]);
-            if (data.data[0].course_type_id == 2) {
+            console.log(data);
+            if (data.data.course_type_id == 2) {
                 if (document.getElementById('entrance_pass')) {
                     document.getElementById('entrance_pass').style.display = 'block';
                 }

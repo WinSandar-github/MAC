@@ -23,8 +23,12 @@
 @section('content')
 <div class="content">
     @include('flash-message')
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row mb-2">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right card">
+                <li class="breadcrumb-item active"><span class='form-name'></span></li>
+            </ol>
         </div>
     </div>
     <div class="row">
@@ -229,8 +233,8 @@
                             <div class="card-header p-2">
                                 <ul class="nav nav-pills">
                                 <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">သင်တန်းကျောင်းအချက်အလက်များ</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">ကျောင်းတည်ထောင်သူပုဂ္ဂိုလ်(များ)နှင့်ကျောင်းစီမံအုပ်ချုပ်သူများ</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">ကျောင်းအဆောက်အဦး၊စာသင်ခန်း၊သန့်စင်ခန်း၊စီမံရုံးခန်း</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">ကျောင်းပုံစံ-၂၊ကျောင်းပုံစံ-၃၊ကျောင်းပုံစံ-၄</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">ကျောင်းပုံစံ-၅</a></li>
                                 </ul>
                             </div><!-- /.card-header -->
                             <div class="card-body">
@@ -249,45 +253,45 @@
                                     <!-- Post -->
                                     <div class="post">
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                             <p ><strong>ကျောင်းအမည်</strong></p>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-6">
                                                 <input type="text" id="school_name" class="form-control" readonly>
 
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                             <p ><strong>သင်ကြားမည့်သင်တန်း</strong></p>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-6">
                                                 <input type="text" id="attend_course" class="form-control" readonly>
 
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                             <p ><strong>ကျောင်းတည်နေရာလိပ်စာ</strong></p>
                                             </div>
-                                            <div class="col-md-8">
+                                            <div class="col-md-6">
                                                 <input type="text" id="school_address" class="form-control" readonly>
 
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                             <p ><strong>ဓါတ်ပုံနှင့်တကွဖော်ပြချက်</strong></p>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <span id="school_location_attach" ></span>
                                             </div>
                                         </div>
                                         <div class="row mt-3">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                             <p ><strong>ပိုင်ဆိုင်မှုပုံစံ</strong></p>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                 <div class="form-check mt-2 form-check-inline">
                                                     <input class="form-check-input" type="radio" name="own_type" id="private"
@@ -305,7 +309,14 @@
                                             </div>
                                             </div>
                                         </div>
-
+                                        <div class="row mt-3 ">
+                                            <div class="col-md-6">
+                                                <p style="font-weight:bold"><i class="nc-icon nc-paper"></i> သက်ဆိုင်သည့် အထောက်အထား စာချုပ်စာတမ်းများ </p>
+                                            </div>
+                                            <div class="col-md-6 own_type_letter">
+                                                
+                                            </div>
+                                        </div>
 
 
                                     <!-- /.user-block -->
@@ -592,7 +603,23 @@
                                         </table>
 
                                     </div>
+                                    <div id="approve_reject" style="display:none;">
+                                        <div class="row">
 
+                                            <div class="col-md-12 ">
+
+
+                                                <input type="hidden" name="student_info_id" >
+
+                                                <div class="row justify-content-center" >
+
+                                                    <button  class="btn btn-danger" data-toggle="modal" id="smallButton" data-target="#myModal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
+                                                    <button id="approve" class="btn btn-primary" onclick="approveSchoolRegister();" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> APPROVE</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 </div>
@@ -601,14 +628,10 @@
                         </div>
                     </div>
                 </div>
-                 <div id="approve_reject" style="display:none;">
+                <!-- <div id="approve_reject" style="display:none;">
                     <div class="card">
                         <div class="card-body">
-                            <!-- <div class="row">
-                                <div class="col-md-10"></div>
-                                <label class="col-md-2 col-form-label" style="font-weight:bold">ကျောင်းပုံစံ-၁</label>
-
-                            </div> -->
+                            
 
                             <div class="row">
 
@@ -627,30 +650,40 @@
                             </div>
                         </div>
                     </div>
-                 </div>
+                 </div> -->
 
             </form>
         </div>
 
     </div>
 </div>
- <!-- Attached Certificate -->
- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">လျှောက်ထားသူ/အဖွဲ့အစည်း၏နောက်ခံသမိုင်း</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="attachment"></div>
-      </div>
+ <!-- modal -->
+ <form method="post" action="javascript:rejectSchoolRegister();" enctype="multipart/form-data">
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
 
-    </div>
-  </div>
-</div>
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Reject Reason</h4>
+                        <button type="button" class="btn btn-close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <textarea class="form-control " id="reason" rows="100" cols='100' required></textarea>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
 @endsection
 @push('scripts')
 <script src="{{asset('js/school.js')}}"></script>

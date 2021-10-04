@@ -7,20 +7,20 @@
     <!-- Theme style -->
     <link href="{{ asset('dist/css/adminlte.min.css') }}" rel="stylesheet">
 @section('content')
-    <div class="content">
-        @include('flash-message')
-        <div class="row mb-2">
-            <div class="col-sm-6"></div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right card">
-                    <li class="breadcrumb-item active">ဆရာပုံစံ-၁</li>
-                </ol>
-            </div>
+<div class="content">
+    @include('flash-message')
+    <div class="row mb-2">
+        <div class="col-sm-6"></div>
+        <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right card">
+                <li class="breadcrumb-item active"><span class='form-name'></span></li>
+            </ol>
         </div>
+    </div>
         <div class="row">
             <div class="col-md-12">
                 <form action="javascript:void();" method="post" enctype="multipart/form-data">
-                    <!--@csrf-->
+                    @csrf
                     <div class="row">
                         <div class="col-md-6">
 
@@ -346,7 +346,8 @@
         </div>
     </div>
 
-    <!-- small modal -->
+                
+    <!-- modal -->
     <form method="post" action="javascript:rejectTeacherRegister();" enctype="multipart/form-data">
         <div class="modal" id="myModal">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -361,7 +362,7 @@
 
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <textarea class="form-control " name="reason" rows="100" cols='100' required></textarea>
+                        <textarea class="form-control " id="reason" rows="100" cols='100' required></textarea>
                     </div>
 
                     <!-- Modal footer -->
@@ -377,7 +378,7 @@
 @endsection
 @push('scripts')
     <script src="{{ asset('js/teacher.js') }}"></script>
-    <script src="{{ asset('js/school.js') }}"></script>
+    
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 
     <script>

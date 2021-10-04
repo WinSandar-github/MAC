@@ -170,7 +170,7 @@ function getTeacherInfos(){
                 $("#position").append(value.position);
                 $("#department").append(value.department);
                 $("#organization").append(value.organization);
-                loadEductaionHistory(value.student_info.id);
+                loadEductaionHistory(value.id);
                 if(value.school_type==0){
                     $("#school_name").append("Individual");
                 }else{
@@ -179,13 +179,18 @@ function getTeacherInfos(){
                 if(value.payment_method!=null){
                     $('.period').show();
                     var now=new Date();
-                    var period_date=value.renew_date.split('-');
+                    var period_date=value.payment_date.split('-');
                     var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
                     $('#period_time').text(period+" to 31-12-"+now.getFullYear());
                     $("#payment_date").val(value.payment_date);
                 }
                 $('#student_info_id').val(value.student_info.id);
                 $('#teacher_id').val(value.id);
+                if(value.initial_status==0){
+                    $('.form-name').append('ဆရာပုံစံ-၁');
+                }else{
+                    $('.form-name').append('ဆရာပုံစံ-၂');
+                }
             });
            
             
@@ -220,9 +225,10 @@ function rejectTeacherRegister(){
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
     var teacher_id=$('#teacher_id').val();
+    var reason=$("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/approve_teacher_register",
-        data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id,
+        data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id+"&reason="+reason,
         type: 'post',
         success: function(result){
             successMessage('You have rejected that user!');
@@ -303,109 +309,23 @@ function loadSchoolName(school_id){
         }
     });    
 }
-function loadSubjectFee(membership_name,index,value,payment_status,tbody){
-            // var tr = "<tr>";
-            // $.each(course_data, function(index, value){
-                
-            //     tr += `<td> ${ index.toUpperCase().replace("_", " ") } </td>`;
-            //     $.each(value, function(key, val){
-                
-            //         tr += `<td> ${ val.subject_name } </td>`;
-                   
-                    
-            //     });
-            //     $.ajax({
-            //         type: "get",
-            //         url: BACKEND_URL+"/showDescription/"+membership_name,
-            //         success: function (result) {
-            //         var data=result.data;
-            //         var cpa_subject_fee=0;
-            //         var da_subject_fee=0;
-            //         $.each(data, function( index1, value1 ){
-            //             cpa_subject_fee +=value1.cpa_subject_fee;
-            //             da_subject_fee +=value1.da_subject_fee;
-                        
-            //                 if(index=='cpa_1' || index=='cpa_2'){
-            //                     tr += `<td >`+cpa_subject_fee+`</td>`;
-                            
-            //                 }else{
-            //                     tr += `<td>`+da_subject_fee+`</td>`;
-            //                 }
-            //         })
-            //         }
-            //     });
-            //     tr += `<td></td>`;
-            //     tr += "</tr>";
-            //     $(tbody).append(tr);
-                
-            // });
-     var all_subject={};
-     var all_subject2={};
-     var total=0,test=[];
-     
+function loadEductaionHistory(id){
+      
     $.ajax({
-        type: "get",
-        url: BACKEND_URL+"/showDescription/"+membership_name,
-        success: function (result) {
-          var data=result.data;
-          //loadTotal()
-          var cpa_subject_fee=0;
-          var da_subject_fee=0;
-          var tr = "<tr>";
-            $.each(value, function(key, val){
-                
-                tr += `<td> ${ index.toUpperCase().replace("_", " ") } </td>`;
-                tr += `<td> ${ val.subject_name } </td>`;
-                
-                
-            });
-            $.each(data, function( index1, value1 ){
-                cpa_subject_fee +=value1.cpa_subject_fee;
-                da_subject_fee +=value1.da_subject_fee;
-                //all_subject={code:index,subjet_fee1:cpa_subject_fee,subjet_fee2:da_subject_fee};
-                
-                // all_subject.push(index+":"+cpa_subject_fee)
-                // all_subject.push(index+":"+da_subject_fee)
-                test.push(cpa_subject_fee)
-                if(index=='cpa_1' || index=='cpa_2'){
-                    tr += `<td ><input type="hidden" id='test' value=`+cpa_subject_fee+`>`+cpa_subject_fee+`</td>`;
-                    all_subject={subjet_fee1:cpa_subject_fee};
-                    //console.log(data.length)
-                    ;
-                    
-                }else{
-                    tr += `<td>`+da_subject_fee+`</td>`;
-                    all_subject2={code:index,subjet_fee2:da_subject_fee};
-                }
-            })
-            $.each(value, function(key, val){
-               
-                
-                tr += `<td>`+payment_status +`</td>`;
+        type : 'POST',
+        url : BACKEND_URL+"/getEducationHistory",
+        data: 'teacher_id='+id,
+        success: function(result){
+            $.each(result.data, function( index, value ) {
+                var tr = "<tr>";
+                tr += `<td> ${ index += 1 } </td>`;
+                tr += `<td> ${ value.university_name } </td>`;
+                tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
                 tr += "</tr>";
-                $(tbody).append(tr);
-                
+                $("#tbl_degree_body").append(tr);
             });
-            //$('#subject_total_amount').append(total);
-          //console.log(test.length)
-          //console.log(all_subject2)
-          var tt=0;
-          for(subjet_fee1 in all_subject) {
-            if(all_subject.hasOwnProperty(subjet_fee1)) {
-                var value = all_subject[subjet_fee1];
-                tt += parseInt(all_subject[subjet_fee1])
-                console.log(value+value);
-                //do something with value;
-                }
+            createDataTable('#tbl_degree');
         }
-            
-        }
-      })
-      
-      
-}
-function loadTotal(){
-    var allTableData = document.getElementById('tbl_certificate');
-    var totalNumbeOfRows = allTableData.rows.length;
-    console.log(totalNumbeOfRows);
+    });
+    
 }

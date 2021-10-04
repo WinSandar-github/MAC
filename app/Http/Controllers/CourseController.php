@@ -61,6 +61,7 @@ class CourseController extends Controller
 
         $request->validate([
             'name' => 'required',
+            'name_mm' => 'required',
             'form_fee' => 'required',
             'selfstudy_registration_fee' => 'required',
             'privateschool_registration_fee' => 'required',
@@ -75,6 +76,7 @@ class CourseController extends Controller
         ]);
         $course = new Course();
         $course->name = $request->name;
+        $course->name_mm = $request->name_mm;
         $course->form_fee = $request->form_fee;
         $course->selfstudy_registration_fee = $request->selfstudy_registration_fee;
         $course->privateschool_registration_fee = $request->privateschool_registration_fee;
@@ -135,6 +137,7 @@ class CourseController extends Controller
 
         $course = Course::find($id);
         $course->name = $request->name;
+        $course->name_mm = $request->name_mm;
         $course->form_fee = $request->form_fee;
         $course->selfstudy_registration_fee = $request->selfstudy_registration_fee;
         $course->privateschool_registration_fee = $request->privateschool_registration_fee;
@@ -179,11 +182,12 @@ class CourseController extends Controller
 
     public function getCourseType()
     {
-        $course_type = CourseType::get();
+        $course_type = CourseType::all();
         return response()->json([
             'data' => $course_type
         ], 200);
     }
+    
     public function loadCourseByCourseType($course_type_id)
     {
         $courses = Course::where('course_type_id',$course_type_id)->with('batches')->get();
