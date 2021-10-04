@@ -1097,14 +1097,14 @@
 	                                                                                <th>CPA (Full-fiedged) Reg.No</th>
 	                                                                                <th>Public Practice Reg.No</th>
 	                                                                            </tr>
-
 	                                                                        </thead>
 	                                                                        <tbody id="tbl_cpa_myanmar_body">
+																																						@php $no = 1; @endphp
 																																						@if($myn_cpa_foreign)
 																																							@foreach($myn_cpa_foreign as $foreign)
 																																								<tr>
 																																									<td>
-
+																																										{{$no++}}
 																																									</td>
 																																									<td>
 																																										{{$foreign->name}}
