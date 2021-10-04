@@ -137,7 +137,6 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('save_exam', 'BatchController@saveExam');
 
-    Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
     Route::get('attend_exam_list/{course_code}','ReportController@attendExamList');
     Route::get('exam_result_list/{course_code}','ReportController@examResultList');
     
@@ -247,6 +246,8 @@ Route::get('show_requirement','RequirementController@showRequirement');
 Route::get('show_membership/{membership_name}','MembershipController@showMembership');
 Route::resource('/batch', 'BatchController');
 Route::resource('/course', 'CourseController');
+Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
+
 
 //Mentor
 // Route::get('mentor_list', 'MentorController@FilterMentor');
