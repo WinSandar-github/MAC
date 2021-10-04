@@ -62,6 +62,7 @@ class CreateMentorsTable extends Migration
             $table->string('nrc_front')->nullable();
             $table->string('nrc_back')->nullable();
             $table->string('renew_date')->default(null)->nullable();
+            $table->text('reject_reason')->nullable();
             $table->timestamps();
 
             // $table->foreign('current_check_service_id')
