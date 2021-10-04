@@ -8,6 +8,7 @@ use App\StudentInfo;
 use App\StudentCourseReg;
 use App\Course;
 use App\ExamRegister;
+use App\Invoice;
 
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Str;
@@ -53,6 +54,14 @@ class StudentRegisterController extends Controller
             $student_course->mac_type        = $request->mac_type;
             $student_course->save();
             
+            //invoice
+            $invNo = str_pad($student_course->id, 20, "0", STR_PAD_LEFT);
+
+            $invoice = new Invoice();
+            $invoice->student_info_id = $student_info->id;
+            $invoice->invoiceNo       = $invNo;
+            $invoice->status          = 0;
+            $invoice->save();
         }
         
         if ($request->hasfile('recommendation_letter')) {
@@ -123,7 +132,14 @@ class StudentRegisterController extends Controller
                 // $student_register->recommend_file = $recommend_file;
                 $student_register->save();
 
+                //invoice
+                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
 
+                $invoice = new Invoice();
+                $invoice->student_info_id = $request->student_id;
+                $invoice->invoiceNo       = $invNo;
+                $invoice->status          = 0;
+                $invoice->save();
                 return "You have successfully registerd!";
                 break;
             case 1:
@@ -158,6 +174,14 @@ class StudentRegisterController extends Controller
                 $student_register->form_type = $request->form_type;
 
                 $student_register->save();
+                //invoice
+                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
+
+                $invoice = new Invoice();
+                $invoice->student_info_id = $request->student_id;
+                $invoice->invoiceNo       = $invNo;
+                $invoice->status          = 0;
+                $invoice->save();
                 return "You have successfully registerd!";
                 break;
             case 2:
@@ -212,6 +236,14 @@ class StudentRegisterController extends Controller
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
                 $student_register->save();
+                //invoice
+                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
+
+                $invoice = new Invoice();
+                $invoice->student_info_id = $request->student_id;
+                $invoice->invoiceNo       = $invNo;
+                $invoice->status          = 0;
+                $invoice->save();
                 return "You have successfully registerd!";
                 break;
         }
@@ -444,7 +476,14 @@ class StudentRegisterController extends Controller
                 // $student_register->current_check_services_other = $request->current_check_services_other;
                 // $student_register->recommend_file = $recommend_file;
                 $student_register->save();
+                //invoice
+                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
 
+                $invoice = new Invoice();
+                $invoice->student_info_id = $request->student_id;
+                $invoice->invoiceNo       = $invNo;
+                $invoice->status          = 0;
+                $invoice->save();
 
                 return "You have successfully registerd!";
                 break;
@@ -480,6 +519,14 @@ class StudentRegisterController extends Controller
                 $student_register->form_type = $request->form_type;
 
                 $student_register->save();
+                //invoice
+                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
+
+                $invoice = new Invoice();
+                $invoice->student_info_id = $request->student_id;
+                $invoice->invoiceNo       = $invNo;
+                $invoice->status          = 0;
+                $invoice->save();
                 return "You have successfully registerd!";
                 break;
             case 2:
@@ -535,6 +582,14 @@ class StudentRegisterController extends Controller
                 $student_register->form_type = $request->form_type;
 
                 $student_register->save();
+                //invoice
+                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
+
+                $invoice = new Invoice();
+                $invoice->student_info_id = $request->student_id;
+                $invoice->invoiceNo       = $invNo;
+                $invoice->status          = 0;
+                $invoice->save();
                 return "You have successfully registerd!";
                 break;
         }

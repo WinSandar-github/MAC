@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\TeacherRegister;
 use App\StudentInfo;
 use App\EducationHistroy;
+use App\Invoice;
 use Hash;
 use Illuminate\Support\Facades\DB;
 
@@ -146,6 +147,15 @@ class TeacherController extends Controller
             $education_histroy->teacher_id      = $teacher->id;
             $education_histroy->save();
         }
+
+        //invoice
+        $invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $std_info->id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
 
         return response()->json([
             'message' => 'Success Registration.'
