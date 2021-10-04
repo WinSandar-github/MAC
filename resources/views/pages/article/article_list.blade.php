@@ -58,8 +58,9 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Contract Date</th>
+                                                            <th class="bold-font-weight" style="display:none">Contract Date</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_firm_article_pending_body" class="hoverTable text-left">
@@ -75,6 +76,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Contract Date</th>
                                                         </tr>
@@ -92,8 +94,9 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Contract Date</th>
+                                                            <th class="bold-font-weight"  style="display:none">Contract Date</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_firm_article_rejected_body" class="hoverTable text-left">
@@ -128,8 +131,9 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Contract Date</th>
+                                                            <th class="bold-font-weight" style="display:none">Contract Date</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_gov_article_pending_body" class="hoverTable text-left">
@@ -145,6 +149,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Contract Date</th>
                                                         </tr>
@@ -162,8 +167,9 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Contract Date</th>
+                                                            <th class="bold-font-weight" style="display:none">Contract Date</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_gov_article_rejected_body" class="hoverTable text-left">
@@ -278,9 +284,9 @@
                                             <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#done2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <!-- <li class="nav-item">
                                                 <a class="nav-link" data-toggle="tab" href="#done3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
-                                            </li>
+                                            </li> -->
                                         </ul>
                                     </div>
                                     <div class="card-body">
@@ -294,6 +300,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -310,6 +317,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -317,7 +325,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade show" id="done3" aria-expanded="true">
+                                            <!-- <div class="tab-pane fade show" id="done3" aria-expanded="true">
                                                 <table id="tbl_done_article_rejected" class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
@@ -326,13 +334,14 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_done_article_rejected_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -343,11 +352,11 @@
                                                 <a class="nav-link active" data-toggle="tab" href="#done_gov1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#done_gov1" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                                <a class="nav-link" data-toggle="tab" href="#done_gov2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" data-toggle="tab" href="#done_gov1" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
-                                            </li>
+                                            <!-- <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#done_gov3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                            </li> -->
                                         </ul>
                                     </div>
                                     <div class="card-body">
@@ -361,6 +370,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -377,6 +387,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -384,7 +395,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade show" id="done_gov3" aria-expanded="true">
+                                            <!-- <div class="tab-pane fade show" id="done_gov3" aria-expanded="true">
                                                 <table id="tbl_done_gov_article_rejected" class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                         <tr>
@@ -393,13 +404,14 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
+                                                            <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_done_gov_article_rejected_body" class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -501,11 +513,14 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+
+        $('#tbl_firm_article_pending').DataTable().column(7).visible(false);
 
         var table_approve =$('#tbl_firm_article_approved').DataTable({
             scrollX: true,
@@ -529,6 +544,7 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
@@ -557,11 +573,14 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+
+        $('#tbl_firm_article_rejected').DataTable().column(7).visible(false);
 
         //Gov Article
         var table_pending = $('#tbl_gov_article_pending').DataTable({
@@ -586,11 +605,14 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+
+        $('#tbl_gov_article_pending').DataTable().column(7).visible(false);
 
         var table_approve =$('#tbl_gov_article_approved').DataTable({
             scrollX: true,
@@ -614,6 +636,7 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
@@ -643,10 +666,13 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+
+        $('#tbl_gov_article_rejected').DataTable().column(7).visible(false);
 
         //Resign Article
         var table_pending = $('#tbl_resign_article_pending').DataTable({
@@ -757,6 +783,7 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -784,37 +811,39 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
-        var table_reject =$('#tbl_done_article_rejected').DataTable({
-            scrollX: true,
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url  : BACKEND_URL + "/filter_done_article",
-                type : "POST" ,
-                data :  function (d) {
-                    d.name      =  $("input[name=filter_by_name]").val(),
-                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 2
-                }
+        // var table_reject =$('#tbl_done_article_rejected').DataTable({
+        //     scrollX: true,
+        //     processing: true,
+        //     serverSide: true,
+        //     ajax: {
+        //         url  : BACKEND_URL + "/filter_done_article",
+        //         type : "POST" ,
+        //         data :  function (d) {
+        //             d.name      =  $("input[name=filter_by_name]").val(),
+        //             d.nrc       =  $("input[name=filter_by_nrc]").val(),
+        //             d.status    = 2
+        //         }
 
-            },
-            columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'name_mm', name: 'name_mm'},
-                {data: 'phone_no', name: 'phone_no'},
-                {data: 'nrc', name: 'nrc'},
-                {data: 'status', name: 'status'},
-            ],
-            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        });
+        //     },
+        //     columns: [
+        //         {data: null, render: function (data, type, row, meta) {
+        //             return meta.row + meta.settings._iDisplayStart + 1;
+        //         }},
+        //         {data: 'action', name: 'action', orderable: false, searchable: false},
+        //         {data: 'name_mm', name: 'name_mm'},
+        //         {data: 'phone_no', name: 'phone_no'},
+        //         {data: 'nrc', name: 'nrc'},
+        //         {data: 'form_type', name: 'form_type'},
+        //         {data: 'status', name: 'status'},
+        //     ],
+        //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        // });
 
         //Done Gov Article
         var table_pending = $('#tbl_done_gov_article_pending').DataTable({
@@ -839,6 +868,7 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -866,37 +896,39 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
+                {data: 'form_type', name: 'form_type'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
-        var table_reject =$('#tbl_done_gov_article_rejected').DataTable({
-            scrollX: true,
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url  : BACKEND_URL + "/filter_gov_done_article",
-                type : "POST" ,
-                data :  function (d) {
-                    d.name      =  $("input[name=filter_by_name]").val(),
-                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 2
-                }
+        // var table_reject =$('#tbl_done_gov_article_rejected').DataTable({
+        //     scrollX: true,
+        //     processing: true,
+        //     serverSide: true,
+        //     ajax: {
+        //         url  : BACKEND_URL + "/filter_gov_done_article",
+        //         type : "POST" ,
+        //         data :  function (d) {
+        //             d.name      =  $("input[name=filter_by_name]").val(),
+        //             d.nrc       =  $("input[name=filter_by_nrc]").val(),
+        //             d.status    = 2
+        //         }
 
-            },
-            columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'name_mm', name: 'name_mm'},
-                {data: 'phone_no', name: 'phone_no'},
-                {data: 'nrc', name: 'nrc'},
-                {data: 'status', name: 'status'},
-            ],
-            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        });
+        //     },
+        //     columns: [
+        //         {data: null, render: function (data, type, row, meta) {
+        //             return meta.row + meta.settings._iDisplayStart + 1;
+        //         }},
+        //         {data: 'action', name: 'action', orderable: false, searchable: false},
+        //         {data: 'name_mm', name: 'name_mm'},
+        //         {data: 'phone_no', name: 'phone_no'},
+        //         {data: 'nrc', name: 'nrc'},
+        //         {data: 'form_type', name: 'form_type'},
+        //         {data: 'status', name: 'status'},
+        //     ],
+        //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        // });
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             $.each($.fn.dataTable.tables(true), function(){
