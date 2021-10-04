@@ -337,6 +337,16 @@
                                   </div>
                                 </div>
 
+                                <!--CPD Hours-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">CPD Hours</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="cpd_hours"></span>
+                                    </div>
+                                </div>
+
                                 <!--Tax Free Recommendation-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
@@ -362,6 +372,121 @@
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
                                             <embed id="tax_free"  width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!--MICPA Member Card-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">MICPA Member Card(Front)</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                <!--MICPA Member Card Modal -->
+                                <div id="mpa_mem_card_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">MICPA Member Card(Front)</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
+                                            <embed id="mpa_mem_card_front" width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <!--MICPA Member Card back-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">MICPA Member Card(Back)</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_back_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                <!--MICPA Member Card back Modal -->
+                                <div id="mpa_mem_card_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">MICPA Member Card(Back)</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
+                                            <embed id="mpa_mem_card_back" width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+
+                                <!--Tax Free Recommendation-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Tax Free Recommendation</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="tax_free_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#tax_free_recommendation_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                 <!--Tax Free Recommendation Modal-->
+                                <div id="tax_free_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">Tax Free Recommendation</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="tax_free"  width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <!--Letter-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">ကိုယ်တိုင်ဝန်ခံချက်</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" id="letter_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#letter_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>
+                                 <!--Tax Free Recommendation Modal-->
+                                <div id="letter_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button> -->
+                                            <h5 class="modal-title text-center">ကိုယ်တိုင်ဝန်ခံချက်</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="letter"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
@@ -484,7 +609,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">အထက်လူကြီး၏ထောက်ခံစာ</p>
+                                        <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာဌာနအကြီးအကဲ၏ထောက်ခံစာ</p>
                                     </div>
                                     <div class="col-md-6 recommend_letter">
 

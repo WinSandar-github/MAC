@@ -244,6 +244,8 @@ class EntryExamController extends Controller
             ->where('status','=',$request->status)
             ->where('exam_type_id','=',3)
             ->get();
+
+            
       
         return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
@@ -295,8 +297,7 @@ class EntryExamController extends Controller
                         ->where('grade','=',$request->grade)
                         ->where('exam_type_id','=',3)
                         ->get();
- 
-        
+         
           return DataTables::of($exam_register)
             ->addColumn('action', function ($infos) {
 

@@ -13,7 +13,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('paper') }}/img/apple-icon.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>{{ __('MAC') }}</title>
+    <title>{{ __('DPRMS') }}</title>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="{{ asset('css/bootstrap/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('paper/css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -84,6 +84,8 @@
     <script src="{{ asset('js/description.js') }}"></script>
     <script src="{{ asset('js/membership.js') }}"></script>
     <script src="{{ asset('js/entry_exam.js') }}"></script>
+    <script src="{{ asset('js/qualified_test.js') }}"></script>
+
 
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/student.js') }}"></script>

@@ -83,7 +83,7 @@ class ExamController extends Controller
             'exam_end_date' => 'required',
         ]);        
         $exam = Exam::find($id);
-        $exam->batch_id           = $request->batch_id;
+        $exam->batch_id           = (int) $request->batch_id;
         $exam->course_id       =  $request->course_id;
         $exam->exam_type_id       =  $request->exam_type_id;
         $exam->exam_start_date      =  $request->exam_start_date;

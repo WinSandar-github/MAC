@@ -255,18 +255,45 @@ class TeacherController extends Controller
         $teacher->reason = null;
         $teacher->save();
 
-        if($degrees_certificates!='null'){
-
+       
+        if($request->degrees!=null){
             $degrees_certificates=implode(',', $degrees_certificates);
             $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
-       
+           
                 $education_histroy  =   new EducationHistroy();
-                $education_histroy->student_info_id = $request->student_info_id;
+                $education_histroy->student_info_id = $std_info->id;
                 $education_histroy->university_name = $request->degrees[$i];
-                $education_histroy->certificate        ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+                $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+                $education_histroy->teacher_id       = $teacher->id;
                 $education_histroy->save();
             }
+        }else{
+            
+            if ($request->hasfile('old_degrees_certificates')) {
+                foreach($request->file('old_degrees_certificates') as $file)
+                 {
+                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                     $file->move(public_path().'/storage/teacher_info/',$name);
+                     $old_degrees_certificates[] = $name;
+                 }
+                 for($i=0;$i <sizeof($request->old_degrees_id);$i++){
+                    $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                    $education_histroy->university_name = $request->old_degrees[$i];
+                    $education_histroy->certificate     ='/storage/teacher_info/'.$old_degrees_certificates[$i];
+                    $education_histroy->save();
+                }
+            }else{
+                $old_degrees_certificates=$request->old_degrees_certificates_h;
+                
+                for($i=0;$i <sizeof($request->old_degrees_id);$i++){
+                    $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                    $education_histroy->university_name = $request->old_degrees[$i];
+                    $education_histroy->certificate     =$old_degrees_certificates[$i];
+                    $education_histroy->save();
+                }
+            }
+            
         }
         $std_info = StudentInfo::find($request->student_info_id);
         $std_info->payment_method = null;
@@ -397,7 +424,7 @@ class TeacherController extends Controller
 
     public function check_payment($id)
     {
-        $data = StudentInfo::where('id',$id)->get();
+        $data = TeacherRegister::where('id',$id)->get();
         return response()->json($data,200);
     }
     public function getEducationHistory(Request $request)
