@@ -73,6 +73,7 @@ class ExamResultController extends Controller
         $exam_result->registeration_id=$request->exam_register_id;
         $exam_result->result=json_encode(['subjects'=>$subjects,'marks'=>$marks,'grades'=>$grades]);;
         $exam_result->date=$date;
+        $exam_result->total_mark=$request->total_mark;
         $exam_result->save();
 
         return response()->json($exam_result,200);
