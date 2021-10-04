@@ -365,4 +365,5 @@ Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@r
 
 // Payment
 Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
+Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
