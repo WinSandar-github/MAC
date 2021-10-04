@@ -16,6 +16,7 @@ class CreateQualifiedTestsTable extends Migration
         Schema::create('qualified_tests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id');
+            $table->bigInteger('sr_no')->nullable();
             $table->string('current_job')->nullable();
             $table->string('local_education')->nullable();
             $table->string('local_education_certificate')->nullable();
@@ -25,6 +26,8 @@ class CreateQualifiedTestsTable extends Migration
             $table->string('organization_email')->unique()->nullable();
             $table->string('exam_date')->nullable();
             $table->string('exam_reg_no');
+            $table->biginteger('grade')->nullable();
+            $table->text('office_address')->nullable();
             $table->integer('approve_reject_status');
             $table->integer('know_policy');
             $table->foreign('student_info_id')

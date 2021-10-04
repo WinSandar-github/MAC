@@ -34,11 +34,10 @@
                         <input type="hidden"  name="membership_id" >
 
                         <div class="card-body">
-
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('1.') }}</label>
-                                <label class="col-md-2 form-label">{{ __('Membership Name') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-md-3 form-label">{{ __('Membership Name') }}</label>
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <input readonly type="text" name="membership_name" class="form-control" id="ms_name" placeholder="Membership Name Eg.School" autocomplete="off">
                                     </div>
@@ -46,62 +45,202 @@
                             </div>
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                                <label class="col-md-2 form-label">{{ __('Form Fee') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-md-3 form-label">{{ __('Form Fee') }}</label>
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <input type="number" name="form_fee" class="form-control" id="form_fee" placeholder="Form Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
+
+                            @if($membership_id != 2)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('3.') }}</label>
-                                <label class="col-md-2 form-label">{{ __('Registration Fee') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-md-3 form-label">{{ __('Registration Fee') }}</label>
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <input type="number" name="registration_fee" class="form-control" id="registration_fee" placeholder="Registration Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
+                            @endif
+
+                            @if($membership_id == 2)
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('3.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Registration Fee') }}</label>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Sole Proprietorship') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="reg_fee_sole" class="form-control" id="reg_fee_sole" placeholder="Delayed Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Partnership and Company') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="reg_fee_partner" class="form-control" id="reg_fee_partner" placeholder="Delayed Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('4.') }}</label>
-                                <label class="col-md-2 form-label">{{ __('Yearly Fee') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-md-3 form-label">{{ __('Yearly Fee') }}</label>
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <input type="number" name="yearly_fee" class="form-control" id="yearly_fee" placeholder="Yearly Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
+
+                            @if($membership_id != 2)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('5.') }}</label>
-                                <label class="col-md-2 form-label">{{ __('Renew Fee') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-md-3 form-label">{{ __('Renew Fee') }}</label>
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <input type="number" name="renew_fee" class="form-control" id="yearly_fee" placeholder="Yearly Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
+                            @endif
+
+                            <!-- for Non-Audit -->
+                            @if($membership_id == 2)
                             <div class="row mb-1">
-                                <label class="col-md-1 form-label">{{ __('6.') }}</label>
-                                <label class="col-md-2 form-label">{{ __('Delayed Fee') }}</label>
-                                <div class="col-md-9">
+                                <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Renew Fee') }}</label>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Sole Proprietorship') }}</label>
+                                <div class="col-md-8">
                                     <div class="form-group">
-                                        <input type="number" name="late_fee" class="form-control" id="late_fee" placeholder="Delayed Fee" autocomplete="off">
+                                        <input type="number" name="renew_fee_sole" class="form-control" id="renew_fee_sole" placeholder="Delayed Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
-                           
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Partnership and Company') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="renew_fee_partner" class="form-control" id="renew_fee_partner" placeholder="Delayed Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+
+                            @if($membership_id != 1 && $membership_id != 2)
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Delayed Fee') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="late_fee" class="form-control" id="late_fee" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                            @endif
+
+                            <!-- for audit firm nad non-audit firm -->
+                            @if($membership_id == 1 || $membership_id == 2)
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                                  <label class="col-md-4 form-label">{{ __('Delayed Fee(within January)') }}</label>
+                              </div>
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Sole Proprietorship') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="late_fee_within_jan_sole" class="form-control" id="late_fee" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Partnership and Company') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="late_fee_within_jan_partner" class="form-control" id="late_fee" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- /// -->
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                                  <label class="col-md-4 form-label">{{ __('Delayed Fee(from February to April)') }}</label>
+                              </div>
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Sole Proprietorship') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="late_fee_feb_to_apr_sole" class="form-control" id="late_fee" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Partnership and Company') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="late_fee_feb_to_apr_partner" class="form-control" id="late_fee" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- /// -->
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('8.') }}</label>
+                                  <label class="col-md-4 form-label">{{ __('Reconnect Fee(per year)') }}</label>
+                              </div>
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Sole Proprietorship') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="reconnect_fee_sole" class="form-control" id="reconnect_fee_sole" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                              <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Partnership and Company') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="reconnect_fee_partner" class="form-control" id="reconnect_fee_sole" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                              </div>
+                            @endif
+
+                            @if($membership_id != 1 && $membership_id != 2)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('7.') }}</label>
-                                <label class="col-md-2 form-label">{{ __('Reconnected Fee') }}</label>
-                                <div class="col-md-9">
-                                    <div class="form-group">                                
-                                        <input type="number" name="reconnected_fee" class="form-control" id="reconnected_fee" placeholder="Reconnected Fee" autocomplete="off"> 
+                                <label class="col-md-3 form-label">{{ __('Reconnected Fee') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="reconnected_fee" class="form-control" id="reconnected_fee" placeholder="Reconnected Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
+                            @endif
+
                             <div class="row mb-1">
-                                    <label class="col-md-1 form-label">{{ __('8.') }}</label>
-                                    <label class="col-md-2 form-label">{{ __('Requirement') }}</label>
+                                @if($membership_id == 2 || $membership_id == 1)
+                                <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                                @else
+                                <label class="col-md-1 form-label">{{ __('8.') }}</label>
+                                @endif
+                                <label class="col-md-2 form-label">{{ __('Requirement') }}</label>
                                 <div class="col-md-9">
                                     <div class="form-group">
                                         <!-- <select name="requirement_id[]"
@@ -116,20 +255,24 @@
                                 </div>
                             </div>
                             <div class="row mb-1">
-                                    <label class="col-md-1 form-label">{{ __('9.') }}</label>
-                                    <label class="col-md-2 form-label">{{ __('Description') }}</label>
-                                <div class="col-md-9">
-                                    <div class="form-group ">
-                                        <!-- <select name="description_id[]"
-                                                class="form-control description_id multiple-requirement" multiple="multiple"
-                                                required style="width:100%">
+                              @if($membership_id == 2 || $membership_id == 1)
+                              <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                              @else
+                              <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                              @endif
+                              <label class="col-md-2 form-label">{{ __('Description') }}</label>
+                              <div class="col-md-9">
+                                  <div class="form-group ">
+                                      <!-- <select name="description_id[]"
+                                              class="form-control description_id multiple-requirement" multiple="multiple"
+                                              required style="width:100%">
 
 
-                                        </select> -->
-                                        <textarea   name="description" id="mem_desc" width="100%"
-                                                    height="auto"></textarea>
-                                    </div>
-                                </div>
+                                      </select> -->
+                                      <textarea   name="description" id="mem_desc" width="100%"
+                                                  height="auto"></textarea>
+                                  </div>
+                              </div>
                             </div>
 
                         </div>
@@ -163,15 +306,6 @@
     var id = location.pathname.substring(location.pathname.lastIndexOf('/') + 1);
 
     showMembershipInfo(id);
-
-
-
-
-
-
-
-
-
 
     });
 

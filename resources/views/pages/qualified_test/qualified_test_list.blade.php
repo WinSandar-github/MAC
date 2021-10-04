@@ -23,6 +23,10 @@
                             <div class="col-md-12">
                                 <h5 class="title text-center">{{ __('Qualified Test  Registration List') }}</h5>
                             </div>
+                            <div class="col-md-12 text-right">
+                            <button class="btn btn-primary btn-round m-0" onclick="window.location.href='qualified_test_result_list'">Go to QualifiedTest Result List</button>
+                        </div>
+
                         </div>
                         {{--<div class="row">
                             <div class="col-md-8">
@@ -83,6 +87,9 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Email</th>
+                                            <th class="bold-font-weight" >Local Education</th>
+                                            <th class="bold-font-weight" >Foreign Education</th>
+                                            
                                             {{-- <th class="bold-font-weight" >Remark</th>  --}}
                                             <th class="bold-font-weight" >Status</th>
                                         </tr>
@@ -108,6 +115,9 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Email</th>
+                                            <th class="bold-font-weight" >Local Education</th>
+                                            <th class="bold-font-weight" >Foreign Education</th>
+                                            
                                             {{-- <th class="bold-font-weight" >Remark</th>  --}}
                                             <th class="bold-font-weight" >Status</th>
                                         </tr>
@@ -124,6 +134,9 @@
                                             <th class="bold-font-weight" >Action</th>
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >Email</th>
+                                            <th class="bold-font-weight" >Local Education</th>
+                                            <th class="bold-font-weight" >Foreign Education</th>
+                                            
                                             {{-- <th class="bold-font-weight" >Remark</th>  --}}
                                             <th class="bold-font-weight" >Status</th>
                                         </tr>
@@ -165,8 +178,10 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'studentinfo.name_mm', name: 'Student Name'},
-                {data: 'studentinfo.email', name: 'Email'},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'student_info.email', name: 'Email'},
+                {data: 'local_edu', name: 'Local Education'},
+                {data: 'foreign_education', name: 'Foreign Education'},
                 {data: 'status', name: 'Status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -188,8 +203,10 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'studentinfo.name_mm', name: 'Student Name'},
-                {data: 'studentinfo.email', name: 'Email'},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'student_info.email', name: 'Email'},
+                {data: 'local_edu', name: 'Local Education'},
+                {data: 'foreign_education', name: 'Foreign Education'},
                 {data: 'status', name: 'Status'},
 
                 // {data: 'print', name: 'Print',orderable: false, searchable: false},
@@ -213,8 +230,10 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'studentinfo.name_mm', name: 'Student Name'},
-                {data: 'studentinfo.email', name: 'Email'},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'student_info.email', name: 'Email'},
+                {data: 'local_edu', name: 'Local Education'},
+                {data: 'foreign_education', name: 'Foreign Education'},
                 {data: 'status', name: 'Status'},
 
                 // {data: 'print', name: 'Print',orderable: false, searchable: false},

@@ -20,12 +20,27 @@ class CreateMembershipsTable extends Migration
             $table->text('description')->nullable();
             $table->bigInteger('form_fee')->nullable();
             $table->bigInteger('registration_fee')->nullable();
+            $table->bigInteger('reg_fee_sole')->nullable();
+            $table->bigInteger('reg_fee_partner')->nullable();
+            //
             $table->bigInteger('yearly_fee')->nullable();
             $table->bigInteger('renew_fee')->nullable();
+            $table->bigInteger('renew_fee_sole')->nullable();
+            $table->bigInteger('renew_fee_partner')->nullable();
+            //
             $table->bigInteger('late_fee')->nullable();
+            $table->bigInteger('late_fee_within_jan_sole')->nullable();
+            $table->bigInteger('late_fee_within_jan_partner')->nullable();
+            $table->bigInteger('late_fee_feb_to_apr_sole')->nullable();
+            $table->bigInteger('late_fee_feb_to_apr_partner')->nullable();
+            //
             $table->bigInteger('late_feb_fee')->nullable();
             $table->bigInteger('expire_fee')->nullable();
             $table->bigInteger('reconnected_fee')->nullable();
+            //
+            $table->bigInteger('reconnect_fee_sole')->nullable();
+            $table->bigInteger('reconnect_fee_partner')->nullable();
+            //
             $table->timestamps();
         });
     }

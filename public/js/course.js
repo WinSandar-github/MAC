@@ -9,47 +9,47 @@ function removeComma(number) {
     return number_part;
 }
 
-function getCourseList(){
+function getCourseList() {
     $('#tbl_sub_course').DataTable({
         scrollX: true,
         processing: true,
         serverSide: true,
         ajax: BACKEND_URL + "/filter_course/all",
         columns: [
-            {data: "id", name: 'No'},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-            {data: 'name', name: 'name'},
-            {data: 'description', name: 'Description'},
-            {data: 'form_fee', name: 'Application Fee'},
-            {data: 'selfstudy_registration_fee', name: 'Self-Study Registration Fee'},
-            {data: 'privateschool_registration_fee', name: 'Private School Registration Fee'},
-            {data: 'mac_registration_fee', name: 'MAC Registration Fee'},
-            {data: 'exam_fee', name: 'Exam Fee'},
-            {data: 'tution_fee', name: 'Course Fee'},
-            {data: 'cpa_subject_fee', name: 'CPA Subject Fee'},
-            {data: 'da_subject_fee', name: 'DA Subject Fee'},
-            {data: 'requirements', name: 'Requirement'},
+            { data: "id", name: 'No' },
+            { data: 'action', name: 'action', orderable: false, searchable: false },
+            { data: 'name', name: 'name' },
+            { data: 'description', name: 'Description' },
+            { data: 'form_fee', name: 'Application Fee' },
+            { data: 'selfstudy_registration_fee', name: 'Self-Study Registration Fee' },
+            { data: 'privateschool_registration_fee', name: 'Private School Registration Fee' },
+            { data: 'mac_registration_fee', name: 'MAC Registration Fee' },
+            { data: 'exam_fee', name: 'Exam Fee' },
+            { data: 'tution_fee', name: 'Course Fee' },
+            { data: 'cpa_subject_fee', name: 'CPA Subject Fee' },
+            { data: 'da_subject_fee', name: 'DA Subject Fee' },
+            { data: 'requirements', name: 'Requirement' },
         ],
     });
 }
 
-function createMainCourse(){
+function createMainCourse() {
     var course_name = $("input[name=main_cousre_name]").val();
     var course_description = $("input[name=main_cousre_description]").val();
     var formData = new FormData(document.getElementById("main_course_form"));
 
-    if(course_name !== "" && course_description !== ""){
+    if (course_name !== "" && course_description !== "") {
         show_loader();
         $.ajax({
-            url : FRONTEND_URL + "/main_course",
-            type : 'post',
-            data : formData,
-            contentType : false,
-            processData : false,
+            url: FRONTEND_URL + "/main_course",
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function (result) {
                 EasyLoading.hide();
                 successMessage(result.message);
-                setInterval(()=>{
+                setInterval(() => {
                     window.location.reload();
                 }, 3000);
             },
@@ -64,6 +64,7 @@ function createMainCourse(){
 function createCourse() {
     var send_data = new FormData();
     send_data.append('name', $("input[name=course_name]").val());
+    send_data.append('name_mm', $("input[name=course_name_mm]").val());
     send_data.append('form_fee', removeComma($("input[name=form_fee]").val()));
     send_data.append('selfstudy_registration_fee', removeComma($("input[name=selfstudy_registration_fee]").val()));
     send_data.append('privateschool_registration_fee', removeComma($("input[name=privateschool_registration_fee]").val()));
@@ -72,6 +73,7 @@ function createCourse() {
     send_data.append('tution_fee', removeComma($("input[name=tution_fee]").val()));
     send_data.append('cpa_subject_fee', removeComma($("input[name=cpa_subject_fee]").val()));
     send_data.append('da_subject_fee', removeComma($("input[name=da_subject_fee]").val()));
+
     send_data.append('description', $("input[name=description]").val());
     send_data.append('code', $("input[name=code]").val());
     send_data.append('exam_fee', $("input[name=exam_fee]").val());
@@ -92,7 +94,7 @@ function createCourse() {
         contentType: false,
         processData: false,
         success: function (result) {
-            
+
             EasyLoading.hide();
             successMessage("Insert Successfully");
             setInterval(() => {
@@ -175,14 +177,14 @@ function getCourse() {
     });
 }
 
-function showMainCourseInfo(id){
+function showMainCourseInfo(id) {
     $("#main_course_form").get(0).reset();
     $('#mainModalLabel').text("Update Main Course");
     $("#main_course_form").attr('action', 'javascript:updateMainCourse()');
     $('input[name=main_course_id]').val(id);
     $.ajax({
-        type : "get",
-        url : FRONTEND_URL + "/main_course/" + id,
+        type: "get",
+        url: FRONTEND_URL + "/main_course/" + id,
         success: function (result) {
             $('input[name=main_course_name]').val(result.course_name);
             $('#main_summernote').summernote('code', result.course_description);
@@ -204,7 +206,8 @@ function showCourseInfo(id) {
             var course_data = data.data;
             console.log('show course', course_data);
             // removeBracketed(course_data.requirement_id,"requirement_id");
-            $('input[name=course_name]').val(course_data.course_name);
+            $('input[name=course_name]').val(course_data.name);
+            $('input[name=course_name_mm]').val(course_data.name_mm);
             $('input[name=form_fee]').val(course_data.form_fee);
             $('input[name=selfstudy_registration_fee]').val(course_data.selfstudy_registration_fee);
             $('input[name=privateschool_registration_fee]').val(course_data.privateschool_registration_fee);
@@ -256,19 +259,19 @@ function showCourseInfo(id) {
 //     }
 // }
 
-function updateMainCourse(){
+function updateMainCourse() {
     var id = $('input[name=main_course_id]').val();
     var formData = new FormData(document.getElementById('main_course_form'));
     $.ajax({
-        type : 'patch',
-        url : FRONTEND_URL + '/main_course/' + id,
-        data : {
-            main_course_name : formData.get('main_course_name'),
-            main_course_description : formData.get("main_course_description")
+        type: 'patch',
+        url: FRONTEND_URL + '/main_course/' + id,
+        data: {
+            main_course_name: formData.get('main_course_name'),
+            main_course_description: formData.get("main_course_description")
         },
         success: function (result) {
             successMessage(result.message);
-            setInterval(()=>{
+            setInterval(() => {
                 window.location.reload();
             }, 3000);
         },
@@ -280,7 +283,8 @@ function updateMainCourse(){
 
 function updateCourse() {
     var id = $("input[name=course_id]").val();
-    var name = $("input[name=name]").val();
+    var name = $("input[name=course_name]").val();
+    var name_mm = $("input[name=course_name_mm]").val();
     var form_fee = $("input[name=form_fee]").val();
     var selfstudy_registration_fee = $("input[name=selfstudy_registration_fee]").val();
     var privateschool_registration_fee = $("input[name=privateschool_registration_fee]").val();
@@ -294,8 +298,11 @@ function updateCourse() {
 
     var course_type_id = $('.course_type').val();
     var requirement_id = $('.requirement_id').val();
-    var cpa_subject_fee=$("input[name=cpa_subject_fee]").val();
-    var da_subject_fee=$("input[name=da_subject_fee]").val();
+    // var cpa_subject_fee = $("input[name=cpa_subject_fee]").val();
+    // var da_subject_fee = $("input[name=da_subject_fee]").val();
+    var cpa_subject_fee = $("input[name=cpa_subject_fee]").val();
+    var da_subject_fee = $("input[name=da_subject_fee]").val();
+    console.log('requirement_id', requirement_id);
     show_loader();
 
     $.ajax({
@@ -303,6 +310,7 @@ function updateCourse() {
         type: 'patch',
         data: {
             name: name,
+            name_mm: name_mm,
             form_fee: form_fee,
             selfstudy_registration_fee: selfstudy_registration_fee,
             privateschool_registration_fee: privateschool_registration_fee,
@@ -315,23 +323,24 @@ function updateCourse() {
             code: code,
             course_type_id: course_type_id,
             requirement_id: requirement_id,
-            cpa_subject_fee:cpa_subject_fee,
-            da_subject_fee:da_subject_fee
+            cpa_subject_fee: cpa_subject_fee,
+            da_subject_fee: da_subject_fee
         },
         success: function (result) {
+
             EasyLoading.hide();
             successMessage("Update Successfully");
             $('#create_course_modal').modal('toggle');
-            getCourseList();
-            // location.reload();
-            getCourse();
+            //getCourseList();
+            //window.location.reload();
+            // getCourse();
 
 
         }
     });
 }
 
-function deleteMainCourseInfo(courseName, id){
+function deleteMainCourseInfo(courseName, id) {
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -340,17 +349,17 @@ function deleteMainCourseInfo(courseName, id){
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
+    }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
                 type: "DELETE",
-                url : FRONTEND_URL + 'main_course/' + id,
+                url: FRONTEND_URL + 'main_course/' + id,
                 success: function (result) {
                     Swal.fire({
-                        title : 'Deleted',
-                        text : result.message,
-                        icon : 'success',
-                    }).then( () => {
+                        title: 'Deleted',
+                        text: result.message,
+                        icon: 'success',
+                    }).then(() => {
                         window.location.reload();
                     });
                 },
@@ -359,7 +368,7 @@ function deleteMainCourseInfo(courseName, id){
                 }
             });
         }
-      })
+    })
 }
 
 function deleteCourseInfo(courseName, courseId) {

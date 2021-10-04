@@ -21,6 +21,8 @@ class CreateEducationHistroysTable extends Migration
             $table->string('qualified_date')->nullable();
             $table->string('roll_number',30)->nullable();
             $table->string('certificate')->nullable();
+            $table->integer('school_id')->nullable();
+            $table->integer('teacher_id')->nullable();
             $table->timestamps();
 
             $table->foreign('student_info_id')

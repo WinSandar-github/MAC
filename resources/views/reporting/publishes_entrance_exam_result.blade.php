@@ -8,24 +8,30 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">CPA One ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">CPA One ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများစာရင်း ထုတ်ပြန်ရန်</h5>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row"> 
                             <div class="col-md-12 pl-2">
-                                <button   onclick="generateEntranceExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
-                                
+                               
+                               
+                                <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
+                               
                             </div>
-                        <div class="col-md-12">                       
-                            <table width="100%" id="tbl_exam_list" class="table table-hover text-nowrap ">
+                        
+
+                        <div class="col-md-12">
+                          
+                           
+                        
+                            <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
                                         <th class="bold-font-weight" >Serial number</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
-                                        
                                         <th class="bold-font-weight" >Status</th>
 
                                     </tr>
@@ -56,7 +62,7 @@
         
 showAppList = (course_code) =>{
     
-    var table_app = $('#tbl_exam_list').DataTable({
+    var table_app = $('#tbl_exam_result_list').DataTable({
         scrollX: true,
         processing: true,
         serverSide: false,
@@ -67,9 +73,9 @@ showAppList = (course_code) =>{
             url  : FRONTEND_URL + "/show_entrance_exam_list",
             type : "POST" ,
             data :  function (d) {
-                d.code        =  course_code
-             
-                
+                d.code        =  course_code,
+                d.grade       = 1
+               
             }
         },
         columns: [
@@ -79,6 +85,7 @@ showAppList = (course_code) =>{
             {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
             {data: 'nrc', name: 'nrc'}, 
             {data: 'status', name: 'status'},
+
             
             
         ],

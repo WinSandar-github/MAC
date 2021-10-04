@@ -1,13 +1,15 @@
-var cpa_modal;
-var ra_modal;
-var foreign_modal;
-var cpa_certificate_modal;
-var mpa_modal;
-var nrc_front_modal;
-var nrc_back_modal;
-var cpd_record_modal;
-var passport_modal;
-var attached_modal;
+// var cpa_modal;
+// var ra_modal;
+// var foreign_modal;
+// var cpa_certificate_modal;
+// var mpa_modal;
+// var nrc_front_modal;
+// var nrc_back_modal;
+// var cpd_record_modal;
+// var passport_modal;
+// var attached_modal;
+// var three_years_full_modal;
+// var letter_modal;
 
 function getCPAFFList(){
     destroyDatatable("#tbl_cpaff_pending_list", "#tbl_cpaff_pending_list_body");  
@@ -176,7 +178,6 @@ function loadCPAFFData(){
                 } else {
                     document.getElementById("cpaff_approve_reject").style.display = "none";
                 }
-                console.log('loaddata',element);
                 if(element.cpa_part_2==1){
                     var degree = "CPA Part 2 Pass";
                 }else {
@@ -221,54 +222,86 @@ function loadCPAFFData(){
 
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
-                    $(".recommend_letter").append(`<a href='${PDF_URL+element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    $(".recommend_letter").append(`<a href='${PDF_URL+element.student_info.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else{
                     $(".recommend_row").hide();
                 }
                 
                 if(element.cpa!=null){
-                    $("#cpa").append(element.cpa);
+                    $(".cpa_file").append(`<a href='${PDF_URL+element.cpa}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
-                    $("#cpa_btn").prop("disabled", true);
+                    $("#cpa_btn").append(`<span>-</span>`);
                 }
 
                 if(element.ra!=null){
-                    $("#ra").append(element.ra);
+                    $(".ra_file").append(`<a href='${PDF_URL+element.ra}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
-                    $("#ra_btn").prop("disabled", true);
+                    $(".ra_file").append(`<span>-</span>`);
                 }
 
-                if(element.foreign_degree!=null && element.foreign_degree!="null"){
-                   
-                    removeBracketed(element.foreign_degree,"foreign_degree");
-                    
+                if(element.foreign_degree!=null && element.foreign_degree!="null"){                   
+                    //removeBracketed(element.foreign_degree,"foreign_degree");
+                    let foreign_degree = JSON.parse(element.foreign_degree);
+                    $.each(foreign_degree, function (fileCount, fileName) {
+                        $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    })
                 }else {
-                    $(".foreign_degree").append("<button disabled type='button' id='fd_btn' style='width: 30%;margin-top:1% ;' class='btn btn-primary' data-toggle='modal' data-target='#fdModal'><i class='fa fa-paperclip'></i></button>");
-                    
+                    $(".foreign_degree_file").append(`<span>-</span>`);
+                }
+
+                if(element.cpa_certificate!=null){
+                    $(".cpa_certificate_file").append(`<a href='${PDF_URL+element.cpa_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".cpa_certificate_file").append(`<span>-</span>`);
+                }
+                if(element.mpa_mem_card!=null){
+                    $(".mpa_mem_card_file").append(`<a href='${PDF_URL+element.mpa_mem_card}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".mpa_mem_card_file").append(`<span>-</span>`);
+                }
+                if(element.mpa_mem_card_back!=null){
+                    $(".mpa_mem_card_back_file").append(`<a href='${PDF_URL+element.mpa_mem_card_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".mpa_mem_card_back_file").append(`<span>-</span>`);
+                }
+                if(element.nrc_front!=null){
+                    $(".nrc_front_file").append(`<a href='${PDF_URL+element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".nrc_front_file").append(`<span>-</span>`);
+                }
+                if(element.nrc_back!=null){
+                    $(".nrc_back_file").append(`<a href='${PDF_URL+element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".nrc_back_file").append(`<span>-</span>`);
+                }
+                if(element.cpd_record!=null){
+                    $(".cpd_record_file").append(`<a href='${PDF_URL+element.cpd_record}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".cpd_record_file").append(`<span>-</span>`);
+                }
+                if(element.three_years_full!=null){
+                    $(".three_years_full_file").append(`<a href='${PDF_URL+element.three_years_full}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".three_years_full_file").append(`<span>-</span>`);
+                }
+                if(element.letter!=null){
+                    $(".letter_file").append(`<a href='${PDF_URL+element.letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".letter_file").append(`<span>-</span>`);
                 }
                 $("#degree").append(degree);
-                $("#cpa_certificate").append(element.cpa_certificate);
-                $("#mpa_mem_card").append(element.mpa_mem_card);
-                $("#mpa_mem_card_back").append(element.mpa_mem_card_back);
-                $("#nrc_front").append(element.nrc_front);
-                $("#nrc_back").append(element.nrc_back);
-                $("#cpd_record").append(element.cpd_record);
-                $("#passport_image").append(element.passport_image);
                 $("#status").append(status);
-                
-
+                $("#cpd_total_hour").append(element.total_hours);
+                $("#three_years_full").append(element.three_years_full);
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
                 $("#qualified_date").append(education_history.qualified_date);
                 $("#roll_number").append(education_history.roll_number);
                 // $("#certificate").append(education_history.certificate);
                 let certificate = JSON.parse(education_history.certificate);
-                $.each(certificate,function(fileCount,fileName){
-                   
+                $.each(certificate,function(fileCount,fileName){                   
                      $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);                    
-                   
                 })
-
                 $("#name").append(job.name);
                 $("#position").append(job.position);
                 $("#department").append(job.department);
@@ -279,25 +312,29 @@ function loadCPAFFData(){
                 cpa_modal=PDF_URL+element.cpa;
                 ra_modal=PDF_URL+element.ra;
                 // foreign_modal=element.foreign_degree;
-                cpa_certificate_modal=PDF_URL+element.cpa_certificate;
-                mpa_modal=PDF_URL+element.mpa_mem_card;
-                mpa_modal_back=PDF_URL+element.mpa_mem_card_back;
-                nrc_front_modal=PDF_URL+element.nrc_front;
-                nrc_back_modal=PDF_URL+element.nrc_back;
-                cpd_record_modal=PDF_URL+element.cpd_record;
-                passport_modal=PDF_URL+element.passport_image;
-                attached_modal=PDF_URL+element.student_education_histroy.certificate;
-                document.getElementById('cpa').src=cpa_modal;
-                document.getElementById('ra').src=ra_modal;
+                // cpa_certificate_modal=PDF_URL+element.cpa_certificate;
+                // mpa_modal=PDF_URL+element.mpa_mem_card;
+                // mpa_modal_back=PDF_URL+element.mpa_mem_card_back;
+                // nrc_front_modal=PDF_URL+element.nrc_front;
+                // nrc_back_modal=PDF_URL+element.nrc_back;
+                // cpd_record_modal=PDF_URL+element.cpd_record;
+                // passport_modal=PDF_URL+element.passport_image;
+                // three_years_full_modal=PDF_URL+element.three_years_full;
+                // attached_modal=PDF_URL+element.student_education_histroy.certificate;
+                // letter_modal=PDF_URL+element.letter;
+                // document.getElementById('cpa').src=cpa_modal;
+                // document.getElementById('ra').src=ra_modal;
                 // document.getElementById('foreign_degree').src=foreign_modal;
-                document.getElementById('cpa_certificate').src=cpa_certificate_modal;
-                document.getElementById('mpa_mem_card').src=mpa_modal;
-                document.getElementById('mpa_mem_card_back').src=mpa_modal_back;
-                document.getElementById('nrc_front').src=nrc_front_modal;
-                document.getElementById('nrc_back').src=nrc_back_modal;
-                document.getElementById('cpd_record').src=cpd_record_modal;
-                document.getElementById('passport_image').src=passport_modal;
-                document.getElementById('attached_file').src=attached_modal;
+                // document.getElementById('cpa_certificate').src=cpa_certificate_modal;
+                // document.getElementById('mpa_mem_card').src=mpa_modal;
+                // document.getElementById('mpa_mem_card_back').src=mpa_modal_back;
+                // document.getElementById('nrc_front').src=nrc_front_modal;
+                // document.getElementById('nrc_back').src=nrc_back_modal;
+                // document.getElementById('cpd_record').src=cpd_record_modal;
+                // document.getElementById('passport_image').src=passport_modal;
+                // document.getElementById('attached_file').src=attached_modal;
+                // document.getElementById('three_years_full').src=three_years_full_modal;
+                // document.getElementById('letter').src=letter_modal;
             })
         }
     })

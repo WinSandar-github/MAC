@@ -338,6 +338,7 @@ function loadCPAExamData() {
             var exam_data = data.data;
             
             exam_data.forEach(function (element) {
+                console.log('exam_data',element);
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -431,7 +432,7 @@ function loadCPAExamData() {
                     $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 } else {
                     $(".recommend_row").hide();
-                }
+                }                
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -443,7 +444,21 @@ function loadCPAExamData() {
 
                     $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+                });
+
+                if(!element.da_pass_roll_number){
+                    $(".da_two_pass_info").hide();                    
+                }else{
+                    $(".da_two_pass_info").show(); 
+                    if(element.da_pass_certificate==null){
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                    }else{
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(element.da_pass_date);
+                    $(".da_pass_roll_number").append(element.da_pass_roll_number);
+                }
+
 
                 $(".nrc_front").append(`<a href='${PDF_URL + element.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
                 $(".nrc_back").append(`<a href='${PDF_URL + element.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
@@ -635,10 +650,11 @@ function loadCPAStudent(course_type) {
     });
 }
 
-function fillCPAMark(id, isFullModule) {
+function fillCPAMark(id, isFullModule,course_type) {
     // console.log("exam_register_id", id);
     localStorage.setItem("exam_register_id", id);
     localStorage.setItem("is_full_module", isFullModule);
+    localStorage.setItem("course_type", course_type);
     var is_full_module = localStorage.getItem("is_full_module");
     // console.log(is_full_module)
     if (is_full_module == 1 || is_full_module == 2) {
@@ -803,7 +819,20 @@ function getCPAModuleStd() {
 
                     $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
 
-                })
+                });
+
+                if(!std.da_pass_roll_number){
+                    $(".da_two_pass_info").hide();                    
+                }else{
+                    $(".da_two_pass_info").show(); 
+                    if(std.da_pass_certificate==null){
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                    }else{
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + std.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(std.da_pass_date);
+                    $(".da_pass_roll_number").append(std.da_pass_roll_number);
+                }
 
                 $(".nrc_front").append(`<a href='${PDF_URL + std.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
                 $(".nrc_back").append(`<a href='${PDF_URL + std.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Photo</a>`);
@@ -851,8 +880,8 @@ function getCPAModuleStd() {
                 success: function (result) {
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
-                        tr += "<td colspan='2' style='text-align:center'>Total Marks</td>";
-                        tr += "<td colspan='2' id='total_mark' style='text-align:left'></td>";
+                        tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>"+result.data.total_mark+"</td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();
@@ -928,13 +957,13 @@ function getCPAModuleStd() {
                                 grade.setAttribute("readonly", "true");
                             }
                         }
-                        var total_mark=0;
-                        for (var i = 0; i < row_length; i++) {
-                            var mark=parseInt(rData.marks[i]);
-                            // console.log(rData.marks[i]);
-                            total_mark += mark;
-                        }
-                        $('#total_mark').append(total_mark);
+                        // var total_mark=0;
+                        // for (var i = 0; i < row_length; i++) {
+                        //     var mark=parseInt(rData.marks[i]);
+                        //     // console.log(rData.marks[i]);
+                        //     total_mark += mark;
+                        // }
+                        // $('#total_mark').append(total_mark);
                     } else {
                         // $('.pass_fail_btn').hide();
                     }
