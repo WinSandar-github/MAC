@@ -20,7 +20,7 @@ class ReportController extends Controller
          
         $current_course = Course::where('code',$request->code)->with('active_batch')->first();
       
-        $student_infos = ExamRegister::where('form_type',$current_course->active_batch[0]->course->id)
+        $student_infos = ExamRegister::where('batch_id',$current_course->active_batch[0]->id)
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
                         ->where('exam_type_id','!=',3)
                         ->where('status',1)
@@ -49,7 +49,7 @@ class ReportController extends Controller
          
         $current_course = Course::where('code',$request->code)->with('active_batch')->first();
       
-        $student_infos = ExamRegister::where('form_type',$current_course->active_batch[0]->course->id)
+        $student_infos = ExamRegister::where('batch_id',$current_course->active_batch[0]->id)
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
                         ->where('exam_type_id','=',3)
                         ->where('status',1)
@@ -111,7 +111,7 @@ class ReportController extends Controller
     {
         $course = Course::where('code',$code)->with('active_batch','course_type')->first();
         $student_registers = StudentRegister::where('form_type',$course->active_batch[0]->course->id)
-        ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
+        ->join('student_infos','student_infos.id','=','student_register.student_info_id')
         ->where('student_register.status',1)
         ->orderBy('student_infos.name_mm','asc')
         ->orderBy('student_register.type','asc')
