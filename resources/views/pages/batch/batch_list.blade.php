@@ -540,10 +540,10 @@
                 url: BACKEND_URL + "/filter_batch",
                 type: "POST",
                 data: function(d) {
-                    d.name = $("input[name=filter_by_name]").val(),
-                        d.course_name = $('#filter_course_id').val(),
-                        d.start_date = $("input[name=filter_by_start_date]").val(),
-                        d.end_date = $("input[name=filter_by_end_date]").val()
+                    d.name = "",
+                        d.course_name = "all",
+                        d.start_date = "",
+                        d.end_date = ""
                 }
             },
             columns: [
@@ -634,6 +634,6 @@
 
         loadCourse();
         // getBatch();
-        loadCourseToFilter();
+        // loadCourseToFilter();
     </script>
 @endpush
