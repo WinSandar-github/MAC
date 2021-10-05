@@ -8,6 +8,7 @@ use App\StudentInfo;
 use App\StudentCourseReg;
 use App\TransactionLog;
 use App\Invoice;
+use App\TransactionLog;
 use Illuminate\Support\Str;
 use DB;
 
@@ -58,45 +59,46 @@ class PaymentController extends Controller
 
     public function saveTransation(Request $req)
     {
+
         try {
             if($req){
 
                 $stu = Invoice::where('email', '=', $req->userDefined2)->first();
-
+                
                 $trans = new TransactionLog();
                 $trans->student_info_id = $stu->student_info_id;
-                $trans->paymentType = $req->paymentType;
-                $trans->marchantID = $req->marchantID;
+                $trans->paymentType = $req->payment_type;
+                $trans->marchantID = $req->merchantID;
                 $trans->respCode = $req->respCode;
                 $trans->pan = $req->pan;
                 $trans->amount = $req->amount;
                 $trans->invoiceNo = $req->invoiceNo;
-                $trans->transRef = $req->transRef;
-                $trans->approvalCode = $req->approvalCode;
+                $trans->transRef = $req->tranRef;
+                $trans->approvalCode = $req->approvalCode ?? "N/A";
                 $trans->dateTime = $req->dateTime;
                 $trans->status = $req->status;
                 $trans->failReason = $req->failReason;
                 $trans->userDefined1 = $req->userDefined1;
                 $trans->userDefined2 = $req->userDefined2;
                 $trans->userDefined3 = $req->userDefined3;
-                $trans->categroyCode = $req->categroyCode;
+                $trans->categroyCode = $req->categroyCode ?? "N/A";
                 $trans->hashValue = $req->hashValue;
 
                 if($trans->save()){
 
                     if($trans->status == 'AP'){
                         $invoice = Invoice::where('student_info_id', '=', $req->student_info_id)->first();
-                        $invoice->invoiceNo = $req->invoiceNo;
-                        $invoice->status = $req->status;
-                        $invoice->save();
+                        $stu->invoiceNo = $req->invoiceNo;
+                        $stu->status = $req->status;
+                        $stu->save();
                     }
 
                     return response()->json(["message" => "Payment Data Saved!"], 200);
                 }
-                return response()->json(["message" => "Error While Data Save!"], 500);
+                return response()->json(["message" => "Error While Data Save!"], 501);
             }
             return response()->json(["message" => "No Data Provide from Client!"], 500);
-        } catch (\Exception $e) {
+	} catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
     }
