@@ -78,7 +78,7 @@ function loadQualifiedTestDetail(id) {
 
 
             // show Exam Card Data
-            document.getElementById('student_img').src = PDF_URL + student_info?.image;
+            document.getElementById('student_img').src = PDF_URL + student_info.image;
 
             // $('#exam_batch_no').text(element.batch.number);
             $('#exam_roll_no').text(element.sr_no)
@@ -110,7 +110,7 @@ function loadQualifiedTestDetail(id) {
 
 function approveQT() {
     var id = $("input[name = qt_id]").val();
-    alert(id)
+
     $.ajax({
         url: FRONTEND_URL + "/approve_qt/" + id,
         type: 'PATCH',
