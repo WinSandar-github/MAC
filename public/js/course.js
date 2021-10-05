@@ -39,7 +39,7 @@ function createMainCourse() {
     var course_description = $("input[name=main_cousre_description]").val();
     var formData = new FormData(document.getElementById("main_course_form"));
 
-    if (course_name !== "" && course_description !== "" && course_name_mm == "") {
+    if (course_name !== "" && course_description !== "" && course_name_mm !== "") {
         show_loader();
         $.ajax({
             url: FRONTEND_URL + "/main_course",
