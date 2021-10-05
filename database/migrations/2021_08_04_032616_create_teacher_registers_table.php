@@ -51,6 +51,9 @@ class CreateTeacherRegistersTable extends Migration
             $table->string('payment_date')->nullable();
             $table->text('reason')->nullable();
             $table->integer('initial_status')->default(0);
+            $table->string('renew_payment_date')->nullable();
+            $table->string('invoice_no')->nullable();
+            $table->text('cessation_reason')->nullable();
             $table->timestamps();
         });
     }
