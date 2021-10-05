@@ -191,6 +191,7 @@ function showBatchInfo(id) {
 function updateBatch() {
     var id = $("input[name=batch_id]").val();
     var name = $("input[name=name]").val();
+    var name_mm = $("input[name=name_mm]").val();
     var number = $("input[name=number]").val();
     var course_id = $("#selected_course_id").val();
     var start_date = $("input[name=start_date]").val();
@@ -213,6 +214,7 @@ function updateBatch() {
         type: 'patch',
         data: {
             name: name,
+            name_mm: name_mm,
             number: number,
             course_id: course_id,
             start_date: start_date,
