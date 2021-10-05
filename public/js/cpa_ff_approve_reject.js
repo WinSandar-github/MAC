@@ -223,7 +223,12 @@ function loadCPAFFData(){
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#image").append(element.student_info.image);
+                if(element.form_type==1){
+                    //do nothing
+                }
+                else{
                 $("#registration_no").append(element.student_register.personal_no);
+                }
 
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
@@ -445,7 +450,12 @@ function loadCPAFFRenewData(){
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#image").append(element.student_info.image);
+                if(element.form_type==1){
+                    //do nothing
+                }
+                else{
                 $("#registration_no").append(element.student_register.personal_no);
+                }
 
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
