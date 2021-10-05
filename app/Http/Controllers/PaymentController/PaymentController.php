@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\StudentInfo;
 use App\StudentCourseReg;
+use App\TransactionLog;
 use App\Invoice;
 use Illuminate\Support\Str;
 use DB;
@@ -60,9 +61,9 @@ class PaymentController extends Controller
         try {
             if($req){
 
-                $stu = Invoice::where('email', $req->userDefined2)->first();
+                $stu = Invoice::where('email', '=', $req->userDefined2)->first();
 
-                $trans = new Transaction();
+                $trans = new TransactionLog();
                 $trans->student_info_id = $stu->student_info_id;
                 $trans->paymentType = $req->paymentType;
                 $trans->marchantID = $req->marchantID;
