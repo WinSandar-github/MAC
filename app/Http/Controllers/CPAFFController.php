@@ -7,6 +7,7 @@ use App\CPAFF;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
+use App\Invoice;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Hash;
@@ -448,6 +449,15 @@ class CPAFFController extends Controller
         $cpa_ff->letter   =   $letter;              
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->save();
+
+        //invoice
+        $invNo = str_pad($cpa_ff->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_info_id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
 
         return response()->json([
             'message' => "You have successfully registerd!"

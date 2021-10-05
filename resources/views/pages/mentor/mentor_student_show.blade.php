@@ -358,10 +358,20 @@
                     </div>
                   </div>
 
+                  <div id="reject_reason_row" style="display:none;">
+                    <div class="row mb-3">
+                      <label class="col-md-3 col-form-label"><span class="pull-left">{{ __('') }}</span>Reject Reason</label>
+                      <div class="col-md-9">
+                        <input type="text" name="reject_reason" id="reject_reason" class="form-control" placeholder="reason" readonly>
+                      </div>
+                    </div>
+                  </div>
+
                   <input type="hidden" name="mentor_student_id" >
                   <div id="approve_reject_btn">
                     <div class="row mt-5 justify-content-center">
-                        <button type="" name="mentor_student_reject" class="btn btn-danger"  onclick="rejectMentorStudent()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                        <!-- <button type="" name="mentor_student_reject" class="btn btn-danger"  onclick="rejectMentorStudent()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button> -->
+                        <button type="button" class="btn btn-danger" style="width : 20%" data-toggle="modal" id="smallButton" data-target="#myModal"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
                         <button type="" name="mentor_student_approve" class="btn btn-primary" onclick="approveMentorStudent()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                     </div>
                   </div>
@@ -376,7 +386,32 @@
         </form>
     </div>
 
+    <!-- modal -->
+    <form method="post" action="javascript:rejectMentorStudent();" enctype="multipart/form-data">
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="myModal">
+            <div class="modal-dialog modal-dialog-scrollable modal-md">
+                <div class="modal-content">
 
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title">Reject Reason</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <textarea class="form-control " id="reason" rows="100" cols='100' required></textarea>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};

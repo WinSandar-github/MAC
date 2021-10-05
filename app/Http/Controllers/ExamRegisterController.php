@@ -9,6 +9,7 @@ use App\StudentRegister;
 use App\StudentCourseReg;
 use App\ExamDepartment;
 use App\Batch;
+use App\Invoice;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -76,7 +77,15 @@ class ExamRegisterController extends Controller
         $exam->status = 0;
         $exam->save();
 
+        //invoice
+        $invNo = str_pad($exam->id, 20, "0", STR_PAD_LEFT);
 
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
+        
         return "You have successfully registerd!";
     }
 
@@ -347,7 +356,14 @@ class ExamRegisterController extends Controller
         $exam->form_type = $request->form_type;
         $exam->status = 0;
         $exam->save();
+        //invoice
+        $invNo = str_pad($exam->id, 20, "0", STR_PAD_LEFT);
 
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
 
         return "You have successfully registerd!";
     }

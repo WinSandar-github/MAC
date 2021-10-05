@@ -11,6 +11,8 @@ use App\Http\Requests\AppAccRequest;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
+use Carbon\Carbon;
+
 class ArticleController extends Controller
 {
 
@@ -141,20 +143,39 @@ class ArticleController extends Controller
                 }else{
                     return "REJECTED";
                 }
+            })
+            ->addColumn('form_type', function ($infos){
+                if($infos->article_form_type == 'c12'){
+                    return "CPA I,II";
+                }else if($infos->article_form_type == 'c2_pass_1yr'){
+                    return "CPA II pass 1 yr";
+                }else if($infos->article_form_type == 'c2_pass_3yr'){
+                    return "CPA II pass 3 yr";
+                }else if($infos->article_form_type == 'qt_firm'){
+                    return "'QT pass";
+                }
             });
             $datatable = $datatable->addColumn('contract_start_date', function ($infos){
                 if($infos->status == 0){
-                    return "<div class='btn-group'>
-                        <button type='button' class='btn btn-primary btn-xs' onclick='showContractDate($infos)'>
-                            <li class='fa fa-calendar fa-sm'></li>
-                        </button>
-                    </div>";
-                }else if($infos->status == 1){
                     return "<div class='btn-group'>
                         <button type='button' class='btn btn-primary btn-xs' disabled onclick='showContractDate($infos)'>
                             <li class='fa fa-calendar fa-sm'></li>
                         </button>
                     </div>";
+                }else if($infos->status == 1){
+                    if($infos->contract_start_date == null && $infos->contract_end_date == null){
+                        return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' onclick='showContractDate($infos)'>
+                                <li class='fa fa-calendar fa-sm'></li>
+                            </button>
+                        </div>";
+                    }else{
+                        return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-xs' disabled onclick='showContractDate($infos)'>
+                                <li class='fa fa-calendar fa-sm'></li>
+                            </button>
+                        </div>";
+                    }
                 }else{
                     return "<div class='btn-group'>
                         <button type='button' class='btn btn-primary btn-xs' disabled onclick='showContractDate($infos)'>
@@ -172,7 +193,7 @@ class ArticleController extends Controller
         $approve = ApprenticeAccountant::find($request->id);
         $approve->contract_start_date = $request->contract_start_date;
         $approve->contract_end_date = $request->contract_end_date;
-        $approve->status = 1;
+        //$approve->status = 1;
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -197,9 +218,20 @@ class ArticleController extends Controller
 
     public function filterDoneArticle(Request $request)
     {
-        $article = ApprenticeAccountant::where('done_status',$request->status)->whereNotNull('done_form_attach')->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
+        $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
+        
+        $result_article = [];
+        for($i=0;$i<count($article);$i++){
+            if($article[$i]->contract_end_date != null){
+                $end_time = strtotime($article[$i]->contract_end_date);
+                $today = strtotime(Carbon::now());
+                if($end_time <= $today){
+                    array_push($result_article , $article[$i]);
+                }
+            }
+        }
 
-        $datatable = DataTables::of($article)
+        $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-xs' onclick='showArticle($infos->id)'>
@@ -228,20 +260,34 @@ class ArticleController extends Controller
                 }else{
                     return "REJECTED";
                 }
+            })
+            ->addColumn('form_type', function ($infos){
+                if($infos->article_form_type == 'c12'){
+                    return "CPA I,II";
+                }else if($infos->article_form_type == 'c2_pass_1yr'){
+                    return "CPA II pass 1 yr";
+                }else if($infos->article_form_type == 'c2_pass_3yr'){
+                    return "CPA II pass 3 yr";
+                }else if($infos->article_form_type == 'qt_firm'){
+                    return "'QT pass";
+                }
+            })
+            ->setRowClass(function ($infos) {
+                return $infos->done_form_attach != null ? 'bg-success' : 'bg-warning';
             });
             $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
-    // public function approve($id)
-    // {
-    //     $approve = ApprenticeAccountant::find($id);
-    //     $approve->status = 1;
-    //     $approve->save();
-    //     return response()->json([
-    //         'message' => "You have successfully approved that user!"
-    //     ],200);
-    // }
+    public function approve($id)
+    {
+        $approve = ApprenticeAccountant::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
 
     public function reject($id)
     {
@@ -380,20 +426,31 @@ class ArticleController extends Controller
                 }else{
                     return "REJECTED";
                 }
+            })
+            ->addColumn('form_type', function ($infos){
+                return "Gov Form";
             });
         $datatable = $datatable->addColumn('contract_start_date', function ($infos){
             if($infos->status == 0){
-                return "<div class='btn-group'>
-                    <button type='button' class='btn btn-primary btn-xs' onclick='showGovContractDate($infos)'>
-                        <li class='fa fa-calendar fa-sm'></li>
-                    </button>
-                </div>";
-            }else if($infos->status == 1){
                 return "<div class='btn-group'>
                     <button type='button' class='btn btn-primary btn-xs' disabled onclick='showGovContractDate($infos)'>
                         <li class='fa fa-calendar fa-sm'></li>
                     </button>
                 </div>";
+            }else if($infos->status == 1){
+                if($infos->contract_start_date == null && $infos->contract_end_date == null){
+                    return "<div class='btn-group'>
+                        <button type='button' class='btn btn-primary btn-xs' onclick='showGovContractDate($infos)'>
+                            <li class='fa fa-calendar fa-sm'></li>
+                        </button>
+                    </div>";
+                }else{
+                    return "<div class='btn-group'>
+                        <button type='button' class='btn btn-primary btn-xs' disabled onclick='showGovContractDate($infos)'>
+                            <li class='fa fa-calendar fa-sm'></li>
+                        </button>
+                    </div>";
+                }
             }else{
                 return "<div class='btn-group'>
                     <button type='button' class='btn btn-primary btn-xs' disabled onclick='showGovContractDate($infos)'>
@@ -411,7 +468,7 @@ class ArticleController extends Controller
         $approve = ApprenticeAccountantGov::find($request->id);
         $approve->contract_start_date = $request->contract_start_date;
         $approve->contract_end_date = $request->contract_end_date;
-        $approve->status = 1;
+        //$approve->status = 1;
         $approve->save();
         return response()->json([
             'message' => "You have successfully approved that user!"
@@ -436,9 +493,18 @@ class ArticleController extends Controller
 
     public function filterGovDoneArticle(Request $request)
     {
-        $article = ApprenticeAccountantGov::where('done_status',$request->status)->whereNotNull('done_form_attach')->where('status' , '=' , 1)->with('student_info')->get();
-
-        $datatable = DataTables::of($article)
+        $article = ApprenticeAccountantGov::where('done_status',$request->status)->where('status' , '=' , 1)->with('student_info')->get();
+        $result_article = [];
+        for($i=0;$i<count($article);$i++){
+            if($article[$i]->contract_end_date != null){
+                $end_time = strtotime($article[$i]->contract_end_date);
+                $today = strtotime(Carbon::now());
+                if($end_time <= $today){
+                    array_push($result_article , $article[$i]);
+                }
+            }
+        }
+        $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-xs' onclick='showGovArticle($infos->id)'>
@@ -467,20 +533,26 @@ class ArticleController extends Controller
                 }else{
                     return "REJECTED";
                 }
+            })
+            ->addColumn('form_type', function ($infos){
+                return "Gov Form";
+            })
+            ->setRowClass(function ($infos) {
+                return $infos->done_form_attach != null ? 'bg-success' : 'bg-warning';
             });
             $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
-    // public function approveGov($id)
-    // {
-    //     $approve = ApprenticeAccountantGov::find($id);
-    //     $approve->status = 1;
-    //     $approve->save();
-    //     return response()->json([
-    //         'message' => "You have successfully approved that user!"
-    //     ],200);
-    // }
+    public function approveGov($id)
+    {
+        $approve = ApprenticeAccountantGov::find($id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
 
     public function rejectGov($id)
     {

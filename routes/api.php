@@ -35,8 +35,9 @@ Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
 // Mentor
 Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
-Route::patch('/reject_mentor_student/{id}', 'MentorController@reject');
+// Route::patch('/reject_mentor_student/{id}', 'MentorController@reject');
 Route::patch('/renewMentor/{id}', 'MentorController@renewMentor');
+Route::post('/reject_mentor_student', 'MentorController@reject');
 
 Route::resource('/cpa_full_form','CpaFullFormController');
 Route::resource('/cpa_one_reg','CpaOneRegisterController');
@@ -198,7 +199,7 @@ Route::get('/check_payment_school/{id}', 'SchoolController\SchoolController@chec
 Route::resource('/teacher','TeacherController\TeacherController');
 Route::post('/filter_teacher','TeacherController\TeacherController@FilterTeacher');
 Route::post('/approve_teacher_register', 'TeacherController\TeacherController@approve_teacher_register');
-Route::patch('/approve_teacher/{id}', 'TeacherController\TeacherController@approveTeacher');
+Route::patch('/approve_teacher', 'TeacherController\TeacherController@approveTeacher');
 Route::get('/check_payment_teacher/{id}', 'TeacherController\TeacherController@check_payment');
 
 //Audit DATA
@@ -289,7 +290,10 @@ Route::post('unique_email', 'DARegisterController@unique_email');
 //Generate Serial and Personal Number
 Route::get('/generate_personal_no/{code}','ApiController@generatePersonalNo');
 Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
-Route::get('/generate_exam_sr_no/{batch_id}','ApiController@generateExamSrNo');
+Route::get('/generate_exam_sr_no/{code}','ApiController@generateExamSrNo');
+Route::get('/generate_entrance_exam_sr_no/{code}','ApiController@generateEntranceExamSrNo');
+Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQTSrNo');
+
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 
 //show description
@@ -301,10 +305,17 @@ Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
 Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
 Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
 
-
+//Entry Exam
 Route::post('entry_exam_filter','EntryExamController@entryExamFilter');
-
 Route::post('/filter_entry_exam_result', 'EntryExamController@filterEntryExamResult');
+
+//Qualified Test
+Route::post('/filter_qualified_test_result', 'QualifiedTest\QualifiedTestController@filterQTResult');
+Route::post('/fill_mark_qt', 'QualifiedTest\QualifiedTestController@fillMarkQt');
+
+
+
+
 Route::get('get_batch/{course_id}','BatchController@getBatch');
 
 Route::get('get_exam_type','ExamController@getExamType');
@@ -365,3 +376,5 @@ Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@
 Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
 
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
+
+Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
