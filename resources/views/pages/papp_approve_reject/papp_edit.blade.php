@@ -345,37 +345,7 @@
                                     <div class="col-md-6">
                                         <span id="cpd_hours"></span>
                                     </div>
-                                </div>
-
-                                <!--Tax Free Recommendation-->
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Tax Free Recommendation</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" id="tax_free_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#tax_free_recommendation_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>
-                                 <!--Tax Free Recommendation Modal-->
-                                <div id="tax_free_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
-                                            <h5 class="modal-title text-center">Tax Free Recommendation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="tax_free"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>
+                                </div>                                
 
                                 <!--MICPA Member Card-->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -471,7 +441,7 @@
                                         <button type="button" id="letter_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#letter_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                 <!--Tax Free Recommendation Modal-->
+                                 <!--Letter Modal-->
                                 <div id="letter_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -498,6 +468,15 @@
                                     </div>
                                     <div class="col-md-6">
                                         <span id="tax_year"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration No</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="reg_no"></span>
                                     </div>
                                 </div>
 

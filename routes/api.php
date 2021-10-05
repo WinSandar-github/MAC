@@ -76,7 +76,8 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
-Route::get('/papp_register_list/{status}', 'PAPPController@FilterPappRegistration');
+Route::post('/papp_renew','PAPPController@PappRenewRegistration');
+Route::get('/papp_register_list/{status}/{type}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');

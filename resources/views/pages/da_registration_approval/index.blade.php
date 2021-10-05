@@ -84,20 +84,20 @@
                         <div class="card-body">
                             <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                 <div class="tab-pane fade" id="link1" aria-expanded="true">
-                                <div class="card-header">
+                                    <div class="card-header">
 
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#studycheck1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#studycheck2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#studycheck3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li class="nav-item">
+                                                <a class="nav-link active" data-toggle="tab" href="#studycheck1" role="tablist" aria-expanded="false" style="font-weight:bold">Pending List</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#studycheck2" role="tablist" aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" data-toggle="tab" href="#studycheck3" role="tablist" aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                            </li>
+                                        </ul>
+                                    </div>
                                     <div class="card-body">
                                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
                                             <div class="tab-pane fade show active" id="studycheck1" aria-expanded="true">
