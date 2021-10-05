@@ -133,6 +133,17 @@
                             </div>
                         </div>
 
+                         <!-- Course Name MM Field -->
+                         <div class="row">
+                            <label class="col-md-3 form-label">{{ __('1.Course Name (MM)') }}</label>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <input type="text" name="main_course_name_mm" class="form-control"
+                                        placeholder="သင်တန်းအမည်" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Course Description Field -->
                         <div class="row">
                             <label class="col-md-3 form-label">{{ __('2.Description') }}</label>
