@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'class' => '',
     'parentElement' => 'membership',
-    'elementActive' => 'cpa_ff_registration_list'
+    'elementActive' => 'cpa_ff_renew_list'
 ])
 @section('content')
 <div class="content">
@@ -21,7 +21,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-12">
-                                <h5 class="title" align="center">{{ __('CPA(Full-Fledged) Initial Registration List') }}</h5>
+                                <h5 class="title" align="center">{{ __('CPA(Full-Fledged) Renewal Registration List') }}</h5>
                             </div>
                         </div>
                         <ul class="nav nav-tabs mt-3" role="tablist">
@@ -109,7 +109,7 @@
           processing: true,
           scrollX:true,
           // serverSide: true,
-          ajax: BACKEND_URL + "/cpa_ff_register_list/0/0",
+          ajax: BACKEND_URL + "/cpa_ff_register_list/0/1",
           columns: [
               {data: null, render: function (data, type, row, meta) {
                   return meta.row + meta.settings._iDisplayStart + 1;
@@ -129,7 +129,7 @@
           processing: true,
           scrollX:true,
           // serverSide: true,
-          ajax: BACKEND_URL + "/cpa_ff_register_list/1/0",
+          ajax: BACKEND_URL + "/cpa_ff_register_list/1/1",
           columns: [
             {data: null, render: function (data, type, row, meta) {
                 return meta.row + meta.settings._iDisplayStart + 1;
@@ -148,7 +148,7 @@
           processing: true,
           scrollX:true,
           // serverSide: true,
-          ajax: BACKEND_URL + "/cpa_ff_register_list/2/0",
+          ajax: BACKEND_URL + "/cpa_ff_register_list/2/1",
           columns: [
             {data: null, render: function (data, type, row, meta) {
                 return meta.row + meta.settings._iDisplayStart + 1;
@@ -166,8 +166,7 @@
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
           $.each($.fn.dataTable.tables(true), function(){
               $(this).DataTable()
-                  .columns.adjust()
-                  .responsive.recalc();
+                  .columns.adjust();
           });
       });
 
