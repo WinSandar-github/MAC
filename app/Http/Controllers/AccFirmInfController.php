@@ -18,6 +18,7 @@ use App\Declaration;
 use App\AuditFirmFile;
 use App\NonAuditFirmFile;
 use App\StudentInfo;
+use App\Invoice;
 use Hash;
 use File;
 use Carbon\Carbon;
@@ -325,6 +326,15 @@ class AccFirmInfController extends Controller
         // Mail::to($student_info['email'])->send(new ContactMail($data));
         // $std_info->verify_status    =   1;
         $std_info->save();
+
+        //invoice
+        $invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $std_info->id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
 
         //Branch Office
         if($request->bo_branch_name){

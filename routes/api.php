@@ -86,13 +86,14 @@ Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
-Route::get('/cpa_ff_register_list/{status}', 'CPAFFController@FilterCpaffRegistration');
+Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
-Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
+Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
+Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -198,7 +199,7 @@ Route::get('/check_payment_school/{id}', 'SchoolController\SchoolController@chec
 Route::resource('/teacher','TeacherController\TeacherController');
 Route::post('/filter_teacher','TeacherController\TeacherController@FilterTeacher');
 Route::post('/approve_teacher_register', 'TeacherController\TeacherController@approve_teacher_register');
-Route::patch('/approve_teacher/{id}', 'TeacherController\TeacherController@approveTeacher');
+Route::patch('/approve_teacher', 'TeacherController\TeacherController@approveTeacher');
 Route::get('/check_payment_teacher/{id}', 'TeacherController\TeacherController@check_payment');
 
 //Audit DATA
@@ -374,4 +375,12 @@ Route::patch('/reject_done_gov_article/{id}', 'ArticleController\ArticleControll
 Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@approveDone');
 Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
 
+// Payment
+Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
+Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
+
+Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
+//Teacher card
+Route::get('getTeacher/{invoice_no}', 'TeacherController\TeacherController@getTeacher');
+Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');

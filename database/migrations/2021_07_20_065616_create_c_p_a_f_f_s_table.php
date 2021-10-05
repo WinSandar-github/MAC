@@ -71,7 +71,14 @@ class CreateCPAFFSTable extends Migration
             $table->string('father_name_mm')->nullable();
             $table->string('father_name_eng')->nullable();
             // $table->string('payment_method')->nullable();
-
+            $table->string('old_card_year')->nullable();
+            $table->string('renew_card_year')->nullable();
+            $table->string('old_card_no')->nullable();
+            $table->string('old_card_no_year')->nullable();
+            $table->string('old_card_file')->nullable();
+            $table->string('is_convicted')->nullable();
+            $table->integer('is_renew')->nullable();
+            $table->text('reject_description')->nullable();
             $table->timestamps();
         });
     }
