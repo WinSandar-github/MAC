@@ -1237,10 +1237,10 @@ class SchoolController extends Controller
 
     public function approveSchool($id)
     { 
-        $std_info = StudentInfo::find($id) ;
-        $std_info->payment_method = 'CASH';
-        $std_info->save();
-        $school = SchoolRegister::find($std_info->school_id);
+        // $std_info = StudentInfo::find($id) ;
+        // $std_info->payment_method = 'CASH';
+        // $std_info->save();
+        $school = SchoolRegister::find($id);
         $school->payment_method = 'CASH';
         $school->renew_date = date('Y-m-d');
         $school->save();

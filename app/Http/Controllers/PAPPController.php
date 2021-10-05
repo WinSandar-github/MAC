@@ -7,6 +7,7 @@ use App\Papp;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
+use App\Invoice;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -165,7 +166,7 @@ class PAPPController extends Controller
         }
 
         $papp  = new Papp();
-        $papp->student_id                   = $request->student_id;
+        $papp->student_id                   =   $request->student_id;
         $papp->profile_photo                =   $profile_photo;
         $papp->cpa                          =   $cpa;
         $papp->ra                           =   $ra;
@@ -199,6 +200,15 @@ class PAPPController extends Controller
         $papp->reg_no           =   $request->reg_no;
         $papp->type             =   $request->type;
         $papp->save();
+
+        //invoice
+        $invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
 
         return response()->json([
             'message' => "You have successfully registerd!"

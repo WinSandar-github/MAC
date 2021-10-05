@@ -168,10 +168,11 @@ function loadEntryDetail(id) {
                 $('#exam_student_name').text(student_info.name_mm);
                 $('#exam_student_nrc').text(student_info.nrc_state_region + "/" + student_info.nrc_township + "(" + student_info.nrc_citizen + ")" + student_info.nrc_number);
                 get_exam_info().then(data => {
+                    console.log(exam)
                     let exams = data.data;
 
                     var exam = exams.filter(exam => { if (exam.exam_type_id == 2 && exam.batch_id == element.batch.id) return true });
-                    console.log('exam',exam)
+                    console.log('exam', exam)
 
                     $('#exam_date').text(exam[0].exam_start_date);
                     $('#exam_time').text(`နံနက် ${exam[0].exam_start_time} နာရီ မှ ${exam[0].exam_end_time} နာရီ အထိ`);

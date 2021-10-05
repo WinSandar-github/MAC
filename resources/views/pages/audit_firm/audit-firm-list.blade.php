@@ -24,7 +24,7 @@
                     <div class="card ">
                         <div class="card-header ">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <h5 class="title" style="padding-left: 330px;">{{ __('Audit Firm Registration List') }}</h5>
                                 </div>
                             </div>

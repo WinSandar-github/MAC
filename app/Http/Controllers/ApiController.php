@@ -179,6 +179,8 @@ class ApiController extends Controller
         $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
             $query->where('batch_id', $course->active_batch[0]->id);
         })->with('student_course')->orderBy('name_mm','asc')->get();
+
+    
            
         $count = 0;
         foreach($student_infos as $key => $student_info){
@@ -232,6 +234,41 @@ class ApiController extends Controller
             
         
         return "Update Serial Number in Application form";
+    }
+
+    public function generateEntranceExamSrNo($code)
+    {
+        
+        $course = Course::where('code',$code)->with('active_batch')->first();
+        
+        
+        
+       
+        $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
+            $query->where('batch_id', $course->active_batch[0]->id);
+        })->with('student_course')->orderBy('name_mm','asc')->get();
+      
+    
+           
+        $count = 0;
+        foreach($student_infos as $key => $student_info){
+           
+            $exam_register = ExamRegister::where('student_info_id',$student_info->id)
+                                    ->where('form_type',$course->active_batch[0]->id)
+                                    ->where('status',1)
+                                    ->where('exam_type_id','=',3)
+                                    ->first();
+
+                if(!empty($exam_register)){
+                    $exam_register->sr_no = ++$count;
+
+                    $exam_register->save();
+                
+                }
+            }
+            
+        
+        return "Update Serial Number in Entrance Exam  form";
     }
 
     
