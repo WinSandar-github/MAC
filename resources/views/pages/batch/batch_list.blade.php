@@ -23,14 +23,42 @@
                         <div class="card-header">
                             <div class="row justify-content-between px-3">
                                 <h5 class="card-title">{{ __('Batch List') }}</h5>
-                                <button type="button" class="btn btn-primary btn-round" id="create_btn"
-                                    data-toggle="modal" data-target="#create_batch_modal">Create</button>
+                                <button type="button" class="btn btn-primary btn-round" id="create_btn" data-toggle="modal"
+                                    data-target="#create_batch_modal">Create</button>
                             </div>
                         </div>
                         <div class="card-body">
 
-                            <div class="row">
+                            <table id="tbl_batch" class="table table-hover text-nowrap ">
+                                <thead>
+                                    <tr>
+                                        <th class="bold-font-weight">Sr No</th>
+                                        <th class="bold-font-weight">Action</th>
+                                        <th class="bold-font-weight">Batch Name</th>
+                                        <th class="bold-font-weight">Batch Number</th>
+                                        <th class="bold-font-weight">Course Name</th>
+                                        <th class="bold-font-weight">Batch Start Date</th>
+                                        <th class="bold-font-weight">Batch End Date</th>
+                                        <th class="bold-font-weight">Application Accept Start Date</th>
+                                        <th class="bold-font-weight">Application Accept End Date</th>
+                                        <th class="bold-font-weight">MAC Registration Start Date</th>
+                                        <th class="bold-font-weight">MAC Registration End Date</th>
+                                        <th class="bold-font-weight">Self Registration Start Date</th>
+                                        <th class="bold-font-weight">Self Registration End Date</th>
+                                        <th class="bold-font-weight">Private Registration Start Date</th>
+                                        <th class="bold-font-weight">Private Registration Endt Date</th>
+                                        <th class="bold-font-weight">Entrance Pass Start Date</th>
+                                        <th class="bold-font-weight">Entrance Pass End Date</th>
 
+                                    </tr>
+
+                                </thead>
+                                <tbody id="tbl_batch_body" class="hoverTable text-left">
+
+                                </tbody>
+                            </table>
+
+                            {{-- <div class="row">
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
@@ -107,38 +135,11 @@
                                         </div>
                                         <div class="card-body">
                                             <hr size="5" width="95%" color="#F5F5F5">
-                                            <table id="tbl_batch" class="table table-hover text-nowrap ">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="bold-font-weight">Sr No</th>
-                                                        <th class="bold-font-weight">Action</th>
-                                                        <th class="bold-font-weight">Batch Name</th>
-                                                        <th class="bold-font-weight">Batch Number</th>
-                                                        <th class="bold-font-weight">Course Name</th>
-                                                        <th class="bold-font-weight">Batch Start Date</th>
-                                                        <th class="bold-font-weight">Batch End Date</th>
-                                                        <th class="bold-font-weight">Application Accept Start Date</th>
-                                                        <th class="bold-font-weight">Application Accept End Date</th>
-                                                        <th class="bold-font-weight">MAC Registration Start Date</th>
-                                                        <th class="bold-font-weight">MAC Registration End Date</th>
-                                                        <th class="bold-font-weight">Self Registration Start Date</th>
-                                                        <th class="bold-font-weight">Self Registration End Date</th>
-                                                        <th class="bold-font-weight">Private Registration Start Date</th>
-                                                        <th class="bold-font-weight">Private Registration Endt Date</th>
-                                                        <th class="bold-font-weight">Entrance Pass Start Date</th>
-                                                        <th class="bold-font-weight">Entrance Pass End Date</th>
-
-                                                    </tr>
-
-                                                </thead>
-                                                <tbody id="tbl_batch_body" class="hoverTable text-left">
-
-                                                </tbody>
-                                            </table>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </form>
@@ -147,7 +148,7 @@
     </div>
 
     <!-- Modal -->
-    <div class="modal fade" id="create_batch_modal" style="padding-top:150px;">
+    <div class="modal fade" id="create_batch_modal">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
             <div class="modal-content">
                 <form id="batch_form" method="post" action="javascript:createBatch();" enctype="multipart/form-data">
@@ -165,31 +166,34 @@
                             <label class="col-md-4 form-label">{{ __('Batch Name') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Batch Name"
+                                    <input type="text" name="name" class="form-control" placeholder="Batch Name" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('2.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Batch Name(မြန်မာ)') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="name_mm" class="form-control" placeholder="Batch Name(မြန်မာ)" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('3.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Batch Number') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="number" name="number" class="form-control" placeholder="Batch Number"
                                         autocomplete="off" required>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-md-1 form-label">{{ __('1.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Batch Name(မြန်မာ)') }}</label>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <input type="text" name="name_mm" class="form-control" placeholder="Batch Name(မြန်မာ)" autocomplete="off" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                        <label class="col-md-4 form-label">{{ __('Batch Number') }}</label>
-                        <div class="col-md-7">
-                            <div class="form-group">
-                                <input type="number" name="number" class="form-control" placeholder="Batch Number" autocomplete="off" required>
-                            </div>
-                        </div>
+
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('3.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('4.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Course Name') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -200,8 +204,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('4.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('5.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Batch Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -209,8 +214,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Batch End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -221,7 +227,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Application Accept Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -232,7 +238,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('8.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Application Accept End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -243,7 +249,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('8.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('9.') }}</label>
                             <label class="col-md-4 form-label">{{ __('MAC Registration Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -252,8 +258,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
                             <label class="col-md-4 form-label">{{ __('MAC Registration End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -262,8 +269,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Self Registration Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -272,8 +280,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('12.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Self Registration End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -282,8 +291,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('13.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Private Registration Start Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -292,8 +302,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('13.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('14.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Private Registration End Date') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -302,16 +313,15 @@
                                 </div>
                             </div>
                         </div>
+
                         <input type="hidden" value="1" name="moodle_course_id" class="form-control" autocomplete="off">
 
                         <input type="hidden" value="1" name="publish_status" class="form-control" autocomplete="off">
 
-
-                        <div class="row" id="entrance_pass"
-                            style="display:none; padding-left:15px;padding-right:15px">
+                        <div class="row" id="entrance_pass" style="display:none; padding-left:15px;padding-right:15px">
                             <div>
                                 <div class="row">
-                                    <label class="col-md-1 form-label">{{ __('14.') }}</label>
+                                    <label class="col-md-1 form-label">{{ __('15.') }}</label>
                                     <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
                                     <div class="col-md-7">
                                         <div class="form-group">
@@ -321,7 +331,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-1 form-label">{{ __('15.') }}</label>
+                                    <label class="col-md-1 form-label">{{ __('16.') }}</label>
                                     <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
                                     <div class="col-md-7">
                                         <div class="form-group">
@@ -334,13 +344,15 @@
                         </div>
 
                     </div>
+
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
                         <button type="submit" class="btn btn-primary" form="batch_form">Save</button>
                     </div>
-                </form>
             </div>
+            </form>
         </div>
+    </div>
     </div>
 
 
