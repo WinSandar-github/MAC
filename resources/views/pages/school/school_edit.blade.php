@@ -603,6 +603,25 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="cessation-btn" style="display:none;">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="hidden" id="student_info_id">
+                                                    
+                                                    <center>
+
+                                                        <div class="row justify-content-center">
+
+                                                            <button type="button" class="btn btn-danger" style="width : 20%"
+                                                                data-toggle="modal" id="smallButton" data-target="#cessationModal"><i
+                                                                    class="fa fa-thumbs-o-down" aria-hidden="true"></i> Cessation</button>
+                                                            
+                                                        </div>
+                                                    </center>
+
+                                                </div>
+                                            </div>
+                                    </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 </div>
@@ -611,6 +630,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <!-- <div id="approve_reject" style="display:none;">
                     <div class="card">
                         <div class="card-body">
@@ -656,6 +676,33 @@
                     <!-- Modal body -->
                     <div class="modal-body">
                         <textarea class="form-control " id="reason" rows="100" cols='100' required></textarea>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- modal -->
+    <form method="post" action="javascript:cessationSchoolRegister();" enctype="multipart/form-data">
+        <div class="modal" id="cessationModal">
+            <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <input type="hidden" id="initial_status" value="2">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Cessation Reason</h4>
+                        <button type="button" class="btn btn-close" data-dismiss="modal"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <textarea class="form-control " id="cessation_reason" rows="100" cols='100' required></textarea>
                     </div>
 
                     <!-- Modal footer -->
