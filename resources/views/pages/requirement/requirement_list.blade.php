@@ -1,6 +1,6 @@
 @extends('layouts.app', [
     'class' => '',
-    'parentElement' => '',
+    'parentElement' => 'administrator',
     'elementActive' => 'requirement_list'
 ])
 

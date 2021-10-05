@@ -35,10 +35,11 @@ function getCourseList() {
 
 function createMainCourse() {
     var course_name = $("input[name=main_cousre_name]").val();
+    var course_name_mm = $("input[name=main_course_name_mm]").val();
     var course_description = $("input[name=main_cousre_description]").val();
     var formData = new FormData(document.getElementById("main_course_form"));
 
-    if (course_name !== "" && course_description !== "") {
+    if (course_name !== "" && course_description !== "" && course_name_mm !== "") {
         show_loader();
         $.ajax({
             url: FRONTEND_URL + "/main_course",
@@ -58,6 +59,8 @@ function createMainCourse() {
                 errorMessage(response.responseJSON.message);
             }
         });
+    }else{
+        errorMessage("Please Fill Required Field!");
     }
 }
 
