@@ -15,6 +15,7 @@ function loadQualifiedTestDetail(id) {
             } else {
                 status = "REJECTED";
             }
+            let student_info = element.student_info;
 
 
             $("#exam_type").append("Qualify Test");
@@ -22,6 +23,7 @@ function loadQualifiedTestDetail(id) {
 
             //check detail or fill mark page
             if ($('#fill_mark').val() !== "fill_mark") {
+
                 if (element.approve_reject_status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -32,11 +34,12 @@ function loadQualifiedTestDetail(id) {
                     document.getElementById("approve").style.display = 'none';
                     document.getElementById("reject").style.display = 'none';
                 }
+                document.getElementById('student_img').src = PDF_URL + student_info.image;
+
 
             }
             // $("#exam_department").append(element.exam_department.name);
 
-            let student_info = element.student_info;
 
             $("#id").append(student_info.id);
             document.getElementById('image').src = PDF_URL + student_info.image;
@@ -69,6 +72,67 @@ function loadQualifiedTestDetail(id) {
 
             })
 
+            // if (element.grade == 1) {
+            //     $.ajax({
+            //         url: BACKEND_URL + "/search_exam_result/" + id,
+            //         type: 'get',
+            //         data: "",
+            //         success: function (result) {
+            //             console.log("Result", result)
+            //             if (result.data != null) {
+            //                 var tr = "<tr id='row_total_mark' >";
+            //                 tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
+            //                 tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.data.total_mark + "</td>";
+            //                 tr += "</tr>";
+            //                 $(".tbl_fillmarks_body").append(tr);
+            //                 // $('.ex_res_btn').hide();
+
+            //                 // $('.pass_fail_btn').show();
+
+            //                 $('.pass_fail_btn').hide();
+
+            //                 $("input[name = result_id]").val(result.data.id);
+            //                 //console.log('search_exam_result',JSON.parse(result.data.result));
+            //                 var rData = JSON.parse(result.data.result);
+            //                 var row_length = rData.subjects.length;
+            //                 //console.log(rData.subjects[1]);
+
+            //                 for (var i = 0; i < row_length; i++) {
+            //                     var j = i + 1;
+            //                     var sunject = document.getElementById('subject' + j);
+            //                     sunject.value = rData.subjects[i];
+            //                     sunject.setAttribute("readonly", "true");
+            //                 }
+            //                 for (var i = 0; i < row_length; i++) {
+            //                     var j = i + 1;
+            //                     var mark = document.getElementById('mark' + j);
+            //                     mark.value = rData.marks[i];
+            //                     mark.setAttribute("readonly", "true");
+            //                 }
+            //                 for (var i = 0; i < row_length; i++) {
+            //                     var j = i + 1;
+            //                     var grade = document.getElementById('grade' + j);
+            //                     grade.value = rData.grades[i];
+            //                     grade.setAttribute("readonly", "true");
+            //                 }
+
+
+            //                 // var total_mark=0;
+            //                 // for (var i = 0; i < row_length; i++) {
+            //                 //     var mark=parseInt(rData.marks[i]);
+            //                 //     total_mark += mark;
+            //                 // }
+            //                 // $('#total_mark').append(total_mark);
+            //             } else {
+            //                 // $('.pass_fail_btn').hide();
+            //             }
+            //         },
+            //         error: function (message) {
+            //             console.log(message);
+            //         }
+            //     });
+            // }
+
             $("#degree_name").append(`${element.foreign_education == 1 ? 'ACCA' : 'CIMA'}`);
             $('#org_name').append(element.organization_name);
             $('#org_address').append(element.organization_address);
@@ -76,10 +140,8 @@ function loadQualifiedTestDetail(id) {
             $('#exam_date').append(element.exam_date);
             $('#exam_reg_no').append(element.exam_reg_no);
 
-
-            // show Exam Card Data
-            document.getElementById('student_img').src = PDF_URL + student_info.image;
-
+            // console.log(student_info.image)
+            // show Exam Card Data  console.log(element.grade)
             // $('#exam_batch_no').text(element.batch.number);
             $('#exam_roll_no').text(element.sr_no)
             $('#exam_student_name').text(student_info.name_mm);
@@ -115,7 +177,7 @@ function approveQT() {
         url: FRONTEND_URL + "/approve_qt/" + id,
         type: 'PATCH',
         success: function (result) {
-            console.log(result)
+
             successMessage("You have approved that form!");
             location.href = FRONTEND_URL + "/qualified_test_list";
             getExam();
@@ -174,7 +236,7 @@ function qualifiedTestResultSubmit() {
             contentType: false,
             processData: false,
             success: function (result) {
-                console.log(result)
+                location.href = FRONTEND_URL + "/qualified_test_result_list";
 
 
 
