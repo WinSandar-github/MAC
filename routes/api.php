@@ -377,3 +377,6 @@ Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@r
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
 Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
+//Teacher card
+Route::get('getTeacher/{invoice_no}', 'TeacherController\TeacherController@getTeacher');
+Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
