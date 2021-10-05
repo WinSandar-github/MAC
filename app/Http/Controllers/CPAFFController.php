@@ -673,11 +673,13 @@ class CPAFFController extends Controller
         ],200);
     }
 
-    public function reject($id)
+    public function reject(Request $request)
     {
-        $cpa_ff = CPAFF::find($id);
+        $cpa_ff = CPAFF::find($request->id);
         $cpa_ff->status = 2;
-        $approve->renew_status=2;
+        $cpa_ff->renew_status=2;
+        $cpa_ff->reject_description = $request->description;
+        $cpa_ff->is_renew = 0;
         $cpa_ff->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
