@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-'class' => '',
-    'parentElement' => '',
-'elementActive' => 'exam_list'
+    'class' => '',
+    'parentElement' => 'administrator',
+    'elementActive' => 'exam_list'
 ])
 
 @section('content')

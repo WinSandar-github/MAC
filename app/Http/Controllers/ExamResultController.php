@@ -210,4 +210,6 @@ class ExamResultController extends Controller
             'message' => "You have successfully fail that Student!"
         ],200);
     }
+
+  
 }

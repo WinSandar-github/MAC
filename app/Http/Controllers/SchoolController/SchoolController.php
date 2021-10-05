@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;    
+use Carbon\Carbon;
 
 class SchoolController extends Controller
 {
@@ -1204,7 +1205,12 @@ class SchoolController extends Controller
             }else if($infos->approve_reject_status	 == 1){
                 return "APPROVED";
             }else{
-                return "REJECTED";
+                
+                if($infos->initial_status==2){
+                    return "cessation";
+                }else{
+                    return "REJECTED";
+                }
             }
         })
         ->addColumn('payment_method', function ($infos){
@@ -1220,7 +1226,26 @@ class SchoolController extends Controller
             }else if($infos->payment_method == "" && $infos->payment_date	 != ""){
                 return "";
             }else{
-                return $infos->payment_date.' to 31-12-'.date('Y');
+                $date = Carbon::createFromFormat('Y-m-d', $infos->payment_date);
+                return $date->format('d-m-Y').' to 31-12-'.date('Y');
+            }
+        })
+        ->addColumn('reason', function ($infos){
+            if($infos->reason == ""){
+                return "";
+               
+            }else{
+                return $infos->reason;
+               
+            }
+        })
+        ->addColumn('remark', function ($infos){
+            if($infos->cessation_reason == ""){
+                return "";
+               
+            }else{
+                return $infos->cessation_reason;
+               
             }
         })
         ->make(true);
@@ -1243,9 +1268,10 @@ class SchoolController extends Controller
         $school = SchoolRegister::find($id);
         $school->payment_method = 'CASH';
         $school->renew_date = date('Y-m-d');
+        $school->payment_date = date('Y-m-d');
         $school->save();
         return response()->json([
-            'data' => $std_info,
+            'data' => $school,
         ],200);
     }
 
@@ -1275,5 +1301,19 @@ class SchoolController extends Controller
             return response()->json($status2,200);
         }
     
+    }
+    public function cessation_school_register(Request $request)
+    {
+        $std_info = StudentInfo::find($request->student_info_id);
+        $std_info->approve_reject_status = $request->status;
+        $std_info->save();
+        $school = SchoolRegister::find($request->id);
+        $school->approve_reject_status = $request->status;
+        $school->cessation_reason = $request->cessation_reason;
+        $school->initial_status = $request->initial_status;
+        $school->save();
+        return response()->json([
+            'message' => 'You have approved this user.'
+        ],200);
     }
 }

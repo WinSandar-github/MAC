@@ -6,11 +6,11 @@
 @section('content')
 <div class="content">
     @include('flash-message')
-    {{--<div class="row">
+    <div class="row">
         <div class="col-md-12">
         {{ Breadcrumbs::render('cpa_ff_edit') }}
         </div>
-    </div>--}}
+    </div>
     <div class="row">
         <div class="col-md-12 text-center">
             <form action="javascript:void()" method="post" enctype="multipart/form-data">
@@ -23,7 +23,7 @@
                                     <img src="" id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->
-                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA(Full-Fledged) Initial Info</h5>
+                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA(Full-Fledged) Renewal Info</h5>
 
                                 <!-- CPA -->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -294,31 +294,6 @@
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#passport_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>--}}
-                                <!--Three Year-->
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">စာရင်းကိုင်အလုပ်သင်လုပ်သက်(၃)နှစ်ပြည့်ကြောင်းရုံးအမိန့်</p>
-                                    </div>
-                                    <div class="col-md-6 text-left three_years_full_file">
-                                        <!-- <button type="button" id="three_year_full_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#three_year_full_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                                    <!--Three Year Modal-->
-                                {{--<div id="three_year_full_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">စာရင်းကိုင်အလုပ်သင်လုပ်သက်(၃)နှစ်ပြည့်ကြောင်းရုံးအမိန့်</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <embed id="three_years_full"  width="100%" height="500px">
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>--}}
                                 <!--Letter-->
@@ -600,7 +575,7 @@
                                 <input type="hidden" name="cpaff_id" >
 
                                 <div class="row mt-5 justify-content-center" id="cpaff_approve_reject">
-                                    <button type="submit" name="save" class="btn btn-danger"  onclick="rejectModal()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                    <button type="submit" name="save" class="btn btn-danger"  onclick="rejectCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                     <button type="submit" name="save" class="btn btn-primary" onclick="approveCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                                 </div>
                                 <!-- Attached Certificate -->
@@ -627,31 +602,9 @@
         </div>
     </div>
 </div>
-
-{{-- Reject Modal --}}
-<div class="modal fade" id="reject_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"> Reject ပြုလုပ်ရသည့်အကြောင်းအရင်း</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <textarea name="reject" id="reject" cols="60" rows="5"></textarea>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" onclick="rejectCPAFFUser()" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  {{-- Reject Modal End --}}
 @endsection
 @push('scripts')
 <script>
-    loadCPAFFData();
+    loadCPAFFRenewData();
 </script>
 @endpush

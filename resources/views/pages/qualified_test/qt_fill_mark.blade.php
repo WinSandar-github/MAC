@@ -280,7 +280,7 @@
                                         <tr>
                                             <td width="10%">1</td>
                                             <td width="40%">
-                                                <input type="text" name="subject1" id="subject1" class="form-control" value="Subject One" readonly>
+                                                <input type="text" name="subject1" id="grade" class="form-control" value="Subject One" readonly>
                                             </td>
                                             <td width="30%">
                                                 <input type="text" name="mark1" id="mark1" class="form-control" value="{{ old('mark1') }}" required>
