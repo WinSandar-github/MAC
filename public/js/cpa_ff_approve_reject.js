@@ -223,7 +223,12 @@ function loadCPAFFData(){
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#image").append(element.student_info.image);
+                if(element.form_type==1){
+                    //do nothing
+                }
+                else{
                 $("#registration_no").append(element.student_register.personal_no);
+                }
 
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
@@ -445,7 +450,12 @@ function loadCPAFFRenewData(){
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#image").append(element.student_info.image);
+                if(element.form_type==1){
+                    //do nothing
+                }
+                else{
                 $("#registration_no").append(element.student_register.personal_no);
+                }
 
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
@@ -597,19 +607,23 @@ function approveCPAFFUser(){
     }
 }
 
-function rejectCPAFFUser(){ 
-    if(!confirm('Are you sure you want to reject this user?')){
-        return;
-    }else{
-        var is_renew=localStorage.getItem("is_renew");
+function rejectModal(){ 
+    $('#reject_modal').modal('show');
+}
+function rejectCPAFFUser(){
+    var is_renew=localStorage.getItem("is_renew");
         var id = $("input[name = cpaff_id]").val();
-        console.log('rejectcpaid',id);
+        var data = $('#reject').val();
         $.ajax({
             url: BACKEND_URL +"/reject_cpaff/"+id,
-            type: 'patch',
+            type : 'post',
+            data : {
+                'id' : id,
+                'description' : data,
+            },
             success: function(result){
                 successMessage("You have rejected that user!");
-                if(is_renew==0){
+                if(is_renew == 0){
                     location.href = FRONTEND_URL + "/cpa_ff_registration_list";
                 }
                 else{
@@ -617,7 +631,6 @@ function rejectCPAFFUser(){
                 }
             }
         });
-    }
 }
 
 window.onclick = function(event) {
