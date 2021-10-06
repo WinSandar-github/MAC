@@ -8,7 +8,7 @@ use App\StudentInfo;
 use App\StudentCourseReg;
 use App\TransactionLog;
 use App\Invoice;
-use App\TransactionLog;
+// use App\TransactionLog;
 use Illuminate\Support\Str;
 use DB;
 
@@ -38,7 +38,7 @@ class PaymentController extends Controller
 
         // $student->invoice_number = $invNo;
 
-        return dd($student);
+        // return dd($student);
 
     }
 
