@@ -386,6 +386,8 @@ function autoLoadAudit(){
             $("#status").addClass("text-danger fw-bolder");
             $("#reject_audit_btn").css('display','none');
             $("#approve_audit_btn").css('display','none');
+            $("#reject_remark_box").css('display','block');
+            $(".reject-remark").text(element.remark);
         }
 
         if(element.local_foreign_id==1){
