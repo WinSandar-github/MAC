@@ -31,7 +31,9 @@
                                     <tr>
                                         <th class="bold-font-weight" >Serial number</th>
                                         <th class="bold-font-weight" >အမည်</th>
+                                        <th class="bold-font-weight" >အဖအမည်</th>
                                         <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
+                                        <th class="bold-font-weight" >Module</th>
                                         
                                         <th class="bold-font-weight" >ကိုယ်ပိုင်နံပါတ်</th>
 
@@ -83,8 +85,10 @@ showAppList = (course_code) =>{
             {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
-            {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
+            {data: 'student_info.name_mm', name: 'student_info.name_mm'},
+            {data: 'student_info.father_name_mm', name: 'student_info.father_name_mm'}, 
             {data: 'nrc', name: 'nrc'}, 
+            {data: 'module', name: 'Module'}, 
             {data: 'student_info.personal_no', name: 'personal_no'},
             
             

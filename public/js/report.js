@@ -30,7 +30,7 @@ function generatePersonalNo(code) {
             console.log(result)
             EasyLoading.hide();
             successMessage("Successully Generate Personal Number");
-            // location.reload();
+            location.reload();
 
         }
     })

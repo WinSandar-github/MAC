@@ -373,6 +373,18 @@ class CpaTraAddmissionDirectController extends Controller
             $deg_certi_img = $request->old_deg_certi;
         }
 
+        if ($request->hasfile('da_pass_certificate')) {
+
+            $file = $request->file('da_pass_certificate');
+
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $da_pass_certificate[] = '/storage/student_info/'.$name;
+            
+        }else{
+            $da_pass_certificate = $request->old_da_certi;
+        }
+
         if ($request->hasfile('recommend_letter')) {
 
             $file = $request->file('recommend_letter');
@@ -414,14 +426,23 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->approve_reject_status = 0;
         $student_info->date             =   date("Y-m-d");
 
+      
+            $student_info->da_pass_date                 =   $request->da_pass_date;
+            $student_info->da_pass_roll_number          =   $request->da_pass_roll_number;
+            $student_info->da_pass_certificate          =  $da_pass_certificate;
+        
+            $student_info->direct_degree                =   $request->direct_degree; 
+            $student_info->degree_certificate_image     =   $deg_certi_img;
+           $student_info->degree_rank                  =   $request->degree_rank;
+           $student_info->verify_code      =   $request->verify_code;
+           $student_info->payment_method   =   $request->payment_method;
+           $student_info->acca_cima        =   $request->acca_cima;
+
+       
+
           // CPA
           
-          $student_info->direct_degree                =   $request->direct_degree; 
-           $student_info->degree_certificate_image     =   $deg_certi_img;
-          $student_info->degree_rank                  =   $request->degree_rank;
-          $student_info->verify_code      =   $request->verify_code;
-          $student_info->payment_method   =   $request->payment_method;
-          $student_info->acca_cima        =   $request->acca_cima;
+         
        
         $student_info->save(); 
          
