@@ -19,11 +19,11 @@ function saveContractDate(){
         var day = start_date.getDate();
 
         if(article_form_type == "c2_pass_3yr"){
-            var contract_end_date = new Date(year + 3, month, day);
+            var contract_end_date = new Date(year + 3, month, day-1);
         }else if(article_form_type == "c12"){
-            var contract_end_date = new Date(year + 2, month, day);
+            var contract_end_date = new Date(year + 2, month, day-1);
         }else if(article_form_type == "c2_pass_1yr"){
-            var contract_end_date = new Date(year + 1, month, day);
+            var contract_end_date = new Date(year + 1, month, day-1);
         }
 
         contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();

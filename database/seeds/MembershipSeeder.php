@@ -26,7 +26,7 @@ class MembershipSeeder extends Seeder
                 'reg_fee_sole'      => NULL,
                 'reg_fee_partner'      => NULL,
                 //
-                'reconnect_fee'      => '100000',
+                'yearly_fee'      => '100000',
                 'renew_fee'       => '100000',
                 //
                 'renew_fee_sole'      => NULL,
@@ -55,7 +55,7 @@ class MembershipSeeder extends Seeder
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
                 //
-                'reconnect_fee'      => '100000',
+                'yearly_fee'      => '100000',
                 'renew_fee'       => NULL,
                 //
                 'renew_fee_sole'      => '100000',
@@ -75,7 +75,7 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>NULL
             ),
             array(
-                'membership_name' => 'CPA (Full-Fledged)',
+                'membership_name' => 'CPA (Full Fledged)',
                 'requirement'     => '<p>အသက် ၂၁ နှစ်ပြည့်ပြီးသူ</p>
                                       <p>CPA Part-2 စာမေးပွဲအောင်မြင်သူ (သို့မဟုတ်) အရည်အချင်းစစ်စာမေးပွဲအောင်မြင်ပြီးသူ</p>
                                       <p>သတ်မှတ်အလုပ်သင်လုပ်သက်ပြည့်မြောက်ပြီးသူ</p>
@@ -175,7 +175,7 @@ class MembershipSeeder extends Seeder
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
                 //
-                'reconnect_fee'      => '10000',
+                'yearly_fee'      => '10000',
                 'renew_fee'       => '30000',
                 //
                 'renew_fee_sole'      => '100000',
@@ -208,7 +208,7 @@ class MembershipSeeder extends Seeder
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
                 //
-                'reconnect_fee'      => NULL,
+                'yearly_fee'      => NULL,
                 'renew_fee'       => NULL,
                 //
                 'renew_fee_sole'      => '100000',
@@ -237,7 +237,7 @@ class MembershipSeeder extends Seeder
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
                 //
-                'reconnect_fee'      => NULL,
+                'yearly_fee'      => NULL,
                 'renew_fee'       => NULL,
                 //
                 'renew_fee_sole'      => '100000',

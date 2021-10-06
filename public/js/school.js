@@ -124,6 +124,7 @@ function getSchoolInfos(){
             
             if(data.data.approve_reject_status != 0){
                 $("#approve_reject").hide();
+                $('#cessation-btn').show();
             }
             else{
                 $("#approve_reject").show();
@@ -444,5 +445,23 @@ function loadStudentCourse(course_id){
       })
       
     })
+    
+}
+function cessationSchoolRegister(){
+    let result = window.location.href;
+    let url = new URL(result);
+    let id = url.searchParams.get("id");
+    var student_info_id=$('#student_info_id').val();
+    var cessation_reason=$("#cessation_reason").val();
+    $.ajax({
+        url: BACKEND_URL + "/cessation_school_register",
+        data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id+"&cessation_reason="+cessation_reason+"&initial_status="+$('#initial_status').val(),
+        type: 'post',
+        success: function(result){
+            successMessage('You have cessation that user!');
+            location.href = '/school_registration';
+        }
+    });
+    
     
 }
