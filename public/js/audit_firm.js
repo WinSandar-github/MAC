@@ -575,26 +575,7 @@ function autoLoadAudit(){
               }
             }else $(".tax_clearance_company").append("<span class='text-warning pl-4'>No file</span>");
 
-            // if(item.letterhead!="null"){
-            //   var letterhead_file = removeBracketedAudit(item.letterhead,"letterheads_partnership");
-            //   for(var i=0;i<letterhead_file.length;i++){
-            //     $(".letterheads_partnership").append(`<a href='${PDF_URL+letterhead_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-            //   }
-            // }else $(".letterheads_partnership").append("<span class='text-warning pl-4'>No file</span>");
-            //
-            // if(item.tax_clearance!="null"){
-            //   var tax_clearance_file = removeBracketedAudit(item.tax_clearance,"tax_clearances_partnership");
-            //   for(var i=0;i<tax_clearance_file.length;i++){
-            //     $(".tax_clearances_partnership").append(`<a href='${PDF_URL+tax_clearance_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-            //   }
-            // }else $(".tax_clearances_partnership").append("<span class='text-warning pl-4'>No file</span>");
-            //
-            // if(item.certificate_incor!="null"){
-            //   var certificate_incor_file = removeBracketedAudit(item.certificate_incor_file,"representatives_partnership");
-            //   for(var i=0;i<tax_clearance_file.length;i++){
-            //     $(".representatives_partnership").append(`<a href='${PDF_URL+certificate_incor_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-            //   }
-            // }else $(".representatives_partnership").append("<span class='text-warning pl-4'>No file</span>");
+
           });
         }
 
@@ -678,7 +659,6 @@ function autoLoadAudit(){
           }
 
           // Types Of Service Provided
-
           var t_s_p_arr = JSON.parse(element.type_of_service_provided_id);
 
           t_s_p_arr.forEach(function(item){
