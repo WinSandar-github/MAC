@@ -628,12 +628,13 @@ class StudentRegisterController extends Controller
     public function ‌approveExamList(Request $request)
     {
          $course = Course::where('code', $request->course_code)->first();
-        
+            
 
 
         $student_infos = ExamRegister::with('student_info','course')
                         ->where('form_type',$course->id)
                         ->where('status',1)
+                        ->orderBy('is_full_module','desc')
                         ->whereNotNull('sr_no');
                        
 
@@ -645,12 +646,22 @@ class StudentRegisterController extends Controller
             
         }
         $student_infos =  $student_infos->get(); 
+       
 
 
         return DataTables::of($student_infos)
         ->addColumn('nrc', function ($infos){
             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
             return $nrc_result;
+        })
+        ->addColumn('module', function ($infos) {
+            if ($infos->is_full_module == 1) {
+                return "Module One";
+            } else if ($infos->is_full_module == 2) {
+                return "Module Two";
+            } else {
+                return "Full Module";
+            }
         })
         ->make(true);
 
