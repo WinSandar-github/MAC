@@ -397,7 +397,7 @@ class TeacherController extends Controller
                         return "";
                     }else{
                         $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->payment_date);
-                        return $monthName = $date->format('d-m-Y').' to 31-12-'.date('Y');
+                        return $date->format('d-m-Y').' to 31-12-'.date('Y');
                     }
                 })
                 ->addColumn('card', function ($infos) {
@@ -511,9 +511,9 @@ class TeacherController extends Controller
         }
         
     }
-    public function getTeacher($id)
+    public function getTeacher($invoice_no)
     {
-        $data = TeacherRegister::where('id',$id)->get();
+        $data = TeacherRegister::where('invoice_no',$invoice_no)->get();
         return response()->json([
             'data' => $data
         ],200);

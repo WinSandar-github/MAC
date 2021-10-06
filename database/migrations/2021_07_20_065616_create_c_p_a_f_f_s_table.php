@@ -78,6 +78,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('old_card_file')->nullable();
             $table->string('is_convicted')->nullable();
             $table->integer('is_renew')->nullable();
+            $table->text('reject_description')->nullable();
             $table->timestamps();
         });
     }

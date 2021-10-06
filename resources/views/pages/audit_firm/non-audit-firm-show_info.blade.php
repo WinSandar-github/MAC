@@ -226,6 +226,19 @@
 	                                                </div>
 	                                            </div>
 
+																							@if($item->status == 2)
+																							<div class="row pl-4 mt-2 border-bottom">
+																									<!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
+																									<label class="col-md-4 col-form-label font-weight-bold">Reject Remark</label>
+																									<label class="col-md-1 col-form-label">{{ __(':') }}</label>
+																									<div class="col-md-7">
+																											<div class="form-group">
+																												<span class="text-danger fw-bolder" style="font-size:15px;">{{$item->remark}}</span>
+																											</div>
+																									</div>
+																							</div>
+																							@endif
+
 	                                            <div class="row  pl-4 mt-2 border-bottom">
 	                                                <!-- <div class="col-md-2"></div> -->
 	                                                <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Name Of Managing Director') }}</label>
@@ -234,6 +247,20 @@
 	                                                    <div class="form-group">
 	                                                        <span id="name_sole_proprietor">
 																														{{$item->name_of_sole_proprietor}}
+																													</span>
+	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+
+																							<div class="row  pl-4 mt-2 border-bottom">
+	                                                <!-- <div class="col-md-2"></div> -->
+	                                                <label class="col-md-4 col-form-label" style="font-weight:bold">Passport/CSC No.</label>
+	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+	                                                <div class="col-md-7">
+	                                                    <div class="form-group">
+	                                                        <span id="name_sole_proprietor">
+																														{{$item->dir_passport_csc}}
 																													</span>
 	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
 	                                                    </div>
@@ -1079,7 +1106,7 @@
 																							?>">
 																									<div class="row pl-4 mt-2">
 			                                                <!-- <label class="col-md-1 col-form-label">{{ __('9') }}</label> -->
-			                                                <label class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Particulars Of Directors/ Staff Members Who Is A Myanmar CPA') }}</label>
+			                                                <label class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Particulars Of Directors/ Staff Members who is a Myanmar CPA') }}</label>
 
 			                                            </div>
 	                                                    <div class="row">

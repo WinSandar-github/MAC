@@ -77,7 +77,8 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
-Route::get('/papp_register_list/{status}', 'PAPPController@FilterPappRegistration');
+Route::post('/papp_renew','PAPPController@PappRenewRegistration');
+Route::get('/papp_register_list/{status}/{type}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
@@ -88,7 +89,7 @@ Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
 Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
-Route::patch('/reject_cpaff/{id}', 'CPAFFController@reject');
+Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
@@ -377,6 +378,12 @@ Route::patch('/reject_done_gov_article/{id}', 'ArticleController\ArticleControll
 Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@approveDone');
 Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
 
+// Payment
+Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
+Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
 Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
+//Teacher card
+Route::get('getTeacher/{invoice_no}', 'TeacherController\TeacherController@getTeacher');
+Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
