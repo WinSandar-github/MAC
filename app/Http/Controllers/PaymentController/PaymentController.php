@@ -37,7 +37,7 @@ class PaymentController extends Controller
 
         // $student->invoice_number = $invNo;
 
-        return dd($student);
+        // return dd($student);
 
     }
 
