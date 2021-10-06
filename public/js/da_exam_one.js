@@ -438,9 +438,23 @@ function loadDAExamData() {
                             result.data.forEach(function (course) {
                                 
                                 var success_year = new Date(course.updated_at);
+                                var module_name;
+                                if(course.is_full_module==1){
+                                    module_name="Module 1";
+                                }
+                                else if(course.is_full_module==2){
+                                    module_name="Module 2";
+                                }
+                                else if(course.is_full_module==3){
+                                    module_name="All Module";
+                                }
+                                else{
+                                    module_name="-";
+                                }
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
+                                                    <td>${module_name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
