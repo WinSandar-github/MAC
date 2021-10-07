@@ -10,6 +10,7 @@ use App\ExamResult;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 
 class QualifiedTestController extends Controller
@@ -407,5 +408,41 @@ class QualifiedTestController extends Controller
 
     }
 
+
+    public function currentQtList(Request $request)
+    {
+        
+        $current_year = Carbon::now()->format('Y');
+       
+
+        $student_infos = QualifiedTest::with('student_info')
+                        ->whereNotNull('sr_no')
+                        ->whereYear('created_at',$current_year);
+                      
+                       
+
+        if($request->grade){
+            $student_infos =  $student_infos->Where('grade',$request->grade);
+            
+        }else{
+            $student_infos =  $student_infos->orderBy('sr_no','asc');
+            
+        }
+        $student_infos =  $student_infos->get(); 
+
+
+        return DataTables::of($student_infos)
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        ->make(true);
+
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
+
+
+    }
 
 }

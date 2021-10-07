@@ -25,6 +25,7 @@ class ReportController extends Controller
                         ->where('exam_type_id','!=',3)
                         ->where('status',1)
                         ->with('student_info')
+                        ->orderBy('is_full_module','desc')
                         ->orderBy('student_infos.name_mm','asc')->select('exam_register.*');
 
         
@@ -39,11 +40,20 @@ class ReportController extends Controller
                     $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                     return $nrc_result;
                 })
+                ->addColumn('module', function ($infos) {
+                    if ($infos->is_full_module == 1) {
+                        return "Module One";
+                    } else if ($infos->is_full_module == 2) {
+                        return "Module Two";
+                    } else {
+                        return "Full Module";
+                    }
+                })
                 ->make(true);
          
 
     }
-
+    //show reporting page
     public function showEntranceExamList(Request $request)
     {
          
