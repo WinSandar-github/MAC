@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း</h5>
                         </div>
                     </div>
                 </div>
