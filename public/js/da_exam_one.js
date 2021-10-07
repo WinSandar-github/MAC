@@ -1015,10 +1015,11 @@ function getModuleStd() {
                 type: 'get',
                 data: "",
                 success: function (result) {
+                    console.log(result);
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
                         tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
-                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.data.total_mark + "</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.total_mark + "</td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();

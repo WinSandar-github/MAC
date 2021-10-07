@@ -105,7 +105,7 @@ class StudentRegisterController extends Controller
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
-
+                $student_register->batch_id = $request->batch_id;
                 // $student_register->academic_year=$request->academic_year;
                 // $student_register->direct_access_no=$request->direct_access_no;
                 // $student_register->entry_success_no=$request->entry_success_no;
@@ -155,7 +155,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->private_school_name = $request->private_school_name;
@@ -217,7 +218,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->academic_year=$request->academic_year;
@@ -459,6 +461,7 @@ class StudentRegisterController extends Controller
                 }
                 $student_register->batch_no = $request->batch_no_self;
                 $student_register->part_no = $request->part_no_self;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->personal_no = $request->personal_no_self;
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
@@ -501,7 +504,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->batch_no = $request->batch_no_private;
@@ -562,7 +566,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->batch_no = $request->batch_no_mac;
