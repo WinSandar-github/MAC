@@ -45,7 +45,7 @@ function loadEntryDetail(id) {
             var exam_data = data.data;
             
             exam_data.forEach(function (element) {
-                console.log(exam_data)
+                console.log('exam_data',exam_data)
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -164,7 +164,7 @@ function loadEntryDetail(id) {
                 document.getElementById('student_img').src = PDF_URL + student_info.image;
 
                 $('#exam_batch_no').text(element.batch.number);
-                $('#exam_roll_no').text(12)
+                $('#exam_roll_no').text(element.student_info.cpersonal_no)
                 $('#exam_student_name').text(student_info.name_mm);
                 $('#exam_student_nrc').text(student_info.nrc_state_region + "/" + student_info.nrc_township + "(" + student_info.nrc_citizen + ")" + student_info.nrc_number);
                 get_exam_info().then(data => {
