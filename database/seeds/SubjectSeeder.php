@@ -24,19 +24,19 @@ class SubjectSeeder extends Seeder
                 'sr_no'         => 1
             ),
             array(
-                'subject_name'  => 'Accontancy',
+                'subject_name'  => 'Book-Keeping and Accountancy',
                 'course_id'     => 1,
                 'module_id'     => 1,
                 'sr_no'         => 2
             ),
             array(
-                'subject_name'  => 'Statistics',
+                'subject_name'  => 'Business Mathematics and Statistics',
                 'course_id'     => 1,
                 'module_id'     => 1,
                 'sr_no'         => 3
             ),
             array(
-                'subject_name'  => 'Knowledge',
+                'subject_name'  => 'General Commercial  Knowledge',
                 'course_id'     => 1,
                 'module_id'     => 2,
                 'sr_no'         => 4
@@ -61,13 +61,13 @@ class SubjectSeeder extends Seeder
                 'sr_no'         => 2
             ),
             array(
-                'subject_name'  => 'Costing Accounting',
+                'subject_name'  => 'Cost Accounting',
                 'course_id'     => 2,
                 'module_id'     => 1,
                 'sr_no'         => 3
             ),
             array(
-                'subject_name'  => 'Financial Reporting ',
+                'subject_name'  => 'Financial Reporting',
                 'course_id'     => 2,
                 'module_id'     => 2,
                 'sr_no'         => 4
