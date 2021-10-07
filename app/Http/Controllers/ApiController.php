@@ -112,7 +112,7 @@ class ApiController extends Controller
         //     $query->where('batch_id', $course->active_batch[0]->id);
         // })->with('student_course')->orderBy('name_mm','asc')->orderBy('->get();
 
-        $count = 0;
+        $count = 1;
         foreach($student_registers as $key => $student_register){
             // $stu_register = StudentRegister::where('id',$student_register->id)
             // ->where('form_type',$student_info->student_course->batch->course->id)
@@ -126,7 +126,7 @@ class ApiController extends Controller
                 $student_info = StudentInfo::where('id',$student_register->student_info_id)->first();
                 if($current_course->course_type->course_code == "da"){
 
-                    $student_info->personal_no = $batch_id.'('.$current_course->course_type->course_code.')/'.$student_register->sr_no;
+                    $student_info->personal_no = $batch_id.'(D)/'.$student_register->sr_no;
                 }else{
                     $student_info->cpersonal_no = $batch_id.'/'.$student_register->sr_no;
                 } 
