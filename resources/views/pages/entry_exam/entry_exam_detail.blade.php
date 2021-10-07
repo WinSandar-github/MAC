@@ -376,14 +376,17 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8"> </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2 d-md-flex justify-content-md-end">
-                                <label   style="font-weight:bold">စာမေးပွဲခုံနံပါတ်</label>
+                            <div class="col-md-12 text-center">
+                                <label  style="font-weight:bold">ခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="exam_roll_no"></label>)
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2">
+                            {{--<div class="col-lg-8 col-md-8 col-sm-8"> </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 d-md-flex justify-content-md-end">
+                                <label   style="font-weight:bold">ခုံနံပါတ်</label>
+                            </div>--}}
+                            {{--<div class="col-lg-2 col-md-2 col-sm-2">
                                 <!-- <input type="text" name="roll_no" class="form-control" placeholder="Roll No."> -->
                                 <label class="col-form-label" style="border: 1px solid black;width:100px;" id="exam_roll_no"></label>
-                            </div>
+                            </div>--}}
                         </div>  <br/>
                         <div class="row">
                             <div class="col-md-3">
@@ -506,7 +509,7 @@
                             <div class="col-md-2">
                             </div>
                             <div class="col-md-10 text-left">
-                                <label class="col-form-label"  style="font-weight:bold">(၂) စာမေးပွဲစတင်ကျင်းပသည့်အချိန်မှစ၍ နာရီဝက်ကျော်နောက်ကျပါက စာမေးပွဲဖြေဆိုခွင့်ပြုမည်မဟုတ်ပါ။ စာမေးပွဲစည်းကမ်း အကျဥ်းချုပ်ကို ကျောဖက်တွင်ဖော်ပြထားပါသည်။</label>
+                                <label class="col-form-label"  style="font-weight:bold">(၂) စာမေးပွဲစတင်ကျင်းပသည့်အချိန်မှစ၍ နာရီဝက်ကျော်နောက်ကျပါက စာမေးပွဲဖြေဆိုခွင့်ပြုမည်မဟုတ်ပါ။ စာမေးပွဲစည်းကမ်း အကျဉ်းချုပ်ကို ကျောဖက်တွင် ဖော်ပြထားပါသည်။</label>
                             </div>
                         </div><br/><br/><br/><br/><br/><br/>
                         <div class="row">

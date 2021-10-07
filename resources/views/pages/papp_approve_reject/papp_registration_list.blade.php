@@ -37,6 +37,65 @@
                     </div>
                     <div class="card-body">
                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                            <div class="tab-pane fade show active" id="link1" aria-expanded="true">
+                                <table id="tbl_papp_pending_list"class="table table-hover text-nowrap " style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="bold-font-weight" >No</th>
+                                            <th class="bold-font-weight" >Action</th>
+                                            <th class="bold-font-weight" >Name</th>
+                                            <th class="bold-font-weight" >NRC</th>
+                                            <th class="bold-font-weight" >Registration No.</th>
+                                            <th class="bold-font-weight" >CPD Total Hours</th>
+                                            <th class="bold-font-weight" >PAPP Date</th>
+                                            <th class="bold-font-weight" >No Use Firm Name</th>
+                                            <th class="bold-font-weight" >Status</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbl_papp_pending_list_body" class="hoverTable text-left">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="link2" aria-expanded="true">
+                                <table id="tbl_papp_approved_list"class="table table-hover text-nowrap " style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="bold-font-weight" >No</th>
+                                            <th class="bold-font-weight" >Action</th>
+                                            <th class="bold-font-weight" >Name</th>
+                                            <th class="bold-font-weight" >NRC</th>
+                                            <th class="bold-font-weight" >Registration No.</th>
+                                            <th class="bold-font-weight" >CPD Total Hours</th>
+                                            <th class="bold-font-weight" >PAPP Date</th>
+                                            <th class="bold-font-weight" >No Use Firm Name</th>
+                                            <th class="bold-font-weight" >Status</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbl_papp_approved_list_body" class="hoverTable text-left">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane fade" id="link3" aria-expanded="true">
+                                <table id="tbl_papp_rejected_list"class="table table-hover text-nowrap " style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th class="bold-font-weight" >No</th>
+                                            <th class="bold-font-weight" >Action</th>
+                                            <th class="bold-font-weight" >Name</th>
+                                            <th class="bold-font-weight" >NRC</th>
+                                            <th class="bold-font-weight" >Registration No.</th>
+                                            <th class="bold-font-weight" >CPD Total Hours</th>
+                                            <th class="bold-font-weight" >PAPP Date</th>
+                                            <th class="bold-font-weight" >No Use Firm Name</th>
+                                            <th class="bold-font-weight" >Status</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbl_papp_rejected_list_body" class="hoverTable text-left">
+                                    </tbody>
+                                </table>
                             <div class="tab-pane fade show active" id="initial_state" aria-expanded="true">
                                 <div class="card-header">
                                     <ul class="nav nav-tabs mt-3" role="tablist">
@@ -61,7 +120,7 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Registration Number</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
@@ -81,7 +140,7 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Registration Number</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
@@ -101,7 +160,7 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Registration Number</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
@@ -142,7 +201,7 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Registration Number</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
@@ -162,7 +221,7 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Registration Number</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
@@ -182,7 +241,7 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Registration Number</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
@@ -221,9 +280,10 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},
@@ -242,9 +302,10 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},
@@ -262,7 +323,7 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'papp_date', name: 'PAPP Date'},
@@ -282,7 +343,7 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'papp_date', name: 'PAPP Date'},
@@ -302,7 +363,7 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'papp_date', name: 'PAPP Date'},
@@ -322,9 +383,10 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},
