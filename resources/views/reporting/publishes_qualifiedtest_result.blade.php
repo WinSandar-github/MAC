@@ -7,7 +7,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">အရည်အချင်းစစ် ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">အရည်အချင်းစစ် ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း</h5>
                         </div>
                     </div>
                 </div>
