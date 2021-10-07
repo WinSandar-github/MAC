@@ -250,9 +250,18 @@ function loadStudentSelfStudy() {
                 $(".recommend_row").hide();
             }
 
+            if(element.private_school_name){
+                
+                // console.log("internship",element.internship);
+                $(".private_school_name_row").show();
+                $("#private_school_name").append(element.private_school_name);                
+            }else{
+                $(".private_school_name_row").hide();
+            }
+
             if(element.internship){
                 
-                console.log("internship",element.internship);
+                // console.log("internship",element.internship);
                 $(".internship_program_row").show();
                 $("#internship_program").append(element.internship);                
             }else{
