@@ -19,11 +19,11 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                            <center>
-                                    <img id="profile_photo" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+                                <center>
+                                    <img id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->
-                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">PAPP Info</h5>
+                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">PAPP Renew Info</h5>
 
                                 <!-- CPA -->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -110,23 +110,6 @@
                                   </div>
                                 </div>
 
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Passed Date</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="cpaff_pass_date"></span>
-                                    </div>
-                                </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Submit Date</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <span id="papp_date"></span>
-                                    </div>
-                                </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
@@ -177,7 +160,7 @@
                                 <!--CPA FF Recommendation -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Registration Card</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA FF Recommendation</p>
                                     </div>
                                     <div class="col-md-6">
                                         <button type="button" id="cpaff_rec_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpa_ff_recommendation_Modal"><i class="fa fa-paperclip"></i></button>
@@ -191,7 +174,7 @@
                                             <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button> -->
-                                            <h5 class="modal-title text-center">CPA(Full-Fledged) Registration Card</h5>
+                                            <h5 class="modal-title text-center">CPAFF Recommendation</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -362,7 +345,9 @@
                                     <div class="col-md-6">
                                         <span id="cpd_hours"></span>
                                     </div>
-                                </div>                                
+                                </div>
+
+                                
 
                                 <!--MICPA Member Card-->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -420,7 +405,7 @@
 
 
                                 <!--Tax Free Recommendation-->
-                                {{--<div class="row m-2 mt-3 border-bottom">
+                                <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
                                         <p class="ml-2" style="font-weight:bold">Tax Free Recommendation</p>
                                     </div>
@@ -447,7 +432,7 @@
                                         </div>
                                     </div>
                                   </div>
-                                </div>--}}
+                                </div>
 
                                 <!--Letter-->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -458,7 +443,7 @@
                                         <button type="button" id="letter_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#letter_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                 <!--Letter Modal-->
+                                 <!--Tax Free Recommendation Modal-->
                                 <div id="letter_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
@@ -485,6 +470,30 @@
                                     </div>
                                     <div class="col-md-6">
                                         <span id="tax_year"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Company</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="company"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Period</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="period"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6">
+                                        <p class="ml-2" style="font-weight:bold">Manager</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <span id="manager"></span>
                                     </div>
                                 </div>
 
@@ -773,6 +782,6 @@
 @endsection
 @push('scripts')
 <script>
-    loadPAPPData();
+    loadRenewPAPPData();
 </script>
 @endpush

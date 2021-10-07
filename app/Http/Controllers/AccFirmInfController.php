@@ -797,6 +797,10 @@ class AccFirmInfController extends Controller
          }
 
         $register_date = date('Y-m-d');
+        $t_s_p_ary = array();
+        foreach($request->t_s_p_id as $val){
+          array_push($t_s_p_ary,$val);
+        }
         $acc_firm_info = AccountancyFirmInformation::find($id);
         $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
@@ -811,13 +815,13 @@ class AccFirmInfController extends Controller
         //$acc_firm_info->local_foreign_id        = $request->local_foreign_id;
         $acc_firm_info->local_foreign_type        = $request->local_foreign_type;
         $acc_firm_info->organization_structure_id    = $request->org_stru_id;
-        $acc_firm_info->type_of_service_provided_id  = $request->t_s_p_id;
+        $acc_firm_info->type_of_service_provided_id  = json_encode($t_s_p_ary);
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
         $acc_firm_info->declaration  = $request->declaration;
         $acc_firm_info->status   = 0;
-        $acc_firm_info->form_fee = $request->form_fee;
-        $acc_firm_info->nrc_fee  = $request->nrc_fee;
+        // $acc_firm_info->form_fee = $request->form_fee;
+        // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
         $acc_firm_info->verify_status  = 0;
         $acc_firm_info->save();
@@ -829,6 +833,13 @@ class AccFirmInfController extends Controller
         // //$std_info->password = Hash::make($request->password);
         // $std_info->password = $request->password;
         // $std_info->save();
+
+        //Student Info
+        $std_info = new StudentInfo();
+        //$std_info->password = Hash::make($request->password);
+        //$std_info->password = $request->password;
+        $std_info->approve_reject_status = 0;
+        $std_info->save();
 
         //Branch Office
         BranchOffice::where('accountancy_firm_info_id',$id)->delete();
@@ -912,8 +923,6 @@ class AccFirmInfController extends Controller
         //Non-Audit
         else
         {
-
-
 
             //Firm OwnerShip Non-Audit in ui (Sole Proprietor/Partners/Shareholders)
             FirmOwnershipNonAudit::where('accountancy_firm_info_id',$id)->delete();

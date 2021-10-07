@@ -367,6 +367,7 @@
                                         <thead>
                                             <th>Course Name</th>
                                             <th>Batch Name</th>
+                                            <th>Module</th>
                                             <th>Success Year</th>
                                         </thead>
                                         <tbody class="course">
@@ -414,7 +415,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-primary" form="remark-form">Reject</button>
+            <button type="submit" class="btn btn-primary" form="remark-form">Submit</button>
         </div>
     </form>
     </div>

@@ -77,7 +77,8 @@ Route::get('/publish_batch/{course_type_id}','BatchController@publish_batch');
 
 //papp
 Route::resource('/papp','PAPPController');
-Route::get('/papp_register_list/{status}', 'PAPPController@FilterPappRegistration');
+Route::post('/papp_renew','PAPPController@PappRenewRegistration');
+Route::get('/papp_register_list/{status}/{type}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
 Route::patch('/reject_papp/{id}', 'PAPPController@reject');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
@@ -304,6 +305,7 @@ Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
 //cpa entry exam
 Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
 Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
+Route::post('entered_exam_list','EntryExamController@enteredExamList');
 
 //Entry Exam
 Route::post('entry_exam_filter','EntryExamController@entryExamFilter');
@@ -312,6 +314,7 @@ Route::post('/filter_entry_exam_result', 'EntryExamController@filterEntryExamRes
 //Qualified Test
 Route::post('/filter_qualified_test_result', 'QualifiedTest\QualifiedTestController@filterQTResult');
 Route::post('/fill_mark_qt', 'QualifiedTest\QualifiedTestController@fillMarkQt');
+Route::post('/current_qt_list','QualifiedTest\QualifiedTestController@currentQtList');
 
 
 

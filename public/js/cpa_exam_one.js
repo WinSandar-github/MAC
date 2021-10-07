@@ -451,7 +451,7 @@ function loadCPAExamData() {
                 }else{
                     $(".da_two_pass_info").show(); 
                     if(element.da_pass_certificate==null){
-                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
                     }else{
                         $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
                     }
@@ -478,9 +478,23 @@ function loadCPAExamData() {
                         if(result.data.length!=0){
                             result.data.forEach(function(course){
                                 var success_year=new Date(course.updated_at);
+                                var module_name;
+                                if(course.is_full_module==1){
+                                    module_name="Module 1";
+                                }
+                                else if(course.is_full_module==2){
+                                    module_name="Module 2";
+                                }
+                                else if(course.is_full_module==3){
+                                    module_name="All Module";
+                                }
+                                else{
+                                    module_name="-";
+                                }
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
+                                                    <td>${module_name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });                           

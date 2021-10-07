@@ -188,7 +188,7 @@ function loadData() {
                 if (element.gov_staff == 1) {
                     $(".recommend_row").show();
                     element.recommend_letter == null
-                        ? $(".recommend_letter").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                        ? $(".recommend_letter").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
                         : $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 } else {
                     $(".recommend_row").hide();
@@ -199,7 +199,7 @@ function loadData() {
                 }else{
                     $(".da_two_pass_info").show(); 
                     if(element.da_pass_certificate==null){
-                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
                     }else{
                         $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
                     }
@@ -237,11 +237,26 @@ function loadData() {
                     type: 'get',
                     success: function (result) {
                         if (result.data.length != 0) {
+                            console.log(result.data,"aa");
                             result.data.forEach(function (course) {
                                 var success_year = new Date(course.updated_at);
+                                var module_name;
+                                if(course.is_full_module==1){
+                                    module_name="Module 1";
+                                }
+                                else if(course.is_full_module==2){
+                                    module_name="Module 2";
+                                }
+                                else if(course.is_full_module==3){
+                                    module_name="All Module";
+                                }
+                                else{
+                                    module_name="-";
+                                }
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
+                                                    <td>${module_name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
