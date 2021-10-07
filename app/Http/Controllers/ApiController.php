@@ -18,6 +18,8 @@ use App\StudentRegister;
 use App\ExamRegister;
 use App\Course;
 use App\StudentInfo;
+use App\Http\Controllers\CustomClass\Helper;
+
 
 class ApiController extends Controller
 {
@@ -94,6 +96,8 @@ class ApiController extends Controller
     public function generatePersonalNo($code)
     {
         
+        $helper = new Helper;
+      
        
         $current_course = Course::where('code',$code)->with('active_batch','course_type')->first();
          $batch_id = $current_course->active_batch[0]->id;
@@ -106,31 +110,25 @@ class ApiController extends Controller
         ->with('student_info')
         ->select('student_infos.name_mm','student_register.*')->get();
                         
-        
-        
-        // $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
-        //     $query->where('batch_id', $course->active_batch[0]->id);
-        // })->with('student_course')->orderBy('name_mm','asc')->orderBy('->get();
-
-        $count = 1;
+         
+       
         foreach($student_registers as $key => $student_register){
-            // $stu_register = StudentRegister::where('id',$student_register->id)
-            // ->where('form_type',$student_info->student_course->batch->course->id)
-            // ->where('status',1)->first();
-
+            
            
-                $student_register->sr_no = ++$count;
+                $student_register->sr_no = ++$key;
 
                 $student_register->save();
                 
                 $student_info = StudentInfo::where('id',$student_register->student_info_id)->first();
                 if($current_course->course_type->course_code == "da"){
 
-                    $student_info->personal_no = $batch_id.'(D)/'.$student_register->sr_no;
+                    $student_info->personal_no = $helper->en2mmNumber($batch_id).'(D)/'.$helper->en2mmNumber($student_register->sr_no);
                 }else{
-                    $student_info->cpersonal_no = $batch_id.'/'.$student_register->sr_no;
+                    $student_info->cpersonal_no = $helper->en2mmNumber($batch_id).'/'.$helper->en2mmNumber($student_register->sr_no);
                 } 
                 $student_info->save();
+
+              
               
             
 
@@ -211,14 +209,9 @@ class ApiController extends Controller
         
         $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
             $query->where('batch_id', $course->active_batch[0]->id);
-        })->with('student_course')->orderBy('name_mm','asc')->get();
-        
+        })->with('student_course')->select('name_mm')->orderBy('name_mm','asc')->get();
        
-        // $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($batch_id) {
-        //     $query->where('batch_id', $batch_id);
-        // })->with('student_course')->orderBy('name_mm','asc')->get();
-        
-        
+      
         foreach($student_infos as $key => $student_info){
            
             $student_app = StudentCourseReg::where('student_info_id',$student_info->id)

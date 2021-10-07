@@ -111,6 +111,8 @@
                                             {{--<th class="bold-font-weight" >Batch Name</th>--}}
                                             <th class="bold-font-weight" >Remark</th>
                                             <th class="bold-font-weight" >Status</th>
+                                            <th class="bold-font-weight" >Exam Place</th>
+                                            
                                             <!-- <th class="bold-font-weight" >Batch ID</th> -->
 
                                             <th class="bold-font-weight" >Print</th>
@@ -149,6 +151,72 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="create_exam_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form id="exam_form" method="post" action="javascript:createExam();" enctype="multipart/form-data">
+                    <!-- @csrf -->
+                    <input type="hidden" name="batch_id" id="batch_id">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create Exam Place </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('1.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Exam Room') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="exam_start_date" class="form-control" autocomplete="off"
+                                        placeholder="DD-MMM-YYYY" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('2.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Exam ') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="exam_end_date" class="form-control" autocomplete="off"
+                                        placeholder="DD-MMM-YYYY" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('3.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Exam Place') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="exam_place" class="form-control" autocomplete="off"
+                                        placeholder="Place" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('4.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Exam Time') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="exam_time" class="form-control" autocomplete="off"
+                                        placeholder="Exam Time" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="submit" class="btn btn-primary" form="exam_form">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @push('scripts')
 <script>
@@ -213,7 +281,9 @@
               {data: 'exam_type', name: 'Exam Type'},
               {data: 'remark', name: 'Remark'},
               {data: 'status', name: 'Status'},
+              {data: 'exam_room', name: 'Print',orderable: false, searchable: false},
               {data: 'print', name: 'Print',orderable: false, searchable: false},
+
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });

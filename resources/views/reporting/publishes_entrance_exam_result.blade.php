@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">CPA One ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများစာရင်း ထုတ်ပြန်ရန်</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">CPA One ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများစာရင်း</h5>
                         </div>
                     </div>
                 </div>

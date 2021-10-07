@@ -1,4 +1,4 @@
-@extends('layouts.app', [
+re@extends('layouts.app', [
     'class' => '',
     'parentElement' => '',
     'elementActive' => 'da_exam_one'
@@ -415,15 +415,18 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12 text-left">
+                                    <div class="col-md-1 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">၃။</label>
+                                    </div>
+                                    <div class="col-md-11 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">စာမေးပွဲကျင်းပမည့်</label>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-1 text-left">
+                                    <div class="col-md-2 text-center">
                                         <label class="col-form-label"  style="font-weight:bold">(က)</label>
                                     </div>
-                                    <div class="col-md-5 text-left">
+                                    <div class="col-md-4 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">နေ့ရက် ၊</label>
                                     </div>
                                     <div class="col-md-6">
@@ -432,10 +435,10 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-1 text-left">
+                                    <div class="col-md-2 text-center">
                                         <label class="col-form-label"  style="font-weight:bold">(ခ)</label>
                                     </div>
-                                    <div class="col-md-5 text-left">
+                                    <div class="col-md-4 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">အချိန် ၊</label>
                                     </div>
                                     <div class="col-md-6">
@@ -444,15 +447,49 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-1 text-left">
+                                    <div class="col-md-2 text-center">
                                         <label class="col-form-label"  style="font-weight:bold">(ဂ)</label>
                                     </div>
-                                    <div class="col-md-5 text-left">
+                                    <div class="col-md-4 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">နေရာ ၊</label>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                         <!-- <input type="text" name="roll_no"  id="5" class="form-control" placeholder="nrc"> -->
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3 text-center">
+                                        <label class="col-form-label"  style="font-weight:bold">၁။</label>
+                                    </div>
+                                    <div class="col-md-3 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">အခန်းအမှတ် </label>
+                                    </div>
+                                    <div class="col-md-6  text-center">
+                                        <label class="col-form-label" id="room_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-3 text-center">
+                                        <label class="col-form-label"  style="font-weight:bold">၂။</label>
+                                    </div>
+                                    <div class="col-md-3 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">အဆောင်အမှတ်</label>
+                                    </div>
+                                    <div class="col-md-6  text-center">
+                                        <label class="col-form-label" id="hall_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-md-3 text-center">
+                                        <label class="col-form-label"  style="font-weight:bold">၃။</label>
+                                    </div>
+                                    <div class="col-md-3 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">တည်နေရာ</label>
+                                    </div>
+                                    <div class="col-md-6  text-center">
+                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div>
                             </div>

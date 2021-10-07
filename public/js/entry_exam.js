@@ -43,9 +43,9 @@ function loadEntryDetail(id) {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            // console.log(exam_data)
-            exam_data.forEach(function (element) {
 
+            exam_data.forEach(function (element) {
+                console.log(exam_data)
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -224,6 +224,13 @@ function PrintExamCard() {
     document.body.innerHTML = divcontent;
     window.print();
     document.body.innerHTML = backup;
+}
+
+function updateExamRoom(exam_id, student_info_id) {
+    $('#create_exam_modal').modal('show');
+    alert(exam_id, student_info_id)
+
+
 }
 
 

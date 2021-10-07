@@ -272,6 +272,9 @@ Route::patch('/check_code/{id}', 'DARegisterController@checkCode');
 
 Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
 
+Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
+
+
 Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 
 // Get all courses
