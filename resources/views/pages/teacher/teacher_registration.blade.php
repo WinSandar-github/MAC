@@ -171,7 +171,7 @@
                                             </div>
                                             <div class="tab-pane fade show" id="renew2" aria-expanded="true">
                                                 <table id="tbl_teacher_renew_approved" class="table table-hover text-nowrap " style="width:100%;">
-                                                    <thead>
+                                                    <thead class="text-nowrap">
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
