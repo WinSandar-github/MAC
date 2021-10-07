@@ -44,10 +44,10 @@
                                         <tr>
                                             <th class="bold-font-weight" >No</th>
                                             <th class="bold-font-weight" >Action</th>
-                                            <th class="bold-font-weight" >Student Name</th>
+                                            <th class="bold-font-weight" >Name</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Registration Number</th>
-                                            <th class="bold-font-weight" >Degree</th>
+                                            <th class="bold-font-weight" >CPD Total Hours</th>
                                             <th class="bold-font-weight" >Status</th>
 
                                         </tr>
@@ -62,10 +62,10 @@
                                         <tr>
                                             <th class="bold-font-weight" >No</th>
                                             <th class="bold-font-weight" >Action</th>
-                                            <th class="bold-font-weight" >Student Name</th>
+                                            <th class="bold-font-weight" >Name</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Registration Number</th>
-                                            <th class="bold-font-weight" >Degree</th>
+                                            <th class="bold-font-weight" >CPD Total Hours</th>
                                             <th class="bold-font-weight" >Status</th>
 
                                         </tr>
@@ -80,10 +80,10 @@
                                         <tr>
                                             <th class="bold-font-weight" >No</th>
                                             <th class="bold-font-weight" >Action</th>
-                                            <th class="bold-font-weight" >Student Name</th>
+                                            <th class="bold-font-weight" >Name</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Registration Number</th>
-                                            <th class="bold-font-weight" >Degree</th>
+                                            <th class="bold-font-weight" >CPD Total Hours</th>
                                             <th class="bold-font-weight" >Status</th>
 
                                         </tr>
@@ -118,7 +118,8 @@
               {data: 'student_info.name_mm', name: 'Student Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
-              {data: 'degree', name: 'Degree'},
+              {data: 'total_hours', name: 'CPD Total Hours'},
+              // {data: 'degree', name: 'Degree'},
               {data: 'status', name: 'Status'},
 
           ],
@@ -138,7 +139,8 @@
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
-            {data: 'degree', name: 'Degree'},
+            // {data: 'degree', name: 'Degree'},
+            {data: 'total_hours', name: 'CPD Total Hours'},
             {data: 'status', name: 'Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -157,7 +159,8 @@
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
-            {data: 'degree', name: 'Degree'},
+            // {data: 'degree', name: 'Degree'},
+            {data: 'total_hours', name: 'CPD Total Hours'},
             {data: 'status', name: 'Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
