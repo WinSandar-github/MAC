@@ -172,17 +172,21 @@ class ExamResultController extends Controller
         //
     }
 
-    public function SearchExamResult($batch_id){
-        $std_data = ExamRegister::where('id',$batch_id)->get('student_info_id');
+    public function SearchExamResult($id){
+        $std_data = ExamRegister::where('id',$id)->get('student_info_id');
         $student_info_id = $std_data[0]['student_info_id'];
      
-        $reg_data = ExamRegister::where('id',$batch_id)->get('id');
+        $reg_data = ExamRegister::where('id',$id)->get('id');
         $registeration_id = $reg_data[0]['id'];
+
+        $total_marks = ExamRegister::where('id',$id)->get('total_mark');
+        $total_mark = $total_marks[0]['total_mark'];
 
         $exam_result=ExamResult::where('student_info_id',$student_info_id)
             ->where('registeration_id', $registeration_id)->first();
         return response()->json([
-            'data' => $exam_result
+            'data' => $exam_result,
+            'total_mark'=>$total_mark
         ],200);
     }
 

@@ -51,6 +51,8 @@ class CreateCPAFFSTable extends Migration
             $table->string('reg_no')->nullable();          
             $table->string('country')->nullable();          
             $table->string('government')->nullable();          
+            $table->string('exam_year')->nullable();          
+            $table->string('exam_month')->nullable();          
             $table->string('roll_no')->nullable();
             $table->string('cpa_batch_no')->nullable();
             $table->string('address')->nullable();

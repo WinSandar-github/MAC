@@ -1,7 +1,7 @@
 
 function getExam() {
-    var table_exam = $('#tbl_exam').DataTable({
-        // scrollX: true,
+    $('#tbl_exam').DataTable({
+        scrollX: true,
         processing: true,
         serverSide: true,
         searching: false,

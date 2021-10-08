@@ -102,7 +102,7 @@ class ApiController extends Controller
         $current_course = Course::where('code',$code)->with('active_batch','course_type')->first();
          $batch_id = $current_course->active_batch[0]->id;
 
-        $student_registers = StudentRegister::where('form_type',$current_course->active_batch[0]->course->id)
+        $student_registers = StudentRegister::where('batch_id',$current_course->active_batch[0]->id)
         ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
         ->where('student_register.status',1)
         ->orderBy('student_infos.name_mm','asc')
@@ -140,7 +140,7 @@ class ApiController extends Controller
     {
         
         $current_course = Course::where('code',$code)->with('active_batch')->first();
-        $student_registers = StudentRegister::where('form_type',$current_course->active_batch[0]->course->id)
+        $student_registers = StudentRegister::where('batch_id',$current_course->active_batch[0]->id)
         ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
         ->where('student_register.status',1)
         ->orderBy('student_infos.name_mm','asc')

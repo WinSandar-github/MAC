@@ -270,6 +270,13 @@ class ExamRegisterController extends Controller
                                 </button>
                             </div>";
                 });
+                $datatable = $datatable->addColumn('exam_room', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                                    <li class='fa fa-edit fa-sm'></li>
+                                </button>
+                            </div>";
+                });
             }
         } else if ($request->course_code == 3) {
             $datatable = $datatable->addColumn('action', function ($infos) {
@@ -287,6 +294,13 @@ class ExamRegisterController extends Controller
                                 </button>
                             </div>";
                 });
+                $datatable = $datatable->addColumn('exam_room', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                                    <li class='fa fa-edit fa-sm'></li>
+                                </button>
+                            </div>";
+                });
             }
         } else {
             $datatable = $datatable->addColumn('action', function ($infos) {
@@ -301,6 +315,13 @@ class ExamRegisterController extends Controller
                     return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-sm' onclick='printCPAOneExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                                     <li class='fa fa-print fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+                $datatable = $datatable->addColumn('exam_room', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                                    <li class='fa fa-edit fa-sm'></li>
                                 </button>
                             </div>";
                 });

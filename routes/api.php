@@ -162,7 +162,7 @@ Route::patch('/reject_cpa_two_student/{id}', 'CPATwoRegistrationController@rejec
 
 //Exam Result
 Route::resource('/exam_result','ExamResultController');
-Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResult');
+Route::get('/search_exam_result/{id}','ExamResultController@SearchExamResult');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
