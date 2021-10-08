@@ -248,8 +248,8 @@ class ExamRegisterController extends Controller
                 });
                 $datatable = $datatable->addColumn('exam_room', function ($infos) {
                     return "<div class='btn-group'>
-                                <button type='button' class='btn btn-primary btn-sm' onclick='updateExamRoom($infos->student_info_id,$infos->id)'>
-                                    <li class='fa fa-print fa-sm'></li>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                                    <li class='fa fa-edit fa-sm'></li>
                                 </button>
                             </div>";
                 });

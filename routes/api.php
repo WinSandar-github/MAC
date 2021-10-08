@@ -67,6 +67,8 @@ Route::post('/filter_batch','BatchController@FilterBatch');
 //Exam
 Route::resource('/exam','ExamController');
 Route::post('/filter_exam','ExamController@FilterExam');
+Route::post('/create_exam_room','ExamController@createExamRoom');
+
 
 //Course
 Route::resource('/course','CourseController');

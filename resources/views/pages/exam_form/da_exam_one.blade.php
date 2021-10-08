@@ -152,44 +152,44 @@
     </div>
 </div>
 
-<div class="modal fade" id="create_exam_modal" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="exam_room_model" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-                <form id="exam_form" method="post" action="javascript:createExam();" enctype="multipart/form-data">
+                <form id="exam_room" method="post" action="javascript:createExamRoom();" enctype="multipart/form-data">
                     <!-- @csrf -->
                     <input type="hidden" name="batch_id" id="batch_id">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Create Exam Place </h5>
+                        <h5 class="modal-title" id="exampleModalLabel">စာမေးပွဲဖြေဆိုမယ်နေရာ သတ်မှတ်ခြင်း </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="card-body">
-
+                        <input type="hidden" name="exam_register_id" id="exam_register_id">
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('1.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Exam Room') }}</label>
+                            <label class="col-md-1 form-label">{{ __('၁။') }}</label>
+                            <label class="col-md-4 form-label">{{ __('အဆောင်') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" name="exam_start_date" class="form-control" autocomplete="off"
-                                        placeholder="DD-MMM-YYYY" required>
+                                    <input type="text" name="exam_building" class="form-control" autocomplete="off"
+                                          required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Exam ') }}</label>
+                            <label class="col-md-1 form-label">{{ __('၂။') }}</label>
+                            <label class="col-md-4 form-label">{{ __('အခန်း ') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <input type="text" name="exam_end_date" class="form-control" autocomplete="off"
-                                        placeholder="DD-MMM-YYYY" required>
+                                    <input type="text" name="exam_room" class="form-control" autocomplete="off"
+                                         required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('3.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Exam Place') }}</label>
+                            <label class="col-md-4 form-label">{{ __('တည်နေရာ') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <input type="text" name="exam_place" class="form-control" autocomplete="off"
@@ -197,21 +197,12 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <label class="col-md-1 form-label">{{ __('4.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Exam Time') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" name="exam_time" class="form-control" autocomplete="off"
-                                        placeholder="Exam Time" required>
-                                </div>
-                            </div>
-                        </div>
+                     
                     </div>
 
                     <div class="modal-footer">
                         <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
-                        <button type="submit" class="btn btn-primary" form="exam_form">Save</button>
+                        <button type="submit" class="btn btn-primary" form="exam_room">Save</button>
                     </div>
                 </form>
             </div>

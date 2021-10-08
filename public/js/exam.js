@@ -14,6 +14,7 @@ function getExam() {
                     d.course_name = $('#filter_course_id').val(),
                     d.start_date = $("input[name=filter_by_start_date]").val(),
                     d.end_date = $("input[name=filter_by_end_date]").val()
+
             }
         },
         columns: [
@@ -27,6 +28,8 @@ function getExam() {
             { data: 'exam_end_time', name: 'exam_end_time' },
             { data: 'exam_place', name: 'exam_place' },
         ],
+        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+
     });
 }
 
@@ -242,4 +245,57 @@ function deleteExamInfo(exam_id) {
             }
         });
     }
+}
+
+
+function showExamRoomModal(student_info_id, exam_id) {
+    $('#exam_register_id').val(exam_id)
+    $.ajax({
+        type: "get",
+        url: BACKEND_URL + "/exam_register/" + exam_id,
+        success: function (data) {
+            console.log(data[0])
+            var exam_data = data.data;
+
+            $("input[name=exam_room]").val(exam_data[0].exam_room);
+            $("input[name=exam_building]").val(exam_data[0].exam_building);
+            $("input[name=exam_place]").val(exam_data[0].exam_place);
+
+            $('#exam_room_model').modal('show');
+
+        },
+
+        error: function (message) {
+            errorMessage(message);
+        }
+    });
+
+
+
+}
+
+function createExamRoom() {
+    let formData = new FormData();
+    formData.append('exam_room', $("input[name=exam_room]").val());
+    formData.append('exam_building', $("input[name=exam_building]").val());
+    formData.append('exam_place', $("input[name=exam_place]").val());
+    formData.append('id', $("input[name=exam_register_id]").val());
+
+
+    show_loader();
+    $.ajax({
+        url: BACKEND_URL + "/create_exam_room",
+        type: 'post',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function (result) {
+            EasyLoading.hide();
+            successMessage(result.message);
+            $('#exam_room_model').modal('toggle');
+            location.reload();
+        }
+    });
+
+
 }

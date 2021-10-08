@@ -226,12 +226,6 @@ function PrintExamCard() {
     document.body.innerHTML = backup;
 }
 
-function updateExamRoom(exam_id, student_info_id) {
-    $('#create_exam_modal').modal('show');
-    alert(exam_id, student_info_id)
-
-
-}
 
 
 
