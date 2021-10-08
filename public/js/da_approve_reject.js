@@ -109,6 +109,7 @@ function loadData() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -167,6 +168,7 @@ function loadData() {
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
                 $("#father_name_mm").append(element.father_name_mm);
                 $("#father_name_eng").append(element.father_name_eng);
+                $("#gender").append(element.gender);
                 $("#race").append(element.race);
                 $("#religion").append(element.religion);
                 $("#date_of_birth").append(element.date_of_birth);

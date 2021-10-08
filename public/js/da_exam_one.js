@@ -271,6 +271,7 @@ function loadDAExamData() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -382,6 +383,7 @@ function loadDAExamData() {
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
                 $("#father_name_mm").append(element.father_name_mm);
                 $("#father_name_eng").append(element.father_name_eng);
+                $("#gender").append(element.gender);
                 $("#race").append(element.race);
                 $("#religion").append(element.religion);
                 $("#date_of_birth").append(element.date_of_birth);
@@ -406,6 +408,7 @@ function loadDAExamData() {
                 } else {
                     $(".recommend_row").hide();
                 }
+
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -828,6 +831,7 @@ function getModuleStd() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -932,6 +936,7 @@ function getModuleStd() {
                 $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
                 $("#father_name_mm").append(std.father_name_mm);
                 $("#father_name_eng").append(std.father_name_eng);
+                $("#gender").append(std.gender);
                 $("#race").append(std.race);
                 $("#religion").append(std.religion);
                 $("#date_of_birth").append(std.date_of_birth);
