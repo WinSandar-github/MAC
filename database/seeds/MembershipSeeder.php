@@ -84,14 +84,14 @@ class MembershipSeeder extends Seeder
                 'form_fee'        => '1000',
                 'registration_fee'=> '10000',
                 //
-                'reg_fee_sole'      => '100000',
-                'reg_fee_partner'      => '300000',
+                'reg_fee_sole'      => NULL,
+                'reg_fee_partner'      => NULL,
                 //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => '10000',
                 //
-                'renew_fee_sole'      => '100000',
-                'renew_fee_partner'      => '300000',
+                'renew_fee_sole'      => NULL,
+                'renew_fee_partner'      => NULL,
                 //
                 'late_fee'        => '10000',
                 //
@@ -104,24 +104,24 @@ class MembershipSeeder extends Seeder
                 //
                 'late_feb_fee'    => '100000',
                 'expire_fee'      => '10000'  ,
-                'reconnected_fee' =>NULL
+                'reconnected_fee' =>'10000'
             ),
             array(
                 'membership_name' => 'PAPP',
                 'requirement'     => '<p>CPA(FF) မှတ်ပုံတင်သက်တမ်း ၁ နှစ် ပြည့်မြောက်သူများ</p>
                                       <p>စတင်လျှောက်ထားသည့် နေ့မတိုင်မီ ၁၂ လအတွင်း အနဲဆုံး CPD ၂၀ နာရီ  ပြည့်မီသူ</p>',
                 'description'     => NULL,
-                'form_fee'        => '10000',
+                'form_fee'        => '1000',
                 'registration_fee'=> '30000',
                 //
-                'reg_fee_sole'      => '100000',
-                'reg_fee_partner'      => '300000',
+                'reg_fee_sole'      => NULL,
+                'reg_fee_partner'      => NULL,
                 //
-                'yearly_fee'      => '100000',
+                'yearly_fee'      => NULL,
                 'renew_fee'       => '40000',
                 //
-                'renew_fee_sole'      => '100000',
-                'renew_fee_partner'      => '300000',
+                'renew_fee_sole'      => NULL,
+                'renew_fee_partner'      => NULL,
                 //
                 'late_fee'        => '50000',
                 //
@@ -133,8 +133,8 @@ class MembershipSeeder extends Seeder
                 'reconnect_fee_partner' => NULL,
                 //
                 'late_feb_fee'    => '500000',
-                'expire_fee'      => '110000',
-                'reconnected_fee' =>NULL
+                'expire_fee'      => NULL,
+                'reconnected_fee' =>'100000'
             ),
             array(
                 'membership_name' => 'School',
