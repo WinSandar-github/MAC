@@ -567,6 +567,17 @@ function loadCPAFFRenewData(){
                 $("#degree").append(degree);
                 $("#status").append(status);
                 $("#cpd_total_hour").append(element.total_hours);
+                $("#cpa_batch_no").append(element.cpa_batch_no);
+                $("#cpaff_address").append(element.address);
+                $("#cpaff_phone").append(element.phone);
+                $("#contact_mail").append(element.contact_mail);
+                
+                if(element.cpaff_pass_date != null){
+                    $("#cpaff_pass_date").append(element.cpaff_pass_date);
+                }else{
+                    $("#cpaff_pass_date").append(`<span>-</span>`);
+                }
+                // $("#cpd_total_hour").append(element.total_hours);
                 $("#three_years_full").append(element.three_years_full);
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);

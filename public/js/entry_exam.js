@@ -174,9 +174,18 @@ function loadEntryDetail(id) {
                     var exam = exams.filter(exam => { if (exam.exam_type_id == 2 && exam.batch_id == element.batch.id) return true });
                     console.log('exam', exam)
 
-                    $('#exam_date').text(exam[0].exam_start_date);
-                    $('#exam_time').text(`နံနက် ${exam[0].exam_start_time} နာရီ မှ ${exam[0].exam_end_time} နာရီ အထိ`);
-                    $('#exam_place').text(exam[0].exam_place);
+                    if(exam.length != 0){
+                        $('#exam_date').text(exam[0].exam_start_date);
+                        $('#exam_time').text(`နံနက် ${exam[0].exam_start_time} နာရီ မှ ${exam[0].exam_end_time} နာရီ အထိ`);
+                        $('#exam_place').text(exam[0].exam_place);
+                    }else{
+                        $('#exam_date').text("");
+                        $('#exam_time').text("");
+                        $('#exam_place').text("");
+                    }
+                    
+                    
+                    
 
                 })
 

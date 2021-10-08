@@ -144,6 +144,7 @@ function loadStudentSelfStudy() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -232,6 +233,7 @@ function loadStudentSelfStudy() {
             $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + student_info_data.nrc_number);
             $("#father_name_mm").append(student_info_data.father_name_mm);
             $("#father_name_eng").append(student_info_data.father_name_eng);
+            $("#gender").append(student_info_data.gender);
             $("#race").append(student_info_data.race);
             $("#religion").append(student_info_data.religion);
             $("#date_of_birth").append(student_info_data.date_of_birth);

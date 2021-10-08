@@ -25,6 +25,41 @@
                                 <!-- Start CPA_FF Info -->
                                 <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA(Full-Fledged) Initial Info</h5>
 
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPA အပတ်စဉ်/ကိုယ်ပိုင်အမှတ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpa_batch_no"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ဆက်သွယ်ရန်လိပ်စာ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpaff_address"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">တယ်လီဖုန်းနံပါတ်၊ Fax ဖုန်းနံပါတ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpaff_phone"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">E-mail Address</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="contact_mail"></span>
+                                    </div>
+                                </div>
                                 <!-- CPA -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -116,42 +151,6 @@
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="degree"></span>
-                                    </div>
-                                </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA အပတ်စဉ်/ကိုယ်ပိုင်အမှတ်</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="cpa_batch_no"></span>
-                                    </div>
-                                </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">ဆက်သွယ်ရန်လိပ်စာ</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="cpaff_address"></span>
-                                    </div>
-                                </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">တယ်လီဖုန်းနံပါတ်၊ Fax ဖုန်းနံပါတ်</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="cpaff_phone"></span>
-                                    </div>
-                                </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">E-mail Address</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="contact_mail"></span>
                                     </div>
                                 </div>
 
