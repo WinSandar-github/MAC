@@ -594,18 +594,19 @@ class AccFirmInfController extends Controller
          }else{
              $letterhead = null;
          }
-        if($request->hasfile('representatives'))
-         {
-             foreach($request->file('representatives') as $file)
-             {
-             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-             $file->move(public_path().'/storage/acc_firm/',$name);
-             $representative[] =$name;
-             }
 
-         }else{
-             $representative = null;
-         }
+        // if($request->hasfile('representatives'))
+        //  {
+        //      foreach($request->file('representatives') as $file)
+        //      {
+        //      $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //      $file->move(public_path().'/storage/acc_firm/',$name);
+        //      $representative[] =$name;
+        //      }
+        //
+        //  }else{
+        //      $representative = null;
+        //  }
 
          if($request->hasfile('certi_or_regs'))
          {
@@ -648,31 +649,31 @@ class AccFirmInfController extends Controller
              $certi_incor = null;
          }
 
-         if($request->hasfile('form6_26e'))
-         {
-             foreach($request->file('form6_26e') as $file)
-             {
-             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-             $file->move(public_path().'/storage/acc_firm/',$name);
-             $form6_26e[] = $name;
-             }
+         // if($request->hasfile('form6_26e'))
+         // {
+         //     foreach($request->file('form6_26e') as $file)
+         //     {
+         //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+         //     $file->move(public_path().'/storage/acc_firm/',$name);
+         //     $form6_26e[] = $name;
+         //     }
+         //
+         // }else{
+         //     $form6_26e = null;
+         // }
 
-         }else{
-             $form6_26e = null;
-         }
-
-         if($request->hasfile('form_a1'))
-         {
-             foreach($request->file('form_a1') as $file)
-             {
-             $name  = uniqid().'.'.$file->getClientOriginalExtension();
-             $file->move(public_path().'/storage/acc_firm/',$name);
-             $form_a1[] = $name;
-             }
-
-         }else{
-             $form_a1 = null;
-         }
+         // if($request->hasfile('form_a1'))
+         // {
+         //     foreach($request->file('form_a1') as $file)
+         //     {
+         //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+         //     $file->move(public_path().'/storage/acc_firm/',$name);
+         //     $form_a1[] = $name;
+         //     }
+         //
+         // }else{
+         //     $form_a1 = null;
+         // }
 
 
          if($request->hasfile('tax_reg_certificate'))
@@ -802,7 +803,10 @@ class AccFirmInfController extends Controller
           array_push($t_s_p_ary,$val);
         }
         $acc_firm_info = AccountancyFirmInformation::find($id);
-        $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        //$acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        if($request->accountancy_firm_reg_no){
+          $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        }
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
         $acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
@@ -843,19 +847,22 @@ class AccFirmInfController extends Controller
 
         //Branch Office
         BranchOffice::where('accountancy_firm_info_id',$id)->delete();
-        for($i=0;$i<sizeof($request->bo_branch_name);$i++){
-            $branch_office = new BranchOffice();
-            $branch_office->branch_name = $request->bo_branch_name[$i];
-            $branch_office->township    = $request->bo_township[$i];
-            $branch_office->postcode    = $request->bo_post_code[$i];
-            $branch_office->city        = $request->bo_city[$i];
-            $branch_office->state_region= $request->bo_state_region[$i];
-            $branch_office->phones  = $request->bo_phone[$i];
-            $branch_office->email       = $request->bo_email[$i];
-            $branch_office->website      = $request->bo_website[$i];
-            $branch_office->accountancy_firm_info_id = $acc_firm_info->id;
-            $branch_office->save();
+        if($request->bo_branch_name){
+          for($i=0;$i<sizeof($request->bo_branch_name);$i++){
+              $branch_office = new BranchOffice();
+              $branch_office->branch_name = $request->bo_branch_name[$i];
+              $branch_office->township    = $request->bo_township[$i];
+              $branch_office->postcode    = $request->bo_post_code[$i];
+              $branch_office->city        = $request->bo_city[$i];
+              $branch_office->state_region= $request->bo_state_region[$i];
+              $branch_office->phones  = $request->bo_phone[$i];
+              $branch_office->email       = $request->bo_email[$i];
+              $branch_office->website      = $request->bo_website[$i];
+              $branch_office->accountancy_firm_info_id = $acc_firm_info->id;
+              $branch_office->save();
+          }
         }
+
 
 
             if($request->audit_firm_type_id == 1){
@@ -865,37 +872,43 @@ class AccFirmInfController extends Controller
                     $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
                     $audit_file->ppa_certificate    = json_encode($ppa_certi);
                     $audit_file->letterhead         = json_encode($letterhead);
-                    $audit_file->representative     = json_encode($representative);
+                    //$audit_file->representative     = json_encode($representative);
                     $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
                     $audit_file->deeds_memo        = json_encode($deeds_memo);
                     $audit_file->certificate_incor    = json_encode($certi_incor);
-                    $audit_file->form6_form26_form_e= json_encode($form6_26e);
-                    $audit_file->form_a1           = json_encode($form_a1);
+                    //$audit_file->form6_form26_form_e= json_encode($form6_26e);
+                    //$audit_file->form_a1           = json_encode($form_a1);
                     $audit_file->certi_or_reg      = json_encode($certi_or_reg);
                     $audit_file->save();
 
                 }
             //Audit
                 FirmOwnershipAudit::where('accountancy_firm_info_id',$id)->delete();
+                if($request->foa_name){
+                  for($i=0;$i<sizeof($request->foa_name);$i++){
+                      $firm_owner_audit = new FirmOwnershipAudit();
+                      $firm_owner_audit->name                     = $request->foa_name[$i];
+                      $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
+                      $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
+                      $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
+                      $firm_owner_audit->save();
+                  }
+                }
 
-                for($i=0;$i<sizeof($request->foa_name);$i++){
-                    $firm_owner_audit = new FirmOwnershipAudit();
-                    $firm_owner_audit->name                     = $request->foa_name[$i];
-                    $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
-                    $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
-                    $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
-                    $firm_owner_audit->save();
-                }
+
                 DirectorsOfficersAudit::where('accountancy_firm_info_id',$id)->delete();
-                for($i=0;$i<sizeof($request->do_name);$i++){
-                    $director_officer = new DirectorsOfficersAudit();
-                    $director_officer->name                     = $request->do_name[$i];
-                    $director_officer->position                 = $request->do_position[$i];
-                    $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
-                    $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
-                    $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
-                    $director_officer->save();
+                if($request->do_name){
+                  for($i=0;$i<sizeof($request->do_name);$i++){
+                      $director_officer = new DirectorsOfficersAudit();
+                      $director_officer->name                     = $request->do_name[$i];
+                      $director_officer->position                 = $request->do_position[$i];
+                      $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
+                      $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
+                      $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
+                      $director_officer->save();
+                  }
                 }
+
 
                 AuditStaff::where('accountancy_firm_info_id',$id)->delete();
                 for($i=0;$i<sizeof($request->as_part_time);$i++){
@@ -907,7 +920,7 @@ class AccFirmInfController extends Controller
                     $audit_staff->accountancy_firm_info_id = $acc_firm_info->id;
                     $audit_staff->save();
                 }
-
+                //here
                 AuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
                 for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
                     $audit_total_staff = new AuditTotalStaff();
@@ -918,6 +931,16 @@ class AccFirmInfController extends Controller
                     $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
                     $audit_total_staff->save();
                 }
+
+                // for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
+                //     $audit_total_staff = new AuditTotalStaff();
+                //     $audit_total_staff->audit_staff              = $request->ats_audit_staff[$i];
+                //     $audit_total_staff->non_audit_staff          = $request->ats_non_audit_staff[$i];
+                //     $audit_total_staff->total                    = $request->ats_total[$i];
+                //     $audit_total_staff->audit_total_staff_type_id= $request->ats_audit_total_staff_type_id[$i];
+                //     $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
+                //     $audit_total_staff->save();
+                // }
 
         }
         //Non-Audit
