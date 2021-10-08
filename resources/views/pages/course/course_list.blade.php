@@ -36,11 +36,11 @@
                                             <th class="">No</th>
                                         <th class="">Action</th>
                                             <th class="
-                                                ">Main_Course_Name</th>
+                                                ">Main Course Name</th>
                                         <th class="">
                                                 Description</th>
-                                            <th class="">Created_at</th>
-                                        <th class="">Updated_at</th>
+                                            <th class="">Created Date</th>
+                                        <th class="">Updated Date</th>
                                         </tr>
                                         </thead>
                                         <tbody id=" tbl_main_course_body" class="hoverTable text-left">
@@ -218,7 +218,7 @@
                             <label class="col-md-4 form-label">{{ __('Description') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <textarea id="sub_summernote" name="description" class="" width=" 100%"
+                                    <textarea id="sub_summernote" name="description" class="description" width=" 100%"
                                         height="auto"></textarea>
                                     <!-- <input type="text" name="description" class="form-control"  placeholder="Description" autocomplete="off" required> -->
                                 </div>
@@ -377,6 +377,7 @@
             $('#tbl_main_course').DataTable({
                 processing: true,
                 serverSide: true,
+                scrollX: true,
                 ajax: BACKEND_URL + "/get_main_course",
                 columns: [{
                         data: "id",
@@ -392,7 +393,7 @@
                     },
                     {
                         data: 'course_name',
-                        name: 'Main_Course_Name'
+                        name: 'Main Course Name'
                     },
                     {
                         data: 'course_description',
@@ -400,11 +401,11 @@
                     },
                     {
                         data: 'created_at',
-                        name: 'Created_at'
+                        name: 'Created Date'
                     },
                     {
                         data: 'updated_at',
-                        name: 'Updated_at'
+                        name: 'Updated Date'
                     }
                 ],
             });
