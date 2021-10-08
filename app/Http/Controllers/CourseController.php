@@ -146,7 +146,7 @@ class CourseController extends Controller
         $course->tution_fee = $request->tution_fee;
         $course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
-        $course->code = $request->code;
+        //$course->code = $request->code; --agga
         $course->cpa_subject_fee     = $request->cpa_subject_fee;
         $course->da_subject_fee     = $request->da_subject_fee;
         $course->requirement_id = json_encode($requirements);
