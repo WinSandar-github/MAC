@@ -201,6 +201,7 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->nrc_back         =   $nrc_back;
         $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
+        $student_info->gender           =   $request->gender;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
         $student_info->date_of_birth    =   $date_of_birth;
