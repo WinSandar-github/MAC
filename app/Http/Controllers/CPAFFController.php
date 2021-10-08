@@ -445,6 +445,13 @@ class CPAFFController extends Controller
         $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->form_type        =   $request->form_type;
+        $cpa_ff->cpa2_pass_date        =   $request->cpa2_pass_date;
+        $cpa_ff->reg_no        =   $request->reg_no;
+        $cpa_ff->country        =   $request->country;
+        $cpa_ff->government        =   $request->government;
+        $cpa_ff->exam_year        =   $request->exam_year;
+        $cpa_ff->exam_month        =   $request->exam_month;
+        $cpa_ff->roll_no        =   $request->roll_no;
         // $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
         $cpa_ff->three_years_full   =   $three_years_full;
         $cpa_ff->letter   =   $letter;              

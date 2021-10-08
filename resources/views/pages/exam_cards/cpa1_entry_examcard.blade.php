@@ -32,7 +32,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <label  style="font-weight:bold">စာမေးပွဲခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="roll_no"></label>)
+                                <label  style="font-weight:bold">ခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="roll_no"></label>)
                             </div>
                             <div>
 

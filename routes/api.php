@@ -160,7 +160,7 @@ Route::patch('/reject_cpa_two_student/{id}', 'CPATwoRegistrationController@rejec
 
 //Exam Result
 Route::resource('/exam_result','ExamResultController');
-Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResult');
+Route::get('/search_exam_result/{id}','ExamResultController@SearchExamResult');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
@@ -305,6 +305,7 @@ Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
 //cpa entry exam
 Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
 Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
+Route::post('entered_exam_list','EntryExamController@enteredExamList');
 
 //Entry Exam
 Route::post('entry_exam_filter','EntryExamController@entryExamFilter');
@@ -313,6 +314,7 @@ Route::post('/filter_entry_exam_result', 'EntryExamController@filterEntryExamRes
 //Qualified Test
 Route::post('/filter_qualified_test_result', 'QualifiedTest\QualifiedTestController@filterQTResult');
 Route::post('/fill_mark_qt', 'QualifiedTest\QualifiedTestController@fillMarkQt');
+Route::post('/current_qt_list','QualifiedTest\QualifiedTestController@currentQtList');
 
 
 

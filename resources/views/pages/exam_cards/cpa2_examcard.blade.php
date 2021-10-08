@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <label  style="font-weight:bold">စာမေးပွဲခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="cpa_roll_no"></label>)
+                                <label  style="font-weight:bold">ခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="cpa_roll_no"></label>)
                             </div>
                             <div>
 
@@ -44,7 +44,7 @@
                                 <img id="student_img" alt="preview image" width="200" height="200">
                             </div>
                             <div class="col-md-8">
-                                <div class="row">
+                                <div class="row mb-3">
                                     <div class="col-md-1 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">၁။</label>
                                     </div>
@@ -56,7 +56,7 @@
                                         <label class="col-form-label" id="name"  style="border-bottom: 1px dotted black;width:300px;" ></label>
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row mb-3">
                                     <div class="col-md-1 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">၂။</label>
                                     </div>
@@ -68,7 +68,7 @@
                                         <!-- <input type="text" name="roll_no"  id="2" class="form-control" placeholder="nrc"> -->
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row mb-3">
                                     <div class="col-md-1 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">၃။</label>
                                     </div>
@@ -80,7 +80,7 @@
 
                                     </div>
                                 </div>
-                                <div class="row">
+                                <div class="row mb-3">
                                     <div class="col-md-1 text-left">
                                         <label class="col-form-label"  style="font-weight:bold">၄။</label>
                                     </div>
@@ -90,7 +90,41 @@
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="exam_department"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
-                                </div><br/><br/><br/><br/><br/>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-1 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">၅။</label>
+                                    </div>
+                                    <div class="col-md-5 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">အခန်းအမှတ် </label>
+                                    </div>
+                                    <div class="col-md-6  text-center">
+                                        <label class="col-form-label" id="room_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-1 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">၆။</label>
+                                    </div>
+                                    <div class="col-md-5 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">အဆောင်အမှတ်</label>
+                                    </div>
+                                    <div class="col-md-6  text-center">
+                                        <label class="col-form-label" id="hall_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                    </div>
+                                </div>
+                                <div class="row mb-4">
+                                    <div class="col-md-1 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">၇။</label>
+                                    </div>
+                                    <div class="col-md-5 text-left">
+                                        <label class="col-form-label"  style="font-weight:bold">တည်နေရာ</label>
+                                    </div>
+                                    <div class="col-md-6  text-center">
+                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                    </div>
+                                </div>
                                 <!-- <div class="row">
                                     <div class="col-md-12 text-left">
                                         <label class="col-form-label">စာမေးပွဲကျင်းပမည့်</label>

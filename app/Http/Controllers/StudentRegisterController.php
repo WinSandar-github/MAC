@@ -105,7 +105,7 @@ class StudentRegisterController extends Controller
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
-
+                $student_register->batch_id = $request->batch_id;
                 // $student_register->academic_year=$request->academic_year;
                 // $student_register->direct_access_no=$request->direct_access_no;
                 // $student_register->entry_success_no=$request->entry_success_no;
@@ -155,7 +155,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->private_school_name = $request->private_school_name;
@@ -217,7 +218,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->academic_year=$request->academic_year;
@@ -459,6 +461,7 @@ class StudentRegisterController extends Controller
                 }
                 $student_register->batch_no = $request->batch_no_self;
                 $student_register->part_no = $request->part_no_self;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->personal_no = $request->personal_no_self;
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
@@ -501,7 +504,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->batch_no = $request->batch_no_private;
@@ -562,7 +566,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->batch_no = $request->batch_no_mac;
@@ -628,12 +633,13 @@ class StudentRegisterController extends Controller
     public function ‌approveExamList(Request $request)
     {
          $course = Course::where('code', $request->course_code)->first();
-        
+            
 
 
         $student_infos = ExamRegister::with('student_info','course')
                         ->where('form_type',$course->id)
                         ->where('status',1)
+                        ->orderBy('is_full_module','desc')
                         ->whereNotNull('sr_no');
                        
 
@@ -645,12 +651,22 @@ class StudentRegisterController extends Controller
             
         }
         $student_infos =  $student_infos->get(); 
+       
 
 
         return DataTables::of($student_infos)
         ->addColumn('nrc', function ($infos){
             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
             return $nrc_result;
+        })
+        ->addColumn('module', function ($infos) {
+            if ($infos->is_full_module == 1) {
+                return "Module One";
+            } else if ($infos->is_full_module == 2) {
+                return "Module Two";
+            } else {
+                return "Full Module";
+            }
         })
         ->make(true);
 

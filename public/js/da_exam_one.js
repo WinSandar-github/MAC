@@ -256,6 +256,7 @@ function printExamCard(studentId, exam_id, form_type) {
     }
 }
 
+
 function loadDAExamData() {
     var id = localStorage.getItem("student_id");
     // console.log(id);
@@ -304,7 +305,7 @@ function loadDAExamData() {
         success: function (data) {
             var exam_data = data.data;
             exam_data.forEach(function (element) {
-                // console.log('element',element);
+                console.log('element',element);
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -358,10 +359,19 @@ function loadDAExamData() {
                 }
 
                 $("#exam_department").append(element.exam_department.name);
+                if(element.is_full_module==1){
+                    $("#current_module").append("Module-1");
+                }else if(element.is_full_module==2){
+                    $("#current_module").append("Module-2");
+                } else{
+                    $("#current_module").append("All Module");
+                }
+                
 
                 let course_type_id = element.course.course_type_id;
 
                 element = element.student_info;
+                console.log('student_info',element);
 
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
@@ -424,8 +434,10 @@ function loadDAExamData() {
                     url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
                     type: 'get',
                     success: function (result) {
+                        
                         if (result.data.length != 0) {
                             result.data.forEach(function (course) {
+                                
                                 var success_year = new Date(course.updated_at);
                                 var module_name;
                                 if(course.is_full_module==1){
@@ -1015,10 +1027,11 @@ function getModuleStd() {
                 type: 'get',
                 data: "",
                 success: function (result) {
+                    console.log('result',result.data);
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
                         tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
-                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.data.total_mark + "</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.total_mark + "</td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();

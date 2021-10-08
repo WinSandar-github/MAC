@@ -451,7 +451,7 @@ function loadCPAExamData() {
                 }else{
                     $(".da_two_pass_info").show(); 
                     if(element.da_pass_certificate==null){
-                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
                     }else{
                         $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
                     }
@@ -895,7 +895,7 @@ function getCPAModuleStd() {
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
                         tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
-                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>"+result.data.total_mark+"</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>"+result.total_mark+"</td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();
