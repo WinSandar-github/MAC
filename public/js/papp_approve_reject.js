@@ -431,7 +431,7 @@ function loadRenewPAPPData(){
                 nrc    +=   element.student_info.nrc_number;                
 
                 $("#id").append(element.id);
-                document.getElementById('image').src=PDF_URL+element.student_info.image;                           
+                document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
                 $("#nrc").append(nrc);
@@ -488,6 +488,16 @@ function loadRenewPAPPData(){
                 $("#rule_confession").append(element.rule_confession);
                 $("#cpd_record").append(element.cpd_record);
                 $("#cpd_hours").append(element.cpd_hours);
+                if(element.cpaff_pass_date!=null){
+                    $("#cpaff_pass_date").append(element.cpaff_pass_date);
+                }else{
+                    $("#cpaff_pass_date").append(`<span>-</span>`);
+                }
+                if(element.papp_date!=null){
+                    $("#papp_date").append(element.papp_date);
+                }else{
+                    $("#papp_date").append(`<span>-</span>`);
+                }
                 $("#tax_free_recommendation").append(element.tax_free_recommendation);
                 $("#tax_year").append(element.tax_year);
                 $("#reg_no").append(element.reg_no);

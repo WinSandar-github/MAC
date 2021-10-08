@@ -61,7 +61,7 @@ class BatchController extends Controller
     }
     public function show($id)
     {
-        $batches = Batch::where('id',$id)->with('course')->first();
+        $batches = Batch::where('id',$id)->with('course','exams')->first();
         return response()->json([
             'data'  => $batches
         ]);return $batch;

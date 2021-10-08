@@ -256,6 +256,7 @@ function printExamCard(studentId, exam_id, form_type) {
     }
 }
 
+
 function loadDAExamData() {
     var id = localStorage.getItem("student_id");
     // console.log(id);
