@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\StudentRegister;
 use App\StudentInfo;
 use App\StudentCourseReg;
+use App\StudentJobHistroy;
 use App\Course;
 use App\ExamRegister;
 use App\Invoice;
@@ -64,16 +65,39 @@ class StudentRegisterController extends Controller
             $invoice->save();
         }
         
+        //update student information
+        $student_info=StudentInfo::find($request->student_id);
+        
         if ($request->hasfile('recommendation_letter')) {
             $file = $request->file('recommendation_letter');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $recommendation_letter = '/storage/student_info/'.$name;
-
-            $student_info=StudentInfo::find($request->student_id);
-            $student_info->recommend_letter =   $recommendation_letter;
-            $student_info->save();
+        }   
+        else{
+            $recommendation_letter =$student_info->recommend_letter;
         }
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        } else{
+            $profile_photo=$student_info->image;
+        }       
+        $student_info->recommend_letter =   $recommendation_letter;
+        $student_info->image =   $profile_photo;
+        $student_info->address          =   $request->address;
+        $student_info->current_address =   $request->current_address;
+        $student_info->phone =   $request->phone;
+        $student_info->gov_staff =   $request->gov_staff;
+        return $request->address;
+        $student_info->save();
+
+        $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
+        $student_job->office_address=$request->office_address;
+        $student_job->save();
+
         switch ($request->type) {
             case 0:
                 
@@ -414,7 +438,36 @@ class StudentRegisterController extends Controller
             $student_info->degree_certificate_image     =   $deg_certi_img;
             $student_info->degree_rank                  =   $request->degree_rank;
         }
+        //update student information
+
+        if ($request->hasfile('recommendation_letter')) {
+            $file = $request->file('recommendation_letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $recommendation_letter = '/storage/student_info/'.$name;
+        }   
+        else{
+            $recommendation_letter =$student_info->recommend_letter;
+        }
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        } else{
+            $profile_photo=$student_info->image;
+        }       
+        $student_info->recommend_letter =   $recommendation_letter;
+        $student_info->image =   $profile_photo;
+        $student_info->address          =   $request->address;
+        $student_info->current_address =   $request->current_address;
+        $student_info->phone =   $request->phone;
+        $student_info->gov_staff =   $request->gov_staff;
         $student_info->save();
+
+        $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
+        $student_job->office_address=$request->office_address;
+        $student_job->save();
 
         
         // $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
