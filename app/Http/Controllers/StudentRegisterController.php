@@ -91,7 +91,6 @@ class StudentRegisterController extends Controller
         $student_info->current_address =   $request->current_address;
         $student_info->phone =   $request->phone;
         $student_info->gov_staff =   $request->gov_staff;
-        return $request->address;
         $student_info->save();
 
         $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
