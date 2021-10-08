@@ -592,14 +592,14 @@ class CPAFFController extends Controller
             $three_years_full="";
         }
 
-        if ($request->hasfile('letter')) {
-            $file = $request->file('letter');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $letter = '/storage/cpa_ff_register/'.$name;
-        }else{
-            $letter="";
-        }
+        // if ($request->hasfile('letter')) {
+        //     $file = $request->file('letter');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $letter = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $letter="";
+        // }
         $cpa_ff  = new CPAFF();
         $cpa_ff->student_info_id  =   $request->student_info_id;
         $cpa_ff->profile_photo    =   $profile_photo;
@@ -629,8 +629,9 @@ class CPAFFController extends Controller
         $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->three_years_full   =   $three_years_full;
-        $cpa_ff->letter   =   $letter;           
-        $cpa_ff->old_card_year     =   $request->old_card_year;
+        // $cpa_ff->letter   =   $letter;           
+        // $cpa_ff->old_card_year     =   $request->old_card_year;
+        $cpa_ff->cpaff_pass_date     =   $request->cpaff_pass_date;
         $cpa_ff->renew_card_year          =   $request->renew_card_year;
         $cpa_ff->old_card_no            =   $request->old_card_no;
         $cpa_ff->old_card_no_year     =   $request->old_card_no_year;
