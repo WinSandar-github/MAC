@@ -95,6 +95,53 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="acca_cima_info" style="display:none">
+                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">ACCA / CIMA Info</h5>
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">ACCA (OR) CIMA</p>
+                                        </div>
+                                        <div class="col-md-6 text-left acca_cima">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">အောင်မြင်ထားသည့်အဆင့်</p>
+                                        </div>
+                                        <div class="col-md-6 text-left acca_cima_pass_roll_no">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">လ/ခုနှစ်</p>
+                                        </div>
+                                        <div class="col-md-6 text-left acca_cima_pass_date">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">မှတ်ပုံတင်အမှတ်</p>
+                                        </div>
+                                        <div class="col-md-6 text-left acca_cima_id_no">                                            
+                                            
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Attched Certificate</p>
+                                        </div>
+                                        <div class="col-md-6 text-left acca_cima_certificate">                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                                             
                             </div>
                         </div>

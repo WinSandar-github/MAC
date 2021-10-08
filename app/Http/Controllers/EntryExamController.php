@@ -351,8 +351,10 @@ class EntryExamController extends Controller
                 else if($infos->is_full_module == 2){
                   return "Module 2";
                 }
-                else{
+                else if($infos->is_full_module == 3){
                   return "All Module";
+                }else{
+                  return "-";
                 }
             })
             ->rawColumns(['action', 'print','exam_type','remark','module'])

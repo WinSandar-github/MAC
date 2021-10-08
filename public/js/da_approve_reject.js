@@ -208,6 +208,34 @@ function loadData() {
                     $(".da_pass_date").append(element.da_pass_date);
                     $(".da_pass_roll_number").append(element.da_pass_roll_number);
                 }
+
+                if(!element.acca_cima){
+                    $(".acca_cima_info").hide();                    
+                }else{
+                    $(".acca_cima_info").show(); 
+                    if(element.acca_cima==1){
+                        $(".acca_cima").append("ACCA");
+                    }else{
+                        $(".acca_cima").append("CIMA");
+                    }
+                    $(".acca_cima_pass_roll_no").append(element.direct_degree);
+                    $(".acca_cima_pass_date").append(element.degree_date);
+                    $(".acca_cima_id_no").append(element.degree_rank);
+                    if(element.degree_certificate_image==null){
+                        $(".acca_cima_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Available</a>`)
+                    }else{
+                        $(".acca_cima_certificate").append(`<a href='${PDF_URL + element.degree_certificate_image}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    }
+                    
+                    
+                    if(element.da_pass_certificate==null){
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Available</a>`)
+                    }else{
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(element.da_pass_date);
+                    $(".da_pass_roll_number").append(element.da_pass_roll_number);
+                }
                 
 
                 $("#university_name").append(education_history.university_name);
