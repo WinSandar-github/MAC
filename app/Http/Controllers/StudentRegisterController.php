@@ -602,14 +602,20 @@ class StudentRegisterController extends Controller
     }
 
     public function getAttendesStudent(Request $request)
-    {
-
-        $course = Course::where('code',$request->course_code)->with('course_type')->first();
+    { 
+       
+        $course = Course::where('code',$request->course_code)->with('course_type','active_batch')->first();
 
         $student_infos = StudentRegister::with('student_info','course')
-                        ->where('form_type',$course->id)
+                        ->where('batch_id', $course->active_batch[0]->id)
                         ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
 
+         if($request->module)
+        {
+            
+            $student_infos = $student_infos->where('module',$request->module);
+        }
+      
         return DataTables::of($student_infos)
 
         ->addColumn('nrc', function ($infos){
@@ -632,15 +638,24 @@ class StudentRegisterController extends Controller
     }
     public function ‌approveExamList(Request $request)
     {
-         $course = Course::where('code', $request->course_code)->first();
-            
+         $course = Course::where('code', $request->course_code)->with('active_batch')->first();
+        
+         
 
 
         $student_infos = ExamRegister::with('student_info','course')
-                        ->where('form_type',$course->id)
+                        ->where('batch_id', $course->active_batch[0]->id)
                         ->where('status',1)
                         ->orderBy('is_full_module','desc')
                         ->whereNotNull('sr_no');
+         
+        
+            if($request->module)
+            {
+             
+                $student_infos = $student_infos->where('is_full_module',$request->module);
+            }
+                      
                        
 
         if($request->grade){
