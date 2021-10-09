@@ -43,7 +43,7 @@ function loadEntryDetail(id) {
         url: BACKEND_URL + "/exam_register/" + id,
         success: function (data) {
             var exam_data = data.data;
-            
+
             exam_data.forEach(function (element) {
                 console.log('exam_data',exam_data)
                 // if (element.exam_type_id == 0) {
@@ -234,6 +234,7 @@ function PrintExamCard() {
     window.print();
     document.body.innerHTML = backup;
 }
+
 
 
 

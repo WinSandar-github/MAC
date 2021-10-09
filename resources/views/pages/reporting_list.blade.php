@@ -670,7 +670,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <button type="button" class="btn btn-block btn-color btn-flat p-3" name="sr_personal_btn">
-                                    တက်ရောက်ခွင့်ရသူများနှင့်ကိုယ်ပိုင်နံပါတ် ထုတ်ပြန်ခြင်း
+                                    မှတ်ပုံတင်ထားသူများစာရင်း ထုတ်ပြန်ခြင်း
                                 </button>
                             </div>
                             <div class="col-md-6">
@@ -680,7 +680,7 @@
                             </div>
                         </div>
                         <div class="card card-stats arrow-up-right" id="generate_sr_personal_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
-                            <h5 class="card-header">တက်ရောက်ခွင့်ရသူများနှင့်ကိုယ်ပိုင်နံပါတ် ထုတ်ပြန်ခြင်း</h5><hr class="header_hr">
+                            <h5 class="card-header">မှတ်ပုံတင်ထားသူများစာရင်း ထုတ်ပြန်ခြင်း</h5><hr class="header_hr">
                             <div class="card-body ">
                                 {{-- <div class="row">
                                     <div class="col-md-6">

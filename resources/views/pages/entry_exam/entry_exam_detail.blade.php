@@ -536,7 +536,7 @@
         var url = location.pathname;
         var id = url.substring(url.lastIndexOf('/')+1);
 
-        loadEntryDetail(id);
+        loadEntryDetail(id);cpap
 
 
 
