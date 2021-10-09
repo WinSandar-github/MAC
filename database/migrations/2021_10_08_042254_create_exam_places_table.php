@@ -21,7 +21,7 @@ class CreateExamPlacesTable extends Migration
             $table->integer('start');
             $table->integer('end');
             $table->unsignedBigInteger('exam_id');
-            $table->timestamps();  
+            $table->timestamps();
         });
     }
 
