@@ -31,9 +31,9 @@ class CreateExamRegisterTable extends Migration
             $table->integer('last_ans_exam_no')->nullable();
             $table->integer('last_ans_module')->nullable();
             $table->string('exam_department')->nullable();
-            $table->string('place')->nullable();
-            $table->string('room')->nullable();
-            $table->string('building')->nullable();
+            $table->string('exam_place')->nullable();
+            $table->string('exam_room')->nullable();
+            $table->string('exam_building')->nullable();
             $table->string('total_mark')->nullable();
 
             

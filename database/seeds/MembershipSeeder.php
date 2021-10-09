@@ -75,7 +75,7 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>NULL
             ),
             array(
-                'membership_name' => 'CPA (Full Fledged)',
+                'membership_name' => 'CPAFF',
                 'requirement'     => '<p>အသက် ၂၁ နှစ်ပြည့်ပြီးသူ</p>
                                       <p>CPA Part-2 စာမေးပွဲအောင်မြင်သူ (သို့မဟုတ်) အရည်အချင်းစစ်စာမေးပွဲအောင်မြင်ပြီးသူ</p>
                                       <p>သတ်မှတ်အလုပ်သင်လုပ်သက်ပြည့်မြောက်ပြီးသူ</p>
