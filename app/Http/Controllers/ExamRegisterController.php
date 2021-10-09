@@ -246,6 +246,13 @@ class ExamRegisterController extends Controller
                                 </button>
                             </div>";
                 });
+                $datatable = $datatable->addColumn('exam_room', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                                    <li class='fa fa-edit fa-sm'></li>
+                                </button>
+                            </div>";
+                });
             }
         } else if ($request->course_code == 2) {
             $datatable = $datatable->addColumn('action', function ($infos) {
@@ -260,6 +267,13 @@ class ExamRegisterController extends Controller
                     return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-sm' onclick='printExamCard($infos->student_info_id,$infos->id,$infos->form_type)'>
                                     <li class='fa fa-print fa-sm'></li>
+                                </button>
+                            </div>";
+                });
+                $datatable = $datatable->addColumn('exam_room', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                                    <li class='fa fa-edit fa-sm'></li>
                                 </button>
                             </div>";
                 });
@@ -280,6 +294,13 @@ class ExamRegisterController extends Controller
                                 </button>
                             </div>";
                 });
+                $datatable = $datatable->addColumn('exam_room', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                                    <li class='fa fa-edit fa-sm'></li>
+                                </button>
+                            </div>";
+                });
             }
         } else {
             $datatable = $datatable->addColumn('action', function ($infos) {
@@ -297,11 +318,18 @@ class ExamRegisterController extends Controller
                                 </button>
                             </div>";
                 });
+                $datatable = $datatable->addColumn('exam_room', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                                    <li class='fa fa-edit fa-sm'></li>
+                                </button>
+                            </div>";
+                });
             }
         }
 
         if ($request->status == 1) {
-            $datatable = $datatable->rawColumns(['action', 'print', 'exam_type', 'remark', 'status'])->make(true);
+            $datatable = $datatable->rawColumns(['action', 'print', 'exam_type', 'remark', 'status','exam_room'])->make(true);
         } else {
             $datatable = $datatable->rawColumns(['action', 'exam_type', 'remark', 'status'])->make(true);
         }
