@@ -242,11 +242,11 @@ class CourseController extends Controller
                     return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-xs' onclick='showCourseInfo($course->id)'>
                                     <li class='fa fa-edit fa-sm'></li>
-                                </button>
-                                 <button type='button' class='btn btn-danger btn-xs' onclick='deleteCourseInfo(\"$course->name\", $course->id)'>
-                                    <li class='fa fa-trash fa-sm'></li>
-                                </button>
-                            </div>";
+                                </button>";
+                            //      <button type='button' class='btn btn-danger btn-xs' onclick='deleteCourseInfo(\"$course->name\", $course->id)'>
+                            //         <li class='fa fa-trash fa-sm'></li>
+                            //     </button>
+                            // </div>";
                 })
                 ->addColumn('description', function ($course) {
                     return $course->course_type ? Str::limit($course->course_type->course_description, 50, '...') : '';
