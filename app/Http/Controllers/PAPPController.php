@@ -7,6 +7,7 @@ use App\Papp;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
+use App\CPAFF;
 use App\Invoice;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -71,7 +72,8 @@ class PAPPController extends Controller
             }
 
         }else{
-            $degree = null;
+            $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+            $degree = $cpaff_data->foreign_degree;
         }
 
         if ($request->hasfile('cpa_ff_recommendation')) {
@@ -170,7 +172,7 @@ class PAPPController extends Controller
         $papp->profile_photo                =   $profile_photo;
         $papp->cpa                          =   $cpa;
         $papp->ra                           =   $ra;
-        $papp->foreign_degree               =   json_encode($degree);
+        $papp->foreign_degree               =   $degree;
         $papp->degree_name                  =   json_encode($request->degree_name);
         $papp->degree_pass_year             =   json_encode($request->degree_pass_year);
         $papp->papp_date                    =   $request->papp_date;
@@ -297,7 +299,8 @@ class PAPPController extends Controller
             }
 
         }else{
-            $degree = null;
+            $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+            $degree = $cpaff_data->foreign_degree;
         }
 
         if ($request->hasfile('cpa_ff_recommendation')) {
@@ -396,7 +399,7 @@ class PAPPController extends Controller
         $papp->profile_photo                =   $profile_photo;
         $papp->cpa                          =   $cpa;
         $papp->ra                           =   $ra;
-        $papp->foreign_degree               =   json_encode($degree);
+        $papp->foreign_degree               =   $degree;
         $papp->degree_name                  =   json_encode($request->degree_name);
         $papp->degree_pass_year             =   json_encode($request->degree_pass_year);
         $papp->papp_date                    =   $request->papp_date;
