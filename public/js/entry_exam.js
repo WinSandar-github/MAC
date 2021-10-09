@@ -163,7 +163,7 @@ function loadEntryDetail(id) {
                 //show Exam Card Data
                 document.getElementById('student_img').src = PDF_URL + student_info.image;
 
-                $('#exam_batch_no').text(element.batch.number);
+                $('#exam_batch_no').text(mm2en(element.batch.number.toString()));
                 $('#exam_roll_no').text(element.student_info.cpersonal_no)
                 $('#exam_student_name').text(student_info.name_mm);
                 $('#exam_student_nrc').text(student_info.nrc_state_region + "/" + student_info.nrc_township + "(" + student_info.nrc_citizen + ")" + student_info.nrc_number);

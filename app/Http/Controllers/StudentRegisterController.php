@@ -96,7 +96,7 @@ class StudentRegisterController extends Controller
         $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
         $student_job->office_address=$request->office_address;
         $student_job->save();
-
+        //update student information end....
         switch ($request->type) {
             case 0:
                 
