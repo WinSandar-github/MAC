@@ -159,14 +159,14 @@ class CPAFFController extends Controller
                 $three_years_full="";
             }
 
-            if ($request->hasfile('letter')) {
-                $file = $request->file('letter');
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $letter = '/storage/cpa_ff_register/'.$name;
-            }else{
-                $letter="";
-            }
+            // if ($request->hasfile('letter')) {
+            //     $file = $request->file('letter');
+            //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            //     $letter = '/storage/cpa_ff_register/'.$name;
+            // }else{
+            //     $letter="";
+            // }
 
             if($request->hasfile('degree_file'))
             {
@@ -208,7 +208,6 @@ class CPAFFController extends Controller
             $cpa_ff->total_hours      =   $request->total_hours;
             // $cpa_ff->passport_image   =   $passport_image;
             $cpa_ff->three_years_full   =   $three_years_full;
-            $cpa_ff->letter   =   $letter;
             $cpa_ff->status           =  0;
 
             //save to cpaff
@@ -228,7 +227,8 @@ class CPAFFController extends Controller
             $cpa_ff->nrc_number        =   $request->nrc_number;
             $cpa_ff->father_name_mm    =   $request->father_name_mm;
             $cpa_ff->father_name_eng   =   $request->father_name_eng;            
-            $cpa_ff->is_renew   =   $request->is_renew;
+            $cpa_ff->is_renew          =   $request->is_renew;
+            $cpa_ff->self_confession   =   $request->self_confession;
             $cpa_ff->save();
 
             //save to std info
@@ -585,14 +585,14 @@ class CPAFFController extends Controller
             $three_years_full="";
         }
 
-        if ($request->hasfile('letter')) {
-            $file = $request->file('letter');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $letter = '/storage/cpa_ff_register/'.$name;
-        }else{
-            $letter="";
-        }
+        // if ($request->hasfile('letter')) {
+        //     $file = $request->file('letter');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $letter = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $letter="";
+        // }
         $cpa_ff  = new CPAFF();
         $cpa_ff->student_info_id  =   $request->student_info_id;
         $cpa_ff->profile_photo    =   $profile_photo;
@@ -622,7 +622,7 @@ class CPAFFController extends Controller
         $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->three_years_full   =   $three_years_full;
-        $cpa_ff->letter   =   $letter;           
+        // $cpa_ff->letter   =   $letter;           
         $cpa_ff->old_card_year     =   $request->old_card_year;
         $cpa_ff->renew_card_year          =   $request->renew_card_year;
         $cpa_ff->old_card_no            =   $request->old_card_no;
@@ -630,6 +630,7 @@ class CPAFFController extends Controller
         $cpa_ff->old_card_file        =   $request->old_card_file;
         $cpa_ff->is_convicted        =   $request->is_convicted;  
         $cpa_ff->is_renew   =   $request->is_renew;
+        $cpa_ff->self_confession = $request->self_confession_renew;
         $cpa_ff->save();
         
         
@@ -849,7 +850,13 @@ class CPAFFController extends Controller
                             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                             return $nrc_result;
                         })
-
+                        ->addColumn('self', function ($infos){
+                            if($infos->self_confession == 1){
+                                return "ဝန်ခံသည်";
+                            }else{
+                                return "ဝန်မခံပါ";
+                            }
+                        })
                         ->addColumn('status', function ($infos){
                             if($infos->status == 0){
                               return "PENDING";
@@ -870,9 +877,7 @@ class CPAFFController extends Controller
                               return "QT Pass";
                             }
                         })
-
-
-                        ->rawColumns(['action','nrc','degree','status'])
+                        ->rawColumns(['action','nrc','degree','status','self'])
                         ->make(true);
             }
 }

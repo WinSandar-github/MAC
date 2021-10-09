@@ -47,6 +47,7 @@
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Registration Number</th>
+                                            <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                             <th class="bold-font-weight" >Degree</th>
                                             <th class="bold-font-weight" >Status</th>
 
@@ -65,6 +66,7 @@
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Registration Number</th>
+                                            <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                             <th class="bold-font-weight" >Degree</th>
                                             <th class="bold-font-weight" >Status</th>
 
@@ -83,6 +85,7 @@
                                             <th class="bold-font-weight" >Student Name</th>
                                             <th class="bold-font-weight" >NRC</th>
                                             <th class="bold-font-weight" >Registration Number</th>
+                                            <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                             <th class="bold-font-weight" >Degree</th>
                                             <th class="bold-font-weight" >Status</th>
 
@@ -118,6 +121,7 @@
               {data: 'student_info.name_mm', name: 'Student Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'self', name: 'Self Confession'},
               {data: 'degree', name: 'Degree'},
               {data: 'status', name: 'Status'},
 
@@ -138,6 +142,7 @@
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+            {data: 'self', name: 'Self Confession'},
             {data: 'degree', name: 'Degree'},
             {data: 'status', name: 'Status'},
           ],
@@ -157,6 +162,7 @@
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+            {data: 'self', name: 'Self Confession'},
             {data: 'degree', name: 'Degree'},
             {data: 'status', name: 'Status'},
           ],
