@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exam;
 use Illuminate\Http\Request;
 use App\ExamType;
+use App\ExamRegister;
 
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -141,6 +142,19 @@ class ExamController extends Controller
         $exam_types = ExamType::get();
         return response()->json([
             'data' => $exam_types
+        ],200);
+    }
+
+    //Create Exam Room for individual student
+    public function createExamRoom(Request $request)
+    {
+        $exam_register = ExamRegister::where('id',$request->id)->first();
+        $exam_register->exam_room = $request->exam_room;
+        $exam_register->exam_building = $request->exam_building;
+        $exam_register->exam_place    = $request->exam_place;
+        $exam_register->save();
+        return response()->json([
+            'message' => "Exam Place Successfully Added"
         ],200);
     }
 }
