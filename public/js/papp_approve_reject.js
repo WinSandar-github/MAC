@@ -223,7 +223,7 @@ function loadPAPPData(){
                 nrc    +=   element.student_info.nrc_number;                
 
                 $("#id").append(element.id);
-                document.getElementById('image').src=PDF_URL+element.student_info.image;                           
+                document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
                 $("#nrc").append(nrc);
@@ -237,7 +237,7 @@ function loadPAPPData(){
                 $("#phone").append(element.student_info.phone);
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
-                $("#image").append(element.student_info.image);
+                $("#profile_photo").append(element.profile_photo);
                 $("#registration_no").append(element.student_register.personal_no);
 
                 if(element.student_info.gov_staff == 1){
@@ -268,12 +268,52 @@ function loadPAPPData(){
                     
                 }
 
+                // if(element.cpa!=null){
+                //     $(".cpa_file").append(`<a href='${PDF_URL+element.cpa}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                // }else {
+                //     $(".cpa_file").append(`<span>-</span>`);
+                // }
+
+                // if(element.ra!=null){
+                //     $(".ra_file").append(`<a href='${PDF_URL+element.ra}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                // }else {
+                //     $(".ra_file").append(`<span>-</span>`);
+                // }
+
+                // if(element.foreign_degree!=null && element.foreign_degree!="null"){                   
+                //     //removeBracketed(element.foreign_degree,"foreign_degree");
+                //     let foreign_degree = JSON.parse(element.foreign_degree);
+                //     $.each(foreign_degree, function (fileCount, fileName) {
+                //         $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                //     })
+                // }else {
+                //     $(".foreign_degree_file").append(`<span>-</span>`);
+                // }
+
+                if(element.mpa_mem_card_front!=null){
+                    $(".mpa_mem_card_file").append(`<a href='${PDF_URL+element.mpa_mem_card_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".mpa_mem_card_file").append(`<span>-</span>`);
+                }
+
+                if(element.mpa_mem_card_back!=null){
+                    $(".mpa_mem_card_back_file").append(`<a href='${PDF_URL+element.mpa_mem_card_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".mpa_mem_card_back_file").append(`<span>-</span>`);
+                }
+
+                if(element.mpa_mem_card_back!=null){
+                    $(".cpaff_registeration_card_file").append(`<a href='${PDF_URL+element.cpa_ff_recommendation}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".cpaff_registeration_card_file").append(`<span>-</span>`);
+                }
+
                 $("#use_firm").append(use_firm);
                 $("#firm_name").append(element.firm_name);
                 $("#firm_type").append(element.firm_type);
                 $("#firm_step").append(element.firm_step);
                 $("#staff_firm_name").append(element.staff_firm_name);
-                $("#cpa_ff_recommendation").append(element.cpa_ff_recommendation);
+                // $("#cpa_ff_recommendation").append(element.cpa_ff_recommendation);
                 $("#recommendation_183").append(element.recommendation_183);
                 $("#not_fulltime_recommendation").append(element.cpd_record);
                 $("#work_in_myanmar_confession").append(element.work_in_myanmar_confession);
@@ -283,7 +323,13 @@ function loadPAPPData(){
                 $("#tax_free_recommendation").append(element.tax_free_recommendation);
                 $("#tax_year").append(element.tax_year);
                 $("#reg_no").append(element.reg_no);
-                $("#status").append(status);                
+                $("#status").append(status); 
+                $("#cpa_batch_no").append(element.cpa_batch_no);
+                $("#cpaff_address").append(element.address);
+                $("#cpaff_phone").append(element.phone);
+                $("#contact_mail").append(element.contact_mail);               
+                $("#cpaff_pass_date").append(element.cpaff_pass_date);                
+                $("#papp_date").append(element.papp_date);                
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -308,30 +354,30 @@ function loadPAPPData(){
                 cpa_modal=element.cpa;
                 ra_modal=element.ra;
                 foreign_modal=element.foreign_degree;
-                cpaff_recomm_modal=element.cpa_ff_recommendation;
+                // cpaff_recomm_modal=element.cpa_ff_recommendation;
                 recomm_183_modal=element.recommendation_183;
                 not_fulltime_recomm_modal=element.not_fulltime_recommendation;
                 work_in_myanmar_modal=element.work_in_myanmar_confession;
                 rule_confession_modal=element.rule_confession;
                 cpd_record_modal=element.cpd_record;
                 tax_free_modal=element.tax_free_recommendation;
-                mpa_mem_card_front_modal=PDF_URL+element.mpa_mem_card_front;
-                mpa_mem_card_back_modal=PDF_URL+element.mpa_mem_card_back;
+                // mpa_mem_card_front_modal=PDF_URL+element.mpa_mem_card_front;
+                // mpa_mem_card_back_modal=PDF_URL+element.mpa_mem_card_back;
                 attached_modal=element.student_education_histroy.certificate;
                 letter_modal=PDF_URL+element.letter;
 
                 document.getElementById('cpa').src=PDF_URL+cpa_modal;
                 document.getElementById('ra').src=PDF_URL+ra_modal;
                 document.getElementById('foreign_degree').src=PDF_URL+foreign_modal;
-                document.getElementById('cpaff_recomm').src=PDF_URL+cpaff_recomm_modal;
+                // document.getElementById('cpaff_recomm').src=PDF_URL+cpaff_recomm_modal;
                 document.getElementById('recomm_183').src=PDF_URL+recomm_183_modal;
                 document.getElementById('not_fulltime_recomm').src=PDF_URL+not_fulltime_recomm_modal;
                 document.getElementById('work_in_myanmar').src=PDF_URL+work_in_myanmar_modal;
                 document.getElementById('rule_confession').src=PDF_URL+rule_confession_modal;
                 document.getElementById('cpd_record').src=PDF_URL+cpd_record_modal;
                 document.getElementById('tax_free').src=PDF_URL+tax_free_modal;
-                document.getElementById('mpa_mem_card_front').src=mpa_mem_card_front_modal;
-                document.getElementById('mpa_mem_card_back').src=mpa_mem_card_back_modal;                
+                // document.getElementById('mpa_mem_card_front').src=mpa_mem_card_front_modal;
+                // document.getElementById('mpa_mem_card_back').src=mpa_mem_card_back_modal;                
                 document.getElementById('attached_file').src=PDF_URL+attached_modal;
                 document.getElementById('letter').src=letter_modal;
             })
