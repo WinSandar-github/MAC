@@ -308,6 +308,12 @@ function loadPAPPData(){
                     $(".cpaff_registeration_card_file").append(`<span>-</span>`);
                 }
 
+                if(element.cpd_record!=null){
+                    $(".cpd_record_file").append(`<a href='${PDF_URL+element.cpd_record}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".cpd_record_file").append(`<span>-</span>`);
+                }
+
                 $("#use_firm").append(use_firm);
                 $("#firm_name").append(element.firm_name);
                 $("#firm_type").append(element.firm_type);
@@ -370,11 +376,11 @@ function loadPAPPData(){
                 document.getElementById('ra').src=PDF_URL+ra_modal;
                 document.getElementById('foreign_degree').src=PDF_URL+foreign_modal;
                 // document.getElementById('cpaff_recomm').src=PDF_URL+cpaff_recomm_modal;
-                document.getElementById('recomm_183').src=PDF_URL+recomm_183_modal;
-                document.getElementById('not_fulltime_recomm').src=PDF_URL+not_fulltime_recomm_modal;
-                document.getElementById('work_in_myanmar').src=PDF_URL+work_in_myanmar_modal;
-                document.getElementById('rule_confession').src=PDF_URL+rule_confession_modal;
-                document.getElementById('cpd_record').src=PDF_URL+cpd_record_modal;
+                // document.getElementById('recomm_183').src=PDF_URL+recomm_183_modal;
+                // document.getElementById('not_fulltime_recomm').src=PDF_URL+not_fulltime_recomm_modal;
+                // document.getElementById('work_in_myanmar').src=PDF_URL+work_in_myanmar_modal;
+                // document.getElementById('rule_confession').src=PDF_URL+rule_confession_modal;
+                // document.getElementById('cpd_record').src=PDF_URL+cpd_record_modal;
                 document.getElementById('tax_free').src=PDF_URL+tax_free_modal;
                 // document.getElementById('mpa_mem_card_front').src=mpa_mem_card_front_modal;
                 // document.getElementById('mpa_mem_card_back').src=mpa_mem_card_back_modal;                

@@ -230,28 +230,28 @@
                                 </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Passed Date</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="cpaff_pass_date"></span>
                                     </div>
                                 </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">PAPP Submit Date</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="papp_date"></span>
                                     </div>
                                 </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">No Use Firm Name</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="use_firm"></span>
                                     </div>
                                 </div>
@@ -261,67 +261,37 @@
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Firm Name</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="firm_name"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Firm Type</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="firm_type"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2"style="font-weight:bold">Firm Level</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="firm_step"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Staff Firm Name</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="staff_firm_name"></span>
                                     </div>
                                 </div>
-
-                                <!--CPA FF Recommendation -->
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Registration Card</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" id="cpaff_rec_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpa_ff_recommendation_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>
-                                <!--CPA FF Recommendation Modal-->
-                                <div id="cpa_ff_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
-                                            <h5 class="modal-title text-center">CPA(Full-Fledged) Registration Card</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="cpaff_recomm"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>--}}
 
                                 <!--CPA FF Recommendation Modal-->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -349,127 +319,6 @@
                                     </div>
                                     </div>
                                 </div>
-
-                                <!--Recommendation (183)Days -->
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Recommendation (183)Days</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button"  id="rec_183_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#recommendation_183_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>
-                                 <!--Recommendation (183)Days Modal-->
-                                <div id="recommendation_183_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
-                                            <h5 class="modal-title text-center">183 Days Recommendation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="recomm_183"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>--}}
-
-                                <!--No Fulltime Recommendation-->
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">No Fulltime Recommendation</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" id="ft_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#not_fulltime_recommendation_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>
-                                 <!--No Fulltime Recommendation Modal-->
-                                <div id="not_fulltime_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
-                                            <h5 class="modal-title text-center">No Fulltime Recommendation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="not_fulltime_recomm"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>--}}
-
-                                <!--Work In Myanmar Confession-->
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Work In Myanmar Confession</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" id="mm_conf_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#work_in_myanmar_confession_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>
-                                 <!--Work In Myanmar Confession Modal-->
-                                <div id="work_in_myanmar_confession_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
-                                            <h5 class="modal-title text-center">Work In Myanmar Confession</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="work_in_myanmar"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>--}}
-
-                                <!--Rule Confession-->
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Rule Confession</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" id="rule_conf_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#rule_confession_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>
-                                 <!--Rule Confession Modal-->
-                                <div id="rule_confession_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
-                                            <h5 class="modal-title text-center">Rule Confession</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="rule_confession"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>--}}
-
                                 <!--CPD Record Modal-->
                                 {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6">
@@ -500,12 +349,38 @@
                                   </div>
                                 </div>--}}
 
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPD Record</p>
+                                    </div>
+                                    <div class="col-md-6 text-left cpd_record_file">
+                                        <!-- <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_back_Modal"><i class="fa fa-paperclip"></i></button> -->
+                                    </div>
+                                </div>
+                                <!--MPA Member Card back Modal -->
+                                <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">CPD Record</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
+                                            <embed id="cpd_record" width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
                                 <!--CPD Hours-->
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">CPD Hours</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="cpd_hours"></span>
                                     </div>
                                 </div>  
@@ -563,90 +438,29 @@
                                     </div>
                                 </div>
 
-
-                                <!--Tax Free Recommendation-->
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">Tax Free Recommendation</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" id="tax_free_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#tax_free_recommendation_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>
-                                 <!--Tax Free Recommendation Modal-->
-                                <div id="tax_free_recommendation_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
-                                            <h5 class="modal-title text-center">Tax Free Recommendation</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="tax_free"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>--}}
-
-                                <!--Letter-->
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
-                                        <p class="ml-2" style="font-weight:bold">ကိုယ်တိုင်ဝန်ခံချက်</p>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <button type="button" id="letter_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#letter_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>
-                                 <!--Letter Modal-->
-                                <div id="letter_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
-                                            <h5 class="modal-title text-center">ကိုယ်တိုင်ဝန်ခံချက်</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="letter"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                  </div>
-                                </div>--}}
-
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Tax Year</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="tax_year"></span>
                                     </div>
                                 </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">PAPP Registeration No</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="reg_no"></span>
                                     </div>
                                 </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Status</p>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 text-left">
                                         <span id="status"></span>
                                     </div>
                                 </div>
