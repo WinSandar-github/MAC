@@ -349,8 +349,7 @@
                                     </div>
                                     </div>
                                 </div>
-
-                                <!--Recommendation (183)Days -->
+                                <!--CPD Record Modal-->
                                 {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Recommendation (183)Days</p>
@@ -359,8 +358,8 @@
                                         <button type="button"  id="rec_183_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#recommendation_183_Modal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                 </div>
-                                 <!--Recommendation (183)Days Modal-->
-                                <div id="recommendation_183_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                 <!--CPD Record Modal-->
+                                <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -464,41 +463,37 @@
                                         </div>
                                         <div class="modal-body">
                                             <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="rule_confession"  width="100%" height="500px">
+                                            <embed id="cpd_record"  width="100%" height="500px">
                                         </div>
                                     </div>
                                   </div>
                                 </div>--}}
 
-                                <!--CPD Record Modal-->
-                                {{--<div class="row m-2 mt-3 border-bottom">
+                                <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">CPD Record</p>
                                     </div>
-                                    <div class="col-md-6 text-left">
-                                        <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpd_record_Modal"><i class="fa fa-paperclip"></i></button>
+                                    <div class="col-md-6 text-left cpd_record_file">
+                                        <!-- <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_back_Modal"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
-                                 <!--CPD Record Modal-->
+                                <!--MPA Member Card back Modal -->
                                 <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-lg">
+                                    <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
-                                    <div class="modal-header">
-                                            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button> -->
+                                        <div class="modal-header">
                                             <h5 class="modal-title text-center">CPD Record</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <!-- <img id="cpa" class="img-fluid" /> -->
-                                            <embed id="cpd_record"  width="100%" height="500px">
+                                            <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
+                                            <embed id="cpd_record" width="100%" height="500px">
                                         </div>
                                     </div>
-                                  </div>
-                                </div>--}}
+                                    </div>
+                                </div>
 
                                 <!--CPD Hours-->
                                 <div class="row m-2 mt-3 border-bottom">

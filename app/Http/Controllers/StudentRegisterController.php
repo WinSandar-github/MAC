@@ -96,7 +96,7 @@ class StudentRegisterController extends Controller
         $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
         $student_job->office_address=$request->office_address;
         $student_job->save();
-
+        //update student information end....
         switch ($request->type) {
             case 0:
                 
@@ -654,14 +654,20 @@ class StudentRegisterController extends Controller
     }
 
     public function getAttendesStudent(Request $request)
-    {
-
-        $course = Course::where('code',$request->course_code)->with('course_type')->first();
+    { 
+       
+        $course = Course::where('code',$request->course_code)->with('course_type','active_batch')->first();
 
         $student_infos = StudentRegister::with('student_info','course')
-                        ->where('form_type',$course->id)
+                        ->where('batch_id', $course->active_batch[0]->id)
                         ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
 
+         if($request->module)
+        {
+            
+            $student_infos = $student_infos->where('module',$request->module);
+        }
+      
         return DataTables::of($student_infos)
 
         ->addColumn('nrc', function ($infos){
@@ -684,15 +690,24 @@ class StudentRegisterController extends Controller
     }
     public function ‌approveExamList(Request $request)
     {
-         $course = Course::where('code', $request->course_code)->first();
-            
+         $course = Course::where('code', $request->course_code)->with('active_batch')->first();
+        
+         
 
 
         $student_infos = ExamRegister::with('student_info','course')
-                        ->where('form_type',$course->id)
+                        ->where('batch_id', $course->active_batch[0]->id)
                         ->where('status',1)
                         ->orderBy('is_full_module','desc')
                         ->whereNotNull('sr_no');
+         
+        
+            if($request->module)
+            {
+             
+                $student_infos = $student_infos->where('is_full_module',$request->module);
+            }
+                      
                        
 
         if($request->grade){
@@ -738,5 +753,31 @@ class StudentRegisterController extends Controller
         return response()->json([
             'data' => $student
         ],200);
+    }
+
+    //show data on mac student Application list
+    public function getStudentAppList(Request $request)
+    {
+        
+        $course = Course::where('code',$request->course_code)->with('active_batch','course_type')->first();
+
+        $student_infos = StudentCourseReg::with('student_info')
+                        ->where('batch_id',$course->active_batch[0]->id)
+                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
+                    
+        return DataTables::of($student_infos)
+
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        
+        ->rawColumns(['action','nrc'])
+        ->make(true);
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
+
+
     }
 }

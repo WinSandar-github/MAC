@@ -19,7 +19,7 @@
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                            <center>
+                                <center>
                                     <img id="profile_photo" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->

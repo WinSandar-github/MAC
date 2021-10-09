@@ -377,7 +377,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <label  style="font-weight:bold">ခုံနံပါတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="exam_roll_no"></label>)
+                                <label  style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="exam_roll_no"></label>)
                             </div>
                             {{--<div class="col-lg-8 col-md-8 col-sm-8"> </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 d-md-flex justify-content-md-end">
@@ -462,35 +462,20 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-md-3 text-center">
-                                        <label class="col-form-label"  style="font-weight:bold">၁။</label>
-                                    </div>
-                                    <div class="col-md-3 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">အခန်းအမှတ် </label>
-                                    </div>
+                                <div class="row mb-3">
+                                    <label class="col-md-6 col-form-label text-left" style="font-weight:bold; padding-left: 150px;">အခန်းအမှတ်</label>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="room_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3 text-center">
-                                        <label class="col-form-label"  style="font-weight:bold">၂။</label>
-                                    </div>
-                                    <div class="col-md-3 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">အဆောင်အမှတ်</label>
-                                    </div>
+                                <div class="row mb-4">
+                                    <label class="col-md-6 col-form-label text-left" style="font-weight:bold; padding-left: 150px;">အဆောင်အမှတ်</label>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="hall_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div>
                                 <div class="row mb-4">
-                                    <div class="col-md-3 text-center">
-                                        <label class="col-form-label"  style="font-weight:bold">၃။</label>
-                                    </div>
-                                    <div class="col-md-3 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">တည်နေရာ</label>
-                                    </div>
+                                    <label class="col-md-6 col-form-label text-left" style="font-weight:bold; padding-left: 150px;">တည်နေရာ</label>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
@@ -499,17 +484,18 @@
                         </div>  </br>
                         <div class="row">
                             <div class="col-md-2">
-                                <label class="col-form-label"  style="font-weight:bold">မှတ်ချက် ။</label>
+                                <label class="col-form-label"  style="font-weight:bold">မှတ်ချက် ။ <span class="pull-right" >(၁)</span></label>
                             </div>
                             <div class="col-md-10 text-left">
-                                <label class="col-form-label"  style="font-weight:bold">(၁) ဤလက်မှတ်နှင့် နိုင်ငံသားစိစစ်ရေးကတ်ပြားပါရှိမှသာလျှင် စာမေးပွဲဖြေဆိုခွင့်ပြုမည်။</label>
+                                <label class="col-form-label"  style="font-weight:bold"> ဤလက်မှတ်နှင့် နိုင်ငံသားစိစစ်ရေးကတ်ပြားပါရှိမှသာလျှင် စာမေးပွဲဖြေဆိုခွင့်ပြုမည်။</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-2">
+                            <span class="pull-left" style="font-weight:bold; padding-left:96px">(၂)</span>
                             </div>
                             <div class="col-md-10 text-left">
-                                <label class="col-form-label"  style="font-weight:bold">(၂) စာမေးပွဲစတင်ကျင်းပသည့်အချိန်မှစ၍ နာရီဝက်ကျော်နောက်ကျပါက စာမေးပွဲဖြေဆိုခွင့်ပြုမည်မဟုတ်ပါ။ စာမေးပွဲစည်းကမ်း အကျဉ်းချုပ်ကို ကျောဖက်တွင် ဖော်ပြထားပါသည်။</label>
+                                <label class="col-form-label"  style="font-weight:bold"> စာမေးပွဲစတင်ကျင်းပသည့်အချိန်မှစ၍ နာရီဝက်ကျော်နောက်ကျပါက စာမေးပွဲဖြေဆိုခွင့်ပြုမည်မဟုတ်ပါ။ စာမေးပွဲစည်းကမ်း အကျဉ်းချုပ်ကို ကျောဖက်တွင် ဖော်ပြထားသည်။</label>
                             </div>
                         </div><br/><br/><br/><br/><br/><br/>
                         <div class="row">
@@ -536,7 +522,7 @@
         var url = location.pathname;
         var id = url.substring(url.lastIndexOf('/')+1);
 
-        loadEntryDetail(id);
+        loadEntryDetail(id);cpap
 
 
 
