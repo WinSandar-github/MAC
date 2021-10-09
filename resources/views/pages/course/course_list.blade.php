@@ -295,7 +295,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <input type="text" name="cpa_subject_fee" class="form-control" placeholder="CPA One Subject Fee"
-                                           autocomplete="off" required>
+                                           autocomplete="off" >
                                 </div>
                             </div>
                         </div>
@@ -305,7 +305,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <input type="text" name="da_subject_fee" class="form-control" placeholder="DA One Subject Fee"
-                                           autocomplete="off" required>
+                                           autocomplete="off" >
                                 </div>
                             </div>
                         </div>
