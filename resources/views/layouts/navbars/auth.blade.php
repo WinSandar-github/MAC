@@ -211,16 +211,16 @@
                             <a href="{{ route('page.index', 'cpa_ff_registration_list') }}">
                                 <i class="nc-icon nc-paper nc-xs" style="font-size:18px;font-weight:normal;"></i>
                                 <span
-                                    style="font-weight:normal;font-size:11px;">{{ __('CPA(Full-Fledged) Initial List') }}</span>
+                                    style="font-weight:normal;font-size:11px;">{{ __('CPA(Full-Fledged) List') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'cpa_ff_renew_list' ? 'active' : '' }}">
+                        {{--<li class="{{ $elementActive == 'cpa_ff_renew_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'cpa_ff_renew_list') }}">
                                 <i class="nc-icon nc-paper nc-xs" style="font-size:18px;font-weight:normal;"></i>
                                 <span
                                     style="font-weight:normal;font-size:11px;">{{ __('CPA(Full-Fledged) Renewal List') }}</span>
                             </a>
-                        </li>
+                        </li>--}}
                         <li class="{{ $elementActive == 'papp_registration_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'papp_registration_list') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
