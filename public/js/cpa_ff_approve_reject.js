@@ -228,7 +228,7 @@ function loadCPAFFData(){
                     //do nothing
                 }
                 else{
-                $("#registration_no").append(element.student_register.personal_no);
+                $("#registration_no").append(element.student_info.cpersonal_no);
                 }
 
                 if(element.student_info.gov_staff == 1){
@@ -250,16 +250,46 @@ function loadCPAFFData(){
                     $(".ra_file").append(`<span>-</span>`);
                 }
 
-                if(element.foreign_degree!=null && element.foreign_degree!="null"){                   
-                    //removeBracketed(element.foreign_degree,"foreign_degree");
+                // if(element.foreign_degree!=null && element.foreign_degree!="null"){                   
+                //     //removeBracketed(element.foreign_degree,"foreign_degree");
+                //     let foreign_degree = JSON.parse(element.foreign_degree);
+                //     $.each(foreign_degree, function (fileCount, fileName) {
+                //         $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                //     })
+                // }else {
+                //     $(".foreign_degree_file").append(`<span>-</span>`);
+                // }
+                if(element.foreign_degree!=null && element.foreign_degree!="null"){    
+                    // let foreign_degree = JSON.parse(element.foreign_degree);
+                    // $.each(foreign_degree, function (fileCount, fileName) {
+                    //     $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    // })
+                    // $(".foreign_degree_file").append(
+                    //     '<table id="tbl_foreign_degree"  class="table table-border" style="width:100%;display: block; overflow-x: auto;white-space: nowrap;"'+
+                    //     '<thead><tr><th>Name</th>'+'<th>Passed Year</th>'+'<th>Certificate</th></tr></thead>'+
+                    //     '<tbody class="tbl_foreign_degree_body hoverTable text-left"></tbody></table>'
+                    // );
+                    $('#has_foreign_degree').show();
+                    $('#not_foreign_degree').hide();
                     let foreign_degree = JSON.parse(element.foreign_degree);
-                    $.each(foreign_degree, function (fileCount, fileName) {
-                        $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                    })
+                    let degree_name = JSON.parse(element.degree_name);
+                    let degree_year = JSON.parse(element.degree_pass_year);
+                    $('.tbl_foreign_degree_body').html("");
+                    var certificate_html;
+                    for(let i=0;i<foreign_degree.length;i++){
+                        var degree_certificate=`<a href='${PDF_URL +foreign_degree[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`;
+                        certificate_html += `<tr>
+                                            <td>${degree_name[i]}</td>
+                                            <td>${degree_year[i]}</td>
+                                            <td>${degree_certificate}</td>
+                                        </tr>`
+                    }
+                    $('.tbl_foreign_degree_body').html(certificate_html)
                 }else {
+                    $('#not_foreign_degree').show();
+                    $('#has_foreign_degree').hide();
                     $(".foreign_degree_file").append(`<span>-</span>`);
                 }
-
                 if(element.cpa_certificate!=null){
                     $(".cpa_certificate_file").append(`<a href='${PDF_URL+element.cpa_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
@@ -497,7 +527,7 @@ function loadCPAFFRenewData(){
                     //do nothing
                 }
                 else{
-                $("#registration_no").append(element.student_register.personal_no);
+                $("#registration_no").append(element.student_info.cpersonal_no);
                 }
 
                 if(element.student_info.gov_staff == 1){
@@ -519,13 +549,35 @@ function loadCPAFFRenewData(){
                     $(".ra_file").append(`<span>-</span>`);
                 }
 
-                if(element.foreign_degree!=null && element.foreign_degree!="null"){                   
-                    //removeBracketed(element.foreign_degree,"foreign_degree");
+                if(element.foreign_degree!=null && element.foreign_degree!="null"){    
+                    // let foreign_degree = JSON.parse(element.foreign_degree);
+                    // $.each(foreign_degree, function (fileCount, fileName) {
+                    //     $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    // })
+                    // $(".foreign_degree_file").append(
+                    //     '<table id="tbl_foreign_degree"  class="table table-border" style="width:100%;display: block; overflow-x: auto;white-space: nowrap;"'+
+                    //     '<thead><tr><th>Name</th>'+'<th>Passed Year</th>'+'<th>Certificate</th></tr></thead>'+
+                    //     '<tbody class="tbl_foreign_degree_body hoverTable text-left"></tbody></table>'
+                    // );
+                    $('#has_foreign_degree').show();
+                    $('#not_foreign_degree').hide();
                     let foreign_degree = JSON.parse(element.foreign_degree);
-                    $.each(foreign_degree, function (fileCount, fileName) {
-                        $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                    })
+                    let degree_name = JSON.parse(element.degree_name);
+                    let degree_year = JSON.parse(element.degree_pass_year);
+                    $('.tbl_foreign_degree_body').html("");
+                    var certificate_html;
+                    for(let i=0;i<foreign_degree.length;i++){
+                        var degree_certificate=`<a href='${PDF_URL +foreign_degree[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`;
+                        certificate_html += `<tr>
+                                            <td>${degree_name[i]}</td>
+                                            <td>${degree_year[i]}</td>
+                                            <td>${degree_certificate}</td>
+                                        </tr>`
+                    }
+                    $('.tbl_foreign_degree_body').html(certificate_html)
                 }else {
+                    $('#not_foreign_degree').show();
+                    $('#has_foreign_degree').hide();
                     $(".foreign_degree_file").append(`<span>-</span>`);
                 }
 
@@ -650,12 +702,7 @@ function approveCPAFFUser(){
             type: 'patch',
             success: function(result){
                 successMessage("You have approved that user!");
-                if(is_renew==0){
-                    location.href = FRONTEND_URL + "/cpa_ff_registration_list";
-                }
-                else{
-                    location.href = FRONTEND_URL + "/cpa_ff_renew_list";
-                }
+                location.href = FRONTEND_URL + "/cpa_ff_registration_list";
             }
         });
     }
@@ -665,7 +712,6 @@ function rejectModal(){
     $('#reject_modal').modal('show');
 }
 function rejectCPAFFUser(){
-    var is_renew=localStorage.getItem("is_renew");
         var id = $("input[name = cpaff_id]").val();
         var data = $('#reject').val();
         $.ajax({
@@ -677,12 +723,7 @@ function rejectCPAFFUser(){
             },
             success: function(result){
                 successMessage("You have rejected that user!");
-                if(is_renew == 0){
-                    location.href = FRONTEND_URL + "/cpa_ff_registration_list";
-                }
-                else{
-                    location.href = FRONTEND_URL + "/cpa_ff_renew_list";
-                }
+                location.href = FRONTEND_URL + "/cpa_ff_registration_list";
             }
         });
 }
