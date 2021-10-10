@@ -74,6 +74,7 @@
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Register Date</th>
                                                                 <th class="bold-font-weight" >Expire Period Time</th>
+                                                                <th class="bold-font-weight" >Payment Date</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
                                                                 <th class="bold-font-weight" >Teacher Card</th>
@@ -96,6 +97,7 @@
                                                             <th class="bold-font-weight" >NRC</th>
                                                             <th class="bold-font-weight" >Register Date</th>
                                                             <th class="bold-font-weight" >Expire Period Time</th>
+                                                            <th class="bold-font-weight" >Payment Date</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Teacher Card</th>
@@ -157,12 +159,13 @@
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
-                                                                <th class="bold-font-weight" >Register Date</th>
+                                                                <th class="bold-font-weight" >Renew Date</th>
                                                                 <th class="bold-font-weight" >Expire Period time</th>
+                                                                <th class="bold-font-weight" >Payment Date</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
                                                                 <th class="bold-font-weight" >Teacher Card</th>
-                                                                
+                                                                <th class="bold-font-weight" >Yearly</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_teacher_renew_pending_body" class="hoverTable">
@@ -179,12 +182,13 @@
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
-                                                            <th class="bold-font-weight" >Register Date</th>
+                                                            <th class="bold-font-weight" >Renew Date</th>
                                                             <th class="bold-font-weight" >Expire Period time</th>
+                                                            <th class="bold-font-weight" >Payment Date</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Teacher Card</th>
-                                                            
+                                                            <th class="bold-font-weight" >Yearly</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_renew_approved_body" class="hoverTable">
@@ -201,12 +205,13 @@
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
-                                                            <th class="bold-font-weight" >Register Date</th>
+                                                            <th class="bold-font-weight" >Renew Date</th>
                                                             <th class="bold-font-weight" >Expire Period time</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Teacher Card</th>
                                                             <th class="bold-font-weight" >Remark</th>
+                                                            <th class="bold-font-weight" >Yearly</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_renew_rejected_body" class="hoverTable">
@@ -293,6 +298,7 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'reg_date', name: 'reg_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
@@ -316,6 +322,7 @@
                     d.status    = 1,
                     d.initial_status= 0
                 }
+                
 
             },
             columns: [
@@ -328,6 +335,7 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'reg_date', name: 'reg_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
@@ -376,7 +384,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filter_teacher",
+                url  : BACKEND_URL + "/filterRenewTeacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -387,19 +395,19 @@
             
             },
             columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                {data: 'regno', name: 'regno'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'reg_date', name: 'reg_date'},
+                {data: 'renew_date', name: 'renew_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
                 {data: 'card', name: 'card'},
+                {data: 'yearly', name: 'yearly'},
             ],
             
          });
@@ -411,7 +419,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filter_teacher",
+                url  : BACKEND_URL + "/filterRenewTeacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -422,19 +430,19 @@
             
             },
             columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                {data: 'regno', name: 'regno'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'reg_date', name: 'reg_date'},
+                {data: 'renew_date', name: 'renew_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
                 {data: 'card', name: 'card'},
+                {data: 'yearly', name: 'yearly'},
             ],
          });
 
@@ -445,7 +453,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filter_teacher",
+                url  : BACKEND_URL + "/filterRenewTeacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -456,9 +464,7 @@
             
             },
             columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                {data: 'regno', name: 'regno'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
@@ -470,6 +476,7 @@
                 {data: 'payment_method', name: 'payment_method'},
                 {data: 'card', name: 'card'},
                 {data: 'reason', name: 'reason'},
+                {data: 'yearly', name: 'yearly'},
             ],
         });
         $('#tbl_teacher_cessation_pending').DataTable({

@@ -20,6 +20,8 @@ class CreatePappsTable extends Migration
             $table->string('cpa')->nullable();
             $table->string('ra')->nullable();
             $table->string('foreign_degree')->nullable();
+            $table->string('degree_name')->nullable();
+            $table->string('degree_pass_year')->nullable();
             $table->string('papp_date');
             $table->boolean('use_firm')->default(0);
             $table->string('firm_name')->nullable();
@@ -37,8 +39,11 @@ class CreatePappsTable extends Migration
             $table->string('mpa_mem_card_back');            
             $table->string('tax_year');
             $table->string('tax_free_recommendation');
-            $table->date('accepted_date')->default(null)->nullable();
-            $table->boolean('status')->default(0);
+            $table->date('accepted_date')->default(null)->nullable();  
+            $table->string('company')->nullable();
+            $table->string('period')->nullable();
+            $table->string('manager')->nullable();         
+            $table->boolean('status')->default(0);           
             $table->string('renew_file')->default(null)->nullable();
             $table->string('renew_papp_reg')->default(null)->nullable();
             $table->string('renew_micpa')->default(null)->nullable();
@@ -49,6 +54,7 @@ class CreatePappsTable extends Migration
             $table->date('renew_accepted_date')->default(null)->nullable();
             $table->boolean('renew_status')->default(null)->nullable();
 
+
             //adding
             $table->string('reg_no')->nullable();
             $table->string('address')->nullable();
@@ -56,6 +62,7 @@ class CreatePappsTable extends Migration
             $table->string('contact_mail')->nullable();
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
+            $table->integer('type')->nullable();
 
             $table->timestamps();
 

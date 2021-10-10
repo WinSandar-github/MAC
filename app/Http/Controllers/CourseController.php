@@ -87,8 +87,7 @@ class CourseController extends Controller
         $course->course_type_id = $request->course_type_id;
         $course->code = $request->code;
         $course->requirement_id     = $request->requirement_id;
-        $course->cpa_subject_fee     = $request->cpa_subject_fee;
-        $course->da_subject_fee     = $request->da_subject_fee;
+        
 
         $course->save();
         return response()->json([
@@ -147,8 +146,6 @@ class CourseController extends Controller
         $course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
         $course->code = $request->code;
-        $course->cpa_subject_fee     = $request->cpa_subject_fee;
-        $course->da_subject_fee     = $request->da_subject_fee;
         $course->requirement_id = json_encode($requirements);
         $course->save();
         return response()->json([

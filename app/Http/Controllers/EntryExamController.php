@@ -402,4 +402,41 @@ class EntryExamController extends Controller
             'message' => "You have successfully fail that Student!"
         ],200);
     }
+
+    //show entry exam list in mac student
+    public function enteredExamList(Request $request)
+    {
+        
+
+
+        $student_infos = ExamRegister::with('student_info','course')
+                        ->where('batch_id',3)
+                        ->where('status',1)
+                        ->whereNotNull('sr_no')
+                        ->where('exam_type_id',3);
+                       
+
+        if($request->grade){
+            $student_infos =  $student_infos->Where('grade',$request->grade)->orderby('total_mark','desc');
+            
+        }else{
+            $student_infos =  $student_infos->orderBy('sr_no','asc');
+            
+        }
+        $student_infos =  $student_infos->get(); 
+
+
+        return DataTables::of($student_infos)
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        ->make(true);
+
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
+
+
+    }
 }

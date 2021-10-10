@@ -250,9 +250,18 @@ function loadStudentSelfStudy() {
                 $(".recommend_row").hide();
             }
 
+            if(element.private_school_name){
+                
+                // console.log("internship",element.internship);
+                $(".private_school_name_row").show();
+                $("#private_school_name").append(element.private_school_name);                
+            }else{
+                $(".private_school_name_row").hide();
+            }
+
             if(element.internship){
                 
-                console.log("internship",element.internship);
+                // console.log("internship",element.internship);
                 $(".internship_program_row").show();
                 $("#internship_program").append(element.internship);                
             }else{
@@ -316,9 +325,23 @@ function loadStudentSelfStudy() {
                     if (result.data.length != 0) {
                         result.data.forEach(function (course) {
                             var success_year = new Date(course.updated_at);
+                            var module_name;
+                            if(course.is_full_module==1){
+                                module_name="Module 1";
+                            }
+                            else if(course.is_full_module==2){
+                                module_name="Module 2";
+                            }
+                            else if(course.is_full_module==3){
+                                module_name="All Module";
+                            }
+                            else{
+                                module_name="-";
+                            }
                             course_html += `<tr>
                                                 <td>${course.course.name}</td>
                                                 <td>${course.batch.name}</td>
+                                                <td>${module_name}</td>
                                                 <td>${success_year.getFullYear()}</td>
                                             </tr>`
                         });

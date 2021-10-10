@@ -41,6 +41,8 @@ class CreateMembershipsTable extends Migration
             $table->bigInteger('reconnect_fee_sole')->nullable();
             $table->bigInteger('reconnect_fee_partner')->nullable();
             //
+            $table->bigInteger('cpa_subject_fee')->nullable();
+            $table->bigInteger('da_subject_fee')->nullable();
             $table->timestamps();
         });
     }

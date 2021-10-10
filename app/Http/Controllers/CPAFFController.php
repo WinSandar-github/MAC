@@ -234,6 +234,7 @@ class CPAFFController extends Controller
             //save to std info
             $std_info = new StudentInfo();
             $std_info->cpaff_id         =   $cpa_ff->id;
+            $std_info->image    =   $profile_photo;
             $std_info->email            =   strtolower($request->email);
             $std_info->password         =   Hash::make($request->password);
             $std_info->approve_reject_status = 0;
@@ -613,13 +614,13 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->cpd_record       =   $cpd_record;
         $cpa_ff->total_hours      =   $request->total_hours;
+        $cpa_ff->form_type        =   $initial_cpaff->form_type;
         $cpa_ff->status           =  0;
         //save to cpaff
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
         $cpa_ff->address          =   $request->address;
         $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
-        $cpa_ff->form_type        =   $request->form_type;
         $cpa_ff->three_years_full   =   $three_years_full;
         $cpa_ff->letter   =   $letter;           
         $cpa_ff->old_card_year     =   $request->old_card_year;
@@ -672,11 +673,13 @@ class CPAFFController extends Controller
         ],200);
     }
 
-    public function reject($id)
+    public function reject(Request $request)
     {
-        $cpa_ff = CPAFF::find($id);
+        $cpa_ff = CPAFF::find($request->id);
         $cpa_ff->status = 2;
-        $approve->renew_status=2;
+        $cpa_ff->renew_status=2;
+        $cpa_ff->reject_description = $request->description;
+        $cpa_ff->is_renew = 0;
         $cpa_ff->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
