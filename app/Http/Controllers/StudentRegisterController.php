@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\StudentRegister;
 use App\StudentInfo;
 use App\StudentCourseReg;
+use App\StudentJobHistroy;
 use App\Course;
 use App\ExamRegister;
 use App\Invoice;
@@ -64,16 +65,38 @@ class StudentRegisterController extends Controller
             $invoice->save();
         }
         
+        //update student information
+        $student_info=StudentInfo::find($request->student_id);
+        
         if ($request->hasfile('recommendation_letter')) {
             $file = $request->file('recommendation_letter');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $recommendation_letter = '/storage/student_info/'.$name;
-
-            $student_info=StudentInfo::find($request->student_id);
-            $student_info->recommend_letter =   $recommendation_letter;
-            $student_info->save();
+        }   
+        else{
+            $recommendation_letter =$student_info->recommend_letter;
         }
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        } else{
+            $profile_photo=$student_info->image;
+        }       
+        $student_info->recommend_letter =   $recommendation_letter;
+        $student_info->image =   $profile_photo;
+        $student_info->address          =   $request->address;
+        $student_info->current_address =   $request->current_address;
+        $student_info->phone =   $request->phone;
+        $student_info->gov_staff =   $request->gov_staff;
+        $student_info->save();
+
+        $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
+        $student_job->office_address=$request->office_address;
+        $student_job->save();
+        //update student information end....
         switch ($request->type) {
             case 0:
                 
@@ -105,7 +128,7 @@ class StudentRegisterController extends Controller
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
-
+                $student_register->batch_id = $request->batch_id;
                 // $student_register->academic_year=$request->academic_year;
                 // $student_register->direct_access_no=$request->direct_access_no;
                 // $student_register->entry_success_no=$request->entry_success_no;
@@ -155,7 +178,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->private_school_name = $request->private_school_name;
@@ -217,7 +241,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->academic_year=$request->academic_year;
@@ -412,7 +437,36 @@ class StudentRegisterController extends Controller
             $student_info->degree_certificate_image     =   $deg_certi_img;
             $student_info->degree_rank                  =   $request->degree_rank;
         }
+        //update student information
+
+        if ($request->hasfile('recommendation_letter')) {
+            $file = $request->file('recommendation_letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $recommendation_letter = '/storage/student_info/'.$name;
+        }   
+        else{
+            $recommendation_letter =$student_info->recommend_letter;
+        }
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        } else{
+            $profile_photo=$student_info->image;
+        }       
+        $student_info->recommend_letter =   $recommendation_letter;
+        $student_info->image =   $profile_photo;
+        $student_info->address          =   $request->address;
+        $student_info->current_address =   $request->current_address;
+        $student_info->phone =   $request->phone;
+        $student_info->gov_staff =   $request->gov_staff;
         $student_info->save();
+
+        $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
+        $student_job->office_address=$request->office_address;
+        $student_job->save();
 
         
         // $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
@@ -459,6 +513,7 @@ class StudentRegisterController extends Controller
                 }
                 $student_register->batch_no = $request->batch_no_self;
                 $student_register->part_no = $request->part_no_self;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->personal_no = $request->personal_no_self;
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
@@ -501,7 +556,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->batch_no = $request->batch_no_private;
@@ -562,7 +618,8 @@ class StudentRegisterController extends Controller
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->date = $date;
-                $student_register->invoice_id = $request->student_id;;
+                $student_register->invoice_id = $request->student_id;
+                $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
                 $student_register->batch_no = $request->batch_no_mac;
@@ -597,14 +654,20 @@ class StudentRegisterController extends Controller
     }
 
     public function getAttendesStudent(Request $request)
-    {
-
-        $course = Course::where('code',$request->course_code)->with('course_type')->first();
+    { 
+       
+        $course = Course::where('code',$request->course_code)->with('course_type','active_batch')->first();
 
         $student_infos = StudentRegister::with('student_info','course')
-                        ->where('form_type',$course->id)
+                        ->where('batch_id', $course->active_batch[0]->id)
                         ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
 
+         if($request->module)
+        {
+            
+            $student_infos = $student_infos->where('module',$request->module);
+        }
+      
         return DataTables::of($student_infos)
 
         ->addColumn('nrc', function ($infos){
@@ -627,15 +690,24 @@ class StudentRegisterController extends Controller
     }
     public function ‌approveExamList(Request $request)
     {
-         $course = Course::where('code', $request->course_code)->first();
-            
+         $course = Course::where('code', $request->course_code)->with('active_batch')->first();
+        
+         
 
 
         $student_infos = ExamRegister::with('student_info','course')
-                        ->where('form_type',$course->id)
+                        ->where('batch_id', $course->active_batch[0]->id)
                         ->where('status',1)
                         ->orderBy('is_full_module','desc')
                         ->whereNotNull('sr_no');
+         
+        
+            if($request->module)
+            {
+             
+                $student_infos = $student_infos->where('is_full_module',$request->module);
+            }
+                      
                        
 
         if($request->grade){
@@ -681,5 +753,31 @@ class StudentRegisterController extends Controller
         return response()->json([
             'data' => $student
         ],200);
+    }
+
+    //show data on mac student Application list
+    public function getStudentAppList(Request $request)
+    {
+        
+        $course = Course::where('code',$request->course_code)->with('active_batch','course_type')->first();
+
+        $student_infos = StudentCourseReg::with('student_info')
+                        ->where('batch_id',$course->active_batch[0]->id)
+                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
+                    
+        return DataTables::of($student_infos)
+
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        
+        ->rawColumns(['action','nrc'])
+        ->make(true);
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
+
+
     }
 }

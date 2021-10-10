@@ -67,6 +67,8 @@ Route::post('/filter_batch','BatchController@FilterBatch');
 //Exam
 Route::resource('/exam','ExamController');
 Route::post('/filter_exam','ExamController@FilterExam');
+Route::post('/create_exam_room','ExamController@createExamRoom');
+
 
 //Course
 Route::resource('/course','CourseController');
@@ -160,7 +162,7 @@ Route::patch('/reject_cpa_two_student/{id}', 'CPATwoRegistrationController@rejec
 
 //Exam Result
 Route::resource('/exam_result','ExamResultController');
-Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResult');
+Route::get('/search_exam_result/{id}','ExamResultController@SearchExamResult');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
@@ -271,6 +273,9 @@ Route::post('store_student_app_reg','StudentRegisterController@store_student_app
 Route::patch('/check_code/{id}', 'DARegisterController@checkCode');
 
 Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
+
+Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
+
 
 Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 

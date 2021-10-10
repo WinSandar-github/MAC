@@ -61,9 +61,12 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
-                                                        <th class="bold-font-weight" >Registration Number</th>
+                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
                                                         <th class="bold-font-weight" >Status</th>
@@ -81,9 +84,12 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
-                                                        <th class="bold-font-weight" >Registration Number</th>
+                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
                                                         <th class="bold-font-weight" >Status</th>
@@ -101,9 +107,12 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
-                                                        <th class="bold-font-weight" >Registration Number</th>
+                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
                                                         <th class="bold-font-weight" >Status</th>
@@ -142,9 +151,12 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
-                                                        <th class="bold-font-weight" >Registration Number</th>
+                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
                                                         <th class="bold-font-weight" >Status</th>
@@ -162,9 +174,12 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
-                                                        <th class="bold-font-weight" >Registration Number</th>
+                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
                                                         <th class="bold-font-weight" >Status</th>
@@ -182,9 +197,12 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Student Name</th>
+                                                        <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
-                                                        <th class="bold-font-weight" >Registration Number</th>
+                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
                                                         <th class="bold-font-weight" >Status</th>
@@ -221,9 +239,12 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
-              {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
+              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},
@@ -242,9 +263,12 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
-              {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
+              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},
@@ -262,9 +286,12 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
-              {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
+              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},
@@ -282,9 +309,12 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
-              {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
+              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},
@@ -302,9 +332,12 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
-              {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
+              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},
@@ -322,9 +355,12 @@
                   return meta.row + meta.settings._iDisplayStart + 1;
               }},
               {data: 'action', name: 'action', orderable: false, searchable: false},
-              {data: 'student_info.name_mm', name: 'Student Name'},
+              {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
-              {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
+              {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
+              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'status', name: 'Status'},

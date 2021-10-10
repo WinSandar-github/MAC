@@ -8,6 +8,7 @@ var PDF_URL = "https://demo.aggademo.me/MAC/public";
 
 var counter = 0;
 
+
 function ConfirmSubmit() {
     var radio = document.getElementById("submit_confirm");
     if (radio.checked == true) {
