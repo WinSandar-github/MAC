@@ -126,18 +126,18 @@ function getTeacherInfos(){
                 
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
                     loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate");
-                    loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
+                    // loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
                     
                 }else{
                     loadCertificates(value.certificates,value.payment_method,"#tbl_certificate");
-                    loadCard(value.certificates);
+                    // loadCard(value.certificates);
                 }
                 if(value.diplomas.search(/[\'"[\]']+/g)==0){
                     loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma");
-                    loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
+                    // loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
                 }else{
                     loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma");
-                    loadCard(value.diplomas);
+                    // loadCard(value.diplomas);
                 }
                 
                 if(value.approve_reject_status != 0){
@@ -176,7 +176,12 @@ function getTeacherInfos(){
                 if(value.school_type==0){
                     $("#school_name").append("Individual");
                 }else{
-                   loadSchoolName(value.school_id);
+                    if(value.school_id==null){
+                        $("#school_name").append(value.school_name);
+                    }else{
+                        loadSchoolName(value.school_id);
+                    }
+                   
                 }
                 if(value.payment_method!=null){
                     $('.period').show();
@@ -254,43 +259,51 @@ function loadCertificates(name,payment_status,tbody){
         payment_status="မပြီး";
     }
     var sum;
-    $.each(name, function( index, id ){
-        $.ajax({
-            url : BACKEND_URL+"/getSubject",
-            data: 'subject_id='+id,
-            type: 'post',
-            success: function (result) {
-               
-                $.each(result.data, function( index, value ){
-                    var newcode=value.code.split('_');
-                    var course_code=convert(newcode[1]);
-                        var tr = "<tr>";
-                        tr += `<td> ${ newcode[0].toUpperCase()+' '+course_code } </td>`;
-                        tr += `<td> ${ value.subject_name } </td>`;
-                        if(value.code=='cpa_1' || value.code=='cpa_2'){
-                            tr += `<td>`+thousands_separators(value.cpa_subject_fee)+`</td>`;
-                            sum=value.cpa_subject_fee*name.length;
-                            
-                        }else{
-                            tr += `<td>`+thousands_separators(value.da_subject_fee)+`</td>`;
-                            
-                        }
+    var membership_name='Teacher';
+    $.ajax({
+        type: "get",
+        url: BACKEND_URL+"/showDescription/"+membership_name,
+        success: function (result) {
+            var data=result.data;
+            $.each(name, function( index, id ){
+                $.ajax({
+                    url : BACKEND_URL+"/getSubject",
+                    data: 'subject_id='+id,
+                    type: 'post',
+                    success: function (result) {
+                       
+                        $.each(result.data, function( index, value ){
+                            var newcode=value.code.split('_');
+                            var course_code=convert(newcode[1]);
+                                var tr = "<tr>";
+                                tr += `<td> ${ newcode[0].toUpperCase()+' '+course_code } </td>`;
+                                tr += `<td> ${ value.subject_name } </td>`;
+                                if(value.code=='cpa_1' || value.code=='cpa_2'){
+                                        tr += `<td>`+thousands_separators(data[0].cpa_subject_fee)+`</td>`;
+                                        sum=data[0].cpa_subject_fee*name.length;
+                                        
+                                    }else{
+                                        tr += `<td>`+thousands_separators(data[0].da_subject_fee)+`</td>`;
+                                        sum=data[0].da_subject_feee*name.length;
+                                    }
+                                tr += `<td>`+payment_status +`</td>`;
+                                tr += "</tr>";
+                                $(tbody).append(tr);
+                                
+                        });
                         
-                        tr += `<td>`+payment_status +`</td>`;
-                        tr += "</tr>";
-                        $(tbody).append(tr);
-                        
+                        sumTotalAmount(data[0].form_fee+data[0].registration_fee);
+                    },
+                    error: function (result) {
+                    },
                 });
-                
-                sumTotalAmount();
-            },
-            error: function (result) {
-            },
-        });
-    });
+            });
+        }
+    });                         
+    
     
 }
-function sumTotalAmount(){
+function sumTotalAmount(total){
     
     let sum = 0;
     var row_cpa = document.getElementById('tbl_certificate').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
@@ -305,7 +318,7 @@ function sumTotalAmount(){
         
      });
      
-     $('#subject_total_amount').val(thousands_separators(sum));
+     $('#subject_total_amount').val(thousands_separators(sum+total));
 }
 
 function loadSchoolName(school_id){
@@ -318,7 +331,7 @@ function loadSchoolName(school_id){
     });    
 }
 function loadEductaionHistory(id){
-      
+    
     $.ajax({
         type : 'POST',
         url : BACKEND_URL+"/getEducationHistory",
@@ -406,5 +419,155 @@ function cessationTeacherRegister(){
         }
     });
     
+    
+}
+function approveRenewTeacherRegister(){
+    let result = window.location.href;
+    let url = new URL(result);
+    let id = url.searchParams.get("id");
+    var check = confirm("Are you sure?");
+    if (check == true) {
+        $.ajax({
+            url: BACKEND_URL + "/approveRenewTeacherRegister",
+            data: 'id='+id+"&status=1",
+            type: 'post',
+            success: function(result){
+                successMessage('You have approved that user!');
+                location.href = FRONTEND_URL + '/teacher_registration';
+            }
+        });
+    }
+    
+}
+function getRenewTeacher(){
+    let result = window.location.href;
+    let url = new URL(result);
+    let id = url.searchParams.get("id");
+    $.ajax({
+        type : 'GET',
+        url : BACKEND_URL+"/getRenewTeacher/"+id,
+        success : function(data){
+            $.each(data.data, function( index, value ) {
+                document.getElementById('image').src = PDF_URL + value.image;
+                $("#name").append(value.name_eng+'/'+value.name_mm);
+                $("#name_eng").append(value.name_eng);
+                let nrc = value.nrc_state_region+"/"+value.nrc_township+"("+value.nrc_citizen+")"+value.nrc_number;
+                $("#nrc").append(nrc);
+                $("#father").append(value.father_name_eng+'/'+value.father_name_mm);
+                $("#father_eng").append(value.father_name_eng);
+                $("#phone").append(value.phone);
+                $("#email").append(value.email);
+                
+                if(value.certificates.search(/[\'"[\]']+/g)==0){
+                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate");
+                    // loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
+                    
+                }else{
+                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate");
+                    // loadCard(value.certificates);
+                }
+                if(value.diplomas.search(/[\'"[\]']+/g)==0){
+                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma");
+                    // loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
+                }else{
+                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma");
+                    // loadCard(value.diplomas);
+                }
+                
+                if(value.approve_reject_status != 0){
+                    $("#approve_reject").hide();
+                    $('#cessation-btn').show();
+                }
+                else{
+                    $("#approve_reject").show();
+                }
+                $("#exp_desc").append(value.exp_desc);
+                if(value.gov_employee == 1){
+                    $('input:radio[name=radio1]').attr('checked',true);
+                    $('input[name="radio2"]').attr('disabled', 'disabled');
+                    $('.recommend_row').show();
+                    if(value.recommend_letter!=""){
+                        $(".recommend_letter").append(`<a href='${PDF_URL+value.recommend_letter}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                    }
+                   
+                }
+                else{
+                    $('input:radio[name=radio2]').attr('checked',true);
+                    $('input[name="radio1"]').attr('disabled', 'disabled');
+                    $('.recommend_row').hide();
+                }
+                if(value.nrc_front==null){
+                    $('.nrc-css').hide();
+                }else{
+                    $('.nrc-css').show();
+                    $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                }
+                if(value.nrc_back==null){
+                    $('.nrc-back-css').hide();
+                }else{
+                    $('.nrc-back-css').show();
+                    $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                }
+                $("#race").append(value.race);
+                $("#religion").append(value.religion);
+                $("#date_of_birth").append(value.date_of_birth);
+                $("#address").append(value.address);
+                $("#current_address").append(value.current_address);
+                $("#position").append(value.position);
+                $("#department").append(value.department);
+                $("#organization").append(value.organization);
+                loadEductaionHistoryByRenew(value.id);
+                if(value.school_type==0){
+                    $("#school_name").append("Individual");
+                }else{
+                    if(value.school_id==null){
+                        $("#school_name").append(value.school_name);
+                    }else{
+                        loadSchoolName(value.school_id);
+                    }
+                   
+                }
+                if(value.payment_method!=null){
+                    $('.period').show();
+                    var now=new Date();
+                    var new_date=value.payment_date.split(' ');
+                    var period_date=new_date[0].split('-');
+                    var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
+                   $('#period_time').text(period+" to 31-12-"+now.getFullYear());
+                    $("#payment_date").val(period);
+                    $('.invoice_no').append(value.invoice_no);
+                    $(".payment_date").append(period);
+                }
+                
+                $('#teacher_id').val(value.id);
+                if(value.initial_status==0){
+                    $('.form-name').append('ဆရာပုံစံ-၁');
+                }else{
+                    $('.form-name').append('ဆရာပုံစံ-၂');
+                }
+            });
+           
+            
+        }
+    });
+}
+function loadEductaionHistoryByRenew(id){
+    
+    $.ajax({
+        type : 'POST',
+        url : BACKEND_URL+"/getEducationHistory",
+        data: 'renewteacher_id='+id,
+        success: function(result){
+            $.each(result.data, function( index, value ) {
+                var tr = "<tr>";
+                tr += `<td> ${ index += 1 } </td>`;
+                tr += `<td> ${ value.university_name } </td>`;
+                tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                tr += "</tr>";
+                $("#tbl_degree_body").append(tr);
+            });
+            createDataTable('#tbl_degree');
+        }
+    });
     
 }
