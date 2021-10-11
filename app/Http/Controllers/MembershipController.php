@@ -55,7 +55,8 @@ class MembershipController extends Controller
         $membership->yearly_fee               = $request->yearly_fee;
         $membership->renew_fee                = $request->renew_fee;
         $membership->late_fee                 = $request->late_fee;
-
+        $membership->cpa_subject_fee     = $request->cpa_subject_fee;
+        $membership->da_subject_fee     = $request->da_subject_fee;    
         $membership->save();
 
         return response()->json([
@@ -123,6 +124,8 @@ class MembershipController extends Controller
         $membership->late_fee_feb_to_apr_partner                 = $request->late_fee_feb_to_apr_partner;
         $membership->reconnect_fee_sole                 = $request->reconnect_fee_sole;
         $membership->reconnect_fee_partner                 = $request->reconnect_fee_partner;
+        $membership->cpa_subject_fee     = $request->cpa_subject_fee;
+        $membership->da_subject_fee     = $request->da_subject_fee;  
         $membership->save();
 
         return response()->json([

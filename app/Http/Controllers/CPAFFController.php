@@ -878,9 +878,13 @@ class CPAFFController extends Controller
                               return "QT Pass";
                             }
                         })
-
-
-                        ->rawColumns(['action','nrc','degree','status'])
+                        ->addColumn('created_at', function ($infos){
+                            return date("d F Y", strtotime($infos->student_info->created_at));
+                        })
+                        ->addColumn('updated_at', function ($infos){
+                            return date("d F Y", strtotime($infos->student_info->updated_at));
+                        })
+                        ->rawColumns(['action','nrc','degree','status','created_at','updated_at'])
                         ->make(true);
             }
 }
