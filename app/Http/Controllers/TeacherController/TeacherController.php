@@ -615,7 +615,7 @@ class TeacherController extends Controller
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
-                $education_histroy->student_info_id = $std_info->id;
+                $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->university_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id      = $request->teacher_id;

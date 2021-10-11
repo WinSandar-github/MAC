@@ -28,18 +28,18 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('date_of_birth');
             $table->string('type')->nullable();
             $table->string('attachment')->nullable();
-            $table->text('address');
-            $table->string('phone');
+            $table->text('address')->nullable();;
+            $table->string('phone')->nullable();;
 
             $table->string('profile_photo');
-            $table->string('school_name');
-            $table->string('attend_course');
-            $table->text('school_address');
-            $table->string('own_type');
-            $table->string('own_type_letter');
-            $table->string('business_license');
+            $table->string('school_name')->nullable();;
+            $table->string('attend_course')->nullable();;
+            $table->text('school_address')->nullable();;
+            $table->string('own_type')->nullable();;
+            $table->string('own_type_letter')->nullable();;
+            $table->string('business_license')->nullable();;
             
-            $table->string('school_location_attach');
+            $table->string('school_location_attach')->nullable();;
             
             $table->string('sch_establish_notes_attach')->nullable();
 
@@ -52,9 +52,12 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('payment_date')->nullable();
             $table->text('reason')->nullable();
             $table->integer('initial_status')->default(0);
+            $table->string('renew_payment_method')->nullable();
             $table->string('renew_payment_date')->nullable();
             $table->string('invoice_no')->nullable();
             $table->text('cessation_reason')->nullable();
+            $table->integer('renew_id')->nullable();
+            $table->integer('student_info_id')->nullable();
             $table->timestamps();
         });
     }

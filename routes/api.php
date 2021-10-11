@@ -196,7 +196,7 @@ Route::resource('/school','SchoolController\SchoolController');
 Route::post('/filter_school','SchoolController\SchoolController@FilterSchool');
 Route::post('/approve_school_register', 'SchoolController\SchoolController@approve_school_register');
 Route::post('/reject_school_register', 'SchoolController\SchoolController@reject_school_register');
-Route::patch('/approve_school/{id}', 'SchoolController\SchoolController@approveSchool');
+Route::patch('/approve_school', 'SchoolController\SchoolController@approveSchool');
 Route::get('/check_payment_school/{id}', 'SchoolController\SchoolController@checkPayment');
 
 //for teacher registration
@@ -402,3 +402,5 @@ Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController
 Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
 Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
 Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');
+//school renew
+Route::post('/renewSchool', 'SchoolController\SchoolController@renewSchool');
