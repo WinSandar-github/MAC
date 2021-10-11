@@ -77,6 +77,7 @@ class StudentRegisterController extends Controller
         else{
             $recommendation_letter =$student_info->recommend_letter;
         }
+        
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();

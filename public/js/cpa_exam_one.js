@@ -378,11 +378,25 @@ function loadCPAExamData() {
                     exam_type_id = "CPA - II";
                 }
 
+                if (element.is_full_module == 1) {
+                    module_name = "Module 1";
+                }
+                else if (element.is_full_module == 2) {
+                    module_name = "Module 2";
+                }
+                else if (element.is_full_module == 3) {
+                    module_name = "All Module";
+                }
+                else {
+                    module_name = "-";
+                }
+
                 $("#school_name").append(element.student_info.student_register[0].private_school_name);
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
                 $("#exam_department").append(element.exam_department?.name);
+                $("#current_module").append(module_name);
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -406,6 +420,7 @@ function loadCPAExamData() {
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
                 $("#father_name_mm").append(element.father_name_mm);
                 $("#father_name_eng").append(element.father_name_eng);
+                $("#gender").append(element.gender);
                 $("#race").append(element.race);
                 $("#religion").append(element.religion);
                 $("#date_of_birth").append(element.date_of_birth);
