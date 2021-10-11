@@ -63,6 +63,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -86,6 +87,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -109,6 +111,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -153,6 +156,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -176,6 +180,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -199,6 +204,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -241,9 +247,10 @@
               {data: 'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'student_info.email', name: 'Email'},
               {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
-              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -265,9 +272,10 @@
               {data: 'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'student_info.email', name: 'Email'},
               {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
-              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -288,9 +296,10 @@
               {data: 'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'student_info.email', name: 'Email'},
               {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
-              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -311,9 +320,10 @@
               {data: 'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'student_info.email', name: 'Email'},
               {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
-              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -334,9 +344,10 @@
               {data: 'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'student_info.email', name: 'Email'},
               {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
-              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -357,9 +368,10 @@
               {data: 'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'student_info.email', name: 'Email'},
               {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},
-              {data: 'student_info.created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'student_info.updated_at', name: 'Payment Date',className: "set-text-center"},
+              {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
