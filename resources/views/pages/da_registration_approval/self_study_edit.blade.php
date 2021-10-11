@@ -236,6 +236,14 @@
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">ကျား / မ (Gender)</p>
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <span id="gender"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Race</p>
                                         </div>
                                         <div class="col-md-6 text-left">
@@ -322,13 +330,29 @@
                                 <div class="card-header">
                                     <h5 class="border-bottom pb-2" style="font-weight:bold">Basic Info</h5>
                                 </div>
-                                <div class="card-body pt-0">
+                                <div class="card-body pt-0">                                    
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Registration No</p>
                                         </div>
                                         <div class="col-md-6 text-left">
                                             <span id="student_registration_no"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 mt-3 border-bottom mac_type_row" style="display:none">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">သင်တန်းတက်ရောက်မည့်နေရာ</p>
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <span id="mac_type"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 mt-3 border-bottom private_school_name_row" style="display:none">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Private School Name</p>
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <span id="private_school_name"></span>
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">

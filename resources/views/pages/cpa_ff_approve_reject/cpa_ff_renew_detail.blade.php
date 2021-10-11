@@ -20,19 +20,54 @@
                         <div class="card">
                             <div class="card-body">
                                 <center>
-                                    <img src="" id="image" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
+                                    <img src="" id="profile_photo" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->
                                 <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA(Full-Fledged) Renewal Info</h5>
 
-                                <!-- CPA -->
                                 <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPA အပတ်စဉ်/ကိုယ်ပိုင်အမှတ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpa_batch_no"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ဆက်သွယ်ရန်လိပ်စာ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpaff_address"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">တယ်လီဖုန်းနံပါတ်၊ Fax ဖုန်းနံပါတ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpaff_phone"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">E-mail Address</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="contact_mail"></span>
+                                    </div>
+                                </div>
+                                <!-- CPA -->
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">CPA </p>
                                     </div>
-                                    {{--<div class="col-md-6 text-left">
+                                   <div class="col-md-6 text-left">
                                         <button type="button" id="cpa_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpaModal"><i class="fa fa-paperclip"></i></button>
-                                    </div>--}}
+                                    </div>
                                     <div class="col-md-6 text-left cpa_file"></div>
                                 </div>
                                 <!-- CPA Modal-->
@@ -58,9 +93,9 @@
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">RA </p>
                                     </div>
-                                   {{-- <div class="col-md-6 text-left">
+                                    <div class="col-md-6 text-left">
                                         <button type="button" id="ra_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#raModal"><i class="fa fa-paperclip"></i></button>
-                                    </div>--}}
+                                    </div>
                                     <div class="col-md-6 text-left ra_file"></div>
                                 </div>
                                 <!--RA Modal -->
@@ -86,9 +121,9 @@
                                         <p class="ml-2" style="font-weight:bold">Foreign Degree</p>
                                     </div>
                                     <div class="col-md-6 text-left foreign_degree_file">
-                                        {{--<span class="foreign_degree">
+                                        <span class="foreign_degree">
 
-                                        </span>--}}
+                                        </span>
 
                                     </div>
                                 </div>
@@ -107,7 +142,7 @@
                                         </div>
                                     </div>
                                     </div>
-                                </div>
+                                </div>--}}
 
 
                                 <div class="row m-2 mt-3 border-bottom">
@@ -116,6 +151,15 @@
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="degree"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Passed Date</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpaff_pass_date"></span>
                                     </div>
                                 </div>
 
@@ -348,53 +392,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="border-bottom pb-2" style="font-weight:bold">Education</h5>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">University Name</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="university_name"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Degree Name</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="degree_name"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Qualified Date</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="qualified_date"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Roll Number</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="roll_number"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
-                                    </div>
-                                    <div class="col-md-6 text-left certificate">
-                                        <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#attached_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="col-md-8">
                         <div class="card">
@@ -507,6 +505,101 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">Education</h5>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">University Name</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="university_name"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Degree Name</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="degree_name"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Qualified Date</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="qualified_date"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Roll Number</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="roll_number"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Attached Certificate</p>
+                                    </div>
+                                    <div class="col-md-6 text-left certificate">
+                                        <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#attached_Modal"><i class="fa fa-paperclip"></i></button> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">CPAFF Education</h5>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPA </p>
+                                    </div>
+                                    <div class="col-md-6 text-left cpa_file"></div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">RA </p>
+                                    </div>
+                                    <div class="col-md-6 text-left ra_file"></div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom" id="not_foreign_degree" style="display:none;">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Foreign Degree</p>
+                                    </div>
+                                    <div class="col-md-6 text-left foreign_degree_file">
+                                    </div>
+                                </div>       
+                                <div class="row m-2 mt-3 border-bottom" id="has_foreign_degree" style="display:none;">
+                                    <div class="col-md-12">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <p class="ml-2" style="font-weight:bold">Foreign Degree</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <table id="tbl_foreign_degree"  class="table table-border"  style="width:100%;overflow-x: auto;white-space: nowrap;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Passed Year</th>
+                                                            <th>Certificate</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tbl_foreign_degree_body hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>  
+                                    </div>
+                                </div>                               
                             </div>
                         </div>
                         <div class="card">

@@ -25,6 +25,7 @@ class ReportController extends Controller
                         ->where('exam_type_id','!=',3)
                         ->where('status',1)
                         ->with('student_info')
+                        ->orderBy('is_full_module','desc')
                         ->orderBy('student_infos.name_mm','asc')->select('exam_register.*');
 
         
@@ -39,11 +40,20 @@ class ReportController extends Controller
                     $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                     return $nrc_result;
                 })
+                ->addColumn('module', function ($infos) {
+                    if ($infos->is_full_module == 1) {
+                        return "Module One";
+                    } else if ($infos->is_full_module == 2) {
+                        return "Module Two";
+                    } else {
+                        return "Full Module";
+                    }
+                })
                 ->make(true);
          
 
     }
-
+    //show reporting page
     public function showEntranceExamList(Request $request)
     {
          
@@ -110,7 +120,7 @@ class ReportController extends Controller
     public function attendAppList($code)  
     {
         $course = Course::where('code',$code)->with('active_batch','course_type')->first();
-        $student_registers = StudentRegister::where('form_type',$course->active_batch[0]->course->id)
+        $student_registers = StudentRegister::where('batch_id',$course->active_batch[0]->id)
         ->join('student_infos','student_infos.id','=','student_register.student_info_id')
         ->where('student_register.status',1)
         ->orderBy('student_infos.name_mm','asc')

@@ -178,6 +178,7 @@ function loadCPAFFData(){
             console.log(student.length);
             
             student.forEach(function(element){
+                console.log(element)
                 if(element.status==0){
                     document.getElementById("cpaff_approve_reject").style.display = "block";
                 } else {
@@ -208,7 +209,7 @@ function loadCPAFFData(){
                 nrc    +=   element.student_info.nrc_number;                
 
                 $("#id").append(element.id);
-                document.getElementById('image').src=PDF_URL+element.student_info.image;
+                document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
                 $("#nrc").append(nrc);
@@ -222,12 +223,12 @@ function loadCPAFFData(){
                 $("#phone").append(element.student_info.phone);
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
-                $("#image").append(element.student_info.image);
+                $("#profile_photo").append(element.profile_photo);
                 if(element.form_type==1){
                     //do nothing
                 }
                 else{
-                $("#registration_no").append(element.student_register.personal_no);
+                $("#registration_no").append(element.student_info.cpersonal_no);
                 }
 
                 if(element.student_info.gov_staff == 1){
@@ -240,7 +241,7 @@ function loadCPAFFData(){
                 if(element.cpa!=null){
                     $(".cpa_file").append(`<a href='${PDF_URL+element.cpa}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
-                    $("#cpa_btn").append(`<span>-</span>`);
+                    $(".cpa_file").append(`<span>-</span>`);
                 }
 
                 if(element.ra!=null){
@@ -249,16 +250,46 @@ function loadCPAFFData(){
                     $(".ra_file").append(`<span>-</span>`);
                 }
 
-                if(element.foreign_degree!=null && element.foreign_degree!="null"){                   
-                    //removeBracketed(element.foreign_degree,"foreign_degree");
+                // if(element.foreign_degree!=null && element.foreign_degree!="null"){                   
+                //     //removeBracketed(element.foreign_degree,"foreign_degree");
+                //     let foreign_degree = JSON.parse(element.foreign_degree);
+                //     $.each(foreign_degree, function (fileCount, fileName) {
+                //         $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                //     })
+                // }else {
+                //     $(".foreign_degree_file").append(`<span>-</span>`);
+                // }
+                if(element.foreign_degree!=null && element.foreign_degree!="null"){    
+                    // let foreign_degree = JSON.parse(element.foreign_degree);
+                    // $.each(foreign_degree, function (fileCount, fileName) {
+                    //     $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    // })
+                    // $(".foreign_degree_file").append(
+                    //     '<table id="tbl_foreign_degree"  class="table table-border" style="width:100%;display: block; overflow-x: auto;white-space: nowrap;"'+
+                    //     '<thead><tr><th>Name</th>'+'<th>Passed Year</th>'+'<th>Certificate</th></tr></thead>'+
+                    //     '<tbody class="tbl_foreign_degree_body hoverTable text-left"></tbody></table>'
+                    // );
+                    $('#has_foreign_degree').show();
+                    $('#not_foreign_degree').hide();
                     let foreign_degree = JSON.parse(element.foreign_degree);
-                    $.each(foreign_degree, function (fileCount, fileName) {
-                        $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                    })
+                    let degree_name = JSON.parse(element.degree_name);
+                    let degree_year = JSON.parse(element.degree_pass_year);
+                    $('.tbl_foreign_degree_body').html("");
+                    var certificate_html;
+                    for(let i=0;i<foreign_degree.length;i++){
+                        var degree_certificate=`<a href='${PDF_URL +foreign_degree[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`;
+                        certificate_html += `<tr>
+                                            <td>${degree_name[i]}</td>
+                                            <td>${degree_year[i]}</td>
+                                            <td>${degree_certificate}</td>
+                                        </tr>`
+                    }
+                    $('.tbl_foreign_degree_body').html(certificate_html)
                 }else {
+                    $('#not_foreign_degree').show();
+                    $('#has_foreign_degree').hide();
                     $(".foreign_degree_file").append(`<span>-</span>`);
                 }
-
                 if(element.cpa_certificate!=null){
                     $(".cpa_certificate_file").append(`<a href='${PDF_URL+element.cpa_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
@@ -302,6 +333,48 @@ function loadCPAFFData(){
                 $("#degree").append(degree);
                 $("#status").append(status);
                 $("#cpd_total_hour").append(element.total_hours);
+                $("#cpa_batch_no").append(element.cpa_batch_no);
+                $("#cpaff_address").append(element.address);
+                $("#cpaff_phone").append(element.phone);
+                $("#contact_mail").append(element.contact_mail);
+                
+                if(element.cpa2_pass_date != null){
+                    $("#cpa2_pass_date").append(element.cpa2_pass_date);
+                }else{
+                    $("#cpa2_pass_date").append(`<span>-</span>`);
+                }
+                if(element.reg_no != null){
+                    $("#reg_no").append(element.reg_no);
+                }else{
+                    $("#reg_no").append(`<span>-</span>`);
+                }
+                
+                if(element.country != null){
+                    $("#country").append(element.country);
+                }else{
+                    $("#country").append(`<span>-</span>`);
+                }
+                if(element.government != null){
+                    $("#government").append(element.government);
+                }else{
+                    $("#government").append(`<span>-</span>`);
+                }
+                if(element.exam_year != null){
+                    $("#exam_year").append(element.exam_year);
+                }else{
+                    $("#exam_year").append(`<span>-</span>`);
+                }
+                if(element.exam_month != null){
+                    $("#exam_month").append(element.exam_month);
+                }else{
+                    $("#exam_month").append(`<span>-</span>`);
+                }
+                if(element.roll_no != null){
+                    $("#roll_no").append(element.roll_no);
+                }else{
+                    $("#roll_no").append(`<span>-</span>`);
+                }
+
                 $("#three_years_full").append(element.three_years_full);
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -435,7 +508,7 @@ function loadCPAFFRenewData(){
                 nrc    +=   element.student_info.nrc_number;                
 
                 $("#id").append(element.id);
-                document.getElementById('image').src=PDF_URL+element.student_info.image;
+                document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
                 $("#nrc").append(nrc);
@@ -449,12 +522,12 @@ function loadCPAFFRenewData(){
                 $("#phone").append(element.student_info.phone);
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
-                $("#image").append(element.student_info.image);
+                $("#profile_photo").append(element.profile_photo);
                 if(element.form_type==1){
                     //do nothing
                 }
                 else{
-                $("#registration_no").append(element.student_register.personal_no);
+                $("#registration_no").append(element.student_info.cpersonal_no);
                 }
 
                 if(element.student_info.gov_staff == 1){
@@ -467,7 +540,7 @@ function loadCPAFFRenewData(){
                 if(element.cpa!=null){
                     $(".cpa_file").append(`<a href='${PDF_URL+element.cpa}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
-                    $("#cpa_btn").append(`<span>-</span>`);
+                    $(".cpa_file").append(`<span>-</span>`);
                 }
 
                 if(element.ra!=null){
@@ -476,13 +549,35 @@ function loadCPAFFRenewData(){
                     $(".ra_file").append(`<span>-</span>`);
                 }
 
-                if(element.foreign_degree!=null && element.foreign_degree!="null"){                   
-                    //removeBracketed(element.foreign_degree,"foreign_degree");
+                if(element.foreign_degree!=null && element.foreign_degree!="null"){    
+                    // let foreign_degree = JSON.parse(element.foreign_degree);
+                    // $.each(foreign_degree, function (fileCount, fileName) {
+                    //     $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    // })
+                    // $(".foreign_degree_file").append(
+                    //     '<table id="tbl_foreign_degree"  class="table table-border" style="width:100%;display: block; overflow-x: auto;white-space: nowrap;"'+
+                    //     '<thead><tr><th>Name</th>'+'<th>Passed Year</th>'+'<th>Certificate</th></tr></thead>'+
+                    //     '<tbody class="tbl_foreign_degree_body hoverTable text-left"></tbody></table>'
+                    // );
+                    $('#has_foreign_degree').show();
+                    $('#not_foreign_degree').hide();
                     let foreign_degree = JSON.parse(element.foreign_degree);
-                    $.each(foreign_degree, function (fileCount, fileName) {
-                        $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                    })
+                    let degree_name = JSON.parse(element.degree_name);
+                    let degree_year = JSON.parse(element.degree_pass_year);
+                    $('.tbl_foreign_degree_body').html("");
+                    var certificate_html;
+                    for(let i=0;i<foreign_degree.length;i++){
+                        var degree_certificate=`<a href='${PDF_URL +foreign_degree[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`;
+                        certificate_html += `<tr>
+                                            <td>${degree_name[i]}</td>
+                                            <td>${degree_year[i]}</td>
+                                            <td>${degree_certificate}</td>
+                                        </tr>`
+                    }
+                    $('.tbl_foreign_degree_body').html(certificate_html)
                 }else {
+                    $('#not_foreign_degree').show();
+                    $('#has_foreign_degree').hide();
                     $(".foreign_degree_file").append(`<span>-</span>`);
                 }
 
@@ -524,6 +619,17 @@ function loadCPAFFRenewData(){
                 $("#degree").append(degree);
                 $("#status").append(status);
                 $("#cpd_total_hour").append(element.total_hours);
+                $("#cpa_batch_no").append(element.cpa_batch_no);
+                $("#cpaff_address").append(element.address);
+                $("#cpaff_phone").append(element.phone);
+                $("#contact_mail").append(element.contact_mail);
+                
+                if(element.cpaff_pass_date != null){
+                    $("#cpaff_pass_date").append(element.cpaff_pass_date);
+                }else{
+                    $("#cpaff_pass_date").append(`<span>-</span>`);
+                }
+                // $("#cpd_total_hour").append(element.total_hours);
                 $("#three_years_full").append(element.three_years_full);
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -596,12 +702,7 @@ function approveCPAFFUser(){
             type: 'patch',
             success: function(result){
                 successMessage("You have approved that user!");
-                if(is_renew==0){
-                    location.href = FRONTEND_URL + "/cpa_ff_registration_list";
-                }
-                else{
-                    location.href = FRONTEND_URL + "/cpa_ff_renew_list";
-                }
+                location.href = FRONTEND_URL + "/cpa_ff_registration_list";
             }
         });
     }
@@ -611,7 +712,6 @@ function rejectModal(){
     $('#reject_modal').modal('show');
 }
 function rejectCPAFFUser(){
-    var is_renew=localStorage.getItem("is_renew");
         var id = $("input[name = cpaff_id]").val();
         var data = $('#reject').val();
         $.ajax({
@@ -623,12 +723,7 @@ function rejectCPAFFUser(){
             },
             success: function(result){
                 successMessage("You have rejected that user!");
-                if(is_renew == 0){
-                    location.href = FRONTEND_URL + "/cpa_ff_registration_list";
-                }
-                else{
-                    location.href = FRONTEND_URL + "/cpa_ff_renew_list";
-                }
+                location.href = FRONTEND_URL + "/cpa_ff_registration_list";
             }
         });
 }

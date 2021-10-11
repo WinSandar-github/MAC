@@ -202,6 +202,14 @@
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">ကျား/မ (Gender)</p>
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <span id="gender"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Race</p>
                                         </div>
                                         <div class="col-md-6 text-left">
@@ -329,6 +337,16 @@
                                             <span id="student_status"></span>
                                         </div>
                                     </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">ယခုဖြေဆိုမည့် Module</p>
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <span id="current_module"></span>
+                                        </div>
+                                    </div>
+
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">စာဖြေဌာန</p>

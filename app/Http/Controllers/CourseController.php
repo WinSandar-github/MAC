@@ -87,8 +87,7 @@ class CourseController extends Controller
         $course->course_type_id = $request->course_type_id;
         $course->code = $request->code;
         $course->requirement_id     = $request->requirement_id;
-        $course->cpa_subject_fee     = $request->cpa_subject_fee;
-        $course->da_subject_fee     = $request->da_subject_fee;
+        
 
         $course->save();
         return response()->json([
@@ -104,7 +103,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::where('id', $id)->with('requirement')->first();
+        $course = Course::where('id', $id)->with('requirement','active_batch')->first();
         return response()->json([
             'data' => $course
         ], 200);
@@ -147,8 +146,6 @@ class CourseController extends Controller
         $course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
         $course->code = $request->code;
-        $course->cpa_subject_fee     = $request->cpa_subject_fee;
-        $course->da_subject_fee     = $request->da_subject_fee;
         $course->requirement_id = json_encode($requirements);
         $course->save();
         return response()->json([
@@ -242,11 +239,11 @@ class CourseController extends Controller
                     return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-xs' onclick='showCourseInfo($course->id)'>
                                     <li class='fa fa-edit fa-sm'></li>
-                                </button>
-                                 <button type='button' class='btn btn-danger btn-xs' onclick='deleteCourseInfo(\"$course->name\", $course->id)'>
-                                    <li class='fa fa-trash fa-sm'></li>
-                                </button>
-                            </div>";
+                                </button>";
+                            //      <button type='button' class='btn btn-danger btn-xs' onclick='deleteCourseInfo(\"$course->name\", $course->id)'>
+                            //         <li class='fa fa-trash fa-sm'></li>
+                            //     </button>
+                            // </div>";
                 })
                 ->addColumn('description', function ($course) {
                     return $course->course_type ? Str::limit($course->course_type->course_description, 50, '...') : '';

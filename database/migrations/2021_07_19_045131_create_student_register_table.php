@@ -17,6 +17,7 @@ class CreateStudentRegisterTable extends Migration
             $table->id();
             $table->bigInteger('sr_no')->nullable();
             $table->unsignedBigInteger('student_info_id');
+            $table->unsignedBigInteger('batch_id');
             $table->date('date');
             $table->text('reg_reason')->nullable();
             $table->unsignedBigInteger('invoice_id');
