@@ -641,8 +641,8 @@ class CPAFFController extends Controller
         $cpa_ff->save();
         
         
-        $initial_cpaff->status=0;
-        $initial_cpaff->save();
+        // $initial_cpaff->status=0;
+        // $initial_cpaff->save();
 
         return response()->json([
             'message' => "You have successfully registerd!"
