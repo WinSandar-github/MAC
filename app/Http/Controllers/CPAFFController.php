@@ -844,7 +844,6 @@ class CPAFFController extends Controller
                       ->where('status','=',$status)
                       ->where('is_renew','=',$is_renew)
                       ->get();
-
                       return DataTables::of($cpa_ff)
                         ->addColumn('action', function ($infos) {
                             return "<div class='btn-group'>
@@ -853,7 +852,6 @@ class CPAFFController extends Controller
                                         </button>
                                     </div>";
                         })
-
                         ->addColumn('nrc', function ($infos){
                             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                             return $nrc_result;
@@ -876,7 +874,6 @@ class CPAFFController extends Controller
                               return "REJECTED";
                             }
                         })
-
                         ->addColumn('degree', function ($infos){
                             if($infos->cpa_part_2 == 1){
                               return "CPA Part 2 Pass";
@@ -891,7 +888,7 @@ class CPAFFController extends Controller
                         ->addColumn('updated_at', function ($infos){
                             return date("d F Y", strtotime($infos->student_info->updated_at));
                         })
-                        ->rawColumns(['action','nrc','degree','status','created_at','updated_at','self'])
+                        ->rawColumns(['action','nrc','self','degree','status','created_at','updated_at'])
                         ->make(true);
             }
 }
