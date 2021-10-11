@@ -25,7 +25,7 @@ class SubjectController extends Controller
         }
         else{
             $subject = DB::table('subjects')->join('courses', 'courses.id','=', 'subjects.course_id')
-            ->select('courses.id', 'courses.code','courses.cpa_subject_fee','courses.da_subject_fee', 'subjects.subject_name', 'subjects.id as subject_id')
+            ->select('courses.id', 'courses.code', 'subjects.subject_name', 'subjects.id as subject_id')
             ->where('subjects.id',$request->subject_id)
             ->get();
     

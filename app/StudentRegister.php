@@ -12,7 +12,7 @@ class StudentRegister extends Model
 
     public function student_info()
     {
-        return $this->belongsTo(StudentInfo::class,'student_info_id','id')->with('student_job','student_education_histroy');
+        return $this->belongsTo(StudentInfo::class,'student_info_id','id')->with('student_job','student_education_histroy','student_course_regs');
     }
 
      

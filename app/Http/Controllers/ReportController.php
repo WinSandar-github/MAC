@@ -8,9 +8,7 @@ use App\StudentInfo;
 use App\StudentRegister;
 use App\ExamRegister;
 use App\Module;
-
-
-
+use App\ExamDepartment;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -31,7 +29,17 @@ class ReportController extends Controller
         ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no)','ASC')->orderBy('student_infos.personal_no','ASC')
         : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC')->orderBy('student_infos.cpersonal_no','ASC');
                         
+        if($request->module)
+        {
+        
+            $student_infos = $student_infos->where('is_full_module',$request->module);
+        }
 
+        if($request->exam_department)
+        {
+            
+            $student_infos = $student_infos->where('exam_department',$request->exam_department);
+        }
         
         $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
         $request->exam_type_id &&  $student_infos =  $student_infos->Where('exam_type_id',$request->exam_type_id);
@@ -76,6 +84,11 @@ class ReportController extends Controller
                         ->where('status',1)
                         ->with('student_info')
                         ->orderBy('student_infos.name_mm','asc')->select('exam_register.*');
+ 
+        if($request->batch)
+        {  
+            $student_infos = $student_infos->where('batch_id',$request->batch);
+        }
 
         
         $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
@@ -120,13 +133,13 @@ class ReportController extends Controller
          if($request->module)
         {
             
-            $student_infos = $student_infos->where('module',$request->module);
+            $student_infos = $student_infos->where('student_register.module',$request->module);
         }
 
-        if($request->student_type)
+        if($request->student_type !== 'select_type')
         {
-            
-            $student_infos = $student_infos->where('type',$request->student_type);
+        
+            $student_infos = $student_infos->where('student_register.type',$request->student_type);
         }                
                                         
         $student_infos  = $student_infos->get();
@@ -164,12 +177,17 @@ class ReportController extends Controller
     public function attendExamList($code)  
     {
         $course = Course::where('code',$code)->first();
-        return view('reporting.exam_list',compact('course'));
+        $modules = Module::get();
+        $exam_departments = ExamDepartment::get();
+
+        return view('reporting.exam_list',compact('course','modules','exam_departments'));
     }
 
     public function currentEntryExamList($code)  
     {
-        $course = Course::where('code',$code)->first();
+        $course = Course::where('code',$code)->with('batches')->first();
+       
+        
         return view('reporting.current_entry_exam_list',compact('course'));
     }
     

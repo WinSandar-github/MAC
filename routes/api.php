@@ -392,3 +392,10 @@ Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@
 //Teacher card
 Route::get('getTeacher/{invoice_no}', 'TeacherController\TeacherController@getTeacher');
 Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
+//teacher renew
+Route::post('/renewTeacher', 'TeacherController\TeacherController@renewTeacher');
+Route::post('/filterRenewTeacher','TeacherController\TeacherController@filterRenewTeacher');
+Route::get('getRenewTeacher/{id}', 'TeacherController\TeacherController@getRenewTeacher');
+Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController@approveRenewTeacherRegister');
+//Route::resource('/renewTeacher','TeacherController\TeacherController');
+Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');

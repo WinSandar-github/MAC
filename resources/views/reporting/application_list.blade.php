@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="text-center m-3" style="font-weight:bold">တက်ရောက်ခွင့်ရသူများစာရင်း</h3>
+                            <h3 class="text-center m-3" style="font-weight:bold">မှတ်ပုံတင်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ခြင်း</h3>
                         </div>
                     </div>
                 </div>
@@ -38,11 +38,11 @@
                                     <div class="mx-2">
                                         
                                         <select class="form-control form-select" name="student_type" id="student_type">
-                                            <option value="" selected >Select Student Type</option>
+                                            <option value="select_type" selected >Select Student Type</option>
                                                 
-                                            <option value="2">MAC</option>
-                                            <option value="1">Private School</option>
-                                            <option value="0">Selfstudy</option>
+                                            <option value=2>MAC</option>
+                                            <option value=1>Private School</option>
+                                            <option value=0>Selfstudy</option>
     
                                             
                                         </select>
@@ -100,7 +100,7 @@
               showAppList(course_code);
         })
 
-showAppList = (course_code) =>{
+showAppList = (course_code) => {
 
     var table_app = $('#tbl_application').DataTable({
         scrollX: true,
@@ -140,7 +140,7 @@ showAppList = (course_code) =>{
 
     
     $("#search").click(function () {
-
+      
         table_app.draw();
     });
 
