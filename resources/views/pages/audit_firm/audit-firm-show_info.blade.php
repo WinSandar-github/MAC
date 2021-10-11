@@ -195,17 +195,32 @@
                                       </div>
                                   </div>
                               </div>--}}
-                                <div class="row pl-4 mt-2 border-bottom">
-                                    <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
-                                    <label class="col-md-4 col-form-label font-weight-bold">{{ __('Approve / Reject Status') }}</label>
-                                    <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <span id="status" style="font-size:20px;">
-																						</span>
-                                        </div>
-                                    </div>
-                                </div>
+                              <div class="row pl-4 mt-2 border-bottom">
+                                  <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
+                                  <label class="col-md-4 col-form-label font-weight-bold">{{ __('Approve / Reject Status') }}</label>
+                                  <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+                                  <div class="col-md-7">
+                                      <div class="form-group">
+                                          <span id="status" style="font-size:20px;">
+																					</span>
+                                      </div>
+                                  </div>
+                              </div>
+
+															<div id="reject_remark_box" style="display:none">
+																<div class="row pl-4 mt-2 border-bottom">
+																		<!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
+																		<label class="col-md-4 col-form-label font-weight-bold">Reject Remark</label>
+																		<label class="col-md-1 col-form-label">{{ __(':') }}</label>
+																		<div class="col-md-7">
+																				<div class="form-group">
+																					<span class="text-danger fw-bolder reject-remark" style="font-size:15px;"></span>
+																				</div>
+																		</div>
+																</div>
+															</div>
+
+
                                 <!-- <div class="row  pl-4">
                                     <div class="col-md-2">
                                         <div class="form-group">

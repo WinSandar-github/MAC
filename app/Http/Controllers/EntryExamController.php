@@ -127,6 +127,7 @@ class EntryExamController extends Controller
             $student_info->nrc_back         =   $nrc_back;
             $student_info->father_name_mm   =   $request->father_name_mm;
             $student_info->father_name_eng  =   $request->father_name_eng;
+            $student_info->gender             =   $request->gender;
             $student_info->race             =   $request->race;
             $student_info->religion         =   $request->religion;
             $student_info->date_of_birth    =   $date_of_birth;
@@ -350,8 +351,10 @@ class EntryExamController extends Controller
                 else if($infos->is_full_module == 2){
                   return "Module 2";
                 }
-                else{
+                else if($infos->is_full_module == 3){
                   return "All Module";
+                }else{
+                  return "-";
                 }
             })
             ->rawColumns(['action', 'print','exam_type','remark','module'])
@@ -401,5 +404,42 @@ class EntryExamController extends Controller
         return response()->json([
             'message' => "You have successfully fail that Student!"
         ],200);
+    }
+
+    //show entry exam list in mac student
+    public function enteredExamList(Request $request)
+    {
+        
+
+
+        $student_infos = ExamRegister::with('student_info','course')
+                        ->where('batch_id',3)
+                        ->where('status',1)
+                        ->whereNotNull('sr_no')
+                        ->where('exam_type_id',3);
+                       
+
+        if($request->grade){
+            $student_infos =  $student_infos->Where('grade',$request->grade)->orderby('total_mark','desc');
+            
+        }else{
+            $student_infos =  $student_infos->orderBy('sr_no','asc');
+            
+        }
+        $student_infos =  $student_infos->get(); 
+
+
+        return DataTables::of($student_infos)
+        ->addColumn('nrc', function ($infos){
+            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+            return $nrc_result;
+        })
+        ->make(true);
+
+        // return response()->json([
+        //     'data' => $student_infos
+        // ]);
+
+
     }
 }

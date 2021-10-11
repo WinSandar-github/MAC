@@ -7,6 +7,7 @@ use App\Papp;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
+use App\CPAFF;
 use App\Invoice;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -71,7 +72,8 @@ class PAPPController extends Controller
             }
 
         }else{
-            $degree = null;
+            $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+            $degree = $cpaff_data->foreign_degree;
         }
 
         if ($request->hasfile('cpa_ff_recommendation')) {
@@ -84,41 +86,41 @@ class PAPPController extends Controller
             $cpa_ff="";
         }
 
-        if ($request->hasfile('recommendation_183')) {
-            $recomm_183_file = $request->file('recommendation_183');
-            $recomm_183_name  = uniqid().'.'.$recomm_183_file->getClientOriginalExtension();
-            $recomm_183_file->move(public_path().'/storage/student_papp/',$recomm_183_name);
-            $recomm_183 = '/storage/student_papp/'.$recomm_183_name;
-        }else{
-            $recomm_183="";
-        }
+        // if ($request->hasfile('recommendation_183')) {
+        //     $recomm_183_file = $request->file('recommendation_183');
+        //     $recomm_183_name  = uniqid().'.'.$recomm_183_file->getClientOriginalExtension();
+        //     $recomm_183_file->move(public_path().'/storage/student_papp/',$recomm_183_name);
+        //     $recomm_183 = '/storage/student_papp/'.$recomm_183_name;
+        // }else{
+        //     $recomm_183="";
+        // }
 
-        if ($request->hasfile('not_fulltime_recommendation')) {
-            $not_fulltime_file = $request->file('not_fulltime_recommendation');
-            $not_fulltime_name  = uniqid().'.'.$not_fulltime_file->getClientOriginalExtension();
-            $not_fulltime_file->move(public_path().'/storage/student_papp/',$not_fulltime_name);
-            $not_fulltime= '/storage/student_papp/'.$not_fulltime_name;
-        }else{
-            $not_fulltime="";
-        }
+        // if ($request->hasfile('not_fulltime_recommendation')) {
+        //     $not_fulltime_file = $request->file('not_fulltime_recommendation');
+        //     $not_fulltime_name  = uniqid().'.'.$not_fulltime_file->getClientOriginalExtension();
+        //     $not_fulltime_file->move(public_path().'/storage/student_papp/',$not_fulltime_name);
+        //     $not_fulltime= '/storage/student_papp/'.$not_fulltime_name;
+        // }else{
+        //     $not_fulltime="";
+        // }
 
-        if ($request->hasfile('work_in_myanmar_confession')) {
-            $work_in_mm_file = $request->file('work_in_myanmar_confession');
-            $work_in_mm_name  = uniqid().'.'.$work_in_mm_file->getClientOriginalExtension();
-            $work_in_mm_file->move(public_path().'/storage/student_papp/',$work_in_mm_name);
-            $work_in_mm= '/storage/student_papp/'.$work_in_mm_name;
-        }else{
-            $work_in_mm="";
-        }
+        // if ($request->hasfile('work_in_myanmar_confession')) {
+        //     $work_in_mm_file = $request->file('work_in_myanmar_confession');
+        //     $work_in_mm_name  = uniqid().'.'.$work_in_mm_file->getClientOriginalExtension();
+        //     $work_in_mm_file->move(public_path().'/storage/student_papp/',$work_in_mm_name);
+        //     $work_in_mm= '/storage/student_papp/'.$work_in_mm_name;
+        // }else{
+        //     $work_in_mm="";
+        // }
 
-        if ($request->hasfile('rule_confession')) {
-            $rule_file = $request->file('rule_confession');
-            $rule_name  = uniqid().'.'.$rule_file->getClientOriginalExtension();
-            $rule_file->move(public_path().'/storage/student_papp/',$rule_name);
-            $rule = '/storage/student_papp/'.$rule_name;
-        }else{
-            $rule="";
-        }
+        // if ($request->hasfile('rule_confession')) {
+        //     $rule_file = $request->file('rule_confession');
+        //     $rule_name  = uniqid().'.'.$rule_file->getClientOriginalExtension();
+        //     $rule_file->move(public_path().'/storage/student_papp/',$rule_name);
+        //     $rule = '/storage/student_papp/'.$rule_name;
+        // }else{
+        //     $rule="";
+        // }
 
         if ($request->hasfile('cpd_record')) {
             $cpd_file = $request->file('cpd_record');
@@ -156,34 +158,35 @@ class PAPPController extends Controller
             $tax_free="";
         }
 
-        if ($request->hasfile('letter')) {
-            $file = $request->file('letter');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $letter = '/storage/student_papp/'.$name;
-        }else{
-            $letter="";
-        }
+        // if ($request->hasfile('letter')) {
+        //     $file = $request->file('letter');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $letter = '/storage/student_papp/'.$name;
+        // }else{
+        //     $letter="";
+        // }
 
         $papp  = new Papp();
         $papp->student_id                   =   $request->student_id;
         $papp->profile_photo                =   $profile_photo;
         $papp->cpa                          =   $cpa;
         $papp->ra                           =   $ra;
-        $papp->foreign_degree               =   json_encode($degree);
+        $papp->foreign_degree               =   $degree;
         $papp->degree_name                  =   json_encode($request->degree_name);
         $papp->degree_pass_year             =   json_encode($request->degree_pass_year);
         $papp->papp_date                    =   $request->papp_date;
+        $papp->cpaff_pass_date              =   $request->cpaff_pass_date;
         $papp->use_firm                     =   $request->use_firm;
         $papp->firm_name                    =   $request->firm_name;
         $papp->firm_type                    =   $request->firm_type;
         $papp->firm_step                    =   $request->firm_step;
         $papp->staff_firm_name              =   $request->staff_firm_name;
         $papp->cpa_ff_recommendation        =   $cpa_ff;
-        $papp->recommendation_183           =   $recomm_183;
-        $papp->not_fulltime_recommendation  =   $not_fulltime;
-        $papp->work_in_myanmar_confession   =   $work_in_mm;
-        $papp->rule_confession              =   $rule;
+        // $papp->recommendation_183           =   $recomm_183;
+        // $papp->not_fulltime_recommendation  =   $not_fulltime;
+        // $papp->work_in_myanmar_confession   =   $work_in_mm;
+        // $papp->rule_confession              =   $rule;
         $papp->cpd_record                   =   $cpd;
         $papp->cpd_hours                    =   $request->cpd_hours;
         $papp->mpa_mem_card_front           =   $mpa_mem_card_front;
@@ -196,7 +199,7 @@ class PAPPController extends Controller
         $papp->address          =   $request->address;
         $papp->phone            =   $request->phone;
         $papp->contact_mail     =   $request->contact_mail;
-        $papp->letter           =   $letter;
+        // $papp->letter           =   $letter;
         $papp->reg_no           =   $request->reg_no;
         $papp->type             =   $request->type;
         $papp->save();
@@ -296,7 +299,8 @@ class PAPPController extends Controller
             }
 
         }else{
-            $degree = null;
+            $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+            $degree = $cpaff_data->foreign_degree;
         }
 
         if ($request->hasfile('cpa_ff_recommendation')) {
@@ -395,7 +399,7 @@ class PAPPController extends Controller
         $papp->profile_photo                =   $profile_photo;
         $papp->cpa                          =   $cpa;
         $papp->ra                           =   $ra;
-        $papp->foreign_degree               =   json_encode($degree);
+        $papp->foreign_degree               =   $degree;
         $papp->degree_name                  =   json_encode($request->degree_name);
         $papp->degree_pass_year             =   json_encode($request->degree_pass_year);
         $papp->papp_date                    =   $request->papp_date;
@@ -676,8 +680,13 @@ class PAPPController extends Controller
           ->addColumn('papp_date', function ($infos){
               return $infos->papp_date;
           })
-
-          ->rawColumns(['action','nrc','papp_date','status','use_firm'])
+          ->addColumn('created_at', function ($infos){
+            return date("d F Y", strtotime($infos->student_info->created_at));
+        })
+        ->addColumn('updated_at', function ($infos){
+            return date("d F Y", strtotime($infos->student_info->updated_at));
+        })
+          ->rawColumns(['action','nrc','papp_date','status','use_firm','created_at','updated_at'])
           ->make(true);
     }
 }

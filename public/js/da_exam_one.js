@@ -256,6 +256,7 @@ function printExamCard(studentId, exam_id, form_type) {
     }
 }
 
+
 function loadDAExamData() {
     var id = localStorage.getItem("student_id");
     // console.log(id);
@@ -270,6 +271,7 @@ function loadDAExamData() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -304,7 +306,7 @@ function loadDAExamData() {
         success: function (data) {
             var exam_data = data.data;
             exam_data.forEach(function (element) {
-                // console.log('element',element);
+                console.log('element', element);
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -358,10 +360,19 @@ function loadDAExamData() {
                 }
 
                 $("#exam_department").append(element.exam_department.name);
+                if (element.is_full_module == 1) {
+                    $("#current_module").append("Module-1");
+                } else if (element.is_full_module == 2) {
+                    $("#current_module").append("Module-2");
+                } else {
+                    $("#current_module").append("All Module");
+                }
+
 
                 let course_type_id = element.course.course_type_id;
 
                 element = element.student_info;
+                console.log('student_info', element);
 
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
@@ -372,6 +383,7 @@ function loadDAExamData() {
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
                 $("#father_name_mm").append(element.father_name_mm);
                 $("#father_name_eng").append(element.father_name_eng);
+                $("#gender").append(element.gender);
                 $("#race").append(element.race);
                 $("#religion").append(element.religion);
                 $("#date_of_birth").append(element.date_of_birth);
@@ -396,6 +408,7 @@ function loadDAExamData() {
                 } else {
                     $(".recommend_row").hide();
                 }
+
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -424,12 +437,28 @@ function loadDAExamData() {
                     url: BACKEND_URL + "/get_passed_exam_student/" + element.id,
                     type: 'get',
                     success: function (result) {
+
                         if (result.data.length != 0) {
                             result.data.forEach(function (course) {
+
                                 var success_year = new Date(course.updated_at);
+                                var module_name;
+                                if (course.is_full_module == 1) {
+                                    module_name = "Module 1";
+                                }
+                                else if (course.is_full_module == 2) {
+                                    module_name = "Module 2";
+                                }
+                                else if (course.is_full_module == 3) {
+                                    module_name = "All Module";
+                                }
+                                else {
+                                    module_name = "-";
+                                }
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
+                                                    <td>${module_name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });
@@ -476,6 +505,9 @@ function loadStudentDataForExamCard() {
                 $("#father_name").append(exam_data.student_info.father_name_mm);
                 $('#exam_department').text(exam_data.exam_department.name)
                 $('#roll_no').text(exam_data.student_info.cpersonal_no)
+                $('#room_no').text(exam_data.exam_room);
+                $('#hall_no').text(exam_data.exam_building);
+                $('#exam_place').text(exam_data.exam_place);
 
             });
         }
@@ -802,6 +834,7 @@ function getModuleStd() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -906,6 +939,7 @@ function getModuleStd() {
                 $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
                 $("#father_name_mm").append(std.father_name_mm);
                 $("#father_name_eng").append(std.father_name_eng);
+                $("#gender").append(std.gender);
                 $("#race").append(std.race);
                 $("#religion").append(std.religion);
                 $("#date_of_birth").append(std.date_of_birth);
@@ -1001,10 +1035,11 @@ function getModuleStd() {
                 type: 'get',
                 data: "",
                 success: function (result) {
+                    console.log('result', result.data);
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
                         tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
-                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.data.total_mark + "</td>";
+                        tr += "<td colspan='2' id='total_mark' style='text-align:left;padding-left:20px;font-weight:bold;'>" + result.total_mark + "</td>";
                         tr += "</tr>";
                         $(".tbl_fillmarks_body").append(tr);
                         // $('.ex_res_btn').hide();

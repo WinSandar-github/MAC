@@ -670,7 +670,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <button type="button" class="btn btn-block btn-color btn-flat p-3" name="sr_personal_btn">
-                                    တက်ရောက်ခွင့်ရသူများနှင့်ကိုယ်ပိုင်နံပါတ် ထုတ်ပြန်ခြင်း
+                                    မှတ်ပုံတင်ထားသူများစာရင်း ထုတ်ပြန်ခြင်း
                                 </button>
                             </div>
                             <div class="col-md-6">
@@ -680,7 +680,7 @@
                             </div>
                         </div>
                         <div class="card card-stats arrow-up-right" id="generate_sr_personal_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
-                            <h5 class="card-header">တက်ရောက်ခွင့်ရသူများနှင့်ကိုယ်ပိုင်နံပါတ် ထုတ်ပြန်ခြင်း</h5><hr class="header_hr">
+                            <h5 class="card-header">မှတ်ပုံတင်ထားသူများစာရင်း ထုတ်ပြန်ခြင်း</h5><hr class="header_hr">
                             <div class="card-body ">
                                 {{-- <div class="row">
                                     <div class="col-md-6">
@@ -703,12 +703,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_app_list/da_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Da One တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
+                                            Da One တက်ရောက်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_app_list/da_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Da Two တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
+                                            Da Two တက်ရောက်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
 
@@ -716,12 +716,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_app_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa One တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
+                                            Cpa One တက်ရောက်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_app_list/cpa_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa Two တက်ရောက်ခွင့်ရသူများ စာရင်းထုတ်ပြန်ရန်
+                                            Cpa Two တက်ရောက်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
 
@@ -729,7 +729,7 @@
                             </div>
                         </div>
                         <div class="card card-stats arrow-up-right" id="generate_exam_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
-                            <h5 class="card-header">စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း ထုတ်ပြန့်ခြင်း</h5><hr class="header_hr">
+                            <h5 class="card-header">စာမေးပွဲဖြေဆိုခွင့်ရရှိသူများစာရင်း ထုတ်ပြန်ခြင်း</h5><hr class="header_hr">
                             <div class="card-body ">
                                 {{-- <div class="row">
                                     <div class="col-md-6">
@@ -752,12 +752,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_exam_list/da_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Da One စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Da One စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_exam_list/da_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Da Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Da Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
 
@@ -765,38 +765,26 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_exam_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa One စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Cpa One စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_exam_list/cpa_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Cpa Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
 
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <a target="_blank" href="{{url('attend_exam_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa One စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
-                                        </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <a target="_blank" href="{{url('attend_exam_list/cpa_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa Two စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
-                                        </a>
-                                    </div>
-
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('publishes_entrance_exam_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa One ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Cpa One ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('publishes_qualifiedtest_list')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            အရည်အချင်းစစ် စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            အရည်အချင်းစစ် စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
 
@@ -812,7 +800,7 @@
 
                         </div>
                         <div class="card card-stats arrow-up-right" id="generate_exam_result_card" style="display:none; background-color:#f0f1f2; padding-bottom:10px;">
-                            <h5 class="card-header">စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန့်ခြင်း</h5><hr class="header_hr">
+                            <h5 class="card-header">စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန်ခြင်း</h5><hr class="header_hr">
                             <div class="card-body ">
                                 {{-- <div class="row">
                                     <div class="col-md-6">
@@ -835,12 +823,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('exam_result_list/da_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Da One စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Da One စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('exam_result_list/da_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Da Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Da Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
 
@@ -848,12 +836,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('exam_result_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa One စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Cpa One စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('exam_result_list/cpa_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Cpa Two စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                 </div>
@@ -861,12 +849,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('publishes_entrance_exam_result/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa One ဝင်ခွင့်စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            Cpa One ဝင်ခွင့်စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('publishes_qualifiedtest_result')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            အရည်အချင်းစစ် စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း စာရင်းထုတ်ပြန်ရန်
+                                            အရည်အချင်းစစ် စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
 

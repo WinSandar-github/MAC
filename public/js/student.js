@@ -144,6 +144,7 @@ function loadStudentSelfStudy() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -232,6 +233,7 @@ function loadStudentSelfStudy() {
             $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + student_info_data.nrc_number);
             $("#father_name_mm").append(student_info_data.father_name_mm);
             $("#father_name_eng").append(student_info_data.father_name_eng);
+            $("#gender").append(student_info_data.gender);
             $("#race").append(student_info_data.race);
             $("#religion").append(student_info_data.religion);
             $("#date_of_birth").append(student_info_data.date_of_birth);
@@ -250,9 +252,18 @@ function loadStudentSelfStudy() {
                 $(".recommend_row").hide();
             }
 
+            if(element.private_school_name){
+                
+                // console.log("internship",element.internship);
+                $(".private_school_name_row").show();
+                $("#private_school_name").append(element.private_school_name);                
+            }else{
+                $(".private_school_name_row").hide();
+            }
+
             if(element.internship){
                 
-                console.log("internship",element.internship);
+                // console.log("internship",element.internship);
                 $(".internship_program_row").show();
                 $("#internship_program").append(element.internship);                
             }else{
@@ -316,9 +327,23 @@ function loadStudentSelfStudy() {
                     if (result.data.length != 0) {
                         result.data.forEach(function (course) {
                             var success_year = new Date(course.updated_at);
+                            var module_name;
+                            if(course.is_full_module==1){
+                                module_name="Module 1";
+                            }
+                            else if(course.is_full_module==2){
+                                module_name="Module 2";
+                            }
+                            else if(course.is_full_module==3){
+                                module_name="All Module";
+                            }
+                            else{
+                                module_name="-";
+                            }
                             course_html += `<tr>
                                                 <td>${course.course.name}</td>
                                                 <td>${course.batch.name}</td>
+                                                <td>${module_name}</td>
                                                 <td>${success_year.getFullYear()}</td>
                                             </tr>`
                         });

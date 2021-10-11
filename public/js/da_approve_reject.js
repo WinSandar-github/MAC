@@ -109,6 +109,7 @@ function loadData() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -167,6 +168,7 @@ function loadData() {
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
                 $("#father_name_mm").append(element.father_name_mm);
                 $("#father_name_eng").append(element.father_name_eng);
+                $("#gender").append(element.gender);
                 $("#race").append(element.race);
                 $("#religion").append(element.religion);
                 $("#date_of_birth").append(element.date_of_birth);
@@ -188,7 +190,7 @@ function loadData() {
                 if (element.gov_staff == 1) {
                     $(".recommend_row").show();
                     element.recommend_letter == null
-                        ? $(".recommend_letter").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                        ? $(".recommend_letter").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
                         : $(".recommend_letter").append(`<a href='${PDF_URL + element.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 } else {
                     $(".recommend_row").hide();
@@ -199,7 +201,35 @@ function loadData() {
                 }else{
                     $(".da_two_pass_info").show();
                     if(element.da_pass_certificate==null){
-                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
+                    }else{
+                        $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
+                    }
+                    $(".da_pass_date").append(element.da_pass_date);
+                    $(".da_pass_roll_number").append(element.da_pass_roll_number);
+                }
+
+                if(!element.acca_cima){
+                    $(".acca_cima_info").hide();                    
+                }else{
+                    $(".acca_cima_info").show(); 
+                    if(element.acca_cima==1){
+                        $(".acca_cima").append("ACCA");
+                    }else{
+                        $(".acca_cima").append("CIMA");
+                    }
+                    $(".acca_cima_pass_roll_no").append(element.direct_degree);
+                    $(".acca_cima_pass_date").append(element.degree_date);
+                    $(".acca_cima_id_no").append(element.degree_rank);
+                    if(element.degree_certificate_image==null){
+                        $(".acca_cima_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Available</a>`)
+                    }else{
+                        $(".acca_cima_certificate").append(`<a href='${PDF_URL + element.degree_certificate_image}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                    }
+                    
+                    
+                    if(element.da_pass_certificate==null){
+                        $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Available</a>`)
                     }else{
                         $(".da_pass_certificate").append(`<a href='${PDF_URL + element.da_pass_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`)
                     }
@@ -237,11 +267,26 @@ function loadData() {
                     type: 'get',
                     success: function (result) {
                         if (result.data.length != 0) {
+                            console.log(result.data,"aa");
                             result.data.forEach(function (course) {
                                 var success_year = new Date(course.updated_at);
+                                var module_name;
+                                if(course.is_full_module==1){
+                                    module_name="Module 1";
+                                }
+                                else if(course.is_full_module==2){
+                                    module_name="Module 2";
+                                }
+                                else if(course.is_full_module==3){
+                                    module_name="All Module";
+                                }
+                                else{
+                                    module_name="-";
+                                }
                                 course_html += `<tr>
                                                     <td>${course.course.name}</td>
                                                     <td>${course.batch.name}</td>
+                                                    <td>${module_name}</td>
                                                     <td>${success_year.getFullYear()}</td>
                                                 </tr>`
                             });

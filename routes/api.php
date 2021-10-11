@@ -67,6 +67,8 @@ Route::post('/filter_batch','BatchController@FilterBatch');
 //Exam
 Route::resource('/exam','ExamController');
 Route::post('/filter_exam','ExamController@FilterExam');
+Route::post('/create_exam_room','ExamController@createExamRoom');
+
 
 //Course
 Route::resource('/course','CourseController');
@@ -95,6 +97,7 @@ Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
+Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -160,7 +163,7 @@ Route::patch('/reject_cpa_two_student/{id}', 'CPATwoRegistrationController@rejec
 
 //Exam Result
 Route::resource('/exam_result','ExamResultController');
-Route::get('/search_exam_result/{batch_id}','ExamResultController@SearchExamResult');
+Route::get('/search_exam_result/{id}','ExamResultController@SearchExamResult');
 
 Route::get('/getStatus/{id}','DARegisterController@reg_feedback');
 Route::get('/getAuditFormStatus/{id}','DARegisterController@auditFormStatus');
@@ -272,6 +275,9 @@ Route::patch('/check_code/{id}', 'DARegisterController@checkCode');
 
 Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
 
+Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
+
+
 Route::post('approve_exam_list','StudentRegisterController@‌approveExamList');
 
 // Get all courses
@@ -305,6 +311,7 @@ Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
 //cpa entry exam
 Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
 Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
+Route::post('entered_exam_list','EntryExamController@enteredExamList');
 
 //Entry Exam
 Route::post('entry_exam_filter','EntryExamController@entryExamFilter');
@@ -313,6 +320,7 @@ Route::post('/filter_entry_exam_result', 'EntryExamController@filterEntryExamRes
 //Qualified Test
 Route::post('/filter_qualified_test_result', 'QualifiedTest\QualifiedTestController@filterQTResult');
 Route::post('/fill_mark_qt', 'QualifiedTest\QualifiedTestController@fillMarkQt');
+Route::post('/current_qt_list','QualifiedTest\QualifiedTestController@currentQtList');
 
 
 
@@ -385,3 +393,12 @@ Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@
 //Teacher card
 Route::get('getTeacher/{invoice_no}', 'TeacherController\TeacherController@getTeacher');
 Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
+//teacher renew
+Route::post('/renewTeacher', 'TeacherController\TeacherController@renewTeacher');
+Route::post('/filterRenewTeacher','TeacherController\TeacherController@filterRenewTeacher');
+Route::get('getRenewTeacher/{id}', 'TeacherController\TeacherController@getRenewTeacher');
+Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController@approveRenewTeacherRegister');
+//Route::resource('/renewTeacher','TeacherController\TeacherController');
+Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
+Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
+Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');
