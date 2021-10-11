@@ -107,8 +107,8 @@ class MembershipSeeder extends Seeder
                 'reconnect_fee_partner' => NULL,
                 //
                 'late_feb_fee'    => '100000',
-                'expire_fee'      => '10000'  ,
-                'reconnected_fee' =>NULL,
+                'expire_fee'      => NULL  ,
+                'reconnected_fee' =>'10000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
             ),
@@ -139,8 +139,8 @@ class MembershipSeeder extends Seeder
                 'reconnect_fee_partner' => NULL,
                 //
                 'late_feb_fee'    => '500000',
-                'expire_fee'      => '110000',
-                'reconnected_fee' =>NULL,
+                'expire_fee'      => NULL,
+                'reconnected_fee' =>'110000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
             ),

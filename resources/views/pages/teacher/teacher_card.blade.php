@@ -1,3 +1,4 @@
+
 @extends('layouts.app', [
 'class' => '',
 'parentElement' => '',
@@ -17,17 +18,33 @@
             text-align:center;
         }
         @media print {
-            #printbtn,.sidebar {
+            #printbtn {
                 display :  none;
             }
-            .card-body{
-                text-align:center;
+            /* .card-body{
+                
                 margin:auto;
-            }
+            } */
             .content {
                 display: inline-block;
                 margin: 0px auto;
-                text-align: center;
+                text-align: left;
+            }
+            .sidebar,.noprint {
+                visibility: hidden;
+            }
+            
+            #image{
+                float:right;
+                margin-top:-100px;
+            }
+            
+            .serial{
+                float:left;
+            }
+            .serial2{
+                float:right;
+                margin-top:-35px;
             }
         }
     </style>
@@ -42,7 +59,7 @@
                     
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card card-success card-outline">
+                            <div class="card">
 
                                 <div class="card-header">
 
@@ -50,12 +67,13 @@
                                 </div>
 
                                 <div class="card-body text-center">
+                                <center>
                                     <h6><b>REPUBLIC OF THE UNION OF MYANMAR</b></h6>
                                     <h6><b>MYANMAR ACCOUNTANCY COUNCIL</b></h6>
                                     <div class="row">
-                                        <div class="col-md-4 pull-right"></div>
+                                        <div class="col-md-4"></div>
                                         <div class="col-md-4 text-center">
-                                            <img class="fileinput-new thumbnail img-circle" src="{{ asset('img/logo/mac_logo.jpeg') }}"
+                                            <img class="fileinput-new thumbnail img-circle logo" src="{{ asset('img/logo/mac_logo.jpeg') }}"
                                                 alt="User profile picture" style="width:120px;">
                                         </div>
                                         <div class="col-md-4 pull-right">
@@ -69,25 +87,26 @@
                                     </div>
                                     <h6 class="mt-3"><b>Registration Certificate of Lecturer/Tutor </b></h6>
                                     <div class="row mt-3 " >
-                                        <div class="col-md-6">
-                                            <span style="font-weight:bold">Serial No.</span><span class="invoice_no"></span>
+                                        
+                                        <div class="col-md-6 ">
+                                            <p class="serial"><span style="font-weight:bold" >Serial No.</span><span class="invoice_no "></span></p>
                                         </div>
-                                        <div class="col-md-6">
-                                            <span style="font-weight:bold">Dated.</span><span class="payment_date"></span>
+                                        <div class="col-md-6 ">
+                                            <p class="serial2 "><span style="font-weight:bold" >Dated.</span><span class="payment_date"></span></p>
                                         </div>
                                     </div>
                                     <div class="row mt-3 " >
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
                                             <span id="father_eng"></span>, son / daughter  of <span id="name_eng"></span>,  holder of
-                                            CSC No <span id="nrc"></span>, 
+                                            CSC No 
                                         </div>
-                                        <div class="col-md-2"></div>
+                                        <div class="col-md-1"></div>
                                     </div>
                                     <div class="row mt-3 " >
                                         <div class="col-md-1"></div>
                                         <div class="col-md-10">
-                                            has been registered as a Lecturer/Tutor of  a Private Accounting School or an  individual
+                                            <span id="nrc_eng"></span>, has been registered as a Lecturer/Tutor of  a Private Accounting  
                                              
                                         </div>
                                         <div class="col-md-1"></div>
@@ -95,7 +114,14 @@
                                     <div class="row mt-3 " >
                                         <div class="col-md-1"></div>
                                         <div class="col-md-9">
-                                             Lecturer/Tutor under section 32 of the Myanmar Accountancy Council Law.
+                                            School or an individual Lecturer/Tutor under section 32 of the Myanmar 
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <div class="row mt-3 " >
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-5">
+                                            Accountancy Council Law.
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
@@ -147,7 +173,7 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 border-bottom period" style="display:none;">
+                                    <div class="row mt-3 period" style="display:none;">
                                         <div class="col-md-12">
                                             <p >This certificate is valid for the period <span id="period_time"></span></p>
                                         </div>
@@ -165,7 +191,7 @@
                                                 Print</button>
                                         </div>
                                     </center>
-                                    
+                                </center>  
                                 </div>
                             </div>
                         </div>
@@ -213,5 +239,6 @@
 
     <script>
         getTeacherInfos();
+        
     </script>
 @endpush
