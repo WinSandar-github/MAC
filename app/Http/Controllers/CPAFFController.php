@@ -226,7 +226,12 @@ class CPAFFController extends Controller
             $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
             $cpa_ff->nrc_number        =   $request->nrc_number;
             $cpa_ff->father_name_mm    =   $request->father_name_mm;
-            $cpa_ff->father_name_eng   =   $request->father_name_eng;            
+            $cpa_ff->father_name_eng   =   $request->father_name_eng;           
+            $cpa_ff->country           =   $request->country;
+            $cpa_ff->government        =   $request->government;
+            $cpa_ff->exam_year         =   $request->exam_year;
+            $cpa_ff->exam_month        =   $request->exam_month;
+            $cpa_ff->roll_no           =   $request->roll_no;
             $cpa_ff->is_renew          =   $request->is_renew;
             $cpa_ff->self_confession   =   $request->self_confession;
             $cpa_ff->save();
@@ -237,6 +242,7 @@ class CPAFFController extends Controller
             $std_info->image    =   $profile_photo;
             $std_info->email            =   strtolower($request->email);
             $std_info->password         =   Hash::make($request->password);
+            $std_info->gender   =$request->gender;
             $std_info->approve_reject_status = 0;
             $std_info->name_mm = $request->name_mm;
             $std_info->name_eng = $request->name_eng;
@@ -642,8 +648,8 @@ class CPAFFController extends Controller
         $cpa_ff->save();
         
         
-        $initial_cpaff->status=0;
-        $initial_cpaff->save();
+        // $initial_cpaff->status=0;
+        // $initial_cpaff->save();
 
         return response()->json([
             'message' => "You have successfully registerd!"
@@ -688,7 +694,7 @@ class CPAFFController extends Controller
         $cpa_ff->status = 2;
         $cpa_ff->renew_status=2;
         $cpa_ff->reject_description = $request->description;
-        $cpa_ff->is_renew = 0;
+        //$cpa_ff->is_renew = 0;
         $cpa_ff->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
