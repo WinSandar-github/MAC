@@ -97,6 +97,7 @@ Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
+Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -392,3 +393,12 @@ Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@
 //Teacher card
 Route::get('getTeacher/{invoice_no}', 'TeacherController\TeacherController@getTeacher');
 Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
+//teacher renew
+Route::post('/renewTeacher', 'TeacherController\TeacherController@renewTeacher');
+Route::post('/filterRenewTeacher','TeacherController\TeacherController@filterRenewTeacher');
+Route::get('getRenewTeacher/{id}', 'TeacherController\TeacherController@getRenewTeacher');
+Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController@approveRenewTeacherRegister');
+//Route::resource('/renewTeacher','TeacherController\TeacherController');
+Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
+Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
+Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');

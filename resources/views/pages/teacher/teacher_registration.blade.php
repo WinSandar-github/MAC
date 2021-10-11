@@ -74,10 +74,11 @@
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Register Date</th>
                                                                 <th class="bold-font-weight" >Expire Period Time</th>
+                                                                <th class="bold-font-weight" >Payment Date</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
                                                                 <th class="bold-font-weight" >Teacher Card</th>
-                                                                
+                                                                <th class="bold-font-weight" >Remark</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_teacher_initial_pending_body" class="hoverTable">
@@ -96,6 +97,7 @@
                                                             <th class="bold-font-weight" >NRC</th>
                                                             <th class="bold-font-weight" >Register Date</th>
                                                             <th class="bold-font-weight" >Expire Period Time</th>
+                                                            <th class="bold-font-weight" >Payment Date</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Teacher Card</th>
@@ -157,12 +159,14 @@
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
-                                                                <th class="bold-font-weight" >Register Date</th>
+                                                                <th class="bold-font-weight" >Renew Date</th>
                                                                 <th class="bold-font-weight" >Expire Period time</th>
+                                                                <th class="bold-font-weight" >Payment Date</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
                                                                 <th class="bold-font-weight" >Teacher Card</th>
-                                                                
+                                                                <th class="bold-font-weight" >Remark</th>
+                                                                <th class="bold-font-weight" >Yearly</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_teacher_renew_pending_body" class="hoverTable">
@@ -171,7 +175,7 @@
                                             </div>
                                             <div class="tab-pane fade show" id="renew2" aria-expanded="true">
                                                 <table id="tbl_teacher_renew_approved" class="table table-hover text-nowrap " style="width:100%;">
-                                                    <thead>
+                                                    <thead class="text-nowrap">
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
@@ -179,12 +183,13 @@
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
-                                                            <th class="bold-font-weight" >Register Date</th>
+                                                            <th class="bold-font-weight" >Renew Date</th>
                                                             <th class="bold-font-weight" >Expire Period time</th>
+                                                            <th class="bold-font-weight" >Payment Date</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Teacher Card</th>
-                                                            
+                                                            <th class="bold-font-weight" >Yearly</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_renew_approved_body" class="hoverTable">
@@ -201,12 +206,13 @@
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
-                                                            <th class="bold-font-weight" >Register Date</th>
+                                                            <th class="bold-font-weight" >Renew Date</th>
                                                             <th class="bold-font-weight" >Expire Period time</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Teacher Card</th>
                                                             <th class="bold-font-weight" >Remark</th>
+                                                            <th class="bold-font-weight" >Yearly</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_renew_rejected_body" class="hoverTable">
@@ -218,8 +224,23 @@
                                     
                                 </div>
                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                            <table id="tbl_teacher_cessation_pending" class="table table-hover  text-center" style="width:100%;">
-                                                        <thead class=" text-nowrap">
+                                            
+                                            <div class="card-header">
+                                                <ul class="nav nav-tabs" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" data-toggle="tab" href="#initial1" role="tablist" aria-expanded="false" style="font-weight:bold">Initial List</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#initial2" role="tablist" aria-expanded="true" style="font-weight:bold">Renew List</a>
+                                                    </li>
+                                                    
+                                                </ul>
+                                            </div>
+                                    <div class="card-body">
+                                        <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                            <div class="tab-pane fade show active" id="initial1" aria-expanded="true">
+                                                <table id="tbl_teacher_cessation_initial" class="table table-hover text-nowrap" style="width:100%;">
+                                                        <thead class="text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
@@ -229,15 +250,42 @@
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Register Date</th>
                                                                 <th class="bold-font-weight" >Expire Period time</th>
-                                                                <th class="bold-font-weight" >Status</th>
+                                                                <th class="bold-font-weight" >Payment Date</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
                                                                 <th class="bold-font-weight" >Teacher Card</th>
                                                                 <th class="bold-font-weight" >Remark</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="tbl_teacher_cessation_pending_body" class="hoverTable text-left">
+                                                        <tbody id="tbl_teacher_cessation_initial_body" class="hoverTable">
                                                         </tbody>
                                                 </table>
+                                            </div>
+                                            <div class="tab-pane fade show" id="initial2" aria-expanded="true">
+                                                <table id="tbl_teacher_cessation_renew" class="table table-hover text-nowrap " style="width:100%;">
+                                                    <thead class="text-nowrap">
+                                                        <tr>
+                                                            <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Action</th>
+                                                            <th class="bold-font-weight" >Teacher Name</th>
+                                                            <th class="bold-font-weight" >Email</th>     
+                                                            <th class="bold-font-weight" >Phone Number</th>
+                                                            <th class="bold-font-weight" >NRC</th>
+                                                            <th class="bold-font-weight" >Renew Date</th>
+                                                            <th class="bold-font-weight" >Expire Period time</th>
+                                                            <th class="bold-font-weight" >Payment Date</th>
+                                                            <!-- <th class="bold-font-weight" >Status</th> -->
+                                                            <th class="bold-font-weight" >Payment Status</th>
+                                                            <th class="bold-font-weight" >Teacher Card</th>
+                                                            <th class="bold-font-weight" >Remark</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_teacher_cessation_renew_body" class="hoverTable">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -293,10 +341,12 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'reg_date', name: 'reg_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
                 {data: 'card', name: 'card'},
+                {data: 'reason', name: 'reason'},
             ],
             
          });
@@ -316,6 +366,7 @@
                     d.status    = 1,
                     d.initial_status= 0
                 }
+                
 
             },
             columns: [
@@ -328,6 +379,7 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'reg_date', name: 'reg_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
@@ -376,7 +428,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filter_teacher",
+                url  : BACKEND_URL + "/filterRenewTeacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -387,19 +439,20 @@
             
             },
             columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                {data: 'regno', name: 'regno'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'reg_date', name: 'reg_date'},
+                {data: 'renew_date', name: 'renew_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
                 {data: 'card', name: 'card'},
+                {data: 'reason', name: 'reason'},
+                {data: 'yearly', name: 'yearly'},
             ],
             
          });
@@ -411,7 +464,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filter_teacher",
+                url  : BACKEND_URL + "/filterRenewTeacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -422,19 +475,19 @@
             
             },
             columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                {data: 'regno', name: 'regno'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'reg_date', name: 'reg_date'},
+                {data: 'renew_date', name: 'renew_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
                 {data: 'card', name: 'card'},
+                {data: 'yearly', name: 'yearly'},
             ],
          });
 
@@ -445,7 +498,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filter_teacher",
+                url  : BACKEND_URL + "/filterRenewTeacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -456,23 +509,22 @@
             
             },
             columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                {data: 'regno', name: 'regno'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'reg_date', name: 'reg_date'},
+                {data: 'renew_date', name: 'renew_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
                 {data: 'card', name: 'card'},
                 {data: 'reason', name: 'reason'},
+                {data: 'yearly', name: 'yearly'},
             ],
         });
-        $('#tbl_teacher_cessation_pending').DataTable({
+        $('#tbl_teacher_cessation_initial').DataTable({
             scrollX: true,
             processing: true,
             // serverSide: true,
@@ -499,8 +551,42 @@
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'reg_date', name: 'reg_date'},
+                {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
-                {data: 'status', name: 'status'},
+                // {data: 'status', name: 'status'},
+                {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
+                {data: 'remark', name: 'remark'},
+            ],
+        });
+        $('#tbl_teacher_cessation_renew').DataTable({
+            scrollX: true,
+            processing: true,
+            // serverSide: true,
+            // searching: false,
+            paging:true,
+            ajax: {
+                url  : BACKEND_URL + "/filterRenewTeacher",
+                type : "POST" ,
+                data :  function (d) {
+                    d.name      =  $("input[name=filter_by_name]").val(),
+                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                    d.status    = 2,
+                    d.initial_status= 2
+                }
+            
+            },
+            columns: [
+                {data: 'regno', name: 'regno'},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'name_mm', name: 'name_mm'},
+                {data: 'email', name: 'email'},
+                {data: 'phone', name: 'phone'},
+                {data: 'nrc', name: 'nrc'},
+                {data: 'renew_date', name: 'renew_date'},
+                {data: 'exp_date', name: 'exp_date'},
+                {data: 'payment_date', name: 'payment_date'},
+                // {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
                 {data: 'card', name: 'card'},
                 {data: 'remark', name: 'remark'},
