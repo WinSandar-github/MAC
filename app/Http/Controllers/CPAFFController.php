@@ -159,14 +159,14 @@ class CPAFFController extends Controller
                 $three_years_full="";
             }
 
-            if ($request->hasfile('letter')) {
-                $file = $request->file('letter');
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $letter = '/storage/cpa_ff_register/'.$name;
-            }else{
-                $letter="";
-            }
+            // if ($request->hasfile('letter')) {
+            //     $file = $request->file('letter');
+            //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            //     $letter = '/storage/cpa_ff_register/'.$name;
+            // }else{
+            //     $letter="";
+            // }
 
             if($request->hasfile('degree_file'))
             {
@@ -208,7 +208,6 @@ class CPAFFController extends Controller
             $cpa_ff->total_hours      =   $request->total_hours;
             // $cpa_ff->passport_image   =   $passport_image;
             $cpa_ff->three_years_full   =   $three_years_full;
-            $cpa_ff->letter   =   $letter;
             $cpa_ff->status           =  0;
 
             //save to cpaff
@@ -227,8 +226,14 @@ class CPAFFController extends Controller
             $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
             $cpa_ff->nrc_number        =   $request->nrc_number;
             $cpa_ff->father_name_mm    =   $request->father_name_mm;
-            $cpa_ff->father_name_eng   =   $request->father_name_eng;            
-            $cpa_ff->is_renew   =   $request->is_renew;
+            $cpa_ff->father_name_eng   =   $request->father_name_eng;           
+            $cpa_ff->country           =   $request->country;
+            $cpa_ff->government        =   $request->government;
+            $cpa_ff->exam_year         =   $request->exam_year;
+            $cpa_ff->exam_month        =   $request->exam_month;
+            $cpa_ff->roll_no           =   $request->roll_no;
+            $cpa_ff->is_renew          =   $request->is_renew;
+            $cpa_ff->self_confession   =   $request->self_confession;
             $cpa_ff->save();
 
             //save to std info
@@ -237,6 +242,7 @@ class CPAFFController extends Controller
             $std_info->image    =   $profile_photo;
             $std_info->email            =   strtolower($request->email);
             $std_info->password         =   Hash::make($request->password);
+            $std_info->gender   =$request->gender;
             $std_info->approve_reject_status = 0;
             $std_info->name_mm = $request->name_mm;
             $std_info->name_eng = $request->name_eng;
@@ -638,11 +644,12 @@ class CPAFFController extends Controller
         $cpa_ff->old_card_file        =   $request->old_card_file;
         $cpa_ff->is_convicted        =   $request->is_convicted;  
         $cpa_ff->is_renew   =   $request->is_renew;
+        $cpa_ff->self_confession = $request->self_confession_renew;
         $cpa_ff->save();
         
         
-        $initial_cpaff->status=0;
-        $initial_cpaff->save();
+        // $initial_cpaff->status=0;
+        // $initial_cpaff->save();
 
         return response()->json([
             'message' => "You have successfully registerd!"
@@ -687,7 +694,7 @@ class CPAFFController extends Controller
         $cpa_ff->status = 2;
         $cpa_ff->renew_status=2;
         $cpa_ff->reject_description = $request->description;
-        $cpa_ff->is_renew = 0;
+        //$cpa_ff->is_renew = 0;
         $cpa_ff->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
@@ -843,7 +850,6 @@ class CPAFFController extends Controller
                       ->where('status','=',$status)
                       ->where('is_renew','=',$is_renew)
                       ->get();
-
                       return DataTables::of($cpa_ff)
                         ->addColumn('action', function ($infos) {
                             return "<div class='btn-group'>
@@ -852,12 +858,17 @@ class CPAFFController extends Controller
                                         </button>
                                     </div>";
                         })
-
                         ->addColumn('nrc', function ($infos){
                             $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                             return $nrc_result;
                         })
-
+                        ->addColumn('self', function ($infos){
+                            if($infos->self_confession == 1){
+                                return "ဝန်ခံသည်";
+                            }else{
+                                return "ဝန်မခံပါ";
+                            }
+                        })
                         ->addColumn('status', function ($infos){
                             if($infos->status == 0){
                               return "PENDING";
@@ -869,7 +880,6 @@ class CPAFFController extends Controller
                               return "REJECTED";
                             }
                         })
-
                         ->addColumn('degree', function ($infos){
                             if($infos->cpa_part_2 == 1){
                               return "CPA Part 2 Pass";
@@ -884,7 +894,107 @@ class CPAFFController extends Controller
                         ->addColumn('updated_at', function ($infos){
                             return date("d F Y", strtotime($infos->student_info->updated_at));
                         })
-                        ->rawColumns(['action','nrc','degree','status','created_at','updated_at'])
+                        ->rawColumns(['action','nrc','self','degree','status','created_at','updated_at'])
                         ->make(true);
             }
+
+    public function cpaffReject(Request $request, $id)
+    {
+        // return $request;
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }
+
+
+        if ($request->hasfile('cpa_certificate')) {
+            $file = $request->file('cpa_certificate');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $cpa_certificate = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $cpa_certificate=$request->cpa_certificate;
+        }
+
+        if ($request->hasfile('mpa_mem_card')) {
+            $file = $request->file('mpa_mem_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $mpa_mem_card= '/storage/cpa_ff_register/'.$name;
+        }else{
+            $mpa_mem_card=$request->mpa_mem_card;
+        }
+
+        if ($request->hasfile('mpa_mem_card_back')) {
+            $file = $request->file('mpa_mem_card_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $mpa_mem_card_back= '/storage/cpa_ff_register/'.$name;
+        }else{
+            $mpa_mem_card_back=$request->mpa_mem_card_back;
+        }
+
+        if ($request->hasfile('cpd_record')) {
+            $file = $request->file('cpd_record');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $cpd_record = '/storage/cpa_ff_register/'.$name;
+        }else{
+            $cpd_record=$request->cpd_record;
+        }
+
+        // if ($request->hasfile('passport_image')) {
+        //     $file = $request->file('passport_image');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $passport_image = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $passport_image=$request->passport_image;
+        // }
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front= '/storage/student_info/'.$name;
+        }else{
+            $nrc_front=$request->nrc_front;
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back= '/storage/student_info/'.$name;
+        }else{
+            $nrc_back=$request->nrc_back;
+        }
+
+        $std_info = StudentInfo::find($request->student_info_id);
+        $std_info->approve_reject_status = 0;
+        $std_info->save();
+
+        $cpa_ff = CPAFF::find($id);
+        // $cpa_ff->cpa_part_2       =   $request->cpa_part_2;
+        // $cpa_ff->qt_pass          =   $request->qt_pass;
+        $cpa_ff->cpa_certificate=$cpa_certificate;
+        $cpa_ff->mpa_mem_card=$mpa_mem_card;
+        $cpa_ff->mpa_mem_card_back=$mpa_mem_card_back;
+        $cpa_ff->cpd_record=$cpd_record;
+        // $cpa_ff->passport_image=$passport_image;
+        $cpa_ff->nrc_front        =   $nrc_front;
+        $cpa_ff->nrc_back         =   $nrc_back;
+        $cpa_ff->renew_accepted_date=date('Y-m-d');
+        $cpa_ff->profile_photo=$profile_photo;
+        $cpa_ff->renew_status=0;
+        // $cpa_ff->payment_method=null;
+        $cpa_ff->status  =  0;
+        $cpa_ff->save();
+
+        return response()->json([
+            'message' => "You have successfully registerd!"
+        ],200);
+
+     }
 }

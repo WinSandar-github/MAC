@@ -222,6 +222,7 @@ function loadCPAFFData(){
                 $("#current_address").append(element.student_info.current_address);
                 $("#phone").append(element.student_info.phone);
                 $("#email").append(element.student_info.email);
+                $("#gender").append(element.student_info.gender=="Male"? "ကျား" : "မ");
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
                 if(element.form_type==1){
@@ -521,6 +522,7 @@ function loadCPAFFRenewData(){
                 $("#current_address").append(element.student_info.current_address);
                 $("#phone").append(element.student_info.phone);
                 $("#email").append(element.student_info.email);
+                $("#gender").append(element.student_info.gender=="Male"? "ကျား" : "မ");
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
                 if(element.form_type==1){
