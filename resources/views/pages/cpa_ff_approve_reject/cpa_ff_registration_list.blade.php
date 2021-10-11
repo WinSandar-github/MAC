@@ -153,6 +153,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -173,6 +174,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -193,6 +195,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <th class="bold-font-weight" >Payment Date</th>
@@ -236,8 +239,8 @@
               {data:'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Student Name'},
               {data: 'nrc', name: 'NRC'},
-              {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'self', name: 'Self Confession'},
+              {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'total_hours', name: 'CPD Total Hours'},
@@ -260,8 +263,8 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
-            {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             {data: 'self', name: 'Self Confession'},
+            {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
             {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
             {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
@@ -283,8 +286,8 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
-            {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             {data: 'self', name: 'Self Confession'},
+            {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
             {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
             {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
@@ -306,6 +309,7 @@
               {data:'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Student Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'self', name: 'Self Confession'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
@@ -329,6 +333,7 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
+            {data: 'self', name: 'Self Confession'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
             {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
@@ -351,6 +356,7 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
+            {data: 'self', name: 'Self Confession'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
             {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
