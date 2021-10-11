@@ -399,3 +399,5 @@ Route::get('getRenewTeacher/{id}', 'TeacherController\TeacherController@getRenew
 Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController@approveRenewTeacherRegister');
 //Route::resource('/renewTeacher','TeacherController\TeacherController');
 Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
+Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
+Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');

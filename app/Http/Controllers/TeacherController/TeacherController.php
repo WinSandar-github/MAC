@@ -266,15 +266,13 @@ class TeacherController extends Controller
         $teacher->organization = $request->organization;
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
+        $teacher->school_name = $request->school_name;
         $teacher->approve_reject_status = 0;
-        $teacher->initial_status = $request->initial_status;
-        $teacher->reason = null;
-        if($request->payment_date!=null){
-            $teacher->renew_date = date('Y-m-d');
-            
-        }
-        $teacher->payment_method = null;
-        $teacher->payment_date = null;
+        $teacher->reason = $request->reason;
+        // $teacher->initial_status = 0;
+        
+        // $teacher->payment_method = null;
+        // $teacher->payment_date = null;
         $teacher->save();
 
        
@@ -284,7 +282,7 @@ class TeacherController extends Controller
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
-                $education_histroy->student_info_id = $std_info->id;
+                $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->university_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id       = $teacher->id;
@@ -322,7 +320,7 @@ class TeacherController extends Controller
         $std_info->approve_reject_status = 0;
         $std_info->save();
         return response()->json([
-            'message' => 'You have renewed successfully.'
+            'message' => 'You have updated successfully.'
         ],200);
 
     }
@@ -761,6 +759,142 @@ class TeacherController extends Controller
         $teacher->save();
         return response()->json([
             'data' => $teacher,
+        ],200);
+    }
+    public function renewTeacherUpdate(Request $request,$id)
+    {
+        // profile photo
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $image = '/storage/teacher_info/'.$name;
+        }
+        // nrc front image
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $nrc_front = '/storage/teacher_info/'.$name;
+        }else{
+            $nrc_front =$request->nrc_front;
+        }
+        // nrc back image
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $nrc_back = '/storage/teacher_info/'.$name;
+        }else{
+            $nrc_back =$request->nrc_back;
+        }
+        
+        if ($request->hasfile('degrees_certificates')) {
+            foreach($request->file('degrees_certificates') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/teacher_info/',$name);
+                 $degrees_certificates[] = $name;
+             }
+            
+        }else{
+            $degrees_certificates=null;
+        }
+        $teacher =teacher_renew::find($id);
+        // $teacher->name_mm = $request->name_mm;
+        // $teacher->name_eng = $request->name_eng;
+        // $teacher->father_name_mm = $request->father_name_mm;
+        // $teacher->father_name_eng = $request->father_name_eng;
+        $teacher->renew_date = date('Y-m-d');
+        // $teacher->email = $request->email;
+        // $teacher->phone = $request->phone;
+        // $teacher->nrc_state_region = $request->nrc_state_region;
+        // $teacher->nrc_township = $request->nrc_township;
+        // $teacher->nrc_citizen = $request->nrc_citizen;
+        // $teacher->nrc_number = $request->nrc_number;
+        $teacher->nrc_front = $nrc_front;
+        $teacher->nrc_back = $nrc_back;
+        $teacher->image = $image;
+        
+        $certificates = ""; $diplomas = "";
+        foreach($request->certificates as $c){
+            $certificates = $certificates . $c . ',';
+
+        }
+        foreach($request->diplomas as $d){
+            $diplomas = $diplomas . $d . ',';
+
+        }
+        $teacher->certificates = rtrim($certificates, ',');
+        $teacher->diplomas = rtrim($diplomas, ',');
+        $teacher->current_address = $request->current_address;
+        $teacher->school_id = $request->selected_school_id;
+        $teacher->school_type = $request->school_type;
+        $teacher->school_name = $request->school_name;
+        $teacher->reason = $request->reason;
+        $teacher->approve_reject_status = 0;
+        // $teacher->teacher_id  = $request->teacher_id;
+        // $teacher->student_info_id  = $request->student_info_id;
+        $teacher->save();
+        
+        
+        if($degrees_certificates!=null){
+            $degrees_certificates=implode(',', $degrees_certificates);
+            $new_degrees_certificates= explode(',',$degrees_certificates);
+            for($i=0;$i < sizeof($request->degrees);$i++){
+           
+                $education_histroy  =   new EducationHistroy();
+                $education_histroy->student_info_id = $request->student_info_id;
+                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
+                $education_histroy->teacher_id      = $request->teacher_id;
+                $education_histroy->renewteacher_id      = $teacher->id;
+                $education_histroy->save();
+            }
+        }else{
+            
+            if ($request->hasfile('old_renewdegrees_certificates')) {
+                foreach($request->file('old_renewdegrees_certificates') as $file)
+                 {
+                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                     $file->move(public_path().'/storage/teacher_info/',$name);
+                     $old_renewdegrees_certificates[] = $name;
+                 }
+                 for($i=0;$i <sizeof($request->old_renewdegrees);$i++){
+                    $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
+                    $education_histroy->university_name = $request->old_renewdegrees[$i];
+                    $education_histroy->certificate     ='/storage/teacher_info/'.$old_renewdegrees_certificates[$i];
+                    $education_histroy->save();
+                }
+            }else{
+                $old_renewdegrees_certificates=$request->old_renewdegrees_certificates_h;
+                if($request->old_renewdegrees!=""){
+                    for($i=0;$i <sizeof($request->old_renewdegrees);$i++){
+                        $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
+                        $education_histroy->university_name = $request->old_renewdegrees[$i];
+                        $education_histroy->certificate     =$old_renewdegrees_certificates[$i];
+                        $education_histroy->save();
+                    }
+                }
+                
+            }
+            
+        }
+        
+
+        return response()->json([
+            'message' => 'Updated Successfully.'
+        ],200);
+    }
+    public function cessationRenewTeacherRegister(Request $request)
+    {
+        $teacher = teacher_renew::find($request->id);
+        $teacher->approve_reject_status = $request->status;
+        $teacher->cessation_reason = $request->cessation_reason;
+        $teacher->initial_status = $request->initial_status;
+        $teacher->save();
+        return response()->json([
+            'message' => 'You have cessation this user.'
         ],200);
     }
 }
