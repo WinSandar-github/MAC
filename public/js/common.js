@@ -1,10 +1,10 @@
-// var BACKEND_URL = "http://localhost:8000/api";
-// var FRONTEND_URL = "http://localhost:8000";
-// var PDF_URL = "http://localhost:8000";
+var BACKEND_URL = "http://localhost:8000/api";
+var FRONTEND_URL = "http://localhost:8000";
+var PDF_URL = "http://localhost:8000";
 
-var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
-var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
-var PDF_URL = "https://demo.aggademo.me/MAC/public";
+// var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
+// var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
+// var PDF_URL = "https://demo.aggademo.me/MAC/public";
 
 var counter = 0;
 
@@ -13,6 +13,7 @@ function ConfirmSubmit() {
     if (radio.checked == true) {
         document.getElementById("submit_btn").disabled = false;
     } else {
+        p
         document.getElementById("submit_btn").disabled = true;
     }
 }

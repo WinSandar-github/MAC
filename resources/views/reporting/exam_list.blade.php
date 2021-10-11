@@ -85,7 +85,7 @@ showAppList = (course_code) =>{
                 }},
             {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
             {data: 'nrc', name: 'nrc'}, 
-            {data: 'student_info.personal_no', name: 'personal_no'},
+            {data: 'cpersonal_no', name: 'cpersonal_no'},
             
             
         ],

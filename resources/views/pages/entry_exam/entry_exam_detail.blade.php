@@ -492,7 +492,7 @@
                                         <label class="col-form-label"  style="font-weight:bold">တည်နေရာ</label>
                                     </div>
                                     <div class="col-md-6  text-center">
-                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                        <label class="col-form-label" id="exam_reg_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div>
                             </div>
@@ -536,7 +536,7 @@
         var url = location.pathname;
         var id = url.substring(url.lastIndexOf('/')+1);
 
-        loadEntryDetail(id);cpap
+        loadEntryDetail(id);
 
 
 

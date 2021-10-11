@@ -20,7 +20,7 @@ class CreateExamPlacesTable extends Migration
             $table->string('building');
             $table->integer('start');
             $table->integer('end');
-            $table->unsignedBigIntger('exam_id');
+            $table->unsignedBigInteger('exam_id');
             $table->timestamps();
         });
     }
