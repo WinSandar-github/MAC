@@ -71,6 +71,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
@@ -92,6 +93,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
@@ -113,6 +115,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
@@ -153,6 +156,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
@@ -174,6 +178,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
@@ -195,6 +200,7 @@
                                                         <th class="bold-font-weight" >Action</th>
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
+                                                        <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <th class="bold-font-weight" >Reg; Number</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
@@ -239,6 +245,7 @@
               {data:'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Student Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'student_info.email', name: 'Email'},
               {data: 'self', name: 'Self Confession'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
@@ -263,6 +270,7 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
+            {data: 'student_info.email', name: 'Email'},
             {data: 'self', name: 'Self Confession'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
@@ -286,6 +294,7 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
+            {data: 'student_info.email', name: 'Email'},
             {data: 'self', name: 'Self Confession'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
@@ -309,6 +318,7 @@
               {data:'action', name: 'action', orderable: false, searchable: false},
               {data: 'student_info.name_mm', name: 'Student Name'},
               {data: 'nrc', name: 'NRC'},
+              {data: 'student_info.email', name: 'Email'},
               {data: 'self', name: 'Self Confession'},
               {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
@@ -333,6 +343,7 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
+            {data: 'student_info.email', name: 'Email'},
             {data: 'self', name: 'Self Confession'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
@@ -356,6 +367,7 @@
             {data: 'action', name: 'action', orderable: false, searchable: false},
             {data: 'student_info.name_mm', name: 'Student Name'},
             {data: 'nrc', name: 'NRC'},
+            {data: 'student_info.email', name: 'Email'},
             {data: 'self', name: 'Self Confession'},
             {data: 'student_info.registration_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},

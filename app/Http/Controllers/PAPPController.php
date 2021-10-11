@@ -680,8 +680,13 @@ class PAPPController extends Controller
           ->addColumn('papp_date', function ($infos){
               return $infos->papp_date;
           })
-
-          ->rawColumns(['action','nrc','papp_date','status','use_firm'])
+          ->addColumn('created_at', function ($infos){
+            return date("d F Y", strtotime($infos->student_info->created_at));
+        })
+        ->addColumn('updated_at', function ($infos){
+            return date("d F Y", strtotime($infos->student_info->updated_at));
+        })
+          ->rawColumns(['action','nrc','papp_date','status','use_firm','created_at','updated_at'])
           ->make(true);
     }
 }

@@ -418,6 +418,14 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Gender</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="gender"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
                                     </div>
                                     <div class="col-md-6 text-left">
