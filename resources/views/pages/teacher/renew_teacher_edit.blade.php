@@ -48,7 +48,7 @@
                                             <span id="nrc"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 ">
+                                    <div class="row mt-3 nrc-css">
                                         <div class="col-md-6">
                                             <b>နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အရှေ့)</b>
                                         </div>
@@ -56,7 +56,7 @@
                                             <span class="nrc_front"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 ">
+                                    <div class="row mt-3 nrc-back-css">
                                         <div class="col-md-6">
                                             <b>နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အနောက်)</b>
                                         </div>
@@ -72,14 +72,7 @@
                                             <span id="father"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 ">
-                                        <div class="col-md-6">
-                                            <b>မွေးသက္ကရာဇ်</b>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <span id="date_of_birth"></span>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row mt-3 ">
                                         <div class="col-md-6">
                                             <b>ဖုန်းနံပါတ်</b>
@@ -88,22 +81,7 @@
                                             <span id="phone"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 ">
-                                        <div class="col-md-6">
-                                            <b>လူမျိုး</b>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <span id="race"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3 ">
-                                        <div class="col-md-6">
-                                            <b>ကိုးကွယ်သည့်ဘာသာ</b>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <span id="religion"></span>
-                                        </div>
-                                    </div>
+                                    
 
 
                                 </div>
@@ -136,15 +114,7 @@
 
                                     <hr>
 
-                                    <div class="row mt-3 border-bottom ">
-                                        <div class="col-md-6">
-                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ
-                                            </p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span id="address"></span>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row mt-3 border-bottom ">
                                         <div class="col-md-6">
                                             <p style="font-weight:bold"><i class="fa fa-map-marker"></i> အမြဲတမ်းနေရပ်လိပ်စာ
@@ -154,57 +124,7 @@
                                             <span id="current_address"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 ">
-                                        <div class="col-md-6">
-                                            <p style="font-weight:bold">နိုင်ငံ့ဝန်ထမ်း ဟုတ်/မဟုတ်</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radio1" id="inlineRadio1"
-                                                    value="1">
-                                                <label for="inlineRadio1">ဟုတ်</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="radio2" id="inlineRadio2"
-                                                    value="0">
-                                                <label for="inlineRadio2">မဟုတ်</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="recommend_row" style="display:none">
-                                        <div class="row mt-3 ">
-                                            <div class="col-md-6">
-                                                <p style="font-weight:bold">သက်ဆိုင်ရာ ဌာနအကြီးအကဲ၏ ခွင့်ပြုမိန့်</p>
-                                            </div>
-                                            <div class="col-md-6 recommend_letter">
-
-                                            </div>
-                                        </div>
-                                        <div class="row mt-3 ">
-                                            <div class="col-md-6">
-                                                <p style="font-weight:bold">ရာထူး</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <span id="position"></span>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-3 ">
-                                            <div class="col-md-6">
-                                                <p style="font-weight:bold">ဌာန</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <span id="department"></span>
-                                            </div>
-                                        </div>
-                                        <div class="row  mt-3 ">
-                                            <div class="col-md-6">
-                                                <p style="font-weight:bold">ရုံးစိုက်ရာဒေသ</p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <span id="organization"></span>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    
 
 
                                 </div>
@@ -298,15 +218,7 @@
                                             <input type='text' id="payment_date" class="form-control" disabled>
                                         </div>
                                     </div>
-                                    <div class="row mt-5 border-bottom">
-                                        <div class="col-md-6">
-                                            <p style="font-weight:bold">သင်ကြားမည့်ဘာသာရပ်အတွက် သင်ကြားမှုနှင့်
-                                                အခြားအတွေ့အကြုံများ</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span id="exp_desc"></span>
-                                        </div>
-                                    </div>
+                                    
                                     <div class="row mt-3 border-bottom period" style="display:none;">
                                         <div class="col-md-6">
                                             <p style="font-weight:bold">This certificate is valid for the period</p>
@@ -323,7 +235,7 @@
                     <div id="approve_reject" style="display:none;">
                         <div class="card">
                             <div class="card-body">
-                                <input type="hidden" id="student_info_id">
+                                
                                 <input type="hidden" id="teacher_id">
                                 <center>
 
@@ -332,7 +244,7 @@
                                         <button type="button" class="btn btn-danger" style="width : 20%"
                                             data-toggle="modal" id="smallButton" data-target="#myModal"><i
                                                 class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
-                                        <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();"
+                                        <button id="approve" class="btn btn-primary" onclick="approveRenewTeacherRegister();"
                                             style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                                             APPROVE</button>
                                     </div>
@@ -428,6 +340,6 @@
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 
     <script>
-        getTeacherInfos();
+        getRenewTeacher();
     </script>
 @endpush
