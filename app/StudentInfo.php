@@ -15,12 +15,14 @@ class StudentInfo extends Model
 
     public function student_job()
     {
-        return $this->hasOne(StudentJobHistroy::class,'student_info_id','id');
+        return $this->hasOne(StudentJobHistroy::class,'student_info_id','id')
+            ->withDefault(['name' => 'N/A', 'position' => 'N/A', 'department' => 'N/A', 'organization' => 'N/A', 'company_name' => 'N/A', 'salary' => 'N/A', 'office_address' => 'N/A']);
     }
 
     public function student_education_histroy()
     {
-        return $this->hasOne(EducationHistroy::class,'student_info_id','id');
+        return $this->hasOne(EducationHistroy::class,'student_info_id','id')
+            ->withDefault(['university_name' => 'N/A', 'degree_name' => 'N/A', 'qualified_date' => 'N/A', 'roll_number' => 'N/A', 'certificate' => array() ]);
     }
 
     public function student_course()
@@ -122,7 +124,7 @@ class StudentInfo extends Model
 
     public function exam_results()
     {
-        return $this->hasMany(ExamResult::class,'student_info_id','id');
+        return $this->hasMany(ExamResult::class,'student_info_id','id')->with('exam_register');
 
     }
 }
