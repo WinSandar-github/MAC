@@ -224,7 +224,7 @@
                                             <p style="font-weight:bold">This certificate is valid for the period</p>
                                         </div>
                                         <div class="col-md-6">
-                                            <span id="period_time"></span>
+                                            <span class="renew_period_time"></span>
                                         </div>
                                     </div>
 
@@ -279,7 +279,7 @@
 
                 
     <!-- modal -->
-    <form method="post" action="javascript:rejectTeacherRegister();" enctype="multipart/form-data">
+    <form method="post" action="javascript:rejectRenewTeacherRegister();" enctype="multipart/form-data">
         <div class="modal" id="myModal">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
@@ -306,7 +306,7 @@
         </div>
     </form>
     <!-- modal -->
-    <form method="post" action="javascript:cessationTeacherRegister();" enctype="multipart/form-data">
+    <form method="post" action="javascript:cessationRenewTeacherRegister();" enctype="multipart/form-data">
         <div class="modal" id="cessationModal">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
