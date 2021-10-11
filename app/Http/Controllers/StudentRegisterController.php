@@ -653,20 +653,29 @@ class StudentRegisterController extends Controller
 
     }
 
+    //show registertion list in Frontend
     public function getAttendesStudent(Request $request)
     { 
        
+       
         $course = Course::where('code',$request->course_code)->with('course_type','active_batch')->first();
-
+        
         $student_infos = StudentRegister::with('student_info','course')
                         ->where('batch_id', $course->active_batch[0]->id)
                         ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
-
-         if($request->module)
+          if($request->module)
         {
             
             $student_infos = $student_infos->where('module',$request->module);
         }
+
+        if($request->student_type !== 'select_type')
+        {
+            
+            $student_infos = $student_infos->where('type',$request->student_type);
+        }
+
+
       
         return DataTables::of($student_infos)
 
@@ -698,15 +707,20 @@ class StudentRegisterController extends Controller
         $student_infos = ExamRegister::with('student_info','course')
                         ->where('batch_id', $course->active_batch[0]->id)
                         ->where('status',1)
-                        ->orderBy('is_full_module','desc')
                         ->whereNotNull('sr_no');
          
         
-            if($request->module)
-            {
-             
-                $student_infos = $student_infos->where('is_full_module',$request->module);
-            }
+        if($request->module)
+        {
+            
+            $student_infos = $student_infos->where('is_full_module',$request->module);
+        }
+
+        if($request->exam_department)
+        {
+            
+            $student_infos = $student_infos->where('exam_department',$request->exam_department);
+        }
                       
                        
 
@@ -735,6 +749,13 @@ class StudentRegisterController extends Controller
                 return "Full Module";
             }
         })
+        ->addColumn('cpersonal_no', function ($infos){
+            $cpersonal_no = $infos->course->course_type->course_code == "da" 
+            ? $infos->student_info->personal_no
+            : $infos->student_info->cpersonal_no;
+            return $cpersonal_no;
+        })
+        ->rawColumns(['action','nrc','cpersonal_no','module'])
         ->make(true);
 
         // return response()->json([
@@ -760,11 +781,11 @@ class StudentRegisterController extends Controller
     {
         
         $course = Course::where('code',$request->course_code)->with('active_batch','course_type')->first();
-
+       
         $student_infos = StudentCourseReg::with('student_info')
                         ->where('batch_id',$course->active_batch[0]->id)
                         ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
-                    
+            
         return DataTables::of($student_infos)
 
         ->addColumn('nrc', function ($infos){
