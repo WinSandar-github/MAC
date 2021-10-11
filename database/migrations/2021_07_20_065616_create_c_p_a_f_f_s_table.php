@@ -82,6 +82,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('is_convicted')->nullable();
             $table->integer('is_renew')->nullable();
             $table->text('reject_description')->nullable();
+            $table->integer('self_confession');
             $table->timestamps();
         });
     }
