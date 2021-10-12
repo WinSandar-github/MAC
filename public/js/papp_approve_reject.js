@@ -723,19 +723,24 @@ function approvePAPPUser(){
 }
 
 function rejectPAPPUser(){ 
-    if(!confirm('Are you sure you want to reject this user?')){
-        return;
-    }else{
+    // if(!confirm('Are you sure you want to reject this user?')){
+    //     return;
+    // }else{
         var id = $("input[name = papp_id]").val();
+        var data = $('#reject_papp').val();
         $.ajax({
             url: BACKEND_URL +"/reject_papp/"+id,
-            type: 'patch',
+            type : 'post',
+            data : {
+                'id' : id,
+                'description' : data,
+            },
             success: function(result){
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/papp_registration_list";
             }
         });
-    }
+    // }
 }
 
 window.onclick = function(event) {
