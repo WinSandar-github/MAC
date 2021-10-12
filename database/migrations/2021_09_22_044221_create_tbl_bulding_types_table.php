@@ -20,6 +20,7 @@ class CreateTblBuldingTypesTable extends Migration
             $table->string('building_measurement')->nullable();
             $table->integer('floor_numbers')->default(0);
             $table->string('school_building_attach')->nullable();
+            
             $table->timestamps();
             $table->foreign('school_id')
             ->references('id')
