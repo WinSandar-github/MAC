@@ -23,7 +23,7 @@
 @section('content')
 <div class="content">
     @include('flash-message')
-    <div class="row mb-2">
+    <div class="row mb-2 form-class">
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right card">
