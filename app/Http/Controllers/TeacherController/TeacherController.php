@@ -184,7 +184,7 @@ class TeacherController extends Controller
      */
     public function show($id)
     {
-        $teacher = TeacherRegister::with('student_info','teacher_renew')->where('id',$id)->get();
+        $teacher = TeacherRegister::with('student_info')->where('id',$id)->get();
         return  response()->json([
             'data' => $teacher
         ],200);
@@ -496,7 +496,7 @@ class TeacherController extends Controller
     }
     public function teacherStatus($id)
     {
-        $data = StudentInfo::where('id',$id)->with('teacher','teacher_renew')->get();
+        $data = StudentInfo::where('id',$id)->with('teacher')->get();
         return response()->json($data,200);
     }
 
@@ -834,7 +834,7 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates=null;
         }
-        $teacher =teacher_renew::find($id);
+        $teacher =TeacherRegister::find($id);
         // $teacher->name_mm = $request->name_mm;
         // $teacher->name_eng = $request->name_eng;
         // $teacher->father_name_mm = $request->father_name_mm;
