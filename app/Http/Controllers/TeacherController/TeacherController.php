@@ -610,6 +610,7 @@ class TeacherController extends Controller
         $teacher->name_eng = $request->name_eng;
         $teacher->father_name_mm = $request->father_name_mm;
         $teacher->father_name_eng = $request->father_name_eng;
+        $teacher->reg_date = date('Y-m-d');
         $teacher->renew_date = date('Y-m-d');
         $teacher->email = $request->email;
         $teacher->phone = $request->phone;
