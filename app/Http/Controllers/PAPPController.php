@@ -202,6 +202,7 @@ class PAPPController extends Controller
         // $papp->letter           =   $letter;
         $papp->reg_no           =   $request->reg_no;
         $papp->type             =   $request->type;
+        $papp->self_confession  =   $request->self_confession;
         $papp->save();
 
         //invoice
