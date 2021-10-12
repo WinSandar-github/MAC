@@ -282,10 +282,11 @@ class AccFirmInfController extends Controller
         $acc_firm_info->accountancy_firm_reg_no =  uniqid();
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
         $acc_firm_info->head_office_address   = $request->head_office_address;
-        $acc_firm_info->township                = $request->township;
+        $acc_firm_info->head_office_address_mm   = $request->head_office_address_mm;
+        //$acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
-        $acc_firm_info->city                    = $request->city;
-        $acc_firm_info->state_region            = $request->state;
+        //$acc_firm_info->city                    = $request->city;
+        //$acc_firm_info->state_region            = $request->state;
         $acc_firm_info->telephones              = $request->phone_no;
         $acc_firm_info->h_email                 = $request->h_email;
         $acc_firm_info->website                 = $request->website;
@@ -324,6 +325,10 @@ class AccFirmInfController extends Controller
         // Mail::to($student_info['email'])->send(new ContactMail($data));
         // $std_info->verify_status    =   1;
         $std_info->save();
+
+        $student_data = AccountancyFirmInformation::find($acc_firm_info->id);
+        $student_data->student_info_id = $std_info->id;
+        $student_data->save();
 
         //invoice
         $invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
@@ -1170,12 +1175,26 @@ class AccFirmInfController extends Controller
     //Audit Feedback
     public function auditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)
-                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
-                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
-                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
-                                            ->get();
-        return response()->json($data,200);
+        $data = AccountancyFirmInformation::where('student_info_id',$id)
+                                          ->latest()
+                                          ->first();
+        $student_infos = StudentInfo::where('id',$id)->select('email')->get();
+        $firm_id = AccountancyFirmInformation::where('student_info_id',$id)
+                                            ->select('id')
+                                            ->latest()
+                                            ->first();
+
+        $other_data = AccountancyFirmInformation::where('id',$firm_id->id)
+                                                ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                  'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                  'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')->get();
+
+
+        return response()->json([
+          'data' => $data,
+          'other_data' => $other_data,
+          'student_infos' => $student_infos
+        ],200);
     }
 
     // Non Audit Feedback
@@ -1214,11 +1233,16 @@ class AccFirmInfController extends Controller
     public function dateRange($id)
     {
         date_default_timezone_set("Asia/Yangon");
-        $date = AccountancyFirmInformation::where('id',$id)->get('register_date');
-        $reg_date = strtotime($date[0]['register_date']);
+        $date = AccountancyFirmInformation::where('student_info_id',$id)
+                                          ->select('register_date')
+                                          ->latest()
+                                          ->first();
+
+        $reg_date = strtotime($date['register_date']);
+
         // $date_range = strtotime(date('2021-09-30'));
-        $date = AccountancyFirmInformation::find($id);
-        $register_date = Carbon::parse($date->register_date)->format('M');
+        //$date = AccountancyFirmInformation::find($id);
+        $register_date = Carbon::parse($reg_date)->format('M');
 
         $verify = "You are verified!";
         $next = "Your registration will start in next year!";
@@ -1231,12 +1255,13 @@ class AccFirmInfController extends Controller
 
         if($currentDate >= $accept_date)
         {
-            $renew_user = AccountancyFirmInformation::find($id);
+            $renew_user = AccountancyFirmInformation::where('student_info_id',$id)
+                                              ->latest()
+                                              ->first();
             $firm_type = $renew_user->audit_firm_type_id;
             $renew_user->verify_status = 3;
             $renew_user->save();
-            // return $verify;
-            //return response()->json($renew,200);
+
             return response()->json([
                 'message' => $renew,
                 'type' => 'renew',
@@ -1246,12 +1271,13 @@ class AccFirmInfController extends Controller
 
         if('Oct' == $register_date || 'Nov' == $register_date || 'Dec' == $register_date)
         {
-            $next_year_user = AccountancyFirmInformation::find($id);
+            $next_year_user = AccountancyFirmInformation::where('student_info_id',$id)
+                                              ->latest()
+                                              ->first();
             $firm_type = $next_year_user->audit_firm_type_id;
             $next_year_user->verify_status = 2;
             $next_year_user->save();
-            // return $next;
-            //return response()->json($next,200);
+
             return response()->json([
                 'message' => $next,
                 'type' => 'next',
@@ -1260,12 +1286,13 @@ class AccFirmInfController extends Controller
         }
         else
         {
-            $verify_user = AccountancyFirmInformation::find($id);
+            $verify_user = AccountancyFirmInformation::where('student_info_id',$id)
+                                              ->latest()
+                                              ->first();
             $firm_type = $verify_user->audit_firm_type_id;
             $verify_user->verify_status = 1;
             $verify_user->save();
-            // return $verify;
-            //return response()->json($verify,200);
+
             return response()->json([
                 'message' => $verify,
                 'type' => 'verify',
@@ -1321,6 +1348,7 @@ class AccFirmInfController extends Controller
 
     public function renewSubscribe(Request $request)
     {
+
         $register_date = date('Y-m-d');
 
         if($request->hasfile('ppa_certis'))
@@ -1542,10 +1570,11 @@ class AccFirmInfController extends Controller
         $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
         $acc_firm_info->head_office_address   = $request->head_office_address;
-        $acc_firm_info->township                = $request->township;
+        $acc_firm_info->head_office_address_mm   = $request->head_office_address_mm;
+        //$acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
-        $acc_firm_info->city                    = $request->city;
-        $acc_firm_info->state_region            = $request->state;
+        //$acc_firm_info->city                    = $request->city;
+        //$acc_firm_info->state_region            = $request->state;
         $acc_firm_info->telephones              = $request->phone_no;
         $acc_firm_info->h_email                 = $request->h_email;
         $acc_firm_info->website                 = $request->website;
@@ -1566,6 +1595,7 @@ class AccFirmInfController extends Controller
         $acc_firm_info->image  = $image;
         $acc_firm_info->is_renew  = 1;  // renew user status
         $acc_firm_info->verify_status  = 1;
+        $acc_firm_info->student_info_id  = $request->student_id;
         $acc_firm_info->save();
 
         //Student Info
@@ -1575,6 +1605,10 @@ class AccFirmInfController extends Controller
         // $std_info->password         =   Hash::make($request->password);
         // $std_info->verify_code      =   uniqid();
         // $std_info->save();
+
+        // $student_data = AccountancyFirmInformation::find($acc_firm_info->id);
+        // $student_data->student_info_id = $std_info->id;
+        // $student_data->save();
 
         //invoice
         //$invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
@@ -1745,7 +1779,7 @@ class AccFirmInfController extends Controller
     //check verify
     public function checkVerify($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get('verify_status');
+        $data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
         return response()->json($data,200);
     }
 
@@ -1781,6 +1815,145 @@ class AccFirmInfController extends Controller
       $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
                                                         'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
                                                   ->where('status','=',$status)
+                                                  ->where('is_renew','=',0)
+                                                  ->where('audit_firm_type_id','=',$firm_type)
+                                                  ->get();
+
+      if($firm_type == 1){
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('township', function ($infos){
+              return $infos->township;
+          })
+
+          ->addColumn('postcode', function ($infos){
+              return $infos->postcode;
+          })
+
+          ->addColumn('city', function ($infos){
+              return $infos->city;
+          })
+
+          ->addColumn('state_region', function ($infos){
+              return $infos->state_region;
+          })
+
+          ->addColumn('telephones', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('h_email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('website', function ($infos){
+              return $infos->website;
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+      else{
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </a>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('township', function ($infos){
+              return $infos->township;
+          })
+
+          ->addColumn('postcode', function ($infos){
+              return $infos->postcode;
+          })
+
+          ->addColumn('city', function ($infos){
+              return $infos->city;
+          })
+
+          ->addColumn('state_region', function ($infos){
+              return $infos->state_region;
+          })
+
+          ->addColumn('telephones', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('h_email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('website', function ($infos){
+              return $infos->website;
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+    }
+
+    public function FilterAuditRegistrationRenew($status,$firm_type){
+      $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
+                                                        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                                  ->where('status','=',$status)
+                                                  ->where('is_renew','=',1)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
 

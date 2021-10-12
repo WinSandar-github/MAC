@@ -20,8 +20,8 @@ class AccountancyFirmInformation extends Model
     {
         return $this->belongsTo(OrganizationStructure::class);
     }
-    
- 
+
+
     public function branch_offices()
     {
         return $this->hasMany(BranchOffice::class,'accountancy_firm_info_id','id');
@@ -78,4 +78,9 @@ class AccountancyFirmInformation extends Model
     {
         return $this->hasMany(NonAuditFirmFile::class,'accountancy_firm_info_id','id');
     }
+
+    // public function student_infos()
+    // {
+    //     return $this->belongsTo(StudentInfo::class,'id','id');
+    // }
 }

@@ -26,7 +26,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+// for audit initial list
 Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
+// for audit renew list
+Route::get('/audit_renew_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistrationRenew');
+
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
@@ -207,7 +211,7 @@ Route::patch('/approve_teacher', 'TeacherController\TeacherController@approveTea
 Route::get('/check_payment_teacher/{id}', 'TeacherController\TeacherController@check_payment');
 
 //Audit DATA
-Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+Route::get('/get_audit_data_for_renew/{id}','AccFirmInfController@auditFeedback');
 Route::get('/check_payment_audit/{id}', 'AccFirmInfController@check_payment');
 Route::patch('/approve_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
@@ -250,6 +254,7 @@ Route::get('check_mentor_mac','MentorController@getMentorMAC');
 Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
+Route::get('get_firm_dashboard_data/{id}','StudentInfoController@getFirmDashboardData');
 
 Route::get('get_type/{id}', 'StudentRegisterController@getType');
 

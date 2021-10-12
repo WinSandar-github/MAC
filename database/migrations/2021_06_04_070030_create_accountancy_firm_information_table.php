@@ -18,13 +18,15 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->unsignedBigInteger('audit_firm_type_id');
             //$table->unsignedBigInteger('local_foreign_id');
             $table->unsignedBigInteger('local_foreign_type')->nullable();
+            $table->unsignedBigInteger('student_info_id')->nullable();
             $table->string('accountancy_firm_reg_no');
             $table->string('accountancy_firm_name');
             $table->string('head_office_address');
-            $table->string('township');
+            $table->string('head_office_address_mm')->nullable();
+            $table->string('township')->nullable();
             $table->string('postcode');
-            $table->string('city');
-            $table->string('state_region');
+            $table->string('city')->nullable();
+            $table->string('state_region')->nullable();
             $table->string('telephones');
             $table->string('h_email');
             $table->string('website');
@@ -39,6 +41,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
             $table->integer('status');
+            $table->integer('is_renew')->default(0);
             $table->string('image')->nullable();
             // $table->integer('form_fee');
             // $table->integer('nrc_fee');
