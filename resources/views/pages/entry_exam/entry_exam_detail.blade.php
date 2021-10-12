@@ -485,7 +485,7 @@
                                 {{--<div class="row mb-4">
                                     <label class="col-md-6 col-form-label text-left" style="font-weight:bold; padding-left: 150px;">တည်နေရာ</label>
                                     <div class="col-md-6  text-center">
-                                        <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
+                                        <label class="col-form-label" id="exam_reg_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div>--}}
                             </div>
