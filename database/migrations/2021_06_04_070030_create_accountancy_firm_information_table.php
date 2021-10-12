@@ -40,6 +40,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->string('other')->nullable();
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');
+            $table->string('declaration_mm')->nullable();
             $table->integer('status');
             $table->integer('is_renew')->default(0);
             $table->string('image')->nullable();

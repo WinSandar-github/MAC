@@ -302,6 +302,7 @@ class AccFirmInfController extends Controller
           $acc_firm_info->dir_passport_csc = $request->dir_passport_csc;
         }
         $acc_firm_info->declaration                  = $request->declaration;
+        $acc_firm_info->declaration_mm                  = $request->declaration_mm;
         $acc_firm_info->status   = 0;
         // $acc_firm_info->form_fee = $request->form_fee;
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
@@ -331,11 +332,23 @@ class AccFirmInfController extends Controller
         $student_data->save();
 
         //invoice
-        $invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
-
         $invoice = new Invoice();
         $invoice->student_info_id = $std_info->id;
-        $invoice->invoiceNo       = $invNo;
+
+        // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+        // $invoice->invoiceNo       = $invNo;
+
+        $invoice->invoiceNo = '';
+
+        $invoice->name_eng        = $std_info->email;
+        $invoice->email           = $std_info->email;
+        $invoice->phone           = '';
+
+
+        $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'registration_fee']);
+
+        $invoice->productDesc     = 'Audit Application Fee, Registration Fee';
+        $invoice->amount          = $fees->form_fee + $fees->registration_fee;
         $invoice->status          = 0;
         $invoice->save();
 
@@ -543,6 +556,9 @@ class AccFirmInfController extends Controller
 
     public function reject($id,Request $request)
     {
+        $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
+        $std_info->approve_reject_status = 2;
+        $std_info->save();
         $reject = AccountancyFirmInformation::find($id);
         $reject->status = 2;
         $reject->remark = $request->remark;
@@ -1200,12 +1216,33 @@ class AccFirmInfController extends Controller
     // Non Audit Feedback
     public function nonAuditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)
-                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
-                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
-                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
-                                            ->get();
-        return response()->json($data,200);
+        // $data = AccountancyFirmInformation::where('id',$id)
+        //                                     ->with('branch_offices','firm_owner_audits','director_officer_audits',
+        //                                             'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+        //                                             'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+        //                                     ->get();
+        // return response()->json($data,200);
+
+        $data = AccountancyFirmInformation::where('student_info_id',$id)
+                                          ->latest()
+                                          ->first();
+        $student_infos = StudentInfo::where('id',$id)->select('email')->get();
+        $firm_id = AccountancyFirmInformation::where('student_info_id',$id)
+                                            ->select('id')
+                                            ->latest()
+                                            ->first();
+
+        $other_data = AccountancyFirmInformation::where('id',$firm_id->id)
+                                                ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                  'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                  'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')->get();
+
+
+        return response()->json([
+          'data' => $data,
+          'other_data' => $other_data,
+          'student_infos' => $student_infos
+        ],200);
     }
 
     public function auditStatus($id)
@@ -1590,6 +1627,7 @@ class AccFirmInfController extends Controller
           $acc_firm_info->dir_passport_csc = $request->dir_passport_csc;
         }
         $acc_firm_info->declaration                  = $request->declaration;
+        $acc_firm_info->declaration_mm                  = $request->declaration_mm;
         $acc_firm_info->status   = 0;
         $acc_firm_info->register_date  = $register_date;
         $acc_firm_info->image  = $image;

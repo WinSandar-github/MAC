@@ -218,6 +218,7 @@ Route::get('/check_payment_audit/{id}', 'AccFirmInfController@check_payment');
 Route::patch('/approve_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditFeedback');
+Route::get('/get_non_audit_data_for_renew/{id}','AccFirmInfController@nonAuditFeedback');
 
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
