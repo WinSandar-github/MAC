@@ -141,6 +141,10 @@ function getTeacherInfos(){
 		{mm:'ဧ' ,eng: 'E'}
 	];
     var regions_states = [
+        {
+			region_en: '0',			// 'Kachin'
+			region_mm : '၀',			// 'ကချင်ပြည်နယ်'
+		},
 		{
 			region_en: '1',			// 'Kachin'
 			region_mm : '၁',			// 'ကချင်ပြည်နယ်'
