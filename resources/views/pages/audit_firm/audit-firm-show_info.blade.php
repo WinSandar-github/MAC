@@ -13,11 +13,11 @@
 
 @section('content')
     <div class="content">
-        <div class="row mb-3">
+        {{--<div class="row mb-3">
             <div class="col-md-12">
                 {{ Breadcrumbs::render('audit-firm-initial-accountancy') }}
             </div>
-        </div>
+        </div>--}}
         <form id="audit_firm_form" method="post" action="javascript:updateAuditFirm();" enctype="multipart/form-data">
 
 
@@ -72,7 +72,7 @@
                               </div>
 															<div class="row  pl-4">
                                   <div class="col-md-2"></div>
-                                  <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Address') }}</label>
+                                  <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Address(English)') }}</label>
                                   <label class="col-md-1 col-form-label">{{ __(':') }}</label>
                                   <div class="col-md-6">
                                       <div class="form-group">
@@ -81,7 +81,18 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="row  pl-4">
+															<div class="row  pl-4">
+                                  <div class="col-md-2"></div>
+                                  <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Address(Myanmar)') }}</label>
+                                  <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <span id="head_office_address_mm"></span>
+                                          <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
+                                      </div>
+                                  </div>
+                              </div>
+                              {{--<div class="row  pl-4">
                                   <div class="col-md-2"></div>
                                   <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Township') }}</label>
                                   <label class="col-md-1 col-form-label">{{ __(':') }}</label>
@@ -91,7 +102,7 @@
                                           <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
                                       </div>
                                   </div>
-                              </div>
+                              </div>--}}
                               <div class="row  pl-4">
                                   <div class="col-md-2"></div>
                                   <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Post Code') }}</label>
@@ -103,7 +114,7 @@
                                       </div>
                                   </div>
                               </div>
-                              <div class="row  pl-4">
+                              {{--<div class="row  pl-4">
                                   <div class="col-md-2"></div>
                                   <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('City') }}</label>
                                   <label class="col-md-1 col-form-label">{{ __(':') }}</label>
@@ -113,8 +124,8 @@
                                           <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
                                       </div>
                                   </div>
-                              </div>
-                              <div class="row  pl-4">
+                              </div>--}}
+                              {{--<div class="row  pl-4">
                                   <div class="col-md-2"></div>
                                   <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('State') }}</label>
                                   <label class="col-md-1 col-form-label">{{ __(':') }}</label>
@@ -124,7 +135,7 @@
                                           <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
                                       </div>
                                   </div>
-                              </div>
+                              </div>--}}
                               <div class="row  pl-4">
                                   <div class="col-md-2"></div>
                                   <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Phone Number') }}</label>
