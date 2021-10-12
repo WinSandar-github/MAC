@@ -968,9 +968,9 @@
                         <table class="table table-bordered">
                             <tr>
                                 <td>စဥ်</td>
-                                <td style="width: 1400px!important">အကြောင်းအရာ</td>
-                                <td  style="width: 100px!important"> ရှိ </td>
-                                <td  style="width: 100px!important"> မရှိ </td>
+                                <td style="width: 1300px!important">အကြောင်းအရာ</td>
+                                <td style="width: 100px!important"> ရှိ </td>
+                                <td style="width: 100px!important"> မရှိ </td>
                             </tr>
                             <tr>
                                 <td>၁</td>
