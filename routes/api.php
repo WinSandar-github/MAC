@@ -411,3 +411,4 @@ Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherControll
 Route::post('/renewSchool', 'SchoolController\SchoolController@renewSchool');
 Route::get('/getSchoolInfo/{id}', 'SchoolController\SchoolController@getSchoolInfo');
 Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewSchoolPayment');
+Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');
