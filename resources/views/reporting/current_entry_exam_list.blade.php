@@ -14,9 +14,31 @@
                 </div>
                 <div class="card-body">
                     <div class="row"> 
-                            <div class="col-md-12 pl-2">
+                            <div class="col-md-3 pl-2">
                                 <button   onclick="generateEntranceExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                 
+                            </div>
+                            <div class="col-md-9">
+                                <div class="d-flex flex-row-reverse">
+
+                                    <!-- <div class="">
+                                        <button type="button" class="btn btn-primary btn-round m-0"
+                                            id="search">Search</button>
+                                    </div> -->
+                                    <div class="mx-2">
+                                        
+                                        <select class="form-control form-select" name="select_batch" id="select_batch">
+                                            <option value="" selected >Select Batch</option>
+                                                
+                                            @foreach($course->batches as $batch)
+                                            <option value="{{$batch['id']}}">{{$batch['name']}}</option>
+                                            @endforeach
+    
+                                            
+                                        </select>
+                                    </div>
+                                     
+                                </div>
                             </div>
                         <div class="col-md-12">                       
                             <table width="100%" id="tbl_exam_list" class="table table-hover text-nowrap ">
@@ -51,15 +73,15 @@
         $('document').ready(function(){
             var course_code = $('#course_code').val();
             
-              showAppList(course_code);
+              showEntryExamList(course_code);
         })
         
-showAppList = (course_code) =>{
+showEntryExamList = (course_code) =>{
     
-    var table_app = $('#tbl_exam_list').DataTable({
+    var table_entry = $('#tbl_exam_list').DataTable({
         scrollX: true,
         processing: true,
-        serverSide: false,
+        serverSide: true,
         searching: false,
         paging:false,
         
@@ -67,7 +89,8 @@ showAppList = (course_code) =>{
             url  : FRONTEND_URL + "/show_entrance_exam_list",
             type : "POST" ,
             data :  function (d) {
-                d.code        =  course_code
+                d.code        =  course_code,
+                d.batch = $('#select_batch').val()
              
                 
             }
@@ -87,6 +110,11 @@ showAppList = (course_code) =>{
         },
         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
 
+    });
+
+    $("#select_batch").change(function () {
+           
+        table_entry.draw();
     });
 
     

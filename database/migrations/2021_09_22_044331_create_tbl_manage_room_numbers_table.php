@@ -19,6 +19,7 @@ class CreateTblManageRoomNumbersTable extends Migration
             $table->integer('manage_room_numbers')->default(0);
             $table->string('manage_room_measurement')->nullable();
             $table->string('manage_room_attach')->nullable();
+            
             $table->timestamps();
             $table->foreign('school_id')
             ->references('id')

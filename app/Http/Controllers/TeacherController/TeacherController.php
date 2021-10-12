@@ -8,7 +8,7 @@ use App\TeacherRegister;
 use App\StudentInfo;
 use App\EducationHistroy;
 use App\Invoice;
-use App\teacher_renew;
+
 use Hash;
 use DB;
 use Illuminate\Support\Str;
@@ -132,14 +132,20 @@ class TeacherController extends Controller
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
+        
         $teacher->save();
         
-        //Student Info
+            //Student Info
             $std_info = new StudentInfo();
             $std_info->teacher_id = $teacher->id;
             $std_info->email = $request->email;
             $std_info->password = Hash::make($request->password);
             $std_info->save();
+
+        $teacher->t_code = 'T-00'.$teacher->id;
+        $teacher->student_info_id = $std_info->id;
+        $teacher->save();
+
         if($degrees_certificates!=null){
             $degrees_certificates=implode(',', $degrees_certificates);
             $new_degrees_certificates= explode(',',$degrees_certificates);
@@ -178,7 +184,7 @@ class TeacherController extends Controller
      */
     public function show($id)
     {
-        $teacher = TeacherRegister::with('student_info','teacher_renew')->where('id',$id)->get();
+        $teacher = TeacherRegister::with('student_info')->where('id',$id)->get();
         return  response()->json([
             'data' => $teacher
         ],200);
@@ -366,11 +372,23 @@ class TeacherController extends Controller
         $teachers=$teacher->get();
         return DataTables::of($teachers)
                 ->addColumn('action', function ($infos) {
-                    return "<div class='btn-group'>
+                    $btn='';
+                    if($infos->initial_status==0){
+                        $btn="<div class='btn-group'>
                                     <a href='teacher_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
                                         <li class='fa fa-eye fa-sm'></li>
                                     </a>
                                 </div>";
+                        return $btn;
+                    }else if($infos->initial_status==1){
+                        $btn="<div class='btn-group'>
+                                    <a href='renew_teacher_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                        <li class='fa fa-eye fa-sm'></li>
+                                    </a>
+                                </div>";
+                        return $btn;
+                    }
+                    
                 })
                 ->addColumn('nrc', function ($infos){
                     $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
@@ -396,11 +414,19 @@ class TeacherController extends Controller
                     }
                 })
                 ->addColumn('exp_date', function ($infos){
-                    if($infos->payment_date	 ==""){
-                        return "";
-                    }else{
-                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->payment_date);
-                        return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                    if($infos->initial_status==0){
+                        if($infos->from_valid_date	 ==""){
+                            return "";
+                        }else{
+                            $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                            return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                        }
+                    }else if($infos->initial_status==1){
+                        if($infos->from_valid_date	 ==""){
+                            return "";
+                        }else{
+                            return '01-01-'.date('Y').' to 31-12-'.date('Y');
+                        }
                     }
                 })
                 ->addColumn('card', function ($infos) {
@@ -437,32 +463,31 @@ class TeacherController extends Controller
                     }
                 })
                 ->addColumn('payment_date', function ($infos){
-                    if($infos->payment_date	 == ""){
+                    if($infos->initial_status==0){
+                        if($infos->from_valid_date	 == ""){
+                            return "";
+                        }else{
+                            $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                            return $date->format('d-m-Y');
+                        }
+                    }else if($infos->initial_status==1){
+                        if($infos->from_valid_date	 == ""){
+                            return "";
+                        }else{
+                            $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                            return $date->format('d-m-Y');
+                        }
+                    }
+                    
+                })
+                ->addColumn('yearly', function ($infos){
+                    if($infos->renew_date	 == ""){
                         return "";
                     }else{
-                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->payment_date);
-                        return $date->format('d-m-Y');
+                        $date = Carbon::createFromFormat('Y-m-d', $infos->renew_date);
+                        return $date->format('Y');
                     }
                 })
-                // ->addColumn('renew_payment_method', function ($infos){
-                //     if($infos->renew_payment_date	 == ""){
-                //         return "Payment Incomplete";
-                       
-                //     }else{
-                //         return "Payment Complete";
-                       
-                //     }
-                // })
-                // ->addColumn('renew_payment_date', function ($infos){
-                //     if($infos->renew_payment_date	 == ""){
-                //         return "";
-                //     }else if( $infos->renew_payment_date	 != ""){
-                //         return "";
-                //     }else{
-                //         $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->renew_payment_date);
-                //         return $monthName = $date->format('d-m-Y').' to 31-12-'.date('Y');
-                //     }
-                // })
                 ->rawColumns(['card','action'])
                 ->make(true);
         // return  response()->json([
@@ -471,7 +496,7 @@ class TeacherController extends Controller
     }
     public function teacherStatus($id)
     {
-        $data = StudentInfo::where('id',$id)->with('teacher','teacher_renew')->get();
+        $data = StudentInfo::where('id',$id)->with('teacher')->get();
         return response()->json($data,200);
     }
 
@@ -480,7 +505,8 @@ class TeacherController extends Controller
         $teacher = TeacherRegister::find($request->id);
         $teacher->payment_method = 'CASH';
         $teacher->invoice_no = $request->invoice_no;
-        $teacher->payment_date = $request->current_date;
+        $teacher->t_code = $request->invoice_no;
+        $teacher->from_valid_date = $request->current_date;
         $teacher->save();
         return response()->json([
             'data' => $teacher,
@@ -512,9 +538,16 @@ class TeacherController extends Controller
         }
         
     }
-    public function getTeacher($invoice_no)
+    public function getTeacher($id)
     {
-        $data = TeacherRegister::where('invoice_no',$invoice_no)->get();
+        $data = TeacherRegister::where('student_info_id',$id)->get();
+        return response()->json([
+            'data' => $data
+        ],200);
+    }
+    public function getTeacherByTCode($t_code)
+    {
+        $data = TeacherRegister::where('t_code',$t_code)->get();
         return response()->json([
             'data' => $data
         ],200);
@@ -572,7 +605,7 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates=null;
         }
-        $teacher = new teacher_renew();
+        $teacher = new TeacherRegister();
         $teacher->name_mm = $request->name_mm;
         $teacher->name_eng = $request->name_eng;
         $teacher->father_name_mm = $request->father_name_mm;
@@ -603,8 +636,8 @@ class TeacherController extends Controller
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
-        $teacher->regno = $request->regno;
-        $teacher->teacher_id  = $request->teacher_id;
+        $teacher->t_code = $request->regno;
+        $teacher->initial_status  = 1;
         $teacher->student_info_id  = $request->student_info_id;
         $teacher->save();
         
@@ -615,11 +648,10 @@ class TeacherController extends Controller
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
-                $education_histroy->student_info_id = $std_info->id;
+                $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->university_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
-                $education_histroy->teacher_id      = $request->teacher_id;
-                $education_histroy->renewteacher_id      = $teacher->id;
+                $education_histroy->teacher_id      = $teacher->id;
                 $education_histroy->save();
             }
         }
@@ -753,9 +785,11 @@ class TeacherController extends Controller
     }
     public function approveRenewTeacher(Request $request)
     { 
-        $teacher = teacher_renew::find($request->id);
+        $currentDate = Carbon::now();
+        $teacher = TeacherRegister::find($request->id);
         $teacher->payment_method = 'CASH';
-        $teacher->payment_date = date('Y-m-d');
+        $teacher->from_valid_date = date('Y-m-d');
+        $teacher->to_valid_date = '31-12-'.$currentDate->format('Y');
         $teacher->save();
         return response()->json([
             'data' => $teacher,
@@ -800,7 +834,7 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates=null;
         }
-        $teacher =teacher_renew::find($id);
+        $teacher =TeacherRegister::find($id);
         // $teacher->name_mm = $request->name_mm;
         // $teacher->name_eng = $request->name_eng;
         // $teacher->father_name_mm = $request->father_name_mm;

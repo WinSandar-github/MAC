@@ -130,8 +130,6 @@ class StudentInfo extends Model
         return $this->hasMany(ExamResult::class,'student_info_id','id')->with('exam_register');
 
     }
-    public function teacher_renew()
-    {
-        return $this->hasMany(teacher_renew::class,'student_info_id','id');
-    }
+    
+    
 }

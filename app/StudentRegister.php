@@ -19,4 +19,9 @@ class StudentRegister extends Model
     {
         return $this->belongsTo(Course::class,'form_type','id');
     }
+
+    public function batch(){
+        return $this->belongsTo(Batch::class)->with('course');
+    }
+
 }

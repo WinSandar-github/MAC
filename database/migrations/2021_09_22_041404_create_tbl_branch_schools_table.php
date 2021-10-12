@@ -20,7 +20,9 @@ class CreateTblBranchSchoolsTable extends Migration
             $table->string('branch_school_attach');
             $table->string('branch_sch_own_type');
             $table->string('branch_sch_letter');
+            
             $table->timestamps();
+            
             $table->foreign('school_id')
             ->references('id')
             ->on('school_registers')
