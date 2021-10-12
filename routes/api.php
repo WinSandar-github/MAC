@@ -103,7 +103,9 @@ Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
-Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
+// Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
+Route::post('/update_cpaff_initial', 'CPAFFController@updateRejectedInitialData');
+Route::post('/update_cpaff_renewal', 'CPAFFController@updateRejectedRenewalData');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
