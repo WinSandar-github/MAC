@@ -14,6 +14,7 @@ function ConfirmSubmit() {
     if (radio.checked == true) {
         document.getElementById("submit_btn").disabled = false;
     } else {
+        p
         document.getElementById("submit_btn").disabled = true;
     }
 }

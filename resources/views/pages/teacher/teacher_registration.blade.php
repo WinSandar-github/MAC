@@ -428,7 +428,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filterRenewTeacher",
+                url  : BACKEND_URL + "/filter_teacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -439,7 +439,7 @@
             
             },
             columns: [
-                {data: 'regno', name: 'regno'},
+                {data: 't_code', name: 't_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
@@ -464,7 +464,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filterRenewTeacher",
+                url  : BACKEND_URL + "/filter_teacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -475,7 +475,7 @@
             
             },
             columns: [
-                {data: 'regno', name: 'regno'},
+                {data: 't_code', name: 't_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
@@ -498,7 +498,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filterRenewTeacher",
+                url  : BACKEND_URL + "/filter_teacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -509,7 +509,7 @@
             
             },
             columns: [
-                {data: 'regno', name: 'regno'},
+                {data: 't_code', name: 't_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
@@ -566,7 +566,7 @@
             // searching: false,
             paging:true,
             ajax: {
-                url  : BACKEND_URL + "/filterRenewTeacher",
+                url  : BACKEND_URL + "/filter_teacher",
                 type : "POST" ,
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
@@ -577,7 +577,7 @@
             
             },
             columns: [
-                {data: 'regno', name: 'regno'},
+                {data: 't_code', name: 't_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},

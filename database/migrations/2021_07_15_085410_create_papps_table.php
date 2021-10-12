@@ -55,7 +55,6 @@ class CreatePappsTable extends Migration
             $table->date('renew_accepted_date')->default(null)->nullable();
             $table->boolean('renew_status')->default(null)->nullable();
 
-
             //adding
             $table->string('reg_no')->nullable();
             $table->string('address')->nullable();
@@ -64,7 +63,8 @@ class CreatePappsTable extends Migration
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
             $table->integer('type')->nullable();
-
+            $table->text('self_confession');
+            $table->text('reject_description')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')

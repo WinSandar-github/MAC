@@ -104,15 +104,7 @@ function showTeacher(teacherID){
     localStorage.setItem("teacher_id",teacherID);
     location.href=FRONTEND_URL+"/teacher_edit/";
 }
-function filteredArray(arr, key, value) {
-    const newArray = [];
-    for(i=0, l=arr.length; i<l; i++) {
-      if(arr[i][key] === value) {
-        newArray.push(arr[i]);
-      }
-    }
-   return newArray;
-  }
+
 function getTeacherInfos(){
     var characters = [
 		{mm:'က',eng:'Ka'},
@@ -149,6 +141,10 @@ function getTeacherInfos(){
 		{mm:'ဧ' ,eng: 'E'}
 	];
     var regions_states = [
+        {
+			region_en: '0',			// 'Kachin'
+			region_mm : '၀',			// 'ကချင်ပြည်နယ်'
+		},
 		{
 			region_en: '1',			// 'Kachin'
 			region_mm : '၁',			// 'ကချင်ပြည်နယ်'
@@ -331,17 +327,22 @@ function getTeacherInfos(){
                 if(value.payment_method!=null){
                     $('.period').show();
                     var now=new Date();
-                    var new_date=value.payment_date.split(' ');
+                    if(value.initial_status==0){
+                        var new_date=value.from_valid_date.split(' ');
+                    }else if(value.initial_status==1){
+                        var new_date=value.renew_date.split(' ');
+                    }
+                    
                     var period_date=new_date[0].split('-');
                     var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
                    $('#period_time').text(period+" to 31-12-"+now.getFullYear());
                    
                     $("#payment_date").val(period);
-                    $('.invoice_no').append(value.invoice_no);
+                    $('.invoice_no').append(value.t_code);
                     $(".payment_date").append(period);
                     
                 }
-                $('#student_info_id').val(value.student_info.id);
+                $('#student_info_id').val(value.student_info_id);
                 $('#teacher_id').val(value.id);
                 if(value.initial_status==0){
                     $('.form-name').append('ဆရာပုံစံ-၁');
