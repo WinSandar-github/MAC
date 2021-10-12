@@ -8,6 +8,8 @@ use App\EducationHistroy;
 use App\StudentCourseReg;
 use App\StudentJobHistroy;
 use App\registration_self_study;
+use App\AccountancyFirmInformation;
+use App\FirmOwnershipAudit;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -255,11 +257,26 @@ class StudentInfoController extends Controller
     public  function userProfile($id)
     {
         $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course_regs'
-        ,'exam_registers','student_register','accountancy_firm','school','mentor','teacher','cpa_ff','papp',
-        'article','firm_ownerships_audits','gov_article','exam_results','qualified_test')->first();
+        ,'exam_registers','student_register','school','mentor','teacher','cpa_ff','papp',
+        'article','gov_article','exam_results','qualified_test','teacher_renew')->first();
 
 
         return response()->json(['data' => $student_info],200);
+    }
+
+    public  function getFirmDashboardData($id)
+    {
+        $student_info = StudentInfo::where('id',$id)->with('accountancy_firm')->latest()->first();
+        $firm_id = AccountancyFirmInformation::where('student_info_id',$id)
+                                            ->select('id')
+                                            ->latest()
+                                            ->first();
+
+        $firm_ownerships_audits = FirmOwnershipAudit::where('accountancy_firm_info_id',$firm_id['id'])->get();
+
+        return response()->json(['data' => $student_info,
+                                  'firm_ownerships_audits' => $firm_ownerships_audits
+                              ],200);
     }
 
     public function updateProfile(Request $request,$id){

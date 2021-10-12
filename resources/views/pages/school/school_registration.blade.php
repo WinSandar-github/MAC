@@ -97,6 +97,7 @@
                                                                 <th class="bold-font-weight" >Expire Period Time</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
+                                                                <th class="bold-font-weight" >Remark</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_school_initial_pending_body" class="hoverTable">
@@ -118,7 +119,7 @@
                                                             <th class="bold-font-weight" >Payment Date</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
-
+                                                            <th class="bold-font-weight" >School Card</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_school_initial_approved_body" class="hoverTable">
@@ -139,7 +140,7 @@
                                                             <th class="bold-font-weight" >Expire Period time</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
-                                                            <th class="bold-font-weight" >Reason</th>
+                                                            <th class="bold-font-weight" >Remark</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_school_initial_rejected_body" class="hoverTable">
@@ -180,6 +181,7 @@
                                                                 <th class="bold-font-weight" >Expire Period time</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th>
+                                                                <th class="bold-font-weight" >Remark</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tbl_school_renew_pending_body" class="hoverTable">
@@ -201,7 +203,7 @@
                                                             <th class="bold-font-weight" >Payment Date</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Payment Status</th>
-
+                                                            <th class="bold-font-weight" >School Card</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_school_renew_approved_body" class="hoverTable">
@@ -233,8 +235,8 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="link3" aria-expanded="true">
-                                            <table id="tbl_school_cessation_pending" class="table table-hover  text-center" style="width:100%;">
-                                                        <thead class=" text-nowrap">
+                                            <table id="tbl_school_cessation_pending" class="table table-hover text-nowrap" style="width:100%;">
+                                                        <thead class="text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
@@ -243,14 +245,14 @@
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Register Date</th>
-                                                                <th class="bold-font-weight" >Expire Period time</th>
+                                                                <!-- <th class="bold-font-weight" >Expire Period time</th>
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight" >Payment Status</th>
-                                                                <!-- <th class="bold-font-weight" >School Card</th> -->
+                                                                <th class="bold-font-weight" >Payment Status</th> -->
+                                                                <th class="bold-font-weight" >School Card</th>
                                                                 <th class="bold-font-weight" >Cessation Reason</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody id="tbl_school_cessation_pending_body" class="hoverTable text-left">
+                                                        <tbody id="tbl_school_cessation_pending_body" class="hoverTable">
                                                         </tbody>
                                                 </table>
                                 </div>
@@ -310,7 +312,7 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
-
+                {data: 'reason', name: 'reason'},
             ],
             
          });
@@ -346,6 +348,7 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
             ],
          });
 
@@ -400,7 +403,7 @@
 
             },
             columns: [
-                {data: 'invoice_no', name: 'invoice_no'},
+                {data: 's_code', name: 's_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
@@ -410,7 +413,7 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
-
+                {data: 'reason', name: 'reason'},
             ],
             
          });
@@ -433,7 +436,7 @@
 
             },
             columns: [
-                {data: 'invoice_no', name: 'invoice_no'},
+                {data: 's_code', name: 's_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
@@ -444,6 +447,7 @@
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
                 {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
             ],
          });
 
@@ -498,19 +502,17 @@
             
             },
             columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
+                {data: 's_code', name: 's_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'reg_date', name: 'reg_date'},
-                {data: 'payment_date', name: 'payment_date'},
-                {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
-                // {data: 'card', name: 'card'},
+                // {data: 'payment_date', name: 'payment_date'},
+                // {data: 'status', name: 'status'},
+                // {data: 'payment_method', name: 'payment_method'},
+                {data: 'card', name: 'card'},
                 {data: 'remark', name: 'remark'},
             ],
         });

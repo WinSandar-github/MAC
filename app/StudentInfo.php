@@ -80,7 +80,7 @@ class StudentInfo extends Model
     }
 
     public function accountancy_firm(){
-        return $this->belongsTo(AccountancyFirmInformation::class,'accountancy_firm_info_id','id');
+        return $this->hasMany(AccountancyFirmInformation::class,'student_info_id','id');
 
     }
 

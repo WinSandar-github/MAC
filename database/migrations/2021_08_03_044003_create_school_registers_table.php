@@ -59,6 +59,8 @@ class CreateSchoolRegistersTable extends Migration
             $table->text('cessation_reason')->nullable();
             
             $table->integer('student_info_id')->nullable();
+            $table->string('renew_school_name')->nullable();
+            $table->string('renew_school_address')->nullable();
             $table->timestamps();
         });
     }
