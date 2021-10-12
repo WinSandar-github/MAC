@@ -14,12 +14,35 @@
                 </div>
                 <div class="card-body">
                     <div class="row"> 
-                            <div class="col-md-12 pl-2">
+                            <div class="col-md-3 pl-2">
                                
                                
                                 <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                
                             </div>
+                            <div class="col-md-9">
+                                <div class="d-flex flex-row-reverse">
+
+                                    <!-- <div class="">
+                                        <button type="button" class="btn btn-primary btn-round m-0"
+                                            id="search">Search</button>
+                                    </div> -->
+                                    <div class="mx-2">
+                                        
+                                        <select class="form-control form-select" name="select_batch" id="select_batch">
+                                            <option value="" selected >Select Batch</option>
+                                                
+                                            @foreach($course->batches as $batch)
+                                            <option value="{{$batch['id']}}">{{$batch['name']}}</option>
+                                            @endforeach
+    
+                                            
+                                        </select>
+                                    </div>
+                                     
+                                </div>
+                            </div>
+                            
                         
 
                         <div class="col-md-12">
@@ -65,7 +88,7 @@ showAppList = (course_code) =>{
     var table_app = $('#tbl_exam_result_list').DataTable({
         scrollX: true,
         processing: true,
-        serverSide: false,
+        serverSide: true,
         searching: false,
         paging:false,
         
@@ -74,7 +97,9 @@ showAppList = (course_code) =>{
             type : "POST" ,
             data :  function (d) {
                 d.code        =  course_code,
-                d.grade       = 1
+                d.grade       = 1,
+                d.batch = $('#select_batch').val()
+
                
             }
         },
@@ -95,6 +120,11 @@ showAppList = (course_code) =>{
         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
 
     });
+    
+    $("#select_batch").change(function () {
+           
+        table_app.draw();
+       });
 
     
 }

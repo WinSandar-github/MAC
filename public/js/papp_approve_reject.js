@@ -238,7 +238,7 @@ function loadPAPPData(){
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
-                $("#registration_no").append(element.student_register.personal_no);
+                $("#registration_no").append(element.student_info.cpersonal_no);
 
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
@@ -528,7 +528,7 @@ function loadRenewPAPPData(){
                 $("#email").append(element.student_info.email);
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
-                $("#registration_no").append(element.student_register.personal_no);
+                $("#registration_no").append(element.student_info.cpersonal_no);
                 //$(".total_audit_work").append(element.personal_no);
 
                 if(element.student_info.gov_staff == 1){
@@ -723,19 +723,24 @@ function approvePAPPUser(){
 }
 
 function rejectPAPPUser(){ 
-    if(!confirm('Are you sure you want to reject this user?')){
-        return;
-    }else{
+    // if(!confirm('Are you sure you want to reject this user?')){
+    //     return;
+    // }else{
         var id = $("input[name = papp_id]").val();
+        var data = $('#reject_papp').val();
         $.ajax({
             url: BACKEND_URL +"/reject_papp/"+id,
-            type: 'patch',
+            type : 'post',
+            data : {
+                'id' : id,
+                'description' : data,
+            },
             success: function(result){
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/papp_registration_list";
             }
         });
-    }
+    // }
 }
 
 window.onclick = function(event) {

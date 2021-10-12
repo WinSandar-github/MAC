@@ -703,12 +703,12 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_app_list/da_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Da One တက်ရောက်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
+                                            Da One မှတ်ပုံတင်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_app_list/da_2')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Da Two တက်ရောက်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
+                                            Da Two မှတ်ပုံတင်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
 
@@ -716,7 +716,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('attend_app_list/cpa_1')}}" class="btn btn-block sub-btn-col btn-flat p-3" name="">
-                                            Cpa One တက်ရောက်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
+                                            Cpa One မှတ်ပုံတင်ခွင့်ရသူများစာရင်း ထုတ်ပြန်ရန်
                                         </a>
                                     </div>
                                     <div class="col-md-6">
