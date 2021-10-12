@@ -198,7 +198,7 @@ Route::resource('/school','SchoolController\SchoolController');
 Route::post('/filter_school','SchoolController\SchoolController@FilterSchool');
 Route::post('/approve_school_register', 'SchoolController\SchoolController@approve_school_register');
 Route::post('/reject_school_register', 'SchoolController\SchoolController@reject_school_register');
-Route::patch('/approve_school/{id}', 'SchoolController\SchoolController@approveSchool');
+Route::patch('/approve_school', 'SchoolController\SchoolController@approveSchool');
 Route::get('/check_payment_school/{id}', 'SchoolController\SchoolController@checkPayment');
 
 //for teacher registration
@@ -393,7 +393,8 @@ Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
 Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
 //Teacher card
-Route::get('getTeacher/{invoice_no}', 'TeacherController\TeacherController@getTeacher');
+Route::get('getTeacher/{id}', 'TeacherController\TeacherController@getTeacher');
+Route::get('getTeacherByTCode/{t_code}', 'TeacherController\TeacherController@getTeacherByTCode');
 Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
 //teacher renew
 Route::post('/renewTeacher', 'TeacherController\TeacherController@renewTeacher');
@@ -404,3 +405,7 @@ Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController
 Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
 Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
 Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');
+//school renew
+Route::post('/renewSchool', 'SchoolController\SchoolController@renewSchool');
+Route::get('/getSchoolInfo/{id}', 'SchoolController\SchoolController@getSchoolInfo');
+Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewSchoolPayment');
