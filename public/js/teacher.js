@@ -106,6 +106,129 @@ function showTeacher(teacherID){
 }
 
 function getTeacherInfos(){
+    var characters = [
+		{mm:'က',eng:'Ka'},
+		{mm:'ခ' ,eng:'Kha'},
+		{mm:'ဂ' ,eng:'Ga'},
+		{mm:'ဃ' ,eng:'Gha'},
+		{mm:'င' ,eng:'Nga'},
+		{mm:'စ' ,eng:'Sa'},
+		{mm:'ဆ' ,eng: 'Hsa'},
+		{mm:'ဇ' ,eng: 'Za'},
+		{mm:'ဈ',eng: 'Zha'},
+		{mm:'ည' ,eng: 'Nya'},
+		{mm:'ဎ',eng: 'Dd'},
+		{mm:'ဏ' ,eng: 'Nha'},
+		{mm:'တ' ,eng: 'Ta'},
+		{mm:'ထ' ,eng: 'Hta'},
+		{mm:'ဒ' ,eng: 'Da'},
+		{mm:'ဓ',eng: 'Dha'},
+		{mm:'န' ,eng: 'Na'},
+		{mm:'ပ' ,eng: 'Pa'},
+		{mm:'ဖ' ,eng: 'Pha'},
+		{mm:'ဗ' ,eng: 'Bha'},
+		{mm:'ဘ',eng : 'Ba'},
+		{mm:'မ' ,eng:'Ma'},
+		{mm:'ယ',eng: 'Ya'},
+		{mm:'ရ' ,eng: 'Ra'},
+		{mm:'လ' ,eng: 'La'},
+		{mm:'ဝ' ,eng: 'Wa'},
+		{mm:'သ',eng: 'Tha'},
+		{mm:'ဟ',eng: 'Ha'},
+		{mm:'ဠ' ,eng: 'Ll'},
+		{mm:'အ',eng: 'Ah'},
+		{mm:'ဥ' ,eng: 'U'},
+		{mm:'ဧ' ,eng: 'E'}
+	];
+    var regions_states = [
+        {
+			region_en: '0',			// 'Kachin'
+			region_mm : '၀',			// 'ကချင်ပြည်နယ်'
+		},
+		{
+			region_en: '1',			// 'Kachin'
+			region_mm : '၁',			// 'ကချင်ပြည်နယ်'
+		},
+		{
+			
+			region_en : '2',			// 'Kayah'
+			region_mm : '၂'			// ကယားပြည်နယ်
+		},
+		{
+			
+			region_en: '3',			// 'Kayin'
+			region_mm: '၃'			// 'ကရင်ပြည်နယ်'
+		},
+		{
+			
+			region_en : '4',			// 'Chin'
+			region_mm : '၄'			//	'ချင်းပြည်နယ်'
+		},
+		{
+			
+			region_en : '5',			// 'Sagaing'
+			region_mm : '၅'			//	'စစ်ကိုင်းတိုင်း'
+		},
+		{
+			
+			region_en : '6',			// 'Tanintharyi'
+			region_mm : '၆'			//	'တနင်္သာရီတိုင်း'
+		},
+		{
+			
+			region_en: '7',			// 'Bago'
+			region_mm : '၇'			//	'ပဲခူးတိုင်း'
+		},
+		{
+			
+			region_en : '8',			// 'Magway'
+			region_mm :'၈'			//	'မကွေးတိုင်း'
+		},
+		{
+			
+			region_en : '9',			// 'Mandalay'
+			region_mm : '၉'			//	'မန္တလေးတိုင်း'
+		},
+		{
+			
+			region_en : '10',		// 'Mon'
+			region_mm : '၁၀'			//	'မွန်ပြည်နယ်'
+		},
+		{
+			
+			region_en : '11',		// 'Rakhine'
+			region_mm : '၁၁'			//	'ရခိုင်ပြည်နယ်'
+		},
+		{
+			
+			region_en : '12',		//	'Yangon'
+			region_mm : '၁၂'			//	'ရန်ကုန်တိုင်း'
+		},
+		{
+			
+			region_en : '13',		// 'Shan'
+			region_mm : '၁၃'			//	'ရှမ်းပြည်နယ်'
+		},
+		{
+			
+			region_en : '14',		// 'Ayeyawady'
+			region_mm : '၁၄'			//	'ဧရာဝတီတိုင်း'
+        }
+	];
+    var citizens = [
+		{
+			citizen_en : 'N',
+			citizen_mm: 'နိုင်'
+		},
+		{
+			citizen_en: 'E',
+			citizen_mm: 'ဧည့်'
+		},
+		{
+			citizen_en: 'P',
+			citizen_mm: 'ပြု'
+		},
+	];
     let result = window.location.href;
     let url = new URL(result);
     let id = url.searchParams.get("id");
@@ -119,6 +242,24 @@ function getTeacherInfos(){
                 $("#name_eng").append(value.name_eng);
                 let nrc = value.nrc_state_region+"/"+value.nrc_township+"("+value.nrc_citizen+")"+value.nrc_number;
                 $("#nrc").append(nrc);
+                var result = regions_states.filter( obj => obj.region_mm === value.nrc_state_region)[0];
+                var nrc_state_region_eng=result.region_en;
+                
+                var nrc_township_eng=[];
+                for(var i=0;i<value.nrc_township.length;i++){
+                var result = characters.filter( obj => obj.mm === value.nrc_township[i])[0];
+                    nrc_township_eng.push(result.eng);
+                }
+                var result = citizens.filter( obj => obj.citizen_mm === value.nrc_citizen)[0];
+                var nrc_citizen_eng=result.citizen_en;
+
+                var nrc_number_eng=[];
+                for(var i=0;i<value.nrc_number.length;i++){
+                var result = regions_states.filter( obj => obj.region_mm === value.nrc_number[i])[0];
+                    nrc_number_eng.push(result.region_en);
+                }
+                var nrc_eng=nrc_state_region_eng+'/'+nrc_township_eng.join('')+'('+nrc_citizen_eng+')'+nrc_number_eng.join('');
+                $("#nrc_eng").append(nrc_eng);
                 $("#father").append(value.father_name_eng+'/'+value.father_name_mm);
                 $("#father_eng").append(value.father_name_eng);
                 $("#phone").append(value.phone);
@@ -126,18 +267,18 @@ function getTeacherInfos(){
                 
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
                     loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate");
-                    // loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
+                    loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
                     
                 }else{
                     loadCertificates(value.certificates,value.payment_method,"#tbl_certificate");
-                    // loadCard(value.certificates);
+                    loadCard(value.certificates);
                 }
                 if(value.diplomas.search(/[\'"[\]']+/g)==0){
                     loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma");
-                    // loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
+                    loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
                 }else{
                     loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma");
-                    // loadCard(value.diplomas);
+                    loadCard(value.diplomas);
                 }
                 
                 if(value.approve_reject_status != 0){
@@ -186,19 +327,27 @@ function getTeacherInfos(){
                 if(value.payment_method!=null){
                     $('.period').show();
                     var now=new Date();
-                    var new_date=value.payment_date.split(' ');
+                    if(value.initial_status==0){
+                        var new_date=value.from_valid_date.split(' ');
+                    }else if(value.initial_status==1){
+                        var new_date=value.renew_date.split(' ');
+                    }
+                    
                     var period_date=new_date[0].split('-');
                     var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
                    $('#period_time').text(period+" to 31-12-"+now.getFullYear());
+                   
                     $("#payment_date").val(period);
-                    $('.invoice_no').append(value.invoice_no);
+                    $('.invoice_no').append(value.t_code);
                     $(".payment_date").append(period);
+                    
                 }
-                $('#student_info_id').val(value.student_info.id);
+                $('#student_info_id').val(value.student_info_id);
                 $('#teacher_id').val(value.id);
                 if(value.initial_status==0){
                     $('.form-name').append('ဆရာပုံစံ-၁');
                 }else{
+                    
                     $('.form-name').append('ဆရာပုံစံ-၂');
                 }
             });
@@ -439,6 +588,24 @@ function approveRenewTeacherRegister(){
     }
     
 }
+function rejectRenewTeacherRegister(){
+    let result = window.location.href;
+    let url = new URL(result);
+    let id = url.searchParams.get("id");
+    
+    var reason=$("#reason").val();
+    $.ajax({
+        url: BACKEND_URL + "/approveRenewTeacherRegister",
+        data: 'id='+id+"&status=2"+"&reason="+reason,
+        type: 'post',
+        success: function(result){
+            successMessage('You have rejected that user!');
+            location.href = '/teacher_registration';
+        }
+    });
+    
+    
+}
 function getRenewTeacher(){
     let result = window.location.href;
     let url = new URL(result);
@@ -533,7 +700,7 @@ function getRenewTeacher(){
                     var new_date=value.payment_date.split(' ');
                     var period_date=new_date[0].split('-');
                     var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
-                   $('#period_time').text(period+" to 31-12-"+now.getFullYear());
+                    $('.renew_period_time').append("01-01-"+now.getFullYear()+" to 31-12-"+now.getFullYear());
                     $("#payment_date").val(period);
                     $('.invoice_no').append(value.invoice_no);
                     $(".payment_date").append(period);
@@ -569,5 +736,24 @@ function loadEductaionHistoryByRenew(id){
             createDataTable('#tbl_degree');
         }
     });
+    
+}
+function cessationRenewTeacherRegister(){
+    let result = window.location.href;
+    let url = new URL(result);
+    let id = url.searchParams.get("id");
+    var student_info_id=$('#student_info_id').val();
+    
+    var cessation_reason=$("#cessation_reason").val();
+    $.ajax({
+        url: BACKEND_URL + "/cessationRenewTeacherRegister",
+        data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id+"&cessation_reason="+cessation_reason+"&initial_status="+$('#initial_status').val(),
+        type: 'post',
+        success: function(result){
+            successMessage('You have cessation that user!');
+            location.href = '/teacher_registration';
+        }
+    });
+    
     
 }

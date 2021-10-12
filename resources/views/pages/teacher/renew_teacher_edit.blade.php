@@ -224,7 +224,7 @@
                                             <p style="font-weight:bold">This certificate is valid for the period</p>
                                         </div>
                                         <div class="col-md-6">
-                                            <span id="period_time"></span>
+                                            <span class="renew_period_time"></span>
                                         </div>
                                     </div>
 
@@ -244,7 +244,7 @@
                                         <button type="button" class="btn btn-danger" style="width : 20%"
                                             data-toggle="modal" id="smallButton" data-target="#myModal"><i
                                                 class="fa fa-thumbs-o-down" aria-hidden="true"></i> REJECT</button>
-                                        <button id="approve" class="btn btn-primary" onclick="approveRenewTeacherRegister();"
+                                        <button id="approve" class="btn btn-primary" onclick="approveTeacherRegister();"
                                             style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                                             APPROVE</button>
                                     </div>
@@ -306,7 +306,7 @@
         </div>
     </form>
     <!-- modal -->
-    <form method="post" action="javascript:cessationTeacherRegister();" enctype="multipart/form-data">
+    <form method="post" action="javascript:cessationRenewTeacherRegister();" enctype="multipart/form-data">
         <div class="modal" id="cessationModal">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
@@ -340,6 +340,6 @@
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 
     <script>
-        getRenewTeacher();
+        getTeacherInfos();
     </script>
 @endpush

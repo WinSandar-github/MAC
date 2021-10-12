@@ -266,6 +266,13 @@ class EntryExamController extends Controller
                             </a>
                         </div>";
             })
+            ->addColumn('exam_room', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                              <li class='fa fa-edit fa-sm'></li>
+                          </button>
+                      </div>";
+          })
             ->addColumn('status', function ($infos){
               if($infos->status == 0){
                   return "PENDING";
@@ -287,7 +294,7 @@ class EntryExamController extends Controller
                 }
             })
             // , 'print','exam_type''module'
-            ->rawColumns(['action','remark',])
+            ->rawColumns(['action','remark','exam_room'])
             ->make(true);
     }
 
