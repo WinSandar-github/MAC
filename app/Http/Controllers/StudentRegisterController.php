@@ -633,7 +633,6 @@ class StudentRegisterController extends Controller
 
     //show registertion list in Frontend
     public function getAttendesStudent(Request $request)
-<<<<<<< HEAD
     {
 
         $course = Course::where('code', $request->course_code)->with('course_type', 'active_batch')->first();
@@ -646,31 +645,6 @@ class StudentRegisterController extends Controller
 
             $student_infos = $student_infos->where('module', $request->module);
         }
-=======
-    { 
-       
-       
-        $course = Course::where('code',$request->course_code)->with('course_type','active_batch')->first();
-        
-        $student_infos = StudentRegister::with('student_info','course')
-                        ->where('batch_id', $course->active_batch[0]->id)
-                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
-          if($request->module)
-        {
-            
-            $student_infos = $student_infos->where('module',$request->module);
-        }
-
-        if($request->student_type !== 'select_type')
-        {
-            
-            $student_infos = $student_infos->where('type',$request->student_type);
-        }
-
-
-      
-        return DataTables::of($student_infos)
->>>>>>> 589d408b7218cd1164f0701b3f2b90819765f9d3
 
         return DataTables::of($student_infos)
             ->addColumn('nrc', function ($infos) {
@@ -694,44 +668,7 @@ class StudentRegisterController extends Controller
 
     public function ‌approveExamList(Request $request)
     {
-<<<<<<< HEAD
         $course = Course::where('code', $request->course_code)->with('active_batch')->first();
-=======
-         $course = Course::where('code', $request->course_code)->with('active_batch')->first();
-        
-         
-
-
-        $student_infos = ExamRegister::with('student_info','course')
-                        ->where('batch_id', $course->active_batch[0]->id)
-                        ->where('status',1)
-                        ->whereNotNull('sr_no');
-         
-        
-        if($request->module)
-        {
-            
-            $student_infos = $student_infos->where('is_full_module',$request->module);
-        }
-
-        if($request->exam_department)
-        {
-            
-            $student_infos = $student_infos->where('exam_department',$request->exam_department);
-        }
-                      
-                       
-
-        if($request->grade){
-            $student_infos =  $student_infos->Where('grade',$request->grade)->orderby('total_mark','desc');
-            
-        }else{
-            $student_infos =  $student_infos->orderBy('sr_no','asc');
-            
-        }
-        $student_infos =  $student_infos->get(); 
-       
->>>>>>> 589d408b7218cd1164f0701b3f2b90819765f9d3
 
         $student_infos = ExamRegister::with('student_info', 'course')
             ->where('batch_id', $course->active_batch[0]->id)
@@ -739,32 +676,7 @@ class StudentRegisterController extends Controller
             ->orderBy('is_full_module', 'desc')
             ->whereNotNull('sr_no');
 
-<<<<<<< HEAD
         if ($request->module) {
-=======
-        return DataTables::of($student_infos)
-        ->addColumn('nrc', function ($infos){
-            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
-            return $nrc_result;
-        })
-        ->addColumn('module', function ($infos) {
-            if ($infos->is_full_module == 1) {
-                return "Module One";
-            } else if ($infos->is_full_module == 2) {
-                return "Module Two";
-            } else {
-                return "Full Module";
-            }
-        })
-        ->addColumn('cpersonal_no', function ($infos){
-            $cpersonal_no = $infos->course->course_type->course_code == "da" 
-            ? $infos->student_info->personal_no
-            : $infos->student_info->cpersonal_no;
-            return $cpersonal_no;
-        })
-        ->rawColumns(['action','nrc','cpersonal_no','module'])
-        ->make(true);
->>>>>>> 589d408b7218cd1164f0701b3f2b90819765f9d3
 
             $student_infos = $student_infos->where('is_full_module', $request->module);
         }
@@ -808,22 +720,12 @@ class StudentRegisterController extends Controller
     //show data on mac student Application list
     public function getStudentAppList(Request $request)
     {
-<<<<<<< HEAD
         $course = Course::where('code', $request->course_code)->with('active_batch', 'course_type')->first();
 
         $student_infos = StudentCourseReg::with('student_info')
             ->where('batch_id', $course->active_batch[0]->id)
             ->whereNotNull('sr_no')->orderBy('sr_no', 'asc')->get();
 
-=======
-        
-        $course = Course::where('code',$request->course_code)->with('active_batch','course_type')->first();
-       
-        $student_infos = StudentCourseReg::with('student_info')
-                        ->where('batch_id',$course->active_batch[0]->id)
-                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
-            
->>>>>>> 589d408b7218cd1164f0701b3f2b90819765f9d3
         return DataTables::of($student_infos)
             ->addColumn('nrc', function ($infos) {
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
