@@ -132,4 +132,5 @@ class StudentInfo extends Model
     {
         return $this->hasMany(teacher_renew::class,'student_info_id','id');
     }
+    
 }

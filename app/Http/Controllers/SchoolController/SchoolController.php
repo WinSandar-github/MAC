@@ -17,6 +17,7 @@ use App\tbl_manage_room_numbers;
 use App\tbl_toilet_type;
 use App\EducationHistroy;
 
+
 use Hash;
 use DB;
 
@@ -258,6 +259,7 @@ class SchoolController extends Controller
         //     $school->type = rtrim($school_type, ',');
         // }
         $school->type = $request->school_type;
+        $school->student_info_id  = $request->student_info_id;
         $school->save();
         
         
@@ -1191,11 +1193,23 @@ class SchoolController extends Controller
         $schools=$school->get();
         return DataTables::of($schools)
         ->addColumn('action', function ($infos) {
-            return "<div class='btn-group'>
-                            <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
-                                <li class='fa fa-eye fa-sm'></li>
-                            </a>
+            $btn='';
+            if($infos->initial_status == 0){
+                $btn ="<div class='btn-group'>
+                        <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                            <li class='fa fa-eye fa-sm'></li>
+                        </a>
                         </div>";
+                return $btn;
+            }else{
+                $btn ="<div class='btn-group'>
+                        <a href='renew_school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                            <li class='fa fa-eye fa-sm'></li>
+                        </a>
+                        </div>";
+                return $btn;
+            }
+            
         })
         ->addColumn('nrc', function ($infos){
             $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
@@ -1223,12 +1237,22 @@ class SchoolController extends Controller
             }
         })
         ->addColumn('exp_date', function ($infos){
-            if($infos->payment_date	 ==""){
-                return "";
-            }else{
-                $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->payment_date);
-                return $date->format('d-m-Y').' to 31-12-'.date('Y');
+            if($infos->initial_status==0){
+                if($infos->from_valid_date	 ==""){
+                    return "";
+                }else{
+                    $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                    return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                }
+            }else if($infos->initial_status==1){
+                if($infos->from_valid_date	 ==""){
+                    return "";
+                }else{
+                    $currentDate = Carbon::now()->addYears(3);
+                    return '01-01-'.date('Y').' to 31-12-'.$currentDate->format('Y');
+                }
             }
+            
         })
         ->addColumn('card', function ($infos) {
             $btn='';
@@ -1264,12 +1288,22 @@ class SchoolController extends Controller
             }
         })
         ->addColumn('payment_date', function ($infos){
-            if($infos->payment_date	 == ""){
-                return "";
-            }else{
-                $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->payment_date);
-                return $date->format('d-m-Y');
+            if($infos->initial_status==0){
+                if($infos->from_valid_date	 == ""){
+                    return "";
+                }else{
+                    $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                    return $date->format('d-m-Y');
+                }
+            }else if($infos->initial_status==1){
+                if($infos->from_valid_date	 == ""){
+                    return "";
+                }else{
+                    $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                    return $date->format('d-m-Y');
+                }
             }
+            
         })
         ->rawColumns(['card','action'])
         ->make(true);
@@ -1292,7 +1326,7 @@ class SchoolController extends Controller
         $school = SchoolRegister::find($request->id);
         $school->payment_method = 'CASH';
         $school->invoice_no = $request->invoice_no;
-        $school->payment_date = $request->current_date;
+        $school->from_valid_date = $request->current_date;
         $school->save();
         return response()->json([
             'data' => $school,
@@ -1535,7 +1569,7 @@ class SchoolController extends Controller
         $school->sch_establish_notes_attach  = ($sch_establish_notes_attach);
         
         $school->email            = strtolower($request->email);
-        $school->password         = Hash::make($request->email);
+        //$school->password         = Hash::make($request->email);
         $school->nrc_state_region = $request->nrc_state_region;
         $school->nrc_township     = $request->nrc_township;
         $school->nrc_citizen      = $request->nrc_citizen;
@@ -1543,7 +1577,7 @@ class SchoolController extends Controller
         $school->initial_status   = $request->initial_status;
         $school->reg_date       = date('Y-m-d');
         $school->renew_date       = date('Y-m-d');
-        $school->renew_id         = $request->renew_id;
+        //$school->renew_id         = $request->renew_id;
         $school->student_info_id  = $request->student_info_id;
         $school->invoice_no   = $request->invoice_no;
         $school->type = $request->school_type;
@@ -1726,6 +1760,24 @@ class SchoolController extends Controller
         
         return response()->json([
             'message' => 'Success Registration.'
+        ],200);
+    }
+    public function getSchoolInfo($id)
+    {
+        $school = SchoolRegister::where('student_info_id',$id)->get();
+        return  response()->json([
+            'data' => $school
+        ],200);
+    }
+    public function renewSchoolPayment(Request $request){
+        $currentDate = Carbon::now()->addYears(3);
+        $school = SchoolRegister::find($request->id);
+        $school->payment_method = 'CASH';
+        $school->from_valid_date = date('Y-m-d');
+        $school->to_valid_date = '31-12-'.$currentDate->format('Y');
+        $school->save();
+        return response()->json([
+            'data' => $school,
         ],200);
     }
 }

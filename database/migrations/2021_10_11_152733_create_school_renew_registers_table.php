@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSchoolRegistersTable extends Migration
+class CreateSchoolRenewRegistersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateSchoolRegistersTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_registers', function (Blueprint $table) {
+        Schema::create('school_renew_registers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('school_id');
             $table->string('name_mm');
             $table->string('name_eng');
             $table->string('nrc_state_region');
@@ -25,7 +26,7 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('nrc_back');
             $table->string('father_name_mm');
             $table->string('father_name_eng');
-            $table->string('date_of_birth');
+            
             $table->string('type')->nullable();
             $table->string('attachment')->nullable();
             $table->text('address')->nullable();;
@@ -44,14 +45,12 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('sch_establish_notes_attach')->nullable();
 
             $table->string('email');
-            $table->string('password')->nullable();;
+            
             $table->integer('approve_reject_status')->default(0);
-            $table->date('reg_date');
+            
             $table->date('renew_date')->default(null)->nullable();
             $table->string('payment_method')->nullable();
-            $table->string('from_valid_date')->nullable();
-            $table->string('to_valid_date')->nullable();
-            $table->string('s_code')->nullable();
+            $table->string('payment_date')->nullable();
             $table->text('reason')->nullable();
             $table->integer('initial_status')->default(0);
             
@@ -60,6 +59,11 @@ class CreateSchoolRegistersTable extends Migration
             
             $table->integer('student_info_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('school_id')
+            ->references('id')
+            ->on('school_registers')
+            ->onDelete('cascade'); 
         });
     }
 
@@ -70,6 +74,6 @@ class CreateSchoolRegistersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_registers');
+        Schema::dropIfExists('school_renew_registers');
     }
 }

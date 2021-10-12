@@ -23,7 +23,8 @@ class CreateEducationHistroysTable extends Migration
             $table->string('certificate')->nullable();
             $table->integer('school_id')->nullable();
             $table->integer('teacher_id')->nullable();
-            $table->integer('renewteacher_id')->nullable();
+            
+            
             $table->timestamps();
 
             $table->foreign('student_info_id')
