@@ -206,11 +206,18 @@ class PAPPController extends Controller
         $papp->save();
 
         //invoice
-        $invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
+        $fees = Membership::where('membership_name','=','PAPP')->first(['form_free', 'registration_fee']);
+        $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+        //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_id;
-        $invoice->invoiceNo       = $invNo;
+        $invoice->invoiceNo       = '';
+        $invoice->name_eng       =  $stdInfo->name_eng;
+        $invoice->email       = $stdInfo->email;
+        $invoice->phone       = $stdInfo->phone;
+        $invoice->productDesc = 'Application Fee + Registration Fee';
+        $invoice->amount = $fees->form_fee + $fees->registration_fee;
         $invoice->status          = 0;
         $invoice->save();
 
@@ -438,8 +445,6 @@ class PAPPController extends Controller
         return response()->json([
             'message' => "You have successfully registerd!"
         ],200);
-
-
     }
 
     public function update(Request $request, $id)
