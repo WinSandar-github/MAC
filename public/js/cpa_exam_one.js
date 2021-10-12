@@ -194,6 +194,7 @@ function loadCPAStudentDataForExamCard() {
             var exam_datas = data.data;
             // console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
+                console.log('exam_datas',exam_data);
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
                 var batch_no = mm2en(exam_data.batch.number.toString());
                 $("#batch_no").append(batch_no);

@@ -385,7 +385,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <label  style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="exam_roll_no"></label>)
+                                <label  style="font-weight:bold">ခုံအမှတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="exam_roll_no"></label>)
                             </div>
                             {{--<div class="col-lg-8 col-md-8 col-sm-8"> </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 d-md-flex justify-content-md-end">
@@ -482,12 +482,12 @@
                                         <label class="col-form-label" id="hall_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div>
-                                <div class="row mb-4">
+                                {{--<div class="row mb-4">
                                     <label class="col-md-6 col-form-label text-left" style="font-weight:bold; padding-left: 150px;">တည်နေရာ</label>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>  </br>
                         <div class="row">
