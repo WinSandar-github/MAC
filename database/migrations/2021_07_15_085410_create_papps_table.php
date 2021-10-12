@@ -64,6 +64,7 @@ class CreatePappsTable extends Migration
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
             $table->integer('type')->nullable();
+            $table->text('self_confession');
 
             $table->timestamps();
 

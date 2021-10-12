@@ -188,8 +188,20 @@ function loadPAPPData(){
         success: function (data) {
             var student=data.data;
             student.forEach(function(element){
-                console.log('element',element);
-                var education_history = element.student_education_histroy;               
+                // console.log('element',element);
+                var education_history = element.student_education_histroy;    
+                self = JSON.parse(element.self_confession);
+                    $.each(self,function(i,v){
+                        if(v.self_confession == 1){
+                            $(`.self${i}`).append(`<i class="fa fa-check-circle text-success" aria-hidden="true"></i>`);
+                            $(`.nself${i}`).append('');
+                        }
+                        else{
+                            $(`.self${i}`).append('');
+                            $(`.nself${i}`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
+                        }
+                        // $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
+                   });           
                 var job = element.student_job;
                 if(element.status==0){
                     status="Pending";
@@ -220,8 +232,7 @@ function loadPAPPData(){
                 var nrc     =   element.student_info.nrc_state_region+"/";
                 nrc    +=   element.student_info.nrc_township;
                 nrc    +=   "("+ element.student_info.nrc_citizen+")";
-                nrc    +=   element.student_info.nrc_number;                
-
+                nrc    +=   element.student_info.nrc_number;   
                 $("#id").append(element.id);
                 document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
                 $("#name_eng").append(element.student_info.name_eng);
@@ -239,7 +250,6 @@ function loadPAPPData(){
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
                 $("#registration_no").append(element.student_register.personal_no);
-
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
                     $(".recommend_letter").append(`<a href='${PDF_URL+element.student_info.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -332,7 +342,6 @@ function loadPAPPData(){
                 }
 
                 if(element.tax_free_recommendation!=null){
-                    console.log(element);
                     $(".tax_free_recommendation").append(`<a href='${PDF_URL+element.tax_free_recommendation}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
                     $(".tax_free_recommendation").append(`<span>-</span>`);
@@ -342,7 +351,6 @@ function loadPAPPData(){
                 }else {
                     $(".cpd_record_file").append(`<span>-</span>`);
                 }
-
                 $("#use_firm").append(use_firm);
                 $("#firm_name").append(element.firm_name);
                 $("#firm_type").append(element.firm_type);
@@ -370,13 +378,14 @@ function loadPAPPData(){
                 $("#degree_name").append(education_history.degree_name);
                 $("#qualified_date").append(education_history.qualified_date);
                 $("#roll_number").append(education_history.roll_number);
+
                 // $("#certificate").append(education_history.certificate);
                 let certificate = JSON.parse(education_history.certificate);
                 $.each(certificate,function(fileCount,fileName){
                    
                      $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
                    
-                })
+                });
 
                 $("#name").append(job.name);
                 $("#position").append(job.position);
