@@ -106,7 +106,7 @@ function getSchoolInfos(){
         url : BACKEND_URL+"/school/"+id,
         success : function(data){
             if(data.data.initial_status==0){
-                //$('.form-name').append('ဆရာပုံစံ-၁');
+                $('.form-class').hide();
             }else{
                 $('.form-name').append('ကျောင်းပုံစံ-၆');
             }
@@ -222,6 +222,16 @@ function getSchoolInfos(){
             if(data.data.business_license!=null && data.data.sch_establish_notes_attach!=null){
                 $('.all_file').show();
                 removeBracketed(data.data.business_license,"business_license");
+                removeBracketed(data.data.sch_establish_notes_attach,"sch_establish_notes_attach");
+            }
+            if(data.data.business_license!=null && data.data.sch_establish_notes_attach==null){
+                $('.all_file').show();
+                $('.all_file1').show();
+                removeBracketed(data.data.business_license,"business_license");
+            }
+            if(data.data.business_license==null && data.data.sch_establish_notes_attach!=null){
+                $('.all_file').show();
+                $('.all_file2').show();
                 removeBracketed(data.data.sch_establish_notes_attach,"sch_establish_notes_attach");
             }
             var school_establishers=data.data.school_establishers;
@@ -361,6 +371,75 @@ function getSchoolInfos(){
                 });
                 createDataTable('.tbl_manage_room_numbers');
             }
+            var school_branch=data.data.school_branch;
+            $.each(school_branch, function( index, value ) {
+                var tr = "<tr>";
+                tr += `<td>${ index += 1 } </td>`;
+                tr += '<td>'+value.branch_school_address+'</td>';
+                tr += `<td><a href='${PDF_URL+value.branch_school_attach}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+
+                if(value.branch_sch_own_type=="private"){
+                tr += '<td>'+
+                '<div class="form-group">'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+                                                        'value="private" checked onclick=brachOwnType(this)> ကိုယ်ပိုင်'+
+
+                                                '</div>'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+                                                        'value="rent" onclick=brachOwnType(this)> အငှား '+
+                                                '</div>'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
+                                                        'id="old_branch_sch_own_type" value="use_sharing" onclick=brachOwnType(this)> တွဲဖက်သုံး'+
+                                                '</div>'+
+                                            '</div>'+
+                '</td>';
+                }else if(value.branch_sch_own_type=="rent"){
+                tr += '<td>'+
+                '<div class="form-group">'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+                                                        'value="private" onclick=brachOwnType(this)> ကိုယ်ပိုင်'+
+
+                                                '</div>'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+                                                        'value="rent" checked onclick=brachOwnType(this)> အငှား '+
+                                                '</div>'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
+                                                        'id="old_branch_sch_own_type" value="use_sharing" onclick=brachOwnType(this)> တွဲဖက်သုံး'+
+                                                '</div>'+
+                                            '</div>'+
+                '</td>';
+                }else{
+                tr += '<td>'+
+                '<div class="form-group">'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+                                                        'value="private" onclick=brachOwnType('+this+')> ကိုယ်ပိုင်'+
+
+                                                '</div>'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+                                                        'value="rent" onclick=brachOwnType('+this+')> အငှား '+
+                                                '</div>'+
+                                                '<div class="form-check mt-2 form-check-inline">'+
+                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
+                                                        'id="old_branch_sch_own_type" value="use_sharing" checked onclick=brachOwnType('+this+')> တွဲဖက်သုံး'+
+                                                '</div>'+
+                                            '</div>'+
+                '</td>';
+                }
+
+
+                tr += `<td><a href='${PDF_URL+value.branch_sch_letter}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                tr += "</tr>";
+                $(".tbl_branch_school_body").append(tr);
+            });
+            createDataTable('.tbl_branch_school');
             if(data.data.initial_status==1){
                 $('#student_info_id').val(data.data.student_info_id);
             }else{
@@ -396,7 +475,7 @@ function getSchoolInfos(){
                 
                 
             }
-            
+           
             
             
         }
@@ -493,7 +572,9 @@ function loadStudentCourse(course_id){
         url: BACKEND_URL+"/course/"+id,
         success: function (result) {
           var data=result.data;
-          all_course.push((data.code).toUpperCase().replace("_", " "));
+          var newcode=data.code.split('_');
+            var course_code=convert(newcode[1]);
+          all_course.push(newcode[0].toUpperCase()+' '+course_code);
           $("#attend_course").val(all_course.toString());
           
         }
@@ -519,5 +600,234 @@ function cessationSchoolRegister(){
         }
     });
     
+    
+}
+function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+function loadSchoolCard(){
+    var characters = [
+		{mm:'က',eng:'Ka'},
+		{mm:'ခ' ,eng:'Kha'},
+		{mm:'ဂ' ,eng:'Ga'},
+		{mm:'ဃ' ,eng:'Gha'},
+		{mm:'င' ,eng:'Nga'},
+		{mm:'စ' ,eng:'Sa'},
+		{mm:'ဆ' ,eng: 'Hsa'},
+		{mm:'ဇ' ,eng: 'Za'},
+		{mm:'ဈ',eng: 'Zha'},
+		{mm:'ည' ,eng: 'Nya'},
+		{mm:'ဎ',eng: 'Dd'},
+		{mm:'ဏ' ,eng: 'Nha'},
+		{mm:'တ' ,eng: 'Ta'},
+		{mm:'ထ' ,eng: 'Hta'},
+		{mm:'ဒ' ,eng: 'Da'},
+		{mm:'ဓ',eng: 'Dha'},
+		{mm:'န' ,eng: 'Na'},
+		{mm:'ပ' ,eng: 'Pa'},
+		{mm:'ဖ' ,eng: 'Pha'},
+		{mm:'ဗ' ,eng: 'Bha'},
+		{mm:'ဘ',eng : 'Ba'},
+		{mm:'မ' ,eng:'Ma'},
+		{mm:'ယ',eng: 'Ya'},
+		{mm:'ရ' ,eng: 'Ra'},
+		{mm:'လ' ,eng: 'La'},
+		{mm:'ဝ' ,eng: 'Wa'},
+		{mm:'သ',eng: 'Tha'},
+		{mm:'ဟ',eng: 'Ha'},
+		{mm:'ဠ' ,eng: 'Ll'},
+		{mm:'အ',eng: 'Ah'},
+		{mm:'ဥ' ,eng: 'U'},
+		{mm:'ဧ' ,eng: 'E'}
+	];
+    var regions_states = [
+        {
+			region_en: '0',			// 'Kachin'
+			region_mm : '၀',			// 'ကချင်ပြည်နယ်'
+		},
+		{
+			region_en: '1',			// 'Kachin'
+			region_mm : '၁',			// 'ကချင်ပြည်နယ်'
+		},
+		{
+			
+			region_en : '2',			// 'Kayah'
+			region_mm : '၂'			// ကယားပြည်နယ်
+		},
+		{
+			
+			region_en: '3',			// 'Kayin'
+			region_mm: '၃'			// 'ကရင်ပြည်နယ်'
+		},
+		{
+			
+			region_en : '4',			// 'Chin'
+			region_mm : '၄'			//	'ချင်းပြည်နယ်'
+		},
+		{
+			
+			region_en : '5',			// 'Sagaing'
+			region_mm : '၅'			//	'စစ်ကိုင်းတိုင်း'
+		},
+		{
+			
+			region_en : '6',			// 'Tanintharyi'
+			region_mm : '၆'			//	'တနင်္သာရီတိုင်း'
+		},
+		{
+			
+			region_en: '7',			// 'Bago'
+			region_mm : '၇'			//	'ပဲခူးတိုင်း'
+		},
+		{
+			
+			region_en : '8',			// 'Magway'
+			region_mm :'၈'			//	'မကွေးတိုင်း'
+		},
+		{
+			
+			region_en : '9',			// 'Mandalay'
+			region_mm : '၉'			//	'မန္တလေးတိုင်း'
+		},
+		{
+			
+			region_en : '10',		// 'Mon'
+			region_mm : '၁၀'			//	'မွန်ပြည်နယ်'
+		},
+		{
+			
+			region_en : '11',		// 'Rakhine'
+			region_mm : '၁၁'			//	'ရခိုင်ပြည်နယ်'
+		},
+		{
+			
+			region_en : '12',		//	'Yangon'
+			region_mm : '၁၂'			//	'ရန်ကုန်တိုင်း'
+		},
+		{
+			
+			region_en : '13',		// 'Shan'
+			region_mm : '၁၃'			//	'ရှမ်းပြည်နယ်'
+		},
+		{
+			
+			region_en : '14',		// 'Ayeyawady'
+			region_mm : '၁၄'			//	'ဧရာဝတီတိုင်း'
+        }
+	];
+    var citizens = [
+		{
+			citizen_en : 'N',
+			citizen_mm: 'နိုင်'
+		},
+		{
+			citizen_en: 'E',
+			citizen_mm: 'ဧည့်'
+		},
+		{
+			citizen_en: 'P',
+			citizen_mm: 'ပြု'
+		},
+	];
+    let result = window.location.href;
+    let url = new URL(result);
+    let id = url.searchParams.get("id");
+   
+    $.ajax({
+        type : 'GET',
+        url : BACKEND_URL+"/school/"+id,
+        success : function(data){
+            var today = new Date();
+            var date = addZero(today.getDate())+'-'+addZero(today.getMonth()+1)+'-'+today.getFullYear();
+            document.getElementById('regno_date').innerHTML=data.data.s_code+'/'+date;
+            document.getElementById('school_name').innerHTML=data.data.school_name;
+            
+            if($("input:radio[name=school_type1]").val()==data.data.type){
+                $('input:radio[name=school_type1]').attr('checked',true);
+                $('input:radio[name=school_type2]').attr('disabled', 'disabled');
+                $('input:radio[name=school_type3]').attr('disabled', 'disabled');
+                $('input:radio[name=school_type4]').attr('disabled', 'disabled');
+            }
+            if($("input:radio[name=school_type2]").val()==data.data.type){
+                $('input:radio[name=school_type2]').attr('checked',true);
+                $('input:radio[name=school_type1]').attr('disabled', 'disabled');
+                $('input:radio[name=school_type3]').attr('disabled', 'disabled');
+                $('input:radio[name=school_type4]').attr('disabled', 'disabled');
+            }
+            if($("input:radio[name=school_type3]").val()==data.data.type){
+                $('input:radio[name=school_type3]').attr('checked',true);
+                $('input:radio[name=school_type2]').attr('disabled', 'disabled');
+                $('input:radio[name=school_type1]').attr('disabled', 'disabled');
+                $('input:radio[name=school_type4]').attr('disabled', 'disabled');
+            }
+            if($("input:radio[name=school_type4]").val()==data.data.type){
+                $('input:radio[name=school_type4]').attr('checked',true);
+                $('input:radio[name=school_type2]').attr('disabled', 'disabled');
+                $('input:radio[name=school_type3]').attr('disabled', 'disabled');
+                $('input:radio[name=school_type1]').attr('disabled', 'disabled');
+            }
+            document.getElementById('founder_name').innerHTML=data.data.name_eng;
+            var result = regions_states.filter( obj => obj.region_mm === data.data.nrc_state_region)[0];
+                var nrc_state_region_eng=result.region_en;
+                
+                var nrc_township_eng=[];
+                for(var i=0;i<data.data.nrc_township.length;i++){
+                var result = characters.filter( obj => obj.mm === data.data.nrc_township[i])[0];
+                    nrc_township_eng.push(result.eng);
+                }
+                var result = citizens.filter( obj => obj.citizen_mm === data.data.nrc_citizen)[0];
+                var nrc_citizen_eng=result.citizen_en;
+
+                var nrc_number_eng=[];
+                for(var i=0;i<data.data.nrc_number.length;i++){
+                var result = regions_states.filter( obj => obj.region_mm === data.data.nrc_number[i])[0];
+                    nrc_number_eng.push(result.region_en);
+                }
+                var nrc_eng=nrc_state_region_eng+'/'+nrc_township_eng.join('')+'('+nrc_citizen_eng+')'+nrc_number_eng.join('');
+                document.getElementById('founder_csc').innerHTML=nrc_eng;
+                if(data.data.attend_course.replace(/[\'"[\]']+/g, '')!=null){
+                    loadStudentCourseByCard(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
+                }
+                document.getElementById('school_location').innerHTML=data.data.school_address;
+                var valid_date=new Date(data.data.from_valid_date);
+                document.getElementById('expiry_date').innerHTML="31-12"+(valid_date.getFullYear())+3;
+                var school_branch=data.data.school_branch;
+                $.each(school_branch, function( index, value ) {
+                    document.getElementById('branch_address').innerHTML=value.branch_school_address;
+                })  
+        }
+    })
+}
+function loadStudentCourseByCard(course_id){
+    
+    var course=course_id.split(',');
+    var all_course=[];
+   
+    $.each(course, function( index, id ){
+      
+      $.ajax({
+        type: "get",
+        url: BACKEND_URL+"/course/"+id,
+        success: function (result) {
+          var data=result.data;
+          var newcode=data.code.split('_');
+            var course_code=convert(newcode[1]);
+          all_course.push(newcode[0].toUpperCase()+' '+course_code);
+          //$("#attend_course").val(all_course.toString());
+          
+          
+          document.getElementById('course').innerHTML=all_course.toString()
+          
+          
+                                    
+          
+        }
+        
+      })
+      
+    })
     
 }
