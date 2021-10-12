@@ -949,13 +949,6 @@
                                   </div>
                                 </div>
                                 <!-- End Education -->
-
-                                <input type="hidden" name="papp_id" >
-
-                                <div class="row mt-5 justify-content-center">
-                                    <button type="submit" name="save" id='reject' class="btn btn-danger"  data-toggle="modal" data-target="#reject_modal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                    <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -1147,6 +1140,13 @@
                                 <td class="nself28"> </td>
                             </tr>
                         </table>
+                    </div>
+                    <div class="card-footer">
+                        <input type="hidden" name="papp_id" >
+                        <div class="row justify-content-center">
+                            <button type="submit" name="save" id='reject' class="btn btn-danger"  data-toggle="modal" data-target="#reject_modal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                            <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                        </div>
                     </div>
                 </div>
             </form>
