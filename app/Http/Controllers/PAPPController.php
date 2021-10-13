@@ -204,6 +204,12 @@ class PAPPController extends Controller
         $papp->reg_no           =   $request->reg_no;
         $papp->type             =   $request->type;
         $papp->self_confession  =   $request->self_confession;
+
+        $thisYear = date('Y');
+        $today = date('d-m-Y');
+        $papp->validate_from = $today;
+        $papp->validate_to = '31-12-' . $thisYear;
+
         $papp->save();
 
         //invoice
@@ -217,8 +223,8 @@ class PAPPController extends Controller
         $invoice->name_eng       =  $stdInfo->name_eng;
         $invoice->email       = $stdInfo->email;
         $invoice->phone       = $stdInfo->phone;
-        $invoice->productDesc = 'Application Fee + Registration Fee';
-        $invoice->amount = $fees->form_fee + $fees->registration_fee;
+        $invoice->productDesc = 'Application Fee , Registration Fee';
+        $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
         $invoice->status          = 0;
         $invoice->save();
 
@@ -269,7 +275,7 @@ class PAPPController extends Controller
     }
 
     public function PappRenewRegistration(Request $request){
-
+        $oldPapp = Papp::where('student_id', '=', $request->student_id)->latest()->first();
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -404,6 +410,7 @@ class PAPPController extends Controller
             $letter="";
         }
 
+        
         $papp  = new Papp();
         $papp->student_id                   = $request->student_id;
         $papp->profile_photo                =   $profile_photo;
@@ -443,11 +450,24 @@ class PAPPController extends Controller
         $papp->papp_reg_no      =   $request->papp_reg_no;
         $papp->audit_work       =   $request->audit_work;
         $papp->type             =   $request->type;
-        $papp->papp_renew_date     =   $request->papp_renew_date;
+        $papp->papp_renew_date     =   $request->papp_renew_date;       
+        
+        $today = date('d-m-Y');        
+        $papp->validate_from = $today ;
+        // $old_validate_to=date('Y-m',strtotime($oldPapp->validate_to));
+        if(strtotime($today)<=strtotime($oldPapp->validate_to))
+        {
+            $thisYear = date('Y')+1;
+            $papp->validate_to = '31-12-' . $thisYear;
+        }
+        else{
+            $thisYear = date('Y');
+            $papp->validate_to = '31-12-' . $thisYear;
+        }
         $papp->save();
 
         //invoice
-        $fees = Membership::where('membership_name','=','PAPP')->first(['renew_fee']);
+        $fees = Membership::where('membership_name','=','PAPP')->first(['renew_fee','form_fee', 'late_fee']);
         $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
         //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
@@ -457,9 +477,21 @@ class PAPPController extends Controller
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
-        $invoice->productDesc     = 'Renewal Fee';
-        $invoice->amount          = $fees->renew_fee;
-        $invoice->status          = 0;
+        $thisYear = date('Y');
+        $oldYear=date('Y',strtotime($oldPapp->validate_to));
+        if($thisYear == $oldYear){
+            $invoice->productDesc     = 'Application Fee, Renewal Fee';
+            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+        }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
+            $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
+            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+        }
+        else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
+            $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+        }
+
+        $invoice->status = 0;
         $invoice->save();
         
         return response()->json([
@@ -771,6 +803,7 @@ class PAPPController extends Controller
 
             $papp->tax_free_recommendation      =   $tax_free;
         }
+
         $papp->papp_date                    =   $request->papp_date;
         $papp->cpaff_pass_date              =   $request->cpaff_pass_date;
         $papp->use_firm                     =   $request->use_firm;
