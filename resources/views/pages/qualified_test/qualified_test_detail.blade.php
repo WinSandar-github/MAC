@@ -214,7 +214,7 @@
                                             <p class="ml-2" style="font-weight:bold">Office Address</p>
                                         </div>
                                         <div class="col-md-6 text-left">
-                                            <span id="current_address"></span>
+                                            <span id="office_address"></span>
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
