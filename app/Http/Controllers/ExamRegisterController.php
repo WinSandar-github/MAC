@@ -66,7 +66,7 @@ class ExamRegisterController extends Controller
         $exam->date = $request->date;
         //$exam->invoice_image = $invoice_image;
         $exam->invoice_date = $invoice_date;
-        $exam->private_school_id = $request->private_school_id;
+        // $exam->private_school_id = $request->private_school_id;
         $exam->private_school_name = $request->private_school_name;
         $exam->grade = 0;
         $exam->batch_id = $batch_id;
@@ -373,7 +373,7 @@ class ExamRegisterController extends Controller
 
         $exam->date = $date;
         $exam->invoice_date = $invoice_date;
-        $exam->private_school_id = $request->private_school_id;
+        // $exam->private_school_id = $request->private_school_id;
         $exam->private_school_name = $request->private_school_name;
         $exam->grade = 0;
         $exam->batch_id = $batch_id;
