@@ -278,7 +278,7 @@ function createExamRoom() {
     let formData = new FormData();
     formData.append('exam_room', $("input[name=exam_room]").val());
     formData.append('exam_building', $("input[name=exam_building]").val());
-    formData.append('exam_place', $("input[name=exam_place]").val());
+    // formData.append('exam_place', $("input[name=exam_place]").val());
     formData.append('id', $("input[name=exam_register_id]").val());
 
 

@@ -114,6 +114,7 @@ function loadEntryDetail(id) {
                 $("#nrc").append(student_info.nrc_state_region + "/" + student_info.nrc_township + "(" + student_info.nrc_citizen + ")" + student_info.nrc_number);
                 $("#father_name_mm").append(student_info.father_name_mm);
                 $("#father_name_eng").append(student_info.father_name_eng);
+                $("#gender").append(student_info.gender);
                 $("#race").append(student_info.race);
                 $("#religion").append(student_info.religion);
                 $("#date_of_birth").append(student_info.date_of_birth);

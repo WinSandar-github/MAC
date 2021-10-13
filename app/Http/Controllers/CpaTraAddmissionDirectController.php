@@ -400,9 +400,9 @@ class CpaTraAddmissionDirectController extends Controller
 
       
 
-        $date_of_birth = date('Y-m-d');
+        // $date_of_birth = date('Y-m-d');
         $date = date('Y-m-d');
-        $qualified_date = date('Y-m-d');
+        // $qualified_date = date('Y-m-d');
         $course_date = date('Y-m-d');
       
         $student_info = StudentInfo::find($id);
@@ -414,6 +414,7 @@ class CpaTraAddmissionDirectController extends Controller
         $student_info->nrc_number       =   $request['nrc_number'];      
         $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
+        $student_info->gender             =   $request->gender;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
         $student_info->date_of_birth    =   $request->date_of_birth;
@@ -456,7 +457,7 @@ class CpaTraAddmissionDirectController extends Controller
          
         $student_job_histroy = StudentJobHistroy::where('student_info_id',$id)->first();
         $student_job_histroy->student_info_id   = $student_info->id;
-        $student_job_histroy->name              = $request->job_name;
+        $student_job_histroy->name              = $request->name;
         $student_job_histroy->position          = $request->position;
         $student_job_histroy->department        = $request->department;
         $student_job_histroy->organization      = $request->organization;
@@ -471,7 +472,7 @@ class CpaTraAddmissionDirectController extends Controller
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     = $request->degree_name;
         $education_histroy->certificate     = $certificates;
-        $education_histroy->qualified_date  = $qualified_date;
+        $education_histroy->qualified_date  = $request->qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
        
