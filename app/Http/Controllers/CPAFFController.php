@@ -8,6 +8,7 @@ use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
 use App\Invoice;
+use App\StudentCourseReg;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Hash;
@@ -221,6 +222,21 @@ class CPAFFController extends Controller
             $student_data = CPAFF::find($cpa_ff->id);
             $student_data->student_info_id = $std_info->id;
             $student_data->save();
+
+            // INVOICE
+            $invoice = new Invoice();
+            $invoice->student_info_id = $std_info->id;
+            $invoice->invoiceNo = '';
+            
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = strtolower($request->email);
+            $invoice->phone           = $request->phone;
+
+            $std = StudentCourseReg::with('batch')->where("student_info_id", $std_info->id)->first();
+            $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
+            $invoice->amount          = $std->batch->course->form_fee;
+            $invoice->status          = 0;
+            $invoice->save();
             
             return response()->json([
                 'message' => "You have successfully registerd!"
@@ -396,12 +412,27 @@ class CPAFFController extends Controller
         $cpa_ff->type              =   $request->type;
         $cpa_ff->save();
 
-        //invoice
-        $invNo = str_pad($cpa_ff->id, 20, "0", STR_PAD_LEFT);
+        // //invoice
+        // $invNo = str_pad($cpa_ff->id, 20, "0", STR_PAD_LEFT);
 
+        // $invoice = new Invoice();
+        // $invoice->student_info_id = $request->student_info_id;
+        // $invoice->invoiceNo       = $invNo;
+        // $invoice->status          = 0;
+        // $invoice->save();
+
+        // INVOICE
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_info_id;
-        $invoice->invoiceNo       = $invNo;
+        $invoice->invoiceNo = '';
+        
+        // $invoice->name_eng        = $request->name_eng;
+        // $invoice->email           = strtolower($request->email);
+        // $invoice->phone           = $request->phone;
+
+        $std = StudentCourseReg::with('batch')->where("student_info_id", $request->student_info_id)->first();
+        $invoice->productDesc     = 'Registeration Fee, ' . $std->batch->course->name;
+        $invoice->amount          = $std->batch->course->form_fee;
         $invoice->status          = 0;
         $invoice->save();
 
@@ -588,6 +619,20 @@ class CPAFFController extends Controller
         $cpa_ff->self_confession = $request->self_confession_renew;
         $cpa_ff->save();
         
+        // INVOICE
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_info_id;
+        $invoice->invoiceNo = '';
+        
+        // $invoice->name_eng        = $request->name_eng;
+        // $invoice->email           = strtolower($request->email);
+        // $invoice->phone           = $request->phone;
+
+        $std = StudentCourseReg::with('batch')->where("student_info_id", $request->student_info_id)->first();
+        $invoice->productDesc     = 'Registeration Fee, ' . $std->batch->course->name;
+        $invoice->amount          = $std->batch->course->form_fee;
+        $invoice->status          = 0;
+        $invoice->save();
         
         // $initial_cpaff->status=0;
         // $initial_cpaff->save();
