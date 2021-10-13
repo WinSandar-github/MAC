@@ -554,12 +554,39 @@ class AccFirmInfController extends Controller
         ],200);
     }
 
+    public function approveRenew($id,$firm_id)
+    {
+        $std_info = StudentInfo::where('id', $id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
+        $approve = AccountancyFirmInformation::find($firm_id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
     public function reject($id,Request $request)
     {
         $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
         $std_info->approve_reject_status = 2;
         $std_info->save();
         $reject = AccountancyFirmInformation::find($id);
+        $reject->status = 2;
+        $reject->remark = $request->remark;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
+    public function rejectRenew($id,Request $request,$firm_id)
+    {
+        $std_info = StudentInfo::where('id', $id)->first();
+        $std_info->approve_reject_status = 2;
+        $std_info->save();
+        $reject = AccountancyFirmInformation::find($firm_id);
         $reject->status = 2;
         $reject->remark = $request->remark;
         $reject->save();
@@ -1296,13 +1323,15 @@ class AccFirmInfController extends Controller
                                               ->latest()
                                               ->first();
             $firm_type = $renew_user->audit_firm_type_id;
+            $status = $renew_user->status;
             $renew_user->verify_status = 3;
             $renew_user->save();
 
             return response()->json([
                 'message' => $renew,
                 'type' => 'renew',
-                'firm_type' => $firm_type
+                'firm_type' => $firm_type,
+                'status' => $status
             ],200);
         }
 
@@ -1312,13 +1341,15 @@ class AccFirmInfController extends Controller
                                               ->latest()
                                               ->first();
             $firm_type = $next_year_user->audit_firm_type_id;
+            $status = $next_year_user->status;
             $next_year_user->verify_status = 2;
             $next_year_user->save();
 
             return response()->json([
                 'message' => $next,
                 'type' => 'next',
-                'firm_type' => $firm_type
+                'firm_type' => $firm_type,
+                'status' => $status
             ],200);
         }
         else
@@ -1327,13 +1358,15 @@ class AccFirmInfController extends Controller
                                               ->latest()
                                               ->first();
             $firm_type = $verify_user->audit_firm_type_id;
+            $status = $verify_user->status;
             $verify_user->verify_status = 1;
             $verify_user->save();
 
             return response()->json([
                 'message' => $verify,
                 'type' => 'verify',
-                'firm_type' => $firm_type
+                'firm_type' => $firm_type,
+                'status' => $status
             ],200);
         }
     }

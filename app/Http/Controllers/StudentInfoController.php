@@ -146,14 +146,34 @@ class StudentInfoController extends Controller
             $image = $request->old_image;
         }
 
-        if ($request->hasfile('certificates')) {
-                $file = $request->file('certificates');
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_info/',$name);
-                $certificate = '/storage/student_info/'.$name;
-
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = $request->old_nrc_front;
         }
-        else{
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = $request->old_nrc_back;
+        }
+
+        
+        if($request->hasfile('certificate'))
+        {
+            foreach($request->file('certificate') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $certificate[] = '/storage/student_info/'.$name;
+            }        
+        }else{
             $certificate = $request->old_certificate;
         }
 
@@ -177,8 +197,11 @@ class StudentInfoController extends Controller
         $student_info->nrc_township     =   $request['nrc_township'] ;
         $student_info->nrc_citizen      =    $request['nrc_citizen'] ;
         $student_info->nrc_number       =   $request['nrc_number'];
+        $student_info->nrc_front        =   $nrc_front;
+        $student_info->nrc_back         =   $nrc_back;
         $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
+        $student_info->gender           =   $request->gender;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
         $student_info->date_of_birth    =   $date_of_birth;
@@ -280,7 +303,7 @@ class StudentInfoController extends Controller
     }
 
     public function updateProfile(Request $request,$id){
-          if ($request->hasfile('image')) {
+           if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
@@ -288,14 +311,30 @@ class StudentInfoController extends Controller
         }else{
             $image = $request->old_image;
         }
+        if($request->membership == "audit"){
+            return "Audit";
+        }else  if($request->membership == "non_audit"){
+            return "Non Audit";
+        }else if($request->membership == "cpaff"){
+            return "cpaff";
+        }else if($request->membership == "papp"){
+            return "papp";
+        }else if($request->membership == "school"){
+            return 'school'; 
+        }else  if($request->membership == "teacher"){
+            return "teacher";
+        }else if($request->membership == "mentor"){
+            return "mentor";
+        }else{
 
-        $student_info = StudentInfo::find($id);
-        $student_info->email         = $request->email;
-        $student_info->date_of_birth = $request->date_of_birth;
-        $student_info->phone         = $request->phone;
-        $student_info->address       = $request->address;
-        $student_info->image         = $image;
-        $student_info->save();
+            $student_info = StudentInfo::find($id);
+            $student_info->email         = $request->email;
+            $student_info->date_of_birth = $request->date_of_birth;
+            $student_info->phone         = $request->phone;
+            $student_info->address       = $request->address;
+            $student_info->image         = $image;
+            $student_info->save();
+        }
 
         return response()->json([
             'message' => "Successfully Update Message"
