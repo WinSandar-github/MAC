@@ -804,7 +804,7 @@ function loadSchoolCard(){
                 if(data.data.attend_course.replace(/[\'"[\]']+/g, '')!=null){
                     loadStudentCourseByCard(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
                 }
-                document.getElementById('school_location').innerHTML=data.data.school_address;
+                document.getElementById('school_location').innerHTML=data.data.eng_school_address;
                 var valid_date=new Date(data.data.from_valid_date);
                 var date=(valid_date.getFullYear())+3;
                 document.getElementById('expiry_date').innerHTML="31-12-"+date;
