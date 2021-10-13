@@ -306,7 +306,7 @@
         </div>
     </form>
     <!-- modal -->
-    <form method="post" action="javascript:cessationRenewTeacherRegister();" enctype="multipart/form-data">
+    <form method="post" action="javascript:cessationTeacherRegister();" enctype="multipart/form-data">
         <div class="modal" id="cessationModal">
             <div class="modal-dialog modal-dialog-scrollable modal-lg">
                 <div class="modal-content">
