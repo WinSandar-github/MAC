@@ -403,6 +403,7 @@ function autoLoadAudit(){
         $("#accountancy_firm_reg_no").append(element.accountancy_firm_reg_no);
         $("#accountancy_firm_name").append(element.accountancy_firm_name);
         $("#head_office_address").append(element.head_office_address);
+        $("#head_office_address_mm").append(element.head_office_address_mm);
         $("#township").append(element.township);
         $("#post_code").append(element.postcode);
         $("#city").append(element.city);
@@ -871,6 +872,7 @@ function approveAuditFirm(){
   }
   else{
     var id = $("input[name = audit_firm_id]").val();
+
     // console.log('approveaudit_firm',id);
     $.ajax({
         url: BACKEND_URL + "/approve_auditfirm/"+id,

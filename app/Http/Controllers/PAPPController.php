@@ -7,6 +7,7 @@ use App\Papp;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
+use App\Membership;
 use App\CPAFF;
 use App\Invoice;
 use Illuminate\Support\Str;
@@ -32,26 +33,26 @@ class PAPPController extends Controller
         }else{
             $profile_photo=null;
         }
+        $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+        // if ($request->hasfile('cpa')) {
+        //     $cpa_file = $request->file('cpa');
+        //     $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
+        //     $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
+        //     $cpa = '/storage/student_papp/'.$cpa_name;
+        // }
+        // else{
+        //     $cpa="";
+        // }
 
-        if ($request->hasfile('cpa')) {
-            $cpa_file = $request->file('cpa');
-            $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
-            $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
-            $cpa = '/storage/student_papp/'.$cpa_name;
-        }
-        else{
-            $cpa="";
-        }
-
-        if ($request->hasfile('ra')) {
-            $ra_file = $request->file('ra');
-            $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
-            $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
-            $ra = '/storage/student_papp/'.$ra_name;
-        }
-        else{
-            $ra="";
-        }
+        // if ($request->hasfile('ra')) {
+        //     $ra_file = $request->file('ra');
+        //     $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
+        //     $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
+        //     $ra = '/storage/student_papp/'.$ra_name;
+        // }
+        // else{
+        //     $ra="";
+        // }
 
         // if ($request->hasfile('foreign_degree')) {
         //     $degree_file = $request->file('foreign_degree');
@@ -62,19 +63,19 @@ class PAPPController extends Controller
         // else{
         //     $degree="";
         // }
-        if($request->hasfile('foreign_degree'))
-        {
-            foreach($request->file('foreign_degree') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_papp/',$name);
-                $degree[] = '/storage/student_papp/'.$name;
-            }
+        // if($request->hasfile('foreign_degree'))
+        // {
+        //     foreach($request->file('foreign_degree') as $file)
+        //     {
+        //         $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //         $file->move(public_path().'/storage/student_papp/',$name);
+        //         $degree[] = '/storage/student_papp/'.$name;
+        //     }
 
-        }else{
-            $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
-            $degree = $cpaff_data->foreign_degree;
-        }
+        // }else{
+        //     $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+        //     $degree = $cpaff_data->foreign_degree;
+        // }
 
         if ($request->hasfile('cpa_ff_recommendation')) {
             $cpa_ff_file = $request->file('cpa_ff_recommendation');
@@ -170,11 +171,11 @@ class PAPPController extends Controller
         $papp  = new Papp();
         $papp->student_id                   =   $request->student_id;
         $papp->profile_photo                =   $profile_photo;
-        $papp->cpa                          =   $cpa;
-        $papp->ra                           =   $ra;
-        $papp->foreign_degree               =   $degree;
-        $papp->degree_name                  =   json_encode($request->degree_name);
-        $papp->degree_pass_year             =   json_encode($request->degree_pass_year);
+        $papp->cpa                          =   $cpaff_data->cpa;
+        $papp->ra                           =   $cpaff_data->ra;
+        $papp->foreign_degree               =   $cpaff_data->foreign_degree;
+        $papp->degree_name                  =   $cpaff_data->degree_name;
+        $papp->degree_pass_year             =   $cpaff_data->degree_pass_year;
         $papp->papp_date                    =   $request->papp_date;
         $papp->cpaff_pass_date              =   $request->cpaff_pass_date;
         $papp->use_firm                     =   $request->use_firm;
@@ -202,19 +203,27 @@ class PAPPController extends Controller
         // $papp->letter           =   $letter;
         $papp->reg_no           =   $request->reg_no;
         $papp->type             =   $request->type;
+        $papp->self_confession  =   $request->self_confession;
         $papp->save();
 
         //invoice
-        $invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
+        $fees = Membership::where('membership_name','=','PAPP')->first(['form_fee', 'registration_fee']);
+        $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+        //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_id;
-        $invoice->invoiceNo       = $invNo;
+        $invoice->invoiceNo       = '';
+        $invoice->name_eng       =  $stdInfo->name_eng;
+        $invoice->email       = $stdInfo->email;
+        $invoice->phone       = $stdInfo->phone;
+        $invoice->productDesc = 'Application Fee + Registration Fee';
+        $invoice->amount = $fees->form_fee + $fees->registration_fee;
         $invoice->status          = 0;
         $invoice->save();
 
         return response()->json([
-            'message' => "You have successfully registerd!"
+            'message' => "You have successfully registered!"
         ],200);
     }
 
@@ -247,11 +256,12 @@ class PAPPController extends Controller
         ],200);
     }
 
-    public function reject($id)
+    public function reject(Request $request)
     {
-        $reject = Papp::find($id);
+        $reject = Papp::find($request->id);
         $reject->status = 2;
-        $approve->renew_status=2;
+        $reject->renew_status=2;
+        $reject->reject_description = $request->description;
         $reject->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
@@ -268,40 +278,40 @@ class PAPPController extends Controller
         }else{
             $profile_photo=null;
         }
+        $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+        // if ($request->hasfile('cpa')) {
+        //     $cpa_file = $request->file('cpa');
+        //     $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
+        //     $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
+        //     $cpa = '/storage/student_papp/'.$cpa_name;
+        // }
+        // else{
+        //     $cpa="";
+        // }
 
-        if ($request->hasfile('cpa')) {
-            $cpa_file = $request->file('cpa');
-            $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
-            $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
-            $cpa = '/storage/student_papp/'.$cpa_name;
-        }
-        else{
-            $cpa="";
-        }
+        // if ($request->hasfile('ra')) {
+        //     $ra_file = $request->file('ra');
+        //     $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
+        //     $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
+        //     $ra = '/storage/student_papp/'.$ra_name;
+        // }
+        // else{
+        //     $ra="";
+        // }
 
-        if ($request->hasfile('ra')) {
-            $ra_file = $request->file('ra');
-            $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
-            $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
-            $ra = '/storage/student_papp/'.$ra_name;
-        }
-        else{
-            $ra="";
-        }
+        // if($request->hasfile('foreign_degree'))
+        // {
+        //     foreach($request->file('foreign_degree') as $file)
+        //     {
+        //         $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //         $file->move(public_path().'/storage/student_papp/',$name);
+        //         $degree[] = '/storage/student_papp/'.$name;
+        //     }
 
-        if($request->hasfile('foreign_degree'))
-        {
-            foreach($request->file('foreign_degree') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_papp/',$name);
-                $degree[] = '/storage/student_papp/'.$name;
-            }
-
-        }else{
-            $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
-            $degree = $cpaff_data->foreign_degree;
-        }
+        // }else{
+        //     $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+        //     $degree = $cpaff_data->foreign_degree;
+        // }
 
         if ($request->hasfile('cpa_ff_recommendation')) {
             $cpa_ff_file = $request->file('cpa_ff_recommendation');
@@ -397,11 +407,11 @@ class PAPPController extends Controller
         $papp  = new Papp();
         $papp->student_id                   = $request->student_id;
         $papp->profile_photo                =   $profile_photo;
-        $papp->cpa                          =   $cpa;
-        $papp->ra                           =   $ra;
-        $papp->foreign_degree               =   $degree;
-        $papp->degree_name                  =   json_encode($request->degree_name);
-        $papp->degree_pass_year             =   json_encode($request->degree_pass_year);
+        $papp->cpa                          =   $cpaff_data->cpa;
+        $papp->ra                           =   $cpaff_data->ra;
+        $papp->foreign_degree               =   $cpaff_data->degree;
+        $papp->degree_name                  =   $cpaff_data->degree_name;
+        $papp->degree_pass_year             =   $cpaff_data->degree_pass_year;
         $papp->papp_date                    =   $request->papp_date;
         $papp->use_firm                     =   $request->use_firm;
         $papp->firm_name                    =   $request->firm_name;
@@ -433,11 +443,25 @@ class PAPPController extends Controller
         $papp->type             =   $request->type;
         $papp->save();
 
+        //invoice
+        $fees = Membership::where('membership_name','=','PAPP')->first(['renew_fee']);
+        $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+        //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = '';
+        $invoice->name_eng        =  $stdInfo->name_eng;
+        $invoice->email           = $stdInfo->email;
+        $invoice->phone           = $stdInfo->phone;
+        $invoice->productDesc     = 'Renewal Fee';
+        $invoice->amount          = $fees->renew_fee;
+        $invoice->status          = 0;
+        $invoice->save();
+        
         return response()->json([
             'message' => "You have successfully registerd!"
         ],200);
-
-
     }
 
     public function update(Request $request, $id)
@@ -688,5 +712,254 @@ class PAPPController extends Controller
         })
           ->rawColumns(['action','nrc','papp_date','status','use_firm','created_at','updated_at'])
           ->make(true);
+    }
+
+    public function updateRejectedInitialData(Request $request){
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }else{
+            $profile_photo=null;
+        }
+        $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+       
+        if ($request->hasfile('cpa_ff_recommendation')) {
+            $cpa_ff_file = $request->file('cpa_ff_recommendation');
+            $cpa_ff_name  = uniqid().'.'.$cpa_ff_file->getClientOriginalExtension();
+            $cpa_ff_file->move(public_path().'/storage/student_papp/',$cpa_ff_name);
+            $cpa_ff = '/storage/student_papp/'.$cpa_ff_name;
+        }
+        else{
+            $cpa_ff="";
+        }
+
+        if ($request->hasfile('cpd_record')) {
+            $cpd_file = $request->file('cpd_record');
+            $cpd_name  = uniqid().'.'.$cpd_file->getClientOriginalExtension();
+            $cpd_file->move(public_path().'/storage/student_papp/',$cpd_name);
+            $cpd = '/storage/student_papp/'.$cpd_name;
+        }else{
+            $cpd="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_front')) {
+            $mpa_mem_card_front_file = $request->file('mpa_mem_card_front');
+            $mpa_mem_card_front_name  = uniqid().'.'.$mpa_mem_card_front_file->getClientOriginalExtension();
+            $mpa_mem_card_front_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_front_name);
+            $mpa_mem_card_front = '/storage/student_papp/'.$mpa_mem_card_front_name;
+        }else{
+            $mpa_mem_card_front="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_back')) {
+            $mpa_mem_card_back_file = $request->file('mpa_mem_card_back');
+            $mpa_mem_card_back_name  = uniqid().'.'.$mpa_mem_card_back_file->getClientOriginalExtension();
+            $mpa_mem_card_back_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_back_name);
+            $mpa_mem_card_back = '/storage/student_papp/'.$mpa_mem_card_back_name;
+        }else{
+            $mpa_mem_card_back="";
+        }
+
+        if ($request->hasfile('tax_free_recommendation')) {
+            $tax_free_file = $request->file('tax_free_recommendation');
+            $tax_free_name  = uniqid().'.'.$tax_free_file->getClientOriginalExtension();
+            $tax_free_file->move(public_path().'/storage/student_papp/',$tax_free_name);
+            $tax_free = '/storage/student_papp/'.$tax_free_name;
+        }else{
+            $tax_free="";
+        }
+
+        $papp = Papp::find($request->papp_id);
+        //$papp->student_id                   =   $request->student_id;
+        $papp->profile_photo                =   $profile_photo;
+        // $papp->cpa                          =   $cpaff_data->cpa;
+        // $papp->ra                           =   $cpaff_data->ra;
+        // $papp->foreign_degree               =   $cpaff_data->degree;
+        // $papp->degree_name                  =   $cpaff_data->degree_name;
+        // $papp->degree_pass_year             =   $cpaff_data->degree_pass_year;
+        $papp->papp_date                    =   $request->papp_date;
+        $papp->cpaff_pass_date              =   $request->cpaff_pass_date;
+        $papp->use_firm                     =   $request->use_firm;
+        $papp->firm_name                    =   $request->firm_name;
+        $papp->firm_type                    =   $request->firm_type;
+        $papp->firm_step                    =   $request->firm_step;
+        $papp->staff_firm_name              =   $request->staff_firm_name;
+        $papp->cpa_ff_recommendation        =   $cpa_ff;
+        $papp->cpd_record                   =   $cpd;
+        $papp->cpd_hours                    =   $request->cpd_hours;
+        $papp->mpa_mem_card_front           =   $mpa_mem_card_front;
+        $papp->mpa_mem_card_back            =   $mpa_mem_card_back;
+        $papp->tax_year                     =   $request->tax_year;
+        $papp->tax_free_recommendation      =   $tax_free;
+        $papp->status                       =  0;
+        //save to papp
+        $papp->cpa_batch_no     =   $request->cpa_batch_no;
+        $papp->address          =   $request->address;
+        $papp->phone            =   $request->phone;
+        $papp->contact_mail     =   $request->contact_mail;
+        // $papp->letter           =   $letter;
+        $papp->reg_no           =   $request->reg_no;
+        $papp->type             =   $request->type;
+        $papp->save();
+
+        //invoice
+        $invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
+
+        return response()->json([
+            'message' => "You have successfully updated!"
+        ],200);
+    }
+
+    public function updateRejectedRenewalData(Request $request){
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }else{
+            $profile_photo=null;
+        }
+        $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+        if ($request->hasfile('cpa_ff_recommendation')) {
+            $cpa_ff_file = $request->file('cpa_ff_recommendation');
+            $cpa_ff_name  = uniqid().'.'.$cpa_ff_file->getClientOriginalExtension();
+            $cpa_ff_file->move(public_path().'/storage/student_papp/',$cpa_ff_name);
+            $cpa_ff = '/storage/student_papp/'.$cpa_ff_name;
+        }
+        else{
+            $cpa_ff="";
+        }
+
+        if ($request->hasfile('recommendation_183')) {
+            $recomm_183_file = $request->file('recommendation_183');
+            $recomm_183_name  = uniqid().'.'.$recomm_183_file->getClientOriginalExtension();
+            $recomm_183_file->move(public_path().'/storage/student_papp/',$recomm_183_name);
+            $recomm_183 = '/storage/student_papp/'.$recomm_183_name;
+        }else{
+            $recomm_183="";
+        }
+
+        if ($request->hasfile('not_fulltime_recommendation')) {
+            $not_fulltime_file = $request->file('not_fulltime_recommendation');
+            $not_fulltime_name  = uniqid().'.'.$not_fulltime_file->getClientOriginalExtension();
+            $not_fulltime_file->move(public_path().'/storage/student_papp/',$not_fulltime_name);
+            $not_fulltime= '/storage/student_papp/'.$not_fulltime_name;
+        }else{
+            $not_fulltime="";
+        }
+
+        if ($request->hasfile('work_in_myanmar_confession')) {
+            $work_in_mm_file = $request->file('work_in_myanmar_confession');
+            $work_in_mm_name  = uniqid().'.'.$work_in_mm_file->getClientOriginalExtension();
+            $work_in_mm_file->move(public_path().'/storage/student_papp/',$work_in_mm_name);
+            $work_in_mm= '/storage/student_papp/'.$work_in_mm_name;
+        }else{
+            $work_in_mm="";
+        }
+
+        if ($request->hasfile('rule_confession')) {
+            $rule_file = $request->file('rule_confession');
+            $rule_name  = uniqid().'.'.$rule_file->getClientOriginalExtension();
+            $rule_file->move(public_path().'/storage/student_papp/',$rule_name);
+            $rule = '/storage/student_papp/'.$rule_name;
+        }else{
+            $rule="";
+        }
+
+        if ($request->hasfile('cpd_record')) {
+            $cpd_file = $request->file('cpd_record');
+            $cpd_name  = uniqid().'.'.$cpd_file->getClientOriginalExtension();
+            $cpd_file->move(public_path().'/storage/student_papp/',$cpd_name);
+            $cpd = '/storage/student_papp/'.$cpd_name;
+        }else{
+            $cpd="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_front')) {
+            $mpa_mem_card_front_file = $request->file('mpa_mem_card_front');
+            $mpa_mem_card_front_name  = uniqid().'.'.$mpa_mem_card_front_file->getClientOriginalExtension();
+            $mpa_mem_card_front_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_front_name);
+            $mpa_mem_card_front = '/storage/student_papp/'.$mpa_mem_card_front_name;
+        }else{
+            $mpa_mem_card_front="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_back')) {
+            $mpa_mem_card_back_file = $request->file('mpa_mem_card_back');
+            $mpa_mem_card_back_name  = uniqid().'.'.$mpa_mem_card_back_file->getClientOriginalExtension();
+            $mpa_mem_card_back_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_back_name);
+            $mpa_mem_card_back = '/storage/student_papp/'.$mpa_mem_card_back_name;
+        }else{
+            $mpa_mem_card_back="";
+        }
+
+        if ($request->hasfile('tax_free_recommendation')) {
+            $tax_free_file = $request->file('tax_free_recommendation');
+            $tax_free_name  = uniqid().'.'.$tax_free_file->getClientOriginalExtension();
+            $tax_free_file->move(public_path().'/storage/student_papp/',$tax_free_name);
+            $tax_free = '/storage/student_papp/'.$tax_free_name;
+        }else{
+            $tax_free="";
+        }
+
+        if ($request->hasfile('letter')) {
+            $file = $request->file('letter');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_papp/',$name);
+            $letter = '/storage/student_papp/'.$name;
+        }else{
+            $letter="";
+        }
+
+        $papp = Papp::find($request->papp_id);
+        $papp->student_id                   = $request->student_id;
+        $papp->profile_photo                =   $profile_photo;
+        // $papp->cpa                          =   $cpaff_data->cpa;
+        // $papp->ra                           =   $cpaff_data->ra;
+        // $papp->foreign_degree               =   $cpaff_data->degree;
+        // $papp->degree_name                  =   $cpaff_data->degree_name;
+        // $papp->degree_pass_year             =   $cpaff_data->degree_pass_year;
+        $papp->papp_date                    =   $request->papp_date;
+        $papp->use_firm                     =   $request->use_firm;
+        $papp->firm_name                    =   $request->firm_name;
+        $papp->firm_type                    =   $request->firm_type;
+        $papp->firm_step                    =   $request->firm_step;
+        $papp->staff_firm_name              =   $request->staff_firm_name;
+        $papp->cpa_ff_recommendation        =   $cpa_ff;
+        $papp->recommendation_183           =   $recomm_183;
+        $papp->not_fulltime_recommendation  =   $not_fulltime;
+        $papp->work_in_myanmar_confession   =   $work_in_mm;
+        $papp->rule_confession              =   $rule;
+        $papp->cpd_record                   =   $cpd;
+        $papp->cpd_hours                    =   $request->cpd_hours;
+        $papp->mpa_mem_card_front           =   $mpa_mem_card_front;
+        $papp->mpa_mem_card_back            =   $mpa_mem_card_back;
+        $papp->tax_year                     =   $request->tax_year;
+        $papp->tax_free_recommendation      =   $tax_free;
+        $papp->company               =   json_encode($request->company);
+        $papp->period                  =   json_encode($request->period);
+        $papp->manager             =   json_encode($request->manager);
+        $papp->status                       =  0;
+        //save to papp
+        $papp->cpa_batch_no     =   $request->cpa_batch_no;
+        $papp->address          =   $request->address;
+        $papp->phone            =   $request->phone;
+        $papp->contact_mail     =   $request->contact_mail;
+        $papp->letter           =   $letter;
+        $papp->reg_no           =   $request->reg_no;
+        $papp->type             =   $request->type;
+        $papp->save();
+
+        return response()->json([
+            'message' => "You have successfully updated!"
+        ],200);
     }
 }

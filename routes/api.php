@@ -26,7 +26,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+// for audit initial list
 Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
+// for audit renew list
+Route::get('/audit_renew_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistrationRenew');
+
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
@@ -82,7 +86,9 @@ Route::resource('/papp','PAPPController');
 Route::post('/papp_renew','PAPPController@PappRenewRegistration');
 Route::get('/papp_register_list/{status}/{type}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
-Route::patch('/reject_papp/{id}', 'PAPPController@reject');
+Route::post('/reject_papp/{id}', 'PAPPController@reject');
+Route::post('/update_papp_initial', 'PAPPController@updateRejectedInitialData');
+Route::post('/update_papp_renewal', 'PAPPController@updateRejectedRenewalData');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 Route::patch('/approve_papp_payment/{id}', 'PAPPController@approvePapp');
 Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
@@ -97,7 +103,9 @@ Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
-Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
+// Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
+Route::post('/update_cpaff_initial', 'CPAFFController@updateRejectedInitialData');
+Route::post('/update_cpaff_renewal', 'CPAFFController@updateRejectedRenewalData');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -196,7 +204,7 @@ Route::resource('/school','SchoolController\SchoolController');
 Route::post('/filter_school','SchoolController\SchoolController@FilterSchool');
 Route::post('/approve_school_register', 'SchoolController\SchoolController@approve_school_register');
 Route::post('/reject_school_register', 'SchoolController\SchoolController@reject_school_register');
-Route::patch('/approve_school/{id}', 'SchoolController\SchoolController@approveSchool');
+Route::patch('/approve_school', 'SchoolController\SchoolController@approveSchool');
 Route::get('/check_payment_school/{id}', 'SchoolController\SchoolController@checkPayment');
 
 //for teacher registration
@@ -207,11 +215,12 @@ Route::patch('/approve_teacher', 'TeacherController\TeacherController@approveTea
 Route::get('/check_payment_teacher/{id}', 'TeacherController\TeacherController@check_payment');
 
 //Audit DATA
-Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+Route::get('/get_audit_data_for_renew/{id}','AccFirmInfController@auditFeedback');
 Route::get('/check_payment_audit/{id}', 'AccFirmInfController@check_payment');
 Route::patch('/approve_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditFeedback');
+Route::get('/get_non_audit_data_for_renew/{id}','AccFirmInfController@nonAuditFeedback');
 
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
@@ -250,6 +259,7 @@ Route::get('check_mentor_mac','MentorController@getMentorMAC');
 Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
+Route::get('get_firm_dashboard_data/{id}','StudentInfoController@getFirmDashboardData');
 
 Route::get('get_type/{id}', 'StudentRegisterController@getType');
 
@@ -391,7 +401,8 @@ Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
 Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
 //Teacher card
-Route::get('getTeacher/{invoice_no}', 'TeacherController\TeacherController@getTeacher');
+Route::get('getTeacher/{id}', 'TeacherController\TeacherController@getTeacher');
+Route::get('getTeacherByTCode/{t_code}', 'TeacherController\TeacherController@getTeacherByTCode');
 Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
 //teacher renew
 Route::post('/renewTeacher', 'TeacherController\TeacherController@renewTeacher');
@@ -402,3 +413,8 @@ Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController
 Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
 Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
 Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');
+//school renew
+Route::post('/renewSchool', 'SchoolController\SchoolController@renewSchool');
+Route::get('/getSchoolInfo/{id}', 'SchoolController\SchoolController@getSchoolInfo');
+Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewSchoolPayment');
+Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');

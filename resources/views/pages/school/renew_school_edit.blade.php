@@ -23,7 +23,7 @@
 @section('content')
 <div class="content">
     @include('flash-message')
-    <div class="row mb-2 form-class">
+    <div class="row mb-2">
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right card">
@@ -154,7 +154,7 @@
                                             <span id="address"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 border-bottom ">
+                                    <div class="row mt-3 border-bottom view-attachment" style="display:none;">
                                         <div class="col-md-6">
                                             <p style="font-weight:bold"><i class="nc-icon nc-paper"></i> လျှောက်ထားသူ/အဖွဲ့အစည်း၏နောက်ခံသမိုင်း </p>
                                         </div>
@@ -235,7 +235,7 @@
                                         </div>
                                     <!-- Post -->
                                     <div class="post">
-                                        <div class="row">
+                                        <div class="row school_name-class" style='display:none;'>
                                             <div class="col-md-6">
                                             <p ><strong>ကျောင်းအမည်</strong></p>
                                             </div>
@@ -244,7 +244,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
+                                        <div class="row mt-3 attend_course-class" style='display:none;'>
                                             <div class="col-md-6">
                                             <p ><strong>သင်ကြားမည့်သင်တန်း</strong></p>
                                             </div>
@@ -253,7 +253,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
+                                        <div class="row mt-3 school_address-class" style='display:none;'>
                                             <div class="col-md-6">
                                             <p ><strong>ကျောင်းတည်နေရာလိပ်စာ</strong></p>
                                             </div>
@@ -262,7 +262,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
+                                        <div class="row mt-3 view-school_location_attach" style='display:none;'>
                                             <div class="col-md-6">
                                             <p ><strong>ဓါတ်ပုံနှင့်တကွဖော်ပြချက်</strong></p>
                                             </div>
@@ -270,7 +270,7 @@
                                                 <span id="school_location_attach" ></span>
                                             </div>
                                         </div>
-                                        <div class="row mt-3">
+                                        <div class="row mt-3 own_type-class" style='display:none;'>
                                             <div class="col-md-6">
                                             <p ><strong>ပိုင်ဆိုင်မှုပုံစံ</strong></p>
                                             </div>
@@ -292,7 +292,7 @@
                                             </div>
                                             </div>
                                         </div>
-                                        <div class="row mt-3 ">
+                                        <div class="row mt-3 view-own_type_letter" style='display:none;'>
                                             <div class="col-md-6">
                                                 <p style="font-weight:bold"><i class="nc-icon nc-paper"></i> သက်ဆိုင်သည့် အထောက်အထား စာချုပ်စာတမ်းများ </p>
                                             </div>
@@ -314,10 +314,10 @@
                                     <!-- /.post -->
 
                                     <!-- Post -->
-                                    <div class="post clearfix">
+                                    <div class="post clearfix branch-class" style='display:none;'>
 
 
-                                    <p><strong>ကျောင်းခွဲတည်နေရာလိပ်စာ</strong></p>
+                                        <p><strong>ကျောင်းခွဲတည်နေရာလိပ်စာ</strong></p>
 
 
                                         <div class="col-md-12">
@@ -343,21 +343,25 @@
                                     <!-- /.post -->
 
                                     <!-- Post -->
-                                    <div class="post">
+                                    <div class="post all_file" style='display:none;'>
 
 
                                         <h5>ပူးတွဲတင်ပြသည့်အထောက်အထားများ</h5>
 
-                                        <p><strong>လုပ်ငန်းလိုင်စင်/ကုမ္ပဏီမှတ်ပုံတင်လက်မှတ်/အဖွဲ့အစည်း၏မှတ်ပုံတင်လက်မှတ်မူရင်းနှင့်မိတ္တူ</strong></p>
-                                        <div class="business_license"></div>
-                                        <p><strong>ကျောင်းတည်ထောင်ခြင်းအတွက်ရွေးချယ်ထားသည့်လုပ်ငန်းဖွဲ့စည်းမှုပုံစံအရပူးတွဲတင်ပြရမည့်အထောက်အထားများ(အစုအစပ်သဘောတူညီချက်/သင်းဖွဲ့စည်းမျဉ်း/သင်းဖွဲ့မှတ်တမ်း၊ဉပဒေနှင့်အညီရေးဆွဲပြုစုထားသောအခြားစာချုပ်စာတမ်းများ)</strong></p>
-                                        <div class="sch_establish_notes_attach"></div>
+                                        <div class="all_file1" style='display:none;'>
+                                            <p><strong>လုပ်ငန်းလိုင်စင်/ကုမ္ပဏီမှတ်ပုံတင်လက်မှတ်/အဖွဲ့အစည်း၏မှတ်ပုံတင်လက်မှတ်မူရင်းနှင့်မိတ္တူ</strong></p>
+                                            <div class="business_license " ></div>
+                                        </div>
+                                        <div class="all_file2" style='display:none;'>
+                                            <p><strong >ကျောင်းတည်ထောင်ခြင်းအတွက်ရွေးချယ်ထားသည့်လုပ်ငန်းဖွဲ့စည်းမှုပုံစံအရပူးတွဲတင်ပြရမည့်အထောက်အထားများ(အစုအစပ်သဘောတူညီချက်/သင်းဖွဲ့စည်းမျဉ်း/သင်းဖွဲ့မှတ်တမ်း၊ဉပဒေနှင့်အညီရေးဆွဲပြုစုထားသောအခြားစာချုပ်စာတမ်းများ)</strong></p>
+                                            <div class="sch_establish_notes_attach " ></div>
+                                        </div>
                                     </div>
                                     <!-- /.post -->
                                 </div>
                                 <!-- /.tab-pane -->
                                 <div class="tab-pane" id="timeline">
-                                        <div class="row mb-2">
+                                        <div class="row mb-2 sch_established" style='display:none;'>
                                             <div class="col-sm-6">
 
                                             </div>
@@ -367,9 +371,9 @@
                                                 </ol>
                                             </div>
                                         </div>
-                                    <div class="post clearfix mb-5">
+                                    <div class="post clearfix mb-5" >
 
-                                        <div class="mb-5">
+                                        <div class="mb-5 sch_established" style='display:none;'>
                                             <p><strong>ကျောင်းတည်ထောင်သူပုဂ္ဂိုလ်(များ)</strong></p>
                                             <div class="col-md-12">
                                                 <table class="table tbl_sch_established_persons table-bordered input-table">
@@ -392,7 +396,7 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="mb-2">
+                                        <div class="mb-2 sch_governs" style='display:none;'>
                                             <input type="hidden" id="student_info_id">
 
                                             <p><strong>ကျောင်းစီမံအုပ်ချုပ်သူများ</strong> </p>
@@ -430,7 +434,7 @@
                                                     </ol>
                                                 </div>
                                         </div>
-                                        <div class="post clearfix">
+                                        <div class="post clearfix" >
 
                                             <p><strong>အဖွဲ့အစည်းဖြစ်ပါကအဖွဲ့အစည်း၏အလုပ်အမှုဆောင်အဖွဲ့ဝင်များ၏အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ</strong></p>
                                             <div class="col-md-12">
@@ -456,7 +460,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="row mb-2">
+                                    <div class="row mb-2 teacher-css" style="display:none;">
                                             <div class="col-sm-6">
 
                                             </div>
@@ -466,7 +470,7 @@
                                                 </ol>
                                             </div>
                                     </div>
-                                    <div class="post clearfix">
+                                    <div class="post clearfix teacher-css" style="display:none;">
 
                                         <p><strong>သင်တန်းဆရာများ၏အမည်စာရင်းနှင့်ကိုယ်ရေးအချက်အလက်များ</strong></p>
                                         <div class="col-md-12">
@@ -496,7 +500,7 @@
                                 <!-- /.tab-pane -->
 
                                 <div class="tab-pane" id="settings">
-                                        <div class="row mb-2">
+                                        <div class="row mb-2 bulding" style="display:none;">
                                             <div class="col-sm-6">
 
                                             </div>
@@ -506,7 +510,7 @@
                                                 </ol>
                                             </div>
                                         </div>
-                                    <div class="post">
+                                    <div class="post bulding" style="display:none;">
 
                                         <p><strong>ကျောင်းအဆောက်အဦ(အဆောက်အဦအမျိုးအစား၊အတိုင်းအတာ၊အထပ်အရေအတွက် စသည်)</strong></p>
                                         <table class="table tbl_bulding_type table-bordered input-table">
@@ -526,7 +530,7 @@
                                             </table>
 
                                     </div>
-                                    <div class="post clearfix">
+                                    <div class="post clearfix classroom" style="display:none;">
 
                                         <p><strong>စာသင်ခန်း(အခန်းအရေအတွက်၊အတိုင်းအတာ၊ဝင်ဆံ့သင်တန်းသား၊လေအေးပေးစက်)</strong></p>
                                         <table class="table tbl_classroom table-bordered input-table">
@@ -547,7 +551,7 @@
                                         </table>
 
                                     </div>
-                                    <div class="post clearfix">
+                                    <div class="post clearfix toilet" style="display:none;">
 
                                     <!-- /.user-block -->
                                         <p><strong>သန့်စင်ခန်း(အမျိုးအစား၊အရေအတွက်)</strong></p>
@@ -567,7 +571,7 @@
                                         </table>
 
                                     </div>
-                                    <div class="post clearfix">
+                                    <div class="post clearfix manage_room" style="display:none;">
 
                                         <p><strong>စီမံရုံးခန်း(အခန်းအရေအတွက်၊အတိုင်းအတာ)</strong></p>
                                         <table class="table tbl_manage_room_numbers table-bordered input-table">
