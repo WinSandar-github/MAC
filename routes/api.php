@@ -421,3 +421,7 @@ Route::post('/renewSchool', 'SchoolController\SchoolController@renewSchool');
 Route::get('/getSchoolInfo/{id}', 'SchoolController\SchoolController@getSchoolInfo');
 Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewSchoolPayment');
 Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');
+//teacher profile
+Route::patch('updateProfileTeacher/{id}','TeacherController\TeacherController@updateProfileTeacher');
+//school profile
+Route::patch('updateProfileSchool/{id}','SchoolController\SchoolController@updateProfileSchool');

@@ -929,15 +929,27 @@ class TeacherController extends Controller
             'message' => 'Updated Successfully.'
         ],200);
     }
-    public function cessationRenewTeacherRegister(Request $request)
-    {
-        $teacher = teacher_renew::find($request->id);
-        $teacher->approve_reject_status = $request->status;
-        $teacher->cessation_reason = $request->cessation_reason;
-        $teacher->initial_status = $request->initial_status;
+    public function updateProfileTeacher(Request $request,$id){
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $image = '/storage/teacher_info/'.$name;
+        }else{
+          $image = $request->old_profile_photo;
+        }
+
+
+        $teacher = TeacherRegister::find($id);
+        $teacher->phone         = $request->phone;
+        $teacher->current_address       = $request->address;
+        $teacher->eng_current_address       = $request->eng_address;
+        $teacher->image         = $image;
         $teacher->save();
+
         return response()->json([
-            'message' => 'You have cessation this user.'
+            'message' => "Successfully Update Message"
         ],200);
+
     }
 }

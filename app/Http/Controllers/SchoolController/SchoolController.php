@@ -2520,5 +2520,28 @@ class SchoolController extends Controller
             'message' => 'You have updated successfully.'
         ],200);
     }
+    public function updateProfileSchool(Request $request,$id){
+        if ($request->hasfile('school_profile_photo')) {
+            $file = $request->file('school_profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/school_info/',$name);
+            $image = '/storage/school_info/'.$name;
+        }else{
+          $image = $request->old_school_profile_photo;
+        }
+
+
+        $school = SchoolRegister::find($id);
+        $school->phone         = $request->phone;
+        $school->address       = $request->address;
+        $school->eng_address   = $request->eng_address;
+        $school->profile_photo = $image;
+        $school->save();
+
+        return response()->json([
+            'message' => "Successfully Update Message"
+        ],200);
+
+    }
 }
 
