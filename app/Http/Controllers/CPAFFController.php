@@ -143,7 +143,6 @@ class CPAFFController extends Controller
             }else{
                 $degree_file = null;
             }
-            
 
             $cpa_ff  = new CPAFF();
             // $cpa_ff->student_info_id  =   $std_info->id;
@@ -223,21 +222,6 @@ class CPAFFController extends Controller
             $student_data = CPAFF::find($cpa_ff->id);
             $student_data->student_info_id = $std_info->id;
             $student_data->save();
-
-            // INVOICE
-            $invoice = new Invoice();
-            $invoice->student_info_id = $std_info->id;
-            $invoice->invoiceNo = '';
-            
-            $invoice->name_eng        = $request->name_eng;
-            $invoice->email           = strtolower($request->email);
-            $invoice->phone           = $request->phone;
-
-            $std = StudentCourseReg::with('batch')->where("student_info_id", $std_info->id)->first();
-            $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
-            $invoice->amount          = $std->batch->course->form_fee;
-            $invoice->status          = 0;
-            $invoice->save();
 
             //INVOICE
             $fees = Membership::where('membership_name','=','CPAFF')->first(['form_fee', 'registration_fee']);
@@ -415,7 +399,7 @@ class CPAFFController extends Controller
         $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->form_type        =   $request->form_type;
         $cpa_ff->cpa2_pass_date        =   $request->cpa2_pass_date;
-        $cpa_ff->reg_no        =   $request->reg_no;
+        // $cpa_ff->reg_no        =   $request->reg_no;
         $cpa_ff->country        =   $request->country;
         $cpa_ff->government        =   $request->government;
         $cpa_ff->exam_year        =   $request->exam_year;
@@ -426,7 +410,6 @@ class CPAFFController extends Controller
         $cpa_ff->letter   =   $letter;              
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->type              =   $request->type;
-        $cpa_ff->save();
 
         //INVOICE
         $fees = Membership::where('membership_name','=','CPAFF')->first(['form_fee', 'registration_fee']);
@@ -669,6 +652,9 @@ class CPAFFController extends Controller
             $approve->status = 1;
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
+            // Generate Reg No.
+            $approve->reg_no = 'CPAFF_' . str_pad($id, 5, "0", STR_PAD_LEFT);
+            $approve->reg_date = date('Y-m-d');
         }
         else if($approve->status==1){
             $approve->status = 1;
