@@ -258,7 +258,7 @@ class StudentInfoController extends Controller
     {
         $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course_regs'
         ,'exam_registers','student_register','school','mentor','teacher','cpa_ff','papp',
-        'article','gov_article','exam_results','qualified_test','teacher_renew')->first();
+        'article','gov_article','exam_results','qualified_test')->first();
 
 
         return response()->json(['data' => $student_info],200);
