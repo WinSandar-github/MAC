@@ -296,6 +296,7 @@ function loadStudentSelfStudy() {
             $("#roll_number").append(education_history.roll_number);
 
             let certificate = JSON.parse(education_history.certificate);
+            console.log('certificate',certificate);
             $.each(certificate, function (fileCount, fileName) {
 
                 $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
