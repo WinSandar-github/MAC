@@ -187,7 +187,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{--<div class="row">
                         <label class="col-md-1 form-label">{{ __('3.') }}</label>
                         <label class="col-md-4 form-label">{{ __('တည်နေရာ') }}</label>
                         <div class="col-md-7">
@@ -196,7 +196,7 @@
                                     placeholder="Place" required>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     
                 </div>
 

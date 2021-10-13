@@ -865,14 +865,27 @@
                                     </div>
                                 </div> -->
                                 <input type="hidden" name="audit_firm_id" >
+																<input type="hidden" name="student_info_id" >
 
-                                <div class="row mt-5 justify-content-center">
-                                    {{--<button type="submit" name="save" id="reject_audit_btn" class="btn btn-danger"  onclick="rejectAuditFirm()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
+                                <div id="initial_btns">
+																	<div class="row mt-5 justify-content-center">
+	                                    {{--<button type="submit" name="save" id="reject_audit_btn" class="btn btn-danger"  onclick="rejectAuditFirm()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
 
-																		<button type="submit" name="save" id="reject_audit_btn" data-toggle="modal" data-target="#remarkModal" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-                                    <button type="submit" name="save" id="approve_audit_btn" class="btn btn-primary" onclick="approveAuditFirm()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+																			<button type="submit" name="save" id="reject_audit_btn" data-toggle="modal" data-target="#remarkModal" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+	                                    <button type="submit" name="save" id="approve_audit_btn" class="btn btn-primary" onclick="approveAuditFirm()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
-                                </div>
+	                                </div>
+																</div>
+
+																<div id="renew_btns" style="display:none;">
+																	<div class="row mt-5 justify-content-center">
+	                                    {{--<button type="submit" name="save" id="reject_audit_btn_renew" class="btn btn-danger"  onclick="rejectAuditFirmRenew()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
+
+																			<button type="submit" name="save" id="reject_audit_btn_renew" data-toggle="modal" data-target="#remarkModalRenew" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+	                                    <button type="submit" name="save" id="approve_audit_btn_renew" class="btn btn-primary" onclick="approveAuditFirmRenew()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+
+	                                </div>
+																</div>
 
                         </div>
 
@@ -940,6 +953,37 @@
 				    </div>
 				  </div>
 				</div>
+
+				<div class="modal fade" id="remarkModalRenew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <form id="remark-form-renew"  method="post" action="javascript:rejectAuditFirmRenew()" enctype="multipart/form-data">
+						      @csrf
+						        <div class="modal-body">
+						            <div class="row">
+						                <div class="col-md-12">
+
+						                    <div class="form-group">
+						                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+						                        <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						        <div class="modal-footer">
+						            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						            <button type="submit" class="btn btn-primary" form="remark-form-renew">Reject</button>
+						        </div>
+						    </form>
+						    </div>
+						  </div>
+						</div>
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};

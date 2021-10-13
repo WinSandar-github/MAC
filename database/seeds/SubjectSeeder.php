@@ -141,23 +141,24 @@ class SubjectSeeder extends Seeder
                 'sr_no'         => 3
             ),
             array(
-                'subject_name'  => 'Business Analysis and Strategic Information System',
+                'subject_name'  => 'Taxation',
                 'course_id'     => 4,
                 'module_id'     => 2,
                 'sr_no'         => 4
             ),
             array(
-                'subject_name'  => 'Financial Knowledge and Current Economic Affairs',
+                'subject_name'  => 'Business Analysis and Strategic Information System',
                 'course_id'     => 4,
                 'module_id'     => 2,
                 'sr_no'         => 5
             ),
             array(
-                'subject_name'  => 'Taxation',
+                'subject_name'  => 'Financial Knowledge and Current Economic Affairs',
                 'course_id'     => 4,
                 'module_id'     => 2,
                 'sr_no'         => 6
             ),
+            
         ]);
 
             
