@@ -7,6 +7,7 @@ use App\Papp;
 use App\StudentJobHistroy;
 use App\EducationHistroy;
 use App\StudentInfo;
+use App\Membership;
 use App\CPAFF;
 use App\Invoice;
 use Illuminate\Support\Str;
@@ -206,7 +207,7 @@ class PAPPController extends Controller
         $papp->save();
 
         //invoice
-        $fees = Membership::where('membership_name','=','PAPP')->first(['form_free', 'registration_fee']);
+        $fees = Membership::where('membership_name','=','PAPP')->first(['form_fee', 'registration_fee']);
         $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
         //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
@@ -442,6 +443,22 @@ class PAPPController extends Controller
         $papp->type             =   $request->type;
         $papp->save();
 
+        //invoice
+        $fees = Membership::where('membership_name','=','PAPP')->first(['renew_fee']);
+        $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+        //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
+
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = '';
+        $invoice->name_eng        =  $stdInfo->name_eng;
+        $invoice->email           = $stdInfo->email;
+        $invoice->phone           = $stdInfo->phone;
+        $invoice->productDesc     = 'Renewal Fee';
+        $invoice->amount          = $fees->renew_fee;
+        $invoice->status          = 0;
+        $invoice->save();
+        
         return response()->json([
             'message' => "You have successfully registerd!"
         ],200);
