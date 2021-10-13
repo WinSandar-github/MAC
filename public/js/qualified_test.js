@@ -53,6 +53,7 @@ function loadQualifiedTestDetail(id) {
             $("#date_of_birth").append(student_info.date_of_birth);
             $("#address").append(student_info.address);
             $("#current_address").append(student_info.current_address);
+            $('#office_address').append(element.office_address);
             $("#phone").append(student_info.phone);
 
             $("#email").append(student_info.email);

@@ -263,7 +263,7 @@ class StudentInfoController extends Controller
     }
 
     public function updateProfile(Request $request,$id){
-          if ($request->hasfile('image')) {
+           if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
@@ -271,14 +271,30 @@ class StudentInfoController extends Controller
         }else{
             $image = $request->old_image;
         }
+        if($request->membership == "audit"){
+            return "Audit";
+        }else  if($request->membership == "non_audit"){
+            return "Non Audit";
+        }else if($request->membership == "cpaff"){
+            return "cpaff";
+        }else if($request->membership == "papp"){
+            return "papp";
+        }else if($request->membership == "school"){
+            return 'school'; 
+        }else  if($request->membership == "teacher"){
+            return "teacher";
+        }else if($request->membership == "mentor"){
+            return "mentor";
+        }else{
 
-        $student_info = StudentInfo::find($id);
-        $student_info->email         = $request->email;
-        $student_info->date_of_birth = $request->date_of_birth;
-        $student_info->phone         = $request->phone;
-        $student_info->address       = $request->address;
-        $student_info->image         = $image;
-        $student_info->save();
+            $student_info = StudentInfo::find($id);
+            $student_info->email         = $request->email;
+            $student_info->date_of_birth = $request->date_of_birth;
+            $student_info->phone         = $request->phone;
+            $student_info->address       = $request->address;
+            $student_info->image         = $image;
+            $student_info->save();
+        }
 
         return response()->json([
             'message' => "Successfully Update Message"
