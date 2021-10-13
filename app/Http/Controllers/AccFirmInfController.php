@@ -1323,13 +1323,15 @@ class AccFirmInfController extends Controller
                                               ->latest()
                                               ->first();
             $firm_type = $renew_user->audit_firm_type_id;
+            $status = $renew_user->status;
             $renew_user->verify_status = 3;
             $renew_user->save();
 
             return response()->json([
                 'message' => $renew,
                 'type' => 'renew',
-                'firm_type' => $firm_type
+                'firm_type' => $firm_type,
+                'status' => $status
             ],200);
         }
 
@@ -1339,13 +1341,15 @@ class AccFirmInfController extends Controller
                                               ->latest()
                                               ->first();
             $firm_type = $next_year_user->audit_firm_type_id;
+            $status = $next_year_user->status;
             $next_year_user->verify_status = 2;
             $next_year_user->save();
 
             return response()->json([
                 'message' => $next,
                 'type' => 'next',
-                'firm_type' => $firm_type
+                'firm_type' => $firm_type,
+                'status' => $status
             ],200);
         }
         else
@@ -1354,13 +1358,15 @@ class AccFirmInfController extends Controller
                                               ->latest()
                                               ->first();
             $firm_type = $verify_user->audit_firm_type_id;
+            $status = $verify_user->status;
             $verify_user->verify_status = 1;
             $verify_user->save();
 
             return response()->json([
                 'message' => $verify,
                 'type' => 'verify',
-                'firm_type' => $firm_type
+                'firm_type' => $firm_type,
+                'status' => $status
             ],200);
         }
     }
