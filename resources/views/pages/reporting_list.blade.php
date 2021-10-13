@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">DA SECTION</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="DA">Show More</a>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">CPA SECTION</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="CPA">Show More</a>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">CPA (QUALIFIED TEST) SECTION</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="CPA_QUALIFIED_TEST">Show More</a>
                     </div>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">CPA(FF) AND PAPP SECTION</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="CPA_FF_PAPP">Show More</a>
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">ARTICLE SECTION</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="ARTICLE">Show More</a>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">ARTICLE SECTION (MENTOR)</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="ARTICLE_MENTOR">Show More</a>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">FIRM NAME SECTION</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="FIRM">Show More</a>
                     </div>
                 </div>
@@ -78,7 +78,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">TEACHER / SCHOOL</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="TEACHER_SCHOOL">Show More</a>
                     </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">မှတ်ပုံတင်ထားသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="REGISTER_LIST">Show More</a>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">စာမေးပွဲဖြေဆိုခွင့်ရသူများထုတ်ပြန်ခြင်း</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="EXAMINEE">Show More</a>
                     </div>
                 </div>
@@ -107,7 +107,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">စာမေးပွဲအောင်စာရင်းထုတ်ပြန်ခြင်း</h5>
-                        <p class="card-text">There are 8 reports related to this title.</p>
+                        <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="EXAM_PASS_LIST">Show More</a>
                     </div>
                 </div>
@@ -126,10 +126,13 @@
 				</div>
 
 				<div class="modal-body" id="more-title">
-					<div class="row mb-3">
+					<div class="row mb-2">
                         <div class="col-md-3">
                             <select class="form-control" id="select-batch">
                                 <option value="">Select Batch</option>
+                                @foreach ( $batches as $batch )
+                                    <option value="{{$batch->id}}">{{ _($batch->name) }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -171,23 +174,16 @@
             }
         })
 
-        function clearModalContent() {
-            // Fist Clear The Contents of The Modal
-            $('#title').text('')
-
-            $('#more-title').children().not(':first').remove()
-        }
-
         function setModalContent(title, body) {
 
             $('#title').text(title)
 
             body.map( (val, index) => {
-                let elem = `<div class="row">
+                let elem = `<div class="row mb-2">
                     <div class="col-md-12">
                         <div class="list-group">
-                            <a class="list-group-item list-group-item-action">
-                                ${val}
+                            <a href="{{ url('${val.route_name}') }}" class="list-group-item list-group-item-action disabled">
+                                ${val.sub_title}
                             </a>
                         </div>
                     </div>
@@ -195,7 +191,68 @@
 
                 $('#more-title').append(elem)
             })
+
+            onChangeBatch()
         }
+
+        function clearModalContent() {
+            // Fist Clear The Contents of The Modal
+            $('#title').text('')
+
+            $('#more-title').children().not(':first').remove()
+
+            $('#select-batch').val('')
+        }
+
+        function onChangeBatch() {
+            $('#select-batch').on('change', function() {
+                let batch = $(this).val()
+
+                if ( batch !== '' ) {
+                    $('.list-group').each( function() {
+                        $(this).find('a').removeClass('disabled')
+
+                        let base_url = $(this).find('a').attr('href')
+                        let url_split = base_url.split('/')
+
+                        if ( url_split.length > 4 ) {
+                            base_url = base_url.slice(0, base_url.lastIndexOf('/'))
+
+                            $(this).find('a').attr('href', base_url + `/${batch}`)
+                        } else {
+                            $(this).find('a').attr('href', base_url + `/${batch}`)
+                        }
+                    })
+                } else {
+                    $('.list-group').each( function() {
+                        $(this).find('a').addClass('disabled')
+
+                        let base_url = $(this).find('a').attr('href')
+                        base_url = base_url.slice(0, base_url.lastIndexOf('/'))
+
+                        $(this).find('a').attr('href', base_url)
+                    })
+                }
+            })
+        }
+
+        $('document').ready( function(){
+            $('.card').each( function() {
+                let title = $(this).find('.show-more-modal').data('section')
+                let span_text = $(this).find('span')
+
+                switch(title) {
+                    case _MAIN_TITLE[0]: 
+                        span_text.text(_DA.length)
+                        break;
+                    case _MAIN_TITLE[1]: 
+                        span_text.text(_CPA.length)
+                        break;
+                    default: 
+                        span_text.text('0')
+                }
+            })
+        }) 
     </script>
 
     <style>
@@ -226,7 +283,11 @@
             margin: auto;
             height: 100%;
             width: 50%;
-	    }        
+	    }   
+        
+        a.disabled {
+            pointer-events: none;
+        }
     </style>
 @endpush
 
