@@ -554,12 +554,39 @@ class AccFirmInfController extends Controller
         ],200);
     }
 
+    public function approveRenew($id,$firm_id)
+    {
+        $std_info = StudentInfo::where('id', $id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
+        $approve = AccountancyFirmInformation::find($firm_id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
     public function reject($id,Request $request)
     {
         $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
         $std_info->approve_reject_status = 2;
         $std_info->save();
         $reject = AccountancyFirmInformation::find($id);
+        $reject->status = 2;
+        $reject->remark = $request->remark;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
+    public function rejectRenew($id,Request $request,$firm_id)
+    {
+        $std_info = StudentInfo::where('id', $id)->first();
+        $std_info->approve_reject_status = 2;
+        $std_info->save();
+        $reject = AccountancyFirmInformation::find($firm_id);
         $reject->status = 2;
         $reject->remark = $request->remark;
         $reject->save();
