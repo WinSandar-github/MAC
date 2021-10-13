@@ -369,6 +369,15 @@ function autoLoadAudit(){
        audit_data.forEach(function(element){
          // console.log('audit_firm',element);
          // console.log('non_audit_firm',element);
+         $("input[name=student_info_id]").val(element.student_info_id);
+         if(element.is_renew == 1){
+           $("#renew_btns").css('display','block');
+           $("#initial_btns").css('display','none');
+         }
+         // else{
+         //   $("#renew_btns").css('display','none');
+         //   $("#initial_btns").css('display','block');
+         // }
 
          document.getElementById('profile_photo').src = PDF_URL + element.image;
         if(element.status==0){
@@ -403,6 +412,7 @@ function autoLoadAudit(){
         $("#accountancy_firm_reg_no").append(element.accountancy_firm_reg_no);
         $("#accountancy_firm_name").append(element.accountancy_firm_name);
         $("#head_office_address").append(element.head_office_address);
+        $("#head_office_address_mm").append(element.head_office_address_mm);
         $("#township").append(element.township);
         $("#post_code").append(element.postcode);
         $("#city").append(element.city);
@@ -871,9 +881,32 @@ function approveAuditFirm(){
   }
   else{
     var id = $("input[name = audit_firm_id]").val();
+
     // console.log('approveaudit_firm',id);
     $.ajax({
         url: BACKEND_URL + "/approve_auditfirm/"+id,
+        type: 'patch',
+        success: function(result){
+          // console.log(result)
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/audit-firm-list";
+        }
+    });
+  }
+
+}
+
+function approveAuditFirmRenew(){
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return;
+  }
+  else{
+    var id = $("input[name = student_info_id]").val();
+    var firm_id = $("input[name = audit_firm_id]").val();
+
+    // console.log('approveaudit_firm',id);
+    $.ajax({
+        url: BACKEND_URL + "/approve_auditfirm_renew/"+id+"/"+firm_id,
         type: 'patch',
         success: function(result){
           // console.log(result)
@@ -896,6 +929,32 @@ function rejectAuditFirm(){
 
     $.ajax({
         url: BACKEND_URL +"/reject_auditfirm/"+id,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(result){
+            successMessage("You have rejected that user!");
+            location.href = FRONTEND_URL + "/audit-firm-list";
+        }
+    });
+  }
+
+}
+
+function rejectAuditFirmRenew(){
+
+  if (!confirm('Are you sure you want to reject this firm ?')){
+    return;
+  }
+  else{
+    var id = $("input[name = audit_firm_id]").val();
+    var firm_id = $("input[name = audit_firm_id]").val();
+    var formData = new FormData();
+    formData.append('remark', $('#remark').val());
+    //alert("youk");
+    $.ajax({
+        url: BACKEND_URL +"/reject_auditfirm_renew/"+id+"/"+firm_id,
         type: 'POST',
         data: formData,
         contentType: false,

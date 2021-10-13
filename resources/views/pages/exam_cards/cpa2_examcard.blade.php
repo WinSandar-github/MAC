@@ -104,12 +104,12 @@
                                         <label class="col-form-label" id="hall_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div>
-                                <div class="row mb-4">
+                                {{--<div class="row mb-4">
                                     <label class="col-md-6 col-form-label label" style="font-weight:bold; padding-right: 115px;">တည်နေရာ</label>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="exam_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
-                                </div>
+                                </div>--}}
                                 <!-- <div class="row">
                                     <div class="col-md-12 text-left">
                                         <label class="col-form-label">စာမေးပွဲကျင်းပမည့်</label>

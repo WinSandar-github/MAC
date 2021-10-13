@@ -26,10 +26,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('/acc_firm_info','AccFirmInfController');
+// for audit initial list
 Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
+// for audit renew list
+Route::get('/audit_renew_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistrationRenew');
+
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
+Route::patch('/approve_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@approveRenew');
+
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@rejectRenew');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
@@ -99,7 +106,9 @@ Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
-Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
+// Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
+Route::post('/update_cpaff_initial', 'CPAFFController@updateRejectedInitialData');
+Route::post('/update_cpaff_renewal', 'CPAFFController@updateRejectedRenewalData');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -209,11 +218,12 @@ Route::patch('/approve_teacher', 'TeacherController\TeacherController@approveTea
 Route::get('/check_payment_teacher/{id}', 'TeacherController\TeacherController@check_payment');
 
 //Audit DATA
-Route::get('/getAuditStatus/{id}','AccFirmInfController@auditFeedback');
+Route::get('/get_audit_data_for_renew/{id}','AccFirmInfController@auditFeedback');
 Route::get('/check_payment_audit/{id}', 'AccFirmInfController@check_payment');
 Route::patch('/approve_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditFeedback');
+Route::get('/get_non_audit_data_for_renew/{id}','AccFirmInfController@nonAuditFeedback');
 
 //Non-Audti DATA
 Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAuditData');
@@ -252,6 +262,7 @@ Route::get('check_mentor_mac','MentorController@getMentorMAC');
 Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
+Route::get('get_firm_dashboard_data/{id}','StudentInfoController@getFirmDashboardData');
 
 Route::get('get_type/{id}', 'StudentRegisterController@getType');
 

@@ -77,9 +77,9 @@
 	                                            </div>
 																							<div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Address') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Address(English)') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="head_office_address">
 																														{{$item->head_office_address}}
@@ -88,11 +88,24 @@
 	                                                    </div>
 	                                                </div>
 	                                            </div>
-	                                            <div class="row  pl-4">
+																							<div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Township') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Address(Myanmar)') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
+	                                                    <div class="form-group">
+	                                                        <span id="head_office_address">
+																														{{$item->head_office_address_mm}}
+																													</span>
+	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            {{--<div class="row  pl-4">
+	                                                <div class="col-md-2"></div>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Township') }}</label>
+	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="township">
 																														{{$item->township}}
@@ -100,12 +113,12 @@
 	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
 	                                                    </div>
 	                                                </div>
-	                                            </div>
+	                                            </div>--}}
 	                                            <div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Post Code') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Post Code') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="post_code">
 																														{{$item->postcode}}
@@ -114,11 +127,11 @@
 	                                                    </div>
 	                                                </div>
 	                                            </div>
-	                                            <div class="row  pl-4">
+	                                            {{--<div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('City') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('City') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="city">
 																														{{$item->city}}
@@ -126,12 +139,12 @@
 	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
 	                                                    </div>
 	                                                </div>
-	                                            </div>
-	                                            <div class="row  pl-4">
+	                                            </div>--}}
+	                                            {{--<div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('State') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('State') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="state">
 																														{{$item->state_region}}
@@ -139,12 +152,12 @@
 	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
 	                                                    </div>
 	                                                </div>
-	                                            </div>
+	                                            </div>--}}
 	                                            <div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Phone Number') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Phone Number') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="phone_no">
 																														{{$item->telephones}}
@@ -155,9 +168,9 @@
 	                                            </div>
 	                                            <div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Email') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Email') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="email">
 																														{{$item->h_email}}
@@ -168,9 +181,9 @@
 	                                            </div>
 	                                            <div class="row  pl-4 border-bottom">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Website') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Website') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="website">
 																														{{$item->website}}
@@ -187,6 +200,19 @@
 	                                                    <div class="form-group">
 	                                                        <span id="declaration">
 																														{{$item->declaration}}
+																													</span>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+
+																							<div class="row pl-4 mt-2 border-bottom">
+	                                                <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
+	                                                <label class="col-md-4 col-form-label font-weight-bold">{{ __('Declaration(Managing Director)') }}</label>
+	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+	                                                <div class="col-md-7">
+	                                                    <div class="form-group">
+	                                                        <span id="declaration">
+																														{{$item->declaration_mm}}
 																													</span>
 	                                                    </div>
 	                                                </div>
