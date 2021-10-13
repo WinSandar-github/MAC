@@ -326,7 +326,7 @@
                                 <!--CPA FF Recommendation Modal-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Registration Card</p>
+                                        <p class="ml-2" style="font-weight:bold">PAPP မှတ်ပုံတင်ကတ်ပြား</p>
                                     </div>
                                     <div class="col-md-6 text-left cpaff_registeration_card_file">
                                         <!-- <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_back_Modal"><i class="fa fa-paperclip"></i></button> -->
@@ -499,7 +499,13 @@
                                     </div>
                                   </div>
                                 </div>--}}
-
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPD မှတ်တမ်း</p>
+                                    </div>
+                                    <div class="col-md-6 text-left cpd_file">
+                                    </div>
+                                </div>  
                                 <!--CPD Hours-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
