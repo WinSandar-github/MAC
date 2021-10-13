@@ -110,21 +110,29 @@ class TeacherController extends Controller
         $teacher->image = $image;
         
         $certificates = ""; $diplomas = "";
-        foreach($request->certificates as $c){
-            $certificates = $certificates . $c . ',';
-
+        if($request->certificates!=null){
+            foreach($request->certificates as $c){
+                $certificates = $certificates . $c . ',';
+    
+            }
         }
-        foreach($request->diplomas as $d){
-            $diplomas = $diplomas . $d . ',';
-
+        
+        if($request->diplomas!=null){
+            foreach($request->diplomas as $d){
+                $diplomas = $diplomas . $d . ',';
+    
+            }
         }
+        
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->race = $request->race;
         $teacher->religion = $request->religion;
         $teacher->date_of_birth = $request->date_of_birth;
         $teacher->address = $request->address;
+        $teacher->eng_address = $request->eng_address;
         $teacher->current_address = $request->current_address;
+        $teacher->eng_current_address = $request->eng_current_address;
         $teacher->recommend_letter = $recommend_letter;
         $teacher->position = $request->position;
         $teacher->department = $request->department;

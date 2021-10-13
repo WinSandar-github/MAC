@@ -46,6 +46,18 @@
                 float:right;
                 margin-top:-35px;
             }
+            textarea{
+                border-top-style: hidden;
+                border-right-style: hidden;
+                border-left-style: hidden;
+                border-bottom-style: hidden;
+                float:right;
+                
+            }
+            label{
+                /* float:right; */
+                margin-left:63%;
+            }
         }
     </style>
 @section('content')
@@ -103,45 +115,39 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 " >
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-10">
+                                    <div class="row mt-3 " style="text-align: justify;">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8">
                                             <span id="nrc_eng"></span>, has been registered as a Lecturer/Tutor of  a Private Accounting  
                                              
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 " >
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-9">
-                                            School or an individual Lecturer/Tutor under section 32 of the Myanmar 
-                                        </div>
+                                    <div class="row mt-3 " style="text-align: justify;">
                                         <div class="col-md-2"></div>
-                                    </div>
-                                    <div class="row mt-3 " >
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-5">
-                                            Accountancy Council Law.
-                                        </div>
-                                        <div class="col-md-2"></div>
-                                    </div>
-                                    <div class="row mt-3 " >
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-10">
-                                            He/ She is permitted to engage as a Lecturer/Tutor of a Private Accounting School.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            &nbsp;&nbsp;
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                    <div class="row mt-3 " >
-                                        <div class="col-md-1"></div>
                                         <div class="col-md-8">
-                                            His/ Her teaching Course(s) and Subject(s) are shown as below:&nbsp;
+                                            School or an individual Lecturer/Tutor under section 32 of the Myanmar Accountancy Council Law.
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    
+                                    <div class="row mt-3 " style="text-align: justify;">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8">
+                                            He/ She is permitted to engage as a Lecturer/Tutor of a Private Accounting School.
+                                            
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+                                    <div class="row mt-3 " style="text-align: justify;">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8">
+                                            His/ Her teaching Course(s) and Subject(s) are shown as below:
                                            
                                         </div>
-                                        <div class="col-md-3"></div>
+                                        <div class="col-md-2"></div>
                                     </div>
-                                    <div class="row mt-3 " >
+                                    <div class="row mt-3 " style="text-align: justify;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-6">
                                             <input type="text" id="cpa_one" disabled class="no-outline">
@@ -149,7 +155,7 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 " >
+                                    <div class="row mt-3 " style="text-align: justify;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-6">
                                            <input type="text" id="cpa_two" disabled class="no-outline">
@@ -157,7 +163,7 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 " >
+                                    <div class="row mt-3 " style="text-align: justify;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-6">
                                             <input type="text" id="da_one" disabled class="no-outline">
@@ -165,7 +171,7 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 " >
+                                    <div class="row mt-3 " style="text-align: justify;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-6">
                                            <input type="text" id="da_two" disabled class="no-outline">
@@ -173,15 +179,22 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 period" style="display:none;">
-                                        <div class="col-md-12">
+                                    <div class="row mt-3 period" style="text-align: justify;">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8">
                                             <p >This certificate is valid for the period <span id="period_time"></span></p>
                                         </div>
                                         <div class="col-md-6">
                                             
                                         </div>
                                     </div>
-                                    
+                                    <div class="row mt-3 " >
+                                        <div class="col-md-8"></div>
+                                        <div class="col-md-4">
+                                            <textarea></textarea><br/>
+                                            <label>Registrar</label>
+                                        </div>
+                                    </div>
                                     <center>
 
                                         <div class="row justify-content-center">

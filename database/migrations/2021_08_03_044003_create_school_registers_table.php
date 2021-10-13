@@ -28,23 +28,25 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('date_of_birth');
             $table->string('type')->nullable();
             $table->string('attachment')->nullable();
-            $table->text('address')->nullable();;
-            $table->string('phone')->nullable();;
+            $table->text('address')->nullable();
+            $table->text('eng_address')->nullable();
+            $table->string('phone')->nullable();
 
             $table->string('profile_photo');
-            $table->string('school_name')->nullable();;
-            $table->string('attend_course')->nullable();;
-            $table->text('school_address')->nullable();;
-            $table->string('own_type')->nullable();;
-            $table->string('own_type_letter')->nullable();;
-            $table->string('business_license')->nullable();;
+            $table->string('school_name')->nullable();
+            $table->string('attend_course')->nullable();
+            $table->text('school_address')->nullable();
+            $table->text('eng_school_address')->nullable();
+            $table->string('own_type')->nullable();
+            $table->string('own_type_letter')->nullable();
+            $table->string('business_license')->nullable();
             
-            $table->string('school_location_attach')->nullable();;
+            $table->string('school_location_attach')->nullable();
             
             $table->string('sch_establish_notes_attach')->nullable();
 
             $table->string('email');
-            $table->string('password')->nullable();;
+            $table->string('password')->nullable();
             $table->integer('approve_reject_status')->default(0);
             $table->date('reg_date');
             $table->date('renew_date')->default(null)->nullable();
@@ -61,6 +63,7 @@ class CreateSchoolRegistersTable extends Migration
             $table->integer('student_info_id')->nullable();
             $table->string('renew_school_name')->nullable();
             $table->string('renew_school_address')->nullable();
+            $table->string('renew_course')->nullable();
             $table->timestamps();
         });
     }
