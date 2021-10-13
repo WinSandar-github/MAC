@@ -810,6 +810,7 @@ function getCPAModuleStd() {
                 $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
                 $("#father_name_mm").append(std.father_name_mm);
                 $("#father_name_eng").append(std.father_name_eng);
+                $("#gender").append(std.gender);
                 $("#race").append(std.race);
                 $("#religion").append(std.religion);
                 $("#date_of_birth").append(std.date_of_birth);
