@@ -24,6 +24,7 @@ class CreateSchoolTeachers extends Migration
             $table->string('ph_number');
             $table->string('email');
             $table->string('teacher_reg_copy')->nullable();
+            
             $table->timestamps();
 
             $table->foreign('school_id')
