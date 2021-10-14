@@ -399,9 +399,37 @@ class ReportController extends Controller
     {
         $batch_name = Batch::find($request->batch);
 
-        
+        $course_list = Course::where('name', 'LIKE', 'D%')->get();
 
-        return view('reporting.dynamic_report_template');
+        $batch_list = $course_list->map( function($val, $index) {
+            return Batch::select('id', 'name')->where('course_id', $val->id)->first();
+        });
+
+        $school_list = [
+            [ 'id' => 1, 'name' => 'MAC' ],
+            [ 'id' => 2, 'name' => 'Self Study' ],
+            [ 'id' => 3, 'name' => 'Private School' ]
+        ];
+
+        $data_collection = [
+            'batch_name' => $batch_name,
+            'filter_options' => [
+                "course_list" => [
+                    "title" => "Course",
+                    "options" => $course_list
+                ],
+                "batch_list" => [
+                    "title" => "Batch",
+                    "options" => $batch_list
+                ], 
+                "school_list" => [
+                    "title" => "School",
+                    "options" => $school_list
+                ]
+            ]
+        ];
+
+        return view('reporting.dynamic_report_template', compact('data_collection'));
     }
 
     public function da_report2()  
