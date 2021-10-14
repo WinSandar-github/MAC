@@ -16,7 +16,8 @@ use App\tbl_classroom;
 use App\tbl_manage_room_numbers;
 use App\tbl_toilet_type;
 use App\EducationHistroy;
-
+use App\Invoice;
+use App\Membership;
 
 use Hash;
 use DB;
@@ -429,6 +430,25 @@ class SchoolController extends Controller
             $manage_room_numbers->school_id       = $school->id;
             $manage_room_numbers->save();
         }
+
+        $memberships = Membership::where('membership_name', 'like', 'School')->get();
+        
+        //invoice
+            $invoice = new Invoice();
+            $invoice->student_info_id = $request->student_info_id;
+            $invoice->invoiceNo = '';
+            
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = $request->email;
+            $invoice->phone           = $request->phone;
+
+            $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee';
+            foreach($memberships as $memberships){
+                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+            }
+           
+            $invoice->status          = 0;
+            $invoice->save();
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
@@ -1803,7 +1823,24 @@ class SchoolController extends Controller
                 $manage_room_numbers->save();
             }
         }
+        $memberships = Membership::where('membership_name', 'like', 'School')->get();
         
+        //invoice
+            $invoice = new Invoice();
+            $invoice->student_info_id = $request->student_info_id;
+            $invoice->invoiceNo = '';
+            
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = $request->email;
+            $invoice->phone           = $request->phone;
+
+            $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee';
+            foreach($memberships as $memberships){
+                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+            }
+           
+            $invoice->status          = 0;
+            $invoice->save();
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
