@@ -21,6 +21,7 @@ class CreateTblClassroomsTable extends Migration
             $table->integer('student_num_limit')->default(0);
             $table->string('air_con')->nullable();
             $table->string('classroom_attach')->nullable();
+            
             $table->timestamps();
             $table->foreign('school_id')
             ->references('id')

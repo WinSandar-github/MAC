@@ -392,8 +392,22 @@
             margin: auto;
             height: 100%;
             width: 50%;
+	    }   
+
+        .modal.right.fade .modal-dialog {
+            -webkit-transform: translate(100%, 0)scale(1);
+            transform: translate(100%, 0)scale(1);
         }
 
+        .modal.fade.show .modal-dialog {
+            -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+            display: flex;
+            align-items: stretch;
+            -webkit-box-align: stretch;
+            height: 100%;
+        }
+        
         a.disabled {
             pointer-events: none;
         }

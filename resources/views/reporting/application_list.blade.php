@@ -256,6 +256,7 @@
             })
         })
 
+<<<<<<< HEAD
         // showAppList = (course_code) =>{
 
         //     var table_app = $('#tbl_application').DataTable({
@@ -293,6 +294,55 @@
 
         // }
     </script>
+=======
+showAppList = (course_code) => {
+
+    var table_app = $('#tbl_application').DataTable({
+        scrollX: true,
+        processing: true,
+        serverSide: true,
+        searching: false,
+        paging:true,
+        ajax: {
+            url  : FRONTEND_URL + "/show_registration_list",
+            type : "POST" ,
+            data :  function (d) {
+                d.code        =  course_code,
+                d.module = $('#selected_module').val(),
+                d.student_type = $('#student_type').val()
+
+            }
+        },
+        columns: [
+            {data: null, render: function (data, type, row, meta) {
+                
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+            {data: 'student_info.name_mm', name: 'name_mm'},
+            {data: 'nrc', name: 'nrc'},
+            {data: 'course.name_mm', name: 'course name'},
+            
+            {data: 'cpersonal_no', name: 'cpersonal_no'},
+
+
+        ],
+        sort: function( row, type, set, meta ) {
+            return row[meta.col][1];
+        },
+        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+
+    });
+
+    
+    $("#search").click(function () {
+      
+        table_app.draw();
+    });
+
+
+}
+        </script>
+>>>>>>> 7a45121dd8f23d3e84aee41135123e582510b04f
 
 
 @endpush

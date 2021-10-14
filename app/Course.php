@@ -34,5 +34,7 @@ class Course extends Model
         return $this->hasMany(Batch::class)->whereDate('start_date', '<=', $date)
             ->whereDate('end_date', '>=', $date)->with('course');
     }
-    
+
+     
+ 
 }

@@ -36,11 +36,11 @@
                                             <th class="">No</th>
                                         <th class="">Action</th>
                                             <th class="
-                                                ">Main_Course_Name</th>
+                                                ">Main Course Name</th>
                                         <th class="">
                                                 Description</th>
-                                            <th class="">Created_at</th>
-                                        <th class="">Updated_at</th>
+                                            <th class="">Created Date</th>
+                                        <th class="">Updated Date</th>
                                         </tr>
                                         </thead>
                                         <tbody id=" tbl_main_course_body" class="hoverTable text-left">
@@ -84,10 +84,10 @@
                                                 ">Private School Registration Fee</th>
                                         <th class="">
                                                 MAC Registration Fee</th>
-                                            <th class="">Exam Fee</th>
+                                        <th class="">Exam Fee</th>
+                                        <th class="">Entry Exam Fee</th>
                                         <th class="">Course Fee</th>
-                                        <th class="">CPA One Subject Fee</th>
-                                        <th class="">DA One Subject Fee</th>
+                                        
                                         <th class="">Requirement</th>
                                     </tr>
                                     </thead>
@@ -218,7 +218,7 @@
                             <label class="col-md-4 form-label">{{ __('Description') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
-                                    <textarea id="sub_summernote" name="description" class="" width=" 100%"
+                                    <textarea id="sub_summernote" name="description" class="description" width=" 100%"
                                         height="auto"></textarea>
                                     <!-- <input type="text" name="description" class="form-control"  placeholder="Description" autocomplete="off" required> -->
                                 </div>
@@ -289,28 +289,9 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <label class="col-md-1 form-label">{{ __('9.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('CPA One Subject Fee') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" name="cpa_subject_fee" class="form-control" placeholder="CPA One Subject Fee"
-                                           autocomplete="off" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('DA One Subject Fee') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" name="da_subject_fee" class="form-control" placeholder="DA One Subject Fee"
-                                           autocomplete="off" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Exam Registration Fee') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -320,9 +301,20 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Entry Exam Registration Fee') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="entry_exam_fee" class="form-control"
+                                        placeholder="Entry Exam Registration Fee" autocomplete="off" >
+                                </div>
+                            </div>
+                        </div>
+
 
                         {{-- <div class="row">
-                            <label class="col-md-1 form-label">{{ __('9.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Code') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -332,7 +324,7 @@
                         </div> --}}
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('12.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Requirement') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -377,6 +369,7 @@
             $('#tbl_main_course').DataTable({
                 processing: true,
                 serverSide: true,
+                scrollX: true,
                 ajax: BACKEND_URL + "/get_main_course",
                 columns: [{
                         data: "id",
@@ -392,7 +385,7 @@
                     },
                     {
                         data: 'course_name',
-                        name: 'Main_Course_Name'
+                        name: 'Main Course Name'
                     },
                     {
                         data: 'course_description',
@@ -400,11 +393,11 @@
                     },
                     {
                         data: 'created_at',
-                        name: 'Created_at'
+                        name: 'Created Date'
                     },
                     {
                         data: 'updated_at',
-                        name: 'Updated_at'
+                        name: 'Updated Date'
                     }
                 ],
             });

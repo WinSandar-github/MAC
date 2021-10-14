@@ -45,10 +45,10 @@
                             </div>
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('2.') }}</label>
-                                <label class="col-md-3 form-label">{{ __('Form Fee') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Application Fee') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <input type="number" name="form_fee" class="form-control" id="form_fee" placeholder="Form Fee" autocomplete="off">
+                                        <input type="number" name="form_fee" class="form-control" id="form_fee" placeholder="Application Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             @endif
-
+                            @if($membership_id != 6)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('4.') }}</label>
                                 <label class="col-md-3 form-label">{{ __('Yearly Fee') }}</label>
@@ -99,8 +99,84 @@
                                     </div>
                                 </div>
                             </div>
-
-                            @if($membership_id != 2)
+                            @endif
+                            @if($membership_id == 6)
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('4.') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Yearly Fee') }}</label>
+                                
+                            </div>
+                            <div class="row mb-1">
+                                    <label class="col-md-1 form-label">{{ __('') }}</label>
+                                    <label class="col-md-3 form-label">{{ __('CPA Subject Fee') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="number" name="cpa_subject_fee" class="form-control" id="cpa_subject_fee" placeholder="CPA Subject Fee" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-md-1 form-label">{{ __('') }}</label>
+                                    <label class="col-md-3 form-label">{{ __('DA Subject Fee') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="number" name="da_subject_fee" class="form-control" id="da_subject_fee" placeholder="DA Subject Fee" autocomplete="off">
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Renew Fee') }}</label>
+                                <!-- <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="renew_fee" class="form-control" id="renew_fee" placeholder="Renew Fee" autocomplete="off">
+                                    </div>
+                                </div> -->
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('') }}</label>
+                                <label class="col-md-3 form-label">{{ __('CPA Subject Fee') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="cpa_subject_fee" class="form-control" id="cpa_subject_fee" placeholder="CPA Subject Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('') }}</label>
+                                <label class="col-md-3 form-label">{{ __('DA Subject Fee') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="da_subject_fee" class="form-control" id="da_subject_fee" placeholder="DA Subject Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Delayed Fee') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="late_fee" class="form-control" id="late_fee" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Reconnected Fee') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="reconnected_fee" class="form-control" id="reconnected_fee" placeholder="Reconnected Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                                <label class="col-md-3 form-label"><b>{{ __('Subject Fee') }}</b></label>
+                                
+                            </div> -->
+                            
+                            @endif
+                            @if($membership_id != 2 && $membership_id !=6)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('5.') }}</label>
                                 <label class="col-md-3 form-label">{{ __('Renew Fee') }}</label>
@@ -138,7 +214,7 @@
                             </div>
                             @endif
 
-                            @if($membership_id != 1 && $membership_id != 2)
+                            @if($membership_id != 1 && $membership_id != 2 && $membership_id !=6)
                               <div class="row mb-1">
                                   <label class="col-md-1 form-label">{{ __('6.') }}</label>
                                   <label class="col-md-3 form-label">{{ __('Delayed Fee') }}</label>
@@ -222,7 +298,7 @@
                               </div>
                             @endif
 
-                            @if($membership_id != 1 && $membership_id != 2)
+                            @if($membership_id != 1 && $membership_id != 2 && $membership_id != 6)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('7.') }}</label>
                                 <label class="col-md-3 form-label">{{ __('Reconnected Fee') }}</label>

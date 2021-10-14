@@ -369,6 +369,15 @@ function autoLoadAudit(){
        audit_data.forEach(function(element){
          // console.log('audit_firm',element);
          // console.log('non_audit_firm',element);
+         $("input[name=student_info_id]").val(element.student_info_id);
+         if(element.is_renew == 1){
+           $("#renew_btns").css('display','block');
+           $("#initial_btns").css('display','none');
+         }
+         // else{
+         //   $("#renew_btns").css('display','none');
+         //   $("#initial_btns").css('display','block');
+         // }
 
          document.getElementById('profile_photo').src = PDF_URL + element.image;
         if(element.status==0){
@@ -403,6 +412,7 @@ function autoLoadAudit(){
         $("#accountancy_firm_reg_no").append(element.accountancy_firm_reg_no);
         $("#accountancy_firm_name").append(element.accountancy_firm_name);
         $("#head_office_address").append(element.head_office_address);
+        $("#head_office_address_mm").append(element.head_office_address_mm);
         $("#township").append(element.township);
         $("#post_code").append(element.postcode);
         $("#city").append(element.city);
@@ -452,129 +462,109 @@ function autoLoadAudit(){
         if(element.organization_structure_id == 1){
           audit_file.forEach(function(item){
             // for Sole Proprietorship
+            // if(item.ppa_certificate!="null"){
+            //   var ppa_certificate_file = removeBracketedAudit(item.ppa_certificate,"ppa_certis");
+            //   console.log("ppa_certificate_file >>>",ppa_certificate_file);
+            //   for(var i=0;i<ppa_certificate_file.length;i++){
+            //     $(".public_practice_acc_certi").append(`<a href='${PDF_URL+ppa_certificate_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+            //   }
+            // }else $(".public_practice_acc_certi").append("<span class='text-warning pl-4'>No file</span>");
+
             if(item.ppa_certificate!="null"){
-              var ppa_certificate_file = removeBracketedAudit(item.ppa_certificate,"ppa_certis");
-              for(var i=0;i<ppa_certificate_file.length;i++){
-                $(".public_practice_acc_certi").append(`<a href='${PDF_URL+ppa_certificate_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".public_practice_acc_certi").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.ppa_certificate,"public_practice_acc_certi");
+
+            }else $(".public_practice_acc_certi").append("<span class='text-primary'>no file</span>");
 
             if(item.letterhead!="null"){
-              var letterhead_file = removeBracketedAudit(item.letterhead,"letterheads");
-              for(var i=0;i<letterhead_file.length;i++){
-                $(".stationery_letterhead").append(`<a href='${PDF_URL+letterhead_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".stationery_letterhead").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.letterhead,"stationery_letterhead");
+
+            }else $(".stationery_letterhead").append("<span class='text-primary'>no file</span>");
+
 
             if(item.tax_clearance!="null"){
-              var tax_clearance_file = removeBracketedAudit(item.tax_clearance,"tax_clearances");
-              for(var i=0;i<tax_clearance_file.length;i++){
-                $(".tax_clearances").append(`<a href='${PDF_URL+tax_clearance_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".tax_clearances").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.tax_clearance,"tax_clearances");
+
+            }else $(".tax_clearances").append("<span class='text-primary'>no file</span>");
+
+
 
             if(item.certificate_incor!="null"){
-              var certificate_incor_file = removeBracketedAudit(item.certificate_incor,"representatives");
-              for(var i=0;i<certificate_incor_file.length;i++){
-                $(".representatives").append(`<a href='${PDF_URL+certificate_incor_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".representatives").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.certificate_incor,"representatives");
 
+            }else $(".representatives").append("<span class='text-primary'>no file</span>");
           });
         }
 
         if(element.organization_structure_id == 2){
           audit_file.forEach(function(item){
-            // for Partnership
+
             if(item.ppa_certificate!="null"){
-              var ppa_certificate_file = removeBracketedAudit(item.ppa_certificate,"ppa_certis_partnership");
-              for(var i=0;i<ppa_certificate_file.length;i++){
-                $(".ppa_certis_partnership").append(`<a href='${PDF_URL+ppa_certificate_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".ppa_certis_partnership").append("<span class='text-primary'>No file</span>");
+              removeBracketedAudit(item.ppa_certificate,"ppa_certis_partnership");
+
+            }else $(".ppa_certis_partnership").append("<span class='text-primary'>no file</span>");
 
             if(item.certi_or_reg!="null"){
-              var certi_or_reg_file = removeBracketedAudit(item.certi_or_reg,"certi_or_regs_partnership");
-              for(var i=0;i<certi_or_reg_file.length;i++){
-                $(".certi_or_regs_partnership").append(`<a href='${PDF_URL+certi_or_reg_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".certi_or_regs_partnership").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.certi_or_reg,"certi_or_regs_partnership");
+
+            }else $(".certi_or_regs_partnership").append("<span class='text-primary'>no file</span>");
 
             if(item.deeds_memo!="null"){
-              var deeds_memo_file = removeBracketedAudit(item.deeds_memo,"deeds_memos_partnership");
-              for(var i=0;i<deeds_memo_file.length;i++){
-                $(".deeds_memos_partnership").append(`<a href='${PDF_URL+deeds_memo_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".deeds_memos_partnership").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.deeds_memo,"deeds_memos_partnership");
+
+            }else $(".deeds_memos_partnership").append("<span class='text-primary'>no file</span>");
 
             if(item.letterhead!="null"){
-              var letterhead_file = removeBracketedAudit(item.letterhead,"letterheads_partnership");
-              for(var i=0;i<letterhead_file.length;i++){
-                $(".letterheads_partnership").append(`<a href='${PDF_URL+letterhead_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".letterheads_partnership").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.letterhead,"letterheads_partnership");
+
+            }else $(".letterheads_partnership").append("<span class='text-primary'>no file</span>");
 
             if(item.tax_clearance!="null"){
-              var tax_clearance_file = removeBracketedAudit(item.tax_clearance,"tax_clearances_partnership");
-              for(var i=0;i<tax_clearance_file.length;i++){
-                $(".tax_clearances_partnership").append(`<a href='${PDF_URL+tax_clearance_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".tax_clearances_partnership").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.tax_clearance,"tax_clearances_partnership");
+
+            }else $(".tax_clearances_partnership").append("<span class='text-primary'>no file</span>");
 
             if(item.certificate_incor!="null"){
-              var certificate_incor_file = removeBracketedAudit(item.certificate_incor_file,"representatives_partnership");
-              for(var i=0;i<tax_clearance_file.length;i++){
-                $(".representatives_partnership").append(`<a href='${PDF_URL+certificate_incor_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".representatives_partnership").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.certificate_incor,"representatives_partnership");
+
+            }else $(".representatives_partnership").append("<span class='text-primary'>no file</span>");
+
           });
         }
 
         if(element.organization_structure_id == 3){
           audit_file.forEach(function(item){
-            // for Company Incorporated
+
             if(item.ppa_certificate!="null"){
-              var ppa_certificate_file = removeBracketedAudit(item.ppa_certificate,"ppa_certis_company");
-              for(var i=0;i<ppa_certificate_file.length;i++){
-                $(".ppa_certis_company").append(`<a href='${PDF_URL+ppa_certificate_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
+              removeBracketedAudit(item.ppa_certificate,"ppa_certis_company");
+
             }else $(".ppa_certis_company").append("<span class='text-primary'>no file</span>");
 
             if(item.certificate_incor!="null"){
-              var certificate_incor_file = removeBracketedAudit(item.certificate_incor,"certificate_incors_company");
-              for(var i=0;i<certificate_incor_file.length;i++){
-                $(".certificate_incors_company").append(`<a href='${PDF_URL+certificate_incor_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".certificate_incors_company").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.certificate_incor,"certificate_incors_company");
+
+            }else $(".certificate_incors_company").append("<span class='text-primary'>no file</span>");
 
             if(item.deeds_memo!="null"){
-              var deeds_memo_file = removeBracketedAudit(item.deeds_memo,"memorandums_company");
-              for(var i=0;i<deeds_memo_file.length;i++){
-                $(".memorandums_company").append(`<a href='${PDF_URL+deeds_memo_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".memorandums_company").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.deeds_memo,"memorandums_company");
+
+            }else $(".memorandums_company").append("<span class='text-primary'>no file</span>");
+
 
             if(item.tax_reg_certificate!="null"){
-              var deeds_memo_file = removeBracketedAudit(item.tax_reg_certificate,"comercial_tax_reg");
-              for(var i=0;i<deeds_memo_file.length;i++){
-                $(".comercial_tax_reg").append(`<a href='${PDF_URL+deeds_memo_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".comercial_tax_reg").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.tax_reg_certificate,"comercial_tax_reg");
+
+            }else $(".comercial_tax_reg").append("<span class='text-primary'>no file</span>");
 
             if(item.letterhead!="null"){
-              var letterhead_file = removeBracketedAudit(item.letterhead,"stationery_letterhead_company");
-              for(var i=0;i<letterhead_file.length;i++){
-                $(".stationery_letterhead_company").append(`<a href='${PDF_URL+letterhead_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".stationery_letterhead_company").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.letterhead,"stationery_letterhead_company");
+
+            }else $(".stationery_letterhead_company").append("<span class='text-primary'>no file</span>");
+
 
             if(item.tax_clearance!="null"){
-              var tax_clearance_file = removeBracketedAudit(item.tax_clearance,"tax_clearance_company");
-              for(var i=0;i<tax_clearance_file.length;i++){
-                $(".tax_clearance_company").append(`<a href='${PDF_URL+tax_clearance_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
-              }
-            }else $(".tax_clearance_company").append("<span class='text-warning pl-4'>No file</span>");
+              removeBracketedAudit(item.tax_clearance,"tax_clearance_company");
 
+            }else $(".tax_clearance_company").append("<span class='text-primary'>no file</span>");
 
           });
         }
@@ -791,9 +781,32 @@ function approveAuditFirm(){
   }
   else{
     var id = $("input[name = audit_firm_id]").val();
+
     // console.log('approveaudit_firm',id);
     $.ajax({
         url: BACKEND_URL + "/approve_auditfirm/"+id,
+        type: 'patch',
+        success: function(result){
+          // console.log(result)
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/audit-firm-list";
+        }
+    });
+  }
+
+}
+
+function approveAuditFirmRenew(){
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return;
+  }
+  else{
+    var id = $("input[name = student_info_id]").val();
+    var firm_id = $("input[name = audit_firm_id]").val();
+
+    // console.log('approveaudit_firm',id);
+    $.ajax({
+        url: BACKEND_URL + "/approve_auditfirm_renew/"+id+"/"+firm_id,
         type: 'patch',
         success: function(result){
           // console.log(result)
@@ -829,56 +842,60 @@ function rejectAuditFirm(){
 
 }
 
-function approveNonAuditFirm(id){
-  if (!confirm('Are you sure you want to approve this firm ?')){
+function rejectAuditFirmRenew(){
+
+  if (!confirm('Are you sure you want to reject this firm ?')){
     return;
   }
   else{
-    //var id = $("input[name = audit_firm_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_non_auditfirm/"+id,
-        type: 'patch',
-        success: function(result){
-            successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/non-audit-firm-list";
-        }
-    });
-  }
-}
-
-function rejectNonAuditFirm(id){
-  if (!confirm('Are you sure you want to approve this firm ?')){
-    return ;
-  }
-  else{
-    //var id = $("input[name = audit_firm_id]").val();
+    var id = $("input[name = audit_firm_id]").val();
+    var firm_id = $("input[name = audit_firm_id]").val();
     var formData = new FormData();
     formData.append('remark', $('#remark').val());
+    //alert("youk");
     $.ajax({
-        url: BACKEND_URL +"/reject_non_auditfirm/"+id,
+        url: BACKEND_URL +"/reject_auditfirm_renew/"+id+"/"+firm_id,
         type: 'POST',
         data: formData,
         contentType: false,
         processData: false,
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/non-audit-firm-list";
+            location.href = FRONTEND_URL + "/audit-firm-list";
         }
     });
   }
+
 }
+
+
+// function removeBracketedAudit(file,divname){
+//   if(file){
+//     var new_file=file.replace(/\["/g,"");
+//     var new_file_1 = new_file.replace(/\\/g,"");
+//     var new_file_2 = new_file_1.replace(/\"]/g,"");
+//     var split_new_file=new_file_2.split(',');
+//     console.log(">>>>",split_new_file);
+//     return split_new_file;
+//
+//   }
+// }
 
 function removeBracketedAudit(file,divname){
   if(file){
-    var new_file=file.replace(/\["/g,"");
-    var new_file_1 = new_file.replace(/\\/g,"");
-    var new_file_2 = new_file_1.replace(/\"]/g,"");
-    var split_new_file=new_file_2.split(',');
-    return split_new_file;
-    // for(var i=0;i<split_new_file.length;i++){
-    //     var file="<a href='#' onclick=loadFile('"+split_new_file[i]+"') id='img' data-toggle='modal' data-target='#fileModal'>View File</a><br/>";
-    //     $("."+divname).append(file);
-    //   }
+    // var new_file=file.replace(/\["/g,"");
+    // var new_file_1 = new_file.replace(/\\/g,"");
+    // var new_file_2 = new_file_1.replace(/\"]/g,"");
+    // var split_new_file=new_file_2.split(',');
+    // console.log(">>>>",split_new_file);
+    // return split_new_file;
+
+    var new_file=file.replace(/[\'"[\]']+/g, '');
+    var split_new_file=new_file.split(',');
+    for(var i=0;i<split_new_file.length;i++){
+      var file="<a href='"+PDF_URL+"/"+split_new_file[i]+"'  target='_blank'>View File</a><br/>";
+        $("."+divname).append(file);
+      }
   }
 }
 

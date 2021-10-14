@@ -127,6 +127,7 @@ class EntryExamController extends Controller
             $student_info->nrc_back         =   $nrc_back;
             $student_info->father_name_mm   =   $request->father_name_mm;
             $student_info->father_name_eng  =   $request->father_name_eng;
+            $student_info->gender             =   $request->gender;
             $student_info->race             =   $request->race;
             $student_info->religion         =   $request->religion;
             $student_info->date_of_birth    =   $date_of_birth;
@@ -199,12 +200,18 @@ class EntryExamController extends Controller
             $student_course->save();
 
             //invoice
-            $invNo = str_pad($student_course->id, 20, "0", STR_PAD_LEFT);
-
+            // $invNo = str_pad($student_course->id, 20, "0", STR_PAD_LEFT);
+            $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->first();
+          
             $invoice = new Invoice();
             $invoice->student_info_id = $student_info->id;
-            $invoice->invoiceNo       = $invNo;
-            $invoice->status          = 0;
+            $invoice->name_eng            = $student_info->name_eng;
+            $invoice->email           = $student_info->email;
+            $invoice->phone           = $student_info->phone;
+            $invoice->productDesc     = 'Application Fee,Entry Exam Fee';
+            $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->entry_exam_fee;
+            $invoice->status          = 0;  
+            $invoice->invoiceNo       = "";
             $invoice->save();
                
             return response()->json([
@@ -265,6 +272,13 @@ class EntryExamController extends Controller
                             </a>
                         </div>";
             })
+            ->addColumn('exam_room', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-sm' onclick='showExamRoomModal($infos->student_info_id,$infos->id)'>
+                              <li class='fa fa-edit fa-sm'></li>
+                          </button>
+                      </div>";
+          })
             ->addColumn('status', function ($infos){
               if($infos->status == 0){
                   return "PENDING";
@@ -286,7 +300,7 @@ class EntryExamController extends Controller
                 }
             })
             // , 'print','exam_type''module'
-            ->rawColumns(['action','remark',])
+            ->rawColumns(['action','remark','exam_room'])
             ->make(true);
     }
 
@@ -350,8 +364,10 @@ class EntryExamController extends Controller
                 else if($infos->is_full_module == 2){
                   return "Module 2";
                 }
-                else{
+                else if($infos->is_full_module == 3){
                   return "All Module";
+                }else{
+                  return "-";
                 }
             })
             ->rawColumns(['action', 'print','exam_type','remark','module'])

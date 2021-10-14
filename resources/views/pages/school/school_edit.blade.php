@@ -23,7 +23,7 @@
 @section('content')
 <div class="content">
     @include('flash-message')
-    <div class="row mb-2">
+    <div class="row mb-2 form-class">
         <div class="col-sm-6"></div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right card">
@@ -148,10 +148,18 @@
                                     <hr>
                                     <div class="row mt-3 border-bottom ">
                                         <div class="col-md-6">
-                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ </p>
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(မြန်မာ) </p>
                                         </div>
                                         <div class="col-md-6">
                                             <span id="address"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 border-bottom ">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(အင်္ဂလိပ်) </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="eng_address"></span>
                                         </div>
                                     </div>
                                     <div class="row mt-3 border-bottom ">
@@ -255,10 +263,19 @@
                                         </div>
                                         <div class="row mt-3">
                                             <div class="col-md-6">
-                                            <p ><strong>ကျောင်းတည်နေရာလိပ်စာ</strong></p>
+                                            <p ><strong>ကျောင်းတည်နေရာလိပ်စာ(မြန်မာ)</strong></p>
                                             </div>
                                             <div class="col-md-6">
                                                 <input type="text" id="school_address" class="form-control" readonly>
+
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-md-6">
+                                            <p ><strong>ကျောင်းတည်နေရာလိပ်စာ(အင်္ဂလိပ်)</strong></p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" id="eng_school_address" class="form-control" readonly>
 
                                             </div>
                                         </div>

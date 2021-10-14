@@ -25,9 +25,8 @@ function getCourseList() {
             { data: 'privateschool_registration_fee', name: 'Private School Registration Fee' },
             { data: 'mac_registration_fee', name: 'MAC Registration Fee' },
             { data: 'exam_fee', name: 'Exam Fee' },
+            { data: 'entry_exam_fee', name: 'Exam Fee' },
             { data: 'tution_fee', name: 'Course Fee' },
-            { data: 'cpa_subject_fee', name: 'CPA Subject Fee' },
-            { data: 'da_subject_fee', name: 'DA Subject Fee' },
             { data: 'requirements', name: 'Requirement' },
         ],
     });
@@ -59,7 +58,7 @@ function createMainCourse() {
                 errorMessage(response.responseJSON.message);
             }
         });
-    }else{
+    } else {
         errorMessage("Please Fill Required Field!");
     }
 }
@@ -74,12 +73,12 @@ function createCourse() {
     send_data.append('mac_registration_fee', removeComma($("input[name=mac_registration_fee]").val()));
     // send_data.append('exam_fee',removeComma($("input[name=exam_fee]").val()));
     send_data.append('tution_fee', removeComma($("input[name=tution_fee]").val()));
-    send_data.append('cpa_subject_fee', removeComma($("input[name=cpa_subject_fee]").val()));
-    send_data.append('da_subject_fee', removeComma($("input[name=da_subject_fee]").val()));
 
     send_data.append('description', $("input[name=description]").val());
     send_data.append('code', $("input[name=code]").val());
     send_data.append('exam_fee', $("input[name=exam_fee]").val());
+    send_data.append('entry_exam_fee', $("input[name=entry_exam_fee]").val());
+
     send_data.append('course_type_id', $('.course_type').val());
     send_data.append('requirement_id', $('.requirement_id').val());
 
@@ -136,17 +135,8 @@ function getCourse() {
             EasyLoading.hide();
 
             var course_data = data.data;
-            console.log('data', data.data)
             course_data.forEach(function (element) {
-                console.log('course_element', element)
-
-                // var requirements = element.requirement_id;
-                // console.log(requirements)
-                // console.log(requirement_list,"Requirement")
-
                 filter_requirement = requirement_list.filter((req_list) => element.requirement_id.includes(req_list.id))
-
-                // var requirements_name=requirements.replace(/[\[\]"]+/g,"");
                 var tr = "<tr>";
                 tr += "<td>" + +"</td>";
                 tr += "<td ><div class='btn-group'>";
@@ -161,8 +151,6 @@ function getCourse() {
                 tr += "<td>" + thousands_separators(element.mac_registration_fee) + "</td>";
                 // tr += "<td>" + thousands_separators(element.exam_fee) + "</td>";
                 tr += "<td>" + thousands_separators(element.tution_fee) + "</td>";
-                tr += "<td>" + thousands_separators(element.cpa_subject_fee) + "</td>";
-                tr += "<td>" + thousands_separators(element.da_subject_fee) + "</td>";
                 tr += `<td>${filter_requirement.map((req) => `<p>${req.name}</p>`)}</td>`;
 
                 tr += "</tr>";
@@ -207,7 +195,6 @@ function showCourseInfo(id) {
         url: BACKEND_URL + "/course/" + id,
         success: function (data) {
             var course_data = data.data;
-            console.log('show course', course_data);
             // removeBracketed(course_data.requirement_id,"requirement_id");
             $('input[name=course_name]').val(course_data.name);
             $('input[name=course_name_mm]').val(course_data.name_mm);
@@ -216,14 +203,13 @@ function showCourseInfo(id) {
             $('input[name=privateschool_registration_fee]').val(course_data.privateschool_registration_fee);
             $('input[name=mac_registration_fee]').val(course_data.mac_registration_fee);
             $('input[name=exam_fee]').val(course_data.exam_fee);
+            $('input[name=entry_exam_fee]').val(course_data.entry_exam_fee);
+
             $('input[name=tution_fee]').val(course_data.tution_fee);
             $('input[name=registration_start_date]').val(course_data.registration_start_date);
             $('input[name=registration_end_date]').val(course_data.registration_end_date);
-            $('input[name=description]').val(course_data.description);
-            $('input[name=code]').val(course_data.code);
+            $('.description').summernote('code', course_data.description);
             $('.course_type').val(course_data.course_type_id);
-            $("input[name=cpa_subject_fee]").val(course_data.cpa_subject_fee);
-            $("input[name=da_subject_fee]").val(course_data.da_subject_fee);
             // $('.requirement_id').val(course_data.requirement_id);
 
             // if(course_data.requirement_id!=null){
@@ -236,7 +222,6 @@ function showCourseInfo(id) {
             // }
 
             var req_str = course_data.requirement_id.replace(",", "");
-            console.log(req_str, "Req String")
 
             //change string to array
             var req_arr = [...req_str];
@@ -293,18 +278,18 @@ function updateCourse() {
     var privateschool_registration_fee = $("input[name=privateschool_registration_fee]").val();
     var mac_registration_fee = $("input[name=mac_registration_fee]").val();
     var exam_fee = $("input[name=exam_fee]").val();
+    var entry_exam_fee = $("input[name=entry_exam_fee]").val();
+
     var tution_fee = $("input[name=tution_fee]").val();
     var registration_start_date = $("input[name=registration_start_date]").val()
     var registration_end_date = $("input[name=registration_end_date]").val()
-    var description = $("input[name=description]").val();
+    var description = $(".description").summernote('code');
     var code = $("input[name=code]").val();
 
     var course_type_id = $('.course_type').val();
     var requirement_id = $('.requirement_id').val();
     // var cpa_subject_fee = $("input[name=cpa_subject_fee]").val();
     // var da_subject_fee = $("input[name=da_subject_fee]").val();
-    var cpa_subject_fee = $("input[name=cpa_subject_fee]").val();
-    var da_subject_fee = $("input[name=da_subject_fee]").val();
     console.log('requirement_id', requirement_id);
     show_loader();
 
@@ -319,6 +304,7 @@ function updateCourse() {
             privateschool_registration_fee: privateschool_registration_fee,
             mac_registration_fee: mac_registration_fee,
             exam_fee: exam_fee,
+            entry_exam_fee: entry_exam_fee,
             tution_fee: tution_fee,
             registration_start_date: registration_start_date,
             registration_end_date: registration_end_date,
@@ -326,8 +312,7 @@ function updateCourse() {
             code: code,
             course_type_id: course_type_id,
             requirement_id: requirement_id,
-            cpa_subject_fee: cpa_subject_fee,
-            da_subject_fee: da_subject_fee
+
         },
         success: function (result) {
 

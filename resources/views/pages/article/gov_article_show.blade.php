@@ -8,20 +8,13 @@
 @extends('layouts.app', [
     'class' => '',
     'parentElement' => '',
-    'elementActive' => 'Gov Article_list'
+    'elementActive' => 'gov_article_list'
 ])
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="{{ asset("assets/css/plugins/bootstrap/bootstrap.min.css") }}">
 <style>
     .label{
         text-align: right;
-    }
-    li{
-        display: inline;
-    }
-    ul{
-        padding-left: 0px !important;
-        font-weight:bold;
     }
 </style>
 @section('content')

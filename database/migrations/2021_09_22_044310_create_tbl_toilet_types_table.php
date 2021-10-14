@@ -19,6 +19,7 @@ class CreateTblToiletTypesTable extends Migration
             $table->string('toilet_type')->nullable();
             $table->integer('toilet_number')->default(0);
             $table->string('toilet_attach')->nullable();
+            
             $table->timestamps();
             $table->foreign('school_id')
             ->references('id')

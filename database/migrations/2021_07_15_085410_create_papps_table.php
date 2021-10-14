@@ -23,7 +23,8 @@ class CreatePappsTable extends Migration
             $table->string('degree_name')->nullable();
             $table->string('degree_pass_year')->nullable();
             $table->string('cpaff_pass_date')->nullable();
-            $table->string('papp_date')->nullable();
+            $table->string('papp_date')->nullable();            
+            $table->string('papp_renew_date')->nullable();
             $table->boolean('use_firm')->default(0);
             $table->string('firm_name')->nullable();
             $table->string('firm_type')->nullable();
@@ -55,7 +56,6 @@ class CreatePappsTable extends Migration
             $table->date('renew_accepted_date')->default(null)->nullable();
             $table->boolean('renew_status')->default(null)->nullable();
 
-
             //adding
             $table->string('reg_no')->nullable();
             $table->string('address')->nullable();
@@ -63,8 +63,13 @@ class CreatePappsTable extends Migration
             $table->string('contact_mail')->nullable();
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
+            $table->string('papp_reg_no')->nullable();
+            $table->string('audit_work')->nullable();
             $table->integer('type')->nullable();
-
+            $table->integer('self_confession')->nullable();
+            $table->text('reject_description')->nullable();
+            $table->string('validate_from')->nullable();
+            $table->string('validate_to')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')

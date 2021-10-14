@@ -77,9 +77,9 @@
 	                                            </div>
 																							<div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Address') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Address(English)') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="head_office_address">
 																														{{$item->head_office_address}}
@@ -88,11 +88,24 @@
 	                                                    </div>
 	                                                </div>
 	                                            </div>
-	                                            <div class="row  pl-4">
+																							<div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Township') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Address(Myanmar)') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
+	                                                    <div class="form-group">
+	                                                        <span id="head_office_address">
+																														{{$item->head_office_address_mm}}
+																													</span>
+	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+	                                            {{--<div class="row  pl-4">
+	                                                <div class="col-md-2"></div>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Township') }}</label>
+	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="township">
 																														{{$item->township}}
@@ -100,12 +113,12 @@
 	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
 	                                                    </div>
 	                                                </div>
-	                                            </div>
+	                                            </div>--}}
 	                                            <div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Post Code') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Post Code') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="post_code">
 																														{{$item->postcode}}
@@ -114,11 +127,11 @@
 	                                                    </div>
 	                                                </div>
 	                                            </div>
-	                                            <div class="row  pl-4">
+	                                            {{--<div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('City') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('City') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="city">
 																														{{$item->city}}
@@ -126,12 +139,12 @@
 	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
 	                                                    </div>
 	                                                </div>
-	                                            </div>
-	                                            <div class="row  pl-4">
+	                                            </div>--}}
+	                                            {{--<div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('State') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('State') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="state">
 																														{{$item->state_region}}
@@ -139,12 +152,12 @@
 	                                                        <!-- <input type="text" name="township" class="form-control" autocomplete="off"> -->
 	                                                    </div>
 	                                                </div>
-	                                            </div>
+	                                            </div>--}}
 	                                            <div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Phone Number') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Phone Number') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="phone_no">
 																														{{$item->telephones}}
@@ -155,9 +168,9 @@
 	                                            </div>
 	                                            <div class="row  pl-4">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Email') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Email') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="email">
 																														{{$item->h_email}}
@@ -168,9 +181,9 @@
 	                                            </div>
 	                                            <div class="row  pl-4 border-bottom">
 	                                                <div class="col-md-2"></div>
-	                                                <label class="col-md-2 col-form-label" style="font-weight:bold">{{ __('Website') }}</label>
+	                                                <label class="col-md-3 col-form-label" style="font-weight:bold">{{ __('Website') }}</label>
 	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-	                                                <div class="col-md-7">
+	                                                <div class="col-md-6">
 	                                                    <div class="form-group">
 	                                                        <span id="website">
 																														{{$item->website}}
@@ -187,6 +200,19 @@
 	                                                    <div class="form-group">
 	                                                        <span id="declaration">
 																														{{$item->declaration}}
+																													</span>
+	                                                    </div>
+	                                                </div>
+	                                            </div>
+
+																							<div class="row pl-4 mt-2 border-bottom">
+	                                                <!-- <label class="col-md-1 col-form-label">{{ __('12') }}</label> -->
+	                                                <label class="col-md-4 col-form-label font-weight-bold">{{ __('Declaration(Managing Director)') }}</label>
+	                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+	                                                <div class="col-md-7">
+	                                                    <div class="form-group">
+	                                                        <span id="declaration">
+																														{{$item->declaration_mm}}
 																													</span>
 	                                                    </div>
 	                                                </div>
@@ -1062,23 +1088,19 @@
 	                                                                <tbody id="tbl_type_service_body">
 																																		@if($service_provided)
 																																			@foreach($service_provided as $service)
+
 																																				<tr>
 																																					<td>
 																																						<input disabled type="checkbox" name="t_s_p_id" value="{{$service->id}}" id="{{$service->id}}"
 																																						<?php
-																																							$t_s_p_ary = json_decode($item->type_of_service_provided_id);
-																																							foreach ($t_s_p_ary as $value) {
-																																								$str_arr = preg_split ("/\,/", $value);
-																																							}
-																																							foreach($str_arr as $each_t_s_p_id){
-																																								if($service->id == $each_t_s_p_id){
+																																							$t_s_p_arr = json_decode($item->type_of_service_provided_id);
+
+																																							foreach($t_s_p_arr as $val){
+																																								if($val == $service->id){
 																																									echo "checked";
 																																								}
-																																								else {
-																																									echo "";
-																																								}
 																																							}
-																																						?>
+																																						 ?>
 																																						/>
 
 																																						<label class='form-check-label'>{{$service->name}}</label>
@@ -1163,12 +1185,28 @@
 	                                            <input type="hidden" name="audit_firm_id" >
 
                                               @if($item->status == 0)
-																							<div class="row mt-5 justify-content-center">
-																									{{--<button type="submit" name="save" class="btn btn-danger"  onclick="rejectNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
-																									<button type="submit" name="save" id="reject_audit_btn" data-toggle="modal" data-target="#remarkModal" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-																									<button type="submit" name="save" class="btn btn-primary" onclick="approveNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-																							</div>
+																								@if($item->is_renew == 0)
+																									<div id="initial_btns">
+																										<div class="row mt-5 justify-content-center">
+																												{{--<button type="submit" name="save" class="btn btn-danger"  onclick="rejectNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
+																												<button type="submit" name="save" id="reject_audit_btn" data-toggle="modal" data-target="#remarkModal" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+																												<button type="submit" name="save" class="btn btn-primary" onclick="approveNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+																										</div>
+																									</div>
+																								 @else
+																								 <div id="renew_btns">
+	 																								<div class="row mt-5 justify-content-center">
+	 								                                    {{--<button type="submit" name="save" id="reject_non_audit_btn_renew" class="btn btn-danger"  onclick="rejectNonAuditFirmRenew()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
+
+	 																										<button type="submit" name="save" id="reject_non_audit_btn_renew" data-toggle="modal" data-target="#remarkModalRenew" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+	 								                                    <button type="submit" name="save" id="approve_non_audit_btn_renew" class="btn btn-primary" onclick="approveNonAuditFirmRenew({{$item->student_info_id,$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+
+	 								                                </div>
+	 																							</div>
+																								@endif
 																							@endif
+
+
 	                          		</div>
 
 
@@ -1236,6 +1274,37 @@
 						    </div>
 						  </div>
 						</div>
+
+						<div class="modal fade" id="remarkModalRenew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+										    <div class="modal-content">
+										      <div class="modal-header">
+										        <h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
+										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										          <span aria-hidden="true">&times;</span>
+										        </button>
+										      </div>
+										      <form id="remark-form-renew"  method="post" action="javascript:rejectNonAuditFirmRenew({{$item->student_info_id}},{{$item->id}})" enctype="multipart/form-data">
+										      @csrf
+										        <div class="modal-body">
+										            <div class="row">
+										                <div class="col-md-12">
+
+										                    <div class="form-group">
+										                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+										                        <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+										                    </div>
+										                </div>
+										            </div>
+										        </div>
+										        <div class="modal-footer">
+										            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										            <button type="submit" class="btn btn-primary" form="remark-form">Reject</button>
+										        </div>
+										    </form>
+										    </div>
+										  </div>
+										</div>
 						@endforeach
 						@endif
     <script>

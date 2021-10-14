@@ -84,26 +84,25 @@
                                 </div>
                             </div>
                             <div id="dynamic-filter-option">
+                                @php
+                                    $filters = $data_collection['filter_options'];
+                                @endphp
+
+                                @foreach( $filters as $filter ) 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label class="control-label">School</label>
-                                            <select class="form-control" id="">
-                                                <option value="">Select</option>
+                                            <label class="control-label">{{ $filter['title'] }}</label>
+                                            <select class="form-control" id="{{ $filter['title'] }}">
+                                            @foreach ( $filter['options'] as $option )
+                                                <option value="{{ $option['id'] }}">{{ $option['name'] }}</option>
+                                            @endforeach
                                             </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="control-label">Module</label>
-                                            <select class="form-control" id="">
-                                                <option value="">Select</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
                             <div class="row">
                                 <div class="col-md-6">

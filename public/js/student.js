@@ -144,6 +144,7 @@ function loadStudentSelfStudy() {
     $("#nrc").html("");
     $("#father_name_mm").html("");
     $("#father_name_eng").html("");
+    $("#gender").html("");
     $("#race").html("");
     $("#religion").html("");
     $("#date_of_birth").html("");
@@ -178,13 +179,19 @@ function loadStudentSelfStudy() {
             // console.log(data,"yy");
             var element = data.data;
             console.log('element', element);
+            let student_course_regs = element.student_info.student_course_regs.slice(-1);
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
             // $("#student_dob").append(element.student_info.date_of_birth);
             // $("#student_father").append(element.student_info.father_name_eng);
             // $("#student_email").append(element.student_info.email);
             // $("#student_phone").append(element.student_info.phone);
-            $("#student_registration_no").append(element.student_info.registration_no);
+            if(student_course_regs[0].sr_no==null){
+                $("#student_registration_no").append("-");
+            }else{
+                $("#student_registration_no").append(student_course_regs[0].sr_no);
+            }
+            
             if (element.reg_reason) {
                 $("#student_registration_reason").append(element.reg_reason);
             } else {
@@ -232,6 +239,7 @@ function loadStudentSelfStudy() {
             $("#nrc").append(student_info_data.nrc_state_region + "/" + student_info_data.nrc_township + "(" + student_info_data.nrc_citizen + ")" + student_info_data.nrc_number);
             $("#father_name_mm").append(student_info_data.father_name_mm);
             $("#father_name_eng").append(student_info_data.father_name_eng);
+            $("#gender").append(student_info_data.gender);
             $("#race").append(student_info_data.race);
             $("#religion").append(student_info_data.religion);
             $("#date_of_birth").append(student_info_data.date_of_birth);
@@ -288,6 +296,7 @@ function loadStudentSelfStudy() {
             $("#roll_number").append(education_history.roll_number);
 
             let certificate = JSON.parse(education_history.certificate);
+            console.log('certificate',certificate);
             $.each(certificate, function (fileCount, fileName) {
 
                 $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);

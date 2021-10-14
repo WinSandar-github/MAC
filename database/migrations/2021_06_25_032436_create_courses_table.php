@@ -22,13 +22,14 @@ class CreateCoursesTable extends Migration
             $table->integer('privateschool_registration_fee');
             $table->integer('mac_registration_fee');
             $table->integer('exam_fee');
+            $table->integer('entry_exam_fee')->nullable();
+
             $table->integer('tution_fee');
             $table->text('description');
             $table->unsignedBigInteger('course_type_id');
             $table->string('code','20');
             $table->string('requirement_id');
-            $table->bigInteger('cpa_subject_fee')->nullable();
-            $table->bigInteger('da_subject_fee')->nullable();
+            
             $table->timestamps();
         });
     }

@@ -8,11 +8,13 @@ var PDF_URL="http://localhost:9090";
 
 var counter = 0;
 
+
 function ConfirmSubmit() {
     var radio = document.getElementById("submit_confirm");
     if (radio.checked == true) {
         document.getElementById("submit_btn").disabled = false;
     } else {
+        p
         document.getElementById("submit_btn").disabled = true;
     }
 }
