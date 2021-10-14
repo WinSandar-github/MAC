@@ -615,7 +615,6 @@ class AccFirmInfController extends Controller
      */
     public function update(Request $request, $id)
     {
-
          if($request->hasfile('ppa_certis'))
          {
              foreach($request->file('ppa_certis') as $file)
@@ -625,7 +624,8 @@ class AccFirmInfController extends Controller
                  $ppa_certi[] = $name;
              }
 
-         }else{
+         }
+         else{
              $ppa_certi = null;
          }
 
@@ -802,12 +802,14 @@ class AccFirmInfController extends Controller
          }
 
          // profile photo
+         $image= '';
          if ($request->hasfile('profile_photo')) {
              $file = $request->file('profile_photo');
              $name  = uniqid().'.'.$file->getClientOriginalExtension();
              $file->move(public_path().'/storage/student_info/',$name);
              $image = '/storage/student_info/'.$name;
          }
+         //return $image;
 
         $register_date = date('Y-m-d');
         $t_s_p_ary = array();
@@ -820,10 +822,11 @@ class AccFirmInfController extends Controller
         //   $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
         // }
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
-        $acc_firm_info->township                = $request->township;
+        $acc_firm_info->head_office_address_mm   = $request->head_office_address_mm;
+        //$acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
-        $acc_firm_info->city                    = $request->city;
-        $acc_firm_info->state_region            = $request->state;
+        //$acc_firm_info->city                    = $request->city;
+        //$acc_firm_info->state_region            = $request->state;
         $acc_firm_info->telephones              = $request->phone_no;
         $acc_firm_info->h_email                   = $request->h_email;
         $acc_firm_info->website                 = $request->website;
@@ -839,8 +842,10 @@ class AccFirmInfController extends Controller
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
         $acc_firm_info->declaration  = $request->declaration;
-        $acc_firm_info->image  = $image;
-        $acc_firm_info->status   = 3;
+        if($image != ''){
+          $acc_firm_info->image  = $image;
+        }
+        $acc_firm_info->status   = 0;
         // $acc_firm_info->form_fee = $request->form_fee;
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
@@ -856,7 +861,7 @@ class AccFirmInfController extends Controller
         // $std_info->save();
 
         //Student Info
-        $std_info = new StudentInfo();
+        $std_info = StudentInfo::find($id);
         //$std_info->password = Hash::make($request->password);
         //$std_info->password = $request->password;
         $std_info->approve_reject_status = 0;
@@ -924,7 +929,6 @@ class AccFirmInfController extends Controller
               }
             }
 
-
             AuditStaff::where('accountancy_firm_info_id',$id)->delete();
             for($i=0;$i<sizeof($request->as_part_time);$i++){
                 $audit_staff = new AuditStaff();
@@ -982,7 +986,7 @@ class AccFirmInfController extends Controller
                 $director_officer_non_audit->name       = $request->dona_name[$i];
                 $director_officer_non_audit->position   = $request->dona_position[$i];
                 $director_officer_non_audit->passport   = $request->dona_passport[$i];
-                $director_officer_non_audit->csc_no     = $request->dona_csc_no[$i];
+                //$director_officer_non_audit->csc_no     = $request->dona_csc_no[$i];
                 $director_officer_non_audit->accountancy_firm_info_id = $acc_firm_info->id;
                 $director_officer_non_audit->save();
             }
