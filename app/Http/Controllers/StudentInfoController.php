@@ -13,6 +13,7 @@ use App\CPAFF;
 use App\FirmOwnershipAudit;
 use App\TeacherRegister;
 use App\SchoolRegister;
+use App\Mentor;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -352,7 +353,11 @@ class StudentInfoController extends Controller
             $teacher->image         = $image;
             $teacher->save();
         }else if($request->membership == "mentor"){
-            return "mentor";
+            $school = Mentor::find($id);
+            $school->phone_no         = $request->phone;
+            $school->address       = $request->address;
+            $school->image = $image;
+            $school->save();
         }else{
 
             $student_info = StudentInfo::find($id);
