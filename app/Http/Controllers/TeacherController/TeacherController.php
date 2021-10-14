@@ -8,6 +8,7 @@ use App\TeacherRegister;
 use App\StudentInfo;
 use App\EducationHistroy;
 use App\Invoice;
+use App\Membership;
 
 use Hash;
 use DB;
@@ -168,20 +169,26 @@ class TeacherController extends Controller
             }
         }
         
-        
+        $memberships = Membership::where('membership_name', 'like', 'Teacher')->first();
+       // print_r($memberships->form_fee);
 
         //invoice
-        // $invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
+            $invoice = new Invoice();
+            $invoice->student_info_id = $std_info->id;
+            $invoice->invoiceNo = '';
+            
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = $request->email;
+            $invoice->phone           = $request->phone;
 
-        // $invoice = new Invoice();
-        // $invoice->student_info_id = $std_info->id;
-        // $invoice->invoiceNo       = $invNo;
-        // $invoice->status          = 0;
-        // $invoice->save();
+            $invoice->productDesc     = 'Application Fee,Registration Fee,Subject CPA count *Yearly Fee,Subject DA count *Yearly Fee';
+            $invoice->amount          = $memberships->form_fee;
+            $invoice->status          = 0;
+            $invoice->save();
 
-        return response()->json([
-            'message' => 'Success Registration.'
-        ],200);
+        // return response()->json([
+        //     'message' => 'Success Registration.'
+        // ],200);
     }
 
     /**
@@ -929,27 +936,5 @@ class TeacherController extends Controller
             'message' => 'Updated Successfully.'
         ],200);
     }
-    public function updateProfileTeacher(Request $request,$id){
-        if ($request->hasfile('profile_photo')) {
-            $file = $request->file('profile_photo');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/teacher_info/',$name);
-            $image = '/storage/teacher_info/'.$name;
-        }else{
-          $image = $request->old_profile_photo;
-        }
-
-
-        $teacher = TeacherRegister::find($id);
-        $teacher->phone         = $request->phone;
-        $teacher->current_address       = $request->address;
-        $teacher->eng_current_address       = $request->eng_address;
-        $teacher->image         = $image;
-        $teacher->save();
-
-        return response()->json([
-            'message' => "Successfully Update Message"
-        ],200);
-
-    }
+    
 }
