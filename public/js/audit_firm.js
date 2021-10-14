@@ -868,44 +868,6 @@ function rejectAuditFirmRenew(){
 
 }
 
-function approveNonAuditFirm(id){
-  if (!confirm('Are you sure you want to approve this firm ?')){
-    return;
-  }
-  else{
-    //var id = $("input[name = audit_firm_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/approve_non_auditfirm/"+id,
-        type: 'patch',
-        success: function(result){
-            successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/non-audit-firm-list";
-        }
-    });
-  }
-}
-
-function rejectNonAuditFirm(id){
-  if (!confirm('Are you sure you want to approve this firm ?')){
-    return ;
-  }
-  else{
-    //var id = $("input[name = audit_firm_id]").val();
-    var formData = new FormData();
-    formData.append('remark', $('#remark').val());
-    $.ajax({
-        url: BACKEND_URL +"/reject_non_auditfirm/"+id,
-        type: 'POST',
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(result){
-            successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/non-audit-firm-list";
-        }
-    });
-  }
-}
 
 // function removeBracketedAudit(file,divname){
 //   if(file){

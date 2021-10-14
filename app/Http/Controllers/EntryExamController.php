@@ -200,12 +200,18 @@ class EntryExamController extends Controller
             $student_course->save();
 
             //invoice
-            $invNo = str_pad($student_course->id, 20, "0", STR_PAD_LEFT);
-
+            // $invNo = str_pad($student_course->id, 20, "0", STR_PAD_LEFT);
+            $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->first();
+          
             $invoice = new Invoice();
             $invoice->student_info_id = $student_info->id;
-            $invoice->invoiceNo       = $invNo;
-            $invoice->status          = 0;
+            $invoice->name_eng            = $student_info->name_eng;
+            $invoice->email           = $student_info->email;
+            $invoice->phone           = $student_info->phone;
+            $invoice->productDesc     = 'Application Fee,Entry Exam Fee';
+            $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->entry_exam_fee;
+            $invoice->status          = 0;  
+            $invoice->invoiceNo       = "";
             $invoice->save();
                
             return response()->json([
