@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-S Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\StudentRegister;
 use App\StudentInfo;
 use App\StudentCourseReg;
