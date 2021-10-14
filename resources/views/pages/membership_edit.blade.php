@@ -53,7 +53,7 @@
                                 </div>
                             </div>
 
-                            @if($membership_id != 2)
+                            @if($membership_id != 2 && $membership_id != 5)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('3.') }}</label>
                                 <label class="col-md-3 form-label">{{ __('Registration Fee') }}</label>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             @endif
-                            @if($membership_id != 6)
+                            @if($membership_id != 6 && $membership_id != 5)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('4.') }}</label>
                                 <label class="col-md-3 form-label">{{ __('Yearly Fee') }}</label>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="row mb-1">
                                     <label class="col-md-1 form-label">{{ __('') }}</label>
-                                    <label class="col-md-3 form-label">{{ __('CPA Subject Fee') }}</label>
+                                    <label class="col-md-3 form-label">{{ __('CPA One Subject Fee') }}</label>
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <input type="number" name="cpa_subject_fee" class="form-control" id="cpa_subject_fee" placeholder="CPA Subject Fee" autocomplete="off">
@@ -117,7 +117,7 @@
                                 </div>
                                 <div class="row mb-1">
                                     <label class="col-md-1 form-label">{{ __('') }}</label>
-                                    <label class="col-md-3 form-label">{{ __('DA Subject Fee') }}</label>
+                                    <label class="col-md-3 form-label">{{ __('DA One Subject Fee') }}</label>
                                     <div class="col-md-8">
                                         <div class="form-group">
                                             <input type="number" name="da_subject_fee" class="form-control" id="da_subject_fee" placeholder="DA Subject Fee" autocomplete="off">
@@ -135,19 +135,19 @@
                             </div>
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('') }}</label>
-                                <label class="col-md-3 form-label">{{ __('CPA Subject Fee') }}</label>
+                                <label class="col-md-3 form-label">{{ __('CPA One Subject Fee') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <input type="number" name="cpa_subject_fee" class="form-control" id="cpa_subject_fee" placeholder="CPA Subject Fee" autocomplete="off">
+                                        <input type="number" name="renew_cpa_subject_fee" class="form-control" id="renew_cpa_subject_fee" placeholder="CPA Subject Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('') }}</label>
-                                <label class="col-md-3 form-label">{{ __('DA Subject Fee') }}</label>
+                                <label class="col-md-3 form-label">{{ __('DA One Subject Fee') }}</label>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <input type="number" name="da_subject_fee" class="form-control" id="da_subject_fee" placeholder="DA Subject Fee" autocomplete="off">
+                                        <input type="number" name="renew_da_subject_fee" class="form-control" id="renew_da_subject_fee" placeholder="DA Subject Fee" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +176,63 @@
                             </div> -->
                             
                             @endif
-                            @if($membership_id != 2 && $membership_id !=6)
+                            @if($membership_id == 5)
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('3.') }}</label>
+                                <label class="col-md-3 form-label">{{ __(' Initial Registration Fees') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="registration_fee" class="form-control" id="registration_fee" placeholder="Registration Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('4.') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Yearly Fees') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="yearly_fee" class="form-control" id="yearly_fee" placeholder="Yearly Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('5.') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Renew Registration Fees') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="renew_registration_fee" class="form-control" id="renew_registration_fee" placeholder="Registration Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Renew Yearly Fees') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="renew_yearly_fee" class="form-control" id="renew_yearly_fee" placeholder="Yearly Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-1">
+                                  <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                                  <label class="col-md-3 form-label">{{ __('Delayed Fees') }}</label>
+                                  <div class="col-md-8">
+                                      <div class="form-group">
+                                          <input type="number" name="late_fee" class="form-control" id="late_fee" placeholder="Delayed Fee" autocomplete="off">
+                                      </div>
+                                  </div>
+                            </div>
+                            <div class="row mb-1">
+                                <label class="col-md-1 form-label">{{ __('8.') }}</label>
+                                <label class="col-md-3 form-label">{{ __('Reconnected Fees(per year)') }}</label>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="number" name="reconnected_fee" class="form-control" id="reconnected_fee" placeholder="Reconnected Fee" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
+                            @if($membership_id != 2 && $membership_id !=6 && $membership_id != 5)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('5.') }}</label>
                                 <label class="col-md-3 form-label">{{ __('Renew Fee') }}</label>
@@ -214,7 +270,7 @@
                             </div>
                             @endif
 
-                            @if($membership_id != 1 && $membership_id != 2 && $membership_id !=6)
+                            @if($membership_id != 1 && $membership_id != 2 && $membership_id !=6 && $membership_id != 5)
                               <div class="row mb-1">
                                   <label class="col-md-1 form-label">{{ __('6.') }}</label>
                                   <label class="col-md-3 form-label">{{ __('Delayed Fee') }}</label>
@@ -298,7 +354,7 @@
                               </div>
                             @endif
 
-                            @if($membership_id != 1 && $membership_id != 2 && $membership_id != 6)
+                            @if($membership_id != 1 && $membership_id != 2 && $membership_id != 6 && $membership_id != 5)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('7.') }}</label>
                                 <label class="col-md-3 form-label">{{ __('Reconnected Fee') }}</label>
@@ -311,7 +367,7 @@
                             @endif
 
                             <div class="row mb-1">
-                                @if($membership_id == 2 || $membership_id == 1)
+                                @if($membership_id == 2 || $membership_id == 1 || $membership_id == 5)
                                 <label class="col-md-1 form-label">{{ __('9.') }}</label>
                                 @else
                                 <label class="col-md-1 form-label">{{ __('8.') }}</label>
@@ -331,7 +387,7 @@
                                 </div>
                             </div>
                             <div class="row mb-1">
-                              @if($membership_id == 2 || $membership_id == 1)
+                              @if($membership_id == 2 || $membership_id == 1 || $membership_id == 5)
                               <label class="col-md-1 form-label">{{ __('10.') }}</label>
                               @else
                               <label class="col-md-1 form-label">{{ __('9.') }}</label>
