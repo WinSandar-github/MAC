@@ -25,6 +25,7 @@ function getCourseList() {
             { data: 'privateschool_registration_fee', name: 'Private School Registration Fee' },
             { data: 'mac_registration_fee', name: 'MAC Registration Fee' },
             { data: 'exam_fee', name: 'Exam Fee' },
+            { data: 'entry_exam_fee', name: 'Exam Fee' },
             { data: 'tution_fee', name: 'Course Fee' },
             { data: 'requirements', name: 'Requirement' },
         ],
@@ -57,7 +58,7 @@ function createMainCourse() {
                 errorMessage(response.responseJSON.message);
             }
         });
-    }else{
+    } else {
         errorMessage("Please Fill Required Field!");
     }
 }
@@ -76,6 +77,8 @@ function createCourse() {
     send_data.append('description', $("input[name=description]").val());
     send_data.append('code', $("input[name=code]").val());
     send_data.append('exam_fee', $("input[name=exam_fee]").val());
+    send_data.append('entry_exam_fee', $("input[name=entry_exam_fee]").val());
+
     send_data.append('course_type_id', $('.course_type').val());
     send_data.append('requirement_id', $('.requirement_id').val());
 
@@ -200,10 +203,12 @@ function showCourseInfo(id) {
             $('input[name=privateschool_registration_fee]').val(course_data.privateschool_registration_fee);
             $('input[name=mac_registration_fee]').val(course_data.mac_registration_fee);
             $('input[name=exam_fee]').val(course_data.exam_fee);
+            $('input[name=entry_exam_fee]').val(course_data.entry_exam_fee);
+
             $('input[name=tution_fee]').val(course_data.tution_fee);
             $('input[name=registration_start_date]').val(course_data.registration_start_date);
             $('input[name=registration_end_date]').val(course_data.registration_end_date);
-            $('.description').summernote('code',course_data.description);
+            $('.description').summernote('code', course_data.description);
             $('.course_type').val(course_data.course_type_id);
             // $('.requirement_id').val(course_data.requirement_id);
 
@@ -273,6 +278,8 @@ function updateCourse() {
     var privateschool_registration_fee = $("input[name=privateschool_registration_fee]").val();
     var mac_registration_fee = $("input[name=mac_registration_fee]").val();
     var exam_fee = $("input[name=exam_fee]").val();
+    var entry_exam_fee = $("input[name=entry_exam_fee]").val();
+
     var tution_fee = $("input[name=tution_fee]").val();
     var registration_start_date = $("input[name=registration_start_date]").val()
     var registration_end_date = $("input[name=registration_end_date]").val()
@@ -297,6 +304,7 @@ function updateCourse() {
             privateschool_registration_fee: privateschool_registration_fee,
             mac_registration_fee: mac_registration_fee,
             exam_fee: exam_fee,
+            entry_exam_fee: entry_exam_fee,
             tution_fee: tution_fee,
             registration_start_date: registration_start_date,
             registration_end_date: registration_end_date,
@@ -304,7 +312,7 @@ function updateCourse() {
             code: code,
             course_type_id: course_type_id,
             requirement_id: requirement_id,
-            
+
         },
         success: function (result) {
 
