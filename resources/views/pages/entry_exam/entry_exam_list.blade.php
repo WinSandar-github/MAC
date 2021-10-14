@@ -177,7 +177,7 @@
                 <!-- @csrf -->
                 <input type="hidden" name="batch_id" id="batch_id">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">စာမေးပွဲဖြေဆိုမယ်နေရာ သတ်မှတ်ခြင်း </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">စာမေးပွဲဖြေဆိုမည့်နေရာ သတ်မှတ်ခြင်း </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -204,7 +204,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    {{--<div class="row">
                         <label class="col-md-1 form-label">{{ __('3.') }}</label>
                         <label class="col-md-4 form-label">{{ __('တည်နေရာ') }}</label>
                         <div class="col-md-7">
@@ -213,7 +213,7 @@
                                     placeholder="Place" required>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
                     
                 </div>
 
