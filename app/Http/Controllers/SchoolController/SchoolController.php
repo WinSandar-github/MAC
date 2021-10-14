@@ -229,6 +229,7 @@ class SchoolController extends Controller
         $school->father_name_eng = $request->father_name_eng;
         $school->date_of_birth   = $request->dob;
         $school->address         = $request->address;
+        $school->eng_address         = $request->eng_address;
         $school->phone           = $request->phone;
         $school->attachment      = json_encode($attachment);
         
@@ -236,6 +237,7 @@ class SchoolController extends Controller
         $school->school_name                 = $request->school_name;
         $school->attend_course               = json_encode($request->attend_course);
         $school->school_address              = $request->school_address;
+        $school->eng_school_address          = $request->eng_school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = json_encode($own_type_letter);
         $school->business_license            = json_encode($business_license);
@@ -683,7 +685,7 @@ class SchoolController extends Controller
         $school->nrc_citizen      = $request->nrc_citizen;
         $school->nrc_number       = $request->nrc_number;
         $school->reason = $request->reason;
-        $school->renew_date = date('Y-m-d');
+        //$school->renew_date = date('Y-m-d');
         $school->type = $request->school_type;
         $school->approve_reject_status = 0;
         $school->initial_status = $request->initial_status;
@@ -1586,10 +1588,11 @@ class SchoolController extends Controller
         $school->attachment      = ($attachment);
         
         $school->profile_photo               = $profile_photo;
-        $school->school_name                 = $request->school_name;
+        $school->school_name                 = $request->old_school_name;
         $school->renew_school_name                 = $request->school_name;
-        $school->attend_course               = json_encode($request->attend_course);
-        $school->school_address              = $request->school_address;
+        $school->attend_course               = ($request->old_course);
+        $school->renew_course               = json_encode($request->attend_course);
+        $school->school_address              = $request->old_school_address;
         $school->renew_school_address              = $request->school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = ($own_type_letter);
@@ -1726,6 +1729,19 @@ class SchoolController extends Controller
                 $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
                 $branch_school->school_id       = $school->id;
                 $branch_school->save();
+            }
+        }else{
+            if($request->old_branch_school_address!=null){
+                for($i=0;$i<sizeof($request->branch_school_address);$i++){
+                    $branch_school =tbl_branch_school::find($request->old_branch_school_id);
+                    $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                    //$branch_school->renew_branch_school_address= $request->branch_school_address[$i];
+                    //$branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                    //$branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
+                    //$branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
+                    $branch_school->school_id       = $school->id;
+                    $branch_school->save();
+                }
             }
         }
         
@@ -2503,6 +2519,29 @@ class SchoolController extends Controller
         return response()->json([
             'message' => 'You have updated successfully.'
         ],200);
+    }
+    public function updateProfileSchool(Request $request,$id){
+        if ($request->hasfile('school_profile_photo')) {
+            $file = $request->file('school_profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/school_info/',$name);
+            $image = '/storage/school_info/'.$name;
+        }else{
+          $image = $request->old_school_profile_photo;
+        }
+
+
+        $school = SchoolRegister::find($id);
+        $school->phone         = $request->phone;
+        $school->address       = $request->address;
+        $school->eng_address   = $request->eng_address;
+        $school->profile_photo = $image;
+        $school->save();
+
+        return response()->json([
+            'message' => "Successfully Update Message"
+        ],200);
+
     }
 }
 
