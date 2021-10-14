@@ -24,10 +24,12 @@ class BatchController extends Controller
             'data'  => $batches
         ]);
     }
+
     public function create()
     {
        
     }
+
     public function store(Request $request)
     {            
         $request->validate([
@@ -64,10 +66,9 @@ class BatchController extends Controller
         $batches = Batch::where('id',$id)->with('course','exams')->first();
         return response()->json([
             'data'  => $batches
-        ]);return $batch;
-
-        
+        ]);
     }
+    
     public function edit($id)
     {
     }
