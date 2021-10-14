@@ -88,7 +88,7 @@
                                                         <span class="nrc_back"></span>
                                                     </div>
                                             </div>
-                                            <div class="row mt-3">
+                                            <!-- <div class="row mt-3">
                                                     <div class="col-sm-6">
                                                         <b>အဘအမည်(မြန်မာ)/အဘအမည်(အင်္ဂလိပ်)</b>
                                                     </div>
@@ -103,7 +103,7 @@
                                                     <div class="col-sm-6">
                                                         <span  id="date_of_birth"></span>
                                                     </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row mt-3">
                                                     <div class="col-sm-6">
                                                         <b>ဖုန်းနံပါတ်</b>
@@ -148,10 +148,18 @@
                                     <hr>
                                     <div class="row mt-3 border-bottom ">
                                         <div class="col-md-6">
-                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ </p>
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(မြန်မာ) </p>
                                         </div>
                                         <div class="col-md-6">
                                             <span id="address"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 border-bottom ">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(အင်္ဂလိပ်) </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="eng_address"></span>
                                         </div>
                                     </div>
                                     <div class="row mt-3 border-bottom view-attachment" style="display:none;">
