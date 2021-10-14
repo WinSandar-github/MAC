@@ -9,6 +9,7 @@ use App\StudentCourseReg;
 use App\StudentJobHistroy;
 use App\registration_self_study;
 use App\AccountancyFirmInformation;
+use App\CPAFF;
 use App\FirmOwnershipAudit;
 use App\TeacherRegister;
 use App\SchoolRegister;
@@ -116,7 +117,7 @@ class StudentInfoController extends Controller
     public function show($id)
     {
         //
-        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct','exam_registers','student_course_regs')->first();
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct','exam_registers','student_course_regs','cpa_ff')->first();
          return response()->json(['data' => $student_info],200);
     }
 
@@ -319,7 +320,21 @@ class StudentInfoController extends Controller
         }else  if($request->membership == "non_audit"){
             return "Non Audit";
         }else if($request->membership == "cpaff"){
-            return "cpaff";
+            $cpaff=CPAFF::where('student_info_id',$id)->first();
+            $cpaff->address     = $request->address;
+            $cpaff->profile_photo         = $image;
+            $cpaff->email         = $request->email;
+            $cpaff->phone         = $request->phone;
+            $cpaff->save();
+
+            $student_info = StudentInfo::find($id);
+            $student_info->email         = $request->email;
+            $student_info->date_of_birth = $request->date_of_birth;
+            $student_info->phone         = $request->phone;
+            $student_info->address       = $request->address;
+            $student_info->image         = $image;
+            $student_info->save();
+
         }else if($request->membership == "papp"){
             return "papp";
         }else if($request->membership == "school"){
