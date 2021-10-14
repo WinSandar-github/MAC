@@ -66,7 +66,7 @@ class CreatePappsTable extends Migration
             $table->string('papp_reg_no')->nullable();
             $table->string('audit_work')->nullable();
             $table->integer('type')->nullable();
-            $table->text('self_confession');
+            $table->text('self_confession')->nullable();
             $table->text('reject_description')->nullable();
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();
