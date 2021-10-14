@@ -1088,23 +1088,19 @@
 	                                                                <tbody id="tbl_type_service_body">
 																																		@if($service_provided)
 																																			@foreach($service_provided as $service)
+																																			
 																																				<tr>
 																																					<td>
 																																						<input disabled type="checkbox" name="t_s_p_id" value="{{$service->id}}" id="{{$service->id}}"
 																																						<?php
-																																							$t_s_p_ary = json_decode($item->type_of_service_provided_id);
-																																							foreach ($t_s_p_ary as $value) {
-																																								$str_arr = preg_split ("/\,/", $value);
-																																							}
-																																							foreach($str_arr as $each_t_s_p_id){
-																																								if($service->id == $each_t_s_p_id){
+																																							$t_s_p_arr = json_decode($item->type_of_service_provided_id);
+
+																																							foreach($t_s_p_arr as $val){
+																																								if($val == $service->id){
 																																									echo "checked";
 																																								}
-																																								else {
-																																									echo "";
-																																								}
 																																							}
-																																						?>
+																																						 ?>
 																																						/>
 
 																																						<label class='form-check-label'>{{$service->name}}</label>
