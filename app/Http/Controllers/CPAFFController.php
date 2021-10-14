@@ -198,6 +198,11 @@ class CPAFFController extends Controller
             $cpa_ff->is_renew          =   $request->is_renew;
             $cpa_ff->self_confession   =   $request->self_confession;
             $cpa_ff->type              =   $request->type;
+
+            $thisYear = date('Y');
+            $today = date('d-m-Y');
+            $cpa_ff->validate_from = $today;
+            $cpa_ff->validate_to = '31-12-' . $thisYear;
             $cpa_ff->save();
 
             //save to std info
@@ -225,18 +230,19 @@ class CPAFFController extends Controller
             $student_data->student_info_id = $std_info->id;
             $student_data->save();
 
-            //INVOICE
+            //invoice
             $fees = Membership::where('membership_name','=','CPAFF')->first(['form_fee', 'registration_fee']);
-            $stdInfo = StudentInfo::where('id', '=', $std_info->id)->first();
+            $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+            //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
             $invoice = new Invoice();
-            $invoice->student_info_id = $std_info->id;
+            $invoice->student_info_id = $request->student_id;
             $invoice->invoiceNo       = '';
-            $invoice->name_eng        =  $stdInfo->name_eng;
-            $invoice->email           = $stdInfo->email;
-            $invoice->phone           = $stdInfo->phone;
-            $invoice->productDesc     = 'Application Fee, Registration Fee';
-            $invoice->amount          = $fees->form_fee .','. $fees->registration_fee;
+            $invoice->name_eng       =  $stdInfo->name_eng;
+            $invoice->email       = $stdInfo->email;
+            $invoice->phone       = $stdInfo->phone;
+            $invoice->productDesc = 'Application Fee + Registration Fee';
+            $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
             
@@ -412,20 +418,26 @@ class CPAFFController extends Controller
         $cpa_ff->letter   =   $letter;              
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->type              =   $request->type;
+
+        $thisYear = date('Y');
+        $today = date('d-m-Y');
+        $cpa_ff->validate_from = $today;
+        $cpa_ff->validate_to = '31-12-' . $thisYear;
         $cpa_ff->save();
 
-        //INVOICE
+        //invoice
         $fees = Membership::where('membership_name','=','CPAFF')->first(['form_fee', 'registration_fee']);
-        $stdInfo = StudentInfo::where('id', '=', $request->student_info_id)->first();
+        $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+        //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
         $invoice = new Invoice();
-        $invoice->student_info_id = $request->student_info_id;
+        $invoice->student_info_id = $request->student_id;
         $invoice->invoiceNo       = '';
-        $invoice->name_eng        =  $stdInfo->name_eng;
-        $invoice->email           = $stdInfo->email;
-        $invoice->phone           = $stdInfo->phone;
-        $invoice->productDesc     = 'Application Fee, Registration Fee';
-        $invoice->amount          = $fees->form_fee .','. $fees->registration_fee;
+        $invoice->name_eng       =  $stdInfo->name_eng;
+        $invoice->email       = $stdInfo->email;
+        $invoice->phone       = $stdInfo->phone;
+        $invoice->productDesc = 'Application Fee + Registration Fee';
+        $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
         $invoice->status          = 0;
         $invoice->save();
 
@@ -611,21 +623,40 @@ class CPAFFController extends Controller
         $cpa_ff->is_convicted        =   $request->is_convicted;  
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;
+
+        $thisYear = date('Y');
+        $today = date('d-m-Y');
+
+        $cpa_ff->validate_from = $today ;
+        $cpa_ff->validate_to = '31-12-' . $thisYear;
         $cpa_ff->save();
         
-        //INVOICE
-        $fees = Membership::where('membership_name','=','CPAFF')->first(['renew_fee']);
-        $stdInfo = StudentInfo::where('id', '=', $request->student_info_id)->first();
+        //invoice
+        $fees = Membership::where('membership_name','=','CPAFF')->first(['renew_fee','form_fee', 'late_fee']);
+        $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+        //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
         $invoice = new Invoice();
-        $invoice->student_info_id = $request->student_info_id;
+        $invoice->student_info_id = $request->student_id;
         $invoice->invoiceNo       = '';
-        $invoice->name_eng        = $stdInfo->name_eng;
+        $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
-        $invoice->productDesc     = 'Renewal Fee';
-        $invoice->amount          = $fees->renew_fee;
-        $invoice->status          = 0;
+        
+        list($oldDay, $oldMonth, $oldYear) = explode('-', $oldPapp->validate_to);
+        if($thisYear == $oldYear){
+            $invoice->productDesc     = 'Application Fee, Renewal Fee';
+            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+        }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
+            $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
+            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+        }
+        // else if($thisYear == $oldYear + 1 && ( 1 < date('m') <= 4)){
+        //     $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+        //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+        // }
+
+        $invoice->status = 0;
         $invoice->save();
 
         // $initial_cpaff->status=0;

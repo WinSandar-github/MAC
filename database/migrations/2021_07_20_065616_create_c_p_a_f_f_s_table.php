@@ -85,6 +85,8 @@ class CreateCPAFFSTable extends Migration
             $table->integer('self_confession')->nullable();
             $table->integer('type')->nullable();
             $table->date('reg_date')->default(null)->nullable();
+            $table->string('validate_from')->nullable();
+            $table->string('validate_to')->nullable();
             $table->timestamps();
         });
     }
