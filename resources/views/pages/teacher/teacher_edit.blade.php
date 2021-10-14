@@ -138,7 +138,25 @@
 
                                     <div class="row mt-3 border-bottom ">
                                         <div class="col-md-6">
-                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(မြန်မာ)
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="current_address"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 border-bottom ">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(အင်္ဂလိပ်)
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="eng_current_address"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 border-bottom ">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> အမြဲတမ်းနေရပ်လိပ်စာ(မြန်မာ)
                                             </p>
                                         </div>
                                         <div class="col-md-6">
@@ -147,11 +165,11 @@
                                     </div>
                                     <div class="row mt-3 border-bottom ">
                                         <div class="col-md-6">
-                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> အမြဲတမ်းနေရပ်လိပ်စာ
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> အမြဲတမ်းနေရပ်လိပ်စာ(အင်္ဂလိပ်)
                                             </p>
                                         </div>
                                         <div class="col-md-6">
-                                            <span id="current_address"></span>
+                                            <span id="eng_address"></span>
                                         </div>
                                     </div>
                                     <div class="row mt-3 ">
@@ -284,7 +302,7 @@
                                     <hr>
                                     <div class="row mt-5 border-bottom">
                                         <div class="col-md-6">
-                                            <p style="font-weight:bold">ဘာသာရပ်ကြေး စုစုပေါင်း</p>
+                                            <p style="font-weight:bold">ဘာသာရပ်ကြေး၊စာရင်းသွင်းကြေး၊ဖောင်ကြေး စုစုပေါင်း</p>
                                         </div>
                                         <div class="col-md-6">
                                             <input type='text' id="subject_total_amount" class="form-control" disabled>

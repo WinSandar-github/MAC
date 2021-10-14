@@ -7,10 +7,10 @@ use App\Course;
 use App\StudentInfo;
 use App\StudentRegister;
 use App\ExamRegister;
-
-
-
+use App\Module;
+use App\ExamDepartment;
 use Illuminate\Support\Str;
+use LdapRecord\Query\Events\Read;
 use Yajra\DataTables\Facades\DataTables;
 
 class ReportController extends Controller
@@ -19,15 +19,28 @@ class ReportController extends Controller
     {
          
         $current_course = Course::where('code',$request->code)->with('active_batch')->first();
-      
+       
         $student_infos = ExamRegister::where('batch_id',$current_course->active_batch[0]->id)
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
                         ->where('exam_type_id','!=',3)
                         ->where('status',1)
-                        ->with('student_info')
-                        ->orderBy('is_full_module','desc')
-                        ->orderBy('student_infos.name_mm','asc')->select('exam_register.*');
+                        ->with('student_info')->select('exam_register.*');
 
+        $student_infos = $current_course->course_type->course_code == "da" 
+        ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no)','ASC')->orderBy('student_infos.personal_no','ASC')
+        : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC')->orderBy('student_infos.cpersonal_no','ASC');
+                        
+        if($request->module)
+        {
+        
+            $student_infos = $student_infos->where('is_full_module',$request->module);
+        }
+
+        if($request->exam_department)
+        {
+            
+            $student_infos = $student_infos->where('exam_department',$request->exam_department);
+        }
         
         $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
         $request->exam_type_id &&  $student_infos =  $student_infos->Where('exam_type_id',$request->exam_type_id);
@@ -40,15 +53,22 @@ class ReportController extends Controller
                     $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                     return $nrc_result;
                 })
+                ->addColumn('cpersonal_no', function ($infos){
+                    $cpersonal_no = $infos->course->course_type->course_code == "da" 
+                    ? $infos->student_info->personal_no
+                    : $infos->student_info->cpersonal_no;
+                    return $cpersonal_no;
+                })
                 ->addColumn('module', function ($infos) {
                     if ($infos->is_full_module == 1) {
-                        return "Module One";
+                        return "Module 1";
                     } else if ($infos->is_full_module == 2) {
-                        return "Module Two";
+                        return "Module 2";
                     } else {
-                        return "Full Module";
+                        return "All Module";
                     }
                 })
+                ->rawColumns(['action','nrc','cpersonal_no','module'])
                 ->make(true);
          
 
@@ -65,6 +85,11 @@ class ReportController extends Controller
                         ->where('status',1)
                         ->with('student_info')
                         ->orderBy('student_infos.name_mm','asc')->select('exam_register.*');
+ 
+        if($request->batch)
+        {  
+            $student_infos = $student_infos->where('batch_id',$request->batch);
+        }
 
         
         $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
@@ -93,53 +118,77 @@ class ReportController extends Controller
     }
 
     
-    // public function showRegistrationList(Request $request)
-    // {
+    public function showRegistrationList(Request $request)
+    {
         
-    //     $current_course = Course::where('code',$request->code)->with('active_batch')->first();
+        $current_course = Course::where('code',$request->code)->with('active_batch')->first();
         
-    //     $student_infos = StudentRegister::where('form_type',$current_course->active_batch[0]->course->id)
-    //                     ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
-    //                     ->where('student_register.status',1)
-    //                     ->orderBy('student_infos.name_mm','asc')
-    //                     ->orderBy('student_register.type','asc')
-    //                     ->with('student_info')
-    //                     ->select('student_infos.name_mm','student_register.*')->get();
+        $student_infos = StudentRegister::where('batch_id',$current_course->active_batch[0]->course->id)
+                        ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
+                        ->where('student_register.status',1)
+                        ->orderBy('student_register.type','desc')
+                        ->orderBy('student_infos.name_mm','asc')
+                        ->with('student_info','course')
+                        ->select('student_infos.name_mm','student_register.*');
+
+         if($request->module)
+        {
+            
+            $student_infos = $student_infos->where('student_register.module',$request->module);
+        }
+
+        if($request->student_type !== 'select_type')
+        {
+        
+            $student_infos = $student_infos->where('student_register.type',$request->student_type);
+        }                
                                         
-    //     // $student_infos  = $student_infos->select('type')->get();
-    //       return DataTables::of($student_infos)
-    //             ->addColumn('nrc', function ($infos){
-    //                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
-    //                 return $nrc_result;
-    //             })
-    //             ->make(true);
+        $student_infos  = $student_infos->get();
+          return DataTables::of($student_infos)
+                ->addColumn('nrc', function ($infos){
+                    $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                    return $nrc_result;
+                })
+                ->addColumn('cpersonal_no', function ($infos){
+                    $cpersonal_no = $infos->course->course_type->course_code == "da" 
+                    ? $infos->student_info->personal_no
+                    : $infos->student_info->cpersonal_no;
+                    return $cpersonal_no;
+                })
+                ->make(true);
          
 
-    // }
+    }
    
     public function attendAppList($code)  
     {
         $course = Course::where('code',$code)->with('active_batch','course_type')->first();
-        $student_registers = StudentRegister::where('form_type',$course->active_batch[0]->course->id)
-        ->join('student_infos','student_infos.id','=','student_register.student_info_id')
-        ->where('student_register.status',1)
-        ->orderBy('student_infos.name_mm','asc')
-        ->orderBy('student_register.type','asc')
-        ->with('student_info')
-        ->select('student_infos.name_mm','student_register.*')->get();
+        $modules = Module::get();
+        // $student_registers = StudentRegister::where('batch_id',$course->active_batch[0]->id)
+        // ->join('student_infos','student_infos.id','=','student_register.student_info_id')
+        // ->where('student_register.status',1)
+        // ->orderBy('student_register.type','desc')
+        // ->orderBy('student_infos.name_mm','asc')
+        // ->with('student_info')
+        // ->select('student_infos.name_mm','student_register.*')->get();
         
-       
-        return view('reporting.application_list',compact('course','student_registers'));
+        
+        return view('reporting.application_list',compact('course','modules'));
     }
     public function attendExamList($code)  
     {
         $course = Course::where('code',$code)->first();
-        return view('reporting.exam_list',compact('course'));
+        $modules = Module::get();
+        $exam_departments = ExamDepartment::get();
+
+        return view('reporting.exam_list',compact('course','modules','exam_departments'));
     }
 
     public function currentEntryExamList($code)  
     {
-        $course = Course::where('code',$code)->first();
+        $course = Course::where('code',$code)->with('batches')->first();
+       
+        
         return view('reporting.current_entry_exam_list',compact('course'));
     }
     
@@ -396,9 +445,11 @@ class ReportController extends Controller
         return view('reporting.school_teacher.s_t_report3');
     }
     
-    public function da_report1()  
+    public function da_report1(Request $request)  
     {
-        return view('reporting.da.da_report3');
+        // return view('reporting.da.da_report3');
+
+        return view('reporting.dynamic_report_template');
     }
 
     public function da_report2()  

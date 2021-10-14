@@ -27,7 +27,7 @@ class CreateStudentInfosTable extends Migration
             $table->string('nrc_back')->nullable();
             $table->string('father_name_mm')->nullable();
             $table->string('father_name_eng')->nullable();
-            $table->string('gender');
+            $table->string('gender')->nullable();
             $table->string('race')->nullable();
             $table->string('religion')->nullable();
             $table->string('date_of_birth')->nullable();

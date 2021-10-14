@@ -29,8 +29,7 @@ class CourseSeeder extends Seeder
                 'course_type_id' => 1,
                 'code' => 'da_1',
                 'requirement_id' => '1,4,5',
-                'cpa_subject_fee' =>'30000',
-                'da_subject_fee' =>'20000',
+                
             ),
             array(
                 'name' => "Diploma In Accountancy Part Two",
@@ -45,8 +44,7 @@ class CourseSeeder extends Seeder
                 'course_type_id' => 1,
                 'code' => 'da_2',
                 'requirement_id' => '1,4,6',
-                'cpa_subject_fee' =>'30000',
-                'da_subject_fee' =>'20000',
+                
             ),
             array(
                 'name' => "Certified Public Accountant Part One",
@@ -61,8 +59,7 @@ class CourseSeeder extends Seeder
                 'course_type_id' => 2,
                 'code' => 'cpa_1',
                 'requirement_id' => '9,11,12',
-                'cpa_subject_fee' =>'30000',
-                'da_subject_fee' =>'20000',
+                
             ),
             array(
                 'name' => "Certified Public Accountant Part Two",
@@ -77,8 +74,7 @@ class CourseSeeder extends Seeder
                 'course_type_id' => 2,
                 'code' => 'cpa_2',
                 'requirement_id' => '9,11,12',
-                'cpa_subject_fee' =>'30000',
-                'da_subject_fee' =>'20000',
+                
             ),
         ]);
     }

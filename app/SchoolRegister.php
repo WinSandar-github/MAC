@@ -40,4 +40,5 @@ class SchoolRegister extends Model
     public function manage_room_numbers(){
         return $this->hasMany(tbl_manage_room_numbers::class,'school_id','id');
     }
+    
 }

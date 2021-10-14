@@ -8,6 +8,11 @@ use App\EducationHistroy;
 use App\StudentCourseReg;
 use App\StudentJobHistroy;
 use App\registration_self_study;
+use App\AccountancyFirmInformation;
+use App\CPAFF;
+use App\FirmOwnershipAudit;
+use App\TeacherRegister;
+use App\SchoolRegister;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -112,7 +117,7 @@ class StudentInfoController extends Controller
     public function show($id)
     {
         //
-        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct','exam_registers','student_course_regs')->first();
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct','exam_registers','student_course_regs','cpa_ff')->first();
          return response()->json(['data' => $student_info],200);
     }
 
@@ -144,14 +149,34 @@ class StudentInfoController extends Controller
             $image = $request->old_image;
         }
 
-        if ($request->hasfile('certificates')) {
-                $file = $request->file('certificates');
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_info/',$name);
-                $certificate = '/storage/student_info/'.$name;
-
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = $request->old_nrc_front;
         }
-        else{
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = $request->old_nrc_back;
+        }
+
+        
+        if($request->hasfile('certificate'))
+        {
+            foreach($request->file('certificate') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $certificate[] = '/storage/student_info/'.$name;
+            }        
+        }else{
             $certificate = $request->old_certificate;
         }
 
@@ -175,8 +200,11 @@ class StudentInfoController extends Controller
         $student_info->nrc_township     =   $request['nrc_township'] ;
         $student_info->nrc_citizen      =    $request['nrc_citizen'] ;
         $student_info->nrc_number       =   $request['nrc_number'];
+        $student_info->nrc_front        =   $nrc_front;
+        $student_info->nrc_back         =   $nrc_back;
         $student_info->father_name_mm   =   $request->father_name_mm;
         $student_info->father_name_eng  =   $request->father_name_eng;
+        $student_info->gender           =   $request->gender;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion;
         $student_info->date_of_birth    =   $date_of_birth;
@@ -255,15 +283,30 @@ class StudentInfoController extends Controller
     public  function userProfile($id)
     {
         $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course_regs'
-        ,'exam_registers','student_register','accountancy_firm','school','mentor','teacher','cpa_ff','papp',
-        'article','firm_ownerships_audits','gov_article','exam_results','qualified_test')->first();
+        ,'exam_registers','student_register','school','mentor','teacher','cpa_ff','papp',
+        'article','gov_article','exam_results','qualified_test')->first();
 
 
         return response()->json(['data' => $student_info],200);
     }
 
+    public  function getFirmDashboardData($id)
+    {
+        $student_info = StudentInfo::where('id',$id)->with('accountancy_firm')->latest()->first();
+        $firm_id = AccountancyFirmInformation::where('student_info_id',$id)
+                                            ->select('id')
+                                            ->latest()
+                                            ->first();
+
+        $firm_ownerships_audits = FirmOwnershipAudit::where('accountancy_firm_info_id',$firm_id['id'])->get();
+
+        return response()->json(['data' => $student_info,
+                                  'firm_ownerships_audits' => $firm_ownerships_audits
+                              ],200);
+    }
+
     public function updateProfile(Request $request,$id){
-          if ($request->hasfile('image')) {
+           if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
@@ -271,14 +314,55 @@ class StudentInfoController extends Controller
         }else{
             $image = $request->old_image;
         }
+        
+        if($request->membership == "audit"){
+            return "Audit";
+        }else  if($request->membership == "non_audit"){
+            return "Non Audit";
+        }else if($request->membership == "cpaff"){
+            $cpaff=CPAFF::where('student_info_id',$id)->first();
+            $cpaff->address     = $request->address;
+            $cpaff->profile_photo         = $image;
+            $cpaff->email         = $request->email;
+            $cpaff->phone         = $request->phone;
+            $cpaff->save();
 
-        $student_info = StudentInfo::find($id);
-        $student_info->email         = $request->email;
-        $student_info->date_of_birth = $request->date_of_birth;
-        $student_info->phone         = $request->phone;
-        $student_info->address       = $request->address;
-        $student_info->image         = $image;
-        $student_info->save();
+            $student_info = StudentInfo::find($id);
+            $student_info->email         = $request->email;
+            $student_info->date_of_birth = $request->date_of_birth;
+            $student_info->phone         = $request->phone;
+            $student_info->address       = $request->address;
+            $student_info->image         = $image;
+            $student_info->save();
+
+        }else if($request->membership == "papp"){
+            return "papp";
+        }else if($request->membership == "school"){
+            $school = SchoolRegister::find($id);
+            $school->phone         = $request->phone;
+            $school->address       = $request->address;
+            $school->eng_address   = $request->eng_address;
+            $school->profile_photo = $image;
+            $school->save();
+        }else  if($request->membership == "teacher"){
+            $teacher = TeacherRegister::find($id);
+            $teacher->phone         = $request->phone;
+            $teacher->current_address       = $request->address;
+            $teacher->eng_current_address       = $request->eng_address;
+            $teacher->image         = $image;
+            $teacher->save();
+        }else if($request->membership == "mentor"){
+            return "mentor";
+        }else{
+
+            $student_info = StudentInfo::find($id);
+            $student_info->email         = $request->email;
+            $student_info->date_of_birth = $request->date_of_birth;
+            $student_info->phone         = $request->phone;
+            $student_info->address       = $request->address;
+            $student_info->image         = $image;
+            $student_info->save();
+        }
 
         return response()->json([
             'message' => "Successfully Update Message"
