@@ -1,7 +1,7 @@
 @extends('layouts.app', [
-    'class' => '',
-    'parentElement' => '',
-    'elementActive' => 'reporting_list'
+'class' => '',
+'parentElement' => '',
+'elementActive' => 'reporting_list'
 ])
 
 @section('content')
@@ -115,50 +115,100 @@
         </div>
     </div>
 
-    <div class="modal right fade" id="more-modal" tabindex="-1" role="dialog" >
-		<div class="modal-dialog modal-lg" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
+    <div class="modal right fade" id="more-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h5 class="modal-title" id="title">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-				</div>
+                </div>
 
-				<div class="modal-body" id="more-title">
-					<div class="row mb-2">
-                        <div class="col-md-3">
-                            <select class="form-control" id="select-batch">
-                                <option value="">Select Batch</option>
-                                @foreach ( $batches as $batch )
-                                    <option value="{{$batch->id}}">{{ _($batch->name) }}</option>
-                                @endforeach
-                            </select>
+                <form method="POST" id="report-form" target="_blank">
+                    <div class="modal-body" id="more-title">
+                        <div class="row mb-2">
+                            <div class="col-md-6">
+                                <select class="form-control" id="select-course" name='course'>
+                                    <option value="">Select Course</option>
+                                    @foreach ($courses as $course)
+                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="select-batch" name='batch'>
+                                    <option value="">Select Batch</option>
+                                    {{-- @foreach ($batches as $batch)
+                                        <option value="{{ $batch->id }}">{{ $batch->name }}</option>
+                                    @endforeach --}}
+                                </select>
+                            </div>
                         </div>
                     </div>
-				</div>
-			</div><!-- modal-content -->
-		</div><!-- modal-dialog -->
-	</div><!-- modal -->
+                </form>
+            </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+    </div><!-- modal -->
 @endsection
 
 @push('scripts')
     <script src="/js/reporting_constant.js"></script>
     <script type="text/javascript">
         $('.show-more-modal').on('click', function() {
+
             let MAIN_REPORT = this.dataset.section
 
-            switch(MAIN_REPORT) {
+            let course = {!! $courses !!};
+
+            switch (MAIN_REPORT) {
                 case _MAIN_TITLE[0]: // DA
                     clearModalContent()
                     setModalContent('DA SECTION', _DA)
+
+                    $('#select-course').empty();
+
+                    $('#select-course').append($('<option>', {
+                        value: '',
+                        text: 'Select Course'
+                    }));
+
+                    let da_course = course.filter(val => {
+                        return val.course_type_id == 1
+                    });
+
+                    da_course.forEach(val => {
+                        $('#select-course').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
 
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[1]: // CPA
                     clearModalContent()
-                    setModalContent('CPA SECTION', _CPA)
+                    setModalContent('CPA SECTION', _CPA);
+
+                    $('#select-course').empty();
+
+                    $('#select-course').append($('<option>', {
+                        value: '',
+                        text: 'Select Course'
+                    }));
+
+                    let cpa_course = course.filter(val => {
+                        return val.course_type_id == 2
+                    });
+
+                    cpa_course.forEach(val => {
+                        $('#select-course').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
 
                     $('#more-modal').modal('show')
 
@@ -178,19 +228,20 @@
 
             $('#title').text(title)
 
-            body.map( (val, index) => {
+            body.map((val, index) => {
+
                 let elem = `<div class="row mb-2">
                     <div class="col-md-12">
                         <div class="list-group">
-                            <a href="{{ url('${val.route_name}') }}" class="list-group-item list-group-item-action disabled">
+                            <button data-url="${val.route_name}" class="list-group-item list-group-item-action disabled" onclick="${val.fun_name}">
                                 ${val.sub_title}
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>`
 
                 $('#more-title').append(elem)
-            })
+            });
 
             onChangeBatch()
         }
@@ -204,18 +255,40 @@
             $('#select-batch').val('')
         }
 
+        $('#select-course').on('change', function() {
+
+            $.getJSON(`${BACKEND_URL}/get_batch/${$(this).val()}`, function(data) {
+                if (data != null) {
+                    $('#select-batch').empty();
+
+                    $('#select-batch').append($('<option>', {
+                        value: '',
+                        text: 'Select Batch'
+                    }));
+
+                    data.data.forEach(val => {
+                        $('#select-batch').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
+                }
+            });
+
+        });
+
         function onChangeBatch() {
             $('#select-batch').on('change', function() {
                 let batch = $(this).val()
 
-                if ( batch !== '' ) {
-                    $('.list-group').each( function() {
+                if (batch !== '') {
+                    $('.list-group').each(function() {
                         $(this).find('a').removeClass('disabled')
 
                         let base_url = $(this).find('a').attr('href')
                         let url_split = base_url.split('/')
 
-                        if ( url_split.length > 4 ) {
+                        if (url_split.length > 4) {
                             base_url = base_url.slice(0, base_url.lastIndexOf('/'))
 
                             $(this).find('a').attr('href', base_url + `/${batch}`)
@@ -224,7 +297,7 @@
                         }
                     })
                 } else {
-                    $('.list-group').each( function() {
+                    $('.list-group').each(function() {
                         $(this).find('a').addClass('disabled')
 
                         let base_url = $(this).find('a').attr('href')
@@ -236,23 +309,59 @@
             })
         }
 
-        $('document').ready( function(){
-            $('.card').each( function() {
+        $('document').ready(function() {
+            $('.card').each(function() {
                 let title = $(this).find('.show-more-modal').data('section')
                 let span_text = $(this).find('span')
 
-                switch(title) {
-                    case _MAIN_TITLE[0]: 
+                switch (title) {
+                    case _MAIN_TITLE[0]:
                         span_text.text(_DA.length)
                         break;
-                    case _MAIN_TITLE[1]: 
+                    case _MAIN_TITLE[1]:
                         span_text.text(_CPA.length)
                         break;
-                    default: 
+                    default:
                         span_text.text('0')
                 }
             })
-        }) 
+        })
+
+        function daAttendList(url) {
+            if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+                $('#report-form').attr('action', url);
+                $('#report-form').submit();
+            } else {
+                alert('select course and batch');
+            }
+        }
+
+        function daRegList(url) {
+            if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+                $('#report-form').attr('action', url);
+                $('#report-form').submit();
+            } else {
+                alert('select course and batch');
+            }
+        }
+
+        function daExamRegList(url) {
+            if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+                $('#report-form').attr('action', url);
+                $('#report-form').submit();
+            } else {
+                alert('select course and batch');
+            }
+        }
+
+        function daPassList(url) {
+            if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+                $('#report-form').attr('action', url);
+                $('#report-form').submit();
+            } else {
+                alert('select course and batch');
+            }
+        }
     </script>
 
     <style>
@@ -270,13 +379,13 @@
         }
 
         .modal.right .modal-content {
-		    height: 100% !important;
-		    overflow-y: auto;
-	    }
+            height: 100% !important;
+            overflow-y: auto;
+        }
 
         .modal.right .modal-body {
-		    padding: 15px 15px 80px;
-	    }
+            padding: 15px 15px 80px;
+        }
 
         .modal.right .modal-dialog {
             position: fixed;
@@ -302,7 +411,6 @@
         a.disabled {
             pointer-events: none;
         }
+
     </style>
 @endpush
-
-

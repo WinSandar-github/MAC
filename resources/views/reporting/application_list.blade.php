@@ -8,7 +8,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="text-center m-3" style="font-weight:bold">တက်ရောက်ခွင့်ရသူများစာရင်း</h3>
+                            <h3 class="text-center m-3" style="font-weight:bold">
+                                {{ $course->name_mm }}<br>
+                                {{ $course->active_batch[0]->name_mm }}<br>
+                                တက်ရောက်ခွင့်ရသူများစာရင်း
+                            </h3>
                         </div>
                     </div>
                 </div>
