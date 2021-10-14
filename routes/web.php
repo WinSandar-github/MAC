@@ -215,12 +215,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('s_t_report2','ReportController@s_t_report2');
     Route::get('s_t_report3','ReportController@s_t_report3');
 
+
     // DA Report
-    Route::get('da_report1/{batch}','ReportController@da_report1');
-    Route::get('da_report2','ReportController@da_report2');
-    Route::get('da_report3','ReportController@da_report3');
-    Route::get('da_report4','ReportController@da_report4');
-    Route::get('da_report5','ReportController@da_report5');
+
+    Route::get('report_list', 'ReportController@index')->name('report_list');
+
+    Route::post('da_attend','ReportController@daAttendList');
+    Route::post('da_reg','ReportController@daRegList');
+    Route::post('da_exam_reg','ReportController@daExamRegList');
+    Route::post('da_pass','ReportController@daPassList');
+    Route::post('da_report5','ReportController@da_report5');
     Route::get('da_report6','ReportController@da_report6');
     Route::get('da_report7','ReportController@da_report7');
     Route::get('da_report8','ReportController@da_report8');

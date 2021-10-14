@@ -4,18 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\Batch;
 use App\StudentInfo;
 use App\StudentRegister;
 use App\ExamRegister;
-
-
-
 use Illuminate\Support\Str;
 use LdapRecord\Query\Events\Read;
 use Yajra\DataTables\Facades\DataTables;
 
 class ReportController extends Controller
 {
+
+    public function index()
+    {
+        $courses = Course::all();
+        $batches = Batch::all();
+            
+        return view('pages.reporting_list', compact('batches', 'courses'));
+    }
+
     public function showExamList(Request $request)
     {
          
@@ -132,6 +139,7 @@ class ReportController extends Controller
        
         return view('reporting.application_list',compact('course','student_registers'));
     }
+
     public function attendExamList($code)  
     {
         $course = Course::where('code',$code)->first();
@@ -397,26 +405,39 @@ class ReportController extends Controller
         return view('reporting.school_teacher.s_t_report3');
     }
     
-    public function da_report1(Request $request)  
+    // DA One
+    public function daAttendList(Request $request)  
     {
-        // return view('reporting.da.da_report3');
 
-        return view('reporting.dynamic_report_template');
+        $course = Course::where('code', '=', $request->course)
+                        ->with('active_batch','course_type')
+                        ->first();
+
+        $student_registers = StudentRegister::where('form_type', $request->batch)
+                    ->join('student_infos','student_infos.id','=','student_register.student_info_id')
+                    ->where('student_register.status',1)
+                    ->orderBy('student_infos.name_mm','asc')
+                    ->orderBy('student_register.type','asc')
+                    ->with('student_info')
+                    ->select('student_infos.name_mm','student_register.*')
+                    ->get();                    
+
+        return view('reporting.application_list',compact('course','student_registers'));
     }
 
-    public function da_report2()  
+    public function daRegList(Request $request)  
     {
-        return view('reporting.da.da_report2');
+        return $request;
     }
 
-    public function da_report3()  
+    public function daExamRegList(Request $request)  
     {
-        return view('reporting.da.da_report3');
+        return $request;
     }
 
-    public function da_report4()  
+    public function daPassList(Request $request)  
     {
-        return view('reporting.da.da_report4');
+        return $request;
     }
 
     public function da_report5()  
