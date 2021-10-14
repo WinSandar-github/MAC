@@ -8,20 +8,13 @@
 @extends('layouts.app', [
     'class' => '',
     'parentElement' => '',
-    'elementActive' => 'Article_list'
+    'elementActive' => 'firm_article_list'
 ])
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="{{ asset("assets/css/plugins/bootstrap/bootstrap.min.css") }}">
 <style>
     .label{
         text-align: right;
-    }
-    li{
-        display: inline;
-    }
-    ul{
-        padding-left: 0px !important;
-        font-weight:bold;
     }
 </style>
 @section('content')
@@ -231,19 +224,26 @@
                         <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၀။') }}</span>ဆက်သွယ်ရန်လိပ်စာ</label>
                             <div class="col-md-9">
-                            <input type="text" name="address" id="address" class="form-control" readonly>
+                            <input type="text" name="current_address" id="current_address" class="form-control" readonly>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၁။') }}</span>ဖုန်းနံပါတ်</label>
+                            <label class="col-md-3 col-form-label label"><span class="pull-left" id="address_label">{{ __('၁၁။') }}</span>အမြဲတမ်းနေရပ်လိပ်စာ<span style="color:red">*</span></label>
+                            <div class="col-md-9">
+                                <input type="text" name="address" id="address" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၂။') }}</span>ဖုန်းနံပါတ်</label>
                             <div class="col-md-9">
                                 <input type="text" name="phone_no" id="phone_no" class="form-control" readonly>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၂။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၃။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
                             <div class="col-md-9">
                             <input type="text" name="papp_name" id="papp_name" class="form-control" readonly>
                             </div>
@@ -265,7 +265,7 @@
 
                         <div id="previous_papp_name_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၃။') }}</span>ယခင်အလုပ်သင်ကြားခဲ့သည့် PAPP အမည်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၄။') }}</span>ယခင်အလုပ်သင်ကြားခဲ့သည့် PAPP အမည်</label>
                                 <div class="col-md-9">
                                     <input type="text" name="previous_papp_name" id="previous_papp_name" class="form-control" readonly>
                                 </div>
@@ -275,7 +275,7 @@
 
                         <div id="previous_papp_date_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၄။') }}</span>ယခင်အလုပ်သင်ဆင်းခဲ့သည့် ကာလ</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၅။') }}</span>ယခင်အလုပ်သင်ဆင်းခဲ့သည့် ကာလ</label>
                                 <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -291,7 +291,7 @@
 
                         <div id="previous_exam_pass_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="exam_pass_date_label">{{ __('၁၅။') }}</span>စာမေးပွဲကျင်းပသည့် ခုနှစ်၊လ ၊ အောင်မြင်သည့်အမှတ်စဥ် </label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="exam_pass_date_label">{{ __('၁၆။') }}</span>စာမေးပွဲကျင်းပသည့် ခုနှစ်၊လ ၊ အောင်မြင်သည့်အမှတ်စဥ် </label>
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -307,7 +307,7 @@
 
                         <div id="done_form_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၁၆။') }}</span>Done Form Attachment</label>
+                                <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၁၇။') }}</span>Done Form Attachment</label>
                                 <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-3">

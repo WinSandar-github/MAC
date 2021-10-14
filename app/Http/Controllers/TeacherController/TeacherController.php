@@ -153,7 +153,7 @@ class TeacherController extends Controller
             $std_info->password = Hash::make($request->password);
             $std_info->save();
 
-        $teacher->t_code = 'T-00'.$teacher->id;
+        // $teacher->t_code = 'T-00'.$teacher->id;
         $teacher->student_info_id = $std_info->id;
         $teacher->save();
 
@@ -281,10 +281,29 @@ class TeacherController extends Controller
         $teacher->gov_employee = $request->gov_employee;
         $teacher->exp_desc = $request->exp_desc;
         $teacher->image = $image;
+
+        $certificates = ""; $diplomas = "";
+        if($request->certificates!=null){
+            foreach($request->certificates as $c){
+                $certificates = $certificates . $c . ',';
+    
+            }
+            
+        }
         
-        $teacher->certificates = json_encode($request->certificates);
-        $teacher->diplomas = json_encode($request->diplomas);
+        if($request->diplomas!=null){
+            foreach($request->diplomas as $d){
+                $diplomas = $diplomas . $d . ',';
+    
+            }
+            
+        }
+        $teacher->certificates = rtrim($certificates, ',');
+        $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->address = $request->address;
+        $teacher->eng_address = $request->eng_address;
+        $teacher->current_address = $request->current_address;
+        $teacher->eng_current_address = $request->eng_current_address;
         $teacher->recommend_letter = $recommend_letter;
         $teacher->position = $request->position;
         $teacher->department = $request->department;
@@ -322,6 +341,7 @@ class TeacherController extends Controller
                      $file->move(public_path().'/storage/teacher_info/',$name);
                      $old_degrees_certificates[] = $name;
                  }
+                 $old_degrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_degrees_certificates_h);
                  for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
                     $education_histroy->university_name = $request->old_degrees[$i];
@@ -886,7 +906,7 @@ class TeacherController extends Controller
         // $teacher->father_name_eng = $request->father_name_eng;
         $teacher->renew_date = date('Y-m-d');
         // $teacher->email = $request->email;
-        // $teacher->phone = $request->phone;
+        $teacher->phone = $request->phone;
         // $teacher->nrc_state_region = $request->nrc_state_region;
         // $teacher->nrc_township = $request->nrc_township;
         // $teacher->nrc_citizen = $request->nrc_citizen;
@@ -896,17 +916,25 @@ class TeacherController extends Controller
         $teacher->image = $image;
         
         $certificates = ""; $diplomas = "";
-        foreach($request->certificates as $c){
-            $certificates = $certificates . $c . ',';
-
+        if($request->certificates!=null){
+            foreach($request->certificates as $c){
+                $certificates = $certificates . $c . ',';
+    
+            }
+            
         }
-        foreach($request->diplomas as $d){
-            $diplomas = $diplomas . $d . ',';
-
+        
+        if($request->diplomas!=null){
+            foreach($request->diplomas as $d){
+                $diplomas = $diplomas . $d . ',';
+    
+            }
+            
         }
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->current_address = $request->current_address;
+        $teacher->eng_current_address = $request->eng_current_address;
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
@@ -926,8 +954,8 @@ class TeacherController extends Controller
                 $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->university_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
-                $education_histroy->teacher_id      = $request->teacher_id;
-                $education_histroy->renewteacher_id      = $teacher->id;
+                $education_histroy->teacher_id      = $teacher->id;
+               
                 $education_histroy->save();
             }
         }else{
@@ -939,6 +967,7 @@ class TeacherController extends Controller
                      $file->move(public_path().'/storage/teacher_info/',$name);
                      $old_renewdegrees_certificates[] = $name;
                  }
+                 $old_renewdegrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_renewdegrees_certificates_h);
                  for($i=0;$i <sizeof($request->old_renewdegrees);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
                     $education_histroy->university_name = $request->old_renewdegrees[$i];

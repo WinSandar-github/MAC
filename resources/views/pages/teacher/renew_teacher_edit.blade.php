@@ -142,7 +142,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <div class="row mt-3 ">
+                                    <div class="row mt-3 school_name_class" style="display:none;">
                                         <div class="col-md-6">
                                             <p style="font-weight:bold">သင်ကြားမည့်သင်တန်းကျောင်းအမည်</p>
                                         </div>

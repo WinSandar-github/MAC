@@ -110,11 +110,7 @@ function getSchoolInfos(){
             }else{
                 $('.form-name').append('ကျောင်းပုံစံ-၆');
             }
-            if(data.data.initial_status==1){
-                $('#student_info_id').val(data.data.student_info_id);
-            }else{
-                $('#student_info_id').val(data.data.student_info_id);
-            }
+            $('#student_info_id').val(data.data.student_info_id);
             document.getElementById('image').src = PDF_URL + data.data.profile_photo;
             $("#name").append(data.data.name_mm+"/"+data.data.name_eng);
             let nrc = data.data.nrc_state_region+"/"+data.data.nrc_township+"("+data.data.nrc_citizen+")"+data.data.nrc_number;

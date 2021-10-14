@@ -67,11 +67,11 @@
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
-                                        <th class="bold-font-weight" >Serial number</th>
+                                        <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >အမည်</th>
-                                        <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
+                                        <th class="bold-font-weight" >မှတ်ပုံတင်အမှတ်</th>
                                         <th class="bold-font-weight">ဘွဲ့အမည်</th>
-                                        <th class="bold-font-weight" >ကိုယ်ပိုင်နံပါတ်</th>
+                                        <th class="bold-font-weight" >ကိုယ်ပိုင်အမှတ်</th>
 
                                     </tr>
                                 </thead>
