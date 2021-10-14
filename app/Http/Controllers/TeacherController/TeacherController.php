@@ -8,6 +8,7 @@ use App\TeacherRegister;
 use App\StudentInfo;
 use App\EducationHistroy;
 use App\Invoice;
+use App\Membership;
 
 use Hash;
 use DB;
@@ -109,12 +110,13 @@ class TeacherController extends Controller
         $teacher->exp_desc = $request->exp_desc;
         $teacher->image = $image;
         
-        $certificates = ""; $diplomas = "";
+        $certificates = ""; $diplomas = "";$cpa_subject_count=0;$da_subject_count=0;
         if($request->certificates!=null){
             foreach($request->certificates as $c){
                 $certificates = $certificates . $c . ',';
     
             }
+            $cpa_subject_count=sizeof($request->certificates);
         }
         
         if($request->diplomas!=null){
@@ -122,6 +124,7 @@ class TeacherController extends Controller
                 $diplomas = $diplomas . $d . ',';
     
             }
+            $da_subject_count=sizeof($request->diplomas);
         }
         
         $teacher->certificates = rtrim($certificates, ',');
@@ -168,16 +171,24 @@ class TeacherController extends Controller
             }
         }
         
+        $memberships = Membership::where('membership_name', 'like', 'Teacher')->get();
         
-
         //invoice
-        // $invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
+            $invoice = new Invoice();
+            $invoice->student_info_id = $std_info->id;
+            $invoice->invoiceNo = '';
+            
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = $request->email;
+            $invoice->phone           = $request->phone;
 
-        // $invoice = new Invoice();
-        // $invoice->student_info_id = $std_info->id;
-        // $invoice->invoiceNo       = $invNo;
-        // $invoice->status          = 0;
-        // $invoice->save();
+            $invoice->productDesc     = 'Application Fee,Registration Fee,Subject CPA count *Yearly Fee,Subject DA count *Yearly Fee';
+            foreach($memberships as $memberships){
+                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
+            }
+           
+            $invoice->status          = 0;
+            $invoice->save();
 
         return response()->json([
             'message' => 'Success Registration.'
@@ -630,18 +641,26 @@ class TeacherController extends Controller
         $teacher->nrc_back = $nrc_back;
         $teacher->image = $image;
         
-        $certificates = ""; $diplomas = "";
-        foreach($request->certificates as $c){
-            $certificates = $certificates . $c . ',';
-
+        $certificates = ""; $diplomas = "";$cpa_subject_count=0;$da_subject_count=0;
+        if($request->certificates!=null){
+            foreach($request->certificates as $c){
+                $certificates = $certificates . $c . ',';
+    
+            }
+            $cpa_subject_count=sizeof($request->certificates);
         }
-        foreach($request->diplomas as $d){
-            $diplomas = $diplomas . $d . ',';
-
+        
+        if($request->diplomas!=null){
+            foreach($request->diplomas as $d){
+                $diplomas = $diplomas . $d . ',';
+    
+            }
+            $da_subject_count=sizeof($request->diplomas);
         }
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->current_address = $request->current_address;
+        $teacher->eng_current_address = $request->eng_current_address;
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
@@ -664,7 +683,24 @@ class TeacherController extends Controller
                 $education_histroy->save();
             }
         }
+        $memberships = Membership::where('membership_name', 'like', 'Teacher')->get();
         
+        //invoice
+            $invoice = new Invoice();
+            $invoice->student_info_id = $request->student_info_id;
+            $invoice->invoiceNo = '';
+            
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = $request->email;
+            $invoice->phone           = $request->phone;
+
+            $invoice->productDesc     = 'Application Fee,Subject CPA count *Renew Fee,Subject DA count *Renew Fee';
+            foreach($memberships as $memberships){
+                $invoice->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
+            }
+           
+            $invoice->status          = 0;
+            $invoice->save();
 
         return response()->json([
             'message' => 'Success Registration.'
@@ -929,27 +965,5 @@ class TeacherController extends Controller
             'message' => 'Updated Successfully.'
         ],200);
     }
-    public function updateProfileTeacher(Request $request,$id){
-        if ($request->hasfile('profile_photo')) {
-            $file = $request->file('profile_photo');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/teacher_info/',$name);
-            $image = '/storage/teacher_info/'.$name;
-        }else{
-          $image = $request->old_profile_photo;
-        }
-
-
-        $teacher = TeacherRegister::find($id);
-        $teacher->phone         = $request->phone;
-        $teacher->current_address       = $request->address;
-        $teacher->eng_current_address       = $request->eng_address;
-        $teacher->image         = $image;
-        $teacher->save();
-
-        return response()->json([
-            'message' => "Successfully Update Message"
-        ],200);
-
-    }
+    
 }
