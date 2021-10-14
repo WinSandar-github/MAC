@@ -7,9 +7,7 @@ use App\Course;
 use App\StudentInfo;
 use App\StudentRegister;
 use App\ExamRegister;
-
-
-
+use App\Batch;
 use Illuminate\Support\Str;
 use LdapRecord\Query\Events\Read;
 use Yajra\DataTables\Facades\DataTables;
@@ -399,7 +397,9 @@ class ReportController extends Controller
     
     public function da_report1(Request $request)  
     {
-        // return view('reporting.da.da_report3');
+        $batch_name = Batch::find($request->batch);
+
+        
 
         return view('reporting.dynamic_report_template');
     }

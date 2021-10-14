@@ -32,14 +32,14 @@ class PageController extends Controller
         //$role = Role::create(['name'=>'writer']);
 
         //$permission = Permission::create(['name' => 'edit articles']);
-
-        if ( view()->exists("pages.reporting_list") ) {
-            $batches = Batch::all();
-            
-            return view('pages.reporting_list', compact('batches'));
-        }
         
         if (view()->exists("pages.{$page}")) {
+            if ( $page == 'reporting_list' ) {
+                $batches = Batch::all();
+            
+                return view('pages.reporting_list', compact('batches'));
+            }
+
              return view("pages.{$page}");
         }
 
