@@ -1189,12 +1189,28 @@
 	                                            <input type="hidden" name="audit_firm_id" >
 
                                               @if($item->status == 0)
-																							<div class="row mt-5 justify-content-center">
-																									{{--<button type="submit" name="save" class="btn btn-danger"  onclick="rejectNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
-																									<button type="submit" name="save" id="reject_audit_btn" data-toggle="modal" data-target="#remarkModal" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-																									<button type="submit" name="save" class="btn btn-primary" onclick="approveNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-																							</div>
+																								@if($item->is_renew == 0)
+																									<div id="initial_btns">
+																										<div class="row mt-5 justify-content-center">
+																												{{--<button type="submit" name="save" class="btn btn-danger"  onclick="rejectNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
+																												<button type="submit" name="save" id="reject_audit_btn" data-toggle="modal" data-target="#remarkModal" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+																												<button type="submit" name="save" class="btn btn-primary" onclick="approveNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+																										</div>
+																									</div>
+																								 @else
+																								 <div id="renew_btns">
+	 																								<div class="row mt-5 justify-content-center">
+	 								                                    {{--<button type="submit" name="save" id="reject_non_audit_btn_renew" class="btn btn-danger"  onclick="rejectAuditFirmRenew()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
+
+	 																										<button type="submit" name="save" id="reject_non_audit_btn_renew" data-toggle="modal" data-target="#remarkModalRenew" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+	 								                                    <button type="submit" name="save" id="approve_non_audit_btn_renew" class="btn btn-primary" onclick="approveAuditFirmRenew()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+
+	 								                                </div>
+	 																							</div>
+																								@endif
 																							@endif
+
+
 	                          		</div>
 
 

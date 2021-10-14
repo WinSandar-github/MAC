@@ -349,8 +349,6 @@ class AccFirmInfController extends Controller
           }
         }
 
-
-
         if($request->audit_firm_type_id == 1)
         {
             // Audit Firm
@@ -511,26 +509,38 @@ class AccFirmInfController extends Controller
             }
 
             //invoice for non-audit
-            // $invoice = new Invoice();
-            // $invoice->student_info_id = $std_info->id;
-            //
-            // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-            // // $invoice->invoiceNo       = $invNo;
-            //
-            // $invoice->invoiceNo = '';
-            //
-            // $invoice->name_eng        = $std_info->email;
-            // $invoice->email           = $std_info->email;
-            // $invoice->phone           = '';
-            //
-            // $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'registration_fee']);
+            $invoice = new Invoice();
+            $invoice->student_info_id = $std_info->id;
+
+            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // $invoice->invoiceNo       = $invNo;
+
+            $invoice->invoiceNo = '';
+
+            $invoice->name_eng        = $std_info->email;
+            $invoice->email           = $std_info->email;
+            $invoice->phone           = '';
+
+            $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'reg_fee_sole','reg_fee_partner']);
+
             // $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
             //               ->where('authority_to_sign', '=', 1)->count();
-            //
-            // $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee';
-            // $invoice->amount          = $fees->form_fee . ',' . $papp_count . ' x ' . $fees->registration_fee;
-            // $invoice->status          = 0;
-            // $invoice->save();
+
+            $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee';
+            if($request->organization_structure_id == 1){
+              // for Sole Proprietorship
+              $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_sole;
+            }
+            else if($request->organization_structure_id == 2 || $request->organization_structure_id == 3){
+              // for Partnership and Company
+              $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
+            }
+            else{
+              // for Other
+              $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
+            }
+            $invoice->status          = 0;
+            $invoice->save();
         }
 
         return "success";
@@ -1499,7 +1509,6 @@ class AccFirmInfController extends Controller
             $deeds_memo = null;
         }
 
-
         if($request->hasfile('certificate_incors'))
         {
             foreach($request->file('certificate_incors') as $file)
@@ -1734,7 +1743,7 @@ class AccFirmInfController extends Controller
         }
 
         if($request->audit_firm_type_id == 1){
-            //Audit
+            //Audit Firm
             if($request->org_stru_id){
                 $audit_file= new AuditFirmFile();
                 $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
@@ -1795,8 +1804,32 @@ class AccFirmInfController extends Controller
                 $audit_total_staff->save();
             }
 
+            //Student Info
+            $std_info = StudentInfo::find($request->student_id);
+
+            //invoice for audit
+            $invoice = Invoice::where('student_info_id',$request->student_id)->first();
+            //$invoice->student_info_id = $std_info->id;
+
+            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // $invoice->invoiceNo       = $invNo;
+
+            $invoice->invoiceNo = '';
+
+            $invoice->name_eng        = $std_info->email;
+            $invoice->email           = $std_info->email;
+            $invoice->phone           = '';
+
+            $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'renew_fee']);
+            $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+                          ->where('authority_to_sign', '=', 1)->count();
+
+            $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report)';
+            $invoice->amount          = $fees->form_fee . ',' . $papp_count . ' x ' . $fees->renew_fee;
+            $invoice->status          = 0;
+            $invoice->save();
         }
-        //Non-Audit
+        //Non-Audit Firm
         else
         {
             //Non-Audit Firm File
@@ -1853,6 +1886,7 @@ class AccFirmInfController extends Controller
             }
 
             if($request->local_foreign_type == 2){
+                // foreign firm type
                 //Myanmar cpa non audit foreigns
                 for($i=0;$i<sizeof($request->mf_name);$i++){
                     $foreign = new MyanmarCpaNonAuditForeign();
@@ -1866,6 +1900,42 @@ class AccFirmInfController extends Controller
                 }
 
             }
+
+            //Student Info
+            $std_info = StudentInfo::find($request->student_id);
+
+            //invoice for non-audit
+            $invoice = Invoice::where('student_info_id',$request->student_id)->first();
+
+            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // $invoice->invoiceNo       = $invNo;
+
+            $invoice->invoiceNo = '';
+
+            $invoice->name_eng        = $std_info->email;
+            $invoice->email           = $std_info->email;
+            $invoice->phone           = '';
+
+            $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'renew_fee_sole','renew_fee_partner']);
+
+            // $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+            //               ->where('authority_to_sign', '=', 1)->count();
+
+            $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee';
+            if($request->organization_structure_id == 1){
+              // for Sole Proprietorship
+              $invoice->amount          = $fees->form_fee . ',' . $fees->renew_fee_sole;
+            }
+            else if($request->organization_structure_id == 2 || $request->organization_structure_id == 3){
+              // for Partnership and Company
+              $invoice->amount          = $fees->form_fee . ',' . $fees->renew_fee_partner;
+            }
+            else{
+              // for Other
+              $invoice->amount          = $fees->form_fee . ',' . $fees->renew_fee_partner;
+            }
+            $invoice->status          = 0;
+            $invoice->save();
         }
 
 
