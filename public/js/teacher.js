@@ -303,13 +303,22 @@ function getTeacherInfos(){
                     $('input[name="radio1"]').attr('disabled', 'disabled');
                     $('.recommend_row').hide();
                 }
-                $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                if(value.nrc_front!=null){
+                    $('.nrc-css').hide();
+                    $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                }
+                if(value.nrc_back!=null){
+                    $('.nrc-back-css').hide();
+                    $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                }
+                
                 $("#race").append(value.race);
                 $("#religion").append(value.religion);
                 $("#date_of_birth").append(value.date_of_birth);
                 $("#address").append(value.address);
+                $("#eng_address").append(value.eng_address);
                 $("#current_address").append(value.current_address);
+                $("#eng_current_address").append(value.eng_current_address);
                 $("#position").append(value.position);
                 $("#department").append(value.department);
                 $("#organization").append(value.organization);
@@ -457,15 +466,19 @@ function sumTotalAmount(total){
     let sum = 0;
     var row_cpa = document.getElementById('tbl_certificate').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
     var row_da = document.getElementById('tbl_diploma').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-    
-    $('#tbl_certificate tbody').each(function() {
-        sum += removeComma($(this).find('td:eq(2)').html())*row_cpa;
-        
-     });
-     $('#tbl_diploma tbody').each(function() {
-        sum += removeComma($(this).find('td:eq(2)').html())*row_da;
-        
-     });
+    if(row_cpa!=0){
+        $('#tbl_certificate tbody').each(function() {
+            sum += removeComma($(this).find('td:eq(2)').html())*row_cpa;
+            
+        });
+    }
+    if(row_da!=0){
+        $('#tbl_diploma tbody').each(function() {
+            sum += removeComma($(this).find('td:eq(2)').html())*row_da;
+            
+         });
+    }
+     
      
      $('#subject_total_amount').val(thousands_separators(sum+total));
 }

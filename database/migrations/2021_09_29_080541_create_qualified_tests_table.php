@@ -21,12 +21,14 @@ class CreateQualifiedTestsTable extends Migration
             $table->string('local_education')->nullable();
             $table->string('local_education_certificate')->nullable();
             $table->integer('foreign_education')->nullable();
+            $table->biginteger('other_edu_foreign')->nullable();
             $table->string('organization_name')->nullable();
             $table->text('organization_address')->nullable();
             $table->string('organization_email')->unique()->nullable();
             $table->string('exam_date')->nullable();
             $table->string('exam_reg_no');
             $table->biginteger('grade')->nullable();
+
             $table->text('office_address')->nullable();
             $table->integer('approve_reject_status');
             $table->integer('know_policy');
