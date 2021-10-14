@@ -225,7 +225,7 @@ class ApiController extends Controller
         ->where('student_course_regs.approve_reject_status',1)
         ->join('student_infos','student_infos.id','=','student_course_regs.student_info_id')              
         ->where('student_course_regs.status',1)
-        ->orderBy('student_course_regs.type','asc')
+        ->orderBy('student_course_regs.type','desc')
         ->orderBy('student_infos.name_mm','asc')
         ->with('student_info')
         ->select('student_infos.name_mm','student_course_regs.*')->get();

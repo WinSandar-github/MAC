@@ -660,23 +660,30 @@ class StudentRegisterController extends Controller
        
        
         $course = Course::where('code',$request->course_code)->with('course_type','active_batch')->first();
-        
+          
         $student_infos = StudentRegister::with('student_info','course')
+                        ->where('status',1)
                         ->where('batch_id', $course->active_batch[0]->id)
-                        ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
+                        ->whereNotNull('sr_no');
+                       
+                        
+ 
           if($request->module)
         {
             
             $student_infos = $student_infos->where('module',$request->module);
         }
-
-        if($request->student_type !== 'select_type')
+         if($request->student_type)
         {
             
             $student_infos = $student_infos->where('type',$request->student_type);
         }
 
-
+        $student_infos =    $student_infos->orderByRaw('LENGTH(sr_no)','‌asc')
+                            ->orderBy('sr_no','asc')
+                            ->get();
+                         
+        
       
         return DataTables::of($student_infos)
 
@@ -785,7 +792,9 @@ class StudentRegisterController extends Controller
         
          $student_infos = StudentCourseReg::with('student_info')
                          ->where('batch_id',$course->active_batch[0]->id)
-                         ->whereNotNull('sr_no')->orderBy('sr_no','asc')->get();
+                         ->where('approve_reject_status',1)
+                         ->whereNotNull('sr_no')
+                         ->orderByRaw('LENGTH(sr_no)','ASC')->orderBy('sr_no','asc')->get();
              
          return DataTables::of($student_infos)
  

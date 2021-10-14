@@ -24,8 +24,8 @@ class DaReportController extends Controller
         $student_registers = StudentCourseReg::where('batch_id', $request->batch)
             ->join('student_infos','student_infos.id','=','student_course_regs.student_info_id')
             ->where('student_course_regs.approve_reject_status',1)
-            ->orderBy('student_infos.name_mm','asc')
             ->orderBy('student_course_regs.type','asc')
+            ->orderBy('student_infos.name_mm','asc')
             ->with('student_info')
             ->select('student_infos.name_mm','student_course_regs.*')
             ->get();
@@ -41,12 +41,12 @@ class DaReportController extends Controller
 
         $batch = Batch::where('id','=',$request->batch)->first();    
 
-
+        
         $student_registers = StudentRegister::where('batch_id', $request->batch)
         ->join('student_infos','student_infos.id','=','student_register.student_info_id')
         ->where('student_register.status',1)
+        ->orderBy('student_register.type','desc')
         ->orderBy('student_infos.name_mm','asc')
-        ->orderBy('student_register.type','asc')
         ->with('student_info')
         ->select('student_infos.name_mm','student_register.*')
         ->get();

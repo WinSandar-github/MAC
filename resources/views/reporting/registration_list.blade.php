@@ -11,7 +11,7 @@
                             <h3 class="text-center m-3" style="font-weight:bold">
                                 {{ $course->name_mm }}<br>
                                 {{ $batch->name_mm }}<br>
-                                တက်ရောက်ခွင့်ရသူများစာရင်း
+                                မှတ်ပုံတင်ခွင့်ရသူများစာရင်း
                             </h3>
                         </div>
                     </div>

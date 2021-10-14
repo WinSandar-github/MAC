@@ -17,7 +17,7 @@
                     </div>
                 </div>
                  @php $currend_date =  date("Y-m-d");  @endphp
-                {{$currend_date}}
+               
                  <div class="card-body">
                     <div class="row">
                             <div class="col-md-12 pl-2">
@@ -26,37 +26,7 @@
                                 <button   onclick="generateAppSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                @endif
                             </div>
-                            <div class="col-md-9">
-                                <div class="d-flex flex-row-reverse">
-
-                                    <div class=""  >
-                                        <button type="button" class="btn btn-primary btn-round m-0"
-                                            id="search">Search</button>
-                                    </div>
-                                    <div class="mx-2">
-                                        
-                                        <select class="form-control form-select" name="student_type" id="student_type">
-                                            <option value="select_type" selected >Select Student Type</option>
-                                                
-                                            <option value=2>MAC</option>
-                                            <option value=1>Private School</option>
-                                            <option value=0>Selfstudy</option>
-    
-                                            
-                                        </select>
-                                    </div>
-                                    <div class="">
-                                        
-                                        <select class="form-control form-select" name="selected_module" id="selected_module">
-                                            <option value="" selected >Select Module</option>
-                                            @foreach($modules as $module)
-                                            <option value="{{$module['id']}}">{{$module['name']}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
+                           
 
                         <div class="col-md-12">
 
