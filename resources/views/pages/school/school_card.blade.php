@@ -58,6 +58,18 @@
                 float:right;
                 margin-top:-35px;
             }
+            textarea{
+                border-top-style: hidden;
+                border-right-style: hidden;
+                border-left-style: hidden;
+                border-bottom-style: hidden;
+                float:right;
+            }
+            label{
+                float:right;
+                margin-top:2%;
+                margin-left:70%;
+            }
         }
     </style>
 @section('content')
@@ -246,8 +258,13 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
-                                    
-                                    
+                                    <div class="row mt-3 " >
+                                        <div class="col-md-8"></div>
+                                        <div class="col-md-4">
+                                            <textarea></textarea>
+                                            <label>မှတ်ပုံတင်အရာရှိ (Registrar)</label>
+                                        </div>
+                                    </div>
                                     <center>
 
                                         <div class="row justify-content-center">

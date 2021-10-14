@@ -110,6 +110,11 @@ function getSchoolInfos(){
             }else{
                 $('.form-name').append('ကျောင်းပုံစံ-၆');
             }
+            if(data.data.initial_status==1){
+                $('#student_info_id').val(data.data.student_info_id);
+            }else{
+                $('#student_info_id').val(data.data.student_info_id);
+            }
             document.getElementById('image').src = PDF_URL + data.data.profile_photo;
             $("#name").append(data.data.name_mm+"/"+data.data.name_eng);
             let nrc = data.data.nrc_state_region+"/"+data.data.nrc_township+"("+data.data.nrc_citizen+")"+data.data.nrc_number;
@@ -122,6 +127,7 @@ function getSchoolInfos(){
             $("#date_of_birth").append(data.data.date_of_birth);
             $("#degree").append(data.data.degree);
             $("#address").append(data.data.address);
+            $("#eng_address").append(data.data.eng_address);
             $("#phone").append(data.data.phone);
             $("#email").append(data.data.email);
             $("#hidden_attach").val(data.data.attachment);
@@ -145,20 +151,28 @@ function getSchoolInfos(){
                 removeBracketed(data.data.own_type_letter,"own_type_letter");
             }
             
-            if(data.data.school_name!=null){
+            if(data.data.renew_school_name!=null){
                 $('.school_name-class').show();
                 $("#school_name").val(data.data.school_name);
+            }else{
+                $("#school_name").val(data.data.school_name);
             }
-            if(data.data.school_address!=null){
+            if(data.data.renew_school_address!=null){
                 $('.school_address-class').show();
                 $("#school_address").val(data.data.school_address);
+                $("#eng_school_address").val(data.data.eng_school_address);
+            }else{
+                $("#school_address").val(data.data.school_address);
+                $("#eng_school_address").val(data.data.eng_school_address);
             }
             if(data.data.school_location_attach!=null){
                 $('.view-school_location_attach').show();
                 $("#school_location_attach").append(`<a href='${PDF_URL+data.data.school_location_attach}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
             }
-            if(data.data.attend_course.replace(/[\'"[\]']+/g, '')!=null){
+            if(data.data.renew_course!=null && data.data.renew_course.replace(/[\'"[\]']+/g, '')!="null"){
                 $('.attend_course-class').show();
+                loadStudentCourse(data.data.renew_course.replace(/[\'"[\]']+/g, ''));
+            }else{
                 loadStudentCourse(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
             }
             if(data.data.own_type!=null){
@@ -371,80 +385,78 @@ function getSchoolInfos(){
                 });
                 createDataTable('.tbl_manage_room_numbers');
             }
-            var school_branch=data.data.school_branch;
-            $.each(school_branch, function( index, value ) {
-                var tr = "<tr>";
-                tr += `<td>${ index += 1 } </td>`;
-                tr += '<td>'+value.branch_school_address+'</td>';
-                tr += `<td><a href='${PDF_URL+value.branch_school_attach}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+            // var school_branch=data.data.school_branch;
+            // $.each(school_branch, function( index, value ) {
+            //     var tr = "<tr>";
+            //     tr += `<td>${ index += 1 } </td>`;
+            //     tr += '<td>'+value.branch_school_address+'</td>';
+            //     tr += `<td><a href='${PDF_URL+value.branch_school_attach}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
 
-                if(value.branch_sch_own_type=="private"){
-                tr += '<td>'+
-                '<div class="form-group">'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-                                                        'value="private" checked onclick=brachOwnType(this)> ကိုယ်ပိုင်'+
+            //     if(value.branch_sch_own_type=="private"){
+            //     tr += '<td>'+
+            //     '<div class="form-group">'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+            //                                             'value="private" checked onclick=brachOwnType(this)> ကိုယ်ပိုင်'+
 
-                                                '</div>'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-                                                        'value="rent" onclick=brachOwnType(this)> အငှား '+
-                                                '</div>'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
-                                                        'id="old_branch_sch_own_type" value="use_sharing" onclick=brachOwnType(this)> တွဲဖက်သုံး'+
-                                                '</div>'+
-                                            '</div>'+
-                '</td>';
-                }else if(value.branch_sch_own_type=="rent"){
-                tr += '<td>'+
-                '<div class="form-group">'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-                                                        'value="private" onclick=brachOwnType(this)> ကိုယ်ပိုင်'+
+            //                                     '</div>'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+            //                                             'value="rent" onclick=brachOwnType(this)> အငှား '+
+            //                                     '</div>'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
+            //                                             'id="old_branch_sch_own_type" value="use_sharing" onclick=brachOwnType(this)> တွဲဖက်သုံး'+
+            //                                     '</div>'+
+            //                                 '</div>'+
+            //     '</td>';
+            //     }else if(value.branch_sch_own_type=="rent"){
+            //     tr += '<td>'+
+            //     '<div class="form-group">'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+            //                                             'value="private" onclick=brachOwnType(this)> ကိုယ်ပိုင်'+
 
-                                                '</div>'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-                                                        'value="rent" checked onclick=brachOwnType(this)> အငှား '+
-                                                '</div>'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
-                                                        'id="old_branch_sch_own_type" value="use_sharing" onclick=brachOwnType(this)> တွဲဖက်သုံး'+
-                                                '</div>'+
-                                            '</div>'+
-                '</td>';
-                }else{
-                tr += '<td>'+
-                '<div class="form-group">'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-                                                        'value="private" onclick=brachOwnType('+this+')> ကိုယ်ပိုင်'+
+            //                                     '</div>'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+            //                                             'value="rent" checked onclick=brachOwnType(this)> အငှား '+
+            //                                     '</div>'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
+            //                                             'id="old_branch_sch_own_type" value="use_sharing" onclick=brachOwnType(this)> တွဲဖက်သုံး'+
+            //                                     '</div>'+
+            //                                 '</div>'+
+            //     '</td>';
+            //     }else{
+            //     tr += '<td>'+
+            //     '<div class="form-group">'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+            //                                             'value="private" onclick=brachOwnType('+this+')> ကိုယ်ပိုင်'+
 
-                                                '</div>'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-                                                        'value="rent" onclick=brachOwnType('+this+')> အငှား '+
-                                                '</div>'+
-                                                '<div class="form-check mt-2 form-check-inline">'+
-                                                    '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
-                                                        'id="old_branch_sch_own_type" value="use_sharing" checked onclick=brachOwnType('+this+')> တွဲဖက်သုံး'+
-                                                '</div>'+
-                                            '</div>'+
-                '</td>';
-                }
+            //                                     '</div>'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
+            //                                             'value="rent" onclick=brachOwnType('+this+')> အငှား '+
+            //                                     '</div>'+
+            //                                     '<div class="form-check mt-2 form-check-inline">'+
+            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
+            //                                             'id="old_branch_sch_own_type" value="use_sharing" checked onclick=brachOwnType('+this+')> တွဲဖက်သုံး'+
+            //                                     '</div>'+
+            //                                 '</div>'+
+            //     '</td>';
+            //     }
 
 
-                tr += `<td><a href='${PDF_URL+value.branch_sch_letter}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
-                tr += "</tr>";
-                $(".tbl_branch_school_body").append(tr);
-            });
-            createDataTable('.tbl_branch_school');
-            if(data.data.initial_status==1){
-                $('#student_info_id').val(data.data.student_info_id);
-            }else{
-                $('#student_info_id').val(data.data.student_info.id);
-            }
+            //     tr += `<td><a href='${PDF_URL+value.branch_sch_letter}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+            //     tr += "</tr>";
+            //     $(".tbl_branch_school_body").append(tr);
+            // });
+            //createDataTable('.tbl_branch_school');
+            
+            
+            
             
             if(data.data.type!=null){
                 $('.school-type').show();
@@ -507,6 +519,7 @@ function rejectSchoolRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
+    console.log(student_info_id)
     var reason=$("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/reject_school_register",
@@ -770,7 +783,7 @@ function loadSchoolCard(){
                 $('input:radio[name=school_type1]').attr('disabled', 'disabled');
             }
             document.getElementById('founder_name').innerHTML=data.data.name_eng;
-            var result = regions_states.filter( obj => obj.region_mm === data.data.nrc_state_region)[0];
+                var result = regions_states.filter( obj => obj.region_mm === data.data.nrc_state_region)[0];
                 var nrc_state_region_eng=result.region_en;
                 
                 var nrc_township_eng=[];
@@ -791,9 +804,10 @@ function loadSchoolCard(){
                 if(data.data.attend_course.replace(/[\'"[\]']+/g, '')!=null){
                     loadStudentCourseByCard(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
                 }
-                document.getElementById('school_location').innerHTML=data.data.school_address;
+                document.getElementById('school_location').innerHTML=data.data.eng_school_address;
                 var valid_date=new Date(data.data.from_valid_date);
-                document.getElementById('expiry_date').innerHTML="31-12"+(valid_date.getFullYear())+3;
+                var date=(valid_date.getFullYear())+3;
+                document.getElementById('expiry_date').innerHTML="31-12-"+date;
                 var school_branch=data.data.school_branch;
                 $.each(school_branch, function( index, value ) {
                     document.getElementById('branch_address').innerHTML=value.branch_school_address;

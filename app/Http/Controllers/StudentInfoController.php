@@ -10,6 +10,8 @@ use App\StudentJobHistroy;
 use App\registration_self_study;
 use App\AccountancyFirmInformation;
 use App\FirmOwnershipAudit;
+use App\TeacherRegister;
+use App\SchoolRegister;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -311,6 +313,7 @@ class StudentInfoController extends Controller
         }else{
             $image = $request->old_image;
         }
+        
         if($request->membership == "audit"){
             return "Audit";
         }else  if($request->membership == "non_audit"){
@@ -320,9 +323,19 @@ class StudentInfoController extends Controller
         }else if($request->membership == "papp"){
             return "papp";
         }else if($request->membership == "school"){
-            return 'school'; 
+            $school = SchoolRegister::find($id);
+            $school->phone         = $request->phone;
+            $school->address       = $request->address;
+            $school->eng_address   = $request->eng_address;
+            $school->profile_photo = $image;
+            $school->save();
         }else  if($request->membership == "teacher"){
-            return "teacher";
+            $teacher = TeacherRegister::find($id);
+            $teacher->phone         = $request->phone;
+            $teacher->current_address       = $request->address;
+            $teacher->eng_current_address       = $request->eng_address;
+            $teacher->image         = $image;
+            $teacher->save();
         }else if($request->membership == "mentor"){
             return "mentor";
         }else{
