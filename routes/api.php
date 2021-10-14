@@ -377,6 +377,15 @@ Route::patch('/approve_done_gov_article/{id}', 'ArticleController\ArticleControl
 Route::patch('/reject_done_gov_article/{id}', 'ArticleController\ArticleController@rejectDoneGov');
 Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@approveDone');
 Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
+Route::post('/filter_done_3yrs_article','ArticleController\ArticleController@filterDone3yrsArticle');
+Route::post('/save_registration_fee', 'ArticleController\ArticleController@saveRegistrationFee');
+Route::post('/save_gov_registration_fee', 'ArticleController\ArticleController@saveGovRegistrationFee');
+Route::post('/save_attach_file', 'ArticleController\ArticleController@saveAttachFile');
+Route::post('/filter_done_resign_article','ArticleController\ArticleController@filterDoneResignArticle');
+Route::post('/done_resign_article','ArticleController\ArticleController@doneResignArticle');
+
+Route::post('/article_renew_register', 'ArticleController\ArticleController@saveRenewArticle');
+Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
 
 // Payment
 Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
