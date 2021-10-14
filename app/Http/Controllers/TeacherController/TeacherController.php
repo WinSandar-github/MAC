@@ -153,7 +153,7 @@ class TeacherController extends Controller
             $std_info->password = Hash::make($request->password);
             $std_info->save();
 
-        $teacher->t_code = 'T-00'.$teacher->id;
+        // $teacher->t_code = 'T-00'.$teacher->id;
         $teacher->student_info_id = $std_info->id;
         $teacher->save();
 
@@ -281,10 +281,29 @@ class TeacherController extends Controller
         $teacher->gov_employee = $request->gov_employee;
         $teacher->exp_desc = $request->exp_desc;
         $teacher->image = $image;
+
+        $certificates = ""; $diplomas = "";
+        if($request->certificates!=null){
+            foreach($request->certificates as $c){
+                $certificates = $certificates . $c . ',';
+    
+            }
+            
+        }
         
-        $teacher->certificates = json_encode($request->certificates);
-        $teacher->diplomas = json_encode($request->diplomas);
+        if($request->diplomas!=null){
+            foreach($request->diplomas as $d){
+                $diplomas = $diplomas . $d . ',';
+    
+            }
+            
+        }
+        $teacher->certificates = rtrim($certificates, ',');
+        $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->address = $request->address;
+        $teacher->eng_address = $request->eng_address;
+        $teacher->current_address = $request->current_address;
+        $teacher->eng_current_address = $request->eng_current_address;
         $teacher->recommend_letter = $recommend_letter;
         $teacher->position = $request->position;
         $teacher->department = $request->department;

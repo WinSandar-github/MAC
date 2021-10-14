@@ -325,13 +325,18 @@ function getTeacherInfos(){
                 loadEductaionHistory(value.id);
                 if(value.school_type==0){
                     $("#school_name").append("Individual");
+                    $('.school_name_class').show();
                 }else{
                     if(value.school_id==null){
                         $("#school_name").append(value.school_name);
+                        $('.school_name_class').hide();
                     }else{
                         loadSchoolName(value.school_id);
                     }
                    
+                }
+                if(value.school_type==null){
+                    $('.school_name_class').hide();
                 }
                 if(value.payment_method!=null){
                     $('.period').show();
