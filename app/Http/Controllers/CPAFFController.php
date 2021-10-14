@@ -212,6 +212,8 @@ class CPAFFController extends Controller
             $std_info->name_eng = $request->name_eng;
             $std_info->nrc_state_region = $request->nrc_state_region;
             $std_info->nrc_township = $request->nrc_township;
+            $std_info->address          =   $request->address;
+            $std_info->phone            =   $request->phone;
             $std_info->nrc_citizen = $request->nrc_citizen;
             $std_info->nrc_number = $request->nrc_number;
             $std_info->name_eng = $request->name_eng;
