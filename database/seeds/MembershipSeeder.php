@@ -179,7 +179,7 @@ class MembershipSeeder extends Seeder
                 'membership_name' => 'Teacher',
                 'requirement'     => '<p>CPA(FF) မှတ်ပုံတင်သက်တမ်း ၁ နှစ် ပြည့်မြောက်သူများ</p>',
                 'description'     => NULL,
-                'form_fee'        => NULL,
+                'form_fee'        => '1000',
                 'registration_fee'=> '50000',
                 //
                 'reg_fee_sole'      => '100000',
@@ -205,6 +205,7 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>'10000',
                 'cpa_subject_fee' =>'30000',
                 'da_subject_fee' =>'20000',
+                
             ),
             array(
                 'membership_name' => 'Mentor',

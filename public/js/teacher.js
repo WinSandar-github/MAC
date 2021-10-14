@@ -303,8 +303,15 @@ function getTeacherInfos(){
                     $('input[name="radio1"]').attr('disabled', 'disabled');
                     $('.recommend_row').hide();
                 }
-                $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                if(value.nrc_front!=null){
+                    $('.nrc-css').hide();
+                    $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                }
+                if(value.nrc_back!=null){
+                    $('.nrc-back-css').hide();
+                    $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                }
+                
                 $("#race").append(value.race);
                 $("#religion").append(value.religion);
                 $("#date_of_birth").append(value.date_of_birth);
