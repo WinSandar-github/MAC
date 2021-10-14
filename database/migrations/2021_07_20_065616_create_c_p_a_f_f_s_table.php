@@ -41,7 +41,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('renew_micpa')->default(null)->nullable();
             $table->string('renew_cpd')->default(null)->nullable();
             $table->string('renew_cpaff_reg')->default(null)->nullable();
-            $table->date('renew_accepted_date')->default(null)->nullable();
+            $table->string('renew_accepted_date')->default(null)->nullable();
             $table->boolean('renew_status')->default(null)->nullable();
             // $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
 
@@ -82,8 +82,15 @@ class CreateCPAFFSTable extends Migration
             $table->string('is_convicted')->nullable();
             $table->integer('is_renew')->nullable();
             $table->text('reject_description')->nullable();
-            $table->integer('self_confession');
+            $table->integer('self_confession')->nullable();
             $table->integer('type')->nullable();
+            $table->date('reg_date')->default(null)->nullable();
+            $table->string('validate_from')->nullable();
+            $table->string('validate_to')->nullable();
+            $table->string('last_paid_year')->nullable();//new
+            $table->string('resign')->nullable();//new
+            $table->string('start_date')->nullable();//new
+            $table->string('end_date')->nullable();//new
             $table->timestamps();
         });
     }

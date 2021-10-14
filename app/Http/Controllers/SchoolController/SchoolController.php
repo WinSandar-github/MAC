@@ -16,7 +16,8 @@ use App\tbl_classroom;
 use App\tbl_manage_room_numbers;
 use App\tbl_toilet_type;
 use App\EducationHistroy;
-
+use App\Invoice;
+use App\Membership;
 
 use Hash;
 use DB;
@@ -229,6 +230,7 @@ class SchoolController extends Controller
         $school->father_name_eng = $request->father_name_eng;
         $school->date_of_birth   = $request->dob;
         $school->address         = $request->address;
+        $school->eng_address         = $request->eng_address;
         $school->phone           = $request->phone;
         $school->attachment      = json_encode($attachment);
         
@@ -236,6 +238,7 @@ class SchoolController extends Controller
         $school->school_name                 = $request->school_name;
         $school->attend_course               = json_encode($request->attend_course);
         $school->school_address              = $request->school_address;
+        $school->eng_school_address          = $request->eng_school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = json_encode($own_type_letter);
         $school->business_license            = json_encode($business_license);
@@ -249,17 +252,14 @@ class SchoolController extends Controller
         $school->nrc_citizen      = $request->nrc_citizen;
         $school->nrc_number       = $request->nrc_number;
         $school->reg_date = date('Y-m-d');
-        //$school->renew_date = date('Y-m-d');
-        // $school_type = "";
-        // if($request->school_type!=""){
-        //     foreach($request->school_type as $type){
-        //         $school_type = $school_type.$type.',';
-               
-        //     }
-        //     $school->type = rtrim($school_type, ',');
-        // }
+        
         $school->type = $request->school_type;
-        $school->student_info_id  = $request->student_info_id;
+        
+        //reconnected form
+        $school->last_registration_fee_year = $request->last_registration_fee_year;
+        $school->request_for_temporary_stop = $request->request_for_temporary_stop;
+        $school->from_request_stop_date = $request->from_request_stop_date;
+        $school->to_request_stop_date = $request->to_request_stop_date;
         $school->save();
         
         
@@ -278,7 +278,8 @@ class SchoolController extends Controller
             $std_info->password = Hash::make($request->password);
             $std_info->save();
         }
-    
+        $school->student_info_id  = $std_info->id;
+        $school->save();
 
         $degrees_certificates=implode(',', $degrees_certificates);
         $new_degrees_certificates= explode(',',$degrees_certificates);
@@ -427,6 +428,25 @@ class SchoolController extends Controller
             $manage_room_numbers->school_id       = $school->id;
             $manage_room_numbers->save();
         }
+
+        $memberships = Membership::where('membership_name', 'like', 'School')->get();
+        
+        //invoice
+            $invoice = new Invoice();
+            $invoice->student_info_id = $request->student_info_id;
+            $invoice->invoiceNo = '';
+            
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = $request->email;
+            $invoice->phone           = $request->phone;
+
+            $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee';
+            foreach($memberships as $memberships){
+                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+            }
+           
+            $invoice->status          = 0;
+            $invoice->save();
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
@@ -683,7 +703,7 @@ class SchoolController extends Controller
         $school->nrc_citizen      = $request->nrc_citizen;
         $school->nrc_number       = $request->nrc_number;
         $school->reason = $request->reason;
-        $school->renew_date = date('Y-m-d');
+        //$school->renew_date = date('Y-m-d');
         $school->type = $request->school_type;
         $school->approve_reject_status = 0;
         $school->initial_status = $request->initial_status;
@@ -1582,14 +1602,16 @@ class SchoolController extends Controller
         $school->father_name_eng = $request->father_name_eng;
         $school->date_of_birth   = $request->dob;
         $school->address         = $request->address;
+        $school->eng_address     = $request->eng_address;
         $school->phone           = $request->phone;
         $school->attachment      = ($attachment);
         
         $school->profile_photo               = $profile_photo;
-        $school->school_name                 = $request->school_name;
-        $school->renew_school_name                 = $request->school_name;
-        $school->attend_course               = json_encode($request->attend_course);
-        $school->school_address              = $request->school_address;
+        $school->school_name                 = $request->old_school_name;
+        $school->renew_school_name           = $request->school_name;
+        $school->attend_course               = ($request->old_course);
+        $school->renew_course               = json_encode($request->attend_course);
+        $school->school_address              = $request->old_school_address;
         $school->renew_school_address              = $request->school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = ($own_type_letter);
@@ -1727,6 +1749,19 @@ class SchoolController extends Controller
                 $branch_school->school_id       = $school->id;
                 $branch_school->save();
             }
+        }else{
+            if($request->old_branch_school_address!=null){
+                for($i=0;$i<sizeof($request->branch_school_address);$i++){
+                    $branch_school =tbl_branch_school::find($request->old_branch_school_id);
+                    $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                    //$branch_school->renew_branch_school_address= $request->branch_school_address[$i];
+                    //$branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                    //$branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
+                    //$branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
+                    $branch_school->school_id       = $school->id;
+                    $branch_school->save();
+                }
+            }
         }
         
         //bulding_type
@@ -1787,7 +1822,24 @@ class SchoolController extends Controller
                 $manage_room_numbers->save();
             }
         }
+        $memberships = Membership::where('membership_name', 'like', 'School')->get();
         
+        //invoice
+            $invoice = new Invoice();
+            $invoice->student_info_id = $request->student_info_id;
+            $invoice->invoiceNo = '';
+            
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = $request->email;
+            $invoice->phone           = $request->phone;
+
+            $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee';
+            foreach($memberships as $memberships){
+                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+            }
+           
+            $invoice->status          = 0;
+            $invoice->save();
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
@@ -2005,8 +2057,9 @@ class SchoolController extends Controller
         $school->nrc_back        = $nrc_back;
         $school->father_name_mm  = $request->father_name_mm;
         $school->father_name_eng = $request->father_name_eng;
-        $school->date_of_birth   = $request->dob;
+        //$school->date_of_birth   = $request->dob;
         $school->address         = $request->address;
+        $school->eng_address         = $request->eng_address;
         $school->phone           = $request->phone;
         $school->attachment      = ($attachment);
         
@@ -2030,7 +2083,7 @@ class SchoolController extends Controller
         $school->renew_date = date('Y-m-d');
         $school->type = $request->school_type;
         $school->approve_reject_status = 0;
-        $school->initial_status = $request->initial_status;
+        $school->initial_status = 1;
         
         $school->save();
         
@@ -2041,7 +2094,7 @@ class SchoolController extends Controller
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
-                $education_histroy->student_info_id = $std_info->id;
+                $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->university_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
@@ -2056,7 +2109,8 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $old_degrees_certificates[] = $name;
                  }
-                 for($i=0;$i <sizeof($request->old_degrees_id);$i++){
+                 $old_degrees_certificates= str_replace('/storage/student_info/', '', $request->old_degrees_certificates_h);
+                 for($i=0;$i <sizeof($request->old_degrees);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
                     $education_histroy->university_name = $request->old_degrees[$i];
                     $education_histroy->certificate     ='/storage/student_info/'.$old_degrees_certificates[$i];
@@ -2504,5 +2558,6 @@ class SchoolController extends Controller
             'message' => 'You have updated successfully.'
         ],200);
     }
+    
 }
 

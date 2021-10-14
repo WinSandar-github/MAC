@@ -44,11 +44,11 @@
                             <table width="100%" id="tbl_exam_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
-                                        <th class="bold-font-weight" >Serial number</th>
+                                        <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
                                         
-                                        <th class="bold-font-weight" >Status</th>
+                                        <th class="bold-font-weight" >အဘအမည်</th>
 
                                     </tr>
                                 </thead>
@@ -101,7 +101,7 @@ showEntryExamList = (course_code) =>{
                 }},
             {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
             {data: 'nrc', name: 'nrc'}, 
-            {data: 'status', name: 'status'},
+            {data: 'student_info.father_name_mm', name: 'student_info.father_name_mm'},
             
             
         ],

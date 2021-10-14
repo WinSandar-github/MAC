@@ -25,8 +25,8 @@ class CreateTeacherRegistersTable extends Migration
             $table->string('father_name_eng');
             $table->date('reg_date')->nullable();
             $table->integer('gov_employee')->default(0);
-            $table->text('certificates');
-            $table->text('diplomas');
+            $table->text('certificates')->nullable();
+            $table->text('diplomas')->nullable();
             $table->string('phone');
             $table->string('email');
             $table->string('password')->nullable();
@@ -40,7 +40,9 @@ class CreateTeacherRegistersTable extends Migration
             $table->string('religion')->nullable();
             $table->string('date_of_birth')->nullable();
             $table->string('address')->nullable();
+            $table->string('eng_address')->nullable();
             $table->string('current_address');
+            $table->string('eng_current_address');
             $table->string('recommend_letter')->nullable();
             $table->string('position')->nullable();
             $table->string('department')->nullable();

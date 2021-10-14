@@ -9,8 +9,12 @@ use App\StudentCourseReg;
 use App\StudentJobHistroy;
 use App\registration_self_study;
 use App\AccountancyFirmInformation;
+use App\CPAFF;
 use App\FirmOwnershipAudit;
 use App\Invoice;
+use App\TeacherRegister;
+use App\SchoolRegister;
+use App\Mentor;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -115,7 +119,7 @@ class StudentInfoController extends Controller
     public function show($id)
     {
         //
-        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct','exam_registers','student_course_regs')->first();
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course','cpa_one_direct','exam_registers','student_course_regs','cpa_ff')->first();
          return response()->json(['data' => $student_info],200);
     }
 
@@ -332,7 +336,7 @@ class StudentInfoController extends Controller
     }
 
     public function updateProfile(Request $request,$id){
-          if ($request->hasfile('image')) {
+           if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
@@ -340,14 +344,59 @@ class StudentInfoController extends Controller
         }else{
             $image = $request->old_image;
         }
+        
+        if($request->membership == "audit"){
+            return "Audit";
+        }else  if($request->membership == "non_audit"){
+            return "Non Audit";
+        }else if($request->membership == "cpaff"){
+            $cpaff=CPAFF::where('student_info_id',$id)->first();
+            $cpaff->address     = $request->address;
+            $cpaff->profile_photo         = $image;
+            $cpaff->email         = $request->email;
+            $cpaff->phone         = $request->phone;
+            $cpaff->save();
 
-        $student_info = StudentInfo::find($id);
-        $student_info->email         = $request->email;
-        $student_info->date_of_birth = $request->date_of_birth;
-        $student_info->phone         = $request->phone;
-        $student_info->address       = $request->address;
-        $student_info->image         = $image;
-        $student_info->save();
+            $student_info = StudentInfo::find($id);
+            $student_info->email         = $request->email;
+            $student_info->date_of_birth = $request->date_of_birth;
+            $student_info->phone         = $request->phone;
+            $student_info->address       = $request->address;
+            $student_info->image         = $image;
+            $student_info->save();
+
+        }else if($request->membership == "papp"){
+            return "papp";
+        }else if($request->membership == "school"){
+            $school = SchoolRegister::find($id);
+            $school->phone         = $request->phone;
+            $school->address       = $request->address;
+            $school->eng_address   = $request->eng_address;
+            $school->profile_photo = $image;
+            $school->save();
+        }else  if($request->membership == "teacher"){
+            $teacher = TeacherRegister::find($id);
+            $teacher->phone         = $request->phone;
+            $teacher->current_address       = $request->address;
+            $teacher->eng_current_address       = $request->eng_address;
+            $teacher->image         = $image;
+            $teacher->save();
+        }else if($request->membership == "mentor"){
+            $school = Mentor::find($id);
+            $school->phone_no         = $request->phone;
+            $school->address       = $request->address;
+            $school->image = $image;
+            $school->save();
+        }else{
+
+            $student_info = StudentInfo::find($id);
+            $student_info->email         = $request->email;
+            $student_info->date_of_birth = $request->date_of_birth;
+            $student_info->phone         = $request->phone;
+            $student_info->address       = $request->address;
+            $student_info->image         = $image;
+            $student_info->save();
+        }
 
         return response()->json([
             'message' => "Successfully Update Message"

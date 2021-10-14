@@ -17,7 +17,7 @@
                             <div class="col-md-3 pl-2">
                                
                                
-                                <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
+                                <!-- <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button> -->
                                
                             </div>
                             <div class="col-md-9">
@@ -52,10 +52,10 @@
                             <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
-                                        <th class="bold-font-weight" >Serial number</th>
+                                        <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
-                                        <th class="bold-font-weight" >Status</th>
+                                        <th class="bold-font-weight" >အဘအမည်</th>
 
                                     </tr>
                                 </thead>
@@ -109,7 +109,7 @@ showAppList = (course_code) =>{
                 }},
             {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
             {data: 'nrc', name: 'nrc'}, 
-            {data: 'status', name: 'status'},
+            {data: 'student_info.father_name_mm', name: 'student_info.father_name_mm'},
 
             
             
