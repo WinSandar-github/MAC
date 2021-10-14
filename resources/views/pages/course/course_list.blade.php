@@ -84,7 +84,8 @@
                                                 ">Private School Registration Fee</th>
                                         <th class="">
                                                 MAC Registration Fee</th>
-                                            <th class="">Exam Fee</th>
+                                        <th class="">Exam Fee</th>
+                                        <th class="">Entry Exam Fee</th>
                                         <th class="">Course Fee</th>
                                         
                                         <th class="">Requirement</th>
@@ -300,9 +301,20 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Entry Exam Registration Fee') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="entry_exam_fee" class="form-control"
+                                        placeholder="Entry Exam Registration Fee" autocomplete="off" >
+                                </div>
+                            </div>
+                        </div>
+
 
                         {{-- <div class="row">
-                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Code') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">
@@ -312,7 +324,7 @@
                         </div> --}}
 
                         <div class="row">
-                            <label class="col-md-1 form-label">{{ __('10.') }}</label>
+                            <label class="col-md-1 form-label">{{ __('11.') }}</label>
                             <label class="col-md-4 form-label">{{ __('Requirement') }}</label>
                             <div class="col-md-7">
                                 <div class="form-group">

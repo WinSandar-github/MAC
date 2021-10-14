@@ -303,8 +303,15 @@ function getTeacherInfos(){
                     $('input[name="radio1"]').attr('disabled', 'disabled');
                     $('.recommend_row').hide();
                 }
-                $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
-                $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                if(value.nrc_front!=null){
+                    $('.nrc-css').hide();
+                    $(".nrc_front").append(`<a href='${PDF_URL+value.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                }
+                if(value.nrc_back!=null){
+                    $('.nrc-back-css').hide();
+                    $(".nrc_back").append(`<a href='${PDF_URL+value.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
+                }
+                
                 $("#race").append(value.race);
                 $("#religion").append(value.religion);
                 $("#date_of_birth").append(value.date_of_birth);
@@ -318,13 +325,18 @@ function getTeacherInfos(){
                 loadEductaionHistory(value.id);
                 if(value.school_type==0){
                     $("#school_name").append("Individual");
+                    $('.school_name_class').show();
                 }else{
                     if(value.school_id==null){
                         $("#school_name").append(value.school_name);
+                        $('.school_name_class').hide();
                     }else{
                         loadSchoolName(value.school_id);
                     }
                    
+                }
+                if(value.school_type==null){
+                    $('.school_name_class').hide();
                 }
                 if(value.payment_method!=null){
                     $('.period').show();
