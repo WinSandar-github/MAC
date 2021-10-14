@@ -230,8 +230,8 @@ Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAudit
 Route::get('/check_payment_non_audit/{id}', 'AccFirmInfController@check_payment');
 Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
-//Update Non-Audit register form
-Route::post('/update_acc_firm_info/{id}','AccFirmInfController@update');
+//Update Rejected Audit Firm register form
+Route::post('/update_rejected_acc_firm_info/{id}','AccFirmInfController@update');
 
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
