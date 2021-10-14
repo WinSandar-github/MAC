@@ -10,6 +10,7 @@ use App\ExamRegister;
 use App\Module;
 use App\ExamDepartment;
 use Illuminate\Support\Str;
+use LdapRecord\Query\Events\Read;
 use Yajra\DataTables\Facades\DataTables;
 
 class ReportController extends Controller
@@ -60,11 +61,11 @@ class ReportController extends Controller
                 })
                 ->addColumn('module', function ($infos) {
                     if ($infos->is_full_module == 1) {
-                        return "Module One";
+                        return "Module 1";
                     } else if ($infos->is_full_module == 2) {
-                        return "Module Two";
+                        return "Module 2";
                     } else {
-                        return "Full Module";
+                        return "All Module";
                     }
                 })
                 ->rawColumns(['action','nrc','cpersonal_no','module'])
@@ -444,9 +445,11 @@ class ReportController extends Controller
         return view('reporting.school_teacher.s_t_report3');
     }
     
-    public function da_report1()  
+    public function da_report1(Request $request)  
     {
-        return view('reporting.da.da_report3');
+        // return view('reporting.da.da_report3');
+
+        return view('reporting.dynamic_report_template');
     }
 
     public function da_report2()  
