@@ -95,6 +95,7 @@ Route::post('/update_papp_renewal', 'PAPPController@updateRejectedRenewalData');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 Route::patch('/approve_papp_payment/{id}', 'PAPPController@approvePapp');
 Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
+Route::post('/reconnect_papp', 'PAPPController@ReconnectPapp');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
