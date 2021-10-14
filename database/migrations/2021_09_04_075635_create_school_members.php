@@ -23,6 +23,7 @@ class CreateSchoolMembers extends Migration
             $table->string('responsibility');
             $table->string('ph_number');
             $table->string('email');
+            
             $table->timestamps();
 
             $table->foreign('school_id')

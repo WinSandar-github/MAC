@@ -9,4 +9,5 @@ class TeacherRegister extends Model
     public function student_info(){
         return $this->belongsTo(StudentInfo::class,'id','teacher_id');
     }
+    
 }

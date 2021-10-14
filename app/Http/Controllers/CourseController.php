@@ -82,13 +82,14 @@ class CourseController extends Controller
         $course->privateschool_registration_fee = $request->privateschool_registration_fee;
         $course->mac_registration_fee = $request->mac_registration_fee;
         $course->exam_fee = $request->exam_fee;
+        $course->entry_exam_fee = $request->entry_exam_fee;
+
         $course->tution_fee = $request->tution_fee;
         $course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
         $course->code = $request->code;
         $course->requirement_id     = $request->requirement_id;
-        $course->cpa_subject_fee     = $request->cpa_subject_fee;
-        $course->da_subject_fee     = $request->da_subject_fee;
+        
 
         $course->save();
         return response()->json([
@@ -146,9 +147,8 @@ class CourseController extends Controller
         $course->tution_fee = $request->tution_fee;
         $course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
-        $course->code = $request->code;
-        $course->cpa_subject_fee     = $request->cpa_subject_fee;
-        $course->da_subject_fee     = $request->da_subject_fee;
+        // $course->code = $request->code;
+        $course->entry_exam_fee = $request->entry_exam_fee;
         $course->requirement_id = json_encode($requirements);
         $course->save();
         return response()->json([
@@ -242,11 +242,11 @@ class CourseController extends Controller
                     return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-xs' onclick='showCourseInfo($course->id)'>
                                     <li class='fa fa-edit fa-sm'></li>
-                                </button>
-                                 <button type='button' class='btn btn-danger btn-xs' onclick='deleteCourseInfo(\"$course->name\", $course->id)'>
-                                    <li class='fa fa-trash fa-sm'></li>
-                                </button>
-                            </div>";
+                                </button>";
+                            //      <button type='button' class='btn btn-danger btn-xs' onclick='deleteCourseInfo(\"$course->name\", $course->id)'>
+                            //         <li class='fa fa-trash fa-sm'></li>
+                            //     </button>
+                            // </div>";
                 })
                 ->addColumn('description', function ($course) {
                     return $course->course_type ? Str::limit($course->course_type->course_description, 50, '...') : '';

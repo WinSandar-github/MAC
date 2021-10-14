@@ -92,7 +92,7 @@ function generateEntranceExamSrNo(code) {
         success: function (result) {
             EasyLoading.hide();
             successMessage("Update Serial Number");
-            // location.reload();
+            location.reload();
 
         }
     });

@@ -23,6 +23,7 @@ class CreateSchoolEstablishers extends Migration
             $table->string('address');
             $table->string('ph_number');
             $table->string('email');
+            
             $table->timestamps();
 
             $table->foreign('school_id')

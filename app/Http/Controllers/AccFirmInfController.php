@@ -127,8 +127,6 @@ class AccFirmInfController extends Controller
             $certi_incor = null;
         }
 
-
-
         if($request->hasfile('tax_reg_certificate'))
         {
             foreach($request->file('tax_reg_certificate') as $file)
@@ -284,10 +282,11 @@ class AccFirmInfController extends Controller
         $acc_firm_info->accountancy_firm_reg_no =  uniqid();
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
         $acc_firm_info->head_office_address   = $request->head_office_address;
-        $acc_firm_info->township                = $request->township;
+        $acc_firm_info->head_office_address_mm   = $request->head_office_address_mm;
+        //$acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
-        $acc_firm_info->city                    = $request->city;
-        $acc_firm_info->state_region            = $request->state;
+        //$acc_firm_info->city                    = $request->city;
+        //$acc_firm_info->state_region            = $request->state;
         $acc_firm_info->telephones              = $request->phone_no;
         $acc_firm_info->h_email                 = $request->h_email;
         $acc_firm_info->website                 = $request->website;
@@ -303,6 +302,7 @@ class AccFirmInfController extends Controller
           $acc_firm_info->dir_passport_csc = $request->dir_passport_csc;
         }
         $acc_firm_info->declaration                  = $request->declaration;
+        $acc_firm_info->declaration_mm                  = $request->declaration_mm;
         $acc_firm_info->status   = 0;
         // $acc_firm_info->form_fee = $request->form_fee;
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
@@ -327,14 +327,9 @@ class AccFirmInfController extends Controller
         // $std_info->verify_status    =   1;
         $std_info->save();
 
-        //invoice
-        $invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
-
-        $invoice = new Invoice();
-        $invoice->student_info_id = $std_info->id;
-        $invoice->invoiceNo       = $invNo;
-        $invoice->status          = 0;
-        $invoice->save();
+        $student_data = AccountancyFirmInformation::find($acc_firm_info->id);
+        $student_data->student_info_id = $std_info->id;
+        $student_data->save();
 
         //Branch Office
         if($request->bo_branch_name){
@@ -354,9 +349,9 @@ class AccFirmInfController extends Controller
           }
         }
 
-
-
-        if($request->audit_firm_type_id == 1){
+        if($request->audit_firm_type_id == 1)
+        {
+            // Audit Firm
             if($request->org_stru_id){
                 $audit_file= new AuditFirmFile();
                 $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
@@ -418,7 +413,27 @@ class AccFirmInfController extends Controller
                 $audit_total_staff->save();
             }
 
+            //invoice for audit
+            $invoice = new Invoice();
+            $invoice->student_info_id = $std_info->id;
 
+            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // $invoice->invoiceNo       = $invNo;
+
+            $invoice->invoiceNo = '';
+
+            $invoice->name_eng        = $std_info->email;
+            $invoice->email           = $std_info->email;
+            $invoice->phone           = '';
+
+            $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'registration_fee']);
+            $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+                          ->where('authority_to_sign', '=', 1)->count();
+
+            $invoice->productDesc     = 'Audit Application Fee, Registration Fee(per PAPP who will sign the audit report)';
+            $invoice->amount          = $fees->form_fee . ',' . $papp_count . ' x ' . $fees->registration_fee;
+            $invoice->status          = 0;
+            $invoice->save();
         }
         //Non-Audit
         else
@@ -445,8 +460,6 @@ class AccFirmInfController extends Controller
                 $non_audit_file->save();
             }
 
-
-
             //Firm OwnerShip Non-Audit in ui (Sole Proprietor/Partners/Shareholders)
             for($i=0;$i<sizeof($request->fona_name);$i++){
                 $firm_owner_non_audit = new FirmOwnershipNonAudit();
@@ -469,7 +482,6 @@ class AccFirmInfController extends Controller
                 $director_officer_non_audit->save();
             }
 
-
             //Non-Audit Total Staff
             for($i=0;$i<sizeof($request->nats_total);$i++){
                 $audit_total_staff = new NonAuditTotalStaff();
@@ -479,7 +491,9 @@ class AccFirmInfController extends Controller
                 $audit_total_staff->save();
             }
 
-            if($request->local_foreign_type == 2){
+            // for foreign firm type
+            if($request->local_foreign_type == 2)
+            {
                 //Myanmar cpa non audit foreigns
                 for($i=0;$i<sizeof($request->mf_name);$i++){
                     $foreign = new MyanmarCpaNonAuditForeign();
@@ -493,8 +507,41 @@ class AccFirmInfController extends Controller
                 }
 
             }
-        }
 
+            //invoice for non-audit
+            $invoice = new Invoice();
+            $invoice->student_info_id = $std_info->id;
+
+            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // $invoice->invoiceNo       = $invNo;
+
+            $invoice->invoiceNo = '';
+
+            $invoice->name_eng        = $std_info->email;
+            $invoice->email           = $std_info->email;
+            $invoice->phone           = '';
+
+            $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'reg_fee_sole','reg_fee_partner']);
+
+            // $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+            //               ->where('authority_to_sign', '=', 1)->count();
+
+            $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee';
+            if($request->organization_structure_id == 1){
+              // for Sole Proprietorship
+              $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_sole;
+            }
+            else if($request->organization_structure_id == 2 || $request->organization_structure_id == 3){
+              // for Partnership and Company
+              $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
+            }
+            else{
+              // for Other
+              $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
+            }
+            $invoice->status          = 0;
+            $invoice->save();
+        }
 
         return "success";
     }
@@ -538,9 +585,39 @@ class AccFirmInfController extends Controller
         ],200);
     }
 
+    public function approveRenew($id,$firm_id)
+    {
+        $std_info = StudentInfo::where('id', $id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
+        $approve = AccountancyFirmInformation::find($firm_id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
     public function reject($id,Request $request)
     {
+        $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
+        $std_info->approve_reject_status = 2;
+        $std_info->save();
         $reject = AccountancyFirmInformation::find($id);
+        $reject->status = 2;
+        $reject->remark = $request->remark;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
+    public function rejectRenew($id,Request $request,$firm_id)
+    {
+        $std_info = StudentInfo::where('id', $id)->first();
+        $std_info->approve_reject_status = 2;
+        $std_info->save();
+        $reject = AccountancyFirmInformation::find($firm_id);
         $reject->status = 2;
         $reject->remark = $request->remark;
         $reject->save();
@@ -578,7 +655,8 @@ class AccFirmInfController extends Controller
                  $ppa_certi[] = $name;
              }
 
-         }else{
+         }
+         else{
              $ppa_certi = null;
          }
 
@@ -595,19 +673,6 @@ class AccFirmInfController extends Controller
              $letterhead = null;
          }
 
-        // if($request->hasfile('representatives'))
-        //  {
-        //      foreach($request->file('representatives') as $file)
-        //      {
-        //      $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //      $file->move(public_path().'/storage/acc_firm/',$name);
-        //      $representative[] =$name;
-        //      }
-        //
-        //  }else{
-        //      $representative = null;
-        //  }
-
          if($request->hasfile('certi_or_regs'))
          {
              foreach($request->file('certi_or_regs') as $file)
@@ -620,7 +685,6 @@ class AccFirmInfController extends Controller
          }else{
              $certi_or_reg = null;
          }
-
 
          if($request->hasfile('deeds_memos'))
          {
@@ -648,33 +712,6 @@ class AccFirmInfController extends Controller
          }else{
              $certi_incor = null;
          }
-
-         // if($request->hasfile('form6_26e'))
-         // {
-         //     foreach($request->file('form6_26e') as $file)
-         //     {
-         //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-         //     $file->move(public_path().'/storage/acc_firm/',$name);
-         //     $form6_26e[] = $name;
-         //     }
-         //
-         // }else{
-         //     $form6_26e = null;
-         // }
-
-         // if($request->hasfile('form_a1'))
-         // {
-         //     foreach($request->file('form_a1') as $file)
-         //     {
-         //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-         //     $file->move(public_path().'/storage/acc_firm/',$name);
-         //     $form_a1[] = $name;
-         //     }
-         //
-         // }else{
-         //     $form_a1 = null;
-         // }
-
 
          if($request->hasfile('tax_reg_certificate'))
          {
@@ -743,7 +780,6 @@ class AccFirmInfController extends Controller
              $work_exp = null;
          }
 
-
          if($request->hasfile('nrc_passports'))
          {
              foreach($request->file('nrc_passports') as $file)
@@ -783,7 +819,6 @@ class AccFirmInfController extends Controller
              $permit_foreigns = null;
          }
 
-
          if($request->hasfile('financial_statements'))
          {
              foreach($request->file('financial_statements') as $file)
@@ -797,6 +832,16 @@ class AccFirmInfController extends Controller
              $financial_statement = null;
          }
 
+         // profile photo
+         $image= '';
+         if ($request->hasfile('profile_photo')) {
+             $file = $request->file('profile_photo');
+             $name  = uniqid().'.'.$file->getClientOriginalExtension();
+             $file->move(public_path().'/storage/student_info/',$name);
+             $image = '/storage/student_info/'.$name;
+         }
+         //return $image;
+
         $register_date = date('Y-m-d');
         $t_s_p_ary = array();
         foreach($request->t_s_p_id as $val){
@@ -804,25 +849,33 @@ class AccFirmInfController extends Controller
         }
         $acc_firm_info = AccountancyFirmInformation::find($id);
         //$acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
-        if($request->accountancy_firm_reg_no){
-          $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
-        }
+        // if($request->accountancy_firm_reg_no){
+        //   $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        // }
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
-        $acc_firm_info->township                = $request->township;
+        $acc_firm_info->head_office_address_mm   = $request->head_office_address_mm;
+        //$acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
-        $acc_firm_info->city                    = $request->city;
-        $acc_firm_info->state_region            = $request->state;
+        //$acc_firm_info->city                    = $request->city;
+        //$acc_firm_info->state_region            = $request->state;
         $acc_firm_info->telephones              = $request->phone_no;
         $acc_firm_info->h_email                   = $request->h_email;
         $acc_firm_info->website                 = $request->website;
         $acc_firm_info->audit_firm_type_id      = $request->audit_firm_type_id;
+        //$acc_firm_info->verify_status      = 1;
         //$acc_firm_info->local_foreign_id        = $request->local_foreign_id;
-        $acc_firm_info->local_foreign_type        = $request->local_foreign_type;
+        if($request->local_foreign_type){
+          $acc_firm_info->local_foreign_type        = $request->local_foreign_type;
+        }
+
         $acc_firm_info->organization_structure_id    = $request->org_stru_id;
         $acc_firm_info->type_of_service_provided_id  = json_encode($t_s_p_ary);
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
         $acc_firm_info->declaration  = $request->declaration;
+        if($image != ''){
+          $acc_firm_info->image  = $image;
+        }
         $acc_firm_info->status   = 0;
         // $acc_firm_info->form_fee = $request->form_fee;
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
@@ -839,7 +892,7 @@ class AccFirmInfController extends Controller
         // $std_info->save();
 
         //Student Info
-        $std_info = new StudentInfo();
+        $std_info = StudentInfo::find($id);
         //$std_info->password = Hash::make($request->password);
         //$std_info->password = $request->password;
         $std_info->approve_reject_status = 0;
@@ -863,84 +916,81 @@ class AccFirmInfController extends Controller
           }
         }
 
+        if($request->audit_firm_type_id == 1){
+            if($request->org_stru_id){
+               AuditFirmFile::where('accountancy_firm_info_id',$id)->delete();
+                $audit_file= new AuditFirmFile();
+                $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_file->ppa_certificate    = json_encode($ppa_certi);
+                $audit_file->letterhead         = json_encode($letterhead);
+                //$audit_file->representative     = json_encode($representative);
+                $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
+                $audit_file->deeds_memo        = json_encode($deeds_memo);
+                $audit_file->certificate_incor    = json_encode($certi_incor);
+                //$audit_file->form6_form26_form_e= json_encode($form6_26e);
+                //$audit_file->form_a1           = json_encode($form_a1);
+                $audit_file->certi_or_reg      = json_encode($certi_or_reg);
+                $audit_file->save();
+
+            }
+        //Audit
+            FirmOwnershipAudit::where('accountancy_firm_info_id',$id)->delete();
+            if($request->foa_name){
+              for($i=0;$i<sizeof($request->foa_name);$i++){
+                  $firm_owner_audit = new FirmOwnershipAudit();
+                  $firm_owner_audit->name                     = $request->foa_name[$i];
+                  $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
+                  $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
+                  $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
+                  $firm_owner_audit->save();
+              }
+            }
 
 
-            if($request->audit_firm_type_id == 1){
-                if($request->org_stru_id){
+            DirectorsOfficersAudit::where('accountancy_firm_info_id',$id)->delete();
+            if($request->do_name){
+              for($i=0;$i<sizeof($request->do_name);$i++){
+                  $director_officer = new DirectorsOfficersAudit();
+                  $director_officer->name                     = $request->do_name[$i];
+                  $director_officer->position                 = $request->do_position[$i];
+                  $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
+                  $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
+                  $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
+                  $director_officer->save();
+              }
+            }
 
-                    $audit_file= new AuditFirmFile();
-                    $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
-                    $audit_file->ppa_certificate    = json_encode($ppa_certi);
-                    $audit_file->letterhead         = json_encode($letterhead);
-                    //$audit_file->representative     = json_encode($representative);
-                    $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
-                    $audit_file->deeds_memo        = json_encode($deeds_memo);
-                    $audit_file->certificate_incor    = json_encode($certi_incor);
-                    //$audit_file->form6_form26_form_e= json_encode($form6_26e);
-                    //$audit_file->form_a1           = json_encode($form_a1);
-                    $audit_file->certi_or_reg      = json_encode($certi_or_reg);
-                    $audit_file->save();
+            AuditStaff::where('accountancy_firm_info_id',$id)->delete();
+            for($i=0;$i<sizeof($request->as_part_time);$i++){
+                $audit_staff = new AuditStaff();
+                $audit_staff->part_time                = $request->as_part_time[$i];
+                $audit_staff->full_time                = $request->as_full_time[$i];
+                $audit_staff->total                    = $request->as_total[$i];
+                $audit_staff->audit_staff_type_id      = $request->as_audit_staff_type_id[$i];
+                $audit_staff->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_staff->save();
+            }
+            //here
+            AuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
+            for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
+                $audit_total_staff = new AuditTotalStaff();
+                $audit_total_staff->audit_staff              = $request->ats_audit_staff[$i];
+                $audit_total_staff->non_audit_staff          = $request->ats_non_audit_staff[$i];
+                $audit_total_staff->total                    = $request->ats_total[$i];
+                $audit_total_staff->audit_total_staff_type_id= $request->ats_audit_total_staff_type_id[$i];
+                $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_total_staff->save();
+            }
 
-                }
-            //Audit
-                FirmOwnershipAudit::where('accountancy_firm_info_id',$id)->delete();
-                if($request->foa_name){
-                  for($i=0;$i<sizeof($request->foa_name);$i++){
-                      $firm_owner_audit = new FirmOwnershipAudit();
-                      $firm_owner_audit->name                     = $request->foa_name[$i];
-                      $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
-                      $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
-                      $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
-                      $firm_owner_audit->save();
-                  }
-                }
-
-
-                DirectorsOfficersAudit::where('accountancy_firm_info_id',$id)->delete();
-                if($request->do_name){
-                  for($i=0;$i<sizeof($request->do_name);$i++){
-                      $director_officer = new DirectorsOfficersAudit();
-                      $director_officer->name                     = $request->do_name[$i];
-                      $director_officer->position                 = $request->do_position[$i];
-                      $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
-                      $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
-                      $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
-                      $director_officer->save();
-                  }
-                }
-
-
-                AuditStaff::where('accountancy_firm_info_id',$id)->delete();
-                for($i=0;$i<sizeof($request->as_part_time);$i++){
-                    $audit_staff = new AuditStaff();
-                    $audit_staff->part_time                = $request->as_part_time[$i];
-                    $audit_staff->full_time                = $request->as_full_time[$i];
-                    $audit_staff->total                    = $request->as_total[$i];
-                    $audit_staff->audit_staff_type_id      = $request->as_audit_staff_type_id[$i];
-                    $audit_staff->accountancy_firm_info_id = $acc_firm_info->id;
-                    $audit_staff->save();
-                }
-                //here
-                AuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
-                for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
-                    $audit_total_staff = new AuditTotalStaff();
-                    $audit_total_staff->audit_staff              = $request->ats_audit_staff[$i];
-                    $audit_total_staff->non_audit_staff          = $request->ats_non_audit_staff[$i];
-                    $audit_total_staff->total                    = $request->ats_total[$i];
-                    $audit_total_staff->audit_total_staff_type_id= $request->ats_audit_total_staff_type_id[$i];
-                    $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
-                    $audit_total_staff->save();
-                }
-
-                // for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
-                //     $audit_total_staff = new AuditTotalStaff();
-                //     $audit_total_staff->audit_staff              = $request->ats_audit_staff[$i];
-                //     $audit_total_staff->non_audit_staff          = $request->ats_non_audit_staff[$i];
-                //     $audit_total_staff->total                    = $request->ats_total[$i];
-                //     $audit_total_staff->audit_total_staff_type_id= $request->ats_audit_total_staff_type_id[$i];
-                //     $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
-                //     $audit_total_staff->save();
-                // }
+            // for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
+            //     $audit_total_staff = new AuditTotalStaff();
+            //     $audit_total_staff->audit_staff              = $request->ats_audit_staff[$i];
+            //     $audit_total_staff->non_audit_staff          = $request->ats_non_audit_staff[$i];
+            //     $audit_total_staff->total                    = $request->ats_total[$i];
+            //     $audit_total_staff->audit_total_staff_type_id= $request->ats_audit_total_staff_type_id[$i];
+            //     $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
+            //     $audit_total_staff->save();
+            // }
 
         }
         //Non-Audit
@@ -967,7 +1017,7 @@ class AccFirmInfController extends Controller
                 $director_officer_non_audit->name       = $request->dona_name[$i];
                 $director_officer_non_audit->position   = $request->dona_position[$i];
                 $director_officer_non_audit->passport   = $request->dona_passport[$i];
-                $director_officer_non_audit->csc_no     = $request->dona_csc_no[$i];
+                //$director_officer_non_audit->csc_no     = $request->dona_csc_no[$i];
                 $director_officer_non_audit->accountancy_firm_info_id = $acc_firm_info->id;
                 $director_officer_non_audit->save();
             }
@@ -1203,23 +1253,58 @@ class AccFirmInfController extends Controller
     //Audit Feedback
     public function auditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)
-                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
-                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
-                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
-                                            ->get();
-        return response()->json($data,200);
+        $data = AccountancyFirmInformation::where('student_info_id',$id)
+                                          ->latest()
+                                          ->first();
+        $student_infos = StudentInfo::where('id',$id)->select('email')->get();
+        $firm_id = AccountancyFirmInformation::where('student_info_id',$id)
+                                            ->select('id')
+                                            ->latest()
+                                            ->first();
+
+        $other_data = AccountancyFirmInformation::where('id',$firm_id->id)
+                                                ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                  'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                  'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')->get();
+
+
+        return response()->json([
+          'data' => $data,
+          'other_data' => $other_data,
+          'student_infos' => $student_infos
+        ],200);
     }
 
     // Non Audit Feedback
     public function nonAuditFeedback($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)
-                                            ->with('branch_offices','firm_owner_audits','director_officer_audits',
-                                                    'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
-                                                    'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
-                                            ->get();
-        return response()->json($data,200);
+        // $data = AccountancyFirmInformation::where('id',$id)
+        //                                     ->with('branch_offices','firm_owner_audits','director_officer_audits',
+        //                                             'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+        //                                             'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+        //                                     ->get();
+        // return response()->json($data,200);
+
+        $data = AccountancyFirmInformation::where('student_info_id',$id)
+                                          ->latest()
+                                          ->first();
+        $student_infos = StudentInfo::where('id',$id)->select('email')->get();
+        $firm_id = AccountancyFirmInformation::where('student_info_id',$id)
+                                            ->select('id')
+                                            ->latest()
+                                            ->first();
+
+        $other_data = AccountancyFirmInformation::where('id',$firm_id->id)
+                                                ->with('branch_offices','firm_owner_audits','director_officer_audits',
+                                                  'audit_staffs','audit_total_staffs','firm_owner_non_audits','director_officer_non_audits',
+                                                  'non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')->get();
+
+
+        return response()->json([
+          'data' => $data,
+          'other_data' => $other_data,
+          'student_infos' => $student_infos
+        ],200);
     }
 
     public function auditStatus($id)
@@ -1247,15 +1332,20 @@ class AccFirmInfController extends Controller
     public function dateRange($id)
     {
         date_default_timezone_set("Asia/Yangon");
-        $date = AccountancyFirmInformation::where('id',$id)->get('register_date');
-        $reg_date = strtotime($date[0]['register_date']);
+        $date = AccountancyFirmInformation::where('student_info_id',$id)
+                                          ->select('register_date')
+                                          ->latest()
+                                          ->first();
+
+        $reg_date = strtotime($date['register_date']);
+
         // $date_range = strtotime(date('2021-09-30'));
-        $date = AccountancyFirmInformation::find($id);
-        $register_date = Carbon::parse($date->register_date)->format('M');
+        //$date = AccountancyFirmInformation::find($id);
+        $register_date = Carbon::parse($reg_date)->format('M');
 
         $verify = "You are verified!";
-        $next = "Your registeration will start in next year!";
-        $renew = "Your registeration is expired! You need to submit new registeration form again.";
+        $next = "Your registration will start in next year!";
+        $renew = "Your registration is expired! You need to submit new registration form again.";
 
         $accept_date = date("Y-m-d H:i:s", strtotime('+ 1 year', $reg_date));
         $currentDate = date("Y-m-d");
@@ -1264,28 +1354,55 @@ class AccFirmInfController extends Controller
 
         if($currentDate >= $accept_date)
         {
-            $renew_user = AccountancyFirmInformation::find($id);
+            $renew_user = AccountancyFirmInformation::where('student_info_id',$id)
+                                              ->latest()
+                                              ->first();
+            $firm_type = $renew_user->audit_firm_type_id;
+            $status = $renew_user->status;
             $renew_user->verify_status = 3;
             $renew_user->save();
-            // return $verify;
-            return response()->json($renew,200);
+
+            return response()->json([
+                'message' => $renew,
+                'type' => 'renew',
+                'firm_type' => $firm_type,
+                'status' => $status
+            ],200);
         }
 
         if('Oct' == $register_date || 'Nov' == $register_date || 'Dec' == $register_date)
         {
-            $next_year_user = AccountancyFirmInformation::find($id);
+            $next_year_user = AccountancyFirmInformation::where('student_info_id',$id)
+                                              ->latest()
+                                              ->first();
+            $firm_type = $next_year_user->audit_firm_type_id;
+            $status = $next_year_user->status;
             $next_year_user->verify_status = 2;
             $next_year_user->save();
-            // return $next;
-            return response()->json($next,200);
+
+            return response()->json([
+                'message' => $next,
+                'type' => 'next',
+                'firm_type' => $firm_type,
+                'status' => $status
+            ],200);
         }
         else
         {
-            $verify_user = AccountancyFirmInformation::find($id);
+            $verify_user = AccountancyFirmInformation::where('student_info_id',$id)
+                                              ->latest()
+                                              ->first();
+            $firm_type = $verify_user->audit_firm_type_id;
+            $status = $verify_user->status;
             $verify_user->verify_status = 1;
             $verify_user->save();
-            // return $verify;
-            return response()->json($verify,200);
+
+            return response()->json([
+                'message' => $verify,
+                'type' => 'verify',
+                'firm_type' => $firm_type,
+                'status' => $status
+            ],200);
         }
     }
 
@@ -1339,6 +1456,205 @@ class AccFirmInfController extends Controller
 
         $register_date = date('Y-m-d');
 
+        if($request->hasfile('ppa_certis'))
+        {
+            foreach($request->file('ppa_certis') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/acc_firm/',$name);
+                $ppa_certi[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $ppa_certi = null;
+        }
+
+        if($request->hasfile('letterheads'))
+        {
+            foreach($request->file('letterheads') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/acc_firm/',$name);
+                $letterhead[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $letterhead = null;
+        }
+
+        if($request->hasfile('certi_or_regs'))
+        {
+            foreach($request->file('certi_or_regs') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $certi_or_reg[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $certi_or_reg = null;
+        }
+
+
+        if($request->hasfile('deeds_memos'))
+        {
+            foreach($request->file('deeds_memos') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $deeds_memo[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $deeds_memo = null;
+        }
+
+        if($request->hasfile('certificate_incors'))
+        {
+            foreach($request->file('certificate_incors') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $certi_incor[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $certi_incor = null;
+        }
+
+        if($request->hasfile('tax_reg_certificate'))
+        {
+            foreach($request->file('tax_reg_certificate') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $tax_reg_certificate[] = '/storage/acc_firm/'.$name;
+            }
+
+        }
+        else{
+            $tax_reg_certificate = null;
+        }
+        if($request->hasfile('pass_photos'))
+        {
+            foreach($request->file('pass_photos') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $pass_photo[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $pass_photo = null;
+        }
+
+
+        if($request->hasfile('edu_certs'))
+        {
+            foreach($request->file('edu_certs') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $edu_cert[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $edu_cert = null;
+        }
+
+        if($request->hasfile('owner_profiles'))
+        {
+            foreach($request->file('owner_profiles') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $owner_profile[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $owner_profile = null;
+        }
+
+        if($request->hasfile('work_exps'))
+        {
+            foreach($request->file('work_exps') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $work_exp[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $work_exp = null;
+        }
+
+
+        if($request->hasfile('nrc_passports_front'))
+        {
+            foreach($request->file('nrc_passports_front') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $nrc_passport_front[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $nrc_passport_front = null;
+        }
+
+        if($request->hasfile('nrc_passports_back'))
+        {
+            foreach($request->file('nrc_passports_back') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $nrc_passport_back[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $nrc_passport_back = null;
+        }
+
+        if($request->hasfile('tax_clearances'))
+        {
+            foreach($request->file('tax_clearances') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $tax_clearance[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $tax_clearance = null;
+        }
+
+        if($request->hasfile('permit_foreigns'))
+        {
+            foreach($request->file('permit_foreigns') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $permit_foreigns[] ='/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $permit_foreigns = null;
+        }
+
+
+        if($request->hasfile('financial_statements'))
+        {
+            foreach($request->file('financial_statements') as $file)
+            {
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/acc_firm/',$name);
+            $financial_statement[] = '/storage/acc_firm/'.$name;
+            }
+
+        }else{
+            $financial_statement = null;
+        }
+
         // profile photo
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
@@ -1347,17 +1663,289 @@ class AccFirmInfController extends Controller
             $image = '/storage/student_info/'.$name;
         }
 
-        $data = AccountancyFirmInformation::where('id',$request->id)->first();
-        $data->register_date = $register_date;
-        $data->image = $image;
-        $data->save();
-        return response()->json($data,200);
+        $t_s_p_ary = array();
+        foreach($request->t_s_p_id as $val){
+          array_push($t_s_p_ary,$val);
+        }
+
+        //Main Table
+        $acc_firm_info = new AccountancyFirmInformation();
+        // $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
+        $acc_firm_info->head_office_address   = $request->head_office_address;
+        $acc_firm_info->head_office_address_mm   = $request->head_office_address_mm;
+        //$acc_firm_info->township                = $request->township;
+        $acc_firm_info->postcode                = $request->post_code;
+        //$acc_firm_info->city                    = $request->city;
+        //$acc_firm_info->state_region            = $request->state;
+        $acc_firm_info->telephones              = $request->phone_no;
+        $acc_firm_info->h_email                 = $request->h_email;
+        $acc_firm_info->website                 = $request->website;
+        $acc_firm_info->audit_firm_type_id      = $request->audit_firm_type_id;
+        //$acc_firm_info->local_foreign_id        = $request->local_foreign_id;
+        $acc_firm_info->local_foreign_type        = $request->local_foreign_type;
+        $acc_firm_info->organization_structure_id    = $request->org_stru_id;
+        $acc_firm_info->type_of_service_provided_id  = json_encode($t_s_p_ary);
+        $acc_firm_info->other  = $request->other;
+        //name of sole_propietor == name of manager
+        $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
+        if($request->dir_passport_csc){
+          $acc_firm_info->dir_passport_csc = $request->dir_passport_csc;
+        }
+        $acc_firm_info->declaration                  = $request->declaration;
+        $acc_firm_info->declaration_mm                  = $request->declaration_mm;
+        $acc_firm_info->status   = 0;
+        $acc_firm_info->register_date  = $register_date;
+        $acc_firm_info->image  = $image;
+        $acc_firm_info->is_renew  = 1;  // renew user status
+        $acc_firm_info->verify_status  = 1;
+        $acc_firm_info->student_info_id  = $request->student_id;
+        $acc_firm_info->save();
+
+        //Student Info
+        // $std_info = new StudentInfo();
+        // $std_info->accountancy_firm_info_id = $acc_firm_info->id;
+        // $std_info->email            =   strtolower($request->email);
+        // $std_info->password         =   Hash::make($request->password);
+        // $std_info->verify_code      =   uniqid();
+        // $std_info->save();
+
+        // $student_data = AccountancyFirmInformation::find($acc_firm_info->id);
+        // $student_data->student_info_id = $std_info->id;
+        // $student_data->save();
+
+        //invoice
+        //$invNo = str_pad($std_info->id, 20, "0", STR_PAD_LEFT);
+
+        // $invoice = new Invoice();
+        // $invoice->student_info_id = $std_info->id;
+        // $invoice->invoiceNo       = $invNo;
+        // $invoice->status          = 0;
+        // $invoice->save();
+
+        //Branch Office
+        if($request->bo_branch_name){
+          for($i=0;$i<sizeof($request->bo_branch_name);$i++){
+              $branch_office = new BranchOffice();
+              $branch_office->branch_name = $request->bo_branch_name[$i];
+              $branch_office->branch_address = $request->bo_address[$i];
+              $branch_office->township    = $request->bo_township[$i];
+              $branch_office->postcode    = $request->bo_post_code[$i];
+              $branch_office->city        = $request->bo_city[$i];
+              $branch_office->state_region= $request->bo_state_region[$i];
+              $branch_office->phones  = $request->bo_phone[$i];
+              $branch_office->email       = $request->bo_email[$i];
+              $branch_office->website      = $request->bo_website[$i];
+              $branch_office->accountancy_firm_info_id = $acc_firm_info->id;
+              $branch_office->save();
+          }
+        }
+
+        if($request->audit_firm_type_id == 1){
+            //Audit Firm
+            if($request->org_stru_id){
+                $audit_file= new AuditFirmFile();
+                $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_file->ppa_certificate    = json_encode($ppa_certi);
+                $audit_file->letterhead        = json_encode($letterhead);
+                $audit_file->tax_clearance    = json_encode($tax_clearance);
+                // $audit_file->representative     = json_encode($representative);
+                $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
+                $audit_file->deeds_memo        = json_encode($deeds_memo);
+                $audit_file->certificate_incor    = json_encode($certi_incor);
+                // $audit_file->form6_form26_form_e= json_encode($form6_26e);
+                // $audit_file->form_a1           = json_encode($form_a1);
+                $audit_file->certi_or_reg      = json_encode($certi_or_reg);
+                $audit_file->save();
+
+             }
+
+            if($request->foa_name){
+              for($i=0;$i<sizeof($request->foa_name);$i++){
+                  $firm_owner_audit = new FirmOwnershipAudit();
+                  $firm_owner_audit->name                     = $request->foa_name[$i];
+                  $firm_owner_audit->public_private_reg_no    = $request->foa_pub_pri_reg_no[$i];
+                  $firm_owner_audit->authority_to_sign        = $request->foa_authority_to_sign[$i];
+                  $firm_owner_audit->accountancy_firm_info_id = $acc_firm_info->id;
+                  $firm_owner_audit->save();
+              }
+            }
+
+            if($request->do_name){
+              for($i=0;$i<sizeof($request->do_name);$i++){
+                  $director_officer = new DirectorsOfficersAudit();
+                  $director_officer->name                     = $request->do_name[$i];
+                  $director_officer->position                 = $request->do_position[$i];
+                  $director_officer->cpa_reg_no               = $request->do_cpa_reg_no[$i];
+                  $director_officer->public_private_reg_no    = $request->do_pub_pri_reg_no[$i];
+                  $director_officer->accountancy_firm_info_id = $acc_firm_info->id;
+                  $director_officer->save();
+              }
+            }
+
+            for($i=0;$i<sizeof($request->as_part_time);$i++){
+                $audit_staff = new AuditStaff();
+                $audit_staff->part_time                = $request->as_part_time[$i];
+                $audit_staff->full_time                = $request->as_full_time[$i];
+                $audit_staff->total                    = $request->as_total[$i];
+                $audit_staff->audit_staff_type_id      = $request->as_audit_staff_type_id[$i];
+                $audit_staff->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_staff->save();
+            }
+
+            for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
+                $audit_total_staff = new AuditTotalStaff();
+                $audit_total_staff->audit_staff              = $request->ats_audit_staff[$i];
+                $audit_total_staff->non_audit_staff          = $request->ats_non_audit_staff[$i];
+                $audit_total_staff->total                    = $request->ats_total[$i];
+                $audit_total_staff->audit_total_staff_type_id= $request->ats_audit_total_staff_type_id[$i];
+                $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_total_staff->save();
+            }
+
+            //Student Info
+            $std_info = StudentInfo::find($request->student_id);
+
+            //invoice for audit
+            $invoice = Invoice::where('student_info_id',$request->student_id)->first();
+            //$invoice->student_info_id = $std_info->id;
+
+            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // $invoice->invoiceNo       = $invNo;
+
+            $invoice->invoiceNo = '';
+
+            $invoice->name_eng        = $std_info->email;
+            $invoice->email           = $std_info->email;
+            $invoice->phone           = '';
+
+            $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'renew_fee']);
+            $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+                          ->where('authority_to_sign', '=', 1)->count();
+
+            $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report)';
+            $invoice->amount          = $fees->form_fee . ',' . $papp_count . ' x ' . $fees->renew_fee;
+            $invoice->status          = 0;
+            $invoice->save();
+        }
+        //Non-Audit Firm
+        else
+        {
+            //Non-Audit Firm File
+            if($request->org_stru_id){
+                $non_audit_file= new NonAuditFirmFile();
+                $non_audit_file->accountancy_firm_info_id = $acc_firm_info->id;
+                $non_audit_file->letterhead        = json_encode($letterhead);
+                $non_audit_file->passport_photo    = json_encode($pass_photo);
+                $non_audit_file->education_certificate  = json_encode($edu_cert);
+                $non_audit_file->owner_profile     = json_encode($owner_profile);
+                $non_audit_file->work_exp          = json_encode($work_exp);
+                $non_audit_file->nrc_passport_front     = json_encode($nrc_passport_front);
+                $non_audit_file->nrc_passport_back      = json_encode($nrc_passport_back);
+                $non_audit_file->tax_clearance    = json_encode($tax_clearance);
+                $non_audit_file->permit_foreign= json_encode($permit_foreigns);
+                $non_audit_file->financial_statement    = json_encode($financial_statement);
+                // $non_audit_file->representative     = json_encode($representative);
+                $non_audit_file->certi_or_reg      = json_encode($certi_or_reg);
+                $non_audit_file->deeds_memo        = json_encode($deeds_memo);
+                $non_audit_file->certificate_incor    = json_encode($certi_incor);
+                $non_audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
+                $non_audit_file->save();
+            }
+
+            //Firm OwnerShip Non-Audit in ui (Sole Proprietor/Partners/Shareholders)
+            for($i=0;$i<sizeof($request->fona_name);$i++){
+                $firm_owner_non_audit = new FirmOwnershipNonAudit();
+                $firm_owner_non_audit->name                     = $request->fona_name[$i];
+                //pass = passport csc = csc_no inco = incoporation_certificate
+                $firm_owner_non_audit->pass_csc_inco            = $request->fona_pass_csc_inco[$i];
+                $firm_owner_non_audit->accountancy_firm_info_id = $acc_firm_info->id;
+                $firm_owner_non_audit->save();
+            }
+
+            //director officers non audit
+            for($i=0;$i<sizeof($request->dona_name);$i++){
+
+                $director_officer_non_audit = new DirectorsOfficersNonAudit();
+                $director_officer_non_audit->name       = $request->dona_name[$i];
+                $director_officer_non_audit->position   = $request->dona_position[$i];
+                $director_officer_non_audit->passport   = $request->dona_passport[$i];
+                // $director_officer_non_audit->csc_no     = $request->dona_csc_no[$i];
+                $director_officer_non_audit->accountancy_firm_info_id = $acc_firm_info->id;
+                $director_officer_non_audit->save();
+            }
+
+            //Non-Audit Total Staff
+            for($i=0;$i<sizeof($request->nats_total);$i++){
+                $audit_total_staff = new NonAuditTotalStaff();
+                $audit_total_staff->total                    = $request->nats_total[$i];
+                $audit_total_staff->non_audit_total_staff_type_id= $request->nats_type_id[$i];
+                $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
+                $audit_total_staff->save();
+            }
+
+            if($request->local_foreign_type == 2){
+                // foreign firm type
+                //Myanmar cpa non audit foreigns
+                for($i=0;$i<sizeof($request->mf_name);$i++){
+                    $foreign = new MyanmarCpaNonAuditForeign();
+                    $foreign->name                  = $request->mf_name[$i];
+                    $foreign->position              = $request->mf_position[$i];
+                    $foreign->cpa_passed_reg_no        = $request->mf_cpa_passed_reg_no[$i];
+                    $foreign->cpa_full_reg_no          = $request->mf_cpa_full_reg_no[$i];
+                    $foreign->public_practice_reg_no   = $request->mf_pub_pra_reg_no[$i];
+                    $foreign->accountancy_firm_info_id = $acc_firm_info->id;
+                    $foreign->save();
+                }
+
+            }
+
+            //Student Info
+            $std_info = StudentInfo::find($request->student_id);
+
+            //invoice for non-audit
+            $invoice = Invoice::where('student_info_id',$request->student_id)->first();
+
+            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // $invoice->invoiceNo       = $invNo;
+
+            $invoice->invoiceNo = '';
+
+            $invoice->name_eng        = $std_info->email;
+            $invoice->email           = $std_info->email;
+            $invoice->phone           = '';
+
+            $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'renew_fee_sole','renew_fee_partner']);
+
+            // $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+            //               ->where('authority_to_sign', '=', 1)->count();
+
+            $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee';
+            if($request->organization_structure_id == 1){
+              // for Sole Proprietorship
+              $invoice->amount          = $fees->form_fee . ',' . $fees->renew_fee_sole;
+            }
+            else if($request->organization_structure_id == 2 || $request->organization_structure_id == 3){
+              // for Partnership and Company
+              $invoice->amount          = $fees->form_fee . ',' . $fees->renew_fee_partner;
+            }
+            else{
+              // for Other
+              $invoice->amount          = $fees->form_fee . ',' . $fees->renew_fee_partner;
+            }
+            $invoice->status          = 0;
+            $invoice->save();
+        }
+
+
+        return "success";
     }
 
     //check verify
     public function checkVerify($id)
     {
-        $data = AccountancyFirmInformation::where('id',$id)->get('verify_status');
+        $data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
         return response()->json($data,200);
     }
 
@@ -1393,6 +1981,145 @@ class AccFirmInfController extends Controller
       $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
                                                         'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
                                                   ->where('status','=',$status)
+                                                  ->where('is_renew','=',0)
+                                                  ->where('audit_firm_type_id','=',$firm_type)
+                                                  ->get();
+
+      if($firm_type == 1){
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('township', function ($infos){
+              return $infos->township;
+          })
+
+          ->addColumn('postcode', function ($infos){
+              return $infos->postcode;
+          })
+
+          ->addColumn('city', function ($infos){
+              return $infos->city;
+          })
+
+          ->addColumn('state_region', function ($infos){
+              return $infos->state_region;
+          })
+
+          ->addColumn('telephones', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('h_email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('website', function ($infos){
+              return $infos->website;
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+      else{
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </a>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('township', function ($infos){
+              return $infos->township;
+          })
+
+          ->addColumn('postcode', function ($infos){
+              return $infos->postcode;
+          })
+
+          ->addColumn('city', function ($infos){
+              return $infos->city;
+          })
+
+          ->addColumn('state_region', function ($infos){
+              return $infos->state_region;
+          })
+
+          ->addColumn('telephones', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('h_email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('website', function ($infos){
+              return $infos->website;
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+    }
+
+    public function FilterAuditRegistrationRenew($status,$firm_type){
+      $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
+                                                        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+                                                  ->where('status','=',$status)
+                                                  ->where('is_renew','=',1)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
 

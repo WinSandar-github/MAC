@@ -63,13 +63,13 @@ class StudentInfo extends Model
     }
 
     public function cpa_ff(){
-        return $this->hasOne(CPAFF::class,'student_info_id','id');
+        return $this->hasMany(CPAFF::class,'student_info_id','id');
     }
     public function qualified_test(){
         return $this->hasOne(QualifiedTest::class,'student_info_id','id');
     }
     public function papp(){
-        return $this->hasOne(Papp::class,'student_id','id');
+        return $this->hasMany(Papp::class,'student_id','id');
     }
 
     public function cpa_one_direct(){
@@ -78,7 +78,7 @@ class StudentInfo extends Model
     }
 
     public function accountancy_firm(){
-        return $this->belongsTo(AccountancyFirmInformation::class,'accountancy_firm_info_id','id');
+        return $this->hasMany(AccountancyFirmInformation::class,'student_info_id','id');
 
     }
 
@@ -128,4 +128,6 @@ class StudentInfo extends Model
         return $this->hasMany(ExamResult::class,'student_info_id','id');
 
     }
+    
+    
 }

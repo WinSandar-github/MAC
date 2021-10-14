@@ -7,20 +7,14 @@
 @endphp
 @extends('layouts.app', [
     'class' => '',
-    'elementActive' => 'Gov Article_list'
+    'parentElement' => '',
+    'elementActive' => 'resign_article_list'
 ])
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="{{ asset("assets/css/plugins/bootstrap/bootstrap.min.css") }}">
 <style>
     .label{
         text-align: right;
-    }
-    li{
-        display: inline;
-    }
-    ul{
-        padding-left: 0px !important;
-        font-weight:bold;
     }
 </style>
 @section('content')
@@ -189,7 +183,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('(၁၂။)') }}</span>အလုပ်သင်ဆင်းသည့်ဌာနအဖွဲ့အစည်း(သို့မဟုတ်)Firm</label>
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၂။') }}</span>အလုပ်သင်ဆင်းသည့်ဌာနအဖွဲ့အစည်း(သို့မဟုတ်)Firm</label>
                             <div class="col-md-9">
                                 <input type="text" name="recent_org" id="recent_org" class="form-control" readonly>
                             </div>
@@ -244,7 +238,7 @@
 <script>
 
   $(document).ready(function (e) {
-    
+
   });
 
 </script>
