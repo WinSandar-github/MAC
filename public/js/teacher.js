@@ -309,7 +309,9 @@ function getTeacherInfos(){
                 $("#religion").append(value.religion);
                 $("#date_of_birth").append(value.date_of_birth);
                 $("#address").append(value.address);
+                $("#eng_address").append(value.eng_address);
                 $("#current_address").append(value.current_address);
+                $("#eng_current_address").append(value.eng_current_address);
                 $("#position").append(value.position);
                 $("#department").append(value.department);
                 $("#organization").append(value.organization);
@@ -457,15 +459,19 @@ function sumTotalAmount(total){
     let sum = 0;
     var row_cpa = document.getElementById('tbl_certificate').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
     var row_da = document.getElementById('tbl_diploma').getElementsByTagName('tbody')[0].getElementsByTagName('tr').length;
-    
-    $('#tbl_certificate tbody').each(function() {
-        sum += removeComma($(this).find('td:eq(2)').html())*row_cpa;
-        
-     });
-     $('#tbl_diploma tbody').each(function() {
-        sum += removeComma($(this).find('td:eq(2)').html())*row_da;
-        
-     });
+    if(row_cpa!=0){
+        $('#tbl_certificate tbody').each(function() {
+            sum += removeComma($(this).find('td:eq(2)').html())*row_cpa;
+            
+        });
+    }
+    if(row_da!=0){
+        $('#tbl_diploma tbody').each(function() {
+            sum += removeComma($(this).find('td:eq(2)').html())*row_da;
+            
+         });
+    }
+     
      
      $('#subject_total_amount').val(thousands_separators(sum+total));
 }

@@ -110,21 +110,29 @@ class TeacherController extends Controller
         $teacher->image = $image;
         
         $certificates = ""; $diplomas = "";
-        foreach($request->certificates as $c){
-            $certificates = $certificates . $c . ',';
-
+        if($request->certificates!=null){
+            foreach($request->certificates as $c){
+                $certificates = $certificates . $c . ',';
+    
+            }
         }
-        foreach($request->diplomas as $d){
-            $diplomas = $diplomas . $d . ',';
-
+        
+        if($request->diplomas!=null){
+            foreach($request->diplomas as $d){
+                $diplomas = $diplomas . $d . ',';
+    
+            }
         }
+        
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->race = $request->race;
         $teacher->religion = $request->religion;
         $teacher->date_of_birth = $request->date_of_birth;
         $teacher->address = $request->address;
+        $teacher->eng_address = $request->eng_address;
         $teacher->current_address = $request->current_address;
+        $teacher->eng_current_address = $request->eng_current_address;
         $teacher->recommend_letter = $recommend_letter;
         $teacher->position = $request->position;
         $teacher->department = $request->department;
@@ -921,15 +929,27 @@ class TeacherController extends Controller
             'message' => 'Updated Successfully.'
         ],200);
     }
-    public function cessationRenewTeacherRegister(Request $request)
-    {
-        $teacher = teacher_renew::find($request->id);
-        $teacher->approve_reject_status = $request->status;
-        $teacher->cessation_reason = $request->cessation_reason;
-        $teacher->initial_status = $request->initial_status;
+    public function updateProfileTeacher(Request $request,$id){
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $image = '/storage/teacher_info/'.$name;
+        }else{
+          $image = $request->old_profile_photo;
+        }
+
+
+        $teacher = TeacherRegister::find($id);
+        $teacher->phone         = $request->phone;
+        $teacher->current_address       = $request->address;
+        $teacher->eng_current_address       = $request->eng_address;
+        $teacher->image         = $image;
         $teacher->save();
+
         return response()->json([
-            'message' => 'You have cessation this user.'
+            'message' => "Successfully Update Message"
         ],200);
+
     }
 }
