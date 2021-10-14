@@ -104,7 +104,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $course = Course::where('id', $id)->with('requirement')->first();
+        $course = Course::where('id', $id)->with('requirement','active_batch')->first();
         return response()->json([
             'data' => $course
         ], 200);

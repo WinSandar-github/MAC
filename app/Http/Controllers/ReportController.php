@@ -19,13 +19,13 @@ class ReportController extends Controller
     {
         $courses = Course::all();
         $batches = Batch::all();
-
+        // return $courses;
         return view('pages.reporting_list', compact('batches', 'courses'));
     }
 
     public function showExamList(Request $request)
     {
-        $current_course = Course::where('code',$request->code)->with('active_batch')->first();
+        // $current_course = Course::where('code',$request->code)->with('active_batch')->first();
 
         $student_infos = ExamRegister::where('batch_id',$current_course->active_batch[0]->id)
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')

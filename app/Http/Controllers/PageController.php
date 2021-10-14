@@ -43,13 +43,14 @@ class PageController extends Controller
         // }
         
         if (view()->exists("pages.{$page}")) {
-            if ( $page == 'reporting_list' ) {
-                $batches = Batch::all();
+           
+            // if ( $page == 'reporting_list' ) {
+            //     $batches = Batch::all();
             
-                return view('pages.reporting_list', compact('batches'));
-            }
+            //     return view('pages.reporting_list', compact('batches'));
+            // }
 
-             return view("pages.{$page}");
+            //  return view("pages.{$page}");
         }
 
         else if (view()->exists("pages.teacher.{$page}")) {

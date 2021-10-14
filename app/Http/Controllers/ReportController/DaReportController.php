@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\ReportController;
 
 use App\Course;
+use App\Batch;
+
 use App\Http\Controllers\Controller;
 use App\StudentRegister;
+use App\StudentCourseReg;
+
 use Illuminate\Http\Request;
 
 class DaReportController extends Controller
@@ -15,26 +19,45 @@ class DaReportController extends Controller
             ->with('active_batch','course_type')
             ->first();
 
-        $student_registers = StudentRegister::where('form_type', $request->batch)
-            ->join('student_infos','student_infos.id','=','student_register.student_info_id')
-            ->where('student_register.status',1)
+        $batch = Batch::where('id','=',$request->batch)->first();    
+
+        $student_registers = StudentCourseReg::where('batch_id', $request->batch)
+            ->join('student_infos','student_infos.id','=','student_course_regs.student_info_id')
+            ->where('student_course_regs.approve_reject_status',1)
             ->orderBy('student_infos.name_mm','asc')
-            ->orderBy('student_register.type','asc')
+            ->orderBy('student_course_regs.type','asc')
             ->with('student_info')
-            ->select('student_infos.name_mm','student_register.*')
+            ->select('student_infos.name_mm','student_course_regs.*')
             ->get();
 
-        return view('reporting.application_list',compact('course','student_registers'));
+        return view('reporting.application_list',compact('batch','course','student_registers'));
     }
 
     public function daRegList(Request $request)
     {
-        return $request;
+        $course = Course::where('id', '=', $request->course)
+        ->with('active_batch','course_type')
+        ->first();
+
+        $batch = Batch::where('id','=',$request->batch)->first();    
+
+
+        $student_registers = StudentRegister::where('batch_id', $request->batch)
+        ->join('student_infos','student_infos.id','=','student_register.student_info_id')
+        ->where('student_register.status',1)
+        ->orderBy('student_infos.name_mm','asc')
+        ->orderBy('student_register.type','asc')
+        ->with('student_info')
+        ->select('student_infos.name_mm','student_register.*')
+        ->get();
+
+    return view('reporting.registration_list',compact('course','batch','student_registers'));
     }
 
     public function daExamRegList(Request $request)
     {
-        return $request;
+        $course = Course::where('code',$code)->first();
+        return view('reporting.exam_list',compact('course'));
     }
 
     public function daPassList(Request $request)

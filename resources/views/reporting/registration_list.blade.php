@@ -16,15 +16,22 @@
                         </div>
                     </div>
                 </div>
-                 @php $currend_date =  date("Y-m-d");  @endphp
-                {{$currend_date}}
+                <!-- @php $currend_date =  date("2021-12-10"); @endphp -->
+                @php $currend_date =  date("Y-m-d"); @endphp
+             
+               
                  <div class="card-body">
                     <div class="row">
                             <div class="col-md-12 pl-2">
-                                @if($currend_date > $batch->accept_application_end_date && $currend_date < $batch->end_date )
-                                
-                                <button   onclick="generateAppSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
-                               @endif
+                            @if($currend_date > $batch->mac_reg_end_date && $currend_date < $batch->end_date  )
+                                @if($course->code === "da_1" || $course->code === "cpa_1" )
+                                <button   onclick="generatePersonalNo('{{$course->code}}')" class="pull-right
+                                    btn btn-sm btn-success">ကိုယ်ပိုင်နံပါတ် ထုတ်ပေးမည်</button>
+                                @else
+
+                                <button   onclick="generateSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
+                                @endif
+                            @endif
                             </div>
 
 
@@ -35,11 +42,11 @@
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
-                                        <th class="bold-font-weight" >စဥ်</th>
+                                        <th class="bold-font-weight" >Serial number</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
                                         <th class="bold-font-weight">ဘွဲ့အမည်</th>
-                                     
+                                        <th class="bold-font-weight" >ကိုယ်ပိုင်နံပါတ်</th>
 
                                     </tr>
                                 </thead>
@@ -61,7 +68,9 @@
                                                     လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
                                                 @endif
                                             </td>
-                                           
+                                            <td>{{ $course->course_type->course_code == "da"
+                                                ? $student_register->student_info->personal_no
+                                                : $student_register->student_info->cpersonal_no}}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

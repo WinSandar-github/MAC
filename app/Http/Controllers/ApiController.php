@@ -142,7 +142,7 @@ class ApiController extends Controller
     {
         
         $current_course = Course::where('code',$code)->with('active_batch')->first();
-        $student_registers = StudentRegister::where('form_type',$current_course->active_batch[0]->course->id)
+        $student_registers = StudentRegister::where('batch_id',$current_course->active_batch[0]->id)
         ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
         ->where('student_register.status',1)
         ->orderBy('student_infos.name_mm','asc')
@@ -203,33 +203,29 @@ class ApiController extends Controller
         return "Update Serial Number in Exam Registration form";
     }
 
+    //generate Application Sr No
     public function generateAppSrNo($code)
     {
 
-        $course = Course::where('code',$code)->with('active_batch')->first();
+        $current_course = Course::where('code',$code)->with('active_batch')->first();
         
-        
-        $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
-            $query->where('batch_id', $course->active_batch[0]->id);
-        })->with('student_course')->orderBy('name_mm','asc')->get();
-        
+        $student_infos = StudentCourseReg::where('batch_id',$current_course->active_batch[0]->id)
+        ->join('student_infos','student_infos.id','=','student_course_regs.student_info_id')              
+        ->where('student_course_regs.approve_reject_status',1)
+        ->orderBy('student_infos.name_mm','asc')
+        ->orderBy('student_course_regs.type','asc')
+        ->with('student_info')
+        ->select('student_infos.name_mm','student_course_regs.*')->get();  
        
-        // $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($batch_id) {
-        //     $query->where('batch_id', $batch_id);
-        // })->with('student_course')->orderBy('name_mm','asc')->get();
+        
         
         
         foreach($student_infos as $key => $student_info){
            
-            $student_app = StudentCourseReg::where('student_info_id',$student_info->id)
-                                    ->where('batch_id',$course->active_batch[0]->id)
-                                    ->where('approve_reject_status',1)->first();
-                if(!empty($student_app)){
-                    $student_app->sr_no = ++$key;
+                $student_info->sr_no = ++$key;
 
-                    $student_app->save();
-                
-                }
+                $student_info->save();
+            
             }
             
         
