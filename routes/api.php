@@ -188,6 +188,9 @@ Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 // Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
+// Audit Reconnect
+Route::post('/audit_reconnect','AccFirmInfController@auditReconnect');
+
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
 Route::get('/course_by_course_type/{course_type_id}','CourseController@loadCourseByCourseType');
