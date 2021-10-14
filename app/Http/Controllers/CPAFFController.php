@@ -197,6 +197,7 @@ class CPAFFController extends Controller
             $cpa_ff->roll_no           =   $request->roll_no;
             $cpa_ff->is_renew          =   $request->is_renew;
             $cpa_ff->self_confession   =   $request->self_confession;
+            $cpa_ff->cpa2_pass_date   =   $request->cpa2_pass_date;
             $cpa_ff->type              =   $request->type;
 
             $thisYear = date('Y');
@@ -232,11 +233,11 @@ class CPAFFController extends Controller
 
             //invoice
             $fees = Membership::where('membership_name','=','CPAFF')->first(['form_fee', 'registration_fee']);
-            $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+            $stdInfo = StudentInfo::where('id', '=', $std_info->id)->first();
             //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
             $invoice = new Invoice();
-            $invoice->student_info_id = $request->student_id;
+            $invoice->student_info_id = $std_info->id;
             $invoice->invoiceNo       = '';
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
@@ -633,11 +634,11 @@ class CPAFFController extends Controller
         
         //invoice
         $fees = Membership::where('membership_name','=','CPAFF')->first(['renew_fee','form_fee', 'late_fee']);
-        $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+        $stdInfo = StudentInfo::where('id', '=', $request->student_info_id)->first();
         //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
         $invoice = new Invoice();
-        $invoice->student_info_id = $request->student_id;
+        $invoice->student_info_id = $request->student_info_id;
         $invoice->invoiceNo       = '';
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
@@ -926,36 +927,50 @@ class CPAFFController extends Controller
             $cpa_ff->profile_photo    =   $profile_photo;
         }
 
-        if ($request->hasfile('cpa')) {
-            $file = $request->file('cpa');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $cpa = '/storage/cpa_ff_register/'.$name;
-        }
-        else{
-            $cpa = null;
-        }
-
-        if ($request->hasfile('ra')) {
-            $file = $request->file('ra');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $ra = '/storage/cpa_ff_register/'.$name;
-        }
-        else{
-            $ra = null;
-        }
-
-        if($request->hasfile('foreign_degree'))
+        if(!$request->hasfile('cpa') && !$request->hasfile('ra') && !$request->hasfile('degree_file'))
         {
-            foreach($request->file('foreign_degree') as $file)
-            {
+            $cpa= $initial_cpaff->cpa;
+            $ra= $initial_cpaff->ra;
+            $degree_name=$initial_cpaff->degree_name;
+            $degree_pass_year=$initial_cpaff->degree_pass_year;
+            $degree_file_json=$initial_cpaff->foreign_degree;
+        }
+        else{
+            if ($request->hasfile('cpa')) {
+                $file = $request->file('cpa');
                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/cpa_ff_register/',$name);
-                $foreign_degree[] = '/storage/cpa_ff_register/'.$name;
+                $cpa = '/storage/cpa_ff_register/'.$name;
             }
-        }else{
-            $foreign_degree = null;
+            else{
+                $cpa = null;
+            }
+
+            if ($request->hasfile('ra')) {
+                $file = $request->file('ra');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                $ra = '/storage/cpa_ff_register/'.$name;
+            }
+            else{
+                $ra = null;
+            }
+
+            if($request->hasfile('degree_file'))
+            {
+                foreach($request->file('degree_file') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                    $file->move(public_path().'/storage/cpa_ff_register/',$name);
+                    $degree_file[] = '/storage/cpa_ff_register/'.$name;
+                }        
+            }else{
+                $degree_file = null;
+            }
+            
+            $degree_name=json_encode($request->degree_name);
+            $degree_pass_year=json_encode($request->degree_pass_year);
+            $degree_file_json=json_encode($degree_file);
         }
 
         if ($request->hasfile('cpa_certificate')) {
@@ -1054,9 +1069,9 @@ class CPAFFController extends Controller
         // $cpa_ff->profile_photo    =   $profile_photo;
         $cpa_ff->cpa              =   $cpa;
         $cpa_ff->ra               =   $ra;
-        $cpa_ff->degree_name      =   json_encode($request->degree_name);
-        $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
-        $cpa_ff->foreign_degree   =   json_encode($degree_file);
+        $cpa_ff->degree_name      =   $degree_name;
+        $cpa_ff->degree_pass_year =   $degree_pass_year;
+        $cpa_ff->foreign_degree   =   $degree_file_json;
 
         $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
         $cpa_ff->pass_personal_no =   $request->pass_personal_no;
