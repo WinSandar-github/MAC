@@ -109,7 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Exam Form 1 Approve/Reject
     Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
     Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-    
+
     //Qualify test Approve/Reject
     Route::patch('/approve_qt/{id}', 'QualifiedTest\QualifiedTestController@approveQT');
     Route::patch('/reject_qt/{id}', 'QualifiedTest\QualifiedTestController@rejectQT');
@@ -139,12 +139,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('attend_exam_list/{course_code}','ReportController@attendExamList');
     Route::get('exam_result_list/{course_code}','ReportController@examResultList');
-    
+
     Route::get('membership_edit/{id}','MembershipController@membership_edit');
     Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail')->name('entry_exam_detail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
     Route::get('entry_exam_result_detail/{id}','EntryExamController@entryExamResultDetail');
-    //Entrance Exam 
+    //Entrance Exam
     Route::get('publishes_entrance_exam_list/{course_code}','ReportController@currentEntryExamList');
     Route::post('show_entrance_exam_list','ReportController@showEntranceExamList');
     Route::get('publishes_entrance_exam_result/{course_code}','ReportController@publishesEntranceExamResult');
@@ -217,18 +217,17 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // DA Report
-
     Route::get('report_list', 'ReportController@index')->name('report_list');
 
-    Route::post('da_attend','ReportController@daAttendList');
-    Route::post('da_reg','ReportController@daRegList');
-    Route::post('da_exam_reg','ReportController@daExamRegList');
-    Route::post('da_pass','ReportController@daPassList');
-    Route::post('da_report5','ReportController@da_report5');
-    Route::get('da_report6','ReportController@da_report6');
-    Route::get('da_report7','ReportController@da_report7');
-    Route::get('da_report8','ReportController@da_report8');
-    Route::get('da_report9','ReportController@da_report9');
+    Route::post('da_attend','ReportController\DaReportController@daAttendList');
+    Route::post('da_reg','ReportController\DaReportController@daRegList');
+    Route::post('da_exam_reg','ReportController\DaReportController@daExamRegList');
+    Route::post('da_pass','ReportController\DaReportController@daPassList');
+    Route::post('da_report5','ReportController\DaReportController@da_report5');
+    Route::get('da_report6','ReportController\DaReportController@da_report6');
+    Route::get('da_report7','ReportController\DaReportController@da_report7');
+    Route::get('da_report8','ReportController\DaReportController@da_report8');
+    Route::get('da_report9','ReportController\DaReportController@da_report9');
 
     // CPA Qualified Report
     Route::get('qualified_report1','ReportController@qualified_report1');
@@ -237,7 +236,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('qt_fill_mark/{id}','QualifiedTest\QualifiedTestController@qualifyTestFillMark');
     Route::get('publishes_qualifiedtest_list','QualifiedTest\QualifiedTestController@currentQualifiedTestList');
     Route::get('publishes_qualifiedtest_result','QualifiedTest\QualifiedTestController@publishesQualifiedTestResult');
-    
+
 });
 Route::post('show_qualifiedtest_list','QualifiedTest\QualifiedTestController@showPublishQTList');
 
@@ -265,12 +264,12 @@ Route::get('/show_non_audit_firm_info/{id}','ShowNonAuditFirmInfoController@show
 Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_ff_register_form1', 'CpaController@cpa_ff_registration_form1');
     // Route::get('cpa_ff_registration','CpaController@cpa_ff_registration')->name('cpa_ff_registration');
-    
+
     // Main Course Controller
     Route::post("/main_course", "CourseController\MainCourseController@store");
     Route::get("/main_course/{id}", "CourseController\MainCourseController@show");
     Route::patch("/main_course/{id}", "CourseController\MainCourseController@update");
     Route::delete("/main_course/{id}", "CourseController\MainCourseController@destory");
-    
+
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
