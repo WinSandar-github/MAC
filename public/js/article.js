@@ -1,13 +1,22 @@
+function hideModel(){
+    $("#contractModal").hide();
+    $("#contractGovModal").hide();
+    location.reload();
+}
+
 function showContractDate(info){
     $("#contractModal").modal('show');
     $("#article_id").val(info.id);
     $("#article_form_type").val(info.article_form_type);
+    $("#student_info_id").val(info.student_info_id);
 }
 
 function saveContractDate(){
     id = $("#article_id").val();
     article_form_type = $("#article_form_type").val();
     contract_start_date = $("input[name=contract_start_date]").val();
+
+    student_info_id = $("#student_info_id").val();
 
     if(contract_start_date){
 
@@ -24,6 +33,10 @@ function saveContractDate(){
             var contract_end_date = new Date(year + 2, month, day-1);
         }else if(article_form_type == "c2_pass_1yr"){
             var contract_end_date = new Date(year + 1, month, day-1);
+        }else if(article_form_type == "c2_pass_renew"){
+            //var contract_end_date = getContractEndDate(student_info_id , contract_start_date);;
+        }else if(article_form_type == "c12_renew"){
+            //var contract_end_date = getContractEndDate(student_info_id , contract_start_date);;
         }
 
         contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
@@ -54,6 +67,41 @@ function saveContractDate(){
     }else{
         alert("Please select date.");
     }
+}
+
+function getContractEndDate(student_info_id , contract_start_date){
+    let resign_done_date;
+    let form_pass_date;
+
+    $.ajax({
+        type: "GET",
+        url: BACKEND_URL + "/get_resign_end_date/"+student_info_id,
+        success: function (result) {
+            result.forEach(function(element){
+                if(element.article_form_type == 'resign'){
+                    resign_done_date = element.approve_resign_date;
+                }else{
+                    if(element.article_form_type != 'c2_pass_renew' && element.article_form_type != 'c12_renew' && element.done_status != 1){
+                        console.log(element.contract_end_date);
+                        form_pass_date = element.contract_end_date;
+                    }
+                }
+            });
+            console.log(resign_done_date);
+            console.log(form_pass_date);
+        },
+        error: function (message) {
+            EasyLoading.hide();
+            errorMessage(message);
+        }
+    });
+}
+
+function updateContractDate(info){
+    $("#contractModal").modal('show');
+    $("#article_id").val(info.id);
+    $("#article_form_type").val(info.article_form_type);
+    $("#contract_start_date").val(info.contract_start_date);
 }
 
 function showArticle(id){
@@ -127,6 +175,7 @@ function loadArticle()
             $("#education").val(student_info.student_education_histroy.degree_name);
 
             $("#address").val(student_info.address);
+            $("#current_address").val(student_info.current_address);
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
             $("#papp_name").val(data.request_papp);
@@ -298,6 +347,12 @@ function showGovContractDate(info){
     $("#gov_article_id").val(info.id);
 }
 
+function updateGovContractDate(info){
+    $("#contractGovModal").modal('show');
+    $("#gov_article_id").val(info.id);
+    $("#contract_gov_start_date").val(info.contract_start_date);
+}
+
 function saveGovContractDate(){
     id = $("#gov_article_id").val();
     contract_start_date = $("input[name=contract_gov_start_date]").val();
@@ -309,7 +364,7 @@ function saveGovContractDate(){
         var month = start_date.getMonth();
         var day = start_date.getDate();
 
-        var contract_end_date = new Date(year + 2, month, day);
+        var contract_end_date = new Date(year + 2, month, day-1);
 
         contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
 
@@ -414,9 +469,21 @@ function loadGovArticle()
 
                 })
 
+            let recommend_attach = JSON.parse(data.recommend_attach);
+                $.each(recommend_attach, function (fileCount, fileName) {
+                    $(".recommend_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
+                })
+
+            let police_attach = JSON.parse(data.police_attach);
+                $.each(police_attach, function (fileCount, fileName) {
+                    $(".police_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
+                })
+
             //$(".labor_registration_attach").append(`<a href='${PDF_URL+data.labor_registration_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
-            $(".recommend_attach").append(`<a href='${PDF_URL+data.recommend_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
-            $(".police_attach").append(`<a href='${PDF_URL+data.police_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            // $(".recommend_attach").append(`<a href='${PDF_URL+data.recommend_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            // $(".police_attach").append(`<a href='${PDF_URL+data.police_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
 
             if(data.status == 0){
               document.getElementById("approve_reject_btn").style.display = "block";
@@ -570,7 +637,7 @@ function loadResignArticle()
 
             $(".resign_approve_file").append(`<a href='${PDF_URL+data.resign_approve_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
 
-            if(data.status == 0){
+            if(data.resign_status == 0){
               document.getElementById("approve_reject_btn").style.display = "block";
             }else{
               document.getElementById("approve_reject_btn").style.display = "none";
@@ -612,6 +679,41 @@ function rejectResignArticle(){
             type: 'patch',
             success: function(result){
                 successMessage("You have rejected that user!");
+                location.href = FRONTEND_URL + "/article_list";
+            }
+        });
+    }
+}
+
+function doneResignArticle(id){
+
+    if (!confirm('Are you sure you want to resign this article?'))
+    {
+        return;
+    }
+    else{
+        let months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        var start_date=new Date();
+        var year = start_date.getFullYear();
+        var month = start_date.getMonth();
+        var day = start_date.getDate();
+
+        var approve_resign_date =  String(day).padStart(2, '0') + "-" + months[month] + "-" + year;
+
+        var data = new FormData();
+        data.append('id', id);
+        data.append('approve_resign_date', approve_resign_date);
+
+        $.ajax({
+            type: 'POST',
+            data: data,
+            url: BACKEND_URL +"/done_resign_article/",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(result){
+                successMessage("You have resign that user!");
                 location.href = FRONTEND_URL + "/article_list";
             }
         });
