@@ -14,22 +14,26 @@ const _MAIN_TITLE = [
 
 const _DA = [
     { 
-        route_name: "da_report1",
+        route_name: "/da_attend",
+        fun_name : 'daAttendList($(this).data(\'url\'))',
         sub_title:"သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ အက္ခရာအစဥ်အလိုက်)" 
     },
 
     {
-        route_name: "da_report2",
+        route_name: "/da_reg",
+        fun_name : 'daRegList($(this).data(\'url\'))',
         sub_title: "မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ MODULEအလိုက်)"
     },
 
     {
-        route_name: "da_report3",
+        route_name: "/da_exam_reg",
+        fun_name : 'daExamRegList($(this).data(\'url\'))',
         sub_title: "စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ စာဖြေဌာနအလိုက်၊ MODULEအလိုက်)"
     },
 
     {
-        route_name: "da_report4",
+        route_name: "/da_pass",
+        fun_name : 'daPassList($(this).data(\'url\'))',
         sub_title: "စာမေးပွဲအောင်မြင်သူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ စာဖြေဌာနအလိုက်၊ MODULEအလိုက်၊ ကျောင်းအလိုက်)"
     }
 

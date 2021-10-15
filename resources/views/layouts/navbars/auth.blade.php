@@ -257,7 +257,7 @@
                                 <span style="font-weight:normal;font-size:11px;">{{ __('Mentors') }}</span>
                             </a>
                         </li>
-                        <li class="{{ $elementActive == 'article_list' ? 'active' : '' }}">
+                        <li class="{{ $elementActive == 'article_list' || $elementActive == 'firm_article_list' || $elementActive == 'gov_article_list' || $elementActive == 'resign_article_list' ? 'active' : '' }}">
                             <a href="{{ route('page.index', 'article_list') }}">
                                 <i class="nc-icon nc-paper" style="font-size:18px;font-weight:normal;"></i>
                                 <span style="font-weight:normal;font-size:11px;">{{ __('Article') }}</span>
@@ -283,7 +283,7 @@
             </li>
 
             <li class="{{ $elementActive == 'reporting_list' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'reporting_list') }}">
+                <a href="{{ route('report_list') }}">
                     <i class="nc-icon nc-paper"></i>
                     <span>{{ __('Reporting') }}</span>
                     <!-- <b class="caret"></b> -->

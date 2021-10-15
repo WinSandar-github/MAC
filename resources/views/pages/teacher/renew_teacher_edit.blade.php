@@ -40,7 +40,7 @@
 
                                     <p class="text-muted text-center" id="email"></p>
                                     <hr>
-                                    <div class="row mt-3 ">
+                                    <div class="row mt-3 " >
                                         <div class="col-md-6">
                                             <b>နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</b>
                                         </div>
@@ -48,7 +48,7 @@
                                             <span id="nrc"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 nrc-css">
+                                    <div class="row mt-3 nrc-css" style="display:none;">
                                         <div class="col-md-6">
                                             <b>နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အရှေ့)</b>
                                         </div>
@@ -56,7 +56,7 @@
                                             <span class="nrc_front"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 nrc-back-css">
+                                    <div class="row mt-3 nrc-back-css" style="display:none;">
                                         <div class="col-md-6">
                                             <b>နိုင်ငံသားစိစစ်ရေးကတ်ပြား(အနောက်)</b>
                                         </div>
@@ -64,14 +64,7 @@
                                             <span class="nrc_back"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 ">
-                                        <div class="col-md-6">
-                                            <b>အဘအမည်(မြန်မာ)/အဘအမည်(အင်္ဂလိပ်)</b>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <span id="father"></span>
-                                        </div>
-                                    </div>
+                                    
                                     
                                     <div class="row mt-3 ">
                                         <div class="col-md-6">
@@ -117,14 +110,22 @@
                                     
                                     <div class="row mt-3 border-bottom ">
                                         <div class="col-md-6">
-                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> အမြဲတမ်းနေရပ်လိပ်စာ
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(မြန်မာ)
                                             </p>
                                         </div>
                                         <div class="col-md-6">
                                             <span id="current_address"></span>
                                         </div>
                                     </div>
-                                    
+                                    <div class="row mt-3 border-bottom ">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(အင်္ဂလိပ်)
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="eng_current_address"></span>
+                                        </div>
+                                    </div>
 
 
                                 </div>
@@ -141,7 +142,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <div class="row mt-3 ">
+                                    <div class="row mt-3 school_name_class" style="display:none;">
                                         <div class="col-md-6">
                                             <p style="font-weight:bold">သင်ကြားမည့်သင်တန်းကျောင်းအမည်</p>
                                         </div>
@@ -204,7 +205,7 @@
                                     <hr>
                                     <div class="row mt-5 border-bottom">
                                         <div class="col-md-6">
-                                            <p style="font-weight:bold">ဘာသာရပ်ကြေး၊စာရင်းသွင်းကြေး၊ဖောင်ကြေး စုစုပေါင်း</p>
+                                            <p style="font-weight:bold">ဘာသာရပ်ကြေး၊ဖောင်ကြေး စုစုပေါင်း</p>
                                         </div>
                                         <div class="col-md-6">
                                             <input type='text' id="subject_total_amount" class="form-control" disabled>
