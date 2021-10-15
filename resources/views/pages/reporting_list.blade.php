@@ -213,14 +213,81 @@
                     $('#more-modal').modal('show')
 
                     break;
-                case _MAIN_TITLE[4]: // ARTICLE SECTION 
+                case _MAIN_TITLE[2]: // CPA (Qualified)
                     clearModalContent()
-                    setModalContent('ARTICLE SECTION', _ARTICLE_SECTION_GOV)
+                    setModalContent('CPA (Qualified Test) SECTION', _CPA_QUALIFIED);
+
+                    $('#select-course').empty();
+
+                    $('#select-course').append($('<option>', {
+                        value: '',
+                        text: 'Select Course'
+                    }));
+
+                    let cpa_qualified_course = course.filter(val => {
+                        return val.course_type_id == 2
+                    });
+
+                    cpa_qualified_course.forEach(val => {
+                        $('#select-course').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
 
                     $('#more-modal').modal('show')
 
                     break;
+                case _MAIN_TITLE[3]: // CPA FF PAPP
+                    clearModalContent()
+                    setModalContent('CPA(FF) AND PAPP SECTION', _CPA_PAPP);
 
+                    $('#select-course').empty();
+
+                    $('#select-course').append($('<option>', {
+                        value: '',
+                        text: 'Select Course'
+                    }));
+
+                    let cpa_papp_course = course.filter(val => {
+                        return val.course_type_id == 2
+                    });
+
+                    cpa_papp_course.forEach(val => {
+                        $('#select-course').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
+
+                    $('#more-modal').modal('show')
+
+                    break;
+                case _MAIN_TITLE[4]: // CPA FF PAPP
+                    clearModalContent()
+                    setModalContent('Article Section', _ARTICLE);
+
+                    $('#select-course').empty();
+
+                    $('#select-course').append($('<option>', {
+                        value: '',
+                        text: 'Select Course'
+                    }));
+
+                    let article = course.filter(val => {
+                        return val.course_type_id == 2
+                    });
+
+                    article.forEach(val => {
+                        $('#select-course').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
+
+                    $('#more-modal').modal('show')
+
+                    break;
                 case _MAIN_TITLE[5]: 
                     clearModalContent()
                     setModalContent('ARTICLE SECTION (MENTOR)', _ARTICLE_SECTION_MENTOR)
@@ -349,6 +416,12 @@
                         break;
                     case _MAIN_TITLE[1]:
                         span_text.text(_CPA.length)
+                        break;
+                    case _MAIN_TITLE[2]:
+                    span_text.text(_CPA_QUALIFIED.length)
+                    break;
+                    case _MAIN_TITLE[3]:
+                        span_text.text(_CPA_PAPP.length)
                         break;
                     case _MAIN_TITLE[4]: 
                         span_text.text(_ARTICLE_SECTION_GOV.length)
