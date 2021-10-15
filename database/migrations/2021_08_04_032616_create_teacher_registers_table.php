@@ -60,6 +60,7 @@ class CreateTeacherRegistersTable extends Migration
             $table->text('cessation_reason')->nullable();
             $table->string('school_name')->nullable();
             $table->integer('student_info_id')->nullable();
+            $table->string('teacher_card')->nullable();
             $table->timestamps();
         });
     }

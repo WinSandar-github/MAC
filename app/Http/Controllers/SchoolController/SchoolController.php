@@ -260,6 +260,7 @@ class SchoolController extends Controller
         $school->request_for_temporary_stop = $request->request_for_temporary_stop;
         $school->from_request_stop_date = $request->from_request_stop_date;
         $school->to_request_stop_date = $request->to_request_stop_date;
+        $school->offline_user=$request->offline_user;
         $school->save();
         
         
