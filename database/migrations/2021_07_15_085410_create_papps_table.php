@@ -76,6 +76,7 @@ class CreatePappsTable extends Migration
             $table->text('reject_description')->nullable();
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();
+            $table->boolean('offline_user')->default(0);
             $table->timestamps();
 
             $table->foreign('student_id')
