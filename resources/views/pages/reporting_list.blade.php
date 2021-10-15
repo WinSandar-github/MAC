@@ -233,7 +233,7 @@
                 let elem = `<div class="row mb-2">
                     <div class="col-md-12">
                         <div class="list-group">
-                            <button data-url="${val.route_name}" class="list-group-item list-group-item-action disabled" onclick="${val.fun_name}">
+                            <button type="button" data-url="${val.route_name}" class="list-group-item list-group-item-action disabled" onclick="${val.fun_name}">
                                 ${val.sub_title}
                             </button>
                         </div>
@@ -328,6 +328,7 @@
         })
 
         function daAttendList(url) {
+            
             if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
                 $('#report-form').attr('action', url);
                 $('#report-form').submit();
