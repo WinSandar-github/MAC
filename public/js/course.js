@@ -80,7 +80,7 @@ function createCourse() {
     send_data.append('entry_exam_fee', $("input[name=entry_exam_fee]").val());
 
     send_data.append('course_type_id', $('.course_type').val());
-    send_data.append('requirement_id', $('.requirement_id').val());
+    send_data.append('requirement_id', $('.requirement_id').val().toString());
 
     // $('select[name="requirement_id[]"]').map(function(){
     //     for (var i = 0; i < $(this).get(0).selected.length; ++i) {
@@ -287,7 +287,7 @@ function updateCourse() {
     var code = $("input[name=code]").val();
 
     var course_type_id = $('.course_type').val();
-    var requirement_id = $('.requirement_id').val();
+    var requirement_id = $('.requirement_id').val().toString();
     // var cpa_subject_fee = $("input[name=cpa_subject_fee]").val();
     // var da_subject_fee = $("input[name=da_subject_fee]").val();
     console.log('requirement_id', requirement_id);
@@ -320,7 +320,7 @@ function updateCourse() {
             successMessage("Update Successfully");
             $('#create_course_modal').modal('toggle');
             //getCourseList();
-            //window.location.reload();
+            window.location.reload();
             // getCourse();
 
 
