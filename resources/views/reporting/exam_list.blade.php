@@ -4,11 +4,15 @@
 <div class="row">
     <div class="col-md-12 text-center">
             <input type="hidden" id="course_code" name="course_code" value={{$course->code}}  >
+            <input type="hidden" id="batch_id" name="batch_id" value={{$batch->id}}  >
+
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း</h5>
+                        <h3 class="text-center m-3" style="font-weight:bold">
+                                {{ $course->name_mm }}<br>
+                                {{ $batch->name_mm }}<br>စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း</h3>
                         </div>
                     </div>
                 </div>
@@ -16,10 +20,12 @@
                 <div class="card-body">
                     <div class="row"> 
                             <div class="col-md-3">
+                @php $currend_date =  date("Y-m-d"); @endphp
                                
+                            @if($currend_date > $batch->exam_end_date && $currend_date < $batch->end_date  )
                                
                                 <button   onclick="generateExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
-                               
+                               @endif
                             </div>
                             <div class="col-md-9">
                                 <div class="d-flex flex-row-reverse">
@@ -108,7 +114,9 @@
                 data :  function (d) {
                     d.code        =  course_code,
                     d.module = $('#selected_module').val(),
-                    d.exam_department = $('#exam_department').val()
+                    d.exam_department = $('#exam_department').val(),
+                    d.batch_id = $('#batch_id').val()
+
                     
                 }
             },

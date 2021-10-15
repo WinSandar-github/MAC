@@ -30,7 +30,7 @@ class ReportController extends Controller
          
         $current_course = Course::where('code',$request->code)->with('active_batch')->first();
        
-        $student_infos = ExamRegister::where('batch_id',$current_course->active_batch[0]->id)
+        $student_infos = ExamRegister::where('batch_id',$request->batch_id)
                         ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
                         ->where('exam_type_id','!=',3)
                         ->where('status',1)
