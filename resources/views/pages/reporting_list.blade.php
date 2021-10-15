@@ -522,7 +522,7 @@
             -webkit-box-align: stretch;
             height: 100%;
         }
-        
+
         a.disabled {
             pointer-events: none;
         }
