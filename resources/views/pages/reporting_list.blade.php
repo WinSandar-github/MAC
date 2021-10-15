@@ -155,6 +155,7 @@
 
 @push('scripts')
     <script src="/js/reporting_constant.js"></script>
+    <script src="{{ asset('js/reporting_route_functions.js') }}"></script>
     <script type="text/javascript">
         $('.show-more-modal').on('click', function() {
 
@@ -424,7 +425,7 @@
                         span_text.text(_CPA_PAPP.length)
                         break;
                     case _MAIN_TITLE[4]: 
-                        span_text.text(_ARTICLE_SECTION_GOV.length)
+                        span_text.text(_ARTICLE.length)
                         break;
                     case _MAIN_TITLE[5]: 
                         span_text.text(_ARTICLE_SECTION_MENTOR.length)
@@ -440,42 +441,6 @@
                 }
             })
         })
-
-        function daAttendList(url) {
-            if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-                $('#report-form').attr('action', url);
-                $('#report-form').submit();
-            } else {
-                alert('select course and batch');
-            }
-        }
-
-        function daRegList(url) {
-            if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-                $('#report-form').attr('action', url);
-                $('#report-form').submit();
-            } else {
-                alert('select course and batch');
-            }
-        }
-
-        function daExamRegList(url) {
-            if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-                $('#report-form').attr('action', url);
-                $('#report-form').submit();
-            } else {
-                alert('select course and batch');
-            }
-        }
-
-        function daPassList(url) {
-            if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-                $('#report-form').attr('action', url);
-                $('#report-form').submit();
-            } else {
-                alert('select course and batch');
-            }
-        }
     </script>
 
     <style>
