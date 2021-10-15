@@ -195,7 +195,7 @@ class DARegisterController extends Controller
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
 
-            $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->first();
+            $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
             $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee;
             $invoice->status          = 0;
