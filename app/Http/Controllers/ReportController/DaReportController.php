@@ -4,6 +4,9 @@ namespace App\Http\Controllers\ReportController;
 
 use App\Course;
 use App\Batch;
+use App\ExamDepartment;
+use App\Module;
+
 
 use App\ExamRegister;
 use App\Http\Controllers\Controller;
@@ -78,26 +81,30 @@ class DaReportController extends Controller
 
     public function daExamRegList(Request $request)
     {
-        $current_course = Course::where('id',$request->course)->with('active_batch')->first();
+        $course = Course::where('id', '=', $request->course)
+            ->with('active_batch','course_type')
+            ->first();
 
-        return $student_infos = ExamRegister::where('batch_id',$request->batch)
-            ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
-            ->where('exam_type_id','!=',3)
-            ->where('status',1)
-            ->with('student_info')
-            ->select('exam_register.*')
-            ->get();
+        $batch = Batch::where('id','=',$request->batch)->first();   
+        $exam_departments = ExamDepartment::get();
+        $modules = Module::get();
 
-        $student_infos = $current_course->course_type->course_code == "da"
-            ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no)','ASC')->orderBy('student_infos.personal_no','ASC')
-            : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC')->orderBy('student_infos.cpersonal_no','ASC');
-
-        return view('reporting.exam_list',compact('course'));
+        return view('reporting.exam_list',compact('course','batch','exam_departments','modules'));
     }
 
     public function daPassList(Request $request)
     {
-        return $request;
+        $course = Course::where('id', '=', $request->course)
+        ->with('active_batch','course_type')
+        ->first();
+
+        $batch = Batch::where('id','=',$request->batch)->first();   
+        $exam_departments = ExamDepartment::get();
+        $modules = Module::get();
+
+ 
+ 
+        return view('reporting.exam_result_list',compact('course','batch','exam_departments','modules'));
     }
 
     public function da_report5()
