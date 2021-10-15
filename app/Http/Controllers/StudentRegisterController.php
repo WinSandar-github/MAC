@@ -57,6 +57,8 @@ class StudentRegisterController extends Controller
             $invoice->invoiceNo = $invNo;
             $invoice->status = 0;
             $invoice->save();
+
+            
         }
 
         //update student information
@@ -70,6 +72,7 @@ class StudentRegisterController extends Controller
         } else {
             $recommendation_letter = $student_info->recommend_letter;
         }
+        
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
             $name = uniqid() . '.' . $file->getClientOriginalExtension();
@@ -90,6 +93,7 @@ class StudentRegisterController extends Controller
         $student_job->office_address = $request->office_address;
         $student_job->save();
         //update student information end....
+
         switch ($request->type) {
             case 0:
 
@@ -110,6 +114,7 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
+                $student_register->sr_no = $request->sr_no;
 
                 if ($request->reg_reason) {
                     $student_register->reg_reason = implode(",", $registration_reason);
@@ -134,25 +139,34 @@ class StudentRegisterController extends Controller
                 $student_register->entry_success_no = $request->entry_success_no;
                 $student_register->module = $request->module;
 
-                // $student_register->batch_part_no = $request->batch_part_no;;
+		        // $student_register->batch_part_no = $request->batch_part_no;;
 
                 $student_register->type = $request->type;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
-                // $student_register->mentor_id = $request->mentor_id;
+		        // $student_register->mentor_id = $request->mentor_id;
                 // $student_register->current_check_service_id = $request->current_check_service_id;
                 // $student_register->current_check_services_other = $request->current_check_services_other;
                 // $student_register->recommend_file = $recommend_file;
                 $student_register->save();
-
-                //invoice
-                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
-
+        
+                //invoice        
                 $invoice = new Invoice();
-                $invoice->student_info_id = $request->student_id;
-                $invoice->invoiceNo = $invNo;
-                $invoice->status = 0;
+                $invoice->student_info_id = $student_info->id;
+
+                // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+                // $invoice->invoiceNo       = $invNo;
+
+                $invoice->invoiceNo = '';
+                $invoice->name_eng        = $student_info->name_eng;
+                $invoice->email           = $student_info->email;
+                $invoice->phone           = $student_info->phone;
+
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $invoice->productDesc     = 'Application Fee ,Self_Study Registration Fee, ' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->selfstudy_registration_fee;
+                $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
                 break;
@@ -167,6 +181,7 @@ class StudentRegisterController extends Controller
                 }
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
+                $student_register->sr_no = $request->sr_no;
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->batch_id = $request->batch_id;
@@ -187,14 +202,24 @@ class StudentRegisterController extends Controller
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
-                $student_register->save();
-                //invoice
-                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
+                $student_register->save();               
 
+                //invoice        
                 $invoice = new Invoice();
-                $invoice->student_info_id = $request->student_id;
-                $invoice->invoiceNo = $invNo;
-                $invoice->status = 0;
+                $invoice->student_info_id = $student_info->id;
+
+                // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+                // $invoice->invoiceNo       = $invNo;
+
+                $invoice->invoiceNo = '';
+                $invoice->name_eng        = $student_info->name_eng;
+                $invoice->email           = $student_info->email;
+                $invoice->phone           = $student_info->phone;
+
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee, ' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee;
+                $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
                 break;
@@ -227,6 +252,7 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
+                $student_register->sr_no = $request->sr_no;
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->batch_id = $request->batch_id;
@@ -248,13 +274,23 @@ class StudentRegisterController extends Controller
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
                 $student_register->save();
-                //invoice
-                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
 
+                //invoice        
                 $invoice = new Invoice();
-                $invoice->student_info_id = $request->student_id;
-                $invoice->invoiceNo = $invNo;
-                $invoice->status = 0;
+                $invoice->student_info_id = $student_info->id;
+
+                // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+                // $invoice->invoiceNo       = $invNo;
+
+                $invoice->invoiceNo = '';
+                $invoice->name_eng        = $student_info->name_eng;
+                $invoice->email           = $student_info->email;
+                $invoice->phone           = $student_info->phone;
+
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $invoice->productDesc     = 'Application Fee,MAC Registration Fee, Course Fee' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee;
+                $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
                 break;
@@ -351,7 +387,7 @@ class StudentRegisterController extends Controller
                 return $student->student_info ? Str::limit($student->student_info->email, 50, '...') : '';
             })
             ->addColumn('reg_no', function ($student) {
-                return $student->student_info ? Str::limit($student->student_info->registration_no, 50, '...') : '';
+                return $student->sr_no ? Str::limit($student->sr_no, 50, '...') : '';
             })
             ->addColumn('phone', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->phone, 50, '...') : '';
@@ -405,7 +441,7 @@ class StudentRegisterController extends Controller
 
     public function store_student_app_reg(Request $request)
     {
-        $date = date('Y-m-d');
+        // $date = date('Y-m-d');
         $course_date = date('Y-m-d');
         if ($request->date) {
             $date = $request->date;
@@ -488,9 +524,9 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
-
-                if ($request->reg_reason) {
-                    $student_register->reg_reason = implode(",", $registration_reason);
+                $student_register->sr_no = $request->sr_no;
+                if($request->reg_reason){
+                    $student_register->reg_reason = implode(",",$registration_reason);
                     // $student_register->reg_reason = $request->reg_reason;
                 }
                 $student_register->batch_no = $request->batch_no_self;
@@ -513,13 +549,22 @@ class StudentRegisterController extends Controller
                 // $student_register->current_check_services_other = $request->current_check_services_other;
                 // $student_register->recommend_file = $recommend_file;
                 $student_register->save();
-                //invoice
-                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
-
+                //invoice        
                 $invoice = new Invoice();
-                $invoice->student_info_id = $request->student_id;
-                $invoice->invoiceNo = $invNo;
-                $invoice->status = 0;
+                $invoice->student_info_id = $student_info->id;
+
+                // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+                // $invoice->invoiceNo       = $invNo;
+
+                $invoice->invoiceNo = '';
+                $invoice->name_eng        = $student_info->name_eng;
+                $invoice->email           = $student_info->email;
+                $invoice->phone           = $student_info->phone;
+
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $invoice->productDesc     = 'Application Fee ,Self_Study Registration Fee, ' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->selfstudy_registration_fee;
+                $invoice->status          = 0;
                 $invoice->save();
 
                 return "You have successfully registerd!";
@@ -536,6 +581,7 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
+                $student_register->sr_no = $request->sr_no;
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->batch_id = $request->batch_id;
@@ -556,13 +602,22 @@ class StudentRegisterController extends Controller
                 $student_register->form_type = $request->form_type;
 
                 $student_register->save();
-                //invoice
-                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
-
+                //invoice        
                 $invoice = new Invoice();
-                $invoice->student_info_id = $request->student_id;
-                $invoice->invoiceNo = $invNo;
-                $invoice->status = 0;
+                $invoice->student_info_id = $student_info->id;
+
+                // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+                // $invoice->invoiceNo       = $invNo;
+
+                $invoice->invoiceNo = '';
+                $invoice->name_eng        = $student_info->name_eng;
+                $invoice->email           = $student_info->email;
+                $invoice->phone           = $student_info->phone;
+
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee, ' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee;
+                $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
                 break;
@@ -595,6 +650,7 @@ class StudentRegisterController extends Controller
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
+                $student_register->sr_no = $request->sr_no;
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->batch_id = $request->batch_id;
@@ -617,13 +673,22 @@ class StudentRegisterController extends Controller
                 $student_register->form_type = $request->form_type;
 
                 $student_register->save();
-                //invoice
-                $invNo = str_pad($student_register->id, 20, "0", STR_PAD_LEFT);
-
+                //invoice        
                 $invoice = new Invoice();
-                $invoice->student_info_id = $request->student_id;
-                $invoice->invoiceNo = $invNo;
-                $invoice->status = 0;
+                $invoice->student_info_id = $student_info->id;
+
+                // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+                // $invoice->invoiceNo       = $invNo;
+
+                $invoice->invoiceNo = '';
+                $invoice->name_eng        = $student_info->name_eng;
+                $invoice->email           = $student_info->email;
+                $invoice->phone           = $student_info->phone;
+
+                $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+                $invoice->productDesc     = 'Application Fee,MAC Registration Fee, Course Fee' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee;
+                $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
                 break;

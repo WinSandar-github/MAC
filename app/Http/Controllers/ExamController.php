@@ -151,7 +151,7 @@ class ExamController extends Controller
         $exam_register = ExamRegister::where('id',$request->id)->first();
         $exam_register->exam_room = $request->exam_room;
         $exam_register->exam_building = $request->exam_building;
-        $exam_register->exam_place    = $request->exam_place;
+        // $exam_register->exam_place    = $request->exam_place;
         $exam_register->save();
         return response()->json([
             'message' => "Exam Place Successfully Added"

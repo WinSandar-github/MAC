@@ -165,7 +165,7 @@ function loadAttachFiles(firm_id){
                 $(".financial_company").append(`<a href='${PDF_URL+financial_statement_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
             }else $(".financial_company").append("<span class='text-warning pl-4'>No file</span>");
-            
+
             if(item.tax_reg_certificate!="null"){
               var tax_reg_certificate_file = removeBracketedNonAudit(item.tax_reg_certificate);
               for(var i=0;i<tax_reg_certificate_file.length;i++){
@@ -233,5 +233,90 @@ function removeBracketedNonAudit(file){
     //     var file="<a href='#' onclick=loadFile('"+split_new_file[i]+"') id='img' data-toggle='modal' data-target='#fileModal'>View File</a><br/>";
     //     $("."+divname).append(file);
     //   }
+  }
+}
+
+function approveNonAuditFirm(id){
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return;
+  }
+  else{
+    //var id = $("input[name = audit_firm_id]").val();
+    $.ajax({
+        url: BACKEND_URL + "/approve_non_auditfirm/"+id,
+        type: 'patch',
+        success: function(result){
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
+        }
+    });
+  }
+}
+
+function approveNonAuditFirmRenew(id,firm_id){
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return;
+  }
+  else{
+    // var id = $("input[name = student_info_id]").val();
+    // var firm_id = $("input[name = audit_firm_id]").val();
+
+    // console.log('approveaudit_firm',id);
+    $.ajax({
+        url: BACKEND_URL + "/approve_auditfirm_renew/"+id+"/"+firm_id,
+        type: 'patch',
+        success: function(result){
+          // console.log(result)
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
+        }
+    });
+  }
+
+}
+
+function rejectNonAuditFirm(id){
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return ;
+  }
+  else{
+    //var id = $("input[name = audit_firm_id]").val();
+    var formData = new FormData();
+    formData.append('remark', $('#remark').val());
+    $.ajax({
+        url: BACKEND_URL +"/reject_non_auditfirm/"+id,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(result){
+            successMessage("You have rejected that user!");
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
+        }
+    });
+  }
+}
+
+function rejectNonAuditFirmRenew(id,firm_id){
+  if (!confirm('Are you sure you want to reject this firm ?')){
+    return;
+  }
+  else{
+    // var id = $("input[name = audit_firm_id]").val();
+    // var firm_id = $("input[name = audit_firm_id]").val();
+    var formData = new FormData();
+    formData.append('remark', $('#remark').val());
+    //alert("youk");
+    $.ajax({
+        url: BACKEND_URL +"/reject_auditfirm_renew/"+id+"/"+firm_id,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(result){
+            successMessage("You have rejected that user!");
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
+        }
+    });
   }
 }

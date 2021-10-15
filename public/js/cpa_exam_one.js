@@ -194,6 +194,7 @@ function loadCPAStudentDataForExamCard() {
             var exam_datas = data.data;
             // console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
+                console.log('exam_datas',exam_data);
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
                 var batch_no = mm2en(exam_data.batch.number.toString());
                 $("#batch_no").append(batch_no);
@@ -378,11 +379,25 @@ function loadCPAExamData() {
                     exam_type_id = "CPA - II";
                 }
 
+                if (element.is_full_module == 1) {
+                    module_name = "Module 1";
+                }
+                else if (element.is_full_module == 2) {
+                    module_name = "Module 2";
+                }
+                else if (element.is_full_module == 3) {
+                    module_name = "All Module";
+                }
+                else {
+                    module_name = "-";
+                }
+
                 $("#school_name").append(element.student_info.student_register[0].private_school_name);
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
                 $("#exam_department").append(element.exam_department?.name);
+                $("#current_module").append(module_name);
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
                     document.getElementById("reject").style.display = 'block';
@@ -406,6 +421,7 @@ function loadCPAExamData() {
                 $("#nrc").append(element.nrc_state_region + "/" + element.nrc_township + "(" + element.nrc_citizen + ")" + element.nrc_number);
                 $("#father_name_mm").append(element.father_name_mm);
                 $("#father_name_eng").append(element.father_name_eng);
+                $("#gender").append(element.gender);
                 $("#race").append(element.race);
                 $("#religion").append(element.religion);
                 $("#date_of_birth").append(element.date_of_birth);
@@ -794,6 +810,7 @@ function getCPAModuleStd() {
                 $("#nrc").append(std.nrc_state_region + "/" + std.nrc_township + "(" + std.nrc_citizen + ")" + std.nrc_number);
                 $("#father_name_mm").append(std.father_name_mm);
                 $("#father_name_eng").append(std.father_name_eng);
+                $("#gender").append(std.gender);
                 $("#race").append(std.race);
                 $("#religion").append(std.religion);
                 $("#date_of_birth").append(std.date_of_birth);

@@ -45,7 +45,7 @@ function loadEntryDetail(id) {
             var exam_data = data.data;
 
             exam_data.forEach(function (element) {
-                console.log('exam_data', exam_data)
+                console.log('exam_data', element)
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -114,6 +114,7 @@ function loadEntryDetail(id) {
                 $("#nrc").append(student_info.nrc_state_region + "/" + student_info.nrc_township + "(" + student_info.nrc_citizen + ")" + student_info.nrc_number);
                 $("#father_name_mm").append(student_info.father_name_mm);
                 $("#father_name_eng").append(student_info.father_name_eng);
+                $("#gender").append(student_info.gender);
                 $("#race").append(student_info.race);
                 $("#religion").append(student_info.religion);
                 $("#date_of_birth").append(student_info.date_of_birth);
@@ -182,13 +183,12 @@ function loadEntryDetail(id) {
                         $('#hall_no').text(element.exam_building);
                         $('#exam_reg_place').text(element.exam_place);
                     } else {
+                        $('#room_no').text(element.exam_room);
+                        $('#hall_no').text(element.exam_building);
                         $('#exam_date').text("");
                         $('#exam_time').text("");
                         $('#exam_place').text("");
                     }
-
-
-
 
                 })
 
@@ -214,17 +214,28 @@ function approveEntryExam() {
 }
 
 function rejectEntryExam() {
-    var id = $("input[name = student_id]").val();
-    $.ajax({
-        url: BACKEND_URL + "/reject_exam/" + id,
-        type: 'PATCH',
-        success: function (result) {
-
-            successMessage("You have rejected that form!");
-            location.href = FRONTEND_URL + "/entry_exam_list";
-            getExam();
-        }
-    });
+    if (!confirm('Are you sure you want to reject this student?')) {
+        return;
+    }
+    else {
+        var formData = new FormData();
+        formData.append('remark', $('#remark').val());
+        formData.append('_method', 'PATCH')
+        var id = $("input[name = student_id]").val();
+        $.ajax({
+            url: BACKEND_URL + "/reject_exam/" + id,
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+            console.log('remark',result);
+                successMessage("You have rejected that form!");
+                location.href = FRONTEND_URL + "/entry_exam_list";
+                getExam();
+            }
+        });
+    }
 }
 
 

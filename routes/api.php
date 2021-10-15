@@ -33,7 +33,10 @@ Route::get('/audit_renew_register_list/{status}/{firm_type}', 'AccFirmInfControl
 
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
+Route::patch('/approve_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@approveRenew');
+
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@rejectRenew');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
@@ -92,6 +95,7 @@ Route::post('/update_papp_renewal', 'PAPPController@updateRejectedRenewalData');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 Route::patch('/approve_papp_payment/{id}', 'PAPPController@approvePapp');
 Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
+Route::post('/reconnect_papp', 'PAPPController@ReconnectPapp');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
@@ -185,6 +189,9 @@ Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 // Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
+// Audit Reconnect
+Route::post('/audit_reconnect','AccFirmInfController@auditReconnect');
+
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
 Route::get('/course_by_course_type/{course_type_id}','CourseController@loadCourseByCourseType');
@@ -227,8 +234,8 @@ Route::get('/get_non_audit_register_data/{id}','AccFirmInfController@getNonAudit
 Route::get('/check_payment_non_audit/{id}', 'AccFirmInfController@check_payment');
 Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePayment');
 
-//Update Non-Audit register form
-Route::post('/update_acc_firm_info/{id}','AccFirmInfController@update');
+//Update Rejected Audit Firm register form
+Route::post('/update_rejected_acc_firm_info/{id}','AccFirmInfController@update');
 
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
@@ -280,8 +287,6 @@ Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
 
 //Store app and register on student register
 Route::post('store_student_app_reg','StudentRegisterController@store_student_app_reg');
-//Email Verification
-Route::patch('/check_code/{id}', 'DARegisterController@checkCode');
 
 Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
 
@@ -320,6 +325,7 @@ Route::get('showDescription/{membership_name}','MembershipController@showDescrip
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
 //cpa entry exam
 Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
+Route::resource('/cpa_entry_exam_update','EntryExamController');
 Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
 Route::post('entered_exam_list','EntryExamController@enteredExamList');
 
@@ -393,6 +399,15 @@ Route::patch('/approve_done_gov_article/{id}', 'ArticleController\ArticleControl
 Route::patch('/reject_done_gov_article/{id}', 'ArticleController\ArticleController@rejectDoneGov');
 Route::patch('/approve_done_article/{id}', 'ArticleController\ArticleController@approveDone');
 Route::patch('/reject_done_article/{id}', 'ArticleController\ArticleController@rejectDone');
+Route::post('/filter_done_3yrs_article','ArticleController\ArticleController@filterDone3yrsArticle');
+Route::post('/save_registration_fee', 'ArticleController\ArticleController@saveRegistrationFee');
+Route::post('/save_gov_registration_fee', 'ArticleController\ArticleController@saveGovRegistrationFee');
+Route::post('/save_attach_file', 'ArticleController\ArticleController@saveAttachFile');
+Route::post('/filter_done_resign_article','ArticleController\ArticleController@filterDoneResignArticle');
+Route::post('/done_resign_article','ArticleController\ArticleController@doneResignArticle');
+
+Route::post('/article_renew_register', 'ArticleController\ArticleController@saveRenewArticle');
+Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
 
 // Payment
 Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');

@@ -216,7 +216,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('s_t_report3','ReportController@s_t_report3');
 
     // DA Report
-    Route::get('da_report1','ReportController@da_report1');
+    Route::get('da_report1/{batch}','ReportController@da_report1');
     Route::get('da_report2','ReportController@da_report2');
     Route::get('da_report3','ReportController@da_report3');
     Route::get('da_report4','ReportController@da_report4');

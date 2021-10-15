@@ -204,6 +204,14 @@
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">ကျား/မ (Gender)</p>
+                                        </div>
+                                        <div class="col-md-6 text-left">
+                                            <span id="gender"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Race</p>
                                         </div>
                                         <div class="col-md-6 text-left">
@@ -347,7 +355,7 @@
 
                                         <div class="row mt-5 justify-content-center approve_reject">
                                             <button type="button" id="print" class="btn btn-primary btn-round"  onclick="PrintExamCard()" style="height:40px; width:100px;">Print</button>
-                                            <button type="submit"  id="reject" name="save" class="btn btn-danger"  onclick="rejectEntryExam()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                            <button type="submit"  id="reject" name="save" class="btn btn-danger"   data-toggle="modal" data-target="#exampleModal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                             <button type="submit" id="approve" name="save" class="btn btn-primary" onclick="approveEntryExam()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
                                     </div>
@@ -377,7 +385,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <label  style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="exam_roll_no"></label>)
+                                <label  style="font-weight:bold">ခုံအမှတ်</label> (<label class="col-form-label" style="border-bottom: 1px dotted black;width:100px;" id="exam_roll_no"></label>)
                             </div>
                             {{--<div class="col-lg-8 col-md-8 col-sm-8"> </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 d-md-flex justify-content-md-end">
@@ -474,12 +482,12 @@
                                         <label class="col-form-label" id="hall_no"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
                                 </div>
-                                <div class="row mb-4">
+                                {{--<div class="row mb-4">
                                     <label class="col-md-6 col-form-label text-left" style="font-weight:bold; padding-left: 150px;">တည်နေရာ</label>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="exam_reg_place"  style="border-bottom: 1px dotted black;width:300px;"></label>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>  </br>
                         <div class="row">
@@ -513,6 +521,38 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form id="remark-form"  method="post" action="javascript:rejectEntryExam()" enctype="multipart/form-data">
+      @csrf
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+                        <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" form="remark-form">Submit</button>
+        </div>
+    </form>
+    </div>
+  </div>
+</div>
 
 
 @endsection

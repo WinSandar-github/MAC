@@ -336,7 +336,7 @@ function loadPAPPData(){
                     $(".mpa_mem_card_back_file").append(`<span>-</span>`);
                 }
 
-                if(element.mpa_mem_card_back!=null){
+                if(element.cpa_ff_recommendation!=null){
                     $(".cpaff_registeration_card_file").append(`<a href='${PDF_URL+element.cpa_ff_recommendation}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
                     $(".cpaff_registeration_card_file").append(`<span>-</span>`);
@@ -649,12 +649,16 @@ function loadRenewPAPPData(){
                     $(".mpa_mem_card_back_file").append(`<span>-</span>`);
                 }
 
-                if(element.mpa_mem_card_back!=null){
+                if(element.cpa_ff_recommendation!=null){
                     $(".cpaff_registeration_card_file").append(`<a href='${PDF_URL+element.cpa_ff_recommendation}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
                     $(".cpaff_registeration_card_file").append(`<span>-</span>`);
                 }
-
+                if(element.cpd_record!=null){
+                    $(".cpd_file").append(`<a href='${PDF_URL+element.cpd_record}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".cpd_file").append(`<span>-</span>`);
+                }
                 $("#use_firm").append(use_firm);
                 $("#firm_name").append(element.firm_name);
                 $("#firm_type").append(element.firm_type);

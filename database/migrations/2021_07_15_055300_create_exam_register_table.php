@@ -20,7 +20,7 @@ class CreateExamRegisterTable extends Migration
             $table->string('date')->nullable();
             // $table->string('invoice_image');
             $table->date('invoice_date')->nullable();
-            $table->unsignedBigInteger('private_school_id')->nullable();
+            // $table->unsignedBigInteger('private_school_id')->nullable();
             $table->string('private_school_name')->nullable();
             $table->string('grade')->nullable();
             $table->unsignedBigInteger('batch_id');
