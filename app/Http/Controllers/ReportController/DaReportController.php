@@ -4,6 +4,9 @@ namespace App\Http\Controllers\ReportController;
 
 use App\Course;
 use App\Batch;
+use App\ExamDepartment;
+use App\Module;
+
 
 use App\Http\Controllers\Controller;
 use App\StudentRegister;
@@ -56,13 +59,32 @@ class DaReportController extends Controller
 
     public function daExamRegList(Request $request)
     {
-        $course = Course::where('code',$code)->first();
-        return view('reporting.exam_list',compact('course'));
+        $course = Course::where('id', '=', $request->course)
+        ->with('active_batch','course_type')
+        ->first();
+
+        $batch = Batch::where('id','=',$request->batch)->first();   
+        $exam_departments = ExamDepartment::get();
+        $modules = Module::get();
+
+ 
+ 
+        return view('reporting.exam_list',compact('course','batch','exam_departments','modules'));
     }
 
     public function daPassList(Request $request)
     {
-        return $request;
+        $course = Course::where('id', '=', $request->course)
+        ->with('active_batch','course_type')
+        ->first();
+
+        $batch = Batch::where('id','=',$request->batch)->first();   
+        $exam_departments = ExamDepartment::get();
+        $modules = Module::get();
+
+ 
+ 
+        return view('reporting.exam_result_list',compact('course','batch','exam_departments','modules'));
     }
 
     public function da_report5()
