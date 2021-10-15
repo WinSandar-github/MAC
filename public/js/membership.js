@@ -115,6 +115,10 @@ function showMembershipInfo(id) {
             $('input[name=reconnected_fee]').val(res_member.reconnected_fee);
             $('input[name=cpa_subject_fee]').val(res_member.cpa_subject_fee);
             $('input[name=da_subject_fee]').val(res_member.da_subject_fee);
+            $('input[name=renew_cpa_subject_fee]').val(res_member.renew_cpa_subject_fee);
+            $('input[name=renew_da_subject_fee]').val(res_member.renew_da_subject_fee);
+            $('input[name=renew_registration_fee]').val(res_member.renew_registration_fee);
+            $('input[name=renew_yearly_fee]').val(res_member.renew_yearly_fee);
             res_member.description !== null &&  $('#mem_desc').summernote("editor.pasteHTML",res_member.description);
             res_member.requirement !== null && $('#requirement').summernote('editor.pasteHTML',res_member.requirement);
 
@@ -187,19 +191,34 @@ function updateMembership() {
       formData.append('description', $('#mem_desc').summernote('code'));
       formData.append('_method','PUT');
     }
-    else if(id==6){
+    else if(id==5){
       formData.append('membership_name',$('input[name=membership_name]').val()) ;
       formData.append('form_fee',$('input[name=form_fee]').val());
       formData.append('registration_fee',$('input[name=registration_fee]').val()) ;
-      formData.append('renew_fee',$('input[name=renew_fee]').val());
+      formData.append('yearly_fee',$('input[name=yearly_fee]').val()) ;
       formData.append('late_fee',$('input[name=late_fee]').val());
       formData.append('reconnected_fee',$('input[name=reconnected_fee]').val());
-      formData.append('cpa_subject_fee',$('input[name=cpa_subject_fee]').val());
-      formData.append('da_subject_fee',$('input[name=da_subject_fee]').val());
+      formData.append('renew_registration_fee',$('input[name=renew_registration_fee]').val());
+      formData.append('renew_yearly_fee',$('input[name=renew_yearly_fee]').val());
       formData.append('requirement', $('#requirement').summernote('code'));
       formData.append('description', $('#mem_desc').summernote('code'));
       formData.append('_method','PUT');
     }
+    else if(id==6){
+        formData.append('membership_name',$('input[name=membership_name]').val()) ;
+        formData.append('form_fee',$('input[name=form_fee]').val());
+        formData.append('registration_fee',$('input[name=registration_fee]').val()) ;
+        //formData.append('renew_fee',$('input[name=renew_fee]').val());
+        formData.append('late_fee',$('input[name=late_fee]').val());
+        formData.append('reconnected_fee',$('input[name=reconnected_fee]').val());
+        formData.append('cpa_subject_fee',$('input[name=cpa_subject_fee]').val());
+        formData.append('da_subject_fee',$('input[name=da_subject_fee]').val());
+        formData.append('renew_cpa_subject_fee',$('input[name=renew_cpa_subject_fee]').val());
+        formData.append('renew_da_subject_fee',$('input[name=renew_da_subject_fee]').val());
+        formData.append('requirement', $('#requirement').summernote('code'));
+        formData.append('description', $('#mem_desc').summernote('code'));
+        formData.append('_method','PUT');
+      }
     else{
       formData.append('membership_name',$('input[name=membership_name]').val()) ;
       formData.append('form_fee',$('input[name=form_fee]').val());

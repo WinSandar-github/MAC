@@ -11,8 +11,10 @@ use App\registration_self_study;
 use App\AccountancyFirmInformation;
 use App\CPAFF;
 use App\FirmOwnershipAudit;
+use App\Invoice;
 use App\TeacherRegister;
 use App\SchoolRegister;
+use App\Mentor;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -139,7 +141,6 @@ class StudentInfoController extends Controller
     public function update(Request $request, $id)
     {
 
-
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -168,17 +169,7 @@ class StudentInfoController extends Controller
         }
 
         
-        if($request->hasfile('certificate'))
-        {
-            foreach($request->file('certificate') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-                $file->move(public_path().'/storage/student_info/',$name);
-                $certificate[] = '/storage/student_info/'.$name;
-            }        
-        }else{
-            $certificate = $request->old_certificate;
-        }
+        
 
         if($request->hasfile('recommend_letter'))
         {
@@ -235,10 +226,30 @@ class StudentInfoController extends Controller
         $student_job_histroy->save();
 
         $education_histroy  =   EducationHistroy::where('student_info_id',$id)->first();
+        if($request->hasfile('certificate'))
+        {
+            foreach($request->file('certificate') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $certificate[] = '/storage/student_info/'.$name;
+            }    
+            $education_histroy->certificate     = json_encode($certificate);  
+        }
+        // else{
+        //     if($request->old_certificate){
+        //         $old_certificates=str_replace(',', '",', $request->old_certificate);
+        //         $certificate[]=$old_certificates;
+        //     }else{
+        //         $certificate = null;
+        //     }
+            
+           
+        // }
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     = $request->degree_name;
-        $education_histroy->certificate     = $certificate;
+        
         $education_histroy->qualified_date  = $qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
@@ -257,6 +268,25 @@ class StudentInfoController extends Controller
         }
         $student_course->mac_type        = $request->mac_dtype;
         $student_course->save();
+
+        //invoice        
+        // $invoice = Invoice::where('student_info_id',$id)->first();
+        // $invoice->student_info_id = $student_info->id;
+
+        // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+        // // $invoice->invoiceNo       = $invNo;
+
+        // $invoice->invoiceNo = '';
+        
+        // $invoice->name_eng        = $request->name_eng;
+        // $invoice->email           = $request->email;
+        // $invoice->phone           = $request->phone;
+
+        // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+        // $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
+        // $invoice->amount          = $std->batch->course->form_fee;
+        // $invoice->status          = 0;
+        // $invoice->save();
 
         return response()->json($student_info,200);
     }
@@ -352,7 +382,11 @@ class StudentInfoController extends Controller
             $teacher->image         = $image;
             $teacher->save();
         }else if($request->membership == "mentor"){
-            return "mentor";
+            $school = Mentor::find($id);
+            $school->phone_no         = $request->phone;
+            $school->address       = $request->address;
+            $school->image = $image;
+            $school->save();
         }else{
 
             $student_info = StudentInfo::find($id);

@@ -95,6 +95,7 @@ Route::post('/update_papp_renewal', 'PAPPController@updateRejectedRenewalData');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 Route::patch('/approve_papp_payment/{id}', 'PAPPController@approvePapp');
 Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
+Route::post('/reconnect_papp', 'PAPPController@ReconnectPapp');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
@@ -324,6 +325,7 @@ Route::get('showDescription/{membership_name}','MembershipController@showDescrip
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
 //cpa entry exam
 Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
+Route::resource('/cpa_entry_exam_update','EntryExamController');
 Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
 Route::post('entered_exam_list','EntryExamController@enteredExamList');
 
