@@ -33,3 +33,48 @@ function daPassList(url) {
         alert('select course and batch');
     }
 }
+
+function cpaQualifiedList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function cpaQualifiedExamEnRol(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function cpaQualifiedExamReg(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function cpaQualifiedPass(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function cpaQualifiedFail(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}

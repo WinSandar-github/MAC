@@ -144,31 +144,31 @@ const _TEACHER_SCHOOL = [
 const _CPA_QUALIFIED = [
     { 
         route_name: "/cpa_qualified_enrol",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
         sub_title:"လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)" 
     },
 
     {
-        route_name: "ca_qualified_exam_enrol",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        route_name: "cpa_qualified_exam_enrol",
+        fun_name : 'cpaQualifiedExamEnRol($(this).data(\'url\'))',
         sub_title: "ဖြေဆိုခွင့်ရရှိသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
-        route_name: "/ca_qualified_exam_reg",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        route_name: "/cpa_qualified_exam_reg",
+        fun_name : 'cpaQualifiedExamReg($(this).data(\'url\'))',
         sub_title: "ဖြေဆိုသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
-        route_name: "/ca_qualified_pass",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        route_name: "/cpa_qualified_pass",
+        fun_name : 'cpaQualifiedPass($(this).data(\'url\'))',
         sub_title: "အောင်မြင်သူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
-        route_name: "/ca_qualified_fail",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        route_name: "/cpa_qualified_fail",
+        fun_name : 'cpaQualifiedFail($(this).data(\'url\'))',
         sub_title: "ကျရှံးသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     }
     
