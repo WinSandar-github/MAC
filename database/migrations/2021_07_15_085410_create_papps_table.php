@@ -72,7 +72,7 @@ class CreatePappsTable extends Migration
             $table->string('submitted_to_date')->nullable();
 
             $table->integer('type')->nullable();
-            $table->integer('self_confession')->nullable();
+            $table->text('self_confession')->nullable();
             $table->text('reject_description')->nullable();
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();
