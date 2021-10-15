@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">မှတ်ပုံတင်ထားသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
@@ -91,9 +91,9 @@
                         <a href="#" class="btn btn-primary show-more-modal" data-section="REGISTER_LIST">Show More</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="modal right fade" id="more-modal" tabindex="-1" role="dialog">
@@ -233,7 +233,7 @@
                 let elem = `<div class="row mb-2">
                     <div class="col-md-12">
                         <div class="list-group">
-                            <button data-url="${val.route_name}" class="list-group-item list-group-item-action disabled" onclick="${val.fun_name}">
+                            <button type="button" data-url="${val.route_name}" class="list-group-item list-group-item-action disabled" onclick="${val.fun_name}">
                                 ${val.sub_title}
                             </button>
                         </div>
@@ -243,7 +243,7 @@
                 $('#more-title').append(elem)
             });
 
-            onChangeBatch()
+            // onChangeBatch()
         }
 
         function clearModalContent() {
@@ -277,37 +277,37 @@
 
         });
 
-        function onChangeBatch() {
-            $('#select-batch').on('change', function() {
-                let batch = $(this).val()
+        // function onChangeBatch() {
+        //     $('#select-batch').on('change', function() {
+        //         let batch = $(this).val()
 
-                if (batch !== '') {
-                    $('.list-group').each(function() {
-                        $(this).find('a').removeClass('disabled')
+        //         if (batch !== '') {
+        //             $('.list-group').each(function() {
+        //                 $(this).find('a').removeClass('disabled')
 
-                        let base_url = $(this).find('a').attr('href')
-                        let url_split = base_url.split('/')
+        //                 let base_url = $(this).find('a').attr('href')
+        //                 let url_split = base_url.split('/')
 
-                        if (url_split.length > 4) {
-                            base_url = base_url.slice(0, base_url.lastIndexOf('/'))
+        //                 if (url_split.length > 4) {
+        //                     base_url = base_url.slice(0, base_url.lastIndexOf('/'))
 
-                            $(this).find('a').attr('href', base_url + `/${batch}`)
-                        } else {
-                            $(this).find('a').attr('href', base_url + `/${batch}`)
-                        }
-                    })
-                } else {
-                    $('.list-group').each(function() {
-                        $(this).find('a').addClass('disabled')
+        //                     $(this).find('a').attr('href', base_url + `/${batch}`)
+        //                 } else {
+        //                     $(this).find('a').attr('href', base_url + `/${batch}`)
+        //                 }
+        //             })
+        //         } else {
+        //             $('.list-group').each(function() {
+        //                 $(this).find('a').addClass('disabled')
 
-                        let base_url = $(this).find('a').attr('href')
-                        base_url = base_url.slice(0, base_url.lastIndexOf('/'))
+        //                 let base_url = $(this).find('a').attr('href')
+        //                 base_url = base_url.slice(0, base_url.lastIndexOf('/'))
 
-                        $(this).find('a').attr('href', base_url)
-                    })
-                }
-            })
-        }
+        //                 $(this).find('a').attr('href', base_url)
+        //             })
+        //         }
+        //     })
+        // }
 
         $('document').ready(function() {
             $('.card').each(function() {
