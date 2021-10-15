@@ -10,6 +10,7 @@ use App\ExamRegister;
 use App\Module;
 use App\ExamDepartment;
 use Illuminate\Support\Str;
+use LdapRecord\Query\Events\Read;
 use Yajra\DataTables\Facades\DataTables;
 
 class ReportController extends Controller
@@ -444,9 +445,11 @@ class ReportController extends Controller
         return view('reporting.school_teacher.s_t_report3');
     }
     
-    public function da_report1()  
+    public function da_report1(Request $request)  
     {
-        return view('reporting.da.da_report3');
+        // return view('reporting.da.da_report3');
+
+        return view('reporting.dynamic_report_template');
     }
 
     public function da_report2()  

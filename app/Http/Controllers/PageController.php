@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Batch;
 use Illuminate\Http\Request;
 
 use Spatie\Permission\Models\Role;
@@ -31,6 +32,12 @@ class PageController extends Controller
         //$role = Role::create(['name'=>'writer']);
 
         //$permission = Permission::create(['name' => 'edit articles']);
+
+        if ( view()->exists("pages.reporting_list") ) {
+            $batches = Batch::all();
+            
+            return view('pages.reporting_list', compact('batches'));
+        }
         
         if (view()->exists("pages.{$page}")) {
              return view("pages.{$page}");
@@ -110,13 +117,10 @@ class PageController extends Controller
         else if (view()->exists("pages.qualified_test.{$page}")) {
             return view("pages.qualified_test.{$page}");
         }
-         
-
+     
         return abort(404);
         
-    }
-
-   
+    }   
 }
 
 
