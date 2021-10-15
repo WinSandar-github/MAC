@@ -213,6 +213,35 @@
                     $('#more-modal').modal('show')
 
                     break;
+                case _MAIN_TITLE[4]: // ARTICLE SECTION 
+                    clearModalContent()
+                    setModalContent('ARTICLE SECTION', _ARTICLE_SECTION_GOV)
+
+                    $('#more-modal').modal('show')
+
+                    break;
+
+                case _MAIN_TITLE[5]: 
+                    clearModalContent()
+                    setModalContent('ARTICLE SECTION (MENTOR)', _ARTICLE_SECTION_MENTOR)
+
+                    $('#more-modal').modal('show')
+
+                    break;
+                case _MAIN_TITLE[6]: 
+                    clearModalContent()
+                    setModalContent('FIRM NAME', _FIRM_NAME)
+
+                    $('#more-modal').modal('show')
+
+                    break;
+                case _MAIN_TITLE[7]: 
+                    clearModalContent()
+                    setModalContent('TEACHER / SCHOOL', _TEACHER_SCHOOL)
+
+                    $('#more-modal').modal('show')
+
+                    break;
                 default:
                     clearModalContent()
 
@@ -321,6 +350,18 @@
                     case _MAIN_TITLE[1]:
                         span_text.text(_CPA.length)
                         break;
+                    case _MAIN_TITLE[4]: 
+                        span_text.text(_ARTICLE_SECTION_GOV.length)
+                        break;
+                    case _MAIN_TITLE[5]: 
+                        span_text.text(_ARTICLE_SECTION_MENTOR.length)
+                        break;
+                    case _MAIN_TITLE[6]: 
+                        span_text.text(_FIRM_NAME.length)
+                        break;
+                    case _MAIN_TITLE[7]: 
+                        span_text.text(_TEACHER_SCHOOL.length)
+                        break;
                     default:
                         span_text.text('0')
                 }
@@ -392,6 +433,7 @@
             margin: auto;
             height: 100%;
             width: 50%;
+            right: 0;
 	    }   
 
         .modal.right.fade .modal-dialog {
