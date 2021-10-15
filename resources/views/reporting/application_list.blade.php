@@ -10,7 +10,7 @@
                         <div class="col-md-12">
                             <h3 class="text-center m-3" style="font-weight:bold">
                                 {{ $data['course']->name_mm }}<br>
-                                {{ $data['course']->active_batch[0]->name_mm }}<br>
+                                {{ $data['batch']->name_mm }}<br>
                                 တက်ရောက်ခွင့်ရသူများစာရင်း
                             </h3>
                         </div>
@@ -24,7 +24,8 @@
                         <div class="row col-md-6 pl-2">
                             <div class="col-md-3">
                                 <label class="">
-                                    <input class="form-check-input module_one" type="radio" name="filter" value="all" checked>
+                                    <input class="form-check-input module_one" type="radio" name="filter" value="all"
+                                           checked>
                                     <span class="form-check-sign"></span>
                                     All
                                 </label>
@@ -33,7 +34,8 @@
                                 @foreach($data['filter'] as $filter)
                                     <div class="col-md-3">
                                         <label class="">
-                                            <input class="form-check-input module_one" type="radio" name="filter" value="{{ $filter }}">
+                                            <input class="form-check-input module_one" type="radio" name="filter"
+                                                   value="{{ $filter }}">
                                             <span class="form-check-sign"></span>
                                             {{ $filter }}
                                         </label>
@@ -59,10 +61,11 @@
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
                                 <thead>
                                 <tr>
-                                    <th class="bold-font-weight">Serial number</th>
+                                    <th class="bold-font-weight">စဥ်</th>
                                     <th class="bold-font-weight">အမည်</th>
-                                    <th class="bold-font-weight">မှတ်ပုံတင်နံပါတ်</th>
+                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကဒ်အမှတ်</th>
                                     <th class="bold-font-weight">ဘွဲ့အမည်</th>
+                                    <th class="bold-font-weight">အဘအမည်</th>
                                     <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
                                 </tr>
                                 </thead>
@@ -73,7 +76,9 @@
                                 @foreach($data['student'] as $key => $std)
                                     @if($key == 2)
                                         <tr class="mac-row">
-                                            <td colspan="5" style="text-align: start; font-weight: bold">MAC တွင်တက်ရောက်မည့်သူများ</td>
+                                            <td colspan="6" style="text-align: start; font-weight: bold">MAC
+                                                တွင်တက်ရောက်မည့်သူများ
+                                            </td>
                                         </tr>
 
                                         @foreach($std as $key => $s)
@@ -99,6 +104,9 @@
                                                     @endif
                                                 </td>
                                                 <td>
+                                                    {{ $s->student_info->father_name_mm }}
+                                                </td>
+                                                <td>
                                                     {{ $data['course']->course_type->course_code == "da"
                                                         ? $s->student_info->personal_no
                                                         : $s->student_info->cpersonal_no}}
@@ -111,7 +119,9 @@
                                 @foreach($data['student'] as $key => $std)
                                     @if($key == 0)
                                         <tr class="self-row">
-                                            <td colspan="5" style="text-align: start;font-weight: bold">ကိုယ်တိုင်လေ့လာမည့်သူများ</td>
+                                            <td colspan="6" style="text-align: start;font-weight: bold">
+                                                ကိုယ်တိုင်လေ့လာမည့်သူများ
+                                            </td>
                                         </tr>
 
                                         @foreach($std as $key => $s)
@@ -137,6 +147,9 @@
                                                     @endif
                                                 </td>
                                                 <td>
+                                                    {{ $s->student_info->father_name_mm }}
+                                                </td>
+                                                <td>
                                                     {{ $data['course']->course_type->course_code == "da"
                                                         ? $s->student_info->personal_no
                                                         : $s->student_info->cpersonal_no}}
@@ -149,7 +162,9 @@
                                 @foreach($data['student'] as $key => $std)
                                     @if($key == 1)
                                         <tr class="private-row">
-                                            <td colspan="5" style="text-align: start;font-weight: bold">ကိုယ်ပိုင်ကျောင်းတွင်လေ့လာမည့်သူများ</td>
+                                            <td colspan="6" style="text-align: start;font-weight: bold">
+                                                ကိုယ်ပိုင်ကျောင်းတွင်လေ့လာမည့်သူများ
+                                            </td>
                                         </tr>
 
                                         @foreach($std as $key => $s)
@@ -173,6 +188,9 @@
                                                     @else
                                                         လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
                                                     {{ $data['course']->course_type->course_code == "da"
@@ -234,9 +252,9 @@
         $('document').ready(function () {
             var course_code = $('#course_code').val();
 
-            $('input[type=radio][name=filter]').on('change', function (){
+            $('input[type=radio][name=filter]').on('change', function () {
                 var val = $(this).val();
-                switch (val){
+                switch (val) {
                     case "all":
                         $('.mac-row, .private-row, .self-row').show();
                         break;
@@ -254,95 +272,46 @@
                         break;
                 }
             })
-        })
+        });
 
-<<<<<<< HEAD
-        // showAppList = (course_code) =>{
+        showAppList = (course_code) => {
 
-        //     var table_app = $('#tbl_application').DataTable({
-        //         scrollX: true,
-        //         processing: true,
-        //         serverSide: true,
-        //         searching: false,
-        //         paging:true,
-        //         ajax: {
-        //             url  : FRONTEND_URL + "/show_registration_list",
-        //             type : "POST" ,
-        //             data :  function (d) {
-        //                 d.code        =  course_code
+            var table_app = $('#tbl_application').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                searching: false,
+                paging: true,
+                ajax: {
+                    url: FRONTEND_URL + "/show_registration_list",
+                    type: "POST",
+                    data: function (d) {
+                        d.code = course_code,
+                            d.module = $('#selected_module').val(),
+                            d.student_type = $('#student_type').val()
+                    }
+                },
+                columns: [
+                    {
+                        data: null, render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }
+                    },
+                    {data: 'student_info.name_mm', name: 'name_mm'},
+                    {data: 'nrc', name: 'nrc'},
+                    {data: 'course.name_mm', name: 'course name'},
+                    {data: 'cpersonal_no', name: 'cpersonal_no'},
+                ],
+                sort: function (row, type, set, meta) {
+                    return row[meta.col][1];
+                },
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
 
-        //             }
-        //         },
-        //         columns: [
-        //             {data: null, render: function (data, type, row, meta) {
-        //                 console.log(meta)
-        //                     // return meta.row + meta.settings._iDisplayStart + 1;
-        //                 }},
-        //             {data: 'student_info.name_mm', name: 'name_mm'},
-        //             {data: 'nrc', name: 'nrc'},
-        //             {data: 'student_info.personal_no', name: 'personal_no'},
+            $("#search").click(function () {
 
-
-        //         ],
-        //         sort: function( row, type, set, meta ) {
-        //             return row[meta.col][1];
-        //         },
-        //         "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-
-        //     });
-
-
-        // }
+                table_app.draw();
+            });
+        }
     </script>
-=======
-showAppList = (course_code) => {
-
-    var table_app = $('#tbl_application').DataTable({
-        scrollX: true,
-        processing: true,
-        serverSide: true,
-        searching: false,
-        paging:true,
-        ajax: {
-            url  : FRONTEND_URL + "/show_registration_list",
-            type : "POST" ,
-            data :  function (d) {
-                d.code        =  course_code,
-                d.module = $('#selected_module').val(),
-                d.student_type = $('#student_type').val()
-
-            }
-        },
-        columns: [
-            {data: null, render: function (data, type, row, meta) {
-                
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
-            {data: 'student_info.name_mm', name: 'name_mm'},
-            {data: 'nrc', name: 'nrc'},
-            {data: 'course.name_mm', name: 'course name'},
-            
-            {data: 'cpersonal_no', name: 'cpersonal_no'},
-
-
-        ],
-        sort: function( row, type, set, meta ) {
-            return row[meta.col][1];
-        },
-        "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-
-    });
-
-    
-    $("#search").click(function () {
-      
-        table_app.draw();
-    });
-
-
-}
-        </script>
->>>>>>> 7a45121dd8f23d3e84aee41135123e582510b04f
-
-
 @endpush
