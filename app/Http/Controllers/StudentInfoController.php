@@ -168,8 +168,8 @@ class StudentInfoController extends Controller
             $nrc_back = $request->old_nrc_back;
         }
 
-        
-        
+
+
 
         if($request->hasfile('recommend_letter'))
         {
@@ -230,11 +230,11 @@ class StudentInfoController extends Controller
         {
             foreach($request->file('certificate') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
                 $certificate[] = '/storage/student_info/'.$name;
-            }    
-            $education_histroy->certificate     = json_encode($certificate);  
+            }
+            $education_histroy->certificate     = json_encode($certificate);
         }
         // else{
         //     if($request->old_certificate){
@@ -243,13 +243,13 @@ class StudentInfoController extends Controller
         //     }else{
         //         $certificate = null;
         //     }
-            
-           
+
+
         // }
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     = $request->degree_name;
-        
+
         $education_histroy->qualified_date  = $qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
@@ -269,7 +269,7 @@ class StudentInfoController extends Controller
         $student_course->mac_type        = $request->mac_dtype;
         $student_course->save();
 
-        //invoice        
+        //invoice
         // $invoice = Invoice::where('student_info_id',$id)->first();
         // $invoice->student_info_id = $student_info->id;
 
@@ -277,7 +277,7 @@ class StudentInfoController extends Controller
         // // $invoice->invoiceNo       = $invNo;
 
         // $invoice->invoiceNo = '';
-        
+
         // $invoice->name_eng        = $request->name_eng;
         // $invoice->email           = $request->email;
         // $invoice->phone           = $request->phone;
@@ -344,9 +344,14 @@ class StudentInfoController extends Controller
         }else{
             $image = $request->old_image;
         }
-        
+
         if($request->membership == "audit"){
-            return "Audit";
+            $acc_firm_info = AccountancyFirmInformation::find($id);
+            $acc_firm_info->telephones = $request->audit_phone;
+            $acc_firm_info->head_office_address_mm = $request->audit_address_mm;
+            $acc_firm_info->head_office_address = $request->audit_address_eng;
+            $acc_firm_info->image = $image;
+            $acc_firm_info -> save();
         }else  if($request->membership == "non_audit"){
             return "Non Audit";
         }else if($request->membership == "cpaff"){
