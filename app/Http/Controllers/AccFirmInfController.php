@@ -1944,7 +1944,7 @@ class AccFirmInfController extends Controller
     }
 
     // Reconnect
-    public function auditReconnect(Request $request)
+    public function firmReconnect(Request $request)
     {
 
       if($request->hasfile('ppa_certis'))
@@ -2199,6 +2199,7 @@ class AccFirmInfController extends Controller
       $acc_firm_info->req_for_stop    = $request->req_for_stop;
       $acc_firm_info->last_reg_payment_start    = $request->last_reg_payment_start;
       $acc_firm_info->last_reg_payment_end    = $request->last_reg_payment_end;
+      $acc_firm_info->offline_user    = true;
       $acc_firm_info->save();
 
       //Student Info

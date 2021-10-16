@@ -190,7 +190,7 @@ Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 // Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
 // Audit Reconnect
-Route::post('/audit_reconnect','AccFirmInfController@auditReconnect');
+Route::post('/audit_reconnect','AccFirmInfController@firmReconnect');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
