@@ -479,6 +479,7 @@ function loadRenewPAPPData(){
     $("#company_name").html("");
     $("#salary").html("");
     $("#office_address").html("");
+    $("#papp_reg_no").html("");
 
     $("input[name = papp_id]").val(id);
     // console.log('id',id);
@@ -674,6 +675,7 @@ function loadRenewPAPPData(){
                 //$("#tax_free_recommendation").append(element.tax_free_recommendation);
                 //$("#tax_year").append(element.tax_year);
                 $("#reg_no").append(element.reg_no);
+                $("#papp_reg_no").append(element.papp_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
                 $("#cpaff_address").append(element.address);
