@@ -566,7 +566,7 @@ function loadEductaionHistory(id){
             $.each(result.data, function( index, value ) {
                 var tr = "<tr>";
                 tr += `<td> ${ index += 1 } </td>`;
-                tr += `<td> ${ value.university_name } </td>`;
+                tr += `<td> ${ value.degree_name } </td>`;
                 tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
