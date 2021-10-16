@@ -686,7 +686,7 @@ class CpaTraAddmissionDirectController extends Controller
             $student_info->approve_reject_status  =  0;
             $student_info->date             =   $date;
             $student_info->email            =   strtolower($request->email);
-            $student_info->course_type_id   =   1;
+            $student_info->course_type_id   =   2;
             $student_info->password         =   Hash::make($request->password);
             $student_info->degree_rank                 =   $request->cpa_one_pass_level;
             $student_info->da_pass_date                 =   $request->cpa_one_pass_exam_date;

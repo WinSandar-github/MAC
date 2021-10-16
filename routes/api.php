@@ -164,6 +164,9 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
 Route::post('/send_email', 'DARegisterController@send_email');
 
+//DA Offline Application 
+Route::post('/filter_offline_student_info','DARegisterController@FilterOfflineApplicationList');
+
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
 Route::post('/cpa_one_by_nrc','CPAOneRegistrationController@GetCPAOneByNRC');
