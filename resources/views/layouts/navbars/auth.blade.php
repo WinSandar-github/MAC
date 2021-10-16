@@ -282,6 +282,13 @@
                 </a>
             </li>
 
+            <li class="{{ $elementActive == 'offline_user' ? 'active' : '' }}">
+                <a href="{{ route('offline_user') }}">
+                    <i class="nc-icon nc-tap-01"></i>
+                    <p>Offline User</p>
+                </a>
+            </li>
+
             <li class="{{ $elementActive == 'reporting_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'reporting_list') }}">
                     <i class="nc-icon nc-paper"></i>

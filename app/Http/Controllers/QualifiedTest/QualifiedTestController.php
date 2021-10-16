@@ -144,7 +144,7 @@ class QualifiedTestController extends Controller
             $qualifiedtest->other_edu_foreign          = $request->other_edu_foreign;
             $qualifiedtest->save();
             // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->first();
-            $course = Course::where('code','cpaqualifiedtest_3')->first();
+            $course = Course::where('code','cpa_qt')->first();
 
             $invoice = new Invoice();
             $invoice->student_info_id = $student_info->id;
