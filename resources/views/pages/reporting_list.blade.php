@@ -83,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">မှတ်ပုံတင်ထားသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
@@ -91,9 +91,9 @@
                         <a href="#" class="btn btn-primary show-more-modal" data-section="REGISTER_LIST">Show More</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 
     <div class="modal right fade" id="more-modal" tabindex="-1" role="dialog">
@@ -155,6 +155,7 @@
 
 @push('scripts')
     <script src="/js/reporting_constant.js"></script>
+    <script src="{{ asset('js/reporting_route_functions.js') }}"></script>
     <script type="text/javascript">
         $('.show-more-modal').on('click', function() {
 
@@ -213,6 +214,102 @@
                     $('#more-modal').modal('show')
 
                     break;
+                case _MAIN_TITLE[2]: // CPA (Qualified)
+                    clearModalContent()
+                    setModalContent('CPA (Qualified Test) SECTION', _CPA_QUALIFIED);
+
+                    $('#select-course').empty();
+
+                    $('#select-course').append($('<option>', {
+                        value: '',
+                        text: 'Select Course'
+                    }));
+
+                    let cpa_qualified_course = course.filter(val => {
+                        return val.course_type_id == 2
+                    });
+
+                    cpa_qualified_course.forEach(val => {
+                        $('#select-course').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
+
+                    $('#more-modal').modal('show')
+
+                    break;
+                case _MAIN_TITLE[3]: // CPA FF PAPP
+                    clearModalContent()
+                    setModalContent('CPA(FF) AND PAPP SECTION', _CPA_PAPP);
+
+                    $('#select-course').empty();
+
+                    $('#select-course').append($('<option>', {
+                        value: '',
+                        text: 'Select Course'
+                    }));
+
+                    let cpa_papp_course = course.filter(val => {
+                        return val.course_type_id == 2
+                    });
+
+                    cpa_papp_course.forEach(val => {
+                        $('#select-course').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
+
+                    $('#more-modal').modal('show')
+
+                    break;
+                case _MAIN_TITLE[4]: // CPA FF PAPP
+                    clearModalContent()
+                    setModalContent('Article Section', _ARTICLE);
+
+                    $('#select-course').empty();
+
+                    $('#select-course').append($('<option>', {
+                        value: '',
+                        text: 'Select Course'
+                    }));
+
+                    let article = course.filter(val => {
+                        return val.course_type_id == 2
+                    });
+
+                    article.forEach(val => {
+                        $('#select-course').append($('<option>', {
+                            value: val.id,
+                            text: val.name_mm
+                        }));
+                    });
+
+                    $('#more-modal').modal('show')
+
+                    break;
+                case _MAIN_TITLE[5]: 
+                    clearModalContent()
+                    setModalContent('ARTICLE SECTION (MENTOR)', _ARTICLE_SECTION_MENTOR)
+
+                    $('#more-modal').modal('show')
+
+                    break;
+                case _MAIN_TITLE[6]: 
+                    clearModalContent()
+                    setModalContent('FIRM NAME', _FIRM_NAME)
+
+                    $('#more-modal').modal('show')
+
+                    break;
+                case _MAIN_TITLE[7]: 
+                    clearModalContent()
+                    setModalContent('TEACHER / SCHOOL', _TEACHER_SCHOOL)
+
+                    $('#more-modal').modal('show')
+
+                    break;
                 default:
                     clearModalContent()
 
@@ -243,7 +340,7 @@
                 $('#more-title').append(elem)
             });
 
-            onChangeBatch()
+            // onChangeBatch()
         }
 
         function clearModalContent() {
@@ -277,37 +374,37 @@
 
         });
 
-        function onChangeBatch() {
-            $('#select-batch').on('change', function() {
-                let batch = $(this).val()
+        // function onChangeBatch() {
+        //     $('#select-batch').on('change', function() {
+        //         let batch = $(this).val()
 
-                if (batch !== '') {
-                    $('.list-group').each(function() {
-                        $(this).find('a').removeClass('disabled')
+        //         if (batch !== '') {
+        //             $('.list-group').each(function() {
+        //                 $(this).find('a').removeClass('disabled')
 
-                        let base_url = $(this).find('a').attr('href')
-                        let url_split = base_url.split('/')
+        //                 let base_url = $(this).find('a').attr('href')
+        //                 let url_split = base_url.split('/')
 
-                        if (url_split.length > 4) {
-                            base_url = base_url.slice(0, base_url.lastIndexOf('/'))
+        //                 if (url_split.length > 4) {
+        //                     base_url = base_url.slice(0, base_url.lastIndexOf('/'))
 
-                            $(this).find('a').attr('href', base_url + `/${batch}`)
-                        } else {
-                            $(this).find('a').attr('href', base_url + `/${batch}`)
-                        }
-                    })
-                } else {
-                    $('.list-group').each(function() {
-                        $(this).find('a').addClass('disabled')
+        //                     $(this).find('a').attr('href', base_url + `/${batch}`)
+        //                 } else {
+        //                     $(this).find('a').attr('href', base_url + `/${batch}`)
+        //                 }
+        //             })
+        //         } else {
+        //             $('.list-group').each(function() {
+        //                 $(this).find('a').addClass('disabled')
 
-                        let base_url = $(this).find('a').attr('href')
-                        base_url = base_url.slice(0, base_url.lastIndexOf('/'))
+        //                 let base_url = $(this).find('a').attr('href')
+        //                 base_url = base_url.slice(0, base_url.lastIndexOf('/'))
 
-                        $(this).find('a').attr('href', base_url)
-                    })
-                }
-            })
-        }
+        //                 $(this).find('a').attr('href', base_url)
+        //             })
+        //         }
+        //     })
+        // }
 
         $('document').ready(function() {
             $('.card').each(function() {
@@ -320,6 +417,24 @@
                         break;
                     case _MAIN_TITLE[1]:
                         span_text.text(_CPA.length)
+                        break;
+                    case _MAIN_TITLE[2]:
+                    span_text.text(_CPA_QUALIFIED.length)
+                    break;
+                    case _MAIN_TITLE[3]:
+                        span_text.text(_CPA_PAPP.length)
+                        break;
+                    case _MAIN_TITLE[4]: 
+                        span_text.text(_ARTICLE.length)
+                        break;
+                    case _MAIN_TITLE[5]: 
+                        span_text.text(_ARTICLE_SECTION_MENTOR.length)
+                        break;
+                    case _MAIN_TITLE[6]: 
+                        span_text.text(_FIRM_NAME.length)
+                        break;
+                    case _MAIN_TITLE[7]: 
+                        span_text.text(_TEACHER_SCHOOL.length)
                         break;
                     default:
                         span_text.text('0')
@@ -393,6 +508,7 @@
             margin: auto;
             height: 100%;
             width: 50%;
+            right: 0;
 	    }   
 
         .modal.right.fade .modal-dialog {
@@ -408,7 +524,7 @@
             -webkit-box-align: stretch;
             height: 100%;
         }
-        
+
         a.disabled {
             pointer-events: none;
         }
