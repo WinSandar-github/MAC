@@ -238,7 +238,14 @@ class StudentInfoController extends Controller
         $education_histroy  =   EducationHistroy::where('student_info_id',$id)->first();
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
-        $education_histroy->degree_name     = $request->degree_name;
+        $education_histroy->degree_id       = $request->degree_id;
+        if($request->degree_id == 40){
+
+            $education_histroy->degree_name     = $request->degree_name;
+        }else{
+            $education_histroy->degree_name     = NULL;
+
+        }
         $education_histroy->certificate     = $certificate;
         $education_histroy->qualified_date  = $qualified_date;
         $education_histroy->roll_number     = $request->roll_number;

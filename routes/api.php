@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Route::apiResource('account', 'MoodleControllers\AccountCreateController');
 
+Route::resource('/degree', 'DegreeController');
 
 Route::resource('/acc_firm_info','AccFirmInfController');
 // for audit initial list
