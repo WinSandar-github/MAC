@@ -41,8 +41,8 @@ class CreateTeacherRegistersTable extends Migration
             $table->string('date_of_birth')->nullable();
             $table->string('address')->nullable();
             $table->string('eng_address')->nullable();
-            $table->string('current_address');
-            $table->string('eng_current_address');
+            $table->string('current_address')->nullable();
+            $table->string('eng_current_address')->nullable();
             $table->string('recommend_letter')->nullable();
             $table->string('position')->nullable();
             $table->string('department')->nullable();
@@ -55,6 +55,7 @@ class CreateTeacherRegistersTable extends Migration
             $table->string('t_code')->nullable();
             $table->text('reason')->nullable();
             $table->integer('initial_status')->default(0);
+            $table->string('regno')->nullable();
             
             $table->string('invoice_no')->nullable();
             $table->text('cessation_reason')->nullable();

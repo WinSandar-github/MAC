@@ -153,7 +153,7 @@ class TeacherController extends Controller
             $std_info->password = Hash::make($request->password);
             $std_info->save();
 
-        // $teacher->t_code = 'T-00'.$teacher->id;
+        $teacher->regno = 'T-'.$teacher->id;
         $teacher->student_info_id = $std_info->id;
         $teacher->save();
 
@@ -164,7 +164,7 @@ class TeacherController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $std_info->id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id      = $teacher->id;
                 $education_histroy->save();
@@ -327,7 +327,7 @@ class TeacherController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id       = $teacher->id;
                 $education_histroy->save();
@@ -344,7 +344,7 @@ class TeacherController extends Controller
                  $old_degrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_degrees_certificates_h);
                  for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->university_name = $request->old_degrees[$i];
+                    $education_histroy->degree_name = $request->old_degrees[$i];
                     $education_histroy->certificate     ='/storage/teacher_info/'.$old_degrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -353,7 +353,7 @@ class TeacherController extends Controller
                 
                 for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->university_name = $request->old_degrees[$i];
+                    $education_histroy->degree_name = $request->old_degrees[$i];
                     $education_histroy->certificate     =$old_degrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -696,7 +696,8 @@ class TeacherController extends Controller
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
-        $teacher->t_code = $request->regno;
+        $teacher->t_code = $request->t_code;
+        $teacher->regno = $request->regno;
         $teacher->initial_status  = 1;
         $teacher->student_info_id  = $request->student_info_id;
         $teacher->save();
@@ -709,7 +710,7 @@ class TeacherController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id      = $teacher->id;
                 $education_histroy->save();
@@ -964,7 +965,7 @@ class TeacherController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id      = $teacher->id;
                
@@ -982,7 +983,7 @@ class TeacherController extends Controller
                  $old_renewdegrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_renewdegrees_certificates_h);
                  for($i=0;$i <sizeof($request->old_renewdegrees);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
-                    $education_histroy->university_name = $request->old_renewdegrees[$i];
+                    $education_histroy->degree_name = $request->old_renewdegrees[$i];
                     $education_histroy->certificate     ='/storage/teacher_info/'.$old_renewdegrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -991,7 +992,7 @@ class TeacherController extends Controller
                 if($request->old_renewdegrees!=""){
                     for($i=0;$i <sizeof($request->old_renewdegrees);$i++){
                         $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
-                        $education_histroy->university_name = $request->old_renewdegrees[$i];
+                        $education_histroy->degree_name = $request->old_renewdegrees[$i];
                         $education_histroy->certificate     =$old_renewdegrees_certificates[$i];
                         $education_histroy->save();
                     }

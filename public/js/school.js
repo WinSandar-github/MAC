@@ -450,10 +450,6 @@ function getSchoolInfos(){
             //     $(".tbl_branch_school_body").append(tr);
             // });
             //createDataTable('.tbl_branch_school');
-            
-            
-            
-            
             if(data.data.type!=null){
                 $('.school-type').show();
                 if($("input:radio[name=school_type1]").val()==data.data.type){
@@ -483,9 +479,18 @@ function getSchoolInfos(){
                 
                 
             }
-           
-            
-            
+            if(data.data.last_registration_fee_year!=null){
+                $('.last_year').show();
+                $('#last_registration_fee_year').append(data.data.last_registration_fee_year);
+            }
+            if(data.data.request_for_temporary_stop!=null){
+                $('.request_stop').show();
+                $('input:radio[name='+data.data.request_for_temporary_stop+']').attr('checked',true);
+            }
+            if(data.data.request_for_temporary_stop=='yes'){
+                $('.request_stop_yes').show();
+                $('#request_from_to_date').append(data.data.from_request_stop_date+' မှ '+data.data.to_request_stop_date+' ထိ');
+            }
         }
     });
 }
@@ -495,6 +500,7 @@ function approveSchoolRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
+    let offline_user = url.searchParams.get("offline_user");
     var check = confirm("Are you sure?");
     if (check == true) {
         $.ajax({
@@ -503,7 +509,12 @@ function approveSchoolRegister(){
             type: 'post',
             success: function(result){
                 successMessage(result.message);
-                location.href = FRONTEND_URL + '/school_registration';
+                if(offline_user == 'true'){
+                    location.href = FRONTEND_URL + '/offline_user';
+                }else{
+                    location.href = FRONTEND_URL + '/school_registration';
+                }
+                
             }
         });
     }
@@ -515,7 +526,7 @@ function rejectSchoolRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
-    console.log(student_info_id)
+    let offline_user = url.searchParams.get("offline_user");
     var reason=$("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/reject_school_register",
@@ -523,7 +534,11 @@ function rejectSchoolRegister(){
         type: 'post',
         success: function(result){
             successMessage(result.message);
-            location.href = '/school_registration';
+            if(offline_user == 'true'){
+                location.href = FRONTEND_URL + '/offline_user';
+            }else{
+                location.href = FRONTEND_URL + '/school_registration';
+            }
         }
     });
     
@@ -599,13 +614,18 @@ function cessationSchoolRegister(){
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
     var cessation_reason=$("#cessation_reason").val();
+    let offline_user = url.searchParams.get("offline_user");
     $.ajax({
         url: BACKEND_URL + "/cessation_school_register",
         data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id+"&cessation_reason="+cessation_reason+"&initial_status="+$('#initial_status').val(),
         type: 'post',
         success: function(result){
             successMessage('You have cessation that user!');
-            location.href = '/school_registration';
+            if(offline_user == 'true'){
+                location.href = FRONTEND_URL + '/offline_user';
+            }else{
+                location.href = FRONTEND_URL + '/school_registration';
+            }
         }
     });
     
