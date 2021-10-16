@@ -20,6 +20,8 @@ class CreateStudentCourseRegsTable extends Migration
             $table->unsignedBigInteger('batch_id');
             $table->bigInteger('type')->nullable();
             $table->bigInteger('mac_type')->nullable();
+            $table->bigInteger('pass_type')->nullable();
+            $table->bigInteger('pass_mac_type')->nullable();
             
             $table->char('status',1);
             $table->date('date');

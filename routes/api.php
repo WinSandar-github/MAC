@@ -54,6 +54,7 @@ Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
 Route::resource('/cpa_private_old','CpaPrivateOldController');
 Route::resource('/cpa_addmission_exam','CpaTraAddmissionExamController');
 Route::resource('/cpa_register','CpaTraAddmissionDirectController');
+Route::post('/cpa_two_reg_cpaonepass', 'CpaTraAddmissionDirectController@CPATwoRegCPAOnePass');
 Route::resource('/cpa_two_tra_reg','CpaTwoTraRegisterController');
 Route::resource('/cpa_two_self_learner','CpaTwoRegSelfLearnerController');
 Route::resource('/cpa_two_private_newbie','CpaTwoPrivateNewbieController');
@@ -157,6 +158,7 @@ Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister'
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
+Route::post('/da_two_reg_daonepass', 'DARegisterController@DATwoRegDAOnePass');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
