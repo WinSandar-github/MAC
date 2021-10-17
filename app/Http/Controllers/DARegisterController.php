@@ -158,7 +158,15 @@ class DARegisterController extends Controller
             $education_histroy  =   new EducationHistroy();
             $education_histroy->student_info_id = $student_info->id;
             $education_histroy->university_name = $request->university_name;
-            $education_histroy->degree_name = $request->degree_name;
+            $education_histroy->degree_id       = $request->degree_id;
+            
+            if($request->degree_id == 40){
+
+                $education_histroy->degree_name     = $request->degree_name;
+            }else{
+                $education_histroy->degree_name     = NULL;
+    
+            }
             // $education_histroy->certificate     = $certificate;
             $education_histroy->certificate     = json_encode($certificate);
             // $education_histroy->qualified_date  = date('Y-m-d',strtotime($request->qualified_date));
