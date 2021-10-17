@@ -12,6 +12,6 @@ class ApprenticeAccountantGov extends Model
                             'recommend_attach','police_attach','accept_policy'];
     
     public function student_info(){
-        return $this->hasOne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy','student_register');
+        return $this->hasOne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy','student_register','leave_requests');
     }
 }

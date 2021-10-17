@@ -405,9 +405,6 @@ class CPAFFController extends Controller
             $cpa_ff->status           =  0;
             $cpa_ff->self_confession   =   $request->self_confession;
             $cpa_ff->form_type        =   $request->form_type;
-            $cpa_ff->is_renew              =   $request->is_renew;
-            $cpa_ff->type              =   $request->type;
-            $cpa_ff->offline_user      =   1;
             // $thisYear = date('Y');
             // $today = date('d-m-Y');
             // $cpa_ff->validate_from = $today;
@@ -817,8 +814,6 @@ class CPAFFController extends Controller
         $cpa_ff->father_name_mm    =   $request->father_name_mm;
         $cpa_ff->father_name_eng   =   $request->father_name_eng; 
         $cpa_ff->cpaff_pass_date     =   $request->cpaff_pass_date;
-        $cpa_ff->renew_accepted_date     =   $request->renew_accepted_date;
-        $cpa_ff->reg_no     =   $request->reg_no;
         $cpa_ff->renew_card_year          =   $request->renew_card_year;
         $cpa_ff->old_card_no            =   $request->old_card_no;
         $cpa_ff->old_card_no_year     =   $request->old_card_no_year;

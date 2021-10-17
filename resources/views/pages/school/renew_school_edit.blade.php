@@ -231,7 +231,7 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                 <div class="active tab-pane" id="activity">
-                                        <div class="row mb-2">
+                                        <!-- <div class="row mb-2">
                                             <div class="col-sm-6">
 
                                             </div>
@@ -240,7 +240,7 @@
                                                     <li class="breadcrumb-item active">ကျောင်းပုံစံ-၁</li>
                                                 </ol>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     <!-- Post -->
                                     <div class="post">
                                         <div class="row school_name-class" style='display:none;'>

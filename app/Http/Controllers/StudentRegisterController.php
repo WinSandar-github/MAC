@@ -158,14 +158,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = '';
+                $invoice->invoiceNo = 'self_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
 
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee ,Self_Study Registration Fee, ' . $std->batch->course->name;
-                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->selfstudy_registration_fee;
+                $invoice->productDesc     = 'Application Fee,Self_Study Registration Fee,Transaction Fee' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee. ',' .$std->batch->course->selfstudy_registration_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
@@ -211,14 +211,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = '';
+                $invoice->invoiceNo = 'prv_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
 
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee, ' . $std->batch->course->name;
-                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee;
+                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee,Transaction Fee' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
@@ -282,14 +282,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = '';
+                $invoice->invoiceNo = 'mac_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
 
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,MAC Registration Fee, Course Fee' . $std->batch->course->name;
-                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee;
+                $invoice->productDesc     = 'Application Fee,MAC Registration Fee,Course Fee,Transaction Fee'. $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee. ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
@@ -556,14 +556,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = '';
+                $invoice->invoiceNo = 'self_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
 
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee ,Self_Study Registration Fee, ' . $std->batch->course->name;
-                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->selfstudy_registration_fee;
+                $invoice->productDesc     = 'Application Fee,Self_Study Registration Fee,Transaction Fee' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->selfstudy_registration_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
 
@@ -609,14 +609,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = '';
+                $invoice->invoiceNo = 'prv_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
 
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee, ' . $std->batch->course->name;
-                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee;
+                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee,Transaction Fee' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
@@ -680,14 +680,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = '';
+                $invoice->invoiceNo = 'mac_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
 
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,MAC Registration Fee, Course Fee' . $std->batch->course->name;
-                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee;
+                $invoice->productDesc     = 'Application Fee,MAC Registration Fee,Course Fee, Transaction Fee' . $std->batch->course->name;
+                $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
                 return "You have successfully registerd!";
