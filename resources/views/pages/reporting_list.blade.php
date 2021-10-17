@@ -151,7 +151,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
-                     y                           <a target="_blank" href="{{url('audit_firm_report5')}}" class="btn btn-block sub-btn-col  btn-flat p-3" name="">
+                                                <a target="_blank" href="{{url('audit_firm_report5')}}" class="btn btn-block sub-btn-col  btn-flat p-3" name="">
                                                     မှတ်ပုံတင်ကတ်ပြားများကို စနစ်ဖြင့် ထုတ်ယူခြင်း။
                                                 </a>
                                             </div>

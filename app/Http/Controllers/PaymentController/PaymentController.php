@@ -41,11 +41,11 @@ class PaymentController extends Controller
 
     }
 
-    public function getInvoice($id)
+    public function getInvoice($id, $form_type)
     {
         if($id != ""){
             
-            $invoice = Invoice::where('student_info_id', $id)->first();
+            $invoice = Invoice::where('student_info_id', $id)->where('invoiceNo', '=', $form_type)->first();
             
             $invNo = str_pad( date('Ymd') . "-" . Str::upper(Str::random(5)) . '-' . $invoice->student_info_id, 20, "0", STR_PAD_LEFT);
 
