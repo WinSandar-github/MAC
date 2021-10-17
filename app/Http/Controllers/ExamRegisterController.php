@@ -77,24 +77,14 @@ class ExamRegisterController extends Controller
         $exam->status = 0;
         $exam->save();
 
-       //invoice        
-       $invoice = new Invoice();
-       $invoice->student_info_id = $request->student_id;
+        //invoice
+        $invNo = str_pad($exam->id, 20, "0", STR_PAD_LEFT);
 
-       // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-       // $invoice->invoiceNo       = $invNo;
-
-       $invoice->invoiceNo = '';
-       $student_info = StudentInfo::find($request->student_id);
-       $invoice->name_eng        = $student_info->name_eng;
-       $invoice->email           = $student_info->email;
-       $invoice->phone           = $student_info->phone;
-
-       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-       $invoice->productDesc     = 'Application Fee, DA Exam Registration Fee' . $std->batch->course->name;
-       $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee;
-       $invoice->status          = 0;
-       $invoice->save();
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
         
         return "You have successfully registerd!";
     }
@@ -162,16 +152,8 @@ class ExamRegisterController extends Controller
         ], 200);
     }
 
-    public function rejectExam($id,Request $request)
+    public function rejectExam($id)
     {
-        // return $request->remark;
-        $stu_course_reg = StudentCourseReg::find($id);
-        $stu_course_reg->approve_reject_status =2;
-        $stu_course_reg->remark = $request->remark;
-        $stu_course_reg->save();
-        $approve = StudentInfo::where('id',$stu_course_reg->student_info_id)->latest()->first();
-        $approve->approve_reject_status = 2;
-        $approve->save();
         $reject = ExamRegister::find($id);
         $reject->status = 2;
         $reject->save();
@@ -402,25 +384,14 @@ class ExamRegisterController extends Controller
         $exam->form_type = $request->form_type;
         $exam->status = 0;
         $exam->save();
+        //invoice
+        $invNo = str_pad($exam->id, 20, "0", STR_PAD_LEFT);
 
-        //invoice        
-       $invoice = new Invoice();
-       $invoice->student_info_id = $request->student_id;
-
-       // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-       // $invoice->invoiceNo       = $invNo;
-
-       $invoice->invoiceNo = '';
-       $student_info = StudentInfo::find($request->student_id);
-       $invoice->name_eng        = $student_info->name_eng;
-       $invoice->email           = $student_info->email;
-       $invoice->phone           = $student_info->phone;
-
-       $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-       $invoice->productDesc     = 'Application Fee, CPA Exam Registration Fee' . $std->batch->course->name;
-       $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee;
-       $invoice->status          = 0;
-       $invoice->save();
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_id;
+        $invoice->invoiceNo       = $invNo;
+        $invoice->status          = 0;
+        $invoice->save();
 
         return "You have successfully registerd!";
     }

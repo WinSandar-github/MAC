@@ -24,7 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Route::apiResource('account', 'MoodleControllers\AccountCreateController');
 
-Route::resource('/degree', 'DegreeController');
 
 Route::resource('/acc_firm_info','AccFirmInfController');
 // for audit initial list
@@ -326,7 +325,6 @@ Route::get('showDescription/{membership_name}','MembershipController@showDescrip
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
 //cpa entry exam
 Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
-Route::resource('/cpa_entry_exam_update','EntryExamController');
 Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
 Route::post('entered_exam_list','EntryExamController@enteredExamList');
 

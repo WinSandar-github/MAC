@@ -570,9 +570,7 @@ class TeacherController extends Controller
                 'data' => $data
             ],200);
         }else{
-            $data = EducationHistroy::where('student_info_id',$request->student_info_id)
-                                    ->where('school_id','=',null)
-                                    ->get();
+            $data = EducationHistroy::where('renewteacher_id',$request->renewteacher_id)->get();
             return response()->json([
                 'data' => $data
             ],200);
@@ -646,15 +644,6 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates=null;
         }
-        // card 
-        if ($request->hasfile('teacher_card')) {
-            $file = $request->file('teacher_card');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/teacher_info/',$name);
-            $teacher_card = '/storage/teacher_info/'.$name;
-        }else{
-            $teacher_card =null;
-        }
         $teacher = new TeacherRegister();
         $teacher->name_mm = $request->name_mm;
         $teacher->name_eng = $request->name_eng;
@@ -671,7 +660,6 @@ class TeacherController extends Controller
         $teacher->nrc_front = $nrc_front;
         $teacher->nrc_back = $nrc_back;
         $teacher->image = $image;
-        $teacher->teacher_card = $teacher_card;
         
         $certificates = ""; $diplomas = "";$cpa_subject_count=0;$da_subject_count=0;
         if($request->certificates!=null){
