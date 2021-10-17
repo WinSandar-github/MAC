@@ -64,6 +64,8 @@ class ArticleController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $request_papp_attach = '/storage/student_info/'.$name;
+        }else{
+            $request_papp_attach = "";
         }
 
         if($request->hasfile('apprentice_exp_file'))
@@ -730,6 +732,8 @@ class ArticleController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $resign_approve_attach = '/storage/student_info/'.$name;
+        }else{
+            $resign_approve_attach = "";
         }
 
         $acc_app->resign_date = $request->resign_date;
@@ -1008,6 +1012,8 @@ class ArticleController extends Controller
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $request_papp_attach = '/storage/student_info/'.$name;
+        }else{
+            $request_papp_attach = "";
         }
 
         $acc_app->gov_staff = $request->gov_staff;
