@@ -40,6 +40,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->integer('req_for_stop')->nullable();
             $table->string('last_reg_payment_start')->nullable();
             $table->string('last_reg_payment_end')->nullable();
+            $table->boolean('offline_user')->nullable();
             $table->string('other')->nullable();
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');

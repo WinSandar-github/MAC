@@ -229,14 +229,14 @@
                                     </div>
                                 </div>--}}
 
-                                {{--<div class="row m-2 mt-3 border-bottom">
+                                <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Passed Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_pass_date"></span>
                                     </div>
-                                </div>--}}
+                                </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -641,19 +641,10 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Registration No.</p>
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registration No</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="reg_no"></span>
-                                    </div>
-                                </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Registration No.</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="papp_reg_no"></span>
                                     </div>
                                 </div>
 
