@@ -165,8 +165,10 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
 Route::post('/send_email', 'DARegisterController@send_email');
 
-//DA Offline Application 
+//DA and CPA Offline Application 
 Route::post('/filter_offline_student_info','DARegisterController@FilterOfflineApplicationList');
+Route::patch('/reject_offline_da_cpa/{id}', 'DARegisterController@rejectOfflineDACPA');
+Route::patch('/approve_offline_da_cpa/{id}', 'DARegisterController@approveOfflineDACPA');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');

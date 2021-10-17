@@ -271,5 +271,7 @@ Route::group(['middleware' => 'auth'], function () {
     // offline user
     Route::get('/offline_user', 'OfflineUserController\OfflineUserController@index')->name('offline_user');
 
+    Route::get('/da_cpa_offline_detail', 'OfflineUserController\OfflineUserController@DetailDA_CPAOfflineStudent');
+
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });

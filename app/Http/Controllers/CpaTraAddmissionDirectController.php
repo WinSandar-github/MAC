@@ -731,7 +731,7 @@ class CpaTraAddmissionDirectController extends Controller
             $exam_register->date = $date;
             $exam_register->grade = 0;
             $exam_register->batch_id = $request->batch_id;
-            $exam_register->is_full_module = $request->is_full_module;
+            $exam_register->is_full_module = $request->module;
             $exam_register->exam_type_id = $request->type;
             // $exam_register->form_type = $request->form_type;
             $exam_register->status = 1;
@@ -743,30 +743,30 @@ class CpaTraAddmissionDirectController extends Controller
             $student_register->date = date('Y-m-d');
             $student_register->invoice_id = $student_info->id;
             $student_register->invoice_date = date('Y-m-d');
-            $student_register->module=$request->is_full_module;
+            $student_register->module=$request->module;
             $student_register->type = $request->type;
             $student_register->status = 1;
             $student_register->form_type = $request->type;
             $student_register->save();
 
             //invoice
-            // $invoice = new Invoice();
-            // $invoice->student_info_id = $student_info->id;
+            $invoice = new Invoice();
+            $invoice->student_info_id = $student_info->id;
 
-            // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-            // // $invoice->invoiceNo       = $invNo;
+            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // $invoice->invoiceNo       = $invNo;
 
-            // $invoice->invoiceNo = '';
+            $invoice->invoiceNo = '';
 
-            // $invoice->name_eng        = $request->name_eng;
-            // $invoice->email           = $request->email;
-            // $invoice->phone           = $request->phone;
+            $invoice->name_eng        = $request->name_eng;
+            $invoice->email           = $request->email;
+            $invoice->phone           = $request->phone;
 
-            // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-            // $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
-            // $invoice->amount          = $std->batch->course->form_fee;
-            // $invoice->status          = 0;
-            // $invoice->save();
+            $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+            $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
+            $invoice->amount          = $std->batch->course->form_fee;
+            $invoice->status          = 0;
+            $invoice->save();
 
             return response()->json($student_info,200);
         } catch (\Exception $e) {

@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call([MembershipSeeder::class]);
         $this->call([SubjectSeeder::class]);
         $this->call([ExamTypeSeeder::class]);
+        $this->call([DegreeSeeder::class]);
 
 
 
@@ -45,7 +46,7 @@ class DatabaseSeeder extends Seeder
         // $this->call([CpaOneTrainingGroundSeeder::class]);
 
         // $this->call([CourseFeeSeeder::class]);
-        // $this->call([DegreeSeeder::class]);
+        
 
 
 

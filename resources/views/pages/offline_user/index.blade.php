@@ -58,11 +58,11 @@
                                                 List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#da_approve_list" role="tablist"
+                                            <a class="nav-link" data-toggle="tab" href="#da_offline_approve_list" role="tablist"
                                                aria-expanded="true" style="font-weight:bold">Approved List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#da_reject_list" role="tablist"
+                                            <a class="nav-link" data-toggle="tab" href="#da_offline_reject_list" role="tablist"
                                                aria-expanded="false" style="font-weight:bold">Rejected List</a>
                                         </li>
                                     </ul>
@@ -91,8 +91,8 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade show" id="da_approve_list" aria-expanded="true">
-                                                <table id="tbl_da_approved_list"
+                                            <div class="tab-pane fade show" id="da_offline_approve_list" aria-expanded="true">
+                                                <table id="tbl_da_offline_approved_list"
                                                        class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                     <tr>
@@ -107,13 +107,13 @@
 
                                                     </tr>
                                                     </thead>
-                                                    <tbody id="tbl_da_approved_list_body"
+                                                    <tbody id="tbl_da_offline_approved_list_body"
                                                            class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade show" id="da_reject_list" aria-expanded="true">
-                                                <table id="tbl_da_rejected_list"
+                                            <div class="tab-pane fade show" id="da_offline_reject_list" aria-expanded="true">
+                                                <table id="tbl_da_offline_rejected_list"
                                                        class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                     <tr>
@@ -128,7 +128,7 @@
 
                                                     </tr>
                                                     </thead>
-                                                    <tbody id="tbl_da_rejected_list_body"
+                                                    <tbody id="tbl_da_offline_rejected_list_body"
                                                            class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
@@ -143,17 +143,17 @@
 
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#privatecheck1"
+                                            <a class="nav-link active" data-toggle="tab" href="#cpa_offline_pending_list"
                                                role="tablist" aria-expanded="false" style="font-weight:bold">Pending
                                                 List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#privatecheck2"
+                                            <a class="nav-link" data-toggle="tab" href="#cpa_offline_approved_list"
                                                role="tablist" aria-expanded="true" style="font-weight:bold">Approved
                                                 List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#privatecheck3"
+                                            <a class="nav-link" data-toggle="tab" href="#cpa_offline_rejected_list"
                                                role="tablist" aria-expanded="false" style="font-weight:bold">Rejected
                                                 List</a>
                                         </li>
@@ -161,60 +161,63 @@
 
                                     <div class="card-body">
                                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
-                                            <div class="tab-pane fade show active" id="privatecheck1"
+                                            <div class="tab-pane fade show active" id="cpa_offline_pending_list"
                                                  aria-expanded="true">
-                                                <table id="tbl_private_school_pending_list"
+                                                <table id="tbl_cpa_offline_pending_list"
                                                        class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                     <tr>
                                                         <th class="bold-font-weight">No</th>
                                                         <th class="bold-font-weight">Action</th>
                                                         <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
                                                         <th class="bold-font-weight">Email</th>
-                                                        <th class="bold-font-weight">Registration No</th>
                                                         <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
                                                         <th class="bold-font-weight">Status</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody id="tbl_private_school_pending_list_body"
+                                                    <tbody id="tbl_cpa_offline_pending_list_body"
                                                            class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade show" id="privatecheck2" aria-expanded="true">
-                                                <table id="tbl_private_school_approved_list"
+                                            <div class="tab-pane fade show" id="cpa_offline_approved_list" aria-expanded="true">
+                                                <table id="tbl_cpa_offline_approved_list"
                                                        class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                     <tr>
                                                         <th class="bold-font-weight">No</th>
                                                         <th class="bold-font-weight">Action</th>
                                                         <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
                                                         <th class="bold-font-weight">Email</th>
-                                                        <th class="bold-font-weight">Registration No</th>
                                                         <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
                                                         <th class="bold-font-weight">Status</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody id="tbl_private_school_approved_list_body"
+                                                    <tbody id="tbl_cpa_offline_approved_list_body"
                                                            class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade show" id="privatecheck3" aria-expanded="true">
-                                                <table id="tbl_private_school_rejected_list"
+                                            <div class="tab-pane fade show" id="cpa_offline_rejected_list" aria-expanded="true">
+                                                <table id="tbl_cpa_offline_rejected_list"
                                                        class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                     <tr>
                                                         <th class="bold-font-weight">No</th>
                                                         <th class="bold-font-weight">Action</th>
                                                         <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
                                                         <th class="bold-font-weight">Email</th>
-                                                        <th class="bold-font-weight">Registration No</th>
                                                         <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
                                                         <th class="bold-font-weight">Status</th>
                                                     </tr>
                                                     </thead>
-                                                    <tbody id="tbl_private_school_rejected_list_body"
+                                                    <tbody id="tbl_cpa_offline_rejected_list_body"
                                                            class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
@@ -389,97 +392,7 @@
             //     ],
             //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             // });
-            // $('#tbl_private_school_pending_list').DataTable({
-            //     scrollX: true,
-            //     processing: true,
-            //     serverSide: true,
-            //     responsive: true,
-            //     ajax: {
-            //         "url": BACKEND_URL + "/filter_registration",
-            //         "method": "POST",
-            //         "data": {
-            //             "form_type": "1",
-            //             "reg_type": "1",
-            //             "is_reg_reason": false,
-            //             "status": "0"
-            //         }
-            //     },
-            //     columns: [
-            //         {
-            //             data: null, render: function (data, type, row, meta) {
-            //                 return meta.row + meta.settings._iDisplayStart + 1;
-            //             }, orderable: false, searchable: false
-            //         },
-            //         {data: 'action', name: 'action', orderable: false, searchable: false},
-            //         {data: 'name', name: 'Student Name'},
-            //         {data: 'email', name: 'Email'},
-            //         {data: 'reg_no', name: 'Registration No'},
-            //         {data: 'phone', name: 'Phone'},
-            //         {data: 'status', name: 'Status'},
-            //     ],
-            //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-            // });
-            // $('#tbl_private_school_approved_list').DataTable({
-            //     scrollX: true,
-            //     processing: true,
-            //     serverSide: true,
-            //     responsive: true,
-            //     ajax: {
-            //         "url": BACKEND_URL + "/filter_registration",
-            //         "method": "POST",
-            //         "data": {
-            //             "form_type": "1",
-            //             "reg_type": "1",
-            //             "is_reg_reason": false,
-            //             "status": "1"
-            //         }
-            //     },
-            //     columns: [
-            //         {
-            //             data: null, render: function (data, type, row, meta) {
-            //                 return meta.row + meta.settings._iDisplayStart + 1;
-            //             }, orderable: false, searchable: false
-            //         },
-            //         {data: 'action', name: 'action', orderable: false, searchable: false},
-            //         {data: 'name', name: 'Student Name'},
-            //         {data: 'email', name: 'Email'},
-            //         {data: 'reg_no', name: 'Registration No'},
-            //         {data: 'phone', name: 'Phone'},
-            //         {data: 'status', name: 'Status'},
-            //     ],
-            //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-            // });
-            // $('#tbl_private_school_rejected_list').DataTable({
-            //     scrollX: true,
-            //     processing: true,
-            //     serverSide: true,
-            //     responsive: true,
-            //     ajax: {
-            //         "url": BACKEND_URL + "/filter_registration",
-            //         "method": "POST",
-            //         "data": {
-            //             "form_type": "1",
-            //             "reg_type": "1",
-            //             "is_reg_reason": false,
-            //             "status": "2"
-            //         }
-            //     },
-            //     columns: [
-            //         {
-            //             data: null, render: function (data, type, row, meta) {
-            //                 return meta.row + meta.settings._iDisplayStart + 1;
-            //             }, orderable: false, searchable: false
-            //         },
-            //         {data: 'action', name: 'action', orderable: false, searchable: false},
-            //         {data: 'name', name: 'Student Name'},
-            //         {data: 'email', name: 'Email'},
-            //         {data: 'reg_no', name: 'Registration No'},
-            //         {data: 'phone', name: 'Phone'},
-            //         {data: 'status', name: 'Status'},
-            //     ],
-            //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-            // });
-            $('#tbl_da_offline_pending_list').DataTable({
+            $('#tbl_cpa_offline_pending_list').DataTable({
                 scrollX: true,
                 processing: true,
                 serverSide: true,
@@ -489,7 +402,7 @@
                     type : "POST" ,
                     data :  function (d) {
                         d.status       = 0,
-                        d.course_code = 'da_1',
+                        d.course_type_id = 2,
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -511,68 +424,163 @@
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
-            // $('#tbl_da_approved_list').DataTable({
-            //     scrollX: true,
-            //     processing: true,
-            //     serverSide: true,
-            //     responsive: true,
-            //     ajax: {
-            //         "url": BACKEND_URL + "/filter_registration",
-            //         "method": "POST",
-            //         "data": {
-            //             "form_type": "1",
-            //             "reg_type": "0",
-            //             "is_reg_reason": true,
-            //             "status": "1"
-            //         }
-            //     },
-            //     columns: [
-            //         {
-            //             data: null, render: function (data, type, row, meta) {
-            //                 return meta.row + meta.settings._iDisplayStart + 1;
-            //             }, orderable: false, searchable: false
-            //         },
-            //         {data: 'action', name: 'action', orderable: false, searchable: false},
-            //         {data: 'name', name: 'Student Name'},
-            //         {data: 'email', name: 'Email'},
-            //         {data: 'reg_no', name: 'Registration No'},
-            //         {data: 'phone', name: 'Phone'},
-            //         {data: 'reg_reason', name: 'Registration Reason'},
-            //         {data: 'status', name: 'Status'},
-            //     ],
-            //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-            // });
-            // $('#tbl_da_rejected_list').DataTable({
-            //     scrollX: true,
-            //     processing: true,
-            //     serverSide: true,
-            //     responsive: true,
-            //     ajax: {
-            //         "url": BACKEND_URL + "/filter_registration",
-            //         "method": "POST",
-            //         "data": {
-            //             "form_type": "1",
-            //             "reg_type": "0",
-            //             "is_reg_reason": true,
-            //             "status": "2"
-            //         }
-            //     },
-            //     columns: [
-            //         {
-            //             data: null, render: function (data, type, row, meta) {
-            //                 return meta.row + meta.settings._iDisplayStart + 1;
-            //             }, orderable: false, searchable: false
-            //         },
-            //         {data: 'action', name: 'action', orderable: false, searchable: false},
-            //         {data: 'name', name: 'Student Name'},
-            //         {data: 'email', name: 'Email'},
-            //         {data: 'reg_no', name: 'Registration No'},
-            //         {data: 'phone', name: 'Phone'},
-            //         {data: 'reg_reason', name: 'Registration Reason'},
-            //         {data: 'status', name: 'Status'},
-            //     ],
-            //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-            // });
+            $('#tbl_cpa_offline_approved_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 1,
+                        d.course_type_id = 2,
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {
+                        data: null, render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }, orderable: false, searchable: false
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+            $('#tbl_cpa_offline_rejected_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 2,
+                        d.course_type_id = 2,
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {
+                        data: null, render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }, orderable: false, searchable: false
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+            $('#tbl_da_offline_pending_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 0,
+                        d.course_type_id = 1,
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {
+                        data: null, render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }, orderable: false, searchable: false
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+            $('#tbl_da_offline_approved_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 1  ,
+                        d.course_type_id = 1,
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+
+                },
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+            $('#tbl_da_offline_rejected_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 2,
+                        d.course_type_id = 1,
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
 
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 $.each($.fn.dataTable.tables(true), function () {
