@@ -90,6 +90,7 @@
                                                     <thead class="text-nowrap">
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Teacher No</th>
                                                             <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Teacher Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
@@ -154,6 +155,7 @@
                                                         <thead class=" text-nowrap">
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
+                                                                <th class="bold-font-weight" >Teacher No</th>
                                                                 <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Teacher Name</th>
                                                                 <th class="bold-font-weight" >Email</th>     
@@ -178,6 +180,7 @@
                                                     <thead class="text-nowrap">
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Teacher No</th>
                                                             <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Teacher Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
@@ -201,6 +204,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
+                                                            <th class="bold-font-weight" >Teacher No</th>
                                                             <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Teacher Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
@@ -339,6 +343,7 @@
                 {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
+                {data: 't_code', name: 't_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
@@ -405,6 +410,9 @@
             
             },
             columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
                 {data: 't_code', name: 't_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
@@ -441,6 +449,9 @@
             
             },
             columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
                 {data: 't_code', name: 't_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
@@ -475,6 +486,9 @@
             
             },
             columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
                 {data: 't_code', name: 't_code'},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
