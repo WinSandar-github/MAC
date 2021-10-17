@@ -142,3 +142,69 @@ function articleInternshipList(url) {
         alert('select course and batch');
     }
 }
+
+function articleMentorInternRegister(url) {
+    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function articleMentorIntern(url) {
+    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function firmIndividual(url) {
+    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function frimDailyAttendence(url) {
+    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function teacherSchoolLicense(url) {
+    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function teacherSchoolPrivate(url) {
+    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function teacherSchoolLicensePlate(url) {
+    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+        $('#report-form').attr('action', url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+
+

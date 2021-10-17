@@ -179,6 +179,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('naudit_firm_report5','ReportController@naudit_firm_report5');
     Route::get('naudit_firm_report6','ReportController@naudit_firm_report6');
 
+    Route::post("firm_individual", "ReportController\FirmReportController@firmIndividual");
+    Route::post("firm_daily_attendence", "ReportController\FirmReportController@firmDailyAttendence");
+
     // CPA Report
     Route::get('cpa_report1','ReportController@cpa_report1');
     Route::get('cpa_report2','ReportController@cpa_report2');
@@ -209,7 +212,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('gov_article_report4','ReportController@gov_article_report4');
     Route::get('gov_article_report5','ReportController@gov_article_report5');
 
-    // Gov Mentor Report
+    // Gov Mentor Report // haven't used 
     Route::get('mentor_report1','ReportController@mentor_report1');
     Route::get('mentor_report2','ReportController@mentor_report2');
     Route::get('mentor_report3','ReportController@mentor_report3');
@@ -217,10 +220,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('mentor_report5','ReportController@mentor_report5');
     Route::get('mentor_report6','ReportController@mentor_report6');
 
+    Route::post('article_mentor_registered_intern', 'ReportController\ArticleMentorReportController@articleMentorRegisteredIntern');
+    Route::post('article_mentor_intern', 'ReportController\ArticleMentorReportController@articleMentorIntern');
+
     // School/Teacher Report
     Route::get('s_t_report1','ReportController@s_t_report1');
     Route::get('s_t_report2','ReportController@s_t_report2');
     Route::get('s_t_report3','ReportController@s_t_report3');
+
+    Route::post('teacher_school_license', 'ReportController\TeacherSchoolReportController@teacherSchoolLicense');
+    Route::post('teacher_school_private', 'ReportController\TeacherSchoolReportController@teacherSchoolPrivate');
+    Route::post('teacher_school_license_plate', 'ReportController\TeacherSchoolReportController@teacherSchoolLicensePlate');
 
 
     // DA Report
@@ -285,17 +295,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch("/main_course/{id}", "CourseController\MainCourseController@update");
     Route::delete("/main_course/{id}", "CourseController\MainCourseController@destory");
 
-    // DA Application List
-    Route::get('/da_app_indi/{id}', 'DARegisterController@daOneAppListIndi')->name('da_app_indi');
-    Route::get('/student_profile', 'DARegisterController@studentProfile')->name('student_profile');
+    // // DA Application List
+    // Route::get('/da_app_indi/{id}', 'DARegisterController@daOneAppListIndi')->name('da_app_indi');
+    // Route::get('/student_profile', 'DARegisterController@studentProfile')->name('student_profile');
 
-    // CPA Application List
-    Route::get('/cpa_app_indi/{id}', 'DARegisterController@cpaOneAppListIndi')->name('cpa_app_indi');
+    // // CPA Application List
+    // Route::get('/cpa_app_indi/{id}', 'DARegisterController@cpaOneAppListIndi')->name('cpa_app_indi');
 
-    // DA Register List
-    Route::get('/da_registration/private_school_reg/{id}', 'StudentRegisterController@privateSchoolReg')->name('private_school_reg');
-    Route::get('/da_registration/mac_reg/{id}', 'StudentRegisterController@macReg')->name('mac_reg');
-    Route::get('/da_registration/self_study_reg/{id}', 'StudentRegisterController@self_study_Reg')->name('self_study_reg');
+    // // DA Register List
+    // Route::get('/da_registration/private_school_reg/{id}', 'StudentRegisterController@privateSchoolReg')->name('private_school_reg');
+    // Route::get('/da_registration/mac_reg/{id}', 'StudentRegisterController@macReg')->name('mac_reg');
+    // Route::get('/da_registration/self_study_reg/{id}', 'StudentRegisterController@self_study_Reg')->name('self_study_reg');
 
     // CPA Register List
     // offline user
