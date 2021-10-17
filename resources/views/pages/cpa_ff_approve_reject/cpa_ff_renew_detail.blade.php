@@ -118,36 +118,7 @@
                                 <!-- Foreign Degree -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Foreign Degree</p>
-                                    </div>
-                                    <div class="col-md-6 text-left foreign_degree_file">
-                                        <span class="foreign_degree">
-
-                                        </span>
-
-                                    </div>
-                                </div>
-                                <!--Foreign Modal -->
-                                <div id="fdModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">Foreign Degree</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <embed id="foreign_degree"  src="" width="100%"  height="500px">
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>--}}
-
-
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Degree Level</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registration No.</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="degree"></span>
