@@ -46,6 +46,10 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
+                'renew_cpa_subject_fee' =>NULL,
+                'renew_da_subject_fee' =>NULL,
+                'renew_registration_fee'=> NULL,
+                'renew_yearly_fee'      => NULL,
             ),
             array(
                 'membership_name' => 'Non-Audit',
@@ -77,6 +81,10 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
+                'renew_cpa_subject_fee' =>NULL,
+                'renew_da_subject_fee' =>NULL,
+                'renew_registration_fee'=> NULL,
+                'renew_yearly_fee'      => NULL,
             ),
             array(
                 'membership_name' => 'CPAFF',
@@ -111,6 +119,10 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>'10000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
+                'renew_cpa_subject_fee' =>NULL,
+                'renew_da_subject_fee' =>NULL,
+                'renew_registration_fee'=> NULL,
+                'renew_yearly_fee'      => NULL,
             ),
             array(
                 'membership_name' => 'PAPP',
@@ -143,6 +155,10 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>'110000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
+                'renew_cpa_subject_fee' =>NULL,
+                'renew_da_subject_fee' =>NULL,
+                'renew_registration_fee'=> NULL,
+                'renew_yearly_fee'      => NULL,
             ),
             array(
                 'membership_name' => 'School',
@@ -174,6 +190,10 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
+                'renew_cpa_subject_fee' =>NULL,
+                'renew_da_subject_fee' =>NULL,
+                'renew_registration_fee'=>'500000',
+                'renew_yearly_fee'      => '300000',
             ),
             array(
                 'membership_name' => 'Teacher',
@@ -202,10 +222,13 @@ class MembershipSeeder extends Seeder
                 //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL,
-                'reconnected_fee' =>'10000',
+                'reconnected_fee' =>'0',
                 'cpa_subject_fee' =>'30000',
                 'da_subject_fee' =>'20000',
-                
+                'renew_cpa_subject_fee' =>'30000',
+                'renew_da_subject_fee' =>'20000',
+                'renew_registration_fee'=> NULL,
+                'renew_yearly_fee'      => NULL,
             ),
             array(
                 'membership_name' => 'Mentor',
@@ -241,6 +264,11 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>'10000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
+                'renew_cpa_subject_fee' =>NULL,
+                'renew_da_subject_fee' =>NULL,
+                'renew_registration_fee'=> NULL,
+                'renew_yearly_fee'      => NULL,
+                
             ),
             array(
                 'membership_name' => 'Article',
@@ -272,6 +300,10 @@ class MembershipSeeder extends Seeder
                 'reconnected_fee' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
+                'renew_cpa_subject_fee' =>NULL,
+                'renew_da_subject_fee' =>NULL,
+                'renew_registration_fee'=> NULL,
+                'renew_yearly_fee'      => NULL,
             ),
 
         ]);

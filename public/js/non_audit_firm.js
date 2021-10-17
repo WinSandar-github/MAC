@@ -236,6 +236,17 @@ function removeBracketedNonAudit(file){
   }
 }
 
+// function showNonAuditInfo(nonAuditId) {
+//   localStorage.setItem("id",nonAuditId);
+//   $.ajax({
+//       url: FRONTEND_URL + "/show_non_audit_firm_info",
+//       type: 'post'
+//
+//   });
+//   //location.href=FRONTEND_URL+"/non-audit-firm-show_info";
+//
+// }
+
 function approveNonAuditFirm(id){
   if (!confirm('Are you sure you want to approve this firm ?')){
     return;
@@ -268,11 +279,32 @@ function approveNonAuditFirmRenew(id,firm_id){
         success: function(result){
           // console.log(result)
             successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/audit-firm-list";
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
         }
     });
   }
 
+}
+
+function approveNonAuditFirmReconnect(id,firm_id){
+  if (!confirm('Are you sure you want to approve this firm ?')){
+    return;
+  }
+  else{
+    // var id = $("input[name = student_info_id]").val();
+    // var firm_id = $("input[name = audit_firm_id]").val();
+
+    // console.log('approveaudit_firm',id);
+    $.ajax({
+        url: BACKEND_URL + "/approve_auditfirm_reconnect/"+id+"/"+firm_id,
+        type: 'patch',
+        success: function(result){
+          // console.log(result)
+            successMessage("You have approved that user!");
+            location.href = FRONTEND_URL + "/offline_user";
+        }
+    });
+  }
 }
 
 function rejectNonAuditFirm(id){
@@ -315,8 +347,42 @@ function rejectNonAuditFirmRenew(id,firm_id){
         processData: false,
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/audit-firm-list";
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
         }
     });
   }
 }
+
+function rejectNonAuditFirmReconnect(id,firm_id){
+  if (!confirm('Are you sure you want to reject this firm ?')){
+    return;
+  }
+  else{
+    // var id = $("input[name = audit_firm_id]").val();
+    // var firm_id = $("input[name = audit_firm_id]").val();
+    var formData = new FormData();
+    formData.append('remark', $('#remark').val());
+    //alert("youk");
+    $.ajax({
+        url: BACKEND_URL +"/reject_auditfirm_reconnect/"+id+"/"+firm_id,
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(result){
+            successMessage("You have rejected that user!");
+            location.href = FRONTEND_URL + "/offline_user";
+        }
+    });
+  }
+}
+
+// function showReconnectNonAuditInfo(nonAuditId) {
+//   localStorage.setItem("id",nonAuditId);
+//   $.ajax({
+//       url: FRONTEND_URL + "/show_non_audit_reconnect_info/" + nonAuditId,
+//       type: 'get'
+//
+//   });
+//   //location.href=FRONTEND_URL+"/non-audit-firm-show_info";
+// }

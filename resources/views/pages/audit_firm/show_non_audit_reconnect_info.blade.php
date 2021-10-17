@@ -31,7 +31,7 @@
 															@foreach($data as $item)
 															<input type="hidden" id="firm_id" value="{{$item->id}}" />
 															<div class="card-body">
-	                            	<h5 class="border-bottom pb-2 mt-3 text-center" style="font-weight:bold">Non_Audit Firm Information</h5>
+	                            	<h5 class="border-bottom pb-2 mt-3 text-center" style="font-weight:bold">Non_Audit Firm Reconnect Information</h5>
 	                                            <div class="row">
 																								<div class="col-md-4 text-center">
 																									<img id="profile_photo" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
@@ -1131,7 +1131,7 @@
 			                                                <label class="col-md-12 col-form-label" style="font-weight:bold">{{ __('Particulars Of Directors/ Staff Members who is a Myanmar CPA') }}</label>
 
 			                                            </div>
-	                                                    <div class="row">
+	                                                <div class="row">
 	                                                        <div class="col-md-1"></div>
 	                                                        <div class="col-md-10">
 	                                                            <div class="card">
@@ -1181,39 +1181,87 @@
 	                                                    </div>
 	                                            </div>
 
+                                              <div class="row mb-5">
+                                                  <label for="" class="col-md-1 col-form-label"></label>
+                                                  <label for="" class="col-md-5 col-form-label font-weight-bold">Last Registration Fee Payment Date</label>
+                                                  <div class="col-md-2">
+                                                      <label for="" class="col-form-label">Start Date</label>
+                                                  </div>
+                                                  <div class="col-md-3">
+                                                      <span id="last_reg_payment_start" class="form-control">
+                                                        {{$item->last_reg_payment_start}}
+                                                      </span>
+                                                  </div>
+                                              </div>
+
+                                              <div class="row mb-5">
+                                                  <label for="" class="col-md-1 col-form-label"></label>
+                                                  <label for="" class="col-md-5 col-form-label"></label>
+                                                  <div class="col-md-2">
+                                                      <label for="" class="col-form-label">End Date</label>
+                                                  </div>
+                                                  <div class="col-md-3">
+                                                      <span id="last_reg_payment_end" class="form-control">
+                                                        {{$item->last_reg_payment_start}}
+                                                      </span>
+                                                  </div>
+                                              </div>
+
+                                              <div class="row mb-5">
+                                                  <label for="" class="col-md-1 col-form-label"></label>
+                                                  <label for="" class="col-md-4 col-form-label font-weight-bold">Request to Disconnect</label>
+                                                  <div class="row col-md-7 py-2">
+                                                      <div class="col-md-3 form-check-radio mx-2">
+                                                          <label class="form-check-label">
+                                                              <input class="form-check-input" type="radio" id="yes"
+                                                                      name="req_for_stop" value="1" disabled <?php
+                                                                        if($item->req_for_stop == 1){
+                                                                          echo "checked";
+                                                                        }
+                                                                      ?> >
+                                                              <span class="form-check-sign"></span>
+                                                              Yes
+                                                          </label>
+                                                      </div>
+                                                      <div class="col-md-3 form-check-radio mx-2">
+                                                          <label class="form-check-label">
+                                                              <input class="form-check-input" type="radio" id="no"
+                                                                      name="req_for_stop" value="2" disabled <?php
+                                                                        if($item->req_for_stop == 2){
+                                                                          echo "checked";
+                                                                        }
+                                                                      ?>
+                                                                      >
+                                                              <span class="form-check-sign"></span>
+                                                              No
+                                                          </label>
+                                                      </div>
+
+                                                      <label  class="error attend_place_error" style="display:none;" for="req_for_stop">Please select one</label>
+                                                  </div>
+                                              </div>
+
 
 	                                            <input type="hidden" name="audit_firm_id" >
 
                                               @if($item->status == 0)
-																								@if($item->is_renew == 0)
-																									<div id="initial_btns">
-																										<div class="row mt-5 justify-content-center">
-																												{{--<button type="submit" name="save" class="btn btn-danger"  onclick="rejectNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
-																												<button type="submit" name="save" id="reject_audit_btn" data-toggle="modal" data-target="#remarkModal" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-																												<button type="submit" name="save" class="btn btn-primary" onclick="approveNonAuditFirm({{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-																										</div>
-																									</div>
-																								 @else
-																								 <div id="renew_btns">
-	 																								<div class="row mt-5 justify-content-center">
-
-	 								                                    {{--<button type="submit" name="save" id="reject_non_audit_btn_renew" class="btn btn-danger"  onclick="rejectNonAuditFirmRenew()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
-
-	 																										<button type="submit" name="save" id="reject_non_audit_btn_renew" data-toggle="modal" data-target="#remarkModalRenew" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-	 								                                    <button type="submit" name="save" id="approve_non_audit_btn_renew" class="btn btn-primary" onclick="approveNonAuditFirmRenew({{$item->student_info_id}},{{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
-
-	 								                                </div>
-	 																							</div>
-																								@endif
-																							@endif
+                                              <div id="reconnect_btns">
+                                                <div class="row mt-5 justify-content-center">
+                                                    {{--<button type="submit" name="save" class="btn btn-danger"  onclick="" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
+                                                    <button type="submit" name="save" id="reject_audit_btn_reconnect" data-toggle="modal" data-target="#remarkModalReconnect" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                                    <button type="submit" name="save" class="btn btn-primary" onclick="approveNonAuditFirmReconnect({{$item->student_info_id}},{{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                                </div>
+                                              </div>
+                                              @endif
 
 
 	                          		</div>
+                                @endforeach
+                             @endif
 
+                              <div class="card-footer ">
 
-                            <div class="card-footer ">
-
-                            </div>
+                              </div>
                     </div>
                 </div>
             </div>
@@ -1221,6 +1269,7 @@
         </form>
 
     </div>
+
     <div class="modal fade" id="fileModal">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -1245,8 +1294,9 @@
             </div>
         </div>
 
+
 		<div class="modal fade" id="remarkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+		    <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
@@ -1274,9 +1324,9 @@
 						    </form>
 						    </div>
 						  </div>
-						</div>
+		</div>
 
-						<div class="modal fade" id="remarkModalRenew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="remarkModalRenew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
 										    <div class="modal-content">
 										      <div class="modal-header">
@@ -1300,14 +1350,44 @@
 										        </div>
 										        <div class="modal-footer">
 										            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										            <button type="submit" class="btn btn-primary" form="remark-form">Reject</button>
+										            <button type="submit" class="btn btn-primary" form="remark-form-renew">Reject</button>
 										        </div>
 										    </form>
 										    </div>
 										  </div>
-										</div>
-						@endforeach
-						@endif
+							</div>
+
+    <div class="modal fade" id="remarkModalReconnect" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <form id="remark-form-reconnect"  method="post" action="javascript:rejectNonAuditFirmReconnect({{$item->student_info_id}},{{$item->id}})" enctype="multipart/form-data">
+			      @csrf
+			        <div class="modal-body">
+			            <div class="row">
+			                <div class="col-md-12">
+
+			                    <div class="form-group">
+			                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+			                        <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			        <div class="modal-footer">
+			            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			            <button type="submit" class="btn btn-primary" form="remark-form-reconnect">Reject</button>
+			        </div>
+			    </form>
+			    </div>
+			  </div>
+    </div>
+
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
         // get NRC Townships data from myanmarnrc.php config file

@@ -10,6 +10,7 @@ use App\StudentInfo;
 use App\Membership;
 use App\CPAFF;
 use App\Invoice;
+use Hash;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -965,6 +966,232 @@ class PAPPController extends Controller
 
         return response()->json([
             'message' => "You have successfully updated!"
+        ],200);
+    }
+
+    public function ReconnectPapp(Request $request){
+        // $oldPapp = Papp::where('student_id', '=', $request->student_id)->latest()->first();
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }else{
+            $profile_photo=null;
+        }
+        $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
+        if ($request->hasfile('cpa')) {
+            $cpa_file = $request->file('cpa');
+            $cpa_name  = uniqid().'.'.$cpa_file->getClientOriginalExtension();
+            $cpa_file->move(public_path().'/storage/student_papp/',$cpa_name);
+            $cpa = '/storage/student_papp/'.$cpa_name;
+        }
+        else{
+            $cpa=null;
+        }
+
+        if ($request->hasfile('ra')) {
+            $ra_file = $request->file('ra');
+            $ra_name  = uniqid().'.'.$ra_file->getClientOriginalExtension();
+            $ra_file->move(public_path().'/storage/student_papp/',$ra_name);
+            $ra = '/storage/student_papp/'.$ra_name;
+        }
+        else{
+            $ra=null;
+        }
+
+        if($request->hasfile('degree_file'))
+        {
+            foreach($request->file('degree_file') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_papp/',$name);
+                $degree[] = '/storage/student_papp/'.$name;
+            }
+
+        }else{
+            $degree = null;
+        }
+        if ($request->hasfile('cpa_certificate')) {
+            $file = $request->file('cpa_certificate');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $cpa_certificate = '/storage/cpa_ff_register/'.$name;
+        }
+        else{
+            $cpa_certificate="";
+        }
+        if ($request->hasfile('cpa_ff_recommendation')) {
+            $cpa_ff_file = $request->file('cpa_ff_recommendation');
+            $cpa_ff_name  = uniqid().'.'.$cpa_ff_file->getClientOriginalExtension();
+            $cpa_ff_file->move(public_path().'/storage/student_papp/',$cpa_ff_name);
+            $cpa_ff_path = '/storage/student_papp/'.$cpa_ff_name;
+        }
+        else{
+            $cpa_ff_path="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_front')) {
+            $mpa_mem_card_front_file = $request->file('mpa_mem_card_front');
+            $mpa_mem_card_front_name  = uniqid().'.'.$mpa_mem_card_front_file->getClientOriginalExtension();
+            $mpa_mem_card_front_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_front_name);
+            $mpa_mem_card_front = '/storage/student_papp/'.$mpa_mem_card_front_name;
+        }else{
+            $mpa_mem_card_front="";
+        }
+
+        if ($request->hasfile('mpa_mem_card_back')) {
+            $mpa_mem_card_back_file = $request->file('mpa_mem_card_back');
+            $mpa_mem_card_back_name  = uniqid().'.'.$mpa_mem_card_back_file->getClientOriginalExtension();
+            $mpa_mem_card_back_file->move(public_path().'/storage/student_papp/',$mpa_mem_card_back_name);
+            $mpa_mem_card_back = '/storage/student_papp/'.$mpa_mem_card_back_name;
+        }else{
+            $mpa_mem_card_back="";
+        }
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front= '/storage/student_info/'.$name;
+        }else{
+            $nrc_front="";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back= '/storage/student_info/'.$name;
+        }else{
+            $nrc_back="";
+        }
+        $student_info = new StudentInfo();
+        $student_info->name_mm          =   $request->name_mm;
+        $student_info->name_eng         =   $request->name_eng;
+        $student_info->nrc_state_region =   $request['nrc_state_region'];
+        $student_info->nrc_township     =   $request['nrc_township'] ;
+        $student_info->nrc_citizen      =   $request['nrc_citizen'] ;
+        $student_info->nrc_number       =   $request['nrc_number'];
+        $student_info->father_name_mm   =   $request->father_name_mm;
+        $student_info->father_name_eng  =   $request->father_name_eng;
+        $student_info->gender           =   $request->gender;
+        $student_info->race             =   $request->race;
+        $student_info->religion         =   $request->religion; 
+        $student_info->date_of_birth    =   $request->date_of_birth;
+        $student_info->address          =   $request->address;
+        $student_info->phone            =   $request->phone;
+        $student_info->image            =   $profile_photo;
+        $student_info->nrc_front        =   $nrc_front;
+        $student_info->nrc_back         =   $nrc_back;
+        $student_info->email            =   strtolower($request->email);
+        $student_info->password         =   Hash::make($request->password);
+        $student_info->save();
+        
+        $cpa_ff  = new CPAFF();
+        $cpa_ff->student_info_id    =   $student_info->id;
+        $cpa_ff->profile_photo    =   $profile_photo;
+        $cpa_ff->email             =   strtolower($request->email);
+        $cpa_ff->name_mm           =   $request->name_mm;
+        $cpa_ff->name_eng          =   $request->name_eng;
+        $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
+        $cpa_ff->nrc_township      =   $request->nrc_township;
+        $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
+        $cpa_ff->nrc_number        =   $request->nrc_number;
+        $cpa_ff->father_name_mm    =   $request->father_name_mm;
+        $cpa_ff->father_name_eng   =   $request->father_name_eng; 
+        $cpa_ff->cpa              =   $cpa;
+        $cpa_ff->ra               =   $ra;
+        $cpa_ff->degree_name      =   json_encode($request->degree_name);
+        $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
+        $cpa_ff->foreign_degree   =   json_encode($degree);
+        $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
+        $cpa_ff->address          =   $request->address;
+        $cpa_ff->phone            =   $request->phone;
+        $cpa_ff->contact_mail     =   $request->contact_mail;
+        $cpa_ff->old_card_no_year =   $request->old_card_no_year;
+        $cpa_ff->reg_no           =   $request->reg_no;
+        $cpa_ff->fine_person      =   $request->fine_person;
+        $cpa_ff->cpa_certificate  =   $cpa_certificate;
+        $cpa_ff->mpa_mem_card     =   $mpa_mem_card_front;
+        $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
+        $cpa_ff->nrc_front        =   $nrc_front;
+        $cpa_ff->nrc_back         =   $nrc_back;
+        $cpa_ff->status           =  0;
+        $cpa_ff->is_renew          =   $request->is_renew;
+        $cpa_ff->save();
+
+        $student_data = StudentInfo::find($student_info->id);
+        $student_data->cpaff_id = $cpa_ff->id;
+        $student_data->save();
+
+        $papp  = new Papp();
+        $papp->student_id                   =   $student_info->id;
+        $papp->profile_photo                =   $profile_photo;
+        $papp->cpa                          =   $cpa;
+        $papp->ra                           =   $ra;
+        $papp->degree_name                  =   json_encode($request->degree_name);
+        $papp->degree_pass_year             =   json_encode($request->degree_pass_year);
+        $papp->foreign_degree               =   json_encode($degree);
+        $papp->papp_date                    =   $request->papp_date;
+        $papp->use_firm                     =   $request->use_firm;
+        $papp->firm_name                    =   $request->firm_name;
+        $papp->firm_type                    =   $request->firm_type;
+        $papp->firm_step                    =   $request->firm_step;
+        $papp->staff_firm_name              =   $request->staff_firm_name;
+        $papp->cpa_ff_recommendation        =   $cpa_ff_path;
+        $papp->mpa_mem_card_front           =   $mpa_mem_card_front;
+        $papp->mpa_mem_card_back            =   $mpa_mem_card_back;
+        $papp->status                       =  0;
+        //save to papp
+        $papp->cpa_batch_no     =   $request->cpa_batch_no;
+        $papp->address          =   $request->address;
+        $papp->phone            =   $request->phone;
+        $papp->contact_mail     =   $request->contact_mail;
+        $papp->reg_no           =   $request->reg_no;
+        $papp->papp_reg_no      =   $request->papp_reg_no;
+        $papp->type             =   $request->type;
+        $papp->papp_renew_date  =   $request->papp_renew_date;       
+        $papp->latest_reg_year  =   $request->latest_reg_year;
+        $papp->submitted_stop_form  =   $request->submitted_stop_form;       
+        $papp->submitted_from_date   =   $request->submitted_from_date;
+        $papp->submitted_to_date     =   $request->submitted_to_date;
+        $papp->submitted_to_date     =   $request->submitted_to_date;
+        // $thisYear = date('Y');
+        // $today = date('d-m-Y');
+        // $papp->validate_from = $today;
+        $papp->offline_user =1;
+        $papp->save();
+
+        //invoice
+        // $fees = Membership::where('membership_name','=','PAPP')->first(['renew_fee','form_fee', 'late_fee']);
+        // $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+        // //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
+
+        // $invoice = new Invoice();
+        // $invoice->student_info_id = $request->student_id;
+        // $invoice->invoiceNo       = '';
+        // $invoice->name_eng        =  $stdInfo->name_eng;
+        // $invoice->email           = $stdInfo->email;
+        // $invoice->phone           = $stdInfo->phone;
+        // $thisYear = date('Y');
+        // $oldYear=date('Y',strtotime($oldPapp->validate_to));
+        // if($thisYear == $oldYear){
+        //     $invoice->productDesc     = 'Application Fee, Renewal Fee';
+        //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+        // }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
+        //     $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
+        //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+        // }
+        // else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
+        //     $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+        //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+        // }
+
+        // $invoice->status = 0;
+        // $invoice->save();
+        
+        return response()->json([
+            'message' => "You have successfully registerd!"
         ],200);
     }
 }
