@@ -446,26 +446,48 @@ function loadCertificates(name,payment_status,tbody,is_renew){
                     data: 'subject_id='+id,
                     type: 'post',
                     success: function (result) {
-                       
-                        $.each(result.data, function( index, value ){
-                            var newcode=value.code.split('_');
-                            var course_code=convert(newcode[1]);
-                                var tr = "<tr>";
-                                tr += `<td> ${ newcode[0].toUpperCase()+' '+course_code } </td>`;
-                                tr += `<td> ${ value.subject_name } </td>`;
-                                if(value.code=='cpa_1' || value.code=='cpa_2'){
-                                        tr += `<td>`+thousands_separators(data[0].cpa_subject_fee)+`</td>`;
-                                        sum=data[0].cpa_subject_fee*name.length;
-                                        
-                                    }else{
-                                        tr += `<td>`+thousands_separators(data[0].da_subject_fee)+`</td>`;
-                                        sum=data[0].da_subject_feee*name.length;
-                                    }
-                                tr += `<td>`+payment_status +`</td>`;
-                                tr += "</tr>";
-                                $(tbody).append(tr);
-                                
-                        });
+                        if(is_renew==0){
+                            $.each(result.data, function( index, value ){
+                                var newcode=value.code.split('_');
+                                var course_code=convert(newcode[1]);
+                                    var tr = "<tr>";
+                                    tr += `<td> ${ newcode[0].toUpperCase()+' '+course_code } </td>`;
+                                    tr += `<td> ${ value.subject_name } </td>`;
+                                    if(value.code=='cpa_1' || value.code=='cpa_2'){
+                                            tr += `<td>`+thousands_separators(data[0].cpa_subject_fee)+`</td>`;
+                                            sum=data[0].cpa_subject_fee*name.length;
+                                            
+                                        }else{
+                                            tr += `<td>`+thousands_separators(data[0].da_subject_fee)+`</td>`;
+                                            sum=data[0].da_subject_feee*name.length;
+                                        }
+                                    tr += `<td>`+payment_status +`</td>`;
+                                    tr += "</tr>";
+                                    $(tbody).append(tr);
+                                    
+                            });
+                        }else{
+                            $.each(result.data, function( index, value ){
+                                var newcode=value.code.split('_');
+                                var course_code=convert(newcode[1]);
+                                    var tr = "<tr>";
+                                    tr += `<td> ${ newcode[0].toUpperCase()+' '+course_code } </td>`;
+                                    tr += `<td> ${ value.subject_name } </td>`;
+                                    if(value.code=='cpa_1' || value.code=='cpa_2'){
+                                            tr += `<td>`+thousands_separators(data[0].renew_cpa_subject_fee)+`</td>`;
+                                            sum=data[0].renew_cpa_subject_fee*name.length;
+                                            
+                                        }else{
+                                            tr += `<td>`+thousands_separators(data[0].renew_da_subject_fee)+`</td>`;
+                                            sum=data[0].renew_da_subject_feee*name.length;
+                                        }
+                                    tr += `<td>`+payment_status +`</td>`;
+                                    tr += "</tr>";
+                                    $(tbody).append(tr);
+                                    
+                            });
+                        }
+                        
                         if(is_renew==0){
                             sumTotalAmount(data[0].form_fee+data[0].registration_fee);
                         }else{
