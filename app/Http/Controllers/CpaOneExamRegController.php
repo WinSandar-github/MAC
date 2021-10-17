@@ -129,8 +129,6 @@ class CpaOneExamRegController extends Controller
              $photo = $request->old_photo;
          }
 
-       
-        
         $cpa_one_exam = CpaOneExamRegister::find($id);
         $cpa_one_exam->exam_center   =   $request->exam_center;
         $cpa_one_exam->photo         =   $photo;

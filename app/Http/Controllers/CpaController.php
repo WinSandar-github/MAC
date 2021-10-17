@@ -69,15 +69,16 @@ class CpaController extends Controller
         // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
         // $invoice->invoiceNo       = $invNo;
 
-        $invoice->invoiceNo = '';
         
         $invoice->name_eng        = $student_info->name_eng;
         $invoice->email           = $student_info->email;
         $invoice->phone           = $student_info->phone;
-
+        
         $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-        $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
-        $invoice->amount          = $std->batch->course->form_fee;
+
+        $invoice->invoiceNo = 'cpa_app';
+        $invoice->productDesc     = 'Application Fee,Transaction Fee' . $std->batch->course->name;
+        $invoice->amount          = $std->batch->course->form_fee . ',1000';
         $invoice->status          = 0;
         $invoice->save();
         return $student_info;
