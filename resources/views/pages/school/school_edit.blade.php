@@ -170,7 +170,7 @@
                                             <input type="hidden" id="hidden_attach">
                                         </div>
                                     </div>
-                                    <div class="school-type border-bottom" style="display:none;">
+                                    <div class="school-type" style="display:none;">
                                         <p class="mb-3 mt-3 " style="font-weight:bold">လုပ်ငန်းဖွဲ့စည်းမှုကျောင်းပုံစံ</p>
                                         <div class="col-md-12">
 
@@ -212,41 +212,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3  last_year" style="display:none;">
-                                        <div class="col-md-7">
-                                            <p style="font-weight:bold">နောက်ဆုံးမှတ်ပုံတင်ကြေးပေးခဲ့သည့် ခုနှစ် </p>
-                                        </div>
-                                        <div class="col-md-5">
-                                            <span id="last_registration_fee_year"></span>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3  request_stop" style="display:none;">
-                                        <div class="col-md-6">
-                                            <p style="font-weight:bold">ရပ်နားတင်ခဲ့ခြင်းရှိမရှိ </p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <div class="form-check mt-2 form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="yes" 
-                                                        value="yes" disabled> ရှိ
-
-                                                </div>
-                                                <div class="form-check mt-2 form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="no" 
-                                                        value="no" disabled> မရှိ
-                                                </div>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-3 border-bottom request_stop_yes" style="display:none;">
-                                        <div class="col-md-6">
-                                            <p style="font-weight:bold">ရပ်နားတင်ခဲ့သည့် ရက်စွဲ</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span id="request_from_to_date"></span>
                                         </div>
                                     </div>
                                 </div>

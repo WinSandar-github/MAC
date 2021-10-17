@@ -323,11 +323,7 @@ function getTeacherInfos(){
                 $("#position").append(value.position);
                 $("#department").append(value.department);
                 $("#organization").append(value.organization);
-                if(value.initial_status==0){
-                    loadEductaionHistory(value.id,value.initial_status);
-                }else{
-                    loadEductaionHistory(value.student_info_id,value.initial_status);
-                }
+                loadEductaionHistory(value.id);
                 if(value.school_type==0){
                     $("#school_name").append("Individual");
                     $('.school_name_class').show();
@@ -517,43 +513,24 @@ function loadSchoolName(school_id){
         }
     });    
 }
-function loadEductaionHistory(id,status){
-    if(status==0){
-        $.ajax({
-            type : 'POST',
-            url : BACKEND_URL+"/getEducationHistory",
-            data: 'teacher_id='+id,
-            success: function(result){
-                $.each(result.data, function( index, value ) {
-                    var tr = "<tr>";
-                    tr += `<td> ${ index += 1 } </td>`;
-                    tr += `<td> ${ value.degree_name } </td>`;
-                    tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
-                    tr += "</tr>";
-                    $("#tbl_degree_body").append(tr);
-                });
-                createDataTable('#tbl_degree');
-            }
-        });
-    }else{
-        $.ajax({
-            type : 'POST',
-            url : BACKEND_URL+"/getEducationHistory",
-            data: 'student_info_id='+id,
-            success: function(result){
-                $.each(result.data, function( index, value ) {
-                    var tr = "<tr>";
-                    tr += `<td> ${ index += 1 } </td>`;
-                    tr += `<td> ${ value.degree_name } </td>`;
-                    tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
-                    tr += "</tr>";
-                    $("#tbl_degree_body").append(tr);
-                });
-                createDataTable('#tbl_degree');
-            }
-        });
-    }
+function loadEductaionHistory(id){
     
+    $.ajax({
+        type : 'POST',
+        url : BACKEND_URL+"/getEducationHistory",
+        data: 'teacher_id='+id,
+        success: function(result){
+            $.each(result.data, function( index, value ) {
+                var tr = "<tr>";
+                tr += `<td> ${ index += 1 } </td>`;
+                tr += `<td> ${ value.university_name } </td>`;
+                tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                tr += "</tr>";
+                $("#tbl_degree_body").append(tr);
+            });
+            createDataTable('#tbl_degree');
+        }
+    });
     
 }
 
