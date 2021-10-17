@@ -145,7 +145,7 @@ const _CPA_QUALIFIED = [
     { 
         route_name: "/cpa_qualified_enrol",
         fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
-        sub_title:"လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)" 
+        sub_title: "လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)" 
     },
 
     {
@@ -176,21 +176,21 @@ const _CPA_QUALIFIED = [
 
 const _CPA_PAPP = [
     { 
-        route_name: "/cpa_papp_report_template",
-        // fun_name : 'cpaPAPPList($(this).data(\'url\'))',
+        route_name: "/cpa_papp_yearly_list",
+        fun_name : 'cpaPAPPYealyList($(this).data(\'url\'))',
         sub_title: "CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း" 
     },
 
     {
-        route_name: "/cpa_papp_report_template",
-        // fun_name : 'cpaPAPPList($(this).data(\'url\'))',
+        route_name: "/cpa_papp_yearly_reg_list",
+        fun_name : 'cpaPAPPYearlyRegList($(this).data(\'url\'))',
         sub_title: "ပြက္ဒဒိန်နှစ် အလိုက် မှတ်ပုံတင်လုပ်ငန်းများစာရင်း"
     },
 
     {
         
-        route_name: "/cpa_papp_report_template",
-        // fun_name : 'cpaPAPPList($(this).data(\'url\'))',
+        route_name: "/cpa_papp_take_out_reg_list",
+        fun_name : 'cpaPAPPTakeOutRegList($(this).data(\'url\'))',
         sub_title: "မှတ်ပုံတင်ကတ်ပြားများကို စနစ်ဖြင့် ထုတ်ယူခြင်း"
     }
     
@@ -198,26 +198,26 @@ const _CPA_PAPP = [
 
 const _ARTICLE = [
     { 
-        route_name: "/article_report_template",
-        // fun_name : 'articleList($(this).data(\'url\'))',
-        sub_title: "အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်း" 
+        route_name: "/article_list",
+        fun_name : 'articleList($(this).data(\'url\'))',
+        sub_title: "အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်းးစာရင်း" 
     },
 
     {
-        route_name: "/article_report_template",
-        // fun_name : 'articleList($(this).data(\'url\'))',
+        route_name: "/article_daily_in_out_list",
+        fun_name : 'articleDailyInOutList($(this).data(\'url\'))',
         sub_title: "နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ။"
     },
 
     { 
-        route_name: "/article_report_template",
-        // fun_name : 'articleList($(this).data(\'url\'))',
-        sub_title: "စာရင်းကိုင်အလုက်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
+        route_name: "/article_intern_position_list",
+        fun_name : 'articleInternPosList($(this).data(\'url\'))',
+        sub_title: "စာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
     },
 
     { 
-        route_name: "/article_report_template",
-        // fun_name : 'articleList($(this).data(\'url\'))',
+        route_name: "/article_internship_list",
+        fun_name : 'articleInternshipList($(this).data(\'url\'))',
         sub_title: "အလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)"
     }
     

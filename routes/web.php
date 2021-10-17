@@ -151,6 +151,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // CPA(FF)/PAPP Report
+    Route::post('cpa_papp_yearly_list','ReportController\CpaPappReportController@cpaPappYearlyList');
+    Route::post('cpa_papp_yearly_reg_list','ReportController\CpaPappReportController@cpaPappYearlyRegList');
+    Route::post('cpa_papp_take_out_reg_list','ReportController\CpaPappReportController@cpaPappTakeOutRegList');
     Route::get('cpa_ff_report1','ReportController@cpa_ff_report1');
     Route::get('cpa_ff_report2','ReportController@cpa_ff_report2');
     Route::get('cpa_ff_report3','ReportController@cpa_ff_report3');
@@ -189,6 +192,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_report10','ReportController@cpa_report10');
 
     // Article Report
+    Route::post('article_list','ReportController\ArticleReportController@articleList');
+    Route::post('article_daily_in_out_list','ReportController\ArticleReportController@articleDailyInOutList');
+    Route::post('article_intern_position_list','ReportController\ArticleReportController@articleInternPosList');
+    Route::post('article_internship_list','ReportController\ArticleReportController@articleInternshipList');
     Route::get('firm_article_report1','ReportController@firm_article_report1');
     Route::get('firm_article_report2','ReportController@firm_article_report2');
     Route::get('firm_article_report3','ReportController@firm_article_report3');
@@ -230,11 +237,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('da_report9','ReportController\DaReportController@da_report9');
 
     // CPA Qualified Report
-    Route::post('cpa_qualified_enrol','ReportController\CpaQualifiedReportController@cpa_qualified_enrol');
-    Route::post('cpa_qualified_exam_enrol','ReportController\CpaQualifiedReportController@cpa_qualified_exam_enrol');
-    Route::post('cpa_qualified_exam_reg','ReportController\CpaQualifiedReportController@cpa_qualified_exam_reg');
-    Route::post('cpa_qualified_pass','ReportController\CpaQualifiedReportController@cpa_qualified_pass');
-    Route::post('cpa_qualified_fail','ReportController\CpaQualifiedReportController@cpa_qualified_fail');
+    Route::post('cpa_qualified_enrol','ReportController\CpaQualifiedReportController@cpaQualifiedList');
+    Route::post('cpa_qualified_exam_enrol','ReportController\CpaQualifiedReportController@cpaQualifiedExamEnRol');
+    Route::post('cpa_qualified_exam_reg','ReportController\CpaQualifiedReportController@cpaQualifiedExamReg');
+    Route::post('cpa_qualified_pass','ReportController\CpaQualifiedReportController@cpaQualifiedPass');
+    Route::post('cpa_qualified_fail','ReportController\CpaQualifiedReportController@cpaQualifiedFail');
     Route::get('qualified_report1','ReportController@qualified_report1');
     Route::get('qualified_report2','ReportController@qualified_report2');
     Route::get('qualify_test_detail/{id}','QualifiedTest\QualifiedTestController@qualifyTestDetail');

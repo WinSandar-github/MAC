@@ -18,29 +18,54 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CpaQualifiedReportController extends Controller
 {
-    public function cpa_qualified_enrol(Request $request)
+    public function cpaQualifiedList(Request $request)
     {
-        return view('reporting.qualified_test.qualified_test_report');
+        $data = [
+            'title' => 'လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)',
+            'list' => []
+        ];
+
+        return view('reporting.qualified_test.qualified_test_report', compact('data'));
     }
     
-    public function cpa_qualified_exam_enrol(Request $request)
+    public function cpaQualifiedExamEnRol(Request $request)
     {
-        return view('reporting.qualified_test.qualified_test_report');
+        $data = [
+            'title' => 'ဖြေဆိုခွင့်ရရှိသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)',
+            'list' => []
+        ];
+        
+        return view('reporting.qualified_test.qualified_test_report', compact('data'));
     }
 
-    public function cpa_qualified_exam_reg(Request $request)
+    public function cpaQualifiedExamReg(Request $request)
     {
-        return view('reporting.qualified_test.qualified_test_report');
+        $data = [
+            'title' => 'ဖြေဆိုသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)',
+            'list' => []
+        ];
+
+        return view('reporting.qualified_test.qualified_test_report', compact('data'));
     }
 
-    public function cpa_qualified_pass(Request $request)
+    public function cpaQualifiedPass(Request $request)
     {
-        return view('reporting.qualified_test.qualified_test_report');
+        $data = [
+            'title' => 'အောင်မြင်သူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)',
+            'list' => []
+        ];
+
+        return view('reporting.qualified_test.qualified_test_report', compact('data'));
     }
 
-    public function cpa_qualified_fail(Request $request)
+    public function cpaQualifiedFail(Request $request)
     {
-        return view('reporting.qualified_test.qualified_test_report');
+        $data = [
+            'title' => 'ကျရှံးသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)',
+            'list' => []
+        ];
+
+        return view('reporting.qualified_test.qualified_test_report', compact('data'));
     }
     
 }
