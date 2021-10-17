@@ -421,10 +421,6 @@ Route::get('getTeacherByTCode/{t_code}', 'TeacherController\TeacherController@ge
 Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
 //teacher renew
 Route::post('/renewTeacher', 'TeacherController\TeacherController@renewTeacher');
-Route::post('/filterRenewTeacher','TeacherController\TeacherController@filterRenewTeacher');
-Route::get('getRenewTeacher/{id}', 'TeacherController\TeacherController@getRenewTeacher');
-Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController@approveRenewTeacherRegister');
-//Route::resource('/renewTeacher','TeacherController\TeacherController');
 Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
 Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
 Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');
