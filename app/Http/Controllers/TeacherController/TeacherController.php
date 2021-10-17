@@ -546,6 +546,7 @@ class TeacherController extends Controller
         $teacher->invoice_no = $request->invoice_no;
         $teacher->t_code = $request->invoice_no;
         $teacher->from_valid_date = $request->current_date;
+        $teacher->to_valid_date = '31-12-'.date('Y');
         $teacher->save();
         return response()->json([
             'data' => $teacher,
