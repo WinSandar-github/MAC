@@ -500,7 +500,7 @@ class PAPPController extends Controller
         else if($oldPapp->offline_user==1){
             if($oldPapp->submitted_stop_form==0){
                 $thisYear = date('Y');
-                $last_renew_year=$oldPapp->papp_date;
+                $last_renew_year=$oldPapp->latest_reg_year;
                 if($last_renew_year>="2015"){
                     $less_than_2015=0;
                     $greater_than_2015=$thisYear-$last_renew_year;
@@ -514,7 +514,7 @@ class PAPPController extends Controller
                     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",(".$less_than_2015."x 10000 +".$greater_than_2015."x 100000";
                 }
                 else{
-                    if($thisYear-1 == $last_renew_year){
+                    if($thisYear == $last_renew_year+1){
                         $invoice->productDesc     = 'Application Fee, Renewal Fee';
                         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
                     }else if($thisYear == $last_renew_year && date('M') === 'Jan'){
@@ -1186,7 +1186,8 @@ class PAPPController extends Controller
         $cpa_ff->nrc_front        =   $nrc_front;
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->status           =  0;
-        $cpa_ff->is_renew          =   $request->is_renew;
+        $cpa_ff->is_renew         =   $request->is_renew;
+        $cpa_ff->type             =   $request->is_renew;
         $cpa_ff->save();
 
         $student_data = StudentInfo::find($student_info->id);
