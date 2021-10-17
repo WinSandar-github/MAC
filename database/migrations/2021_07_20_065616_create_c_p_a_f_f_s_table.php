@@ -92,6 +92,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('resign')->nullable();//new
             $table->string('start_date')->nullable();//new
             $table->string('end_date')->nullable();//new
+            $table->boolean('offline_user')->default(0);
             $table->timestamps();
         });
     }

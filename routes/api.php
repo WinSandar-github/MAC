@@ -108,6 +108,7 @@ Route::post('/reject_offline_papp/{id}', 'PAPPController@reject_offline_papp');
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
+Route::get('/cpa_ff_offline_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffOfflineRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
@@ -297,7 +298,10 @@ Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
 //Store app and register on student register
 Route::post('store_student_app_reg','StudentRegisterController@store_student_app_reg');
 
+//Student Data Show on Mac_Student
 Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
+Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
+
 
 Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
 
