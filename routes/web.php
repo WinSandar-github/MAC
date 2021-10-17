@@ -258,6 +258,8 @@ Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
 Route::get('/certificate/{id}', 'CertificateController\CertificateController@index')->name('certificate');
 
 Route::get('/show_non_audit_firm_info/{id}','ShowNonAuditFirmInfoController@showNonAuditFirmInfo');
+Route::get('/show_non_audit_reconnect_info/{id}','ShowNonAuditFirmInfoController@showReconnectNonAuditFirmInfo');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_ff_register_form1', 'CpaController@cpa_ff_registration_form1');
     // Route::get('cpa_ff_registration','CpaController@cpa_ff_registration')->name('cpa_ff_registration');

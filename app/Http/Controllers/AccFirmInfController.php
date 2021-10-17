@@ -598,6 +598,19 @@ class AccFirmInfController extends Controller
         ],200);
     }
 
+    public function approveReconnect($id,$firm_id)
+    {
+        $std_info = StudentInfo::where('id', $id)->first();
+        $std_info->approve_reject_status = 1;
+        $std_info->save();
+        $approve = AccountancyFirmInformation::find($firm_id);
+        $approve->status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
+
     public function reject($id,Request $request)
     {
         $std_info = StudentInfo::where('accountancy_firm_info_id', $id)->first();
@@ -613,6 +626,20 @@ class AccFirmInfController extends Controller
     }
 
     public function rejectRenew($id,Request $request,$firm_id)
+    {
+        $std_info = StudentInfo::where('id', $id)->first();
+        $std_info->approve_reject_status = 2;
+        $std_info->save();
+        $reject = AccountancyFirmInformation::find($firm_id);
+        $reject->status = 2;
+        $reject->remark = $request->remark;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
+    public function rejectReconnect($id,Request $request,$firm_id)
     {
         $std_info = StudentInfo::where('id', $id)->first();
         $std_info->approve_reject_status = 2;
@@ -2472,9 +2499,14 @@ class AccFirmInfController extends Controller
     }
 
     public function FilterAuditRegistration($status,$firm_type){
-      $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
-                                                        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
-                                                  ->where('status','=',$status)
+      // $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
+      //                                                   'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
+      //                                             ->where('status','=',$status)
+      //                                             ->where('is_renew','=',0)
+      //                                             ->where('audit_firm_type_id','=',$firm_type)
+      //                                             ->get();
+
+      $acc_firm_info = AccountancyFirmInformation::where('status','=',$status)
                                                   ->where('is_renew','=',0)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
@@ -2610,12 +2642,11 @@ class AccFirmInfController extends Controller
     }
 
     public function FilterAuditRegistrationRenew($status,$firm_type){
-      $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
-                                                        'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
-                                                  ->where('status','=',$status)
+      $acc_firm_info = AccountancyFirmInformation::where('status','=',$status)
                                                   ->where('is_renew','=',1)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
+
 
       if($firm_type == 1){
         return DataTables::of($acc_firm_info)
@@ -2743,6 +2774,102 @@ class AccFirmInfController extends Controller
           })
 
           ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->make(true);
+      }
+    }
+
+    public function FilterOfflineRegistration($status,$firm_type){
+      $acc_firm_info = AccountancyFirmInformation::where('status','=',$status)
+                                                  ->where('offline_user','=',1)
+                                                  ->where('audit_firm_type_id','=',$firm_type)
+                                                  ->get();
+
+      if($firm_type == 1){
+        return DataTables::of($acc_firm_info)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='showReconnectAuditInfo($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteReconnectAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
+                              <li class='fa fa-trash fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('phone', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','email','phone'])
+          ->make(true);
+      }
+      else{
+        return DataTables::of($acc_firm_info)
+        ->addColumn('action', function ($infos) {
+            return "<div class='btn-group'>
+                        <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_reconnect_info/$infos->id'>
+                            <li class='fa fa-eye fa-sm'></li>
+                        </a>
+                        <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
+                            <li class='fa fa-trash fa-sm'></li>
+                        </button>
+                    </div>";
+        })
+
+          ->addColumn('accountancy_firm_name', function ($infos){
+              return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('email', function ($infos){
+              return $infos->h_email;
+          })
+
+          ->addColumn('accountancy_firm_reg_no', function ($infos){
+              return $infos->accountancy_firm_reg_no;
+          })
+
+          ->addColumn('phone', function ($infos){
+              return $infos->telephones;
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','email','phone'])
           ->make(true);
       }
     }

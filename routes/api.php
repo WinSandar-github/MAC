@@ -28,15 +28,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('/acc_firm_info','AccFirmInfController');
 // for audit initial list
 Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
+// for audit offline list
+Route::get('/audit_offline_list/{status}/{firm_type}', 'AccFirmInfController@FilterOfflineRegistration');
 // for audit renew list
 Route::get('/audit_renew_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistrationRenew');
 
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/approve_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@approveRenew');
+Route::patch('/approve_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@approveReconnect');
 
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@rejectRenew');
+Route::post('/reject_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@rejectReconnect');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
