@@ -30,6 +30,9 @@
                                 ပြည်ထောင်စုစာရင်းစစ်ချုပ်ရုံး<br>
                                 စာရင်းကိုင်အလုပ်သင်လျှောက်လွှာပုံစံ
                             </h5>
+                            <div>
+                                <h6 align="right">Form Type -  <span id="form_type"></h6>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -309,6 +312,25 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="text-center border-bottom" style="font-weight:bold ;background-color:#E7F8EE;">Leave Request</h5>
+                                <table class="table" id="leave_request_table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Leave Request Reason</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Total Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="leave_request_body">
+                                    </tbody>   
+                                </table>
                             </div>
                         </div>
 
