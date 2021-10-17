@@ -1228,136 +1228,185 @@ class SchoolController extends Controller
 
     public function FilterSchool(Request $request)
     {
-        $school = SchoolRegister::where('approve_reject_status',$request->status)
-        ->where('initial_status',$request->initial_status)
-        ->orderBy('created_at','desc');
-        if($request->name!=""){
-            $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
-                        ->orWhere('name_eng', 'like', '%' . $request->name. '%');
-        }
-        if($request->nrc!=""){
-            $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        }
-        $schools=$school->get();
-        return DataTables::of($schools)
-        ->addColumn('action', function ($infos) {
-            $btn='';
-            if($infos->initial_status == 0){
-                $btn ="<div class='btn-group'>
-                        <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
-                            <li class='fa fa-eye fa-sm'></li>
-                        </a>
-                        </div>";
-                return $btn;
-            }else{
-                $btn ="<div class='btn-group'>
-                        <a href='renew_school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
-                            <li class='fa fa-eye fa-sm'></li>
-                        </a>
-                        </div>";
-                return $btn;
+        if($request->offline_user==true){
+            $school = SchoolRegister::where('approve_reject_status',$request->status)
+            ->where('offline_user',$request->offline_user)
+            ->orderBy('created_at','desc');
+            if($request->name!=""){
+                $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
+                            ->orWhere('name_eng', 'like', '%' . $request->name. '%');
             }
-            
-        })
-        ->addColumn('nrc', function ($infos){
-            $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
-            return $nrc_result;
-        })
-        ->addColumn('status', function ($infos){
-            if($infos->approve_reject_status	 == 0){
-                return "PENDING";
-            }else if($infos->approve_reject_status	 == 1){
-                return "APPROVED";
-            }else{
+            if($request->nrc!=""){
+                $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+            }
+            $schools=$school->get();
+            return DataTables::of($schools)
+            ->addColumn('action', function ($infos) {
+                $btn ="<div class='btn-group'>
+                            <a href='school_edit?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                            </div>";
+                return $btn;
                 
-                if($infos->initial_status==2){
-                    return "cessation";
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->approve_reject_status	 == 0){
+                    return "PENDING";
+                }else if($infos->approve_reject_status	 == 1){
+                    return "APPROVED";
                 }else{
+                    
                     return "REJECTED";
                 }
-            }
-        })
-        ->addColumn('payment_method', function ($infos){
-            if($infos->payment_method	 == ""){
-                return "Payment Incomplete";
-            }else{
-                return "Payment Complete";
-            }
-        })
-        ->addColumn('exp_date', function ($infos){
-            if($infos->initial_status==0){
-                if($infos->from_valid_date	 ==""){
-                    return "";
-                }else{
-                    $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                    return $date->format('d-m-Y').' to 31-12-'.date('Y');
-                }
-            }else if($infos->initial_status==1){
-                if($infos->from_valid_date	 ==""){
-                    return "";
-                }else{
-                    $currentDate = Carbon::now()->addYears(3);
-                    return '01-01-'.date('Y').' to 31-12-'.$currentDate->format('Y');
-                }
-            }
+            })
             
-        })
-        ->addColumn('card', function ($infos) {
-            $btn='';
-            if($infos->payment_method != ""){
-                $btn = "<div class='btn-group'>
-                            <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
-                                <li class='fa fa-id-card-o fa-sm'></li>
+            ->addColumn('reason', function ($infos){
+                if($infos->reason == ""){
+                    return "";
+                   
+                }else{
+                    return $infos->reason;
+                   
+                }
+            })
+            
+            ->rawColumns(['action'])
+            ->make(true);
+        }else{
+            $school = SchoolRegister::where('approve_reject_status',$request->status)
+            ->where('initial_status',$request->initial_status)
+            ->orderBy('created_at','desc');
+            if($request->name!=""){
+                $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
+                            ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+            }
+            if($request->nrc!=""){
+                $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+            }
+            $schools=$school->get();
+            return DataTables::of($schools)
+            ->addColumn('action', function ($infos) {
+                $btn='';
+                if($infos->initial_status == 0){
+                    $btn ="<div class='btn-group'>
+                            <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
                             </a>
-                        </div>";
-                return $btn;
+                            </div>";
+                    return $btn;
+                }else{
+                    $btn ="<div class='btn-group'>
+                            <a href='renew_school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                            </div>";
+                    return $btn;
+                }
                 
-            }else{
-                return $btn;
-            }
-            
-        })
-        ->addColumn('remark', function ($infos){
-            if($infos->cessation_reason == ""){
-                return "";
-               
-            }else{
-                return $infos->cessation_reason;
-               
-            }
-        })
-        ->addColumn('reason', function ($infos){
-            if($infos->reason == ""){
-                return "";
-               
-            }else{
-                return $infos->reason;
-               
-            }
-        })
-        ->addColumn('payment_date', function ($infos){
-            if($infos->initial_status==0){
-                if($infos->from_valid_date	 == ""){
-                    return "";
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->approve_reject_status	 == 0){
+                    return "PENDING";
+                }else if($infos->approve_reject_status	 == 1){
+                    return "APPROVED";
                 }else{
-                    $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                    return $date->format('d-m-Y');
+                    
+                    if($infos->initial_status==2){
+                        return "cessation";
+                    }else{
+                        return "REJECTED";
+                    }
                 }
-            }else if($infos->initial_status==1){
-                if($infos->from_valid_date	 == ""){
-                    return "";
+            })
+            ->addColumn('payment_method', function ($infos){
+                if($infos->payment_method	 == ""){
+                    return "Payment Incomplete";
                 }else{
-                    $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
-                    return $date->format('d-m-Y');
+                    return "Payment Complete";
                 }
-            }
-            
-        })
-        ->rawColumns(['card','action'])
-        ->make(true);
-        // return  response()->json([
-        //     'data' => $school
-        // ],200);
+            })
+            ->addColumn('exp_date', function ($infos){
+                if($infos->initial_status==0){
+                    if($infos->from_valid_date	 ==""){
+                        return "";
+                    }else{
+                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                        return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                    }
+                }else if($infos->initial_status==1){
+                    if($infos->from_valid_date	 ==""){
+                        return "";
+                    }else{
+                        $currentDate = Carbon::now()->addYears(3);
+                        return '01-01-'.date('Y').' to 31-12-'.$currentDate->format('Y');
+                    }
+                }
+                
+            })
+            ->addColumn('card', function ($infos) {
+                $btn='';
+                if($infos->payment_method != ""){
+                    $btn = "<div class='btn-group'>
+                                <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                                    <li class='fa fa-id-card-o fa-sm'></li>
+                                </a>
+                            </div>";
+                    return $btn;
+                    
+                }else{
+                    return $btn;
+                }
+                
+            })
+            ->addColumn('remark', function ($infos){
+                if($infos->cessation_reason == ""){
+                    return "";
+                   
+                }else{
+                    return $infos->cessation_reason;
+                   
+                }
+            })
+            ->addColumn('reason', function ($infos){
+                if($infos->reason == ""){
+                    return "";
+                   
+                }else{
+                    return $infos->reason;
+                   
+                }
+            })
+            ->addColumn('payment_date', function ($infos){
+                if($infos->initial_status==0){
+                    if($infos->from_valid_date	 == ""){
+                        return "";
+                    }else{
+                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                        return $date->format('d-m-Y');
+                    }
+                }else if($infos->initial_status==1){
+                    if($infos->from_valid_date	 == ""){
+                        return "";
+                    }else{
+                        $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                        return $date->format('d-m-Y');
+                    }
+                }
+                
+            })
+            ->rawColumns(['card','action'])
+            ->make(true);
+        }
+        
     }
 
     public function schoolStatus($id)

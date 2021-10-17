@@ -495,6 +495,7 @@ function approveSchoolRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
+    let offline_user = url.searchParams.get("offline_user");
     var check = confirm("Are you sure?");
     if (check == true) {
         $.ajax({
@@ -503,7 +504,12 @@ function approveSchoolRegister(){
             type: 'post',
             success: function(result){
                 successMessage(result.message);
-                location.href = FRONTEND_URL + '/school_registration';
+                if(offline_user=="true"){
+                    location.href = FRONTEND_URL + '/offline_user';
+                }else{
+                    location.href = FRONTEND_URL + '/school_registration';
+                }
+                
             }
         });
     }
@@ -515,7 +521,7 @@ function rejectSchoolRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
-    console.log(student_info_id)
+    let offline_user = url.searchParams.get("offline_user");
     var reason=$("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/reject_school_register",
@@ -523,7 +529,11 @@ function rejectSchoolRegister(){
         type: 'post',
         success: function(result){
             successMessage(result.message);
-            location.href = '/school_registration';
+            if(offline_user=="true"){
+                location.href = FRONTEND_URL + '/offline_user';
+            }else{
+                location.href = FRONTEND_URL + '/school_registration';
+            }
         }
     });
     
