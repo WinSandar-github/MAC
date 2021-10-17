@@ -727,7 +727,7 @@ function loadStudentSelfStudy() {
 // }
 
 function approveStudent(student_info_id) {
-
+    var student_info_id = student_info_id || $("input[name = student_register_id]").val();
     Swal.fire({
         title: 'Approve Student?',
         text: "Are you sure to approve this student?",
@@ -753,8 +753,8 @@ function approveStudent(student_info_id) {
                     // }
 
                     Swal.fire(
-                        'Rejected!',
-                        'Rejected Student',
+                        'Approved!',
+                        'Approved Student',
                         'success'
                     ).then( ()=> {
                         setInterval(() => {
