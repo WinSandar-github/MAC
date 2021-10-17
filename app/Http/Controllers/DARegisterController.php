@@ -189,13 +189,13 @@ class DARegisterController extends Controller
             // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
             // $invoice->invoiceNo       = $invNo;
 
-            $invoice->invoiceNo = '';
+            $invoice->invoiceNo = 'app_form';
 
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
 
-            $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->first();
+            $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
             $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee;
             $invoice->status          = 0;

@@ -279,7 +279,7 @@ function approveNonAuditFirmRenew(id,firm_id){
         success: function(result){
           // console.log(result)
             successMessage("You have approved that user!");
-            location.href = FRONTEND_URL + "/audit-firm-list";
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
         }
     });
   }
@@ -347,7 +347,7 @@ function rejectNonAuditFirmRenew(id,firm_id){
         processData: false,
         success: function(result){
             successMessage("You have rejected that user!");
-            location.href = FRONTEND_URL + "/audit-firm-list";
+            location.href = FRONTEND_URL + "/non-audit-firm-list";
         }
     });
   }
