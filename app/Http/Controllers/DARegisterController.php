@@ -184,12 +184,13 @@ class DARegisterController extends Controller
             // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
             // $invoice->invoiceNo       = $invNo;
 
-            $invoice->invoiceNo = 'app_form';
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
-
+            
             $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+            
+            $invoice->invoiceNo = 'app_form';
             $invoice->productDesc     = 'Application Fee,Transaction Fee, ' . $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee . ',1000';
             $invoice->status          = 0;
@@ -368,24 +369,25 @@ class DARegisterController extends Controller
         // $student_infos = $student_infos->get();
         return DataTables::of($student_infos)
             ->editColumn('name_mm', function ($infos) {
-                return '<a href="' . route('student_profile', ['id' => $infos->student_info->id]) . '">' . $infos->student_info->name_mm . '</a>';
+                // return '<a href="' . route('student_profile', ['id' => $infos->student_info->id]) . '">' . $infos->student_info->name_mm . '</a>';
+                return $infos->student_info->name_mm;
             })
             ->addColumn('action', function ($infos) {
-                return $infos->batch->course->code == 'da_1'
-                        ? "<div class='btn-group'>
-                                <a class='btn btn-info btn-xs' href=" . route('da_app_indi', ['id' => $infos->id]) . ">
-                                    <li class='fa fa-eye fa-sm'></li>
-                                </a>
-                            </div>"
-                        : "<div class='btn-group'>
-                                <a class='btn btn-info btn-xs' href=" . route('cpa_app_indi', ['id' => $infos->id]) . ">
-                                    <li class='fa fa-eye fa-sm'></li>
-                                </a>
-                            </div>";
+                // return $infos->batch->course->code == 'da_1'
+                //         ? "<div class='btn-group'>
+                //                 <a class='btn btn-info btn-xs' href=" . route('da_app_indi', ['id' => $infos->id]) . ">
+                //                     <li class='fa fa-eye fa-sm'></li>
+                //                 </a>
+                //             </div>"
+                //         : "<div class='btn-group'>
+                //                 <a class='btn btn-info btn-xs' href=" . route('cpa_app_indi', ['id' => $infos->id]) . ">
+                //                     <li class='fa fa-eye fa-sm'></li>
+                //                 </a>
+                //             </div>";
+                return "<button type='button' class='btn btn-primary btn-xs' onclick='showDAList($infos->id)'>
+                            <li class='fa fa-eye fa-sm'></li>
+                        </button>";
             })
-//            <button type='button' class='btn btn-primary btn-xs' onclick='showDAList($infos->id)'>
-//              <li class='fa fa-eye fa-sm'></li>
-//            </button>
             ->addColumn('nrc', function ($infos) {
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                 return $nrc_result;
