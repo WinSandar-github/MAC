@@ -821,7 +821,7 @@ function doneResignArticle(id){
         $.ajax({
             type: 'POST',
             data: data,
-            url: BACKEND_URL +"/done_resign_article/",
+            url: BACKEND_URL +"/done_resign_article",
             cache: false,
             contentType: false,
             processData: false,
