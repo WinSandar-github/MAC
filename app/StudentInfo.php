@@ -128,9 +128,11 @@ class StudentInfo extends Model
         return $this->hasMany(ExamResult::class,'student_info_id','id');
 
     }
+    public function leave_requests(){
+        return $this->hasMany(leave_request::class,'student_info_id','id');
+    }
     
     public function invoice(){
         return $this->hasMany(Invoice::class, 'student_info_id', 'id');
     }
-    
 }

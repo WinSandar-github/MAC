@@ -268,6 +268,7 @@ Route::get('check_service_private','CurrentCheckServiceController@getCheckServic
 Route::get('check_service_self','CurrentCheckServiceController@getCheckServiceSelf');
 Route::get('check_mentor_mac','MentorController@getMentorMAC');
 Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate');
+Route::get('getMentor/{name}', 'MentorController@getMentor');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
 Route::get('get_firm_dashboard_data/{id}','StudentInfoController@getFirmDashboardData');
@@ -415,9 +416,13 @@ Route::post('/done_resign_article','ArticleController\ArticleController@doneResi
 
 Route::post('/article_renew_register', 'ArticleController\ArticleController@saveRenewArticle');
 Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
+Route::post('/save_leave_request','ArticleController\ArticleController@saveLeaveRequest');
+Route::post('/get_leave_request','ArticleController\ArticleController@getLeaveRequest');
+Route::get('/get_update_leave_request/{id}','ArticleController\ArticleController@getUpdateLeaveRequest');
+Route::post('/update_leave_request','ArticleController\ArticleController@updateLeaveRequest');
 
 // Payment
-Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
+Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
