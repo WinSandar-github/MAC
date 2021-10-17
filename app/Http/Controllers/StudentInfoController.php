@@ -248,15 +248,8 @@ class StudentInfoController extends Controller
         // }
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
-        $education_histroy->degree_id       = $request->degree_id;
-        if($request->degree_id == 40){
+        $education_histroy->degree_name     = $request->degree_name;
 
-            $education_histroy->degree_name     = $request->degree_name;
-        }else{
-            $education_histroy->degree_name     = NULL;
-
-        }
-        $education_histroy->certificate     = $certificate;
         $education_histroy->qualified_date  = $qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
@@ -321,7 +314,7 @@ class StudentInfoController extends Controller
     {
         $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course_regs'
         ,'exam_registers','student_register','school','mentor','teacher','cpa_ff','papp',
-        'article','gov_article','exam_results','qualified_test')->first();
+        'article','gov_article','exam_results','qualified_test', 'invoice')->first();
 
 
         return response()->json(['data' => $student_info],200);
@@ -343,7 +336,7 @@ class StudentInfoController extends Controller
     }
 
     public function updateProfile(Request $request,$id){
-           if ($request->hasfile('image')) {
+        if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
@@ -351,7 +344,14 @@ class StudentInfoController extends Controller
         }else{
             $image = $request->old_image;
         }
-
+        if ($request->hasfile('image_cpaff')) {
+            $file = $request->file('image_cpaff');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $image_cpaff = '/storage/student_info/'.$name;
+        }else{
+            $image_cpaff = $request->old_image_cpaff;
+        }
         if($request->membership == "audit"){
             $acc_firm_info = AccountancyFirmInformation::find($id);
             $acc_firm_info->telephones = $request->audit_phone;
@@ -364,7 +364,7 @@ class StudentInfoController extends Controller
         }else if($request->membership == "cpaff"){
             $cpaff=CPAFF::where('student_info_id',$id)->first();
             $cpaff->address     = $request->address;
-            $cpaff->profile_photo         = $image;
+            $cpaff->profile_photo         = $image_cpaff;
             $cpaff->email         = $request->email;
             $cpaff->phone         = $request->phone;
             $cpaff->save();
@@ -374,7 +374,7 @@ class StudentInfoController extends Controller
             $student_info->date_of_birth = $request->date_of_birth;
             $student_info->phone         = $request->phone;
             $student_info->address       = $request->address;
-            $student_info->image         = $image;
+            $student_info->image         = $image_cpaff;
             $student_info->save();
 
         }else if($request->membership == "papp"){

@@ -636,7 +636,6 @@ function loadCPAFFRenewData(){
                 $("#cpaff_address").append(element.address);
                 $("#cpaff_phone").append(element.phone);
                 $("#contact_mail").append(element.contact_mail);
-                $("#reg_no").append(element.reg_no);
                 
                 if(element.cpaff_pass_date != null){
                     $("#cpaff_pass_date").append(element.cpaff_pass_date);

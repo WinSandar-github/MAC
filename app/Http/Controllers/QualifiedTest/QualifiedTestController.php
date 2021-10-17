@@ -140,7 +140,6 @@ class QualifiedTestController extends Controller
             $qualifiedtest->know_policy                 = $request->submit_confirm_policy;
             $qualifiedtest->local_education_certificate = json_encode($certificate);
             $qualifiedtest->office_address             = $request->office_address;
-            $qualifiedtest->grade                      = 0;
             $qualifiedtest->other_edu_foreign          = $request->other_edu_foreign;
             $qualifiedtest->save();
             // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->first();

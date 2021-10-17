@@ -60,22 +60,68 @@
                                         <span id="contact_mail"></span>
                                     </div>
                                 </div>
-
-                                <div class="row m-2 mt-3 border-bottom">
+                                <!-- CPA -->
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Degree Level</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA </p>
                                     </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="degree"></span>
+                                   <div class="col-md-6 text-left">
+                                        <button type="button" id="cpa_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpaModal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                    <div class="col-md-6 text-left cpa_file"></div>
+                                </div>
+                                <!-- CPA Modal-->
+                                <div id="cpaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">CPA</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- <img id="cpa" class="img-fluid" /> -->
+                                            <embed id="cpa"  width="100%" height="500px">
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
 
+                                <!-- RA -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registeration No.</p>
+                                        <p class="ml-2" style="font-weight:bold">RA </p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="reg_no"></span>
+                                        <button type="button" id="ra_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#raModal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                    <div class="col-md-6 text-left ra_file"></div>
+                                </div>
+                                <!--RA Modal -->
+                                <div id="raModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">RA</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <embed id="ra" width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+
+                                <!-- Foreign Degree -->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registration No.</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="degree"></span>
                                     </div>
                                 </div>
 
@@ -256,6 +302,56 @@
                                         <span id="cpd_total_hour"></span>
                                     </div>
                                 </div>
+                                    <!--Passport Image-->
+                                {{--<div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Passport Image</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#passport_Modal"><i class="fa fa-paperclip"></i></button>
+                                    </div>
+                                </div>--}}
+                                <!--Letter-->
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ကိုယ်တိုင်ဝန်ခံချက်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left letter_file">
+                                        <!-- <button type="button" id="letter_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#letter_Modal"><i class="fa fa-paperclip"></i></button> -->
+                                    </div>
+                                </div>
+                                    <!--Letter Modal-->
+                                {{--<div id="letter_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">ကိုယ်တိုင်ဝန်ခံချက်</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <embed id="letter"  width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>--}}
+                                    <!--Passport Image Modal-->
+                                {{--<div id="passport_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center">Passport Image</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <embed id="passport_image"  width="100%" height="500px">
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>--}}
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">

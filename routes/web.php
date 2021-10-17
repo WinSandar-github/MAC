@@ -109,7 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Exam Form 1 Approve/Reject
     Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
     Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-
+    
     //Qualify test Approve/Reject
     Route::patch('/approve_qt/{id}', 'QualifiedTest\QualifiedTestController@approveQT');
     Route::patch('/reject_qt/{id}', 'QualifiedTest\QualifiedTestController@rejectQT');
@@ -139,12 +139,12 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('attend_exam_list/{course_code}','ReportController@attendExamList');
     Route::get('exam_result_list/{course_code}','ReportController@examResultList');
-
+    
     Route::get('membership_edit/{id}','MembershipController@membership_edit');
     Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail')->name('entry_exam_detail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
     Route::get('entry_exam_result_detail/{id}','EntryExamController@entryExamResultDetail');
-    //Entrance Exam
+    //Entrance Exam 
     Route::get('publishes_entrance_exam_list/{course_code}','ReportController@currentEntryExamList');
     Route::post('show_entrance_exam_list','ReportController@showEntranceExamList');
     Route::get('publishes_entrance_exam_result/{course_code}','ReportController@publishesEntranceExamResult');
@@ -233,7 +233,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('qt_fill_mark/{id}','QualifiedTest\QualifiedTestController@qualifyTestFillMark');
     Route::get('publishes_qualifiedtest_list','QualifiedTest\QualifiedTestController@currentQualifiedTestList');
     Route::get('publishes_qualifiedtest_result','QualifiedTest\QualifiedTestController@publishesQualifiedTestResult');
-
+    
 });
 Route::post('show_qualifiedtest_list','QualifiedTest\QualifiedTestController@showPublishQTList');
 
@@ -258,16 +258,31 @@ Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
 Route::get('/certificate/{id}', 'CertificateController\CertificateController@index')->name('certificate');
 
 Route::get('/show_non_audit_firm_info/{id}','ShowNonAuditFirmInfoController@showNonAuditFirmInfo');
+Route::get('/show_non_audit_reconnect_info/{id}','ShowNonAuditFirmInfoController@showReconnectNonAuditFirmInfo');
+
 Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_ff_register_form1', 'CpaController@cpa_ff_registration_form1');
     // Route::get('cpa_ff_registration','CpaController@cpa_ff_registration')->name('cpa_ff_registration');
-
+    
     // Main Course Controller
     Route::post("/main_course", "CourseController\MainCourseController@store");
     Route::get("/main_course/{id}", "CourseController\MainCourseController@show");
     Route::patch("/main_course/{id}", "CourseController\MainCourseController@update");
     Route::delete("/main_course/{id}", "CourseController\MainCourseController@destory");
 
+    // DA Application List
+    Route::get('/da_app_indi/{id}', 'DARegisterController@daOneAppListIndi')->name('da_app_indi');
+    Route::get('/student_profile', 'DARegisterController@studentProfile')->name('student_profile');
+
+    // CPA Application List
+    Route::get('/cpa_app_indi/{id}', 'DARegisterController@cpaOneAppListIndi')->name('cpa_app_indi');
+
+    // DA Register List
+    Route::get('/da_registration/private_school_reg/{id}', 'StudentRegisterController@privateSchoolReg')->name('private_school_reg');
+    Route::get('/da_registration/mac_reg/{id}', 'StudentRegisterController@macReg')->name('mac_reg');
+    Route::get('/da_registration/self_study_reg/{id}', 'StudentRegisterController@self_study_Reg')->name('self_study_reg');
+
+    // CPA Register List
     // offline user
     Route::get('/offline_user', 'OfflineUserController\OfflineUserController@index')->name('offline_user');
 

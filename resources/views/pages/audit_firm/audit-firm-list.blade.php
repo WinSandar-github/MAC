@@ -323,7 +323,7 @@ $(document).ready(function(){
 			"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
 	});
 
-	$('#tbl_audit_approve_renew').DataTable({
+	$('#tbl_audit_approved_renew').DataTable({
 			processing: true,
 			scrollX:true,
 			// serverSide: true,
@@ -395,13 +395,13 @@ $(document).ready(function(){
 			"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
 	});
 
-	$('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-			$.each($.fn.dataTable.tables(true), function(){
-					$(this).DataTable()
-							.columns.adjust()
-							.responsive.recalc();
-			});
-	});
+	// $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+	// 		$.each($.fn.dataTable.tables(true), function(){
+	// 				$(this).DataTable()
+	// 						.columns.adjust()
+	// 						.responsive.recalc();
+	// 		});
+	// });
 
 });
 

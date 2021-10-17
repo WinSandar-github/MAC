@@ -64,6 +64,7 @@ class CreatePappsTable extends Migration
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
             $table->string('papp_reg_no')->nullable();
+            $table->string('papp_reg_date')->nullable();
             $table->string('audit_work')->nullable();
             
             $table->string('latest_reg_year')->nullable();
@@ -72,7 +73,7 @@ class CreatePappsTable extends Migration
             $table->string('submitted_to_date')->nullable();
 
             $table->integer('type')->nullable();
-            $table->text('self_confession')->nullable();
+            $table->integer('self_confession')->nullable();
             $table->text('reject_description')->nullable();
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();
