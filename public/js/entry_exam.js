@@ -45,7 +45,7 @@ function loadEntryDetail(id) {
             var exam_data = data.data;
 
             exam_data.forEach(function (element) {
-                console.log('exam_data', element)
+                console.log('exam_data', exam_data)
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -183,12 +183,13 @@ function loadEntryDetail(id) {
                         $('#hall_no').text(element.exam_building);
                         $('#exam_reg_place').text(element.exam_place);
                     } else {
-                        $('#room_no').text(element.exam_room);
-                        $('#hall_no').text(element.exam_building);
                         $('#exam_date').text("");
                         $('#exam_time').text("");
                         $('#exam_place').text("");
                     }
+
+
+
 
                 })
 
@@ -214,28 +215,17 @@ function approveEntryExam() {
 }
 
 function rejectEntryExam() {
-    if (!confirm('Are you sure you want to reject this student?')) {
-        return;
-    }
-    else {
-        var formData = new FormData();
-        formData.append('remark', $('#remark').val());
-        formData.append('_method', 'PATCH')
-        var id = $("input[name = student_id]").val();
-        $.ajax({
-            url: BACKEND_URL + "/reject_exam/" + id,
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (result) {
-            console.log('remark',result);
-                successMessage("You have rejected that form!");
-                location.href = FRONTEND_URL + "/entry_exam_list";
-                getExam();
-            }
-        });
-    }
+    var id = $("input[name = student_id]").val();
+    $.ajax({
+        url: BACKEND_URL + "/reject_exam/" + id,
+        type: 'PATCH',
+        success: function (result) {
+
+            successMessage("You have rejected that form!");
+            location.href = FRONTEND_URL + "/entry_exam_list";
+            getExam();
+        }
+    });
 }
 
 
