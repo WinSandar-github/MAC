@@ -189,7 +189,7 @@ class DARegisterController extends Controller
             // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
             // $invoice->invoiceNo       = $invNo;
 
-            $invoice->invoiceNo = '';
+            $invoice->invoiceNo = 'app_form';
 
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
