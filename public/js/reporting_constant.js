@@ -78,6 +78,8 @@ const _CPA = [
 
 const _ARTICLE_SECTION_MENTOR = [
     {
+        route_name: "article_mentor_registered_intern",
+        fun_name: "articleMentorInternRegister($(this).data(\'url\'))",
         sub_title: "မှတ်ပုံတင်ထားသော အလုပ်သင်ကြားပေးသူစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက် / status အလိုက်)"
     },
 
@@ -94,6 +96,8 @@ const _ARTICLE_SECTION_MENTOR = [
     // },
 
     {
+        route_name: "article_mentor_intern",
+        fun_name: "articleMentorIntern($(this).data(\'url\'))",
         sub_title: "အလုပ်သင်ကြားပေးနေသူထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
     },
 
@@ -113,10 +117,14 @@ const _FIRM_NAME = [
     // },
 
     {
+        route_name: "firm_individual",
+        fun_name: "firmIndividual($(this).data(\'url\'))",
         sub_title: `အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှုပေးသူတစ်ဦးချင်း`
     },
 
     {
+        route_name: "firm_daily_attendence",
+        fun_name: "frimDailyAttendence($(this).data(\'url\'))",
         sub_title: `နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ`
     },
 
@@ -128,15 +136,21 @@ const _FIRM_NAME = [
 
 const _TEACHER_SCHOOL = [
     {
+        route_name: "teacher_school_license",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
         sub_title: "ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက်)"
     },
 
     {
+        route_name: "teacher_school_private",
+        fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
         sub_title: `ကိုယ်ပိုင်သင်တန်းကျောင်းများတွင် သင်ကြားနေသောသင်တန်းဆရာများစာရင်း 
                     ( အမျိုးအစားအလိုက် (Private/Individual)၊ ကျောင်းအလိုက်၊ ခုနှစ်အလိုက်၊ ဘာသာရပ်အလိုက်၊ သင်တန်းအမျိုးအစားအလိုက်`
     },
 
     {
+        route_name: "teacher_school_license_plate",
+        fun_name: "teacherSchoolLicensePlate($(this).data(\'url\'))",
         sub_title: "Teacher / School အလိုက်မှတ်ပုံတင်ကတ်များ (ကနဦး / သက်တမ်းတိုး) ထုတ်ယူနိုင်ရေးဆောင်ရွက်ပေးရန်"
     }
 ]
