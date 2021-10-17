@@ -1,7 +1,7 @@
-// var BACKEND_URL = "http://localhost:8000/api";
-// var FRONTEND_URL = "http://localhost:8000";
-// var PDF_URL = "http://localhost:8000";
+// const BACKEND_URL = "http://localhost:8000/api";
+// const FRONTEND_URL = "http://localhost:8000";
+// const PDF_URL = "http://localhost:8000";
 
-var BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
-var FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
-var PDF_URL = "https://demo.aggademo.me/MAC/public";
+const BACKEND_URL = "https://demo.aggademo.me/MAC/public/index.php/api";
+const FRONTEND_URL = "https://demo.aggademo.me/MAC/public/index.php";
+const PDF_URL = "https://demo.aggademo.me/MAC/public";
