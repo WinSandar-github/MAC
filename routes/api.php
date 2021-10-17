@@ -297,7 +297,10 @@ Route::get('getMentorStatus/{id}', 'MentorController@mentorStatus');
 //Store app and register on student register
 Route::post('store_student_app_reg','StudentRegisterController@store_student_app_reg');
 
+//Student Data Show on Mac_Student
 Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
+Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
+
 
 Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
 
