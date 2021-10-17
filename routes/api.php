@@ -419,7 +419,7 @@ Route::get('/get_update_leave_request/{id}','ArticleController\ArticleController
 Route::post('/update_leave_request','ArticleController\ArticleController@updateLeaveRequest');
 
 // Payment
-Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
+Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
