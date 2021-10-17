@@ -164,7 +164,7 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'name_mm', name: 'Student Name'},
                 {data: 'batch.name', name: 'Batch Name'},
                 {data: 'student_info.email', name: 'Email'},
                 {data: 'student_info.phone', name: 'Phone Number'},
@@ -195,7 +195,7 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'name_mm', name: 'Student Name'},
                 {data: 'batch.name', name: 'Batch Name'},
                 {data: 'student_info.email', name: 'Email'},
                 {data: 'student_info.phone', name: 'Phone Number'},
@@ -226,7 +226,7 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'name_mm', name: 'Student Name'},
                 {data: 'batch.name', name: 'Batch Name'},
                 {data: 'student_info.email', name: 'Email'},
                 {data: 'student_info.phone', name: 'Phone Number'},

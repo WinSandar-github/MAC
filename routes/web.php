@@ -295,5 +295,21 @@ Route::group(['middleware' => 'auth'], function () {
     Route::patch("/main_course/{id}", "CourseController\MainCourseController@update");
     Route::delete("/main_course/{id}", "CourseController\MainCourseController@destory");
 
+    // DA Application List
+    Route::get('/da_app_indi/{id}', 'DARegisterController@daOneAppListIndi')->name('da_app_indi');
+    Route::get('/student_profile', 'DARegisterController@studentProfile')->name('student_profile');
+
+    // CPA Application List
+    Route::get('/cpa_app_indi/{id}', 'DARegisterController@cpaOneAppListIndi')->name('cpa_app_indi');
+
+    // DA Register List
+    Route::get('/da_registration/private_school_reg/{id}', 'StudentRegisterController@privateSchoolReg')->name('private_school_reg');
+    Route::get('/da_registration/mac_reg/{id}', 'StudentRegisterController@macReg')->name('mac_reg');
+    Route::get('/da_registration/self_study_reg/{id}', 'StudentRegisterController@self_study_Reg')->name('self_study_reg');
+
+    // CPA Register List
+    // offline user
+    Route::get('/offline_user', 'OfflineUserController\OfflineUserController@index')->name('offline_user');
+
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
