@@ -65,6 +65,7 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('renew_school_address')->nullable();
             $table->string('renew_course')->nullable();
             $table->string('school_card')->nullable();
+            $table->string('regno')->nullable();
 
             $table->string('last_registration_fee_year')->nullable();
             $table->string('request_for_temporary_stop')->nullable();

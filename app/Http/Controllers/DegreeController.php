@@ -14,7 +14,7 @@ class DegreeController extends Controller
      */
     public function index()
     {
-        $degrees = Degree::all();
+        $degrees = Degree::orderBy('id','asc')->get();
         return response()->json([
             'data' => $degrees
         ],200);
@@ -39,7 +39,7 @@ class DegreeController extends Controller
     public function store(Request $request)
     {
         $degree = new Degree();
-        $degree->name = $request->name;
+        $degree->degree_name = $request->degree_name;
         $degree->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -80,7 +80,7 @@ class DegreeController extends Controller
     public function update(Request $request, $id)
     {
         $degree = Degree::find($id);
-        $degree->name = $request->name;
+        $degree->degree_name = $request->degree_name;
         $degree->save();
         return response()->json([
             'message' => "Update Successfully"
