@@ -1194,4 +1194,89 @@ class PAPPController extends Controller
             'message' => "You have successfully registerd!"
         ],200);
     }
+    public function GetPappOfflineUser($status,$type){
+        $papp = Papp::with('student_info','student_job', 'student_education_histroy')
+                      ->where('status','=',$status)
+                      ->where('type','=',$type)
+                      ->get();
+
+        return DataTables::of($papp)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='pappOfflineUser($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+          ->rawColumns(['action','status'])
+          ->make(true);
+    }
+    public function reject_offline_papp(Request $request)
+    {
+        $reject = Papp::find($request->id);
+        $reject->status = 2;
+        $reject->renew_status=2;
+        $reject->reject_description = $request->description;
+        $reject->save();
+
+        $cpa_ff = CPAFF::find($request->cpaff_id);
+        $cpa_ff->status = 2;
+        $cpa_ff->renew_status=2;
+        $cpa_ff->reject_description = $request->description;
+        $cpa_ff->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
+    public function approve_offline_papp($id,$cpaff_id)
+    {
+        $accepted_date = date('Y-m-d');
+        $approve = Papp::find($id);
+        if($approve->status==0)
+        {
+            $approve->status = 1;
+            $approve->accepted_date=$accepted_date;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        else if($approve->status==1){
+            $approve->status = 1;
+            $approve->renew_status=1;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        $approve->save();
+
+        $approve_cpaff = CPAFF::find($cpaff_id);
+        if($approve_cpaff->status==0)
+        {
+            $approve_cpaff->status = 1;
+            $approve_cpaff->accepted_date=$accepted_date;
+            $approve_cpaff->renew_accepted_date=$accepted_date;
+            // Generate Reg No.
+            $approve_cpaff->reg_no = 'CPAFF_' . str_pad($cpaff_id, 5, "0", STR_PAD_LEFT);
+            $approve_cpaff->reg_date = date('Y-m-d');
+        }
+        else if($approve_cpaff->status==1){
+            $approve_cpaff->status = 1;
+            $approve_cpaff->renew_status=1;
+            $approve_cpaff->renew_accepted_date=$accepted_date;
+        }
+        $approve_cpaff->save();
+
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
 }

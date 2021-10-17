@@ -303,6 +303,84 @@
                                     </div>
 
                                 </div>
+                                <div class="tab-pane fade" id="v-pills-papp" role="tabpanel"
+                                     aria-labelledby="v-pills-messages-tab">
+
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#pappcheck1"
+                                               role="tablist" aria-expanded="false" style="font-weight:bold">Pending
+                                                List</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#pappcheck2" role="tablist"
+                                               aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#pappcheck3" role="tablist"
+                                               aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="card-body">
+                                        <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                            <div class="tab-pane fade show active" id="pappcheck1" aria-expanded="true">
+                                                <table id="tbl_papp_pending_list" class="table table-hover text-nowrap "
+                                                       style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Registration No</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_papp_pending_list_body" class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade show" id="pappcheck2" aria-expanded="true">
+                                                <table id="tbl_papp_approved_list" class="table table-hover text-nowrap "
+                                                       style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Registration No</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_papp_approved_list_body" class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade show" id="pappcheck3" aria-expanded="true">
+                                                <table id="tbl_papp_rejected_list" class="table table-hover text-nowrap "
+                                                       style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Registration No</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_papp_rejected_list_body" class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -572,7 +650,62 @@
             //     ],
             //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             // });
+            $('#tbl_papp_pending_list').DataTable({
+                processing: true,
+                scrollX : true,
+                // serverSide: true,
+                ajax: BACKEND_URL + "/papp_offline_user_list/0/2",
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},  
+                    {data: 'student_info.phone', name: 'Phone'},                 
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
 
+            $('#tbl_papp_approved_list').DataTable({
+                processing: true,
+                scrollX : true,
+                // serverSide: true,
+                ajax: BACKEND_URL + "/papp_offline_user_list/1/2",
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"}, 
+                    {data: 'student_info.phone', name: 'Phone'},                  
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+
+            $('#tbl_papp_rejected_list').DataTable({
+                processing: true,
+                scrollX : true,
+                // serverSide: true,
+                ajax: BACKEND_URL + "/papp_offline_user_list/2/2",
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.registration_no', name: 'Reg; No.',className: "set-text-center"},  
+                    {data: 'student_info.phone', name: 'Phone'},                 
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 $.each($.fn.dataTable.tables(true), function () {
                     $(this).DataTable().columns.adjust();

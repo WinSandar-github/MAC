@@ -1416,8 +1416,8 @@ class AccFirmInfController extends Controller
         $register_date = Carbon::parse($date->register_date)->format('M');
 
         $verify = "You are verified!";
-        $next = "Your registeration will start in next year!";
-        $renew = "Your registeration is expired! You need to submit new registeration form again.";
+        $next = "Your registration will start in next year!";
+        $renew = "Your registration is expired! You need to submit new registration form again.";
 
         $accept_date = date("Y-m-d H:i:s", strtotime('+ 1 year', $reg_date));
         $currentDate = date("Y-m-d");

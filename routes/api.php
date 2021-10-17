@@ -96,6 +96,10 @@ Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 Route::patch('/approve_papp_payment/{id}', 'PAPPController@approvePapp');
 Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
 Route::post('/reconnect_papp', 'PAPPController@ReconnectPapp');
+Route::get('/papp_offline_user_list/{status}/{type}', 'PAPPController@GetPappOfflineUser');
+
+Route::patch('/approve_offline_papp/{id}/{cpaff_id}', 'PAPPController@approve_offline_papp');
+Route::post('/reject_offline_papp/{id}', 'PAPPController@reject_offline_papp');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
