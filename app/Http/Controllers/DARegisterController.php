@@ -190,14 +190,13 @@ class DARegisterController extends Controller
             // $invoice->invoiceNo       = $invNo;
 
             $invoice->invoiceNo = 'app_form';
-
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
 
             $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-            $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
-            $invoice->amount          = $std->batch->course->form_fee;
+            $invoice->productDesc     = 'Application Fee,Transaction Fee, ' . $std->batch->course->name;
+            $invoice->amount          = $std->batch->course->form_fee . ',1000';
             $invoice->status          = 0;
             $invoice->save();
 
@@ -287,8 +286,6 @@ class DARegisterController extends Controller
 
     public function approve($id)
     {
-
-
         $stu_course_reg = StudentCourseReg::find($id) ;
         $stu_course_reg->approve_reject_status =1;
         $stu_course_reg->save();
