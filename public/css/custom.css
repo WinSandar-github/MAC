@@ -343,3 +343,27 @@
 .modal-dialog{
   margin-top: auto !important;
 }
+
+.pending{
+    background-color: #f3deb87a;
+    padding: 10px;
+    color: #d79100;
+    border-radius: 7px;
+    font-weight: 600;
+}
+
+.approve{
+    background-color: #ddf3bb94;
+    padding: 10px;
+    color: #44bb44;
+    border-radius: 7px;
+    font-weight: 600;
+}
+
+.reject{
+    background-color: #f3c5c561;
+    padding: 10px;
+    color: #f97272;
+    border-radius: 2px;
+    font-weight: 600;
+}
