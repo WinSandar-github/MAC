@@ -1187,13 +1187,12 @@ class PAPPController extends Controller
         $cpa_ff->nrc_front        =   $nrc_front;
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->status           =  0;
-        $cpa_ff->is_renew         =   $request->is_renew;
+        $cpa_ff->is_renew         =   0;
         $cpa_ff->offline_user         =  1;
-        $cpa_ff->type             =   $request->is_renew;
-        $cpa_ff->last_paid_year   =   $request->latest_reg_year;
+        $cpa_ff->type             =   0;
         $cpa_ff->resign   =   $request->submitted_stop_form;
         $cpa_ff->start_date   =   $request->submitted_from_date;
-        $cpa_ff->end_date   =   $request->$request->submitted_to_date;
+        $cpa_ff->end_date   =   $request->submitted_to_date;
         $cpa_ff->save();
 
         $student_data = StudentInfo::find($student_info->id);
