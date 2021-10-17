@@ -916,7 +916,15 @@ function loadappOfflineUser(){
                 $("#profile_photo").append(element.profile_photo);
                 $("#registration_no").append(element.student_info.cpersonal_no);
                 //$(".total_audit_work").append(element.personal_no);
-
+                $("#papp_reg_year").append(element.papp_reg_date);
+                $("#papp_last_renew_year").append(element.papp_date);
+                $("#latest_reg_year").append(element.latest_reg_year);
+                if(element.submitted_stop_form==1){
+                    $("#submitted_stop_form").append(`${element.submitted_from_date} မှ ${element.submitted_to_date} အထိ ရပ်နား Form တင်ထားပါသည်။`);
+                }
+                else{
+                    $("#submitted_stop_form").append("မရှိပါ။");
+                }
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
                     $(".recommend_letter").append(`<a href='${PDF_URL+element.student_info.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -1027,72 +1035,21 @@ function loadappOfflineUser(){
                 // })
                 $.ajax({
                     type: "GET",
-                    url: BACKEND_URL+"/cpa_ff/"+element.student_info.id,
+                    url: BACKEND_URL+"/cpa_ff/"+element.student_info.cpaff_id,
                     success: function (data) {
                         var student=data.data;
                         console.log(student.length);
                         
                         student.forEach(function(element){
-                           
-                            //$("#id").append(element.id);
-                            // if(element.form_type==1){
-                            //     //do nothing
-                            // }
-                            // else{
-                            // $("#registration_no").append(element.student_info.cpersonal_no);
-                            // }
-            
-                            // if(element.student_info.gov_staff == 1){
-                            //     $(".recommend_row").show();
-                            //     $(".recommend_letter").append(`<a href='${PDF_URL+element.student_info.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                            // }else{
-                            //     $(".recommend_row").hide();
-                            // }
-                            
-                            // if(element.cpa!=null){
-                            //     $(".cpa_file").append(`<a href='${PDF_URL+element.cpa}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                            // }else {
-                            //     $(".cpa_file").append(`<span>-</span>`);
-                            // }
-            
-                            // if(element.ra!=null){
-                            //     $(".ra_file").append(`<a href='${PDF_URL+element.ra}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                            // }else {
-                            //     $(".ra_file").append(`<span>-</span>`);
-                            // }
-            
-                            // if(element.foreign_degree!=null && element.foreign_degree!="null"){    
-                            //     // let foreign_degree = JSON.parse(element.foreign_degree);
-                            //     // $.each(foreign_degree, function (fileCount, fileName) {
-                            //     //     $(".foreign_degree_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
-                            //     // })
-                            //     // $(".foreign_degree_file").append(
-                            //     //     '<table id="tbl_foreign_degree"  class="table table-border" style="width:100%;display: block; overflow-x: auto;white-space: nowrap;"'+
-                            //     //     '<thead><tr><th>Name</th>'+'<th>Passed Year</th>'+'<th>Certificate</th></tr></thead>'+
-                            //     //     '<tbody class="tbl_foreign_degree_body hoverTable text-left"></tbody></table>'
-                            //     // );
-                            //     $('#has_foreign_degree').show();
-                            //     $('#not_foreign_degree').hide();
-                            //     let foreign_degree = JSON.parse(element.foreign_degree);
-                            //     let degree_name = JSON.parse(element.degree_name);
-                            //     let degree_year = JSON.parse(element.degree_pass_year);
-                            //     $('.tbl_foreign_degree_body').html("");
-                            //     var certificate_html;
-                            //     for(let i=0;i<foreign_degree.length;i++){
-                            //         var degree_certificate=`<a href='${PDF_URL +foreign_degree[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`;
-                            //         certificate_html += `<tr>
-                            //                             <td>${degree_name[i]}</td>
-                            //                             <td>${degree_year[i]}</td>
-                            //                             <td>${degree_certificate}</td>
-                            //                         </tr>`
-                            //     }
-                            //     $('.tbl_foreign_degree_body').html(certificate_html)
-                            // }else {
-                            //     $('#not_foreign_degree').show();
-                            //     $('#has_foreign_degree').hide();
-                            //     $(".foreign_degree_file").append(`<span>-</span>`);
-                            // }
-            
+                            $("#cpaff_reg_year").append(element.cpaff_reg_date);
+                            $("#cpaff_last_renew_year").append(element.last_paid_year); 
+                            $("#old_card_year").append(element.old_card_no_year);
+                            $("#old_card_no").append(element.old_card_no); 
+                            if(element.old_card_file!=null){
+                                $(".old_card_file").append(`<a href='${PDF_URL+element.old_card_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                            }else {
+                                $(".old_card_file").append(`<span>-</span>`);
+                            }
                             if(element.cpa_certificate!=null){
                                 $(".cpaff_cpa_certificate_file").append(`<a href='${PDF_URL+element.cpa_certificate}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                             }else {

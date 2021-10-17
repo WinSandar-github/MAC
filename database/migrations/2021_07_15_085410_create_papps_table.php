@@ -64,6 +64,7 @@ class CreatePappsTable extends Migration
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
             $table->string('papp_reg_no')->nullable();
+            $table->string('papp_reg_date')->nullable();
             $table->string('audit_work')->nullable();
             
             $table->string('latest_reg_year')->nullable();
