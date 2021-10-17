@@ -39,6 +39,7 @@ class CpaOneRegisterController extends Controller
      */
     public function store(Request $request)
     {
+        return $request ;
         if ($request->hasfile('photo')) {
             $file = $request->file('photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -93,6 +94,23 @@ class CpaOneRegisterController extends Controller
         $cpa_one_reg->no_crime_file         =   $no_crime;
         $cpa_one_reg->module_id     =   $request->module_id;
         $cpa_one_reg->save();
+
+        //invoice        
+        $invoice = new Invoice();
+        $std_info = StudentInfo::where('email', '=', $cpa_one_reg->email)->first();
+
+        $invoice->student_info_id = $std_info->id;        
+        $invoice->name_eng        = $std_info->name_eng;
+        $invoice->email           = $std_info->email;
+        $invoice->phone           = $std_info->phone;
+        
+        $std = StudentCourseReg::with('batch')->where("student_info_id", $std_info->id)->latest()->first();
+
+        $invoice->invoiceNo = 'reg_' . $std->batch->course->code ;
+        $invoice->productDesc     = 'Application Fee,Transaction Fee' . $std->batch->course->name;
+        $invoice->amount          = $std->batch->course->form_fee . ',1000';
+        $invoice->status          = 0;
+        $invoice->save();
         
          return response()->json([
             'message' => "Insert Successfully"

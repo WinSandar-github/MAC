@@ -158,13 +158,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = 'self_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
-
+                
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,Self_Study Registration Fee,Transaction Fee' . $std->batch->course->name;
+
+                $invoice->invoiceNo = 'self_reg_' . $std->batch->course->code;
+                $invoice->productDesc     = 'Application Fee,Self_Study Registration Fee,Transaction Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee. ',' .$std->batch->course->selfstudy_registration_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
@@ -211,13 +212,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = 'prv_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
-
+                
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee,Transaction Fee' . $std->batch->course->name;
+
+                $invoice->invoiceNo = 'prv_reg_' . $std->batch->course->code;
+                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee,Transaction Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
@@ -282,13 +284,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = 'mac_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
-
+                
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,MAC Registration Fee,Course Fee,Transaction Fee'. $std->batch->course->name;
+
+                $invoice->invoiceNo = 'mac_reg_' . $std->batch->course->code;
+                $invoice->productDesc     = 'Application Fee,MAC Registration Fee,Course Fee,Transaction Fee,'. $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee. ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
@@ -354,34 +357,36 @@ class StudentRegisterController extends Controller
 
         $datatable = DataTables::of($student_register)
             ->editColumn('name', function ($infos) {
-                return '<a href="' . route('student_profile', ['id' => $infos->student_info->id]) . '">' . $infos->student_info->name_mm . '</a>';
+                // return '<a href="' . route('student_profile', ['id' => $infos->student_info->id]) . '">' . $infos->student_info->name_mm . '</a>';
+                return $infos->student_info->name_mm ;
             })
-            ->addColumn('action', function ($infos) {
-                return $infos->type == 1 /*private school*/
-                    ? "<div class='btn-group'>
-                                <a class='btn btn-info btn-xs' href=" . route('private_school_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
-                                    <li class='fa fa-eye fa-sm'></li>
-                                </a>
-                            </div>"
-                    : ($infos->type == 2 /*mac*/
-                        ? "<div class='btn-group'>
-                                <a class='btn btn-info btn-xs' href=" . route('mac_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
-                                    <li class='fa fa-eye fa-sm'></li>
-                                </a>
-                            </div>"
-                        : "<div class='btn-group'>
-                                <a class='btn btn-info btn-xs' href=" . route('self_study_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
-                                    <li class='fa fa-eye fa-sm'></li>
-                                </a>
-                            </div>"
-                    );
+            ->addColumn('action', function ($student) {
+                // return $infos->type == 1 /*private school*/
+                //     ? "<div class='btn-group'>
+                //                 <a class='btn btn-info btn-xs' href=" . route('private_school_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
+                //                     <li class='fa fa-eye fa-sm'></li>
+                //                 </a>
+                //             </div>"
+                //     : ($infos->type == 2 /*mac*/
+                //         ? "<div class='btn-group'>
+                //                 <a class='btn btn-info btn-xs' href=" . route('mac_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
+                //                     <li class='fa fa-eye fa-sm'></li>
+                //                 </a>
+                //             </div>"
+                //         : "<div class='btn-group'>
+                //                 <a class='btn btn-info btn-xs' href=" . route('self_study_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
+                //                     <li class='fa fa-eye fa-sm'></li>
+                //                 </a>
+                //             </div>"
+                //     );
+
                 /*0 is self study*/
 
-                /*"<div class='btn-group'>
+                return "<div class='btn-group'>
                     <button type='button' class='btn btn-primary btn-xs' onclick='showRegistration($student->id,$student->form_type)'>
                     <li class='fa fa-eye fa-sm'></li>
                     </button>
-                </div>";*/
+                </div>";
             })
             ->addColumn('email', function ($student) {
                 return $student->student_info ? Str::limit($student->student_info->email, 50, '...') : '';
@@ -443,20 +448,25 @@ class StudentRegisterController extends Controller
     {
         // $date = date('Y-m-d');
         $course_date = date('Y-m-d');
-        if ($request->date) {
+
+        if($request->date){
             $date = $request->date;
         } else {
             $date = date('Y-m-d');
         }
+        
         $invoice_date = date('Y-m-d');
 
         $student_info = StudentInfo::find($request->student_id);
+
         $student_info->approve_reject_status = 1;
-        if ($request->direct_degree) {
-            $student_info->direct_degree = $request->direct_degree;
-            $student_info->degree_date = date("Y-m-d", strtotime($request->degree_date));
-            $student_info->degree_certificate_image = $deg_certi_img;
-            $student_info->degree_rank = $request->degree_rank;
+        
+        if($request->direct_degree)
+        {
+            $student_info->direct_degree                =   $request->direct_degree;
+            $student_info->degree_date                  =   date("Y-m-d",strtotime($request->degree_date));
+            $student_info->degree_certificate_image     =   $deg_certi_img;
+            $student_info->degree_rank                  =   $request->degree_rank;
         }
         //update student information
 
@@ -470,36 +480,36 @@ class StudentRegisterController extends Controller
         }
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
-            $name = uniqid() . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path() . '/storage/student_info/', $name);
-            $profile_photo = '/storage/student_info/' . $name;
-        } else {
-            $profile_photo = $student_info->image;
-        }
-        $student_info->recommend_letter = $recommendation_letter;
-        $student_info->image = $profile_photo;
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        } else{
+            $profile_photo=$student_info->image;
+        }       
+
+        $student_info->recommend_letter =   $recommendation_letter;
+        $student_info->image =   $profile_photo;
         $student_info->address = $request->address;
-        $student_info->current_address = $request->current_address;
-        $student_info->phone = $request->phone;
-        $student_info->gov_staff = $request->gov_staff;
+        $student_info->current_address =   $request->current_address;
+        $student_info->phone =   $request->phone;
+        $student_info->gov_staff =   $request->gov_staff;
         $student_info->save();
 
         $student_job = StudentJobHistroy::where('student_info_id', $request->student_id)->first();
         $student_job->office_address = $request->office_address;
         $student_job->save();
 
-
         // $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id = $request->batch_id;
-        $student_course->date = $course_date;
-        $student_course->status = 1;
-        $student_course->type = $request->type;
-        if ($request->type == 2) {
+        $student_course->batch_id        = $request->batch_id;
+        $student_course->date            = $course_date;
+        $student_course->status          = 1;
+        $student_course->type            = $request->type;
 
-            $student_course->mac_type = $request->mac_type;
+        if($request->type == 2){
+            $student_course->mac_type          = $request->mac_type;
         }
 
         $student_course->approve_reject_status = 1;
@@ -556,13 +566,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = 'self_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
-
+                
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,Self_Study Registration Fee,Transaction Fee' . $std->batch->course->name;
+
+                $invoice->invoiceNo = 'self_reg_' . $std->batch->course->code;
+                $invoice->productDesc     = 'Application Fee,Self_Study Registration Fee,Transaction Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->selfstudy_registration_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
@@ -609,13 +620,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = 'prv_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
-
+                
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee,Transaction Fee' . $std->batch->course->name;
+
+                $invoice->invoiceNo = 'prv_reg_' . $std->batch->course->code;
+                $invoice->productDesc     = 'Application Fee,Private-School Registration Fee,Transaction Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->privateschool_registration_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
@@ -680,13 +692,14 @@ class StudentRegisterController extends Controller
                 // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
                 // $invoice->invoiceNo       = $invNo;
 
-                $invoice->invoiceNo = 'mac_reg_form';
                 $invoice->name_eng        = $student_info->name_eng;
                 $invoice->email           = $student_info->email;
                 $invoice->phone           = $student_info->phone;
-
+                
                 $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-                $invoice->productDesc     = 'Application Fee,MAC Registration Fee,Course Fee, Transaction Fee' . $std->batch->course->name;
+
+                $invoice->invoiceNo = 'mac_reg_' . $std->batch->course->code;
+                $invoice->productDesc     = 'Application Fee,MAC Registration Fee,Course Fee, Transaction Fee,' . $std->batch->course->name;
                 $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->mac_registration_fee.','.$std->batch->course->tution_fee . ',1000';
                 $invoice->status          = 0;
                 $invoice->save();
