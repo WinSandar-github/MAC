@@ -220,7 +220,7 @@ class PAPPController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_id;
-        $invoice->invoiceNo       = '';
+        $invoice->invoiceNo  = "papp-renew";
         $invoice->name_eng       =  $stdInfo->name_eng;
         $invoice->email       = $stdInfo->email;
         $invoice->phone       = $stdInfo->phone;
@@ -547,6 +547,7 @@ class PAPPController extends Controller
                 $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",(".$less_than_2015."x 10000 +".$greater_than_2015."x 100000";
             }
         }
+        $invoice->invoiceNo = "papp-renew";
         $invoice->status = 0;
         // return $invoice;
         $invoice->save();
@@ -1187,7 +1188,12 @@ class PAPPController extends Controller
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->status           =  0;
         $cpa_ff->is_renew         =   $request->is_renew;
+        $cpa_ff->offline_user         =  1;
         $cpa_ff->type             =   $request->is_renew;
+        $cpa_ff->last_paid_year   =   $request->latest_reg_year;
+        $cpa_ff->resign   =   $request->submitted_stop_form;
+        $cpa_ff->start_date   =   $request->submitted_from_date;
+        $cpa_ff->end_date   =   $request->$request->submitted_to_date;
         $cpa_ff->save();
 
         $student_data = StudentInfo::find($student_info->id);
@@ -1227,7 +1233,7 @@ class PAPPController extends Controller
         $papp->submitted_stop_form  =   $request->submitted_stop_form;       
         $papp->submitted_from_date   =   $request->submitted_from_date;
         $papp->submitted_to_date     =   $request->submitted_to_date;
-        $papp->submitted_to_date     =   $request->submitted_to_date;
+        // $papp->submitted_to_date     =   $request->submitted_to_date;
         // $thisYear = date('Y');
         // $today = date('d-m-Y');
         // $papp->validate_from = $today;
@@ -1315,7 +1321,9 @@ class PAPPController extends Controller
 
     public function approve_offline_papp($id,$cpaff_id)
     {
-        $accepted_date = date('Y-m-d');
+        $month_day=date('m-d');
+        $year=date('Y')-1;
+        $accepted_date = $year.'-'.$month_day;
         $approve = Papp::find($id);
         if($approve->status==0)
         {

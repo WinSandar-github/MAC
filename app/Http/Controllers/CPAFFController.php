@@ -232,7 +232,7 @@ class CPAFFController extends Controller
 
             $invoice = new Invoice();
             $invoice->student_info_id = $std_info->id;
-            $invoice->invoiceNo       = '';
+            $invoice->invoiceNo     = "cpaff-initial";
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
@@ -632,12 +632,12 @@ class CPAFFController extends Controller
 
             //invoice
             $fees = Membership::where('membership_name','=','CPAFF')->first(['form_fee', 'registration_fee']);
-            $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+            $stdInfo = StudentInfo::where('id', '=', $request->student_info_id)->first();
             //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
             $invoice = new Invoice();
-            $invoice->student_info_id = $request->student_id;
-            $invoice->invoiceNo       = '';
+            $invoice->student_info_id = $request->student_info_id;
+            $invoice->invoiceNo     = "cpaff-initial";
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
@@ -820,6 +820,7 @@ class CPAFFController extends Controller
         $cpa_ff->old_card_file        =   $request->old_card_file;
         $cpa_ff->is_convicted        =   $request->is_convicted;  
         $cpa_ff->is_renew   =   $request->is_renew;
+        $cpa_ff->type   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;
 
         $today = date('d-m-Y');        
@@ -843,7 +844,7 @@ class CPAFFController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_info_id;
-        $invoice->invoiceNo       = '';
+        $invoice->invoiceNo     = "cpaff-renew";
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
