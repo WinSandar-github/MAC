@@ -47,6 +47,8 @@
                                         <th class="bold-font-weight">Self Registration End Date</th>
                                         <th class="bold-font-weight">Private Registration Start Date</th>
                                         <th class="bold-font-weight">Private Registration Endt Date</th>
+                                        <th class="bold-font-weight">Exam Registration Start Date</th>
+                                        <th class="bold-font-weight">Exam Registration Endt Date</th>
                                         <th class="bold-font-weight">Entrance Pass Start Date</th>
                                         <th class="bold-font-weight">Entrance Pass End Date</th>
 
@@ -316,34 +318,53 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('15.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Exam Registration Start Date') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="exam_start_date" class="form-control" autocomplete="off"
+                                        placeholder="DD-MMM-YYYY" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('16.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Exam Registration End Date') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="exam_end_date" class="form-control" autocomplete="off"
+                                        placeholder="DD-MMM-YYYY" required>
+                                </div>
+                            </div>
+                        </div>
+
                         <input type="hidden" value="1" name="moodle_course_id" class="form-control" autocomplete="off">
 
                         <input type="hidden" value="1" name="publish_status" class="form-control" autocomplete="off">
 
-                        <div class="row" id="entrance_pass" style="display:none; padding-left:15px;padding-right:15px">
-                            <div>
-                                <div class="row">
-                                    <label class="col-md-1 form-label">{{ __('15.') }}</label>
-                                    <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <input type="text" name="entrance_pass_start_date" class="form-control"
-                                                autocomplete="off" placeholder="DD-MMM-YYYY">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-1 form-label">{{ __('16.') }}</label>
-                                    <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
-                                    <div class="col-md-7">
-                                        <div class="form-group">
-                                            <input type="text" name="entrance_pass_end_date" class="form-control"
-                                                autocomplete="off" placeholder="DD-MMM-YYYY">
-                                        </div>
-                                    </div>
+                        
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('17.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="entrance_pass_start_date" class="form-control"
+                                        autocomplete="off" placeholder="DD-MMM-YYYY">
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <label class="col-md-1 form-label">{{ __('18.') }}</label>
+                            <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
+                            <div class="col-md-7">
+                                <div class="form-group">
+                                    <input type="text" name="entrance_pass_end_date" class="form-control"
+                                        autocomplete="off" placeholder="DD-MMM-YYYY">
+                                </div>
+                            </div>
+                        </div>
+                             
 
                     </div>
 
@@ -611,6 +632,14 @@
                 {
                     data: 'private_reg_end_date',
                     name: 'private_reg_end_date'
+                },
+                {
+                    data: 'exam_start_date',
+                    name: 'exam_start_date'
+                },
+                {
+                    data: 'exam_end_date',
+                    name: 'exam_end_date'
                 },
                 {
                     data: 'entry_start_date',
