@@ -453,6 +453,14 @@ class MentorController extends Controller
         ],200);
     }
 
+    public function getMentor($name)
+    {
+        $mentor = Mentor::where('papp_reg_no',$name)->get();
+        return  response()->json([
+            'mentor' => $mentor,
+        ],200);
+    }
+
     // public function getMentor()
     // {
     //     $mentor = Mentor::all();

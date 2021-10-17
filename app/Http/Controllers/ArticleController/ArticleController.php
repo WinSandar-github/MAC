@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\ApprenticeAccountant;
 use App\ApprenticeAccountantGov;
+use App\leave_request;
 use App\Http\Requests\AppAccRequest;
 
 use Illuminate\Support\Str;
@@ -33,7 +34,7 @@ class ArticleController extends Controller
     {
         if($id != ""){
 
-            $app_acc = ApprenticeAccountant::where('id', $id)->with('student_info')->first();
+            $app_acc = ApprenticeAccountant::where('id', $id)->with('student_info','mentor')->first();
 
             return response()->json($app_acc, 200, $this->header, $this->options) ;
 
@@ -82,6 +83,7 @@ class ArticleController extends Controller
         $acc_app->gov_position = $request->gov_position;
         $acc_app->gov_joining_date = $request->gov_joining_date;
         $acc_app->request_papp = $request->request_papp;
+        $acc_app->mentor_id = $request->mentor_id;
         $acc_app->request_papp_attach = $request_papp_attach;
         $acc_app->exam_pass_date = $request->exam_pass_date;
         $acc_app->exam_pass_batch = $request->exam_pass_batch;
@@ -160,7 +162,7 @@ class ArticleController extends Controller
                 }
             })
             ->addColumn('registration_fee', function ($infos){
-                return $infos->registration_fee;
+                return $infos->registration_fee == null ? "-" : $infos->registration_fee;
             })
             ->addColumn('form_type', function ($infos){
                 if($infos->article_form_type == 'c12'){
@@ -186,7 +188,7 @@ class ArticleController extends Controller
                     </div>";
                 }else if($infos->status == 1){
                     if($infos->contract_start_date == null && $infos->contract_end_date == null){
-                        if($infos->mentor_attach_file == null){
+                        if($infos->mentor_attach_file == null || $infos->registration_fee == null){
                             return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-sm mr-3' disabled onclick='showContractDate($infos)'>
                                     <li class='fa fa-calendar fa-sm'></li>
@@ -519,7 +521,7 @@ class ArticleController extends Controller
                 }
             })
             ->addColumn('registration_fee', function ($infos){
-                return $infos->registration_fee;
+                return $infos->registration_fee == null ? "-" : $infos->registration_fee;;
             })
             ->addColumn('form_type', function ($infos){
                 return "Gov Form";
@@ -533,14 +535,25 @@ class ArticleController extends Controller
                 </div>";
             }else if($infos->status == 1){
                 if($infos->contract_start_date == null && $infos->contract_end_date == null){
-                    return "<div class='btn-group'>
-                        <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showGovContractDate($infos)'>
-                            <li class='fa fa-calendar fa-sm'></li>
-                        </button>
-                        <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateGovContractDate($infos)'>
-                            <li class='fa fa-pencil' fa-sm'></li>
-                        </button>
-                    </div>";
+                    if($infos->registration_fee == null){
+                        return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-sm mr-3' disabled onclick='showGovContractDate($infos)'>
+                                <li class='fa fa-calendar fa-sm'></li>
+                            </button>
+                            <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateGovContractDate($infos)'>
+                                <li class='fa fa-pencil' fa-sm'></li>
+                            </button>
+                        </div>";
+                    }else{
+                        return "<div class='btn-group'>
+                            <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showGovContractDate($infos)'>
+                                <li class='fa fa-calendar fa-sm'></li>
+                            </button>
+                            <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateGovContractDate($infos)'>
+                                <li class='fa fa-pencil' fa-sm'></li>
+                            </button>
+                        </div>";
+                    }
                 }else if($infos->done_status == 0){
                     return "<div class='btn-group'>
                         <button type='button' class='btn btn-primary btn-sm mr-3' disabled onclick='showGovContractDate($infos)'>
@@ -773,7 +786,7 @@ class ArticleController extends Controller
                 return $nrc_result;
             })
             ->addColumn('registration_fee', function ($infos){
-                return $infos->registration_fee;
+                return $infos->registration_fee == null ? "-" : $infos->registration_fee;
             })
             ->addColumn('status', function ($infos){
                 if($infos->resign_status == 0){
@@ -929,7 +942,7 @@ class ArticleController extends Controller
                 return $nrc_result;
             })
             ->addColumn('registration_fee', function ($infos){
-                return $infos->registration_fee;
+                return $infos->registration_fee == null ? "-" : $infos->registration_fee;
             })
             ->addColumn('status', function ($infos){
                 if($infos->resign_status == 0){
@@ -1001,6 +1014,7 @@ class ArticleController extends Controller
         $acc_app->gov_position = $request->gov_position;
         $acc_app->gov_joining_date = $request->gov_joining_date;
         $acc_app->request_papp = $request->request_papp;
+        $acc_app->mentor_id = $request->mentor_id;
         $acc_app->request_papp_attach = $request_papp_attach;
         $acc_app->current_address = $request->current_address;
         $acc_app->m_email = $request->m_email;
@@ -1018,6 +1032,61 @@ class ArticleController extends Controller
     {
         $article = ApprenticeAccountant::where('student_info_id', $student_info_id)->with('student_info')->get();
         return $article;
+    }
+
+    public function saveLeaveRequest(Request $request)
+    {
+        if($request->form_name == "gov"){
+            $approve = ApprenticeAccountantGov::find($request->id);
+            $form_type = "gov";
+        }else{
+            $approve = ApprenticeAccountant::find($request->id);
+            $form_type = $approve->article_form_type;
+        }
+        
+        $leave_request = new leave_request();
+        $leave_request->student_info_id = $approve->student_info_id;
+        $leave_request->form_type = $form_type;
+        $leave_request->start_date = $request->start_date;
+        $leave_request->end_date = $request->end_date;
+        $leave_request->total_leave = $request->total_date;
+        $leave_request->remark = $request->remark;
+        if($leave_request->save()){
+            return response()->json(['message' => 'Create Leave Request Success!'], 200, $this->header, $this->options);
+        }
+        return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
+    }
+
+    public function getLeaveRequest(Request $request)
+    {
+        if($request->form_name == 'gov'){
+            $approve = ApprenticeAccountantGov::find($request->id);
+            $form_type = 'gov';
+        }else{
+            $approve = ApprenticeAccountant::find($request->id);
+            $form_type = $approve->article_form_type;
+        }
+        $data = leave_request::where('student_info_id',$approve->student_info_id)->where('form_type',$form_type)->get();
+        return $data;
+    }
+
+    public function getUpdateLeaveRequest($id)
+    {
+        $result = leave_request::find($id);
+        return $result;
+    }
+
+    public function updateLeaveRequest(Request $request)
+    {
+        $leave_request = leave_request::find($request->id);
+        $leave_request->start_date = $request->start_date;
+        $leave_request->end_date = $request->end_date;
+        $leave_request->total_leave = $request->total_date;
+        $leave_request->remark = $request->remark;
+        if($leave_request->save()){
+            return response()->json(['message' => 'Create Leave Request Success!'], 200, $this->header, $this->options);
+        }
+        return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
     }
 
 }
