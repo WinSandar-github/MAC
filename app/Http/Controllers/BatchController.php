@@ -50,6 +50,10 @@ class BatchController extends Controller
         $batch->self_reg_end_date        = date('Y-m-d',strtotime($request->self_reg_end_date));
         $batch->private_reg_start_date      = date('Y-m-d',strtotime($request->private_reg_start_date));
         $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
+        $batch->private_reg_start_date      = date('Y-m-d',strtotime($request->private_reg_start_date));
+        $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
+        $batch->exam_start_date = date('Y-m-d',strtotime($request->exam_start_date));
+        $batch->exam_end_date   = date('Y-m-d',strtotime($request->exam_end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
         $batch->accept_application_start_date = date('Y-m-d',strtotime($request->accept_application_start_date));
@@ -88,6 +92,8 @@ class BatchController extends Controller
         $batch->self_reg_end_date        = date('Y-m-d',strtotime($request->self_reg_end_date));
         $batch->private_reg_start_date      = date('Y-m-d',strtotime($request->private_reg_start_date));
         $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
+        $batch->exam_start_date = date('Y-m-d',strtotime($request->exam_start_date));
+        $batch->exam_end_date   = date('Y-m-d',strtotime($request->exam_end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
         $batch->accept_application_start_date = date('Y-m-d',strtotime($request->accept_application_start_date));  

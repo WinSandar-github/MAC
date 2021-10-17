@@ -85,12 +85,14 @@ class CreateCPAFFSTable extends Migration
             $table->integer('self_confession')->nullable();
             $table->integer('type')->nullable();
             $table->date('reg_date')->default(null)->nullable();
+            $table->string('cpaff_reg_date')->nullable();
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();
             $table->string('last_paid_year')->nullable();//new
             $table->string('resign')->nullable();//new
             $table->string('start_date')->nullable();//new
             $table->string('end_date')->nullable();//new
+            $table->boolean('offline_user')->default(0);
             $table->timestamps();
         });
     }

@@ -197,9 +197,9 @@ function loadData() {
                 }
 
                 if(!element.da_pass_roll_number){
-                    $(".da_two_pass_info").hide();                    
+                    $(".da_two_pass_info").hide();
                 }else{
-                    $(".da_two_pass_info").show(); 
+                    $(".da_two_pass_info").show();
                     if(element.da_pass_certificate==null){
                         $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File not available</a>`)
                     }else{
@@ -236,7 +236,7 @@ function loadData() {
                     $(".da_pass_date").append(element.da_pass_date);
                     $(".da_pass_roll_number").append(element.da_pass_roll_number);
                 }
-                
+
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -309,12 +309,67 @@ function loadData() {
     })
 }
 
-function approveUser() {
-    if (!confirm('Are you sure you want to approve this student?')) {
-        return;
-    }
-    else {
+function approveUser(student_info_id) {
+    Swal.fire({
+        title: 'Approve Student?',
+        text: "Are you sure to approve this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!'
+    }).then((result) => {
+        if(result.isConfirmed) {
+            $.ajax({
+                url: BACKEND_URL + "/approve/" + student_info_id,
+                type: 'patch',
+                success: function (result) {
+                    let url;
+                    if (result) {
+                        switch (result.code) {
+                            case 'da_1':
+                                url = '/da_one_app_list';
+                                break;
+                            case 'da_2':
+                                url = '/da_two_app_list';
+                                break;
+                            case 'cpa_1':
+                                url = '/cpa_one_app_list';
+                                break;
+                            case 'cpa_2':
+                                url = '/cpa_two_app_list';
+                                break;
+                            default:
+                                url = '/da_one_app_list';
+                                break;
+                        }
+                        // successMessage("You have approved that user!");
 
+                        Swal.fire(
+                            'Approved!',
+                            'Approved Student',
+                            'success'
+                        ).then( () => {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + url;
+                            }, 2000);
+                        });
+                    }
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+
+    /*if (!confirm('Are you sure you want to approve this student?')) {
+        return;
+    } else {
         var id = $("input[name = student_course_id]").val();
         $.ajax({
             url: BACKEND_URL + "/approve/" + id,
@@ -348,21 +403,80 @@ function approveUser() {
                 }
             }
         });
-    }
+    }*/
 }
 
-function rejectUser() {
+function rejectUser(student_info_id) {
+    Swal.fire({
+        title: 'Reject Student?',
+        text: "Are you sure to reject this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Reject it!'
+    }).then((result) => {
+        if(result.isConfirmed){
+            var formData = new FormData();
+            formData.append('remark', $('#remark').val());
+            formData.append('_method', 'PATCH')
+            // var id = $("#student_info_id").val();
 
+            $.ajax({
+                url: BACKEND_URL + "/reject/" + student_info_id,
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (result) {
+                    let url;
+                    if (result) {
+                        switch (result.code) {
+                            case 'da_1':
+                                url = '/da_one_app_list';
+                                break;
+                            case 'da_2':
+                                url = '/da_two_app_list';
+                                break;
+                            case 'cpa_1':
+                                url = '/cpa_one_app_list';
+                                break;
+                            case 'cpa_2':
+                                url = '/cpa_two_app_list';
+                                break;
+                            default:
+                                url = '/da_one_app_list';
+                                break;
+                        }
+                        Swal.fire(
+                            'Rejected!',
+                            'Rejected Student',
+                            'success'
+                        ).then( ()=> {
+                            setInterval(() => {
+                                location.href = FRONTEND_URL + url;
+                            }, 2000);
+                        });
+                    }
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
 
-    if (!confirm('Are you sure you want to reject this student?')) {
+    /*if (!confirm('Are you sure you want to reject this student?')) {
         return;
-    }
-    else {
+    } else {
         var formData = new FormData();
         formData.append('remark', $('#remark').val());
         formData.append('_method', 'PATCH')
         var id = $("#student_info_id").val();
-
 
         $.ajax({
             url: BACKEND_URL + "/reject/" + id,
@@ -373,7 +487,6 @@ function rejectUser() {
             success: function (result) {
                 let url;
                 if (result) {
-
                     switch (result.code) {
                         case 'da_1':
                             url = '/da_one_app_list';
@@ -390,9 +503,6 @@ function rejectUser() {
                         default:
                             url = '/da_one_app_list';
                             break;
-
-
-
                     }
                     successMessage("You have rejected that user!");
                     location.href = FRONTEND_URL + url;
@@ -400,10 +510,8 @@ function rejectUser() {
                 // location.href = FRONTEND_URL + "/da_one_app_list";
             }
         });
-    }
+    }*/
 }
-
-
 
 function file_read(data) {
     if (data == 'certificate') {
