@@ -147,32 +147,32 @@ function getSchoolInfos(){
                 removeBracketed(data.data.own_type_letter,"own_type_letter");
             }
             
-            if(data.data.renew_school_name!=null){
+            if(data.data.school_name!=null){
                 $('.school_name-class').show();
                 $("#school_name").val(data.data.school_name);
             }else{
-                $("#school_name").val(data.data.school_name);
+                $("#school_name").val(data.data.renew_school_name);
             }
-            if(data.data.renew_school_address!=null){
+            if(data.data.school_address!=null){
                 $('.school_address-class').show();
                 $("#school_address").val(data.data.school_address);
                 $("#eng_school_address").val(data.data.eng_school_address);
             }else{
-                $("#school_address").val(data.data.school_address);
+                $("#school_address").val(data.data.renew_school_address);
                 $("#eng_school_address").val(data.data.eng_school_address);
             }
             if(data.data.school_location_attach!=null){
                 $('.view-school_location_attach').show();
                 $("#school_location_attach").append(`<a href='${PDF_URL+data.data.school_location_attach}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
             }
-            if(data.data.renew_course!=null && data.data.renew_course.replace(/[\'"[\]']+/g, '')!="null"){
+            if(data.data.attend_course!=null && data.data.attend_course.replace(/[\'"[\]']+/g, '')!="null"){
                 $('.attend_course-class').show();
-                loadStudentCourse(data.data.renew_course.replace(/[\'"[\]']+/g, ''));
-            }else{
                 loadStudentCourse(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
+            }else{
+                loadStudentCourse(data.data.renew_course.replace(/[\'"[\]']+/g, ''));
             }
             if(data.data.own_type!=null){
-                $('.own_type-class').show();
+                $('.own_type-class').hide();
                 if(data.data.own_type== "private"){
                     $('#'+data.data.own_type).prop("checked", true);
                     $('input[id=rent]').attr('disabled', 'disabled');
@@ -772,7 +772,12 @@ function loadSchoolCard(){
             var today = new Date();
             var date = addZero(today.getDate())+'-'+addZero(today.getMonth()+1)+'-'+today.getFullYear();
             document.getElementById('regno_date').innerHTML=data.data.s_code+'/'+date;
-            document.getElementById('school_name').innerHTML=data.data.school_name;
+            if(data.data.school_name!=null){
+                document.getElementById('school_name').innerHTML=data.data.school_name;
+            }else{
+                document.getElementById('school_name').innerHTML=data.data.renew_school_name;
+            }
+            
             
             if($("input:radio[name=school_type1]").val()==data.data.type){
                 $('input:radio[name=school_type1]').attr('checked',true);

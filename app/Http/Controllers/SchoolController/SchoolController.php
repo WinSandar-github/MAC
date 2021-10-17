@@ -1656,12 +1656,12 @@ class SchoolController extends Controller
         $school->attachment      = ($attachment);
         
         $school->profile_photo               = $profile_photo;
-        $school->school_name                 = $request->old_school_name;
-        $school->renew_school_name           = $request->school_name;
-        $school->attend_course               = ($request->old_course);
-        $school->renew_course               = json_encode($request->attend_course);
-        $school->school_address              = $request->old_school_address;
-        $school->renew_school_address              = $request->school_address;
+        $school->school_name                 = $request->school_name;
+        $school->renew_school_name           = $request->old_school_name;
+        $school->attend_course               = json_encode($request->attend_course);
+        $school->renew_course                = $request->old_course;
+        $school->school_address              = $request->school_address;
+        $school->renew_school_address        = $request->old_school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = ($own_type_letter);
         $school->business_license            = ($business_license);
@@ -1679,8 +1679,9 @@ class SchoolController extends Controller
         $school->renew_date       = date('Y-m-d');
         //$school->renew_id         = $request->renew_id;
         $school->student_info_id  = $request->student_info_id;
-        $school->s_code   = $request->invoice_no;
+        $school->s_code   = $request->s_code;
         $school->type = $request->school_type;
+        $teacher->regno = $request->regno;
         $school->save();
         
         if($degrees_certificates!=null){
@@ -1884,7 +1885,7 @@ class SchoolController extends Controller
 
             $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee';
             foreach($memberships as $memberships){
-                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+                $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
             }
            
             $invoice->status          = 0;
