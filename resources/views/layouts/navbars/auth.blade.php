@@ -290,7 +290,7 @@
             </li>
 
             <li class="{{ $elementActive == 'reporting_list' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'reporting_list') }}">
+                <a href="{{ route('report_list') }}">
                     <i class="nc-icon nc-paper"></i>
                     <span>{{ __('Reporting') }}</span>
                     <!-- <b class="caret"></b> -->
