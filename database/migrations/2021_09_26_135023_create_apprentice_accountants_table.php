@@ -26,6 +26,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('m_email')->nullable();
             $table->string('request_papp')->nullable();
             $table->string('request_papp_attach')->nullable();
+            $table->string('mentor_id')->nullable();
             $table->string('exam_pass_date')->nullable();
             $table->string('exam_pass_batch')->nullable();
             $table->string('ex_papp')->nullable();
