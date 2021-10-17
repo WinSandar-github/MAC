@@ -131,5 +131,9 @@ class StudentInfo extends Model
 
     }
     
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class, 'student_info_id', 'id');
+    }
     
 }
