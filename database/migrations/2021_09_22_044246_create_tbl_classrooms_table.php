@@ -18,7 +18,7 @@ class CreateTblClassroomsTable extends Migration
             $table->unsignedBigInteger('school_id');
             $table->integer('classroom_number')->default(0);
             $table->string('classroom_measurement')->nullable();
-            $table->string('student_num_limit')->default(0);
+            $table->integer('student_num_limit')->default(0);
             $table->string('air_con')->nullable();
             $table->string('classroom_attach')->nullable();
             
