@@ -979,6 +979,14 @@ class PAPPController extends Controller
         }else{
             $profile_photo=null;
         }
+        if ($request->hasfile('old_card_file')) {
+            $file = $request->file('old_card_file');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $cpaff_old_card_file = '/storage/student_info/'.$name;
+        }else{
+            $cpaff_old_card_file=null;
+        }
         $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
         if ($request->hasfile('cpa')) {
             $cpa_file = $request->file('cpa');
@@ -1065,6 +1073,7 @@ class PAPPController extends Controller
         }else{
             $nrc_back="";
         }
+        $date_of_birth = $request->date_of_birth;
         $student_info = new StudentInfo();
         $student_info->name_mm          =   $request->name_mm;
         $student_info->name_eng         =   $request->name_eng;
@@ -1077,7 +1086,7 @@ class PAPPController extends Controller
         $student_info->gender           =   $request->gender;
         $student_info->race             =   $request->race;
         $student_info->religion         =   $request->religion; 
-        $student_info->date_of_birth    =   $request->date_of_birth;
+        $student_info->date_of_birth    =   $date_of_birth;
         $student_info->address          =   $request->address;
         $student_info->phone            =   $request->phone;
         $student_info->image            =   $profile_photo;
@@ -1108,9 +1117,13 @@ class PAPPController extends Controller
         $cpa_ff->address          =   $request->address;
         $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
+        $cpa_ff->last_paid_year   =   $request->last_paid_year;
+        $cpa_ff->old_card_no      =   $request->old_card_no;
+        $cpa_ff->old_card_file    =   $cpaff_old_card_file;
         $cpa_ff->old_card_no_year =   $request->old_card_no_year;
         $cpa_ff->reg_no           =   $request->reg_no;
-        $cpa_ff->fine_person      =   $request->fine_person;
+        $cpa_ff->cpaff_reg_date   =   $request->reg_date;
+        $cpa_ff->is_convicted     =   $request->is_convicted;
         $cpa_ff->cpa_certificate  =   $cpa_certificate;
         $cpa_ff->mpa_mem_card     =   $mpa_mem_card_front;
         $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
@@ -1149,6 +1162,8 @@ class PAPPController extends Controller
         $papp->contact_mail     =   $request->contact_mail;
         $papp->reg_no           =   $request->reg_no;
         $papp->papp_reg_no      =   $request->papp_reg_no;
+        $papp->papp_date        =   $request->papp_date;
+        $papp->papp_reg_date    =   $request->papp_reg_date;
         $papp->type             =   $request->type;
         $papp->papp_renew_date  =   $request->papp_renew_date;       
         $papp->latest_reg_year  =   $request->latest_reg_year;
@@ -1192,6 +1207,91 @@ class PAPPController extends Controller
         
         return response()->json([
             'message' => "You have successfully registerd!"
+        ],200);
+    }
+    public function GetPappOfflineUser($status,$type){
+        $papp = Papp::with('student_info','student_job', 'student_education_histroy')
+                      ->where('status','=',$status)
+                      ->where('type','=',$type)
+                      ->get();
+
+        return DataTables::of($papp)
+          ->addColumn('action', function ($infos) {
+              return "<div class='btn-group'>
+                          <button type='button' class='btn btn-primary btn-xs' onclick='pappOfflineUser($infos->id)'>
+                              <li class='fa fa-eye fa-sm'></li>
+                          </button>
+                      </div>";
+          })
+
+          ->addColumn('status', function ($infos){
+              if($infos->status == 0){
+                return "PENDING";
+              }
+              else if($infos->status == 1){
+                return "APPROVED";
+              }
+              else{
+                return "REJECTED";
+              }
+          })
+          ->rawColumns(['action','status'])
+          ->make(true);
+    }
+    public function reject_offline_papp(Request $request)
+    {
+        $reject = Papp::find($request->id);
+        $reject->status = 2;
+        $reject->renew_status=2;
+        $reject->reject_description = $request->description;
+        $reject->save();
+
+        $cpa_ff = CPAFF::find($request->cpaff_id);
+        $cpa_ff->status = 2;
+        $cpa_ff->renew_status=2;
+        $cpa_ff->reject_description = $request->description;
+        $cpa_ff->save();
+        return response()->json([
+            'message' => "You have successfully rejected that user!"
+        ],200);
+    }
+
+    public function approve_offline_papp($id,$cpaff_id)
+    {
+        $accepted_date = date('Y-m-d');
+        $approve = Papp::find($id);
+        if($approve->status==0)
+        {
+            $approve->status = 1;
+            $approve->accepted_date=$accepted_date;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        else if($approve->status==1){
+            $approve->status = 1;
+            $approve->renew_status=1;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        $approve->save();
+
+        $approve_cpaff = CPAFF::find($cpaff_id);
+        if($approve_cpaff->status==0)
+        {
+            $approve_cpaff->status = 1;
+            $approve_cpaff->accepted_date=$accepted_date;
+            $approve_cpaff->renew_accepted_date=$accepted_date;
+            // Generate Reg No.
+            // $approve_cpaff->reg_no = 'CPAFF_' . str_pad($cpaff_id, 5, "0", STR_PAD_LEFT);
+            // $approve_cpaff->reg_date = date('Y-m-d');
+        }
+        else if($approve_cpaff->status==1){
+            $approve_cpaff->status = 1;
+            $approve_cpaff->renew_status=1;
+            $approve_cpaff->renew_accepted_date=$accepted_date;
+        }
+        $approve_cpaff->save();
+
+        return response()->json([
+            'message' => "You have successfully approved that user!"
         ],200);
     }
 }
