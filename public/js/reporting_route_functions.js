@@ -1,6 +1,6 @@
 function daAttendList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -9,7 +9,7 @@ function daAttendList(url) {
 
 function daRegList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -18,7 +18,7 @@ function daRegList(url) {
 
 function daExamRegList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -27,7 +27,7 @@ function daExamRegList(url) {
 
 function daPassList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -36,7 +36,7 @@ function daPassList(url) {
 
 function cpaQualifiedList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -45,7 +45,7 @@ function cpaQualifiedList(url) {
 
 function cpaQualifiedExamEnRol(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -54,7 +54,7 @@ function cpaQualifiedExamEnRol(url) {
 
 function cpaQualifiedExamReg(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -63,7 +63,7 @@ function cpaQualifiedExamReg(url) {
 
 function cpaQualifiedPass(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -72,7 +72,7 @@ function cpaQualifiedPass(url) {
 
 function cpaQualifiedFail(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -82,7 +82,7 @@ function cpaQualifiedFail(url) {
 function cpaPAPPYealyList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         url = url + ""
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -91,7 +91,7 @@ function cpaPAPPYealyList(url) {
 
 function cpaPAPPYearlyRegList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -100,7 +100,7 @@ function cpaPAPPYearlyRegList(url) {
 
 function cpaPAPPTakeOutRegList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -109,7 +109,7 @@ function cpaPAPPTakeOutRegList(url) {
 
 function articleList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -118,7 +118,7 @@ function articleList(url) {
 
 function articleDailyInOutList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -127,7 +127,7 @@ function articleDailyInOutList(url) {
 
 function articleInternPosList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -136,7 +136,7 @@ function articleInternPosList(url) {
 
 function articleInternshipList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -145,7 +145,7 @@ function articleInternshipList(url) {
 
 function articleMentorInternRegister(url) {
     if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -154,7 +154,7 @@ function articleMentorInternRegister(url) {
 
 function articleMentorIntern(url) {
     if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -163,7 +163,7 @@ function articleMentorIntern(url) {
 
 function firmIndividual(url) {
     if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -172,7 +172,7 @@ function firmIndividual(url) {
 
 function frimDailyAttendence(url) {
     if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -181,7 +181,7 @@ function frimDailyAttendence(url) {
 
 function teacherSchoolLicense(url) {
     if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -190,7 +190,7 @@ function teacherSchoolLicense(url) {
 
 function teacherSchoolPrivate(url) {
     if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
@@ -199,7 +199,7 @@ function teacherSchoolPrivate(url) {
 
 function teacherSchoolLicensePlate(url) {
     if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
-        $('#report-form').attr('action', url);
+        $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
