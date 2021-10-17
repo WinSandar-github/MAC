@@ -19,114 +19,105 @@ class StudentRegisterController extends Controller
     public function index()
     {
         $student_infos = StudentInfo::with('student_register')->get();
-        return response()->json([ 'data' => $student_infos],200);
+        return response()->json(['data' => $student_infos], 200);
     }
 
     public function store(Request $request)
     {
-        
-         
         $date = date('Y-m-d');
-        if($request->date){
+        if ($request->date) {
             $date = $request->date;
-        }else{
+        } else {
             $date = date('Y-m-d');
         }
         $invoice_date = date('Y-m-d');
 
-
-        if($request->remain_module == 1 || $request->remain_module == 2 )
-        {
+        if ($request->remain_module == 1 || $request->remain_module == 2) {
             $course_date = date('Y-m-d');
 
             $student_info = StudentInfo::find($request->student_id);
             $student_info->approve_reject_status = 1;
             $student_info->save();
 
-            
-
             $student_course = new StudentCourseReg();
             $student_course->student_info_id = $student_info->id;
-            $student_course->batch_id        = $request->batch_id;
-            $student_course->date            = $course_date;
-            $student_course->status          = 1;
+            $student_course->batch_id = $request->batch_id;
+            $student_course->date = $course_date;
+            $student_course->status = 1;
             $student_course->approve_reject_status = 1;
-            $student_course->type            = $request->type;
-            $student_course->mac_type        = $request->mac_type;
+            $student_course->type = $request->type;
+            $student_course->mac_type = $request->mac_type;
             $student_course->save();
-            
+
             //invoice
             $invNo = str_pad($student_course->id, 20, "0", STR_PAD_LEFT);
 
             $invoice = new Invoice();
             $invoice->student_info_id = $student_info->id;
-            $invoice->invoiceNo       = $invNo;
-            $invoice->status          = 0;
+            $invoice->invoiceNo = $invNo;
+            $invoice->status = 0;
             $invoice->save();
 
             
         }
-        
+
         //update student information
-        $student_info=StudentInfo::find($request->student_id);
-        
+        $student_info = StudentInfo::find($request->student_id);
+
         if ($request->hasfile('recommendation_letter')) {
             $file = $request->file('recommendation_letter');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $recommendation_letter = '/storage/student_info/'.$name;
-        }   
-        else{
-            $recommendation_letter =$student_info->recommend_letter;
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $recommendation_letter = '/storage/student_info/' . $name;
+        } else {
+            $recommendation_letter = $student_info->recommend_letter;
         }
         
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $profile_photo = '/storage/student_info/'.$name;
-        } else{
-            $profile_photo=$student_info->image;
-        }       
-        $student_info->recommend_letter =   $recommendation_letter;
-        $student_info->image =   $profile_photo;
-        $student_info->address          =   $request->address;
-        $student_info->current_address =   $request->current_address;
-        $student_info->phone =   $request->phone;
-        $student_info->gov_staff =   $request->gov_staff;
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $profile_photo = '/storage/student_info/' . $name;
+        } else {
+            $profile_photo = $student_info->image;
+        }
+        $student_info->recommend_letter = $recommendation_letter;
+        $student_info->image = $profile_photo;
+        $student_info->address = $request->address;
+        $student_info->current_address = $request->current_address;
+        $student_info->phone = $request->phone;
+        $student_info->gov_staff = $request->gov_staff;
         $student_info->save();
 
-        $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
-        $student_job->office_address=$request->office_address;
+        $student_job = StudentJobHistroy::where('student_info_id', $request->student_id)->first();
+        $student_job->office_address = $request->office_address;
         $student_job->save();
         //update student information end....
 
         switch ($request->type) {
             case 0:
-                
-                if(isset($request->reg_reason))
-                {
-                    foreach($request->reg_reason as $reg_reason){
+
+                if (isset($request->reg_reason)) {
+                    foreach ($request->reg_reason as $reg_reason) {
                         $registration_reason[] = $reg_reason;
                     }
                 }
 
                 if ($request->hasfile('recommend_file')) {
                     $file = $request->file('recommend_file');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/aa_register/',$name);
-                    $recommend_file = '/storage/aa_register/'.$name;
-                }
-                else{
-                    $recommend_file="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/aa_register/', $name);
+                    $recommend_file = '/storage/aa_register/' . $name;
+                } else {
+                    $recommend_file = "";
                 }
 
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
                 $student_register->sr_no = $request->sr_no;
 
-                if($request->reg_reason){
-                    $student_register->reg_reason = implode(",",$registration_reason);
+                if ($request->reg_reason) {
+                    $student_register->reg_reason = implode(",", $registration_reason);
                     // $student_register->reg_reason = $request->reg_reason;
                 }
 
@@ -140,17 +131,17 @@ class StudentRegisterController extends Controller
                 // $student_register->module=$request->module;
                 // $student_register->batch_part_no = $request->batch_part_no;
 
-                $student_register->academic_year=$request->academic_year;
+                $student_register->academic_year = $request->academic_year;
                 $student_register->batch_no = $request->batch_no_self;
                 $student_register->part_no = $request->part_no_self;
                 $student_register->personal_no = $request->personal_no_self;
-                $student_register->direct_access_no=$request->direct_access_no;
-                $student_register->entry_success_no=$request->entry_success_no;
-                $student_register->module=          $request->module;
+                $student_register->direct_access_no = $request->direct_access_no;
+                $student_register->entry_success_no = $request->entry_success_no;
+                $student_register->module = $request->module;
 
 		        // $student_register->batch_part_no = $request->batch_part_no;;
 
-		        $student_register->type = $request->type;
+                $student_register->type = $request->type;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
@@ -182,12 +173,11 @@ class StudentRegisterController extends Controller
             case 1:
                 if ($request->hasfile('recommend_file')) {
                     $file = $request->file('recommend_file');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/aa_register/',$name);
-                    $recommend_file = '/storage/aa_register/'.$name;
-                }
-                else{
-                    $recommend_file="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/aa_register/', $name);
+                    $recommend_file = '/storage/aa_register/' . $name;
+                } else {
+                    $recommend_file = "";
                 }
                 $student_register = new StudentRegister();
                 $student_register->student_info_id = $request->student_id;
@@ -202,13 +192,13 @@ class StudentRegisterController extends Controller
                 $student_register->batch_no = $request->batch_no_private;
                 $student_register->part_no = $request->part_no_private;
                 $student_register->personal_no = $request->personal_no_private;
-                $student_register->module=$request->module;
+                $student_register->module = $request->module;
                 $student_register->direct_access_no = $request->direct_access_no;
                 $student_register->entry_success_no = $request->entry_success_no;
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
                 $student_register->cpa_one_access_no = $request->cpa_one_access_no;
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
-                $student_register->module             = $request->module;
+                $student_register->module = $request->module;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
@@ -236,31 +226,28 @@ class StudentRegisterController extends Controller
             case 2:
                 if ($request->hasfile('good_behavior')) {
                     $file = $request->file('good_behavior');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/student_info/',$name);
-                    $good_behavior = '/storage/student_info/'.$name;
-                }
-                else{
-                    $good_behavior="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/student_info/', $name);
+                    $good_behavior = '/storage/student_info/' . $name;
+                } else {
+                    $good_behavior = "";
                 }
                 if ($request->hasfile('no_crime')) {
                     $file = $request->file('no_crime');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/student_info/',$name);
-                    $no_crime = '/storage/student_info/'.$name;
-                }
-                else{
-                    $no_crime="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/student_info/', $name);
+                    $no_crime = '/storage/student_info/' . $name;
+                } else {
+                    $no_crime = "";
                 }
 
                 if ($request->hasfile('recommend_file')) {
                     $file = $request->file('recommend_file');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/aa_register/',$name);
-                    $recommend_file = '/storage/aa_register/'.$name;
-                }
-                else{
-                    $recommend_file="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/aa_register/', $name);
+                    $recommend_file = '/storage/aa_register/' . $name;
+                } else {
+                    $recommend_file = "";
                 }
 
                 $student_register = new StudentRegister();
@@ -271,16 +258,16 @@ class StudentRegisterController extends Controller
                 $student_register->batch_id = $request->batch_id;
                 $student_register->invoice_date = $invoice_date;
                 $student_register->type = $request->type;
-                $student_register->academic_year=$request->academic_year;
+                $student_register->academic_year = $request->academic_year;
                 $student_register->batch_no = $request->batch_no_mac;
                 $student_register->part_no = $request->part_no_mac;
                 $student_register->personal_no = $request->personal_no_mac;
-                $student_register->direct_access_no=$request->direct_access_no;
-                $student_register->entry_success_no=$request->entry_success_no;
-                $student_register->internship=$request->internship;
-                $student_register->good_behavior=$good_behavior;
-                $student_register->no_crime=$no_crime;
-                $student_register->module=$request->module;
+                $student_register->direct_access_no = $request->direct_access_no;
+                $student_register->entry_success_no = $request->entry_success_no;
+                $student_register->internship = $request->internship;
+                $student_register->good_behavior = $good_behavior;
+                $student_register->no_crime = $no_crime;
+                $student_register->module = $request->module;
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
                 $student_register->cpa_one_access_no = $request->cpa_one_access_no;
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
@@ -308,27 +295,25 @@ class StudentRegisterController extends Controller
                 return "You have successfully registerd!";
                 break;
         }
-
-
     }
 
     public function show($id)
     {
-        $student_register = StudentInfo::where('id',$id)->with('student_register')->get();
+        $student_register = StudentInfo::where('id', $id)->with('student_register')->get();
         return response()->json([
             'data' => $student_register
-        ],200);
+        ], 200);
 
     }
+
     public function showStudentRegister($id)
     {
-        $student_register = StudentRegister::where('id',$id)->with('student_info','course')->first();
+        $student_register = StudentRegister::where('id', $id)->with('student_info', 'course')->first();
         return response()->json([
             'data' => $student_register
-        ],200);
+        ], 200);
 
     }
-
 
     public function approveStudent($id)
     {
@@ -336,8 +321,8 @@ class StudentRegisterController extends Controller
         $approve->status = 1;
         $approve->save();
         return response()->json([
-            'data' =>$approve->form_type
-        ],200);
+            'data' => $approve->form_type
+        ], 200);
     }
 
     public function rejectStudent($id)
@@ -346,58 +331,60 @@ class StudentRegisterController extends Controller
         $reject->status = 2;
         $reject->save();
         return response()->json([
-            'data' =>$reject->form_type
-        ],200);
+            'data' => $reject->form_type
+        ], 200);
     }
 
     public function getType($id)
     {
-        $type = StudentRegister::where('student_info_id',$id)->with('course')->get();
+        $type = StudentRegister::where('student_info_id', $id)->with('course')->get();
         // return $type;
         return response()->json([
             'data' => $type
-        ],200);
+        ], 200);
     }
 
-    // public function FilterRegistration(Request $request){
-    //     $student_register = StudentRegister::with('student_info','course');
-    //     if($request->name!="")
-    //     {
-    //         $student_register = $student_register->join('student_infos', 'student_register.student_info_id', '=', 'student_infos.id')
-    //         ->where('student_infos.name_mm', 'like', '%' . $request->name. '%')
-    //         ->orWhere('student_infos.name_eng', 'like', '%' . $request->name. '%');
-    //     }
-    //     if($request->status!="all")
-    //     {
-    //         $student_register = $student_register->where('student_register.status',$request->status);
-    //     }
-    //     if($request->batch!="all"){
-    //         $student_register = $student_register->join('student_course_regs', 'student_register.student_info_id', '=', 'student_course_regs.student_info_id')
-    //         ->where('student_course_regs.batch_id',$request->batch);
-    //     }
-    //     $student_register = $student_register->where('form_type', $request->course_code)->get();
-    //     return response()->json([ 'data' => $student_register],200);
-    // }
-    public function FilterRegistration(Request $request){
-        $student_register = StudentRegister::with('student_info','course')
-        ->where('form_type',$request->form_type)
-        ->where('status',$request->status)
-        ->where('type',$request->reg_type)
-        ->get();
-      
-        $datatable= DataTables::of($student_register)
-            ->addColumn('action', function ($student) {
-                return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-xs' onclick='showRegistration($student->id,$student->form_type)'>
-                            <li class='fa fa-eye fa-sm'></li>
-                            </button>
-                        </div>";
+    public function FilterRegistration(Request $request)
+    {
+        $student_register = StudentRegister::with('student_info', 'course')
+            ->where('form_type', $request->form_type)
+            ->where('status', $request->status)
+            ->where('type', $request->reg_type)
+            ->get();
+
+        $datatable = DataTables::of($student_register)
+            ->editColumn('name', function ($infos) {
+                return '<a href="' . route('student_profile', ['id' => $infos->student_info->id]) . '">' . $infos->student_info->name_mm . '</a>';
             })
-            ->addColumn('name', function ($c){
-                return $c->student_info->name_mm;
+            ->addColumn('action', function ($infos) {
+                return $infos->type == 1 /*private school*/
+                    ? "<div class='btn-group'>
+                                <a class='btn btn-info btn-xs' href=" . route('private_school_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                            </div>"
+                    : ($infos->type == 2 /*mac*/
+                        ? "<div class='btn-group'>
+                                <a class='btn btn-info btn-xs' href=" . route('mac_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                            </div>"
+                        : "<div class='btn-group'>
+                                <a class='btn btn-info btn-xs' href=" . route('self_study_reg', ['id' => $infos->student_info_id, 'form_type' => $infos->type]) . ">
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </a>
+                            </div>"
+                    );
+                /*0 is self study*/
+
+                /*"<div class='btn-group'>
+                    <button type='button' class='btn btn-primary btn-xs' onclick='showRegistration($student->id,$student->form_type)'>
+                    <li class='fa fa-eye fa-sm'></li>
+                    </button>
+                </div>";*/
             })
             ->addColumn('email', function ($student) {
-               return $student->student_info ? Str::limit($student->student_info->email, 50, '...') : '';
+                return $student->student_info ? Str::limit($student->student_info->email, 50, '...') : '';
             })
             ->addColumn('reg_no', function ($student) {
                 return $student->sr_no ? Str::limit($student->sr_no, 50, '...') : '';
@@ -407,23 +394,23 @@ class StudentRegisterController extends Controller
 
             })
             ->addColumn('status', function ($student) {
-                if($student->status==0){
-                    return "PENDING";
+                if ($student->status == 0) {
+                    return "<span class='pending'>Pending</span>";
+                } else if ($student->status == 1) {
+                    return "<span class='approve'>Approved</span>";
+                } else {
+                    return "<span class='reject'>Rejected</span>";
                 }
-                else if($student->status==1){
-                    return "APPROVED";
-                }
-                else{
-                    return "REJECTED";
-                }
-            });
-        if($request->is_reg_reason==true){
-            $datatable= $datatable->addColumn('reg_reason', function ($student) {
+            })
+            ->rawColumns(['name', 'action', 'status']);
+
+        if ($request->is_reg_reason == true) {
+            $datatable = $datatable->addColumn('reg_reason', function ($student) {
                 return $student->reg_reason ? Str::limit($student->reg_reason, 50, '...') : '';
             });
         }
-        $datatable= $datatable->make(true);
-        return  $datatable;
+        $datatable = $datatable->make(true);
+        return $datatable;
     }
 
     public function updateMentor(Request $request)
@@ -431,15 +418,14 @@ class StudentRegisterController extends Controller
 
         if ($request->hasfile('recommend_file')) {
             $file = $request->file('recommend_file');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/aa_register/',$name);
-            $recommend_file = '/storage/aa_register/'.$name;
-        }
-        else{
-            $recommend_file="";
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/aa_register/', $name);
+            $recommend_file = '/storage/aa_register/' . $name;
+        } else {
+            $recommend_file = "";
         }
 
-        $student_register =  StudentRegister::where('student_info_id',$request->student_id)->latest()->first();
+        $student_register = StudentRegister::where('student_info_id', $request->student_id)->latest()->first();
 
         $student_register->mentor_id = $request->mentor_id;
         $student_register->current_check_service_id = $request->current_check_service_id;
@@ -457,65 +443,63 @@ class StudentRegisterController extends Controller
     {
         // $date = date('Y-m-d');
         $course_date = date('Y-m-d');
-        if($request->date){
+        if ($request->date) {
             $date = $request->date;
-        }else{
+        } else {
             $date = date('Y-m-d');
         }
         $invoice_date = date('Y-m-d');
 
         $student_info = StudentInfo::find($request->student_id);
         $student_info->approve_reject_status = 1;
-        if($request->direct_degree)
-        {
-            $student_info->direct_degree                =   $request->direct_degree;
-            $student_info->degree_date                  =   date("Y-m-d",strtotime($request->degree_date));
-            $student_info->degree_certificate_image     =   $deg_certi_img;
-            $student_info->degree_rank                  =   $request->degree_rank;
+        if ($request->direct_degree) {
+            $student_info->direct_degree = $request->direct_degree;
+            $student_info->degree_date = date("Y-m-d", strtotime($request->degree_date));
+            $student_info->degree_certificate_image = $deg_certi_img;
+            $student_info->degree_rank = $request->degree_rank;
         }
         //update student information
 
         if ($request->hasfile('recommendation_letter')) {
             $file = $request->file('recommendation_letter');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $recommendation_letter = '/storage/student_info/'.$name;
-        }   
-        else{
-            $recommendation_letter =$student_info->recommend_letter;
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $recommendation_letter = '/storage/student_info/' . $name;
+        } else {
+            $recommendation_letter = $student_info->recommend_letter;
         }
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $profile_photo = '/storage/student_info/'.$name;
-        } else{
-            $profile_photo=$student_info->image;
-        }       
-        $student_info->recommend_letter =   $recommendation_letter;
-        $student_info->image =   $profile_photo;
-        $student_info->address          =   $request->address;
-        $student_info->current_address =   $request->current_address;
-        $student_info->phone =   $request->phone;
-        $student_info->gov_staff =   $request->gov_staff;
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $profile_photo = '/storage/student_info/' . $name;
+        } else {
+            $profile_photo = $student_info->image;
+        }
+        $student_info->recommend_letter = $recommendation_letter;
+        $student_info->image = $profile_photo;
+        $student_info->address = $request->address;
+        $student_info->current_address = $request->current_address;
+        $student_info->phone = $request->phone;
+        $student_info->gov_staff = $request->gov_staff;
         $student_info->save();
 
-        $student_job=StudentJobHistroy::where('student_info_id',$request->student_id)->first();
-        $student_job->office_address=$request->office_address;
+        $student_job = StudentJobHistroy::where('student_info_id', $request->student_id)->first();
+        $student_job->office_address = $request->office_address;
         $student_job->save();
 
-        
+
         // $old_course = StudentCourseReg::where('student_info_id',$student_info->id)->first();
 
         $student_course = new StudentCourseReg();
         $student_course->student_info_id = $student_info->id;
-        $student_course->batch_id        = $request->batch_id;
-        $student_course->date            = $course_date;
-        $student_course->status          = 1;
-        $student_course->type            = $request->type;
-        if($request->type == 2){
+        $student_course->batch_id = $request->batch_id;
+        $student_course->date = $course_date;
+        $student_course->status = 1;
+        $student_course->type = $request->type;
+        if ($request->type == 2) {
 
-            $student_course->mac_type          = $request->mac_type;
+            $student_course->mac_type = $request->mac_type;
         }
 
         $student_course->approve_reject_status = 1;
@@ -523,21 +507,19 @@ class StudentRegisterController extends Controller
 
         switch ($request->type) {
             case 0:
-                if(isset($request->reg_reason))
-                {
-                    foreach($request->reg_reason as $reg_reason){
+                if (isset($request->reg_reason)) {
+                    foreach ($request->reg_reason as $reg_reason) {
                         $registration_reason[] = $reg_reason;
                     }
                 }
 
                 if ($request->hasfile('recommend_file')) {
                     $file = $request->file('recommend_file');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/aa_register/',$name);
-                    $recommend_file = '/storage/aa_register/'.$name;
-                }
-                else{
-                    $recommend_file="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/aa_register/', $name);
+                    $recommend_file = '/storage/aa_register/' . $name;
+                } else {
+                    $recommend_file = "";
                 }
 
                 $student_register = new StudentRegister();
@@ -554,10 +536,10 @@ class StudentRegisterController extends Controller
                 $student_register->date = $date;
                 $student_register->invoice_id = $request->student_id;
                 $student_register->invoice_date = $invoice_date;
-                $student_register->academic_year=$request->academic_year;
-                $student_register->direct_access_no=$request->direct_access_no;
-                $student_register->entry_success_no=$request->entry_success_no;
-                $student_register->module=$request->module;
+                $student_register->academic_year = $request->academic_year;
+                $student_register->direct_access_no = $request->direct_access_no;
+                $student_register->entry_success_no = $request->entry_success_no;
+                $student_register->module = $request->module;
                 // $student_register->batch_part_no = $request->batch_part_no;;
                 $student_register->type = $request->type;
                 $student_register->status = 0;
@@ -590,12 +572,11 @@ class StudentRegisterController extends Controller
             case 1:
                 if ($request->hasfile('recommend_file')) {
                     $file = $request->file('recommend_file');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/aa_register/',$name);
-                    $recommend_file = '/storage/aa_register/'.$name;
-                }
-                else{
-                    $recommend_file="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/aa_register/', $name);
+                    $recommend_file = '/storage/aa_register/' . $name;
+                } else {
+                    $recommend_file = "";
                 }
 
                 $student_register = new StudentRegister();
@@ -616,7 +597,7 @@ class StudentRegisterController extends Controller
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
                 $student_register->cpa_one_access_no = $request->cpa_one_access_no;
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
-                $student_register->module=$request->module;
+                $student_register->module = $request->module;
                 $student_register->status = 0;
                 $student_register->form_type = $request->form_type;
 
@@ -643,31 +624,28 @@ class StudentRegisterController extends Controller
             case 2:
                 if ($request->hasfile('good_behavior')) {
                     $file = $request->file('good_behavior');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/student_info/',$name);
-                    $good_behavior = '/storage/student_info/'.$name;
-                }
-                else{
-                    $good_behavior="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/student_info/', $name);
+                    $good_behavior = '/storage/student_info/' . $name;
+                } else {
+                    $good_behavior = "";
                 }
                 if ($request->hasfile('no_crime')) {
                     $file = $request->file('no_crime');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/student_info/',$name);
-                    $no_crime = '/storage/student_info/'.$name;
-                }
-                else{
-                    $no_crime="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/student_info/', $name);
+                    $no_crime = '/storage/student_info/' . $name;
+                } else {
+                    $no_crime = "";
                 }
 
                 if ($request->hasfile('recommend_file')) {
                     $file = $request->file('recommend_file');
-                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                    $file->move(public_path().'/storage/aa_register/',$name);
-                    $recommend_file = '/storage/aa_register/'.$name;
-                }
-                else{
-                    $recommend_file="";
+                    $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path() . '/storage/aa_register/', $name);
+                    $recommend_file = '/storage/aa_register/' . $name;
+                } else {
+                    $recommend_file = "";
                 }
 
                 $student_register = new StudentRegister();
@@ -681,13 +659,13 @@ class StudentRegisterController extends Controller
                 $student_register->batch_no = $request->batch_no_mac;
                 $student_register->part_no = $request->part_no_mac;
                 $student_register->personal_no = $request->personal_no_mac;
-                $student_register->academic_year=$request->academic_year;
-                $student_register->direct_access_no=$request->direct_access_no;
-                $student_register->entry_success_no=$request->entry_success_no;
-                $student_register->internship=$request->internship;
-                $student_register->good_behavior=$good_behavior;
-                $student_register->no_crime=$no_crime;
-                $student_register->module=$request->module;
+                $student_register->academic_year = $request->academic_year;
+                $student_register->direct_access_no = $request->direct_access_no;
+                $student_register->entry_success_no = $request->entry_success_no;
+                $student_register->internship = $request->internship;
+                $student_register->good_behavior = $good_behavior;
+                $student_register->no_crime = $no_crime;
+                $student_register->module = $request->module;
                 $student_register->cpa_one_pass_date = $request->cpa_one_pass_date;
                 $student_register->cpa_one_access_no = $request->cpa_one_access_no;
                 $student_register->cpa_one_success_no = $request->cpa_one_success_no;
@@ -746,106 +724,76 @@ class StudentRegisterController extends Controller
         $student_infos =    $student_infos->orderByRaw('LENGTH(sr_no)','‌asc')
                             ->orderBy('sr_no','asc')
                             ->get();
-                         
-        
-      
+           
         return DataTables::of($student_infos)
-
-        ->addColumn('nrc', function ($infos){
-            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
-            return $nrc_result;
-        })
-        ->addColumn('cpersonal_no', function ($infos){
-            $cpersonal_no = $infos->course->course_type->course_code == "da" 
-            ? $infos->student_info->personal_no
-            : $infos->student_info->cpersonal_no;
-            return $cpersonal_no;
-        })
-        ->rawColumns(['action','nrc','cpersonal_no'])
-        ->make(true);
+            ->addColumn('nrc', function ($infos) {
+                $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('cpersonal_no', function ($infos) {
+                $cpersonal_no = $infos->course->course_type->course_code == "da"
+                    ? $infos->student_info->personal_no
+                    : $infos->student_info->cpersonal_no;
+                return $cpersonal_no;
+            })
+            ->rawColumns(['action', 'nrc', 'cpersonal_no'])
+            ->make(true);
         // return response()->json([
         //     'data' => $student_infos
         // ]);
 
 
     }
+
     public function ‌approveExamList(Request $request)
     {
-         $course = Course::where('code', $request->course_code)->with('active_batch')->first();
-        
-         
+        $course = Course::where('code', $request->course_code)->with('active_batch')->first();
 
+        $student_infos = ExamRegister::with('student_info', 'course')
+            ->where('batch_id', $course->active_batch[0]->id)
+            ->where('status', 1)
+            ->orderBy('is_full_module', 'desc')
+            ->whereNotNull('sr_no');
 
-        $student_infos = ExamRegister::with('student_info','course')
-                        ->where('batch_id', $course->active_batch[0]->id)
-                        ->where('status',1)
-                        ->whereNotNull('sr_no');
-         
-        
-        if($request->module)
-        {
-            
-            $student_infos = $student_infos->where('is_full_module',$request->module);
+        if ($request->module) {
+
+            $student_infos = $student_infos->where('is_full_module', $request->module);
         }
 
-        if($request->exam_department)
-        {
-            
-            $student_infos = $student_infos->where('exam_department',$request->exam_department);
-        }
-                      
-                       
+        if ($request->grade) {
+            $student_infos = $student_infos->Where('grade', $request->grade)->orderby('total_mark', 'desc');
 
-        if($request->grade){
-            $student_infos =  $student_infos->Where('grade',$request->grade)->orderby('total_mark','desc');
-            
-        }else{
-            $student_infos =  $student_infos->orderBy('sr_no','asc');
-            
+        } else {
+            $student_infos = $student_infos->orderBy('sr_no', 'asc');
         }
-        $student_infos =  $student_infos->get(); 
-       
-
+        $student_infos = $student_infos->get();
 
         return DataTables::of($student_infos)
-        ->addColumn('nrc', function ($infos){
-            $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
-            return $nrc_result;
-        })
-        ->addColumn('module', function ($infos) {
-            if ($infos->is_full_module == 1) {
-                return "Module One";
-            } else if ($infos->is_full_module == 2) {
-                return "Module Two";
-            } else {
-                return "Full Module";
-            }
-        })
-        ->addColumn('cpersonal_no', function ($infos){
-            $cpersonal_no = $infos->course->course_type->course_code == "da" 
-            ? $infos->student_info->personal_no
-            : $infos->student_info->cpersonal_no;
-            return $cpersonal_no;
-        })
-        ->rawColumns(['action','nrc','cpersonal_no','module'])
-        ->make(true);
-
-        // return response()->json([
-        //     'data' => $student_infos
-        // ]);
-
-
+            ->addColumn('nrc', function ($infos) {
+                $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('module', function ($infos) {
+                if ($infos->is_full_module == 1) {
+                    return "Module One";
+                } else if ($infos->is_full_module == 2) {
+                    return "Module Two";
+                } else {
+                    return "Full Module";
+                }
+            })
+            ->make(true);
     }
 
     public function RegChartFilter(Request $request)
     {
-        $student=StudentRegister::where('status',1)
-        ->whereYear('updated_at',$request->year);
-        $student=$student->get();
+        $student = StudentRegister::where('status', 1)
+            ->whereYear('updated_at', $request->year);
+        $student = $student->get();
 
         return response()->json([
             'data' => $student
-        ],200);
+        ], 200);
     }
 
      //show data on mac student Application list
