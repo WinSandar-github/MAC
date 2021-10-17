@@ -16,6 +16,8 @@ function createBatch() {
     send_data.append('accept_application_end_date', $("input[name=app_acc_start_date]").val());
     send_data.append('entrance_pass_start_date', $("input[name=entrance_pass_start_date]").val());
     send_data.append('entrance_pass_end_date', $("input[name=entrance_pass_end_date]").val());
+    send_data.append('exam_start_date', $("input[name=exam_start_date]").val());
+    send_data.append('exam_end_date', $("input[name=exam_end_date]").val());
     show_loader();
     $.ajax({
         url: BACKEND_URL + "/batch",
@@ -65,6 +67,8 @@ function getBatch() {
             { data: 'self_reg_end_date', name: 'self_reg_end_date' },
             { data: 'private_reg_start_date', name: 'private_reg_start_date' },
             { data: 'private_reg_end_date', name: 'private_reg_end_date' },
+            { data: 'exam_start_date', name: 'exam_start_date' },
+            { data: 'exam_end_date', name: 'exam_end_date' },
             { data: 'entry_start_date', name: 'entry_start_date' },
             { data: 'entry_end_date', name: 'entry_end_date' },
 
@@ -170,14 +174,13 @@ function showBatchInfo(id) {
             $('input[name=private_reg_end_date]').val(batch_data.private_reg_end_date);
             $('input[name=app_acc_start_date]').val(batch_data.accept_application_start_date);
             $('input[name=app_acc_end_date]').val(batch_data.accept_application_end_date);
-            if (batch_data.entrance_pass_start_date != null) {
-                document.getElementById('entrance_pass').style.display = 'block';
-                $('input[name=entrance_pass_start_date]').val(batch_data.entrance_pass_start_date);
-            }
-            if (batch_data.entrance_pass_end_date != null) {
-                document.getElementById('entrance_pass').style.display = 'block';
-                $('input[name=entrance_pass_end_date]').val(batch_data.entrance_pass_end_date);
-            }
+            $('input[name=exam_start_date]').val(batch_data.exam_start_date);
+            $('input[name=exam_end_date]').val(batch_data.exam_end_date);
+
+            $('input[name=entrance_pass_start_date]').val(batch_data.entrance_pass_start_date);
+
+            $('input[name=entrance_pass_end_date]').val(batch_data.entrance_pass_end_date);
+
 
             $('#create_batch_modal').modal('toggle');
         },
@@ -206,6 +209,8 @@ function updateBatch() {
     var accept_application_end_date = $("input[name=app_acc_end_date]").val();
     var entrance_pass_start_date = $("input[name=entrance_pass_start_date]").val();
     var entrance_pass_end_date = $("input[name=entrance_pass_end_date]").val();
+    var exam_start_date = $("input[name=exam_start_date]").val();
+    var exam_end_date = $("input[name=exam_end_date]").val();
 
     show_loader();
 
@@ -228,7 +233,9 @@ function updateBatch() {
             accept_application_start_date: accept_application_start_date,
             accept_application_end_date: accept_application_end_date,
             entrance_pass_start_date: entrance_pass_start_date,
-            entrance_pass_end_date: entrance_pass_end_date
+            entrance_pass_end_date: entrance_pass_end_date,
+            exam_start_date: exam_start_date,
+            exam_end_date: exam_end_date
         },
         success: function (result) {
             EasyLoading.hide();

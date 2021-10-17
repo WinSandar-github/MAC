@@ -259,19 +259,19 @@ function loadStudentSelfStudy() {
             }
 
             if(element.private_school_name){
-                
+
                 // console.log("internship",element.internship);
                 $(".private_school_name_row").show();
-                $("#private_school_name").append(element.private_school_name);                
+                $("#private_school_name").append(element.private_school_name);
             }else{
                 $(".private_school_name_row").hide();
             }
 
             if(element.internship){
-                
+
                 // console.log("internship",element.internship);
                 $(".internship_program_row").show();
-                $("#internship_program").append(element.internship);                
+                $("#internship_program").append(element.internship);
             }else{
                 $(".internship_program_row").hide();
             }
@@ -304,9 +304,9 @@ function loadStudentSelfStudy() {
             });
 
             if(!student_info_data.da_pass_roll_number){
-                $(".da_two_pass_info").hide();                    
+                $(".da_two_pass_info").hide();
             }else{
-                $(".da_two_pass_info").show(); 
+                $(".da_two_pass_info").show();
                 if(student_info_data.da_pass_certificate==null){
                     $(".da_pass_certificate").append(`<a href='#' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>File Not Found</a>`)
                 }else{
@@ -726,8 +726,54 @@ function loadStudentSelfStudy() {
 //     })
 // }
 
-function approveStudent() {
-    if (!confirm('Are you sure you want to approve this student?')) {
+function approveStudent(student_info_id) {
+
+    Swal.fire({
+        title: 'Approve Student?',
+        text: "Are you sure to approve this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Approve it!'
+    }).then( result => {
+        if(result.isConfirmed){
+            $.ajax({
+                url: BACKEND_URL + "/approve_student/" + student_info_id,
+                type: 'patch',
+                success: function (result) {
+                    // if (course_code == 1) {
+                    //     url = FRONTEND_URL + "/index";
+                    // } else if (course_code == 2) {
+                    //     url = FRONTEND_URL + "/da_two_index";
+                    // } else if (course_code == 3) {
+                    //     url = FRONTEND_URL + "/cpa_one_index";
+                    // } else {
+                    //     url = FRONTEND_URL + "/cpa_two_index";
+                    // }
+
+                    Swal.fire(
+                        'Rejected!',
+                        'Rejected Student',
+                        'success'
+                    ).then( ()=> {
+                        setInterval(() => {
+                            window.history.back();
+                        }, 2000);
+                    });
+                },
+                error: (error) => {
+                    Swal.fire(
+                        'Oops..!',
+                        'Something want wrong.',
+                        'error'
+                    )
+                }
+            });
+        }
+    });
+
+    /*if (!confirm('Are you sure you want to approve this student?')) {
         return;
     }
     else {
@@ -756,11 +802,56 @@ function approveStudent() {
                 console.log(e);
             }
         });
-    }
+    }*/
 }
 
-function rejectStudent() {
-    if (!confirm('Are you sure you want to reject this student?')) {
+function rejectStudent(student_info_id) {
+    Swal.fire({
+        title: 'Reject Student?',
+        text: "Are you sure to reject this student?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Reject it!'
+    }).then( result => {
+       if(result.isConfirmed){
+           $.ajax({
+               url: BACKEND_URL + "/reject_student/" + student_info_id,
+               type: 'patch',
+               success: function (result) {
+                   // if (course_code == 1) {
+                   //     url = FRONTEND_URL + "/index";
+                   // } else if (course_code == 2) {
+                   //     url = FRONTEND_URL + "/da_two_index";
+                   // } else if (course_code == 3) {
+                   //     url = FRONTEND_URL + "/cpa_one_index";
+                   // } else {
+                   //     url = FRONTEND_URL + "/cpa_two_index";
+                   // }
+
+                   Swal.fire(
+                       'Rejected!',
+                       'Rejected Student',
+                       'success'
+                   ).then( ()=> {
+                       setInterval(() => {
+                           window.history.back();
+                       }, 2000);
+                   });
+               },
+               error: (error) => {
+                   Swal.fire(
+                       'Oops..!',
+                       'Something want wrong.',
+                       'error'
+                   )
+               }
+           });
+       }
+    });
+
+    /*if (!confirm('Are you sure you want to reject this student?')) {
         return;
     }
     else {
@@ -788,5 +879,5 @@ function rejectStudent() {
                 GetStudentRegistration(course_code);
             }
         });
-    }
+    }*/
 }

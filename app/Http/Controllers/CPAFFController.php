@@ -1057,11 +1057,67 @@ class CPAFFController extends Controller
         $cpa_ff = CPAFF::with('student_info','student_job', 'student_education_histroy')
                       ->where('status','=',$status)
                       ->where('is_renew','=',$is_renew)
+                      ->where('offline_user','=',0)
                       ->get();
               return DataTables::of($cpa_ff)
                 ->addColumn('action', function ($infos) {
                     return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-xs' onclick='showCPAFFList($infos->id,$infos->is_renew)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
+                })
+                ->addColumn('nrc', function ($infos){
+                    $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
+                    return $nrc_result;
+                })
+                ->addColumn('self', function ($infos){
+                    if($infos->self_confession == 1){
+                        return "ဝန်ခံသည်";
+                    }else{
+                        return "ဝန်မခံပါ";
+                    }
+                })
+                ->addColumn('status', function ($infos){
+                    if($infos->status == 0){
+                      return "PENDING";
+                    }
+                    else if($infos->status == 1){
+                      return "APPROVED";
+                    }
+                    else{
+                      return "REJECTED";
+                    }
+                })
+                ->addColumn('degree', function ($infos){
+                    if($infos->cpa_part_2 == 1){
+                      return "CPA Part 2 Pass";
+                    }
+                    else{
+                      return "QT Pass";
+                    }
+                })
+                ->addColumn('created_at', function ($infos){
+                    return date("d F Y", strtotime($infos->student_info->created_at));
+                })
+                ->addColumn('updated_at', function ($infos){
+                    return date("d F Y", strtotime($infos->student_info->updated_at));
+                })
+                ->rawColumns(['action','nrc','self','degree','status','created_at','updated_at'])
+                ->make(true);
+    }
+
+    //offline
+    public function FilterCpaffOfflineRegistration($status,$is_renew){
+        $cpa_ff = CPAFF::with('student_info','student_job', 'student_education_histroy')
+                      ->where('status','=',$status)
+                      ->where('is_renew','=',$is_renew)
+                      ->where('offline_user','=',1)
+                      ->get();
+              return DataTables::of($cpa_ff)
+                ->addColumn('action', function ($infos) {
+                    return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-xs' onclick='showOfflineCPAFFList($infos->id,$infos->is_renew)'>
                                     <li class='fa fa-eye fa-sm'></li>
                                 </button>
                             </div>";
