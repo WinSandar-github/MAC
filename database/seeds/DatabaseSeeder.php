@@ -11,48 +11,27 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call([UsersTableSeeder::class]);
-        $this->call([OrganizationStructureSeeder::class]);
-        $this->call([AuditFirmTypeSeeder::class]);
-        $this->call([AuditStaffTypeSeeder::class]);
-        $this->call([AuditTotalStaffTypeSeeder::class]);
-        $this->call([NonAuditTotalStaffTypeSeeder::class]);
-        $this->call([TypeOfServiceProvidedSeeder::class]);
-        $this->call([LocalForeignSeeder::class]);
-        $this->call([EducationLevelSeeder::class]);
-
-        $this->call([CourseSeeder::class]);
-        $this->call([BatchSeeder::class]);
-
-        $this->call([CourseTypeSeeder::class]);
-        $this->call([CurrentCheckServiceSeeder::class]);
-        $this->call([CourseRequirementSeeder::class]);
-        $this->call([AlphabetSeeder::class]);
-        $this->call([ExamDepartmentSeeder::class]);
-        $this->call([MembershipSeeder::class]);
-        $this->call([SubjectSeeder::class]);
-        $this->call([ExamTypeSeeder::class]);
-        $this->call([DegreeSeeder::class]);
-
-
-
-
-        // $this->call([TrainingClassSeeder::class]);
-        // $this->call([RegionSeeder::class]);
-        // $this->call([Training_typeSeeder::class]);
-        // $this->call([TMSClassSeeder::class]);
-
-        // $this->call([ModuleSeeder::class]);
-        // $this->call([CpaOneTrainingGroundSeeder::class]);
-
-        // $this->call([CourseFeeSeeder::class]);
-        
-
-
-
-
-
-
-        //factory(App\MoodleModel\MdlUser::class)->create();
+        $this->call([
+            UsersTableSeeder::class,
+            OrganizationStructureSeeder::class,
+            AuditFirmTypeSeeder::class,
+            AuditStaffTypeSeeder::class,
+            AuditTotalStaffTypeSeeder::class,
+            NonAuditTotalStaffTypeSeeder::class,
+            TypeOfServiceProvidedSeeder::class,
+            LocalForeignSeeder::class,
+            EducationLevelSeeder::class,
+            CourseSeeder::class,
+            BatchSeeder::class,
+            CourseTypeSeeder::class,
+            CurrentCheckServiceSeeder::class,
+            CourseRequirementSeeder::class,
+            AlphabetSeeder::class,
+            ExamDepartmentSeeder::class,
+            MembershipSeeder::class,
+            SubjectSeeder::class,
+            ExamTypeSeeder::class,
+            CertificateSeeder::class
+        ]);
     }
 }

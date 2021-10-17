@@ -14,4 +14,8 @@ class ExamResult extends Model
     {
         return $this->belongsTo(StudentInfo::class,'student_info_id','id');
     }
+
+    public function exam_register(){
+        return $this->belongsTo(ExamRegister::class,'registeration_id','id');
+    }
 }

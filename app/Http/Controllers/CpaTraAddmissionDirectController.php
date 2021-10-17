@@ -727,26 +727,26 @@ class CpaTraAddmissionDirectController extends Controller
             $student_course->save();
 
             $exam_register = new ExamRegister();
-            $exam_register->student_info_id = $student_info->id;
-            $exam_register->date = $date;
-            $exam_register->grade = 0;
-            $exam_register->batch_id = $request->batch_id;
-            $exam_register->is_full_module = $request->module;
-            $exam_register->exam_type_id = $request->type;
-            // $exam_register->form_type = $request->form_type;
-            $exam_register->status = 1;
+            $exam_register->student_info_id     = $student_info->id;
+            $exam_register->date                = $date;
+            $exam_register->grade               = 0;
+            $exam_register->batch_id            = $request->batch_id;
+            // $exam_register->is_full_module   = $request->module;
+            $exam_register->exam_type_id        = $request->type;
+            // $exam_register->form_type        = $request->form_type;
+            $exam_register->status              = 1;
             $exam_register->save();
 
             $student_register = new StudentRegister();
-            $student_register->student_info_id = $student_info->id;
-            $student_register->batch_id = $request->batch_id;
-            $student_register->date = date('Y-m-d');
-            $student_register->invoice_id = $student_info->id;
-            $student_register->invoice_date = date('Y-m-d');
-            $student_register->module=$request->module;
-            $student_register->type = $request->type;
-            $student_register->status = 1;
-            $student_register->form_type = $request->type;
+            $student_register->student_info_id  = $student_info->id;
+            $student_register->batch_id         = $request->batch_id;
+            $student_register->date             = date('Y-m-d');
+            $student_register->invoice_id       = $student_info->id;
+            $student_register->invoice_date     = date('Y-m-d');
+            // $student_register->module        =$request->module;
+            $student_register->type             = $request->type;
+            $student_register->status           = 1;
+            $student_register->form_type        = $request->type;
             $student_register->save();
 
             //invoice
