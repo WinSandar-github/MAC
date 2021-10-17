@@ -414,7 +414,7 @@ Route::post('/article_renew_register', 'ArticleController\ArticleController@save
 Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
 
 // Payment
-Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
+Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
