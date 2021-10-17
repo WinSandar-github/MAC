@@ -28,15 +28,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('/acc_firm_info','AccFirmInfController');
 // for audit initial list
 Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
+// for audit offline list
+Route::get('/audit_offline_list/{status}/{firm_type}', 'AccFirmInfController@FilterOfflineRegistration');
 // for audit renew list
 Route::get('/audit_renew_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistrationRenew');
 
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/approve_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@approveRenew');
+Route::patch('/approve_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@approveReconnect');
 
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@rejectRenew');
+Route::post('/reject_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@rejectReconnect');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
@@ -190,7 +194,7 @@ Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 // Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
 // Audit Reconnect
-Route::post('/audit_reconnect','AccFirmInfController@auditReconnect');
+Route::post('/audit_reconnect','AccFirmInfController@firmReconnect');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
@@ -264,6 +268,7 @@ Route::get('check_service_private','CurrentCheckServiceController@getCheckServic
 Route::get('check_service_self','CurrentCheckServiceController@getCheckServiceSelf');
 Route::get('check_mentor_mac','MentorController@getMentorMAC');
 Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate');
+Route::get('getMentor/{name}', 'MentorController@getMentor');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
 Route::get('get_firm_dashboard_data/{id}','StudentInfoController@getFirmDashboardData');
@@ -408,9 +413,13 @@ Route::post('/done_resign_article','ArticleController\ArticleController@doneResi
 
 Route::post('/article_renew_register', 'ArticleController\ArticleController@saveRenewArticle');
 Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
+Route::post('/save_leave_request','ArticleController\ArticleController@saveLeaveRequest');
+Route::post('/get_leave_request','ArticleController\ArticleController@getLeaveRequest');
+Route::get('/get_update_leave_request/{id}','ArticleController\ArticleController@getUpdateLeaveRequest');
+Route::post('/update_leave_request','ArticleController\ArticleController@updateLeaveRequest');
 
 // Payment
-Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
+Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
