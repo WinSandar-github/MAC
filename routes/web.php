@@ -109,7 +109,7 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Exam Form 1 Approve/Reject
     Route::patch('/approve_exam/{id}', 'ExamRegisterController@approveExam');
     Route::patch('/reject_exam/{id}', 'ExamRegisterController@rejectExam');
-    
+
     //Qualify test Approve/Reject
     Route::patch('/approve_qt/{id}', 'QualifiedTest\QualifiedTestController@approveQT');
     Route::patch('/reject_qt/{id}', 'QualifiedTest\QualifiedTestController@rejectQT');
@@ -139,18 +139,21 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('attend_exam_list/{course_code}','ReportController@attendExamList');
     Route::get('exam_result_list/{course_code}','ReportController@examResultList');
-    
+
     Route::get('membership_edit/{id}','MembershipController@membership_edit');
     Route::get('entry_exam_detail/{id}','EntryExamController@entryExamDetail')->name('entry_exam_detail');
     Route::get('entry_exam_result','EntryExamController@entryExamResult');
     Route::get('entry_exam_result_detail/{id}','EntryExamController@entryExamResultDetail');
-    //Entrance Exam 
+    //Entrance Exam
     Route::get('publishes_entrance_exam_list/{course_code}','ReportController@currentEntryExamList');
     Route::post('show_entrance_exam_list','ReportController@showEntranceExamList');
     Route::get('publishes_entrance_exam_result/{course_code}','ReportController@publishesEntranceExamResult');
 
 
     // CPA(FF)/PAPP Report
+    Route::post('cpa_papp_yearly_list','ReportController\CpaPappReportController@cpaPappYearlyList');
+    Route::post('cpa_papp_yearly_reg_list','ReportController\CpaPappReportController@cpaPappYearlyRegList');
+    Route::post('cpa_papp_take_out_reg_list','ReportController\CpaPappReportController@cpaPappTakeOutRegList');
     Route::get('cpa_ff_report1','ReportController@cpa_ff_report1');
     Route::get('cpa_ff_report2','ReportController@cpa_ff_report2');
     Route::get('cpa_ff_report3','ReportController@cpa_ff_report3');
@@ -189,6 +192,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_report10','ReportController@cpa_report10');
 
     // Article Report
+    Route::post('article_list','ReportController\ArticleReportController@articleList');
+    Route::post('article_daily_in_out_list','ReportController\ArticleReportController@articleDailyInOutList');
+    Route::post('article_intern_position_list','ReportController\ArticleReportController@articleInternPosList');
+    Route::post('article_internship_list','ReportController\ArticleReportController@articleInternshipList');
     Route::get('firm_article_report1','ReportController@firm_article_report1');
     Route::get('firm_article_report2','ReportController@firm_article_report2');
     Route::get('firm_article_report3','ReportController@firm_article_report3');
@@ -215,25 +222,33 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('s_t_report2','ReportController@s_t_report2');
     Route::get('s_t_report3','ReportController@s_t_report3');
 
+
     // DA Report
-    Route::get('da_report1/{batch}','ReportController@da_report1');
-    Route::get('da_report2','ReportController@da_report2');
-    Route::get('da_report3','ReportController@da_report3');
-    Route::get('da_report4','ReportController@da_report4');
-    Route::get('da_report5','ReportController@da_report5');
-    Route::get('da_report6','ReportController@da_report6');
-    Route::get('da_report7','ReportController@da_report7');
-    Route::get('da_report8','ReportController@da_report8');
-    Route::get('da_report9','ReportController@da_report9');
+    Route::get('report_list', 'ReportController@index')->name('report_list');
+
+    Route::post('da_attend','ReportController\DaReportController@daAttendList');
+    Route::post('da_reg','ReportController\DaReportController@daRegList');
+    Route::post('da_exam_reg','ReportController\DaReportController@daExamRegList');
+    Route::post('da_pass','ReportController\DaReportController@daPassList');
+    Route::post('da_report5','ReportController\DaReportController@da_report5');
+    Route::get('da_report6','ReportController\DaReportController@da_report6');
+    Route::get('da_report7','ReportController\DaReportController@da_report7');
+    Route::get('da_report8','ReportController\DaReportController@da_report8');
+    Route::get('da_report9','ReportController\DaReportController@da_report9');
 
     // CPA Qualified Report
+    Route::post('cpa_qualified_enrol','ReportController\CpaQualifiedReportController@cpaQualifiedList');
+    Route::post('cpa_qualified_exam_enrol','ReportController\CpaQualifiedReportController@cpaQualifiedExamEnRol');
+    Route::post('cpa_qualified_exam_reg','ReportController\CpaQualifiedReportController@cpaQualifiedExamReg');
+    Route::post('cpa_qualified_pass','ReportController\CpaQualifiedReportController@cpaQualifiedPass');
+    Route::post('cpa_qualified_fail','ReportController\CpaQualifiedReportController@cpaQualifiedFail');
     Route::get('qualified_report1','ReportController@qualified_report1');
     Route::get('qualified_report2','ReportController@qualified_report2');
     Route::get('qualify_test_detail/{id}','QualifiedTest\QualifiedTestController@qualifyTestDetail');
     Route::get('qt_fill_mark/{id}','QualifiedTest\QualifiedTestController@qualifyTestFillMark');
     Route::get('publishes_qualifiedtest_list','QualifiedTest\QualifiedTestController@currentQualifiedTestList');
     Route::get('publishes_qualifiedtest_result','QualifiedTest\QualifiedTestController@publishesQualifiedTestResult');
-    
+
 });
 Route::post('show_qualifiedtest_list','QualifiedTest\QualifiedTestController@showPublishQTList');
 
@@ -263,7 +278,7 @@ Route::get('/show_non_audit_reconnect_info/{id}','ShowNonAuditFirmInfoController
 Route::group(['middleware' => 'auth'], function () {
     Route::get('cpa_ff_register_form1', 'CpaController@cpa_ff_registration_form1');
     // Route::get('cpa_ff_registration','CpaController@cpa_ff_registration')->name('cpa_ff_registration');
-    
+
     // Main Course Controller
     Route::post("/main_course", "CourseController\MainCourseController@store");
     Route::get("/main_course/{id}", "CourseController\MainCourseController@show");
