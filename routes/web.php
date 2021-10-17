@@ -179,6 +179,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('naudit_firm_report5','ReportController@naudit_firm_report5');
     Route::get('naudit_firm_report6','ReportController@naudit_firm_report6');
 
+    Route::post("firm_individual", "ReportController\FirmReportController@firmIndividual");
+    Route::post("firm_daily_attendence", "ReportController\FirmReportController@firmDailyAttendence");
+
     // CPA Report
     Route::get('cpa_report1','ReportController@cpa_report1');
     Route::get('cpa_report2','ReportController@cpa_report2');
@@ -209,7 +212,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('gov_article_report4','ReportController@gov_article_report4');
     Route::get('gov_article_report5','ReportController@gov_article_report5');
 
-    // Gov Mentor Report
+    // Gov Mentor Report // haven't used 
     Route::get('mentor_report1','ReportController@mentor_report1');
     Route::get('mentor_report2','ReportController@mentor_report2');
     Route::get('mentor_report3','ReportController@mentor_report3');
@@ -217,10 +220,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('mentor_report5','ReportController@mentor_report5');
     Route::get('mentor_report6','ReportController@mentor_report6');
 
+    Route::post('article_mentor_registered_intern', 'ReportController\ArticleMentorReportController@articleMentorRegisteredIntern');
+    Route::post('article_mentor_intern', 'ReportController\ArticleMentorReportController@articleMentorIntern');
+
     // School/Teacher Report
     Route::get('s_t_report1','ReportController@s_t_report1');
     Route::get('s_t_report2','ReportController@s_t_report2');
     Route::get('s_t_report3','ReportController@s_t_report3');
+
+    Route::post('teacher_school_license', 'ReportController\TeacherSchoolReportController@teacherSchoolLicense');
+    Route::post('teacher_school_private', 'ReportController\TeacherSchoolReportController@teacherSchoolPrivate');
+    Route::post('teacher_school_license_plate', 'ReportController\TeacherSchoolReportController@teacherSchoolLicensePlate');
 
 
     // DA Report
