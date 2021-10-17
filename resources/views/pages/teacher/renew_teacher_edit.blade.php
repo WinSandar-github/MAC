@@ -150,14 +150,6 @@
                                             <span id="school_name"></span>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 teacher_card_class" style="display:none;">
-                                        <div class="col-md-6">
-                                            <p style="font-weight:bold">သင်တန်းဆရာမှတ်ပုံတင်</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <span id="teacher_card"></span>
-                                        </div>
-                                    </div>
                                     <div class="row  mt-3">
                                         <div class="col-md-12">
                                             <h5>သင်ကြားမည့်သင်တန်းနှင့် ဘာသာရပ်များ</h5>

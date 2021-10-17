@@ -403,13 +403,13 @@
 					"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
 			});
 
-			// $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-      //           $.each($.fn.dataTable.tables(true), function(){
-      //                   $(this).DataTable()
-      //                           .columns.adjust()
-      //                           .responsive.recalc();
-      //           });
-			// });
+			$('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+                $.each($.fn.dataTable.tables(true), function(){
+                        $(this).DataTable()
+                                .columns.adjust()
+                                .responsive.recalc();
+                });
+			});
 
 		});
 
