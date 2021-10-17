@@ -459,14 +459,14 @@
                                         <span id="date"></span>
                                     </div>
                                 </div>
-                                {{--<div class="row m-2 mt-3 border-bottom">
+                                <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Batch</p>
+                                        <p class="ml-2" style="font-weight:bold">Batch Number</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="batch_name"></span>
+                                        <span id="current_batch_name"></span>
                                     </div>
-                                </div>--}}
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6 text-left">
                                         <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt="">

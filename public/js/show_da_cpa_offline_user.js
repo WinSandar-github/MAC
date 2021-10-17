@@ -53,6 +53,7 @@ function loadOfflineDACPAData(){
                 let element = student_course.student_info;
                 // console.log('student_info',element)
                 let student_register = student_course.student_info.student_register.slice(-1);
+                console.log('student_register',student_register[0]);
 
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";
@@ -87,6 +88,8 @@ function loadOfflineDACPAData(){
                 } else {
                     $("#registration_no").append("-");
                 }
+
+                $('#current_batch_name').append(student_course.batch.name);
                 $("#date").append(element.date);
                 // $("#batch_name").append(student_course.batch.name);
                 if (element.gov_staff == 1) {
@@ -101,7 +104,7 @@ function loadOfflineDACPAData(){
                 if(element.offline_user==1 &&element.course_type_id==1){
                     $(".da_one_pass_info").show();
                     $(".cpa_one_pass_info").hide();  
-                    $(".da_selected_batch_name").append(student_course.batch.name);
+                    $(".da_selected_batch_name").append(student_register[0].batch.name);
                     $(".da_one_pass_exam_date").append(element.da_pass_date);
                     $(".da_one_pass_level").append(element.degree_rank);
                     $(".da_one_pass_personal_no").append(element.da_pass_roll_number);
@@ -116,24 +119,24 @@ function loadOfflineDACPAData(){
                         $(".da_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
                     }
 
-                    if(element.offline_user == 1){
-                        if(student_register[0].module == 1){
-                            $(".da_module").append("Module 1");
-                        }else if(student_register[0].module == 2){
-                            $(".da_module").append("Module 2");
-                        }else if(student_register[0].module == 3){
-                            $(".da_module").append("All Module");
-                        }else{
-                            $(".da_module").append("-");
-                        }
-                    }                  
+                    // if(element.offline_user == 1){
+                    //     if(student_register[0].module == 1){
+                    //         $(".da_module").append("Module 1");
+                    //     }else if(student_register[0].module == 2){
+                    //         $(".da_module").append("Module 2");
+                    //     }else if(student_register[0].module == 3){
+                    //         $(".da_module").append("All Module");
+                    //     }else{
+                    //         $(".da_module").append("-");
+                    //     }
+                    // }                  
                     
                 }
                 
                 if(element.offline_user==1 &&element.course_type_id==2){
                     $(".da_one_pass_info").hide();
                     $(".cpa_one_pass_info").show();  
-                    $(".cpa_selected_batch_name").append(student_course.batch.name);
+                    $(".cpa_selected_batch_name").append(student_register[0].batch.name);
                     $(".cpa_one_pass_exam_date").append(element.da_pass_date);
                     $(".cpa_one_pass_level").append(element.degree_rank);
                     $(".cpa_one_pass_personal_no").append(element.da_pass_roll_number);
