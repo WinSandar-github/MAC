@@ -25,7 +25,6 @@ use DB;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;    
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
 
 class SchoolController extends Controller
 {
@@ -252,9 +251,9 @@ class SchoolController extends Controller
         $school->nrc_township     = $request->nrc_township;
         $school->nrc_citizen      = $request->nrc_citizen;
         $school->nrc_number       = $request->nrc_number;
-        $school->reg_date         = date('Y-m-d');
+        $school->reg_date = date('Y-m-d');
         
-        $school->type               = $request->school_type;
+        $school->type = $request->school_type;
         
         //reconnected form
         $school->last_registration_fee_year = $request->last_registration_fee_year;
@@ -263,8 +262,8 @@ class SchoolController extends Controller
         $school->to_request_stop_date = $request->to_request_stop_date;
         $school->offline_user=$request->offline_user;
         $school->save();
-        $school->regno            = 'S-'.$school->id;
-        $school->save();
+        
+        
        
         //Student Info
         
@@ -289,7 +288,7 @@ class SchoolController extends Controller
        
             $education_histroy  =   new EducationHistroy();
             $education_histroy->student_info_id = $std_info->id;
-            $education_histroy->degree_name = $request->degrees[$i];
+            $education_histroy->university_name = $request->degrees[$i];
             $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
             $education_histroy->school_id       = $school->id;
             $education_histroy->save();
@@ -323,7 +322,7 @@ class SchoolController extends Controller
         }
 
         //member list
-        if($request->school_type=="P"){
+        if($request->school_type=="တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း"){
             for($i=0;$i<sizeof($request->member_name);$i++){
                 $member = new SchoolMember();
                 $member->name            = $request->member_name[$i];
@@ -740,7 +739,7 @@ class SchoolController extends Controller
                  }
                  for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->degree_name = $request->old_degrees[$i];
+                    $education_histroy->university_name = $request->old_degrees[$i];
                     $education_histroy->certificate     ='/storage/student_info/'.$old_degrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -749,7 +748,7 @@ class SchoolController extends Controller
                 if($request->old_degrees!=null){
                     for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                         $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                        $education_histroy->degree_name = $request->old_degrees[$i];
+                        $education_histroy->university_name = $request->old_degrees[$i];
                         $education_histroy->certificate     =$old_degrees_certificates[$i];
                         $education_histroy->save();
                     }
@@ -1228,57 +1227,9 @@ class SchoolController extends Controller
 
     public function FilterSchool(Request $request)
     {
-        if($request->offline_user==true){
-            
-            $school = SchoolRegister::where('approve_reject_status',$request->status)
-            ->where('offline_user',$request->offline_user)
-            ->orderBy('created_at','desc');
-            if($request->name!=""){
-                $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
-                            ->orWhere('name_eng', 'like', '%' . $request->name. '%');
-            }
-            if($request->nrc!=""){
-                $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-            }
-            $schools=$school->get();
-            return DataTables::of($schools)
-            ->addColumn('action', function ($infos) {
-                return "<div class='btn-group'>
-                            <a href='school_edit?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
-                                <li class='fa fa-eye fa-sm'></li>
-                            </a>
-                            </div>";
-            })
-            ->addColumn('nrc', function ($infos){
-                $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
-                return $nrc_result;
-            })
-            ->addColumn('status', function ($infos){
-                if($infos->approve_reject_status	 == 0){
-                    return "PENDING";
-                }else if($infos->approve_reject_status	 == 1){
-                    return "APPROVED";
-                }else{
-                    return "REJECTED";
-                }
-            })
-            ->addColumn('reason', function ($infos){
-                if($infos->reason == ""){
-                    return "";
-                   
-                }else{
-                    return $infos->reason;
-                   
-                }
-            })
-        ->rawColumns(['action'])
-        ->make(true);
-        }else{
-          
         $school = SchoolRegister::where('approve_reject_status',$request->status)
-                                ->where('initial_status',$request->initial_status)
-                                ->where('offline_user',null)
-                                ->orderBy('created_at','desc');
+        ->where('initial_status',$request->initial_status)
+        ->orderBy('created_at','desc');
         if($request->name!=""){
             $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
                         ->orWhere('name_eng', 'like', '%' . $request->name. '%');
@@ -1403,8 +1354,9 @@ class SchoolController extends Controller
         })
         ->rawColumns(['card','action'])
         ->make(true);
-        }
-        
+        // return  response()->json([
+        //     'data' => $school
+        // ],200);
     }
 
     public function schoolStatus($id)
@@ -1656,12 +1608,12 @@ class SchoolController extends Controller
         $school->attachment      = ($attachment);
         
         $school->profile_photo               = $profile_photo;
-        $school->school_name                 = $request->old_school_name;
-        $school->renew_school_name           = $request->school_name;
-        $school->attend_course               = ($request->old_course);
-        $school->renew_course               = json_encode($request->attend_course);
-        $school->school_address              = $request->old_school_address;
-        $school->renew_school_address              = $request->school_address;
+        $school->school_name                 = $request->school_name;
+        $school->renew_school_name           = $request->old_school_name;
+        $school->attend_course               = json_encode($request->attend_course);
+        $school->renew_course                = $request->old_course;
+        $school->school_address              = $request->school_address;
+        $school->renew_school_address        = $request->old_school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = ($own_type_letter);
         $school->business_license            = ($business_license);
@@ -1679,8 +1631,9 @@ class SchoolController extends Controller
         $school->renew_date       = date('Y-m-d');
         //$school->renew_id         = $request->renew_id;
         $school->student_info_id  = $request->student_info_id;
-        $school->s_code   = $request->invoice_no;
+        $school->s_code   = $request->s_code;
         $school->type = $request->school_type;
+        $teacher->regno = $request->regno;
         $school->save();
         
         if($degrees_certificates!=null){
@@ -1690,7 +1643,7 @@ class SchoolController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->degree_name = $request->degrees[$i];
+                $education_histroy->university_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
                 $education_histroy->save();
@@ -1884,7 +1837,7 @@ class SchoolController extends Controller
 
             $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee';
             foreach($memberships as $memberships){
-                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+                $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
             }
            
             $invoice->status          = 0;
@@ -2144,7 +2097,7 @@ class SchoolController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->degree_name = $request->degrees[$i];
+                $education_histroy->university_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
                 $education_histroy->save();
@@ -2161,7 +2114,7 @@ class SchoolController extends Controller
                  $old_degrees_certificates= str_replace('/storage/student_info/', '', $request->old_degrees_certificates_h);
                  for($i=0;$i <sizeof($request->old_degrees);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->degree_name = $request->old_degrees[$i];
+                    $education_histroy->university_name = $request->old_degrees[$i];
                     $education_histroy->certificate     ='/storage/student_info/'.$old_degrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -2170,7 +2123,7 @@ class SchoolController extends Controller
                 if($request->old_degrees!=null){
                     for($i=0;$i <sizeof($request->old_degrees);$i++){
                         $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                        $education_histroy->degree_name = $request->old_degrees[$i];
+                        $education_histroy->university_name = $request->old_degrees[$i];
                         $education_histroy->certificate     =$old_degrees_certificates[$i];
                         $education_histroy->save();
                     }

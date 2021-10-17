@@ -110,6 +110,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
+                                                            <th class="bold-font-weight" >School No</th>
                                                             <th class="bold-font-weight" >School Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
@@ -173,6 +174,7 @@
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
+                                                                <th class="bold-font-weight" >School No</th>
                                                                 <th class="bold-font-weight" >School Name</th>
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
@@ -194,6 +196,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
+                                                            <th class="bold-font-weight" >School No</th>
                                                             <th class="bold-font-weight" >School Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
@@ -216,6 +219,7 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
+                                                            <th class="bold-font-weight" >School No</th>
                                                             <th class="bold-font-weight" >School Name</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
@@ -331,7 +335,6 @@
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
                     d.status    = 1,
                     d.initial_status= 0
-                    
                 }
 
             },
@@ -340,6 +343,7 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 's_code', name: 's_code'},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
@@ -404,8 +408,11 @@
 
             },
             columns: [
-                {data: 's_code', name: 's_code'},
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 's_code', name: 's_code'},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
@@ -437,8 +444,11 @@
 
             },
             columns: [
-                {data: 's_code', name: 's_code'},
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 's_code', name: 's_code'},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
@@ -474,6 +484,7 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 's_code', name: 's_code'},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
