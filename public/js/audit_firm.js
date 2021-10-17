@@ -408,6 +408,7 @@ function autoLoadAudit(){
         $("input[name=local_foreign_id]").val(element.local_foreign_id);
         $("#accountancy_firm_reg_no").append(element.accountancy_firm_reg_no);
         $("#accountancy_firm_name").append(element.accountancy_firm_name);
+        $("#register_date").append(element.register_date);
         $("#head_office_address").append(element.head_office_address);
         $("#head_office_address_mm").append(element.head_office_address_mm);
         $("#township").append(element.township);
@@ -842,6 +843,7 @@ function autoLoadAuditReconnect(){
         $("#status").append(status);
         $("#last_reg_payment_start").text(element.last_reg_payment_start);
         $("#last_reg_payment_end").text(element.last_reg_payment_end);
+        $("#last_reg_payment_date").text(element.last_reg_payment_date);
         // $("#local_foreign_id").append(local_foreign_id);
         var branch=element.branch_offices;
         branch.forEach(function(item){
