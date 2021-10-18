@@ -48,7 +48,7 @@
                             @if($currend_date > $data['course']->active_batch[0]->mac_reg_end_date)
                                 @if($data['course']->code === "da_1" || $data['course']->code === "cpa_1" )
                                     <button onclick="generatePersonalNo('{{$data['course']->code}}')" class="pull-right
-                                    btn btn-sm btn-success">ကိုယ်ပိုင်နံပါတ် ထုတ်ပေးမည်
+                                    btn btn-sm btn-success">ကိုယ်ပိုင်အမှတ်အမှတ် ထုတ်ပေးမည်
                                     </button>
                                 @else
                                     <button onclick="generateSrNo('{{$data['course']->code}}')"
@@ -66,7 +66,7 @@
                                     <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်အမှတ်</th>
                                     <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                     <th class="bold-font-weight">အဘအမည်</th>
-                                    <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
+                                    <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable">
