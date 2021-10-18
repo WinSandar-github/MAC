@@ -72,6 +72,14 @@ class BatchController extends Controller
             'data'  => $batches
         ]);
     }
+
+    public function LoadBatchForOfflineStudent($id)
+    {
+        $batches = Batch::where('id',$id)->with('course','exams')->first();
+        return response()->json([
+            'data'  => $batches
+        ]);
+    }
     
     public function edit($id)
     {

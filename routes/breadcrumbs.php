@@ -377,6 +377,13 @@ Breadcrumbs::for('cpa_list', function ($trail) {
     $trail->parent('administration');
     $trail->push('CPA Application Form List', route('page.index', 'cpa_list'));
 });
+
+// DA offline Student List
+Breadcrumbs::for('da_offline_student_list', function ($trail) {
+    $trail->parent('administration');
+    $trail->push('DA Offline Form List', route('page.index', 'da_offline_student_list'));
+});
+
 // CPAFF List
 Breadcrumbs::for('cpa_ff_registration_list', function ($trail) {
     // $trail->parent('administration');
