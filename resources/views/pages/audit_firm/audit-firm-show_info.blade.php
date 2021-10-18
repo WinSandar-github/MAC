@@ -36,9 +36,9 @@
 																</div>
 																<div class="col-md-8">
 																	<div class="row border-bottom pl-4">
-                                      <label class="col-md-4 form-label" style="font-weight:bold">{{ __('Accountancy Firm Registration No') }}</label>
+                                      <label class="col-md-7 form-label" style="font-weight:bold">{{ __('Accountancy Firm Registration No') }}</label>
                                       <label class="col-md-1 form-label">{{ __(':') }}</label>
-                                      <div class="col-md-7">
+                                      <div class="col-md-3">
                                           <div class="form-group">
                                               <input type="hidden" name="audit_firm_type_id">
                                               <input type="hidden" name="local_foreign_id">
@@ -50,9 +50,9 @@
                                   </div>
                                   <div class="row border-bottom pl-4">
 
-                                      <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Accountancy Firm Name') }}</label>
+                                      <label class="col-md-7 col-form-label" style="font-weight:bold">{{ __('Accountancy Firm Name') }}</label>
                                       <label class="col-md-1 col-form-label">{{ __(':') }}</label>
-                                      <div class="col-md-7">
+                                      <div class="col-md-3">
                                           <div class="form-group">
                                               <span id="accountancy_firm_name"></span>
                                               <!-- <input type="text" name="accountancy_firm_name"  class="form-control " autocomplete="off"> -->
@@ -64,6 +64,19 @@
                                           </span>
                                       @enderror
                                   </div>
+																	<div class="row border-bottom pl-4">
+
+																			<label class="col-md-7 col-form-label" style="font-weight:bold">{{ __('Registration Date') }}</label>
+																			<label class="col-md-1 col-form-label">{{ __(':') }}</label>
+																			<div class="col-md-3">
+																					<div class="form-group">
+																							<span id="register_date">
+
+																							</span>
+																							<!-- <input type="text" name="accountancy_firm_name"  class="form-control " autocomplete="off"> -->
+																					</div>
+																			</div>
+																	</div>
 																</div>
 															</div>
 
