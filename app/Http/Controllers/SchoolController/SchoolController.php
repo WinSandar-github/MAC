@@ -261,11 +261,11 @@ class SchoolController extends Controller
         $school->from_request_stop_date = $request->from_request_stop_date;
         $school->to_request_stop_date = $request->to_request_stop_date;
         $school->offline_user=$request->offline_user;
-        if($request->offline_user=="true"){
-            $school->payment_method = 'exit_sch';
-        }else{
-            $school->payment_method = 'init_sch';
-        }
+        // if($request->offline_user=="true"){
+        //     $school->payment_method = 'exit_sch';
+        // }else{
+        //     $school->payment_method = 'init_sch';
+        // }
         $school->save();
         
         
