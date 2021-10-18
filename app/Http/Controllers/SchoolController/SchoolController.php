@@ -1952,9 +1952,9 @@ class SchoolController extends Controller
                     //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
                     //     }
                     // }
-                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
+                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee,Transaction Fee';
                         foreach($memberships as $memberships){
-                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
+                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee.',1000';
                         }
                     $invoice->status          = 0;
                     $invoice->save();
