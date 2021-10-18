@@ -77,7 +77,7 @@
                                     @if($key == 2)
                                         <tr class="mac-row">
                                             <td colspan="6" style="text-align: start; font-weight: bold">MAC
-                                                တွင်တက်ရောက်မည့်သူများ
+                                                သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
                                             </td>
                                         </tr>
 
