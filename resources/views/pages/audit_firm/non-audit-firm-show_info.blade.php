@@ -71,7 +71,7 @@
 			                                            </div>
 																									<div class="row border-bottom pl-4">
 
-			                                                <label class="col-md-7 col-form-label" style="font-weight:bold">{{ __('Registration Date') }}</label>
+			                                                <label class="col-md-7 col-form-label" style="font-weight:bold">{{ __('Submit Date') }}</label>
 			                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
 			                                                <div class="col-md-3">
 			                                                    <div class="form-group">

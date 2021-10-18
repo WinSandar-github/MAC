@@ -72,7 +72,7 @@
 
 																									<div class="row border-bottom pl-4">
 
-								                                      <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Registration Date') }}</label>
+								                                      <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Submit Date') }}</label>
 								                                      <label class="col-md-1 col-form-label">{{ __(':') }}</label>
 								                                      <div class="col-md-7">
 								                                          <div class="form-group">
@@ -1198,18 +1198,18 @@
 
                                               <div class="row mb-5">
                                                   <label for="" class="col-md-1 col-form-label"></label>
-                                                  <label for="" class="col-md-5 col-form-label font-weight-bold">Last Registration Fee Payment Date</label>
+                                                  <label for="" class="col-md-5 col-form-label font-weight-bold">Last Registered Date</label>
 
                                                   <div class="col-md-3">
                                                       <span id="last_reg_payment_date" class="form-control">
-                                                        {{$item->last_reg_payment_date}}
+                                                        {{$item->last_registered_year}}
                                                       </span>
                                                   </div>
                                               </div>
 
                                               <div class="row mb-5">
                                                   <label for="" class="col-md-1 col-form-label"></label>
-                                                  <label for="" class="col-md-4 col-form-label font-weight-bold">Request to Disconnect</label>
+                                                  <label for="" class="col-md-4 col-form-label font-weight-bold">Suspended Year</label>
                                                   <div class="row col-md-7 py-2">
                                                       <div class="col-md-3 form-check-radio mx-2">
                                                           <label class="form-check-label">
@@ -1243,18 +1243,19 @@
 
 																							<div class="row mb-5">
                                                   <label for="" class="col-md-1 col-form-label"></label>
-                                                  <label for="" class="col-md-5 col-form-label"></label>
+                                                  <label for="" class="col-md-4 col-form-label"></label>
                                                   <div class="col-md-2">
-                                                      <label for="" class="col-form-label">Start Date</label>
+                                                      <label for="" class="col-form-label">Year</label>
                                                   </div>
+
                                                   <div class="col-md-3">
-                                                      <span id="last_reg_payment_start" class="form-control">
-                                                        {{$item->last_reg_payment_start}}
+                                                      <span id="" class="form-control">
+                                                        {{$item->suspended_year}}
                                                       </span>
                                                   </div>
                                               </div>
 
-																							<div class="row mb-5">
+																							{{--<div class="row mb-5">
                                                   <label for="" class="col-md-1 col-form-label"></label>
                                                   <label for="" class="col-md-5 col-form-label"></label>
                                                   <div class="col-md-2">
@@ -1265,7 +1266,7 @@
                                                         {{$item->last_reg_payment_end}}
                                                       </span>
                                                   </div>
-                                              </div>
+                                              </div>--}}
 
 
 	                                            <input type="hidden" name="audit_firm_id" >
