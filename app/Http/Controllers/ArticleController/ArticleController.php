@@ -1016,9 +1016,9 @@ class ArticleController extends Controller
             $request_papp_attach = "";
         }
 
-        $acc_app->gov_staff = $request->gov_staff;
-        $acc_app->gov_position = $request->gov_position;
-        $acc_app->gov_joining_date = $request->gov_joining_date;
+        // $acc_app->gov_staff = $request->gov_staff;
+        // $acc_app->gov_position = $request->gov_position;
+        // $acc_app->gov_joining_date = $request->gov_joining_date;
         $acc_app->request_papp = $request->request_papp;
         $acc_app->mentor_id = $request->mentor_id;
         $acc_app->request_papp_attach = $request_papp_attach;
