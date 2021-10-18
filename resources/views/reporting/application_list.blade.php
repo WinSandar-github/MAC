@@ -120,7 +120,7 @@
                                     @if($key == 0)
                                         <tr class="self-row">
                                             <td colspan="6" style="text-align: start;font-weight: bold">
-                                                ကိုယ်တိုင်လေ့လာသင်ယူသင်ယူမည့်သူများ
+                                                ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများ
                                             </td>
                                         </tr>
 
