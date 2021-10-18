@@ -495,6 +495,7 @@ function approveSchoolRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
+    let offline_user = url.searchParams.get("offline_user");
     var check = confirm("Are you sure?");
     if (check == true) {
         $.ajax({
@@ -503,7 +504,12 @@ function approveSchoolRegister(){
             type: 'post',
             success: function(result){
                 successMessage(result.message);
-                location.href = FRONTEND_URL + '/school_registration';
+                if(offline_user == 'true'){
+                    location.href = FRONTEND_URL + '/offline_user';
+                }else{
+                    location.href = FRONTEND_URL + '/school_registration';
+                }
+                
             }
         });
     }
@@ -515,7 +521,7 @@ function rejectSchoolRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
-    console.log(student_info_id)
+    let offline_user = url.searchParams.get("offline_user");
     var reason=$("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/reject_school_register",
@@ -523,7 +529,11 @@ function rejectSchoolRegister(){
         type: 'post',
         success: function(result){
             successMessage(result.message);
-            location.href = '/school_registration';
+            if(offline_user == 'true'){
+                location.href = FRONTEND_URL + '/offline_user';
+            }else{
+                location.href = FRONTEND_URL + '/school_registration';
+            }
         }
     });
     
@@ -551,7 +561,7 @@ function loadEductaionHistory(id){
             $.each(result.data, function( index, value ) {
                 var tr = "<tr>";
                 tr += `<td> ${ index += 1 } </td>`;
-                tr += `<td> ${ value.university_name } </td>`;
+                tr += `<td> ${ value.degree_name } </td>`;
                 tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
@@ -599,13 +609,18 @@ function cessationSchoolRegister(){
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
     var cessation_reason=$("#cessation_reason").val();
+    let offline_user = url.searchParams.get("offline_user");
     $.ajax({
         url: BACKEND_URL + "/cessation_school_register",
         data: 'id='+id+"&status=2"+"&student_info_id="+student_info_id+"&cessation_reason="+cessation_reason+"&initial_status="+$('#initial_status').val(),
         type: 'post',
         success: function(result){
             successMessage('You have cessation that user!');
-            location.href = '/school_registration';
+            if(offline_user == 'true'){
+                location.href = FRONTEND_URL + '/offline_user';
+            }else{
+                location.href = FRONTEND_URL + '/school_registration';
+            }
         }
     });
     

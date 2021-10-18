@@ -308,8 +308,10 @@ Route::group(['middleware' => 'auth'], function () {
     // Route::get('/da_registration/self_study_reg/{id}', 'StudentRegisterController@self_study_Reg')->name('self_study_reg');
 
     // CPA Register List
+    
     // offline user
     Route::get('/offline_user', 'OfflineUserController\OfflineUserController@index')->name('offline_user');
+    Route::get('/da_cpa_offline_detail', 'OfflineUserController\OfflineUserController@DetailDA_CPAOfflineStudent');
 
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
