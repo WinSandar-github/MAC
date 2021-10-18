@@ -58,6 +58,7 @@ Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
 Route::resource('/cpa_private_old','CpaPrivateOldController');
 Route::resource('/cpa_addmission_exam','CpaTraAddmissionExamController');
 Route::resource('/cpa_register','CpaTraAddmissionDirectController');
+Route::post('/cpa_two_reg_cpaonepass', 'CpaTraAddmissionDirectController@CPATwoRegCPAOnePass');
 Route::resource('/cpa_two_tra_reg','CpaTwoTraRegisterController');
 Route::resource('/cpa_two_self_learner','CpaTwoRegSelfLearnerController');
 Route::resource('/cpa_two_private_newbie','CpaTwoPrivateNewbieController');
@@ -74,6 +75,9 @@ Route::post('/filter_requirement','RequirementController@FilterRequirement');
 Route::resource('/batch','BatchController');
 Route::post('/filter_batch','BatchController@FilterBatch');
 
+//Get Batch for Offline Student
+Route::get('/get_current_batch/{course_id}','BatchController@getBatch');
+Route::get('/get_passed_batch/{course_id}','BatchController@getBatch');
 
 //Exam
 Route::resource('/exam','ExamController');
@@ -166,10 +170,16 @@ Route::post('/filter_exam_register', 'ExamRegisterController@FilterExamRegister'
 
 //DA Application Form API
 Route::resource('/da_register', 'DARegisterController');
+Route::post('/da_two_reg_daonepass', 'DARegisterController@DATwoRegDAOnePass');
 Route::patch('/approve/{id}', 'DARegisterController@approve');
 Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
 Route::post('/send_email', 'DARegisterController@send_email');
+
+//DA and CPA Offline Application 
+Route::post('/filter_offline_student_info','DARegisterController@FilterOfflineApplicationList');
+Route::patch('/reject_offline_da_cpa/{id}', 'DARegisterController@rejectOfflineDACPA');
+Route::patch('/approve_offline_da_cpa/{id}', 'DARegisterController@approveOfflineDACPA');
 
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
