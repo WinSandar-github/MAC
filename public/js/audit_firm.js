@@ -829,6 +829,7 @@ function autoLoadAuditReconnect(){
         $("input[name=local_foreign_id]").val(element.local_foreign_id);
         $("#accountancy_firm_reg_no").append(element.accountancy_firm_reg_no);
         $("#accountancy_firm_name").append(element.accountancy_firm_name);
+        $("#registration_date").append(element.register_date);
         $("#head_office_address").append(element.head_office_address);
         $("#head_office_address_mm").append(element.head_office_address_mm);
         $("#township").append(element.township);
