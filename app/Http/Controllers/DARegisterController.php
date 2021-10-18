@@ -542,6 +542,15 @@ class DARegisterController extends Controller
 
             $student_course = new StudentCourseReg();
             $student_course->student_info_id = $student_info->id;
+            $student_course->batch_id        = $request->pass_batch_id;
+            $student_course->type            = $request->type;
+            $student_course->mac_type        = $request->mac_type;
+            $student_course->date            = $course_date;
+            $student_course->status          = 1;
+            $student_course->save();
+
+            $student_course = new StudentCourseReg();
+            $student_course->student_info_id = $student_info->id;
             $student_course->batch_id        = $request->batch_id;
             $student_course->type            = $request->type;
             $student_course->mac_type        = $request->mac_type;
@@ -549,15 +558,17 @@ class DARegisterController extends Controller
             $student_course->status          = 0;
             $student_course->save();
 
+            
+
             $exam_register = new ExamRegister();
             $exam_register->student_info_id     = $student_info->id;
             $exam_register->date                = $date;
-            $exam_register->grade               = 0;
+            $exam_register->grade               = 1;
             $exam_register->batch_id            = $request->pass_batch_id;
-            // $exam_register->is_full_module   = 3;
+            $exam_register->is_full_module   = 3;
             $exam_register->exam_type_id        = $request->type;
-            // $exam_register->form_type        = $request->form_type;
-            $exam_register->status              = 0;
+            $exam_register->form_type        = 3;
+            $exam_register->status              =1;
             $exam_register->save();
 
             $student_register = new StudentRegister();
@@ -568,9 +579,10 @@ class DARegisterController extends Controller
             $student_register->invoice_date     = date('Y-m-d');
             $student_register->module        =3;
             $student_register->type             = $request->type;
-            $student_register->status           = 0;
-            $student_register->form_type        = $request->type;
+            $student_register->status           = 1;
+            $student_register->form_type        = 3;
             $student_register->save();
+
 
             //invoice
             $invoice = new Invoice();
@@ -599,15 +611,15 @@ class DARegisterController extends Controller
 
     public function FilterOfflineApplicationList(Request $request){
 
-        // $course  = Course::where('code',$request->course_code)->first();
+        $course  = Course::where('code',$request->course_code)->first();
         //  $student_infos = StudentCourseReg::with('student_info','batch')
         //                     ->where('approve_reject_status','=', 1)
         //                     ->where('batch_id','=', $batch_id);
 
         $student_infos = StudentCourseReg::with('student_info','batch')
-                        // ->whereHas('batch', function ($query) use ($course) {
-                        //     $query->where('course_id', $course->id);
-                        // })
+                        ->whereHas('batch', function ($query) use ($course) {
+                            $query->where('course_id', $course->id);
+                        })
                         ->whereHas('student_info', function($q) use ($request){
                             // if($request->name !== ""){
                             //     $q->where('name_mm', 'like', "%" . $request->name . "%")
@@ -674,14 +686,14 @@ class DARegisterController extends Controller
         $stu_course_reg->approve_reject_status  = 1;
         $stu_course_reg->status                 = 1;
         $stu_course_reg->save();
-        $stu_reg                            = StudentRegister::find($id) ;
-        $stu_reg->status                    = 1;
-        $stu_reg->save();
-        $exam_register                      = ExamRegister::find($id) ;
-        $exam_register->grade               = 1;
-        $exam_register->status              = 1;
+        // $stu_reg                            = StudentRegister::find($id) ;
+        // $stu_reg->status                    = 1;
+        // $stu_reg->save();
+        // $exam_register                      = ExamRegister::find($id) ;
+        // $exam_register->grade               = 1;
+        // $exam_register->status              = 1;
 
-        $exam_register->save();
+        // $exam_register->save();
         $approve                            = StudentInfo::where('id',$stu_course_reg->student_info_id)->first();
         $approve->approve_reject_status     = 1;
         $approve->save();
