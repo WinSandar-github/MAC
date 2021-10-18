@@ -13,4 +13,8 @@ class OfflineUserController extends Controller
     public function DetailDA_CPAOfflineStudent(){ 
         return view("pages/offline_user/da_cpa_offline_detail"); 
     }
+
+    public function DetailDA_CPAOfflineStudent(){
+        return view("pages/offline_user/da_cpa_offline_detail");
+    }
 }
