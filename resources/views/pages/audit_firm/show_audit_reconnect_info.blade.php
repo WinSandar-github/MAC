@@ -862,22 +862,9 @@
                                 <div class="row mb-5">
                                     <label for="" class="col-md-1 col-form-label"></label>
                                     <label for="" class="col-md-5 col-form-label font-weight-bold">Last Registration Fee Payment Date</label>
-                                    <div class="col-md-2">
-                                        <label for="" class="col-form-label">Start Date</label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <span id="last_reg_payment_start" class="form-control"></spa>
-                                    </div>
-                                </div>
 
-                                <div class="row mb-5">
-                                    <label for="" class="col-md-1 col-form-label"></label>
-                                    <label for="" class="col-md-5 col-form-label"></label>
-                                    <div class="col-md-2">
-                                        <label for="" class="col-form-label">End Date</label>
-                                    </div>
                                     <div class="col-md-3">
-                                        <span id="last_reg_payment_end" class="form-control"></spa>
+                                        <span id="last_reg_payment_date" class="form-control"></span>
                                     </div>
                                 </div>
 
@@ -903,6 +890,28 @@
                                         </div>
 
                                         <label  class="error attend_place_error" style="display:none;" for="req_for_stop">Please select one</label>
+                                    </div>
+                                </div>
+
+																<div class="row mb-5">
+                                    <label for="" class="col-md-1 col-form-label"></label>
+                                    <label for="" class="col-md-5 col-form-label"></label>
+                                    <div class="col-md-2">
+                                        <label for="" class="col-form-label">Start Date</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span id="last_reg_payment_start" class="form-control"></spa>
+                                    </div>
+                                </div>
+
+																<div class="row mb-5">
+                                    <label for="" class="col-md-1 col-form-label"></label>
+                                    <label for="" class="col-md-5 col-form-label"></label>
+                                    <div class="col-md-2">
+                                        <label for="" class="col-form-label">End Date</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <span id="last_reg_payment_end" class="form-control"></spa>
                                     </div>
                                 </div>
 
