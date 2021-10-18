@@ -63,7 +63,7 @@
                                 <tr>
                                     <th class="bold-font-weight">စဥ်</th>
                                     <th class="bold-font-weight">အမည်</th>
-                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကဒ်အမှတ်</th>
+                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်အမှတ်</th>
                                     <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                     <th class="bold-font-weight">အဘအမည်</th>
                                     <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
@@ -120,7 +120,7 @@
                                     @if($key == 0)
                                         <tr class="self-row">
                                             <td colspan="6" style="text-align: start;font-weight: bold">
-                                                ကိုယ်တိုင်လေ့လာမည့်သူများ
+                                                ကိုယ်တိုင်လေ့လာသင်ယူသင်ယူမည့်သူများ
                                             </td>
                                         </tr>
 
@@ -163,7 +163,7 @@
                                     @if($key == 1)
                                         <tr class="private-row">
                                             <td colspan="6" style="text-align: start;font-weight: bold">
-                                                ကိုယ်ပိုင်ကျောင်းတွင်လေ့လာမည့်သူများ
+                                                ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင်တက်ရောက်ခွင့်ရသူများ
                                             </td>
                                         </tr>
 
