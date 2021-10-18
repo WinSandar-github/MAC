@@ -293,28 +293,50 @@ class MentorController extends Controller
         }
         $mentors=$mentor->get();
 
-        return DataTables::of($mentors)
-                ->addColumn('action', function ($infos) {
-                    return "<div class='btn-group'>
-                                    <button type='button' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
-                                        <li class='fa fa-eye fa-sm'></li>
-                                    </button>
-                                </div>";
-                })
-                ->addColumn('nrc', function ($infos){
-                    $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
-                    return $nrc_result;
-                })
-                ->addColumn('status', function ($infos){
-                    if($infos->status == 0){
-                        return "PENDING";
-                    }else if($infos->status == 1){
-                        return "APPROVED";
-                    }else{
-                        return "REJECTED";
-                    }
-                })
-                ->make(true);
+        $datatable =  DataTables::of($mentors)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                                <button type='button' class='btn btn-primary btn-sm' onclick='showMentorStudent($infos->id)'>
+                                    <li class='fa fa-eye fa-sm'></li>
+                                </button>
+                            </div>";
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->status == 0){
+                    return "PENDING";
+                }else if($infos->status == 1){
+                    return "APPROVED";
+                }else{
+                    return "REJECTED";
+                }
+            });
+        $datatable = $datatable->addColumn('show_article', function ($infos){
+            if($infos->status == 0){
+                return "<div class='btn-group'>
+                        <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
+                            Article List
+                        </button>
+                    </div>";
+            }else if($infos->status == 1){
+                return "<div class='btn-group'>
+                    <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
+                        Article List
+                    </button>
+                </div>";
+            }else{
+                return "<div class='btn-group'>
+                    <button type='button' class='btn btn-primary btn-sm' disabled onclick='showArticle($infos->id)'>
+                        Article List
+                    </button>
+                </div>";
+            }
+        });
+        $datatable = $datatable->rawColumns(['show_article', 'status', 'nrc','action'])->make(true);
+        return $datatable;
         // return  response()->json([
         //     'data' => $mentor
         // ],200);
