@@ -69,6 +69,19 @@
 			                                                    </span>
 			                                                @enderror
 			                                            </div>
+																									<div class="row border-bottom pl-4">
+
+			                                                <label class="col-md-7 col-form-label" style="font-weight:bold">{{ __('Registration Date') }}</label>
+			                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+			                                                <div class="col-md-3">
+			                                                    <div class="form-group">
+			                                                        <span id="register_date">
+																																{{$item->register_date}}
+																															</span>
+			                                                        <!-- <input type="text" name="accountancy_firm_name"  class="form-control " autocomplete="off"> -->
+			                                                    </div>
+			                                                </div>
+			                                            </div>
 																								</div>
 																							</div>
 
@@ -1300,7 +1313,7 @@
 										        </div>
 										        <div class="modal-footer">
 										            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										            <button type="submit" class="btn btn-primary" form="remark-form">Reject</button>
+										            <button type="submit" class="btn btn-primary" form="remark-form-renew">Reject</button>
 										        </div>
 										    </form>
 										    </div>

@@ -220,7 +220,7 @@ class PAPPController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_id;
-        $invoice->invoiceNo       = '';
+        $invoice->invoiceNo  = "papp-renew";
         $invoice->name_eng       =  $stdInfo->name_eng;
         $invoice->email       = $stdInfo->email;
         $invoice->phone       = $stdInfo->phone;
@@ -468,7 +468,7 @@ class PAPPController extends Controller
         $papp->save();
 
         //invoice
-        $fees = Membership::where('membership_name','=','PAPP')->first(['renew_fee','form_fee', 'late_fee']);
+        $fees = Membership::where('membership_name','=','PAPP')->first(['renew_fee','form_fee', 'late_fee','reconnected_fee']);
         $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
         //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
@@ -478,21 +478,78 @@ class PAPPController extends Controller
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
-        $thisYear = date('Y');
-        $oldYear=date('Y',strtotime($oldPapp->validate_to));
-        if($thisYear == $oldYear){
-            $invoice->productDesc     = 'Application Fee, Renewal Fee';
-            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
-        }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
-            $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
-            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+        if($oldPapp->offline_user==0){
+            $thisYear = date('Y');
+            $oldYear=date('Y',strtotime($oldPapp->validate_to));
+            if($thisYear == $oldYear){
+                $invoice->productDesc     = 'Application Fee, Renewal Fee';
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+            }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
+                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+            }
+            else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
+                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+            }
+            else{
+                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+            }
         }
-        else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
-            $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
-            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+        else if($oldPapp->offline_user==1){
+            if($oldPapp->submitted_stop_form==0){
+                $thisYear = date('Y');
+                $last_renew_year=$oldPapp->latest_reg_year;
+                if($last_renew_year>="2015"){
+                    $less_than_2015=0;
+                    $greater_than_2015=$thisYear-$last_renew_year;
+                }
+                else{
+                    $less_than_2015="2015"-$last_renew_year;
+                    $greater_than_2015=$thisYear-"2015";
+                }
+                if($thisYear-$last_renew_year>1){
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",(".$less_than_2015."x 10000 +".$greater_than_2015."x 100000";
+                }
+                else{
+                    if($thisYear == $last_renew_year+1){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee';
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+                    }else if($thisYear == $last_renew_year && date('M') === 'Jan'){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+                    }
+                    else if($thisYear == $last_renew_year && date('m')>1 && date('m')<=4){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+                    }
+                    else{
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+                    }
+                }
+            }
+            else if($oldPapp->submitted_stop_form==1){
+                $thisYear = date('Y');
+                $submitted_from_date=date('Y',strtotime($oldPapp->submitted_from_date));
+                $submitted_to_date=date('Y',strtotime($oldPapp->submitted_to_date));
+                if( $submitted_to_date>="2015"){
+                    $less_than_2015=0;
+                    $greater_than_2015=$thisYear-$submitted_to_date;
+                }
+                else{
+                    $less_than_2015="2015"-$submitted_to_date;
+                    $greater_than_2015=$thisYear-"2015";
+                }
+                $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee';
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",(".$less_than_2015."x 10000 +".$greater_than_2015."x 100000";
+            }
         }
-
+        $invoice->invoiceNo = "papp-renew";
         $invoice->status = 0;
+        // return $invoice;
         $invoice->save();
         
         return response()->json([
@@ -1130,7 +1187,12 @@ class PAPPController extends Controller
         $cpa_ff->nrc_front        =   $nrc_front;
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->status           =  0;
-        $cpa_ff->is_renew          =   $request->is_renew;
+        $cpa_ff->is_renew         =   0;
+        $cpa_ff->offline_user         =  1;
+        $cpa_ff->type             =   0;
+        $cpa_ff->resign   =   $request->submitted_stop_form;
+        $cpa_ff->start_date   =   $request->submitted_from_date;
+        $cpa_ff->end_date   =   $request->submitted_to_date;
         $cpa_ff->save();
 
         $student_data = StudentInfo::find($student_info->id);
@@ -1170,7 +1232,7 @@ class PAPPController extends Controller
         $papp->submitted_stop_form  =   $request->submitted_stop_form;       
         $papp->submitted_from_date   =   $request->submitted_from_date;
         $papp->submitted_to_date     =   $request->submitted_to_date;
-        $papp->submitted_to_date     =   $request->submitted_to_date;
+        // $papp->submitted_to_date     =   $request->submitted_to_date;
         // $thisYear = date('Y');
         // $today = date('d-m-Y');
         // $papp->validate_from = $today;
@@ -1258,7 +1320,9 @@ class PAPPController extends Controller
 
     public function approve_offline_papp($id,$cpaff_id)
     {
-        $accepted_date = date('Y-m-d');
+        $month_day=date('m-d');
+        $year=date('Y')-1;
+        $accepted_date = $year.'-'.$month_day;
         $approve = Papp::find($id);
         if($approve->status==0)
         {

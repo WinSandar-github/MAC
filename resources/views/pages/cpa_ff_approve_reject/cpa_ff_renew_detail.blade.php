@@ -69,7 +69,7 @@
                                         <button type="button" id="cpa_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpaModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                     <div class="col-md-6 text-left cpa_file"></div>
-                                </div>
+                                </div>--}}
                                 <!-- CPA Modal-->
                                 <div id="cpaModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">
@@ -89,7 +89,7 @@
                                 </div>
 
                                 <!-- RA -->
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">RA </p>
                                     </div>
@@ -97,7 +97,7 @@
                                         <button type="button" id="ra_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#raModal"><i class="fa fa-paperclip"></i></button>
                                     </div>
                                     <div class="col-md-6 text-left ra_file"></div>
-                                </div>
+                                </div>--}}
                                 <!--RA Modal -->
                                 <div id="raModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-lg">

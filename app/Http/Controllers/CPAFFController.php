@@ -232,7 +232,7 @@ class CPAFFController extends Controller
 
             $invoice = new Invoice();
             $invoice->student_info_id = $std_info->id;
-            $invoice->invoiceNo       = '';
+            $invoice->invoiceNo     = "cpaff-initial";
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
@@ -405,6 +405,9 @@ class CPAFFController extends Controller
             $cpa_ff->status           =  0;
             $cpa_ff->self_confession   =   $request->self_confession;
             $cpa_ff->form_type        =   $request->form_type;
+            $cpa_ff->type              =   $request->type;
+            $cpa_ff->is_renew          =   $request->is_renew;
+            $cpa_ff->offline_user      = 1;
             // $thisYear = date('Y');
             // $today = date('d-m-Y');
             // $cpa_ff->validate_from = $today;
@@ -632,12 +635,12 @@ class CPAFFController extends Controller
 
             //invoice
             $fees = Membership::where('membership_name','=','CPAFF')->first(['form_fee', 'registration_fee']);
-            $stdInfo = StudentInfo::where('id', '=', $request->student_id)->first();
+            $stdInfo = StudentInfo::where('id', '=', $request->student_info_id)->first();
             //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
             $invoice = new Invoice();
-            $invoice->student_info_id = $request->student_id;
-            $invoice->invoiceNo       = '';
+            $invoice->student_info_id = $request->student_info_id;
+            $invoice->invoiceNo     = "cpaff-initial";
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
@@ -653,8 +656,10 @@ class CPAFFController extends Controller
     }
     //Store Renew Form
     public function storeRenewForm(Request $request){
+        // return $request->student_info_id;
         $initial_cpaff=CPAFF::where('student_info_id',$request->student_info_id)
         ->where('is_renew',0)->first();
+        // return $initial_cpaff;
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -820,11 +825,12 @@ class CPAFFController extends Controller
         $cpa_ff->old_card_file        =   $request->old_card_file;
         $cpa_ff->is_convicted        =   $request->is_convicted;  
         $cpa_ff->is_renew   =   $request->is_renew;
+        $cpa_ff->type   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;
 
         $today = date('d-m-Y');        
         $cpa_ff->validate_from = $today ;
-        // $old_validate_to=date('Y-m',strtotime($oldPapp->validate_to));
+        // $old_validate_to=date('Y-m',strtotime($oldCpaff->validate_to));
         if(strtotime($today)<=strtotime($oldCpaff->validate_to))
         {
             $thisYear = date('Y')+1;
@@ -843,23 +849,78 @@ class CPAFFController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_info_id;
-        $invoice->invoiceNo       = '';
+        $invoice->invoiceNo     = "cpaff-renew";
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
-        $thisYear = date('Y');
-        $oldYear=date('Y',strtotime($oldCpaff->validate_to));
-        if($thisYear == $oldYear){
-            $invoice->productDesc     = 'Application Fee, Renewal Fee';
-            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
-        }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
-            $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
-            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+
+        if($oldCpaff->offline_user==0){
+            $thisYear = date('Y');
+            $oldYear=date('Y',strtotime($oldCpaff->validate_to));
+            if($thisYear == $oldYear){
+                $invoice->productDesc     = 'Application Fee, Renewal Fee';
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+            }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
+                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+            }
+            else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
+                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+            }
         }
-        else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
-            $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
-            $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+        else if($oldCpaff->offline_user==1){
+            if($oldCpaff->resign==0){
+                $thisYear = date('Y');
+                $last_renew_year=$oldCpaff->last_paid_year;
+                if($last_renew_year>="2015"){
+                    $less_than_2015=0;
+                    $greater_than_2015=$thisYear-$last_renew_year;
+                }
+                else{
+                    $less_than_2015="2015"-$last_renew_year;
+                    $greater_than_2015=$thisYear-"2015";
+                }
+                if($thisYear-$last_renew_year>1){
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",(".$less_than_2015."x 10000 +".$greater_than_2015."x 100000";
+                }
+                else{
+                    if($thisYear == $last_renew_year+1){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee';
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+                    }else if($thisYear == $last_renew_year && date('M') === 'Jan'){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+                    }
+                    else if($thisYear == $last_renew_year && date('m')>1 && date('m')<=4){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+                    }
+                    else{
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+                    }
+                }
+            }
+            else if($oldCpaff->resign==1){
+                $thisYear = date('Y');
+                $submitted_from_date=date('Y',strtotime($oldCpaff->start_date));
+                $submitted_to_date=date('Y',strtotime($oldCpaff->end_date));
+                if( $submitted_to_date>="2015"){
+                    $less_than_2015=0;
+                    $greater_than_2015=$thisYear-$submitted_to_date;
+                }
+                else{
+                    $less_than_2015="2015"-$submitted_to_date;
+                    $greater_than_2015=$thisYear-"2015";
+                }
+                $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee';
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",(".$less_than_2015."x 10000 +".$greater_than_2015."x 100000";
+            }
         }
+
+        
 
         $invoice->status = 0;
         $invoice->save();
