@@ -195,7 +195,7 @@ class ArticleController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' disabled onclick='showContractDate($infos)'>
                                     <li class='fa fa-calendar fa-sm'></li>
                                 </button>
-                                <button type='button' class='btn btn-warning btn-sm p' disabled onclick=x'updateContractDate($infos)'>
+                                <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateContractDate($infos)'>
                                     <li class='fa fa-pencil' fa-sm'></li>
                                 </button>
                             </div>";
@@ -204,7 +204,7 @@ class ArticleController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showContractDate($infos)'>
                                     <li class='fa fa-calendar fa-sm'></li>
                                 </button>
-                                <button type='button' class='btn btn-warning btn-sm p' disabled onclick=x'updateContractDate($infos)'>
+                                <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateContractDate($infos)'>
                                     <li class='fa fa-pencil' fa-sm'></li>
                                 </button>
                             </div>";
