@@ -48,7 +48,7 @@
                             @if($currend_date > $data['course']->active_batch[0]->mac_reg_end_date)
                                 @if($data['course']->code === "da_1" || $data['course']->code === "cpa_1" )
                                     <button onclick="generatePersonalNo('{{$data['course']->code}}')" class="pull-right
-                                    btn btn-sm btn-success">ကိုယ်ပိုင်နံပါတ် ထုတ်ပေးမည်
+                                    btn btn-sm btn-success">ကိုယ်ပိုင်အမှတ်အမှတ် ထုတ်ပေးမည်
                                     </button>
                                 @else
                                     <button onclick="generateSrNo('{{$data['course']->code}}')"
@@ -63,10 +63,10 @@
                                 <tr>
                                     <th class="bold-font-weight">စဥ်</th>
                                     <th class="bold-font-weight">အမည်</th>
-                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကဒ်အမှတ်</th>
+                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်အမှတ်</th>
                                     <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                     <th class="bold-font-weight">အဘအမည်</th>
-                                    <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
+                                    <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်</th>
                                 </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable">
@@ -77,7 +77,7 @@
                                     @if($key == 2)
                                         <tr class="mac-row">
                                             <td colspan="6" style="text-align: start; font-weight: bold">MAC
-                                                တွင်တက်ရောက်မည့်သူများ
+                                                သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
                                             </td>
                                         </tr>
 
@@ -120,7 +120,7 @@
                                     @if($key == 0)
                                         <tr class="self-row">
                                             <td colspan="6" style="text-align: start;font-weight: bold">
-                                                ကိုယ်တိုင်လေ့လာမည့်သူများ
+                                                ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများ
                                             </td>
                                         </tr>
 
@@ -163,7 +163,7 @@
                                     @if($key == 1)
                                         <tr class="private-row">
                                             <td colspan="6" style="text-align: start;font-weight: bold">
-                                                ကိုယ်ပိုင်ကျောင်းတွင်လေ့လာမည့်သူများ
+                                                ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင်တက်ရောက်ခွင့်ရသူများ
                                             </td>
                                         </tr>
 
