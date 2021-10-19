@@ -382,13 +382,14 @@ class CPAFFController extends Controller
             $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
             $cpa_ff->foreign_degree   =   json_encode($degree_file);
             $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
+            $cpa_ff->cpaff_reg_no     =   $request->cpaff_reg_no;
             $cpa_ff->address          =   $request->address;
             $cpa_ff->phone            =   $request->phone;
             $cpa_ff->contact_mail     =   $request->contact_mail;
             $cpa_ff->cpaff_pass_date     =   $request->cpaff_pass_date;
-            $cpa_ff->renew_accepted_date     =   $request->renew_accepted_date;
-            $cpa_ff->old_card_no_year     =   $request->old_card_no_year;
-            $cpa_ff->reg_no     =   $request->reg_no;
+            $cpa_ff->cpaff_renew_date     =   $request->cpaff_renew_date;
+            $cpa_ff->papp_reg_year     =   $request->papp_reg_year;
+            $cpa_ff->papp_reg_no     =   $request->papp_reg_no;
             $cpa_ff->renew_file     =   $renew_file;
             $cpa_ff->fine_person     =   $request->fine_person;
             $cpa_ff->cpa_certificate  =   $cpa_certificate;
@@ -400,14 +401,17 @@ class CPAFFController extends Controller
             $cpa_ff->total_hours      =   $request->total_hours;
             $cpa_ff->last_paid_year   =   $request->last_paid_year;
             $cpa_ff->resign   =   $request->resign;
-            $cpa_ff->start_date   =   $request->start_date;
-            $cpa_ff->end_date   =   $request->end_date;
+            $cpa_ff->resign_date   =   $request->resign_date;
+            // $cpa_ff->end_date   =   $request->end_date;
             $cpa_ff->status           =  0;
             $cpa_ff->self_confession   =   $request->self_confession;
             $cpa_ff->form_type        =   $request->form_type;
             $cpa_ff->type              =   $request->type;
             $cpa_ff->is_renew          =   $request->is_renew;
             $cpa_ff->offline_user      = 1;
+            // Generate Reg No.
+            // $cpa_ff->cpaff_reg_no = 'CPAFF_' . str_pad($cpa_ff->id, 5, "0", STR_PAD_LEFT);
+            // $cpa_ff->reg_date = date('Y-m-d');
             // $thisYear = date('Y');
             // $today = date('d-m-Y');
             // $cpa_ff->validate_from = $today;
@@ -768,48 +772,30 @@ class CPAFFController extends Controller
             $cpd_record="";
         }
 
-        if ($request->hasfile('three_years_full')) {
-            $file = $request->file('three_years_full');
+        if ($request->hasfile('renew_file')) {
+            $file = $request->file('renew_file');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/cpa_ff_register/',$name);
-            $three_years_full = '/storage/cpa_ff_register/'.$name;
+            $renew_file = '/storage/cpa_ff_register/'.$name;
         }else{
-            $three_years_full="";
+            $renew_file="";
         }
+
+        // if ($request->hasfile('three_years_full')) {
+        //     $file = $request->file('three_years_full');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/cpa_ff_register/',$name);
+        //     $three_years_full = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $three_years_full="";
+        // }
 
         $oldCpaff = CPAFF::where('student_info_id', '=', $request->student_info_id)->latest()->first();
 
         $cpa_ff  = new CPAFF();
         $cpa_ff->student_info_id  =   $request->student_info_id;
         $cpa_ff->profile_photo    =   $profile_photo;
-        $cpa_ff->cpa              =   $cpa;
-        $cpa_ff->ra               =   $ra;
-        $cpa_ff->degree_name      =   $degree_name;
-        $cpa_ff->degree_pass_year =   $degree_pass_year;
-        $cpa_ff->foreign_degree   =   $degree_file_json;
-
-        $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
-        $cpa_ff->pass_personal_no =   $request->pass_personal_no;
-
-        $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
-        $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
-        $cpa_ff->cpa_certificate  =   $cpa_certificate;
-        $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
-        $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
-        $cpa_ff->nrc_front        =   $nrc_front;
-        $cpa_ff->nrc_back         =   $nrc_back;
-        $cpa_ff->cpd_record       =   $cpd_record;
-        $cpa_ff->total_hours      =   $request->total_hours;
-        $cpa_ff->fine_person      =   $request->fine_person;
-        $cpa_ff->form_type        =   $initial_cpaff->form_type;
-        $cpa_ff->status           =  0;
-        //save to cpaff
-        $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
-        $cpa_ff->address          =   $request->address;
-        $cpa_ff->phone            =   $request->phone;
-        $cpa_ff->contact_mail     =   $request->contact_mail;
-        $cpa_ff->three_years_full   =   $three_years_full;
-
+        
         $cpa_ff->name_mm           =   $request->name_mm;
         $cpa_ff->name_eng          =   $request->name_eng;
         $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
@@ -818,15 +804,55 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_number        =   $request->nrc_number;
         $cpa_ff->father_name_mm    =   $request->father_name_mm;
         $cpa_ff->father_name_eng   =   $request->father_name_eng; 
+        $cpa_ff->cpa              =   $cpa;
+        $cpa_ff->ra               =   $ra;
+        $cpa_ff->degree_name      =   $degree_name;
+        $cpa_ff->degree_pass_year =   $degree_pass_year;
+        $cpa_ff->foreign_degree   =   $degree_file_json;
+
+        $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
+        $cpa_ff->cpaff_reg_no     =   $request->cpaff_reg_no;
+        $cpa_ff->address          =   $request->address;
+        $cpa_ff->phone            =   $request->phone;
+        $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->cpaff_pass_date     =   $request->cpaff_pass_date;
-        $cpa_ff->renew_card_year          =   $request->renew_card_year;
-        $cpa_ff->old_card_no            =   $request->old_card_no;
-        $cpa_ff->old_card_no_year     =   $request->old_card_no_year;
-        $cpa_ff->old_card_file        =   $request->old_card_file;
-        $cpa_ff->is_convicted        =   $request->is_convicted;  
+        $cpa_ff->cpaff_renew_date     =   $request->cpaff_renew_date;
+        $cpa_ff->papp_reg_no     =   $request->papp_reg_no;
+        $cpa_ff->papp_reg_year     =   $request->papp_reg_year;
+        $cpa_ff->renew_file     =   $renew_file;
+        $cpa_ff->fine_person      =   $request->fine_person;
+        $cpa_ff->cpa_certificate  =   $cpa_certificate;
+        $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
+        $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
+        $cpa_ff->nrc_front        =   $nrc_front;
+        $cpa_ff->nrc_back         =   $nrc_back;
+        $cpa_ff->cpd_record       =   $cpd_record;
+        $cpa_ff->total_hours      =   $request->total_hours;
+        $cpa_ff->last_paid_year      =   $request->last_paid_year;
+        $cpa_ff->resign_date      =   $request->resign_date;
         $cpa_ff->is_renew   =   $request->is_renew;
-        $cpa_ff->type   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;
+        $cpa_ff->type   =   $request->type;
+        $cpa_ff->status           =  0;
+
+        // $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
+        // $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
+        
+        
+        // // $cpa_ff->form_type        =   $initial_cpaff->form_type;
+        
+        // //save to cpaff
+        
+        // $cpa_ff->three_years_full   =   $three_years_full;
+
+        
+        // $cpa_ff->cpaff_pass_date     =   $request->cpaff_pass_date;
+        // $cpa_ff->renew_card_year          =   $request->renew_card_year;
+        // $cpa_ff->old_card_no            =   $request->old_card_no;
+        // $cpa_ff->old_card_no_year     =   $request->old_card_no_year;
+        // $cpa_ff->old_card_file        =   $request->old_card_file;
+        // $cpa_ff->is_convicted        =   $request->is_convicted;  
+        
 
         $today = date('d-m-Y');        
         $cpa_ff->validate_from = $today ;
@@ -905,14 +931,14 @@ class CPAFFController extends Controller
             }
             else if($oldCpaff->resign==1){
                 $thisYear = date('Y');
-                $submitted_from_date=date('Y',strtotime($oldCpaff->start_date));
-                $submitted_to_date=date('Y',strtotime($oldCpaff->end_date));
-                if( $submitted_to_date>="2015"){
+                $submitted_from_date=date('Y',strtotime($oldCpaff->resign_date));
+                // $submitted_to_date=date('Y',strtotime($oldCpaff->end_date));
+                if( $submitted_from_date>="2015"){
                     $less_than_2015=0;
-                    $greater_than_2015=$thisYear-$submitted_to_date;
+                    $greater_than_2015=$thisYear-$submitted_from_date;
                 }
                 else{
-                    $less_than_2015="2015"-$submitted_to_date;
+                    $less_than_2015="2015"-$submitted_from_date;
                     $greater_than_2015=$thisYear-"2015";
                 }
                 $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee';
@@ -952,8 +978,8 @@ class CPAFFController extends Controller
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
             // Generate Reg No.
-            $approve->reg_no = 'CPAFF_' . str_pad($id, 5, "0", STR_PAD_LEFT);
-            $approve->reg_date = date('Y-m-d');
+            // $approve->reg_no = 'CPAFF_' . str_pad($id, 5, "0", STR_PAD_LEFT);
+            // $approve->reg_date = date('Y-m-d');
         }
         else if($approve->status==1){
             $approve->status = 1;
