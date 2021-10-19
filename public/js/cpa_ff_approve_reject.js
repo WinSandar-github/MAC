@@ -355,11 +355,11 @@ function loadCPAFFData(){
                 }else{
                     $("#cpa2_pass_date").append(`<span>-</span>`);
                 }
-                if(element.reg_no != null){
-                    $("#reg_no").append(element.reg_no);
-                }else{
-                    $("#reg_no").append(`<span>-</span>`);
-                }
+                // if(element.reg_no != null){
+                //     $("#cpa_reg_no").append(element.cpa_batch_no);
+                // }else{
+                //     $("#cpa_reg_no").append(`<span>-</span>`);
+                // }
                 
                 if(element.country != null){
                     $("#country").append(element.country);
@@ -636,12 +636,27 @@ function loadCPAFFRenewData(){
                 $("#cpaff_address").append(element.address);
                 $("#cpaff_phone").append(element.phone);
                 $("#contact_mail").append(element.contact_mail);
-                
-                if(element.cpaff_pass_date != null){
-                    $("#cpaff_pass_date").append(element.cpaff_pass_date);
+                $("#cpaff_reg_no").append(element.cpaff_reg_no);
+                if(element.papp_reg_no !=null){
+                    $("#papp_reg_no").append(element.papp_reg_no);
                 }else{
-                    $("#cpaff_pass_date").append(`<span>-</span>`);
+                    $("#papp_reg_no").append(`<span>-</span>`);
                 }
+                if(element.papp_reg_year !=null){
+                    $("#papp_reg_year").append(element.papp_reg_year);
+                }else{
+                    $("#papp_reg_year").append(`<span>-</span>`);
+                }
+                $("#last_paid_year").append(element.last_paid_year);
+                $("#resign_date").append(element.resign_date);
+                $("#cpaff_pass_date").append(element.cpaff_pass_date);
+                $("#cpaff_renew_date").append(element.cpaff_renew_date);
+                
+                // if(element.cpaff_pass_date != null){
+                //     $("#cpaff_pass_date").append(element.cpaff_pass_date);
+                // }else{
+                //     $("#cpaff_pass_date").append(`<span>-</span>`);
+                // }
                 // $("#cpd_total_hour").append(element.total_hours);
                 $("#three_years_full").append(element.three_years_full);
                 $("#university_name").append(education_history.university_name);
@@ -885,29 +900,22 @@ function loadCPAFFOfflineInitialData(){
                 $("#cpaff_address").append(element.address);
                 $("#cpaff_phone").append(element.phone);
                 $("#contact_mail").append(element.contact_mail);
-                $("#reg_no").append(element.reg_no);
-                if(element.last_paid_year !=null){
-                    $("#last_paid_year").append(element.last_paid_year);
+                $("#cpaff_reg_no").append(element.cpaff_reg_no);
+                if(element.papp_reg_no !=null){
+                    $("#papp_reg_no").append(element.papp_reg_no);
                 }else{
-                    $("#last_paid_year").append(`<span>-</span>`);
+                    $("#papp_reg_no").append(`<span>-</span>`);
                 }
-                if(element.start_date !=null){
-                    $("#start_date").append(element.start_date);
+                if(element.papp_reg_year !=null){
+                    $("#papp_reg_year").append(element.papp_reg_year);
                 }else{
-                    $("#start_date").append(`<span>-</span>`);
+                    $("#papp_reg_year").append(`<span>-</span>`);
                 }
-                if(element.end_date !=null){
-                    $("#end_date").append(element.end_date);
-                }else{
-                    $("#end_date").append(`<span>-</span>`);
-                }
-                
-                if(element.cpaff_pass_date != null){
-                    $("#cpaff_pass_date").append(element.cpaff_pass_date);
-                }else{
-                    $("#cpaff_pass_date").append(`<span>-</span>`);
-                }
-                // $("#cpd_total_hour").append(element.total_hours);
+                $("#last_paid_year").append(element.last_paid_year);
+                $("#resign_date").append(element.resign_date);
+                $("#cpaff_pass_date").append(element.cpaff_pass_date);
+                $("#cpaff_renew_date").append(element.cpaff_renew_date);
+
                 $("#three_years_full").append(element.three_years_full);
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
