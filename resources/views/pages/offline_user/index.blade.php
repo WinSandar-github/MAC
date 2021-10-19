@@ -1025,98 +1025,98 @@
           			],
           			"dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
           	});
-        $('#tbl_school_pending_list').DataTable({
-            scrollX: true,
-            processing: true,
-            // serverSide: true,
-            // searching: false,
-            paging:true,
-            ajax: {
-                url  : BACKEND_URL + "/filter_school",
-                type : "POST" ,
-                data :  function (d) {
-                    d.name      =  $("input[name=filter_by_name]").val(),
-                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 0,
-                    d.offline_user= true
-                }
+            $('#tbl_school_pending_list').DataTable({
+                scrollX: true,
+                processing: true,
+                // serverSide: true,
+                // searching: false,
+                paging:true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_school",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.name      =  $("input[name=filter_by_name]").val(),
+                        d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                        d.status    = 0,
+                        d.offline_user= true
+                    }
 
-            },
-            columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'name_mm', name: 'name_mm'},
-                {data: 'email', name: 'email'},
-                {data: 'regno', name: 'regno'},
-                {data: 'phone', name: 'phone'},
-                {data: 'status', name: 'status'},
+                },
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'name_mm', name: 'name_mm'},
+                    {data: 'email', name: 'email'},
+                    {data: 'regno', name: 'regno'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'status', name: 'status'},
+                    
+                ],
                 
-            ],
+            });
             
-         });
-        
-        $('#tbl_school_approved_list').DataTable({
-            scrollX: true,
-            processing: true,
-            // serverSide: true,
-            // searching: false,
-            paging:true,
-            ajax: {
-                url  : BACKEND_URL + "/filter_school",
-                type : "POST" ,
-                data :  function (d) {
-                    d.name      =  $("input[name=filter_by_name]").val(),
-                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 1,
-                    d.offline_user= true
-                }
+            $('#tbl_school_approved_list').DataTable({
+                scrollX: true,
+                processing: true,
+                // serverSide: true,
+                // searching: false,
+                paging:true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_school",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.name      =  $("input[name=filter_by_name]").val(),
+                        d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                        d.status    = 1,
+                        d.offline_user= true
+                    }
 
-            },
-            columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'name_mm', name: 'name_mm'},
-                {data: 'email', name: 'email'},
-                {data: 'regno', name: 'regno'},
-                {data: 'phone', name: 'phone'},
-                {data: 'status', name: 'status'},
-            ],
-         });
+                },
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'name_mm', name: 'name_mm'},
+                    {data: 'email', name: 'email'},
+                    {data: 'regno', name: 'regno'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'status', name: 'status'},
+                ],
+            });
 
-        $('#tbl_school_rejected_list').DataTable({
-            scrollX: true,
-            processing: true,
-            // serverSide: true,
-            // searching: false,
-            paging:true,
-            ajax: {
-                url  : BACKEND_URL + "/filter_school",
-                type : "POST" ,
-                data :  function (d) {
-                    d.name      =  $("input[name=filter_by_name]").val(),
-                    d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 2,
-                    d.offline_user= true
-                }
+            $('#tbl_school_rejected_list').DataTable({
+                scrollX: true,
+                processing: true,
+                // serverSide: true,
+                // searching: false,
+                paging:true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_school",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.name      =  $("input[name=filter_by_name]").val(),
+                        d.nrc       =  $("input[name=filter_by_nrc]").val(),
+                        d.status    = 2,
+                        d.offline_user= true
+                    }
 
-            },
-            columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'name_mm', name: 'name_mm'},
-                {data: 'email', name: 'email'},
-                {data: 'regno', name: 'regno'},
-                {data: 'phone', name: 'phone'},
-                {data: 'status', name: 'status'},
-                {data: 'reason', name: 'reason'},
-            ],
-        });
+                },
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'name_mm', name: 'name_mm'},
+                    {data: 'email', name: 'email'},
+                    {data: 'regno', name: 'regno'},
+                    {data: 'phone', name: 'phone'},
+                    {data: 'status', name: 'status'},
+                    {data: 'reason', name: 'reason'},
+                ],
+            });
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
                 $.each($.fn.dataTable.tables(true), function () {
                     $(this).DataTable().columns.adjust();
@@ -1150,7 +1150,7 @@
 
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-      });
+        });
         
         $('#tbl_cpaff_initial_approved_list').DataTable({
           processing: true,
@@ -1174,37 +1174,44 @@
             {data: 'status', name: 'Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-      });
+        });
 
-      $('#tbl_cpaff_initial_rejected_list').DataTable({
-          processing: true,
-          scrollX:true,
-          // serverSide: true,
-          ajax: BACKEND_URL + "/cpa_ff_offline_register_list/2/0",
-          columns: [
-            {data: null, render: function (data, type, row, meta) {
-                return meta.row + meta.settings._iDisplayStart + 1;
-            }},
-            {data: 'action', name: 'action', orderable: false, searchable: false},
-            {data: 'student_info.name_mm', name: 'Student Name'},
-            {data: 'nrc', name: 'NRC'},
-            {data: 'student_info.email', name: 'Email'},
-            {data: 'self', name: 'Self Confession'},
-            {data: 'reg_no', name: 'Registration Number',className: "set-text-center"},
-            // {data: 'degree', name: 'Degree'},
-            {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-            {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
-            {data: 'total_hours', name: 'CPD Total Hours'},
-            {data: 'status', name: 'Status'},
-          ],
-          "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-      });
-      $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-          $.each($.fn.dataTable.tables(true), function(){
-              $(this).DataTable()
-                  .columns.adjust()
-                  .responsive.recalc();
-          });
-      });
+        $('#tbl_cpaff_initial_rejected_list').DataTable({
+            processing: true,
+            scrollX:true,
+            // serverSide: true,
+            ajax: BACKEND_URL + "/cpa_ff_offline_register_list/2/0",
+            columns: [
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
+                {data: 'action', name: 'action', orderable: false, searchable: false},
+                {data: 'student_info.name_mm', name: 'Student Name'},
+                {data: 'nrc', name: 'NRC'},
+                {data: 'student_info.email', name: 'Email'},
+                {data: 'self', name: 'Self Confession'},
+                {data: 'reg_no', name: 'Registration Number',className: "set-text-center"},
+                // {data: 'degree', name: 'Degree'},
+                {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+                {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+                {data: 'total_hours', name: 'CPD Total Hours'},
+                {data: 'status', name: 'Status'},
+            ],
+            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        });
+
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
+
+            $.each($.fn.dataTable.tables(true), function(){
+
+                $(this).DataTable()
+
+                    .columns.adjust()
+
+                    //.responsive.recalc();
+
+            });
+
+        });
     </script>
 @endpush
