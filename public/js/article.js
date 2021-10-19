@@ -1,9 +1,3 @@
-function hideModel(){
-    $("#contractModal").hide();
-    $("#contractGovModal").hide();
-    location.reload();
-}
-
 function showContractDate(info){
     $("#contractModal").modal('show');
     $("#article_id").val(info.id);
@@ -293,15 +287,17 @@ function loadArticle()
             var leave_requests = student_info.leave_requests;
             var r = 1;
             leave_requests.forEach(function(element){
-                var tr = "<tr>";
-                tr += "<td class='alignright'>" + r + "</td>";
-                tr += "<td>" + element.remark + "</td>";
-                tr += "<td>" + element.start_date + "</td>";
-                tr += "<td>" + element.end_date + "</td>";
-                tr += "<td>" + element.total_leave + "</td>";
-                tr += "</tr>";
-                r = r + 1;
-                $("#leave_request_body").append(tr);
+                if(data.article_form_type == element.form_type){
+                    var tr = "<tr>";
+                    tr += "<td class='alignright'>" + r + "</td>";
+                    tr += "<td>" + element.remark + "</td>";
+                    tr += "<td>" + element.start_date + "</td>";
+                    tr += "<td>" + element.end_date + "</td>";
+                    tr += "<td>" + element.total_leave + "</td>";
+                    tr += "</tr>";
+                    r = r + 1;
+                    $("#leave_request_body").append(tr);
+                }
             })
 			$('#leave_request_table').DataTable({
 				'destroy': true,
@@ -562,15 +558,17 @@ function loadGovArticle()
             var leave_requests = student_info.leave_requests;
             var r = 1;
             leave_requests.forEach(function(element){
-                var tr = "<tr>";
-                tr += "<td class='alignright'>" + r + "</td>";
-                tr += "<td>" + element.remark + "</td>";
-                tr += "<td>" + element.start_date + "</td>";
-                tr += "<td>" + element.end_date + "</td>";
-                tr += "<td>" + element.total_leave + "</td>";
-                tr += "</tr>";
-                r = r + 1;
-                $("#leave_request_body").append(tr);
+                if(element.form_type == 'gov'){
+                    var tr = "<tr>";
+                    tr += "<td class='alignright'>" + r + "</td>";
+                    tr += "<td>" + element.remark + "</td>";
+                    tr += "<td>" + element.start_date + "</td>";
+                    tr += "<td>" + element.end_date + "</td>";
+                    tr += "<td>" + element.total_leave + "</td>";
+                    tr += "</tr>";
+                    r = r + 1;
+                    $("#leave_request_body").append(tr);
+                }
             })
 			$('#leave_request_table').DataTable({
 				'destroy': true,
@@ -830,5 +828,86 @@ function doneResignArticle(id){
                 location.href = FRONTEND_URL + "/article_list";
             }
         });
+    }
+}
+
+function checkEndArticle(info){
+    $("#endModal").modal('show');
+    $("#article_id").val(info.id);
+    $("#article_form_type").val(info.article_form_type);
+    $("#contract_end_date").val(info.contract_end_date);
+}
+
+function checkEndGovArticle(info){
+    $("#endGovModal").modal('show');
+    $("#gov_article_id").val(info.id);
+    $("#contract_gov_end_date").val(info.contract_end_date);
+}
+
+function saveEndArticle(){
+    id = $("#article_id").val();
+    article_form_type = $("#article_form_type").val();
+    contract_end_date = $("input[name=contract_end_date]").val();
+
+    student_info_id = $("#student_info_id").val();
+
+    if(contract_end_date){
+
+        var data = new FormData();
+        data.append('id', id);
+        data.append('contract_end_date', contract_end_date);
+
+        show_loader();
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: BACKEND_URL + "/save_contract_end_date",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                EasyLoading.hide();
+                successMessage("You have successfully registered.");
+                location.reload();
+            },
+            error: function (message) {
+                EasyLoading.hide();
+                errorMessage(message);
+            }
+        });
+    }else{
+        alert("Please select date.");
+    }
+}
+
+function saveGovEndArticle(){
+    id = $("#gov_article_id").val();
+    contract_gov_end_date = $("input[name=contract_gov_end_date]").val();
+    if(contract_gov_end_date){
+
+        var data = new FormData();
+        data.append('id', id);
+        data.append('contract_gov_end_date', contract_gov_end_date);
+
+        show_loader();
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: BACKEND_URL + "/save_gov_contract_end_date",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                EasyLoading.hide();
+                successMessage("You have successfully registered.");
+                location.reload();
+            },
+            error: function (message) {
+                EasyLoading.hide();
+                errorMessage(message);
+            }
+        });
+    }else{
+        alert("Please select date.");
     }
 }

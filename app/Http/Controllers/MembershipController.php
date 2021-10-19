@@ -28,6 +28,11 @@ class MembershipController extends Controller
         ],200);
     }
 
+    public function membership_list()
+    {
+        return view('pages.membership_list');
+    }
+
     /**
      * Store a newly created resource in storage.
      *

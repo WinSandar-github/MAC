@@ -666,6 +666,7 @@
                     data :  function (d) {
                         d.status       = 0,
                         d.course_type_id = 1,
+                        d.course_code = 'da_2',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -698,6 +699,7 @@
                     data :  function (d) {
                         d.status       = 1  ,
                         d.course_type_id = 1,
+                        d.course_code = 'da_2',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -729,6 +731,7 @@
                     data :  function (d) {
                         d.status       = 2,
                         d.course_type_id = 1,
+                        d.course_code = 'da_2',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -760,6 +763,7 @@
                     data :  function (d) {
                         d.status       = 0,
                         d.course_type_id = 2,
+                        d.course_code = 'cpa_2',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -792,6 +796,7 @@
                     data :  function (d) {
                         d.status       = 1,
                         d.course_type_id = 2,
+                        d.course_code = 'cpa_2',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -824,6 +829,7 @@
                     data :  function (d) {
                         d.status       = 2,
                         d.course_type_id = 2,
+                        d.course_code = 'cpa_2',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"

@@ -719,6 +719,15 @@ class CpaTraAddmissionDirectController extends Controller
 
             $student_course = new StudentCourseReg();
             $student_course->student_info_id = $student_info->id;
+            $student_course->batch_id        = $request->pass_batch_id;
+            $student_course->type            = $request->type;
+            $student_course->mac_type        = $request->mac_type;
+            $student_course->date            = $course_date;
+            $student_course->status          = 1;
+            $student_course->save();
+
+            $student_course = new StudentCourseReg();
+            $student_course->student_info_id = $student_info->id;
             $student_course->batch_id        = $request->batch_id;
             $student_course->type            = $request->type;
             $student_course->mac_type        = $request->mac_type;
@@ -729,12 +738,12 @@ class CpaTraAddmissionDirectController extends Controller
             $exam_register = new ExamRegister();
             $exam_register->student_info_id     = $student_info->id;
             $exam_register->date                = $date;
-            $exam_register->grade               = 0;
+            $exam_register->grade               = 1;
             $exam_register->batch_id            = $request->pass_batch_id;
-            // $exam_register->is_full_module   = $request->module;
+            $exam_register->is_full_module   = 3;
             $exam_register->exam_type_id        = $request->type;
-            // $exam_register->form_type        = $request->form_type;
-            $exam_register->status              = 0;
+            $exam_register->form_type        = 3;
+            $exam_register->status              =1;
             $exam_register->save();
 
             $student_register = new StudentRegister();
@@ -743,10 +752,10 @@ class CpaTraAddmissionDirectController extends Controller
             $student_register->date             = date('Y-m-d');
             $student_register->invoice_id       = $student_info->id;
             $student_register->invoice_date     = date('Y-m-d');
-            // $student_register->module        =$request->module;
+            $student_register->module        =3;
             $student_register->type             = $request->type;
-            $student_register->status           = 0;
-            $student_register->form_type        = $request->type;
+            $student_register->status           = 1;
+            $student_register->form_type        = 3;
             $student_register->save();
 
             //invoice

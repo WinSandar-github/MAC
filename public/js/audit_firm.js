@@ -842,9 +842,8 @@ function autoLoadAuditReconnect(){
         $("#name_sole_proprietor").append(element.name_of_sole_proprietor);
         $("#declaration").append(element.declaration);
         $("#status").append(status);
-        $("#last_reg_payment_start").text(element.last_reg_payment_start);
-        $("#last_reg_payment_end").text(element.last_reg_payment_end);
-        $("#last_reg_payment_date").text(element.last_reg_payment_date);
+        $("#last_registered_year").text(element.last_registered_year);
+        $("#suspended_year").text(element.suspended_year);
         // $("#local_foreign_id").append(local_foreign_id);
         var branch=element.branch_offices;
         branch.forEach(function(item){
