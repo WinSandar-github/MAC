@@ -428,6 +428,8 @@ Route::post('/save_gov_registration_fee', 'ArticleController\ArticleController@s
 Route::post('/save_attach_file', 'ArticleController\ArticleController@saveAttachFile');
 Route::post('/filter_done_resign_article','ArticleController\ArticleController@filterDoneResignArticle');
 Route::post('/done_resign_article','ArticleController\ArticleController@doneResignArticle');
+Route::post('/save_contract_end_date', 'ArticleController\ArticleController@saveContractEndDate');
+Route::post('/save_gov_contract_end_date', 'ArticleController\ArticleController@saveGovContractEndDate');
 
 Route::post('/article_renew_register', 'ArticleController\ArticleController@saveRenewArticle');
 Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
@@ -435,6 +437,8 @@ Route::post('/save_leave_request','ArticleController\ArticleController@saveLeave
 Route::post('/get_leave_request','ArticleController\ArticleController@getLeaveRequest');
 Route::get('/get_update_leave_request/{id}','ArticleController\ArticleController@getUpdateLeaveRequest');
 Route::post('/update_leave_request','ArticleController\ArticleController@updateLeaveRequest');
+Route::get('/get_article_list/{id}', 'ArticleController\ArticleController@getArticleList');
+
 
 // Payment
 Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
