@@ -143,7 +143,7 @@ class TeacherController extends Controller
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
-        $teacher->payment_method = 'init_tec';
+        //$teacher->payment_method = 'init_tec';
         $teacher->save();
         
             //Student Info
@@ -182,9 +182,9 @@ class TeacherController extends Controller
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
 
-            $invoice->productDesc     = 'Application Fee,Registration Fee,Subject CPA count *Yearly Fee,Subject DA count *Yearly Fee,Transaction Fee';
+            $invoice->productDesc     = 'Application Fee,Registration Fee,Subject CPA count *Yearly Fee,Subject DA count *Yearly Fee,School Registration';
             foreach($memberships as $memberships){
-                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee.',1000';
+                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
             }
            
             $invoice->status          = 0;
@@ -701,7 +701,7 @@ class TeacherController extends Controller
         $teacher->regno = $request->regno;
         $teacher->initial_status  = 1;
         $teacher->student_info_id  = $request->student_info_id;
-        $teacher->payment_method  = 'renew_tec';
+        //$teacher->payment_method  = 'renew_tec';
         $teacher->save();
         
         
@@ -729,9 +729,9 @@ class TeacherController extends Controller
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
 
-            $invoice->productDesc     = 'Application Fee,Subject CPA count *Renew Fee,Subject DA count *Renew Fee,Transaction Fee';
+            $invoice->productDesc     = 'Application Fee,Subject CPA count *Renew Fee,Subject DA count *Renew Fee,School Registration';
             foreach($memberships as $memberships){
-                $invoice->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->renew_cpa_subject_fee.','.$da_subject_count*$memberships->renew_da_subject_fee.',1000';
+                $invoice->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->renew_cpa_subject_fee.','.$da_subject_count*$memberships->renew_da_subject_fee;
             }
            
             $invoice->status          = 0;
