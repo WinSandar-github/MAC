@@ -66,7 +66,7 @@
                                   </div>
 																	<div class="row border-bottom pl-4">
 
-                                      <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Registration Date') }}</label>
+                                      <label class="col-md-4 col-form-label" style="font-weight:bold">{{ __('Submit Date') }}</label>
                                       <label class="col-md-1 col-form-label">{{ __(':') }}</label>
                                       <div class="col-md-7">
                                           <div class="form-group">
@@ -873,16 +873,16 @@
 
                                 <div class="row mb-5">
                                     <label for="" class="col-md-1 col-form-label"></label>
-                                    <label for="" class="col-md-5 col-form-label font-weight-bold">Last Registration Fee Payment Date</label>
+                                    <label for="" class="col-md-5 col-form-label font-weight-bold">Last Registered Year</label>
 
                                     <div class="col-md-3">
-                                        <span id="last_reg_payment_date" class="form-control"></span>
+                                        <span id="last_registered_year" class="form-control"></span>
                                     </div>
                                 </div>
 
                                 <div class="row mb-5">
                                     <label for="" class="col-md-1 col-form-label"></label>
-                                    <label for="" class="col-md-4 col-form-label font-weight-bold">Request to Disconnect</label>
+                                    <label for="" class="col-md-4 col-form-label font-weight-bold">Suspended Year</label>
                                     <div class="row col-md-7 py-2">
                                         <div class="col-md-3 form-check-radio mx-2">
                                             <label class="form-check-label">
@@ -907,23 +907,12 @@
 
 																<div class="row mb-5">
                                     <label for="" class="col-md-1 col-form-label"></label>
-                                    <label for="" class="col-md-5 col-form-label"></label>
+                                    <label for="" class="col-md-4 col-form-label"></label>
                                     <div class="col-md-2">
-                                        <label for="" class="col-form-label">Start Date</label>
+                                        <label for="" class="col-form-label">Year</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <span id="last_reg_payment_start" class="form-control"></spa>
-                                    </div>
-                                </div>
-
-																<div class="row mb-5">
-                                    <label for="" class="col-md-1 col-form-label"></label>
-                                    <label for="" class="col-md-5 col-form-label"></label>
-                                    <div class="col-md-2">
-                                        <label for="" class="col-form-label">End Date</label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <span id="last_reg_payment_end" class="form-control"></spa>
+                                        <span id="suspended_year" class="form-control"></spa>
                                     </div>
                                 </div>
 

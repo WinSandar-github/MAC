@@ -2258,11 +2258,8 @@ class AccFirmInfController extends Controller
       $acc_firm_info->image  = $image;
       $acc_firm_info->verify_status  = 0;
       $acc_firm_info->req_for_stop    = $request->req_for_stop;
-      // start date and end date
-      $acc_firm_info->last_reg_payment_start    = $request->last_reg_payment_start;
-      $acc_firm_info->last_reg_payment_end    = $request->last_reg_payment_end;
-      // last reg payment date
-      $acc_firm_info->last_reg_payment_date    = $request->last_reg_payment_date;
+      $acc_firm_info->last_registered_year    = $request->last_registered_year;
+      $acc_firm_info->suspended_year    = $request->suspended_year;
       $acc_firm_info->offline_user    = true;
       $acc_firm_info->save();
 
@@ -2870,7 +2867,7 @@ class AccFirmInfController extends Controller
                         <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_reconnect_info/$infos->id'>
                             <li class='fa fa-eye fa-sm'></li>
                         </a>
-                        
+
                     </div>";
         })
 
