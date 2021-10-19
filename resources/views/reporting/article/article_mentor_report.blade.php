@@ -36,7 +36,7 @@
                                         @foreach ($data['mentor'] as $k => $m)
                                             
                                             <tr>
-                                                <td>{{ ++$key }}</td>
+                                                <td>{{ ++$k }}</td>
                                                 <td>{{ $m->name_mm }}</td>
                                                 <td>{{ $m->nrcNumber() }}</td>
                                                 <td>{{ $m->education }}</td>
