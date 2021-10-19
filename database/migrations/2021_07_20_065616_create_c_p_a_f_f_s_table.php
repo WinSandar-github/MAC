@@ -49,7 +49,8 @@ class CreateCPAFFSTable extends Migration
             $table->string('total_hours')->nullable();          
             $table->string('cpa2_pass_date')->nullable();          
             $table->string('cpaff_pass_date')->nullable();          
-            $table->string('reg_no')->nullable();          
+            $table->string('cpaff_renew_date')->nullable();          
+            $table->string('cpaff_reg_no')->nullable();          
             $table->string('country')->nullable();          
             $table->string('government')->nullable();          
             $table->string('exam_year')->nullable();          
@@ -90,9 +91,10 @@ class CreateCPAFFSTable extends Migration
             $table->string('validate_to')->nullable();
             $table->string('last_paid_year')->nullable();//new
             $table->string('resign')->nullable();//new
-            $table->string('start_date')->nullable();//new
-            $table->string('end_date')->nullable();//new
+            $table->string('resign_date')->nullable();//new
+            // $table->string('end_date')->nullable();//new
             $table->boolean('offline_user')->default(0);
+            $table->boolean('papp_reg_no')->nullable();
             $table->timestamps();
         });
     }
