@@ -13,4 +13,8 @@ class Mentor extends Model
                             public function student_info(){
         return $this->hasOne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy');
     }
+
+    public function nrcNumber(){
+        return $this->nrc_state_region .'/'. $this->nrc_township .'('. $this->nrc_citizen .')'. $this->nrc_number;
+    }
 }
