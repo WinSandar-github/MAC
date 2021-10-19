@@ -475,14 +475,14 @@
                                         <span id="papp_reg_year"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                <!-- <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">PAPP Last Renew Year</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_last_renew_year"></span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">နောက်ဆုံးမှတ်ပုံတင်ကြေးပေးသွင်းသည့်ခုနှစ်</p>

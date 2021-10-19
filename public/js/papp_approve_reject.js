@@ -876,10 +876,10 @@ function loadappOfflineUser(){
                 }
 
                 if(element.use_firm==0){
-                    use_firm="No Use Frim Name";
+                    use_firm="-";
                 }
                 else if(element.use_firm==1){
-                    use_firm="Use Frim Name";
+                    use_firm="No Use Firm Name";
                 }else{
                     use_firm="-"
                 }
