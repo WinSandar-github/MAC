@@ -47,7 +47,7 @@ class StudentInfo extends Model
 
     public function student_register()
     {
-        return $this->hasMany(StudentRegister::class,'student_info_id','id')->with('course');
+        return $this->hasMany(StudentRegister::class,'student_info_id','id')->with('course','batch');
     }
 
     public function current_register()

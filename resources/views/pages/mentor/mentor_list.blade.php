@@ -84,7 +84,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <!-- <th class="bold-font-weight" >Type</th> -->
+                                                <th class="bold-font-weight" >Show Article</th>
 
                                             </tr>
                                         </thead>
@@ -103,7 +103,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <!-- <th class="bold-font-weight" >Type</th> -->
+                                                <th class="bold-font-weight" >Show Article</th>
 
                                             </tr>
                                         </thead>
@@ -122,7 +122,7 @@
                                                 <th class="bold-font-weight" >Phone Number</th>
                                                 <th class="bold-font-weight" >NRC</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <!-- <th class="bold-font-weight" >Type</th> -->
+                                                <th class="bold-font-weight" >Show Article</th>
 
                                             </tr>
                                         </thead>
@@ -138,10 +138,55 @@
         </form>
 
     </div>
+
+    <!-- Show Article Model-->
+    <div class="modal fade" id="showArticleModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-md">
+            <div class="modal-content">
+                <div class="modal-header pt-2 pb-2">
+                    <h5 class="modal-title" id="exampleModalLabel">Article List</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <input type="hidden" id="mentor_id">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table" id="show_article_table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Name</th>
+                                            <th>Article Form Type</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="show_article_body">
+                                    </tbody>   
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
 @endsection
 @push('scripts')
 <script>
     $('document').ready(function(){
+
+        $("#showArticleModel").on("hidden.bs.modal", function(){
+            $("#mentor_id").val("");
+            $('#show_article_table').DataTable().destroy();
+        });
+
         var table_pending = $('#tbl_mentor_pending').DataTable({
             scrollX: true,
             processing: true,
@@ -168,11 +213,12 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                // {data: 'type', name: 'type'},
+                {data: 'show_article', name: 'show_article'},
 
             ],
 
         });
+        $('#tbl_mentor_pending').DataTable().column(7).visible(false);
 
         var table_approve =$('#tbl_mentor_approved').DataTable({
             scrollX: true,
@@ -200,7 +246,7 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                // {data: 'type', name: 'type'},
+                {data: 'show_article', name: 'show_article'},
 
             ],
 
@@ -232,11 +278,12 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
-                // {data: 'type', name: 'type'},
+                {data: 'show_article', name: 'show_article'},
 
             ],
 
         });
+        $('#tbl_mentor_rejected').DataTable().column(7).visible(false);
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             $.each($.fn.dataTable.tables(true), function(){

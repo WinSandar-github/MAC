@@ -262,11 +262,12 @@ class SchoolController extends Controller
         $school->to_request_stop_date = $request->to_request_stop_date;
         $school->offline_user=$request->offline_user;
         if($request->offline_user=="true"){
-            $school->from_valid_date = date('d').'-'.$request->last_registration_fee_year;
+            $school->payment_method = 'exit_sch';
+        }else{
+            $school->payment_method = 'init_sch';
         }
         $school->save();
-        $school->regno            = 'S-'.$school->id;
-        $school->save();
+        
         
        
         //Student Info
@@ -283,7 +284,7 @@ class SchoolController extends Controller
             $std_info->password = Hash::make($request->password);
             $std_info->save();
         }
-        $school->regno  = 'S-'.$std_info->id;
+        $school->regno            = 'S-'.$school->id;
         $school->student_info_id  = $std_info->id;
         $school->save();
 
@@ -440,8 +441,8 @@ class SchoolController extends Controller
         //invoice
             if($request->offline_user!=true){
                 $invoice = new Invoice();
-                $invoice->student_info_id = $request->student_info_id;
-                $invoice->invoiceNo = '';
+                $invoice->student_info_id = $std_info->id;
+                $invoice->invoiceNo = 'init_sch';
                 
                 $invoice->name_eng        = $request->name_eng;
                 $invoice->email           = $request->email;
@@ -1479,405 +1480,410 @@ class SchoolController extends Controller
     public function renewSchool(Request $request)
     {
         
-        // if ($request->hasfile('nrc_front')) {
-        //     $file = $request->file('nrc_front');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $nrc_front = '/storage/student_info/'.$name;
-        // }else{
-        //     $nrc_front =$request->nrc_front;
-        // } 
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front =$request->nrc_front;
+        } 
 
-        // if ($request->hasfile('nrc_back')) {
-        //     $file = $request->file('nrc_back');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $nrc_back = '/storage/student_info/'.$name;
-        // }else{
-        //     $nrc_back =$request->nrc_back;
-        // } 
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back =$request->nrc_back;
+        } 
 
-        // if ($request->hasfile('business_license')) {
-        //     foreach($request->file('business_license') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $business_license[] = $name;
-        //      }
+        if ($request->hasfile('business_license')) {
+            foreach($request->file('business_license') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $business_license[] = $name;
+             }
             
-        // }else{
-        //     $business_license=null;
-        // } 
+        }else{
+            $business_license=null;
+        } 
         
 
-        // if ($request->hasfile('school_location_attach')) {
-        //     $file = $request->file('school_location_attach');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $school_location_attach = '/storage/student_info/'.$name;
-        // }else{
-        //     $school_location_attach=null;
-        // }  
+        if ($request->hasfile('school_location_attach')) {
+            $file = $request->file('school_location_attach');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $school_location_attach = '/storage/student_info/'.$name;
+        }else{
+            $school_location_attach=null;
+        }  
 
-        // if ($request->hasfile('profile_photo')) {
-        //     $file = $request->file('profile_photo');
-        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //     $file->move(public_path().'/storage/student_info/',$name);
-        //     $profile_photo = '/storage/student_info/'.$name;
-        // }
+        if ($request->hasfile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $profile_photo = '/storage/student_info/'.$name;
+        }
 
-        // if ($request->hasfile('own_type_letter')) {
-        //     foreach($request->file('own_type_letter') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $own_type_letter[] = $name;
-        //      }
-        //      $own_type_letter=json_encode($own_type_letter);
-        // }else{
-        //     $own_type_letter=null;
-        // }
-        // if ($request->hasfile('degrees_certificates')) {
-        //     foreach($request->file('degrees_certificates') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $degrees_certificates[] = $name;
-        //      }
+        if ($request->hasfile('own_type_letter')) {
+            foreach($request->file('own_type_letter') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $own_type_letter[] = $name;
+             }
+             $own_type_letter=json_encode($own_type_letter);
+        }else{
+            $own_type_letter=null;
+        }
+        if ($request->hasfile('degrees_certificates')) {
+            foreach($request->file('degrees_certificates') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $degrees_certificates[] = $name;
+             }
             
-        // }else{
-        //     $degrees_certificates=null;
-        // }
-        // if ($request->hasfile('attachment')) {
-        //     foreach($request->file('attachment') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $attachment[] = $name;
-        //      }
-        //      $attachment=json_encode($attachment);
-        // }else{
-        //     $attachment=null;
-        // }
-        // if ($request->hasfile('sch_establish_notes_attach')) {
-        //     foreach($request->file('sch_establish_notes_attach') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $sch_establish_notes_attach[] =$name;
-        //      }
-        //      $sch_establish_notes_attach=json_encode($sch_establish_notes_attach);
-        // }else{
-        //     $sch_establish_notes_attach=null;
-        // }
-        // if ($request->hasfile('teacher_reg_copy')) {
-        //     foreach($request->file('teacher_reg_copy') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $teacher_reg_copy[] = $name;
-        //      }
+        }else{
+            $degrees_certificates=null;
+        }
+        if ($request->hasfile('attachment')) {
+            foreach($request->file('attachment') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $attachment[] = $name;
+             }
+             $attachment=json_encode($attachment);
+        }else{
+            $attachment=null;
+        }
+        if ($request->hasfile('sch_establish_notes_attach')) {
+            foreach($request->file('sch_establish_notes_attach') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $sch_establish_notes_attach[] =$name;
+             }
+             $sch_establish_notes_attach=json_encode($sch_establish_notes_attach);
+        }else{
+            $sch_establish_notes_attach=null;
+        }
+        if ($request->hasfile('teacher_reg_copy')) {
+            foreach($request->file('teacher_reg_copy') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $teacher_reg_copy[] = $name;
+             }
             
-        // }else{
-        //     $teacher_reg_copy=null;
-        // }
-        // if ($request->hasfile('branch_school_attach')) {
-        //     foreach($request->file('branch_school_attach') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $branch_school_attach[] = $name;
-        //      }
+        }else{
+            $teacher_reg_copy=null;
+        }
+        if ($request->hasfile('branch_school_attach')) {
+            foreach($request->file('branch_school_attach') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $branch_school_attach[] = $name;
+             }
             
-        // }else{
-        //     $branch_school_attach=null;
-        // } 
-        // if ($request->hasfile('branch_sch_letter')) {
-        //     foreach($request->file('branch_sch_letter') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $branch_sch_letter[] = $name;
-        //      }
+        }else{
+            $branch_school_attach=null;
+        } 
+        if ($request->hasfile('branch_sch_letter')) {
+            foreach($request->file('branch_sch_letter') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $branch_sch_letter[] = $name;
+             }
             
-        // }else{
-        //     $branch_sch_letter=null;
-        // } 
-        // if ($request->hasfile('school_building_attach')) {
-        //     foreach($request->file('school_building_attach') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $school_building_attach[] = $name;
-        //      }
+        }else{
+            $branch_sch_letter=null;
+        } 
+        if ($request->hasfile('school_building_attach')) {
+            foreach($request->file('school_building_attach') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $school_building_attach[] = $name;
+             }
             
-        // }else{
-        //     $school_building_attach=null;
-        // } 
-        // if ($request->hasfile('classroom_attach')) {
-        //     foreach($request->file('classroom_attach') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $classroom_attach[] = $name;
-        //      }
+        }else{
+            $school_building_attach=null;
+        } 
+        if ($request->hasfile('classroom_attach')) {
+            foreach($request->file('classroom_attach') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $classroom_attach[] = $name;
+             }
             
-        // }else{
-        //     $classroom_attach=null;
-        // } 
-        // if ($request->hasfile('toilet_attach')) {
-        //     foreach($request->file('toilet_attach') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $toilet_attach[] = $name;
-        //      }
+        }else{
+            $classroom_attach=null;
+        } 
+        if ($request->hasfile('toilet_attach')) {
+            foreach($request->file('toilet_attach') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $toilet_attach[] = $name;
+             }
             
-        // }else{
-        //     $toilet_attach=null;
-        // } 
-        // if ($request->hasfile('manage_room_attach')) {
-        //     foreach($request->file('manage_room_attach') as $file)
-        //      {
-        //          $name  = uniqid().'.'.$file->getClientOriginalExtension();
-        //          $file->move(public_path().'/storage/student_info/',$name);
-        //          $manage_room_attach[] = $name;
-        //      }
+        }else{
+            $toilet_attach=null;
+        } 
+        if ($request->hasfile('manage_room_attach')) {
+            foreach($request->file('manage_room_attach') as $file)
+             {
+                 $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                 $file->move(public_path().'/storage/student_info/',$name);
+                 $manage_room_attach[] = $name;
+             }
             
-        // }else{
-        //     $manage_room_attach=null;
-        // } 
+        }else{
+            $manage_room_attach=null;
+        } 
         
-        // $school = new SchoolRegister();
-        // $school->name_mm         = $request->name_mm;
-        // $school->name_eng        = $request->name_eng;
-        // $school->nrc_front       = $nrc_front;
-        // $school->nrc_back        = $nrc_back;
-        // $school->father_name_mm  = $request->father_name_mm;
-        // $school->father_name_eng = $request->father_name_eng;
-        // $school->date_of_birth   = $request->dob;
-        // $school->address         = $request->address;
-        // $school->eng_address     = $request->eng_address;
-        // $school->phone           = $request->phone;
-        // $school->attachment      = ($attachment);
+        $school = new SchoolRegister();
+        $school->name_mm         = $request->name_mm;
+        $school->name_eng        = $request->name_eng;
+        $school->nrc_front       = $nrc_front;
+        $school->nrc_back        = $nrc_back;
+        $school->father_name_mm  = $request->father_name_mm;
+        $school->father_name_eng = $request->father_name_eng;
+        $school->date_of_birth   = $request->dob;
+        $school->address         = $request->address;
+        $school->eng_address     = $request->eng_address;
+        $school->phone           = $request->phone;
+        $school->attachment      = ($attachment);
         
-        // $school->profile_photo               = $profile_photo;
-        // $school->school_name                 = $request->school_name;
-        // $school->renew_school_name           = $request->old_school_name;
-        // $school->attend_course               = json_encode($request->attend_course);
-        // $school->renew_course                = $request->old_course;
-        // $school->school_address              = $request->school_address;
-        // $school->renew_school_address        = $request->old_school_address;
-        // $school->own_type                    = $request->own_type;
-        // $school->own_type_letter             = ($own_type_letter);
-        // $school->business_license            = ($business_license);
-        // $school->school_location_attach      = $school_location_attach;
-        // $school->sch_establish_notes_attach  = ($sch_establish_notes_attach);
+        $school->profile_photo               = $profile_photo;
+        $school->school_name                 = $request->school_name;
+        $school->renew_school_name           = $request->old_school_name;
+        $school->attend_course               = json_encode($request->attend_course);
+        $school->renew_course                = $request->old_course;
+        $school->school_address              = $request->school_address;
+        $school->renew_school_address        = $request->old_school_address;
+        $school->own_type                    = $request->own_type;
+        $school->own_type_letter             = ($own_type_letter);
+        $school->business_license            = ($business_license);
+        $school->school_location_attach      = $school_location_attach;
+        $school->sch_establish_notes_attach  = ($sch_establish_notes_attach);
         
-        // $school->email            = strtolower($request->email);
-        // //$school->password         = Hash::make($request->email);
-        // $school->nrc_state_region = $request->nrc_state_region;
-        // $school->nrc_township     = $request->nrc_township;
-        // $school->nrc_citizen      = $request->nrc_citizen;
-        // $school->nrc_number       = $request->nrc_number;
-        // $school->initial_status   = $request->initial_status;
-        // $school->reg_date       = date('Y-m-d');
-        // $school->renew_date       = date('Y-m-d');
-        // //$school->renew_id         = $request->renew_id;
-        // $school->student_info_id  = $request->student_info_id;
-        // $school->s_code   = $request->s_code;
-        // $school->type = $request->school_type;
-        // $school->regno = $request->regno;
-        // $school->save();
+        $school->email            = strtolower($request->email);
+        //$school->password         = Hash::make($request->email);
+        $school->nrc_state_region = $request->nrc_state_region;
+        $school->nrc_township     = $request->nrc_township;
+        $school->nrc_citizen      = $request->nrc_citizen;
+        $school->nrc_number       = $request->nrc_number;
+        $school->initial_status   = $request->initial_status;
+        $school->reg_date       = date('Y-m-d');
+        $school->renew_date       = date('Y-m-d');
+        //$school->renew_id         = $request->renew_id;
+        $school->student_info_id  = $request->student_info_id;
+        $school->s_code   = $request->s_code;
+        $school->type = $request->school_type;
+        $school->regno = $request->regno;
+        if($request->offline_user=="true"){
+            $school->payment_method = 'renew_exit_sch';
+        }else{
+            $school->payment_method = 'renew_sch';
+        }
+        $school->save();
         
-        // if($degrees_certificates!=null){
-        //     $degrees_certificates=implode(',', $degrees_certificates);
-        //     $new_degrees_certificates= explode(',',$degrees_certificates);
-        //     for($i=0;$i < sizeof($request->degrees);$i++){
+        if($degrees_certificates!=null){
+            $degrees_certificates=implode(',', $degrees_certificates);
+            $new_degrees_certificates= explode(',',$degrees_certificates);
+            for($i=0;$i < sizeof($request->degrees);$i++){
            
-        //         $education_histroy  =   new EducationHistroy();
-        //         $education_histroy->student_info_id = $request->student_info_id;
-        //         $education_histroy->degree_name = $request->degrees[$i];
-        //         $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
-        //         $education_histroy->school_id       = $school->id;
-        //         $education_histroy->save();
-        //     }
-        // }
+                $education_histroy  =   new EducationHistroy();
+                $education_histroy->student_info_id = $request->student_info_id;
+                $education_histroy->degree_name = $request->degrees[$i];
+                $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
+                $education_histroy->school_id       = $school->id;
+                $education_histroy->save();
+            }
+        }
 
         
-        // //establisher list
-        // if($request->establisher_name!=null){
-        //     for($i=0;$i<sizeof($request->establisher_name);$i++){
-        //         $establisher = new SchoolEstablisher();
-        //         $establisher->name         = $request->establisher_name[$i];
-        //         $establisher->nrc          = $request->establisher_nrc[$i];
-        //         $establisher->cpa_papp_no  = $request->establisher_cpa_papp_no[$i];
-        //         $establisher->education    = $request->establisher_education[$i];
-        //         $establisher->address      = $request->establisher_address[$i];
-        //         $establisher->ph_number    = $request->establisher_ph_number[$i];
-        //         $establisher->email        = $request->establisher_email[$i];
-        //         $establisher->school_id    = $school->id;
-        //         $establisher->save();
-        //     }
-        // }
+        //establisher list
+        if($request->establisher_name!=null){
+            for($i=0;$i<sizeof($request->establisher_name);$i++){
+                $establisher = new SchoolEstablisher();
+                $establisher->name         = $request->establisher_name[$i];
+                $establisher->nrc          = $request->establisher_nrc[$i];
+                $establisher->cpa_papp_no  = $request->establisher_cpa_papp_no[$i];
+                $establisher->education    = $request->establisher_education[$i];
+                $establisher->address      = $request->establisher_address[$i];
+                $establisher->ph_number    = $request->establisher_ph_number[$i];
+                $establisher->email        = $request->establisher_email[$i];
+                $establisher->school_id    = $school->id;
+                $establisher->save();
+            }
+        }
         
 
-        // //govern list
-        // if($request->govern_name!=null){
-        //     for($i=0;$i<sizeof($request->govern_name);$i++){
-        //         $govern = new SchoolGovern();
-        //         $govern->name            = $request->govern_name[$i];
-        //         $govern->nrc             = $request->govern_nrc[$i];
-        //         $govern->cpa_papp_no     = $request->govern_cpa_papp_no[$i];
-        //         $govern->education       = $request->govern_education[$i];
-        //         $govern->responsibility  = $request->govern_responsibility[$i];
-        //         $govern->ph_number       = $request->govern_ph_number[$i];
-        //         $govern->email           = $request->govern_email[$i];
-        //         $govern->school_id       = $school->id;
-        //         $govern->save();
-        //     }
-        // }
+        //govern list
+        if($request->govern_name!=null){
+            for($i=0;$i<sizeof($request->govern_name);$i++){
+                $govern = new SchoolGovern();
+                $govern->name            = $request->govern_name[$i];
+                $govern->nrc             = $request->govern_nrc[$i];
+                $govern->cpa_papp_no     = $request->govern_cpa_papp_no[$i];
+                $govern->education       = $request->govern_education[$i];
+                $govern->responsibility  = $request->govern_responsibility[$i];
+                $govern->ph_number       = $request->govern_ph_number[$i];
+                $govern->email           = $request->govern_email[$i];
+                $govern->school_id       = $school->id;
+                $govern->save();
+            }
+        }
         
 
-        // //member list
-        // if($request->school_type=="P"){
-        //     if($request->member_name!=null){
-        //         for($i=0;$i<sizeof($request->member_name);$i++){
-        //             $member = new SchoolMember();
-        //             $member->name            = $request->member_name[$i];
-        //             $member->nrc             = $request->member_nrc[$i];
-        //             $member->cpa_papp_no     = $request->member_cpa_papp_no[$i];
-        //             $member->education       = $request->member_education[$i];
-        //             $member->responsibility  = $request->member_responsibility[$i];
-        //             $member->ph_number       = $request->member_ph_number[$i];
-        //             $member->email           = $request->member_email[$i];
-        //             $member->school_id       = $school->id;
-        //             $member->save();
-        //         }
-        //     }
+        //member list
+        if($request->school_type=="P"){
+            if($request->member_name!=null){
+                for($i=0;$i<sizeof($request->member_name);$i++){
+                    $member = new SchoolMember();
+                    $member->name            = $request->member_name[$i];
+                    $member->nrc             = $request->member_nrc[$i];
+                    $member->cpa_papp_no     = $request->member_cpa_papp_no[$i];
+                    $member->education       = $request->member_education[$i];
+                    $member->responsibility  = $request->member_responsibility[$i];
+                    $member->ph_number       = $request->member_ph_number[$i];
+                    $member->email           = $request->member_email[$i];
+                    $member->school_id       = $school->id;
+                    $member->save();
+                }
+            }
             
-        // }
+        }
         
 
-        // //teacher list
-        // if($teacher_reg_copy!=null){
-        //     $teacher_reg_copy=implode(',', $teacher_reg_copy);
-        //     $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
+        //teacher list
+        if($teacher_reg_copy!=null){
+            $teacher_reg_copy=implode(',', $teacher_reg_copy);
+            $new_teacher_reg_copy= explode(',',$teacher_reg_copy);
             
-        //     for($i=0;$i<sizeof($request->teacher_registration_no);$i++){
+            for($i=0;$i<sizeof($request->teacher_registration_no);$i++){
                 
-        //         $teacher = new SchoolTeacher();
-        //         $teacher->name             = $request->teacher_name[$i];
-        //         $teacher->nrc              = $request->teacher_nrc[$i];
-        //         $teacher->registration_no  = $request->teacher_registration_no[$i];
-        //         $teacher->education        = $request->teacher_education[$i];
-        //         $teacher->subject          = $request->teaching_subject[$i];
-        //         $teacher->ph_number        = $request->teacher_ph_number[$i];
-        //         $teacher->email            = $request->teacher_email[$i];
-        //         $teacher->school_id        = $school->id;
-        //         $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
-        //         $teacher->save();
-        //     }
-        // }
+                $teacher = new SchoolTeacher();
+                $teacher->name             = $request->teacher_name[$i];
+                $teacher->nrc              = $request->teacher_nrc[$i];
+                $teacher->registration_no  = $request->teacher_registration_no[$i];
+                $teacher->education        = $request->teacher_education[$i];
+                $teacher->subject          = $request->teaching_subject[$i];
+                $teacher->ph_number        = $request->teacher_ph_number[$i];
+                $teacher->email            = $request->teacher_email[$i];
+                $teacher->school_id        = $school->id;
+                $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
+                $teacher->save();
+            }
+        }
         
-        // //branch_school
-        // if($branch_school_attach!=null){
-        //     $branch_school_attach=implode(',', $branch_school_attach);
-        //     $new_branch_school_attach= explode(',',$branch_school_attach);
+        //branch_school
+        if($branch_school_attach!=null){
+            $branch_school_attach=implode(',', $branch_school_attach);
+            $new_branch_school_attach= explode(',',$branch_school_attach);
             
-        // }
+        }
         
-        // if($request->branch_school_address!=null){
+        if($request->branch_school_address!=null){
             
-        //     if($branch_sch_letter!=null){
+            if($branch_sch_letter!=null){
                 
-        //         $branch_sch_letter=implode(',', $branch_sch_letter);
-        //         $new_branch_sch_letter= explode(',',$branch_sch_letter);
+                $branch_sch_letter=implode(',', $branch_sch_letter);
+                $new_branch_sch_letter= explode(',',$branch_sch_letter);
                 
-        //     }
-        //     for($i=0;$i<sizeof($request->branch_school_address);$i++){
-        //         $branch_school = new tbl_branch_school();
-        //         $branch_school->branch_school_address= $request->branch_school_address[$i];
-        //         $branch_school->renew_branch_school_address= $request->branch_school_address[$i];
-        //         $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
-        //         $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-        //         $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
-        //         $branch_school->school_id       = $school->id;
-        //         $branch_school->save();
-        //     }
-        // }else{
-        //     if($request->old_branch_school_address!=null){
-        //         for($i=0;$i<sizeof($request->branch_school_address);$i++){
-        //             $branch_school =tbl_branch_school::find($request->old_branch_school_id);
-        //             $branch_school->branch_school_address= $request->old_branch_school_address[$i];
-        //             //$branch_school->renew_branch_school_address= $request->branch_school_address[$i];
-        //             //$branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
-        //             //$branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
-        //             //$branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
-        //             $branch_school->school_id       = $school->id;
-        //             $branch_school->save();
-        //         }
-        //     }
-        // }
+            }
+            for($i=0;$i<sizeof($request->branch_school_address);$i++){
+                $branch_school = new tbl_branch_school();
+                $branch_school->branch_school_address= $request->branch_school_address[$i];
+                $branch_school->renew_branch_school_address= $request->branch_school_address[$i];
+                $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
+                $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
+                $branch_school->school_id       = $school->id;
+                $branch_school->save();
+            }
+        }else{
+            if($request->old_branch_school_address!=null){
+                for($i=0;$i<sizeof($request->branch_school_address);$i++){
+                    $branch_school =tbl_branch_school::find($request->old_branch_school_id);
+                    $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                    //$branch_school->renew_branch_school_address= $request->branch_school_address[$i];
+                    //$branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                    //$branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
+                    //$branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
+                    $branch_school->school_id       = $school->id;
+                    $branch_school->save();
+                }
+            }
+        }
         
-        // //bulding_type
-        // if($school_building_attach!=null){
-        //     $school_building_attach=implode(',', $school_building_attach);
-        //     $new_school_building_attach= explode(',',$school_building_attach);
-        //     for($i=0;$i<sizeof($request->bulding_type);$i++){
-        //         $bulding_type = new tbl_bulding_type();
-        //         $bulding_type->bulding_type= $request->bulding_type[$i];
-        //         $bulding_type->building_measurement = $request->building_measurement[$i];
-        //         $bulding_type->floor_numbers= $request->floor_numbers[$i];
-        //         $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
-        //         $bulding_type->school_id       = $school->id;
-        //         $bulding_type->save();
-        //     }
-        // }
+        //bulding_type
+        if($school_building_attach!=null){
+            $school_building_attach=implode(',', $school_building_attach);
+            $new_school_building_attach= explode(',',$school_building_attach);
+            for($i=0;$i<sizeof($request->bulding_type);$i++){
+                $bulding_type = new tbl_bulding_type();
+                $bulding_type->bulding_type= $request->bulding_type[$i];
+                $bulding_type->building_measurement = $request->building_measurement[$i];
+                $bulding_type->floor_numbers= $request->floor_numbers[$i];
+                $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
+                $bulding_type->school_id       = $school->id;
+                $bulding_type->save();
+            }
+        }
         
-        // //classroom_number
-        // if($classroom_attach!=null){
-        //     $classroom_attach=implode(',', $classroom_attach);
-        //     $new_classroom_attach= explode(',',$classroom_attach);
-        //     for($i=0;$i<sizeof($request->classroom_number);$i++){
-        //         $classroom_number = new tbl_classroom();
-        //         $classroom_number->classroom_number= $request->classroom_number[$i];
-        //         $classroom_number->classroom_measurement = $request->classroom_measurement[$i];
-        //         $classroom_number->student_num_limit= $request->student_num_limit[$i];
-        //         $classroom_number->air_con= $request->air_con[$i];
-        //         $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
-        //         $classroom_number->school_id       = $school->id;
-        //         $classroom_number->save();
-        //     }
-        // }
+        //classroom_number
+        if($classroom_attach!=null){
+            $classroom_attach=implode(',', $classroom_attach);
+            $new_classroom_attach= explode(',',$classroom_attach);
+            for($i=0;$i<sizeof($request->classroom_number);$i++){
+                $classroom_number = new tbl_classroom();
+                $classroom_number->classroom_number= $request->classroom_number[$i];
+                $classroom_number->classroom_measurement = $request->classroom_measurement[$i];
+                $classroom_number->student_num_limit= $request->student_num_limit[$i];
+                $classroom_number->air_con= $request->air_con[$i];
+                $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
+                $classroom_number->school_id       = $school->id;
+                $classroom_number->save();
+            }
+        }
         
-        // //toilet_type
-        // if($toilet_attach!=null){
-        //     $toilet_attach=implode(',', $toilet_attach);
-        //     $new_toilet_attach= explode(',',$toilet_attach);
-        //     for($i=0;$i<sizeof($request->toilet_type);$i++){
-        //         $toilet_type = new tbl_toilet_type();
-        //         $toilet_type->toilet_type= $request->toilet_type[$i];
-        //         $toilet_type->toilet_number = $request->toilet_number[$i];
-        //         $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
-        //         $toilet_type->school_id       = $school->id;
-        //         $toilet_type->save();
-        //     }
-        // }
+        //toilet_type
+        if($toilet_attach!=null){
+            $toilet_attach=implode(',', $toilet_attach);
+            $new_toilet_attach= explode(',',$toilet_attach);
+            for($i=0;$i<sizeof($request->toilet_type);$i++){
+                $toilet_type = new tbl_toilet_type();
+                $toilet_type->toilet_type= $request->toilet_type[$i];
+                $toilet_type->toilet_number = $request->toilet_number[$i];
+                $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
+                $toilet_type->school_id       = $school->id;
+                $toilet_type->save();
+            }
+        }
         
-        // //manage_room_numbers
-        // if($manage_room_attach!=null){
-        //     $manage_room_attach=implode(',', $manage_room_attach);
-        //     $new_manage_room_attach= explode(',',$manage_room_attach);
-        //     for($i=0;$i<sizeof($request->manage_room_numbers);$i++){
-        //         $manage_room_numbers = new tbl_manage_room_numbers();
-        //         $manage_room_numbers->manage_room_numbers= $request->manage_room_numbers[$i];
-        //         $manage_room_numbers->manage_room_measurement = $request->manage_room_measurement[$i];
-        //         $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
-        //         $manage_room_numbers->school_id       = $school->id;
-        //         $manage_room_numbers->save();
-        //     }
-        // }
+        //manage_room_numbers
+        if($manage_room_attach!=null){
+            $manage_room_attach=implode(',', $manage_room_attach);
+            $new_manage_room_attach= explode(',',$manage_room_attach);
+            for($i=0;$i<sizeof($request->manage_room_numbers);$i++){
+                $manage_room_numbers = new tbl_manage_room_numbers();
+                $manage_room_numbers->manage_room_numbers= $request->manage_room_numbers[$i];
+                $manage_room_numbers->manage_room_measurement = $request->manage_room_measurement[$i];
+                $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
+                $manage_room_numbers->school_id       = $school->id;
+                $manage_room_numbers->save();
+            }
+        }
         $memberships = Membership::where('membership_name', 'like', 'School')->get();
         
         //invoice
@@ -1888,7 +1894,7 @@ class SchoolController extends Controller
 
                     $invoice = new Invoice();
                     $invoice->student_info_id = $request->student_info_id;
-                    $invoice->invoiceNo = '';
+                    $invoice->invoiceNo = 'renew_exit_sch';
                     
                     $invoice->name_eng        = $request->name_eng;
                     $invoice->email           = $request->email;
@@ -1919,31 +1925,37 @@ class SchoolController extends Controller
                     
                     
                 }else{
+                    $currentYear = Carbon::now()->format('Y');
                     list($start_pay_day,$start_pay_month, $start_pay_year)= explode("-", $request->from_request_stop_date);
                     list($end_pay_day,$end_pay_month, $end_pay_year)= explode("-", $request->to_request_stop_date);
-                    $diffYear=$end_pay_year - $start_pay_year;
+                    //$diffYear=$end_pay_year - $start_pay_year;
                     list($last_pay_month, $last_pay_year)= explode("-", $request->last_registration_fee_year);
-
+                    $diffYear=$currentYear-$last_pay_year;
+                    
                     $invoice = new Invoice();
                     $invoice->student_info_id = $request->student_info_id;
-                    $invoice->invoiceNo = '';
+                    $invoice->invoiceNo = 'renew_exit_sch';
                     
                     $invoice->name_eng        = $request->name_eng;
                     $invoice->email           = $request->email;
                     $invoice->phone           = $request->phone;
 
-                    if($last_pay_month=="Jan" || $last_pay_month=="Nov" || $last_pay_month=="Dec"){
-                        $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
-                        foreach($memberships as $memberships){
-                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
-                        }
+                    // if($last_pay_month=="Jan" || $last_pay_month=="Nov" || $last_pay_month=="Dec"){
+                    //     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
+                    //     }
                         
-                    }else if($last_pay_month=="Feb"){
-                        $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee,' . $diffYear . ' x Reconnect Fee';
+                    // }else if($last_pay_month=="Feb"){
+                    //     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee,' . $diffYear . ' x Reconnect Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
+                    //     }
+                    // }
+                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee,Transaction Fee';
                         foreach($memberships as $memberships){
-                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
+                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee.',1000';
                         }
-                    }
                     $invoice->status          = 0;
                     $invoice->save();
                 }
@@ -1954,7 +1966,7 @@ class SchoolController extends Controller
                 $month = Carbon::now()->format('m');
                 $invoice = new Invoice();
                 $invoice->student_info_id = $request->student_info_id;
-                $invoice->invoiceNo = '';
+                $invoice->invoiceNo = 'renew_sch';
                 
                 $invoice->name_eng        = $request->name_eng;
                 $invoice->email           = $request->email;

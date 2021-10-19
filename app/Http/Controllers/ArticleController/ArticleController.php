@@ -9,6 +9,8 @@ use App\ApprenticeAccountant;
 use App\ApprenticeAccountantGov;
 use App\leave_request;
 use App\Http\Requests\AppAccRequest;
+use App\Invoice;
+use App\StudentInfo;
 
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -100,6 +102,23 @@ class ArticleController extends Controller
         $acc_app->recent_org = $request->recent_org ?? "N/A";
         $acc_app->resign_approve_file = $request->resign_approve_file ?? "N/A";
         $acc_app->know_policy = $request->know_policy;
+        
+        //invoice
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_info_id;
+
+        $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+
+        $invoice->name_eng        = $std_info->name_eng;
+        $invoice->email           = $std_info->email;
+        $invoice->phone           = $std_info->phone;
+        
+        $invoice->invoiceNo = $request->article_form_type;
+        $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+        $invoice->amount          = '5000';
+        $invoice->status          = 0;
+        $invoice->save();
+
         if($acc_app->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
         }
@@ -190,12 +209,12 @@ class ArticleController extends Controller
                     </div>";
                 }else if($infos->status == 1){
                     if($infos->contract_start_date == null && $infos->contract_end_date == null){
-                        if($infos->mentor_attach_file == null || $infos->registration_fee == null){
+                        if($infos->mentor_attach_file == null){
                             return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-sm mr-3' disabled onclick='showContractDate($infos)'>
                                     <li class='fa fa-calendar fa-sm'></li>
                                 </button>
-                                <button type='button' class='btn btn-warning btn-sm p' disabled onclick=x'updateContractDate($infos)'>
+                                <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateContractDate($infos)'>
                                     <li class='fa fa-pencil' fa-sm'></li>
                                 </button>
                             </div>";
@@ -204,7 +223,7 @@ class ArticleController extends Controller
                                 <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showContractDate($infos)'>
                                     <li class='fa fa-calendar fa-sm'></li>
                                 </button>
-                                <button type='button' class='btn btn-warning btn-sm p' disabled onclick=x'updateContractDate($infos)'>
+                                <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateContractDate($infos)'>
                                     <li class='fa fa-pencil' fa-sm'></li>
                                 </button>
                             </div>";
@@ -335,7 +354,14 @@ class ArticleController extends Controller
             ->setRowClass(function ($infos) {
                 return $infos->done_form_attach != null && $infos->done_status != 1 ? 'bg-success' : 'bg-light';
             });
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            $datatable = $datatable->addColumn('check_end_date', function ($infos){
+                return "<div class='btn-group'>
+                                <button type='button' class='btn btn-warning btn-sm' onclick='checkEndArticle($infos)'>
+                                    <li class='fa fa-pencil fa-sm'></li>
+                                </button>
+                            </div>";
+            });
+            $datatable = $datatable->rawColumns(['check_end_date','status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
@@ -458,6 +484,23 @@ class ArticleController extends Controller
         $acc_app->police_attach = json_encode($police_attach);
         $acc_app->accept_policy = $request->accept_policy;
         // return $acc_app;
+
+        //invoice
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_info_id;
+
+        $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+
+        $invoice->name_eng        = $std_info->name_eng;
+        $invoice->email           = $std_info->email;
+        $invoice->phone           = $std_info->phone;
+        
+        $invoice->invoiceNo = "gov";
+        $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+        $invoice->amount          = '5000';
+        $invoice->status          = 0;
+        $invoice->save();
+
         if($acc_app->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
         }
@@ -537,25 +580,14 @@ class ArticleController extends Controller
                 </div>";
             }else if($infos->status == 1){
                 if($infos->contract_start_date == null && $infos->contract_end_date == null){
-                    if($infos->registration_fee == null){
-                        return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-sm mr-3' disabled onclick='showGovContractDate($infos)'>
-                                <li class='fa fa-calendar fa-sm'></li>
-                            </button>
-                            <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateGovContractDate($infos)'>
-                                <li class='fa fa-pencil' fa-sm'></li>
-                            </button>
-                        </div>";
-                    }else{
-                        return "<div class='btn-group'>
-                            <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showGovContractDate($infos)'>
-                                <li class='fa fa-calendar fa-sm'></li>
-                            </button>
-                            <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateGovContractDate($infos)'>
-                                <li class='fa fa-pencil' fa-sm'></li>
-                            </button>
-                        </div>";
-                    }
+                    return "<div class='btn-group'>
+                        <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showGovContractDate($infos)'>
+                            <li class='fa fa-calendar fa-sm'></li>
+                        </button>
+                        <button type='button' class='btn btn-warning btn-sm p' disabled onclick='updateGovContractDate($infos)'>
+                            <li class='fa fa-pencil' fa-sm'></li>
+                        </button>
+                    </div>";
                 }else if($infos->done_status == 0){
                     return "<div class='btn-group'>
                         <button type='button' class='btn btn-primary btn-sm mr-3' disabled onclick='showGovContractDate($infos)'>
@@ -678,8 +710,15 @@ class ArticleController extends Controller
             ->setRowClass(function ($infos) {
                 return $infos->done_form_attach != null && $infos->done_status != 1 ? 'bg-success' : 'bg-light';
             });
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
-            return $datatable;
+        $datatable = $datatable->addColumn('check_end_date', function ($infos){
+            return "<div class='btn-group'>
+                            <button type='button' class='btn btn-warning btn-sm' onclick='checkEndGovArticle($infos)'>
+                                <li class='fa fa-pencil fa-sm'></li>
+                            </button>
+                        </div>";
+        });
+        $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','check_end_date'])->make(true);
+        return $datatable;
     }
 
     public function approveGov($id)
@@ -744,6 +783,23 @@ class ArticleController extends Controller
         $acc_app->know_policy = $request->know_policy;
         $acc_app->article_form_type = $request->article_form_type;
         $acc_app->gov_staff = 0;
+
+        //invoice
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_info_id;
+
+        $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+
+        $invoice->name_eng        = $std_info->name_eng;
+        $invoice->email           = $std_info->email;
+        $invoice->phone           = $std_info->phone;
+        
+        $invoice->invoiceNo = $request->article_form_type;
+        $invoice->productDesc     = 'Resign Fee, Article Resign Form';
+        $invoice->amount          = '300000';
+        $invoice->status          = 0;
+        $invoice->save();
+
         // return $acc_app;
         if($acc_app->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
@@ -808,7 +864,7 @@ class ArticleController extends Controller
                             Done
                         </button>
                     </div>";
-                }else if($infos->resign_status == 1 && $infos->registration_fee != null){
+                }else if($infos->resign_status == 1){
                     return "<div class='btn-group'>
                         <button type='button' class='btn btn-primary btn-sm' onclick='doneResignArticle($infos->id)'>
                             Done
@@ -1016,9 +1072,9 @@ class ArticleController extends Controller
             $request_papp_attach = "";
         }
 
-        $acc_app->gov_staff = $request->gov_staff;
-        $acc_app->gov_position = $request->gov_position;
-        $acc_app->gov_joining_date = $request->gov_joining_date;
+        // $acc_app->gov_staff = $request->gov_staff;
+        // $acc_app->gov_position = $request->gov_position;
+        // $acc_app->gov_joining_date = $request->gov_joining_date;
         $acc_app->request_papp = $request->request_papp;
         $acc_app->mentor_id = $request->mentor_id;
         $acc_app->request_papp_attach = $request_papp_attach;
@@ -1028,6 +1084,23 @@ class ArticleController extends Controller
         $acc_app->exp_start_date = $request->exp_start_date;
         $acc_app->exp_end_date = $request->exp_end_date;
         $acc_app->accept_policy = $request->accept_policy;
+
+        //invoice
+        $invoice = new Invoice();
+        $invoice->student_info_id = $request->student_info_id;
+
+        $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+
+        $invoice->name_eng        = $std_info->name_eng;
+        $invoice->email           = $std_info->email;
+        $invoice->phone           = $std_info->phone;
+        
+        $invoice->invoiceNo = $request->article_form_type;
+        $invoice->productDesc     = 'Registration Fee, Article Renew Form';
+        $invoice->amount          = '5000';
+        $invoice->status          = 0;
+        $invoice->save();
+
         if($acc_app->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
         }
@@ -1093,6 +1166,34 @@ class ArticleController extends Controller
             return response()->json(['message' => 'Create Leave Request Success!'], 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
+    }
+
+    public function getArticleList($id)
+    {
+        $article = ApprenticeAccountant::where('mentor_id', $id)->with('student_info')->get();
+        return $article;
+    }
+
+    public function saveContractEndDate(Request $request)
+    {
+        $approve = ApprenticeAccountant::find($request->id);
+        $approve->contract_end_date = $request->contract_end_date;
+        //$approve->done_status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully!"
+        ],200);
+    }
+
+    public function saveGovContractEndDate(Request $request)
+    {
+        $approve = ApprenticeAccountantGov::find($request->id);
+        $approve->contract_end_date = $request->contract_gov_end_date;
+        //$approve->done_status = 1;
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully!"
+        ],200);
     }
 
 }
