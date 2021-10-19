@@ -393,9 +393,11 @@
                 <div class="modal-content">
 
                     <!-- Modal Header -->
-                    <div class="modal-header">
+                    <div class="modal-header pt-2 pb-2">
                         <h5 class="modal-title">Reject Reason</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
                     </div>
 
                     <!-- Modal body -->

@@ -297,6 +297,7 @@
                                                 <th class="bold-font-weight" >Registration No</th>
                                                 <th class="bold-font-weight" >Form Type</th>
                                                 <th class="bold-font-weight" >Status</th>
+                                                <th class="bold-font-weight" >Check End Date</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_two_yrs_article_pending_body" class="hoverTable text-left">
@@ -314,6 +315,7 @@
                                                 <th class="bold-font-weight" >Registration No</th>
                                                 <th class="bold-font-weight" >Form Type</th>
                                                 <th class="bold-font-weight" >Status</th>
+                                                <th class="bold-font-weight" >Check End Date</th>
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_two_yrs_gov_article_pending_body" class="hoverTable text-left">
@@ -448,7 +450,7 @@
             </div>
         </div>
     </div>
-    <form method="post" class="needs-validation" action="javascript:saveContractDate();" enctype="multipart/form-data" novalidate>
+    <form method="post" class="needs-validation" id="contractForm" action="javascript:saveContractDate();" enctype="multipart/form-data" novalidate>
     @csrf
         <div class="modal fade" id="contractModal">
             <div class="modal-dialog">
@@ -456,6 +458,9 @@
                     <div class="modal-header">
                         <p class="modal-title">
                         စာရင်းကိုင်အလုပ်သင်စတင်မည့်နေ့အားရွေးချယ်ပါ။</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" id="article_id">
@@ -464,9 +469,7 @@
                         <input type="text" name="contract_start_date" id="contract_start_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary"  onclick="hideModel();"
-                                data-bs-dismiss="modal">Close
-                        </button>
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                         <button type="submit" id="da2exam_btn" class="btn btn-success btn-hover-dark w-30" data-bs-toggle="modal">Submit</button>
                     </div>
                 </div>
@@ -474,7 +477,7 @@
         </div>
     </form>
 
-    <form method="post" class="needs-validation" action="javascript:saveGovContractDate();" enctype="multipart/form-data" novalidate>
+    <form method="post" class="needs-validation" id="contractGovForm" action="javascript:saveGovContractDate();" enctype="multipart/form-data" novalidate>
     @csrf
         <div class="modal fade" id="contractGovModal">
             <div class="modal-dialog">
@@ -482,6 +485,9 @@
                     <div class="modal-header">
                         <p class="modal-title">
                         စာရင်းကိုင်အလုပ်သင်စတင်မည့်နေ့အားရွေးချယ်ပါ။</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <input type="hidden" id="gov_article_id">
@@ -489,9 +495,60 @@
                         <input type="text" name="contract_gov_start_date" id="contract_gov_start_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onclick="hideModel();"
-                                data-bs-dismiss="modal">Close
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        <button type="submit" id="da2exam_btn" class="btn btn-success btn-hover-dark w-30" data-bs-toggle="modal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" class="needs-validation" id="endForm" action="javascript:saveEndArticle();" enctype="multipart/form-data" novalidate>
+    @csrf
+        <div class="modal fade" id="endModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title">
+                        စာရင်းကိုင်အလုပ်သင်ပြီးဆုံးမည့်နေ့အားရွေးချယ်ပါ။</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
                         </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="article_id">
+                        <input type="hidden" id="article_form_type">
+                        <input type="hidden" id="student_info_id">
+                        <input type="text" name="contract_end_date" id="contract_end_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        <button type="submit" id="da2exam_btn" class="btn btn-success btn-hover-dark w-30" data-bs-toggle="modal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <form method="post" class="needs-validation" id="endGovForm" action="javascript:saveGovEndArticle();" enctype="multipart/form-data" novalidate>
+    @csrf
+        <div class="modal fade" id="endGovModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title">
+                        စာရင်းကိုင်အလုပ်သင်ပြီးဆုံးမည့်နေ့အားရွေးချယ်ပါ။</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="gov_article_id">
+                        <input type="hidden" id="article_form_type">
+                        <input type="text" name="contract_gov_end_date" id="contract_gov_end_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                         <button type="submit" id="da2exam_btn" class="btn btn-success btn-hover-dark w-30" data-bs-toggle="modal">Submit</button>
                     </div>
                 </div>
@@ -503,6 +560,23 @@
 <script src="{{ asset('js/article.js') }}"></script>
 <script>
     $(document).ready(function (e) {
+
+        $("#contractModal").on("hidden.bs.modal", function(){
+            $("#contractForm")[0].reset();
+        });
+
+        $("#contractGovModal").on("hidden.bs.modal", function(){
+            $("#contractGovForm")[0].reset();
+        });
+
+        $("#endModal").on("hidden.bs.modal", function(){
+            $("#endForm")[0].reset();
+        });
+
+        $("#endGovModal").on("hidden.bs.modal", function(){
+            $("#endGovForm")[0].reset();
+        });
+
         $("input[name='contract_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-M-Y",
@@ -510,6 +584,18 @@
         });
 
         $("input[name='contract_gov_start_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-M-Y",
+                allowInput: true
+        });
+
+        $("input[name='contract_end_date']").flatpickr({
+                enableTime: false,
+                dateFormat: "d-M-Y",
+                allowInput: true
+        });
+
+        $("input[name='contract_gov_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-M-Y",
                 allowInput: true
@@ -828,6 +914,7 @@
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'check_end_date', name: 'check_end_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -856,6 +943,7 @@
                 {data: 'nrc', name: 'nrc'},
                 {data: 'status', name: 'status'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'check_end_date', name: 'check_end_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
