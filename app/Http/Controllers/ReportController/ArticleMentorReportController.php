@@ -24,7 +24,7 @@ class ArticleMentorReportController extends Controller
     {
         $data = [
             'title' => 'အလုပ်သင်ကြားပေးနေသူထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)',
-            'list' => []
+            'mentor' => []
         ];
 
         return view('reporting.article.article_mentor_report', compact('data'));
