@@ -30,7 +30,7 @@ class MembershipController extends Controller
 
     public function membership_list()
     {
-        return view('pages.membership_list.blade.php');
+        return view('pages.membership_list');
     }
 
     /**
