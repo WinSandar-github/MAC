@@ -448,7 +448,7 @@ class SchoolController extends Controller
                 $invoice->email           = $request->email;
                 $invoice->phone           = $request->phone;
 
-                $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee';
+                $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee,School Registration';
                 foreach($memberships as $memberships){
                     $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
                 }
@@ -1689,11 +1689,11 @@ class SchoolController extends Controller
         $school->s_code   = $request->s_code;
         $school->type = $request->school_type;
         $school->regno = $request->regno;
-        if($request->offline_user=="true"){
-            $school->payment_method = 'renew_exit_sch';
-        }else{
-            $school->payment_method = 'renew_sch';
-        }
+        // if($request->offline_user=="true"){
+        //     $school->payment_method = 'renew_exit_sch';
+        // }else{
+        //     $school->payment_method = 'renew_sch';
+        // }
         $school->save();
         
         if($degrees_certificates!=null){
@@ -1804,7 +1804,7 @@ class SchoolController extends Controller
             for($i=0;$i<sizeof($request->branch_school_address);$i++){
                 $branch_school = new tbl_branch_school();
                 $branch_school->branch_school_address= $request->branch_school_address[$i];
-                $branch_school->renew_branch_school_address= $request->branch_school_address[$i];
+                //$branch_school->renew_branch_school_address= $request->branch_school_address[$i];
                 $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
                 $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
@@ -1903,23 +1903,26 @@ class SchoolController extends Controller
                     list($last_pay_month, $last_pay_year) = explode("-", $request->last_registration_fee_year);
                     $diffYear=$currentYear - $last_pay_year;
                     
-                    if(($currentMonth=="Jan" && $diffYear <= 2) || ($currentMonth=="Nov" && $diffYear <= 3) || ($currentMonth=="Dec" && $diffYear <= 3)){//$diffYear <= 3
-                        $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee';
+                    // if(($currentMonth=="Jan" && $diffYear <= 2) || ($currentMonth=="Nov" && $diffYear <= 3) || ($currentMonth=="Dec" && $diffYear <= 3)){//$diffYear <= 3
+                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
+                    //     }
+                    // }else if($last_pay_month=="Feb" && $diffYear <= 2){
+                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
+                    //     }
+                    // }else{
+                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
+                    //     }
+                    // }
+                    $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . 'Year x Reconnect Fee,School Registration';
                         foreach($memberships as $memberships){
-                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
+                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee;
                         }
-                    }else if($last_pay_month=="Feb" && $diffYear <= 2){
-                        $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee';
-                        foreach($memberships as $memberships){
-                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
-                        }
-                    }else{
-                        $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
-                        foreach($memberships as $memberships){
-                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
-                        }
-                    }
-                    
                     $invoice->status          = 0;
                     $invoice->save();
                     
@@ -1952,9 +1955,9 @@ class SchoolController extends Controller
                     //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
                     //     }
                     // }
-                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee,Transaction Fee';
+                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';//' . $diffYear . ' x Reconnect Fee,
                         foreach($memberships as $memberships){
-                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee.',1000';
+                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;//.','.$diffYear*$memberships->reconnected_fee.
                         }
                     $invoice->status          = 0;
                     $invoice->save();
@@ -1971,13 +1974,13 @@ class SchoolController extends Controller
                 $invoice->name_eng        = $request->name_eng;
                 $invoice->email           = $request->email;
                 $invoice->phone           = $request->phone;
-                if($month==10 || $month==11 || $month==12 || $month==01){
-                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee';
+                if($month==11 || $month==12 || $month==01){
+                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';
                     foreach($memberships as $memberships){
                         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
                     }
                 }else if($month==02){
-                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee';
+                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee,School Registration';
                     foreach($memberships as $memberships){
                         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
                     }
