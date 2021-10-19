@@ -4,14 +4,17 @@ namespace App\Http\Controllers\ReportController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Mentor;
 
 class ArticleMentorReportController extends Controller
 {
     public function articleMentorRegisteredIntern(Request $request)
     {
+        $mentor = Mentor::all();
+
         $data = [
             'title' => 'မှတ်ပုံတင်ထားသော အလုပ်သင်ကြားပေးသူစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက် / status အလိုက်)',
-            'list' => []
+            'mentor' => $mentor,
         ];
 
         return view('reporting.article.article_mentor_report', compact('data'));
