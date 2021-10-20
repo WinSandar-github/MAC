@@ -688,9 +688,9 @@ class CpaTraAddmissionDirectController extends Controller
             $student_info->email            =   strtolower($request->email);
             $student_info->course_type_id   =   2;
             $student_info->password         =   Hash::make($request->password);
-            $student_info->degree_rank                 =   $request->cpa_one_pass_level;
-            $student_info->da_pass_date                 =   $request->cpa_one_pass_exam_date;
-            $student_info->da_pass_roll_number          =   $request->cpa_one_pass_personal_no;
+            $student_info->degree_rank      =   $request->cpa_one_pass_level;
+            $student_info->da_pass_date     =   $request->cpa_one_pass_exam_date;
+            $student_info->da_pass_roll_number  =   $request->cpa_one_pass_personal_no;
             $student_info->verify_code      =   $request->verify_code;
             $student_info->payment_method   =   $request->payment_method;
             $student_info->recommend_letter =   $rec_letter;
@@ -716,70 +716,166 @@ class CpaTraAddmissionDirectController extends Controller
             $education_histroy->qualified_date  = $request->qualified_date;
             $education_histroy->roll_number     = $request->roll_number;
             $education_histroy->save();
+            
+            if($request->cpa_type=='cpa_2'){
+                $student_course = new StudentCourseReg();
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->pass_batch_id;
+                $student_course->type            = $request->type;
+                $student_course->mac_type        = $request->mac_type;
+                $student_course->date            = $course_date;
+                $student_course->isFinished      = 1;
+                $student_course->status          = 1;
+                if($request->module!=0){
+                    $student_course->approve_reject_status  = 1;
+                }
+                else{
+                    $student_course->approve_reject_status  = 0;
+                }
+                $student_course->offline_user  = 1;
+                $student_course->save();
 
-            $student_course = new StudentCourseReg();
-            $student_course->student_info_id = $student_info->id;
-            $student_course->batch_id        = $request->pass_batch_id;
-            $student_course->type            = $request->type;
-            $student_course->mac_type        = $request->mac_type;
-            $student_course->date            = $course_date;
-            $student_course->status          = 1;
-            $student_course->save();
+                $student_register = new StudentRegister();
+                $student_register->student_info_id  = $student_info->id;
+                $student_register->batch_id         = $request->pass_batch_id;
+                $student_register->date             = date('Y-m-d');
+                $student_register->invoice_id       = $student_info->id;
+                $student_register->invoice_date     = date('Y-m-d');
+                $student_register->module           = 3;
+                $student_register->type             = $request->type;
+                $student_register->status           = 1;
+                $student_register->form_type        = 3;
+                $student_register->save();
+                
+                $exam_register = new ExamRegister();
+                $exam_register->student_info_id     = $student_info->id;
+                $exam_register->date                = $date;
+                $exam_register->grade               = 1;
+                $exam_register->batch_id            = $request->pass_batch_id;
+                $exam_register->is_full_module      = 3;
+                $exam_register->exam_type_id        = $request->type;
+                $exam_register->form_type           = 3;
+                $exam_register->status              = 1;
+                $exam_register->save();
 
-            $student_course = new StudentCourseReg();
-            $student_course->student_info_id = $student_info->id;
-            $student_course->batch_id        = $request->batch_id;
-            $student_course->type            = $request->type;
-            $student_course->mac_type        = $request->mac_type;
-            $student_course->date            = $course_date;
-            $student_course->status          = 0;
-            $student_course->save();
+                if($request->module!=0){ 
 
-            $exam_register = new ExamRegister();
-            $exam_register->student_info_id     = $student_info->id;
-            $exam_register->date                = $date;
-            $exam_register->grade               = 1;
-            $exam_register->batch_id            = $request->pass_batch_id;
-            $exam_register->is_full_module   = 3;
-            $exam_register->exam_type_id        = $request->type;
-            $exam_register->form_type        = 3;
-            $exam_register->status              =1;
-            $exam_register->save();
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->batch_id;
+                    $student_course->type            = $request->type_cpa2;
+                    $student_course->mac_type        = $request->cpa2_mac_type;
+                    $student_course->date            = $course_date;
+                    $student_course->isFinished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
+                    
+                    $student_register = new StudentRegister();
+                    $student_register->student_info_id  = $student_info->id;
+                    $student_register->batch_id         = $request->batch_id;
+                    $student_register->date             = date('Y-m-d');
+                    $student_register->invoice_id       = $student_info->id;
+                    $student_register->invoice_date     = date('Y-m-d');
+                    $student_register->module           = $request->module;
+                    $student_register->type             = $request->type;
+                    $student_register->status           = 1;
+                    $student_register->form_type        = 4;
+                    $student_register->save();
+                    
+                    $exam_register = new ExamRegister();
+                    $exam_register->student_info_id     = $student_info->id;
+                    $exam_register->date                = $date;
+                    $exam_register->grade               = 1;
+                    $exam_register->batch_id            = $request->batch_id;
+                    $exam_register->is_full_module      = $request->module;
+                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->form_type           = 4;
+                    $exam_register->status              = 1;
+                    $exam_register->save();
+    
+                }
+                else{
+    
+                }
+            }
+            else{
+                $student_course = new StudentCourseReg();
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->batch_id;
+                $student_course->type            = $request->type;
+                $student_course->mac_type        = $request->mac_type;
+                $student_course->date            = $course_date;
+                $student_course->isFinished      = 1;
+                $student_course->status          = 0;
+                $student_course->approve_reject_status  = 0;
+                $student_course->offline_user  = 1;
+                $student_course->save();
 
-            $student_register = new StudentRegister();
-            $student_register->student_info_id  = $student_info->id;
-            $student_register->batch_id         = $request->pass_batch_id;
-            $student_register->date             = date('Y-m-d');
-            $student_register->invoice_id       = $student_info->id;
-            $student_register->invoice_date     = date('Y-m-d');
-            $student_register->module        =3;
-            $student_register->type             = $request->type;
-            $student_register->status           = 1;
-            $student_register->form_type        = 3;
-            $student_register->save();
+                if($request->module!=0){ 
 
+                    // $student_course = new StudentCourseReg();
+                    // $student_course->student_info_id = $student_info->id;
+                    // $student_course->batch_id        = $request->batch_id;
+                    // $student_course->type            = $request->type;
+                    // $student_course->mac_type        = $request->mac_type;
+                    // $student_course->date            = $course_date;
+                    // $student_course->status          = 0;
+                    // $student_course->save();
+                    
+                    $student_register = new StudentRegister();
+                    $student_register->student_info_id  = $student_info->id;
+                    $student_register->batch_id         = $request->batch_id;
+                    $student_register->date             = date('Y-m-d');
+                    $student_register->invoice_id       = $student_info->id;
+                    $student_register->invoice_date     = date('Y-m-d');
+                    $student_register->module           = $request->module;
+                    $student_register->type             = $request->type;
+                    $student_register->status           = 1;
+                    $student_register->form_type        = 3;
+                    $student_register->save();
+                    
+                    $exam_register = new ExamRegister();
+                    $exam_register->student_info_id     = $student_info->id;
+                    $exam_register->date                = $date;
+                    $exam_register->grade               = 1;
+                    $exam_register->batch_id            = $request->batch_id;
+                    $exam_register->is_full_module      = $request->module;
+                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->form_type           = 3;
+                    $exam_register->status              = 1;
+                    $exam_register->save();
+    
+                }
+                else{
+    
+                }
+            }
+            
             //invoice
-            $invoice = new Invoice();
-            $invoice->student_info_id = $student_info->id;
+            // $invoice = new Invoice();
+            // $invoice->student_info_id = $student_info->id;
 
-            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-            // $invoice->invoiceNo       = $invNo;
+            // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // // $invoice->invoiceNo       = $invNo;
 
-            $invoice->invoiceNo = '';
+            // $invoice->invoiceNo = '';
 
-            $invoice->name_eng        = $request->name_eng;
-            $invoice->email           = $request->email;
-            $invoice->phone           = $request->phone;
+            // $invoice->name_eng        = $request->name_eng;
+            // $invoice->email           = $request->email;
+            // $invoice->phone           = $request->phone;
 
-            $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-            $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
-            $invoice->amount          = $std->batch->course->form_fee;
-            $invoice->status          = 0;
-            $invoice->save();
+            // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+            // $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
+            // $invoice->amount          = $std->batch->course->form_fee;
+            // $invoice->status          = 0;
+            // $invoice->save();
 
             return response()->json($student_info,200);
         } catch (\Exception $e) {
             return response()->json($e->getMessage(), 500);
         }
     }
+    
 }
