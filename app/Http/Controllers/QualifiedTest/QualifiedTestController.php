@@ -11,6 +11,9 @@ use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
+use App\Course;
+use App\Invoice;
+
 
 
 class QualifiedTestController extends Controller
@@ -138,8 +141,22 @@ class QualifiedTestController extends Controller
             $qualifiedtest->local_education_certificate = json_encode($certificate);
             $qualifiedtest->office_address             = $request->office_address;
             $qualifiedtest->other_edu_foreign          = $request->other_edu_foreign;
-
             $qualifiedtest->save();
+            // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->first();
+            $course = Course::where('code','cpa_qt')->first();
+
+            $invoice = new Invoice();
+            $invoice->student_info_id = $student_info->id;
+            $invoice->name_eng            = $student_info->name_eng;
+            $invoice->email           = $student_info->email;
+            $invoice->phone           = $student_info->phone;
+            $invoice->productDesc     = 'Application Fee,QT Exam Fee';
+            $invoice->amount          = $course->form_fee.','.$course->exam_fee;
+            $invoice->status          = 0;  
+            $invoice->invoiceNo       = "";
+            $invoice->save();
+
+          
             return response()->json([
                 'message' => "You have successfully register",
             ],200);

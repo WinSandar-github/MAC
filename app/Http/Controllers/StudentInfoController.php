@@ -11,8 +11,10 @@ use App\registration_self_study;
 use App\AccountancyFirmInformation;
 use App\CPAFF;
 use App\FirmOwnershipAudit;
+use App\Invoice;
 use App\TeacherRegister;
 use App\SchoolRegister;
+use App\Mentor;
 use Illuminate\Support\Facades\Hash;
 
 class StudentInfoController extends Controller
@@ -139,7 +141,6 @@ class StudentInfoController extends Controller
     public function update(Request $request, $id)
     {
 
-
         if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -167,18 +168,8 @@ class StudentInfoController extends Controller
             $nrc_back = $request->old_nrc_back;
         }
 
-        
-        if($request->hasfile('certificate'))
-        {
-            foreach($request->file('certificate') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
-                $file->move(public_path().'/storage/student_info/',$name);
-                $certificate[] = '/storage/student_info/'.$name;
-            }        
-        }else{
-            $certificate = $request->old_certificate;
-        }
+
+
 
         if($request->hasfile('recommend_letter'))
         {
@@ -235,10 +226,30 @@ class StudentInfoController extends Controller
         $student_job_histroy->save();
 
         $education_histroy  =   EducationHistroy::where('student_info_id',$id)->first();
+        if($request->hasfile('certificate'))
+        {
+            foreach($request->file('certificate') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $certificate[] = '/storage/student_info/'.$name;
+            }
+            $education_histroy->certificate     = json_encode($certificate);
+        }
+        // else{
+        //     if($request->old_certificate){
+        //         $old_certificates=str_replace(',', '",', $request->old_certificate);
+        //         $certificate[]=$old_certificates;
+        //     }else{
+        //         $certificate = null;
+        //     }
+
+
+        // }
         $education_histroy->student_info_id = $student_info->id;
         $education_histroy->university_name = $request->university_name;
         $education_histroy->degree_name     = $request->degree_name;
-        $education_histroy->certificate     = $certificate;
+
         $education_histroy->qualified_date  = $qualified_date;
         $education_histroy->roll_number     = $request->roll_number;
         $education_histroy->save();
@@ -257,6 +268,25 @@ class StudentInfoController extends Controller
         }
         $student_course->mac_type        = $request->mac_dtype;
         $student_course->save();
+
+        //invoice
+        // $invoice = Invoice::where('student_info_id',$id)->first();
+        // $invoice->student_info_id = $student_info->id;
+
+        // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+        // // $invoice->invoiceNo       = $invNo;
+
+        // $invoice->invoiceNo = '';
+
+        // $invoice->name_eng        = $request->name_eng;
+        // $invoice->email           = $request->email;
+        // $invoice->phone           = $request->phone;
+
+        // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+        // $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
+        // $invoice->amount          = $std->batch->course->form_fee;
+        // $invoice->status          = 0;
+        // $invoice->save();
 
         return response()->json($student_info,200);
     }
@@ -284,7 +314,7 @@ class StudentInfoController extends Controller
     {
         $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course_regs'
         ,'exam_registers','student_register','school','mentor','teacher','cpa_ff','papp',
-        'article','gov_article','exam_results','qualified_test')->first();
+        'article','gov_article','exam_results','qualified_test', 'invoice')->first();
 
 
         return response()->json(['data' => $student_info],200);
@@ -306,7 +336,7 @@ class StudentInfoController extends Controller
     }
 
     public function updateProfile(Request $request,$id){
-           if ($request->hasfile('image')) {
+        if ($request->hasfile('image')) {
             $file = $request->file('image');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
@@ -314,15 +344,27 @@ class StudentInfoController extends Controller
         }else{
             $image = $request->old_image;
         }
-        
+        if ($request->hasfile('image_cpaff')) {
+            $file = $request->file('image_cpaff');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $image_cpaff = '/storage/student_info/'.$name;
+        }else{
+            $image_cpaff = $request->old_image_cpaff;
+        }
         if($request->membership == "audit"){
-            return "Audit";
+            $acc_firm_info = AccountancyFirmInformation::find($id);
+            $acc_firm_info->telephones = $request->audit_phone;
+            $acc_firm_info->head_office_address_mm = $request->audit_address_mm;
+            $acc_firm_info->head_office_address = $request->audit_address_eng;
+            $acc_firm_info->image = $image;
+            $acc_firm_info -> save();
         }else  if($request->membership == "non_audit"){
             return "Non Audit";
         }else if($request->membership == "cpaff"){
             $cpaff=CPAFF::where('student_info_id',$id)->first();
             $cpaff->address     = $request->address;
-            $cpaff->profile_photo         = $image;
+            $cpaff->profile_photo         = $image_cpaff;
             $cpaff->email         = $request->email;
             $cpaff->phone         = $request->phone;
             $cpaff->save();
@@ -332,7 +374,7 @@ class StudentInfoController extends Controller
             $student_info->date_of_birth = $request->date_of_birth;
             $student_info->phone         = $request->phone;
             $student_info->address       = $request->address;
-            $student_info->image         = $image;
+            $student_info->image         = $image_cpaff;
             $student_info->save();
 
         }else if($request->membership == "papp"){
@@ -352,7 +394,11 @@ class StudentInfoController extends Controller
             $teacher->image         = $image;
             $teacher->save();
         }else if($request->membership == "mentor"){
-            return "mentor";
+            $school = Mentor::find($id);
+            $school->phone_no         = $request->phone;
+            $school->address       = $request->address;
+            $school->image = $image;
+            $school->save();
         }else{
 
             $student_info = StudentInfo::find($id);

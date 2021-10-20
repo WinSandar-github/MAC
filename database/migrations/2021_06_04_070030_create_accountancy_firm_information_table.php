@@ -37,6 +37,10 @@ class CreateAccountancyFirmInformationTable extends Migration
             $table->string('dir_passport_csc')->nullable();
             //$table->unsignedBigInteger('type_of_service_provided_id');
             $table->string('type_of_service_provided_id')->nullable();
+            $table->integer('req_for_stop')->nullable();
+            $table->string('last_registered_year')->nullable();
+            $table->string('suspended_year')->nullable();
+            $table->boolean('offline_user')->nullable();
             $table->string('other')->nullable();
             $table->boolean('permanent_suspension')->default(false);
             $table->string('declaration');

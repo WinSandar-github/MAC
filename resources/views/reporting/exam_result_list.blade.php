@@ -4,11 +4,15 @@
 <div class="row">
     <div class="col-md-12 text-center">
             <input type="hidden" id="course_code" name="course_code" value={{$course->code}}  >
+            <input type="text" id="batch_id" name="batch_id" value={{$batch->id}}  >
+
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း</h5>
+                        <h3 class="text-center m-3" style="font-weight:bold">
+                                {{ $course->name_mm }}<br>
+                                {{ $batch->name_mm }}<br>စာမေးပွဲဖြေဆိုအောင်မြင်သူများစာရင်း</h3>
                         </div>
                     </div>
                 </div>
@@ -29,7 +33,7 @@
                             <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
-                                        <th class="bold-font-weight" >Serial number</th>
+                                        <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >အဖအမည်</th>
                                         <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
@@ -59,6 +63,7 @@
 <script>
         $('document').ready(function(){
             var course_code = $('#course_code').val();
+            alert(course_code)
             
               showAppList(course_code);
         })
@@ -77,7 +82,9 @@ showAppList = (course_code) =>{
             type : "POST" ,
             data :  function (d) {
                 d.code        =  course_code,
-                d.grade       = 1
+                d.grade       = 1,
+                d.batch_id = $('#batch_id').val()
+
                 
             }
         },

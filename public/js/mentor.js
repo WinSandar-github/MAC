@@ -588,3 +588,44 @@ function rejectMentorStudent(){
   });
   
 }
+
+function showArticle(id){
+  $("#mentor_id").val(id);
+  $("#showArticleModel").modal('toggle');
+  getArticleList();
+}
+
+function getArticleList(){
+  var id = $('#mentor_id').val();
+  $.ajax({
+      type: "GET",
+      url: BACKEND_URL + "/get_article_list/"+ id,
+      success: function (data) {
+          $("#show_article_body").html("");
+          var r = 1;
+          data.forEach(function(element){
+            var tr = "<tr>";
+            tr += "<td class='alignright'>" + r + "</td>";
+            tr += "<td>" + element.student_info.name_eng + "</td>";
+            tr += "<td>" + element.article_form_type + "</td>";
+            tr += "</tr>";
+            r = r + 1;
+            $("#show_article_body").append(tr);
+          })
+    $('#show_article_table').DataTable({
+      'destroy': true,
+      'paging': true,
+      'lengthChange': false,
+      "pageLength": 5,
+      'searching': true,
+      'info': false,
+      'autoWidth': true,
+      "scrollX": false,
+    });
+      },
+      error: function (message) {
+          EasyLoading.hide();
+          errorMessage(message);
+      }
+  });
+}

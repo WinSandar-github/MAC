@@ -2,12 +2,15 @@ function showContractDate(info){
     $("#contractModal").modal('show');
     $("#article_id").val(info.id);
     $("#article_form_type").val(info.article_form_type);
+    $("#student_info_id").val(info.student_info_id);
 }
 
 function saveContractDate(){
     id = $("#article_id").val();
     article_form_type = $("#article_form_type").val();
     contract_start_date = $("input[name=contract_start_date]").val();
+
+    student_info_id = $("#student_info_id").val();
 
     if(contract_start_date){
 
@@ -24,6 +27,12 @@ function saveContractDate(){
             var contract_end_date = new Date(year + 2, month, day-1);
         }else if(article_form_type == "c2_pass_1yr"){
             var contract_end_date = new Date(year + 1, month, day-1);
+        }else if(article_form_type == "qt_firm"){
+            var contract_end_date = new Date(year + 3, month, day-1);
+        }else if(article_form_type == "c2_pass_renew"){
+            //var contract_end_date = getContractEndDate(student_info_id , contract_start_date);;
+        }else if(article_form_type == "c12_renew"){
+            //var contract_end_date = getContractEndDate(student_info_id , contract_start_date);;
         }
 
         contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
@@ -56,6 +65,41 @@ function saveContractDate(){
     }
 }
 
+function getContractEndDate(student_info_id , contract_start_date){
+    let resign_done_date;
+    let form_pass_date;
+
+    $.ajax({
+        type: "GET",
+        url: BACKEND_URL + "/get_resign_end_date/"+student_info_id,
+        success: function (result) {
+            result.forEach(function(element){
+                if(element.article_form_type == 'resign'){
+                    resign_done_date = element.approve_resign_date;
+                }else{
+                    if(element.article_form_type != 'c2_pass_renew' && element.article_form_type != 'c12_renew' && element.done_status != 1){
+                        console.log(element.contract_end_date);
+                        form_pass_date = element.contract_end_date;
+                    }
+                }
+            });
+            console.log(resign_done_date);
+            console.log(form_pass_date);
+        },
+        error: function (message) {
+            EasyLoading.hide();
+            errorMessage(message);
+        }
+    });
+}
+
+function updateContractDate(info){
+    $("#contractModal").modal('show');
+    $("#article_id").val(info.id);
+    $("#article_form_type").val(info.article_form_type);
+    $("#contract_start_date").val(info.contract_start_date);
+}
+
 function showArticle(id){
     localStorage.setItem("article_id",id);
     location.href=FRONTEND_URL+"/article_show";
@@ -72,49 +116,74 @@ function loadArticle()
         success: function(data){
             var student_info=data.student_info;
 
-            var student_reg = student_info.student_register
-            var lastest_row = student_reg.length - 1;
-            var course = student_reg[lastest_row].course.code;  // cpa1/cpa2
-            var exam_result = student_reg[lastest_row].status;  // pass/fail
-            var module = student_reg[lastest_row].module;  // module 1/2/all
-            var type = student_reg[lastest_row].type;  //  0-self_study / 1-private / 2-mac
+            // var student_reg = student_info.student_register
+            // var lastest_row = student_reg.length - 1;
+            // var course = student_reg[lastest_row].course.code;  // cpa1/cpa2
+            // var exam_result = student_reg[lastest_row].status;  // pass/fail
+            // var module = student_reg[lastest_row].module;  // module 1/2/all
+            // var type = student_reg[lastest_row].type;  //  0-self_study / 1-private / 2-mac
 
-            if(course == "cpa_1"){
-                $("#course_name").text("ပထမပိုင်း");
-            }else{
-                $("#course_name").text("ဒုတိယပိုင်း");
-            }
+            // if(course == "cpa_1"){
+            //     $("#course_name").text("ပထမပိုင်း");
+            // }else{
+            //     $("#course_name").text("ဒုတိယပိုင်း");
+            // }
 
-            if(module == 1){
-                $("#module_name").text("1");
-            }else if(module == 2){
-                $("#module_name").text("2");
-            }else{
-                $("#module_name").text("အားလုံး");
-            }
+            // if(module == 1){
+            //     $("#module_name").text("1");
+            // }else if(module == 2){
+            //     $("#module_name").text("2");
+            // }else{
+            //     $("#module_name").text("အားလုံး");
+            // }
             
-            if(type == 0){
-                $("#type_name").text("ကိုယ်တိုင်လေ့လာသင်ယူသူအဖြစ်");
-            }else if(type == 1){
-                $("#type_name").text("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်ကျောင်း");
-            }else{
-                $("#type_name").text("သင်တန်းကျောင်း");
+            // if(type == 0){
+            //     $("#type_name").text("ကိုယ်တိုင်လေ့လာသင်ယူသူအဖြစ်");
+            // }else if(type == 1){
+            //     $("#type_name").text("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်ကျောင်း");
+            // }else{
+            //     $("#type_name").text("သင်တန်းကျောင်း");
+            // }
+
+            // if(exam_result == 0){
+            //     $("#result_name").text("တက်ရောက်နေ");
+            // }else if(exam_result == 1){
+            //     $("#result_name").text("အောင်မြင်");
+            // }else{
+            //     $("#result_name").text("ကျရုံး");
+            //     $("#renew_row").show();
+            //     document.getElementById('request_label').innerHTML="၃။";
+            // }
+
+            var form_type;
+            article_form_type = data.article_form_type;
+            switch (article_form_type) {
+                case 'c12':
+                    form_type = 'CPA I,II';
+                    break;
+                case 'c2_pass_3yr':
+                    form_type = 'CPA II Pass 3 yr';
+                    break;
+                case 'c2_pass_1yr':
+                    form_type = 'CPA II Pass 1 yr';
+                    break;
+                case 'qt_firm':
+                    form_type = 'QT Pass 3 yr';
+                    break;
+                case 'c2_pass_renew':
+                    form_type = 'CPA II Pass Renew';
+                    break;
+                case 'c12_renew':
+                    form_type = 'CPA I,II Renew';
+                    break;
+                default:
+                    form_type = 'Resign';
+                    break;
             }
-
-            if(exam_result == 0){
-                $("#result_name").text("တက်ရောက်နေ");
-            }else if(exam_result == 1){
-                $("#result_name").text("အောင်မြင်");
-            }else{
-                $("#result_name").text("ကျရုံး");
-                $("#renew_row").show();
-                document.getElementById('request_label').innerHTML="၃။";
-            }
-
-
+            $("#form_type").text(form_type);
             $('#name_mm').val(student_info.name_mm);
             $("#name_eng").val(student_info.name_eng);
-            $("#personal_no").val(student_reg.personal_no);
+            $("#personal_no").val(student_info.cpersonal_no);
             $("#nrc_state_region").val(student_info.nrc_state_region);
             $("#nrc_township").val(student_info.nrc_township);
             $("#nrc_citizen").val(student_info.nrc_citizen);
@@ -124,14 +193,42 @@ function loadArticle()
             $("#race").val(student_info.race);
             $("#religion").val(student_info.religion);
             $("#date_of_birth").val(student_info.date_of_birth);
-            $("#education").val(student_info.student_education_histroy.degree_name);
+
+            if(student_info.qualified_test != null){
+                $("#firm_education").hide();
+                $("#qt_education").show();
+                let lcl = JSON.parse(student_info.qualified_test.local_education);
+                lcl.map(lcl_edu => $('#add_qt_education').append(`<p>${lcl_edu}</p>`));
+
+                let certificate = JSON.parse(student_info.qualified_test.local_education_certificate);
+                $.each(certificate,function(fileCount,fileName){
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
+                   
+                })
+
+            }else{
+                $("#education").val(student_info.student_education_histroy.degree_name);
+
+                let certificate = JSON.parse(student_info.student_education_histroy.certificate);
+                $.each(certificate,function(fileCount,fileName){
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
+                   
+                })
+            }
+            
 
             $("#address").val(student_info.address);
+            $("#current_address").val(student_info.current_address);
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
             $("#papp_name").val(data.request_papp);
+            $("#mentor_name").val(data.mentor.name_eng);
             if(data.ex_papp == null){
                 document.getElementById("previous_papp_name_row").style.display = "none";
+            }else if(data.ex_papp == "undefined" && data.exp_start_date == "undefined" &&  data.exp_end_date == "undefined"){
+                document.getElementById("previous_papp_name_row").style.display = "none";
+                document.getElementById("previous_papp_date_row").style.display = "none";
+                $("#exam_pass_date_label").text('၁၅။');
             }else{
                 $("#previous_papp_name").val(data.ex_papp);
                 $("#previous_papp_start_date").val(data.exp_start_date);
@@ -187,11 +284,31 @@ function loadArticle()
 
             $(".request_papp_attach").append(`<a href='${PDF_URL+data.request_papp_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
 
-            let certificate = JSON.parse(student_info.student_education_histroy.certificate);
-                $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
-                   
-                })
+            var leave_requests = student_info.leave_requests;
+            var r = 1;
+            leave_requests.forEach(function(element){
+                if(data.article_form_type == element.form_type){
+                    var tr = "<tr>";
+                    tr += "<td class='alignright'>" + r + "</td>";
+                    tr += "<td>" + element.remark + "</td>";
+                    tr += "<td>" + element.start_date + "</td>";
+                    tr += "<td>" + element.end_date + "</td>";
+                    tr += "<td>" + element.total_leave + "</td>";
+                    tr += "</tr>";
+                    r = r + 1;
+                    $("#leave_request_body").append(tr);
+                }
+            })
+			$('#leave_request_table').DataTable({
+				'destroy': true,
+				'paging': true,
+				'lengthChange': false,
+				"pageLength": 5,
+				'searching': false,
+				'info': false,
+				'autoWidth': true,
+				"scrollX": false,
+			});
 
             if(data.status == 0){
               document.getElementById("approve_reject_btn").style.display = "block";
@@ -298,6 +415,12 @@ function showGovContractDate(info){
     $("#gov_article_id").val(info.id);
 }
 
+function updateGovContractDate(info){
+    $("#contractGovModal").modal('show');
+    $("#gov_article_id").val(info.id);
+    $("#contract_gov_start_date").val(info.contract_start_date);
+}
+
 function saveGovContractDate(){
     id = $("#gov_article_id").val();
     contract_start_date = $("input[name=contract_gov_start_date]").val();
@@ -309,7 +432,7 @@ function saveGovContractDate(){
         var month = start_date.getMonth();
         var day = start_date.getDate();
 
-        var contract_end_date = new Date(year + 2, month, day);
+        var contract_end_date = new Date(year + 2, month, day-1);
 
         contract_end_date = String(contract_end_date.getDate()).padStart(2, '0') + "-" + months[contract_end_date.getMonth()] + "-" + contract_end_date.getFullYear();
 
@@ -360,6 +483,8 @@ function loadGovArticle()
 
             var student_reg = student_info.student_register
             var lastest_row = student_reg.length - 1;
+
+            $("#form_type").text("Government");
 
             $('#name_mm').val(student_info.name_mm);
             $("#name_eng").val(student_info.name_eng);
@@ -414,9 +539,47 @@ function loadGovArticle()
 
                 })
 
+            let recommend_attach = JSON.parse(data.recommend_attach);
+                $.each(recommend_attach, function (fileCount, fileName) {
+                    $(".recommend_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
+                })
+
+            let police_attach = JSON.parse(data.police_attach);
+                $.each(police_attach, function (fileCount, fileName) {
+                    $(".police_attach").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
+                })
+
             //$(".labor_registration_attach").append(`<a href='${PDF_URL+data.labor_registration_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
-            $(".recommend_attach").append(`<a href='${PDF_URL+data.recommend_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
-            $(".police_attach").append(`<a href='${PDF_URL+data.police_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            // $(".recommend_attach").append(`<a href='${PDF_URL+data.recommend_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+            // $(".police_attach").append(`<a href='${PDF_URL+data.police_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
+
+            var leave_requests = student_info.leave_requests;
+            var r = 1;
+            leave_requests.forEach(function(element){
+                if(element.form_type == 'gov'){
+                    var tr = "<tr>";
+                    tr += "<td class='alignright'>" + r + "</td>";
+                    tr += "<td>" + element.remark + "</td>";
+                    tr += "<td>" + element.start_date + "</td>";
+                    tr += "<td>" + element.end_date + "</td>";
+                    tr += "<td>" + element.total_leave + "</td>";
+                    tr += "</tr>";
+                    r = r + 1;
+                    $("#leave_request_body").append(tr);
+                }
+            })
+			$('#leave_request_table').DataTable({
+				'destroy': true,
+				'paging': true,
+				'lengthChange': false,
+				"pageLength": 5,
+				'searching': false,
+				'info': false,
+				'autoWidth': true,
+				"scrollX": false,
+			});
 
             if(data.status == 0){
               document.getElementById("approve_reject_btn").style.display = "block";
@@ -532,8 +695,8 @@ function loadResignArticle()
         type: 'get',
         data:"",
         success: function(data){
-            console.log(data);
             var student_info=data.student_info;
+            var qualified_test = student_info.qualified_test;
 
             var student_reg = student_info.student_register
             var lastest_row = student_reg.length - 1;
@@ -549,7 +712,28 @@ function loadResignArticle()
             $("#race").val(student_info.race);
             $("#religion").val(student_info.religion);
             $("#date_of_birth").val(student_info.date_of_birth);
-            $("#education").val(student_info.student_education_histroy.degree_name);
+
+            if(qualified_test != null){
+                $("#firm_education").hide();
+                $("#qt_education").show();
+                let lcl = JSON.parse(qualified_test.local_education);
+                lcl.map(lcl_edu => $('#add_qt_education').append(`<p>${lcl_edu}</p>`));
+
+                let certificate = JSON.parse(qualified_test.local_education_certificate);
+                $.each(certificate,function(fileCount,fileName){
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
+                   
+                })
+            }else{
+                $("#education").val(student_info.student_education_histroy.degree_name);
+                let certificate = JSON.parse(student_info.student_education_histroy.certificate);
+                $.each(certificate,function(fileCount,fileName){
+                   
+                     $(".stu_certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
+                   
+                })
+            }
+
             $("#address").val(student_info.address);
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
@@ -562,15 +746,9 @@ function loadResignArticle()
             $(".nrc_front").append(`<a href='${PDF_URL+student_info.nrc_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
             $(".nrc_back").append(`<a href='${PDF_URL+student_info.nrc_back}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View Photo</a>`);
 
-            let certificate = JSON.parse(student_info.student_education_histroy.certificate);
-                $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
-                   
-                })
-
             $(".resign_approve_file").append(`<a href='${PDF_URL+data.resign_approve_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View Photo</a>`);
 
-            if(data.status == 0){
+            if(data.resign_status == 0){
               document.getElementById("approve_reject_btn").style.display = "block";
             }else{
               document.getElementById("approve_reject_btn").style.display = "none";
@@ -615,5 +793,121 @@ function rejectResignArticle(){
                 location.href = FRONTEND_URL + "/article_list";
             }
         });
+    }
+}
+
+function doneResignArticle(id){
+
+    if (!confirm('Are you sure you want to resign this article?'))
+    {
+        return;
+    }
+    else{
+        let months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        var start_date=new Date();
+        var year = start_date.getFullYear();
+        var month = start_date.getMonth();
+        var day = start_date.getDate();
+
+        var approve_resign_date =  String(day).padStart(2, '0') + "-" + months[month] + "-" + year;
+
+        var data = new FormData();
+        data.append('id', id);
+        data.append('approve_resign_date', approve_resign_date);
+
+        $.ajax({
+            type: 'POST',
+            data: data,
+            url: BACKEND_URL +"/done_resign_article",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(result){
+                successMessage("You have resign that user!");
+                location.href = FRONTEND_URL + "/article_list";
+            }
+        });
+    }
+}
+
+function checkEndArticle(info){
+    $("#endModal").modal('show');
+    $("#article_id").val(info.id);
+    $("#article_form_type").val(info.article_form_type);
+    $("#contract_end_date").val(info.contract_end_date);
+}
+
+function checkEndGovArticle(info){
+    $("#endGovModal").modal('show');
+    $("#gov_article_id").val(info.id);
+    $("#contract_gov_end_date").val(info.contract_end_date);
+}
+
+function saveEndArticle(){
+    id = $("#article_id").val();
+    article_form_type = $("#article_form_type").val();
+    contract_end_date = $("input[name=contract_end_date]").val();
+
+    student_info_id = $("#student_info_id").val();
+
+    if(contract_end_date){
+
+        var data = new FormData();
+        data.append('id', id);
+        data.append('contract_end_date', contract_end_date);
+
+        show_loader();
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: BACKEND_URL + "/save_contract_end_date",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                EasyLoading.hide();
+                successMessage("You have successfully registered.");
+                location.reload();
+            },
+            error: function (message) {
+                EasyLoading.hide();
+                errorMessage(message);
+            }
+        });
+    }else{
+        alert("Please select date.");
+    }
+}
+
+function saveGovEndArticle(){
+    id = $("#gov_article_id").val();
+    contract_gov_end_date = $("input[name=contract_gov_end_date]").val();
+    if(contract_gov_end_date){
+
+        var data = new FormData();
+        data.append('id', id);
+        data.append('contract_gov_end_date', contract_gov_end_date);
+
+        show_loader();
+        $.ajax({
+            type: "POST",
+            data: data,
+            url: BACKEND_URL + "/save_gov_contract_end_date",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                EasyLoading.hide();
+                successMessage("You have successfully registered.");
+                location.reload();
+            },
+            error: function (message) {
+                EasyLoading.hide();
+                errorMessage(message);
+            }
+        });
+    }else{
+        alert("Please select date.");
     }
 }

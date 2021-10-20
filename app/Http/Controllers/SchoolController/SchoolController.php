@@ -252,17 +252,20 @@ class SchoolController extends Controller
         $school->nrc_citizen      = $request->nrc_citizen;
         $school->nrc_number       = $request->nrc_number;
         $school->reg_date = date('Y-m-d');
-        //$school->renew_date = date('Y-m-d');
-        // $school_type = "";
-        // if($request->school_type!=""){
-        //     foreach($request->school_type as $type){
-        //         $school_type = $school_type.$type.',';
-               
-        //     }
-        //     $school->type = rtrim($school_type, ',');
-        // }
+        
         $school->type = $request->school_type;
-        $school->student_info_id  = $request->student_info_id;
+        
+        //reconnected form
+        $school->last_registration_fee_year = $request->last_registration_fee_year;
+        $school->request_for_temporary_stop = $request->request_for_temporary_stop;
+        $school->from_request_stop_date = $request->from_request_stop_date;
+        $school->to_request_stop_date = $request->to_request_stop_date;
+        $school->offline_user=$request->offline_user;
+        // if($request->offline_user=="true"){
+        //     $school->payment_method = 'exit_sch';
+        // }else{
+        //     $school->payment_method = 'init_sch';
+        // }
         $school->save();
         
         
@@ -281,7 +284,9 @@ class SchoolController extends Controller
             $std_info->password = Hash::make($request->password);
             $std_info->save();
         }
-    
+        $school->regno            = 'S-'.$school->id;
+        $school->student_info_id  = $std_info->id;
+        $school->save();
 
         $degrees_certificates=implode(',', $degrees_certificates);
         $new_degrees_certificates= explode(',',$degrees_certificates);
@@ -289,7 +294,7 @@ class SchoolController extends Controller
        
             $education_histroy  =   new EducationHistroy();
             $education_histroy->student_info_id = $std_info->id;
-            $education_histroy->university_name = $request->degrees[$i];
+            $education_histroy->degree_name = $request->degrees[$i];
             $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
             $education_histroy->school_id       = $school->id;
             $education_histroy->save();
@@ -323,7 +328,7 @@ class SchoolController extends Controller
         }
 
         //member list
-        if($request->school_type=="တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း"){
+        if($request->school_type=="P"){
             for($i=0;$i<sizeof($request->member_name);$i++){
                 $member = new SchoolMember();
                 $member->name            = $request->member_name[$i];
@@ -434,21 +439,23 @@ class SchoolController extends Controller
         $memberships = Membership::where('membership_name', 'like', 'School')->get();
         
         //invoice
-            $invoice = new Invoice();
-            $invoice->student_info_id = $request->student_info_id;
-            $invoice->invoiceNo = '';
-            
-            $invoice->name_eng        = $request->name_eng;
-            $invoice->email           = $request->email;
-            $invoice->phone           = $request->phone;
+            if($request->offline_user!=true){
+                $invoice = new Invoice();
+                $invoice->student_info_id = $std_info->id;
+                $invoice->invoiceNo = 'init_sch';
+                
+                $invoice->name_eng        = $request->name_eng;
+                $invoice->email           = $request->email;
+                $invoice->phone           = $request->phone;
 
-            $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee';
-            foreach($memberships as $memberships){
-                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+                $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee,School Registration';
+                foreach($memberships as $memberships){
+                    $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+                }
+            
+                $invoice->status          = 0;
+                $invoice->save();
             }
-           
-            $invoice->status          = 0;
-            $invoice->save();
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
@@ -724,7 +731,7 @@ class SchoolController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $std_info->id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
                 $education_histroy->save();
@@ -740,7 +747,7 @@ class SchoolController extends Controller
                  }
                  for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->university_name = $request->old_degrees[$i];
+                    $education_histroy->degree_name = $request->old_degrees[$i];
                     $education_histroy->certificate     ='/storage/student_info/'.$old_degrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -749,7 +756,7 @@ class SchoolController extends Controller
                 if($request->old_degrees!=null){
                     for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                         $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                        $education_histroy->university_name = $request->old_degrees[$i];
+                        $education_histroy->degree_name = $request->old_degrees[$i];
                         $education_histroy->certificate     =$old_degrees_certificates[$i];
                         $education_histroy->save();
                     }
@@ -1228,136 +1235,183 @@ class SchoolController extends Controller
 
     public function FilterSchool(Request $request)
     {
-        $school = SchoolRegister::where('approve_reject_status',$request->status)
-        ->where('initial_status',$request->initial_status)
-        ->orderBy('created_at','desc');
-        if($request->name!=""){
-            $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
-                        ->orWhere('name_eng', 'like', '%' . $request->name. '%');
-        }
-        if($request->nrc!=""){
-            $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        }
-        $schools=$school->get();
-        return DataTables::of($schools)
-        ->addColumn('action', function ($infos) {
-            $btn='';
-            if($infos->initial_status == 0){
-                $btn ="<div class='btn-group'>
-                        <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
-                            <li class='fa fa-eye fa-sm'></li>
-                        </a>
-                        </div>";
-                return $btn;
-            }else{
-                $btn ="<div class='btn-group'>
-                        <a href='renew_school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
-                            <li class='fa fa-eye fa-sm'></li>
-                        </a>
-                        </div>";
-                return $btn;
-            }
+        if($request->offline_user==true){
             
-        })
-        ->addColumn('nrc', function ($infos){
-            $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
-            return $nrc_result;
-        })
-        ->addColumn('status', function ($infos){
-            if($infos->approve_reject_status	 == 0){
-                return "PENDING";
-            }else if($infos->approve_reject_status	 == 1){
-                return "APPROVED";
-            }else{
-                
-                if($infos->initial_status==2){
-                    return "cessation";
+            $school = SchoolRegister::where('approve_reject_status',$request->status)
+            ->where('offline_user',$request->offline_user)
+            ->orderBy('created_at','desc');
+            if($request->name!=""){
+                $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
+                            ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+            }
+            if($request->nrc!=""){
+                $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+            }
+            $schools=$school->get();
+            return DataTables::of($schools)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                            <a href='school_edit?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                            </div>";
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->approve_reject_status	 == 0){
+                    return "PENDING";
+                }else if($infos->approve_reject_status	 == 1){
+                    return "APPROVED";
                 }else{
                     return "REJECTED";
                 }
-            }
-        })
-        ->addColumn('payment_method', function ($infos){
-            if($infos->payment_method	 == ""){
-                return "Payment Incomplete";
-            }else{
-                return "Payment Complete";
-            }
-        })
-        ->addColumn('exp_date', function ($infos){
-            if($infos->initial_status==0){
-                if($infos->from_valid_date	 ==""){
+            })
+            ->addColumn('reason', function ($infos){
+                if($infos->reason == ""){
                     return "";
+                   
                 }else{
-                    $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                    return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                    return $infos->reason;
+                   
                 }
-            }else if($infos->initial_status==1){
-                if($infos->from_valid_date	 ==""){
-                    return "";
-                }else{
-                    $currentDate = Carbon::now()->addYears(3);
-                    return '01-01-'.date('Y').' to 31-12-'.$currentDate->format('Y');
-                }
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+        }else{
+          
+            $school = SchoolRegister::where('approve_reject_status',$request->status)
+                                    ->where('initial_status',$request->initial_status)
+                                    ->where('offline_user',null)
+                                    ->orderBy('created_at','desc');
+            if($request->name!=""){
+                $school=$school->where('name_mm', 'like', '%' . $request->name. '%')
+                            ->orWhere('name_eng', 'like', '%' . $request->name. '%');
             }
-            
-        })
-        ->addColumn('card', function ($infos) {
-            $btn='';
-            if($infos->payment_method != ""){
-                $btn = "<div class='btn-group'>
-                            <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
-                                <li class='fa fa-id-card-o fa-sm'></li>
+            if($request->nrc!=""){
+                $school=$school->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+            }
+            $schools=$school->get();
+            return DataTables::of($schools)
+            ->addColumn('action', function ($infos) {
+                $btn='';
+                if($infos->initial_status == 0){
+                    $btn ="<div class='btn-group'>
+                            <a href='school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
                             </a>
-                        </div>";
-                return $btn;
+                            </div>";
+                    return $btn;
+                }else{
+                    $btn ="<div class='btn-group'>
+                            <a href='renew_school_edit?id=$infos->id' class='btn btn-primary btn-xs' onclick='showMentorStudent($infos->id)'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                            </div>";
+                    return $btn;
+                }
                 
-            }else{
-                return $btn;
-            }
-            
-        })
-        ->addColumn('remark', function ($infos){
-            if($infos->cessation_reason == ""){
-                return "";
-               
-            }else{
-                return $infos->cessation_reason;
-               
-            }
-        })
-        ->addColumn('reason', function ($infos){
-            if($infos->reason == ""){
-                return "";
-               
-            }else{
-                return $infos->reason;
-               
-            }
-        })
-        ->addColumn('payment_date', function ($infos){
-            if($infos->initial_status==0){
-                if($infos->from_valid_date	 == ""){
-                    return "";
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->approve_reject_status	 == 0){
+                    return "PENDING";
+                }else if($infos->approve_reject_status	 == 1){
+                    return "APPROVED";
                 }else{
-                    $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                    return $date->format('d-m-Y');
+                    
+                    if($infos->initial_status==2){
+                        return "cessation";
+                    }else{
+                        return "REJECTED";
+                    }
                 }
-            }else if($infos->initial_status==1){
-                if($infos->from_valid_date	 == ""){
-                    return "";
+            })
+            ->addColumn('payment_method', function ($infos){
+                if($infos->payment_method	 == ""){
+                    return "Payment Incomplete";
                 }else{
-                    $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
-                    return $date->format('d-m-Y');
+                    return "Payment Complete";
                 }
+            })
+            ->addColumn('exp_date', function ($infos){
+                if($infos->initial_status==0){
+                    if($infos->from_valid_date	 ==""){
+                        return "";
+                    }else{
+                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                        return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                    }
+                }else if($infos->initial_status==1){
+                    if($infos->from_valid_date	 ==""){
+                        return "";
+                    }else{
+                        $currentDate = Carbon::now()->addYears(3);
+                        return '01-01-'.date('Y').' to 31-12-'.$currentDate->format('Y');
+                    }
+                }
+                
+            })
+            ->addColumn('card', function ($infos) {
+                $btn='';
+                if($infos->payment_method != ""){
+                    $btn = "<div class='btn-group'>
+                                <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                                    <li class='fa fa-id-card-o fa-sm'></li>
+                                </a>
+                            </div>";
+                    return $btn;
+                    
+                }else{
+                    return $btn;
+                }
+                
+            })
+            ->addColumn('remark', function ($infos){
+                if($infos->cessation_reason == ""){
+                    return "";
+                
+                }else{
+                    return $infos->cessation_reason;
+                
+                }
+            })
+            ->addColumn('reason', function ($infos){
+                if($infos->reason == ""){
+                    return "";
+                
+                }else{
+                    return $infos->reason;
+                
+                }
+            })
+            ->addColumn('payment_date', function ($infos){
+                if($infos->initial_status==0){
+                    if($infos->from_valid_date	 == ""){
+                        return "";
+                    }else{
+                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                        return $date->format('d-m-Y');
+                    }
+                }else if($infos->initial_status==1){
+                    if($infos->from_valid_date	 == ""){
+                        return "";
+                    }else{
+                        $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                        return $date->format('d-m-Y');
+                    }
+                }
+                
+            })
+            ->rawColumns(['card','action'])
+            ->make(true);
             }
-            
-        })
-        ->rawColumns(['card','action'])
-        ->make(true);
-        // return  response()->json([
-        //     'data' => $school
-        // ],200);
+        
     }
 
     public function schoolStatus($id)
@@ -1451,7 +1505,7 @@ class SchoolController extends Controller
                  $file->move(public_path().'/storage/student_info/',$name);
                  $business_license[] = $name;
              }
-            
+            $business_license=json_encode($business_license);
         }else{
             $business_license=null;
         } 
@@ -1604,16 +1658,17 @@ class SchoolController extends Controller
         $school->father_name_eng = $request->father_name_eng;
         $school->date_of_birth   = $request->dob;
         $school->address         = $request->address;
+        $school->eng_address     = $request->eng_address;
         $school->phone           = $request->phone;
         $school->attachment      = ($attachment);
         
         $school->profile_photo               = $profile_photo;
-        $school->school_name                 = $request->old_school_name;
-        $school->renew_school_name                 = $request->school_name;
-        $school->attend_course               = ($request->old_course);
-        $school->renew_course               = json_encode($request->attend_course);
-        $school->school_address              = $request->old_school_address;
-        $school->renew_school_address              = $request->school_address;
+        $school->school_name                 = $request->school_name;
+        $school->renew_school_name           = $request->old_school_name;
+        $school->attend_course               = json_encode($request->attend_course);
+        $school->renew_course                = $request->old_course;
+        $school->school_address              = $request->school_address;
+        $school->renew_school_address        = $request->old_school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = ($own_type_letter);
         $school->business_license            = ($business_license);
@@ -1631,8 +1686,14 @@ class SchoolController extends Controller
         $school->renew_date       = date('Y-m-d');
         //$school->renew_id         = $request->renew_id;
         $school->student_info_id  = $request->student_info_id;
-        $school->s_code   = $request->invoice_no;
+        $school->s_code   = $request->s_code;
         $school->type = $request->school_type;
+        $school->regno = $request->regno;
+        // if($request->offline_user=="true"){
+        //     $school->payment_method = 'renew_exit_sch';
+        // }else{
+        //     $school->payment_method = 'renew_sch';
+        // }
         $school->save();
         
         if($degrees_certificates!=null){
@@ -1642,7 +1703,7 @@ class SchoolController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
                 $education_histroy->save();
@@ -1685,7 +1746,7 @@ class SchoolController extends Controller
         
 
         //member list
-        if($request->school_type=="တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း"){
+        if($request->school_type=="P"){
             if($request->member_name!=null){
                 for($i=0;$i<sizeof($request->member_name);$i++){
                     $member = new SchoolMember();
@@ -1743,7 +1804,7 @@ class SchoolController extends Controller
             for($i=0;$i<sizeof($request->branch_school_address);$i++){
                 $branch_school = new tbl_branch_school();
                 $branch_school->branch_school_address= $request->branch_school_address[$i];
-                $branch_school->renew_branch_school_address= $request->branch_school_address[$i];
+                //$branch_school->renew_branch_school_address= $request->branch_school_address[$i];
                 $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
                 $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
@@ -1826,21 +1887,109 @@ class SchoolController extends Controller
         $memberships = Membership::where('membership_name', 'like', 'School')->get();
         
         //invoice
-            $invoice = new Invoice();
-            $invoice->student_info_id = $request->student_info_id;
-            $invoice->invoiceNo = '';
-            
-            $invoice->name_eng        = $request->name_eng;
-            $invoice->email           = $request->email;
-            $invoice->phone           = $request->phone;
+            if($request->offline_user=="true"){
+                if($request->request_for_temporary_stop=="no"){
+                    $currentYear = Carbon::now()->format('Y');
+                    $currentMonth = Carbon::now()->format('M');
 
-            $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee';
-            foreach($memberships as $memberships){
-                $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+                    $invoice = new Invoice();
+                    $invoice->student_info_id = $request->student_info_id;
+                    $invoice->invoiceNo = 'renew_exit_sch';
+                    
+                    $invoice->name_eng        = $request->name_eng;
+                    $invoice->email           = $request->email;
+                    $invoice->phone           = $request->phone;
+                    
+                    list($last_pay_month, $last_pay_year) = explode("-", $request->last_registration_fee_year);
+                    $diffYear=$currentYear - $last_pay_year;
+                    
+                    // if(($currentMonth=="Jan" && $diffYear <= 2) || ($currentMonth=="Nov" && $diffYear <= 3) || ($currentMonth=="Dec" && $diffYear <= 3)){//$diffYear <= 3
+                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
+                    //     }
+                    // }else if($last_pay_month=="Feb" && $diffYear <= 2){
+                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
+                    //     }
+                    // }else{
+                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
+                    //     }
+                    // }
+                    $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . 'Year x Reconnect Fee,School Registration';
+                        foreach($memberships as $memberships){
+                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee;
+                        }
+                    $invoice->status          = 0;
+                    $invoice->save();
+                    
+                    
+                }else{
+                    $currentYear = Carbon::now()->format('Y');
+                    list($start_pay_day,$start_pay_month, $start_pay_year)= explode("-", $request->from_request_stop_date);
+                    list($end_pay_day,$end_pay_month, $end_pay_year)= explode("-", $request->to_request_stop_date);
+                    //$diffYear=$end_pay_year - $start_pay_year;
+                    list($last_pay_month, $last_pay_year)= explode("-", $request->last_registration_fee_year);
+                    $diffYear=$currentYear-$last_pay_year;
+                    
+                    $invoice = new Invoice();
+                    $invoice->student_info_id = $request->student_info_id;
+                    $invoice->invoiceNo = 'renew_exit_sch';
+                    
+                    $invoice->name_eng        = $request->name_eng;
+                    $invoice->email           = $request->email;
+                    $invoice->phone           = $request->phone;
+
+                    // if($last_pay_month=="Jan" || $last_pay_month=="Nov" || $last_pay_month=="Dec"){
+                    //     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
+                    //     }
+                        
+                    // }else if($last_pay_month=="Feb"){
+                    //     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee,' . $diffYear . ' x Reconnect Fee';
+                    //     foreach($memberships as $memberships){
+                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
+                    //     }
+                    // }
+                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';//' . $diffYear . ' x Reconnect Fee,
+                        foreach($memberships as $memberships){
+                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;//.','.$diffYear*$memberships->reconnected_fee.
+                        }
+                    $invoice->status          = 0;
+                    $invoice->save();
+                }
+                
+
+                
+            }else{
+                $month = Carbon::now()->format('m');
+                $invoice = new Invoice();
+                $invoice->student_info_id = $request->student_info_id;
+                $invoice->invoiceNo = 'renew_sch';
+                
+                $invoice->name_eng        = $request->name_eng;
+                $invoice->email           = $request->email;
+                $invoice->phone           = $request->phone;
+                if($month==11 || $month==12 || $month==01){
+                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';
+                    foreach($memberships as $memberships){
+                        $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
+                    }
+                }else if($month==02){
+                    $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee,School Registration';
+                    foreach($memberships as $memberships){
+                        $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
+                    }
+                }
+                
+            
+                $invoice->status          = 0;
+                $invoice->save();
             }
-           
-            $invoice->status          = 0;
-            $invoice->save();
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
@@ -2058,8 +2207,9 @@ class SchoolController extends Controller
         $school->nrc_back        = $nrc_back;
         $school->father_name_mm  = $request->father_name_mm;
         $school->father_name_eng = $request->father_name_eng;
-        $school->date_of_birth   = $request->dob;
+        //$school->date_of_birth   = $request->dob;
         $school->address         = $request->address;
+        $school->eng_address         = $request->eng_address;
         $school->phone           = $request->phone;
         $school->attachment      = ($attachment);
         
@@ -2083,7 +2233,7 @@ class SchoolController extends Controller
         $school->renew_date = date('Y-m-d');
         $school->type = $request->school_type;
         $school->approve_reject_status = 0;
-        $school->initial_status = $request->initial_status;
+        $school->initial_status = 1;
         
         $school->save();
         
@@ -2094,8 +2244,8 @@ class SchoolController extends Controller
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
-                $education_histroy->student_info_id = $std_info->id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->student_info_id = $request->student_info_id;
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
                 $education_histroy->save();
@@ -2109,9 +2259,10 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $old_degrees_certificates[] = $name;
                  }
-                 for($i=0;$i <sizeof($request->old_degrees_id);$i++){
+                 $old_degrees_certificates= str_replace('/storage/student_info/', '', $request->old_degrees_certificates_h);
+                 for($i=0;$i <sizeof($request->old_degrees);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->university_name = $request->old_degrees[$i];
+                    $education_histroy->degree_name = $request->old_degrees[$i];
                     $education_histroy->certificate     ='/storage/student_info/'.$old_degrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -2120,7 +2271,7 @@ class SchoolController extends Controller
                 if($request->old_degrees!=null){
                     for($i=0;$i <sizeof($request->old_degrees);$i++){
                         $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                        $education_histroy->university_name = $request->old_degrees[$i];
+                        $education_histroy->degree_name = $request->old_degrees[$i];
                         $education_histroy->certificate     =$old_degrees_certificates[$i];
                         $education_histroy->save();
                     }

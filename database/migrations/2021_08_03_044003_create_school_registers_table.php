@@ -25,7 +25,7 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('nrc_back');
             $table->string('father_name_mm');
             $table->string('father_name_eng');
-            $table->string('date_of_birth');
+            $table->string('date_of_birth')->nullable();
             $table->string('type')->nullable();
             $table->string('attachment')->nullable();
             $table->text('address')->nullable();
@@ -48,7 +48,7 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('email');
             $table->string('password')->nullable();
             $table->integer('approve_reject_status')->default(0);
-            $table->date('reg_date');
+            $table->date('reg_date')->nullable();
             $table->date('renew_date')->default(null)->nullable();
             $table->string('payment_method')->nullable();
             $table->string('from_valid_date')->nullable();
@@ -64,6 +64,14 @@ class CreateSchoolRegistersTable extends Migration
             $table->string('renew_school_name')->nullable();
             $table->string('renew_school_address')->nullable();
             $table->string('renew_course')->nullable();
+            $table->string('school_card')->nullable();
+            $table->string('regno')->nullable();
+
+            $table->string('last_registration_fee_year')->nullable();
+            $table->string('request_for_temporary_stop')->nullable();
+            $table->string('from_request_stop_date')->nullable();
+            $table->string('to_request_stop_date')->nullable();
+            $table->string('offline_user')->nullable();
             $table->timestamps();
         });
     }

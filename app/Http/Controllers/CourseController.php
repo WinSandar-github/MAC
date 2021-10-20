@@ -53,12 +53,7 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         
-        // $requirements = [];
-        // foreach ($request->requirement_id as $require) {
-        //     array_push($requirements, $require);
-        // }
-        // return $requirements;
-
+       
         $request->validate([
             'name' => 'required',
             'name_mm' => 'required',
@@ -82,6 +77,8 @@ class CourseController extends Controller
         $course->privateschool_registration_fee = $request->privateschool_registration_fee;
         $course->mac_registration_fee = $request->mac_registration_fee;
         $course->exam_fee = $request->exam_fee;
+        $course->entry_exam_fee = $request->entry_exam_fee;
+
         $course->tution_fee = $request->tution_fee;
         $course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
@@ -129,11 +126,8 @@ class CourseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $requirements = [];
-        foreach ($request->requirement_id as $require) {
-            array_push($requirements, $require);
-        }
-
+       
+ 
         $course = Course::find($id);
         $course->name = $request->name;
         $course->name_mm = $request->name_mm;
@@ -145,8 +139,9 @@ class CourseController extends Controller
         $course->tution_fee = $request->tution_fee;
         $course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
-        $course->code = $request->code;
-        $course->requirement_id = json_encode($requirements);
+        // $course->code = $request->code;
+        $course->entry_exam_fee = $request->entry_exam_fee;
+        $course->requirement_id = $request->requirement_id;
         $course->save();
         return response()->json([
             'message' => "Update Successfully"

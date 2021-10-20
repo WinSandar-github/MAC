@@ -41,7 +41,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('renew_micpa')->default(null)->nullable();
             $table->string('renew_cpd')->default(null)->nullable();
             $table->string('renew_cpaff_reg')->default(null)->nullable();
-            $table->date('renew_accepted_date')->default(null)->nullable();
+            $table->string('renew_accepted_date')->default(null)->nullable();
             $table->boolean('renew_status')->default(null)->nullable();
             // $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
 
@@ -49,7 +49,8 @@ class CreateCPAFFSTable extends Migration
             $table->string('total_hours')->nullable();          
             $table->string('cpa2_pass_date')->nullable();          
             $table->string('cpaff_pass_date')->nullable();          
-            $table->string('reg_no')->nullable();          
+            $table->string('cpaff_renew_date')->nullable();          
+            $table->string('cpaff_reg_no')->nullable();          
             $table->string('country')->nullable();          
             $table->string('government')->nullable();          
             $table->string('exam_year')->nullable();          
@@ -85,8 +86,15 @@ class CreateCPAFFSTable extends Migration
             $table->integer('self_confession')->nullable();
             $table->integer('type')->nullable();
             $table->date('reg_date')->default(null)->nullable();
+            $table->string('cpaff_reg_date')->nullable();
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();
+            $table->string('last_paid_year')->nullable();//new
+            $table->string('resign')->nullable();//new
+            $table->string('resign_date')->nullable();//new
+            // $table->string('end_date')->nullable();//new
+            $table->boolean('offline_user')->default(0);
+            $table->boolean('papp_reg_no')->nullable();
             $table->timestamps();
         });
     }

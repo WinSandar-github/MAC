@@ -145,14 +145,14 @@
                                 </div>--}}
 
 
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Degree Level</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="degree"></span>
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -163,14 +163,14 @@
                                     </div>
                                 </div>
 
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">ကိုယ်ပိုင်အမှတ် </p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="reg_no"></span>
+                                        <span id="cpa_reg_no"></span>
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -385,15 +385,6 @@
                                         <span id="cpd_total_hour"></span>
                                     </div>
                                 </div>
-                                    <!--Passport Image-->
-                                {{--<div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Passport Image</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#passport_Modal"><i class="fa fa-paperclip"></i></button>
-                                    </div>
-                                </div>--}}
                                 <!--Three Year-->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -403,63 +394,6 @@
                                         <!-- <button type="button" id="three_year_full_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#three_year_full_Modal"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
-                                    <!--Three Year Modal-->
-                                {{--<div id="three_year_full_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">စာရင်းကိုင်အလုပ်သင်လုပ်သက်(၃)နှစ်ပြည့်ကြောင်းရုံးအမိန့်</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <embed id="three_years_full"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>--}}
-                                <!--Letter-->
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">ကိုယ်တိုင်ဝန်ခံချက်</p>
-                                    </div>
-                                    <div class="col-md-6 text-left letter_file">
-                                        <!-- <button type="button" id="letter_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#letter_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                                    <!--Letter Modal-->
-                                {{--<div id="letter_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">ကိုယ်တိုင်ဝန်ခံချက်</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <embed id="letter"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>--}}
-                                    <!--Passport Image Modal-->
-                                {{--<div id="passport_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">Passport Image</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <embed id="passport_image"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>--}}
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -511,7 +445,7 @@
                                         <span id="father_name_eng"></span> / <span  id="father_name_mm"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Race</p>
                                     </div>
@@ -534,7 +468,7 @@
                                     <div class="col-md-6 text-left">
                                         <span id="date_of_birth"></span>
                                     </div>
-                                </div>
+                                </div>--}}
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Address</p>
@@ -543,14 +477,14 @@
                                         <span id="address"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Current Address</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="current_address"></span>
                                     </div>
-                                </div>
+                                </div>--}}
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Phone</p>
@@ -567,13 +501,13 @@
                                         <span id="email"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2"style="font-weight:bold" >Government Staff</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="gov_staff"></span>
-                                        {{--<p>{{ $user->gov_staff == 0 ? 'No' : 'Yes'}}</p>--}}
+                                        <p>{{ $user->gov_staff == 0 ? 'No' : 'Yes'}}</p>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
@@ -591,11 +525,11 @@
                                     <div class="col-md-6 text-left">
                                         <span id="registration_no"></span>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                         <div class="card">
-                            <div class="card-header">
+                            {{--<div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Education</h5>
                             </div>
                             <div class="card-body pt-0">
@@ -639,7 +573,7 @@
                                         <!-- <button type="button" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#attached_Modal"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
-                            </div>
+                            </div>--}}
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">CPAFF Education</h5>
                             </div>
@@ -686,10 +620,16 @@
                                             </div>
                                         </div>  
                                     </div>
-                                </div>                        
+                                </div> 
+                                <input type="hidden" name="cpaff_id" >
+
+                                <div class="row mt-5 justify-content-center" id="cpaff_approve_reject">
+                                    <button type="submit" name="save" class="btn btn-danger"  onclick="rejectModal()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                    <button type="submit" name="save" class="btn btn-primary" onclick="approveCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                </div>                       
                             </div>
                         </div>
-                        <div class="card">
+                        {{--<div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Job</h5>
                             </div>
@@ -775,7 +715,7 @@
                                   </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </form>

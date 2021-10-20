@@ -24,10 +24,12 @@ class BatchController extends Controller
             'data'  => $batches
         ]);
     }
+
     public function create()
     {
        
     }
+
     public function store(Request $request)
     {            
         $request->validate([
@@ -48,6 +50,10 @@ class BatchController extends Controller
         $batch->self_reg_end_date        = date('Y-m-d',strtotime($request->self_reg_end_date));
         $batch->private_reg_start_date      = date('Y-m-d',strtotime($request->private_reg_start_date));
         $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
+        $batch->private_reg_start_date      = date('Y-m-d',strtotime($request->private_reg_start_date));
+        $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
+        $batch->exam_start_date = date('Y-m-d',strtotime($request->exam_start_date));
+        $batch->exam_end_date   = date('Y-m-d',strtotime($request->exam_end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
         $batch->accept_application_start_date = date('Y-m-d',strtotime($request->accept_application_start_date));
@@ -64,10 +70,17 @@ class BatchController extends Controller
         $batches = Batch::where('id',$id)->with('course','exams')->first();
         return response()->json([
             'data'  => $batches
-        ]);return $batch;
-
-        
+        ]);
     }
+
+    public function LoadBatchForOfflineStudent($id)
+    {
+        $batches = Batch::where('id',$id)->with('course','exams')->first();
+        return response()->json([
+            'data'  => $batches
+        ]);
+    }
+    
     public function edit($id)
     {
     }
@@ -87,6 +100,8 @@ class BatchController extends Controller
         $batch->self_reg_end_date        = date('Y-m-d',strtotime($request->self_reg_end_date));
         $batch->private_reg_start_date      = date('Y-m-d',strtotime($request->private_reg_start_date));
         $batch->private_reg_end_date        = date('Y-m-d',strtotime($request->private_reg_end_date));
+        $batch->exam_start_date = date('Y-m-d',strtotime($request->exam_start_date));
+        $batch->exam_end_date   = date('Y-m-d',strtotime($request->exam_end_date));
         $batch->publish_status  = 1;
         $batch->moodle_course_id= 1;
         $batch->accept_application_start_date = date('Y-m-d',strtotime($request->accept_application_start_date));  

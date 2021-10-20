@@ -28,6 +28,11 @@ class MembershipController extends Controller
         ],200);
     }
 
+    public function membership_list()
+    {
+        return view('pages.membership_list');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -56,7 +61,11 @@ class MembershipController extends Controller
         $membership->renew_fee                = $request->renew_fee;
         $membership->late_fee                 = $request->late_fee;
         $membership->cpa_subject_fee     = $request->cpa_subject_fee;
-        $membership->da_subject_fee     = $request->da_subject_fee;    
+        $membership->da_subject_fee     = $request->da_subject_fee; 
+        $membership->renew_cpa_subject_fee     = $request->renew_cpa_subject_fee;
+        $membership->renew_da_subject_fee     = $request->renew_da_subject_fee; 
+        $membership->renew_registration_fee     = $request->renew_registration_fee;
+        $membership->renew_yearly_fee     = $request->renew_yearly_fee;    
         $membership->save();
 
         return response()->json([
@@ -126,6 +135,10 @@ class MembershipController extends Controller
         $membership->reconnect_fee_partner                 = $request->reconnect_fee_partner;
         $membership->cpa_subject_fee     = $request->cpa_subject_fee;
         $membership->da_subject_fee     = $request->da_subject_fee;  
+        $membership->renew_cpa_subject_fee     = $request->renew_cpa_subject_fee;
+        $membership->renew_da_subject_fee     = $request->renew_da_subject_fee; 
+        $membership->renew_registration_fee     = $request->renew_registration_fee;
+        $membership->renew_yearly_fee     = $request->renew_yearly_fee; 
         $membership->save();
 
         return response()->json([
