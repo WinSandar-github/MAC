@@ -13,16 +13,52 @@ const _MAIN_TITLE = [
 ]
 
 const _DA = [
+    // {
+    //     route_name: "/da_attend/all",
+    //     fun_name : 'daAttendList($(this).data(\'url\'))',
+    //     sub_title:"သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း(အားလုံး)"
+    // },
+
     {
-        route_name: "/da_attend",
-        fun_name : 'daAttendList($(this).data(\'url\'))',
-        sub_title:"သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ အက္ခရာအစဥ်အလိုက်)"
+        route_name: "/da_attend/2",
+        fun_name : 'daAttendMacList($(this).data(\'url\'))',
+        sub_title:"စာရင်းစစ်ချုပ်ရုံးတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+    },
+    
+    {
+        route_name: "/da_attend/1",
+        fun_name : 'daAttendPrvList($(this).data(\'url\'))',
+        sub_title:"ကိုယ်ပိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+    },
+    
+    {
+        route_name: "/da_attend/0",
+        fun_name : 'daAttendSelfList($(this).data(\'url\'))',
+        sub_title:"ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများစာရင်း"
+    },
+
+    // {
+    //     route_name: "/da_reg",
+    //     fun_name : 'daRegList($(this).data(\'url\'))',
+    //     sub_title: "မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ MODULEအလိုက်)"
+    // },
+
+    {
+        route_name: "/da_reg/2",
+        fun_name : 'daRegList($(this).data(\'url\'))',
+        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
-        route_name: "/da_reg",
+        route_name: "/da_reg/0",
         fun_name : 'daRegList($(this).data(\'url\'))',
-        sub_title: "မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ MODULEအလိုက်)"
+        sub_title: "ကိုယ်တိုင်လေ့လာသင်ယူမည့် မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+    },
+
+    {
+        route_name: "/da_reg/1",
+        fun_name : 'daRegList($(this).data(\'url\'))',
+        sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
@@ -43,18 +79,60 @@ const _DA = [
 ]
 
 const _CPA = [
+    // {
+    //     // route_name: "ca_report_template",
+    //     route_name: '/da_attend',
+    //     fun_name : 'daAttendList($(this).data(\'url\'))',
+    //     sub_title:"သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ အက္ခရာအစဥ်အလိုက်)"
+    // },
+
     {
-        // route_name: "ca_report_template",
-        route_name: '/da_attend',
-        fun_name : 'daAttendList($(this).data(\'url\'))',
-        sub_title:"သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ အက္ခရာအစဥ်အလိုက်)"
+        route_name: "/da_attend/2",
+        fun_name : 'daAttendMacList($(this).data(\'url\'))',
+        sub_title:"စာရင်းစစ်ချုပ်ရုံးတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+    },
+    
+    {
+        route_name: "/da_attend/1",
+        fun_name : 'daAttendPrvList($(this).data(\'url\'))',
+        sub_title:"ကိုယ်ပိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+    },
+    
+    {
+        route_name: "/da_attend/0",
+        fun_name : 'daAttendSelfList($(this).data(\'url\'))',
+        sub_title:"ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများစာရင်း"
     },
 
     {
-        // route_name: "ca_report_template",
-        route_name: "/da_reg",
+        route_name: "/da_reg/99",
         fun_name : 'daRegList($(this).data(\'url\'))',
-        sub_title: "မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ MODULEအလိုက်)"
+        sub_title: "ဝင်ခွင့်စာမေးပွဲမှ တက်ရောက်ခွင့်ရသူများစာရင်း"
+    },
+
+    // {
+    //     // route_name: "ca_report_template",
+    //     route_name: "/da_reg",
+    //     fun_name : 'daRegList($(this).data(\'url\'))',
+    //     sub_title: "မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ MODULEအလိုက်)"
+    // },
+
+    {
+        route_name: "/da_reg/2",
+        fun_name : 'daRegList($(this).data(\'url\'))',
+        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+    },
+
+    {
+        route_name: "/da_reg/0",
+        fun_name : 'daRegList($(this).data(\'url\'))',
+        sub_title: "ကိုယ်တိုင်လေ့လာသင်ယူမည့် မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+    },
+
+    {
+        route_name: "/da_reg/1",
+        fun_name : 'daRegList($(this).data(\'url\'))',
+        sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
@@ -84,10 +162,14 @@ const _ARTICLE_SECTION_MENTOR = [
     },
 
     // {
+    //     route_name: "/pa_offline_mentor",
+    //     fun_name: "paOfflineMentor($(this).data(\'url\'))",
     //     sub_title: "PA သက်တမ်းပြတ်တောက်နေသည့် mentor များစာရင်း"
     // },
 
     // {
+    //     route_name: "/pauseMentor",
+    //     fun_name: "pauseMentor($(this).data(\'url\'))",
     //     sub_title: "Mentor ရပ်နားတင်ထားသူများစာရင်း"
     // },
 

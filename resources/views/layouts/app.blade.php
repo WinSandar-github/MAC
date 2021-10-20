@@ -31,7 +31,7 @@
     <link href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/css/easy-loading.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/custom_table.css') }}">
+    <link href="{{ asset('css/custom_table.css') }}" rel="stylesheet">
 </head>
 <body class="{{ $class }}">
     @auth()

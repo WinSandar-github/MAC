@@ -237,8 +237,8 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Report
     Route::get('report_list', 'ReportController@index')->name('report_list');
 
-    Route::post('da_attend','ReportController\DaReportController@daAttendList');
-    Route::post('da_reg','ReportController\DaReportController@daRegList');
+    Route::post('da_attend/{type}','ReportController\DaReportController@daAttendList');
+    Route::post('da_reg/{type}','ReportController\DaReportController@daRegList');
     Route::post('da_exam_reg','ReportController\DaReportController@daExamRegList');
     Route::post('da_pass','ReportController\DaReportController@daPassList');
     Route::post('da_report5','ReportController\DaReportController@da_report5');

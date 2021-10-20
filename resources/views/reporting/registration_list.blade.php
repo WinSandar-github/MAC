@@ -9,9 +9,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="text-center m-3" style="font-weight:bold">
-                                {{ $data['course']->name_mm }}<br>
-                                {{ $data['batch']->name_mm }}<br>
-                                မှတ်ပုံတင်ခွင့်ရသူများစာရင်း
+                                {!! $data['title'] !!}
                             </h3>
                         </div>
                     </div>
@@ -66,10 +64,9 @@
                                 <tr>
                                     <th class="bold-font-weight">စဥ်</th>
                                     <th class="bold-font-weight">အမည်</th>
-                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကဒ်အမှတ်</th>
-                                    <th class="bold-font-weight">ဘွဲ့အမည်</th>
+                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်အမှတ်</th>
                                     <th class="bold-font-weight">အဘအမည်</th>
-                                    <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
+                                    <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်</th>
                                     <th class="bold-font-weight">မှတ်ချက်</th>
 
                                 </tr>
@@ -90,17 +87,6 @@
                                                 <td>{{++$count}}</td>
                                                 <td>{{$s->name_mm}}</td>
                                                 <td>{{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}</td>
-                                                <td>
-                                                    @if($data['course']->code === "da_1")
-                                                        ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
-                                                    @elseif($data['course']->code === "da_2" )
-                                                        ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @elseif($data['course']->code === "cpa_1" )
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
-                                                    @else
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @endif
-                                                </td>
                                                 <td>
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
@@ -130,17 +116,6 @@
                                                 <td>{{$s->name_mm}}</td>
                                                 <td>{{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}</td>
                                                 <td>
-                                                    @if($data['course']->code === "da_1")
-                                                        ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
-                                                    @elseif($data['course']->code === "da_2" )
-                                                        ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @elseif($data['course']->code === "cpa_1" )
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
-                                                    @else
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @endif
-                                                </td>
-                                                <td>
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
@@ -169,17 +144,6 @@
                                                 <td>{{$s->name_mm}}</td>
                                                 <td>{{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}</td>
                                                 <td>
-                                                    @if($data['course']->code === "da_1")
-                                                        ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
-                                                    @elseif($data['course']->code === "da_2" )
-                                                        ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @elseif($data['course']->code === "cpa_1" )
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
-                                                    @else
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @endif
-                                                </td>
-                                                <td>
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
@@ -198,6 +162,7 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div id='export-btn'></div>
                     </div>
                 </div>
             </div>
@@ -206,10 +171,31 @@
 
 
 @endsection
-
+@push('styles')
+    <link href="{{ asset('assets/js/plugins/tableexport/dist/css/tableexport.min.css') }}" rel="stylesheet">
+@endpush
 @push('scripts')
+    <script src="{{ asset('assets/js/plugins/xlsx.core.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/FileSave.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/tableexport/dist/js/tableexport.min.js') }}"></script>
     <script>
         $('document').ready(function () {
+
+            // table export
+            var $table = $('.table');
+
+            $table.tableExport({
+                headers: false,
+                footers: false,
+                position: "bottom",
+                bootstrap: true
+            });
+
+            $btn = $table.find('caption').children().detach();
+
+            $btn.appendTo('#export-btn');
+            // table export
+
             var course_code = $('#course_code').val();
 
             $('input[type=radio][name=filter]').on('change', function () {

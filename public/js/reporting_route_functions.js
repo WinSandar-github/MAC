@@ -7,6 +7,38 @@ function daAttendList(url) {
     }
 }
 
+function daAttendMacList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function daAttendPrvList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function daAttendSelfList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+
+
+
+
+
 function daRegList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
