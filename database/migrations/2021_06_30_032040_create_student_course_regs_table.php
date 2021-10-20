@@ -20,13 +20,13 @@ class CreateStudentCourseRegsTable extends Migration
             $table->unsignedBigInteger('batch_id');
             $table->bigInteger('type')->nullable();
             $table->bigInteger('mac_type')->nullable();
-            
+            $table->integer('isFinished')->default(0)->nullable();
             $table->char('status',1);
             $table->date('date');
             $table->bigInteger('qt_entry')->default(0);
             $table->boolean('approve_reject_status')->default(0)->nullable();
             $table->text('remark')->nullable();
-
+            $table->integer('offline_user')->default(0)->nullable();
             $table->timestamps();
 
             $table->foreign('student_info_id')
