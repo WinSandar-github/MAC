@@ -228,7 +228,7 @@ function loadArticle()
             }else if(data.ex_papp == "undefined" && data.exp_start_date == "undefined" &&  data.exp_end_date == "undefined"){
                 document.getElementById("previous_papp_name_row").style.display = "none";
                 document.getElementById("previous_papp_date_row").style.display = "none";
-                $("#exam_pass_date_label").text('၁၄။');
+                $("#exam_pass_date_label").text('၁၅။');
             }else{
                 $("#previous_papp_name").val(data.ex_papp);
                 $("#previous_papp_start_date").val(data.exp_start_date);

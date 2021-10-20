@@ -9,7 +9,7 @@ class CurrentCheckServiceController extends Controller
 {
     public function getCurrentCheckService()
     {
-        $service = CurrentCheckService::get();
+        $service = CurrentCheckService::orderBy('id', 'ASC')->get();
         return response()->json([
             'data' => $service
         ],200);
