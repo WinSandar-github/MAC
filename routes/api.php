@@ -454,9 +454,10 @@ Route::post('/cessation_school_register', 'SchoolController\SchoolController@ces
 Route::post('/renewTeacher', 'TeacherController\TeacherController@renewTeacher');
 Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
 Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
-Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');
 //school renew
 Route::post('/renewSchool', 'SchoolController\SchoolController@renewSchool');
 Route::get('/getSchoolInfo/{id}', 'SchoolController\SchoolController@getSchoolInfo');
 Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewSchoolPayment');
 Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');
+//school total amount
+Route::post('/getTotalAmount', 'SchoolController\SchoolController@getTotalAmount');
