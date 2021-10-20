@@ -176,7 +176,7 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
 Route::post('/send_email', 'DARegisterController@send_email');
 
-//DA and CPA Offline Application 
+//DA and CPA Offline Application
 Route::post('/filter_offline_student_info','DARegisterController@FilterOfflineApplicationList');
 Route::patch('/reject_offline_da_cpa/{id}', 'DARegisterController@rejectOfflineDACPA');
 Route::patch('/approve_offline_da_cpa/{id}', 'DARegisterController@approveOfflineDACPA');
@@ -209,7 +209,7 @@ Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 // Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
 // Audit Reconnect
-Route::post('/audit_reconnect','AccFirmInfController@firmReconnect');
+Route::post('/audit_reconnect','AccFirmInfController@createOfflineUser');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
