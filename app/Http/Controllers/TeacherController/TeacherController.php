@@ -729,7 +729,7 @@ class TeacherController extends Controller
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
 
-            $invoice->productDesc     = 'Application Fee,Subject CPA count *Renew Fee,Subject DA count *Renew Fee,School Registration';
+            $invoice->productDesc     = 'Application Fee,Subject CPA count *Renew Fee,Subject DA count *Renew Fee,Teacher Registration';
             foreach($memberships as $memberships){
                 $invoice->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->renew_cpa_subject_fee.','.$da_subject_count*$memberships->renew_da_subject_fee;
             }

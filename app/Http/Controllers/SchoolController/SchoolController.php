@@ -1505,7 +1505,7 @@ class SchoolController extends Controller
                  $file->move(public_path().'/storage/student_info/',$name);
                  $business_license[] = $name;
              }
-            
+            $business_license=json_encode($business_license);
         }else{
             $business_license=null;
         } 
