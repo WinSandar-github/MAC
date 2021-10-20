@@ -178,6 +178,7 @@ function showMainCourseInfo(id) {
         url: FRONTEND_URL + "/main_course/" + id,
         success: function (result) {
             $('input[name=main_course_name]').val(result.course_name);
+            $('input[name=main_course_name_mm]').val(result.course_name_mm);
             $('#main_summernote').summernote('code', result.course_description);
             $('#main_course_modal').modal('toggle');
         },
@@ -255,6 +256,7 @@ function updateMainCourse() {
         url: FRONTEND_URL + '/main_course/' + id,
         data: {
             main_course_name: formData.get('main_course_name'),
+            main_course_name_mm: formData.get('main_course_name_mm'),
             main_course_description: formData.get("main_course_description")
         },
         success: function (result) {

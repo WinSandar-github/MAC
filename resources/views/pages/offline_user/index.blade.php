@@ -12,7 +12,7 @@
             <div class="col-md-12 card">
 
                 <div class="card-header text-center">
-                    <h5>Offline User Register</h5>
+                    <h5>Existing User Register</h5>
                 </div>
 
                 <div class="card-body">
@@ -21,13 +21,21 @@
                             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                  aria-orientation="vertical">
                                 <a class="nav-link font-weight-bold active" id="v-pills-home-tab" data-toggle="pill"
-                                   href="#v-pills-da"
+                                    href="#v-pills-da1"
+                                    role="tab"
+                                    aria-controls="v-pills-home" aria-selected="true">DA One Course Register</a>
+                                <a class="nav-link font-weight-bold" id="v-pills-profile-tab" data-toggle="pill"
+                                   href="#v-pills-da2"
                                    role="tab"
-                                   aria-controls="v-pills-home" aria-selected="true">DA Course Register</a>
+                                   aria-controls="v-pills-home" aria-selected="true">DA Two Course Register</a>
                                 <a class="nav-link font-weight-bold" id="v-pills-profile-tab" data-toggle="pill"
                                    href="#v-pills-cpa"
                                    role="tab"
-                                   aria-controls="v-pills-profile" aria-selected="false">CPA Course Register</a>
+                                   aria-controls="v-pills-profile" aria-selected="false">CPA One Course Register</a>
+                                <a class="nav-link font-weight-bold" id="v-pills-profile-tab" data-toggle="pill"
+                                   href="#v-pills-cpa_two"
+                                   role="tab"
+                                   aria-controls="v-pills-profile" aria-selected="false">CPA Two Course Register</a>
                                 <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
                                    href="#v-pills-cpa-ff"
                                    role="tab"
@@ -62,48 +70,30 @@
                         </div>
                         <div class="col-10 border-left">
                             <div class="tab-content" id="v-pills-tabContent">
-                                <div class="tab-pane fade show active" id="v-pills-da" role="tabpanel"
+                                <div class="tab-pane fade show active" id="v-pills-da1" role="tabpanel"
                                      aria-labelledby="v-pills-home-tab">
 
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item">
-                                            <a class="nav-link active" data-toggle="tab" href="#da_offline_pending_list"
+                                            <a class="nav-link active" data-toggle="tab" href="#da1_offline_pending_list"
                                                role="tablist" aria-expanded="false" style="font-weight:bold">Pending
                                                 List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#da_offline_approve_list" role="tablist"
+                                            <a class="nav-link" data-toggle="tab" href="#da1_offline_approve_list" role="tablist"
                                                aria-expanded="true" style="font-weight:bold">Approved List</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" data-toggle="tab" href="#da_offline_reject_list" role="tablist"
+                                            <a class="nav-link" data-toggle="tab" href="#da1_offline_reject_list" role="tablist"
                                                aria-expanded="false" style="font-weight:bold">Rejected List</a>
                                         </li>
                                     </ul>
 
                                     <div class="card-body">
                                         <div class="tab-space tab-content tab-no-active-fill-tab-content">
-                                            <div class="tab-pane fade show active" id="da_offline_pending_list"
+                                            <div class="tab-pane fade show active" id="da1_offline_pending_list"
                                                  aria-expanded="true">
-                                                <table id="tbl_da_offline_pending_list" class="table table-hover text-nowrap " style="width:100%;">
-                                                    <thead>
-                                                    <tr>
-                                                        <th class="bold-font-weight">No</th>
-                                                        <th class="bold-font-weight">Action</th>
-                                                        <th class="bold-font-weight">Student Name</th>
-                                                        <th class="bold-font-weight">Batch Number</th>
-                                                        <th class="bold-font-weight">Email</th>
-                                                        <th class="bold-font-weight">Phone</th>
-                                                        <th class="bold-font-weight">NRC</th>
-                                                        <th class="bold-font-weight">Status</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody id="tbl_da_offline_pending_list_body" class="hoverTable">
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="tab-pane fade show" id="da_offline_approve_list" aria-expanded="true">
-                                                <table id="tbl_da_offline_approved_list"
+                                                <table id="tbl_da1_offline_pending_list"
                                                        class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                     <tr>
@@ -115,16 +105,15 @@
                                                         <th class="bold-font-weight">Phone</th>
                                                         <th class="bold-font-weight">NRC</th>
                                                         <th class="bold-font-weight">Status</th>
-
                                                     </tr>
                                                     </thead>
-                                                    <tbody id="tbl_da_offline_approved_list_body"
+                                                    <tbody id="tbl_da1_offline_pending_list_body"
                                                            class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="tab-pane fade show" id="da_offline_reject_list" aria-expanded="true">
-                                                <table id="tbl_da_offline_rejected_list"
+                                            <div class="tab-pane fade show" id="da1_offline_approve_list" aria-expanded="true">
+                                                <table id="tbl_da1_offline_approved_list"
                                                        class="table table-hover text-nowrap " style="width:100%;">
                                                     <thead>
                                                     <tr>
@@ -139,7 +128,116 @@
 
                                                     </tr>
                                                     </thead>
-                                                    <tbody id="tbl_da_offline_rejected_list_body"
+                                                    <tbody id="tbl_da1_offline_approved_list_body"
+                                                           class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade show" id="da1_offline_reject_list" aria-expanded="true">
+                                                <table id="tbl_da1_offline_rejected_list"
+                                                       class="table table-hover text-nowrap " style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
+                                                        <th class="bold-font-weight">Status</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_da1_offline_rejected_list_body"
+                                                           class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-da2" role="tabpanel"
+                                     aria-labelledby="v-pills-home-tab">
+
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#da2_offline_pending_list"
+                                               role="tablist" aria-expanded="false" style="font-weight:bold">Pending
+                                                List</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#da2_offline_approve_list" role="tablist"
+                                               aria-expanded="true" style="font-weight:bold">Approved List</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#da2_offline_reject_list" role="tablist"
+                                               aria-expanded="false" style="font-weight:bold">Rejected List</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="card-body">
+                                        <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                            <div class="tab-pane fade show active" id="da2_offline_pending_list"
+                                                 aria-expanded="true">
+                                                <table id="tbl_da2_offline_pending_list"
+                                                       class="table table-hover text-nowrap " style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
+                                                        <th class="bold-font-weight">Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_da2_offline_pending_list_body"
+                                                           class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade show" id="da2_offline_approve_list" aria-expanded="true">
+                                                <table id="tbl_da2_offline_approved_list"
+                                                       class="table table-hover text-nowrap " style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
+                                                        <th class="bold-font-weight">Status</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_da2_offline_approved_list_body"
+                                                           class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade show" id="da2_offline_reject_list" aria-expanded="true">
+                                                <table id="tbl_da2_offline_rejected_list"
+                                                       class="table table-hover text-nowrap " style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
+                                                        <th class="bold-font-weight">Status</th>
+
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_da2_offline_rejected_list_body"
                                                            class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
@@ -229,6 +327,94 @@
                                                     </tr>
                                                     </thead>
                                                     <tbody id="tbl_cpa_offline_rejected_list_body"
+                                                           class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade" id="v-pills-cpa_two" role="tabpanel"
+                                     aria-labelledby="v-pills-profile-tab">
+
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" data-toggle="tab" href="#cpa2_offline_pending_list"
+                                               role="tablist" aria-expanded="false" style="font-weight:bold">Pending
+                                                List</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#cpa2_offline_approved_list"
+                                               role="tablist" aria-expanded="true" style="font-weight:bold">Approved
+                                                List</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" data-toggle="tab" href="#cpa2_offline_rejected_list"
+                                               role="tablist" aria-expanded="false" style="font-weight:bold">Rejected
+                                                List</a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="card-body">
+                                        <div class="tab-space tab-content tab-no-active-fill-tab-content">
+                                            <div class="tab-pane fade show active" id="cpa2_offline_pending_list"
+                                                 aria-expanded="true">
+                                                <table id="tbl_cpa2_offline_pending_list"
+                                                       class="table table-hover text-nowrap " style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
+                                                        <th class="bold-font-weight">Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_cpa2_offline_pending_list_body"
+                                                           class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade show" id="cpa2_offline_approved_list" aria-expanded="true">
+                                                <table id="tbl_cpa2_offline_approved_list"
+                                                       class="table table-hover text-nowrap " style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
+                                                        <th class="bold-font-weight">Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_cpa2_offline_approved_list_body"
+                                                           class="hoverTable text-left">
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade show" id="cpa2_offline_rejected_list" aria-expanded="true">
+                                                <table id="tbl_cpa2_offline_rejected_list"
+                                                       class="table table-hover text-nowrap " style="width:100%;">
+                                                    <thead>
+                                                    <tr>
+                                                        <th class="bold-font-weight">No</th>
+                                                        <th class="bold-font-weight">Action</th>
+                                                        <th class="bold-font-weight">Student Name</th>
+                                                        <th class="bold-font-weight">Batch Number</th>
+                                                        <th class="bold-font-weight">Email</th>
+                                                        <th class="bold-font-weight">Phone</th>
+                                                        <th class="bold-font-weight">NRC</th>
+                                                        <th class="bold-font-weight">Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody id="tbl_cpa2_offline_rejected_list_body"
                                                            class="hoverTable text-left">
                                                     </tbody>
                                                 </table>
@@ -759,7 +945,104 @@
 
             //da cpa offline user
 
-            $('#tbl_da_offline_pending_list').DataTable({
+            $('#tbl_da1_offline_pending_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 0,
+                        d.course_type_id = 1,
+                        d.course_code = 'da_1',
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {
+                        data: null, render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }, orderable: false, searchable: false
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+            $('#tbl_da1_offline_approved_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 1  ,
+                        d.course_type_id = 1,
+                        d.course_code = 'da_1',
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+
+                },
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+            $('#tbl_da1_offline_rejected_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 2,
+                        d.course_type_id = 1,
+                        d.course_code = 'da_1',
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {data: null, render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    }},
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+
+            $('#tbl_da2_offline_pending_list').DataTable({
                 scrollX: true,
                 processing: true,
                 serverSide: true,
@@ -792,7 +1075,7 @@
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
-            $('#tbl_da_offline_approved_list').DataTable({
+            $('#tbl_da2_offline_approved_list').DataTable({
                 scrollX: true,
                 processing: true,
                 serverSide: true,
@@ -824,7 +1107,7 @@
                 ],
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
-            $('#tbl_da_offline_rejected_list').DataTable({
+            $('#tbl_da2_offline_rejected_list').DataTable({
                 scrollX: true,
                 processing: true,
                 serverSide: true,
@@ -867,7 +1150,7 @@
                     data :  function (d) {
                         d.status       = 0,
                         d.course_type_id = 2,
-                        d.course_code = 'cpa_2',
+                        d.course_code = 'cpa_1',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -900,7 +1183,7 @@
                     data :  function (d) {
                         d.status       = 1,
                         d.course_type_id = 2,
-                        d.course_code = 'cpa_2',
+                        d.course_code = 'cpa_1',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -933,7 +1216,7 @@
                     data :  function (d) {
                         d.status       = 2,
                         d.course_type_id = 2,
-                        d.course_code = 'cpa_2',
+                        d.course_code = 'cpa_1',
                         d.name =    "",
                         d.nrc =    "",
                         d.batch="all"
@@ -956,7 +1239,105 @@
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
             });
             
-
+            $('#tbl_cpa2_offline_pending_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 0,
+                        d.course_type_id = 2,
+                        d.course_code = 'cpa_2',
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {
+                        data: null, render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }, orderable: false, searchable: false
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+            $('#tbl_cpa2_offline_approved_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 1,
+                        d.course_type_id = 2,
+                        d.course_code = 'cpa_2',
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {
+                        data: null, render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }, orderable: false, searchable: false
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
+            $('#tbl_cpa2_offline_rejected_list').DataTable({
+                scrollX: true,
+                processing: true,
+                serverSide: true,
+                responsive: true,
+                ajax: {
+                    url  : BACKEND_URL + "/filter_offline_student_info",
+                    type : "POST" ,
+                    data :  function (d) {
+                        d.status       = 2,
+                        d.course_type_id = 2,
+                        d.course_code = 'cpa_2',
+                        d.name =    "",
+                        d.nrc =    "",
+                        d.batch="all"
+                    }
+                },
+                columns: [
+                    {
+                        data: null, render: function (data, type, row, meta) {
+                            return meta.row + meta.settings._iDisplayStart + 1;
+                        }, orderable: false, searchable: false
+                    },
+                    {data: 'action', name: 'action', orderable: false, searchable: false},
+                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'batch.name', name: 'Batch Name'},
+                    {data: 'student_info.email', name: 'Email'},
+                    {data: 'student_info.phone', name: 'Phone Number'},
+                    {data: 'nrc', name: 'NRC'},
+                    {data: 'status', name: 'Status'},
+                ],
+                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+            });
 
             $('#tbl_papp_pending_list').DataTable({
                 processing: true,
