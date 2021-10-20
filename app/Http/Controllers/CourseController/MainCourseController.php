@@ -58,6 +58,7 @@ class MainCourseController extends Controller
 
             $course_type = CourseType::where('id', $id)->first();
             $course_type->course_name = $request->main_course_name;
+            $course_type->course_name_mm = $request->main_course_name_mm;
             $course_type->course_description = $request->main_course_description;
 
             if($course_type->save()){
