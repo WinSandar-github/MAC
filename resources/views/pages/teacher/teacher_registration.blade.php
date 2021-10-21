@@ -156,6 +156,7 @@
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
                                                                 <th class="bold-font-weight" >Teacher Name</th>
+                                                                <th class="bold-font-weight" >Teacher No</th>
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
@@ -180,6 +181,7 @@
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Teacher Name</th>
+                                                            <th class="bold-font-weight" >Teacher No</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
@@ -203,6 +205,7 @@
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Teacher Name</th>
+                                                            <th class="bold-font-weight" >Teacher No</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
@@ -405,9 +408,12 @@
             
             },
             columns: [
-                {data: 't_code', name: 't_code'},
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
+                {data: 't_code', name: 't_code'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -441,9 +447,12 @@
             
             },
             columns: [
-                {data: 't_code', name: 't_code'},
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
+                {data: 't_code', name: 't_code'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -475,9 +484,12 @@
             
             },
             columns: [
-                {data: 't_code', name: 't_code'},
+                {data: null, render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
+                {data: 't_code', name: 't_code'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
