@@ -72,7 +72,7 @@
                                         <label class="col-form-label"  style="font-weight:bold">၃။</label>
                                     </div>
                                     <div class="col-md-5 text-left">
-                                        <label class="col-form-label"  style="font-weight:bold">အဖအမည်</label>
+                                        <label class="col-form-label"  style="font-weight:bold">အဘအမည်</label>
                                     </div>
                                     <div class="col-md-6  text-center">
                                         <label class="col-form-label" id="father_name"  style="border-bottom: 1px dotted black;width:300px;"></label>

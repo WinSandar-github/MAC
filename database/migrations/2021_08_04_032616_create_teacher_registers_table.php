@@ -62,6 +62,7 @@ class CreateTeacherRegistersTable extends Migration
             $table->string('school_name')->nullable();
             $table->integer('student_info_id')->nullable();
             $table->string('teacher_card')->nullable();
+            $table->boolean('offline_user')->nullable();
             $table->timestamps();
         });
     }
