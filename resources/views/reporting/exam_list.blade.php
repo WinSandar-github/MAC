@@ -68,9 +68,14 @@
                                     <tr>
                                         <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >အမည်</th>
-                                        <th class="bold-font-weight" >မှတ်ပုံတင်အမှတ်</th>
+                                        <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
                                         
                                         <th class="bold-font-weight" >ကိုယ်ပိုင်အမှတ်</th>
+                                        <th class="bold-font-weight">ဘွဲ့အမည်</th>
+                                        <th class="bold-font-weight">အဘအမည်</th>
+                                        <th class="bold-font-weight">အသက်</th>
+                                        <th class="bold-font-weight">ကျား/မ</th>
+                                        <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
 
                                     </tr>
                                 </thead>
@@ -127,6 +132,15 @@
                 {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
                 {data: 'nrc', name: 'nrc'}, 
                 {data: 'cpersonal_no', name: 'cpersonal_no'},
+                {data: 'course_name', name: 'course_name'},
+                {data: 'student_info.father_name_mm', name: 'student_info.father_name_mm'},
+                {data: 'age', name: 'age'},
+                {data: 'gender', name: 'gender'},
+                {data: 'gov_staff', name: 'gov_staff'},
+
+                
+
+                
                 
                 
             ],

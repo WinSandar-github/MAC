@@ -13,7 +13,7 @@ use App\ExamDepartment;
 use Illuminate\Support\Str;
 use LdapRecord\Query\Events\Read;
 use Yajra\DataTables\Facades\DataTables;
-
+use Carbon\Carbon;
 class ReportController extends Controller
 {
 
@@ -78,7 +78,27 @@ class ReportController extends Controller
                         return "All Module";
                     }
                 })
-                ->rawColumns(['action','nrc','cpersonal_no','module'])
+                ->addColumn('course_name', function ($infos) {
+                    if ($infos->course->code == 'da_1') {
+                        return "ဒီပလိုမာစာရင်းကိုင် (ပထမပိုင်း)";
+                    }else if ($infos->course->code == 'da_2') {
+                        return "ဒီပလိုမာစာရင်းကိုင် (ဒုတိယပိုင်း)";
+                    }else if ($infos->course->code == 'cpa_1') {
+                        return "လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)";
+                    }else{
+                         return "လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ဒုတိယပိုင်း)";
+                    }
+                })
+                ->addColumn('age', function ($infos) {
+                    return Carbon::parse($infos->student_info->date_of_birth)->age;
+                })
+                ->addColumn('gender', function ($infos) {
+                    return  $infos->student_info->gender == 1 ? 'ကျား' : 'မ';
+                })
+                ->addColumn('gov_staff', function ($infos) {
+                    return  $infos->student_info->gov_staff == 1 ? 'Yes' : 'No';
+                })
+                ->rawColumns(['action','nrc','cpersonal_no','module','course_name','age','gender','gov_staff'])
                 ->make(true);
 
 

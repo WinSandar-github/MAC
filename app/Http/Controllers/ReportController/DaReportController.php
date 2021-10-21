@@ -67,7 +67,7 @@ class DaReportController extends Controller
                 ->with('student_info')
                 ->select('student_infos.name_mm','student_register.*', 'modules.name as module_name')
                 ->get();
-
+         
         $data = [
             'title' => 'This is a title',
             'filter' => ['module one', 'module two', 'all module'], // 1 module one, 2 module two, 3 all module

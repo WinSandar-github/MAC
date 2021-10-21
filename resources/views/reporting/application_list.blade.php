@@ -46,16 +46,11 @@
 
                         <div class="col-md-6 pl-2">
                             @if($currend_date > $data['course']->active_batch[0]->mac_reg_end_date)
-                                @if($data['course']->code === "da_1" || $data['course']->code === "cpa_1" )
-                                    <button onclick="generatePersonalNo('{{$data['course']->code}}')" class="pull-right
-                                    btn btn-sm btn-success">ကိုယ်ပိုင်အမှတ်အမှတ် ထုတ်ပေးမည်
-                                    </button>
-                                @else
-                                    <button onclick="generateSrNo('{{$data['course']->code}}')"
+                                
+                                    <button onclick="generateAppSrNo('{{$data['course']->code}}')"
                                             class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်
                                     </button>
-                                @endif
-                            @endif
+                             @endif
                         </div>
                         <div class="col-md-12">
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
@@ -66,12 +61,17 @@
                                     <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်အမှတ်</th>
                                     <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                     <th class="bold-font-weight">အဘအမည်</th>
-                                    <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်</th>
+                                    <th class="bold-font-weight">အသက်</th>
+                                    <th class="bold-font-weight">ကျား/မ</th>
+                                    <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
+                                
+
                                 </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable">
 
-                                @php $count = 0 @endphp
+                                @php $count = 0;
+                                  @endphp
 
                                 @foreach($data['student'] as $key => $std)
                                     @if($key == 2)
@@ -82,6 +82,7 @@
                                         </tr>
 
                                         @foreach($std as $key => $s)
+                                            @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
                                             <tr class="mac-row">
                                                 <td>
                                                     {{ ++$count }}
@@ -107,9 +108,13 @@
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
-                                                    {{ $data['course']->course_type->course_code == "da"
-                                                        ? $s->student_info->personal_no
-                                                        : $s->student_info->cpersonal_no}}
+                                               {{ $age}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -117,6 +122,7 @@
                                 @endforeach
 
                                 @foreach($data['student'] as $key => $std)
+                                
                                     @if($key == 0)
                                         <tr class="self-row">
                                             <td colspan="6" style="text-align: start;font-weight: bold">
@@ -125,6 +131,8 @@
                                         </tr>
 
                                         @foreach($std as $key => $s)
+                                        @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+
                                             <tr class="self-row">
                                                 <td>
                                                     {{ ++$count }}
@@ -150,9 +158,13 @@
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
-                                                    {{ $data['course']->course_type->course_code == "da"
-                                                        ? $s->student_info->personal_no
-                                                        : $s->student_info->cpersonal_no}}
+                                               {{ $age}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -168,6 +180,8 @@
                                         </tr>
 
                                         @foreach($std as $key => $s)
+                                        @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+
                                             <tr class="private-row">
                                                 <td>
                                                     {{ ++$count }}
@@ -193,9 +207,13 @@
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
-                                                    {{ $data['course']->course_type->course_code == "da"
-                                                        ? $s->student_info->personal_no
-                                                        : $s->student_info->cpersonal_no}}
+                                               {{ $age}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                                 </td>
                                             </tr>
                                         @endforeach
