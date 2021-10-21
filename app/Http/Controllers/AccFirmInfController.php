@@ -319,12 +319,6 @@ class AccFirmInfController extends Controller
         $std_info->email            =   strtolower($request->email);
         $std_info->password         =   Hash::make($request->password);
         $std_info->verify_code      =   uniqid();
-        // $data = array(
-        //     'email' => 'macadmin@gmail.com',
-        //     'verify_code' => $student_info['verify_code']
-        // );
-        // Mail::to($student_info['email'])->send(new ContactMail($data));
-        // $std_info->verify_status    =   1;
         $std_info->save();
 
         $student_data = AccountancyFirmInformation::find($acc_firm_info->id);
@@ -416,21 +410,19 @@ class AccFirmInfController extends Controller
             //invoice for audit
             $invoice = new Invoice();
             $invoice->student_info_id = $std_info->id;
-
-            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-            // $invoice->invoiceNo       = $invNo;
-
-            $invoice->invoiceNo = '';
+            //$invoice->student_info_id = $request->student_id;
+            $invoice->invoiceNo = 'audit_initial';
             $invoice->name_eng        = $std_info->email;
             $invoice->email           = $std_info->email;
             $invoice->phone           = '';
+            $invoice->status          = 0;
 
             $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'registration_fee']);
             $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
                           ->where('authority_to_sign', '=', 1)->count();
 
             $invoice->productDesc     = 'Audit Application Fee, Registration Fee(per PAPP who will sign the audit report)';
-            $invoice->amount          = $fees->form_fee . ',' . $papp_count . ' x ' . $fees->registration_fee;
+            $invoice->amount          = $fees->form_fee . ',' . $papp_count * $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
         }
@@ -510,35 +502,28 @@ class AccFirmInfController extends Controller
             //invoice for non-audit
             $invoice = new Invoice();
             $invoice->student_info_id = $std_info->id;
-
-            // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
-            // $invoice->invoiceNo       = $invNo;
-
-            $invoice->invoiceNo = '';
-
+            //$invoice->student_info_id = $request->student_id;
+            $invoice->invoiceNo = 'non_audit_initial';
             $invoice->name_eng        = $std_info->email;
             $invoice->email           = $std_info->email;
             $invoice->phone           = '';
+            $invoice->status          = 0;
 
             $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'reg_fee_sole','reg_fee_partner']);
-
-            // $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
-            //               ->where('authority_to_sign', '=', 1)->count();
 
             $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee';
             if($request->org_stru_id == 1){
               // for Sole Proprietorship
               $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_sole;
             }
-            else if($request->org_stru_id == 2 || $request->org_stru_id == 3){
+            else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
               // for Partnership and Company
               $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
             }
             else{
               // for Other
-              $invoice->amount          = $fees->form_fee ;
+              $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
             }
-            $invoice->status          = 0;
             $invoice->save();
         }
 
@@ -3258,6 +3243,7 @@ class AccFirmInfController extends Controller
     public function FilterOfflineRegistration($status,$firm_type){
       $acc_firm_info = AccountancyFirmInformation::where('status','=',$status)
                                                   ->where('offline_user','=',1)
+                                                  ->where('is_renew','=',0)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
 
