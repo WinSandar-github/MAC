@@ -4,14 +4,18 @@ namespace App\Http\Controllers\ReportController;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\SchoolRegister;
 
 class TeacherSchoolReportController extends Controller
 {
     public function teacherSchoolLicense(Request $request)
     {
+        // စဉ်၊ ကိုယ်ပိုင်ကျောင်းအမှတ်၊ ကျောင်းအမည်၊ တာဝန်ခံအမည်နှင့် မှတ်ပုံတင်အမှတ်၊ လိပ်စာ၊ မှတ်ပုံတင်သက်တမ်းကာလ၊ သက်တမ်းတိုး/ ရပ်နားသည့်နေ့၊သက်တမ်းပြတ်ကာလ၊
+        $school = SchoolRegister::get();
+
         $data = [
             'title' => 'ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက်)',
-            'list' => []
+            'school' => $school
         ];
 
         return view('reporting.school_teacher.teacher_school_report', compact('data'));

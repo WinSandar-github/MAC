@@ -180,7 +180,7 @@ const _ARTICLE_SECTION_MENTOR = [
     {
         route_name: "/article_mentor_intern",
         fun_name: "articleMentorIntern($(this).data(\'url\'))",
-        sub_title: "အလုပ်သင်ကြားပေးနေသူထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
+        sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
     },
 
     // {
@@ -221,6 +221,30 @@ const _TEACHER_SCHOOL = [
         route_name: "/teacher_school_license",
         fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
         sub_title: "ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက်)"
+    },
+
+    {
+        route_name: "/initial_school",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "ကနဦးမှတ်ပုံတင်စာရင်း"
+    },
+
+    {
+        route_name: "/renew_school",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "သက်တမ်းတိုးစာရင်း"
+    },
+
+    {
+        route_name: "/disconnect_school",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "သက်တမ်းပြတ်တောက်စာရင်း"
+    },
+
+    {
+        route_name: "/initial_school",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "သင်တန်းဆရာများစာရင်း"
     },
 
     {
@@ -296,7 +320,7 @@ const _ARTICLE = [
     { 
         route_name: "/article_list",
         fun_name : 'articleList($(this).data(\'url\'))',
-        sub_title: "အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်းးစာရင်း" 
+        sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း" 
     },
 
     {
