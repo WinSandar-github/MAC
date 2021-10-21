@@ -141,7 +141,7 @@
 
     <!-- Show Article Model-->
     <div class="modal fade" id="showArticleModel" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-md">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header pt-2 pb-2">
                     <h5 class="modal-title" id="exampleModalLabel">Article List</h5>
@@ -160,6 +160,9 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Name</th>
+                                            <th>ကိုယ်ပိုင်အမှတ်</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
                                             <th>Article Form Type</th>
                                         </tr>
                                     </thead>
