@@ -420,7 +420,7 @@ function getSchoolInfos(){
                 }
                 if(data.data.request_for_temporary_stop=='yes'){
                     $('.request_stop_yes').show();
-                    $('#request_from_to_date').append(data.data.from_request_stop_date+' မှ '+data.data.to_request_stop_date+' ထိ');
+                    $('#request_from_to_date').append(data.data.from_request_stop_date);
                 }
 
             }
@@ -705,15 +705,39 @@ function loadSchoolCard(){
         type : 'GET',
         url : BACKEND_URL+"/school/"+id,
         success : function(data){
-            var today = new Date();
-            var date = addZero(today.getDate())+'-'+addZero(today.getMonth()+1)+'-'+today.getFullYear();
-            document.getElementById('regno_date').innerHTML=data.data.s_code+'/'+date;
+            
+           
+            if(data.data.from_valid_date!=null){
+                var today = new Date(data.data.from_valid_date);
+                var date = addZero(today.getDate())+'-'+addZero(today.getMonth()+1)+'-'+today.getFullYear();
+                document.getElementById('regno_date').innerHTML=data.data.s_code+'/'+date;
+           
+            }else{
+                
+                if(data.data.initial_status==0){
+                    var invoiceNo="init_sch"+data.data.id;
+                    $.ajax({
+                        type : 'POST',
+                        url : BACKEND_URL+"/getTotalAmount",
+                        data: 'invoiceNo='+invoiceNo,
+                        success: function(result){
+                            //document.getElementById('regno_date').innerHTML=data.data.s_code+'/'+data.data.from_valid_date;
+                            
+                        }
+                    })
+                }
+            }
+            
             if(data.data.school_name!=null){
                 document.getElementById('school_name').innerHTML=data.data.school_name;
             }else{
                 document.getElementById('school_name').innerHTML=data.data.renew_school_name;
             }
-            
+            if(data.data.eng_school_address!=null){
+                document.getElementById('school_location').innerHTML=data.data.eng_school_address;
+            }else{
+                document.getElementById('school_location').innerHTML=data.data.renew_school_address;
+            }
             
             if($("input:radio[name=school_type1]").val()==data.data.type){
                 $('input:radio[name=school_type1]').attr('checked',true);
@@ -758,13 +782,14 @@ function loadSchoolCard(){
                 }
                 var nrc_eng=nrc_state_region_eng+'/'+nrc_township_eng.join('')+'('+nrc_citizen_eng+')'+nrc_number_eng.join('');
                 document.getElementById('founder_csc').innerHTML=nrc_eng;
-                if(data.data.attend_course.replace(/[\'"[\]']+/g, '')!=null){
+                if(data.data.attend_course.replace(/[\'"[\]']+/g, '')!="null"){
                     loadStudentCourseByCard(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
+                }else{
+                    loadStudentCourseByCard(data.data.renew_course.replace(/[\'"[\]']+/g, ''));
                 }
-                document.getElementById('school_location').innerHTML=data.data.eng_school_address;
-                var valid_date=new Date(data.data.from_valid_date);
-                var date=(valid_date.getFullYear())+3;
-                document.getElementById('expiry_date').innerHTML="31-12-"+date;
+                
+                loadInvoice(data.data.id,data.data.initial_status);
+                console.log(data.data.school_branch);
                 var school_branch=data.data.school_branch;
                 $.each(school_branch, function( index, value ) {
                     document.getElementById('branch_address').innerHTML=value.branch_school_address;
@@ -773,35 +798,40 @@ function loadSchoolCard(){
     })
 }
 function loadStudentCourseByCard(course_id){
-    
-    var course=course_id.split(',');
-    var all_course=[];
    
-    $.each(course, function( index, id ){
-      
-      $.ajax({
-        type: "get",
-        url: BACKEND_URL+"/course/"+id,
-        success: function (result) {
-          var data=result.data;
-          var newcode=data.code.split('_');
-            var course_code=convert(newcode[1]);
-          all_course.push(newcode[0].toUpperCase()+' '+course_code);
-          //$("#attend_course").val(all_course.toString());
-          
-          
-          document.getElementById('course').innerHTML=all_course.toString()
-          
-          
-                                    
-          
-        }
-        
-      })
-      
-    })
-    
+        $.ajax({
+            type: "get",
+            url: BACKEND_URL+"/get_courses",//course/+id
+            success: function (result) {
+             
+            $.each(result.data,function(i,v){
+               
+                if(v.course_type_id !=3){
+                    [a, b] = v.code.split('_');
+                    
+                $("#course").append( '<input type="checkbox" id='+v.id+' value='+v.id+' > '+a.toUpperCase()+' '+ number2roma(b));
+               }
+                
+              })
+                              
+            var course=course_id.split(',');
+            $.each(course, function( index, val ){
+                $('#'+val).prop("checked", true);
+            })
+            }
+            
+        })
+       
 }
+function number2roma(num){
+    if(num){
+      var nums = {1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V', 6: 'VI', 7: 'VII', 8: 'VIII', 9: 'IX'};
+      return num.toString().replace(/([0-9])/g, function (s, key) {
+      return nums[key] || s;
+    });
+    }
+    
+  }
 function loadInvoice(id,status){
     
     if(status==0){
@@ -816,7 +846,9 @@ function loadInvoice(id,status){
                    $('#fee_name').append(val.productDesc.replace(",School Registration", ""));
                    $('#fee').append(val.amount);
                    fee.push(val.amount.split(','));
-                   
+                   var valid_date=new Date(val.dateTime);
+                    var date=(valid_date.getFullYear())+3;
+                    document.getElementById('expiry_date').innerHTML="31-12-"+date;
                 })
                 let sum = 0;
 
@@ -839,7 +871,9 @@ function loadInvoice(id,status){
                    $('#fee_name').append(val.productDesc.replace(",School Registration", ""));
                    $('#fee').append(val.amount);
                    fee.push(val.amount.split(','));
-                   
+                   var valid_date=new Date(val.dateTime);
+                    var date=(valid_date.getFullYear())+3;
+                    document.getElementById('expiry_date').innerHTML="31-12-"+date;
                 })
                 let sum = 0;
 

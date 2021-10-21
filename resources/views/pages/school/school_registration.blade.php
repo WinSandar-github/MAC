@@ -174,15 +174,15 @@
                                                             <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >School No</th>
                                                                 <th class="bold-font-weight" >School Name</th>
+                                                                <th class="bold-font-weight" >School No</th>
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Register Date</th>
-                                                                <th class="bold-font-weight" >Expire Period time</th>
+                                                                <!-- <th class="bold-font-weight" >Expire Period time</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight" >Payment Status</th>
+                                                                <!-- <th class="bold-font-weight" >Payment Status</th> -->
                                                                 <th class="bold-font-weight" >Remark</th>
                                                             </tr>
                                                         </thead>
@@ -196,8 +196,8 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >School No</th>
                                                             <th class="bold-font-weight" >School Name</th>
+                                                            <th class="bold-font-weight" >School No</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
@@ -219,8 +219,8 @@
                                                         <tr>
                                                             <th class="bold-font-weight" >No</th>
                                                             <th class="bold-font-weight" >Action</th>
-                                                            <th class="bold-font-weight" >School No</th>
                                                             <th class="bold-font-weight" >School Name</th>
+                                                            <th class="bold-font-weight" >School No</th>
                                                             <th class="bold-font-weight" >Email</th>     
                                                             <th class="bold-font-weight" >Phone Number</th>
                                                             <th class="bold-font-weight" >NRC</th>
@@ -412,19 +412,19 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 's_code', name: 's_code'},
                 {data: 'name_mm', name: 'name_mm'},
+                {data: 's_code', name: 's_code'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'reg_date', name: 'reg_date'},
-                {data: 'payment_date', name: 'payment_date'},
+                // {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                // {data: 'payment_method', name: 'payment_method'},
                 {data: 'reason', name: 'reason'},
             ],
             
-         });
+        });
         
         $('#tbl_school_renew_approved').DataTable({
             scrollX: true,
@@ -448,8 +448,9 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 's_code', name: 's_code'},
+                
                 {data: 'name_mm', name: 'name_mm'},
+                {data: 's_code', name: 's_code'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
@@ -484,8 +485,8 @@
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 's_code', name: 's_code'},
                 {data: 'name_mm', name: 'name_mm'},
+                {data: 's_code', name: 's_code'},
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
