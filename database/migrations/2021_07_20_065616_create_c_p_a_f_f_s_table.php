@@ -94,7 +94,10 @@ class CreateCPAFFSTable extends Migration
             $table->string('resign_date')->nullable();//new
             // $table->string('end_date')->nullable();//new
             $table->boolean('offline_user')->default(0);
-            $table->boolean('papp_reg_no')->nullable();
+            $table->string('papp_reg_no')->nullable();
+            $table->string('papp_reg_year')->nullable();
+            $table->string('cpaff_reg_year')->nullable();
+            $table->string('cpa2_reg_no')->nullable();
             $table->timestamps();
         });
     }
