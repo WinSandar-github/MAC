@@ -788,7 +788,7 @@ function loadSchoolCard(){
                     loadStudentCourseByCard(data.data.renew_course.replace(/[\'"[\]']+/g, ''));
                 }
                 
-                loadInvoice(data.data.id,data.data.initial_status);
+                loadInvoice(data.data.id,data.data.initial_status,"expiry_date");
                 console.log(data.data.school_branch);
                 var school_branch=data.data.school_branch;
                 $.each(school_branch, function( index, value ) {
@@ -832,7 +832,7 @@ function number2roma(num){
     }
     
   }
-function loadInvoice(id,status){
+function loadInvoice(id,status,table_col){
     
     if(status==0){
         var invoiceNo="init_sch"+id;
@@ -846,9 +846,7 @@ function loadInvoice(id,status){
                    $('#fee_name').append(val.productDesc.replace(",School Registration", ""));
                    $('#fee').append(val.amount);
                    fee.push(val.amount.split(','));
-                   var valid_date=new Date(val.dateTime);
-                    var date=(valid_date.getFullYear())+3;
-                    document.getElementById('expiry_date').innerHTML="31-12-"+date;
+                  
                 })
                 let sum = 0;
 
@@ -857,6 +855,16 @@ function loadInvoice(id,status){
                     
                 }
                 $('#total_fee').append(thousands_separators(sum));
+                if(table_col=="expiry_date"){
+                    $.each(result.data, function( index, val ){
+                    
+                        var valid_date=new Date(val.dateTime);
+                         var date=(valid_date.getFullYear())+3;
+                         document.getElementById(table_col).innerHTML="31-12-"+date;
+                     })
+                }
+                
+                
             }
         });
     }else{
@@ -871,9 +879,7 @@ function loadInvoice(id,status){
                    $('#fee_name').append(val.productDesc.replace(",School Registration", ""));
                    $('#fee').append(val.amount);
                    fee.push(val.amount.split(','));
-                   var valid_date=new Date(val.dateTime);
-                    var date=(valid_date.getFullYear())+3;
-                    document.getElementById('expiry_date').innerHTML="31-12-"+date;
+                   
                 })
                 let sum = 0;
 
@@ -882,6 +888,16 @@ function loadInvoice(id,status){
                     
                 }
                 $('#total_fee').append(thousands_separators(sum));
+                if(table_col=="expiry_date"){
+                    $.each(result.data, function( index, val ){
+                    
+                        var valid_date=new Date(val.dateTime);
+                         var date=(valid_date.getFullYear())+3;
+                         document.getElementById(table_col).innerHTML="31-12-"+date;
+                     })
+                }
+                
+                
             }
         });
     }
