@@ -234,7 +234,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('qualified_report2','ReportController@qualified_report2');
     Route::get('qualify_test_detail/{id}','QualifiedTest\QualifiedTestController@qualifyTestDetail');
     Route::get('qt_fill_mark/{id}','QualifiedTest\QualifiedTestController@qualifyTestFillMark');
-    Route::get('publishes_qualifiedtest_list','QualifiedTest\QualifiedTestController@currentQualifiedTestList');
+    Route::get('publishes_qualifiedtest_list','ReportController\QtReportController@currentQualifiedTestList');
     Route::get('publishes_qualifiedtest_result','QualifiedTest\QualifiedTestController@publishesQualifiedTestResult');
 
 });
