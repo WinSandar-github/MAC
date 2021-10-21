@@ -724,7 +724,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->type            = $request->type;
                 $student_course->mac_type        = $request->mac_type;
                 $student_course->date            = $course_date;
-                $student_course->isFinished      = 1;
+                $student_course->is_finished      = 1;
                 $student_course->status          = 1;
                 if($request->module!=0){
                     $student_course->approve_reject_status  = 1;
@@ -766,7 +766,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $student_course->type            = $request->type_cpa2;
                     $student_course->mac_type        = $request->cpa2_mac_type;
                     $student_course->date            = $course_date;
-                    $student_course->isFinished      = 1;
+                    $student_course->is_finished      = 1;
                     $student_course->status          = 1;
                     $student_course->approve_reject_status  = 0;
                     $student_course->offline_user  = 1;
@@ -807,7 +807,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $student_course->type            = $request->type;
                 $student_course->mac_type        = $request->mac_type;
                 $student_course->date            = $course_date;
-                $student_course->isFinished      = 1;
+                $student_course->is_finished      = 1;
                 $student_course->status          = 0;
                 $student_course->approve_reject_status  = 0;
                 $student_course->offline_user  = 1;
