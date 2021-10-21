@@ -86,7 +86,7 @@
     <script src="{{ asset('js/entry_exam.js') }}"></script>
     <script src="{{ asset('js/qualified_test.js') }}"></script>
 
-    <script src="{{ asset('js/backendService.js') }}"></script>
+    <!-- <script src="{{ asset('js/backendService.js') }}"></script> -->
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/student.js') }}"></script>
     <script src="{{ asset('js/da_approve_reject.js') }}"></script>
@@ -101,6 +101,9 @@
     <script src="{{ asset('js/chart.js') }}"></script>
     <script src="{{ asset('js/report.js') }}"></script>
     <script src="{{ asset('js/exam.js') }}"></script>
+
+    <!-- da / cpa offline user -->
+    <script src="{{ asset('js/show_da_cpa_offline_user.js') }}"></script>
     <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
     <script src="{{ asset('js/select2/select2.min.js') }}"></script>
 

@@ -236,6 +236,7 @@ function getTeacherInfos(){
         type : 'GET',
         url : BACKEND_URL+"/teacher/"+id,
         success : function(data){
+            
             $.each(data.data, function( index, value ) {
                 document.getElementById('image').src = PDF_URL + value.image;
                 $("#name").append(value.name_eng+'/'+value.name_mm);
@@ -266,18 +267,18 @@ function getTeacherInfos(){
                 $("#email").append(value.email);
                 
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate");
+                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate",value.initial_status);
                     loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
                     
                 }else{
-                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate");
+                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate",value.initial_status);
                     loadCard(value.certificates);
                 }
                 if(value.diplomas.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma");
+                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma",value.initial_status);
                     loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
                 }else{
-                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma");
+                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma",value.initial_status);
                     loadCard(value.diplomas);
                 }
                 
@@ -322,18 +323,26 @@ function getTeacherInfos(){
                 $("#position").append(value.position);
                 $("#department").append(value.department);
                 $("#organization").append(value.organization);
-                loadEductaionHistory(value.id);
+                if(value.initial_status==0){
+                    loadEductaionHistory(value.id,value.initial_status);
+                }else{
+                    loadEductaionHistory(value.student_info_id,value.initial_status);
+                }
                 if(value.school_type==0){
                     $("#school_name").append("Individual");
                     $('.school_name_class').show();
                 }else{
                     if(value.school_id==null){
-                        $("#school_name").append(value.school_name);
+                        //$("#school_name").append(value.school_name);
                         $('.school_name_class').hide();
                     }else{
+                        $('.school_name_class').show();
                         loadSchoolName(value.school_id);
                     }
-                   
+                    if(value.school_name!=null){
+                        $('.school_name_class').show();
+                        $("#school_name").append(value.school_name);
+                    }
                 }
                 if(value.school_type==null){
                     $('.school_name_class').hide();
@@ -364,6 +373,14 @@ function getTeacherInfos(){
                     
                     $('.form-name').append('ဆရာပုံစံ-၂');
                 }
+                
+                if(value.teacher_card !=null){
+                    $('.teacher_card_class').show();
+                    $("#teacher_card").append(`<a href='${PDF_URL+value.teacher_card}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                }else{
+                    $('.teacher_card_class').hide();
+                    
+                }
             });
            
             
@@ -376,6 +393,7 @@ function approveTeacherRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
+    let offline_user = url.searchParams.get("offline_user");
     var teacher_id=$('#teacher_id').val();
     var check = confirm("Are you sure?");
     if (check == true) {
@@ -385,7 +403,12 @@ function approveTeacherRegister(){
             type: 'post',
             success: function(result){
                 successMessage('You have approved that user!');
-                location.href = FRONTEND_URL + '/teacher_registration';
+                if(offline_user == 'true'){
+                    location.href = FRONTEND_URL + '/offline_user';
+                }else{
+                    location.href = FRONTEND_URL + '/teacher_registration';
+                }
+                
             }
         });
     }
@@ -398,6 +421,7 @@ function rejectTeacherRegister(){
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
     var teacher_id=$('#teacher_id').val();
+    let offline_user = url.searchParams.get("offline_user");
     var reason=$("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/approve_teacher_register",
@@ -405,14 +429,18 @@ function rejectTeacherRegister(){
         type: 'post',
         success: function(result){
             successMessage('You have rejected that user!');
-            location.href = '/teacher_registration';
+            if(offline_user == 'true'){
+                location.href = FRONTEND_URL + '/offline_user';
+            }else{
+                location.href = FRONTEND_URL + '/teacher_registration';
+            }
         }
     });
     
     
 }
 
-function loadCertificates(name,payment_status,tbody){
+function loadCertificates(name,payment_status,tbody,is_renew){
     var name=name.split(',');
     
     var payment_status;
@@ -434,28 +462,54 @@ function loadCertificates(name,payment_status,tbody){
                     data: 'subject_id='+id,
                     type: 'post',
                     success: function (result) {
-                       
-                        $.each(result.data, function( index, value ){
-                            var newcode=value.code.split('_');
-                            var course_code=convert(newcode[1]);
-                                var tr = "<tr>";
-                                tr += `<td> ${ newcode[0].toUpperCase()+' '+course_code } </td>`;
-                                tr += `<td> ${ value.subject_name } </td>`;
-                                if(value.code=='cpa_1' || value.code=='cpa_2'){
-                                        tr += `<td>`+thousands_separators(data[0].cpa_subject_fee)+`</td>`;
-                                        sum=data[0].cpa_subject_fee*name.length;
-                                        
-                                    }else{
-                                        tr += `<td>`+thousands_separators(data[0].da_subject_fee)+`</td>`;
-                                        sum=data[0].da_subject_feee*name.length;
-                                    }
-                                tr += `<td>`+payment_status +`</td>`;
-                                tr += "</tr>";
-                                $(tbody).append(tr);
-                                
-                        });
+                        if(is_renew==0){
+                            $.each(result.data, function( index, value ){
+                                var newcode=value.code.split('_');
+                                var course_code=convert(newcode[1]);
+                                    var tr = "<tr>";
+                                    tr += `<td> ${ newcode[0].toUpperCase()+' '+course_code } </td>`;
+                                    tr += `<td> ${ value.subject_name } </td>`;
+                                    if(value.code=='cpa_1' || value.code=='cpa_2'){
+                                            tr += `<td>`+thousands_separators(data[0].cpa_subject_fee)+`</td>`;
+                                            sum=data[0].cpa_subject_fee*name.length;
+                                            
+                                        }else{
+                                            tr += `<td>`+thousands_separators(data[0].da_subject_fee)+`</td>`;
+                                            sum=data[0].da_subject_feee*name.length;
+                                        }
+                                    tr += `<td>`+payment_status +`</td>`;
+                                    tr += "</tr>";
+                                    $(tbody).append(tr);
+                                    
+                            });
+                        }else{
+                            $.each(result.data, function( index, value ){
+                                var newcode=value.code.split('_');
+                                var course_code=convert(newcode[1]);
+                                    var tr = "<tr>";
+                                    tr += `<td> ${ newcode[0].toUpperCase()+' '+course_code } </td>`;
+                                    tr += `<td> ${ value.subject_name } </td>`;
+                                    if(value.code=='cpa_1' || value.code=='cpa_2'){
+                                            tr += `<td>`+thousands_separators(data[0].renew_cpa_subject_fee)+`</td>`;
+                                            sum=data[0].renew_cpa_subject_fee*name.length;
+                                            
+                                        }else{
+                                            tr += `<td>`+thousands_separators(data[0].renew_da_subject_fee)+`</td>`;
+                                            sum=data[0].renew_da_subject_feee*name.length;
+                                        }
+                                    tr += `<td>`+payment_status +`</td>`;
+                                    tr += "</tr>";
+                                    $(tbody).append(tr);
+                                    
+                            });
+                        }
                         
-                        sumTotalAmount(data[0].form_fee+data[0].registration_fee);
+                        if(is_renew==0){
+                            sumTotalAmount(data[0].form_fee+data[0].registration_fee);
+                        }else{
+                            sumTotalAmount(data[0].form_fee);
+                        }
+                        
                     },
                     error: function (result) {
                     },
@@ -497,24 +551,43 @@ function loadSchoolName(school_id){
         }
     });    
 }
-function loadEductaionHistory(id){
+function loadEductaionHistory(id,status){
+    if(status==0){
+        $.ajax({
+            type : 'POST',
+            url : BACKEND_URL+"/getEducationHistory",
+            data: 'teacher_id='+id,
+            success: function(result){
+                $.each(result.data, function( index, value ) {
+                    var tr = "<tr>";
+                    tr += `<td> ${ index += 1 } </td>`;
+                    tr += `<td> ${ value.degree_name } </td>`;
+                    tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                    tr += "</tr>";
+                    $("#tbl_degree_body").append(tr);
+                });
+                createDataTable('#tbl_degree');
+            }
+        });
+    }else{
+        $.ajax({
+            type : 'POST',
+            url : BACKEND_URL+"/getEducationHistory",
+            data: 'student_info_id='+id,
+            success: function(result){
+                $.each(result.data, function( index, value ) {
+                    var tr = "<tr>";
+                    tr += `<td> ${ index += 1 } </td>`;
+                    tr += `<td> ${ value.degree_name } </td>`;
+                    tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                    tr += "</tr>";
+                    $("#tbl_degree_body").append(tr);
+                });
+                createDataTable('#tbl_degree');
+            }
+        });
+    }
     
-    $.ajax({
-        type : 'POST',
-        url : BACKEND_URL+"/getEducationHistory",
-        data: 'teacher_id='+id,
-        success: function(result){
-            $.each(result.data, function( index, value ) {
-                var tr = "<tr>";
-                tr += `<td> ${ index += 1 } </td>`;
-                tr += `<td> ${ value.university_name } </td>`;
-                tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
-                tr += "</tr>";
-                $("#tbl_degree_body").append(tr);
-            });
-            createDataTable('#tbl_degree');
-        }
-    });
     
 }
 
@@ -632,6 +705,7 @@ function getRenewTeacher(){
         type : 'GET',
         url : BACKEND_URL+"/getRenewTeacher/"+id,
         success : function(data){
+            
             $.each(data.data, function( index, value ) {
                 document.getElementById('image').src = PDF_URL + value.image;
                 $("#name").append(value.name_eng+'/'+value.name_mm);
@@ -644,19 +718,19 @@ function getRenewTeacher(){
                 $("#email").append(value.email);
                 
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate");
-                    // loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
+                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate",value.initial_status);
+                    loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
                     
                 }else{
-                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate");
-                    // loadCard(value.certificates);
+                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate",value.initial_status);
+                    loadCard(value.certificates);
                 }
                 if(value.diplomas.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma");
-                    // loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
+                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma",value.initial_status);
+                    loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
                 }else{
-                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma");
-                    // loadCard(value.diplomas);
+                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma",value.initial_status);
+                    loadCard(value.diplomas);
                 }
                 
                 if(value.approve_reject_status != 0){
@@ -708,6 +782,7 @@ function getRenewTeacher(){
                     if(value.school_id==null){
                         $("#school_name").append(value.school_name);
                     }else{
+                        $('.school_name_class').show();
                         loadSchoolName(value.school_id);
                     }
                    

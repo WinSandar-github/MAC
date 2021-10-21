@@ -30,15 +30,18 @@
                                 ပြည်ထောင်စုစာရင်းစစ်ချုပ်ရုံး<br>
                                 စာရင်းကိုင်အလုပ်သင်လျှောက်လွှာပုံစံ
                             </h5>
+                            <div>
+                                <h6 align="right">Form Type -  <span id="form_type"></h6>
+                            </div>
                         </div>
 
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                             <div class="col-md-12">
                                 <ul>
                                     <li>မြန်မာနိုင်ငံစာရင်းကောင်စီက ဖွင့်လှစ်သည့် လက်မှတ်ရပြည်သူ့စာရင်းကိုင် ( <span id="course_name"></span> ) သင်တန်းအမှတ်စဥ် ( <span id="module_name"></span> ) ကို မြန်မာနိုင်ငံစာရင်းကောင်စီ <span id="type_name"></span>  <span id="result_name"></span> သူ</li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row">
                             <div class="col-md-9">
@@ -110,13 +113,25 @@
                             </div>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
-                            <div class="col-md-9">
-                            <input type="text" name="education" id="education" class="form-control" readonly>
+                        
+                        <div id="firm_education">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
+                                <div class="col-md-9">
+                                <input type="text" name="education" id="education" class="form-control" readonly>
+                                </div>
                             </div>
                         </div>
+                        
+                        <div id="qt_education" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
+                                <div class="col-md-9  pt-2">
+                                    <span id="add_qt_education"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
 
                         <div id="certificate_row">
                             <div class="row mb-3">
@@ -243,9 +258,23 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၃။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၃။') }}</span>အီးမေးလ်လိပ်စာ</label>
                             <div class="col-md-9">
-                            <input type="text" name="papp_name" id="papp_name" class="form-control" readonly>
+                                <input type="text" name="m_email" id="m_email" class="form-control" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၄။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" name="papp_name" id="papp_name" class="form-control" readonly>                                          
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" name="mentor_name" id="mentor_name" class="form-control" readonly>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -265,7 +294,7 @@
 
                         <div id="previous_papp_name_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၄။') }}</span>ယခင်အလုပ်သင်ကြားခဲ့သည့် PAPP အမည်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၅။') }}</span>ယခင်အလုပ်သင်ကြားခဲ့သည့် PAPP အမည်</label>
                                 <div class="col-md-9">
                                     <input type="text" name="previous_papp_name" id="previous_papp_name" class="form-control" readonly>
                                 </div>
@@ -275,7 +304,7 @@
 
                         <div id="previous_papp_date_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၅။') }}</span>ယခင်အလုပ်သင်ဆင်းခဲ့သည့် ကာလ</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၁၆။') }}</span>ယခင်အလုပ်သင်ဆင်းခဲ့သည့် ကာလ</label>
                                 <div class="col-md-9">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -291,7 +320,7 @@
 
                         <div id="previous_exam_pass_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="exam_pass_date_label">{{ __('၁၆။') }}</span>စာမေးပွဲကျင်းပသည့် ခုနှစ်၊လ ၊ အောင်မြင်သည့်အမှတ်စဥ် </label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="exam_pass_date_label">{{ __('၁၇။') }}</span>စာမေးပွဲကျင်းပသည့် ခုနှစ်၊လ ၊ အောင်မြင်သည့်အမှတ်စဥ် </label>
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -307,7 +336,7 @@
 
                         <div id="done_form_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၁၇။') }}</span>Done Form Attachment</label>
+                                <label class="col-md-4 col-form-label label"><span class="pull-left">{{ __('၁၈။') }}</span>Done Form Attachment</label>
                                 <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-3">
@@ -318,6 +347,25 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5 class="text-center border-bottom" style="font-weight:bold ;background-color:#E7F8EE;">Leave Request</h5>
+                                <table class="table" id="leave_request_table">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Leave Request Reason</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>Total Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="leave_request_body">
+                                    </tbody>   
+                                </table>
                             </div>
                         </div>
 

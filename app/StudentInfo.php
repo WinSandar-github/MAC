@@ -15,12 +15,14 @@ class StudentInfo extends Model
 
     public function student_job()
     {
-        return $this->hasOne(StudentJobHistroy::class,'student_info_id','id');
+        return $this->hasOne(StudentJobHistroy::class,'student_info_id','id')
+            ->withDefault(['name' => 'N/A', 'position' => 'N/A', 'department' => 'N/A', 'organization' => 'N/A', 'company_name' => 'N/A', 'salary' => 'N/A', 'office_address' => 'N/A']);
     }
 
     public function student_education_histroy()
     {
-        return $this->hasOne(EducationHistroy::class,'student_info_id','id');
+        return $this->hasOne(EducationHistroy::class,'student_info_id','id')
+            ->withDefault(['university_name' => 'N/A', 'degree_name' => 'N/A', 'qualified_date' => 'N/A', 'roll_number' => 'N/A', 'certificate' => array() ]);
     }
 
     public function student_course()
@@ -45,7 +47,7 @@ class StudentInfo extends Model
 
     public function student_register()
     {
-        return $this->hasMany(StudentRegister::class,'student_info_id','id')->with('course');
+        return $this->hasMany(StudentRegister::class,'student_info_id','id')->with('course','batch');
     }
 
     public function current_register()
@@ -125,9 +127,16 @@ class StudentInfo extends Model
 
     public function exam_results()
     {
-        return $this->hasMany(ExamResult::class,'student_info_id','id');
+        return $this->hasMany(ExamResult::class,'student_info_id','id')->with('exam_register');
 
     }
+    public function leave_requests(){
+        return $this->hasMany(leave_request::class,'student_info_id','id');
+    }
     
+    public function invoice()
+    {
+        return $this->hasMany(Invoice::class, 'student_info_id', 'id');
+    }
     
 }

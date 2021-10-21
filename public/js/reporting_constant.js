@@ -45,7 +45,7 @@ const _DA = [
 const _CPA = [
     {
         // route_name: "ca_report_template",
-        route_name: 'da_attend',
+        route_name: '/da_attend',
         fun_name : 'daAttendList($(this).data(\'url\'))',
         sub_title:"သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ အက္ခရာအစဥ်အလိုက်)"
     },
@@ -78,6 +78,8 @@ const _CPA = [
 
 const _ARTICLE_SECTION_MENTOR = [
     {
+        route_name: "/article_mentor_registered_intern",
+        fun_name: "articleMentorInternRegister($(this).data(\'url\'))",
         sub_title: "မှတ်ပုံတင်ထားသော အလုပ်သင်ကြားပေးသူစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက် / status အလိုက်)"
     },
 
@@ -94,6 +96,8 @@ const _ARTICLE_SECTION_MENTOR = [
     // },
 
     {
+        route_name: "/article_mentor_intern",
+        fun_name: "articleMentorIntern($(this).data(\'url\'))",
         sub_title: "အလုပ်သင်ကြားပေးနေသူထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
     },
 
@@ -113,10 +117,14 @@ const _FIRM_NAME = [
     // },
 
     {
+        route_name: "/firm_individual",
+        fun_name: "firmIndividual($(this).data(\'url\'))",
         sub_title: `အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှုပေးသူတစ်ဦးချင်း`
     },
 
     {
+        route_name: "/firm_daily_attendence",
+        fun_name: "frimDailyAttendence($(this).data(\'url\'))",
         sub_title: `နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ`
     },
 
@@ -128,15 +136,21 @@ const _FIRM_NAME = [
 
 const _TEACHER_SCHOOL = [
     {
+        route_name: "/teacher_school_license",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
         sub_title: "ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက်)"
     },
 
     {
+        route_name: "/teacher_school_private",
+        fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
         sub_title: `ကိုယ်ပိုင်သင်တန်းကျောင်းများတွင် သင်ကြားနေသောသင်တန်းဆရာများစာရင်း 
                     ( အမျိုးအစားအလိုက် (Private/Individual)၊ ကျောင်းအလိုက်၊ ခုနှစ်အလိုက်၊ ဘာသာရပ်အလိုက်၊ သင်တန်းအမျိုးအစားအလိုက်`
     },
 
     {
+        route_name: "/teacher_school_license_plate",
+        fun_name: "teacherSchoolLicensePlate($(this).data(\'url\'))",
         sub_title: "Teacher / School အလိုက်မှတ်ပုံတင်ကတ်များ (ကနဦး / သက်တမ်းတိုး) ထုတ်ယူနိုင်ရေးဆောင်ရွက်ပေးရန်"
     }
 ]
@@ -144,31 +158,31 @@ const _TEACHER_SCHOOL = [
 const _CPA_QUALIFIED = [
     { 
         route_name: "/cpa_qualified_enrol",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
-        sub_title:"လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)" 
+        fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        sub_title: "လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)" 
     },
 
     {
-        route_name: "ca_qualified_exam_enrol",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        route_name: "/cpa_qualified_exam_enrol",
+        fun_name : 'cpaQualifiedExamEnRol($(this).data(\'url\'))',
         sub_title: "ဖြေဆိုခွင့်ရရှိသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
-        route_name: "/ca_qualified_exam_reg",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        route_name: "/cpa_qualified_exam_reg",
+        fun_name : 'cpaQualifiedExamReg($(this).data(\'url\'))',
         sub_title: "ဖြေဆိုသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
-        route_name: "/ca_qualified_pass",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        route_name: "/cpa_qualified_pass",
+        fun_name : 'cpaQualifiedPass($(this).data(\'url\'))',
         sub_title: "အောင်မြင်သူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
-        route_name: "/ca_qualified_fail",
-        // fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
+        route_name: "/cpa_qualified_fail",
+        fun_name : 'cpaQualifiedFail($(this).data(\'url\'))',
         sub_title: "ကျရှံးသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     }
     
@@ -176,21 +190,21 @@ const _CPA_QUALIFIED = [
 
 const _CPA_PAPP = [
     { 
-        route_name: "/cpa_papp_report_template",
-        // fun_name : 'cpaPAPPList($(this).data(\'url\'))',
+        route_name: "/cpa_papp_yearly_list",
+        fun_name : 'cpaPAPPYealyList($(this).data(\'url\'))',
         sub_title: "CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း" 
     },
 
     {
-        route_name: "/cpa_papp_report_template",
-        // fun_name : 'cpaPAPPList($(this).data(\'url\'))',
+        route_name: "/cpa_papp_yearly_reg_list",
+        fun_name : 'cpaPAPPYearlyRegList($(this).data(\'url\'))',
         sub_title: "ပြက္ဒဒိန်နှစ် အလိုက် မှတ်ပုံတင်လုပ်ငန်းများစာရင်း"
     },
 
     {
         
-        route_name: "/cpa_papp_report_template",
-        // fun_name : 'cpaPAPPList($(this).data(\'url\'))',
+        route_name: "/cpa_papp_take_out_reg_list",
+        fun_name : 'cpaPAPPTakeOutRegList($(this).data(\'url\'))',
         sub_title: "မှတ်ပုံတင်ကတ်ပြားများကို စနစ်ဖြင့် ထုတ်ယူခြင်း"
     }
     
@@ -198,26 +212,26 @@ const _CPA_PAPP = [
 
 const _ARTICLE = [
     { 
-        route_name: "/article_report_template",
-        // fun_name : 'articleList($(this).data(\'url\'))',
-        sub_title: "အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်း" 
+        route_name: "/article_list",
+        fun_name : 'articleList($(this).data(\'url\'))',
+        sub_title: "အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်းးစာရင်း" 
     },
 
     {
-        route_name: "/article_report_template",
-        // fun_name : 'articleList($(this).data(\'url\'))',
+        route_name: "/article_daily_in_out_list",
+        fun_name : 'articleDailyInOutList($(this).data(\'url\'))',
         sub_title: "နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ။"
     },
 
     { 
-        route_name: "/article_report_template",
-        // fun_name : 'articleList($(this).data(\'url\'))',
-        sub_title: "စာရင်းကိုင်အလုက်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
+        route_name: "/article_intern_position_list",
+        fun_name : 'articleInternPosList($(this).data(\'url\'))',
+        sub_title: "စာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
     },
 
     { 
-        route_name: "/article_report_template",
-        // fun_name : 'articleList($(this).data(\'url\'))',
+        route_name: "/article_internship_list",
+        fun_name : 'articleInternshipList($(this).data(\'url\'))',
         sub_title: "အလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)"
     }
     

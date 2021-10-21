@@ -9,6 +9,7 @@ class Helper
     // public static $domain = 'https://demo.aggademo.me/MAC/public/index.php/api';
     public static $domain="http://localhost:8000/api";
 
+
     public function en2mmNumber($number)
     {
         $en = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];

@@ -154,7 +154,7 @@
 @endsection
 
 @push('scripts')
-    <script src="/js/reporting_constant.js"></script>
+    <script src="{{ asset('js/reporting_constant.js') }}"></script>
     <script src="{{ asset('js/reporting_route_functions.js') }}"></script>
     <script type="text/javascript">
         $('.show-more-modal').on('click', function() {

@@ -50,7 +50,7 @@ class PageController extends Controller
 //                return view('pages.reporting_list', compact('batches'));
 //            }
 //
-//            return view("pages.{$page}");
+           return view("pages.{$page}");
         } else if (view()->exists("pages.teacher.{$page}")) {
             return view("pages.teacher.{$page}");
         } else if (view()->exists("pages.qt_application.{$page}")) {

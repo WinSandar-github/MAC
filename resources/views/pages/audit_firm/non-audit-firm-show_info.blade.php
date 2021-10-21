@@ -69,6 +69,19 @@
 			                                                    </span>
 			                                                @enderror
 			                                            </div>
+																									<div class="row border-bottom pl-4">
+
+			                                                <label class="col-md-7 col-form-label" style="font-weight:bold">{{ __('Submit Date') }}</label>
+			                                                <label class="col-md-1 col-form-label">{{ __(':') }}</label>
+			                                                <div class="col-md-3">
+			                                                    <div class="form-group">
+			                                                        <span id="register_date">
+																																{{$item->register_date}}
+																															</span>
+			                                                        <!-- <input type="text" name="accountancy_firm_name"  class="form-control " autocomplete="off"> -->
+			                                                    </div>
+			                                                </div>
+			                                            </div>
 																								</div>
 																							</div>
 
@@ -1196,10 +1209,11 @@
 																								 @else
 																								 <div id="renew_btns">
 	 																								<div class="row mt-5 justify-content-center">
+
 	 								                                    {{--<button type="submit" name="save" id="reject_non_audit_btn_renew" class="btn btn-danger"  onclick="rejectNonAuditFirmRenew()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
 
 	 																										<button type="submit" name="save" id="reject_non_audit_btn_renew" data-toggle="modal" data-target="#remarkModalRenew" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
-	 								                                    <button type="submit" name="save" id="approve_non_audit_btn_renew" class="btn btn-primary" onclick="approveNonAuditFirmRenew({{$item->student_info_id,$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+	 								                                    <button type="submit" name="save" id="approve_non_audit_btn_renew" class="btn btn-primary" onclick="approveNonAuditFirmRenew({{$item->student_info_id}},{{$item->id}})" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
 
 	 								                                </div>
 	 																							</div>
@@ -1299,7 +1313,7 @@
 										        </div>
 										        <div class="modal-footer">
 										            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										            <button type="submit" class="btn btn-primary" form="remark-form">Reject</button>
+										            <button type="submit" class="btn btn-primary" form="remark-form-renew">Reject</button>
 										        </div>
 										    </form>
 										    </div>

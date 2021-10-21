@@ -28,15 +28,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('/acc_firm_info','AccFirmInfController');
 // for audit initial list
 Route::get('/audit_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistration');
+// for audit offline list
+Route::get('/audit_offline_list/{status}/{firm_type}', 'AccFirmInfController@FilterOfflineRegistration');
 // for audit renew list
 Route::get('/audit_renew_register_list/{status}/{firm_type}', 'AccFirmInfController@FilterAuditRegistrationRenew');
 
 Route::get('/audit_data/{id}','AccFirmInfController@auditData');
 Route::patch('/approve_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::patch('/approve_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@approveRenew');
+Route::patch('/approve_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@approveReconnect');
 
 Route::post('/reject_auditfirm/{id}', 'AccFirmInfController@reject');
 Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@rejectRenew');
+Route::post('/reject_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@rejectReconnect');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
 
@@ -54,6 +58,7 @@ Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
 Route::resource('/cpa_private_old','CpaPrivateOldController');
 Route::resource('/cpa_addmission_exam','CpaTraAddmissionExamController');
 Route::resource('/cpa_register','CpaTraAddmissionDirectController');
+Route::post('/cpa_two_reg_cpaonepass', 'CpaTraAddmissionDirectController@CPATwoRegCPAOnePass');
 Route::resource('/cpa_two_tra_reg','CpaTwoTraRegisterController');
 Route::resource('/cpa_two_self_learner','CpaTwoRegSelfLearnerController');
 Route::resource('/cpa_two_private_newbie','CpaTwoPrivateNewbieController');
@@ -70,6 +75,9 @@ Route::post('/filter_requirement','RequirementController@FilterRequirement');
 Route::resource('/batch','BatchController');
 Route::post('/filter_batch','BatchController@FilterBatch');
 
+//Get Batch for Offline Student
+Route::get('/get_current_batch/{course_id}','BatchController@getBatch');
+Route::get('/get_passed_batch/{course_id}','BatchController@getBatch');
 
 //Exam
 Route::resource('/exam','ExamController');
@@ -95,10 +103,16 @@ Route::post('/update_papp_renewal', 'PAPPController@updateRejectedRenewalData');
 Route::get('/papp_by_stuId/{stu_id}','PAPPController@getPappByStuId');
 Route::patch('/approve_papp_payment/{id}', 'PAPPController@approvePapp');
 Route::get('/check_payment_papp/{id}', 'PAPPController@checkPaymentPapp');
+Route::post('/reconnect_papp', 'PAPPController@ReconnectPapp');
+Route::get('/papp_offline_user_list/{status}/{type}', 'PAPPController@GetPappOfflineUser');
+
+Route::patch('/approve_offline_papp/{id}/{cpaff_id}', 'PAPPController@approve_offline_papp');
+Route::post('/reject_offline_papp/{id}', 'PAPPController@reject_offline_papp');
 
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
+Route::get('/cpa_ff_offline_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffOfflineRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
@@ -161,6 +175,13 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
 Route::post('/send_email', 'DARegisterController@send_email');
 
+//DA and CPA Offline Application 
+// Route::post('/da_one_existing_register', 'DARegisterController@DAOneExistingRegister');
+Route::post('/da_existing_register', 'DARegisterController@DAExistingRegister');
+Route::post('/filter_offline_student_info','DARegisterController@FilterOfflineApplicationList');
+Route::patch('/reject_offline_da_cpa/{id}', 'DARegisterController@rejectOfflineDACPA');
+Route::patch('/approve_offline_da_cpa/{id}', 'DARegisterController@approveOfflineDACPA');
+
 //CPA One Registration
 Route::resource('/cpa_one_registration', 'CPAOneRegistrationController');
 Route::post('/cpa_one_by_nrc','CPAOneRegistrationController@GetCPAOneByNRC');
@@ -187,6 +208,9 @@ Route::get('/nonAuditCheckVerify/{id}','AccFirmInfController@nonAuditCheckVerify
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 // Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
+
+// Audit Reconnect
+Route::post('/audit_reconnect','AccFirmInfController@firmReconnect');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
@@ -260,6 +284,7 @@ Route::get('check_service_private','CurrentCheckServiceController@getCheckServic
 Route::get('check_service_self','CurrentCheckServiceController@getCheckServiceSelf');
 Route::get('check_mentor_mac','MentorController@getMentorMAC');
 Route::get('check_mentor_self_private','MentorController@getMentorSelfandPrivate');
+Route::get('getMentor/{name}', 'MentorController@getMentor');
 
 Route::get('user_profile/{id}','StudentInfoController@userProfile');
 Route::get('get_firm_dashboard_data/{id}','StudentInfoController@getFirmDashboardData');
@@ -324,6 +349,7 @@ Route::get('showDescription/{membership_name}','MembershipController@showDescrip
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
 //cpa entry exam
 Route::post('cpa_entry_exam','EntryExamController@cpaOneEntryExam');
+Route::resource('/cpa_entry_exam_update','EntryExamController');
 Route::post('cpa_entry_app','EntryExamController@cpaOneEntryApp');
 Route::post('entered_exam_list','EntryExamController@enteredExamList');
 
@@ -403,12 +429,20 @@ Route::post('/save_gov_registration_fee', 'ArticleController\ArticleController@s
 Route::post('/save_attach_file', 'ArticleController\ArticleController@saveAttachFile');
 Route::post('/filter_done_resign_article','ArticleController\ArticleController@filterDoneResignArticle');
 Route::post('/done_resign_article','ArticleController\ArticleController@doneResignArticle');
+Route::post('/save_contract_end_date', 'ArticleController\ArticleController@saveContractEndDate');
+Route::post('/save_gov_contract_end_date', 'ArticleController\ArticleController@saveGovContractEndDate');
 
 Route::post('/article_renew_register', 'ArticleController\ArticleController@saveRenewArticle');
 Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
+Route::post('/save_leave_request','ArticleController\ArticleController@saveLeaveRequest');
+Route::post('/get_leave_request','ArticleController\ArticleController@getLeaveRequest');
+Route::get('/get_update_leave_request/{id}','ArticleController\ArticleController@getUpdateLeaveRequest');
+Route::post('/update_leave_request','ArticleController\ArticleController@updateLeaveRequest');
+Route::get('/get_article_list/{id}', 'ArticleController\ArticleController@getArticleList');
+
 
 // Payment
-Route::get('/get_invoice/{id}', 'PaymentController\PaymentController@getInvoice');
+Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
 
@@ -419,15 +453,12 @@ Route::get('getTeacherByTCode/{t_code}', 'TeacherController\TeacherController@ge
 Route::post('/cessation_school_register', 'SchoolController\SchoolController@cessation_school_register');
 //teacher renew
 Route::post('/renewTeacher', 'TeacherController\TeacherController@renewTeacher');
-Route::post('/filterRenewTeacher','TeacherController\TeacherController@filterRenewTeacher');
-Route::get('getRenewTeacher/{id}', 'TeacherController\TeacherController@getRenewTeacher');
-Route::post('/approveRenewTeacherRegister', 'TeacherController\TeacherController@approveRenewTeacherRegister');
-//Route::resource('/renewTeacher','TeacherController\TeacherController');
 Route::patch('/approveRenewTeacher', 'TeacherController\TeacherController@approveRenewTeacher');
 Route::post('/renewTeacherUpdate/{id}', 'TeacherController\TeacherController@renewTeacherUpdate');
-Route::post('/cessationRenewTeacherRegister', 'TeacherController\TeacherController@cessationRenewTeacherRegister');
 //school renew
 Route::post('/renewSchool', 'SchoolController\SchoolController@renewSchool');
 Route::get('/getSchoolInfo/{id}', 'SchoolController\SchoolController@getSchoolInfo');
 Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewSchoolPayment');
 Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');
+//school total amount
+Route::post('/getTotalAmount', 'SchoolController\SchoolController@getTotalAmount');

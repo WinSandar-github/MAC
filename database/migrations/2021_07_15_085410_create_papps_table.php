@@ -64,12 +64,20 @@ class CreatePappsTable extends Migration
             $table->string('cpa_batch_no')->nullable();
             $table->string('letter')->nullable();
             $table->string('papp_reg_no')->nullable();
+            $table->string('papp_reg_date')->nullable();
             $table->string('audit_work')->nullable();
+            
+            $table->string('latest_reg_year')->nullable();
+            $table->integer('submitted_stop_form')->nullable();
+            $table->string('submitted_from_date')->nullable();
+            $table->string('submitted_to_date')->nullable();
+
             $table->integer('type')->nullable();
-            $table->integer('self_confession')->nullable();
+            $table->text('self_confession')->nullable();
             $table->text('reject_description')->nullable();
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();
+            $table->boolean('offline_user')->default(0);
             $table->timestamps();
 
             $table->foreign('student_id')

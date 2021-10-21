@@ -88,7 +88,7 @@
                                                         <span class="nrc_back"></span>
                                                     </div>
                                             </div>
-                                            <div class="row mt-3">
+                                            <!-- <div class="row mt-3">
                                                     <div class="col-sm-6">
                                                         <b>အဘအမည်(မြန်မာ)/အဘအမည်(အင်္ဂလိပ်)</b>
                                                     </div>
@@ -103,8 +103,8 @@
                                                     <div class="col-sm-6">
                                                         <span  id="date_of_birth"></span>
                                                     </div>
-                                            </div>
-                                            <div class="row mt-3">
+                                            </div> -->
+                                            <div class="row mt-3 border-bottom">
                                                     <div class="col-sm-6">
                                                         <b>ဖုန်းနံပါတ်</b>
                                                     </div>
@@ -112,7 +112,33 @@
                                                         <span  id="phone"></span>
                                                     </div>
                                             </div>
-                                            
+                                            <div class="school_fee" style="display:none;">
+                                                <div class="row mt-3 ">
+                                                    <div class="col-md-3">
+                                                        <p style="font-weight:bold"> Fee Name </p>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        
+                                                        <span id="fee_name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3 border-bottom ">
+                                                    <div class="col-md-3">
+                                                        <p style="font-weight:bold"> Fee </p>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <span id="fee"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-3">
+                                                        <p style="font-weight:bold">Total Amount </p>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <span id="total_fee"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </ul>
 
                                     </div>
@@ -148,10 +174,18 @@
                                     <hr>
                                     <div class="row mt-3 border-bottom ">
                                         <div class="col-md-6">
-                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ </p>
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(မြန်မာ) </p>
                                         </div>
                                         <div class="col-md-6">
                                             <span id="address"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 border-bottom ">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold"><i class="fa fa-map-marker"></i> ဆက်သွယ်ရန်လိပ်စာ(အင်္ဂလိပ်) </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="eng_address"></span>
                                         </div>
                                     </div>
                                     <div class="row mt-3 border-bottom view-attachment" style="display:none;">
@@ -162,7 +196,7 @@
                                             <input type="hidden" id="hidden_attach">
                                         </div>
                                     </div>
-                                    <div class="school-type" style="display:none;">
+                                    <div class="school-type " style="display:none;">
                                         <p class="mb-3 mt-3 " style="font-weight:bold">လုပ်ငန်းဖွဲ့စည်းမှုကျောင်းပုံစံ</p>
                                         <div class="col-md-12">
 
@@ -206,6 +240,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -223,7 +258,7 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                 <div class="active tab-pane" id="activity">
-                                        <div class="row mb-2">
+                                        <!-- <div class="row mb-2">
                                             <div class="col-sm-6">
 
                                             </div>
@@ -232,7 +267,7 @@
                                                     <li class="breadcrumb-item active">ကျောင်းပုံစံ-၁</li>
                                                 </ol>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     <!-- Post -->
                                     <div class="post">
                                         <div class="row school_name-class" style='display:none;'>
@@ -590,6 +625,7 @@
                                         </table>
 
                                     </div>
+                                    
                                     <div id="approve_reject" style="display:none;">
                                         <div class="row">
 

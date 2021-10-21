@@ -91,6 +91,14 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates=null;
         }
+        if ($request->hasfile('teacher_card')) {
+            $file = $request->file('teacher_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $teacher_card = '/storage/teacher_info/'.$name;
+        }else{
+            $teacher_card=null;
+        }
         $teacher = new TeacherRegister();
         $teacher->name_mm = $request->name_mm;
         $teacher->name_eng = $request->name_eng;
@@ -143,17 +151,28 @@ class TeacherController extends Controller
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
-        
+        if($request->offline_user){
+            $teacher->offline_user = true;
+        }
+        $teacher->from_valid_date = $request->from_valid_date;
+        $teacher->t_code = $request->t_code;
+        $teacher->teacher_card = $teacher_card;
         $teacher->save();
-        
-            //Student Info
+           
+        //Student Info
+        if($request->student_info_id!=0){
+            $std_info =StudentInfo::find($request->student_info_id);
+            $std_info->teacher_id = $teacher->id;
+            $std_info->password = Hash::make($request->password);
+            $std_info->save();
+        }else{
             $std_info = new StudentInfo();
             $std_info->teacher_id = $teacher->id;
             $std_info->email = $request->email;
             $std_info->password = Hash::make($request->password);
             $std_info->save();
-
-        // $teacher->t_code = 'T-00'.$teacher->id;
+        }
+        $teacher->regno = 'T-'.$teacher->id;
         $teacher->student_info_id = $std_info->id;
         $teacher->save();
 
@@ -164,7 +183,7 @@ class TeacherController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $std_info->id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id      = $teacher->id;
                 $education_histroy->save();
@@ -174,22 +193,23 @@ class TeacherController extends Controller
         $memberships = Membership::where('membership_name', 'like', 'Teacher')->get();
         
         //invoice
+        if($request->offline_user==null){
             $invoice = new Invoice();
             $invoice->student_info_id = $std_info->id;
-            $invoice->invoiceNo = '';
+            $invoice->invoiceNo = 'init_tec';
             
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
 
-            $invoice->productDesc     = 'Application Fee,Registration Fee,Subject CPA count *Yearly Fee,Subject DA count *Yearly Fee';
             foreach($memberships as $memberships){
+                $invoice->productDesc     = 'Application Fee,Registration Fee,'.$cpa_subject_count.'x CPA One Subject Yearly Fee('.$memberships->cpa_subject_fee.'),'.$da_subject_count.'x DA One Subject Yearly Fee('.$memberships->da_subject_fee.'),Teacher Registration';
                 $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
             }
            
             $invoice->status          = 0;
             $invoice->save();
-
+        }
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
@@ -327,7 +347,7 @@ class TeacherController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id       = $teacher->id;
                 $education_histroy->save();
@@ -341,9 +361,10 @@ class TeacherController extends Controller
                      $file->move(public_path().'/storage/teacher_info/',$name);
                      $old_degrees_certificates[] = $name;
                  }
+                 $old_degrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_degrees_certificates_h);
                  for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->university_name = $request->old_degrees[$i];
+                    $education_histroy->degree_name = $request->old_degrees[$i];
                     $education_histroy->certificate     ='/storage/teacher_info/'.$old_degrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -352,7 +373,7 @@ class TeacherController extends Controller
                 
                 for($i=0;$i <sizeof($request->old_degrees_id);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->university_name = $request->old_degrees[$i];
+                    $education_histroy->degree_name = $request->old_degrees[$i];
                     $education_histroy->certificate     =$old_degrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -396,19 +417,82 @@ class TeacherController extends Controller
 
     public function FilterTeacher(Request $request)
     {
-        
-        $teacher = TeacherRegister::where('approve_reject_status',$request->status)
-        ->where('initial_status',$request->initial_status)
-        ->orderBy('created_at','desc');
-        if($request->name!=""){
-            $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
-                        ->orWhere('name_eng', 'like', '%' . $request->name. '%');
-        }
-        if($request->nrc!=""){
-            $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        }
-        $teachers=$teacher->get();
-        return DataTables::of($teachers)
+        if($request->offline_user==true){
+            $teacher = TeacherRegister::where('approve_reject_status',$request->status)
+                                        ->where('offline_user',1)
+                                        ->orderBy('created_at','desc');
+            if($request->name!=""){
+                $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
+                ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+            }
+            if($request->nrc!=""){
+                $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+            }
+            $teachers=$teacher->get();
+            return DataTables::of($teachers)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                            <a href='teacher_edit?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                            </div>";
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->approve_reject_status	 == 0){
+                    return "PENDING";
+                }else if($infos->approve_reject_status	 == 1){
+                    return "APPROVED";
+                }else{
+                    return "REJECTED";
+                }
+            })
+            ->addColumn('reason', function ($infos){
+                if($infos->reason == ""){
+                    return "";
+                   
+                }else{
+                    return $infos->reason;
+                   
+                }
+            })
+            // ->addColumn('exp_date', function ($infos){
+            //     return $infos->from_valid_date.' to 31-Dec-'.date('Y');
+            // })
+            ->addColumn('card', function ($infos) {
+                return "<div class='btn-group'>
+                            <a href='$infos->teacher_card' class='btn btn-info btn-xs' target='_blank'>
+                                <li class='nc-icon nc-tap-01'></li>
+                            </a>
+                        </div>";
+                
+            })
+            ->rawColumns(['card','action'])
+            ->make(true);
+        }else{
+            //$teacher = DB::table('teacher_registers')->join('invoices', 'invoices.student_info_id','=', 'teacher_registers.student_info_id')
+           $teacher = TeacherRegister::where('approve_reject_status',$request->status)
+                                        ->where('initial_status',$request->initial_status)
+                                        ->where('offline_user',null)
+                                        //->select('teacher_registers.*');
+                                        
+                                        ->orderBy('teacher_registers.created_at','desc');
+                                       // ->distinct();
+                                       // ->groupBy('teacher_registers.id');
+            //$teacher = StudentInfo::where('id',$id)->with('teacher', 'invoice')->get();             
+            // if($request->name!=""){
+            //     $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
+            //                 ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+            // }
+            // if($request->nrc!=""){
+            //     $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+            // }
+            $teachers=$teacher->get();
+           
+            return DataTables::of($teachers)
                 ->addColumn('action', function ($infos) {
                     $btn='';
                     if($infos->initial_status==0){
@@ -442,15 +526,17 @@ class TeacherController extends Controller
                         return "REJECTED";
                     }
                 })
+                
                 ->addColumn('payment_method', function ($infos){
-                    if($infos->payment_method	 == ""){
+                   
+                    if($infos->payment_method== ""){
                         return "Payment Incomplete";
                        
                     }else{
                         return "Payment Complete";
-                       
-                    }
+                     }
                 })
+                
                 ->addColumn('exp_date', function ($infos){
                     if($infos->initial_status==0){
                         if($infos->from_valid_date	 ==""){
@@ -528,13 +614,13 @@ class TeacherController extends Controller
                 })
                 ->rawColumns(['card','action'])
                 ->make(true);
-        // return  response()->json([
-        //     'data' => $teacher
-        // ],200);
+        }
+        
+        
     }
     public function teacherStatus($id)
     {
-        $data = StudentInfo::where('id',$id)->with('teacher')->get();
+        $data = StudentInfo::where('id',$id)->with('teacher', 'invoice')->get();
         return response()->json($data,200);
     }
 
@@ -545,6 +631,7 @@ class TeacherController extends Controller
         $teacher->invoice_no = $request->invoice_no;
         $teacher->t_code = $request->invoice_no;
         $teacher->from_valid_date = $request->current_date;
+        $teacher->to_valid_date = '31-12-'.date('Y');
         $teacher->save();
         return response()->json([
             'data' => $teacher,
@@ -553,7 +640,7 @@ class TeacherController extends Controller
 
     public function check_payment($id)
     {
-        $data = TeacherRegister::with('teacher_renew')->where('id',$id)->get();
+        $data = TeacherRegister::where('id',$id)->get();
         return response()->json($data,200);
     }
     public function getEducationHistory(Request $request)
@@ -569,7 +656,9 @@ class TeacherController extends Controller
                 'data' => $data
             ],200);
         }else{
-            $data = EducationHistroy::where('renewteacher_id',$request->renewteacher_id)->get();
+            $data = EducationHistroy::where('student_info_id',$request->student_info_id)
+                                    ->where('school_id','=',null)
+                                    ->get();
             return response()->json([
                 'data' => $data
             ],200);
@@ -643,6 +732,15 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates=null;
         }
+        // card 
+        if ($request->hasfile('teacher_card')) {
+            $file = $request->file('teacher_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $teacher_card = '/storage/teacher_info/'.$name;
+        }else{
+            $teacher_card =null;
+        }
         $teacher = new TeacherRegister();
         $teacher->name_mm = $request->name_mm;
         $teacher->name_eng = $request->name_eng;
@@ -659,6 +757,7 @@ class TeacherController extends Controller
         $teacher->nrc_front = $nrc_front;
         $teacher->nrc_back = $nrc_back;
         $teacher->image = $image;
+        $teacher->teacher_card = $teacher_card;
         
         $certificates = ""; $diplomas = "";$cpa_subject_count=0;$da_subject_count=0;
         if($request->certificates!=null){
@@ -683,9 +782,11 @@ class TeacherController extends Controller
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
-        $teacher->t_code = $request->regno;
+        $teacher->t_code = $request->t_code;
+        $teacher->regno = $request->regno;
         $teacher->initial_status  = 1;
         $teacher->student_info_id  = $request->student_info_id;
+        //$teacher->payment_method  = 'renew_tec';
         $teacher->save();
         
         
@@ -696,7 +797,7 @@ class TeacherController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
                 $education_histroy->teacher_id      = $teacher->id;
                 $education_histroy->save();
@@ -705,17 +806,18 @@ class TeacherController extends Controller
         $memberships = Membership::where('membership_name', 'like', 'Teacher')->get();
         
         //invoice
+            
             $invoice = new Invoice();
             $invoice->student_info_id = $request->student_info_id;
-            $invoice->invoiceNo = '';
+            $invoice->invoiceNo = 'renew_tec';
             
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
-
-            $invoice->productDesc     = 'Application Fee,Subject CPA count *Renew Fee,Subject DA count *Renew Fee';
+            
             foreach($memberships as $memberships){
-                $invoice->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
+                $invoice->productDesc     = 'Application Fee,'.$cpa_subject_count.'x CPA One Subject Renew Fee('.$memberships->renew_cpa_subject_fee.'),'.$da_subject_count.'x DA One Subject Renew Fee('.$memberships->renew_da_subject_fee.'),Teacher Registration';
+                $invoice->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->renew_cpa_subject_fee.','.$da_subject_count*$memberships->renew_da_subject_fee;
             }
            
             $invoice->status          = 0;
@@ -725,128 +827,7 @@ class TeacherController extends Controller
             'message' => 'Success Registration.'
         ],200);
     }
-    public function filterRenewTeacher(Request $request)
-    {
-        
-        $teacher = teacher_renew::where('approve_reject_status',$request->status)
-        ->where('initial_status',$request->initial_status)
-        ->orderBy('created_at','desc');
-        if($request->name!=""){
-            $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
-                        ->orWhere('name_eng', 'like', '%' . $request->name. '%');
-        }
-        if($request->nrc!=""){
-            $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        }
-        $teachers=$teacher->get();
-        return DataTables::of($teachers)
-                ->addColumn('action', function ($infos) {
-                    return "<div class='btn-group'>
-                                    <a href='renew_teacher_edit?id=$infos->id' class='btn btn-primary btn-xs'>
-                                        <li class='fa fa-eye fa-sm'></li>
-                                    </a>
-                                </div>";
-                })
-                ->addColumn('nrc', function ($infos){
-                    $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
-                    return $nrc_result;
-                })
-                ->addColumn('status', function ($infos){
-                    if($infos->approve_reject_status	 == 0){
-                        return "PENDING";
-                    }else if($infos->approve_reject_status	 == 1){
-                        return "APPROVED";
-                    }else{
-                        
-                        return "REJECTED";
-                    }
-                })
-                ->addColumn('payment_method', function ($infos){
-                    if($infos->payment_method	 == ""){
-                        return "Payment Incomplete";
-                       
-                    }else{
-                        return "Payment Complete";
-                       
-                    }
-                })
-                ->addColumn('exp_date', function ($infos){
-                    if($infos->payment_date	 ==""){
-                        return "";
-                    }else{
-                        return '01-01-'.date('Y').' to 31-12-'.date('Y');
-                    }
-                })
-                ->addColumn('card', function ($infos) {
-                    $btn='';
-                    if($infos->payment_method != ""){
-                        $btn = "<div class='btn-group'>
-                                    <a href='teacher_card?id=$infos->id' class='btn btn-primary btn-xs'>
-                                        <li class='fa fa-id-card-o fa-sm'></li>
-                                    </a>
-                                </div>";
-                        return $btn;
-                        
-                    }else{
-                        return $btn;
-                    }
-                    
-                })
-                ->addColumn('remark', function ($infos){
-                    if($infos->cessation_reason == ""){
-                        return "";
-                       
-                    }else{
-                        return $infos->cessation_reason;
-                       
-                    }
-                })
-                ->addColumn('reason', function ($infos){
-                    if($infos->reason == ""){
-                        return "";
-                       
-                    }else{
-                        return $infos->reason;
-                       
-                    }
-                })
-                ->addColumn('payment_date', function ($infos){
-                    if($infos->payment_date	 == ""){
-                        return "";
-                    }else{
-                        $date = Carbon::createFromFormat('Y-m-d', $infos->payment_date);
-                        return $date->format('d-m-Y');
-                    }
-                })
-                ->addColumn('yearly', function ($infos){
-                    if($infos->renew_date	 == ""){
-                        return "";
-                    }else{
-                        $date = Carbon::createFromFormat('Y-m-d', $infos->renew_date);
-                        return $date->format('Y');
-                    }
-                })
-                ->rawColumns(['card','action'])
-                ->make(true);
-        
-    }
-    public function getRenewTeacher($id)
-    {
-        $teacher = teacher_renew::where('id',$id)->get();
-        return  response()->json([
-            'data' => $teacher
-        ],200);
-    }
-    public function approveRenewTeacherRegister(Request $request)
-    {
-        $teacher = teacher_renew::find($request->id);
-        $teacher->approve_reject_status = $request->status;
-        $teacher->reason = $request->reason;
-        $teacher->save();
-        return response()->json([
-            'message' => 'You have approved this user.'
-        ],200);
-    }
+    
     public function approveRenewTeacher(Request $request)
     { 
         $currentDate = Carbon::now();
@@ -905,7 +886,7 @@ class TeacherController extends Controller
         // $teacher->father_name_eng = $request->father_name_eng;
         $teacher->renew_date = date('Y-m-d');
         // $teacher->email = $request->email;
-        // $teacher->phone = $request->phone;
+        $teacher->phone = $request->phone;
         // $teacher->nrc_state_region = $request->nrc_state_region;
         // $teacher->nrc_township = $request->nrc_township;
         // $teacher->nrc_citizen = $request->nrc_citizen;
@@ -915,17 +896,25 @@ class TeacherController extends Controller
         $teacher->image = $image;
         
         $certificates = ""; $diplomas = "";
-        foreach($request->certificates as $c){
-            $certificates = $certificates . $c . ',';
-
+        if($request->certificates!=null){
+            foreach($request->certificates as $c){
+                $certificates = $certificates . $c . ',';
+    
+            }
+            
         }
-        foreach($request->diplomas as $d){
-            $diplomas = $diplomas . $d . ',';
-
+        
+        if($request->diplomas!=null){
+            foreach($request->diplomas as $d){
+                $diplomas = $diplomas . $d . ',';
+    
+            }
+            
         }
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->current_address = $request->current_address;
+        $teacher->eng_current_address = $request->eng_current_address;
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
@@ -943,10 +932,10 @@ class TeacherController extends Controller
            
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $request->student_info_id;
-                $education_histroy->university_name = $request->degrees[$i];
+                $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/teacher_info/'.$new_degrees_certificates[$i];
-                $education_histroy->teacher_id      = $request->teacher_id;
-                $education_histroy->renewteacher_id      = $teacher->id;
+                $education_histroy->teacher_id      = $teacher->id;
+               
                 $education_histroy->save();
             }
         }else{
@@ -958,9 +947,10 @@ class TeacherController extends Controller
                      $file->move(public_path().'/storage/teacher_info/',$name);
                      $old_renewdegrees_certificates[] = $name;
                  }
+                 $old_renewdegrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_renewdegrees_certificates_h);
                  for($i=0;$i <sizeof($request->old_renewdegrees);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
-                    $education_histroy->university_name = $request->old_renewdegrees[$i];
+                    $education_histroy->degree_name = $request->old_renewdegrees[$i];
                     $education_histroy->certificate     ='/storage/teacher_info/'.$old_renewdegrees_certificates[$i];
                     $education_histroy->save();
                 }
@@ -969,7 +959,7 @@ class TeacherController extends Controller
                 if($request->old_renewdegrees!=""){
                     for($i=0;$i <sizeof($request->old_renewdegrees);$i++){
                         $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
-                        $education_histroy->university_name = $request->old_renewdegrees[$i];
+                        $education_histroy->degree_name = $request->old_renewdegrees[$i];
                         $education_histroy->certificate     =$old_renewdegrees_certificates[$i];
                         $education_histroy->save();
                     }

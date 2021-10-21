@@ -49,8 +49,8 @@
                                         <th class="bold-font-weight">Private Registration Endt Date</th>
                                         <th class="bold-font-weight">Exam Registration Start Date</th>
                                         <th class="bold-font-weight">Exam Registration Endt Date</th>
-                                        <th class="bold-font-weight">Entrance Pass Start Date</th>
-                                        <th class="bold-font-weight">Entrance Pass End Date</th>
+                                        <th class="bold-font-weight">Entrance Exam Form Start Date</th>
+                                        <th class="bold-font-weight">Entrance Exam Form End Date</th>
 
                                     </tr>
 
@@ -202,7 +202,7 @@
                             <div class="col-md-7">
                                 <div class="form-group">
                                     <select class="form-control form-select" name="course_id" id="selected_course_id"
-                                        style="width: 100%;" required>
+                                        style="width: 100%;" required onchange="checkCpaOne(value)">
                                         <option value="" disabled selected>Select Course</option>
                                     </select>
                                 </div>
@@ -343,28 +343,28 @@
 
                         <input type="hidden" value="1" name="publish_status" class="form-control" autocomplete="off">
 
-                        
-                        <div class="row">
-                            <label class="col-md-1 form-label">{{ __('17.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Entrance Pass Start Date') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" name="entrance_pass_start_date" class="form-control"
-                                        autocomplete="off" placeholder="DD-MMM-YYYY">
+                        <div id="entrance_pass" style="display:none;">
+                            <div class="row">
+                                <label class="col-md-1 form-label">{{ __('17.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Entrance Exam Form Start Date') }}</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <input type="text" name="entrance_pass_start_date" class="form-control"
+                                            autocomplete="off" placeholder="DD-MMM-YYYY">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <label class="col-md-1 form-label">{{ __('18.') }}</label>
-                            <label class="col-md-4 form-label">{{ __('Entrance Pass End Date') }}</label>
-                            <div class="col-md-7">
-                                <div class="form-group">
-                                    <input type="text" name="entrance_pass_end_date" class="form-control"
-                                        autocomplete="off" placeholder="DD-MMM-YYYY">
+                            <div class="row">
+                                <label class="col-md-1 form-label">{{ __('18.') }}</label>
+                                <label class="col-md-4 form-label">{{ __('Entrance Exam Formx End Date') }}</label>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        <input type="text" name="entrance_pass_end_date" class="form-control"
+                                            autocomplete="off" placeholder="DD-MMM-YYYY">
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                             
+                        </div>  
 
                     </div>
 
