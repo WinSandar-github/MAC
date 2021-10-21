@@ -833,7 +833,7 @@
                                     </div>
                                     <div class="row"> -->
                                         <div class="col-md-12 text-center">
-                                            <table id="tbl_statutory_audit_work"  class="table table-border"   style="width:100%;display:block;overflow-x: auto;white-space: nowrap;">
+                                            <table id="tbl_statutory_audit_work"  class="table table-border" >
                                                 <thead>
                                                     <tr>
                                                         <th>Company</th>
@@ -841,7 +841,7 @@
                                                         <th>Principal/Managing Partner</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="tbl_statutory_audit_work_body hoverTable text-left">
+                                                <tbody class="tbl_statutory_audit_work_body hoverTable text-center">
                                                 </tbody>
                                             </table>
                                         </div>
