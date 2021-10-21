@@ -69,8 +69,9 @@ class CreatePappsTable extends Migration
             
             $table->string('latest_reg_year')->nullable();
             $table->integer('submitted_stop_form')->nullable();
-            $table->string('submitted_from_date')->nullable();
-            $table->string('submitted_to_date')->nullable();
+            // $table->string('submitted_from_date')->nullable();
+            // $table->string('submitted_to_date')->nullable();
+            $table->string('papp_resign_date')->nullable();
 
             $table->integer('type')->nullable();
             $table->text('self_confession')->nullable();
@@ -78,6 +79,8 @@ class CreatePappsTable extends Migration
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();
             $table->boolean('offline_user')->default(0);
+            $table->string('cpaff_reg_no')->nullable();//need to add
+            $table->string('audit_year')->nullable();//need to add
             $table->timestamps();
 
             $table->foreign('student_id')

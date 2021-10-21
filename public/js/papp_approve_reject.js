@@ -366,7 +366,7 @@ function loadPAPPData(){
                 $("#cpd_hours").append(element.cpd_hours);
                 $("#tax_free_recommendation").append(element.tax_free_recommendation);
                 $("#tax_year").append(element.tax_year);
-                $("#reg_no").append(element.reg_no);
+                $("#cpaff_reg_no").append(element.cpaff_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
                 $("#cpaff_address").append(element.address);
@@ -673,7 +673,9 @@ function loadRenewPAPPData(){
                 $("#cpd_hours").append(element.cpd_hours);
                 //$("#tax_free_recommendation").append(element.tax_free_recommendation);
                 //$("#tax_year").append(element.tax_year);
-                $("#reg_no").append(element.reg_no);
+                $("#cpaff_reg_no").append(element.cpaff_reg_no);
+                $("#papp_reg_no").append(element.papp_reg_no);
+                $("#papp_reg_num").append(element.papp_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
                 $("#cpaff_address").append(element.address);
@@ -681,6 +683,10 @@ function loadRenewPAPPData(){
                 $("#contact_mail").append(element.contact_mail);               
                 $("#cpaff_pass_date").append(element.cpaff_pass_date);                
                 $("#papp_date").append(element.papp_date);                
+                $("#papp_reg_date").append(element.papp_reg_date);                
+                $("#papp_renew_date").append(element.papp_renew_date);                
+                $("#audit_year").append(element.audit_year);                
+                $("#audit_work").append(element.audit_work);                
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -917,6 +923,7 @@ function loadappOfflineUser(){
                 $("#papp_reg_year").append(element.papp_reg_date);
                 $("#papp_last_renew_year").append(element.papp_date);
                 $("#latest_reg_year").append(element.latest_reg_year);
+                $("#papp_resign_date").append(element.papp_resign_date);
                 if(element.submitted_stop_form==1){
                     $("#submitted_stop_form").append(`${element.submitted_from_date} မှ ${element.submitted_to_date} အထိ ရပ်နား Form တင်ထားပါသည်။`);
                 }
@@ -1010,7 +1017,7 @@ function loadappOfflineUser(){
                 $("#firm_type").append(element.firm_type);
                 $("#firm_step").append(element.firm_step);
                 $("#staff_firm_name").append(element.staff_firm_name);
-                $("#reg_no").append(element.reg_no);
+                // $("#reg_no").append(element.reg_no);
                 $("#papp_reg_no").append(element.papp_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
@@ -1039,7 +1046,7 @@ function loadappOfflineUser(){
                         console.log(student.length);
                         
                         student.forEach(function(element){
-                            $("#cpaff_reg_year").append(element.cpaff_reg_date);
+                            $("#cpaff_reg_year").append(element.cpaff_reg_year);
                             $("#cpaff_last_renew_year").append(element.last_paid_year); 
                             $("#old_card_year").append(element.old_card_no_year);
                             $("#old_card_no").append(element.old_card_no); 
@@ -1063,7 +1070,7 @@ function loadappOfflineUser(){
                             }else {
                                 $(".cpaff_mpa_mem_card_back_file").append(`<span>-</span>`);
                             }
-                            $("#cpaff_reg_no").append(element.reg_no);
+                            $("#cpaff_reg_no").append(element.cpaff_reg_no);
                             
                             if(element.cpaff_pass_date != null){
                                 $("#cpaff_pass_date").append(element.cpaff_pass_date);
