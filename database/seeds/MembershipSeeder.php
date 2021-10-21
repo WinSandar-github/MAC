@@ -117,6 +117,7 @@ class MembershipSeeder extends Seeder
                 'late_feb_fee'    => '100000',
                 'expire_fee'      => NULL  ,
                 'reconnected_fee' =>'10000',
+                'reconnected_fee_before_2015' =>'1000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
