@@ -220,7 +220,7 @@ class PAPPController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_id;
-        $invoice->invoiceNo  = "papp-renew";
+        $invoice->invoiceNo  = "papp-initial";
         $invoice->name_eng       =  $stdInfo->name_eng;
         $invoice->email       = $stdInfo->email;
         $invoice->phone       = $stdInfo->phone;
