@@ -153,11 +153,11 @@ class CPAFFController extends Controller
             $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
             $cpa_ff->foreign_degree   =   json_encode($degree_file);
 
-            $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
-            $cpa_ff->pass_personal_no =   $request->pass_personal_no;
+            // $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
+            // $cpa_ff->pass_personal_no =   $request->pass_personal_no;
 
-            $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
-            $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
+            // $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
+            // $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
             $cpa_ff->cpa_certificate  =   $cpa_certificate;
             $cpa_ff->mpa_mem_card     =   $mpa_mem_card;
             $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
@@ -192,6 +192,7 @@ class CPAFFController extends Controller
             $cpa_ff->is_renew          =   $request->is_renew;
             $cpa_ff->self_confession   =   $request->self_confession;
             $cpa_ff->cpa2_pass_date   =   $request->cpa2_pass_date;
+            $cpa_ff->cpa2_reg_no   =   $request->cpa2_reg_no;//need to add
             $cpa_ff->type              =   $request->type;
 
             $thisYear = date('Y');
@@ -828,8 +829,8 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->cpd_record       =   $cpd_record;
         $cpa_ff->total_hours      =   $request->total_hours;
-        $cpa_ff->last_paid_year      =   $request->last_paid_year;
-        $cpa_ff->resign_date      =   $request->resign_date;
+        // $cpa_ff->last_paid_year      =   $request->last_paid_year;
+        // $cpa_ff->resign_date      =   $request->resign_date;
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;
         $cpa_ff->type   =   $request->type;
