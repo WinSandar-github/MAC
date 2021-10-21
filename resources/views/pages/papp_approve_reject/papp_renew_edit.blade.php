@@ -23,7 +23,7 @@
                                     <img id="profile_photo" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->
-                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">PAPP Info</h5>
+                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">PAPP Renewal Information</h5>
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -231,19 +231,37 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Passed Date</p>
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration Year</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="cpaff_pass_date"></span>
+                                        <span id="papp_date"></span>
                                     </div>
                                 </div>
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Submit Date</p>
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="papp_date"></span>
+                                        <span id="papp_reg_date"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration No.</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="papp_reg_num"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">PAPP Renew Year</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="papp_renew_date"></span>
                                     </div>
                                 </div>
 
@@ -290,6 +308,24 @@
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="staff_firm_name"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Audit Year</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="audit_year"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Total Audit Work</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="audit_work"></span>
                                     </div>
                                 </div>
 
@@ -641,10 +677,19 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Registration No</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Registeration No.</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="reg_no"></span>
+                                        <span id="cpaff_reg_no"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration No.</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="papp_reg_no"></span>
                                     </div>
                                 </div>
 
@@ -656,6 +701,121 @@
                                         <span id="status"></span>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">Basic Info</h5>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="name_eng"></span> / <span id="name_mm"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">NRC</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="nrc"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="father_name_eng"></span> / <span id="father_name_mm"></span>
+                                    </div>
+                                </div>
+                                {{--<div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Race</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="race"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Religion</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="religion"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Date of Birth</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="date_of_birth"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Current Address</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="current_address"></span>
+                                    </div>
+                                </div>--}}
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Address</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="address"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Phone</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="phone"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Email</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="email"></span>
+                                    </div>
+                                </div>
+                                {{--<div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Government Staff</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="gov_staff"></span>
+                                        <p>{{ $user->gov_staff == 0 ? 'No' : 'Yes'}}</p>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာဌာနအကြီးအကဲ၏ထောက်ခံစာ</p>
+                                    </div>
+                                    <div class="col-md-6  text-left recommend_letter">
+
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="registration_no"></span>
+                                    </div>
+                                </div>--}}
                             </div>
                         </div>
                         <div class="card">
@@ -689,121 +849,7 @@
                                 </div> -->
                             </div>   
                         </div>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header">
-                                <h5 class="border-bottom pb-2" style="font-weight:bold">Basic Info</h5>
-                            </div>
-                            <div class="card-body pt-0">
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2 text-bold" style="font-weight:bold">Name(Eng) / Name(Myanmar)</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="name_eng"></span> / <span id="name_mm"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">NRC</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="nrc"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Father Name(Eng) / Father Name(Myanmar)</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="father_name_eng"></span> / <span id="father_name_mm"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Race</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="race"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Religion</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="religion"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Date of Birth</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="date_of_birth"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Address</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="address"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Current Address</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="current_address"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Phone</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="phone"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Email</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="email"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Government Staff</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="gov_staff"></span>
-                                        {{--<p>{{ $user->gov_staff == 0 ? 'No' : 'Yes'}}</p>--}}
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">သက်ဆိုင်ရာဌာနအကြီးအကဲ၏ထောက်ခံစာ</p>
-                                    </div>
-                                    <div class="col-md-6  text-left recommend_letter">
-
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">ကိုယ်ပိုင်အမှတ်</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="registration_no"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
+                        {{--<div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Job</h5>
                             </div>
@@ -867,7 +913,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">PAPP Education</h5>
@@ -915,9 +961,15 @@
                                             </div>
                                         </div>  
                                     </div>
-                                </div>                               
+                                </div> 
+                                <input type="hidden" name="papp_id" >
+
+                                <div class="row mt-5 justify-content-center">
+                                    <button type="submit" name="save" id='reject' class="btn btn-danger"  data-toggle="modal" data-target="#reject_modal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                    <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                </div>                              
                             </div>
-                            <div class="card-header">
+                            {{--<div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Education</h5>
                             </div>
                             <div class="card-body pt-0">
@@ -991,7 +1043,7 @@
                                     <button type="submit" name="save" id='reject' class="btn btn-danger"  data-toggle="modal" data-target="#reject_modal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                     <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                                 </div>
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                 </div>

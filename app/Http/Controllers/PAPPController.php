@@ -202,7 +202,7 @@ class PAPPController extends Controller
         $papp->phone            =   $request->phone;
         $papp->contact_mail     =   $request->contact_mail;
         // $papp->letter           =   $letter;
-        $papp->reg_no           =   $request->reg_no;
+        $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
         $papp->type             =   $request->type;
         $papp->self_confession  =   $request->self_confession;
 
@@ -220,7 +220,7 @@ class PAPPController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_id;
-        $invoice->invoiceNo  = "papp-renew";
+        $invoice->invoiceNo  = "papp-initial";
         $invoice->name_eng       =  $stdInfo->name_eng;
         $invoice->email       = $stdInfo->email;
         $invoice->phone       = $stdInfo->phone;
@@ -421,6 +421,7 @@ class PAPPController extends Controller
         $papp->degree_name                  =   $cpaff_data->degree_name;
         $papp->degree_pass_year             =   $cpaff_data->degree_pass_year;
         $papp->papp_date                    =   $request->papp_date;
+        $papp->papp_reg_date                =   $request->papp_reg_date;
         $papp->use_firm                     =   $request->use_firm;
         $papp->firm_name                    =   $request->firm_name;
         $papp->firm_type                    =   $request->firm_type;
@@ -447,9 +448,10 @@ class PAPPController extends Controller
         $papp->phone            =   $request->phone;
         $papp->contact_mail     =   $request->contact_mail;
         $papp->letter           =   $letter;
-        $papp->reg_no           =   $request->reg_no;
+        $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
         $papp->papp_reg_no      =   $request->papp_reg_no;
         $papp->audit_work       =   $request->audit_work;
+        $papp->audit_year       =   $request->audit_year;
         $papp->type             =   $request->type;
         $papp->papp_renew_date     =   $request->papp_renew_date;       
         
@@ -1178,8 +1180,8 @@ class PAPPController extends Controller
         $cpa_ff->old_card_no      =   $request->old_card_no;
         $cpa_ff->old_card_file    =   $cpaff_old_card_file;
         $cpa_ff->old_card_no_year =   $request->old_card_no_year;
-        $cpa_ff->reg_no           =   $request->reg_no;
-        $cpa_ff->cpaff_reg_date   =   $request->reg_date;
+        $cpa_ff->cpaff_reg_no           =   $request->cpaff_reg_no;
+        $cpa_ff->cpaff_reg_year   =   $request->cpaff_reg_year;
         $cpa_ff->is_convicted     =   $request->is_convicted;
         $cpa_ff->cpa_certificate  =   $cpa_certificate;
         $cpa_ff->mpa_mem_card     =   $mpa_mem_card_front;
@@ -1190,9 +1192,10 @@ class PAPPController extends Controller
         $cpa_ff->is_renew         =   0;
         $cpa_ff->offline_user         =  1;
         $cpa_ff->type             =   0;
-        $cpa_ff->resign   =   $request->submitted_stop_form;
-        $cpa_ff->start_date   =   $request->submitted_from_date;
-        $cpa_ff->end_date   =   $request->submitted_to_date;
+        $cpa_ff->resign   =   $request->resign;
+        // $cpa_ff->start_date   =   $request->submitted_from_date;
+        // $cpa_ff->end_date   =   $request->submitted_to_date;
+        $cpa_ff->resign_date   =   $request->resign_date;
         $cpa_ff->save();
 
         $student_data = StudentInfo::find($student_info->id);
@@ -1230,8 +1233,9 @@ class PAPPController extends Controller
         $papp->papp_renew_date  =   $request->papp_renew_date;       
         $papp->latest_reg_year  =   $request->latest_reg_year;
         $papp->submitted_stop_form  =   $request->submitted_stop_form;       
-        $papp->submitted_from_date   =   $request->submitted_from_date;
-        $papp->submitted_to_date     =   $request->submitted_to_date;
+        // $papp->submitted_from_date   =   $request->submitted_from_date;
+        // $papp->submitted_to_date     =   $request->submitted_to_date;
+        $papp->papp_resign_date     =   $request->papp_resign_date;
         // $papp->submitted_to_date     =   $request->submitted_to_date;
         // $thisYear = date('Y');
         // $today = date('d-m-Y');
