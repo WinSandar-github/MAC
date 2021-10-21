@@ -880,7 +880,7 @@ class PAPPController extends Controller
         $papp->phone            =   $request->phone;
         $papp->contact_mail     =   $request->contact_mail;
         // $papp->letter           =   $letter;
-        $papp->reg_no           =   $request->reg_no;
+        $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
         $papp->type             =   $request->type;
         $papp->save();
 
@@ -989,14 +989,14 @@ class PAPPController extends Controller
             $papp->tax_free_recommendation      =   $tax_free;
         }
 
-        if ($request->hasfile('letter')) {
-            $file = $request->file('letter');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_papp/',$name);
-            $letter = '/storage/student_papp/'.$name;
+        // if ($request->hasfile('letter')) {
+        //     $file = $request->file('letter');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_papp/',$name);
+        //     $letter = '/storage/student_papp/'.$name;
 
-            $papp->letter           =   $letter;
-        }
+        //     $papp->letter           =   $letter;
+        // }
 
         $papp->student_id                   = $request->student_id;
         $papp->papp_date                    =   $request->papp_date;
@@ -1019,7 +1019,8 @@ class PAPPController extends Controller
         $papp->address          =   $request->address;
         $papp->phone            =   $request->phone;
         $papp->contact_mail     =   $request->contact_mail;
-        $papp->reg_no           =   $request->reg_no;
+        $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
+        $papp->audit_year       =   $request->audit_year;
         $papp->type             =   $request->type;
         $papp->save();
 
