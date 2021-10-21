@@ -336,6 +336,7 @@ function getTeacherInfos(){
                         //$("#school_name").append(value.school_name);
                         $('.school_name_class').hide();
                     }else{
+                        $('.school_name_class').show();
                         loadSchoolName(value.school_id);
                     }
                     if(value.school_name!=null){
@@ -392,6 +393,7 @@ function approveTeacherRegister(){
     let url = new URL(result);
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
+    let offline_user = url.searchParams.get("offline_user");
     var teacher_id=$('#teacher_id').val();
     var check = confirm("Are you sure?");
     if (check == true) {
@@ -401,7 +403,12 @@ function approveTeacherRegister(){
             type: 'post',
             success: function(result){
                 successMessage('You have approved that user!');
-                location.href = FRONTEND_URL + '/teacher_registration';
+                if(offline_user == 'true'){
+                    location.href = FRONTEND_URL + '/offline_user';
+                }else{
+                    location.href = FRONTEND_URL + '/teacher_registration';
+                }
+                
             }
         });
     }
@@ -414,6 +421,7 @@ function rejectTeacherRegister(){
     let id = url.searchParams.get("id");
     var student_info_id=$('#student_info_id').val();
     var teacher_id=$('#teacher_id').val();
+    let offline_user = url.searchParams.get("offline_user");
     var reason=$("#reason").val();
     $.ajax({
         url: BACKEND_URL + "/approve_teacher_register",
@@ -421,7 +429,11 @@ function rejectTeacherRegister(){
         type: 'post',
         success: function(result){
             successMessage('You have rejected that user!');
-            location.href = '/teacher_registration';
+            if(offline_user == 'true'){
+                location.href = FRONTEND_URL + '/offline_user';
+            }else{
+                location.href = FRONTEND_URL + '/teacher_registration';
+            }
         }
     });
     
@@ -770,6 +782,7 @@ function getRenewTeacher(){
                     if(value.school_id==null){
                         $("#school_name").append(value.school_name);
                     }else{
+                        $('.school_name_class').show();
                         loadSchoolName(value.school_id);
                     }
                    

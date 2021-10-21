@@ -312,9 +312,9 @@ class StudentInfoController extends Controller
 
     public  function userProfile($id)
     {
-        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy','student_course_regs'
-        ,'exam_registers','student_register','school','mentor','teacher','cpa_ff','papp',
-        'article','gov_article','exam_results','qualified_test', 'invoice')->first();
+        $student_info = StudentInfo::where('id',$id)->with('student_job','student_education_histroy',
+        'student_course_regs','exam_registers','student_register','school','mentor','teacher','cpa_ff','papp',
+        'article','gov_article','exam_results','qualified_test', 'invoice', 'accountancy_firm')->first();
 
 
         return response()->json(['data' => $student_info],200);
