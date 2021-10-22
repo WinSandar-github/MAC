@@ -37,6 +37,7 @@ class CreateMembershipsTable extends Migration
             $table->bigInteger('late_feb_fee')->nullable();
             $table->bigInteger('expire_fee')->nullable();
             $table->bigInteger('reconnected_fee')->nullable();
+            $table->bigInteger('reconnected_fee_before_2015')->nullable();
             //
             $table->bigInteger('reconnect_fee_sole')->nullable();
             $table->bigInteger('reconnect_fee_partner')->nullable();

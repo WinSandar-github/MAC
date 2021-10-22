@@ -550,6 +550,23 @@
                                     <div class="col-md-6 text-left">
                                         <span id="cpd_hours"></span>
                                     </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Tax Year</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="tax_year"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">အခွန်ကင်းရှင်းကြောင်းထောက်ခံချက်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left tax_free_recommendation">
+                                    </div>
                                 </div>  
                                 <!--MPA Member Card-->
                                 <div class="row m-2 mt-3 border-bottom">

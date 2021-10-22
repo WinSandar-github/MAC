@@ -376,6 +376,21 @@ function autoLoadAudit(){
          //   $("#initial_btns").css('display','block');
          // }
 
+         if(element.offline_user == 1){
+           $("#last_registered_year_box").css('display','block');
+           $("#has_suspend_year").css('display','block');
+           if(element.req_for_stop == 1){
+             $("input[name=req_for_stop][value=1]").attr('checked',true);
+             $("#suspended_year_box").css('display','block');
+             $("#suspended_year").text(element.suspended_year);
+           }
+           else{
+             $("input[name=req_for_stop][value=2]").attr('checked',true);
+             $("#suspended_year_box").css('display','none');
+           }
+           $("#last_registered_year").text(element.last_registered_year);
+         }
+
          document.getElementById('profile_photo').src = PDF_URL + element.image;
         if(element.status==0){
           status="Pending";
@@ -824,6 +839,11 @@ function autoLoadAuditReconnect(){
           local_foreign_id="Foreign";
         }
 
+        // if(element.remark != ''){
+        //   $("#remark_box").css('display','block');
+        //   $("#remark_msg").text(element.remark);
+        // }
+
         $("input[name=accountancy_firm_id]").val(element.id);
         $("input[name=audit_firm_type_id]").val(element.audit_firm_type_id);
         $("input[name=local_foreign_id]").val(element.local_foreign_id);
@@ -843,7 +863,11 @@ function autoLoadAuditReconnect(){
         $("#declaration").append(element.declaration);
         $("#status").append(status);
         $("#last_registered_year").text(element.last_registered_year);
-        $("#suspended_year").text(element.suspended_year);
+        if(element.req_for_stop == 1){
+          $("#suspended_year_box").css('display','block');
+          $("#suspended_year").text(element.suspended_year);
+        }
+
         // $("#local_foreign_id").append(local_foreign_id);
         var branch=element.branch_offices;
         branch.forEach(function(item){
@@ -1316,10 +1340,10 @@ function rejectAuditFirmReconnect(){
     return;
   }
   else{
-    var id = $("input[name = audit_firm_id]").val();
+    var id = $("input[name = student_info_id]").val();
     var firm_id = $("input[name = audit_firm_id]").val();
     var formData = new FormData();
-    formData.append('remark', $('#remark').val());
+    formData.append('remark', $('#remark_offline').val());
     //alert("youk");
     $.ajax({
         url: BACKEND_URL +"/reject_auditfirm_reconnect/"+id+"/"+firm_id,

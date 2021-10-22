@@ -464,7 +464,7 @@ class TeacherController extends Controller
             // })
             ->addColumn('card', function ($infos) {
                 return "<div class='btn-group'>
-                            <a href='$infos->teacher_card' class='btn btn-info btn-xs' target='_blank'>
+                            <a href='MAC/public/$infos->teacher_card' class='btn btn-info btn-xs' target='_blank'>
                                 <li class='nc-icon nc-tap-01'></li>
                             </a>
                         </div>";
@@ -473,7 +473,10 @@ class TeacherController extends Controller
             ->rawColumns(['card','action'])
             ->make(true);
         }else{
-            //$teacher = DB::table('teacher_registers')->join('invoices', 'invoices.student_info_id','=', 'teacher_registers.student_info_id')
+            // $teacher = DB::table('teacher_registers')
+            //             ->join('invoices', 'invoices.transRef','=', 'teacher_registers.payment_menthod')
+            //             ->
+
            $teacher = TeacherRegister::where('approve_reject_status',$request->status)
                                         ->where('initial_status',$request->initial_status)
                                         ->where('offline_user',null)
@@ -528,44 +531,116 @@ class TeacherController extends Controller
                 })
                 
                 ->addColumn('payment_method', function ($infos){
-                   
-                    if($infos->payment_method== ""){
-                        return "Payment Incomplete";
+                    if($infos->initial_status==0){
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec")
+                        
+                        ->get();
                        
                     }else{
-                        return "Payment Complete";
-                     }
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"renew_tec")
+                        ->get();
+                       
+                    }
+                    foreach($invoice as $i){
+                        return $i->status == "0"
+                            ? "Payment Incomplete"
+                            : "Payment Complete";
+                    }
+                    
+                    
                 })
                 
                 ->addColumn('exp_date', function ($infos){
+                    // if($infos->initial_status==0){
+                    //     if($infos->payment_method =="" && $infos->from_valid_date==""){//$infos->from_valid_date
+                    //         return "";
+                    //     }else{
+                    //         $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                    //         return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                    //     }
+                    // }else if($infos->initial_status==1){
+                    //     if(	$infos->payment_method =="" && $infos->from_valid_date==""){//$infos->from_valid_date
+                    //         return "";
+                    //     }else{
+                    //         return '01-01-'.date('Y').' to 31-12-'.date('Y');
+                    //     }
+                    // }
                     if($infos->initial_status==0){
-                        if($infos->from_valid_date	 ==""){
-                            return "";
-                        }else{
-                            $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                            return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec")
+                        
+                        ->get();
+                        foreach($invoice as $i){
+                            return $i->status == "0"
+                                ? ""
+                                : $i->dateTime.' to '.date('Y').'-12-31';
                         }
-                    }else if($infos->initial_status==1){
-                        if($infos->from_valid_date	 ==""){
-                            return "";
-                        }else{
-                            return '01-01-'.date('Y').' to 31-12-'.date('Y');
+                    }else{
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"renew_tec")
+                        ->get();
+                        foreach($invoice as $i){
+                            return $i->status == "0"
+                                ? ""
+                                : date('Y').'-01-01 to '.date('Y').'-12-31';
                         }
                     }
+                    
                 })
                 ->addColumn('card', function ($infos) {
                     $btn='';
-                    if($infos->payment_method != ""){
-                        $btn = "<div class='btn-group'>
+                    if($infos->initial_status==0){
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec")
+                        
+                        ->get();
+                       
+                    }else{
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"renew_tec")
+                        ->get();
+                       
+                    }
+                    foreach($invoice as $i){
+                        return $i->status == "0"
+                            ? ""
+                            : "<div class='btn-group'>
                                     <a href='teacher_card?id=$infos->id' class='btn btn-primary btn-xs'>
                                         <li class='fa fa-id-card-o fa-sm'></li>
                                     </a>
                                 </div>";
-                        return $btn;
-                        
-                    }else{
-                        return $btn;
                     }
+                    // if($infos->payment_method != ""){
+                        // $btn = "<div class='btn-group'>
+                        //             <a href='teacher_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                        //                 <li class='fa fa-id-card-o fa-sm'></li>
+                        //             </a>
+                        //         </div>";
+                    //     return $btn;
+                        
+                    // }else{
+                    //     return $btn;
+                    // }
                     
                 })
                 ->addColumn('remark', function ($infos){
@@ -587,22 +662,44 @@ class TeacherController extends Controller
                     }
                 })
                 ->addColumn('payment_date', function ($infos){
+                    // if($infos->initial_status==0){
+                    //     if($infos->from_valid_date	 == ""){
+                    //         return "";
+                    //     }else{
+                    //         $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                    //         return $date->format('d-m-Y');
+                    //     }
+                    // }else if($infos->initial_status==1){
+                    //     if($infos->from_valid_date	 == ""){
+                    //         return "";
+                    //     }else{
+                    //         $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                    //         return $date->format('d-m-Y');
+                    //     }
+                    // }
                     if($infos->initial_status==0){
-                        if($infos->from_valid_date	 == ""){
-                            return "";
-                        }else{
-                            $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                            return $date->format('d-m-Y');
-                        }
-                    }else if($infos->initial_status==1){
-                        if($infos->from_valid_date	 == ""){
-                            return "";
-                        }else{
-                            $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
-                            return $date->format('d-m-Y');
-                        }
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec")
+                        
+                        ->get();
+                       
+                    }else{
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"renew_tec")
+                        ->get();
+                       
                     }
-                    
+                    foreach($invoice as $i){
+                        return $i->status == "0"
+                            ? ""
+                            : $i->dateTime;
+                    }
                 })
                 ->addColumn('yearly', function ($infos){
                     if($infos->renew_date	 == ""){
@@ -786,7 +883,7 @@ class TeacherController extends Controller
         $teacher->regno = $request->regno;
         $teacher->initial_status  = 1;
         $teacher->student_info_id  = $request->student_info_id;
-        //$teacher->payment_method  = 'renew_tec';
+        $teacher->from_valid_date  = $request->from_valid_date;
         $teacher->save();
         
         

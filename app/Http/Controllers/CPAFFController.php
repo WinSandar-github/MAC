@@ -620,6 +620,7 @@ class CPAFFController extends Controller
             $cpa_ff->contact_mail     =   $request->contact_mail;
             $cpa_ff->form_type        =   $request->form_type;
             $cpa_ff->cpa2_pass_date        =   $request->cpa2_pass_date;
+            $cpa_ff->cpa2_reg_no        =   $request->cpa2_reg_no;
             // $cpa_ff->reg_no        =   $request->reg_no;
             $cpa_ff->country        =   $request->country;
             $cpa_ff->government        =   $request->government;
@@ -782,6 +783,18 @@ class CPAFFController extends Controller
             $renew_file="";
         }
 
+        if($request->last_paid_year){
+            $last_paid_year = $request->last_paid_year;
+        }else{
+            $last_paid_year = "";
+        }
+
+        if($request->resign_date){
+            $resign_date = $request->resign_date;
+        }else{
+            $resign_date = "";
+        }
+
         // if ($request->hasfile('three_years_full')) {
         //     $file = $request->file('three_years_full');
         //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -829,8 +842,8 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->cpd_record       =   $cpd_record;
         $cpa_ff->total_hours      =   $request->total_hours;
-        // $cpa_ff->last_paid_year      =   $request->last_paid_year;
-        // $cpa_ff->resign_date      =   $request->resign_date;
+        $cpa_ff->last_paid_year      =   $request->last_paid_year;
+        $cpa_ff->resign_date      =   $request->resign_date;
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;
         $cpa_ff->type   =   $request->type;
@@ -1394,6 +1407,7 @@ class CPAFFController extends Controller
         $cpa_ff->total_hours      =   $request->total_hours;
         $cpa_ff->status           =  0;
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
+        $cpa_ff->cpa2_reg_no     =   $request->cpa2_reg_no;
         $cpa_ff->address          =   $request->address;
         $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
