@@ -182,7 +182,7 @@ class CpaTraAddmissionDirectController extends Controller
         //     $student_register->reg_reason = implode(",",$degree_name);
         //     // $student_register->reg_reason = $request->reg_reason;
         // }
-////multiple university
+        ////multiple university
        
 
         $date_of_birth = $request->date_of_birth;
@@ -305,8 +305,8 @@ class CpaTraAddmissionDirectController extends Controller
         $invoice->phone           = $request->phone;
 
         $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
-        $invoice->productDesc     = 'Application Fee, ' . $std->batch->course->name;
-        $invoice->amount          = $std->batch->course->form_fee;
+        $invoice->productDesc     = 'Application Fee, Transaction Fee,' . $std->batch->course->name;
+        $invoice->amount          = $std->batch->course->form_fee. ',1000';
         $invoice->status          = 0;
         $invoice->save();
         
@@ -688,9 +688,6 @@ class CpaTraAddmissionDirectController extends Controller
             $student_info->email            =   strtolower($request->email);
             $student_info->course_type_id   =   2;
             $student_info->password         =   Hash::make($request->password);
-            $student_info->degree_rank      =   $request->cpa_one_pass_level;
-            $student_info->da_pass_date     =   $request->cpa_one_pass_exam_date;
-            $student_info->da_pass_roll_number  =   $request->cpa_one_pass_personal_no;
             $student_info->verify_code      =   $request->verify_code;
             $student_info->payment_method   =   $request->payment_method;
             $student_info->recommend_letter =   $rec_letter;
@@ -756,6 +753,9 @@ class CpaTraAddmissionDirectController extends Controller
                 $exam_register->exam_type_id        = $request->type;
                 $exam_register->form_type           = 3;
                 $exam_register->status              = 1;
+                $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
+                $exam_register->passed_level        = $request->cpa_one_pass_level;
+                $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                 $exam_register->save();
 
                 if($request->module!=0){ 
@@ -793,6 +793,9 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register->exam_type_id        = $request->type;
                     $exam_register->form_type           = 4;
                     $exam_register->status              = 1;
+                    $exam_register->passed_date         = $request->cpa_two_pass_exam_date;
+                    $exam_register->passed_level        = $request->cpa_two_pass_level;
+                    $exam_register->passed_personal_no  = $request->cpa_two_pass_personal_no;
                     $exam_register->save();
     
                 }
@@ -845,6 +848,9 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register->exam_type_id        = $request->type;
                     $exam_register->form_type           = 3;
                     $exam_register->status              = 1;
+                    $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
+                    $exam_register->passed_level        = $request->cpa_one_pass_level;
+                    $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                     $exam_register->save();
     
                 }

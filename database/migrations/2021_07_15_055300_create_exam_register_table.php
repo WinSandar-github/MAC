@@ -35,6 +35,9 @@ class CreateExamRegisterTable extends Migration
             $table->string('exam_room')->nullable();
             $table->string('exam_building')->nullable();
             $table->string('total_mark')->nullable();
+            $table->string('passed_date')->nullable();
+            $table->string('passed_level')->nullable();
+            $table->string('passed_personal_no')->nullable();
 
             
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');

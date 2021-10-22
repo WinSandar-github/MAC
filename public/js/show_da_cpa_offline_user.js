@@ -52,8 +52,13 @@ function loadOfflineDACPAData(){
 
                 let element = student_course.student_info;
                 // console.log('student_info',element)
-                let student_register = student_course.student_info.student_register.slice(-1);
-                console.log('student_register',student_register[0]);
+                let student_register = student_course.student_info.student_register.slice(-1);                
+                // console.log('student_register',student_register[0]);
+
+                let exam_register = student_course.student_info.exam_registers;
+                let student_course_regs = student_course.student_info.student_course_regs;
+                console.log('exam_register',exam_register);
+                console.log('student_course_regs',student_course_regs);
 
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";
@@ -101,69 +106,200 @@ function loadOfflineDACPAData(){
                     $(".recommend_row").hide();
                 }
 
-                if(element.offline_user==1 &&element.course_type_id==1){
-                    $(".da_one_pass_info").show();
-                    $(".cpa_one_pass_info").hide();  
-                    $(".da_selected_batch_name").append(student_register[0].batch.name);
-                    $(".da_one_pass_exam_date").append(element.da_pass_date);
-                    $(".da_one_pass_level").append(element.degree_rank);
-                    $(".da_one_pass_personal_no").append(element.da_pass_roll_number);
+                if(exam_register.length == 1){
 
-                    if(student_course.type==0){
-                        $(".da_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
-                    }else if(student_course.type==1){
-                        $(".da_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
-                    }else if(student_course.type==2 && student_course.mac_type==1){
-                        $(".da_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
-                    }else{
-                        $(".da_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                    if(element.course_type_id==1){
+                        console.log("Hello")
+                        $(".da_one_pass_info").show();
+                        $(".cpa_one_pass_info").hide();  
+                        $(".da_one_batch_name").append(exam_register[0].batch.name);
+                        $(".da_one_pass_exam_date").append(exam_register[0].passed_date);
+                        $(".da_one_pass_level").append(exam_register[0].passed_level);
+                        $(".da_one_pass_personal_no").append(exam_register[0].passed_personal_no);
+    
+                        if(student_course_regs[0].type==0){
+                            $(".da_one_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+                        }else if(student_course_regs[0].type==1){
+                            $(".da_one_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+                        }else if(student_course_regs[0].type==2 && student_course_regs[0].mac_type==1){
+                            $(".da_one_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+                        }else{
+                            $(".da_one_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                        }
+    
+                        if(exam_register[0].is_full_module == 1){
+                            $(".da_one_module").append("Module 1");
+                        }else if(exam_register[0].is_full_module == 2){
+                            $(".da_one_module").append("Module 2");
+                        }else if(exam_register[0].is_full_module == 3){
+                            $(".da_one_module").append("All Module");
+                        }else{
+                            $(".da_one_module").append("-");
+                        }
+                                        
+                        
                     }
 
-                    // if(element.offline_user == 1){
-                    //     if(student_register[0].module == 1){
-                    //         $(".da_module").append("Module 1");
-                    //     }else if(student_register[0].module == 2){
-                    //         $(".da_module").append("Module 2");
-                    //     }else if(student_register[0].module == 3){
-                    //         $(".da_module").append("All Module");
-                    //     }else{
-                    //         $(".da_module").append("-");
-                    //     }
-                    // }                  
-                    
+                    if(element.course_type_id==2){
+                        $(".da_one_pass_info").hide();
+                        $(".cpa_one_pass_info").show();  
+                        $(".cpa_selected_batch_name").append(exam_register[0].batch.name);
+                        $(".cpa_one_pass_exam_date").append(exam_register[0].passed_date);
+                        $(".cpa_one_pass_level").append(exam_register[0].passed_level);
+                        $(".cpa_one_pass_personal_no").append(exam_register[0].passed_personal_no);
+    
+                        if(student_course_regs[0].type==0){
+                            $(".cpa_one_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+                        }else if(student_course_regs[0].type==1){
+                            $(".cpa_one_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+                        }else if(student_course_regs[0].type==2 && student_course_regs[0].mac_type==1){
+                            $(".cpa_one_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+                        }else{
+                            $(".cpa_one_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                        }
+ 
+                        if(exam_register[0].is_full_module == 1){
+                            $(".cpa_one_module").append("Module 1");
+                        }else if(exam_register[0].is_full_module == 2){
+                            $(".cpa_one_module").append("Module 2");
+                        }else if(exam_register[0].is_full_module == 3){
+                            $(".cpa_one_module").append("All Module");
+                        }else{
+                            $(".cpa_one_module").append("-");
+                        }
+                                        
+                        
+                    }
+                }
+
+                if(exam_register.length == 2){
+
+                    if(element.course_type_id==1){
+
+                        $(".da_one_pass_info").show();
+                        $(".da_two_pass_info").show();
+
+                        $(".cpa_one_pass_info").hide();
+                        $(".cpa_two_pass_info").hide();  
+
+                        $(".da_one_batch_name").append(exam_register[0].batch.name);
+                        $(".da_one_pass_exam_date").append(exam_register[0].passed_date);
+                        $(".da_one_pass_level").append(exam_register[0].passed_level);
+                        $(".da_one_pass_personal_no").append(exam_register[0].passed_personal_no);
+                        
+
+                        $(".da_two_batch_name").append(exam_register[1].batch.name);
+                        $(".da_two_pass_exam_date").append(exam_register[1].passed_date);
+                        $(".da_two_pass_level").append(exam_register[1].passed_level);
+                        $(".da_two_pass_personal_no").append(exam_register[1].passed_personal_no);
+    
+                        if(student_course_regs[0].type==0){
+                            $(".da_one_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+                        }else if(student_course_regs[0].type==1){
+                            $(".da_one_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+                        }else if(student_course_regs[0].type==2 && student_course_regs[0].mac_type==1){
+                            $(".da_one_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+                        }else{
+                            $(".da_one_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                        }
+
+                        if(student_course_regs[1].type==0){
+                            $(".da_two_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+                        }else if(student_course_regs[1].type==1){
+                            $(".da_two_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+                        }else if(student_course_regs[0].type==2 && student_course_regs[1].mac_type==1){
+                            $(".da_two_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+                        }else{
+                            $(".da_two_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                        }
+    
+                        if(exam_register[0].is_full_module == 1){
+                            $(".da_one_module").append("Module 1");
+                        }else if(exam_register[0].is_full_module == 2){
+                            $(".da_one_module").append("Module 2");
+                        }else if(exam_register[0].is_full_module == 3){
+                            $(".da_one_module").append("All Module");
+                        }else{
+                            $(".da_one_module").append("-");
+                        }
+
+                        if(exam_register[1].is_full_module == 1){
+                            $(".da_two_module").append("Module 1");
+                        }else if(exam_register[1].is_full_module == 2){
+                            $(".da_two_module").append("Module 2");
+                        }else if(exam_register[1].is_full_module == 3){
+                            $(".da_two_module").append("All Module");
+                        }else{
+                            $(".da_two_module").append("-");
+                        }
+                                        
+                        
+                    }
+
+                    if(element.course_type_id==2){
+                        $(".da_one_pass_info").hide();
+                        $(".da_two_pass_info").hide();
+
+                        $(".cpa_one_pass_info").show();
+                        $(".cpa_two_pass_info").show(); 
+
+                        $(".cpa_one_batch_name").append(exam_register[0].batch.name);
+                        $(".cpa_one_pass_exam_date").append(exam_register[0].passed_date);
+                        $(".cpa_one_pass_level").append(exam_register[0].passed_level);
+                        $(".cpa_one_pass_personal_no").append(exam_register[0].passed_personal_no);
+
+                        $(".cpa_two_batch_name").append(exam_register[1].batch.name);
+                        $(".cpa_two_pass_exam_date").append(exam_register[1].passed_date);
+                        $(".cpa_two_pass_level").append(exam_register[1].passed_level);
+                        $(".cpa_two_pass_personal_no").append(exam_register[1].passed_personal_no);
+    
+                        if(student_course_regs[0].type==0){
+                            $(".cpa_one_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+                        }else if(student_course_regs[0].type==1){
+                            $(".cpa_one_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+                        }else if(student_course_regs[0].type==2 && student_course_regs[0].mac_type==1){
+                            $(".cpa_one_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+                        }else{
+                            $(".cpa_one_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                        }
+
+                        if(student_course_regs[1].type==0){
+                            $(".cpa_two_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
+                        }else if(student_course_regs[1].type==1){
+                            $(".cpa_two_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
+                        }else if(student_course_regs[1].type==2 && student_course_regs[1].mac_type==1){
+                            $(".cpa_two_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
+                        }else{
+                            $(".cpa_two_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
+                        }
+    
+                        
+                        if(exam_register[0].is_full_module == 1){
+                            $(".cpa_one_module").append("Module 1");
+                        }else if(exam_register[0].is_full_module == 2){
+                            $(".cpa_one_module").append("Module 2");
+                        }else if(exam_register[0].is_full_module == 3){
+                            $(".cpa_one_module").append("All Module");
+                        }else{
+                            $(".cpa_one_module").append("-");
+                        }
+
+                        if(exam_register[1].is_full_module == 1){
+                            $(".cpa_two_module").append("Module 1");
+                        }else if(exam_register[1].is_full_module == 2){
+                            $(".cpa_two_module").append("Module 2");
+                        }else if(exam_register[1].is_full_module == 3){
+                            $(".cpa_two_module").append("All Module");
+                        }else{
+                            $(".cpa_two_module").append("-");
+                        }
+                                         
+                        
+                    }
                 }
                 
-                if(element.offline_user==1 &&element.course_type_id==2){
-                    $(".da_one_pass_info").hide();
-                    $(".cpa_one_pass_info").show();  
-                    $(".cpa_selected_batch_name").append(student_register[0].batch.name);
-                    $(".cpa_one_pass_exam_date").append(element.da_pass_date);
-                    $(".cpa_one_pass_level").append(element.degree_rank);
-                    $(".cpa_one_pass_personal_no").append(element.da_pass_roll_number);
-
-                    if(student_course.type==0){
-                        $(".cpa_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
-                    }else if(student_course.type==1){
-                        $(".cpa_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
-                    }else if(student_course.type==2 && student_course.mac_type==1){
-                        $(".cpa_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
-                    }else{
-                        $(".cpa_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
-                    }
-
-                    if(element.offline_user == 1){
-                        if(student_register[0].module == 1){
-                            $(".cpa_module").append("Module 1");
-                        }else if(student_register[0].module == 2){
-                            $(".cpa_module").append("Module 2");
-                        }else if(student_register[0].module == 3){
-                            $(".cpa_module").append("All Module");
-                        }else{
-                            $(".cpa_module").append("-");
-                        }
-                    }                  
-                    
-                }
+                
+                
                 
 
                 $("#university_name").append(education_history.university_name);
@@ -172,7 +308,7 @@ function loadOfflineDACPAData(){
                 $("#roll_number").append(education_history.roll_number);
 
                 let certificate = JSON.parse(education_history.certificate);
-                console.log('certificate',certificate);
+                // console.log('certificate',certificate);
                 $.each(certificate, function (fileCount, fileName) {
 
                     $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -196,7 +332,7 @@ function loadOfflineDACPAData(){
                     type: 'get',
                     success: function (result) {
                         if (result.data.length != 0) {
-                            console.log(result.data,"aa");
+                            // console.log(result.data,"aa");
                             result.data.forEach(function (course) {
                                 var success_year = new Date(course.updated_at);
                                 var module_name;
@@ -257,7 +393,7 @@ function rejectOfflineDACPAUser() {
             contentType: false,
             processData: false,
             success: function (result) {
-                console.log('result',result);
+                // console.log('result',result);
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/offline_user";
                 // let url;

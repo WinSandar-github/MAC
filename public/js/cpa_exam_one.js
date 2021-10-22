@@ -396,7 +396,13 @@ function loadCPAExamData() {
                 $("#exam_type").append(exam_type_id);
                 $("#student_grade").append(grade);
                 $("#student_status").append(status);
-                $("#exam_department").append(element.exam_department?.name);
+
+                if(element.exam_department){
+                    $("#exam_department").append(element.exam_department.name);
+                }else{
+                    $("#exam_department").append("-");
+                }
+
                 $("#current_module").append(module_name);
                 if (element.status == 0) {
                     document.getElementById("approve").style.display = 'block';
