@@ -44,7 +44,6 @@ class CreateMembershipsTable extends Migration
             //
             $table->bigInteger('cpa_subject_fee')->nullable();
             $table->bigInteger('da_subject_fee')->nullable();
-
             $table->bigInteger('renew_cpa_subject_fee')->nullable();
             $table->bigInteger('renew_da_subject_fee')->nullable();
 
