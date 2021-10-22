@@ -186,6 +186,7 @@ function loadPAPPData(){
         type: "GET",
         url: BACKEND_URL+"/papp/"+id,
         success: function (data) {
+            // console.log(data)
             var student=data.data;
             student.forEach(function(element){
                 // console.log('element',element);
@@ -250,7 +251,7 @@ function loadPAPPData(){
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
                 $("#registration_no").append(element.student_info.cpersonal_no);
-
+                // console.log(element.cpa_ff_recommendation);
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
                     $(".recommend_letter").append(`<a href='${PDF_URL+element.student_info.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -342,7 +343,7 @@ function loadPAPPData(){
                     $(".cpaff_registeration_card_file").append(`<span>-</span>`);
                 }
 
-                if(element.tax_free_recommendation!=null){
+                if(element.tax_free_recommendation!=null && element.tax_free_recommendation!=""){
                     $(".tax_free_recommendation").append(`<a href='${PDF_URL+element.tax_free_recommendation}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
                     $(".tax_free_recommendation").append(`<span>-</span>`);
@@ -365,7 +366,11 @@ function loadPAPPData(){
                 $("#cpd_record").append(element.cpd_record);
                 $("#cpd_hours").append(element.cpd_hours);
                 $("#tax_free_recommendation").append(element.tax_free_recommendation);
-                $("#tax_year").append(element.tax_year);
+                if(element.tax_year !=null){
+                    $("#tax_year").append(element.tax_year);
+                }else{
+                    $("#tax_year").append(`<span>-</span>`);
+                }
                 $("#cpaff_reg_no").append(element.cpaff_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
@@ -636,6 +641,11 @@ function loadRenewPAPPData(){
                 // }else {
                 //     $(".foreign_degree_file").append(`<span>-</span>`);
                 // }
+                if(element.tax_free_recommendation!=null && element.tax_free_recommendation!=""){
+                    $(".tax_free_recommendation").append(`<a href='${PDF_URL+element.tax_free_recommendation}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".tax_free_recommendation").append(`<span>-</span>`);
+                }
 
                 if(element.mpa_mem_card_front!=null){
                     $(".mpa_mem_card_file").append(`<a href='${PDF_URL+element.mpa_mem_card_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -671,8 +681,12 @@ function loadRenewPAPPData(){
                 $("#rule_confession").append(element.rule_confession);
                 $("#cpd_record").append(element.cpd_record);
                 $("#cpd_hours").append(element.cpd_hours);
-                //$("#tax_free_recommendation").append(element.tax_free_recommendation);
-                //$("#tax_year").append(element.tax_year);
+                $("#tax_free_recommendation").append(element.tax_free_recommendation);
+                if(element.tax_year !=null){
+                    $("#tax_year").append(element.tax_year);
+                }else{
+                    $("#tax_year").append(`<span>-</span>`);
+                }
                 $("#cpaff_reg_no").append(element.cpaff_reg_no);
                 $("#papp_reg_no").append(element.papp_reg_no);
                 $("#papp_reg_num").append(element.papp_reg_no);
