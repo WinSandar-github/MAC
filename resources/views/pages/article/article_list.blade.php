@@ -212,7 +212,6 @@
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Done Resign</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_resign_article_pending_body" class="hoverTable text-left">
@@ -230,7 +229,6 @@
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Done Resign</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_resign_article_approved_body" class="hoverTable text-left">
@@ -248,7 +246,6 @@
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
-                                                            <th class="bold-font-weight" >Done Resign</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tbl_resign_article_rejected_body" class="hoverTable text-left">
@@ -272,7 +269,7 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h5 class="title">{{ __('Issue Two Years Form Lists (MAC)') }}</h5>
+                                    <h5 class="title">{{ __('Completed Form Issue List') }}</h5>
                                 </div>
                             </div>
                             <ul class="nav nav-tabs mt-3" role="tablist">
@@ -297,7 +294,7 @@
                                                 <th class="bold-font-weight" >Registration No</th>
                                                 <th class="bold-font-weight" >Form Type</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Check End Date</th>
+                                                <!-- <th class="bold-font-weight" >Check End Date</th> -->
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_two_yrs_article_pending_body" class="hoverTable text-left">
@@ -315,7 +312,7 @@
                                                 <th class="bold-font-weight" >Registration No</th>
                                                 <th class="bold-font-weight" >Form Type</th>
                                                 <th class="bold-font-weight" >Status</th>
-                                                <th class="bold-font-weight" >Check End Date</th>
+                                                <!-- <th class="bold-font-weight" >Check End Date</th> -->
                                             </tr>
                                         </thead>
                                         <tbody id="tbl_two_yrs_gov_article_pending_body" class="hoverTable text-left">
@@ -346,9 +343,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#done_link2" role="tablist" aria-expanded="true" style="font-weight:bold">3yrs Article</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#done_link3" role="tablist" aria-expanded="true" style="font-weight:bold">Resign Article</a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
                         <div class="card-body">
@@ -424,7 +421,7 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="done_link3" aria-expanded="true">
+                                <!-- <div class="tab-pane fade" id="done_link3" aria-expanded="true">
                                     <div class="card-header"></div>
                                     <div class="card-body">
                                         <table id="tbl_done_resign_article" class="table table-hover text-nowrap " style="width:100%;">
@@ -442,7 +439,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -503,14 +500,14 @@
         </div>
     </form>
 
-    <form method="post" class="needs-validation" id="endForm" action="javascript:saveEndArticle();" enctype="multipart/form-data" novalidate>
+    <form method="post" class="needs-validation" id="contractForm" action="javascript:saveRenewContractDate();" enctype="multipart/form-data" novalidate>
     @csrf
-        <div class="modal fade" id="endModal">
+        <div class="modal fade" id="renewContractModal">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <p class="modal-title">
-                        စာရင်းကိုင်အလုပ်သင်ပြီးဆုံးမည့်နေ့အားရွေးချယ်ပါ။</p>
+                        စာရင်းကိုင်အလုပ်သင်စတင်မည့်နေ့နှင့်ပြီးဆုံးမည့်နေ့အားရွေးချယ်ပါ။</p>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -519,7 +516,16 @@
                         <input type="hidden" id="article_id">
                         <input type="hidden" id="article_form_type">
                         <input type="hidden" id="student_info_id">
-                        <input type="text" name="contract_end_date" id="contract_end_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Start Date</label>
+                                <input type="text" name="renew_start_date" id="renew_start_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
+                            </div>
+                            <div class="col-md-6">
+                                <label>End Date</label>
+                                <input type="text" name="renew_end_date" id="renew_end_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -529,32 +535,7 @@
             </div>
         </div>
     </form>
-
-    <form method="post" class="needs-validation" id="endGovForm" action="javascript:saveGovEndArticle();" enctype="multipart/form-data" novalidate>
-    @csrf
-        <div class="modal fade" id="endGovModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <p class="modal-title">
-                        စာရင်းကိုင်အလုပ်သင်ပြီးဆုံးမည့်နေ့အားရွေးချယ်ပါ။</p>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <input type="hidden" id="gov_article_id">
-                        <input type="hidden" id="article_form_type">
-                        <input type="text" name="contract_gov_end_date" id="contract_gov_end_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                        <button type="submit" id="da2exam_btn" class="btn btn-success btn-hover-dark w-30" data-bs-toggle="modal">Submit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
+    
 @endsection
 @push('scripts')
 <script src="{{ asset('js/article.js') }}"></script>
@@ -589,13 +570,13 @@
                 allowInput: true
         });
 
-        $("input[name='contract_end_date']").flatpickr({
+        $("input[name='renew_start_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-M-Y",
                 allowInput: true
         });
 
-        $("input[name='contract_gov_end_date']").flatpickr({
+        $("input[name='renew_end_date']").flatpickr({
                 enableTime: false,
                 dateFormat: "d-M-Y",
                 allowInput: true
@@ -822,12 +803,9 @@
                 {data: 'nrc', name: 'nrc'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
-                {data: 'done_resign', name: 'done_resign'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
-        $('#tbl_resign_article_pending').DataTable().column(5).visible(false);
-        $('#tbl_resign_article_pending').DataTable().column(7).visible(false);
 
         var table_approve =$('#tbl_resign_article_approved').DataTable({
             scrollX: true,
@@ -853,7 +831,6 @@
                 {data: 'nrc', name: 'nrc'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
-                {data: 'done_resign', name: 'done_resign'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -882,12 +859,9 @@
                 {data: 'nrc', name: 'nrc'},
                 {data: 'registration_fee', name: 'registration_fee'},
                 {data: 'status', name: 'status'},
-                {data: 'done_resign', name: 'done_resign'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
-        $('#tbl_resign_article_rejected').DataTable().column(5).visible(false);
-        $('#tbl_resign_article_rejected').DataTable().column(7).visible(false);
 
         //Issue two yrs form list
         var table_approve =$('#tbl_two_yrs_article_pending').DataTable({
@@ -912,9 +886,9 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'status', name: 'status'},
                 {data: 'form_type', name: 'form_type'},
-                {data: 'check_end_date', name: 'check_end_date'},
+                {data: 'status', name: 'status'},
+                // {data: 'check_end_date', name: 'check_end_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -941,9 +915,9 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'status', name: 'status'},
                 {data: 'form_type', name: 'form_type'},
-                {data: 'check_end_date', name: 'check_end_date'},
+                {data: 'status', name: 'status'},
+                // {data: 'check_end_date', name: 'check_end_date'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
@@ -1035,31 +1009,31 @@
         });
 
         //Resign Done Form
-        var table_reject =$('#tbl_done_resign_article').DataTable({
-            scrollX: true,
-            processing: true,
-            serverSide: true,
-            ajax: {
-                url  : BACKEND_URL + "/filter_done_resign_article",
-                type : "POST" ,
-                data :  function (d) {
-                    d.name      =  $("input[name=filter_by_name]").val(),
-                    d.nrc       =  $("input[name=filter_by_nrc]").val()
-                }
+        // var table_reject =$('#tbl_done_resign_article').DataTable({
+        //     scrollX: true,
+        //     processing: true,
+        //     serverSide: true,
+        //     ajax: {
+        //         url  : BACKEND_URL + "/filter_done_resign_article",
+        //         type : "POST" ,
+        //         data :  function (d) {
+        //             d.name      =  $("input[name=filter_by_name]").val(),
+        //             d.nrc       =  $("input[name=filter_by_nrc]").val()
+        //         }
 
-            },
-            columns: [
-                {data: null, render: function (data, type, row, meta) {
-                    return meta.row + meta.settings._iDisplayStart + 1;
-                }},
-                {data: 'action', name: 'action', orderable: false, searchable: false},
-                {data: 'name_mm', name: 'name_mm'},
-                {data: 'phone_no', name: 'phone_no'},
-                {data: 'nrc', name: 'nrc'},
-                {data: 'status', name: 'status'},
-            ],
-            "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-        });
+        //     },
+        //     columns: [
+        //         {data: null, render: function (data, type, row, meta) {
+        //             return meta.row + meta.settings._iDisplayStart + 1;
+        //         }},
+        //         {data: 'action', name: 'action', orderable: false, searchable: false},
+        //         {data: 'name_mm', name: 'name_mm'},
+        //         {data: 'phone_no', name: 'phone_no'},
+        //         {data: 'nrc', name: 'nrc'},
+        //         {data: 'status', name: 'status'},
+        //     ],
+        //     "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+        // });
 
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
             $.each($.fn.dataTable.tables(true), function(){

@@ -231,7 +231,7 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Passed Date</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Registeration Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_pass_date"></span>
@@ -240,7 +240,7 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Submit Date</p>
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_date"></span>
@@ -637,10 +637,10 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration No</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Registeration No.</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="reg_no"></span>
+                                        <span id="cpaff_reg_no"></span>
                                     </div>
                                 </div>
 
@@ -685,7 +685,7 @@
                                         <span id="father_name_eng"></span> / <span id="father_name_mm"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Race</p>
                                     </div>
@@ -711,18 +711,18 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Address</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="address"></span>
-                                    </div>
-                                </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Current Address</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="current_address"></span>
+                                    </div>
+                                </div>--}}
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Address</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="address"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -741,13 +741,13 @@
                                         <span id="email"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Government Staff</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="gov_staff"></span>
-                                        {{--<p>{{ $user->gov_staff == 0 ? 'No' : 'Yes'}}</p>--}}
+                                        <p>{{ $user->gov_staff == 0 ? 'No' : 'Yes'}}</p>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom recommend_row" style="display:none">
@@ -765,10 +765,10 @@
                                     <div class="col-md-6 text-left">
                                         <span id="registration_no"></span>
                                     </div>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
-                        <div class="card">
+                        {{--<div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Job</h5>
                             </div>
@@ -832,7 +832,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>--}}
                         <div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">PAPP Education</h5>
@@ -882,7 +882,7 @@
                                     </div>
                                 </div>                               
                             </div>
-                            <div class="card-header">
+                            {{--<div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Education</h5>
                             </div>
                             <div class="card-body pt-0">
@@ -949,7 +949,7 @@
                                   </div>
                                 </div>
                                 <!-- End Education -->
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                 </div>

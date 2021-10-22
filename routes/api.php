@@ -175,7 +175,7 @@ Route::patch('/reject/{id}', 'DARegisterController@reject');
 Route::post('/filter_student_info','DARegisterController@FilterApplicationList');
 Route::post('/send_email', 'DARegisterController@send_email');
 
-//DA and CPA Offline Application 
+//DA and CPA Offline Application
 // Route::post('/da_one_existing_register', 'DARegisterController@DAOneExistingRegister');
 Route::post('/da_existing_register', 'DARegisterController@DAExistingRegister');
 Route::post('/filter_offline_student_info','DARegisterController@FilterOfflineApplicationList');
@@ -210,7 +210,7 @@ Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
 // Route::patch('/renew_subscribe/{id}','AccFirmInfController@renewSubscribe');
 
 // Audit Reconnect
-Route::post('/audit_reconnect','AccFirmInfController@firmReconnect');
+Route::post('/audit_reconnect','AccFirmInfController@createOfflineUser');
 
 Route::post('/student_info_by_nrc','DARegisterController@GetStudentByNRC');
 Route::get('/get_course_type','CourseController@getCourseType');
@@ -428,9 +428,9 @@ Route::post('/save_registration_fee', 'ArticleController\ArticleController@saveR
 Route::post('/save_gov_registration_fee', 'ArticleController\ArticleController@saveGovRegistrationFee');
 Route::post('/save_attach_file', 'ArticleController\ArticleController@saveAttachFile');
 Route::post('/filter_done_resign_article','ArticleController\ArticleController@filterDoneResignArticle');
-Route::post('/done_resign_article','ArticleController\ArticleController@doneResignArticle');
 Route::post('/save_contract_end_date', 'ArticleController\ArticleController@saveContractEndDate');
 Route::post('/save_gov_contract_end_date', 'ArticleController\ArticleController@saveGovContractEndDate');
+Route::post('/save_renew_contract_date', 'ArticleController\ArticleController@saveRenewContractDate');
 
 Route::post('/article_renew_register', 'ArticleController\ArticleController@saveRenewArticle');
 Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
@@ -439,6 +439,8 @@ Route::post('/get_leave_request','ArticleController\ArticleController@getLeaveRe
 Route::get('/get_update_leave_request/{id}','ArticleController\ArticleController@getUpdateLeaveRequest');
 Route::post('/update_leave_request','ArticleController\ArticleController@updateLeaveRequest');
 Route::get('/get_article_list/{id}', 'ArticleController\ArticleController@getArticleList');
+Route::patch('/create_done_form_link/{id}', 'ArticleController\ArticleController@createDoneFormLink');
+Route::patch('/gov_create_done_form_link/{id}', 'ArticleController\ArticleController@govCreateDoneFormLink');
 
 
 // Payment

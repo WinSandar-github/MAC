@@ -315,6 +315,14 @@
                             </div>
                         </div>
 
+                        <div id="check_end_date" style="display:none;">
+                            <div class="row">
+                                <div class="col-md-12" align="right">
+                                    <button type='button' class='btn btn-warning' onclick='checkEndGovArticle()'>Check End Date</button>
+                                    <button type='button' class='btn btn-info' onclick='govCreateDoneFormLink()'>Create Done Form Link</button>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <h5 class="text-center border-bottom" style="font-weight:bold ;background-color:#E7F8EE;">Leave Request</h5>
@@ -326,6 +334,7 @@
                                             <th>Start Date</th>
                                             <th>End Date</th>
                                             <th>Total Date</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tbody id="leave_request_body">
@@ -355,7 +364,32 @@
         </form>
     </div>
 
-
+    <form method="post" class="needs-validation" id="endGovForm" action="javascript:saveGovEndArticle();" enctype="multipart/form-data" novalidate>
+    @csrf
+        <div class="modal fade" id="endGovModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <p class="modal-title">
+                        စာရင်းကိုင်အလုပ်သင်ပြီးဆုံးမည့်နေ့အားရွေးချယ်ပါ။</p>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="hidden" id="gov_article_id">
+                        <input type="hidden" id="article_form_type">
+                        <input type="hidden" id="student_info_id">
+                        <input type="text" name="contract_gov_end_date" id="contract_gov_end_date" class="form-control" placeholder="ရက်၊လ၊နှစ်(DD-MMM-YYYY)">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                        <button type="submit" id="da2exam_btn" class="btn btn-success btn-hover-dark w-30" data-bs-toggle="modal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
@@ -376,7 +410,11 @@
 <script>
 
   $(document).ready(function (e) {
-
+    $("input[name='contract_gov_end_date']").flatpickr({
+        enableTime: false,
+        dateFormat: "d-M-Y",
+        allowInput: true
+    });
   });
 
 </script>
