@@ -46,7 +46,10 @@ class TeacherSchoolReportController extends Controller
     {
         return $teacher = TeacherRegister::with('school')->get();
 
-
+        foreach($teacher as $chel){
+            $tech_id = explode(',', $chel->certificates);
+            
+        }
 
         $data = [
             'title' => 'ကိုယ်ပိုင်သင်တန်းကျောင်းများတွင် သင်ကြားနေသောသင်တန်းဆရာများစာရင်း 
