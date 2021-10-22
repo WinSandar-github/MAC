@@ -18,30 +18,44 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CpaPappReportController extends Controller
 {
-    public function cpaPappYearlyList(Request $request)
+    public function cpaFFYealyList(Request $request)
     {
         $data = [
-            'title' => 'CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
+            'title' => 'CPA (FF)တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
+            'fields' => ['စဥ်','cpa ff','အမည်','calender year','total hours'],
             'list' => []
         ];
 
         return view('reporting.cpa_ff_papp.cpa_ff_papp_report', compact('data'));
     }
     
-    public function cpaPappYearlyRegList(Request $request)
+    public function cpaPAYealyList(Request $request)
     {
         $data = [
-            'title' => 'ပြက္ဒဒိန်နှစ် အလိုက် မှတ်ပုံတင်လုပ်ငန်းများစာရင်း',
+            'title' => 'CPA (FF)/ PA တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
+            'fields' => ['စဥ်','cpa ff / papp reg_no','အမည်','calender year','total hours'],
             'list' => []
         ];
 
         return view('reporting.cpa_ff_papp.cpa_ff_papp_report', compact('data'));
     }
 
-    public function cpaPappTakeOutRegList(Request $request)
+    public function cpaFFYearlyRegList(Request $request)
     {
         $data = [
-            'title' => 'မှတ်ပုံတင်ကတ်ပြားများကို စနစ်ဖြင့် ထုတ်ယူခြင်း',
+            'title' => 'ပြက္ဒဒိန်နှစ်အလိုက် ( CPA FF) မှတ်ပုံတင်သူများစာရင်း',
+            'fields' => ['စဥ်','cpa ff / papp reg_no','အမည်','nrc number','address','phone','email'],
+            'list' => []
+        ];
+
+        return view('reporting.cpa_ff_papp.cpa_ff_papp_report', compact('data'));
+    }
+
+    public function cpaPAPPYearlyRegList(Request $request)
+    {
+        $data = [
+            'title' => 'ပြက္ဒဒိန်နှစ်အလိုက် ( PAPP ) မှတ်ပုံတင်သူများစာရင်း',
+            'fields' => ['စဥ်','cpa ff','အမည်','calender year','total hours'],
             'list' => []
         ];
 

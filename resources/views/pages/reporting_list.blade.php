@@ -127,7 +127,7 @@
 
                 <form method="POST" id="report-form" target="_blank">
                     <div class="modal-body" id="more-title">
-                        <div class="row mb-2">
+                        <div class="row mb-2 custom-filter">
                             <div class="col-md-6">
                                 <select class="form-control" id="select-course" name='course'>
                                     <option value="">Select Course</option>
@@ -157,17 +157,20 @@
     <script src="{{ asset('js/reporting_constant.js') }}"></script>
     <script src="{{ asset('js/reporting_route_functions.js') }}"></script>
     <script type="text/javascript">
+
+        $(".custom-filter").hide();
+
         $('.show-more-modal').on('click', function() {
 
             let MAIN_REPORT = this.dataset.section
 
             let course = {!! $courses !!};
-
+           
             switch (MAIN_REPORT) {
                 case _MAIN_TITLE[0]: // DA
                     clearModalContent()
                     setModalContent('DA SECTION', _DA)
-
+                    $(".custom-filter").show();
                     $('#select-course').empty();
 
                     $('#select-course').append($('<option>', {
@@ -192,7 +195,7 @@
                 case _MAIN_TITLE[1]: // CPA
                     clearModalContent()
                     setModalContent('CPA SECTION', _CPA);
-
+                    $(".custom-filter").show();
                     $('#select-course').empty();
 
                     $('#select-course').append($('<option>', {
@@ -217,96 +220,42 @@
                 case _MAIN_TITLE[2]: // CPA (Qualified)
                     clearModalContent()
                     setModalContent('CPA (Qualified Test) SECTION', _CPA_QUALIFIED);
-
-                    $('#select-course').empty();
-
-                    $('#select-course').append($('<option>', {
-                        value: '',
-                        text: 'Select Course'
-                    }));
-
-                    let cpa_qualified_course = course.filter(val => {
-                        return val.course_type_id == 2
-                    });
-
-                    cpa_qualified_course.forEach(val => {
-                        $('#select-course').append($('<option>', {
-                            value: val.id,
-                            text: val.name_mm
-                        }));
-                    });
-
+                    $(".custom-filter").hide();
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[3]: // CPA FF PAPP
                     clearModalContent()
                     setModalContent('CPA(FF) AND PAPP SECTION', _CPA_PAPP);
-
-                    $('#select-course').empty();
-
-                    $('#select-course').append($('<option>', {
-                        value: '',
-                        text: 'Select Course'
-                    }));
-
-                    let cpa_papp_course = course.filter(val => {
-                        return val.course_type_id == 2
-                    });
-
-                    cpa_papp_course.forEach(val => {
-                        $('#select-course').append($('<option>', {
-                            value: val.id,
-                            text: val.name_mm
-                        }));
-                    });
-
+                    $(".custom-filter").hide();
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[4]: // CPA FF PAPP
                     clearModalContent()
                     setModalContent('Article Section', _ARTICLE);
-
-                    $('#select-course').empty();
-
-                    $('#select-course').append($('<option>', {
-                        value: '',
-                        text: 'Select Course'
-                    }));
-
-                    let article = course.filter(val => {
-                        return val.course_type_id == 2
-                    });
-
-                    article.forEach(val => {
-                        $('#select-course').append($('<option>', {
-                            value: val.id,
-                            text: val.name_mm
-                        }));
-                    });
-
+                    $(".custom-filter").hide();
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[5]: 
                     clearModalContent()
                     setModalContent('ARTICLE SECTION (MENTOR)', _ARTICLE_SECTION_MENTOR)
-
+                    $(".custom-filter").hide();
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[6]: 
                     clearModalContent()
                     setModalContent('FIRM NAME', _FIRM_NAME)
-
+                    $(".custom-filter").hide();
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[7]: 
                     clearModalContent()
                     setModalContent('TEACHER / SCHOOL', _TEACHER_SCHOOL)
-
+                    $(".custom-filter").hide();
                     $('#more-modal').modal('show')
 
                     break;

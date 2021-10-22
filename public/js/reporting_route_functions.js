@@ -111,32 +111,25 @@ function cpaQualifiedFail(url) {
     }
 }
 
-function cpaPAPPYealyList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        url = url + ""
-        $('#report-form').attr('action', FRONTEND_URL + url);
-        $('#report-form').submit();
-    } else {
-        alert('select course and batch');
-    }
+function cpaFFYealyList(url) {
+    url = url + ""
+    $('#report-form').attr('action', FRONTEND_URL + url);
+    $('#report-form').submit();
+}
+
+function cpaPAYealyList(url) {
+    $('#report-form').attr('action', FRONTEND_URL + url);
+    $('#report-form').submit();
+}
+
+function cpaFFYearlyRegList(url) {
+    $('#report-form').attr('action', FRONTEND_URL + url);
+    $('#report-form').submit();
 }
 
 function cpaPAPPYearlyRegList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', FRONTEND_URL + url);
-        $('#report-form').submit();
-    } else {
-        alert('select course and batch');
-    }
-}
-
-function cpaPAPPTakeOutRegList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', FRONTEND_URL + url);
-        $('#report-form').submit();
-    } else {
-        alert('select course and batch');
-    }
+    $('#report-form').attr('action', FRONTEND_URL + url);
+    $('#report-form').submit();
 }
 
 function articleList(url) {
