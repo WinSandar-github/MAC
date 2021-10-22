@@ -421,7 +421,7 @@ class AccFirmInfController extends Controller
             $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
                           ->where('authority_to_sign', '=', 1)->count();
 
-            $invoice->productDesc     = 'Audit Application Fee, Registration Fee(per PAPP who will sign the audit report)';
+            $invoice->productDesc     = 'Audit Application Fee, Registration Fee(per PAPP who will sign the audit report),Audit Firm';
             $invoice->amount          = $fees->form_fee . ',' . $papp_count * $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -511,7 +511,7 @@ class AccFirmInfController extends Controller
 
             $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'reg_fee_sole','reg_fee_partner']);
 
-            $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee';
+            $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee,Non-Audit Firm';
             if($request->org_stru_id == 1){
               // for Sole Proprietorship
               $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_sole;
@@ -875,10 +875,11 @@ class AccFirmInfController extends Controller
         }
         $acc_firm_info = AccountancyFirmInformation::find($id);
         //$acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
-        // if($request->accountancy_firm_reg_no){
-        //   $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
-        // }
+        if($request->accountancy_firm_reg_no){
+          $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        }
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
+        $acc_firm_info->head_office_address   = $request->head_office_address;
         $acc_firm_info->head_office_address_mm   = $request->head_office_address_mm;
         //$acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
@@ -928,6 +929,7 @@ class AccFirmInfController extends Controller
           for($i=0;$i<sizeof($request->bo_branch_name);$i++){
               $branch_office = new BranchOffice();
               $branch_office->branch_name = $request->bo_branch_name[$i];
+              $branch_office->branch_address = $request->bo_address[$i];
               $branch_office->township    = $request->bo_township[$i];
               $branch_office->postcode    = $request->bo_post_code[$i];
               $branch_office->city        = $request->bo_city[$i];
