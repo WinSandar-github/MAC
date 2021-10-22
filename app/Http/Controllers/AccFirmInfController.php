@@ -875,10 +875,11 @@ class AccFirmInfController extends Controller
         }
         $acc_firm_info = AccountancyFirmInformation::find($id);
         //$acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
-        // if($request->accountancy_firm_reg_no){
-        //   $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
-        // }
+        if($request->accountancy_firm_reg_no){
+          $acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
+        }
         $acc_firm_info->accountancy_firm_name   = $request->accountancy_firm_name;
+        $acc_firm_info->head_office_address   = $request->head_office_address;
         $acc_firm_info->head_office_address_mm   = $request->head_office_address_mm;
         //$acc_firm_info->township                = $request->township;
         $acc_firm_info->postcode                = $request->post_code;
@@ -928,6 +929,7 @@ class AccFirmInfController extends Controller
           for($i=0;$i<sizeof($request->bo_branch_name);$i++){
               $branch_office = new BranchOffice();
               $branch_office->branch_name = $request->bo_branch_name[$i];
+              $branch_office->branch_address = $request->bo_address[$i];
               $branch_office->township    = $request->bo_township[$i];
               $branch_office->postcode    = $request->bo_post_code[$i];
               $branch_office->city        = $request->bo_city[$i];
