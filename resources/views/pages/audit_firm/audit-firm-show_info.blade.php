@@ -872,6 +872,56 @@
                                 </div>
                                 <div class="row type_service_provided"></div><br/>
 
+																<div id="last_registered_year_box" style="display:none;">
+																	<div class="row mb-5">
+	                                    <label for="" class="col-md-1 col-form-label"></label>
+	                                    <label for="" class="col-md-3 col-form-label font-weight-bold">Last Registered Year</label>
+																			<label for="" class="col-md-5 col-form-label"><span id="last_registered_year" class=""></span></label>
+	                                </div>
+																</div>
+
+																<div id="has_suspend_year" style="display:none;">
+																	<div class="row mb-5">
+	                                    <label for="" class="col-md-1 col-form-label"></label>
+	                                    <label for="" class="col-md-4 col-form-label font-weight-bold">Suspended Year</label>
+	                                    <div class="row col-md-7 py-2">
+	                                        <div class="col-md-3 form-check-radio mx-2">
+	                                            <label class="form-check-label">
+	                                                <input class="form-check-input" type="radio" id="yes"
+	                                                        name="req_for_stop" value="1" disabled>
+	                                                <span class="form-check-sign"></span>
+	                                                Yes
+	                                            </label>
+	                                        </div>
+	                                        <div class="col-md-3 form-check-radio mx-2">
+	                                            <label class="form-check-label">
+	                                                <input class="form-check-input" type="radio" id="no"
+	                                                        name="req_for_stop" value="2" disabled>
+	                                                <span class="form-check-sign"></span>
+	                                                No
+	                                            </label>
+	                                        </div>
+
+	                                        <label  class="error attend_place_error" style="display:none;" for="req_for_stop">Please select one</label>
+	                                    </div>
+	                                </div>
+																</div>
+
+																<div style="display:none;" id="suspended_year_box">
+																	<div class="row mb-5">
+	                                    <label for="" class="col-md-1 col-form-label"></label>
+	                                    <label for="" class="col-md-4 col-form-label"></label>
+	                                    <div class="col-md-2">
+	                                        <label for="" class="col-form-label font-weight-bold">Year</label>
+	                                    </div>
+	                                    <div class="col-md-3">
+																					<label for="" class="col-md-4 col-form-label">
+																						<span id="suspended_year" class=""></span>
+																					</label>
+	                                    </div>
+	                                </div>
+																</div>
+
                                 <!-- <div class="row">
                                     <div class="col-md-11 d-md-flex justify-content-md-end">
                                         <button type="submit" class="btn btn-primary btn-round" form="audit_firm_form">{{ __('Save') }}</button>

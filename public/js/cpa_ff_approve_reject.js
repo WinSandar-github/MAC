@@ -355,11 +355,11 @@ function loadCPAFFData(){
                 }else{
                     $("#cpa2_pass_date").append(`<span>-</span>`);
                 }
-                // if(element.reg_no != null){
-                //     $("#cpa_reg_no").append(element.cpa_batch_no);
-                // }else{
-                //     $("#cpa_reg_no").append(`<span>-</span>`);
-                // }
+                if(element.cpa2_reg_no != null){
+                    $("#cpa2_reg_no").append(element.cpa2_reg_no);
+                }else{
+                    $("#cpa2_reg_no").append(`<span>-</span>`);
+                }
                 
                 if(element.country != null){
                     $("#country").append(element.country);
@@ -488,6 +488,7 @@ function loadCPAFFRenewData(){
         success: function (data) {
             var student=data.data;
             console.log(student.length);
+            // console.log(student);
             
             student.forEach(function(element){
                 if(element.status==0){
@@ -624,10 +625,10 @@ function loadCPAFFRenewData(){
                 }else {
                     $(".cpd_record_file").append(`<span>-</span>`);
                 }
-                if(element.letter!=null){
-                    $(".letter_file").append(`<a href='${PDF_URL+element.letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                if(element.renew_file!=null){
+                    $(".renew_file").append(`<a href='${PDF_URL+element.renew_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
-                    $(".letter_file").append(`<span>-</span>`);
+                    $(".renew_file").append(`<span>-</span>`);
                 }
                 $("#degree").append(degree);
                 $("#status").append(status);
@@ -636,7 +637,7 @@ function loadCPAFFRenewData(){
                 $("#cpaff_address").append(element.address);
                 $("#cpaff_phone").append(element.phone);
                 $("#contact_mail").append(element.contact_mail);
-                $("#cpaff_reg_no").append(element.cpaff_reg_no);
+                // $("#cpaff_reg_no").append(element.cpaff_reg_no);
                 if(element.papp_reg_no !=null){
                     $("#papp_reg_no").append(element.papp_reg_no);
                 }else{
@@ -647,16 +648,26 @@ function loadCPAFFRenewData(){
                 }else{
                     $("#papp_reg_year").append(`<span>-</span>`);
                 }
-                $("#last_paid_year").append(element.last_paid_year);
-                $("#resign_date").append(element.resign_date);
+                if(element.fine_person !=null){
+                    $("#fine_person").append(element.fine_person);
+                }else{
+                    $("#fine_person").append(`<span>-</span>`);
+                }
+                // $("#last_paid_year").append(element.last_paid_year);
+                // $("#resign_date").append(element.resign_date);
                 $("#cpaff_pass_date").append(element.cpaff_pass_date);
                 $("#cpaff_renew_date").append(element.cpaff_renew_date);
                 
-                // if(element.cpaff_pass_date != null){
-                //     $("#cpaff_pass_date").append(element.cpaff_pass_date);
-                // }else{
-                //     $("#cpaff_pass_date").append(`<span>-</span>`);
-                // }
+                if(element.last_paid_year != null){
+                    $("#last_paid_year").append(element.last_paid_year);
+                }else{
+                    $("#last_paid_year").append(`<span>-</span>`);
+                }
+                if(element.resign_date != null){
+                    $("#resign_date").append(element.resign_date);
+                }else{
+                    $("#resign_date").append(`<span>-</span>`);
+                }
                 // $("#cpd_total_hour").append(element.total_hours);
                 $("#three_years_full").append(element.three_years_full);
                 $("#university_name").append(education_history.university_name);

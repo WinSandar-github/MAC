@@ -493,10 +493,10 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားခြင်းရှိ/မရှိ</p>
+                                        <p class="ml-2" style="font-weight:bold">Resigned Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="submitted_stop_form"></span>
+                                        <span id="papp_resign_date"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">

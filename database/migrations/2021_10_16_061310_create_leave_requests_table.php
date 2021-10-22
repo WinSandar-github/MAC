@@ -21,7 +21,7 @@ class CreateLeaveRequestsTable extends Migration
             $table->string('end_date')->nullable();
             $table->string('total_leave')->nullable();
             $table->string('remark')->nullable();
-
+            $table->boolean('status')->default(0);
             $table->foreign('student_info_id')
                   ->references('id')
                   ->on('student_infos')

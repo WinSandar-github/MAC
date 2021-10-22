@@ -44,6 +44,7 @@ class MembershipSeeder extends Seeder
                 'late_feb_fee'    => '300000' ,
                 'expire_fee'      => '30000' ,
                 'reconnected_fee' =>NULL,
+                'reconnected_fee_before_2015' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -79,6 +80,7 @@ class MembershipSeeder extends Seeder
                 'late_feb_fee'    => '300000',
                 'expire_fee'      => '30000'  ,
                 'reconnected_fee' =>NULL,
+                'reconnected_fee_before_2015' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -117,6 +119,7 @@ class MembershipSeeder extends Seeder
                 'late_feb_fee'    => '100000',
                 'expire_fee'      => NULL  ,
                 'reconnected_fee' =>'10000',
+                'reconnected_fee_before_2015' =>'1000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -152,7 +155,8 @@ class MembershipSeeder extends Seeder
                 //
                 'late_feb_fee'    => '500000',
                 'expire_fee'      => NULL,
-                'reconnected_fee' =>'110000',
+                'reconnected_fee' =>'100000',
+                'reconnected_fee_before_2015' =>'10000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -188,6 +192,7 @@ class MembershipSeeder extends Seeder
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => '100000',
                 'reconnected_fee' =>NULL,
+                'reconnected_fee_before_2015' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -222,6 +227,7 @@ class MembershipSeeder extends Seeder
                 //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL,
+                'reconnected_fee_before_2015' =>NULL,
                 'reconnected_fee' =>'0',
                 'cpa_subject_fee' =>'30000',
                 'da_subject_fee' =>'20000',
@@ -261,6 +267,7 @@ class MembershipSeeder extends Seeder
                 //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL ,
+                'reconnected_fee_before_2015' =>NULL,
                 'reconnected_fee' =>'10000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
@@ -297,7 +304,9 @@ class MembershipSeeder extends Seeder
                 //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL ,
-                'reconnected_fee' =>NULL,
+                'reconnected_fee' =>'300000',
+                'reconnected_fee_before_2015' =>NULL,
+                
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,

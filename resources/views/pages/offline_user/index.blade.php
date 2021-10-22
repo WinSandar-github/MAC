@@ -39,7 +39,7 @@
                                 <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
                                    href="#v-pills-cpa-ff"
                                    role="tab"
-                                   aria-controls="v-pills-messages" aria-selected="false">CPA FF Register</a>
+                                   aria-controls="v-pills-messages" aria-selected="false">CPA (Full-Fledged) Register</a>
                                 <a class="nav-link font-weight-bold" id="v-pills-messages-tab" data-toggle="pill"
                                    href="#v-pills-papp"
                                    role="tab"
@@ -456,9 +456,9 @@
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
-                                                        <th class="bold-font-weight" >Reg; Number</th>
+                                                        <th class="bold-font-weight" >CPA(FF) Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >Status</th>
                                                     </tr>
@@ -478,9 +478,9 @@
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
-                                                        <th class="bold-font-weight" >Reg; Number</th>
+                                                        <th class="bold-font-weight" >CPA(FF) Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >Status</th>
                                                     </tr>
@@ -500,9 +500,9 @@
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
-                                                        <th class="bold-font-weight" >Reg; Number</th>
+                                                        <th class="bold-font-weight" >CPA(FF) Reg; No.</th>
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >Status</th>
                                                     </tr>
@@ -1628,9 +1628,9 @@
                     {data: 'nrc', name: 'NRC'},
                     {data: 'student_info.email', name: 'Email'},
                     {data: 'self', name: 'Self Confession'},
-                    {data: 'reg_no', name: 'Registration Number',className: "set-text-center"},
+                    {data: 'cpaff_reg_no', name: 'Registration Number',className: "set-text-center"},
                     {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-                    {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+                    // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
                     {data: 'total_hours', name: 'CPD Total Hours'},
                     // {data: 'degree', name: 'Degree'},
                     {data: 'status', name: 'Status'},
@@ -1653,10 +1653,10 @@
                     {data: 'nrc', name: 'NRC'},
                     {data: 'student_info.email', name: 'Email'},
                     {data: 'self', name: 'Self Confession'},
-                    {data: 'reg_no', name: 'Registration Number',className: "set-text-center"},
+                    {data: 'cpaff_reg_no', name: 'Registration Number',className: "set-text-center"},
                     // {data: 'degree', name: 'Degree'},
                     {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-                    {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+                    // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
                     {data: 'total_hours', name: 'CPD Total Hours'},
                     {data: 'status', name: 'Status'},
                 ],
@@ -1677,10 +1677,10 @@
                     {data: 'nrc', name: 'NRC'},
                     {data: 'student_info.email', name: 'Email'},
                     {data: 'self', name: 'Self Confession'},
-                    {data: 'reg_no', name: 'Registration Number',className: "set-text-center"},
+                    {data: 'cpaff_reg_no', name: 'Registration Number',className: "set-text-center"},
                     // {data: 'degree', name: 'Degree'},
                     {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-                    {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+                    // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
                     {data: 'total_hours', name: 'CPD Total Hours'},
                     {data: 'status', name: 'Status'},
                 ],
