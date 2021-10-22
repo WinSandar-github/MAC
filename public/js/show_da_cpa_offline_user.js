@@ -143,7 +143,7 @@ function loadOfflineDACPAData(){
                     if(element.course_type_id==2){
                         $(".da_one_pass_info").hide();
                         $(".cpa_one_pass_info").show();  
-                        $(".cpa_selected_batch_name").append(exam_register[0].batch.name);
+                        $(".cpa_one_batch_name").append(exam_register[0].batch.name);
                         $(".cpa_one_pass_exam_date").append(exam_register[0].passed_date);
                         $(".cpa_one_pass_level").append(exam_register[0].passed_level);
                         $(".cpa_one_pass_personal_no").append(exam_register[0].passed_personal_no);
@@ -207,7 +207,7 @@ function loadOfflineDACPAData(){
                             $(".da_two_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
                         }else if(student_course_regs[1].type==1){
                             $(".da_two_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
-                        }else if(student_course_regs[0].type==2 && student_course_regs[1].mac_type==1){
+                        }else if(student_course_regs[1].type==2 && student_course_regs[1].mac_type==1){
                             $(".da_two_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
                         }else{
                             $(".da_two_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
