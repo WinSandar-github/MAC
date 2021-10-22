@@ -91,6 +91,14 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates=null;
         }
+        if ($request->hasfile('teacher_card')) {
+            $file = $request->file('teacher_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $teacher_card = '/storage/teacher_info/'.$name;
+        }else{
+            $teacher_card=null;
+        }
         $teacher = new TeacherRegister();
         $teacher->name_mm = $request->name_mm;
         $teacher->name_eng = $request->name_eng;
@@ -143,16 +151,27 @@ class TeacherController extends Controller
         $teacher->school_id = $request->selected_school_id;
         $teacher->school_type = $request->school_type;
         $teacher->school_name = $request->school_name;
-        //$teacher->payment_method = 'init_tec';
+        if($request->offline_user){
+            $teacher->offline_user = true;
+        }
+        $teacher->from_valid_date = $request->from_valid_date;
+        $teacher->t_code = $request->t_code;
+        $teacher->teacher_card = $teacher_card;
         $teacher->save();
-        
-            //Student Info
+           
+        //Student Info
+        if($request->student_info_id!=0){
+            $std_info =StudentInfo::find($request->student_info_id);
+            $std_info->teacher_id = $teacher->id;
+            $std_info->password = Hash::make($request->password);
+            $std_info->save();
+        }else{
             $std_info = new StudentInfo();
             $std_info->teacher_id = $teacher->id;
             $std_info->email = $request->email;
             $std_info->password = Hash::make($request->password);
             $std_info->save();
-
+        }
         $teacher->regno = 'T-'.$teacher->id;
         $teacher->student_info_id = $std_info->id;
         $teacher->save();
@@ -174,6 +193,7 @@ class TeacherController extends Controller
         $memberships = Membership::where('membership_name', 'like', 'Teacher')->get();
         
         //invoice
+        if($request->offline_user==null){
             $invoice = new Invoice();
             $invoice->student_info_id = $std_info->id;
             $invoice->invoiceNo = 'init_tec';
@@ -182,14 +202,14 @@ class TeacherController extends Controller
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
 
-            $invoice->productDesc     = 'Application Fee,Registration Fee,Subject CPA count *Yearly Fee,Subject DA count *Yearly Fee,School Registration';
             foreach($memberships as $memberships){
+                $invoice->productDesc     = 'Application Fee,Registration Fee,'.$cpa_subject_count.'x CPA One Subject Yearly Fee('.$memberships->cpa_subject_fee.'),'.$da_subject_count.'x DA One Subject Yearly Fee('.$memberships->da_subject_fee.'),Teacher Registration';
                 $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
             }
            
             $invoice->status          = 0;
             $invoice->save();
-
+        }
         return response()->json([
             'message' => 'Success Registration.'
         ],200);
@@ -397,19 +417,85 @@ class TeacherController extends Controller
 
     public function FilterTeacher(Request $request)
     {
-        
-        $teacher = TeacherRegister::where('approve_reject_status',$request->status)
-        ->where('initial_status',$request->initial_status)
-        ->orderBy('created_at','desc');
-        if($request->name!=""){
-            $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
-                        ->orWhere('name_eng', 'like', '%' . $request->name. '%');
-        }
-        if($request->nrc!=""){
-            $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
-        }
-        $teachers=$teacher->get();
-        return DataTables::of($teachers)
+        if($request->offline_user==true){
+            $teacher = TeacherRegister::where('approve_reject_status',$request->status)
+                                        ->where('offline_user',1)
+                                        ->orderBy('created_at','desc');
+            if($request->name!=""){
+                $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
+                ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+            }
+            if($request->nrc!=""){
+                $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+            }
+            $teachers=$teacher->get();
+            return DataTables::of($teachers)
+            ->addColumn('action', function ($infos) {
+                return "<div class='btn-group'>
+                            <a href='teacher_edit?id=$infos->id&offline_user=true' class='btn btn-primary btn-xs'>
+                                <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                            </div>";
+            })
+            ->addColumn('nrc', function ($infos){
+                $nrc_result = $infos->nrc_state_region . "/" . $infos->nrc_township . "(" . $infos->nrc_citizen . ")" . $infos->nrc_number;
+                return $nrc_result;
+            })
+            ->addColumn('status', function ($infos){
+                if($infos->approve_reject_status	 == 0){
+                    return "PENDING";
+                }else if($infos->approve_reject_status	 == 1){
+                    return "APPROVED";
+                }else{
+                    return "REJECTED";
+                }
+            })
+            ->addColumn('reason', function ($infos){
+                if($infos->reason == ""){
+                    return "";
+                   
+                }else{
+                    return $infos->reason;
+                   
+                }
+            })
+            // ->addColumn('exp_date', function ($infos){
+            //     return $infos->from_valid_date.' to 31-Dec-'.date('Y');
+            // })
+            ->addColumn('card', function ($infos) {
+                return "<div class='btn-group'>
+                            <a href='MAC/public/$infos->teacher_card' class='btn btn-info btn-xs' target='_blank'>
+                                <li class='nc-icon nc-tap-01'></li>
+                            </a>
+                        </div>";
+                
+            })
+            ->rawColumns(['card','action'])
+            ->make(true);
+        }else{
+            // $teacher = DB::table('teacher_registers')
+            //             ->join('invoices', 'invoices.transRef','=', 'teacher_registers.payment_menthod')
+            //             ->
+
+           $teacher = TeacherRegister::where('approve_reject_status',$request->status)
+                                        ->where('initial_status',$request->initial_status)
+                                        ->where('offline_user',null)
+                                        //->select('teacher_registers.*');
+                                        
+                                        ->orderBy('teacher_registers.created_at','desc');
+                                       // ->distinct();
+                                       // ->groupBy('teacher_registers.id');
+            //$teacher = StudentInfo::where('id',$id)->with('teacher', 'invoice')->get();             
+            // if($request->name!=""){
+            //     $teacher=$teacher->where('name_mm', 'like', '%' . $request->name. '%')
+            //                 ->orWhere('name_eng', 'like', '%' . $request->name. '%');
+            // }
+            // if($request->nrc!=""){
+            //     $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
+            // }
+            $teachers=$teacher->get();
+           
+            return DataTables::of($teachers)
                 ->addColumn('action', function ($infos) {
                     $btn='';
                     if($infos->initial_status==0){
@@ -443,44 +529,118 @@ class TeacherController extends Controller
                         return "REJECTED";
                     }
                 })
+                
                 ->addColumn('payment_method', function ($infos){
-                    if($infos->payment_method	 == ""){
-                        return "Payment Incomplete";
+                    if($infos->initial_status==0){
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec")
+                        
+                        ->get();
                        
                     }else{
-                        return "Payment Complete";
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"renew_tec")
+                        ->get();
                        
                     }
+                    foreach($invoice as $i){
+                        return $i->status == "0"
+                            ? "Payment Incomplete"
+                            : "Payment Complete";
+                    }
+                    
+                    
                 })
+                
                 ->addColumn('exp_date', function ($infos){
+                    // if($infos->initial_status==0){
+                    //     if($infos->payment_method =="" && $infos->from_valid_date==""){//$infos->from_valid_date
+                    //         return "";
+                    //     }else{
+                    //         $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                    //         return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                    //     }
+                    // }else if($infos->initial_status==1){
+                    //     if(	$infos->payment_method =="" && $infos->from_valid_date==""){//$infos->from_valid_date
+                    //         return "";
+                    //     }else{
+                    //         return '01-01-'.date('Y').' to 31-12-'.date('Y');
+                    //     }
+                    // }
                     if($infos->initial_status==0){
-                        if($infos->from_valid_date	 ==""){
-                            return "";
-                        }else{
-                            $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                            return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec")
+                        
+                        ->get();
+                        foreach($invoice as $i){
+                            return $i->status == "0"
+                                ? ""
+                                : $i->dateTime.' to '.date('Y').'-12-31';
                         }
-                    }else if($infos->initial_status==1){
-                        if($infos->from_valid_date	 ==""){
-                            return "";
-                        }else{
-                            return '01-01-'.date('Y').' to 31-12-'.date('Y');
+                    }else{
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"renew_tec")
+                        ->get();
+                        foreach($invoice as $i){
+                            return $i->status == "0"
+                                ? ""
+                                : date('Y').'-01-01 to '.date('Y').'-12-31';
                         }
                     }
+                    
                 })
                 ->addColumn('card', function ($infos) {
                     $btn='';
-                    if($infos->payment_method != ""){
-                        $btn = "<div class='btn-group'>
+                    if($infos->initial_status==0){
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec")
+                        
+                        ->get();
+                       
+                    }else{
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"renew_tec")
+                        ->get();
+                       
+                    }
+                    foreach($invoice as $i){
+                        return $i->status == "0"
+                            ? ""
+                            : "<div class='btn-group'>
                                     <a href='teacher_card?id=$infos->id' class='btn btn-primary btn-xs'>
                                         <li class='fa fa-id-card-o fa-sm'></li>
                                     </a>
                                 </div>";
-                        return $btn;
-                        
-                    }else{
-                        return $btn;
                     }
+                    // if($infos->payment_method != ""){
+                        // $btn = "<div class='btn-group'>
+                        //             <a href='teacher_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                        //                 <li class='fa fa-id-card-o fa-sm'></li>
+                        //             </a>
+                        //         </div>";
+                    //     return $btn;
+                        
+                    // }else{
+                    //     return $btn;
+                    // }
                     
                 })
                 ->addColumn('remark', function ($infos){
@@ -502,22 +662,44 @@ class TeacherController extends Controller
                     }
                 })
                 ->addColumn('payment_date', function ($infos){
+                    // if($infos->initial_status==0){
+                    //     if($infos->from_valid_date	 == ""){
+                    //         return "";
+                    //     }else{
+                    //         $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
+                    //         return $date->format('d-m-Y');
+                    //     }
+                    // }else if($infos->initial_status==1){
+                    //     if($infos->from_valid_date	 == ""){
+                    //         return "";
+                    //     }else{
+                    //         $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                    //         return $date->format('d-m-Y');
+                    //     }
+                    // }
                     if($infos->initial_status==0){
-                        if($infos->from_valid_date	 == ""){
-                            return "";
-                        }else{
-                            $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                            return $date->format('d-m-Y');
-                        }
-                    }else if($infos->initial_status==1){
-                        if($infos->from_valid_date	 == ""){
-                            return "";
-                        }else{
-                            $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
-                            return $date->format('d-m-Y');
-                        }
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"init_tec")
+                        
+                        ->get();
+                       
+                    }else{
+                        $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                            $q->where('tranRef', '=', $infos->payment_method);
+                        })
+                        ->where('student_info_id',$infos->student_info_id)
+                        ->where('invoiceNo',"renew_tec")
+                        ->get();
+                       
                     }
-                    
+                    foreach($invoice as $i){
+                        return $i->status == "0"
+                            ? ""
+                            : $i->dateTime;
+                    }
                 })
                 ->addColumn('yearly', function ($infos){
                     if($infos->renew_date	 == ""){
@@ -529,13 +711,13 @@ class TeacherController extends Controller
                 })
                 ->rawColumns(['card','action'])
                 ->make(true);
-        // return  response()->json([
-        //     'data' => $teacher
-        // ],200);
+        }
+        
+        
     }
     public function teacherStatus($id)
     {
-        $data = StudentInfo::where('id',$id)->with('teacher')->get();
+        $data = StudentInfo::where('id',$id)->with('teacher', 'invoice')->get();
         return response()->json($data,200);
     }
 
@@ -555,7 +737,7 @@ class TeacherController extends Controller
 
     public function check_payment($id)
     {
-        $data = TeacherRegister::with('teacher_renew')->where('id',$id)->get();
+        $data = TeacherRegister::where('id',$id)->get();
         return response()->json($data,200);
     }
     public function getEducationHistory(Request $request)
@@ -701,7 +883,7 @@ class TeacherController extends Controller
         $teacher->regno = $request->regno;
         $teacher->initial_status  = 1;
         $teacher->student_info_id  = $request->student_info_id;
-        //$teacher->payment_method  = 'renew_tec';
+        $teacher->from_valid_date  = $request->from_valid_date;
         $teacher->save();
         
         
@@ -721,6 +903,7 @@ class TeacherController extends Controller
         $memberships = Membership::where('membership_name', 'like', 'Teacher')->get();
         
         //invoice
+            
             $invoice = new Invoice();
             $invoice->student_info_id = $request->student_info_id;
             $invoice->invoiceNo = 'renew_tec';
@@ -728,9 +911,9 @@ class TeacherController extends Controller
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
             $invoice->phone           = $request->phone;
-
-            $invoice->productDesc     = 'Application Fee,Subject CPA count *Renew Fee,Subject DA count *Renew Fee,Teacher Registration';
+            
             foreach($memberships as $memberships){
+                $invoice->productDesc     = 'Application Fee,'.$cpa_subject_count.'x CPA One Subject Renew Fee('.$memberships->renew_cpa_subject_fee.'),'.$da_subject_count.'x DA One Subject Renew Fee('.$memberships->renew_da_subject_fee.'),Teacher Registration';
                 $invoice->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->renew_cpa_subject_fee.','.$da_subject_count*$memberships->renew_da_subject_fee;
             }
            

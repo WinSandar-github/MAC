@@ -156,10 +156,19 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA 2 Exam passed date</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA 2 Exam Registeration Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="cpa2_pass_date"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPA 2 Registeration No.</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpa2_reg_no"></span>
                                     </div>
                                 </div>
 

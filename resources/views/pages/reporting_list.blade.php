@@ -5,6 +5,13 @@
 ])
 
 @section('content')
+    <style>
+        .custom-filter{
+            display:none;
+        }
+
+    </style>
+@section('content')
     <div class="content">
         <div class="row">
             <div class="col-md-4">
@@ -127,8 +134,18 @@
 
                 <form method="POST" id="report-form" target="_blank">
                     <div class="modal-body" id="more-title">
-                        <div class="row mb-2 custom-filter">
-                            <div class="col-md-6">
+                        <div class="row mb-2">
+
+                            <div class="col-md-6 custom-filter date-filter">
+                                <select class="form-control" id="select-date" name='date'>
+                                    <option value="">Select Year</option>
+                                    @for ($i = date('Y'); $i > 2010; $i--)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 custom-filter course-filter">
                                 <select class="form-control" id="select-course" name='course'>
                                     <option value="">Select Course</option>
                                     @foreach ($courses as $course)
@@ -137,7 +154,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 custom-filter batch-filter">
                                 <select class="form-control" id="select-batch" name='batch'>
                                     <option value="">Select Batch</option>
                                     {{-- @foreach ($batches as $batch)
@@ -158,8 +175,6 @@
     <script src="{{ asset('js/reporting_route_functions.js') }}"></script>
     <script type="text/javascript">
 
-        $(".custom-filter").hide();
-
         $('.show-more-modal').on('click', function() {
 
             let MAIN_REPORT = this.dataset.section
@@ -170,7 +185,11 @@
                 case _MAIN_TITLE[0]: // DA
                     clearModalContent()
                     setModalContent('DA SECTION', _DA)
-                    $(".custom-filter").show();
+
+                    $('.course-filter, .batch-filter').show();
+
+                    $('.date-filter').hide();
+
                     $('#select-course').empty();
 
                     $('#select-course').append($('<option>', {
@@ -195,7 +214,11 @@
                 case _MAIN_TITLE[1]: // CPA
                     clearModalContent()
                     setModalContent('CPA SECTION', _CPA);
-                    $(".custom-filter").show();
+
+                    $('.course-filter, .batch-filter').show();
+                    
+                    $('.date-filter').hide();
+
                     $('#select-course').empty();
 
                     $('#select-course').append($('<option>', {
@@ -220,42 +243,60 @@
                 case _MAIN_TITLE[2]: // CPA (Qualified)
                     clearModalContent()
                     setModalContent('CPA (Qualified Test) SECTION', _CPA_QUALIFIED);
-                    $(".custom-filter").hide();
+
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[3]: // CPA FF PAPP
                     clearModalContent()
                     setModalContent('CPA(FF) AND PAPP SECTION', _CPA_PAPP);
-                    $(".custom-filter").hide();
+
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[4]: // CPA FF PAPP
                     clearModalContent()
                     setModalContent('Article Section', _ARTICLE);
-                    $(".custom-filter").hide();
+
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[5]: 
                     clearModalContent()
                     setModalContent('ARTICLE SECTION (MENTOR)', _ARTICLE_SECTION_MENTOR)
-                    $(".custom-filter").hide();
+
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+                  
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[6]: 
                     clearModalContent()
                     setModalContent('FIRM NAME', _FIRM_NAME)
-                    $(".custom-filter").hide();
+
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[7]: 
-                    clearModalContent()
+                    clearModalContent();
+
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+
                     setModalContent('TEACHER / SCHOOL', _TEACHER_SCHOOL)
-                    $(".custom-filter").hide();
                     $('#more-modal').modal('show')
 
                     break;

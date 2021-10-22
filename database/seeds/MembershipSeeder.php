@@ -13,7 +13,7 @@ class MembershipSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('memberships')->delete();
+        DB::table('memberships')->truncate();
 
         DB::table('memberships')->insert([
             array(
@@ -22,28 +22,23 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '1000',
                 'registration_fee'=> '100000',
-                //
                 'reg_fee_sole'      => NULL,
                 'reg_fee_partner'      => NULL,
-                //
                 'yearly_fee'      => '100000',
                 'renew_fee'       => '100000',
-                //
                 'renew_fee_sole'      => NULL,
                 'renew_fee_partner'      => NULL,
-                //
                 'late_fee'        => NULL,
-                //
                 'late_fee_within_jan_sole' => '30000',
                 'late_fee_within_jan_partner' => '100000',
                 'late_fee_feb_to_apr_sole' => '300000',
                 'late_fee_feb_to_apr_partner' => '1000000',
                 'reconnect_fee_sole' => '30000',
                 'reconnect_fee_partner' => '100000',
-                //
                 'late_feb_fee'    => '300000' ,
                 'expire_fee'      => '30000' ,
                 'reconnected_fee' =>NULL,
+                'reconnected_fee_before_2015' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -57,28 +52,23 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '10000',
                 'registration_fee'=> NULL,
-                //
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
-                //
                 'yearly_fee'      => '100000',
                 'renew_fee'       => NULL,
-                //
                 'renew_fee_sole'      => '100000',
                 'renew_fee_partner'      => '300000',
-                //
                 'late_fee'        => NULL,
-                //
                 'late_fee_within_jan_sole' => '30000',
                 'late_fee_within_jan_partner' => '100000',
                 'late_fee_feb_to_apr_sole' => '300000',
                 'late_fee_feb_to_apr_partner' => '1000000',
                 'reconnect_fee_sole' => '30000',
                 'reconnect_fee_partner' => '100000',
-                //
                 'late_feb_fee'    => '300000',
                 'expire_fee'      => '30000'  ,
                 'reconnected_fee' =>NULL,
+                'reconnected_fee_before_2015' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -95,28 +85,23 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '1000',
                 'registration_fee'=> '10000',
-                //
                 'reg_fee_sole'      => NULL,
                 'reg_fee_partner'      => NULL,
-                //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => '10000',
-                //
                 'renew_fee_sole'      => NULL,
                 'renew_fee_partner'      => NULL,
-                //
                 'late_fee'        => '10000',
-                //
                 'late_fee_within_jan_sole' => NULL,
                 'late_fee_within_jan_partner' => NULL,
                 'late_fee_feb_to_apr_sole' => NULL,
                 'late_fee_feb_to_apr_partner' => NULL,
                 'reconnect_fee_sole' => NULL,
                 'reconnect_fee_partner' => NULL,
-                //
                 'late_feb_fee'    => '100000',
                 'expire_fee'      => NULL  ,
-                'reconnected_fee' =>'10000',
+                'reconnected_fee' =>'Before 2015 = 1000, After 2015 = 10000',
+                // 'reconnected_fee_before_2015' =>'1000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -131,28 +116,23 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '1000',
                 'registration_fee'=> '30000',
-                //
                 'reg_fee_sole'      => NULL,
                 'reg_fee_partner'      => NULL,
-                //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => '40000',
-                //
                 'renew_fee_sole'      => NULL,
                 'renew_fee_partner'      => NULL,
-                //
                 'late_fee'        => '50000',
-                //
                 'late_fee_within_jan_sole' => NULL,
                 'late_fee_within_jan_partner' => NULL,
                 'late_fee_feb_to_apr_sole' => NULL,
                 'late_fee_feb_to_apr_partner' => NULL,
                 'reconnect_fee_sole' => NULL,
                 'reconnect_fee_partner' => NULL,
-                //
                 'late_feb_fee'    => '500000',
                 'expire_fee'      => NULL,
-                'reconnected_fee' =>'110000',
+                'reconnected_fee' =>'100000',
+                'reconnected_fee_before_2015' =>'10000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -166,28 +146,23 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '1000',
                 'registration_fee'=> '500000',
-                //
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
-                //
                 'yearly_fee'      => '300000',
                 'renew_fee'       => '500000',
-                //
                 'renew_fee_sole'      => '100000',
                 'renew_fee_partner'      => '300000',
-                //
                 'late_fee'        => '80000',
-                //
                 'late_fee_within_jan_sole' => NULL,
                 'late_fee_within_jan_partner' => NULL,
                 'late_fee_feb_to_apr_sole' => NULL,
                 'late_fee_feb_to_apr_partner' => NULL,
                 'reconnect_fee_sole' => NULL,
                 'reconnect_fee_partner' => NULL,
-                //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => '100000',
                 'reconnected_fee' =>NULL,
+                'reconnected_fee_before_2015' =>NULL,
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,
@@ -201,27 +176,22 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => '1000',
                 'registration_fee'=> '50000',
-                //
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
-                //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => '30000',
-                //
                 'renew_fee_sole'      => '100000',
                 'renew_fee_partner'      => '300000',
-                //
                 'late_fee'        => NULL,
-                //
                 'late_fee_within_jan_sole' => NULL,
                 'late_fee_within_jan_partner' => NULL,
                 'late_fee_feb_to_apr_sole' => NULL,
                 'late_fee_feb_to_apr_partner' => NULL,
                 'reconnect_fee_sole' => NULL,
                 'reconnect_fee_partner' => NULL,
-                //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL,
+                'reconnected_fee_before_2015' =>NULL,
                 'reconnected_fee' =>'0',
                 'cpa_subject_fee' =>'30000',
                 'da_subject_fee' =>'20000',
@@ -240,27 +210,22 @@ class MembershipSeeder extends Seeder
                 'description'     => NULL,
                 'form_fee'        => NULL,
                 'registration_fee'=> NULL,
-                //
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
-                //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => NULL,
-                //
                 'renew_fee_sole'      => '100000',
                 'renew_fee_partner'      => '300000',
-                //
                 'late_fee'        => NULL,
-                //
                 'late_fee_within_jan_sole' => NULL,
                 'late_fee_within_jan_partner' => NULL,
                 'late_fee_feb_to_apr_sole' => NULL,
                 'late_fee_feb_to_apr_partner' => NULL,
                 'reconnect_fee_sole' => NULL,
                 'reconnect_fee_partner' => NULL,
-                //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL ,
+                'reconnected_fee_before_2015' =>NULL,
                 'reconnected_fee' =>'10000',
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
@@ -268,36 +233,31 @@ class MembershipSeeder extends Seeder
                 'renew_da_subject_fee' =>NULL,
                 'renew_registration_fee'=> NULL,
                 'renew_yearly_fee'      => NULL,
-                
             ),
             array(
                 'membership_name' => 'Article',
-                'requirement'     => '<p>စာရင်းကိုင်အလုပ်သင် မှတ်ပုံတင်ရန်အတွက် <a href="https://demo.aggademo.me/MAC/public/storage/article/142.pdf" target="_blank">ဤရုံးအမိန့်အမှတ် (၁၄၂) </a> အားဖတ်ရှုရန်လိုအပ်ပါသည်။</p>',
+                'requirement' => '',
                 'description'     => NULL,
                 'form_fee'        => NULL,
                 'registration_fee'=> '5000',
-                //
                 'reg_fee_sole'      => '100000',
                 'reg_fee_partner'      => '300000',
-                //
                 'yearly_fee'      => NULL,
                 'renew_fee'       => NULL,
-                //
                 'renew_fee_sole'      => '100000',
                 'renew_fee_partner'      => '300000',
-                //
                 'late_fee'        => NULL,
-                //
                 'late_fee_within_jan_sole' => NULL,
                 'late_fee_within_jan_partner' => NULL,
                 'late_fee_feb_to_apr_sole' => NULL,
                 'late_fee_feb_to_apr_partner' => NULL,
                 'reconnect_fee_sole' => NULL,
                 'reconnect_fee_partner' => NULL,
-                //
                 'late_feb_fee'    => NULL,
                 'expire_fee'      => NULL ,
-                'reconnected_fee' =>NULL,
+                'reconnected_fee' =>'300000',
+                'reconnected_fee_before_2015' =>NULL,
+                
                 'cpa_subject_fee' =>NULL,
                 'da_subject_fee' =>NULL,
                 'renew_cpa_subject_fee' =>NULL,

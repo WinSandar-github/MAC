@@ -34,14 +34,14 @@
                                     </div>
                                 </div>
 
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registeration No.</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_reg_no"></span>
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -152,30 +152,39 @@
                                     </div>
                                 </div>
 
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration Date</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="papp_reg_year"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">PAPP File</p>
+                                    </div>
+                                    <div class="col-md-6 text-left renew_file">
+                                    </div>
+                                </div>
+
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ပြစ်ဒဏ်ချမှတ်ခံထားရသူ ဟုတ်/မဟုတ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="fine_person"></span>
+                                    </div>
+                                </div>
+
                                 <!--CPA Certificate -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA Certificate</p>
                                     </div>
                                     <div class="col-md-6 text-left cpa_certificate_file">
-                                        {{--<button type="button" id="cpa_certi_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>--}}
-                                    </div>
-                                </div>
-                                <!--CPA Certificate Modal -->
-                                <div id="capp_certi_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">CPA(Full-Fledged) Certificate</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="cpa_certificate" class="img-fluid" /> -->
-                                            <embed id="cpa_certificate"  width="100%"  height="500px">
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
 
@@ -185,24 +194,6 @@
                                         <p class="ml-2" style="font-weight:bold">MICPA Member Card(Front)</p>
                                     </div>
                                     <div class="col-md-6 text-left mpa_mem_card_file">
-                                        <!-- <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                                <!--MPA Member Card Modal -->
-                                <div id="mpa_mem_card_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">MICPA Member Card(Front)</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
-                                            <embed id="mpa_mem_card" width="100%" height="500px">
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
 
@@ -212,24 +203,6 @@
                                         <p class="ml-2" style="font-weight:bold">MICPA Member Card(Back)</p>
                                     </div>
                                     <div class="col-md-6 text-left mpa_mem_card_back_file">
-                                        <!-- <button type="button" id="mac_mem_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#mpa_mem_card_back_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                                <!--MPA Member Card back Modal -->
-                                <div id="mpa_mem_card_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">MPA Member Card(Back)</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="mpa_mem_card" class="img-fluid" /> -->
-                                            <embed id="mpa_mem_card_back" width="100%" height="500px">
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
 
@@ -239,24 +212,6 @@
                                         <p class="ml-2" style="font-weight:bold">NRC Card(Front)</p>
                                     </div>
                                     <div class="col-md-6 text-left nrc_front_file">
-                                        <!-- <button type="button" id="nrc_fornt_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_front_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                                <!--NRC Card(Front) Modal -->
-                                <div id="nrc_front_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">NRC Card(Front)</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="nrc_front" class="img-fluid" /> -->
-                                            <embed id="nrc_front"  width="100%" height="500px">
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
 
@@ -266,24 +221,6 @@
                                         <p class="ml-2" style="font-weight:bold">NRC Card(Back)</p>
                                     </div>
                                     <div class="col-md-6 text-left nrc_back_file">
-                                        <!-- <button type="button" id="nrc_back_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_back_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                                <!--NRC Card(Back) Modal -->
-                                <div id="nrc_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">NRC Card(Back)</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="nrc_back" class="img-fluid" /> -->
-                                            <embed id="nrc_back" width="100%" height="500px">
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
 
@@ -293,25 +230,9 @@
                                         <p class="ml-2" style="font-weight:bold">CPD Record</p>
                                     </div>
                                     <div class="col-md-6 text-left cpd_record_file">
-                                        <!-- <button type="button" id="cpd_rec_btn" style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#cpd_record_Modal"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
-                                    <!--CPD Record Modal-->
-                                <div id="cpd_record_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">CPD Record</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                        <embed id="cpd_record"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
+
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">CPD Total Hours</p>

@@ -112,24 +112,48 @@ function cpaQualifiedFail(url) {
 }
 
 function cpaFFYealyList(url) {
-    url = url + ""
-    $('#report-form').attr('action', FRONTEND_URL + url);
-    $('#report-form').submit();
+
+    if ( $('#select-date').val() != "" ) {
+        url = url + ""
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+   
 }
 
 function cpaPAYealyList(url) {
-    $('#report-form').attr('action', FRONTEND_URL + url);
-    $('#report-form').submit();
+
+    if ( $('#select-date').val() != "" ) {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+   
 }
 
 function cpaFFYearlyRegList(url) {
-    $('#report-form').attr('action', FRONTEND_URL + url);
-    $('#report-form').submit();
+
+    if ( $('#select-date').val() != "" ) {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+   
 }
 
 function cpaPAPPYearlyRegList(url) {
-    $('#report-form').attr('action', FRONTEND_URL + url);
-    $('#report-form').submit();
+
+    if ( $('#select-date').val() != "" ) {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+    
 }
 
 function articleList(url) {
@@ -205,16 +229,16 @@ function frimDailyAttendence(url) {
 }
 
 function teacherSchoolLicense(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ( $('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
-        alert('select course and batch');
+        alert('select year');
     }
 }
 
 function teacherSchoolPrivate(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ( $('#select-date').val() != "" ) {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {

@@ -13,7 +13,7 @@ class CurrentCheckServiceSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('current_check_services')->delete();
+        DB::table('current_check_services')->truncate();
 
         DB::table('current_check_services')->insert([
             array(

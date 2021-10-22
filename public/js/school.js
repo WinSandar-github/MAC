@@ -131,6 +131,7 @@ function getSchoolInfos(){
             if(data.data.approve_reject_status != 0){
                 $("#approve_reject").hide();
                 $('#cessation-btn').show();
+                $('.school_fee').show();
             }
             else{
                 $("#approve_reject").show();
@@ -381,78 +382,6 @@ function getSchoolInfos(){
                 });
                 createDataTable('.tbl_manage_room_numbers');
             }
-            // var school_branch=data.data.school_branch;
-            // $.each(school_branch, function( index, value ) {
-            //     var tr = "<tr>";
-            //     tr += `<td>${ index += 1 } </td>`;
-            //     tr += '<td>'+value.branch_school_address+'</td>';
-            //     tr += `<td><a href='${PDF_URL+value.branch_school_attach}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
-
-            //     if(value.branch_sch_own_type=="private"){
-            //     tr += '<td>'+
-            //     '<div class="form-group">'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-            //                                             'value="private" checked onclick=brachOwnType(this)> ကိုယ်ပိုင်'+
-
-            //                                     '</div>'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-            //                                             'value="rent" onclick=brachOwnType(this)> အငှား '+
-            //                                     '</div>'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
-            //                                             'id="old_branch_sch_own_type" value="use_sharing" onclick=brachOwnType(this)> တွဲဖက်သုံး'+
-            //                                     '</div>'+
-            //                                 '</div>'+
-            //     '</td>';
-            //     }else if(value.branch_sch_own_type=="rent"){
-            //     tr += '<td>'+
-            //     '<div class="form-group">'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-            //                                             'value="private" onclick=brachOwnType(this)> ကိုယ်ပိုင်'+
-
-            //                                     '</div>'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-            //                                             'value="rent" checked onclick=brachOwnType(this)> အငှား '+
-            //                                     '</div>'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
-            //                                             'id="old_branch_sch_own_type" value="use_sharing" onclick=brachOwnType(this)> တွဲဖက်သုံး'+
-            //                                     '</div>'+
-            //                                 '</div>'+
-            //     '</td>';
-            //     }else{
-            //     tr += '<td>'+
-            //     '<div class="form-group">'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-            //                                             'value="private" onclick=brachOwnType('+this+')> ကိုယ်ပိုင်'+
-
-            //                                     '</div>'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '" id="old_branch_sch_own_type"'+
-            //                                             'value="rent" onclick=brachOwnType('+this+')> အငှား '+
-            //                                     '</div>'+
-            //                                     '<div class="form-check mt-2 form-check-inline">'+
-            //                                         '<input class="form-check-input" type="radio" name="old_branch_sch_own_type' + index + '"'+
-            //                                             'id="old_branch_sch_own_type" value="use_sharing" checked onclick=brachOwnType('+this+')> တွဲဖက်သုံး'+
-            //                                     '</div>'+
-            //                                 '</div>'+
-            //     '</td>';
-            //     }
-
-
-            //     tr += `<td><a href='${PDF_URL+value.branch_sch_letter}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
-            //     tr += "</tr>";
-            //     $(".tbl_branch_school_body").append(tr);
-            // });
-            //createDataTable('.tbl_branch_school');
-            
-            
-            
             
             if(data.data.type!=null){
                 $('.school-type').show();
@@ -481,9 +410,21 @@ function getSchoolInfos(){
                     $('input:radio[name=school_type1]').attr('disabled', 'disabled');
                 }
                 
-                
+                if(data.data.last_registration_fee_year!=null){
+                    $('.last_year').show();
+                    $('#last_registration_fee_year').append(data.data.last_registration_fee_year);
+                }
+                if(data.data.request_for_temporary_stop!=null){
+                    $('.request_stop').show();
+                    $('input:radio[name='+data.data.request_for_temporary_stop+']').attr('checked',true);
+                }
+                if(data.data.request_for_temporary_stop=='yes'){
+                    $('.request_stop_yes').show();
+                    $('#request_from_to_date').append(data.data.from_request_stop_date);
+                }
+
             }
-           
+            loadInvoice(data.data.id,data.data.initial_status);
             
             
         }
@@ -764,15 +705,39 @@ function loadSchoolCard(){
         type : 'GET',
         url : BACKEND_URL+"/school/"+id,
         success : function(data){
-            var today = new Date();
-            var date = addZero(today.getDate())+'-'+addZero(today.getMonth()+1)+'-'+today.getFullYear();
-            document.getElementById('regno_date').innerHTML=data.data.s_code+'/'+date;
+            
+           
+            if(data.data.from_valid_date!=null){
+                var today = new Date(data.data.from_valid_date);
+                var date = addZero(today.getDate())+'-'+addZero(today.getMonth()+1)+'-'+today.getFullYear();
+                document.getElementById('regno_date').innerHTML=data.data.s_code+'/'+date;
+           
+            }else{
+                
+                if(data.data.initial_status==0){
+                    var invoiceNo="init_sch"+data.data.id;
+                    $.ajax({
+                        type : 'POST',
+                        url : BACKEND_URL+"/getTotalAmount",
+                        data: 'invoiceNo='+invoiceNo,
+                        success: function(result){
+                            //document.getElementById('regno_date').innerHTML=data.data.s_code+'/'+data.data.from_valid_date;
+                            
+                        }
+                    })
+                }
+            }
+            
             if(data.data.school_name!=null){
                 document.getElementById('school_name').innerHTML=data.data.school_name;
             }else{
                 document.getElementById('school_name').innerHTML=data.data.renew_school_name;
             }
-            
+            if(data.data.eng_school_address!=null){
+                document.getElementById('school_location').innerHTML=data.data.eng_school_address;
+            }else{
+                document.getElementById('school_location').innerHTML=data.data.renew_school_address;
+            }
             
             if($("input:radio[name=school_type1]").val()==data.data.type){
                 $('input:radio[name=school_type1]').attr('checked',true);
@@ -817,13 +782,14 @@ function loadSchoolCard(){
                 }
                 var nrc_eng=nrc_state_region_eng+'/'+nrc_township_eng.join('')+'('+nrc_citizen_eng+')'+nrc_number_eng.join('');
                 document.getElementById('founder_csc').innerHTML=nrc_eng;
-                if(data.data.attend_course.replace(/[\'"[\]']+/g, '')!=null){
+                if(data.data.attend_course.replace(/[\'"[\]']+/g, '')!="null"){
                     loadStudentCourseByCard(data.data.attend_course.replace(/[\'"[\]']+/g, ''));
+                }else{
+                    loadStudentCourseByCard(data.data.renew_course.replace(/[\'"[\]']+/g, ''));
                 }
-                document.getElementById('school_location').innerHTML=data.data.eng_school_address;
-                var valid_date=new Date(data.data.from_valid_date);
-                var date=(valid_date.getFullYear())+3;
-                document.getElementById('expiry_date').innerHTML="31-12-"+date;
+                
+                loadInvoice(data.data.id,data.data.initial_status,"expiry_date");
+                console.log(data.data.school_branch);
                 var school_branch=data.data.school_branch;
                 $.each(school_branch, function( index, value ) {
                     document.getElementById('branch_address').innerHTML=value.branch_school_address;
@@ -832,32 +798,108 @@ function loadSchoolCard(){
     })
 }
 function loadStudentCourseByCard(course_id){
-    
-    var course=course_id.split(',');
-    var all_course=[];
    
-    $.each(course, function( index, id ){
-      
-      $.ajax({
-        type: "get",
-        url: BACKEND_URL+"/course/"+id,
-        success: function (result) {
-          var data=result.data;
-          var newcode=data.code.split('_');
-            var course_code=convert(newcode[1]);
-          all_course.push(newcode[0].toUpperCase()+' '+course_code);
-          //$("#attend_course").val(all_course.toString());
-          
-          
-          document.getElementById('course').innerHTML=all_course.toString()
-          
-          
-                                    
-          
-        }
-        
-      })
-      
-    })
+        $.ajax({
+            type: "get",
+            url: BACKEND_URL+"/get_courses",//course/+id
+            success: function (result) {
+             
+            $.each(result.data,function(i,v){
+               
+                if(v.course_type_id !=3){
+                    [a, b] = v.code.split('_');
+                    
+                $("#course").append( '<input type="checkbox" id='+v.id+' value='+v.id+' > '+a.toUpperCase()+' '+ number2roma(b));
+               }
+                
+              })
+                              
+            var course=course_id.split(',');
+            $.each(course, function( index, val ){
+                $('#'+val).prop("checked", true);
+            })
+            }
+            
+        })
+       
+}
+function number2roma(num){
+    if(num){
+      var nums = {1: 'I', 2: 'II', 3: 'III', 4: 'IV', 5: 'V', 6: 'VI', 7: 'VII', 8: 'VIII', 9: 'IX'};
+      return num.toString().replace(/([0-9])/g, function (s, key) {
+      return nums[key] || s;
+    });
+    }
+    
+  }
+function loadInvoice(id,status,table_col){
+    
+    if(status==0){
+        var invoiceNo="init_sch"+id;
+        $.ajax({
+            type : 'POST',
+            url : BACKEND_URL+"/getTotalAmount",
+            data: 'invoiceNo='+invoiceNo,
+            success: function(result){
+                var fee=[];
+                $.each(result.data, function( index, val ){
+                   $('#fee_name').append(val.productDesc.replace(",School Registration", ""));
+                   $('#fee').append(val.amount);
+                   fee.push(val.amount.split(','));
+                  
+                })
+                let sum = 0;
+
+                for (let i = 0; i < fee[0].length; i++) {
+                    sum += parseInt(fee[0][i]);
+                    
+                }
+                $('#total_fee').append(thousands_separators(sum));
+                if(table_col=="expiry_date"){
+                    $.each(result.data, function( index, val ){
+                    
+                        var valid_date=new Date(val.dateTime);
+                         var date=(valid_date.getFullYear())+3;
+                         document.getElementById(table_col).innerHTML="31-12-"+date;
+                     })
+                }
+                
+                
+            }
+        });
+    }else{
+        var invoiceNo="renew_sch"+id;
+        $.ajax({
+            type : 'POST',
+            url : BACKEND_URL+"/getTotalAmount",
+            data: 'invoiceNo='+invoiceNo,
+            success: function(result){
+                var fee=[];
+                $.each(result.data, function( index, val ){
+                   $('#fee_name').append(val.productDesc.replace(",School Registration", ""));
+                   $('#fee').append(val.amount);
+                   fee.push(val.amount.split(','));
+                   
+                })
+                let sum = 0;
+
+                for (let i = 0; i < fee[0].length; i++) {
+                    sum += parseInt(fee[0][i]);
+                    
+                }
+                $('#total_fee').append(thousands_separators(sum));
+                if(table_col=="expiry_date"){
+                    $.each(result.data, function( index, val ){
+                    
+                        var valid_date=new Date(val.dateTime);
+                         var date=(valid_date.getFullYear())+3;
+                         document.getElementById(table_col).innerHTML="31-12-"+date;
+                     })
+                }
+                
+                
+            }
+        });
+    }
     
 }

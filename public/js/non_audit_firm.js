@@ -145,6 +145,7 @@ function loadAttachFiles(firm_id){
         else if(element.organization_structure_id == 3){
           non_audit_file.forEach(function(item){
             // for Company Incorporated
+            console.log("item ***",item);
             if(item.certificate_incor!="null"){
               var certificate_incor_file = removeBracketedNonAudit(item.certificate_incor);
               for(var i=0;i<certificate_incor_file.length;i++){
@@ -175,43 +176,45 @@ function loadAttachFiles(firm_id){
 
             if(item.letterhead!="null"){
               var letterhead_file = removeBracketedNonAudit(item.letterhead);
+                  //letterhead_file = letterhead_file.replace('c', '');
+                  console.log("***",letterhead_file);
               for(var i=0;i<letterhead_file.length;i++){
-                $(".letterheads_company").append(`<a href='${PDF_URL+letterhead_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                $(".letterheads_company").append(`<a href='${PDF_URL+letterhead_file[i].replace(/["]+/g, '')}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
             }else $(".letterheads_company").append("<span class='text-warning pl-4'>No file</span>");
 
             if(item.education_certificate!="null"){
               var education_certificate_file = removeBracketedNonAudit(item.education_certificate);
               for(var i=0;i<education_certificate_file.length;i++){
-                $(".edu_certi_company").append(`<a href='${PDF_URL+education_certificate_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                $(".edu_certi_company").append(`<a href='${PDF_URL+education_certificate_file[i].replace(/["]+/g, '')}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
             }else $(".edu_certi_company").append("<span class='text-warning pl-4'>No file</span>");
 
             if(item.work_exp!="null"){
               var work_exp_file = removeBracketedNonAudit(item.work_exp);
               for(var i=0;i<work_exp_file.length;i++){
-                $(".work_exp_company").append(`<a href='${PDF_URL+work_exp_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                $(".work_exp_company").append(`<a href='${PDF_URL+work_exp_file[i].replace(/["]+/g, '')}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
             }else $(".work_exp_company").append("<span class='text-warning pl-4'>No file</span>");
 
             if(item.nrc_passport_front!="null"){
               var nrc_passport_front_file = removeBracketedNonAudit(item.nrc_passport_front);
               for(var i=0;i<nrc_passport_front_file.length;i++){
-                $(".nrc_passport_front_company").append(`<a href='${PDF_URL+nrc_passport_front_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                $(".nrc_passport_front_company").append(`<a href='${PDF_URL+nrc_passport_front_file[i].replace(/["]+/g, '')}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
             }else $(".nrc_passport_front_company").append("<span class='text-warning pl-4'>No file</span>");
 
             if(item.nrc_passport_back!="null"){
               var nrc_passport_back_file = removeBracketedNonAudit(item.nrc_passport_back);
-              for(var i=0;i<nrc_passport_front_file.length;i++){
-                $(".nrc_passport_back_company").append(`<a href='${PDF_URL+nrc_passport_front_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+              for(var i=0;i<nrc_passport_back_file.length;i++){
+                $(".nrc_passport_back_company").append(`<a href='${PDF_URL+nrc_passport_back_file[i].replace(/["]+/g, '')}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
             }else $(".nrc_passport_back_company").append("<span class='text-warning pl-4'>No file</span>");
 
             if(item.tax_clearance!="null"){
               var tax_clearance_file = removeBracketedNonAudit(item.tax_clearance);
               for(var i=0;i<tax_clearance_file.length;i++){
-                $(".tax_clearance_company").append(`<a href='${PDF_URL+tax_clearance_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
+                $(".tax_clearance_company").append(`<a href='${PDF_URL+tax_clearance_file[i].replace(/["]+/g, '')}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
             }else $(".tax_clearance_company").append("<span class='text-warning pl-4'>No file</span>");
 

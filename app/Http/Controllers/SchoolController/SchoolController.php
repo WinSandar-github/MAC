@@ -220,7 +220,14 @@ class SchoolController extends Controller
         }else{
             $manage_room_attach=null;
         } 
-        
+        if ($request->hasfile('school_card')) {
+            $file = $request->file('school_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $school_card = '/storage/student_info/'.$name;
+        }else{
+            $school_card=null;
+        } 
         $school = new SchoolRegister();
         $school->name_mm         = $request->name_mm;
         $school->name_eng        = $request->name_eng;
@@ -259,19 +266,16 @@ class SchoolController extends Controller
         $school->last_registration_fee_year = $request->last_registration_fee_year;
         $school->request_for_temporary_stop = $request->request_for_temporary_stop;
         $school->from_request_stop_date = $request->from_request_stop_date;
-        $school->to_request_stop_date = $request->to_request_stop_date;
+        //$school->to_request_stop_date = $request->to_request_stop_date;
         $school->offline_user=$request->offline_user;
-        // if($request->offline_user=="true"){
-        //     $school->payment_method = 'exit_sch';
-        // }else{
-        //     $school->payment_method = 'init_sch';
-        // }
+        $school->from_valid_date = $request->from_valid_date;
+        $school->s_code = $request->s_code;
+        $school->school_card = $school_card;
         $school->save();
         
         
        
         //Student Info
-        
         if($request->student_info_id!=0){
             $std_info =StudentInfo::find($request->student_info_id);
             $std_info->school_id = $school->id;
@@ -442,7 +446,7 @@ class SchoolController extends Controller
             if($request->offline_user!=true){
                 $invoice = new Invoice();
                 $invoice->student_info_id = $std_info->id;
-                $invoice->invoiceNo = 'init_sch';
+                $invoice->invoiceNo = 'init_sch'.$school->id;
                 
                 $invoice->name_eng        = $request->name_eng;
                 $invoice->email           = $request->email;
@@ -1278,7 +1282,15 @@ class SchoolController extends Controller
                    
                 }
             })
-            ->rawColumns(['action'])
+            ->addColumn('card', function ($infos) {
+                return "<div class='btn-group'>
+                            <a href='MAC/public$infos->school_card' class='btn btn-info btn-xs' target='_blank'>
+                                <li class='nc-icon nc-tap-01'></li>
+                            </a>
+                        </div>";
+                
+            })
+            ->rawColumns(['card','action'])
             ->make(true);
         }else{
           
@@ -1333,44 +1345,118 @@ class SchoolController extends Controller
                 }
             })
             ->addColumn('payment_method', function ($infos){
-                if($infos->payment_method	 == ""){
-                    return "Payment Incomplete";
+                if($infos->initial_status==0){
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"init_sch".$infos->id)
+                    
+                    ->get();
+                   
                 }else{
-                    return "Payment Complete";
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"renew_sch".$infos->id)
+                    ->get();
+                   
+                }
+                foreach($invoice as $i){
+                    return $i->status == "0"
+                        ? "Payment Incomplete"
+                        : "Payment Complete";
                 }
             })
             ->addColumn('exp_date', function ($infos){
+                // if($infos->initial_status==0){
+                //     if($infos->from_valid_date	 ==""){
+                //         return "";
+                //     }else{
+                //         $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                //         return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                //     }
+                // }else if($infos->initial_status==1){
+                    
+                //     if($infos->from_valid_date	 ==""){
+                //         return "";
+                //     }else{
+                //          $currentDate = Carbon::now()->addYears(3);
+                //         return '01-01-'.date('Y').' to 31-12-'.$currentDate->format('Y');
+                //         //return $infos->from_valid_date;
+                //     }
+                // }
                 if($infos->initial_status==0){
-                    if($infos->from_valid_date	 ==""){
-                        return "";
-                    }else{
-                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                        return $date->format('d-m-Y').' to 31-12-'.date('Y');
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"init_sch".$infos->id)
+                    
+                    ->get();
+                    foreach($invoice as $i){
+                        return $i->status == "0"
+                            ? ""
+                            : $i->dateTime.' to '.date('Y').'-12-31';
                     }
-                }else if($infos->initial_status==1){
-                    if($infos->from_valid_date	 ==""){
-                        return "";
-                    }else{
-                        $currentDate = Carbon::now()->addYears(3);
-                        return '01-01-'.date('Y').' to 31-12-'.$currentDate->format('Y');
+                }else{
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"renew_sch".$infos->id)
+                    ->get();
+                    $currentDate = Carbon::now()->addYears(3) ;
+                    foreach($invoice as $i){
+
+                        return $i->status == "0"
+                            ? ""
+                            : date('Y').'-01-01 to '.$currentDate->format('Y').'-12-31';
                     }
                 }
                 
             })
             ->addColumn('card', function ($infos) {
-                $btn='';
-                if($infos->payment_method != ""){
-                    $btn = "<div class='btn-group'>
+                // $btn='';
+                // if($infos->payment_method == ""){
+                //     $btn = "<div class='btn-group'>
+                //                 <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                //                     <li class='fa fa-id-card-o fa-sm'></li>
+                //                 </a>
+                //             </div>";
+                //     return $btn;
+                    
+                // }else{
+                //     return $btn;
+                // }
+                if($infos->initial_status==0){
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"init_sch".$infos->id)
+                    
+                    ->get();
+                   
+                }else{
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"renew_sch".$infos->id)
+                    ->get();
+                   
+                }
+                foreach($invoice as $i){
+                    return $i->status == "0"
+                        ? ""
+                        : "<div class='btn-group'>
                                 <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
                                     <li class='fa fa-id-card-o fa-sm'></li>
                                 </a>
                             </div>";
-                    return $btn;
-                    
-                }else{
-                    return $btn;
                 }
-                
             })
             ->addColumn('remark', function ($infos){
                 if($infos->cessation_reason == ""){
@@ -1391,20 +1477,44 @@ class SchoolController extends Controller
                 }
             })
             ->addColumn('payment_date', function ($infos){
+                // if($infos->initial_status==0){
+                //     if($infos->from_valid_date	 == ""){
+                //         return "";
+                //     }else{
+                //         $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                //         return $date->format('d-m-Y');
+                //     }
+                // }else if($infos->initial_status==1){
+                //     if($infos->from_valid_date	 == ""){
+                //         return "";
+                //     }else{
+                //         return $infos->from_valid_date;
+                //         // $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
+                //         // return $date->format('d-m-Y');
+                //     }
+                // }
                 if($infos->initial_status==0){
-                    if($infos->from_valid_date	 == ""){
-                        return "";
-                    }else{
-                        $date = Carbon::createFromFormat('Y-m-d H:i:s', $infos->from_valid_date);
-                        return $date->format('d-m-Y');
-                    }
-                }else if($infos->initial_status==1){
-                    if($infos->from_valid_date	 == ""){
-                        return "";
-                    }else{
-                        $date = Carbon::createFromFormat('Y-m-d', $infos->from_valid_date);
-                        return $date->format('d-m-Y');
-                    }
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"init_sch".$infos->id)
+                    
+                    ->get();
+                   
+                }else{
+                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                        $q->where('tranRef', '=', $infos->payment_method);
+                    })
+                    ->where('student_info_id',$infos->student_info_id)
+                    ->where('invoiceNo',"renew_sch".$infos->id)
+                    ->get();
+                   
+                }
+                foreach($invoice as $i){
+                    return $i->status == "0"
+                        ? ""
+                        : $i->dateTime;
                 }
                 
             })
@@ -1443,10 +1553,18 @@ class SchoolController extends Controller
     }
     public function checkEmail(Request $request){
         $std_info =StudentInfo::where('email','=',$request->email)->get();
-        $data =StudentInfo::where('email','=',$request->email)
-                            ->where('school_id','=',null)
-                            ->where('teacher_id','!=',null)
-                            ->get();
+        
+        if($request->school_id=='null'){
+            $data =StudentInfo::where('email','=',$request->email)
+                                ->where('school_id','=',null)
+                                ->where('teacher_id','!=',null)
+                                ->get();
+        }else{
+            $data =StudentInfo::where('email','=',$request->email)
+                                ->where('teacher_id','=',null)
+                                ->where('school_id','!=',null)
+                                ->get();
+        }
         $status1=1;
         $status2=2;
         if(sizeof($std_info)){
@@ -1684,7 +1802,7 @@ class SchoolController extends Controller
         $school->initial_status   = $request->initial_status;
         $school->reg_date       = date('Y-m-d');
         $school->renew_date       = date('Y-m-d');
-        //$school->renew_id         = $request->renew_id;
+        $school->from_valid_date         = $request->from_valid_date;
         $school->student_info_id  = $request->student_info_id;
         $school->s_code   = $request->s_code;
         $school->type = $request->school_type;
@@ -1889,72 +2007,41 @@ class SchoolController extends Controller
         //invoice
             if($request->offline_user=="true"){
                 if($request->request_for_temporary_stop=="no"){
-                    $currentYear = Carbon::now()->format('Y');
-                    $currentMonth = Carbon::now()->format('M');
+                    $currentYear = Carbon::now()->subYear();
+                    $currentMonth = Carbon::now()->format('m');
+                    $currentDay = Carbon::now()->format('d');
 
                     $invoice = new Invoice();
                     $invoice->student_info_id = $request->student_info_id;
-                    $invoice->invoiceNo = 'renew_exit_sch';
+                    $invoice->invoiceNo = 'renew_sch'.$school->id;
                     
                     $invoice->name_eng        = $request->name_eng;
                     $invoice->email           = $request->email;
                     $invoice->phone           = $request->phone;
                     
                     list($last_pay_month, $last_pay_year) = explode("-", $request->last_registration_fee_year);
-                    $diffYear=$currentYear - $last_pay_year;
+                    $dbDate = Carbon::parse($last_pay_year.'-'.$currentMonth.'-'.$currentDay);
+                    $diffYear = $currentYear->diffInYears($dbDate);
                     
-                    // if(($currentMonth=="Jan" && $diffYear <= 2) || ($currentMonth=="Nov" && $diffYear <= 3) || ($currentMonth=="Dec" && $diffYear <= 3)){//$diffYear <= 3
-                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee';
-                    //     foreach($memberships as $memberships){
-                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
-                    //     }
-                    // }else if($last_pay_month=="Feb" && $diffYear <= 2){
-                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee';
-                    //     foreach($memberships as $memberships){
-                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
-                    //     }
-                    // }else{
-                    //     $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
-                    //     foreach($memberships as $memberships){
-                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
-                    //     }
-                    // }
-                    $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . 'Year x Reconnect Fee,School Registration';
-                        foreach($memberships as $memberships){
-                            $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee;
-                        }
+                    foreach($memberships as $memberships){
+                        $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . 'Year x Reconnect Fee('.$memberships->reconnected_fee.'),School Registration';
+                        $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear*$memberships->reconnected_fee;
+                    }
                     $invoice->status          = 0;
                     $invoice->save();
                     
                     
                 }else{
-                    $currentYear = Carbon::now()->format('Y');
-                    list($start_pay_day,$start_pay_month, $start_pay_year)= explode("-", $request->from_request_stop_date);
-                    list($end_pay_day,$end_pay_month, $end_pay_year)= explode("-", $request->to_request_stop_date);
-                    //$diffYear=$end_pay_year - $start_pay_year;
-                    list($last_pay_month, $last_pay_year)= explode("-", $request->last_registration_fee_year);
-                    $diffYear=$currentYear-$last_pay_year;
                     
                     $invoice = new Invoice();
                     $invoice->student_info_id = $request->student_info_id;
-                    $invoice->invoiceNo = 'renew_exit_sch';
+                    $invoice->invoiceNo = 'renew_sch'.$school->id;
                     
                     $invoice->name_eng        = $request->name_eng;
                     $invoice->email           = $request->email;
                     $invoice->phone           = $request->phone;
 
-                    // if($last_pay_month=="Jan" || $last_pay_month=="Nov" || $last_pay_month=="Dec"){
-                    //     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . ' x Reconnect Fee';
-                    //     foreach($memberships as $memberships){
-                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
-                    //     }
-                        
-                    // }else if($last_pay_month=="Feb"){
-                    //     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee,' . $diffYear . ' x Reconnect Fee';
-                    //     foreach($memberships as $memberships){
-                    //         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee.','.$diffYear.'x'.$memberships->reconnected_fee;
-                    //     }
-                    // }
+                    
                     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';//' . $diffYear . ' x Reconnect Fee,
                         foreach($memberships as $memberships){
                             $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;//.','.$diffYear*$memberships->reconnected_fee.
@@ -1966,20 +2053,21 @@ class SchoolController extends Controller
 
                 
             }else{
+                $currentYear = Carbon::now()->format('Y');
                 $month = Carbon::now()->format('m');
                 $invoice = new Invoice();
                 $invoice->student_info_id = $request->student_info_id;
-                $invoice->invoiceNo = 'renew_sch';
+                $invoice->invoiceNo = 'renew_sch'.$school->id;
                 
                 $invoice->name_eng        = $request->name_eng;
                 $invoice->email           = $request->email;
                 $invoice->phone           = $request->phone;
-                if($month==11 || $month==12 || $month==01){
+                if($month==10 || $month==11 || $month==12){
                     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';
                     foreach($memberships as $memberships){
                         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
                     }
-                }else if($month==02){
+                }else if($month==01){
                     $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee,School Registration';
                     foreach($memberships as $memberships){
                         $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
@@ -2708,6 +2796,11 @@ class SchoolController extends Controller
             'message' => 'You have updated successfully.'
         ],200);
     }
-    
+    public function getTotalAmount(Request $request){
+        $invoice=Invoice::where("invoiceNo",$request->invoiceNo)->get();
+        return  response()->json([
+            'data' => $invoice
+        ],200);
+    }
 }
 

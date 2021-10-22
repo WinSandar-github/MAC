@@ -104,7 +104,7 @@
                                                         <span  id="date_of_birth"></span>
                                                     </div>
                                             </div> -->
-                                            <div class="row mt-3">
+                                            <div class="row mt-3 border-bottom">
                                                     <div class="col-sm-6">
                                                         <b>ဖုန်းနံပါတ်</b>
                                                     </div>
@@ -112,7 +112,33 @@
                                                         <span  id="phone"></span>
                                                     </div>
                                             </div>
-                                            
+                                            <div class="school_fee" style="display:none;">
+                                                <div class="row mt-3 ">
+                                                    <div class="col-md-3">
+                                                        <p style="font-weight:bold"> Fee Name </p>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        
+                                                        <span id="fee_name"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3 border-bottom ">
+                                                    <div class="col-md-3">
+                                                        <p style="font-weight:bold"> Fee </p>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <span id="fee"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-md-3">
+                                                        <p style="font-weight:bold">Total Amount </p>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <span id="total_fee"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </ul>
 
                                     </div>
@@ -170,7 +196,7 @@
                                             <input type="hidden" id="hidden_attach">
                                         </div>
                                     </div>
-                                    <div class="school-type" style="display:none;">
+                                    <div class="school-type " style="display:none;">
                                         <p class="mb-3 mt-3 " style="font-weight:bold">လုပ်ငန်းဖွဲ့စည်းမှုကျောင်းပုံစံ</p>
                                         <div class="col-md-12">
 
@@ -206,7 +232,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-check mt-2 form-check-inline">
                                                             <input class="form-check-input" type="radio" name="school_type4" id=""
-                                                                value='တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း' > တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း
+                                                                value='P' > တည်ဆဲဥပဒေတစ်ရပ်ရပ်နှင့်အညီဖွဲ့စည်းထားရှိသောလုပ်ငန်းအဖွဲ့အစည်း
 
                                                         </div>
                                                     </div>
@@ -214,6 +240,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -598,6 +625,7 @@
                                         </table>
 
                                     </div>
+                                    
                                     <div id="approve_reject" style="display:none;">
                                         <div class="row">
 

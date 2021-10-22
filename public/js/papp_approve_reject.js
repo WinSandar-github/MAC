@@ -38,10 +38,10 @@ function getPAPPList(){
                 }
 
                 if(element.use_firm==0){
-                    use_firm="No Use Frim Name";
+                    use_firm="-";
                 }
                 else{
-                    use_firm="Use Frim Name";
+                    use_firm="No Use Frim Name";
                 }
 
                 var nrc     =   element.student_info.nrc_state_region+"/";
@@ -186,6 +186,7 @@ function loadPAPPData(){
         type: "GET",
         url: BACKEND_URL+"/papp/"+id,
         success: function (data) {
+            // console.log(data)
             var student=data.data;
             student.forEach(function(element){
                 // console.log('element',element);
@@ -214,10 +215,10 @@ function loadPAPPData(){
                 }
 
                 if(element.use_firm==0){
-                    use_firm="No Use Frim Name";
+                    use_firm="-";
                 }
                 else if(element.use_firm==1){
-                    use_firm="Use Frim Name";
+                    use_firm="No Use Frim Name";
                 }else{
                     use_firm="-"
                 }
@@ -250,7 +251,7 @@ function loadPAPPData(){
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
                 $("#registration_no").append(element.student_info.cpersonal_no);
-
+                // console.log(element.cpa_ff_recommendation);
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
                     $(".recommend_letter").append(`<a href='${PDF_URL+element.student_info.recommend_letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -342,7 +343,7 @@ function loadPAPPData(){
                     $(".cpaff_registeration_card_file").append(`<span>-</span>`);
                 }
 
-                if(element.tax_free_recommendation!=null){
+                if(element.tax_free_recommendation!=null && element.tax_free_recommendation!=""){
                     $(".tax_free_recommendation").append(`<a href='${PDF_URL+element.tax_free_recommendation}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
                     $(".tax_free_recommendation").append(`<span>-</span>`);
@@ -365,8 +366,12 @@ function loadPAPPData(){
                 $("#cpd_record").append(element.cpd_record);
                 $("#cpd_hours").append(element.cpd_hours);
                 $("#tax_free_recommendation").append(element.tax_free_recommendation);
-                $("#tax_year").append(element.tax_year);
-                $("#reg_no").append(element.reg_no);
+                if(element.tax_year !=null){
+                    $("#tax_year").append(element.tax_year);
+                }else{
+                    $("#tax_year").append(`<span>-</span>`);
+                }
+                $("#cpaff_reg_no").append(element.cpaff_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
                 $("#cpaff_address").append(element.address);
@@ -502,10 +507,10 @@ function loadRenewPAPPData(){
                 }
 
                 if(element.use_firm==0){
-                    use_firm="No Use Frim Name";
+                    use_firm="-";
                 }
                 else if(element.use_firm==1){
-                    use_firm="Use Frim Name";
+                    use_firm="No Use Frim Name";
                 }else{
                     use_firm="-"
                 }
@@ -636,6 +641,11 @@ function loadRenewPAPPData(){
                 // }else {
                 //     $(".foreign_degree_file").append(`<span>-</span>`);
                 // }
+                if(element.tax_free_recommendation!=null && element.tax_free_recommendation!=""){
+                    $(".tax_free_recommendation").append(`<a href='${PDF_URL+element.tax_free_recommendation}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                }else {
+                    $(".tax_free_recommendation").append(`<span>-</span>`);
+                }
 
                 if(element.mpa_mem_card_front!=null){
                     $(".mpa_mem_card_file").append(`<a href='${PDF_URL+element.mpa_mem_card_front}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -671,9 +681,15 @@ function loadRenewPAPPData(){
                 $("#rule_confession").append(element.rule_confession);
                 $("#cpd_record").append(element.cpd_record);
                 $("#cpd_hours").append(element.cpd_hours);
-                //$("#tax_free_recommendation").append(element.tax_free_recommendation);
-                //$("#tax_year").append(element.tax_year);
-                $("#reg_no").append(element.reg_no);
+                $("#tax_free_recommendation").append(element.tax_free_recommendation);
+                if(element.tax_year !=null){
+                    $("#tax_year").append(element.tax_year);
+                }else{
+                    $("#tax_year").append(`<span>-</span>`);
+                }
+                $("#cpaff_reg_no").append(element.cpaff_reg_no);
+                $("#papp_reg_no").append(element.papp_reg_no);
+                $("#papp_reg_num").append(element.papp_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
                 $("#cpaff_address").append(element.address);
@@ -681,6 +697,10 @@ function loadRenewPAPPData(){
                 $("#contact_mail").append(element.contact_mail);               
                 $("#cpaff_pass_date").append(element.cpaff_pass_date);                
                 $("#papp_date").append(element.papp_date);                
+                $("#papp_reg_date").append(element.papp_reg_date);                
+                $("#papp_renew_date").append(element.papp_renew_date);                
+                $("#audit_year").append(element.audit_year);                
+                $("#audit_work").append(element.audit_work);                
 
                 $("#university_name").append(education_history.university_name);
                 $("#degree_name").append(education_history.degree_name);
@@ -917,6 +937,7 @@ function loadappOfflineUser(){
                 $("#papp_reg_year").append(element.papp_reg_date);
                 $("#papp_last_renew_year").append(element.papp_date);
                 $("#latest_reg_year").append(element.latest_reg_year);
+                $("#papp_resign_date").append(element.papp_resign_date);
                 if(element.submitted_stop_form==1){
                     $("#submitted_stop_form").append(`${element.submitted_from_date} မှ ${element.submitted_to_date} အထိ ရပ်နား Form တင်ထားပါသည်။`);
                 }
@@ -1010,7 +1031,7 @@ function loadappOfflineUser(){
                 $("#firm_type").append(element.firm_type);
                 $("#firm_step").append(element.firm_step);
                 $("#staff_firm_name").append(element.staff_firm_name);
-                $("#reg_no").append(element.reg_no);
+                // $("#reg_no").append(element.reg_no);
                 $("#papp_reg_no").append(element.papp_reg_no);
                 $("#status").append(status); 
                 $("#cpa_batch_no").append(element.cpa_batch_no);
@@ -1039,7 +1060,7 @@ function loadappOfflineUser(){
                         console.log(student.length);
                         
                         student.forEach(function(element){
-                            $("#cpaff_reg_year").append(element.cpaff_reg_date);
+                            $("#cpaff_reg_year").append(element.cpaff_reg_year);
                             $("#cpaff_last_renew_year").append(element.last_paid_year); 
                             $("#old_card_year").append(element.old_card_no_year);
                             $("#old_card_no").append(element.old_card_no); 
@@ -1063,7 +1084,7 @@ function loadappOfflineUser(){
                             }else {
                                 $(".cpaff_mpa_mem_card_back_file").append(`<span>-</span>`);
                             }
-                            $("#cpaff_reg_no").append(element.reg_no);
+                            $("#cpaff_reg_no").append(element.cpaff_reg_no);
                             
                             if(element.cpaff_pass_date != null){
                                 $("#cpaff_pass_date").append(element.cpaff_pass_date);
