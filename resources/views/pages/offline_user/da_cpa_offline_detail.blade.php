@@ -72,7 +72,7 @@
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Batch Number</p>
                                         </div>
-                                        <div class="col-md-6 text-left da_selected_batch_name">                                            
+                                        <div class="col-md-6 text-left da_one_batch_name">                                            
                                             
                                         </div>
                                     </div>
@@ -108,7 +108,7 @@
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Attended Place</p>
                                         </div>
-                                        <div class="col-md-6 text-left da_attend_place">                                            
+                                        <div class="col-md-6 text-left da_one_attend_place">                                            
                                             
                                         </div>
                                     </div>
@@ -117,7 +117,64 @@
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Module</p>
                                         </div>
-                                        <div class="col-md-6 text-left da_module">                                            
+                                        <div class="col-md-6 text-left da_one_module">                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="da_two_pass_info" style="display:none">
+                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Passed the DA Part-Two Exam</h5>
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Batch Number</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_two_batch_name">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Passed the Date</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_two_pass_exam_date">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Passed Grade</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_two_pass_level">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Passed Personal Number</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_two_pass_personal_no">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Attended Place</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_two_attend_place">                                            
+                                            
+                                        </div>
+                                    </div>
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Module</p>
+                                        </div>
+                                        <div class="col-md-6 text-left da_two_module">                                            
                                             
                                         </div>
                                     </div>
@@ -129,7 +186,7 @@
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Batch Number</p>
                                         </div>
-                                        <div class="col-md-6 text-left cpa_selected_batch_name">                                            
+                                        <div class="col-md-6 text-left cpa_one_batch_name">                                            
                                             
                                         </div>
                                     </div>
@@ -165,7 +222,7 @@
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Attended Place</p>
                                         </div>
-                                        <div class="col-md-6 text-left cpa_attend_place">                                            
+                                        <div class="col-md-6 text-left cpa_one_attend_place">                                            
                                             
                                         </div>
                                     </div>
@@ -174,58 +231,68 @@
                                         <div class="col-md-6 text-left">
                                             <p class="ml-2" style="font-weight:bold">Module</p>
                                         </div>
-                                        <div class="col-md-6 text-left cpa_module">                                            
+                                        <div class="col-md-6 text-left cpa_one_module">                                            
                                             
                                         </div>
                                     </div>
                                 </div>
 
-                                {{--<div class="acca_cima_info" style="display:none">
-                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">ACCA / CIMA Info</h5>
+                                <div class="cpa_two_pass_info" style="display:none">
+                                    <h5 class="border-bottom pb-2 mt-3"  style="font-weight:bold">Informations of Passed the CPA Part-Two Exam</h5>
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">ACCA (OR) CIMA</p>
+                                            <p class="ml-2" style="font-weight:bold">Batch Number</p>
                                         </div>
-                                        <div class="col-md-6 text-left acca_cima">                                            
+                                        <div class="col-md-6 text-left cpa_two_batch_name">                                            
                                             
                                         </div>
                                     </div>
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">အောင်မြင်ထားသည့်အဆင့်</p>
+                                            <p class="ml-2" style="font-weight:bold">Passed the Date</p>
                                         </div>
-                                        <div class="col-md-6 text-left acca_cima_pass_roll_no">                                            
+                                        <div class="col-md-6 text-left cpa_two_pass_exam_date">                                            
                                             
                                         </div>
                                     </div>
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">လ/ခုနှစ်</p>
+                                            <p class="ml-2" style="font-weight:bold">Passed Grade</p>
                                         </div>
-                                        <div class="col-md-6 text-left acca_cima_pass_date">                                            
+                                        <div class="col-md-6 text-left cpa_two_pass_level">                                            
                                             
                                         </div>
                                     </div>
 
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">မှတ်ပုံတင်အမှတ်</p>
+                                            <p class="ml-2" style="font-weight:bold">Passed Personal Number</p>
                                         </div>
-                                        <div class="col-md-6 text-left acca_cima_id_no">                                            
+                                        <div class="col-md-6 text-left cpa_two_pass_personal_no">                                            
                                             
                                         </div>
                                     </div>
+
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Attched Certificate</p>
+                                            <p class="ml-2" style="font-weight:bold">Attended Place</p>
                                         </div>
-                                        <div class="col-md-6 text-left acca_cima_certificate">                                            
+                                        <div class="col-md-6 text-left cpa_two_attend_place">                                            
                                             
                                         </div>
                                     </div>
-                                </div>--}}
+
+                                    <div class="row m-2 mt-3 border-bottom">
+                                        <div class="col-md-6 text-left">
+                                            <p class="ml-2" style="font-weight:bold">Module</p>
+                                        </div>
+                                        <div class="col-md-6 text-left cpa_two_module">                                            
+                                            
+                                        </div>
+                                    </div>
+                                </div>                                
                                             
                             </div>
                         </div>
@@ -459,14 +526,7 @@
                                         <span id="date"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
-                                    <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Batch Number</p>
-                                    </div>
-                                    <div class="col-md-6 text-left">
-                                        <span id="current_batch_name"></span>
-                                    </div>
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-md-6 text-left">
                                         <img class="nrc-style" id="nrc_front_img"  accept="image/png,image/jpeg" alt="">

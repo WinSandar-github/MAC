@@ -237,7 +237,7 @@ class CPAFFController extends Controller
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
-            $invoice->productDesc = 'Application Fee + Registration Fee';
+            $invoice->productDesc = 'Application Fee , Registration Fee, CPA(Full-Fledged) Registration';
             $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -650,7 +650,7 @@ class CPAFFController extends Controller
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
-            $invoice->productDesc = 'Application Fee + Registration Fee';
+            $invoice->productDesc = 'Application Fee , Registration Fee, CPA(Full-Fledged) Registration';
             $invoice->amount = $fees->form_fee.",". $fees->registration_fee;
             $invoice->status          = 0;
             $invoice->save();
@@ -883,7 +883,7 @@ class CPAFFController extends Controller
         $cpa_ff->save();
         
          //invoice
-        $fees = Membership::where('membership_name','=','CPAFF')->first(['renew_fee','form_fee', 'late_fee']);
+        $fees = Membership::where('membership_name','=','CPAFF')->first(['renew_fee','form_fee', 'late_fee','reconnected_fee_before_2015','reconnected_fee']);
         $stdInfo = StudentInfo::where('id', '=', $request->student_info_id)->first();
         //$invNo = str_pad($papp->id, 20, "0", STR_PAD_LEFT);
 
@@ -893,70 +893,59 @@ class CPAFFController extends Controller
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
-
         if($oldCpaff->offline_user==0){
             $thisYear = date('Y');
             $oldYear=date('Y',strtotime($oldCpaff->validate_to));
             if($thisYear == $oldYear){
-                $invoice->productDesc     = 'Application Fee, Renewal Fee';
+                $invoice->productDesc     = 'Application Fee, Renewal Fee, CPA(Full-Fledged) Renewal Registration';
                 $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
             }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
-                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
+                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan), CPA(Full-Fledged) Renewal Registration' ;
                 $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
             }
             else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
-                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
-                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), CPA(Full-Fledged) Renewal Registration' ;
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee ;
             }
         }
         else if($oldCpaff->offline_user==1){
             if($oldCpaff->resign==0){
                 $thisYear = date('Y');
-                $last_renew_year=$oldCpaff->last_paid_year;
-                if($last_renew_year>="2015"){
-                    $less_than_2015=0;
-                    $greater_than_2015=$thisYear-$last_renew_year;
+                $last_paid_year=$oldCpaff->last_paid_year;
+                if($last_paid_year>="2015"){
+                    $greater_than_2015=$thisYear-$last_paid_year-1;
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$greater_than_2015*$fees->reconnected_fee;
                 }
                 else{
-                    $less_than_2015="2015"-$last_renew_year;
-                    $greater_than_2015=$thisYear-"2015";
-                }
-                if($thisYear-$last_renew_year>1){
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee';
-                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",(".$less_than_2015."x 10000 +".$greater_than_2015."x 100000";
-                }
-                else{
-                    if($thisYear == $last_renew_year+1){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee';
-                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
-                    }else if($thisYear == $last_renew_year && date('M') === 'Jan'){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan)' ;
-                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
-                    }
-                    else if($thisYear == $last_renew_year && date('m')>1 && date('m')<=4){
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
-                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
-                    }
-                    else{
-                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr)' ;
-                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
-                    }
+                    $year_diff_before_2015='2015'-$last_paid_year-1;
+                    $year_diff_after_2015=$thisYear-"2015";
+                    $calculate_amount=$year_diff_before_2015*$fees->reconnected_fee_before_2015+$year_diff_after_2015*$fees->reconnected_fee;
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                 }
             }
             else if($oldCpaff->resign==1){
-                $thisYear = date('Y');
-                $submitted_from_date=date('Y',strtotime($oldCpaff->resign_date));
-                // $submitted_to_date=date('Y',strtotime($oldCpaff->end_date));
-                if( $submitted_from_date>="2015"){
-                    $less_than_2015=0;
-                    $greater_than_2015=$thisYear-$submitted_from_date;
+                $last_paid_year=$oldCpaff->last_paid_year;
+                $submitted_stop_form_year=$oldCpaff->resign_date;
+                if( $last_paid_year<"2015" && $submitted_stop_form_year<"2015"){
+                    $year_diff=$submitted_stop_form_year-$last_paid_year-1;
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$year_diff*$fees->reconnected_fee_before_2015;
                 }
-                else{
-                    $less_than_2015="2015"-$submitted_from_date;
-                    $greater_than_2015=$thisYear-"2015";
+                else if($last_paid_year<"2015" && $submitted_stop_form_year>="2015"){
+                    $year_diff_before_2015='2015'-$last_paid_year-1;
+                    $year_diff_after_2015=$submitted_stop_form_year-"2015";
+                    $calculate_amount=$year_diff_before_2015*$fees->reconnected_fee_before_2015+$year_diff_after_2015*$fees->reconnected_fee;
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
                 }
-                $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee';
-                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",(".$less_than_2015."x 10000 +".$greater_than_2015."x 100000";
+                else if($last_paid_year>"2015" && $submitted_stop_form_year>="2015"){
+                    $year_diff=$submitted_stop_form_year-$last_paid_year-1;
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$year_diff*$fees->reconnected_fee;
+                }
+               
             }
         }
 

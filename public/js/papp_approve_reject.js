@@ -38,10 +38,10 @@ function getPAPPList(){
                 }
 
                 if(element.use_firm==0){
-                    use_firm="No Use Frim Name";
+                    use_firm="-";
                 }
                 else{
-                    use_firm="Use Frim Name";
+                    use_firm="No Use Frim Name";
                 }
 
                 var nrc     =   element.student_info.nrc_state_region+"/";
@@ -215,10 +215,10 @@ function loadPAPPData(){
                 }
 
                 if(element.use_firm==0){
-                    use_firm="No Use Frim Name";
+                    use_firm="-";
                 }
                 else if(element.use_firm==1){
-                    use_firm="Use Frim Name";
+                    use_firm="No Use Frim Name";
                 }else{
                     use_firm="-"
                 }
@@ -507,10 +507,10 @@ function loadRenewPAPPData(){
                 }
 
                 if(element.use_firm==0){
-                    use_firm="No Use Frim Name";
+                    use_firm="-";
                 }
                 else if(element.use_firm==1){
-                    use_firm="Use Frim Name";
+                    use_firm="No Use Frim Name";
                 }else{
                     use_firm="-"
                 }
