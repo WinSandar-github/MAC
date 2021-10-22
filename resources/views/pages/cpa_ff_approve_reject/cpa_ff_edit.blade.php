@@ -637,7 +637,7 @@
                                     <button type="submit" name="save" class="btn btn-primary" onclick="approveCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                                 </div>                       
                             </div>
-                        </div>
+                        </div> 
                         {{--<div class="card">
                             <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">Job</h5>

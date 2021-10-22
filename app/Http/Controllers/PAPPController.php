@@ -1011,6 +1011,7 @@ class PAPPController extends Controller
         $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
         $papp->audit_year       =   $request->audit_year;
         $papp->type             =   $request->type;
+        $papp->self_confession  =   $request->self_confession;
         $papp->save();
 
         return response()->json([
@@ -1226,6 +1227,7 @@ class PAPPController extends Controller
         // $papp->submitted_from_date   =   $request->submitted_from_date;
         // $papp->submitted_to_date     =   $request->submitted_to_date;
         $papp->papp_resign_date     =   $request->papp_resign_date;
+        $papp->self_confession  =   $request->self_confession;
         // $papp->submitted_to_date     =   $request->submitted_to_date;
         // $thisYear = date('Y');
         // $today = date('d-m-Y');
