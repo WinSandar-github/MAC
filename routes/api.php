@@ -108,7 +108,7 @@ Route::get('/papp_offline_user_list/{status}/{type}', 'PAPPController@GetPappOff
 
 Route::patch('/approve_offline_papp/{id}/{cpaff_id}', 'PAPPController@approve_offline_papp');
 Route::post('/reject_offline_papp/{id}', 'PAPPController@reject_offline_papp');
-
+Route::post('/update_offline_papp', 'PAPPController@UpdateReconnectPapp');
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
