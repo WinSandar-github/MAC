@@ -550,6 +550,23 @@
                                     <div class="col-md-6 text-left">
                                         <span id="cpd_hours"></span>
                                     </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Tax Year</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="tax_year"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">အခွန်ကင်းရှင်းကြောင်းထောက်ခံချက်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left tax_free_recommendation">
+                                    </div>
                                 </div>  
                                 <!--MPA Member Card-->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -833,7 +850,7 @@
                                     </div>
                                     <div class="row"> -->
                                         <div class="col-md-12 text-center">
-                                            <table id="tbl_statutory_audit_work"  class="table table-border"   style="width:100%;display:block;overflow-x: auto;white-space: nowrap;">
+                                            <table id="tbl_statutory_audit_work"  class="table table-border" >
                                                 <thead>
                                                     <tr>
                                                         <th>Company</th>
@@ -841,7 +858,7 @@
                                                         <th>Principal/Managing Partner</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="tbl_statutory_audit_work_body hoverTable text-left">
+                                                <tbody class="tbl_statutory_audit_work_body hoverTable text-center">
                                                 </tbody>
                                             </table>
                                         </div>
