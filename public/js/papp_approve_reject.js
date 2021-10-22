@@ -9,8 +9,6 @@ var rule_confession_modal;
 var cpd_record_modal;
 var tax_free_modal;
 var attached_modal;
-
-
 function getPAPPList(){
     destroyDatatable("#tbl_papp_pending_list", "#tbl_papp_pending_list_body");   
     destroyDatatable("#tbl_papp_approved_list", "#tbl_papp_approved_list_body");   
@@ -492,8 +490,8 @@ function loadRenewPAPPData(){
         url: BACKEND_URL+"/papp/"+id,
         success: function (data) {
             var student=data.data;
+            console.log('element',student);
             student.forEach(function(element){
-                console.log('element',element);
                 var education_history = element.student_education_histroy;               
                 var job = element.student_job;
                 if(element.status==0){
@@ -526,7 +524,18 @@ function loadRenewPAPPData(){
                 nrc    +=   element.student_info.nrc_township;
                 nrc    +=   "("+ element.student_info.nrc_citizen+")";
                 nrc    +=   element.student_info.nrc_number;                
-
+                self = JSON.parse(element.self_confession);
+                    $.each(self,function(i,v){
+                        if(v.self_confession == 1){
+                            $(`.self${i}`).append(`<i class="fa fa-check-circle text-success" aria-hidden="true"></i>`);
+                            $(`.nself${i}`).append('');
+                        }
+                        else{
+                            $(`.self${i}`).append('');
+                            $(`.nself${i}`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
+                        }
+                        // $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
+                   });  
                 $("#id").append(element.id);
                 document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
                 $("#name_eng").append(element.student_info.name_eng);
@@ -915,7 +924,18 @@ function loadappOfflineUser(){
                 nrc    +=   element.student_info.nrc_township;
                 nrc    +=   "("+ element.student_info.nrc_citizen+")";
                 nrc    +=   element.student_info.nrc_number;                
-
+                self = JSON.parse(element.self_confession);
+                    $.each(self,function(i,v){
+                        if(v.self_confession == 1){
+                            $(`.self${i}`).append(`<i class="fa fa-check-circle text-success" aria-hidden="true"></i>`);
+                            $(`.nself${i}`).append('');
+                        }
+                        else{
+                            $(`.self${i}`).append('');
+                            $(`.nself${i}`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
+                        }
+                        // $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
+                   });  
                 $("#id").append(element.id);
                 document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
                 $("#name_eng").append(element.student_info.name_eng);
