@@ -64,9 +64,9 @@
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
-                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <!-- <th class="bold-font-weight" >Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
@@ -88,9 +88,9 @@
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
-                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <!-- <th class="bold-font-weight" >Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
@@ -112,9 +112,9 @@
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
-                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <!-- <th class="bold-font-weight" >Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
@@ -157,9 +157,9 @@
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
-                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <!-- <th class="bold-font-weight" >Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
@@ -181,9 +181,9 @@
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
-                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <!-- <th class="bold-font-weight" >Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
@@ -205,9 +205,9 @@
                                                         <th class="bold-font-weight" >Name</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Email</th>
-                                                        <th class="bold-font-weight" >Reg; No.</th>
+                                                        <!-- <th class="bold-font-weight" >Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
-                                                        <th class="bold-font-weight" >Payment Date</th>
+                                                        <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th>
@@ -248,9 +248,9 @@
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.email', name: 'Email'},
-              {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
+              // {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+              // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -273,9 +273,9 @@
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.email', name: 'Email'},
-              {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
+              // {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+              // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -297,9 +297,9 @@
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.email', name: 'Email'},
-              {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
+              // {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+              // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -321,9 +321,9 @@
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.email', name: 'Email'},
-              {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
+              // {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+              // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -345,9 +345,9 @@
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.email', name: 'Email'},
-              {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
+              // {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+              // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
@@ -369,9 +369,9 @@
               {data: 'student_info.name_mm', name: 'Name'},
               {data: 'nrc', name: 'NRC'},
               {data: 'student_info.email', name: 'Email'},
-              {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
+              // {data: 'cpa_batch_no', name: 'Reg; No.',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
-              {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
+              // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
               {data: 'papp_date', name: 'PAPP Date'},
               {data: 'use_firm', name: 'No Use Firm Name'},
