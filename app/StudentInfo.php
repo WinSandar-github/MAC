@@ -138,5 +138,9 @@ class StudentInfo extends Model
     {
         return $this->hasMany(Invoice::class, 'student_info_id', 'id');
     }
+
+    public function qt(){
+        return $this->hasOne(QualifiedTest::class, 'student_info_id', 'id');
+    }
     
 }

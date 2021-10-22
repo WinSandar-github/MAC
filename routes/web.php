@@ -237,8 +237,8 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Report
     Route::get('report_list', 'ReportController@index')->name('report_list');
 
-    Route::post('da_attend','ReportController\DaReportController@daAttendList');
-    Route::post('da_reg','ReportController\DaReportController@daRegList');
+    Route::post('da_attend/{type}','ReportController\DaReportController@daAttendList');
+    Route::post('da_reg/{type}','ReportController\DaReportController@daRegList');
     Route::post('da_exam_reg','ReportController\DaReportController@daExamRegList');
     Route::post('da_pass','ReportController\DaReportController@daPassList');
     Route::post('da_report5','ReportController\DaReportController@da_report5');
@@ -246,6 +246,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('da_report7','ReportController\DaReportController@da_report7');
     Route::get('da_report8','ReportController\DaReportController@da_report8');
     Route::get('da_report9','ReportController\DaReportController@da_report9');
+
+    //Cpa Entry Exam Report
+    Route::post('entry_exams_list','ReportController\DaReportController@entryExamsList');
+    Route::post('attend_entry_exam_list/{type}','ReportController\DaReportController@attendEntryExamList');
+
 
     // CPA Qualified Report
     Route::post('cpa_qualified_enrol','ReportController\CpaQualifiedReportController@cpaQualifiedList');

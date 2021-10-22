@@ -133,7 +133,7 @@ class ReportController extends Controller
                 ->addColumn('nrc', function ($infos){
                     $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                     return $nrc_result;
-                })
+            })
                 ->addColumn('status', function ($infos) {
                     if ($infos->status == 0) {
                         return "PENDING";
@@ -143,9 +143,28 @@ class ReportController extends Controller
                         return "REJECTED";
                     }
                 })
+                ->addColumn('course_name', function ($infos) {
+                    if ($infos->course->code == 'da_1') {
+                        return "ဒီပလိုမာစာရင်းကိုင် (ပထမပိုင်း)";
+                    }else if ($infos->course->code == 'da_2') {
+                        return "ဒီပလိုမာစာရင်းကိုင် (ဒုတိယပိုင်း)";
+                    }else if ($infos->course->code == 'cpa_1') {
+                        return "လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)";
+                    }else{
+                         return "လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ဒုတိယပိုင်း)";
+                    }
+                })
+                ->addColumn('age', function ($infos) {
+                    return Carbon::parse($infos->student_info->date_of_birth)->age;
+                })
+                ->addColumn('gender', function ($infos) {
+                    return  $infos->student_info->gender == 1 ? 'ကျား' : 'မ';
+                })
+                ->addColumn('gov_staff', function ($infos) {
+                    return  $infos->student_info->gov_staff == 1 ? 'Yes' : 'No';
+                })
+                ->rawColumns(['action','nrc','course_name','age','gender','gov_staff'])
                 ->make(true);
-         
-
     }
 
     

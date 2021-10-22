@@ -158,6 +158,12 @@ class ExamRegisterController extends Controller
         $approve = ExamRegister::find($id);
         $approve->status = 1;
         $approve->save();
+
+        if($approve->exam_type_id == 3){
+          $student_course_reg = StudentCourseReg::where('student_info_id',$approve->student_info_id)->first();
+          $student_course_reg->approve_reject_status = 1;
+          $student_course_reg->save();  
+        }
         return response()->json([
             'message' => "You have successfully approved that form!"
         ], 200);
