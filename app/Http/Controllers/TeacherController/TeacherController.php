@@ -196,7 +196,7 @@ class TeacherController extends Controller
         if($request->offline_user==null){
             $invoice = new Invoice();
             $invoice->student_info_id = $std_info->id;
-            $invoice->invoiceNo = 'init_tec';
+            $invoice->invoiceNo = 'init_tec'.$teacher->id;//
             
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
@@ -293,7 +293,14 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates='null';
         }
-        
+        if ($request->hasfile('teacher_card')) {
+            $file = $request->file('teacher_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $teacher_card = '/storage/teacher_info/'.$name;
+        }else{
+            $teacher_card=$request->teacher_card;
+        }
         $teacher = TeacherRegister::find($id);
         $teacher->phone = $request->phone_number;
         $teacher->nrc_front = $nrc_front;
@@ -302,13 +309,13 @@ class TeacherController extends Controller
         $teacher->exp_desc = $request->exp_desc;
         $teacher->image = $image;
 
-        $certificates = ""; $diplomas = "";
+        $certificates = ""; $diplomas = "";$cpa_subject_count=0;$da_subject_count=0;
         if($request->certificates!=null){
             foreach($request->certificates as $c){
                 $certificates = $certificates . $c . ',';
     
             }
-            
+            $cpa_subject_count=sizeof($request->certificates);
         }
         
         if($request->diplomas!=null){
@@ -316,7 +323,7 @@ class TeacherController extends Controller
                 $diplomas = $diplomas . $d . ',';
     
             }
-            
+            $da_subject_count=sizeof($request->diplomas);
         }
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
@@ -328,15 +335,14 @@ class TeacherController extends Controller
         $teacher->position = $request->position;
         $teacher->department = $request->department;
         $teacher->organization = $request->organization;
-        $teacher->school_id = $request->selected_school_id;
-        $teacher->school_type = $request->school_type;
-        $teacher->school_name = $request->school_name;
+        $teacher->school_id = $request->update_selected_school_id;
+        $teacher->school_type = $request->update_school_type;
+        $teacher->school_name = $request->update_school_name;
         $teacher->approve_reject_status = 0;
         $teacher->reason = $request->reason;
-        // $teacher->initial_status = 0;
-        
-        // $teacher->payment_method = null;
-        // $teacher->payment_date = null;
+        $teacher->from_valid_date = $request->from_valid_date;
+        $teacher->t_code = $request->t_code;
+        $teacher->teacher_card = $teacher_card;
         $teacher->save();
 
        
@@ -361,17 +367,45 @@ class TeacherController extends Controller
                      $file->move(public_path().'/storage/teacher_info/',$name);
                      $old_degrees_certificates[] = $name;
                  }
-                 $old_degrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_degrees_certificates_h);
-                 for($i=0;$i <sizeof($request->old_degrees_id);$i++){
-                    $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->degree_name = $request->old_degrees[$i];
-                    $education_histroy->certificate     ='/storage/teacher_info/'.$old_degrees_certificates[$i];
-                    $education_histroy->save();
-                }
+                 
+                //    if($request->old_degrees_certificates_h){
+                    for($i=0;$i <sizeof($old_degrees_certificates);$i++){
+                        $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                        $education_histroy->degree_name = $request->old_degrees[$i];
+                        $education_histroy->certificate     ='/storage/teacher_info/'.$old_degrees_certificates[$i];
+                        $education_histroy->save();
+                    }
+                    
+                    
+                //    }else if($request->old_degrees){
+                    
+                    // $old_degrees_certificates_d= str_replace('/storage/teacher_info/', '', $request->old_degrees_certificates_h);
+                    // for($i=0;$i <sizeof($request->old_degrees);$i++){
+                    //     if($old_degrees_certificates[$i]){
+                    //         for($i=0;$i <sizeof($old_degrees_certificates);$i++){
+                    //             print_r($old_degrees_certificates[$i]);
+                    //             $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                    //             $education_histroy->degree_name = $request->old_degrees[$i];
+                    //             $education_histroy->certificate     ='/storage/teacher_info/'.$old_degrees_certificates[$i];
+                    //             $education_histroy->save();
+                    //         }
+                    //     }else{
+                    //         print_r("s2");
+                    //     }
+                    //     //print_r($old_degrees_certificates[$i]);
+                        
+                    //     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                    //     $education_histroy->degree_name = $request->old_degrees[$i];
+                    //     $education_histroy->certificate     ='/storage/teacher_info/'.$old_degrees_certificates[$i];;
+                    //     //$education_histroy->save();
+                    // }
+                    
+                    
+                //    }
             }else{
                 $old_degrees_certificates=$request->old_degrees_certificates_h;
                 
-                for($i=0;$i <sizeof($request->old_degrees_id);$i++){
+                for($i=0;$i <sizeof($request->old_degrees);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
                     $education_histroy->degree_name = $request->old_degrees[$i];
                     $education_histroy->certificate     =$old_degrees_certificates[$i];
@@ -380,10 +414,30 @@ class TeacherController extends Controller
             }
             
         }
-        $std_info = StudentInfo::find($request->student_info_id);
-        $std_info->payment_method = null;
-        $std_info->approve_reject_status = 0;
-        $std_info->save();
+        $memberships = Membership::where('membership_name', 'like', 'Teacher')->get();
+        if($request->offline_user!=1){
+            $invoice =Invoice::where("invoiceNo",'init_tec'.$id)->get();
+            // $invoice->student_info_id = $std_info->id;
+            // $invoice->invoiceNo = 'init_tec'.$teacher->id;
+            
+            foreach($invoice as $inNo){
+                $inNo->name_eng        = $request->name_eng;
+                $inNo->email           = $request->email;
+                $inNo->phone           = $request->phone;
+
+                foreach($memberships as $memberships){
+                    $inNo->productDesc     = 'Application Fee,Registration Fee,'.$cpa_subject_count.'x CPA One Subject Yearly Fee('.$memberships->cpa_subject_fee.'),'.$da_subject_count.'x DA One Subject Yearly Fee('.$memberships->da_subject_fee.'),Teacher Registration';
+                    $inNo->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$cpa_subject_count*$memberships->cpa_subject_fee.','.$da_subject_count*$memberships->da_subject_fee;
+                }
+            
+                $inNo->status          = 0;
+                $inNo->save();
+            }
+        }
+        // $std_info = StudentInfo::find($request->student_info_id);
+        // $std_info->payment_method = null;
+        // $std_info->approve_reject_status = 0;
+        // $std_info->save();
         return response()->json([
             'message' => 'You have updated successfully.'
         ],200);
@@ -464,7 +518,7 @@ class TeacherController extends Controller
             // })
             ->addColumn('card', function ($infos) {
                 return "<div class='btn-group'>
-                            <a href='MAC/public/$infos->teacher_card' class='btn btn-info btn-xs' target='_blank'>
+                            <a href='MAC/public$infos->teacher_card' class='btn btn-info btn-xs' target='_blank'>
                                 <li class='nc-icon nc-tap-01'></li>
                             </a>
                         </div>";
@@ -536,7 +590,7 @@ class TeacherController extends Controller
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
-                        ->where('invoiceNo',"init_tec")
+                        ->where('invoiceNo',"init_tec".$infos->id)
                         
                         ->get();
                        
@@ -545,7 +599,7 @@ class TeacherController extends Controller
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
-                        ->where('invoiceNo',"renew_tec")
+                        ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
                        
                     }
@@ -578,7 +632,7 @@ class TeacherController extends Controller
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
-                        ->where('invoiceNo',"init_tec")
+                        ->where('invoiceNo',"init_tec".$infos->id)
                         
                         ->get();
                         foreach($invoice as $i){
@@ -591,7 +645,7 @@ class TeacherController extends Controller
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
-                        ->where('invoiceNo',"renew_tec")
+                        ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
                         foreach($invoice as $i){
                             return $i->status == "0"
@@ -608,7 +662,7 @@ class TeacherController extends Controller
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
-                        ->where('invoiceNo',"init_tec")
+                        ->where('invoiceNo',"init_tec".$infos->id)
                         
                         ->get();
                        
@@ -617,7 +671,7 @@ class TeacherController extends Controller
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
-                        ->where('invoiceNo',"renew_tec")
+                        ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
                        
                     }
@@ -682,7 +736,7 @@ class TeacherController extends Controller
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
-                        ->where('invoiceNo',"init_tec")
+                        ->where('invoiceNo',"init_tec".$infos->id)
                         
                         ->get();
                        
@@ -691,7 +745,7 @@ class TeacherController extends Controller
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
-                        ->where('invoiceNo',"renew_tec")
+                        ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
                        
                     }
@@ -906,7 +960,7 @@ class TeacherController extends Controller
             
             $invoice = new Invoice();
             $invoice->student_info_id = $request->student_info_id;
-            $invoice->invoiceNo = 'renew_tec';
+            $invoice->invoiceNo = 'renew_tec'.$teacher->id;//
             
             $invoice->name_eng        = $request->name_eng;
             $invoice->email           = $request->email;
@@ -992,13 +1046,13 @@ class TeacherController extends Controller
         $teacher->nrc_back = $nrc_back;
         $teacher->image = $image;
         
-        $certificates = ""; $diplomas = "";
+        $certificates = ""; $diplomas = "";$cpa_subject_count=0;$da_subject_count=0;
         if($request->certificates!=null){
             foreach($request->certificates as $c){
                 $certificates = $certificates . $c . ',';
     
             }
-            
+            $cpa_subject_count=sizeof($request->certificates);
         }
         
         if($request->diplomas!=null){
@@ -1006,15 +1060,15 @@ class TeacherController extends Controller
                 $diplomas = $diplomas . $d . ',';
     
             }
-            
+            $da_subject_count=sizeof($request->diplomas);
         }
         $teacher->certificates = rtrim($certificates, ',');
         $teacher->diplomas = rtrim($diplomas, ',');
         $teacher->current_address = $request->current_address;
         $teacher->eng_current_address = $request->eng_current_address;
-        $teacher->school_id = $request->selected_school_id;
-        $teacher->school_type = $request->school_type;
-        $teacher->school_name = $request->school_name;
+        $teacher->school_id = $request->renew_selected_school_id;
+        $teacher->school_type = $request->school_type_renew;
+        $teacher->school_name = $request->school_name_renew;
         $teacher->reason = $request->reason;
         $teacher->approve_reject_status = 0;
         // $teacher->teacher_id  = $request->teacher_id;
@@ -1045,7 +1099,7 @@ class TeacherController extends Controller
                      $old_renewdegrees_certificates[] = $name;
                  }
                  $old_renewdegrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_renewdegrees_certificates_h);
-                 for($i=0;$i <sizeof($request->old_renewdegrees);$i++){
+                 for($i=0;$i <sizeof($old_renewdegrees_certificates);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
                     $education_histroy->degree_name = $request->old_renewdegrees[$i];
                     $education_histroy->certificate     ='/storage/teacher_info/'.$old_renewdegrees_certificates[$i];
@@ -1064,6 +1118,24 @@ class TeacherController extends Controller
                 
             }
             
+        }
+        $memberships = Membership::where('membership_name', 'like', 'Teacher')->get();
+        //invoice
+        $invoice = Invoice::where('invoiceNo','renew_tec'.$id)->get();
+        //$invoice->student_info_id = $request->student_info_id;
+        //$invoice->invoiceNo = 'renew_tec'.$teacher->id;
+        foreach($invoice as $inNo){
+            $inNo->name_eng        = $request->name_eng;
+            $inNo->email           = $request->email;
+            $inNo->phone           = $request->phone;
+            
+            foreach($memberships as $memberships){
+                $inNo->productDesc     = 'Application Fee,'.$cpa_subject_count.'x CPA One Subject Renew Fee('.$memberships->renew_cpa_subject_fee.'),'.$da_subject_count.'x DA One Subject Renew Fee('.$memberships->renew_da_subject_fee.'),Teacher Registration';
+                $inNo->amount          = $memberships->form_fee.','.$cpa_subject_count*$memberships->renew_cpa_subject_fee.','.$da_subject_count*$memberships->renew_da_subject_fee;
+            }
+        
+            $inNo->status          = 0;
+            $inNo->save();
         }
         
 
