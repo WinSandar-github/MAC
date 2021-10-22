@@ -128,6 +128,16 @@
                 <form method="POST" id="report-form" target="_blank">
                     <div class="modal-body" id="more-title">
                         <div class="row mb-2">
+
+                            <div class="col-md-6">
+                                <select class="form-control" id="select-date" name='date'>
+                                    <option value="">Select Year</option>
+                                    @for ($i = date('Y'); $i > 2010; $i--)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+
                             <div class="col-md-6">
                                 <select class="form-control" id="select-course" name='course'>
                                     <option value="">Select Course</option>
@@ -157,6 +167,7 @@
     <script src="{{ asset('js/reporting_constant.js') }}"></script>
     <script src="{{ asset('js/reporting_route_functions.js') }}"></script>
     <script type="text/javascript">
+
         $('.show-more-modal').on('click', function() {
 
             let MAIN_REPORT = this.dataset.section
@@ -167,6 +178,9 @@
                 case _MAIN_TITLE[0]: // DA
                     clearModalContent()
                     setModalContent('DA SECTION', _DA)
+
+                    $('#select-course, #select-batch').show();
+                    $('#select-date').hide();
 
                     $('#select-course').empty();
 
@@ -193,6 +207,9 @@
                     clearModalContent()
                     setModalContent('CPA SECTION', _CPA);
 
+                    $('#select-course, #select-batch').show();
+                    $('#select-date').hide();
+
                     $('#select-course').empty();
 
                     $('#select-course').append($('<option>', {
@@ -217,6 +234,9 @@
                 case _MAIN_TITLE[2]: // CPA (Qualified)
                     clearModalContent()
                     setModalContent('CPA (Qualified Test) SECTION', _CPA_QUALIFIED);
+
+                    $('#select-course, #select-batch').show();
+                    $('#select-date').hide();
 
                     $('#select-course').empty();
 
@@ -243,6 +263,9 @@
                     clearModalContent()
                     setModalContent('CPA(FF) AND PAPP SECTION', _CPA_PAPP);
 
+                    $('#select-course, #select-batch').show();
+                    $('#select-date').hide();
+
                     $('#select-course').empty();
 
                     $('#select-course').append($('<option>', {
@@ -268,6 +291,9 @@
                     clearModalContent()
                     setModalContent('Article Section', _ARTICLE);
 
+                    $('#select-course, #select-batch').show();
+                    $('#select-date').hide();
+
                     $('#select-course').empty();
 
                     $('#select-course').append($('<option>', {
@@ -291,6 +317,10 @@
                     break;
                 case _MAIN_TITLE[5]: 
                     clearModalContent()
+
+                    $('#select-course, #select-batch').show();
+                    $('#select-date').hide();
+
                     setModalContent('ARTICLE SECTION (MENTOR)', _ARTICLE_SECTION_MENTOR)
 
                     $('#more-modal').modal('show')
@@ -298,13 +328,21 @@
                     break;
                 case _MAIN_TITLE[6]: 
                     clearModalContent()
+
+                    $('#select-course, #select-batch').show();
+                    $('#select-date').hide();
+
                     setModalContent('FIRM NAME', _FIRM_NAME)
 
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[7]: 
-                    clearModalContent()
+                    clearModalContent();
+
+                    $('#select-course, #select-batch').hide();
+                    $('#select-date').show();
+
                     setModalContent('TEACHER / SCHOOL', _TEACHER_SCHOOL)
 
                     $('#more-modal').modal('show')

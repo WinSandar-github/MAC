@@ -212,16 +212,16 @@ function frimDailyAttendence(url) {
 }
 
 function teacherSchoolLicense(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ( $('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
-        alert('select course and batch');
+        alert('select year');
     }
 }
 
 function teacherSchoolPrivate(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ( $('#select-date').val() != "" ) {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
