@@ -488,6 +488,7 @@ function loadCPAFFRenewData(){
         success: function (data) {
             var student=data.data;
             console.log(student.length);
+            // console.log(student);
             
             student.forEach(function(element){
                 if(element.status==0){

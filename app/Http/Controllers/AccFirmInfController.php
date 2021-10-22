@@ -918,11 +918,9 @@ class AccFirmInfController extends Controller
         // $std_info->save();
 
         //Student Info
-        $std_info = StudentInfo::find($id);
-        //$std_info->password = Hash::make($request->password);
-        //$std_info->password = $request->password;
-        $std_info->approve_reject_status = 0;
-        $std_info->save();
+        // $std_info = StudentInfo::find($id);
+        // $std_info->approve_reject_status = 0;
+        // $std_info->save();
 
         //Branch Office
         BranchOffice::where('accountancy_firm_info_id',$id)->delete();
@@ -2928,7 +2926,8 @@ class AccFirmInfController extends Controller
     //check verify
     public function checkVerify($id)
     {
-        $data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
+        $data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->get();
+        //$data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
         return response()->json($data,200);
     }
 
