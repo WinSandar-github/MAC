@@ -51,9 +51,7 @@ class CourseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
-       
+    {     
         $request->validate([
             'name' => 'required',
             'name_mm' => 'required',
@@ -61,10 +59,7 @@ class CourseController extends Controller
             'selfstudy_registration_fee' => 'required',
             'privateschool_registration_fee' => 'required',
             'mac_registration_fee' => 'required',
-            // 'exam_fee' => 'required',
-            // 'exam_fee' => 'required',
             'tution_fee' => 'required',
-            'description' => 'required',
             'course_type_id' => 'required',
             'code' => 'required',
             'requirement_id' => 'required'
@@ -78,14 +73,11 @@ class CourseController extends Controller
         $course->mac_registration_fee = $request->mac_registration_fee;
         $course->exam_fee = $request->exam_fee;
         $course->entry_exam_fee = $request->entry_exam_fee;
-
         $course->tution_fee = $request->tution_fee;
-        $course->description = $request->description;
+        //$course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
         $course->code = $request->code;
         $course->requirement_id     = $request->requirement_id;
-        
-
         $course->save();
         return response()->json([
             'message' => "Insert Successfully"
@@ -137,7 +129,7 @@ class CourseController extends Controller
         $course->mac_registration_fee = $request->mac_registration_fee;
         $course->exam_fee = $request->exam_fee;
         $course->tution_fee = $request->tution_fee;
-        $course->description = $request->description;
+        //$course->description = $request->description;
         $course->course_type_id = $request->course_type_id;
         // $course->code = $request->code;
         $course->entry_exam_fee = $request->entry_exam_fee;
