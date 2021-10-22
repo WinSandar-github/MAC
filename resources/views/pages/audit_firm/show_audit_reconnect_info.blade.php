@@ -873,11 +873,8 @@
 
                                 <div class="row mb-5">
                                     <label for="" class="col-md-1 col-form-label"></label>
-                                    <label for="" class="col-md-5 col-form-label font-weight-bold">Last Registered Year</label>
-
-                                    <div class="col-md-3">
-                                        <span id="last_registered_year" class="form-control"></span>
-                                    </div>
+                                    <label for="" class="col-md-3 col-form-label font-weight-bold">Last Registered Year</label>
+																		<label for="" class="col-md-5 col-form-label"><span id="last_registered_year" class=""></span></label>
                                 </div>
 
                                 <div class="row mb-5">
@@ -905,16 +902,22 @@
                                     </div>
                                 </div>
 
-																<div class="row mb-5">
-                                    <label for="" class="col-md-1 col-form-label"></label>
-                                    <label for="" class="col-md-4 col-form-label"></label>
-                                    <div class="col-md-2">
-                                        <label for="" class="col-form-label">Year</label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <span id="suspended_year" class="form-control"></spa>
-                                    </div>
-                                </div>
+																<div style="display:none;" id="suspended_year_box">
+																	<div class="row mb-5">
+	                                    <label for="" class="col-md-1 col-form-label"></label>
+	                                    <label for="" class="col-md-4 col-form-label"></label>
+	                                    <div class="col-md-2">
+	                                        <label for="" class="col-form-label font-weight-bold">Year</label>
+	                                    </div>
+	                                    <div class="col-md-3">
+																					<label for="" class="col-md-4 col-form-label">
+																						<span id="suspended_year" class=""></span>
+																					</label>
+	                                    </div>
+	                                </div>
+																</div>
+
+																
 
                                 <!-- <div class="row">
                                     <div class="col-md-11 d-md-flex justify-content-md-end">
@@ -1047,7 +1050,7 @@
 
       			                    <div class="form-group">
       			                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
-      			                        <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+      			                        <textarea class="form-control" name="remark_offline" id="remark_offline" rows="3"></textarea>
       			                    </div>
       			                </div>
       			            </div>
