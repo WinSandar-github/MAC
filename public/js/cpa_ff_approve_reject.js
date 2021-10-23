@@ -488,7 +488,7 @@ function loadCPAFFRenewData(){
         success: function (data) {
             var student=data.data;
             console.log(student.length);
-            // console.log(student);
+            console.log(student);
             
             student.forEach(function(element){
                 if(element.status==0){
@@ -625,7 +625,7 @@ function loadCPAFFRenewData(){
                 }else {
                     $(".cpd_record_file").append(`<span>-</span>`);
                 }
-                if(element.renew_file!=null){
+                if(element.renew_file!=null && element.renew_file!="null" && element.renew_file!=""){
                     $(".renew_file").append(`<a href='${PDF_URL+element.renew_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
                     $(".renew_file").append(`<span>-</span>`);
