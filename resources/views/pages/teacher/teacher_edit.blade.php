@@ -247,6 +247,14 @@
                                             <span id="school_name"></span>
                                         </div>
                                     </div>
+                                    <div class="row mt-3 teacher_card_class" style="display:none;">
+                                        <div class="col-md-6">
+                                            <p style="font-weight:bold">သင်တန်းဆရာမှတ်ပုံတင်</p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <span id="teacher_card"></span>
+                                        </div>
+                                    </div>
                                     <div class="row  mt-3">
                                         <div class="col-md-12">
                                             <h5>သင်ကြားမည့်သင်တန်းနှင့် ဘာသာရပ်များ</h5>
@@ -300,20 +308,22 @@
                                         </div>
                                     </div>
                                     <hr>
-                                    <div class="row mt-5 border-bottom">
-                                        <div class="col-md-6">
-                                            <p style="font-weight:bold">ဘာသာရပ်ကြေး၊စာရင်းသွင်းကြေး၊ဖောင်ကြေး စုစုပေါင်း</p>
+                                    <div class="exist_teacher_user" style="display:none;">
+                                        <div class="row mt-5 border-bottom" >
+                                            <div class="col-md-6">
+                                                <p style="font-weight:bold">ဘာသာရပ်ကြေး၊စာရင်းသွင်းကြေး၊ဖောင်ကြေး စုစုပေါင်း</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type='text' id="subject_total_amount" class="form-control" disabled>
+                                            </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <input type='text' id="subject_total_amount" class="form-control" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-5 border-bottom period" style="display:none;">
-                                        <div class="col-md-6">
-                                            <p style="font-weight:bold">ငွေပေးချေသည့် ရက်စွဲ</p>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type='text' id="payment_date" class="form-control" disabled>
+                                        <div class="row mt-5 border-bottom period" style="display:none;">
+                                            <div class="col-md-6">
+                                                <p style="font-weight:bold">ငွေပေးချေသည့် ရက်စွဲ</p>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type='text' id="payment_date" class="form-control" disabled>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row mt-5 border-bottom">

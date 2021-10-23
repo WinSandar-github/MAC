@@ -440,7 +440,7 @@
                                 </div>
                             </div>--}}
                             <div class="card-header">
-                                <h5 class="border-bottom pb-2" style="font-weight:bold">CPAFF Education</h5>
+                                <h5 class="border-bottom pb-2" style="font-weight:bold">CPA(Full-Fledged) Education</h5>
                             </div>
                             <div class="card-body pt-0">
                                 <div class="row m-2 mt-3 border-bottom">
