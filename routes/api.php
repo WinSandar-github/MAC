@@ -442,6 +442,7 @@ Route::post('/update_leave_request','ArticleController\ArticleController@updateL
 Route::get('/get_article_list/{id}', 'ArticleController\ArticleController@getArticleList');
 Route::patch('/create_done_form_link/{id}', 'ArticleController\ArticleController@createDoneFormLink');
 Route::patch('/gov_create_done_form_link/{id}', 'ArticleController\ArticleController@govCreateDoneFormLink');
+Route::post('/continue_article', 'ArticleController\ArticleController@continueArticle');
 
 
 // Payment
