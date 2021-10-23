@@ -208,7 +208,7 @@ class DARegisterController extends Controller
 
         // $student_info->verify_code = mt_rand(1000,9999);
         // $data = array(
-        //     'email' => 'macadmin@gmail.com',
+        //     'email' => 'no-reply@oagmac.gov.mm',
         //     'verify_code' => $student_info['verify_code']
         // );
         // Mail::to($request['email'])->send(new ContactMail($data));
