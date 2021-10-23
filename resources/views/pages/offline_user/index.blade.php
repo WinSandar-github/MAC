@@ -1618,7 +1618,7 @@
                 processing: true,
                 scrollX:true,
                 // serverSide: true,
-                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/0/0",
+                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/0/1",
                 columns: [
                     {data: null, render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
@@ -1643,7 +1643,7 @@
                 processing: true,
                 scrollX:true,
                 // serverSide: true,
-                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/1/0",
+                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/1/1",
                 columns: [
                     {data: null, render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
@@ -1667,7 +1667,7 @@
                 processing: true,
                 scrollX:true,
                 // serverSide: true,
-                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/2/0",
+                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/2/1",
                 columns: [
                     {data: null, render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;

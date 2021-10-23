@@ -125,7 +125,7 @@ function showCPAFFList(capffId,is_renew){
 function showOfflineCPAFFList(capffId,is_renew){
     localStorage.setItem("cpa_ff_id",capffId);
     localStorage.setItem("is_renew",is_renew);
-    if(is_renew==0){
+    if(is_renew==1){
         location.href= FRONTEND_URL + "/cpaff_offline_edit";
     }
     else{
@@ -771,7 +771,8 @@ function loadCPAFFOfflineInitialData(){
         url: BACKEND_URL+"/cpa_ff/"+id,
         success: function (data) {
             var student=data.data;
-            console.log(student.length);
+            // console.log(student.length);
+            console.log(student);
             
             student.forEach(function(element){
                 if(element.status==0){
@@ -798,10 +799,10 @@ function loadCPAFFOfflineInitialData(){
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
 
-                var nrc     =   element.student_info.nrc_state_region+"/";
-                nrc    +=   element.student_info.nrc_township;
-                nrc    +=   "("+ element.student_info.nrc_citizen+")";
-                nrc    +=   element.student_info.nrc_number;                
+                var nrc     =   element.nrc_state_region+"/";
+                nrc    +=   element.nrc_township;
+                nrc    +=   "("+ element.nrc_citizen+")";
+                nrc    +=   element.nrc_number;                
 
                 $("#id").append(element.id);
                 document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;
