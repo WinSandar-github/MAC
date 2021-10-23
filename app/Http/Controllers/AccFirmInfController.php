@@ -899,7 +899,11 @@ class AccFirmInfController extends Controller
         $acc_firm_info->type_of_service_provided_id  = json_encode($t_s_p_ary);
         //name of sole_propietor == name of manager
         $acc_firm_info->name_of_sole_proprietor      = $request->name_sole_proprietor;
+        if($request->dir_passport_csc){
+          $acc_firm_info->dir_passport_csc      = $request->dir_passport_csc;
+        }
         $acc_firm_info->declaration  = $request->declaration;
+        $acc_firm_info->declaration_mm  = $request->declaration_mm;
         if($image != ''){
           $acc_firm_info->image  = $image;
         }
@@ -908,6 +912,9 @@ class AccFirmInfController extends Controller
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
         $acc_firm_info->verify_status  = 0;
+        $acc_firm_info->req_for_stop    = $request->req_for_stop;
+        $acc_firm_info->last_registered_year    = $request->last_registered_year;
+        $acc_firm_info->suspended_year    = $request->suspended_year;
         $acc_firm_info->save();
 
         //Student Info
