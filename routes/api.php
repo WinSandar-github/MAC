@@ -108,7 +108,7 @@ Route::get('/papp_offline_user_list/{status}/{type}', 'PAPPController@GetPappOff
 
 Route::patch('/approve_offline_papp/{id}/{cpaff_id}', 'PAPPController@approve_offline_papp');
 Route::post('/reject_offline_papp/{id}', 'PAPPController@reject_offline_papp');
-
+Route::post('/update_offline_papp', 'PAPPController@UpdateReconnectPapp');
 //cpa_ff
 Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
@@ -123,6 +123,7 @@ Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
 // Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
 Route::post('/update_cpaff_initial', 'CPAFFController@updateRejectedInitialData');
 Route::post('/update_cpaff_renewal', 'CPAFFController@updateRejectedRenewalData');
+Route::post('/update_cpaff_existing', 'CPAFFController@updateRejectedExistingData');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -343,7 +344,7 @@ Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQ
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 
 //show description
-Route::get('showDescription/{membership_name}','MembershipController@showDescription');
+Route::get('showDescription/{name}', 'HomeController@showDescription');
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');

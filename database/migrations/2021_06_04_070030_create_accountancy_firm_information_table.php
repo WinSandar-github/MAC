@@ -19,7 +19,7 @@ class CreateAccountancyFirmInformationTable extends Migration
             //$table->unsignedBigInteger('local_foreign_id');
             $table->unsignedBigInteger('local_foreign_type')->nullable();
             $table->unsignedBigInteger('student_info_id')->nullable();
-            $table->string('accountancy_firm_reg_no');
+            $table->string('accountancy_firm_reg_no')->nullable();
             $table->string('accountancy_firm_name');
             $table->string('head_office_address');
             $table->string('head_office_address_mm')->nullable();
