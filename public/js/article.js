@@ -297,6 +297,7 @@ function loadArticle()
             }else{
                 $("#pass_date").val(data.exam_pass_date);
                 $("#pass_no").val(data.exam_pass_batch);
+                $("#exam_pass_date_label").text('၁၅။');
                 document.getElementById("previous_exam_pass_row").style.display = "block";
             }
             // $("#pass_date").val(data.request_papp);
@@ -314,7 +315,6 @@ function loadArticle()
                 $("#previous_papp_lab").text('၁၄။');
                 $("#previous_lab").text('၁၅။');
                 $("#exam_pass_date_label").text('၁၆။');
-                $("#done_attach_lab").text('၁၇။');
             }else{
                 if(data.apprentice_exp == 1)
                 {
@@ -407,6 +407,15 @@ function loadArticle()
               document.getElementById("approve_reject_btn").style.display = "none";
             }
 
+            if(data.mentor_attach_file != null){
+                $("#attach_file_row").show();
+                let mentor_attach_file = JSON.parse(data.mentor_attach_file);
+                $.each(mentor_attach_file, function (fileCount, fileName) {
+                    $(".mentor_attach_file").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+
+                })
+            }
+
             if(data.done_form_attach != null){
                 $("#done_form_row").show();
                 $(".done_form_attach").append(`<a href='${PDF_URL+data.done_form_attach}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'  align="center">View File</a>`);
@@ -469,7 +478,7 @@ function approveDoneArticle(){
     }
     else{
         var id = $("input[name = article_id]").val();
-        console.log(id);
+
         $.ajax({
             url: BACKEND_URL + "/approve_done_article/"+id,
             type: 'patch',
@@ -1004,7 +1013,7 @@ function createDoneFormLink(){
         url: BACKEND_URL +"/create_done_form_link/"+id,
         type: 'patch',
         success: function(result){
-            successMessage("You have rejected that user!");
+            successMessage("Create download link!");
             location.href = FRONTEND_URL + "/article_list";
         }
     });
@@ -1017,7 +1026,7 @@ function govCreateDoneFormLink(){
         url: BACKEND_URL +"/gov_create_done_form_link/"+id,
         type: 'patch',
         success: function(result){
-            successMessage("You have rejected that user!");
+            successMessage("Create download link!");
             location.href = FRONTEND_URL + "/article_list";
         }
     });
