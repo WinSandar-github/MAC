@@ -1098,7 +1098,7 @@ class TeacherController extends Controller
                      $file->move(public_path().'/storage/teacher_info/',$name);
                      $old_renewdegrees_certificates[] = $name;
                  }
-                 $old_renewdegrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_renewdegrees_certificates_h);
+                 //$old_renewdegrees_certificates= str_replace('/storage/teacher_info/', '', $request->old_renewdegrees_certificates_h);
                  for($i=0;$i <sizeof($old_renewdegrees_certificates);$i++){
                     $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
                     $education_histroy->degree_name = $request->old_renewdegrees[$i];
