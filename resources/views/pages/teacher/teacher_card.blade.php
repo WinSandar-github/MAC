@@ -147,7 +147,7 @@
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
-                                    <div class="row mt-3 " style="text-align: justify;">
+                                    <div class="row mt-3 menu_one_div" style="text-align: justify;display:none;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-6">
                                             <input type="text" id="cpa_one" disabled class="no-outline">
@@ -155,7 +155,7 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 " style="text-align: justify;">
+                                    <div class="row mt-3 menu_two_div" style="text-align: justify;display:none;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-6">
                                            <input type="text" id="cpa_two" disabled class="no-outline">
@@ -163,7 +163,7 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 " style="text-align: justify;">
+                                    <div class="row mt-3 menu_da_one_div" style="text-align: justify;display:none;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-6">
                                             <input type="text" id="da_one" disabled class="no-outline">
@@ -171,7 +171,7 @@
                                         </div>
                                         <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row mt-3 " style="text-align: justify;">
+                                    <div class="row mt-3 menu_da_two_div" style="text-align: justify;display:none;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-6">
                                            <input type="text" id="da_two" disabled class="no-outline">

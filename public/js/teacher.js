@@ -266,19 +266,35 @@ function getTeacherInfos(){
                 $("#phone").append(value.phone);
                 $("#email").append(value.email);
                 
+                if(value.school_type==0){
+                    $("#school_name").append("Individual");
+                    $('.school_name_class').show();
+                }else{
+                    if(value.school_id==null){
+                        //$("#school_name").append(value.school_name);
+                        $('.school_name_class').hide();
+                    }else{
+                        
+                        loadSchoolName(value.school_id);
+                    }
+                    if(value.school_name!=null){
+                        $('.school_name_class').show();
+                        $("#school_name").append(value.school_name);
+                    }
+                }
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate",value.initial_status);
+                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate",value.initial_status,value.offline_user);
                     loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
                     
                 }else{
-                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate",value.initial_status);
+                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate",value.initial_status,value.offline_user);
                     loadCard(value.certificates);
                 }
                 if(value.diplomas.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma",value.initial_status);
+                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma",value.initial_status,value.offline_user);
                     loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
                 }else{
-                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma",value.initial_status);
+                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma",value.initial_status,value.offline_user);
                     loadCard(value.diplomas);
                 }
                 
@@ -328,22 +344,7 @@ function getTeacherInfos(){
                 }else{
                     loadEductaionHistory(value.student_info_id,value.initial_status);
                 }
-                if(value.school_type==0){
-                    $("#school_name").append("Individual");
-                    $('.school_name_class').show();
-                }else{
-                    if(value.school_id==null){
-                        //$("#school_name").append(value.school_name);
-                        $('.school_name_class').hide();
-                    }else{
-                        $('.school_name_class').show();
-                        loadSchoolName(value.school_id);
-                    }
-                    if(value.school_name!=null){
-                        $('.school_name_class').show();
-                        $("#school_name").append(value.school_name);
-                    }
-                }
+                
                 if(value.school_type==null){
                     $('.school_name_class').hide();
                 }
@@ -351,18 +352,23 @@ function getTeacherInfos(){
                     $('.period').show();
                     var now=new Date();
                     if(value.initial_status==0){
-                        var new_date=value.from_valid_date.split(' ');
+                        //var new_date=value.from_valid_date.split('-');
+                        loadInvoiceByTeacher(value.id,value.initial_status);
+                         
                     }else if(value.initial_status==1){
-                        var new_date=value.renew_date.split(' ');
+                        //var new_date=value.renew_date.split('-');
+                        loadInvoiceByTeacher(value.id,value.initial_status);
+                        $(".payment_date").append(value.from_valid_date);
+                        $('.renew_period_time').text("01-01-"+now.getFullYear()+" to 31-12-"+now.getFullYear());
                     }
                     
-                    var period_date=new_date[0].split('-');
-                    var period=period_date[2]+'-'+period_date[1]+'-'+period_date[0];
-                   $('#period_time').text(period+" to 31-12-"+now.getFullYear());
+                    //var period_date=new_date[0].split('-');
+                    // var period=new_date[2]+'-'+new_date[1]+'-'+new_date[0];
+                    // $('#period_time').text(period+" to 31-12-"+now.getFullYear());
                    
-                    $("#payment_date").val(period);
+                    
                     $('.invoice_no').append(value.t_code);
-                    $(".payment_date").append(period);
+                    
                     
                 }
                 $('#student_info_id').val(value.student_info_id);
@@ -373,14 +379,21 @@ function getTeacherInfos(){
                     
                     $('.form-name').append('ဆရာပုံစံ-၂');
                 }
-                
-                if(value.teacher_card !=null){
+                if(value.offline_user==1){
                     $('.teacher_card_class').show();
                     $("#teacher_card").append(`<a href='${PDF_URL+value.teacher_card}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                    $('.exist_teacher_user').hide();
                 }else{
-                    $('.teacher_card_class').hide();
-                    
+                    if(value.teacher_card !=null){
+                        $('.teacher_card_class').show();
+                        $("#teacher_card").append(`<a href='${PDF_URL+value.teacher_card}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                    }else{
+                        $('.teacher_card_class').hide();
+                        
+                    }
+                    $('.exist_teacher_user').show();
                 }
+                
             });
            
             
@@ -440,15 +453,26 @@ function rejectTeacherRegister(){
     
 }
 
-function loadCertificates(name,payment_status,tbody,is_renew){
+function loadCertificates(name,payment_status,tbody,is_renew,offline_user){
     var name=name.split(',');
     
     var payment_status;
-    if(payment_status!=null){
-        payment_status="ပြီး";
+    if(offline_user==1){
+        if(payment_status!=null){
+        
+            payment_status="ပြီး";
+        }else{
+            payment_status="ပြီး";
+        }
     }else{
-        payment_status="မပြီး";
+        if(payment_status!=null){
+        
+            payment_status="ပြီး";
+        }else{
+            payment_status="မပြီး";
+        }
     }
+    
     var sum;
     var membership_name='Teacher';
     $.ajax({
@@ -547,6 +571,7 @@ function loadSchoolName(school_id){
         type : 'GET',
         url : BACKEND_URL+"/school/"+school_id,
         success: function (result) {
+            $('.school_name_class').show();
             $('#school_name').append(result.data.school_name);
         }
     });    
@@ -606,32 +631,36 @@ function loadCard(name){
                         
                         if(value.code=='cpa_1'){
                             $('#cpa_one').val(newcode[0].toUpperCase()+' '+course_code);
-                            let li = document.createElement('li');
-                            li.textContent = value.subject_name ;
-                            
-                            const menu = document.querySelector('#menu_one');
-                            menu.appendChild(li);
+                            let li_cpa = document.createElement('li');
+                            li_cpa.textContent = value.subject_name ;
+                            const menu_cpa = document.querySelector('#menu_one');
+                            menu_cpa.appendChild(li_cpa);
+                            $('.menu_one_div').show();
+
                         }else if(value.code=='cpa_2'){
                             $('#cpa_two').val(newcode[0].toUpperCase()+' '+course_code);
-                            let li = document.createElement('li');
-                            li.textContent = value.subject_name ;
-                            
-                            const menu = document.querySelector('#menu_two');
-                            menu.appendChild(li);
+                            let li_cap2 = document.createElement('li');
+                            li_cap2.textContent = value.subject_name ;
+                            const menu_cap2 = document.querySelector('#menu_two');
+                            menu_cap2.appendChild(li_cap2);
+                            $('.menu_two_div').show();
+
                         }else if(value.code=='da_1'){
                             $('#da_one').val(newcode[0].toUpperCase()+' '+course_code);
-                            let li = document.createElement('li');
-                            li.textContent = value.subject_name ;
+                            let li_da1 = document.createElement('li');
+                            li_da1.textContent = value.subject_name ;
+                            const menu_da1 = document.querySelector('#menu_da_one');
+                            menu_da1.appendChild(li_da1);
+                            $('.menu_da_one_div').show();
                             
-                            const menu = document.querySelector('#menu_da_one');
-                            menu.appendChild(li);
                         }else if(value.code=='da_2'){
                             $('#da_two').val(newcode[0].toUpperCase()+' '+course_code);
-                            let li = document.createElement('li');
-                            li.textContent = value.subject_name ;
+                            let li_da1 = document.createElement('li');
+                            li_da1.textContent = value.subject_name ;
+                            const menu_da2 = document.querySelector('#menu_da_two');
+                            menu_da2.appendChild(li_da1);
+                            $('.menu_da_two_div').show();
                             
-                            const menu = document.querySelector('#menu_da_two');
-                            menu.appendChild(li);
                         }
                 });
                 
@@ -718,18 +747,18 @@ function getRenewTeacher(){
                 $("#email").append(value.email);
                 
                 if(value.certificates.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate",value.initial_status);
+                    loadCertificates(value.certificates.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_certificate",value.initial_status,value.offline_user);
                     loadCard(value.certificates.replace(/[\'"[\]']+/g, ''));
                     
                 }else{
-                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate",value.initial_status);
+                    loadCertificates(value.certificates,value.payment_method,"#tbl_certificate",value.initial_status,value.offline_user);
                     loadCard(value.certificates);
                 }
                 if(value.diplomas.search(/[\'"[\]']+/g)==0){
-                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma",value.initial_status);
+                    loadCertificates(value.diplomas.replace(/[\'"[\]']+/g, ''),value.payment_method,"#tbl_diploma",value.initial_status,value.offline_user);
                     loadCard(value.diplomas.replace(/[\'"[\]']+/g, ''));
                 }else{
-                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma",value.initial_status);
+                    loadCertificates(value.diplomas,value.payment_method,"#tbl_diploma",value.initial_status,value.offline_user);
                     loadCard(value.diplomas);
                 }
                 
@@ -782,6 +811,7 @@ function getRenewTeacher(){
                     if(value.school_id==null){
                         $("#school_name").append(value.school_name);
                     }else{
+                        
                         $('.school_name_class').show();
                         loadSchoolName(value.school_id);
                     }
@@ -848,5 +878,35 @@ function cessationRenewTeacherRegister(){
         }
     });
     
+    
+}
+function loadInvoiceByTeacher(id,status){
+    var now=new Date();
+    var invoiceNo;
+    if(status==0){
+        invoiceNo="init_tec"+id
+    }else{
+        invoiceNo="renew_tec"+id
+        
+    }
+    
+        $.ajax({
+            type : 'POST',
+            url : BACKEND_URL+"/getTotalAmount",
+            data: 'invoiceNo='+invoiceNo,
+            success: function(result){
+                
+                $.each(result.data, function( index, val ){
+                    $("#payment_date").val(val.dateTime);
+                    
+                    $('#period_time').text(val.dateTime+" to 31-12-"+now.getFullYear());
+                  
+                })
+                
+                
+                
+                
+            }
+        });
     
 }
