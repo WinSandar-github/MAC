@@ -364,7 +364,7 @@ function rejectNonAuditFirmReconnect(id,firm_id){
     // var id = $("input[name = audit_firm_id]").val();
     // var firm_id = $("input[name = audit_firm_id]").val();
     var formData = new FormData();
-    formData.append('remark', $('#remark').val());
+    formData.append('remark', $('#remark_reconnect').val());
     //alert("youk");
     $.ajax({
         url: BACKEND_URL +"/reject_auditfirm_reconnect/"+id+"/"+firm_id,
