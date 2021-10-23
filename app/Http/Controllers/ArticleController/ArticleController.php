@@ -420,8 +420,33 @@ class ArticleController extends Controller
     public function approveDone($id)
     {
         $approve = ApprenticeAccountant::find($id);
-        $approve->done_status = 1;
-        $approve->save();
+
+        $firm = ApprenticeAccountant::where('student_info_id',$approve->student_info_id)->get();
+
+        $gov = ApprenticeAccountantGov::where('student_info_id',$approve->student_info_id)->get();
+
+        if(count($gov) == 0){
+            $start_article = Carbon::parse($firm[0]->contract_start_date);
+        }else{
+            $start_article = Carbon::parse($gov[0]->contract_start_date);
+        }
+        $end_article = Carbon::parse($firm[count($firm) - 1]->contract_end_date);
+
+        $diff_days = $end_article->diffInDays($start_article);
+
+        if($diff_days > 1095){  // 1095 = 3yrs
+            if(count($gov) != 0){
+                $gov[0]->done_status = 3;
+                $gov[0]->save();
+            }
+            for($i = 0; $i<count($firm); $i++){
+                $firm[$i]->done_status = 3;
+                $firm[$i]->save();
+            }
+        }else{
+            $approve->done_status = 1;
+            $approve->save();
+        }
         return response()->json([
             'message' => "You have successfully approved that user!"
         ],200);
@@ -980,15 +1005,18 @@ class ArticleController extends Controller
 
     public function filterDone3yrsArticle(Request $request)
     {
-        $article = ApprenticeAccountant::where('done_status',1)->where('article_form_type' ,'<>', 'resign')->whereIn('article_form_type', ['c2_pass_1yr','c2_pass_3yr'])->with('student_info')->get();
+        $article = ApprenticeAccountant::where('done_status',3)->with('student_info')->get();
+        $article_gov = ApprenticeAccountantGov::where('done_status',3)->with('student_info')->get();
 
-        // $data = DB::table('apprentice_accountants')
-        //         ->join('apprentice_accountants_gov', 'apprentice_accountants.student_info_id', '=', 'apprentice_accountants_gov.student_info_id')
-        //         ->where('apprentice_accountants.done_status','=', 1)
-        //         ->where('apprentice_accountants_gov.done_status','=', 1)
-        //         ->get();
+        $result_article = [];
+        for($i=0;$i<count($article);$i++){
+            array_push($result_article , $article[$i]);
+        }
+        for($i=0;$i<count($article_gov);$i++){
+            array_push($result_article , $article_gov[$i]);
+        }
 
-        $datatable = DataTables::of($article)
+        $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-sm' onclick='showArticle($infos->id)'>
@@ -1014,8 +1042,10 @@ class ArticleController extends Controller
                     return "PENDING";
                 }else if($infos->done_status == 1){
                     return "APPROVED";
-                }else{
+                }else if($infos->done_status == 2){
                     return "REJECTED";
+                }else{
+                    return "Done";
                 }
             })
             ->addColumn('form_type', function ($infos){
@@ -1031,6 +1061,8 @@ class ArticleController extends Controller
                     return "CPA II Pass Renew";
                 }else if($infos->article_form_type == 'c12_renew'){
                     return "CPA I,II Renew";
+                }else if($infos->article_form_type == 'resign'){
+                    return "Resign";
                 }
             });
             // ->setRowClass(function ($infos) {
@@ -1107,12 +1139,26 @@ class ArticleController extends Controller
     public function saveAttachFile(Request $request)
     {
         $article = ApprenticeAccountant::find($request->id);
-        if ($request->hasfile('attach_file')) {
-            $file = $request->file('attach_file');
-            $name  = uniqid().'.'.$file->getClientOriginalExtension();
-            $file->move(public_path().'/storage/student_info/',$name);
-            $attach_file = '/storage/student_info/'.$name;
+
+        // if ($request->hasfile('attach_file')) {
+        //     $file = $request->file('attach_file');
+        //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+        //     $file->move(public_path().'/storage/student_info/',$name);
+        //     $attach_file = '/storage/student_info/'.$name;
+        // }
+
+        if($request->hasfile('attach_file'))
+        {
+            foreach($request->file('attach_file') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $file->move(public_path().'/storage/student_info/',$name);
+                $attach_file[] = '/storage/student_info/'.$name;
+            }        
+        }else{
+            $attach_file = null;
         }
+
         $article->mentor_attach_file = $attach_file;
         $article->save();
         return response()->json([
@@ -1331,6 +1377,17 @@ class ArticleController extends Controller
         $approve->contract_end_date = $request->renew_end_date;
         //$approve->status = 1;
         $approve->save();
+        return response()->json([
+            'message' => "You have successfully!"
+        ],200);
+    }
+
+    public function continueArticle(Request $request)
+    {
+        $article = ApprenticeAccountant::find($request->id);
+
+        $article->contract_end_date = $request->contract_end_date;
+        $article->save();
         return response()->json([
             'message' => "You have successfully!"
         ],200);

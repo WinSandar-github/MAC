@@ -347,12 +347,28 @@
                             </div>
                         </div>
 
+                        <div id="attach_file_row" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-6 col-form-label label"><span class="pull-left">{{ __('') }}</span>ချုပ်ဆိုပြီးစာချုပ်နှင့် တာဝန်စတင်ထမ်းဆောင်ကြောင်းအစီရင်ခံစာ</label>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <p class="ml-3" style="font-weight:bold" align="left">Attachment</p>
+                                        </div>
+                                        <div class="col-md-3 mentor_attach_file">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="done_form_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-4 col-form-label label"><span class="pull-left" id="done_attach_lab">{{ __('၁၈။') }}</span>Done Form Attachment</label>
-                                <div class="col-md-8">
+                                <label class="col-md-6 col-form-label label"><span class="pull-left">{{ __('') }}</span>Done Form Attachment</label>
+                                <div class="col-md-6">
                                     <div class="row">
-                                        <div class="col-md-3">
+                                        <div class="col-md-5">
                                             <p class="ml-3" style="font-weight:bold" align="left">Attachment</p>
                                         </div>
                                         <div class="col-md-3 done_form_attach">

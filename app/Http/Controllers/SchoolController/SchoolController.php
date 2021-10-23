@@ -1559,6 +1559,10 @@ class SchoolController extends Controller
                                 ->where('school_id','=',null)
                                 ->where('teacher_id','!=',null)
                                 ->get();
+        }else if($request->mentor_id=='null'){
+            $data =StudentInfo::where('email','=',$request->email)
+                                ->where('mentor_id','=',null)
+                                ->get();
         }else{
             $data =StudentInfo::where('email','=',$request->email)
                                 ->where('teacher_id','=',null)
