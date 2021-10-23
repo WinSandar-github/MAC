@@ -123,6 +123,7 @@ Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
 // Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
 Route::post('/update_cpaff_initial', 'CPAFFController@updateRejectedInitialData');
 Route::post('/update_cpaff_renewal', 'CPAFFController@updateRejectedRenewalData');
+Route::post('/update_cpaff_existing', 'CPAFFController@updateRejectedExistingData');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -344,7 +345,7 @@ Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQ
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 
 //show description
-Route::get('showDescription/{membership_name}','MembershipController@showDescription');
+Route::get('showDescription/{name}', 'HomeController@showDescription');
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
@@ -442,6 +443,7 @@ Route::post('/update_leave_request','ArticleController\ArticleController@updateL
 Route::get('/get_article_list/{id}', 'ArticleController\ArticleController@getArticleList');
 Route::patch('/create_done_form_link/{id}', 'ArticleController\ArticleController@createDoneFormLink');
 Route::patch('/gov_create_done_form_link/{id}', 'ArticleController\ArticleController@govCreateDoneFormLink');
+Route::post('/continue_article', 'ArticleController\ArticleController@continueArticle');
 
 
 // Payment
