@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Membership;
 
-use App\Requirement;
-
-use App\Description;
-
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -228,14 +224,15 @@ class MembershipController extends Controller
             ],200);
         }
     }
-    public function showDescription($membership_name)
-    {
 
-        $memberships = Membership::where('membership_name', 'like', $membership_name. '%')->get();
-        return response()->json([
-            'data' => $memberships
-        ],200);
-    }
+    // public function showDescription($membership_name)
+    // {
+
+    //     $memberships = Membership::where('membership_name', 'like', $membership_name. '%')->get();
+    //     return response()->json([
+    //         'data' => $memberships
+    //     ],200);
+    // }
 
     public function showFee($id)
     {
@@ -254,7 +251,6 @@ class MembershipController extends Controller
             'data' => $memberships
         ],200);
     }
-
 
     public function membership_edit($id)
     {
