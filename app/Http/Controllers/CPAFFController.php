@@ -233,7 +233,7 @@ class CPAFFController extends Controller
 
             $invoice = new Invoice();
             $invoice->student_info_id = $std_info->id;
-            $invoice->invoiceNo     = "cpaff-initial";
+            $invoice->invoiceNo     = "cpaff_initial".$cpa_ff->id;
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
@@ -646,7 +646,7 @@ class CPAFFController extends Controller
 
             $invoice = new Invoice();
             $invoice->student_info_id = $request->student_info_id;
-            $invoice->invoiceNo     = "cpaff-initial";
+            $invoice->invoiceNo     = "cpaff_initial".$cpa_ff->id;
             $invoice->name_eng       =  $stdInfo->name_eng;
             $invoice->email       = $stdInfo->email;
             $invoice->phone       = $stdInfo->phone;
@@ -889,15 +889,15 @@ class CPAFFController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_info_id;
-        $invoice->invoiceNo     = "cpaff-renew";
+        $invoice->invoiceNo     = "cpaff_renew".$cpa_ff->id;
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
         if($oldCpaff->offline_user==0){
-            // $thisYear = date('Y'); //need to reopen comment
-            // $thisMonth = date('M');
-            $thisYear = date('Y') + 1;   //only to test Jan delay
-            $thisMonth = 'Jan';
+            $thisYear = date('Y'); //need to reopen comment
+            $thisMonth = date('M');
+            // $thisYear = date('Y') + 1;   //only to test Jan delay
+            // $thisMonth = 'Jan';
             $oldYear=date('Y',strtotime($oldCpaff->validate_to));
             if($thisYear == $oldYear){
                 $invoice->productDesc     = 'Application Fee, Renewal Fee, CPA(Full-Fledged) Renewal Registration';
@@ -1046,6 +1046,31 @@ class CPAFFController extends Controller
         ],200);
     }
 
+    public function approveOfflineCpaff($id)
+    {
+        $month_day=date('m-d');
+        $year=date('Y')-1;
+        $accepted_date = $year.'-'.$month_day;
+        $approve = CPAFF::find($id);
+        if($approve->status==0)
+        {
+            $approve->status = 1;
+            $approve->accepted_date=$accepted_date;
+            $approve->renew_accepted_date=$accepted_date;
+            // Generate Reg No.
+            // $approve->reg_no = 'CPAFF_' . str_pad($id, 5, "0", STR_PAD_LEFT);
+            // $approve->reg_date = date('Y-m-d');
+        }
+        else if($approve->status==1){
+            $approve->status = 1;
+            $approve->renew_status=1;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
     public function reject(Request $request)
     {
         $cpa_ff = CPAFF::find($request->id);

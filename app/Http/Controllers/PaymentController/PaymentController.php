@@ -100,4 +100,10 @@ class PaymentController extends Controller
             return response()->json($e->getMessage(), 500);
         }
     }
+
+    public function getPaymentByInvoiceNo($invoiceNo)
+    {
+        $data = Invoice::where('invoiceNo',$invoiceNo)->first();
+        return response()->json($data,200);
+    }
 }

@@ -933,6 +933,29 @@
                         </div>--}}
                         <div class="card">
                             <div class="card-header">
+                                <h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Fees</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <button type="button" class="btn btn-info mt-0" data-toggle="modal" data-target="#payment_detail_modal">View Detail</button>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Status</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="payment_status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="card">
+                            <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">PAPP Education</h5>
                             </div>
                             <div class="card-body pt-0">
@@ -1055,7 +1078,8 @@
                                     <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                                 </div>
                             </div>--}}
-                        </div>                        
+                        </div>
+                                              
                     </div>
                     <div class="card shadow-lg" style="font-weight: bold">
                         <div class="card-header border-bottom">
@@ -1314,9 +1338,69 @@
     </div>
   </div>
   {{-- Reject Modal End --}}
+{{-- Payment detail Modal --}}
+<div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> PAPP Renewal Registration Fees</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul class="list-group mb-3 sticky-top fee_list">
+               
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{-- Payment detail Modal End --}}
 @endsection
 @push('scripts')
 <script>
     loadRenewPAPPData();
+        let papp_id=localStorage.getItem("papp_id");
+        $.ajax({
+            url: BACKEND_URL + "/get_payment_info/" + 'papp_renew'+papp_id,
+            type: 'get',
+            success: function (result) {
+                console.log("papp invoice",result);
+                if(result.status==0){
+                    $('#payment_status').append("Pending");
+                }
+                else{
+                    $('#payment_status').append("Paid");
+                }
+                var productDesc = result.productDesc.split(",");
+                var amount = result.amount.split(",");
+                var total=0;
+                for(var i in amount) { 
+                    total += parseInt(amount[i]);
+                }
+                console.log(total);
+                for(let i=0 ; i<amount.length ; i++){
+                    $('.fee_list').append(`
+                        <li
+                            class="list-group-item d-flex justify-content-between lh-condensed">
+                            <h6 class="my-0">${productDesc[i]}</h6>
+                            <span class="text-muted">- ${amount[i]} MMK</span>
+                        </li>
+                    `);
+                }
+                $('.fee_list').append(`
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (MMK)</span>
+                        <span id="total">
+                            - <strong>${total}</strong> MMK
+                        </span>
+                    </li>
+                `);
+            }
+        });
 </script>
 @endpush
