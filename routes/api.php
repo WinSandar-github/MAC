@@ -178,6 +178,8 @@ Route::post('/send_email', 'DARegisterController@send_email');
 //DA and CPA Offline Application
 // Route::post('/da_one_existing_register', 'DARegisterController@DAOneExistingRegister');
 Route::post('/da_existing_register', 'DARegisterController@DAExistingRegister');
+Route::post('/update_da_existing_register', 'DARegisterController@updateDAExistingRegister');
+
 Route::post('/filter_offline_student_info','DARegisterController@FilterOfflineApplicationList');
 Route::patch('/reject_offline_da_cpa/{id}', 'DARegisterController@rejectOfflineDACPA');
 Route::patch('/approve_offline_da_cpa/{id}', 'DARegisterController@approveOfflineDACPA');
