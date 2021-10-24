@@ -2015,7 +2015,7 @@ class SchoolController extends Controller
         $school->s_code   = $request->s_code;
         $school->type = $request->school_type;
         $school->regno = $request->regno;
-        $school->teacher_card = $school_card;
+        $school->school_card = $school_card;
         // if($request->offline_user=="true"){
         //     $school->payment_method = 'renew_exit_sch';
         // }else{
