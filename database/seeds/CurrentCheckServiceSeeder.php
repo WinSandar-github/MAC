@@ -49,7 +49,7 @@ class CurrentCheckServiceSeeder extends Seeder
                 'type'  => "1",
             ),
             array(
-                'name'  => "Non Statutory Audit - Enviromental Audit",
+                'name'  => "Non Statutory Audit - Environmental Audit",
                 'type'  => "1",
             ),
             array(

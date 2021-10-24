@@ -388,6 +388,7 @@ class SchoolController extends Controller
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
                 $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
                 $branch_school->school_id       = $school->id;
+                $branch_school->student_info_id       =$std_info->id;
                 $branch_school->save();
             }
         }
@@ -687,6 +688,14 @@ class SchoolController extends Controller
         }else{
             $manage_room_attach=null;
         } 
+        if ($request->hasfile('school_card')) {
+            $file = $request->file('school_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $school_card = '/storage/student_info/'.$name;
+        }else{
+            $school_card=$request->school_card;
+        } 
         $school = SchoolRegister::find($id);
         $school->name_mm         = $request->name_mm;
         $school->name_eng        = $request->name_eng;
@@ -720,13 +729,25 @@ class SchoolController extends Controller
         $school->type = $request->school_type;
         $school->approve_reject_status = 0;
         $school->initial_status = $request->initial_status;
-        
+         //reconnected form
+        if($request->offline_user=="true"){
+            
+            $school->last_registration_fee_year = $request->last_registration_fee_year;
+            $school->request_for_temporary_stop = $request->request_for_temporary_stop;
+            $school->from_request_stop_date = $request->from_request_stop_date;
+            //$school->to_request_stop_date = $request->to_request_stop_date;
+            $school->offline_user=$request->offline_user;
+            $school->from_valid_date = $request->from_valid_date;
+            $school->s_code = $request->s_code;
+            $school->school_card = $school_card;
+        }
         $school->save();
         //student info
-        $std_info = StudentInfo::find($request->student_info_id);
-        $std_info->payment_method = null;
-        $std_info->approve_reject_status = 0;
-        $std_info->save();
+        // $std_info = StudentInfo::find($request->student_info_id);
+        // $std_info->payment_method = null;
+        // $std_info->approve_reject_status = 0;
+        // $std_info->save();
+        //education
         //education
         if($request->degrees!=null){
             $degrees_certificates=implode(',', $degrees_certificates);
@@ -734,7 +755,7 @@ class SchoolController extends Controller
             for($i=0;$i < sizeof($request->degrees);$i++){
            
                 $education_histroy  =   new EducationHistroy();
-                $education_histroy->student_info_id = $std_info->id;
+                $education_histroy->student_info_id = $request->student_info_id;
                 $education_histroy->degree_name = $request->degrees[$i];
                 $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
                 $education_histroy->school_id       = $school->id;
@@ -744,29 +765,48 @@ class SchoolController extends Controller
             
             if ($request->hasfile('old_degrees_certificates')) {
                 foreach($request->file('old_degrees_certificates') as $file)
-                 {
-                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                     $file->move(public_path().'/storage/student_info/',$name);
-                     $old_degrees_certificates[] = $name;
-                 }
-                 for($i=0;$i <sizeof($request->old_degrees_id);$i++){
-                    $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->degree_name = $request->old_degrees[$i];
-                    $education_histroy->certificate     ='/storage/student_info/'.$old_degrees_certificates[$i];
-                    $education_histroy->save();
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_info/',$name);
+                    $old_degrees_certificates_all[] = $name;
+                    
                 }
-            }else{
-                $old_degrees_certificates=$request->old_degrees_certificates_h;
-                if($request->old_degrees!=null){
-                    for($i=0;$i <sizeof($request->old_degrees_id);$i++){
+            }
+            if($request->old_degrees!=null){
+                for($i=0;$i < sizeof($request->old_degrees);$i++){
+                    if(isset($request->old_degrees_certificates[$i])){
+                        
+                        if(sizeof($old_degrees_certificates_all)==sizeof($request->old_degrees)){
+                            $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                            $education_histroy->degree_name = $request->old_degrees[$i];
+                            $education_histroy->certificate     = '/storage/student_info/'.$old_degrees_certificates_all[$i];
+                            $education_histroy->save();
+                            
+                        }else{
+                            foreach($old_degrees_certificates_all as $file)
+                            {
+                                $old_degrees_certificates_one = $file;
+                                    
+                            }
+                            $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                            $education_histroy->degree_name = $request->old_degrees[$i];
+                            $education_histroy->certificate     = '/storage/student_info/'.$old_degrees_certificates_one;
+                            $education_histroy->save();
+                            
+                        }
+                           
+                    }else{
+                        $old_degrees_certificates_h=$request->old_degrees_certificates_h;
                         $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
                         $education_histroy->degree_name = $request->old_degrees[$i];
-                        $education_histroy->certificate     =$old_degrees_certificates[$i];
+                        $education_histroy->certificate     =$old_degrees_certificates_h[$i];
                         $education_histroy->save();
+                        
                     }
+                    
                 }
-                
             }
+            
             
         }
             
@@ -878,43 +918,64 @@ class SchoolController extends Controller
                 $teacher->save();
             }
         }else{
-        if ($request->hasfile('old_teacher_reg_copy')) {
-            foreach($request->file('old_teacher_reg_copy') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_info/',$name);
-                $new_teacher_reg_copy[] = $name;
-            }
-                for($i=0;$i<sizeof($request->old_teacher_name);$i++){
-                $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
-                $teacher->name             = $request->old_teacher_name[$i];
-                $teacher->nrc              = $request->old_teacher_nrc[$i];
-                $teacher->registration_no  = $request->old_teacher_registration_no[$i];
-                $teacher->education        = $request->old_teacher_education[$i];
-                $teacher->subject          = $request->old_teaching_subject[$i];
-                $teacher->ph_number        = $request->old_teacher_ph_number[$i];
-                $teacher->email            = $request->old_teacher_email[$i];
-                $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
-                $teacher->save();
-            }
-        }else{
-                $old_teacher_reg_copy=$request->old_teacher_reg_copy_h;
-                if($request->old_teacher_name!=null){
-                    for($i=0;$i<sizeof($request->old_teacher_name);$i++){
-                        $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
-                        $teacher->name             = $request->old_teacher_name[$i];
-                        $teacher->nrc              = $request->old_teacher_nrc[$i];
-                        $teacher->registration_no  = $request->old_teacher_registration_no[$i];
-                        $teacher->education        = $request->old_teacher_education[$i];
-                        $teacher->subject          = $request->old_teaching_subject[$i];
-                        $teacher->ph_number        = $request->old_teacher_ph_number[$i];
-                        $teacher->email            = $request->old_teacher_email[$i];
-                        $teacher->teacher_reg_copy = $old_teacher_reg_copy[$i];
-                        $teacher->save();
-                    }
+            if ($request->hasfile('old_teacher_reg_copy')) {
+                foreach($request->file('old_teacher_reg_copy') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_info/',$name);
+                    $new_teacher_reg_copy[] = $name;
                 }
-                
-            }
+            }  
+            if($request->old_teacher_name!=null){
+                for($i=0;$i<sizeof($request->old_teacher_name);$i++){
+                    if(isset($request->old_teacher_reg_copy[$i])){
+                        if(sizeof($new_teacher_reg_copy)==sizeof($request->old_teacher_name)){
+                            $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
+                            $teacher->name             = $request->old_teacher_name[$i];
+                            $teacher->nrc              = $request->old_teacher_nrc[$i];
+                            $teacher->registration_no  = $request->old_teacher_registration_no[$i];
+                            $teacher->education        = $request->old_teacher_education[$i];
+                            $teacher->subject          = $request->old_teaching_subject[$i];
+                            $teacher->ph_number        = $request->old_teacher_ph_number[$i];
+                            $teacher->email            = $request->old_teacher_email[$i];
+                            $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
+                            $teacher->save();
+                        }else{
+                            foreach($new_teacher_reg_copy as $file)
+                            {
+                                $old_teacher_reg_copy_one = $file;
+                                    
+                            }
+                            $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
+                            $teacher->name             = $request->old_teacher_name[$i];
+                            $teacher->nrc              = $request->old_teacher_nrc[$i];
+                            $teacher->registration_no  = $request->old_teacher_registration_no[$i];
+                            $teacher->education        = $request->old_teacher_education[$i];
+                            $teacher->subject          = $request->old_teaching_subject[$i];
+                            $teacher->ph_number        = $request->old_teacher_ph_number[$i];
+                            $teacher->email            = $request->old_teacher_email[$i];
+                            $teacher->teacher_reg_copy = '/storage/student_info/'.$old_teacher_reg_copy_one;
+                            $teacher->save();
+                        }
+                    }else{
+                        
+                        $old_teacher_reg_copy=$request->old_teacher_reg_copy_h;
+                            $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
+                            $teacher->name             = $request->old_teacher_name[$i];
+                            $teacher->nrc              = $request->old_teacher_nrc[$i];
+                            $teacher->registration_no  = $request->old_teacher_registration_no[$i];
+                            $teacher->education        = $request->old_teacher_education[$i];
+                            $teacher->subject          = $request->old_teaching_subject[$i];
+                            $teacher->ph_number        = $request->old_teacher_ph_number[$i];
+                            $teacher->email            = $request->old_teacher_email[$i];
+                            $teacher->teacher_reg_copy = $old_teacher_reg_copy[$i];
+                            $teacher->save();
+                        
+                        
+                    }
+                    
+                }
+            }  
             
         }
         //branch_school
@@ -937,80 +998,131 @@ class SchoolController extends Controller
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
                 $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
                 $branch_school->school_id       = $school->id;
+                $branch_school->student_info_id       =$request->student_info_id;
                 $branch_school->save();
             }
         }else{
-            if($request->old_branch_school_address!=null){
-                if($request->hasfile('old_branch_school_attach') && $request->hasfile('old_branch_sch_letter')) {
-                    foreach($request->file('old_branch_school_attach') as $file)
-                     {
-                         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                         $file->move(public_path().'/storage/student_info/',$name);
-                         $new_branch_school_attach[] = $name;
-                     }
-                     foreach($request->file('old_branch_sch_letter') as $file)
-                     {
-                         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                         $file->move(public_path().'/storage/student_info/',$name);
-                         $new_branch_sch_letter[] = $name;
-                     }
-                     for($i=0;$i<sizeof($request->old_branch_school_address);$i++){
-                        $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
-                        $branch_school->branch_school_address= $request->old_branch_school_address[$i];
-                        $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
-                        $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
-                        $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
-                        $branch_school->save();
-                    }
-                }else if($request->hasfile('old_branch_school_attach') && $request->old_branch_sch_letter_h){
-                    foreach($request->file('old_branch_school_attach') as $file)
-                     {
-                         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                         $file->move(public_path().'/storage/student_info/',$name);
-                         $new_branch_school_attach[] = $name;
-                     }
-                     $old_branch_sch_letter=$request->old_branch_sch_letter_h;
-                     for($i=0;$i<sizeof($request->old_branch_school_address);$i++){
-                        $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
-                        $branch_school->branch_school_address= $request->old_branch_school_address[$i];
-                        $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
-                        $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
-                        $branch_school->branch_sch_letter= $old_branch_sch_letter[$i];
-                        $branch_school->save();
-                    }
-                }else if ($request->hasfile('old_branch_sch_letter') && $request->old_branch_school_attach_h) {
-                    foreach($request->file('old_branch_sch_letter') as $file)
-                     {
-                         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                         $file->move(public_path().'/storage/student_info/',$name);
-                         $new_branch_sch_letter[] = $name;
-                     }
-                     $old_branch_school_attach=$request->old_branch_school_attach_h;
-                     for($i=0;$i<sizeof($new_branch_sch_letter);$i++){
-                        $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
-                        $branch_school->branch_school_address= $request->old_branch_school_address[$i];
-                        $branch_school->branch_school_attach = $old_branch_school_attach[$i];
-                        $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
-                        $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
-                        $branch_school->save();
-                    }
+            if($request->hasfile('old_branch_school_attach')) {
+                foreach($request->file('old_branch_school_attach') as $file)
+                 {
+                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                     $file->move(public_path().'/storage/student_info/',$name);
+                     $new_branch_school_attach[] = $name;
+                 }
+                 
+            }
+            if($request->hasfile('old_branch_sch_letter')){
+                foreach($request->file('old_branch_sch_letter') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_info/',$name);
+                    $new_branch_sch_letter[] = $name;
                 }
-                else{
-                    $old_branch_school_attach=$request->old_branch_school_attach_h;
-                    $old_branch_sch_letter=$request->old_branch_sch_letter_h;
-                    if($request->old_branch_school_address!=null){
-                        for($i=0;$i<sizeof($request->old_branch_school_address);$i++){
+            }
+            if($request->old_branch_school_address!=null){
+                for($i=0;$i<sizeof($request->old_branch_school_address);$i++){
+                    if((isset($request->old_branch_school_attach[$i])) && (isset($request->old_branch_sch_letter[$i]))){
+                        if((sizeof($new_branch_school_attach)==sizeof($request->old_branch_school_address)) && (sizeof($new_branch_sch_letter)==sizeof($request->old_branch_school_address))){
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                            $branch_school->save();
+                            
+                        }else{
+                            foreach($new_branch_school_attach as $file)
+                            {
+                                $old_branch_school_attach_one = $file;
+                                    
+                            }
+                            foreach($new_branch_sch_letter as $file)
+                            {
+                                $old_branch_sch_letter_one = $file;
+                                    
+                            }
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = '/storage/student_info/'.$old_branch_school_attach_one;
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$old_branch_sch_letter_one;
+                            $branch_school->save();
+                        }
+                    }else if(isset($request->old_branch_school_attach[$i])){
+                        if((sizeof($new_branch_school_attach)==sizeof($request->old_branch_school_address))){
+                            foreach($new_branch_sch_letter as $file)
+                            {
+                                $old_branch_sch_letter_one = $file;
+                                    
+                            }
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$old_branch_sch_letter_one;
+                            $branch_school->save();
+                        }else{
+                            foreach($new_branch_school_attach as $file)
+                            {
+                                $old_branch_school_attach_one = $file;
+                                    
+                            }
+                            $old_branch_sch_letter=$request->old_branch_sch_letter_h;
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = '/storage/student_info/'.$old_branch_school_attach_one;
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= $old_branch_sch_letter[$i];
+                            $branch_school->save();
+                        }
+                    }else if(isset($request->old_branch_sch_letter[$i])){
+                        if((sizeof($new_branch_sch_letter)==sizeof($request->old_branch_school_address))){
+                            // foreach($new_branch_school_attach as $file)
+                            // {
+                            //     $old_branch_school_attach_one = $file;
+                                    
+                            // }
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            //$branch_school->branch_school_attach = '/storage/student_info/'.$old_branch_school_attach_one;
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                            $branch_school->save();
+                            
+                        }else{
+                            foreach($new_branch_sch_letter as $file)
+                            {
+                                $old_branch_sch_letter_one=$file;
+                            }
+                            
+                            $old_branch_school_attach=$request->old_branch_school_attach_h;
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = $old_branch_school_attach[$i];
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$old_branch_sch_letter_one;
+                            $branch_school->save();
+                                
+                        }
+                    }else{
+                        $old_branch_school_attach=$request->old_branch_school_attach_h;
+                        $old_branch_sch_letter=$request->old_branch_sch_letter_h;
+    
                             $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
                             $branch_school->branch_school_address= $request->old_branch_school_address[$i];
                             $branch_school->branch_school_attach = $old_branch_school_attach[$i];
                             $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
                             $branch_school->branch_sch_letter= $old_branch_sch_letter[$i];
                             $branch_school->save();
-                        }
-                    }
+                        
+                        
+                    } 
                     
-                } 
-            }
+                            
+                }
+            }    
+            
+               
             
         }
         
@@ -1035,29 +1147,45 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $new_school_building_attach[] = $name;
                  }
-                 for($i=0;$i<sizeof($request->old_bulding_type);$i++){
-                    $bulding_type =tbl_bulding_type::find($request->old_bulding_id[$i]);
-                    $bulding_type->bulding_type= $request->old_bulding_type[$i];
-                    $bulding_type->building_measurement = $request->old_building_measurement[$i];
-                    $bulding_type->floor_numbers= $request->old_floor_numbers[$i];
-                    $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
-                    $bulding_type->save();
-                }
-                
-            }else{
-                $old_school_building_attach=$request->old_school_building_attach_h;
-                if($request->old_bulding_type!=null){
-                    for($i=0;$i<sizeof($request->old_bulding_type);$i++){
+            }
+            if($request->old_bulding_type!=null){
+                for($i=0;$i<sizeof($request->old_bulding_type);$i++){
+                    if(isset($request->old_school_building_attach[$i])){
+                        if(sizeof($new_school_building_attach)==sizeof($request->old_bulding_type)){
+                            $bulding_type =tbl_bulding_type::find($request->old_bulding_id[$i]);
+                            $bulding_type->bulding_type= $request->old_bulding_type[$i];
+                            $bulding_type->building_measurement = $request->old_building_measurement[$i];
+                            $bulding_type->floor_numbers= $request->old_floor_numbers[$i];
+                            $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
+                            $bulding_type->save();
+                        }else{
+                            foreach($new_school_building_attach as $file)
+                            {
+                                $new_school_building_attach_one = $file;
+                                    
+                            }
+                            $bulding_type =tbl_bulding_type::find($request->old_bulding_id[$i]);
+                            $bulding_type->bulding_type= $request->old_bulding_type[$i];
+                            $bulding_type->building_measurement = $request->old_building_measurement[$i];
+                            $bulding_type->floor_numbers= $request->old_floor_numbers[$i];
+                            $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach_one;
+                            $bulding_type->save();
+                        }
+                        
+                    }else{
+                        $old_school_building_attach=$request->old_school_building_attach_h;
                         $bulding_type =tbl_bulding_type::find($request->old_bulding_id[$i]);
                         $bulding_type->bulding_type= $request->old_bulding_type[$i];
                         $bulding_type->building_measurement = $request->old_building_measurement[$i];
                         $bulding_type->floor_numbers= $request->old_floor_numbers[$i];
                         $bulding_type->school_building_attach= $old_school_building_attach[$i];
                         $bulding_type->save();
+                        
+                        
                     }
                 }
-                
-            } 
+            }
+            
             
         }
         //classroom_number
@@ -1082,20 +1210,34 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $new_classroom_attach[] = $name;
                  }
-                 for($i=0;$i<sizeof($request->old_classroom_number);$i++){
-                    $classroom_number =tbl_classroom::find($request->old_classroom_id[$i]);
-                    $classroom_number->classroom_number= $request->old_classroom_number[$i];
-                    $classroom_number->classroom_measurement = $request->old_classroom_measurement[$i];
-                    $classroom_number->student_num_limit= $request->old_student_num_limit[$i];
-                    $classroom_number->air_con= $request->old_air_con[$i];
-                    $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
-                    $classroom_number->save();
-                }
-                
-            }else{
-                $old_classroom_attach=$request->old_classroom_attach_h;
-                if($request->old_classroom_number!=null){
-                    for($i=0;$i<sizeof($request->old_classroom_number);$i++){
+            }
+            if($request->old_classroom_number!=null){
+                for($i=0;$i<sizeof($request->old_classroom_number);$i++){
+                    if(isset($request->old_classroom_attach[$i])){
+                        if(sizeof($new_classroom_attach)==sizeof($request->old_classroom_number)){
+                            $classroom_number =tbl_classroom::find($request->old_classroom_id[$i]);
+                            $classroom_number->classroom_number= $request->old_classroom_number[$i];
+                            $classroom_number->classroom_measurement = $request->old_classroom_measurement[$i];
+                            $classroom_number->student_num_limit= $request->old_student_num_limit[$i];
+                            $classroom_number->air_con= $request->old_air_con[$i];
+                            $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
+                            $classroom_number->save();
+                        }else{
+                            foreach($new_classroom_attach as $file)
+                            {
+                                $new_classroom_attach_one = $file;
+                                    
+                            }
+                            $classroom_number =tbl_classroom::find($request->old_classroom_id[$i]);
+                            $classroom_number->classroom_number= $request->old_classroom_number[$i];
+                            $classroom_number->classroom_measurement = $request->old_classroom_measurement[$i];
+                            $classroom_number->student_num_limit= $request->old_student_num_limit[$i];
+                            $classroom_number->air_con= $request->old_air_con[$i];
+                            $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach_one;
+                            $classroom_number->save();
+                        }
+                    }else{
+                        $old_classroom_attach=$request->old_classroom_attach_h;
                         $classroom_number =tbl_classroom::find($request->old_classroom_id[$i]);
                         $classroom_number->classroom_number= $request->old_classroom_number[$i];
                         $classroom_number->classroom_measurement = $request->old_classroom_measurement[$i];
@@ -1103,10 +1245,14 @@ class SchoolController extends Controller
                         $classroom_number->air_con= $request->old_air_con[$i];
                         $classroom_number->classroom_attach= $old_classroom_attach[$i];
                         $classroom_number->save();
-                    }
+                        
+                    } 
+                    
                 }
+            }
                 
-            } 
+                
+            
             
         }
         //toilet_type
@@ -1129,26 +1275,42 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $new_toilet_attach[] = $name;
                  }
-                 for($i=0;$i<sizeof($request->old_toilet_type);$i++){
-                    $toilet_type =tbl_toilet_type::find($request->old_toilet_id[$i]);
-                    $toilet_type->toilet_type= $request->old_toilet_type[$i];
-                    $toilet_type->toilet_number = $request->old_toilet_number[$i];
-                    $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
-                    $toilet_type->save();
-                }
-            }else{
-                $old_toilet_attach=$request->old_toilet_attach_h;
-                if($request->old_toilet_type!=null){
-                    for($i=0;$i<sizeof($request->old_toilet_type);$i++){
+            }
+            if($request->old_toilet_type!=null){
+                for($i=0;$i<sizeof($request->old_toilet_type);$i++){
+                    if(isset($request->old_toilet_attach[$i])){
+                        if(sizeof($new_toilet_attach)==sizeof($request->old_toilet_type)){
+                            $toilet_type =tbl_toilet_type::find($request->old_toilet_id[$i]);
+                            $toilet_type->toilet_type= $request->old_toilet_type[$i];
+                            $toilet_type->toilet_number = $request->old_toilet_number[$i];
+                            $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
+                            $toilet_type->save();
+                        }else{
+                            foreach($new_toilet_attach as $file)
+                            {
+                                $new_toilet_attach_one = $file;
+                                    
+                            }
+                            $toilet_type =tbl_toilet_type::find($request->old_toilet_id[$i]);
+                            $toilet_type->toilet_type= $request->old_toilet_type[$i];
+                            $toilet_type->toilet_number = $request->old_toilet_number[$i];
+                            $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach_one;
+                            $toilet_type->save();
+                        }
+                    }else{
+                        $old_toilet_attach=$request->old_toilet_attach_h;
                         $toilet_type =tbl_toilet_type::find($request->old_toilet_id[$i]);
                         $toilet_type->toilet_type= $request->old_toilet_type[$i];
                         $toilet_type->toilet_number = $request->old_toilet_number[$i];
                         $toilet_type->toilet_attach= $old_toilet_attach[$i];
                         $toilet_type->save();
-                    }
+                        
+                        }
+                        
+                   
                 }
-                
-            } 
+            }
+            
             
         }
         //manage_room_numbers
@@ -1171,28 +1333,63 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $new_manage_room_attach[] = $name;
                  }
+            }
+            if($request->old_manage_room_numbers!=null){
                 for($i=0;$i<sizeof($request->old_manage_room_numbers);$i++){
-                    $manage_room_numbers =tbl_manage_room_numbers::find($request->old_manage_room_id[$i]);
-                    $manage_room_numbers->manage_room_numbers= $request->old_manage_room_numbers[$i];
-                    $manage_room_numbers->manage_room_measurement = $request->old_manage_room_measurement[$i];
-                    $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
-                    $manage_room_numbers->save();
-                }
-            }else{
-                $old_manage_room_attach=$request->old_manage_room_attach_h;
-                if($request->old_manage_room_numbers!=null){
-                    for($i=0;$i<sizeof($request->old_manage_room_numbers);$i++){
+                    if(isset($request->old_manage_room_attach[$i])){
+                        if(sizeof($new_manage_room_attach)==sizeof($request->old_manage_room_numbers)){
+                            $manage_room_numbers =tbl_manage_room_numbers::find($request->old_manage_room_id[$i]);
+                            $manage_room_numbers->manage_room_numbers= $request->old_manage_room_numbers[$i];
+                            $manage_room_numbers->manage_room_measurement = $request->old_manage_room_measurement[$i];
+                            $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
+                            $manage_room_numbers->save();
+                        }else{
+                            foreach($new_manage_room_attach as $file)
+                            {
+                                $new_manage_room_attach_one = $file;
+                                    
+                            }
+                            $manage_room_numbers =tbl_manage_room_numbers::find($request->old_manage_room_id[$i]);
+                            $manage_room_numbers->manage_room_numbers= $request->old_manage_room_numbers[$i];
+                            $manage_room_numbers->manage_room_measurement = $request->old_manage_room_measurement[$i];
+                            $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach_one;
+                            $manage_room_numbers->save();
+                        }
+                    }else{
+                        $old_manage_room_attach=$request->old_manage_room_attach_h;
                         $manage_room_numbers =tbl_manage_room_numbers::find($request->old_manage_room_id[$i]);
                         $manage_room_numbers->manage_room_numbers= $request->old_manage_room_numbers[$i];
                         $manage_room_numbers->manage_room_measurement = $request->old_manage_room_measurement[$i];
                         $manage_room_numbers->manage_room_attach= $old_manage_room_attach[$i];
                         $manage_room_numbers->save();
-                    }
+                            
+                    } 
+                        
                 }
-                
-            } 
+            }
+            
+            
             
         }
+        //invoice
+        $memberships = Membership::where('membership_name', 'like', 'School')->get();
+            if($request->offline_user!="true"){
+                $invoice = Invoice::where('invoiceNo','init_sch'.$id);
+                // $invoice->student_info_id = $std_info->id;
+                // $invoice->invoiceNo = 'init_sch'.$school->id;
+                
+                $invoice->name_eng        = $request->name_eng;
+                $invoice->email           = $request->email;
+                $invoice->phone           = $request->phone;
+
+                $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee,School Registration';
+                foreach($memberships as $memberships){
+                    $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+                }
+            
+                $invoice->status          = 0;
+                $invoice->save();
+            }
         return response()->json([
             'message' => 'You have renewed successfully.'
         ],200);
@@ -1770,7 +1967,14 @@ class SchoolController extends Controller
         }else{
             $manage_room_attach=null;
         } 
-        
+        if ($request->hasfile('school_card')) {
+            $file = $request->file('school_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $school_card = '/storage/student_info/'.$name;
+        }else{
+            $school_card=null;
+        } 
         $school = new SchoolRegister();
         $school->name_mm         = $request->name_mm;
         $school->name_eng        = $request->name_eng;
@@ -1811,6 +2015,7 @@ class SchoolController extends Controller
         $school->s_code   = $request->s_code;
         $school->type = $request->school_type;
         $school->regno = $request->regno;
+        $school->teacher_card = $school_card;
         // if($request->offline_user=="true"){
         //     $school->payment_method = 'renew_exit_sch';
         // }else{
@@ -1931,18 +2136,20 @@ class SchoolController extends Controller
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
                 $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
                 $branch_school->school_id       = $school->id;
+                $branch_school->student_info_id       =$request->student_info_id;
                 $branch_school->save();
             }
         }else{
             if($request->old_branch_school_address!=null){
                 for($i=0;$i<sizeof($request->branch_school_address);$i++){
-                    $branch_school =tbl_branch_school::find($request->old_branch_school_id);
+                    $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
                     $branch_school->branch_school_address= $request->old_branch_school_address[$i];
                     //$branch_school->renew_branch_school_address= $request->branch_school_address[$i];
                     //$branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
                     //$branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
                     //$branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];//'/storage/student_info/'.
                     $branch_school->school_id       = $school->id;
+                    //$branch_school->student_info_id       =$request->student_info_id;
                     $branch_school->save();
                 }
             }
@@ -2292,6 +2499,14 @@ class SchoolController extends Controller
         }else{
             $manage_room_attach=null;
         } 
+        if ($request->hasfile('school_card')) {
+            $file = $request->file('school_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $school_card = '/storage/student_info/'.$name;
+        }else{
+            $school_card=$request->school_card;
+        } 
         $school = SchoolRegister::find($id);
         $school->name_mm         = $request->name_mm;
         $school->name_eng        = $request->name_eng;
@@ -2326,7 +2541,7 @@ class SchoolController extends Controller
         $school->type = $request->school_type;
         $school->approve_reject_status = 0;
         $school->initial_status = 1;
-        
+        $school->school_card = $school_card;
         $school->save();
         
         //education
@@ -2346,30 +2561,48 @@ class SchoolController extends Controller
             
             if ($request->hasfile('old_degrees_certificates')) {
                 foreach($request->file('old_degrees_certificates') as $file)
-                 {
-                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                     $file->move(public_path().'/storage/student_info/',$name);
-                     $old_degrees_certificates[] = $name;
-                 }
-                 $old_degrees_certificates= str_replace('/storage/student_info/', '', $request->old_degrees_certificates_h);
-                 for($i=0;$i <sizeof($request->old_degrees);$i++){
-                    $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                    $education_histroy->degree_name = $request->old_degrees[$i];
-                    $education_histroy->certificate     ='/storage/student_info/'.$old_degrees_certificates[$i];
-                    $education_histroy->save();
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_info/',$name);
+                    $old_degrees_certificates_all[] = $name;
+                    
                 }
-            }else{
-                $old_degrees_certificates=$request->old_degrees_certificates_h;
-                if($request->old_degrees!=null){
-                    for($i=0;$i <sizeof($request->old_degrees);$i++){
+            }
+            if($request->old_degrees!=null){
+                for($i=0;$i < sizeof($request->old_degrees);$i++){
+                    if(isset($request->old_degrees_certificates[$i])){
+                        
+                        if(sizeof($old_degrees_certificates_all)==sizeof($request->old_degrees)){
+                            $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                            $education_histroy->degree_name = $request->old_degrees[$i];
+                            $education_histroy->certificate     = '/storage/student_info/'.$old_degrees_certificates_all[$i];
+                            $education_histroy->save();
+                            
+                        }else{
+                            foreach($old_degrees_certificates_all as $file)
+                            {
+                                $old_degrees_certificates_one = $file;
+                                    
+                            }
+                            $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
+                            $education_histroy->degree_name = $request->old_degrees[$i];
+                            $education_histroy->certificate     = '/storage/student_info/'.$old_degrees_certificates_one;
+                            $education_histroy->save();
+                            
+                        }
+                           
+                    }else{
+                        $old_degrees_certificates_h=$request->old_degrees_certificates_h;
                         $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
                         $education_histroy->degree_name = $request->old_degrees[$i];
-                        $education_histroy->certificate     =$old_degrees_certificates[$i];
+                        $education_histroy->certificate     =$old_degrees_certificates_h[$i];
                         $education_histroy->save();
+                        
                     }
+                    
                 }
-                
             }
+            
             
         }
             
@@ -2481,43 +2714,64 @@ class SchoolController extends Controller
                 $teacher->save();
             }
         }else{
-        if ($request->hasfile('old_teacher_reg_copy')) {
-            foreach($request->file('old_teacher_reg_copy') as $file)
-            {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                $file->move(public_path().'/storage/student_info/',$name);
-                $new_teacher_reg_copy[] = $name;
-            }
-                for($i=0;$i<sizeof($request->old_teacher_name);$i++){
-                $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
-                $teacher->name             = $request->old_teacher_name[$i];
-                $teacher->nrc              = $request->old_teacher_nrc[$i];
-                $teacher->registration_no  = $request->old_teacher_registration_no[$i];
-                $teacher->education        = $request->old_teacher_education[$i];
-                $teacher->subject          = $request->old_teaching_subject[$i];
-                $teacher->ph_number        = $request->old_teacher_ph_number[$i];
-                $teacher->email            = $request->old_teacher_email[$i];
-                $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
-                $teacher->save();
-            }
-        }else{
-                $old_teacher_reg_copy=$request->old_teacher_reg_copy_h;
-                if($request->old_teacher_name!=null){
-                    for($i=0;$i<sizeof($request->old_teacher_name);$i++){
-                        $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
-                        $teacher->name             = $request->old_teacher_name[$i];
-                        $teacher->nrc              = $request->old_teacher_nrc[$i];
-                        $teacher->registration_no  = $request->old_teacher_registration_no[$i];
-                        $teacher->education        = $request->old_teacher_education[$i];
-                        $teacher->subject          = $request->old_teaching_subject[$i];
-                        $teacher->ph_number        = $request->old_teacher_ph_number[$i];
-                        $teacher->email            = $request->old_teacher_email[$i];
-                        $teacher->teacher_reg_copy = $old_teacher_reg_copy[$i];
-                        $teacher->save();
-                    }
+            if ($request->hasfile('old_teacher_reg_copy')) {
+                foreach($request->file('old_teacher_reg_copy') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_info/',$name);
+                    $new_teacher_reg_copy[] = $name;
                 }
-                
-            }
+            }  
+            if($request->old_teacher_name!=null){
+                for($i=0;$i<sizeof($request->old_teacher_name);$i++){
+                    if(isset($request->old_teacher_reg_copy[$i])){
+                        if(sizeof($new_teacher_reg_copy)==sizeof($request->old_teacher_name)){
+                            $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
+                            $teacher->name             = $request->old_teacher_name[$i];
+                            $teacher->nrc              = $request->old_teacher_nrc[$i];
+                            $teacher->registration_no  = $request->old_teacher_registration_no[$i];
+                            $teacher->education        = $request->old_teacher_education[$i];
+                            $teacher->subject          = $request->old_teaching_subject[$i];
+                            $teacher->ph_number        = $request->old_teacher_ph_number[$i];
+                            $teacher->email            = $request->old_teacher_email[$i];
+                            $teacher->teacher_reg_copy = '/storage/student_info/'.$new_teacher_reg_copy[$i];
+                            $teacher->save();
+                        }else{
+                            foreach($new_teacher_reg_copy as $file)
+                            {
+                                $old_teacher_reg_copy_one = $file;
+                                    
+                            }
+                            $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
+                            $teacher->name             = $request->old_teacher_name[$i];
+                            $teacher->nrc              = $request->old_teacher_nrc[$i];
+                            $teacher->registration_no  = $request->old_teacher_registration_no[$i];
+                            $teacher->education        = $request->old_teacher_education[$i];
+                            $teacher->subject          = $request->old_teaching_subject[$i];
+                            $teacher->ph_number        = $request->old_teacher_ph_number[$i];
+                            $teacher->email            = $request->old_teacher_email[$i];
+                            $teacher->teacher_reg_copy = '/storage/student_info/'.$old_teacher_reg_copy_one;
+                            $teacher->save();
+                        }
+                    }else{
+                        
+                        $old_teacher_reg_copy=$request->old_teacher_reg_copy_h;
+                            $teacher =SchoolTeacher::find($request->old_teacher_id[$i]);
+                            $teacher->name             = $request->old_teacher_name[$i];
+                            $teacher->nrc              = $request->old_teacher_nrc[$i];
+                            $teacher->registration_no  = $request->old_teacher_registration_no[$i];
+                            $teacher->education        = $request->old_teacher_education[$i];
+                            $teacher->subject          = $request->old_teaching_subject[$i];
+                            $teacher->ph_number        = $request->old_teacher_ph_number[$i];
+                            $teacher->email            = $request->old_teacher_email[$i];
+                            $teacher->teacher_reg_copy = $old_teacher_reg_copy[$i];
+                            $teacher->save();
+                        
+                        
+                    }
+                    
+                }
+            }  
             
         }
         //branch_school
@@ -2540,80 +2794,131 @@ class SchoolController extends Controller
                 $branch_school->branch_sch_own_type= $request->branch_sch_own_type[$i];
                 $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
                 $branch_school->school_id       = $school->id;
+                $branch_school->student_info_id       =$request->student_info_id;
                 $branch_school->save();
             }
         }else{
-            if($request->old_branch_school_address!=null){
-                if($request->hasfile('old_branch_school_attach') && $request->hasfile('old_branch_sch_letter')) {
-                    foreach($request->file('old_branch_school_attach') as $file)
-                     {
-                         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                         $file->move(public_path().'/storage/student_info/',$name);
-                         $new_branch_school_attach[] = $name;
-                     }
-                     foreach($request->file('old_branch_sch_letter') as $file)
-                     {
-                         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                         $file->move(public_path().'/storage/student_info/',$name);
-                         $new_branch_sch_letter[] = $name;
-                     }
-                     for($i=0;$i<sizeof($request->old_branch_school_address);$i++){
-                        $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
-                        $branch_school->branch_school_address= $request->old_branch_school_address[$i];
-                        $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
-                        $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
-                        $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
-                        $branch_school->save();
-                    }
-                }else if($request->hasfile('old_branch_school_attach') && $request->old_branch_sch_letter_h){
-                    foreach($request->file('old_branch_school_attach') as $file)
-                     {
-                         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                         $file->move(public_path().'/storage/student_info/',$name);
-                         $new_branch_school_attach[] = $name;
-                     }
-                     $old_branch_sch_letter=$request->old_branch_sch_letter_h;
-                     for($i=0;$i<sizeof($request->old_branch_school_address);$i++){
-                        $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
-                        $branch_school->branch_school_address= $request->old_branch_school_address[$i];
-                        $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
-                        $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
-                        $branch_school->branch_sch_letter= $old_branch_sch_letter[$i];
-                        $branch_school->save();
-                    }
-                }else if ($request->hasfile('old_branch_sch_letter') && $request->old_branch_school_attach_h) {
-                    foreach($request->file('old_branch_sch_letter') as $file)
-                     {
-                         $name  = uniqid().'.'.$file->getClientOriginalExtension();
-                         $file->move(public_path().'/storage/student_info/',$name);
-                         $new_branch_sch_letter[] = $name;
-                     }
-                     $old_branch_school_attach=$request->old_branch_school_attach_h;
-                     for($i=0;$i<sizeof($new_branch_sch_letter);$i++){
-                        $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
-                        $branch_school->branch_school_address= $request->old_branch_school_address[$i];
-                        $branch_school->branch_school_attach = $old_branch_school_attach[$i];
-                        $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
-                        $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
-                        $branch_school->save();
-                    }
+            if($request->hasfile('old_branch_school_attach')) {
+                foreach($request->file('old_branch_school_attach') as $file)
+                 {
+                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                     $file->move(public_path().'/storage/student_info/',$name);
+                     $new_branch_school_attach[] = $name;
+                 }
+                 
+            }
+            if($request->hasfile('old_branch_sch_letter')){
+                foreach($request->file('old_branch_sch_letter') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_info/',$name);
+                    $new_branch_sch_letter[] = $name;
                 }
-                else{
-                    $old_branch_school_attach=$request->old_branch_school_attach_h;
-                    $old_branch_sch_letter=$request->old_branch_sch_letter_h;
-                    if($request->old_branch_school_address!=null){
-                        for($i=0;$i<sizeof($request->old_branch_school_address);$i++){
+            }
+            if($request->old_branch_school_address!=null){
+                for($i=0;$i<sizeof($request->old_branch_school_address);$i++){
+                    if((isset($request->old_branch_school_attach[$i])) && (isset($request->old_branch_sch_letter[$i]))){
+                        if((sizeof($new_branch_school_attach)==sizeof($request->old_branch_school_address)) && (sizeof($new_branch_sch_letter)==sizeof($request->old_branch_school_address))){
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                            $branch_school->save();
+                            
+                        }else{
+                            foreach($new_branch_school_attach as $file)
+                            {
+                                $old_branch_school_attach_one = $file;
+                                    
+                            }
+                            foreach($new_branch_sch_letter as $file)
+                            {
+                                $old_branch_sch_letter_one = $file;
+                                    
+                            }
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = '/storage/student_info/'.$old_branch_school_attach_one;
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$old_branch_sch_letter_one;
+                            $branch_school->save();
+                        }
+                    }else if(isset($request->old_branch_school_attach[$i])){
+                        if((sizeof($new_branch_school_attach)==sizeof($request->old_branch_school_address))){
+                            foreach($new_branch_sch_letter as $file)
+                            {
+                                $old_branch_sch_letter_one = $file;
+                                    
+                            }
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = '/storage/student_info/'.$new_branch_school_attach[$i];
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$old_branch_sch_letter_one;
+                            $branch_school->save();
+                        }else{
+                            foreach($new_branch_school_attach as $file)
+                            {
+                                $old_branch_school_attach_one = $file;
+                                    
+                            }
+                            $old_branch_sch_letter=$request->old_branch_sch_letter_h;
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = '/storage/student_info/'.$old_branch_school_attach_one;
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= $old_branch_sch_letter[$i];
+                            $branch_school->save();
+                        }
+                    }else if(isset($request->old_branch_sch_letter[$i])){
+                        if((sizeof($new_branch_sch_letter)==sizeof($request->old_branch_school_address))){
+                            // foreach($new_branch_school_attach as $file)
+                            // {
+                            //     $old_branch_school_attach_one = $file;
+                                    
+                            // }
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            //$branch_school->branch_school_attach = '/storage/student_info/'.$old_branch_school_attach_one;
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$new_branch_sch_letter[$i];
+                            $branch_school->save();
+                            
+                        }else{
+                            foreach($new_branch_sch_letter as $file)
+                            {
+                                $old_branch_sch_letter_one=$file;
+                            }
+                            
+                            $old_branch_school_attach=$request->old_branch_school_attach_h;
+                            $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
+                            $branch_school->branch_school_address= $request->old_branch_school_address[$i];
+                            $branch_school->branch_school_attach = $old_branch_school_attach[$i];
+                            $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
+                            $branch_school->branch_sch_letter= '/storage/student_info/'.$old_branch_sch_letter_one;
+                            $branch_school->save();
+                                
+                        }
+                    }else{
+                        $old_branch_school_attach=$request->old_branch_school_attach_h;
+                        $old_branch_sch_letter=$request->old_branch_sch_letter_h;
+    
                             $branch_school =tbl_branch_school::find($request->old_branch_school_id[$i]);
                             $branch_school->branch_school_address= $request->old_branch_school_address[$i];
                             $branch_school->branch_school_attach = $old_branch_school_attach[$i];
                             $branch_school->branch_sch_own_type= $request->old_branch_sch_own_type[$i];
                             $branch_school->branch_sch_letter= $old_branch_sch_letter[$i];
                             $branch_school->save();
-                        }
-                    }
+                        
+                        
+                    } 
                     
-                } 
-            }
+                            
+                }
+            }    
+            
+               
             
         }
         
@@ -2638,29 +2943,45 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $new_school_building_attach[] = $name;
                  }
-                 for($i=0;$i<sizeof($request->old_bulding_type);$i++){
-                    $bulding_type =tbl_bulding_type::find($request->old_bulding_id[$i]);
-                    $bulding_type->bulding_type= $request->old_bulding_type[$i];
-                    $bulding_type->building_measurement = $request->old_building_measurement[$i];
-                    $bulding_type->floor_numbers= $request->old_floor_numbers[$i];
-                    $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
-                    $bulding_type->save();
-                }
-                
-            }else{
-                $old_school_building_attach=$request->old_school_building_attach_h;
-                if($request->old_bulding_type!=null){
-                    for($i=0;$i<sizeof($request->old_bulding_type);$i++){
+            }
+            if($request->old_bulding_type!=null){
+                for($i=0;$i<sizeof($request->old_bulding_type);$i++){
+                    if(isset($request->old_school_building_attach[$i])){
+                        if(sizeof($new_school_building_attach)==sizeof($request->old_bulding_type)){
+                            $bulding_type =tbl_bulding_type::find($request->old_bulding_id[$i]);
+                            $bulding_type->bulding_type= $request->old_bulding_type[$i];
+                            $bulding_type->building_measurement = $request->old_building_measurement[$i];
+                            $bulding_type->floor_numbers= $request->old_floor_numbers[$i];
+                            $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach[$i];
+                            $bulding_type->save();
+                        }else{
+                            foreach($new_school_building_attach as $file)
+                            {
+                                $new_school_building_attach_one = $file;
+                                    
+                            }
+                            $bulding_type =tbl_bulding_type::find($request->old_bulding_id[$i]);
+                            $bulding_type->bulding_type= $request->old_bulding_type[$i];
+                            $bulding_type->building_measurement = $request->old_building_measurement[$i];
+                            $bulding_type->floor_numbers= $request->old_floor_numbers[$i];
+                            $bulding_type->school_building_attach= '/storage/student_info/'.$new_school_building_attach_one;
+                            $bulding_type->save();
+                        }
+                        
+                    }else{
+                        $old_school_building_attach=$request->old_school_building_attach_h;
                         $bulding_type =tbl_bulding_type::find($request->old_bulding_id[$i]);
                         $bulding_type->bulding_type= $request->old_bulding_type[$i];
                         $bulding_type->building_measurement = $request->old_building_measurement[$i];
                         $bulding_type->floor_numbers= $request->old_floor_numbers[$i];
                         $bulding_type->school_building_attach= $old_school_building_attach[$i];
                         $bulding_type->save();
+                        
+                        
                     }
                 }
-                
-            } 
+            }
+            
             
         }
         //classroom_number
@@ -2685,20 +3006,34 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $new_classroom_attach[] = $name;
                  }
-                 for($i=0;$i<sizeof($request->old_classroom_number);$i++){
-                    $classroom_number =tbl_classroom::find($request->old_classroom_id[$i]);
-                    $classroom_number->classroom_number= $request->old_classroom_number[$i];
-                    $classroom_number->classroom_measurement = $request->old_classroom_measurement[$i];
-                    $classroom_number->student_num_limit= $request->old_student_num_limit[$i];
-                    $classroom_number->air_con= $request->old_air_con[$i];
-                    $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
-                    $classroom_number->save();
-                }
-                
-            }else{
-                $old_classroom_attach=$request->old_classroom_attach_h;
-                if($request->old_classroom_number!=null){
-                    for($i=0;$i<sizeof($request->old_classroom_number);$i++){
+            }
+            if($request->old_classroom_number!=null){
+                for($i=0;$i<sizeof($request->old_classroom_number);$i++){
+                    if(isset($request->old_classroom_attach[$i])){
+                        if(sizeof($new_classroom_attach)==sizeof($request->old_classroom_number)){
+                            $classroom_number =tbl_classroom::find($request->old_classroom_id[$i]);
+                            $classroom_number->classroom_number= $request->old_classroom_number[$i];
+                            $classroom_number->classroom_measurement = $request->old_classroom_measurement[$i];
+                            $classroom_number->student_num_limit= $request->old_student_num_limit[$i];
+                            $classroom_number->air_con= $request->old_air_con[$i];
+                            $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach[$i];
+                            $classroom_number->save();
+                        }else{
+                            foreach($new_classroom_attach as $file)
+                            {
+                                $new_classroom_attach_one = $file;
+                                    
+                            }
+                            $classroom_number =tbl_classroom::find($request->old_classroom_id[$i]);
+                            $classroom_number->classroom_number= $request->old_classroom_number[$i];
+                            $classroom_number->classroom_measurement = $request->old_classroom_measurement[$i];
+                            $classroom_number->student_num_limit= $request->old_student_num_limit[$i];
+                            $classroom_number->air_con= $request->old_air_con[$i];
+                            $classroom_number->classroom_attach= '/storage/student_info/'.$new_classroom_attach_one;
+                            $classroom_number->save();
+                        }
+                    }else{
+                        $old_classroom_attach=$request->old_classroom_attach_h;
                         $classroom_number =tbl_classroom::find($request->old_classroom_id[$i]);
                         $classroom_number->classroom_number= $request->old_classroom_number[$i];
                         $classroom_number->classroom_measurement = $request->old_classroom_measurement[$i];
@@ -2706,10 +3041,14 @@ class SchoolController extends Controller
                         $classroom_number->air_con= $request->old_air_con[$i];
                         $classroom_number->classroom_attach= $old_classroom_attach[$i];
                         $classroom_number->save();
-                    }
+                        
+                    } 
+                    
                 }
+            }
                 
-            } 
+                
+            
             
         }
         //toilet_type
@@ -2732,26 +3071,42 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $new_toilet_attach[] = $name;
                  }
-                 for($i=0;$i<sizeof($request->old_toilet_type);$i++){
-                    $toilet_type =tbl_toilet_type::find($request->old_toilet_id[$i]);
-                    $toilet_type->toilet_type= $request->old_toilet_type[$i];
-                    $toilet_type->toilet_number = $request->old_toilet_number[$i];
-                    $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
-                    $toilet_type->save();
-                }
-            }else{
-                $old_toilet_attach=$request->old_toilet_attach_h;
-                if($request->old_toilet_type!=null){
-                    for($i=0;$i<sizeof($request->old_toilet_type);$i++){
+            }
+            if($request->old_toilet_type!=null){
+                for($i=0;$i<sizeof($request->old_toilet_type);$i++){
+                    if(isset($request->old_toilet_attach[$i])){
+                        if(sizeof($new_toilet_attach)==sizeof($request->old_toilet_type)){
+                            $toilet_type =tbl_toilet_type::find($request->old_toilet_id[$i]);
+                            $toilet_type->toilet_type= $request->old_toilet_type[$i];
+                            $toilet_type->toilet_number = $request->old_toilet_number[$i];
+                            $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach[$i];
+                            $toilet_type->save();
+                        }else{
+                            foreach($new_toilet_attach as $file)
+                            {
+                                $new_toilet_attach_one = $file;
+                                    
+                            }
+                            $toilet_type =tbl_toilet_type::find($request->old_toilet_id[$i]);
+                            $toilet_type->toilet_type= $request->old_toilet_type[$i];
+                            $toilet_type->toilet_number = $request->old_toilet_number[$i];
+                            $toilet_type->toilet_attach= '/storage/student_info/'.$new_toilet_attach_one;
+                            $toilet_type->save();
+                        }
+                    }else{
+                        $old_toilet_attach=$request->old_toilet_attach_h;
                         $toilet_type =tbl_toilet_type::find($request->old_toilet_id[$i]);
                         $toilet_type->toilet_type= $request->old_toilet_type[$i];
                         $toilet_type->toilet_number = $request->old_toilet_number[$i];
                         $toilet_type->toilet_attach= $old_toilet_attach[$i];
                         $toilet_type->save();
-                    }
+                        
+                        }
+                        
+                   
                 }
-                
-            } 
+            }
+            
             
         }
         //manage_room_numbers
@@ -2774,27 +3129,71 @@ class SchoolController extends Controller
                      $file->move(public_path().'/storage/student_info/',$name);
                      $new_manage_room_attach[] = $name;
                  }
+            }
+            if($request->old_manage_room_numbers!=null){
                 for($i=0;$i<sizeof($request->old_manage_room_numbers);$i++){
-                    $manage_room_numbers =tbl_manage_room_numbers::find($request->old_manage_room_id[$i]);
-                    $manage_room_numbers->manage_room_numbers= $request->old_manage_room_numbers[$i];
-                    $manage_room_numbers->manage_room_measurement = $request->old_manage_room_measurement[$i];
-                    $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
-                    $manage_room_numbers->save();
-                }
-            }else{
-                $old_manage_room_attach=$request->old_manage_room_attach_h;
-                if($request->old_manage_room_numbers!=null){
-                    for($i=0;$i<sizeof($request->old_manage_room_numbers);$i++){
+                    if(isset($request->old_manage_room_attach[$i])){
+                        if(sizeof($new_manage_room_attach)==sizeof($request->old_manage_room_numbers)){
+                            $manage_room_numbers =tbl_manage_room_numbers::find($request->old_manage_room_id[$i]);
+                            $manage_room_numbers->manage_room_numbers= $request->old_manage_room_numbers[$i];
+                            $manage_room_numbers->manage_room_measurement = $request->old_manage_room_measurement[$i];
+                            $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach[$i];
+                            $manage_room_numbers->save();
+                        }else{
+                            foreach($new_manage_room_attach as $file)
+                            {
+                                $new_manage_room_attach_one = $file;
+                                    
+                            }
+                            $manage_room_numbers =tbl_manage_room_numbers::find($request->old_manage_room_id[$i]);
+                            $manage_room_numbers->manage_room_numbers= $request->old_manage_room_numbers[$i];
+                            $manage_room_numbers->manage_room_measurement = $request->old_manage_room_measurement[$i];
+                            $manage_room_numbers->manage_room_attach= '/storage/student_info/'.$new_manage_room_attach_one;
+                            $manage_room_numbers->save();
+                        }
+                    }else{
+                        $old_manage_room_attach=$request->old_manage_room_attach_h;
                         $manage_room_numbers =tbl_manage_room_numbers::find($request->old_manage_room_id[$i]);
                         $manage_room_numbers->manage_room_numbers= $request->old_manage_room_numbers[$i];
                         $manage_room_numbers->manage_room_measurement = $request->old_manage_room_measurement[$i];
                         $manage_room_numbers->manage_room_attach= $old_manage_room_attach[$i];
                         $manage_room_numbers->save();
-                    }
+                            
+                    } 
+                        
                 }
-                
-            } 
+            }
             
+            
+            
+        }
+        $memberships = Membership::where('membership_name', 'like', 'School')->get();
+        //invoice
+        $currentYear = Carbon::now()->format('Y');
+        $month = Carbon::now()->format('m');
+        $invoice =Invoice::where("invoiceNo",'renew_sch'.$id)->get();
+        // $invoice->student_info_id = $request->student_info_id;
+        // $invoice->invoiceNo = 'renew_sch'.$school->id;
+        
+        // $invoice->name_eng        = $request->name_eng;
+        // $invoice->email           = $request->email;
+        // $invoice->phone           = $request->phone;
+        foreach($invoice as $invoice){
+            if($month==10 || $month==11 || $month==12){
+                $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,School Registration';
+                foreach($memberships as $memberships){
+                    $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee;
+                }
+            }else if($month==01){
+                $invoice->productDesc     = 'Renew Application Fee,Renew Registration Fee,Renew Yearly Fee,Delay Fee,School Registration';
+                foreach($memberships as $memberships){
+                    $invoice->amount          = $memberships->form_fee.','.$memberships->renew_registration_fee.','.$memberships->renew_yearly_fee.','.$memberships->late_fee;
+                }
+            }
+            
+        
+            $invoice->status          = 0;
+            $invoice->save();
         }
         return response()->json([
             'message' => 'You have updated successfully.'
