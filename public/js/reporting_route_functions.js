@@ -250,7 +250,8 @@ function articleMentorIntern(url) {
 }
 
 function firmIndividual(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    // if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if($('#select-date').val() != ""){
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {

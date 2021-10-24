@@ -215,23 +215,56 @@ const _FIRM_NAME = [
     //     sub_title: `လုပ်သင်အသားတင်(ရေတွက်ခွင့်မရှိသောခွင့်ကာလနှုတ်ပြီး) လုပ်သက် ၂ နှစ်
     //                 (CPA မအောင်သေးသူများ၊ ၁ နှစ် နှင့် ၃ နှစ် (CPA အောင်ပြီးသူများ) ပြည့်သူများစာရင်း`
     // },
-
     // {
     //     sub_title: `အလုပ်သင်နှုတ်ထွက်သူများစာရင်း`
     // },
 
     {
-        route_name: "/firm_individual",
-        fun_name: "firmIndividual($(this).data(\'url\'))",
-        sub_title: `အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှုပေးသူတစ်ဦးချင်း`
+        route_name : '/firm_individual/1',
+        fun_name: 'firmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Audit Firm - Sole )'
     },
-
     {
-        route_name: "/firm_daily_attendence",
-        fun_name: "frimDailyAttendence($(this).data(\'url\'))",
-        sub_title: `နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ`
+        route_name : '/firm_individual/2',
+        fun_name: 'firmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Audit Firm - Partnership )'
+    },
+    {
+        route_name : '/firm_individual/3',
+        fun_name: 'firmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Audit Firm - Company )'
+    },
+    {
+        route_name : '',
+        fun_name: '',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Sole )'
+    },
+    {
+        route_name : '',
+        fun_name: '',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Partnership )'
+    },
+    {
+        route_name : '',
+        fun_name: '',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Local Company )'
+    },
+    {
+        route_name : '',
+        fun_name: '',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Foreign Company )'
     },
 
+    // {
+    //     route_name: "/firm_individual",
+    //     fun_name: "firmIndividual($(this).data(\'url\'))",
+    //     sub_title: `အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှုပေးသူတစ်ဦးချင်း`
+    // },
+    // {
+    //     route_name: "/firm_daily_attendence",
+    //     fun_name: "frimDailyAttendence($(this).data(\'url\'))",
+    //     sub_title: `နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ`
+    // },
     // {
     //     sub_title: `အလုပ်သင်မှတ်တမ်း - ၂ နှစ်ပြည့်၊ ၃ နှစ်ပြည့်`
     // }
