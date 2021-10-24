@@ -1034,7 +1034,7 @@
 
 						                    <div class="form-group">
 						                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
-						                        <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+						                        <textarea class="form-control" name="remark_renew" id="remark_renew" rows="3"></textarea>
 						                    </div>
 						                </div>
 						            </div>
