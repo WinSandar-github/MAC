@@ -114,6 +114,7 @@ Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
 Route::get('/cpa_ff_offline_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffOfflineRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
+Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff');
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
@@ -345,7 +346,7 @@ Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQ
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 
 //show description
-Route::get('showDescription/{name}', 'HomeController@showDescription');
+Route::get('showDescription/{name}', 'DescriptionController@showHomeDescription');
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
@@ -450,6 +451,7 @@ Route::post('/continue_article', 'ArticleController\ArticleController@continueAr
 Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
+Route::get('/get_payment_info/{invoiceNo}', 'PaymentController\PaymentController@getPaymentByInvoiceNo');
 
 Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
 //Teacher card

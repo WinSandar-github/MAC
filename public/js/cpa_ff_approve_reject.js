@@ -992,7 +992,7 @@ function approveOfflineCPAFFUser(){
         var id = $("input[name = cpaff_id]").val();
         console.log('approvecpaid',id);
         $.ajax({
-            url: BACKEND_URL + "/approve_cpaff/"+id,
+            url: BACKEND_URL + "/approve_offline_cpaff/"+id,
             type: 'patch',
             success: function(result){
                 successMessage("You have approved that user!");
