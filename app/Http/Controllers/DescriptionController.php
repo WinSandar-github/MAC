@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Description;
+use App\Membership;
+use App\CourseType;
 
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -23,6 +25,20 @@ class DescriptionController extends Controller
         ],200);
     }
 
+    public function showHomeDescription($name)
+    {      
+        if($name == "DA" || $name == "CPA"){       
+            $course_desc = CourseType::where('course_code', '=',  $name)->get();
+            return response()->json([
+                'data' => $course_desc
+            ],200);
+        }else{
+            $membership_desc = Membership::where('membership_name', 'like', $name. '%')->get();
+            return response()->json([
+                'data' => $membership_desc
+            ],200);
+        }
+    }
     /**
      * Store a newly created resource in storage.
      *

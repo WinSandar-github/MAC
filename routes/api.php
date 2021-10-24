@@ -345,7 +345,7 @@ Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQ
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 
 //show description
-Route::get('showDescription/{name}', 'HomeController@showDescription');
+Route::get('showDescription/{name}', 'DescriptionController@showHomeDescription');
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
