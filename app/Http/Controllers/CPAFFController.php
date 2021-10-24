@@ -922,7 +922,7 @@ class CPAFFController extends Controller
         }
         else if($oldCpaff->offline_user==1){
             if($oldCpaff->resign==0){
-                $thisYear = date('Y');
+                $thisYear = date('Y')-1;
                 $last_paid_year=$oldCpaff->last_paid_year;
                 $diff= $thisYear - $last_paid_year;
                 $before_2015_year= 0;
@@ -962,7 +962,7 @@ class CPAFFController extends Controller
             }
             else if($oldCpaff->resign==1){
                 $last_paid_year=$oldCpaff->last_paid_year;
-                $submitted_stop_form_year=$oldCpaff->resign_date;
+                $submitted_stop_form_year=$oldCpaff->resign_date-1;
                 $diff= $submitted_stop_form_year - $last_paid_year;
                 $before_2015_year= 0;
                 $after_2015_year = 0;

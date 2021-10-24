@@ -986,11 +986,11 @@ function loadappOfflineUser(){
                 // $("#papp_resign_date").append(element.papp_resign_date);
                 if(element.submitted_stop_form==1){
                     $("#submitted_stop_form").append("ရှိ");
-                    $("#submitted_stop_form_year_div").css('display','block')
                     $("#submitted_stop_form_year").append(element.papp_resign_date);
                 }
                 else{
                     $("#submitted_stop_form").append("မရှိပါ။");
+                    $("#submitted_stop_form_year").append('-');
                 }
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
@@ -1112,13 +1112,13 @@ function loadappOfflineUser(){
                             $("#old_card_year").append(element.old_card_no_year);
                             $("#old_card_no").append(element.old_card_no); 
                             element.is_convicted==null?$("#is_convicted").append("-"):$("#is_convicted").append(element.is_convicted);
-                            if(element.resign==1){
+                            if(element.resign==1){                             
                                 $("#submitted_stop_form_cpaff").append("ရှိ");
-                                $("#submitted_stop_form_year_cpaff_div").css('display','block')
-                                $("#submitted_stop_form_cpaff_year").append(element.resign_date);
+                                $("#submitted_stop_form_year_cpaff").append(element.resign_date);
                             }
-                            else{
+                            else{                                
                                 $("#submitted_stop_form_cpaff").append("မရှိပါ။");
+                                $("#submitted_stop_form_year_cpaff").append("-");
                             }
                             if(element.old_card_file!=null){
                                 $(".old_card_file").append(`<a href='${PDF_URL+element.old_card_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
