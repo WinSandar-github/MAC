@@ -31,7 +31,7 @@
     <link href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/css/easy-loading.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/custom_table.css') }}">
+    <link href="{{ asset('css/custom_table.css') }}" rel="stylesheet">
 </head>
 <body class="{{ $class }}">
     @auth()
@@ -86,7 +86,7 @@
     <script src="{{ asset('js/entry_exam.js') }}"></script>
     <script src="{{ asset('js/qualified_test.js') }}"></script>
 
-    <script src="{{ asset('js/backendService.js') }}"></script>
+    <!-- <script src="{{ asset('js/backendService.js') }}"></script> -->
     <script src="{{ asset('js/common.js') }}"></script>
     <script src="{{ asset('js/student.js') }}"></script>
     <script src="{{ asset('js/da_approve_reject.js') }}"></script>

@@ -17,4 +17,14 @@ class Mentor extends Model
     public function nrcNumber(){
         return $this->nrc_state_region .'/'. $this->nrc_township .'('. $this->nrc_citizen .')'. $this->nrc_number;
     }
+
+    public function serviceType(){
+        $service_id = explode(',', $this->current_check_service_id);
+        $arr = array();
+        foreach($service_id as $id){
+            $service_name = CurrentCheckService::where('id', $id)->first(['name']);
+            array_push($arr, $service_name);
+        }
+        return $arr ;
+    }
 }
