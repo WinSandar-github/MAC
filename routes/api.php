@@ -349,7 +349,7 @@ Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 // Route::get('showDescription/{membership_name}','MembershipController@showDescription');
 Route::get('showFee/{id}','MembershipController@showFee');
 Route::get('showFees/{id}','MembershipController@showFees');
-Route::get('showDescription/{name}', 'HomeController@showDescription');
+Route::get('showDescription/{name}', 'DescriptionController@showHomeDescription');
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
