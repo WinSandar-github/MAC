@@ -491,12 +491,28 @@
                                         <span id="latest_reg_year"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Resigned Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_resign_date"></span>
+                                    </div>
+                                </div>--}}
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားခြင်း ရှိ/မရှိ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom" id="submitted_stop_form_year_div" style="display:none">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားသည့် ခုနှစ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_year"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -531,6 +547,14 @@
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="nrc"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Gender</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="gender"></span>
                                     </div>
                                 </div>
                                 <!--NRC Card(Front) -->
@@ -656,6 +680,14 @@
                                             <div class="col-md-6 old_card_file text-left">
                                             </div>
                                         </div>
+                                        <div class="row m-2 mt-3">
+                                            <div class="col-md-6 text-left">
+                                                <p class="ml-2" style="font-weight:bold">ပြစ်ဒဏ်ချမှတ်ခံထားရသူ ဟုတ်/မဟုတ်</p>
+                                            </div>
+                                            <div class="col-md-6 text-left">
+                                                <span id="is_convicted"></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -683,11 +715,26 @@
                                         <span id="cpaff_last_renew_year"></span>
                                     </div>
                                 </div>
-
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားခြင်း ရှိ/မရှိ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_cpaff"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom" id="submitted_stop_form_year_cpaff_div" style="display:none">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားသည့် ခုနှစ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_year_cpaff"></span>
+                                    </div>
+                                </div>
                                 <!--CPA Certificate -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Certificate</p>
                                     </div>
                                     <div class="col-md-6 text-left cpaff_cpa_certificate_file">
                                         {{--<button type="button" id="cpa_certi_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>--}}

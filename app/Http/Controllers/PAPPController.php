@@ -507,7 +507,7 @@ class PAPPController extends Controller
         else if($oldPapp->offline_user==1){
             if($oldPapp->submitted_stop_form==0){
                 $thisYear = date('Y');
-                $last_paid_year=$oldPapp->latest_reg_year + 1;
+                $last_paid_year=$oldPapp->latest_reg_year;
                 $diff= $thisYear - $last_paid_year;
                 $before_2015_year= 0;
                 $after_2015_year = 0;
@@ -545,7 +545,7 @@ class PAPPController extends Controller
                 // }
             }
             else if($oldPapp->submitted_stop_form==1){
-                $last_paid_year=$oldPapp->latest_reg_year + 1;
+                $last_paid_year=$oldPapp->latest_reg_year;
                 $submitted_stop_form_year=$oldPapp->papp_resign_date;
                 $diff= $submitted_stop_form_year - $last_paid_year;
                 $before_2015_year= 0;
