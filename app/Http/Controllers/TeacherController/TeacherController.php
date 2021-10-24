@@ -305,6 +305,10 @@ class TeacherController extends Controller
         $teacher->phone = $request->phone_number;
         $teacher->nrc_front = $nrc_front;
         $teacher->nrc_back = $nrc_back;
+        $teacher->nrc_state_region = $request->update_nrc_state_region;
+        $teacher->nrc_township = $request->update_nrc_township;
+        $teacher->nrc_citizen = $request->update_nrc_citizen;
+        $teacher->nrc_number = $request->update_nrc_number;
         $teacher->gov_employee = $request->gov_employee;
         $teacher->exp_desc = $request->exp_desc;
         $teacher->image = $image;
@@ -1029,6 +1033,14 @@ class TeacherController extends Controller
         }else{
             $degrees_certificates=null;
         }
+        if ($request->hasfile('renew_teacher_card')) {
+            $file = $request->file('renew_teacher_card');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/teacher_info/',$name);
+            $teacher_card = '/storage/teacher_info/'.$name;
+        }else{
+            $teacher_card=$request->teacher_card;
+        }
         $teacher =TeacherRegister::find($id);
         // $teacher->name_mm = $request->name_mm;
         // $teacher->name_eng = $request->name_eng;
@@ -1070,7 +1082,7 @@ class TeacherController extends Controller
         $teacher->school_name = $request->school_name_renew;
         $teacher->reason = $request->reason;
         $teacher->approve_reject_status = 0;
-        // $teacher->teacher_id  = $request->teacher_id;
+        $teacher->teacher_card  = $teacher_card;
         // $teacher->student_info_id  = $request->student_info_id;
         $teacher->save();
         
@@ -1090,43 +1102,43 @@ class TeacherController extends Controller
             }
         }else{
             
-            if ($request->hasfile('old_degrees_certificates')) {
-                foreach($request->file('old_degrees_certificates') as $file)
+            if ($request->hasfile('old_renewdegrees_certificates')) {
+                foreach($request->file('old_renewdegrees_certificates') as $file)
                 {
                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
                     $file->move(public_path().'/storage/student_info/',$name);
-                    $old_degrees_certificates_all[] = $name;
+                    $old_renewdegrees_certificates_all[] = $name;
                     
                 }
             }
-            if($request->old_degrees!=null){
-                for($i=0;$i < sizeof($request->old_degrees);$i++){
-                    if(isset($request->old_degrees_certificates[$i])){
+            if($request->old_renewdegrees!=null){
+                for($i=0;$i < sizeof($request->old_renewdegrees);$i++){
+                    if(isset($request->old_renewdegrees_certificates[$i])){
                         
-                        if(sizeof($old_degrees_certificates_all)==sizeof($request->old_degrees)){
-                            $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                            $education_histroy->degree_name = $request->old_degrees[$i];
-                            $education_histroy->certificate     = '/storage/student_info/'.$old_degrees_certificates_all[$i];
+                        if(sizeof($old_renewdegrees_certificates_all)==sizeof($request->old_renewdegrees)){
+                            $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
+                            $education_histroy->degree_name = $request->old_renewdegrees[$i];
+                            $education_histroy->certificate     = '/storage/student_info/'.$old_renewdegrees_certificates_all[$i];
                             $education_histroy->save();
-                            
+                           
                         }else{
-                            foreach($old_degrees_certificates_all as $file)
+                            foreach($old_renewdegrees_certificates_all as $file)
                             {
-                                $old_degrees_certificates_one = $file;
+                                $old_renewdegrees_certificates_one = $file;
                                     
                             }
-                            $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                            $education_histroy->degree_name = $request->old_degrees[$i];
-                            $education_histroy->certificate     = '/storage/student_info/'.$old_degrees_certificates_one;
+                            $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
+                            $education_histroy->degree_name = $request->old_renewdegrees[$i];
+                            $education_histroy->certificate     = '/storage/student_info/'.$old_renewdegrees_certificates_one;
                             $education_histroy->save();
                             
                         }
                            
                     }else{
-                        $old_degrees_certificates_h=$request->old_degrees_certificates_h;
-                        $education_histroy  =EducationHistroy::find($request->old_degrees_id[$i]);
-                        $education_histroy->degree_name = $request->old_degrees[$i];
-                        $education_histroy->certificate     =$old_degrees_certificates_h[$i];
+                        $old_renewdegrees_certificates_h=$request->old_renewdegrees_certificates_h;
+                        $education_histroy  =EducationHistroy::find($request->old_renewdegrees_id[$i]);
+                        $education_histroy->degree_name = $request->old_renewdegrees[$i];
+                        $education_histroy->certificate     =$old_renewdegrees_certificates_h[$i];
                         $education_histroy->save();
                         
                     }
