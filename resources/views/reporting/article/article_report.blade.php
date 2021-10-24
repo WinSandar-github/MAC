@@ -35,15 +35,36 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div id='export-btn'></div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
-
-
 @endsection
+@push('styles')
+    <link href="{{ asset('assets/js/plugins/tableexport/dist/css/tableexport.min.css') }}" rel="stylesheet">
+@endpush
+@push('scripts')
+    <script src="{{ asset('assets/js/plugins/xlsx.core.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/FileSave.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/tableexport/dist/js/tableexport.min.js') }}"></script>
+    <script>
+        $('document').ready(function () {
+            // table export
+            var $table = $('.table');
 
+            $table.tableExport({
+                headers: false,
+                footers: false,
+                position: "bottom",
+                bootstrap: true
+            });
+
+            $btn = $table.find('caption').children().detach();
+
+            $btn.appendTo('#export-btn');
+            // table export
+        });
+    </script>
+@endpush

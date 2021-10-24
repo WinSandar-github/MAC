@@ -1,5 +1,4 @@
 @extends('reporting.main')
-
 @section('content')
     <div class="row">
         <div class="col-md-12 text-center">
@@ -9,9 +8,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h3 class="text-center m-3" style="font-weight:bold">
-                                {{ $data['course']->name_mm }}<br>
-                                {{ $data['batch']->name_mm }}<br>
-                                တက်ရောက်ခွင့်ရသူများစာရင်း
+                                {!! $data['title'] !!}
                             </h3>
                         </div>
                     </div>
@@ -46,16 +43,11 @@
 
                         <div class="col-md-6 pl-2">
                             @if($currend_date > $data['course']->active_batch[0]->mac_reg_end_date)
-                                @if($data['course']->code === "da_1" || $data['course']->code === "cpa_1" )
-                                    <button onclick="generatePersonalNo('{{$data['course']->code}}')" class="pull-right
-                                    btn btn-sm btn-success">ကိုယ်ပိုင်အမှတ်အမှတ် ထုတ်ပေးမည်
-                                    </button>
-                                @else
-                                    <button onclick="generateSrNo('{{$data['course']->code}}')"
+                                
+                                    <button onclick="generateAppSrNo('{{$data['course']->code}}')"
                                             class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်
                                     </button>
-                                @endif
-                            @endif
+                             @endif
                         </div>
                         <div class="col-md-12">
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
@@ -63,60 +55,109 @@
                                 <tr>
                                     <th class="bold-font-weight">စဥ်</th>
                                     <th class="bold-font-weight">အမည်</th>
-                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်အမှတ်</th>
-                                    <th class="bold-font-weight">ဘွဲ့အမည်</th>
+                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
+                                    <!-- <th class="bold-font-weight">ဘွဲ့အမည်</th> -->
                                     <th class="bold-font-weight">အဘအမည်</th>
-                                    <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်</th>
+                                    <th class="bold-font-weight">အသက်</th>
+                                    <th class="bold-font-weight">ကျား/မ</th>
+                                    <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
+                                
+
                                 </tr>
                                 </thead>
-                                <tbody id="tbl_app_list_body" class="hoverTable">
-
-                                @php $count = 0 @endphp
+                                <tbody id="tbl_app_list_body" class="hoverTable"> 
+                                @php $count = 0;
+                                  @endphp
 
                                 @foreach($data['student'] as $key => $std)
+  
                                     @if($key == 2)
-                                        <tr class="mac-row">
-                                            <td colspan="6" style="text-align: start; font-weight: bold">MAC
-                                                သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
-                                            </td>
-                                        </tr>
+                                        @foreach($std as $key => $ygn)
 
-                                        @foreach($std as $key => $s)
-                                            <tr class="mac-row">
-                                                <td>
-                                                    {{ ++$count }}
-                                                </td>
-                                                <td>
-                                                    {{$s->name_mm}}
-                                                </td>
-                                                <td>
-                                                    {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
-                                                </td>
-                                                <td>
-                                                    @if($data['course']->code === "da_1")
-                                                        ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
-                                                    @elseif($data['course']->code === "da_2" )
-                                                        ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @elseif($data['course']->code === "cpa_1" )
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
-                                                    @else
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    {{ $s->student_info->father_name_mm }}
-                                                </td>
-                                                <td>
-                                                    {{ $data['course']->course_type->course_code == "da"
-                                                        ? $s->student_info->personal_no
-                                                        : $s->student_info->cpersonal_no}}
-                                                </td>
-                                            </tr>
+                                            @if($key == 1)
+                                                <tr class="mac-ygn">
+                                                    <td colspan="6" style="text-align: start; font-weight: bold">
+                                                        MAC (ရန်ကုန်) သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
+                                                    </td>
+                                                </tr>
+
+                                                @foreach($ygn as $s)
+                                               
+                                                @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+
+                                                <tr class="mac-ygn">
+                                                    <td>
+                                                        {{ ++$count }}
+                                                    </td>
+                                                    <td>
+                                                        {{$s->name_mm}}
+                                                    </td>
+                                                    <td>
+                                                        {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
+                                                    </td>
+                                                    <td>
+                                                        {{ $s->student_info->father_name_mm }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $age}}
+                                                    </td>
+                                                    <td>
+                                                        {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                    </td>
+                                                    <td>
+                                                        {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            @elseif($key == 2)
+                                                <tr class="mac-npt">
+                                                    <td colspan="6" style="text-align: start; font-weight: bold">
+                                                        MAC (နေပြည်တော်) သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
+                                                    </td>
+                                                </tr>
+                                                
+                                                @foreach($ygn as $s)
+                                                    @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+
+                                                    <tr class="mac-npt">
+                                                        <td>
+                                                            {{ ++$count }}
+                                                        </td>
+                                                        <td>
+                                                            {{$s->name_mm}}
+                                                        </td>
+                                                        <td>
+                                                            {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
+                                                        </td>
+                                                        <td>
+                                                            {{ $s->student_info->father_name_mm }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $age}}
+                                                        </td>
+                                                        <td>
+                                                            {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                        </td>
+                                                        <td>
+                                                            {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            @else
+
+                                                <tr class="mac-ygn">
+                                                    <td colspan="6" style="text-align: start; font-weight: bold">
+                                                        MAC သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
+                                                    </td>
+                                                </tr>
+
+                                            @endif
                                         @endforeach
                                     @endif
                                 @endforeach
 
                                 @foreach($data['student'] as $key => $std)
+                                
                                     @if($key == 0)
                                         <tr class="self-row">
                                             <td colspan="6" style="text-align: start;font-weight: bold">
@@ -125,6 +166,9 @@
                                         </tr>
 
                                         @foreach($std as $key => $s)
+                                        
+                                        @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+
                                             <tr class="self-row">
                                                 <td>
                                                     {{ ++$count }}
@@ -136,23 +180,16 @@
                                                     {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
                                                 </td>
                                                 <td>
-                                                    @if($data['course']->code === "da_1")
-                                                        ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
-                                                    @elseif($data['course']->code === "da_2" )
-                                                        ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @elseif($data['course']->code === "cpa_1" )
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
-                                                    @else
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @endif
-                                                </td>
-                                                <td>
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
-                                                    {{ $data['course']->course_type->course_code == "da"
-                                                        ? $s->student_info->personal_no
-                                                        : $s->student_info->cpersonal_no}}
+                                               {{ $age}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -168,6 +205,9 @@
                                         </tr>
 
                                         @foreach($std as $key => $s)
+                                        
+                                        @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+
                                             <tr class="private-row">
                                                 <td>
                                                     {{ ++$count }}
@@ -179,23 +219,16 @@
                                                     {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
                                                 </td>
                                                 <td>
-                                                    @if($data['course']->code === "da_1")
-                                                        ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
-                                                    @elseif($data['course']->code === "da_2" )
-                                                        ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @elseif($data['course']->code === "cpa_1" )
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
-                                                    @else
-                                                        လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
-                                                    @endif
-                                                </td>
-                                                <td>
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
-                                                    {{ $data['course']->course_type->course_code == "da"
-                                                        ? $s->student_info->personal_no
-                                                        : $s->student_info->cpersonal_no}}
+                                               {{ $age}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                </td>
+                                                <td>
+                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -214,17 +247,6 @@
                                             {{$student_register->student_info->nrc_state_region. "/" . $student_register->student_info->nrc_township . "(" . $student_register->student_info->nrc_citizen . ")" . $student_register->student_info->nrc_number}}
                                         </td>
                                         <td>
-                                            @if($data['course']->code === "da_1")
-                                                ဒီပလိုမာစာရင်းကိုင်(ပထမပိုင်း)
-                                            @elseif($data['course']->code === "da_2" )
-                                                ဒီပလိုမာစာရင်းကိုင်(ဒုတိယပိုင်း)
-                                            @elseif($data['course']->code === "cpa_1" )
-                                                လက်မှတ်ရပြည်သူ့စာရင်းကိုင် (ပထမပိုင်း)
-                                            @else
-                                                လက်မှတ်ရပြည်သူ့စာရင်းကိုင်(ဒုတိယပိုင်း)
-                                            @endif
-                                        </td>
-                                        <td>
                                             {{ $data['course']->course_type->course_code == "da"
                                                 ? $student_register->student_info->personal_no
                                                 : $student_register->student_info->cpersonal_no}}
@@ -235,28 +257,48 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div id='export-btn'></div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
 
 
 @endsection
-
+@push('styles')
+    <link href="{{ asset('assets/js/plugins/tableexport/dist/css/tableexport.min.css') }}" rel="stylesheet">
+@endpush
 @push('scripts')
+    <script src="{{ asset('assets/js/plugins/xlsx.core.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/FileSave.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/tableexport/dist/js/tableexport.min.js') }}"></script>
     <script>
         $('document').ready(function () {
+
+            // table export
+            var $table = $('.table');
+
+            $table.tableExport({
+                headers: false,
+                footers: false,
+                position: "bottom",
+                bootstrap: true
+            });
+
+            $btn = $table.find('caption').children().detach();
+
+            $btn.appendTo('#export-btn');
+            // table export
+
             var course_code = $('#course_code').val();
 
             $('input[type=radio][name=filter]').on('change', function () {
                 var val = $(this).val();
+               
                 switch (val) {
                     case "all":
-                        $('.mac-row, .private-row, .self-row').show();
+                        $('.mac-row, .mac_ygn, .mac_npt, .private-row, .self-row').show();
                         break;
                     case "mac":
                         $('.mac-row').show();
@@ -270,6 +312,7 @@
                         $('.private-row').show();
                         $('.mac-row, .self-row').hide();
                         break;
+                    
                 }
             })
         });
