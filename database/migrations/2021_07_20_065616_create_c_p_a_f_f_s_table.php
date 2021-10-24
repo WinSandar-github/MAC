@@ -74,6 +74,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('nrc_number')->nullable();
             $table->string('father_name_mm')->nullable();
             $table->string('father_name_eng')->nullable();
+            $table->string('gender')->nullable();
             // $table->string('payment_method')->nullable();
             // $table->string('old_card_year')->nullable();
             $table->string('renew_card_year')->nullable();
@@ -83,7 +84,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('is_convicted')->nullable();
             $table->integer('is_renew')->nullable();
             $table->text('reject_description')->nullable();
-            $table->integer('self_confession')->nullable();
+            $table->text('self_confession')->nullable();
             $table->integer('type')->nullable();
             $table->date('reg_date')->default(null)->nullable();
             $table->string('cpaff_reg_date')->nullable();

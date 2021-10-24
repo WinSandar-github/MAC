@@ -663,6 +663,9 @@ class CpaTraAddmissionDirectController extends Controller
 
         try {
             $student_info = new StudentInfo();
+            if($request->cpa_one_pass_personal_no || $request->cpa_two_pass_personal_no){
+                $student_info->cpersonal_no      =   $request->cpa_one_pass_personal_no;
+            } 
             $student_info->name_mm          =   $request->name_mm;
             $student_info->name_eng         =   $request->name_eng;
             $student_info->nrc_state_region =   $request['nrc_state_region'];
@@ -755,7 +758,7 @@ class CpaTraAddmissionDirectController extends Controller
                 $exam_register->status              = 1;
                 $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
                 $exam_register->passed_level        = $request->cpa_one_pass_level;
-                $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
+                // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                 $exam_register->save();
 
                 if($request->module!=0){ 
@@ -795,7 +798,7 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->cpa_two_pass_exam_date;
                     $exam_register->passed_level        = $request->cpa_two_pass_level;
-                    $exam_register->passed_personal_no  = $request->cpa_two_pass_personal_no;
+                    // $exam_register->passed_personal_no  = $request->cpa_two_pass_personal_no;
                     $exam_register->save();
     
                 }
@@ -805,8 +808,9 @@ class CpaTraAddmissionDirectController extends Controller
             }
             else{
                 $student_course = new StudentCourseReg();
-                $student_course->student_info_id = $student_info->id;
-                $student_course->batch_id        = $request->batch_id;
+                $student_course->sr_no           = $request->sr_no;
+                $student_course->student_info_id = $student_info->id;$student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->pass_batch_id;
                 $student_course->type            = $request->type;
                 $student_course->mac_type        = $request->mac_type;
                 $student_course->date            = $course_date;
@@ -829,7 +833,7 @@ class CpaTraAddmissionDirectController extends Controller
                     
                     $student_register = new StudentRegister();
                     $student_register->student_info_id  = $student_info->id;
-                    $student_register->batch_id         = $request->batch_id;
+                    $student_register->batch_id         = $request->pass_batch_id;
                     $student_register->date             = date('Y-m-d');
                     $student_register->invoice_id       = $student_info->id;
                     $student_register->invoice_date     = date('Y-m-d');
@@ -843,14 +847,14 @@ class CpaTraAddmissionDirectController extends Controller
                     $exam_register->student_info_id     = $student_info->id;
                     $exam_register->date                = $date;
                     $exam_register->grade               = 1;
-                    $exam_register->batch_id            = $request->batch_id;
+                    $exam_register->batch_id            = $request->pass_batch_id;
                     $exam_register->is_full_module      = $request->module;
                     $exam_register->exam_type_id        = $request->type;
                     $exam_register->form_type           = 3;
                     $exam_register->status              = 1;
                     $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
                     $exam_register->passed_level        = $request->cpa_one_pass_level;
-                    $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
+                    // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
                     $exam_register->save();
     
                 }
@@ -883,5 +887,368 @@ class CpaTraAddmissionDirectController extends Controller
             return response()->json($e->getMessage(), 500);
         }
     }
+
+    public function updateCPAExistingRegister(Request $request)
+    {
+        
+       
+        
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $image = '/storage/student_info/'.$name;
+        }else{
+            $image = $request->old_image;
+        }
+
+        if($request->hasfile('certificate'))
+        {
+            foreach($request->file('certificate') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $certificate[] = '/storage/student_info/'.$name;
+            }
+        }else{
+            $certificate[] = $request->old_certificate;
+        }
+
+        if($request->hasfile('recommend_letter'))
+        {
+            $file = $request->file('recommend_letter') ;
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $rec_letter = '/storage/student_info/'.$name;
+        }else{
+            $rec_letter = $request->old_rec_letter;
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = $request->old_nrc_front;
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = $request->old_nrc_back;
+        }
+
+        $date = date('d-M-Y');;
+        $course_date = date('Y-m-d');
+        $invoice_date = date('d-M-Y');
+
+        try {
+            $student_info = StudentInfo::find($request->student_info_id);
+            if($request->cpa_one_pass_personal_no || $request->cpa_two_pass_personal_no){
+                $student_info->cpersonal_no      =   $request->cpa_one_pass_personal_no;
+            } 
+            $student_info->name_mm          =   $request->name_mm;
+            $student_info->name_eng         =   $request->name_eng;
+            $student_info->nrc_state_region =   $request['nrc_state_region'];
+            $student_info->nrc_township     =   $request['nrc_township'] ;
+            $student_info->nrc_citizen      =   $request['nrc_citizen'] ;
+            $student_info->nrc_number       =   $request['nrc_number'];
+            $student_info->nrc_front        =   $nrc_front;
+            $student_info->nrc_back         =   $nrc_back;
+            $student_info->father_name_mm   =   $request->father_name_mm;
+            $student_info->father_name_eng  =   $request->father_name_eng;
+            $student_info->gender           =   $request->gender;
+            $student_info->race             =   $request->race;
+            $student_info->religion         =   $request->religion;
+            $student_info->date_of_birth    =   $request->date_of_birth;
+            $student_info->address          =   $request->address;
+            $student_info->current_address  =   $request->current_address;
+            $student_info->phone            =   $request->phone;
+            $student_info->gov_staff        =   $request->gov_staff;
+            $student_info->image            =   $image;
+            $student_info->registration_no  =   $request->registration_no;
+            $student_info->approve_reject_status  =  0;
+            $student_info->date             =   $date;
+        
+            $student_info->course_type_id   =   2;
+            
+            $student_info->recommend_letter =   $rec_letter;
+            $student_info->offline_user = 1;
+            $student_info->save();
+
+            $student_job_histroy = StudentJobHistroy::where('student_info_id',$request->student_info_id)->first();
+            $student_job_histroy->student_info_id   = $student_info->id;
+            $student_job_histroy->name              = $request->current_job;
+            $student_job_histroy->position          = $request->position;
+            $student_job_histroy->department        = $request->department;
+            $student_job_histroy->organization      = $request->organization;
+            $student_job_histroy->company_name      = $request->company_name;
+            $student_job_histroy->salary            = $request->salary;
+            $student_job_histroy->office_address    = $request->office_address;
+            $student_job_histroy->save();
+
+            $education_histroy  =   EducationHistroy::where('student_info_id',$request->student_info_id)->first();
+            $education_histroy->student_info_id = $student_info->id;
+            $education_histroy->university_name = $request->university_name;
+            $education_histroy->degree_name     = $request->degree_name;
+            $education_histroy->certificate     = json_encode($certificate);
+            $education_histroy->qualified_date  = $request->qualified_date;
+            $education_histroy->roll_number     = $request->roll_number;
+            $education_histroy->save();
+
+            if($request->cpa_type=='cpa_2'){ 
+
+                $student_cour_del=StudentCourseReg::where('student_info_id',$request->student_info_id)->delete();
+                $student_reg_del=StudentRegister::where('student_info_id',$request->student_info_id)->delete();
+                $exam_reg_del=ExamRegister::where('student_info_id',$request->student_info_id)->delete();
+
+                $student_course = new StudentCourseReg();
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->pass_batch_id;
+                $student_course->type            = $request->type;
+                $student_course->mac_type        = $request->mac_type;
+                $student_course->date            = $course_date;
+                $student_course->is_finished      = 1;
+                $student_course->status          = 1;
+                if($request->module!=0){
+                    $student_course->approve_reject_status  = 1;
+                }
+                else{
+                    $student_course->approve_reject_status  = 0;
+                }
+                $student_course->offline_user  = 1;
+                $student_course->save();
+
+                $student_register = new StudentRegister();
+                $student_register->student_info_id  = $student_info->id;
+                $student_register->batch_id         = $request->pass_batch_id;
+                $student_register->date             = date('Y-m-d');
+                $student_register->invoice_id       = $student_info->id;
+                $student_register->invoice_date     = date('Y-m-d');
+                $student_register->module           = 3;
+                $student_register->type             = $request->type;
+                $student_register->status           = 1;
+                $student_register->form_type        = 3;
+                $student_register->save();
+                
+                $exam_register = new ExamRegister();
+                $exam_register->student_info_id     = $student_info->id;
+                $exam_register->date                = $date;
+                $exam_register->grade               = 1;
+                $exam_register->batch_id            = $request->pass_batch_id;
+                $exam_register->is_full_module      = 3;
+                $exam_register->exam_type_id        = $request->type;
+                $exam_register->form_type           = 3;
+                $exam_register->status              = 1;
+                $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
+                $exam_register->passed_level        = $request->cpa_one_pass_level;
+                // $exam_register->passed_personal_no  = $request->cpa_one_pass_personal_no;
+                $exam_register->save();
+
+                if($request->module!=0){ 
+
+                    $student_course = new StudentCourseReg();
+                    $student_course->student_info_id = $student_info->id;
+                    $student_course->batch_id        = $request->batch_id;
+                    $student_course->type            = $request->type_cpa2;
+                    $student_course->mac_type        = $request->cpa2_mac_type;
+                    $student_course->date            = $course_date;
+                    $student_course->is_finished      = 1;
+                    $student_course->status          = 1;
+                    $student_course->approve_reject_status  = 0;
+                    $student_course->offline_user  = 1;
+                    $student_course->save();
+                    
+                    $student_register = new StudentRegister();
+                    $student_register->student_info_id  = $student_info->id;
+                    $student_register->batch_id         = $request->batch_id;
+                    $student_register->date             = date('Y-m-d');
+                    $student_register->invoice_id       = $student_info->id;
+                    $student_register->invoice_date     = date('Y-m-d');
+                    $student_register->module           = $request->module;
+                    $student_register->type             = $request->type;
+                    $student_register->status           = 1;
+                    $student_register->form_type        = 4;
+                    $student_register->save();
+                    
+                    $exam_register = new ExamRegister();
+                    $exam_register->student_info_id     = $student_info->id;
+                    $exam_register->date                = $date;
+                    $exam_register->grade               = 1;
+                    $exam_register->batch_id            = $request->batch_id;
+                    $exam_register->is_full_module      = $request->module;
+                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->form_type           = 4;
+                    $exam_register->status              = 1;
+                    $exam_register->passed_date         = $request->cpa_two_pass_exam_date;
+                    $exam_register->passed_level        = $request->cpa_two_pass_level;
+                    // $exam_register->passed_personal_no  = $request->cpa_two_pass_personal_no;
+                    $exam_register->save();
+    
+                }
+                else{
+    
+                }
+
+                // $student_course = StudentCourseReg::where('student_info_id',$request->student_info_id)->first();
+                // $student_course->student_info_id = $student_info->id;
+                // $student_course->batch_id        = $request->pass_batch_id;
+                // $student_course->type            = $request->type;
+                // $student_course->mac_type        = $request->mac_type;
+                // $student_course->date            = $course_date;
+                // $student_course->is_finished      = 1;
+                // $student_course->status          = 1;
+                // $student_course->approve_reject_status  = 1;                
+                // $student_course->offline_user  = 1;
+                // $student_course->save();
+
+                // $student_register = StudentRegister::where('student_info_id',$request->student_info_id)->first();
+                // $student_register->student_info_id  = $student_info->id;
+                // $student_register->batch_id         = $request->pass_batch_id;
+                // $student_register->date             = date('Y-m-d');
+                // $student_register->invoice_id       = $student_info->id;
+                // $student_register->invoice_date     = date('Y-m-d');
+                // $student_register->module           = 3;
+                // $student_register->type             = $request->type;
+                // $student_register->status           = 1;
+                // $student_register->form_type        = 3;
+                // $student_register->save();
+                
+                // $exam_register = ExamRegister::where('student_info_id',$request->student_info_id)->first();
+                // $exam_register->student_info_id     = $student_info->id;
+                // $exam_register->date                = $date;
+                // $exam_register->grade               = 1;
+                // $exam_register->batch_id            = $request->pass_batch_id;
+                // $exam_register->is_full_module      = 3;
+                // $exam_register->exam_type_id        = $request->type;
+                // $exam_register->form_type           = 3;
+                // $exam_register->status              = 1;
+                // $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
+                // $exam_register->passed_level        = $request->cpa_one_pass_level;
+                // // $exam_register->passed_personal_no  = $request->da_one_pass_personal_no;
+                // $exam_register->save();
+
+                // if($request->module!=0){ 
+
+                //     $student_course = StudentCourseReg::where('student_info_id',$request->student_info_id)->latest()->first();
+                //     $student_course->student_info_id = $student_info->id;
+                //     $student_course->batch_id        = $request->batch_id;
+                //     $student_course->type            = $request->type_cpa2;
+                //     $student_course->mac_type        = $request->cpa2_mac_type;
+                //     $student_course->date            = $course_date;
+                //     $student_course->is_finished      = 1;
+                //     $student_course->status          = 1;
+                //     $student_course->approve_reject_status  = 0;
+                //     $student_course->offline_user  = 1;
+                //     $student_course->save();
+                    
+                //     $student_register = StudentRegister::where('student_info_id',$request->student_info_id)->latest()->first();
+                //     $student_register->student_info_id  = $student_info->id;
+                //     $student_register->batch_id         = $request->batch_id;
+                //     $student_register->date             = date('Y-m-d');
+                //     $student_register->invoice_id       = $student_info->id;
+                //     $student_register->invoice_date     = date('Y-m-d');
+                //     $student_register->module           = $request->module;
+                //     $student_register->type             = $request->type;
+                //     $student_register->status           = 1;
+                //     $student_register->form_type        = 4;
+                //     $student_register->save();
+                    
+                //     $exam_register = ExamRegister::where('student_info_id',$request->student_info_id)->latest()->first();
+                //     $exam_register->student_info_id     = $student_info->id;
+                //     $exam_register->date                = $date;
+                //     $exam_register->grade               = 1;
+                //     $exam_register->batch_id            = $request->batch_id;
+                //     $exam_register->is_full_module      = $request->module;
+                //     $exam_register->exam_type_id        = $request->type;
+                //     $exam_register->form_type           = 4;
+                //     $exam_register->status              = 1;
+                //     $exam_register->passed_date         = $request->cpa_two_pass_exam_date;
+                //     $exam_register->passed_level        = $request->cpa_two_pass_level;
+                //     // $exam_register->passed_personal_no  = $request->da_two_pass_personal_no;
+                //     $exam_register->save();
+    
+                // }
+                // else{
+    
+                // }
+            }
+            else{
+                $student_course = StudentCourseReg::where('student_info_id',$request->student_info_id)->first();
+                $student_course->sr_no           = $request->sr_no;
+                $student_course->student_info_id = $student_info->id;
+                $student_course->batch_id        = $request->pass_batch_id;
+                $student_course->type            = $request->type;
+                $student_course->mac_type        = $request->mac_type;
+                $student_course->date            = $course_date;
+                $student_course->is_finished      = 1;
+                $student_course->status          = 0;
+                $student_course->approve_reject_status  = 0;
+                $student_course->offline_user  = 1;
+                $student_course->save();
+
+                if($request->module!=0){
+                    
+                    $student_register = StudentRegister::where('student_info_id',$request->student_info_id)->first();
+                    $student_register->student_info_id  = $student_info->id;
+                    $student_register->batch_id         = $request->pass_batch_id;
+                    $student_register->date             = date('Y-m-d');
+                    $student_register->invoice_id       = $student_info->id;
+                    $student_register->invoice_date     = date('Y-m-d');
+                    $student_register->module           = $request->module;
+                    $student_register->type             = $request->type;
+                    $student_register->status           = 1;
+                    $student_register->form_type        = 3;
+                    $student_register->save();
+                    
+                    $exam_register = ExamRegister::where('student_info_id',$request->student_info_id)->first();
+                    $exam_register->student_info_id     = $student_info->id;
+                    $exam_register->date                = $date;
+                    $exam_register->grade               = 1;
+                    $exam_register->batch_id            = $request->pass_batch_id;
+                    $exam_register->is_full_module      = $request->module;
+                    $exam_register->exam_type_id        = $request->type;
+                    $exam_register->form_type           = 3;
+                    $exam_register->status              = 1;
+                    $exam_register->passed_date         = $request->cpa_one_pass_exam_date;
+                    $exam_register->passed_level        = $request->cpa_one_pass_level;
+                    // $exam_register->passed_personal_no  = $request->da_one_pass_personal_no;
+                    $exam_register->save();
+    
+                }
+                else{
+    
+                }
+            }
+
+
+            // //invoice
+            // $invoice = new Invoice();
+            // $invoice->student_info_id = $student_info->id;
+
+            // // $invNo = str_pad( date('Ymd') . Str::upper(Str::random(5)) . $student_info->id, 20, "0", STR_PAD_LEFT);
+            // // $invoice->invoiceNo       = $invNo;
+
+            // $invoice->invoiceNo = '';
+
+            // $invoice->name_eng        = $request->name_eng;
+            // $invoice->email           = $request->email;
+            // $invoice->phone           = $request->phone;
+
+            // $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
+            // $invoice->productDesc     = 'Application Fee,' . $std->batch->course->name;
+            // $invoice->amount          = $std->batch->course->form_fee;
+            // $invoice->status          = 0;
+            // $invoice->save();
+
+            return response()->json($student_info,200);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage(), 500);
+        }
+    }  
     
 }

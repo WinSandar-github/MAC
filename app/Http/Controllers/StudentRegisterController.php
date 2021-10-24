@@ -41,7 +41,7 @@ class StudentRegisterController extends Controller
 
             $student_course = new StudentCourseReg();
             $student_course->student_info_id = $student_info->id;
-            $student_course->batch_id = $request->batch_id;
+            $student_course->batch_id        = $request->batch_id;
             $student_course->date = $course_date;
             $student_course->status = 1;
             $student_course->approve_reject_status = 1;
@@ -795,6 +795,13 @@ class StudentRegisterController extends Controller
                     return "Full Module";
                 }
             })
+            ->addColumn('cpersonal_no', function ($infos) {
+                $cpersonal_no = $infos->course->course_type->course_code == "da"
+                    ? $infos->student_info->personal_no
+                    : $infos->student_info->cpersonal_no;
+                return $cpersonal_no;
+            })
+            ->rawColumns(['action', 'nrc', 'cpersonal_no','module'])
             ->make(true);
     }
 
@@ -818,6 +825,7 @@ class StudentRegisterController extends Controller
          $student_infos = StudentCourseReg::with('student_info')
                          ->where('batch_id',$course->active_batch[0]->id)
                          ->where('approve_reject_status',1)
+                         ->where('qt_entry',0)
                          ->whereNotNull('sr_no')
                          ->orderByRaw('LENGTH(sr_no)','ASC')->orderBy('sr_no','asc')->get();
              
@@ -837,3 +845,4 @@ class StudentRegisterController extends Controller
  
      }
 }
+    

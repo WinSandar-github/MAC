@@ -933,6 +933,29 @@
                         </div>--}}
                         <div class="card">
                             <div class="card-header">
+                                <h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
+                            </div>
+                            <div class="card-body pt-0">
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Fees</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <button type="button" class="btn btn-info mt-0" data-toggle="modal" data-target="#payment_detail_modal">View Detail</button>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Status</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="payment_status"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="card">
+                            <div class="card-header">
                                 <h5 class="border-bottom pb-2" style="font-weight:bold">PAPP Education</h5>
                             </div>
                             <div class="card-body pt-0">
@@ -1055,7 +1078,8 @@
                                     <button type="submit" name="save" id='approve' class="btn btn-primary" onclick="approvePAPPUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                                 </div>
                             </div>--}}
-                        </div>                        
+                        </div>
+                                              
                     </div>
                     <div class="card shadow-lg" style="font-weight: bold">
                         <div class="card-header border-bottom">
@@ -1063,6 +1087,13 @@
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="text-center">
+                                            <h6 class="fw-bold" style="font-size: 18px">မြန်မာနိုင်ငံစာရင်းကောင်စီ​၏ ၉-၈-၂၀၁၈ ရက်စွဲပါ အမိန့်ကြော်ငြာစာအမှတ် ၂၇/၂၀၁၈ ​၏ နောက်ဆက်တွဲတွင် ဖော်ပြထားသည့် စည်းကမ်းချက်များ</h6>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>စဥ်</td>
                                     <td style="width: 1300px!important">အကြောင်းအရာ</td>
@@ -1249,7 +1280,7 @@
                                 <tr>
                                     <td colspan="4">
                                         <div class="text-center">
-                                            <h6 class="fw-bold" style="font-size: 18px">မြန်မာနိုင်ငံစာရင်းကောင်စီ​၏ ၉-၈-၂၀၁၈ ရက်စွဲပါ အမိန့်ကြော်ငြာစာအမှတ် ၂၇/၂၀၁၈ ​၏ နောက်ဆက်တွဲတွင် ဖော်ပြထားသည့် စည်းကမ်းချက်များ</h6>
+                                            <h6 class="fw-bold" style="font-size: 18px">ကိုယ်တိုင်ဝန်ခံချက်</h6>
                                         </div>
                                     </td>
                                 </tr>
@@ -1276,6 +1307,12 @@
                                     <td class="text-left">မှတ်ပုံတင်လျှောက်ထားသည့်ပြက္ခဒိန်နှစ်အတွက် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းကို မိမိ၏အဓိကအသက်မွေးဝမ်းကြောင်းလုပ်ငန်းအဖြစ် မြန်မာနိုင်ငံအတွင်းတွင်လုပ်ကိုင်မည်ဖြစ်ကြောင်း ဝန်ခံ ကတိပြုပါသည်။</td>
                                     <td class="self31">  </td>
                                     <td class="nself31"> </td>
+                                </tr>
+                                <tr>
+                                    <td>၄</td>
+                                    <td class="text-left">မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၆၆ နှင့် ၆၈ ပါ ပြဌာန်းချက်များနှင့် ငွေကြေးခဝါချမှု တိုက်ဖျက်ရေးဥပဒေနှင့် အကြမ်းဖက်မှုတိုက်ဖျက်ရေး ဥပဒေပါပြဌာန်းချက်များကို လေးစားလိုက်နာမည်ဖြစ်ပါကြောင်း၊ မြန်မာနိုင်ငံစာရင်းကောင်စီအမိန့်ကြော်ငြာစာ အမှတ် ၂၇/၂၀၁၈ နောက်ဆက်တွဲပါ တားမြစ်ချက်များကို ပြုမှုဆောင်ရွက်ခွင့်မပြုပါကြောင်း၊ မြန်မာနိုင်ငံစာရင်းကောင်စီ အမိန့်ကြော်ငြာစာအမှတ် ၁၀/၂၀၁၉ ဖြင့်ပြဌာန်းခဲ့သည့် စာရင်းပညာရှင်များ လိုက်နာကျင့်သုံးရမည့် နိုင်ငံတစ်ကာကျင့်ဝတ်များနှင့်အညီ လိုက်နာဆောင်ရွက်မယ်ဖြစ်ပါကြောင်းနှင့် မတရားအသင်း/ အကြမ်းဖက်အဖွဲ့အစည်းအဖြစ် ကြေငြာခံထားရတဲ့အဖွဲ့အစည်းများနှင့် နည်းလမ်းတစ်မျိုးမျိုးဖြင့် ပါဝင်ပက်သက်နေသူ မဟုတ်ကြောင်း (သို့မဟုတ်) ထောက်ခံအားပေးသူမဟုတ်ကြောင်း ဝန်ခံကတိပြုပါသည်။</td>
+                                    <td class="self_confession">  </td>
+                                    <td class="nself_confession"> </td>
                                 </tr>
                             </table>
                         </div>
@@ -1314,9 +1351,69 @@
     </div>
   </div>
   {{-- Reject Modal End --}}
+{{-- Payment detail Modal --}}
+<div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> PAPP Renewal Registration Fees</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul class="list-group mb-3 sticky-top fee_list">
+               
+            </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{-- Payment detail Modal End --}}
 @endsection
 @push('scripts')
 <script>
     loadRenewPAPPData();
+        let papp_id=localStorage.getItem("papp_id");
+        $.ajax({
+            url: BACKEND_URL + "/get_payment_info/" + 'papp_renew'+papp_id,
+            type: 'get',
+            success: function (result) {
+                console.log("papp invoice",result);
+                if(result.status==0){
+                    $('#payment_status').append("Pending");
+                }
+                else{
+                    $('#payment_status').append("Paid");
+                }
+                var productDesc = result.productDesc.split(",");
+                var amount = result.amount.split(",");
+                var total=0;
+                for(var i in amount) { 
+                    total += parseInt(amount[i]);
+                }
+                console.log(total);
+                for(let i=0 ; i<amount.length ; i++){
+                    $('.fee_list').append(`
+                        <li
+                            class="list-group-item d-flex justify-content-between lh-condensed">
+                            <h6 class="my-0">${productDesc[i]}</h6>
+                            <span class="text-muted">- ${amount[i]} MMK</span>
+                        </li>
+                    `);
+                }
+                $('.fee_list').append(`
+                    <li class="list-group-item d-flex justify-content-between">
+                        <span>Total (MMK)</span>
+                        <span id="total">
+                            - <strong>${total}</strong> MMK
+                        </span>
+                    </li>
+                `);
+            }
+        });
 </script>
 @endpush

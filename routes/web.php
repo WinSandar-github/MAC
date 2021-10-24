@@ -152,10 +152,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // CPA(FF)/PAPP Report
-    Route::post('cpa_papp_yearly_list','ReportController\CpaPappReportController@cpaPappYearlyList');
-    Route::post('cpa_papp_yearly_reg_list','ReportController\CpaPappReportController@cpaPappYearlyRegList');
-    Route::post('cpa_papp_take_out_reg_list','ReportController\CpaPappReportController@cpaPappTakeOutRegList');
-    Route::get('cpa_ff_report1','ReportController@cpa_ff_report1');
+    Route::post('cpa_ff_yearly_list/{year}', 'ReportController\CpaPappReportController@cpaFFYealyList');
+    Route::post('cpa_ff_pa_yearly_list/{year}', 'ReportController\CpaPappReportController@cpaPAYealyList');
+    Route::post('cpa_ff_yearly_reg_list/{year}', 'ReportController\CpaPappReportController@cpaFFYearlyRegList');
+    Route::post('cpa_papp_yearly_reg_list/{year}', 'ReportController\CpaPappReportController@cpaPAPPYearlyRegList');
     Route::get('cpa_ff_report2','ReportController@cpa_ff_report2');
     Route::get('cpa_ff_report3','ReportController@cpa_ff_report3');
     Route::get('cpa_ff_report4','ReportController@cpa_ff_report4');
@@ -229,7 +229,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('s_t_report2','ReportController@s_t_report2');
     Route::get('s_t_report3','ReportController@s_t_report3');
 
-    Route::post('teacher_school_license', 'ReportController\TeacherSchoolReportController@teacherSchoolLicense');
+    Route::post('teacher_school_license/{type}', 'ReportController\TeacherSchoolReportController@teacherSchoolLicense');
     Route::post('teacher_school_private', 'ReportController\TeacherSchoolReportController@teacherSchoolPrivate');
     Route::post('teacher_school_license_plate', 'ReportController\TeacherSchoolReportController@teacherSchoolLicensePlate');
 
@@ -237,8 +237,8 @@ Route::group(['middleware' => 'auth'], function () {
     // DA Report
     Route::get('report_list', 'ReportController@index')->name('report_list');
 
-    Route::post('da_attend','ReportController\DaReportController@daAttendList');
-    Route::post('da_reg','ReportController\DaReportController@daRegList');
+    Route::post('da_attend/{type}','ReportController\DaReportController@daAttendList');
+    Route::post('da_reg/{type}','ReportController\DaReportController@daRegList');
     Route::post('da_exam_reg','ReportController\DaReportController@daExamRegList');
     Route::post('da_pass','ReportController\DaReportController@daPassList');
     Route::post('da_report5','ReportController\DaReportController@da_report5');
@@ -246,6 +246,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('da_report7','ReportController\DaReportController@da_report7');
     Route::get('da_report8','ReportController\DaReportController@da_report8');
     Route::get('da_report9','ReportController\DaReportController@da_report9');
+
+    //Cpa Entry Exam Report
+    Route::post('entry_exams_list','ReportController\DaReportController@entryExamsList');
+    Route::post('attend_entry_exam_list/{type}','ReportController\DaReportController@attendEntryExamList');
+
 
     // CPA Qualified Report
     Route::post('cpa_qualified_enrol','ReportController\CpaQualifiedReportController@cpaQualifiedList');
@@ -257,7 +262,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('qualified_report2','ReportController@qualified_report2');
     Route::get('qualify_test_detail/{id}','QualifiedTest\QualifiedTestController@qualifyTestDetail');
     Route::get('qt_fill_mark/{id}','QualifiedTest\QualifiedTestController@qualifyTestFillMark');
-    Route::get('publishes_qualifiedtest_list','QualifiedTest\QualifiedTestController@currentQualifiedTestList');
+    Route::get('publishes_qualifiedtest_list','ReportController\QtReportController@currentQualifiedTestList');
     Route::get('publishes_qualifiedtest_result','QualifiedTest\QualifiedTestController@publishesQualifiedTestResult');
 
 });
