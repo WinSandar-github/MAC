@@ -507,7 +507,7 @@
                                         <span id="submitted_stop_form"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom" id="submitted_stop_form_year_div" style="display:none">
+                                <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားသည့် ခုနှစ်</p>
                                     </div>
@@ -723,7 +723,7 @@
                                         <span id="submitted_stop_form_cpaff"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom" id="submitted_stop_form_year_cpaff_div" style="display:none">
+                                <div class="row m-2 mt-3 border-bottom stop_cpaff_div">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားသည့် ခုနှစ်</p>
                                     </div>

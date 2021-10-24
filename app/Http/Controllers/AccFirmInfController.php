@@ -874,6 +874,7 @@ class AccFirmInfController extends Controller
         foreach($request->t_s_p_id as $val){
           array_push($t_s_p_ary,$val);
         }
+
         $acc_firm_info = AccountancyFirmInformation::find($id);
         //$acc_firm_info->accountancy_firm_reg_no = $request->accountancy_firm_reg_no;
         if($request->accountancy_firm_reg_no){
@@ -931,6 +932,9 @@ class AccFirmInfController extends Controller
         // $std_info->approve_reject_status = 0;
         // $std_info->save();
 
+        //Student Info
+        $std_info = StudentInfo::find($acc_firm_info->student_info_id);
+
         //Branch Office
         BranchOffice::where('accountancy_firm_info_id',$id)->delete();
         if($request->bo_branch_name){
@@ -978,7 +982,6 @@ class AccFirmInfController extends Controller
               }
             }
 
-
             DirectorsOfficersAudit::where('accountancy_firm_info_id',$id)->delete();
             if($request->do_name){
               for($i=0;$i<sizeof($request->do_name);$i++){
@@ -1023,6 +1026,27 @@ class AccFirmInfController extends Controller
             //     $audit_total_staff->accountancy_firm_info_id = $acc_firm_info->id;
             //     $audit_total_staff->save();
             // }
+
+            //invoice update for audit
+            //$invoice = new Invoice();
+            $invoice_info = Invoice::where('invoiceNo','audit_initial'.$id)->get();
+            //$invoice->student_info_id = $std_info->id;
+            //$invoice->invoiceNo = 'audit_initial'.$acc_firm_info->id;
+            foreach($invoice_info as $invoice){
+              $invoice->name_eng        = $std_info->email;
+              $invoice->email           = $std_info->email;
+              $invoice->phone           = '';
+              $invoice->status          = 0;
+
+              $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'registration_fee']);
+              $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+                            ->where('authority_to_sign', '=', 1)->count();
+
+              $invoice->productDesc     = 'Audit Application Fee, Registration Fee(per PAPP who will sign the audit report),Audit Firm';
+              $invoice->amount          = $fees->form_fee . ',' . $papp_count * $fees->registration_fee;
+              $invoice->status          = 0;
+              $invoice->save();
+            }
 
         }
         //Non-Audit
@@ -1102,7 +1126,37 @@ class AccFirmInfController extends Controller
 
             }
 
+            //Student Info
+            $std_info = StudentInfo::find($acc_firm_info->student_info_id);
 
+            //invoice update for non-audit
+            //$invoice = new Invoice();
+            $invoice_info = Invoice::where('invoiceNo','non_audit_initial'.$id)->get();
+            foreach($invoice_info as $invoice){
+              // $invoice->student_info_id = $std_info->id;
+              // $invoice->invoiceNo = 'non_audit_initial'.$acc_firm_info->id;
+              $invoice->name_eng        = $std_info->email;
+              $invoice->email           = $std_info->email;
+              $invoice->phone           = '';
+              $invoice->status          = 0;
+
+              $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'reg_fee_sole','reg_fee_partner']);
+
+              $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee,Non-Audit Firm';
+              if($request->org_stru_id == 1){
+                // for Sole Proprietorship
+                $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_sole;
+              }
+              else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
+                // for Partnership and Company
+                $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
+              }
+              else{
+                // for Other
+                $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
+              }
+              $invoice->save();
+            }
         }
 
 
@@ -1369,9 +1423,16 @@ class AccFirmInfController extends Controller
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
         $acc_firm_info->verify_status  = 0;
-        $acc_firm_info->req_for_stop    = $request->req_for_stop;
-        $acc_firm_info->last_registered_year    = $request->last_registered_year;
-        $acc_firm_info->suspended_year    = $request->suspended_year;
+        if($request->req_for_stop){
+          $acc_firm_info->req_for_stop    = $request->req_for_stop;
+        }
+        if($request->last_registered_year){
+          $acc_firm_info->last_registered_year    = $request->last_registered_year;
+        }
+        if($request->suspended_year){
+          $acc_firm_info->suspended_year    = $request->suspended_year;
+        }
+
         $acc_firm_info->save();
 
         //Student Info
