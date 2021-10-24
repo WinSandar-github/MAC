@@ -397,6 +397,7 @@ class EntryExamController extends Controller
   //end
     public function entryExamFilter(Request $request)
     {
+      
         $exam_register = ExamRegister::with('student_info','course:id,code,name_mm', 'batch:id,name_mm')
             ->where('status','=',$request->status)
             ->where('exam_type_id','=',3)

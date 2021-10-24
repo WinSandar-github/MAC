@@ -318,22 +318,27 @@ const _CPA_QUALIFIED = [
 
 const _CPA_PAPP = [
     {
-        route_name: "/cpa_papp_yearly_list",
-        fun_name: 'cpaPAPPYealyList($(this).data(\'url\'))',
-        sub_title: "CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+        route_name: "/cpa_ff_yearly_list",
+        fun_name: 'cpaFFYealyList($(this).data(\'url\'))',
+        sub_title: "CPA (FF)တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+    },
+
+    {
+        route_name: "/cpa_ff_pa_yearly_list",
+        fun_name: 'cpaPAYealyList($(this).data(\'url\'))',
+        sub_title: "CPA (FF)/ PA တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+    },
+
+    {
+        route_name: "/cpa_ff_yearly_reg_list",
+        fun_name: 'cpaFFYearlyRegList($(this).data(\'url\'))',
+        sub_title: "ပြက္ဒဒိန်နှစ်အလိုက် ( CPA FF) မှတ်ပုံတင်သူများစာရင်း"
     },
 
     {
         route_name: "/cpa_papp_yearly_reg_list",
         fun_name: 'cpaPAPPYearlyRegList($(this).data(\'url\'))',
-        sub_title: "ပြက္ဒဒိန်နှစ် အလိုက် မှတ်ပုံတင်လုပ်ငန်းများစာရင်း"
-    },
-
-    {
-
-        route_name: "/cpa_papp_take_out_reg_list",
-        fun_name: 'cpaPAPPTakeOutRegList($(this).data(\'url\'))',
-        sub_title: "မှတ်ပုံတင်ကတ်ပြားများကို စနစ်ဖြင့် ထုတ်ယူခြင်း"
+        sub_title: "ပြက္ဒဒိန်နှစ်အလိုက် ( PAPP ) မှတ်ပုံတင်သူများစာရင်း"
     }
 
 ]
@@ -342,7 +347,7 @@ const _ARTICLE = [
     {
         route_name: "/article_list",
         fun_name: 'articleList($(this).data(\'url\'))',
-        sub_title: "အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်းးစာရင်း"
+        sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း"
     },
 
     {

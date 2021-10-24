@@ -64,7 +64,7 @@
                                 <tr>
                                     <th class="bold-font-weight">စဥ်</th>
                                     <th class="bold-font-weight">အမည်</th>
-                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်အမှတ်</th>
+                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
                                     <th class="bold-font-weight">အဘအမည်</th>
                                     @if($data['course']->course_type->course_code == 'cpa')
                                     <th class="bold-font-weight">တိုက်ရိုက်/ဝင်ခွင့်</th>

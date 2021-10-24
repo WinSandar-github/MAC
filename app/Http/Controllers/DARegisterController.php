@@ -105,7 +105,7 @@ class DARegisterController extends Controller
         // $course_date = date('Y-m-d');
 
         $date_of_birth = $request->date_of_birth;
-        $date = date('d-M-Y');;
+        $date = date('d-M-Y');
         $qualified_date = $request->qualified_date;
         $course_date = date('Y-m-d');
 

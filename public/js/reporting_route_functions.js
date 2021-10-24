@@ -101,7 +101,8 @@ function daPassList(url) {
 }
 
 function cpaQualifiedList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -110,7 +111,8 @@ function cpaQualifiedList(url) {
 }
 
 function cpaQualifiedExamEnRol(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -119,7 +121,8 @@ function cpaQualifiedExamEnRol(url) {
 }
 
 function cpaQualifiedExamReg(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -128,7 +131,8 @@ function cpaQualifiedExamReg(url) {
 }
 
 function cpaQualifiedPass(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -137,7 +141,8 @@ function cpaQualifiedPass(url) {
 }
 
 function cpaQualifiedFail(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -145,32 +150,49 @@ function cpaQualifiedFail(url) {
     }
 }
 
-function cpaPAPPYealyList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+function cpaFFYealyList(url) {
+
+    if ($('#select-date').val() != "") {
         url = url + ""
-        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
         $('#report-form').submit();
     } else {
-        alert('select course and batch');
+        alert('select year');
     }
+
+}
+
+function cpaPAYealyList(url) {
+
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+
+}
+
+function cpaFFYearlyRegList(url) {
+
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+
 }
 
 function cpaPAPPYearlyRegList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', FRONTEND_URL + url);
-        $('#report-form').submit();
-    } else {
-        alert('select course and batch');
-    }
-}
 
-function cpaPAPPTakeOutRegList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', FRONTEND_URL + url);
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
         $('#report-form').submit();
     } else {
-        alert('select course and batch');
+        alert('select year');
     }
+
 }
 
 function articleList(url) {
@@ -246,7 +268,7 @@ function frimDailyAttendence(url) {
 }
 
 function teacherSchoolLicense(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -255,7 +277,7 @@ function teacherSchoolLicense(url) {
 }
 
 function teacherSchoolPrivate(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
