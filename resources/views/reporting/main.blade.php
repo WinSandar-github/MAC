@@ -86,7 +86,7 @@
 <script src="{{ asset('js/report.js')}}"></script>
 
 
-<script src="{{ asset('js/backendService.js') }}"></script>
+<!-- <script src="{{ asset('js/backendService.js') }}"></script> -->
 <script src="{{ asset('js/common.js')}}"></script>
 <script src="{{ asset('js/student.js')}}"></script>
 <script src="{{ asset('js/da_approve_reject.js')}}"></script>

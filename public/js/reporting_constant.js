@@ -21,20 +21,20 @@ const _DA = [
 
     {
         route_name: "/da_attend/2",
-        fun_name : 'daAttendMacList($(this).data(\'url\'))',
-        sub_title:"စာရင်းစစ်ချုပ်ရုံးတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+        fun_name: 'daAttendMacList($(this).data(\'url\'))',
+        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
     },
-    
+
     {
         route_name: "/da_attend/1",
-        fun_name : 'daAttendPrvList($(this).data(\'url\'))',
-        sub_title:"ကိုယ်ပိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+        fun_name: 'daAttendPrvList($(this).data(\'url\'))',
+        sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
     },
-    
+
     {
         route_name: "/da_attend/0",
-        fun_name : 'daAttendSelfList($(this).data(\'url\'))',
-        sub_title:"ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများစာရင်း"
+        fun_name: 'daAttendSelfList($(this).data(\'url\'))',
+        sub_title: "ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများစာရင်း"
     },
 
     // {
@@ -45,31 +45,31 @@ const _DA = [
 
     {
         route_name: "/da_reg/2",
-        fun_name : 'daRegList($(this).data(\'url\'))',
+        fun_name: 'daRegList($(this).data(\'url\'))',
         sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
         route_name: "/da_reg/0",
-        fun_name : 'daRegList($(this).data(\'url\'))',
+        fun_name: 'daRegList($(this).data(\'url\'))',
         sub_title: "ကိုယ်တိုင်လေ့လာသင်ယူမည့် မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
         route_name: "/da_reg/1",
-        fun_name : 'daRegList($(this).data(\'url\'))',
+        fun_name: 'daRegList($(this).data(\'url\'))',
         sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
         route_name: "/da_exam_reg",
-        fun_name : 'daExamRegList($(this).data(\'url\'))',
+        fun_name: 'daExamRegList($(this).data(\'url\'))',
         sub_title: "စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ စာဖြေဌာနအလိုက်၊ MODULEအလိုက်)"
     },
 
     {
         route_name: "/da_pass",
-        fun_name : 'daPassList($(this).data(\'url\'))',
+        fun_name: 'daPassList($(this).data(\'url\'))',
         sub_title: "စာမေးပွဲအောင်မြင်သူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ စာဖြေဌာနအလိုက်၊ MODULEအလိုက်၊ ကျောင်းအလိုက်)"
     }
 
@@ -88,27 +88,49 @@ const _CPA = [
 
     {
         route_name: "/da_attend/2",
-        fun_name : 'daAttendMacList($(this).data(\'url\'))',
-        sub_title:"စာရင်းစစ်ချုပ်ရုံးတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
-    },
-    
-    {
-        route_name: "/da_attend/1",
-        fun_name : 'daAttendPrvList($(this).data(\'url\'))',
-        sub_title:"ကိုယ်ပိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
-    },
-    
-    {
-        route_name: "/da_attend/0",
-        fun_name : 'daAttendSelfList($(this).data(\'url\'))',
-        sub_title:"ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများစာရင်း"
+        fun_name: 'daAttendMacList($(this).data(\'url\'))',
+        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
     },
 
     {
-        route_name: "/da_reg/99",
-        fun_name : 'daRegList($(this).data(\'url\'))',
-        sub_title: "ဝင်ခွင့်စာမေးပွဲမှ တက်ရောက်ခွင့်ရသူများစာရင်း"
+        route_name: "/da_attend/1",
+        fun_name: 'daAttendPrvList($(this).data(\'url\'))',
+        sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
     },
+
+    {
+        route_name: "/da_attend/0",
+        fun_name: 'daAttendSelfList($(this).data(\'url\'))',
+        sub_title: "ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများစာရင်း"
+    },
+
+    {
+        route_name: "/entry_exams_list",
+        fun_name: 'entryExamsList($(this).data(\'url\'))',
+        sub_title: "ဝင်ခွင့်စာမေးပွဲမှ ဖြေဆိုခွင့်ရှိသူများ"
+    },
+    {
+        route_name: "/attend_entry_exam_list/2",
+        fun_name: 'attendEntryExamMacList($(this).data(\'url\'))',
+        sub_title: "ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများ ( မြန်မာနိုင်ငံစာရင်းကောင်စီတွင်တက်ရောက်ခွင့်ရသူများ )"
+    },
+    {
+        route_name: "/attend_entry_exam_list/1",
+        fun_name: 'attendEntryExamPrvList($(this).data(\'url\'))',
+        sub_title: "ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများ ( ကိုယ်ပိုင်စာရင်းကိုသင်တန်းကျောင်းတွင်တက်ရောက်ခွင့်ရသူများ )"
+    },
+    {
+        route_name: "/attend_entry_exam_list/0",
+        fun_name: 'attendEntryExamSelfList($(this).data(\'url\'))',
+        sub_title: "ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများ ( ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများ  )"
+    },
+    // {
+    //     route_name: "/da_reg/99",
+    //     fun_name: 'daRegList($(this).data(\'url\'))',
+    //     sub_title: "ဝင်ခွင့်စာမေးပွဲမှ တက်ရောက်ခွင့်ရသူများစာရင်း"
+    // },
+
+
 
     // {
     //     // route_name: "ca_report_template",
@@ -119,33 +141,33 @@ const _CPA = [
 
     {
         route_name: "/da_reg/2",
-        fun_name : 'daRegList($(this).data(\'url\'))',
+        fun_name: 'daRegList($(this).data(\'url\'))',
         sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
         route_name: "/da_reg/0",
-        fun_name : 'daRegList($(this).data(\'url\'))',
+        fun_name: 'daRegList($(this).data(\'url\'))',
         sub_title: "ကိုယ်တိုင်လေ့လာသင်ယူမည့် မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
         route_name: "/da_reg/1",
-        fun_name : 'daRegList($(this).data(\'url\'))',
+        fun_name: 'daRegList($(this).data(\'url\'))',
         sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
         // route_name: "ca_report_template",
         route_name: "/da_exam_reg",
-        fun_name : 'daExamRegList($(this).data(\'url\'))',
+        fun_name: 'daExamRegList($(this).data(\'url\'))',
         sub_title: "စာမေးပွဲဖြေဆိုခွင့်ရရှိသူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ စာဖြေဌာနအလိုက်၊ MODULEအလိုက်)"
     },
 
     {
         // route_name: "ca_report_template",
         route_name: "/da_pass",
-        fun_name : 'daPassList($(this).data(\'url\'))',
+        fun_name: 'daPassList($(this).data(\'url\'))',
         sub_title: "စာမေးပွဲအောင်မြင်သူစာရင်း (ကျောင်းသားအမျိုးအစားအလိုက်၊ စာဖြေဌာနအလိုက်၊ MODULEအလိုက်၊ ကျောင်းအလိုက်)"
     }
 
@@ -262,83 +284,83 @@ const _TEACHER_SCHOOL = [
 ]
 
 const _CPA_QUALIFIED = [
-    { 
+    {
         route_name: "/cpa_qualified_enrol",
-        fun_name : 'cpaQualifiedList($(this).data(\'url\'))',
-        sub_title: "လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)" 
+        fun_name: 'cpaQualifiedList($(this).data(\'url\'))',
+        sub_title: "လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
         route_name: "/cpa_qualified_exam_enrol",
-        fun_name : 'cpaQualifiedExamEnRol($(this).data(\'url\'))',
+        fun_name: 'cpaQualifiedExamEnRol($(this).data(\'url\'))',
         sub_title: "ဖြေဆိုခွင့်ရရှိသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
         route_name: "/cpa_qualified_exam_reg",
-        fun_name : 'cpaQualifiedExamReg($(this).data(\'url\'))',
+        fun_name: 'cpaQualifiedExamReg($(this).data(\'url\'))',
         sub_title: "ဖြေဆိုသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
         route_name: "/cpa_qualified_pass",
-        fun_name : 'cpaQualifiedPass($(this).data(\'url\'))',
+        fun_name: 'cpaQualifiedPass($(this).data(\'url\'))',
         sub_title: "အောင်မြင်သူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     },
 
     {
         route_name: "/cpa_qualified_fail",
-        fun_name : 'cpaQualifiedFail($(this).data(\'url\'))',
+        fun_name: 'cpaQualifiedFail($(this).data(\'url\'))',
         sub_title: "ကျရှံးသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)"
     }
-    
+
 ]
 
 const _CPA_PAPP = [
-    { 
+    {
         route_name: "/cpa_papp_yearly_list",
-        fun_name : 'cpaPAPPYealyList($(this).data(\'url\'))',
-        sub_title: "CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း" 
+        fun_name: 'cpaPAPPYealyList($(this).data(\'url\'))',
+        sub_title: "CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
     },
 
     {
         route_name: "/cpa_papp_yearly_reg_list",
-        fun_name : 'cpaPAPPYearlyRegList($(this).data(\'url\'))',
+        fun_name: 'cpaPAPPYearlyRegList($(this).data(\'url\'))',
         sub_title: "ပြက္ဒဒိန်နှစ် အလိုက် မှတ်ပုံတင်လုပ်ငန်းများစာရင်း"
     },
 
     {
-        
+
         route_name: "/cpa_papp_take_out_reg_list",
-        fun_name : 'cpaPAPPTakeOutRegList($(this).data(\'url\'))',
+        fun_name: 'cpaPAPPTakeOutRegList($(this).data(\'url\'))',
         sub_title: "မှတ်ပုံတင်ကတ်ပြားများကို စနစ်ဖြင့် ထုတ်ယူခြင်း"
     }
-    
+
 ]
 
 const _ARTICLE = [
-    { 
+    {
         route_name: "/article_list",
-        fun_name : 'articleList($(this).data(\'url\'))',
-        sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း" 
+        fun_name: 'articleList($(this).data(\'url\'))',
+        sub_title: "အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်းးစာရင်း"
     },
 
     {
         route_name: "/article_daily_in_out_list",
-        fun_name : 'articleDailyInOutList($(this).data(\'url\'))',
+        fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
         sub_title: "နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ။"
     },
 
-    { 
+    {
         route_name: "/article_intern_position_list",
-        fun_name : 'articleInternPosList($(this).data(\'url\'))',
+        fun_name: 'articleInternPosList($(this).data(\'url\'))',
         sub_title: "စာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
     },
 
-    { 
+    {
         route_name: "/article_internship_list",
-        fun_name : 'articleInternshipList($(this).data(\'url\'))',
+        fun_name: 'articleInternshipList($(this).data(\'url\'))',
         sub_title: "အလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)"
     }
-    
+
 ]

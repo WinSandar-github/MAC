@@ -42,12 +42,12 @@
                         </div>
 
                         <div class="col-md-6 pl-2">
-                            @if($currend_date > $data['course']->active_batch[0]->mac_reg_end_date)
+                           {{-- @if($currend_date > $data['course']->active_batch[0]->mac_reg_end_date)
                                 
                                     <button onclick="generateAppSrNo('{{$data['course']->code}}')"
                                             class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်
                                     </button>
-                             @endif
+                             @endif --}}
                         </div>
                         <div class="col-md-12">
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
@@ -158,44 +158,45 @@
 
                                 @foreach($data['student'] as $key => $std)
                                 
-                                    @if($key == 0)
+                                @if($key == 0)
+                                    <tr class="self-row">
+                                        <td colspan="6" style="text-align: start;font-weight: bold">
+                                            ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများ
+                                        </td>
+                                    </tr>
+
+                                    @foreach($std as $key => $s)
+                                    
+                                    @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+
                                         <tr class="self-row">
-                                            <td colspan="6" style="text-align: start;font-weight: bold">
-                                                ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများ
+                                            <td>
+                                                {{ ++$count }}
+                                            </td>
+                                            <td>
+                                                {{$s->name_mm}}
+                                            </td>
+                                            <td>
+                                                {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
+                                            </td>
+                                            <td>
+                                                {{ $s->student_info->father_name_mm }}
+                                            </td>
+                                            <td>
+                                           {{ $age}}
+                                            </td>
+                                            <td>
+                                                {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                            </td>
+                                            <td>
+                                                {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                             </td>
                                         </tr>
+                                    @endforeach
+                                @endif
+                            @endforeach
 
-                                        @foreach($std as $key => $s)
-                                        
-                                        @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
-
-                                            <tr class="self-row">
-                                                <td>
-                                                    {{ ++$count }}
-                                                </td>
-                                                <td>
-                                                    {{$s->name_mm}}
-                                                </td>
-                                                <td>
-                                                    {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
-                                                </td>
-                                                <td>
-                                                    {{ $s->student_info->father_name_mm }}
-                                                </td>
-                                                <td>
-                                               {{ $age}}
-                                                </td>
-                                                <td>
-                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
-                                                </td>
-                                                <td>
-                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-
+                              
                                 @foreach($data['student'] as $key => $std)
                                     @if($key == 1)
                                         <tr class="private-row">

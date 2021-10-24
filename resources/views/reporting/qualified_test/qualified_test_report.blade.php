@@ -17,8 +17,12 @@
             
                 <div class="card-body">
                     <div class="row">
-                        
+                            <div class="col-md-12 pl-2">
+                                <button   onclick="generateQTSrNo()" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
+                                
+                            </div>
                     <div class="col-md-12">
+                        
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
                                 <thead>
                                 <tr>
@@ -29,6 +33,7 @@
                                     <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
                                 </tr>
                                 </thead>
+                                @php @endphp
                                 <tbody id="tbl_app_list_body" class="hoverTable">
                                     @foreach($data['student'] as $k=>$s)
                                         <tr>

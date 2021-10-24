@@ -518,6 +518,14 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
+                                <div class="row m-2 mt-3 border-bottom" id="direct_entry_row">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">တိုက်ရိုက်တက်ရောက်ခွင့်ရသည့်(သို့)ဝင်ခွင့်စာမေးပွဲအောင်မြင်သည့် အမှတ်စဥ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="sr_no"></span>
+                                    </div>
+                                </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Register Date</p>

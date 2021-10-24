@@ -34,7 +34,41 @@ function daAttendSelfList(url) {
     }
 }
 
+function entryExamsList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
 
+function attendEntryExamMacList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function attendEntryExamPrvList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function attendEntryExamSelfList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
 
 
 
@@ -176,7 +210,7 @@ function articleInternshipList(url) {
 }
 
 function articleMentorInternRegister(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -185,7 +219,7 @@ function articleMentorInternRegister(url) {
 }
 
 function articleMentorIntern(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -194,7 +228,7 @@ function articleMentorIntern(url) {
 }
 
 function firmIndividual(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -203,7 +237,7 @@ function firmIndividual(url) {
 }
 
 function frimDailyAttendence(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -212,7 +246,7 @@ function frimDailyAttendence(url) {
 }
 
 function teacherSchoolLicense(url) {
-    if ( $('#select-date').val() != "") {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -221,7 +255,7 @@ function teacherSchoolLicense(url) {
 }
 
 function teacherSchoolPrivate(url) {
-    if ( $('#select-date').val() != "" ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -230,7 +264,7 @@ function teacherSchoolPrivate(url) {
 }
 
 function teacherSchoolLicensePlate(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {

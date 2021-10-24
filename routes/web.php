@@ -247,6 +247,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('da_report8','ReportController\DaReportController@da_report8');
     Route::get('da_report9','ReportController\DaReportController@da_report9');
 
+    //Cpa Entry Exam Report
+    Route::post('entry_exams_list','ReportController\DaReportController@entryExamsList');
+    Route::post('attend_entry_exam_list/{type}','ReportController\DaReportController@attendEntryExamList');
+
+
     // CPA Qualified Report
     Route::post('cpa_qualified_enrol','ReportController\CpaQualifiedReportController@cpaQualifiedList');
     Route::post('cpa_qualified_exam_enrol','ReportController\CpaQualifiedReportController@cpaQualifiedExamEnRol');
@@ -257,7 +262,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('qualified_report2','ReportController@qualified_report2');
     Route::get('qualify_test_detail/{id}','QualifiedTest\QualifiedTestController@qualifyTestDetail');
     Route::get('qt_fill_mark/{id}','QualifiedTest\QualifiedTestController@qualifyTestFillMark');
-    Route::get('publishes_qualifiedtest_list','QualifiedTest\QualifiedTestController@currentQualifiedTestList');
+    Route::get('publishes_qualifiedtest_list','ReportController\QtReportController@currentQualifiedTestList');
     Route::get('publishes_qualifiedtest_result','QualifiedTest\QualifiedTestController@publishesQualifiedTestResult');
 
 });

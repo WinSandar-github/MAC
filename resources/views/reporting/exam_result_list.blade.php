@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-md-12 text-center">
             <input type="hidden" id="course_code" name="course_code" value={{$course->code}}  >
-            <input type="text" id="batch_id" name="batch_id" value={{$batch->id}}  >
+            <input type="hidden" id="batch_id" name="batch_id" value={{$batch->id}}  >
 
             <div class="card">
                 <div class="card-header">
