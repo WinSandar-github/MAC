@@ -809,7 +809,7 @@
                                                                 <th class="bold-font-weight" >Initial Date</th>
                                                                 <!-- <th class="bold-font-weight" >School Card</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight">Reason</th>
+                                                                <!-- <th class="bold-font-weight">Reason</th> -->
                                                     </tr>
                                                     </thead>
                                                     <tbody id="tbl_school_approved_list_body" class="hoverTable">
@@ -899,7 +899,7 @@
                                                                 <th class="bold-font-weight" >Initial Date</th>
                                                                 <!-- <th class="bold-font-weight" >Teacher Card</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight">Reason</th>
+                                                                <!-- <th class="bold-font-weight">Reason</th> -->
                                                     </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_approved_list_body" class="hoverTable">
@@ -1581,7 +1581,7 @@
                     {data: 'from_valid_date', name: 'from_valid_date'},
                     // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
-                    {data: 'reason', name: 'reason'},
+                    // {data: 'reason', name: 'reason'},
                 ],
             });
 
@@ -1758,7 +1758,7 @@
                     {data: 'from_valid_date', name: 'from_valid_date'},
                     // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
-                    {data: 'reason', name: 'reason'},
+                    // {data: 'reason', name: 'reason'},
                 ],
             });
 
