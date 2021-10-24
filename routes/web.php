@@ -182,7 +182,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post("firm_individual", "ReportController\FirmReportController@firmIndividual");
     Route::post("firm_daily_attendence", "ReportController\FirmReportController@firmDailyAttendence");
-    Route::post("firm_registration_yearly_calendar", "ReportController\FirmReportController@firmRegistrationnYearlyCalendar");
+    Route::post("firm_registration_yearly_calendar/{org_stru_id}/{firm_type_id}/{local_foreign}", "ReportController\FirmReportController@firmRegistrationnYearlyCalendar");
+    // Route::post("non_firm_registration_yearly_calendar/{org_stru_id}/{firm_type_id}", "ReportController\FirmReportController@nonFirmRegistrationnYearlyCalendar");
     
 
     // CPA Report

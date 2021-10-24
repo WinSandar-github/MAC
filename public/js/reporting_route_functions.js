@@ -267,7 +267,62 @@ function frimDailyAttendence(url) {
     }
 }
 
-function registrationYearlyCalendar(url) {
+function soleFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function partnershipFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function localSoleNonFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function localPartnershipNonFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+
+function foreignSoleNonFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function foreignPartnershipNonFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function companyFirmRegistrationYearlyCalendar(url) {
     if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();

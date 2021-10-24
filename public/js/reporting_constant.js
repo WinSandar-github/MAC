@@ -233,10 +233,41 @@ const _FIRM_NAME = [
     },
 
     {
-        route_name: "/firm_registration_yearly_calendar",
-        fun_name: "firmRegistrationYearlyCalendar($(this).data(\'url\'))",
+        route_name: "/firm_registration_yearly_calendar/1/1/NULL",
+        fun_name: "soleFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
         sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Audit Firm ) ( Sole )`
     },
+    {
+        route_name: "/firm_registration_yearly_calendar/2/1/NULL",
+        fun_name: "partnershipFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+        sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Audit Firm ) ( Partnership )`
+    },
+    {
+        route_name: "/firm_registration_yearly_calendar/3/1/NULL",
+        fun_name: "companyFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+        sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Audit Firm ) ( Company )`
+    },
+    {
+        route_name: "/firm_registration_yearly_calendar/1/2/1",
+        fun_name: "localSoleNonFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+        sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Non Audit Firm ) (  Local Sole )`
+    },
+    {
+        route_name: "/firm_registration_yearly_calendar/2/2/1",
+        fun_name: "localPartnershipNonFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+        sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Non Audit Firm ) ( Local Partnership )`
+    },
+    {
+        route_name: "/firm_registration_yearly_calendar/1/2/2",
+        fun_name: "foreignSoleNonFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+        sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Non Audit Firm ) ( Foreign Sole )`
+    },
+    {
+        route_name: "/firm_registration_yearly_calendar/2/2/2",
+        fun_name: "foreignPartnershipNonFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+        sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Non Audit Firm ) ( Foreign Partnership )`
+    },
+
     // {
     //     sub_title: `အလုပ်သင်မှတ်တမ်း - ၂ နှစ်ပြည့်၊ ၃ နှစ်ပြည့်`
     // }
