@@ -1194,6 +1194,50 @@
 	                                                    </div>
 	                                            </div>
 
+																							@if($item->offline_user == 1)
+																								<div class="row mb-5">
+																										<label for="" class="col-md-1 col-form-label"></label>
+																										<label for="" class="col-md-3 col-form-label font-weight-bold">Last Registered Year</label>
+																										<label for="" class="col-md-5 col-form-label"><span id="last_registered_year" class="">{{$item->last_registered_year}}</span></label>
+																								</div>
+																								<div class="row mb-5">
+								                                    <label for="" class="col-md-1 col-form-label"></label>
+								                                    <label for="" class="col-md-4 col-form-label font-weight-bold">Suspended Year</label>
+								                                    <div class="row col-md-7 py-2">
+								                                        <div class="col-md-3 form-check-radio mx-2">
+								                                            <label class="form-check-label">
+								                                                <input class="form-check-input" type="radio" id="yes"
+								                                                        name="req_for_stop" value="1" disabled
+																																				<?php
+																																					if($item->req_for_stop == 1){
+																																						echo "checked";
+																																					}
+																																				 ?>
+																																				>
+								                                                <span class="form-check-sign"></span>
+								                                                Yes
+								                                            </label>
+								                                        </div>
+								                                        <div class="col-md-3 form-check-radio mx-2">
+								                                            <label class="form-check-label">
+								                                                <input class="form-check-input" type="radio" id="no"
+								                                                        name="req_for_stop" value="2" disabled
+																																				<?php
+																																					if($item->req_for_stop == 2){
+																																						echo "checked";
+																																					}
+																																				 ?>
+																																				>
+								                                                <span class="form-check-sign"></span>
+								                                                No
+								                                            </label>
+								                                        </div>
+
+								                                        <label  class="error attend_place_error" style="display:none;" for="req_for_stop">Please select one</label>
+								                                    </div>
+								                                </div>
+																							@endif
+
 
 	                                            <input type="hidden" name="audit_firm_id" >
 
