@@ -68,8 +68,7 @@
                                     <tr>
                                         <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >အမည်</th>
-                                        <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
-                                        
+                                        <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>                      
                                         <th class="bold-font-weight" >ကိုယ်ပိုင်အမှတ်</th>
                                         <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                         <th class="bold-font-weight">အဘအမည်</th>

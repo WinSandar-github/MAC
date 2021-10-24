@@ -8,24 +8,33 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">Teacher/ School အတွက် မှတ်ပုံတင်ကတ်များ။</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">
+                                {{ $data['title'] }}
+                            </h5>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="row"> 
-
+                    <div class="row">
                         <div class="col-md-12">
-                          
-                           
-                        
                             <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
                                 <thead>
+                                <!-- စဉ်၊ သင်တန်းဆရာအမှတ်၊ အမည်၊ နိုင်ငံသား စိစစ်ရေးကတ်ပြား၊ အဘအမည်၊ သင်တန်းဆရာ အမျိုးအစား၊ သင်ကြားသည့် သင်တန်းကျောင်း အမည်၊ သင်ကြားသည့် သင်တန်းအမျိုးအစား၊ ဘာသာရပ်များ၊ 
+                                မှတ်ပုံတင် သက်တမ်းကာလ၊ သက်တမ်းတိုး/ရပ်နားသည့်နေ့၊ သက်တမ်းပြတ် ကာလ၊  -->
                                     <tr>
-                                        <th class="bold-font-weight" >Serial number</th>
-                                        <th class="bold-font-weight" >အမည်</th>
-                                        <th class="bold-font-weight" >မှတ်ပုံတင်နံပါတ်</th>
-                                        <th class="bold-font-weight" >ကိုယ်ပိုင်နံပါတ်</th>
+                                        <th class="bold-font-weight">စဥ်</th>
+                                        <th class="bold-font-weight">သင်တန်းဆရာအမှတ်</th>
+                                        <th class="bold-font-weight">အမည်</th>
+                                        <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
+                                        <th class="bold-font-weight">အဘအမည်</th>
+                                        <th class="bold-font-weight">သင်တန်းဆရာအမျိုးအစား</th>
+                                        <th class="bold-font-weight">သင်ကြားနေသောသင်တန်းကျောင်းအမည်</th>
+                                        <th class="bold-font-weight">သင်ကြားနေသောသင်တန်းအမျိုးအစား</th>
+                                        <th class="bold-font-weight">ဘာသာရပ်များ</th>
+                                        <th class="bold-font-weight">မှတ်ပုံတင်သက်တမ်းကာလ</th>
+                                        <th class="bold-font-weight">သက်တမ်းတိုးသည့်နေ့</th>
+                                        <th class="bold-font-weight">ရပ်နားသည့်နေ့</th>
+                                        <th class="bold-font-weight">သက်တမ်းပြတ်ကာလ</th>
                                         <th>လုပ်သက်</th>
 
                                     </tr>

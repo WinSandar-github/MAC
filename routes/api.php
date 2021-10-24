@@ -318,7 +318,7 @@ Route::post('store_student_app_reg','StudentRegisterController@store_student_app
 
 //Student Data Show on Mac_Student
 Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
-Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
+Route::post('get_student_app_list','StudentRegisterController@getStudenqtAppList');
 
 
 Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
@@ -346,6 +346,8 @@ Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{code}','ApiController@generateExamSrNo');
 Route::get('/generate_entrance_exam_sr_no/{code}','ApiController@generateEntranceExamSrNo');
 Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQTSrNo');
+Route::get('/generate_exam_result/{code}','ApiController@generateExamResult');
+
 
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 

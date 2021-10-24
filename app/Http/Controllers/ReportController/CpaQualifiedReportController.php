@@ -20,7 +20,9 @@ class CpaQualifiedReportController extends Controller
     public function cpaQualifiedList(Request $request)
     {
          
-        $student = QualifiedTest::with('student_info')->where('approve_reject_status',0)->get();
+        $student = QualifiedTest::with('student_info')
+                   ->where('approve_reject_status',0)
+                   ->get();
 
         $data = [
             'title' => 'လျှောက်ထားသူများစာရင်း (စာမေးပွဲကျင်းပသည့် ခုနှစ်နှင့်လအလိုက်)',
@@ -62,6 +64,7 @@ class CpaQualifiedReportController extends Controller
     {
         $student = QualifiedTest::with('student_info')
                     ->where('approve_reject_status', '=', 1)
+                    ->where('grade',1)
                     ->get();
 
         $data = [
@@ -76,6 +79,7 @@ class CpaQualifiedReportController extends Controller
     {
         $student = QualifiedTest::with('student_info')
                     ->where('approve_reject_status', '=', 1)
+                    ->where('grade',2)
                     ->get();
 
         $data = [
