@@ -51,7 +51,7 @@ function loadOfflineDACPAData(){
                 // console.log('current_course',current_course)
 
                 let element = student_course.student_info;
-                // console.log('student_info',element)
+                console.log('student_info',element)
                 let student_register = student_course.student_info.student_register.slice(-1);                
                 // console.log('student_register',student_register[0]);
 
@@ -109,13 +109,13 @@ function loadOfflineDACPAData(){
                 if(exam_register.length == 1){
 
                     if(element.course_type_id==1){
-                        console.log("Hello")
                         $(".da_one_pass_info").show();
                         $(".cpa_one_pass_info").hide();  
+                        $("#direct_entry_row").hide();  
                         $(".da_one_batch_name").append(exam_register[0].batch.name);
                         $(".da_one_pass_exam_date").append(exam_register[0].passed_date);
                         $(".da_one_pass_level").append(exam_register[0].passed_level);
-                        $(".da_one_pass_personal_no").append(exam_register[0].passed_personal_no);
+                        $(".da_one_pass_personal_no").append(element.personal_no);
     
                         if(student_course_regs[0].type==0){
                             $(".da_one_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
@@ -143,10 +143,11 @@ function loadOfflineDACPAData(){
                     if(element.course_type_id==2){
                         $(".da_one_pass_info").hide();
                         $(".cpa_one_pass_info").show();  
-                        $(".cpa_selected_batch_name").append(exam_register[0].batch.name);
+                        $("#direct_entry_row").show();  
+                        $(".cpa_one_batch_name").append(exam_register[0].batch.name);
                         $(".cpa_one_pass_exam_date").append(exam_register[0].passed_date);
                         $(".cpa_one_pass_level").append(exam_register[0].passed_level);
-                        $(".cpa_one_pass_personal_no").append(exam_register[0].passed_personal_no);
+                        $(".cpa_one_pass_personal_no").append(element.cpersonal_no);
     
                         if(student_course_regs[0].type==0){
                             $(".cpa_one_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
@@ -157,6 +158,8 @@ function loadOfflineDACPAData(){
                         }else{
                             $(".cpa_one_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
                         }
+
+                        $("#sr_no").append(student_course_regs[0].sr_no)
  
                         if(exam_register[0].is_full_module == 1){
                             $(".cpa_one_module").append("Module 1");
@@ -181,17 +184,18 @@ function loadOfflineDACPAData(){
 
                         $(".cpa_one_pass_info").hide();
                         $(".cpa_two_pass_info").hide();  
+                        $("#direct_entry_row").hide();  
 
                         $(".da_one_batch_name").append(exam_register[0].batch.name);
                         $(".da_one_pass_exam_date").append(exam_register[0].passed_date);
                         $(".da_one_pass_level").append(exam_register[0].passed_level);
-                        $(".da_one_pass_personal_no").append(exam_register[0].passed_personal_no);
+                        $(".da_one_pass_personal_no").append(element.personal_no);
                         
 
                         $(".da_two_batch_name").append(exam_register[1].batch.name);
                         $(".da_two_pass_exam_date").append(exam_register[1].passed_date);
                         $(".da_two_pass_level").append(exam_register[1].passed_level);
-                        $(".da_two_pass_personal_no").append(exam_register[1].passed_personal_no);
+                        $(".da_two_pass_personal_no").append(element.personal_no);
     
                         if(student_course_regs[0].type==0){
                             $(".da_one_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
@@ -207,7 +211,7 @@ function loadOfflineDACPAData(){
                             $(".da_two_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");
                         }else if(student_course_regs[1].type==1){
                             $(".da_two_attend_place").append("ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း");
-                        }else if(student_course_regs[0].type==2 && student_course_regs[1].mac_type==1){
+                        }else if(student_course_regs[1].type==2 && student_course_regs[1].mac_type==1){
                             $(".da_two_attend_place").append("စာရင်းကောင်စီ (ရန်ကုန်သင်တန်းကျောင်း)");
                         }else{
                             $(".da_two_attend_place").append("စာရင်းကောင်စီ (နေပြည်တော်သင်တန်းကျောင်း)");
@@ -242,16 +246,17 @@ function loadOfflineDACPAData(){
 
                         $(".cpa_one_pass_info").show();
                         $(".cpa_two_pass_info").show(); 
+                        $("#direct_entry_row").hide();  
 
                         $(".cpa_one_batch_name").append(exam_register[0].batch.name);
                         $(".cpa_one_pass_exam_date").append(exam_register[0].passed_date);
                         $(".cpa_one_pass_level").append(exam_register[0].passed_level);
-                        $(".cpa_one_pass_personal_no").append(exam_register[0].passed_personal_no);
+                        $(".cpa_one_pass_personal_no").append(element.cpersonal_no);
 
                         $(".cpa_two_batch_name").append(exam_register[1].batch.name);
                         $(".cpa_two_pass_exam_date").append(exam_register[1].passed_date);
                         $(".cpa_two_pass_level").append(exam_register[1].passed_level);
-                        $(".cpa_two_pass_personal_no").append(exam_register[1].passed_personal_no);
+                        $(".cpa_two_pass_personal_no").append(element.cpersonal_no);
     
                         if(student_course_regs[0].type==0){
                             $(".cpa_one_attend_place").append("ကိုယ်တိုင်လေ့လာသင်ယူသူ");

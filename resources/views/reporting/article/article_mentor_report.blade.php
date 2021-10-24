@@ -14,54 +14,94 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card-body">
                     <div class="row">
-
                         <div class="col-md-12">
-                            <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
-                                <thead>
-                                    <tr>
-                                        <th class="bold-font-weight">စဥ်</th>
-                                        <th class="bold-font-weight">အမည်</th>
-                                        <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကဒ်အမှတ်</th>
-                                        <th class="bold-font-weight">ဘွဲ့အမည်</th>
-                                        <th class="bold-font-weight">အဘအမည်</th>
-                                        <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbl_app_list_body" class="hoverTable">
+                            <div class="table-responsive">
+                                <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
+                                    <thead>
+                                        <tr>
+                                            <th class="bold-font-weight">စဥ်</th>
+                                            <th class="bold-font-weight">PAPPအမှတ်</th>
+                                            <th class="bold-font-weight">အမည်</th>
+                                            <th class="bold-font-weight">လုပ်ငန်းအမှတ်</th>
+                                            <th class="bold-font-weight">လုပ်ငန်းအမျိုးအစား</th>
+                                            <th class="bold-font-weight">ရုံးလိပ်စာ</th>
+                                            <th class="bold-font-weight">အီးမေလ်</th>
+                                            <th class="bold-font-weight">ဖုန်း</th>
+                                            <th class="bold-font-weight">ခွင့်ပြုစာအမှတ်</th>
+                                            <th class="bold-font-weight">ခွင့်ပြုရက်စွဲ</th>
+                                            <th class="bold-font-weight">ခွင့်ပြုရုံးအမိန့်</th>
+                                            <th class="bold-font-weight">စတင်သည့်ရက်</th>
+                                            <th class="bold-font-weight">ပြီးဆုံးသည့်ရက်</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbl_app_list_body" class="hoverTable">
 
-                                    @if ($data['mentor'] != '')
-                                        @foreach ($data['mentor'] as $k => $m)
-                                            
-                                            <tr>
-                                                <td>{{ ++$k }}</td>
-                                                <td>{{ $m->name_mm }}</td>
-                                                <td>{{ $m->nrcNumber() }}</td>
-                                                <td>{{ $m->education }}</td>
-                                                <td>{{ $m->father_name_mm }}</td>
-                                                <td>{{ $m->papp_reg_no }}</td>
-                                            </tr>
+                                        @if ($data['mentor'] != '')
+                                            @foreach ($data['mentor'] as $k => $m)
+                                                
+                                                <tr>
+                                                    <td>{{ ++$k }}</td>
+                                                    <td>{{ $m->papp_reg_no }}</td>
+                                                    <td>{{ $m->name_mm }}</td>
+                                                    <td>{{ 'MENTOR-' . $m->id }}</td>
+                                                    <td class='text-left'>
+                                                       @foreach($m->serviceType() as $ser)
+                                                        <span class="d-block m-1 badge bg-info text-white"> {{ $ser->name }} </span>
+                                                       @endforeach
+                                                    </td>
+                                                    <td class='text-left'>{{ $m->address }}</td>
+                                                    <td>{{ $m->m_email }}</td>
+                                                    <td>{{ $m->phone_no }}</td>
+                                                    <td>{{ 'N/A' }}</td>
+                                                    <td>{{ $m->reg_date }}</td>
+                                                    <td>{{ 'N/A' }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($m->reg_date)->format('d-M-Y') }}</td>
+                                                    <td>{{ \Carbon\Carbon::parse($m->reg_date)->addYear(1)->format('d-M-Y') }}</td>
+                                                </tr>
 
-                                        @endforeach
-                                    @else
-                                            <tr>
-                                                <td colspan="6">No Data Found!</td>
-                                            </tr>
-                                    @endif
+                                            @endforeach
+                                        @else
+                                                <tr>
+                                                    <td colspan="6">No Data Found!</td>
+                                                </tr>
+                                        @endif
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div id='export-btn'></div>
                         </div>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
-
-
 @endsection
+@push('styles')
+    <link href="{{ asset('assets/js/plugins/tableexport/dist/css/tableexport.min.css') }}" rel="stylesheet">
+@endpush
+@push('scripts')
+    <script src="{{ asset('assets/js/plugins/xlsx.core.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/FileSave.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/tableexport/dist/js/tableexport.min.js') }}"></script>
+    <script>
+        $('document').ready(function () {
+            // table export
+            var $table = $('.table');
+
+            $table.tableExport({
+                headers: false,
+                footers: false,
+                position: "bottom",
+                bootstrap: true
+            });
+
+            $btn = $table.find('caption').children().detach();
+
+            $btn.appendTo('#export-btn');
+            // table export
+        });
+    </script>
+@endpush

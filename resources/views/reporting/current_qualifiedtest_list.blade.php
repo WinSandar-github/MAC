@@ -14,7 +14,7 @@
                 <div class="card-body">
                     <div class="row"> 
                             <div class="col-md-12 pl-2">
-                            <button   onclick="generateQTSrNo()" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
+                                <button   onclick="generateQTSrNo()" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
                                 
                             </div>
                         <div class="col-md-12">                       

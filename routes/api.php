@@ -58,7 +58,7 @@ Route::resource('/cpa_private_newbie','CpaPrivateNewbieController');
 Route::resource('/cpa_private_old','CpaPrivateOldController');
 Route::resource('/cpa_addmission_exam','CpaTraAddmissionExamController');
 Route::resource('/cpa_register','CpaTraAddmissionDirectController');
-Route::post('/cpa_two_reg_cpaonepass', 'CpaTraAddmissionDirectController@CPATwoRegCPAOnePass');
+
 Route::resource('/cpa_two_tra_reg','CpaTwoTraRegisterController');
 Route::resource('/cpa_two_self_learner','CpaTwoRegSelfLearnerController');
 Route::resource('/cpa_two_private_newbie','CpaTwoPrivateNewbieController');
@@ -180,6 +180,10 @@ Route::post('/send_email', 'DARegisterController@send_email');
 //DA and CPA Offline Application
 // Route::post('/da_one_existing_register', 'DARegisterController@DAOneExistingRegister');
 Route::post('/da_existing_register', 'DARegisterController@DAExistingRegister');
+Route::post('/cpa_two_reg_cpaonepass', 'CpaTraAddmissionDirectController@CPATwoRegCPAOnePass');
+Route::post('/update_da_existing_register', 'DARegisterController@updateDAExistingRegister');
+Route::post('/update_cpa_existing_register', 'CpaTraAddmissionDirectController@updateCPAExistingRegister');
+
 Route::post('/filter_offline_student_info','DARegisterController@FilterOfflineApplicationList');
 Route::patch('/reject_offline_da_cpa/{id}', 'DARegisterController@rejectOfflineDACPA');
 Route::patch('/approve_offline_da_cpa/{id}', 'DARegisterController@approveOfflineDACPA');
@@ -349,7 +353,7 @@ Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 // Route::get('showDescription/{membership_name}','MembershipController@showDescription');
 Route::get('showFee/{id}','MembershipController@showFee');
 Route::get('showFees/{id}','MembershipController@showFees');
-Route::get('showDescription/{name}', 'HomeController@showDescription');
+Route::get('showDescription/{name}', 'DescriptionController@showHomeDescription');
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');

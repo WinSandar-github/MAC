@@ -461,11 +461,11 @@ class QualifiedTestController extends Controller
         return response()->json($exam_result,200);
     }
 
-    public function currentQualifiedTestList()  
-    {
+    // public function currentQualifiedTestList()  
+    // {
          
-        return view('reporting.current_qualifiedtest_list');
-    }
+    //     return view('reporting.current_qualifiedtest_list');
+    // }
 
     public function publishesQualifiedTestResult()  
     {
