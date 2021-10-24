@@ -161,11 +161,18 @@ class MentorController extends Controller
         $mentor->reg_date = date('Y-m-d');
         $mentor->save();
 
-        $std_info = new StudentInfo();
-        $std_info->mentor_id = $mentor->id;
-        $std_info->email = $request->email;
-        $std_info->password = Hash::make($request->password);
-        $std_info->save();
+        if($request->student_info_id == null){
+            $std_info = new StudentInfo();
+            $std_info->mentor_id = $mentor->id;
+            $std_info->email = $request->email;
+            $std_info->password = Hash::make($request->password);
+            $std_info->save();
+        }else{
+            $std_info = StudentInfo::find($request->student_info_id);
+            $std_info->mentor_id = $mentor->id;
+            $std_info->save();
+        }
+        
         return response()->json([
             'message' => "Successfully Added"
         ]);

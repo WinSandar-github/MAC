@@ -867,8 +867,8 @@
                                                         <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >Teacher Name</th>
                                                                 <th class="bold-font-weight" >Teacher No</th>
+                                                                <th class="bold-font-weight" >Teacher Name</th>
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
@@ -888,8 +888,8 @@
                                                     <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >Teacher Name</th>
                                                                 <th class="bold-font-weight" >Teacher No</th>
+                                                                <th class="bold-font-weight" >Teacher Name</th>
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
@@ -909,8 +909,8 @@
                                                     <tr>
                                                         <th class="bold-font-weight" >No</th>
                                                         <th class="bold-font-weight" >Action</th>
-                                                        <th class="bold-font-weight" >Teacher Name</th>
                                                         <th class="bold-font-weight" >Teacher No</th>
+                                                        <th class="bold-font-weight" >Teacher Name</th>
                                                         <th class="bold-font-weight" >Email</th>     
                                                         <th class="bold-font-weight" >Phone</th>
                                                         <th class="bold-font-weight" >NRC</th>
@@ -1618,7 +1618,7 @@
                 processing: true,
                 scrollX:true,
                 // serverSide: true,
-                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/0/0",
+                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/0/1",
                 columns: [
                     {data: null, render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
@@ -1643,7 +1643,7 @@
                 processing: true,
                 scrollX:true,
                 // serverSide: true,
-                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/1/0",
+                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/1/1",
                 columns: [
                     {data: null, render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
@@ -1667,7 +1667,7 @@
                 processing: true,
                 scrollX:true,
                 // serverSide: true,
-                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/2/0",
+                ajax: BACKEND_URL + "/cpa_ff_offline_register_list/2/1",
                 columns: [
                     {data: null, render: function (data, type, row, meta) {
                         return meta.row + meta.settings._iDisplayStart + 1;
@@ -1709,8 +1709,8 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'name_mm', name: 'name_mm'},
                     {data: 't_code', name: 't_code'},
+                    {data: 'name_mm', name: 'name_mm'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},
@@ -1744,8 +1744,8 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'name_mm', name: 'name_mm'},
                     {data: 't_code', name: 't_code'},
+                    {data: 'name_mm', name: 'name_mm'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},
@@ -1778,8 +1778,8 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'name_mm', name: 'name_mm'},
                     {data: 't_code', name: 't_code'},
+                    {data: 'name_mm', name: 'name_mm'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},

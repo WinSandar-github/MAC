@@ -270,7 +270,7 @@
                             </div>
                             @endif
 
-                            @if($membership_id != 1 && $membership_id != 2 && $membership_id !=6 && $membership_id != 5)
+                            @if($membership_id != 1 && $membership_id != 2 && $membership_id !=6 && $membership_id != 5 && $membership_id != 3 && $membership_id != 4)
                               <div class="row mb-1">
                                   <label class="col-md-1 form-label">{{ __('6.') }}</label>
                                   <label class="col-md-3 form-label">{{ __('Delayed Fee') }}</label>
@@ -282,6 +282,43 @@
                               </div>
                             @endif
 
+                            <!-- For CPAFF and PAPP -->
+                            @if($membership_id == 3 || $membership_id == 4)
+                                <div class="row mb-1">
+                                    <label class="col-md-1 form-label">{{ __('6.') }}</label>
+                                    <label class="col-md-3 form-label">{{ __('Delayed Fee(Within January)') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="number" name="late_fee" class="form-control" id="late_fee" placeholder="Delayed Fee within January" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-md-1 form-label">{{ __('') }}</label>
+                                    <label class="col-md-3 form-label">{{ __('Delayed Fee(From February to April)') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="number" name="late_feb_fee" class="form-control" id="late_feb_fee" placeholder="Delayed Fee From February to April" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-1">
+                                    <label class="col-md-1 form-label">{{ __('7.') }}</label>
+                                    <label class="col-md-3 form-label">{{ __('Reconnect Fee(per year) From 2015') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="number" name="reconnected_fee" class="form-control" id="reconnected_fee" placeholder="Reconnected Fee From 2015" autocomplete="off">
+                                        </div>
+                                    </div>
+                                    <label class="col-md-1 form-label">{{ __('') }}</label>
+                                    <label class="col-md-3 form-label">{{ __('Reconnect Fee(per year) Before 2015') }}</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="number" name="reconnected_fee_before_2015" class="form-control" id="reconnected_fee_before_2015" placeholder="Reconnected Fee Before 2015" autocomplete="off">
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                             <!-- for audit firm nad non-audit firm -->
                             @if($membership_id == 1 || $membership_id == 2)
                               <div class="row mb-1">
@@ -354,7 +391,7 @@
                               </div>
                             @endif
 
-                            @if($membership_id != 1 && $membership_id != 2 && $membership_id != 6 && $membership_id != 5)
+                            @if($membership_id != 1 && $membership_id != 2 && $membership_id != 6 && $membership_id != 5 && $membership_id != 3 && $membership_id != 4)
                             <div class="row mb-1">
                                 <label class="col-md-1 form-label">{{ __('7.') }}</label>
                                 <label class="col-md-3 form-label">{{ __('Reconnected Fee') }}</label>

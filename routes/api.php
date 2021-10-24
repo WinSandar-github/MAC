@@ -114,6 +114,7 @@ Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
 Route::get('/cpa_ff_offline_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffOfflineRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
+Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff');
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
@@ -123,6 +124,7 @@ Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
 // Route::patch('/cpaff_reject/{id}', 'CPAFFController@cpaffReject');
 Route::post('/update_cpaff_initial', 'CPAFFController@updateRejectedInitialData');
 Route::post('/update_cpaff_renewal', 'CPAFFController@updateRejectedRenewalData');
+Route::post('/update_cpaff_existing', 'CPAFFController@updateRejectedExistingData');
 
 Route::get('/audit_firm_type','ApiController@audit_firm_type');
 Route::get('/audit_staff_type','ApiController@audit_staff_type');
@@ -256,6 +258,7 @@ Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePay
 
 //Update Rejected Audit Firm register form
 Route::post('/update_rejected_acc_firm_info/{id}','AccFirmInfController@update');
+Route::post('/update_renew_rejected_acc_firm_info/{id}','AccFirmInfController@updateRenewReject');
 
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
@@ -343,7 +346,10 @@ Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQ
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 
 //show description
-Route::get('showDescription/{membership_name}','MembershipController@showDescription');
+// Route::get('showDescription/{membership_name}','MembershipController@showDescription');
+Route::get('showFee/{id}','MembershipController@showFee');
+Route::get('showFees/{id}','MembershipController@showFees');
+Route::get('showDescription/{name}', 'DescriptionController@showHomeDescription');
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');
@@ -441,12 +447,14 @@ Route::post('/update_leave_request','ArticleController\ArticleController@updateL
 Route::get('/get_article_list/{id}', 'ArticleController\ArticleController@getArticleList');
 Route::patch('/create_done_form_link/{id}', 'ArticleController\ArticleController@createDoneFormLink');
 Route::patch('/gov_create_done_form_link/{id}', 'ArticleController\ArticleController@govCreateDoneFormLink');
+Route::post('/continue_article', 'ArticleController\ArticleController@continueArticle');
 
 
 // Payment
 Route::get('/get_invoice/{id}/{form_type}', 'PaymentController\PaymentController@getInvoice');
 Route::post('/save_transation', 'PaymentController\PaymentController@saveTransation');
 Route::get('/payment_info/{id}', 'PaymentController\PaymentController@index');
+Route::get('/get_payment_info/{invoiceNo}', 'PaymentController\PaymentController@getPaymentByInvoiceNo');
 
 Route::post('/cessation_teacher_register', 'TeacherController\TeacherController@cessation_teacher_register');
 //Teacher card
