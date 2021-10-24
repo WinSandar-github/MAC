@@ -491,12 +491,28 @@
                                         <span id="latest_reg_year"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Resigned Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_resign_date"></span>
+                                    </div>
+                                </div>--}}
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားခြင်း ရှိ/မရှိ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom" id="submitted_stop_form_year_div" style="display:none">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားသည့် ခုနှစ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_year"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -683,11 +699,26 @@
                                         <span id="cpaff_last_renew_year"></span>
                                     </div>
                                 </div>
-
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားခြင်း ရှိ/မရှိ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_cpaff"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom" id="submitted_stop_form_year_cpaff_div" style="display:none">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားသည့် ခုနှစ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_year_cpaff"></span>
+                                    </div>
+                                </div>
                                 <!--CPA Certificate -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Certificate</p>
                                     </div>
                                     <div class="col-md-6 text-left cpaff_cpa_certificate_file">
                                         {{--<button type="button" id="cpa_certi_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>--}}
