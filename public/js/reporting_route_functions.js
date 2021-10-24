@@ -259,11 +259,20 @@ function firmIndividual(url) {
 }
 
 function frimDailyAttendence(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
         alert('select course and batch');
+    }
+}
+
+function registrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
     }
 }
 

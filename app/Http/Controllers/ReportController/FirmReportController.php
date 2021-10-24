@@ -26,4 +26,13 @@ class FirmReportController extends Controller
 
         return view('reporting.firm_name.firm_report', compact('data'));
     }
+    public function firmRegistrationnYearlyCalendar(Request $request)
+    {
+        $data = [
+            'title' => 'နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ',
+            'list' => []
+        ];
+
+        return view('reporting.firm_name.firm_report', compact('data'));
+    }
 }

@@ -232,6 +232,11 @@ const _FIRM_NAME = [
         sub_title: `နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ`
     },
 
+    {
+        route_name: "/firm_registration_yearly_calendar",
+        fun_name: "firmRegistrationYearlyCalendar($(this).data(\'url\'))",
+        sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Audit Firm ) ( Sole )`
+    },
     // {
     //     sub_title: `အလုပ်သင်မှတ်တမ်း - ၂ နှစ်ပြည့်၊ ၃ နှစ်ပြည့်`
     // }
