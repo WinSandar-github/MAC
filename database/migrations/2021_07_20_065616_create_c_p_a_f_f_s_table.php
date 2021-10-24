@@ -74,6 +74,7 @@ class CreateCPAFFSTable extends Migration
             $table->string('nrc_number')->nullable();
             $table->string('father_name_mm')->nullable();
             $table->string('father_name_eng')->nullable();
+            $table->string('gender')->nullable();
             // $table->string('payment_method')->nullable();
             // $table->string('old_card_year')->nullable();
             $table->string('renew_card_year')->nullable();
