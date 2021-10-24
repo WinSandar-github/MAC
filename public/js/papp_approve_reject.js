@@ -544,6 +544,14 @@ function loadRenewPAPPData(){
                         }
                         // $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
                    });  
+                if(element.self_confession_1 == 1){
+                    $(`.self_confession`).append(`<i class="fa fa-check-circle text-success" aria-hidden="true"></i>`);
+                    $(`.nself_confession`).append('');
+                }
+                else{
+                    $(`.self_confession`).append('');
+                    $(`.nself_confession`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
+                }  
                 $("#id").append(element.id);
                 document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
                 $("#name_eng").append(element.student_info.name_eng);
