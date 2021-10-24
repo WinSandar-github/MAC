@@ -549,6 +549,14 @@
                                         <span id="nrc"></span>
                                     </div>
                                 </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Gender</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="gender"></span>
+                                    </div>
+                                </div>
                                 <!--NRC Card(Front) -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -670,6 +678,14 @@
                                                 <p class="ml-2" style="font-weight:bold">မိတ္တူ</p>
                                             </div>
                                             <div class="col-md-6 old_card_file text-left">
+                                            </div>
+                                        </div>
+                                        <div class="row m-2 mt-3">
+                                            <div class="col-md-6 text-left">
+                                                <p class="ml-2" style="font-weight:bold">ပြစ်ဒဏ်ချမှတ်ခံထားရသူ ဟုတ်/မဟုတ်</p>
+                                            </div>
+                                            <div class="col-md-6 text-left">
+                                                <span id="is_convicted"></span>
                                             </div>
                                         </div>
                                     </div>
