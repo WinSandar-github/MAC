@@ -165,7 +165,7 @@ class CPAFFController extends Controller
             $cpa_ff->nrc_back         =   $nrc_back;
             $cpa_ff->cpd_record       =   $cpd_record;
             $cpa_ff->total_hours      =   $request->total_hours;
-            $cpa_ff->three_years_full   =   $three_years_full;
+            $cpa_ff->three_years_full =   $three_years_full;
             $cpa_ff->status           =  0;
 
             //save to cpaff
@@ -183,7 +183,8 @@ class CPAFFController extends Controller
             $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
             $cpa_ff->nrc_number        =   $request->nrc_number;
             $cpa_ff->father_name_mm    =   $request->father_name_mm;
-            $cpa_ff->father_name_eng   =   $request->father_name_eng;           
+            $cpa_ff->father_name_eng   =   $request->father_name_eng;  
+            $cpa_ff->gender            =   $request->gender;         
             $cpa_ff->country           =   $request->country;
             $cpa_ff->government        =   $request->government;
             $cpa_ff->exam_year         =   $request->exam_year;
@@ -191,8 +192,8 @@ class CPAFFController extends Controller
             $cpa_ff->roll_no           =   $request->roll_no;
             $cpa_ff->is_renew          =   $request->is_renew;
             $cpa_ff->self_confession   =   $request->self_confession;
-            $cpa_ff->cpa2_pass_date   =   $request->cpa2_pass_date;
-            $cpa_ff->cpa2_reg_no   =   $request->cpa2_reg_no;//need to add
+            $cpa_ff->cpa2_pass_date    =   $request->cpa2_pass_date;
+            $cpa_ff->cpa2_reg_no       =   $request->cpa2_reg_no;//need to add
             $cpa_ff->type              =   $request->type;
 
             $thisYear = date('Y');
@@ -217,7 +218,7 @@ class CPAFFController extends Controller
             $std_info->phone            =   $request->phone;
             $std_info->nrc_citizen = $request->nrc_citizen;
             $std_info->nrc_number = $request->nrc_number;
-            $std_info->name_eng = $request->name_eng;
+            // $std_info->name_eng = $request->name_eng;
             $std_info->father_name_mm = $request->father_name_mm;
             $std_info->father_name_eng = $request->father_name_eng;
             $std_info->save();
@@ -377,6 +378,7 @@ class CPAFFController extends Controller
             $cpa_ff->nrc_number        =   $request->nrc_number;
             $cpa_ff->father_name_mm    =   $request->father_name_mm;
             $cpa_ff->father_name_eng   =   $request->father_name_eng; 
+            $cpa_ff->gender            =   $request->gender;
             $cpa_ff->cpa              =   $cpa;
             $cpa_ff->ra               =   $ra;
             $cpa_ff->degree_name      =   json_encode($request->degree_name);
@@ -671,8 +673,7 @@ class CPAFFController extends Controller
     //Store Renew Form
     public function storeRenewForm(Request $request){
         // return $request->student_info_id;
-        $initial_cpaff=CPAFF::where('student_info_id',$request->student_info_id)
-        ->first();
+        $initial_cpaff=CPAFF::where('student_info_id',$request->student_info_id)->first();
         // return $initial_cpaff;
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
@@ -1491,7 +1492,7 @@ class CPAFFController extends Controller
         $cpa_ff->total_hours      =   $request->total_hours;
         $cpa_ff->status           =  0;
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
-        $cpa_ff->cpa2_reg_no     =   $request->cpa2_reg_no;
+        $cpa_ff->cpa2_reg_no      =   $request->cpa2_reg_no;
         $cpa_ff->address          =   $request->address;
         $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
@@ -1505,6 +1506,7 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_number        =   $request->nrc_number;
         $cpa_ff->father_name_mm    =   $request->father_name_mm;
         $cpa_ff->father_name_eng   =   $request->father_name_eng;           
+        $cpa_ff->gender            =   $request->gender;           
         $cpa_ff->country           =   $request->country;
         $cpa_ff->government        =   $request->government;
         $cpa_ff->exam_year         =   $request->exam_year;
@@ -1721,12 +1723,24 @@ class CPAFFController extends Controller
             $cpa_ff->cpd_record       =   $cpd_record;
         }
 
+        if ($request->hasfile('renew_file')) {
+            $file = $request->file('renew_file');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/cpa_ff_register/',$name);
+            $renew_file = '/storage/cpa_ff_register/'.$name;
+        // }else{
+        //     $renew_file="";
+            $cpa_ff->renew_file       =   $renew_file;
+        }
+
         $cpa_ff->student_info_id  =   $request->student_info_id;
-        $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
-        $cpa_ff->pass_personal_no =   $request->pass_personal_no;
+        // $cpa_ff->pass_batch_no    =   $request->pass_batch_no;
+        // $cpa_ff->pass_personal_no =   $request->pass_personal_no;
         $cpa_ff->qt_pass_date     =   json_encode($request->qt_pass_date);
-        $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
+        // $cpa_ff->qt_pass_seat_no  =   $request->qt_pass_seat_no;
         $cpa_ff->total_hours      =   $request->total_hours;
+        $cpa_ff->papp_reg_no      =   $request->papp_reg_no;
+        $cpa_ff->papp_reg_year    =   $request->papp_reg_year;
         $cpa_ff->fine_person      =   $request->fine_person;
         $cpa_ff->status           =  0;
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
@@ -1743,6 +1757,7 @@ class CPAFFController extends Controller
         $cpa_ff->nrc_number        =   $request->nrc_number;
         $cpa_ff->father_name_mm    =   $request->father_name_mm;
         $cpa_ff->father_name_eng   =   $request->father_name_eng;           
+        $cpa_ff->gender            =   $request->gender;           
         $cpa_ff->country           =   $request->country;
         $cpa_ff->government        =   $request->government;
         $cpa_ff->exam_year         =   $request->exam_year;
