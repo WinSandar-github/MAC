@@ -267,7 +267,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-3 border-bottom request_stop_yes" style="display:none;">
+                                    <div class="row mt-3  request_stop_yes" style="display:none;">
                                         <div class="col-md-6">
                                             <p style="font-weight:bold">ရပ်နားတင်ခဲ့သည့် ရက်စွဲ</p>
                                         </div>
@@ -275,7 +275,14 @@
                                             <span id="request_from_to_date"></span>
                                         </div>
                                     </div>
-                                    
+                                    <div class="row school_card_class" style="display:none;">
+                                        <div class="col-md-7">
+                                            <p style="font-weight:bold">ကျောင်းမှတ်ပုံတင်ကတ်ပြား</p>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <span id="school_card"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

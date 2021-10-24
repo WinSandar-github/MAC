@@ -20,7 +20,7 @@ class CreateTblBranchSchoolsTable extends Migration
             $table->string('branch_school_attach');
             $table->string('branch_sch_own_type');
             $table->string('branch_sch_letter');
-            $table->string('renew_branch_school_address')->nullable();
+            $table->integer('student_info_id')->nullable();
             $table->timestamps();
             
             $table->foreign('school_id')
