@@ -181,7 +181,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('naudit_firm_report6','ReportController@naudit_firm_report6');
 
     Route::post("firm_individual/{type}", "ReportController\FirmReportController@firmIndividual");
-    Route::post("firm_daily_attendence", "ReportController\FirmReportController@firmDailyAttendence");
+    Route::post("non_firm_individual/{type}", "ReportController\FirmReportController@nonFirmIndividual");
 
     // CPA Report
     Route::get('cpa_report1','ReportController@cpa_report1');

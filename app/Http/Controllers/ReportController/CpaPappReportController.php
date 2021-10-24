@@ -4,16 +4,14 @@ namespace App\Http\Controllers\ReportController;
 
 use App\Course;
 use App\Batch;
+use App\CPAFF;
 use App\ExamDepartment;
 use App\Module;
-
-
 use App\ExamRegister;
-use App\Http\Controllers\Controller;
 use App\StudentRegister;
 use App\StudentCourseReg;
-
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
 class CpaPappReportController extends Controller
@@ -21,22 +19,23 @@ class CpaPappReportController extends Controller
     public function cpaFFYealyList(Request $request, $year)
     {
         $first_yr = $year;
-        $first_yr_str = "cpa {$first_yr}";
+        $first_yr_str = "CPA {$first_yr}";
 
         $second_yr = $year - 1;
-        $second_yr_str = "cpa {$second_yr}";
+        $second_yr_str = "CPA {$second_yr}";
         
         $third_yr = $year - 2;
-        $third_yr_str = "cpa {$third_yr}";
+        $third_yr_str = "CPA {$third_yr}";
+
+        $cpa = CPAFF::with('student_info')->get();
 
         $data = [
             'title' => 'CPA (FF)တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
             'fields' => [
-                        'စဥ်','cpa ff',
-                        'အမည်', $first_yr_str,$second_yr_str,$third_yr_str,
-                        'calender year','total hours'
+                        'စဥ်','CPA FF Reg No',
+                        'အမည်', $first_yr_str,$second_yr_str,$third_yr_str,'total hours'
                     ],
-            'list' => []
+            'cpa' => $cpa
         ];
         return view('reporting.cpa_ff_papp.cpa_ff_papp_report', compact('data'));
     }

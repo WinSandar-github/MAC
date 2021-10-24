@@ -235,23 +235,23 @@ const _FIRM_NAME = [
         sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Audit Firm - Company )'
     },
     {
-        route_name : '',
-        fun_name: '',
+        route_name : '/non_firm_individual/1',
+        fun_name: 'nonFirmIndividual($(this).data(\'url\'))',
         sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Sole )'
     },
     {
-        route_name : '',
-        fun_name: '',
+        route_name : '/non_firm_individual/2',
+        fun_name: 'nonFirmIndividual($(this).data(\'url\'))',
         sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Partnership )'
     },
     {
-        route_name : '',
-        fun_name: '',
+        route_name : '/non_firm_individual/3',
+        fun_name: 'nonFirmIndividual($(this).data(\'url\'))',
         sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Local Company )'
     },
     {
-        route_name : '',
-        fun_name: '',
+        route_name : '/non_firm_individual/4',
+        fun_name: 'nonFirmIndividual($(this).data(\'url\'))',
         sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Foreign Company )'
     },
 
@@ -386,7 +386,7 @@ const _ARTICLE = [
     {
         route_name: "/article_daily_in_out_list",
         fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
-        sub_title: "နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ။"
+        sub_title: "စာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ။"
     },
 
     {

@@ -196,7 +196,7 @@ function cpaPAPPYearlyRegList(url) {
 }
 
 function articleList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -205,7 +205,7 @@ function articleList(url) {
 }
 
 function articleDailyInOutList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -214,7 +214,7 @@ function articleDailyInOutList(url) {
 }
 
 function articleInternPosList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -223,7 +223,7 @@ function articleInternPosList(url) {
 }
 
 function articleInternshipList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -259,8 +259,8 @@ function firmIndividual(url) {
     }
 }
 
-function frimDailyAttendence(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+function nonFirmIndividual(url) {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
