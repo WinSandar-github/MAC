@@ -35,54 +35,40 @@
                                         <th class="bold-font-weight">သက်တမ်းတိုးသည့်နေ့</th>
                                         <th class="bold-font-weight">ရပ်နားသည့်နေ့</th>
                                         <th class="bold-font-weight">သက်တမ်းပြတ်ကာလ</th>
-                                        <th>လုပ်သက်</th>
-
                                     </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable text-center">
+                                    @foreach($data['teacher'] as $key => $chel)
                                     <tr>
-                                        <td>1</td>
-                                        <td>ဦးကျော်အောင်</td>
-                                        <td>၁/ကမတ(နိုင်)၄၁၁၉၀၀</td>
-                                        <td>cpa/1</td>
-                                        <td>၅ နှစ်</td>
+                                        <td>{{ ++$key }}</td>
+                                        <td>{{ $chel->t_code }}</td>
+                                        <td>{{ $chel->name_mm }}</td>
+                                        <td>{{ $chel->nrc_state_region ."/". $chel->nrc_township ."(". $chel->nrc_citizen .")". $chel->nrc_number }}</td>
+                                        <td>{{ $chel->father_name_mm }}</td>
+                                        <td>{{ $chel->school_type == 1 ? 'Private' : 'Individual' }}</td>
+                                        <td>{{ $chel->school_id == null ? 'N/A' : $chel->school->name_mm }}</td>
+                                        <td>{{ "DA/CPA" }}</td>
+                                        <td>
+                                            @if($chel->subject != '')
+                                                @foreach($chel->subject as $subj)
+                                                    <span class="d-block bage bg-info m-1">{{ $subj->subject_name }}</span>
+                                                @endforeach
+                                            @else
+                                                {{ 'Error' }}
+                                            @endif
+                                        </td>
+                                        <td>{{ \Carbon\Carbon::parse($chel->form_valid_date)->diffInYears($chel->to_valid_date) . ' Year' }}</td>
+                                        <td>{{ $chel->renew_date ?? 'No Renew Date' }}</td>
+                                        <td>{{ "N/A" }}</td>
+                                        <td>{{ "N/A" }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>ဦးရန်အောင်</td>
-                                        <td>၁/ကမတ(နိုင်)၃၀၀၁၂၅</td>
-                                        <td>cpa/2</td>
-                                        <td>၄ နှစ်</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>ဒေါ် မိုးမိုး</td>
-                                        <td>၁/ကမတ(နိုင်)၆၇၀၁၂၅</td>
-                                        <td>cpa/3</td>
-                                        <td>၄ နှစ်</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>‌‌ဒေါ် စိုးစိုး</td>
-                                        <td>၁/ကမတ(နိုင်)၃၀၀၁၂၆</td>
-                                        <td>cpa/4</td>
-                                        <td>၂ နှစ်</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>‌‌ဒေါ်သွယ်သွယ်</td>
-                                        <td>၁/ကမတ(နိုင်)၃၀၀၁၂၈</td>
-                                        <td>cpa/5</td>
-                                        <td>၁ နှစ်</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-                        </div>
+                        </div>                        
+                        <div id="export-btn"></div>
                     </div>
-                            
-                    
                 </div>
-                   
             </div>
     </div>
 </div>
@@ -90,7 +76,14 @@
 
 @endsection
 
+@push('styles')
+<link href="{{ asset('assets/js/plugins/tableexport/dist/css/tableexport.min.css') }}" rel="stylesheet">
+@endpush
+
 @push('scripts')
+<script src="{{ asset('assets/js/plugins/xlsx.core.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/FileSave.min.js') }}"></script>
+<script src="{{ asset('assets/js/plugins/tableexport/dist/js/tableexport.min.js') }}"></script>
 <script>
         $('document').ready(function(){
             var table_app = $('#tbl_exam_result_list').DataTable({
@@ -102,8 +95,21 @@
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
 
             });
-        })
+        });
+
+        // table export
+        var $table = $('.table');
+
+        $table.tableExport({
+            headers: true,
+            footers: false,
+            position: "bottom",
+            bootstrap: true
+        });
+
+        $btn = $table.find('caption').children().detach();
+
+        $btn.appendTo('#export-btn');
+            // table export
 </script>
-
-
 @endpush
