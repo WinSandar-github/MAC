@@ -1673,6 +1673,15 @@ class SchoolController extends Controller
                 
                 }
             })
+            ->addColumn('school_name', function ($infos){
+                if($infos->school_name == ""){
+                    return $infos->renew_school_name;
+                
+                }else{
+                    return $infos->school_name;
+                
+                }
+            })
             ->addColumn('payment_date', function ($infos){
                 // if($infos->initial_status==0){
                 //     if($infos->from_valid_date	 == ""){
