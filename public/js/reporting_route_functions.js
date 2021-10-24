@@ -7,6 +7,72 @@ function daAttendList(url) {
     }
 }
 
+function daAttendMacList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function daAttendPrvList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function daAttendSelfList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function entryExamsList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function attendEntryExamMacList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function attendEntryExamPrvList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function attendEntryExamSelfList(url) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+
+
+
 function daRegList(url) {
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
@@ -35,7 +101,8 @@ function daPassList(url) {
 }
 
 function cpaQualifiedList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -44,7 +111,8 @@ function cpaQualifiedList(url) {
 }
 
 function cpaQualifiedExamEnRol(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -53,7 +121,8 @@ function cpaQualifiedExamEnRol(url) {
 }
 
 function cpaQualifiedExamReg(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -62,7 +131,8 @@ function cpaQualifiedExamReg(url) {
 }
 
 function cpaQualifiedPass(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -71,7 +141,8 @@ function cpaQualifiedPass(url) {
 }
 
 function cpaQualifiedFail(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
+
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -79,32 +150,49 @@ function cpaQualifiedFail(url) {
     }
 }
 
-function cpaPAPPYealyList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+function cpaFFYealyList(url) {
+
+    if ($('#select-date').val() != "") {
         url = url + ""
-        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
         $('#report-form').submit();
     } else {
-        alert('select course and batch');
+        alert('select year');
     }
+
+}
+
+function cpaPAYealyList(url) {
+
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+
+}
+
+function cpaFFYearlyRegList(url) {
+
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+
 }
 
 function cpaPAPPYearlyRegList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', FRONTEND_URL + url);
-        $('#report-form').submit();
-    } else {
-        alert('select course and batch');
-    }
-}
 
-function cpaPAPPTakeOutRegList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-        $('#report-form').attr('action', FRONTEND_URL + url);
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url + "/" + $("#select-date").val());
         $('#report-form').submit();
     } else {
-        alert('select course and batch');
+        alert('select year');
     }
+
 }
 
 function articleList(url) {
@@ -144,7 +232,7 @@ function articleInternshipList(url) {
 }
 
 function articleMentorInternRegister(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -153,7 +241,7 @@ function articleMentorInternRegister(url) {
 }
 
 function articleMentorIntern(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -162,7 +250,7 @@ function articleMentorIntern(url) {
 }
 
 function firmIndividual(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -171,7 +259,7 @@ function firmIndividual(url) {
 }
 
 function frimDailyAttendence(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -180,16 +268,16 @@ function frimDailyAttendence(url) {
 }
 
 function teacherSchoolLicense(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
-        alert('select course and batch');
+        alert('select year');
     }
 }
 
 function teacherSchoolPrivate(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -198,7 +286,7 @@ function teacherSchoolPrivate(url) {
 }
 
 function teacherSchoolLicensePlate(url) {
-    if ( $('#select-course').val() != "" && $('#select-batch').val() != '' ) {
+    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {

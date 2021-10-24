@@ -200,7 +200,15 @@ function loadPAPPData(){
                             $(`.nself${i}`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
                         }
                         // $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
-                   });           
+                   });  
+                if(element.self_confession_1 == 1){
+                    $(`.self_confession`).append(`<i class="fa fa-check-circle text-success" aria-hidden="true"></i>`);
+                    $(`.nself_confession`).append('');
+                }
+                else{
+                    $(`.self_confession`).append('');
+                    $(`.nself_confession`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
+                }         
                 var job = element.student_job;
                 if(element.status==0){
                     status="Pending";
@@ -536,6 +544,14 @@ function loadRenewPAPPData(){
                         }
                         // $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
                    });  
+                if(element.self_confession_1 == 1){
+                    $(`.self_confession`).append(`<i class="fa fa-check-circle text-success" aria-hidden="true"></i>`);
+                    $(`.nself_confession`).append('');
+                }
+                else{
+                    $(`.self_confession`).append('');
+                    $(`.nself_confession`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
+                }  
                 $("#id").append(element.id);
                 document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
                 $("#name_eng").append(element.student_info.name_eng);
@@ -854,7 +870,7 @@ function loadappOfflineUser(){
     $("#qualified_date").html("");
     $("#roll_number").html("");
     $("#certificate").html("");
-
+    $("#is_convicted").html("");
     $("#cpa").html("");
     $("#ra").html("");
     $("#foreign_degree").html("");
@@ -935,12 +951,21 @@ function loadappOfflineUser(){
                             $(`.nself${i}`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
                         }
                         // $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px; text-decoration: none;' target='_blank'>View File</a>`);                    
-                   });  
+                   }); 
+                if(element.self_confession_1 == 1){
+                    $(`.self_confession`).append(`<i class="fa fa-check-circle text-success" aria-hidden="true"></i>`);
+                    $(`.nself_confession`).append('');
+                }
+                else{
+                    $(`.self_confession`).append('');
+                    $(`.nself_confession`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
+                } 
                 $("#id").append(element.id);
                 document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
                 $("#nrc").append(nrc);
+                element.student_info.gender=="Male"?$("#gender").append("ကျား"):$("#gender").append("မ");
                 $("#father_name_mm").append(element.student_info.father_name_mm);
                 $("#father_name_eng").append(element.student_info.father_name_eng);
                 $("#race").append(element.student_info.race);
@@ -957,12 +982,15 @@ function loadappOfflineUser(){
                 $("#papp_reg_year").append(element.papp_reg_date);
                 $("#papp_last_renew_year").append(element.papp_date);
                 $("#latest_reg_year").append(element.latest_reg_year);
-                $("#papp_resign_date").append(element.papp_resign_date);
+               
+                // $("#papp_resign_date").append(element.papp_resign_date);
                 if(element.submitted_stop_form==1){
-                    $("#submitted_stop_form").append(`${element.submitted_from_date} မှ ${element.submitted_to_date} အထိ ရပ်နား Form တင်ထားပါသည်။`);
+                    $("#submitted_stop_form").append("ရှိ");
+                    $("#submitted_stop_form_year").append(element.papp_resign_date);
                 }
                 else{
                     $("#submitted_stop_form").append("မရှိပါ။");
+                    $("#submitted_stop_form_year").append('-');
                 }
                 if(element.student_info.gov_staff == 1){
                     $(".recommend_row").show();
@@ -991,7 +1019,6 @@ function loadappOfflineUser(){
                 }else {
                     $(".ra_file").append(`<span>-</span>`);
                 }
-
                 if(element.foreign_degree!=null && element.foreign_degree!="null"){    
                     $('#has_foreign_degree').show();
                     $('#not_foreign_degree').hide();
@@ -1084,6 +1111,15 @@ function loadappOfflineUser(){
                             $("#cpaff_last_renew_year").append(element.last_paid_year); 
                             $("#old_card_year").append(element.old_card_no_year);
                             $("#old_card_no").append(element.old_card_no); 
+                            element.is_convicted==null?$("#is_convicted").append("-"):$("#is_convicted").append(element.is_convicted);
+                            if(element.resign==1){                             
+                                $("#submitted_stop_form_cpaff").append("ရှိ");
+                                $("#submitted_stop_form_year_cpaff").append(element.resign_date);
+                            }
+                            else{                                
+                                $("#submitted_stop_form_cpaff").append("မရှိပါ။");
+                                $("#submitted_stop_form_year_cpaff").append("-");
+                            }
                             if(element.old_card_file!=null){
                                 $(".old_card_file").append(`<a href='${PDF_URL+element.old_card_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                             }else {

@@ -22,12 +22,9 @@
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
                                 <thead>
                                 <tr>
-                                    <th class="bold-font-weight">စဥ်</th>
-                                    <th class="bold-font-weight">အမည်</th>
-                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကဒ်အမှတ်</th>
-                                    <th class="bold-font-weight">ဘွဲ့အမည်</th>
-                                    <th class="bold-font-weight">အဘအမည်</th>
-                                    <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
+                                    @foreach($data['fields'] as $col)
+                                        <th>{{$col}}</th>
+                                    @endforeach
                                 </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable">

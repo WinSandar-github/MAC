@@ -13,7 +13,7 @@ class CurrentCheckServiceSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('current_check_services')->delete();
+        DB::table('current_check_services')->truncate();
 
         DB::table('current_check_services')->insert([
             array(
@@ -49,7 +49,7 @@ class CurrentCheckServiceSeeder extends Seeder
                 'type'  => "1",
             ),
             array(
-                'name'  => "Non Statutory Audit - Enviromental Audit",
+                'name'  => "Non Statutory Audit - Environmental Audit",
                 'type'  => "1",
             ),
             array(

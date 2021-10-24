@@ -131,14 +131,20 @@ function getSchoolInfos(){
             if(data.data.approve_reject_status != 0){
                 $("#approve_reject").hide();
                 $('#cessation-btn').show();
+                
+            }else if(data.data.approve_reject_status == 1){
                 $('.school_fee').show();
-            }
-            else{
+            }else{
                 $("#approve_reject").show();
             }
             $(".nrc_front").append(`<a href='${PDF_URL+data.data.nrc_front}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
             $(".nrc_back").append(`<a href='${PDF_URL+data.data.nrc_back}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a>`);
-            loadEductaionHistory(data.data.id);
+            //loadEductaionHistory(data.data.id,data.initial_status);
+            if(data.data.initial_status==0){
+                loadEductaionHistory(data.data.id,data.data.initial_status);
+            }else{
+                loadEductaionHistory(data.data.student_info_id,data.data.initial_status);
+            }
             if(data.data.attachment!=null){
                 $('.view-attachment').show();
                 removeBracketed(data.data.attachment,"attachment");
@@ -422,7 +428,10 @@ function getSchoolInfos(){
                     $('.request_stop_yes').show();
                     $('#request_from_to_date').append(data.data.from_request_stop_date);
                 }
-
+                if(data.data.school_card!=null){
+                    $('.school_card_class').show();
+                    $("#school_card").append(`<a href='${PDF_URL+data.data.school_card}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01 "></i></a>`);
+                }
             }
             loadInvoice(data.data.id,data.data.initial_status);
             
@@ -492,24 +501,43 @@ function viewAttach(){
     $(".attachment").append(content);
     $("#exampleModal").modal('toggle');
 }
-function loadEductaionHistory(id){
-      
-    $.ajax({
-        type : 'POST',
-        url : BACKEND_URL+"/getEducationHistory",
-        data: 'school_id='+id,
-        success: function(result){
-            $.each(result.data, function( index, value ) {
-                var tr = "<tr>";
-                tr += `<td> ${ index += 1 } </td>`;
-                tr += `<td> ${ value.degree_name } </td>`;
-                tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
-                tr += "</tr>";
-                $("#tbl_degree_body").append(tr);
-            });
-            createDataTable('#tbl_degree');
-        }
-    });
+function loadEductaionHistory(id,status){
+    if(status==0){
+        $.ajax({
+            type : 'POST',
+            url : BACKEND_URL+"/getEducationHistory",
+            data: 'school_id='+id,
+            success: function(result){
+                $.each(result.data, function( index, value ) {
+                    var tr = "<tr>";
+                    tr += `<td> ${ index += 1 } </td>`;
+                    tr += `<td> ${ value.degree_name } </td>`;
+                    tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                    tr += "</tr>";
+                    $("#tbl_degree_body").append(tr);
+                });
+                createDataTable('#tbl_degree');
+            }
+        });
+    }else{
+        $.ajax({
+            type : 'POST',
+            url : BACKEND_URL+"/getEducationHistory",
+            data: 'schoolstudent_info_id='+id,
+            success: function(result){
+                $.each(result.data, function( index, value ) {
+                    var tr = "<tr>";
+                    tr += `<td> ${ index += 1 } </td>`;
+                    tr += `<td> ${ value.degree_name } </td>`;
+                    tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
+                    tr += "</tr>";
+                    $("#tbl_degree_body").append(tr);
+                });
+                createDataTable('#tbl_degree');
+            }
+        });
+    }  
+    
     
 }
 function removeBracketed(file,divname){

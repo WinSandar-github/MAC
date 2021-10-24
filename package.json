@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "bootstrap-icons": "^1.5.0"
+        "bootstrap-icons": "^1.5.0",
+        "tableexport": "^5.2.0"
     }
 }

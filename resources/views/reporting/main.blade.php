@@ -28,8 +28,19 @@
     <link href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/css/easy-loading.css')}}" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ asset('css/custom_table.css') }}">
+    @stack('styles')
+    <style>
+        #export-btn{
+            display: flex;
+            justify-content: flex-start;
+            margin: 2rem 0;
+        }
+
+        #export-btn > button{
+            margin-right: 1.5rem
+        }
+    </style>
 </head>
 
 <body class=" ">
@@ -75,7 +86,7 @@
 <script src="{{ asset('js/report.js')}}"></script>
 
 
-<script src="{{ asset('js/backendService.js') }}"></script>
+<!-- <script src="{{ asset('js/backendService.js') }}"></script> -->
 <script src="{{ asset('js/common.js')}}"></script>
 <script src="{{ asset('js/student.js')}}"></script>
 <script src="{{ asset('js/da_approve_reject.js')}}"></script>

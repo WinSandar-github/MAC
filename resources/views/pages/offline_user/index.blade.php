@@ -778,13 +778,14 @@
                                                     <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >School Name</th>
                                                                 <th class="bold-font-weight" >School No</th>
+                                                                <th class="bold-font-weight" >School Name</th>
+                                                                <th class="bold-font-weight" >School Founder Name</th>
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
-                                                                <th class="bold-font-weight" >School Card</th>
+                                                                <!-- <th class="bold-font-weight" >School Card</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight">Reason</th>
                                                     </tr>
@@ -799,15 +800,16 @@
                                                     <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >School Name</th>
                                                                 <th class="bold-font-weight" >School No</th>
+                                                                <th class="bold-font-weight" >School Name</th>
+                                                                <th class="bold-font-weight" >School Founder Name</th>
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
-                                                                <th class="bold-font-weight" >School Card</th>
+                                                                <!-- <th class="bold-font-weight" >School Card</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight">Reason</th>
+                                                                <!-- <th class="bold-font-weight">Reason</th> -->
                                                     </tr>
                                                     </thead>
                                                     <tbody id="tbl_school_approved_list_body" class="hoverTable">
@@ -820,13 +822,14 @@
                                                     <tr>
                                                                 <th class="bold-font-weight" >No</th>
                                                                 <th class="bold-font-weight" >Action</th>
-                                                                <th class="bold-font-weight" >School Name</th>
                                                                 <th class="bold-font-weight" >School No</th>
+                                                                <th class="bold-font-weight" >School Name</th>
+                                                                <th class="bold-font-weight" >School Founder Name</th>
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
-                                                                <th class="bold-font-weight" >School Card</th>
+                                                                <!-- <th class="bold-font-weight" >School Card</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight">Reason</th>
                                                     </tr>
@@ -873,7 +876,7 @@
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
-                                                                <th class="bold-font-weight" >Teacher Card</th>
+                                                                <!-- <th class="bold-font-weight" >Teacher Card</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight">Reason</th>
                                                         </tr>
@@ -894,9 +897,9 @@
                                                                 <th class="bold-font-weight" >Phone</th>
                                                                 <th class="bold-font-weight" >NRC</th>
                                                                 <th class="bold-font-weight" >Initial Date</th>
-                                                                <th class="bold-font-weight" >Teacher Card</th>
+                                                                <!-- <th class="bold-font-weight" >Teacher Card</th> -->
                                                                 <th class="bold-font-weight" >Status</th>
-                                                                <th class="bold-font-weight">Reason</th>
+                                                                <!-- <th class="bold-font-weight">Reason</th> -->
                                                     </tr>
                                                     </thead>
                                                     <tbody id="tbl_teacher_approved_list_body" class="hoverTable">
@@ -915,7 +918,7 @@
                                                         <th class="bold-font-weight" >Phone</th>
                                                         <th class="bold-font-weight" >NRC</th>
                                                         <th class="bold-font-weight" >Initial Date</th>
-                                                        <th class="bold-font-weight" >Teacher Card</th>
+                                                        <!-- <th class="bold-font-weight" >Teacher Card</th> -->
                                                         <th class="bold-font-weight" >Status</th>
                                                         <th class="bold-font-weight">Reason</th>
                                                     </tr>
@@ -1532,13 +1535,14 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'name_mm', name: 'name_mm'},
                     {data: 's_code', name: 's_code'},
+                    {data: 'school_name', name: 'school_name'},
+                    {data: 'name_mm', name: 'name_mm'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},
                     {data: 'from_valid_date', name: 'from_valid_date'},
-                    {data: 'card', name: 'card'},
+                    // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
                     {data: 'reason', name: 'reason'},
                     
@@ -1568,15 +1572,16 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'name_mm', name: 'name_mm'},
                     {data: 's_code', name: 's_code'},
+                    {data: 'school_name', name: 'school_name'},
+                    {data: 'name_mm', name: 'name_mm'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},
                     {data: 'from_valid_date', name: 'from_valid_date'},
-                    {data: 'card', name: 'card'},
+                    // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
-                    {data: 'reason', name: 'reason'},
+                    // {data: 'reason', name: 'reason'},
                 ],
             });
 
@@ -1602,13 +1607,14 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
                     {data: 'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'name_mm', name: 'name_mm'},
                     {data: 's_code', name: 's_code'},
+                    {data: 'school_name', name: 'school_name'},
+                    {data: 'name_mm', name: 'name_mm'},
                     {data: 'email', name: 'email'},
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},
                     {data: 'from_valid_date', name: 'from_valid_date'},
-                    {data: 'card', name: 'card'},
+                    // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
                     {data: 'reason', name: 'reason'},
                 ],
@@ -1715,7 +1721,7 @@
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},
                     {data: 'from_valid_date', name: 'from_valid_date'},
-                    {data: 'card', name: 'card'},
+                    // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
                     {data: 'reason', name: 'reason'},
                 ],
@@ -1750,9 +1756,9 @@
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},
                     {data: 'from_valid_date', name: 'from_valid_date'},
-                    {data: 'card', name: 'card'},
+                    // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
-                    {data: 'reason', name: 'reason'},
+                    // {data: 'reason', name: 'reason'},
                 ],
             });
 
@@ -1784,7 +1790,7 @@
                     {data: 'phone', name: 'phone'},
                     {data: 'nrc', name: 'nrc'},
                     {data: 'from_valid_date', name: 'from_valid_date'},
-                    {data: 'card', name: 'card'},
+                    // {data: 'card', name: 'card'},
                     {data: 'status', name: 'status'},
                     {data: 'reason', name: 'reason'},
                 ],

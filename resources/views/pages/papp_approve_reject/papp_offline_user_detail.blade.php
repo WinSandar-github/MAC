@@ -491,12 +491,28 @@
                                         <span id="latest_reg_year"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Resigned Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_resign_date"></span>
+                                    </div>
+                                </div>--}}
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားခြင်း ရှိ/မရှိ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားသည့် ခုနှစ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_year"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
@@ -531,6 +547,14 @@
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="nrc"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Gender</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="gender"></span>
                                     </div>
                                 </div>
                                 <!--NRC Card(Front) -->
@@ -656,6 +680,14 @@
                                             <div class="col-md-6 old_card_file text-left">
                                             </div>
                                         </div>
+                                        <div class="row m-2 mt-3">
+                                            <div class="col-md-6 text-left">
+                                                <p class="ml-2" style="font-weight:bold">ပြစ်ဒဏ်ချမှတ်ခံထားရသူ ဟုတ်/မဟုတ်</p>
+                                            </div>
+                                            <div class="col-md-6 text-left">
+                                                <span id="is_convicted"></span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 
@@ -683,11 +715,26 @@
                                         <span id="cpaff_last_renew_year"></span>
                                     </div>
                                 </div>
-
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားခြင်း ရှိ/မရှိ</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_cpaff"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom stop_cpaff_div">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ရပ်နား Form တင်ထားသည့် ခုနှစ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="submitted_stop_form_year_cpaff"></span>
+                                    </div>
+                                </div>
                                 <!--CPA Certificate -->
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA Certificate</p>
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Certificate</p>
                                     </div>
                                     <div class="col-md-6 text-left cpaff_cpa_certificate_file">
                                         {{--<button type="button" id="cpa_certi_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#capp_certi_Modal"><i class="fa fa-paperclip"></i></button>--}}
@@ -825,6 +872,13 @@
                         </div>
                         <div class="card-body">
                             <table class="table table-bordered">
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="text-center">
+                                            <h6 class="fw-bold" style="font-size: 18px">မြန်မာနိုင်ငံစာရင်းကောင်စီ​၏ ၉-၈-၂၀၁၈ ရက်စွဲပါ အမိန့်ကြော်ငြာစာအမှတ် ၂၇/၂၀၁၈ ​၏ နောက်ဆက်တွဲတွင် ဖော်ပြထားသည့် စည်းကမ်းချက်များ</h6>
+                                        </div>
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>စဥ်</td>
                                     <td style="width: 1300px!important">အကြောင်းအရာ</td>
@@ -1011,7 +1065,7 @@
                                 <tr>
                                     <td colspan="4">
                                         <div class="text-center">
-                                            <h6 class="fw-bold" style="font-size: 18px">မြန်မာနိုင်ငံစာရင်းကောင်စီ​၏ ၉-၈-၂၀၁၈ ရက်စွဲပါ အမိန့်ကြော်ငြာစာအမှတ် ၂၇/၂၀၁၈ ​၏ နောက်ဆက်တွဲတွင် ဖော်ပြထားသည့် စည်းကမ်းချက်များ</h6>
+                                            <h6 class="fw-bold" style="font-size: 18px">ကိုယ်တိုင်ဝန်ခံချက်</h6>
                                         </div>
                                     </td>
                                 </tr>
@@ -1038,6 +1092,12 @@
                                     <td class="text-left">မှတ်ပုံတင်လျှောက်ထားသည့်ပြက္ခဒိန်နှစ်အတွက် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းကို မိမိ၏အဓိကအသက်မွေးဝမ်းကြောင်းလုပ်ငန်းအဖြစ် မြန်မာနိုင်ငံအတွင်းတွင်လုပ်ကိုင်မည်ဖြစ်ကြောင်း ဝန်ခံ ကတိပြုပါသည်။</td>
                                     <td class="self31">  </td>
                                     <td class="nself31"> </td>
+                                </tr>
+                                <tr>
+                                    <td>၄</td>
+                                    <td class="text-left">မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၆၆ နှင့် ၆၈ ပါ ပြဌာန်းချက်များနှင့် ငွေကြေးခဝါချမှု တိုက်ဖျက်ရေးဥပဒေနှင့် အကြမ်းဖက်မှုတိုက်ဖျက်ရေး ဥပဒေပါပြဌာန်းချက်များကို လေးစားလိုက်နာမည်ဖြစ်ပါကြောင်း၊ မြန်မာနိုင်ငံစာရင်းကောင်စီအမိန့်ကြော်ငြာစာ အမှတ် ၂၇/၂၀၁၈ နောက်ဆက်တွဲပါ တားမြစ်ချက်များကို ပြုမှုဆောင်ရွက်ခွင့်မပြုပါကြောင်း၊ မြန်မာနိုင်ငံစာရင်းကောင်စီ အမိန့်ကြော်ငြာစာအမှတ် ၁၀/၂၀၁၉ ဖြင့်ပြဌာန်းခဲ့သည့် စာရင်းပညာရှင်များ လိုက်နာကျင့်သုံးရမည့် နိုင်ငံတစ်ကာကျင့်ဝတ်များနှင့်အညီ လိုက်နာဆောင်ရွက်မယ်ဖြစ်ပါကြောင်းနှင့် မတရားအသင်း/ အကြမ်းဖက်အဖွဲ့အစည်းအဖြစ် ကြေငြာခံထားရတဲ့အဖွဲ့အစည်းများနှင့် နည်းလမ်းတစ်မျိုးမျိုးဖြင့် ပါဝင်ပက်သက်နေသူ မဟုတ်ကြောင်း (သို့မဟုတ်) ထောက်ခံအားပေးသူမဟုတ်ကြောင်း ဝန်ခံကတိပြုပါသည်။</td>
+                                    <td class="self_confession">  </td>
+                                    <td class="nself_confession"> </td>
                                 </tr>
                             </table>
                         </div>

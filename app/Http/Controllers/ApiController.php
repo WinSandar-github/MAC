@@ -103,15 +103,14 @@ class ApiController extends Controller
         $current_course = Course::where('code',$code)->with('active_batch','course_type')->first();
          
          $batch_number = $current_course->active_batch[0]->number;
-
+        
         $student_registers = StudentRegister::where('batch_id',$current_course->active_batch[0]->id)
         ->join('student_infos','student_infos.id','=','student_register.student_info_id')              
         ->where('student_register.status',1)
         ->orderBy('student_register.type','desc')
         ->orderBy('student_infos.name_mm','asc')
         ->with('student_info','course')
-        ->select('student_infos.name_mm','student_register.*')->get();
-        // return $student_registers;  
+        ->select('student_infos.name_mm','student_register.*')->get();  
         $sr_no = 0;
         foreach($student_registers as $key => $student_register){
             
@@ -223,12 +222,13 @@ class ApiController extends Controller
 
         $student_apps = StudentCourseReg::where('batch_id',$current_course->active_batch[0]->id)
         ->where('student_course_regs.approve_reject_status',1)
+        ->where('student_course_regs.qt_entry',0)
         ->join('student_infos','student_infos.id','=','student_course_regs.student_info_id')              
-        ->where('student_course_regs.status',1)
         ->orderBy('student_course_regs.type','desc')
         ->orderBy('student_infos.name_mm','asc')
         ->with('student_info')
-        ->select('student_infos.name_mm','student_course_regs.*')->get();
+        ->select('student_infos.name_mm','student_course_regs.*')
+        ->get();
       
             
         foreach($student_apps as $key => $student_app){
@@ -278,6 +278,34 @@ class ApiController extends Controller
             
         
         return "Update Serial Number in Entrance Exam  form";
+    }
+
+      public function generateExamResult($code)
+    {
+        $course = Course::where('code', $code)->with('active_batch')->first();
+        // return $course->active_batch[0]->id;
+         $student_infos = ExamRegister::with('student_info', 'course')
+            ->where('batch_id', $course->active_batch[0]->id)
+            ->where('status', 1)
+            ->where('grade',1)
+            ->orderBy('is_full_module', 'desc')
+            ->orderby('total_mark', 'desc')
+            ->whereNotNull('sr_no')
+            // ->select('total_mark','is_full_module','passed_level')
+            ->get();
+        // return $student_infos;
+        foreach($student_infos  as $key => $student_info)
+        {
+             
+
+            $student_info->passed_level = ++$key;
+ 
+            $student_info->passed_date = date('d-M-Y');
+            $student_info->save();
+
+        }
+     
+        return "Update Grade";
     }
 
     
