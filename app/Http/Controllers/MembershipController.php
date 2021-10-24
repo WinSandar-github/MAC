@@ -5,10 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Membership;
 
-use App\Requirement;
-
-use App\Description;
-
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -125,7 +121,9 @@ class MembershipController extends Controller
         $membership->renew_fee_partner         = $request->renew_fee_partner;
         //
         $membership->late_fee                 = $request->late_fee;
+        $membership->late_feb_fee                 = $request->late_feb_fee;
         $membership->reconnected_fee          = $request->reconnected_fee;
+        $membership->reconnected_fee_before_2015          = $request->reconnected_fee_before_2015;
         ///
         $membership->late_fee_within_jan_sole                 = $request->late_fee_within_jan_sole;
         $membership->late_fee_within_jan_partner                 = $request->late_fee_within_jan_partner;
@@ -226,15 +224,33 @@ class MembershipController extends Controller
             ],200);
         }
     }
-    public function showDescription($membership_name)
+
+    // public function showDescription($membership_name)
+    // {
+
+    //     $memberships = Membership::where('membership_name', 'like', $membership_name. '%')->get();
+    //     return response()->json([
+    //         'data' => $memberships
+    //     ],200);
+    // }
+
+    public function showFee($id)
     {
 
-        $memberships = Membership::where('membership_name', 'like', $membership_name. '%')->get();
+        $memberships = Membership::where('id',$id)->get();
         return response()->json([
             'data' => $memberships
         ],200);
     }
 
+    public function showFees($id)
+    {
+
+        $memberships = Membership::where('id',$id)->get();
+        return response()->json([
+            'data' => $memberships
+        ],200);
+    }
 
     public function membership_edit($id)
     {

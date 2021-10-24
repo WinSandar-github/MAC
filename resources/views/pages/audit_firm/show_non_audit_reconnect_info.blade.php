@@ -1241,19 +1241,21 @@
                                                   </div>
                                               </div>
 
+																							@if($item->suspended_year)
 																							<div class="row mb-5">
-                                                  <label for="" class="col-md-1 col-form-label"></label>
-                                                  <label for="" class="col-md-4 col-form-label"></label>
-                                                  <div class="col-md-2">
-                                                      <label for="" class="col-form-label">Year</label>
-                                                  </div>
+																									<label for="" class="col-md-1 col-form-label"></label>
+																									<label for="" class="col-md-4 col-form-label"></label>
+																									<div class="col-md-2">
+																											<label for="" class="col-form-label">Year</label>
+																									</div>
 
-                                                  <div class="col-md-3">
-                                                      <span id="" class="form-control">
-                                                        {{$item->suspended_year}}
-                                                      </span>
-                                                  </div>
-                                              </div>
+																									<div class="col-md-3">
+																											<span id="" class="form-control">
+																												{{$item->suspended_year}}
+																											</span>
+																									</div>
+																							</div>
+																							@endif
 
 																							{{--<div class="row mb-5">
                                                   <label for="" class="col-md-1 col-form-label"></label>
@@ -1401,7 +1403,7 @@
 
 			                    <div class="form-group">
 			                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
-			                        <textarea class="form-control" name="remark" id="remark" rows="3"></textarea>
+			                        <textarea class="form-control" name="remark_reconnect" id="remark_reconnect" rows="3"></textarea>
 			                    </div>
 			                </div>
 			            </div>

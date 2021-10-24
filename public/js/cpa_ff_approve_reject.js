@@ -125,7 +125,7 @@ function showCPAFFList(capffId,is_renew){
 function showOfflineCPAFFList(capffId,is_renew){
     localStorage.setItem("cpa_ff_id",capffId);
     localStorage.setItem("is_renew",is_renew);
-    if(is_renew==0){
+    if(is_renew==1){
         location.href= FRONTEND_URL + "/cpaff_offline_edit";
     }
     else{
@@ -488,7 +488,7 @@ function loadCPAFFRenewData(){
         success: function (data) {
             var student=data.data;
             console.log(student.length);
-            // console.log(student);
+            console.log(student);
             
             student.forEach(function(element){
                 if(element.status==0){
@@ -625,7 +625,7 @@ function loadCPAFFRenewData(){
                 }else {
                     $(".cpd_record_file").append(`<span>-</span>`);
                 }
-                if(element.renew_file!=null){
+                if(element.renew_file!=null && element.renew_file!="null" && element.renew_file!=""){
                     $(".renew_file").append(`<a href='${PDF_URL+element.renew_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
                     $(".renew_file").append(`<span>-</span>`);
@@ -771,7 +771,8 @@ function loadCPAFFOfflineInitialData(){
         url: BACKEND_URL+"/cpa_ff/"+id,
         success: function (data) {
             var student=data.data;
-            console.log(student.length);
+            // console.log(student.length);
+            console.log(student);
             
             student.forEach(function(element){
                 if(element.status==0){
@@ -798,10 +799,10 @@ function loadCPAFFOfflineInitialData(){
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
 
-                var nrc     =   element.student_info.nrc_state_region+"/";
-                nrc    +=   element.student_info.nrc_township;
-                nrc    +=   "("+ element.student_info.nrc_citizen+")";
-                nrc    +=   element.student_info.nrc_number;                
+                var nrc     =   element.nrc_state_region+"/";
+                nrc    +=   element.nrc_township;
+                nrc    +=   "("+ element.nrc_citizen+")";
+                nrc    +=   element.nrc_number;                
 
                 $("#id").append(element.id);
                 document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;
@@ -991,7 +992,7 @@ function approveOfflineCPAFFUser(){
         var id = $("input[name = cpaff_id]").val();
         console.log('approvecpaid',id);
         $.ajax({
-            url: BACKEND_URL + "/approve_cpaff/"+id,
+            url: BACKEND_URL + "/approve_offline_cpaff/"+id,
             type: 'patch',
             success: function(result){
                 successMessage("You have approved that user!");
