@@ -152,10 +152,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     // CPA(FF)/PAPP Report
-    Route::post('cpa_papp_yearly_list','ReportController\CpaPappReportController@cpaPappYearlyList');
-    Route::post('cpa_papp_yearly_reg_list','ReportController\CpaPappReportController@cpaPappYearlyRegList');
-    Route::post('cpa_papp_take_out_reg_list','ReportController\CpaPappReportController@cpaPappTakeOutRegList');
-    Route::get('cpa_ff_report1','ReportController@cpa_ff_report1');
+    Route::post('cpa_ff_yearly_list/{year}', 'ReportController\CpaPappReportController@cpaFFYealyList');
+    Route::post('cpa_ff_pa_yearly_list/{year}', 'ReportController\CpaPappReportController@cpaPAYealyList');
+    Route::post('cpa_ff_yearly_reg_list/{year}', 'ReportController\CpaPappReportController@cpaFFYearlyRegList');
+    Route::post('cpa_papp_yearly_reg_list/{year}', 'ReportController\CpaPappReportController@cpaPAPPYearlyRegList');
     Route::get('cpa_ff_report2','ReportController@cpa_ff_report2');
     Route::get('cpa_ff_report3','ReportController@cpa_ff_report3');
     Route::get('cpa_ff_report4','ReportController@cpa_ff_report4');
@@ -229,7 +229,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('s_t_report2','ReportController@s_t_report2');
     Route::get('s_t_report3','ReportController@s_t_report3');
 
-    Route::post('teacher_school_license', 'ReportController\TeacherSchoolReportController@teacherSchoolLicense');
+    Route::post('teacher_school_license/{type}', 'ReportController\TeacherSchoolReportController@teacherSchoolLicense');
     Route::post('teacher_school_private', 'ReportController\TeacherSchoolReportController@teacherSchoolPrivate');
     Route::post('teacher_school_license_plate', 'ReportController\TeacherSchoolReportController@teacherSchoolLicensePlate');
 

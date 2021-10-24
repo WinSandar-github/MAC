@@ -84,7 +84,7 @@
                                                 @foreach($ygn as $s)
                                                
                                                 @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
-
+                                                @if($s->student_info->exam_registers[0]->exam_type_id == 3 && $s->student_info->exam_registers[0]->status == 1)
                                                 <tr class="mac-ygn">
                                                     <td>
                                                         {{ ++$count }}
@@ -108,6 +108,7 @@
                                                         {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                                     </td>
                                                 </tr>
+                                                @endif
                                                 @endforeach
                                             @elseif($key == 2)
                                                 <tr class="mac-npt">
@@ -118,6 +119,7 @@
                                                 
                                                 @foreach($ygn as $s)
                                                     @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+                                                    @if($s->student_info->exam_registers[0]->exam_type_id == 3 && $s->student_info->exam_registers[0]->status == 1)
 
                                                     <tr class="mac-npt">
                                                         <td>
@@ -142,6 +144,7 @@
                                                             {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                                         </td>
                                                     </tr>
+                                                    @endif
                                                 @endforeach
                                             @else
 
@@ -168,6 +171,7 @@
                                     @foreach($std as $key => $s)
                                     
                                     @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
+                                        @if($s->student_info->exam_registers[0]->exam_type_id == 3 && $s->student_info->exam_registers[0]->status == 1 )
 
                                         <tr class="self-row">
                                             <td>
@@ -192,6 +196,7 @@
                                                 {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
                                             </td>
                                         </tr>
+                                        @endif
                                     @endforeach
                                 @endif
                             @endforeach
