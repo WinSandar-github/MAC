@@ -23,7 +23,7 @@
                                     <img src="" id="profile_photo" width="30%" class="rounded-circle" style="width: 100px;height : 100px" />
                                 </center>
                                 <!-- Start CPA_FF Info -->
-                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA(Full-Fledged) Offline User Info</h5>
+                                <h5 class="border-bottom pb-2 mt-3" style="font-weight:bold">CPA(Full-Fledged) Existing User Info</h5>
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
@@ -103,6 +103,32 @@
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_reg_no"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration Date</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="papp_reg_year"></span>
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">PAPP File</p>
+                                    </div>
+                                    <div class="col-md-6 text-left renew_file">
+                                    </div>
+                                </div>
+
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ပြစ်ဒဏ်ချမှတ်ခံထားရသူ ဟုတ်/မဟုတ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="fine_person"></span>
                                     </div>
                                 </div>
 

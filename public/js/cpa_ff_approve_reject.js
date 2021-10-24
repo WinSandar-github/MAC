@@ -900,11 +900,16 @@ function loadCPAFFOfflineInitialData(){
                 }else {
                     $(".cpd_record_file").append(`<span>-</span>`);
                 }
-                if(element.letter!=null){
-                    $(".letter_file").append(`<a href='${PDF_URL+element.letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                if(element.renew_file!=null && element.renew_file!="null" && element.renew_file!=""){
+                    $(".renew_file").append(`<a href='${PDF_URL+element.renew_file}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
                 }else {
-                    $(".letter_file").append(`<span>-</span>`);
+                    $(".renew_file").append(`<span>-</span>`);
                 }
+                // if(element.letter!=null){
+                //     $(".letter_file").append(`<a href='${PDF_URL+element.letter}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
+                // }else {
+                //     $(".letter_file").append(`<span>-</span>`);
+                // }
                 $("#degree").append(degree);
                 $("#status").append(status);
                 $("#cpd_total_hour").append(element.total_hours);
@@ -922,6 +927,11 @@ function loadCPAFFOfflineInitialData(){
                     $("#papp_reg_year").append(element.papp_reg_year);
                 }else{
                     $("#papp_reg_year").append(`<span>-</span>`);
+                }
+                if(element.fine_person !=null){
+                    $("#fine_person").append(element.fine_person);
+                }else{
+                    $("#fine_person").append(`<span>-</span>`);
                 }
                 $("#last_paid_year").append(element.last_paid_year);
                 $("#resign_date").append(element.resign_date);
