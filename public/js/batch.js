@@ -164,6 +164,7 @@ function showBatchInfo(id) {
             $('input[name=name_mm]').val(batch_data.name_mm);
             $("input[name=number]").val(batch_data.number);
             $('#selected_course_id').val(batch_data.course_id);
+            checkCpaOne(batch_data.course_id);
             $('input[name=start_date]').val(batch_data.start_date);
             $('input[name=end_date]').val(batch_data.end_date);
             $('input[name=mac_reg_start_date]').val(batch_data.mac_reg_start_date);
@@ -257,7 +258,8 @@ function deleteBatchInfo(batchName, batchId) {
             url: BACKEND_URL + '/batch/' + batchId,
             success: function (result) {
                 successMessage("Delete Successfully");
-                getBatch();
+                // getBatch();
+                location.reload();
             },
             error: function (message) {
                 errorMessage(message);
@@ -266,17 +268,18 @@ function deleteBatchInfo(batchName, batchId) {
     }
 }
 
-$('#selected_course_id').on('change', function (e) {
-    var course_id = this.value;
-    console.log(course_id);
+// $('#selected_course_id').on('change', function (e) {
+function checkCpaOne(value) {
+    var course_id = value;
     $.ajax({
         url: BACKEND_URL + "/course/" + course_id,
         type: 'get',
         data: "",
         success: function (data) {
             console.log(data);
-            if (data.data.course_type_id == 2) {
+            if (data.data.code == 'cpa_1') {
                 if (document.getElementById('entrance_pass')) {
+
                     document.getElementById('entrance_pass').style.display = 'block';
                 }
             }
@@ -291,7 +294,7 @@ $('#selected_course_id').on('change', function (e) {
         }
 
     });
-});
+}
 
 
 function showBatchExam(id) {

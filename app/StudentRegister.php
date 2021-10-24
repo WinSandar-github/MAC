@@ -26,4 +26,6 @@ class StudentRegister extends Model
 
     
 
+    
+
 }
