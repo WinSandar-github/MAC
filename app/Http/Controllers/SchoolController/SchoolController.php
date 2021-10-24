@@ -705,6 +705,7 @@ class SchoolController extends Controller
         $school->father_name_eng = $request->father_name_eng;
         $school->date_of_birth   = $request->dob;
         $school->address         = $request->address;
+        $school->eng_address         = $request->eng_address;
         $school->phone           = $request->phone;
         $school->attachment      = ($attachment);
         
@@ -712,6 +713,7 @@ class SchoolController extends Controller
         $school->school_name                 = $request->school_name;
         $school->attend_course               = json_encode($request->attend_course);
         $school->school_address              = $request->school_address;
+        $school->eng_school_address              = $request->eng_school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = ($own_type_letter);
         $school->business_license            = ($business_license);
@@ -1374,21 +1376,23 @@ class SchoolController extends Controller
         //invoice
         $memberships = Membership::where('membership_name', 'like', 'School')->get();
             if($request->offline_user!="true"){
-                $invoice = Invoice::where('invoiceNo','init_sch'.$id);
+                $invoice = Invoice::where('invoiceNo','init_sch'.$id)->get();
                 // $invoice->student_info_id = $std_info->id;
                 // $invoice->invoiceNo = 'init_sch'.$school->id;
                 
-                $invoice->name_eng        = $request->name_eng;
-                $invoice->email           = $request->email;
-                $invoice->phone           = $request->phone;
+                foreach($invoice as $invoice){
+                    $invoice->name_eng        = $request->name_eng;
+                    $invoice->email           = $request->email;
+                    $invoice->phone           = $request->phone;
 
-                $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee,School Registration';
-                foreach($memberships as $memberships){
-                    $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+                    $invoice->productDesc     = 'Application Fee,Initial Registration Fee,Yearly Fee,School Registration';
+                    foreach($memberships as $memberships){
+                        $invoice->amount          = $memberships->form_fee.','.$memberships->registration_fee.','.$memberships->yearly_fee;
+                    }
+                
+                    $invoice->status          = 0;
+                    $invoice->save();
                 }
-            
-                $invoice->status          = 0;
-                $invoice->save();
             }
         return response()->json([
             'message' => 'You have renewed successfully.'
@@ -1592,10 +1596,11 @@ class SchoolController extends Controller
                     ->where('invoiceNo',"init_sch".$infos->id)
                     
                     ->get();
+                    $currentDate = Carbon::now()->addYears(3) ;
                     foreach($invoice as $i){
                         return $i->status == "0"
                             ? ""
-                            : $i->dateTime.' to '.date('Y').'-12-31';
+                            : $i->dateTime.' to '.$currentDate->format('Y').'-12-31';
                     }
                 }else{
                     $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
@@ -1732,7 +1737,7 @@ class SchoolController extends Controller
 
     public function schoolStatus($id)
     {
-        $data = StudentInfo::where('id',$id)->with('school')->get();
+        $data = StudentInfo::where('id',$id)->with('school', 'invoice')->get();
         return response()->json($data,200);
     }
 
@@ -2003,6 +2008,7 @@ class SchoolController extends Controller
         $school->attend_course               = json_encode($request->attend_course);
         $school->renew_course                = $request->old_course;
         $school->school_address              = $request->school_address;
+        $school->eng_school_address          = $request->eng_school_address;
         $school->renew_school_address        = $request->old_school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = ($own_type_letter);
@@ -2533,6 +2539,7 @@ class SchoolController extends Controller
         $school->school_name                 = $request->school_name;
         $school->attend_course               = json_encode($request->attend_course);
         $school->school_address              = $request->school_address;
+        $school->eng_school_address          = $request->eng_school_address;
         $school->own_type                    = $request->own_type;
         $school->own_type_letter             = ($own_type_letter);
         $school->business_license            = ($business_license);
