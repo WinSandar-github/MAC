@@ -258,6 +258,7 @@ Route::patch('/approve_non_audit_payment/{id}', 'AccFirmInfController@approvePay
 
 //Update Rejected Audit Firm register form
 Route::post('/update_rejected_acc_firm_info/{id}','AccFirmInfController@update');
+Route::post('/update_renew_rejected_acc_firm_info/{id}','AccFirmInfController@updateRenewReject');
 
 //Get Exam filter by student id
 Route::get('/get_exam/{student_info_id}','BatchController@getExam');
@@ -345,7 +346,10 @@ Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQ
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 
 //show description
-Route::get('showDescription/{name}', 'DescriptionController@showHomeDescription');
+// Route::get('showDescription/{membership_name}','MembershipController@showDescription');
+Route::get('showFee/{id}','MembershipController@showFee');
+Route::get('showFees/{id}','MembershipController@showFees');
+Route::get('showDescription/{name}', 'HomeController@showDescription');
 
 // Exam Department
 Route::get('get_exam_department','ExamDepartmentController@getExamDepartment');

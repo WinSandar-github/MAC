@@ -155,6 +155,7 @@ function loadAttachFiles(firm_id){
 
             if(item.permit_foreign!="null"){
               var permit_foreign_file = removeBracketedNonAudit(item.permit_foreign);
+
               for(var i=0;i<permit_foreign_file.length;i++){
                 $(".permit_foreign_company").append(`<a href='${PDF_URL+permit_foreign_file[i]}' style='display:block; font-size:16px;text-decoration: none;' target='_blank' align="center">View File</a>`);
               }
@@ -340,7 +341,8 @@ function rejectNonAuditFirmRenew(id,firm_id){
     // var id = $("input[name = audit_firm_id]").val();
     // var firm_id = $("input[name = audit_firm_id]").val();
     var formData = new FormData();
-    formData.append('remark', $('#remark').val());
+
+    formData.append('remark', $('#remark_renew_na').val());
     //alert("youk");
     $.ajax({
         url: BACKEND_URL +"/reject_auditfirm_renew/"+id+"/"+firm_id,
