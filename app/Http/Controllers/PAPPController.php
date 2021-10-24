@@ -205,6 +205,7 @@ class PAPPController extends Controller
         $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
         $papp->type             =   $request->type;
         $papp->self_confession  =   $request->self_confession;
+        $papp->self_confession_1  =   $request->self_confession1;
 
         $thisYear = date('Y');
         $today = date('d-m-Y');
@@ -1228,6 +1229,7 @@ class PAPPController extends Controller
         // $papp->submitted_to_date     =   $request->submitted_to_date;
         $papp->papp_resign_date     =   $request->papp_resign_date;
         $papp->self_confession  =   $request->self_confession;
+        $papp->self_confession_1  =   $request->self_confession1;
         // $papp->submitted_to_date     =   $request->submitted_to_date;
         // $thisYear = date('Y');
         // $today = date('d-m-Y');

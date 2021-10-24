@@ -663,8 +663,7 @@ class CPAFFController extends Controller
     //Store Renew Form
     public function storeRenewForm(Request $request){
         // return $request->student_info_id;
-        $initial_cpaff=CPAFF::where('student_info_id',$request->student_info_id)
-        ->where('is_renew',0)->first();
+        $initial_cpaff=CPAFF::where('student_info_id',$request->student_info_id)->first();
         // return $initial_cpaff;
         if ($request->hasfile('profile_photo')) {
             $file = $request->file('profile_photo');
