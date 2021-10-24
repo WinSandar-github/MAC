@@ -18,9 +18,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DaReportController extends Controller
 {
-    public function daAttendList(Request $request)
+    public function daAttendList(Request $request, $type)
     {
-        if($request->course != '' && $request->batch != ""){
+        if($request->course != '' && $request->batch != "" && $type != ""){
+
             $course = Course::where('id', '=', $request->course)
                 ->with('active_batch','course_type')
                 ->first();
@@ -28,6 +29,9 @@ class DaReportController extends Controller
             $batch = Batch::where('id','=',$request->batch)->first();
 
             $student_registers = StudentCourseReg::where('batch_id', $request->batch)
+                ->when($type !== 'all', function($query) use($type){
+                    $query->where('type', '=', $type);
+                })
                 ->join('student_infos','student_infos.id','=','student_course_regs.student_info_id')
                 ->where('student_course_regs.approve_reject_status',1)
                 ->orderBy('student_course_regs.type','asc')
@@ -36,12 +40,29 @@ class DaReportController extends Controller
                 ->select('student_infos.name_mm','student_course_regs.*')
                 ->get();
 
+            if($type == 'all'){
+                $title = $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>တက်ရောက်ခွင့်ရသူများစာရင်း";
+            }else{
+                $title = $type == 0 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ကိုယ်ပိုင်လေ့လာသင်ယူမည့်သူများစာရင်း"
+                            : ( $type == 1 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်တက်ရောက်ခွင့်သူများစာရင်း" 
+                                            : $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>စာရင်းစစ်ချုပ်ရုံးတွင်တက်ရောက်ခွင့်ရသူများစာရင်း");
+            }
+
+            if($type == 2){
+                $filter = ['ရန်ကုန်သင်တန်းကျောင်း', 'နေပြည်တော်သင်တန်းကျောင်း'];
+                $student_registers = $student_registers->groupBy(['type', 'mac_type']);
+            }else{
+                // $filter = ['mac', 'self study', 'private school']; // 0 self, 1 private, 2 mac
+                $filter = [];
+                $student_registers = $student_registers->groupBy(['type']);
+            }
+
             $data = [
-                'title' => 'This is a title',
-                'filter' => ['mac', 'self study', 'private school'], // 0 self, 1 private, 2 mac
+                'title' => $title,
+                'filter' => $filter,
                 'batch' => $batch,
                 'course' => $course,
-                'student' => $student_registers->groupBy('type'),
+                'student' => $student_registers,
             ];
 
             /*return view('reporting.application_list',compact('batch','course','student_registers'));*/
@@ -49,7 +70,7 @@ class DaReportController extends Controller
         }
     }
 
-    public function daRegList(Request $request)
+    public function daRegList(Request $request, $type)
     {
         $course = Course::where('id', '=', $request->course)
                 ->with('active_batch','course_type')
@@ -59,6 +80,9 @@ class DaReportController extends Controller
 
 
         $student_registers = StudentRegister::where('batch_id', $request->batch)
+                ->when($type !== 'all', function($query) use($type){
+                    $query->where('type', '=', $type);
+                })
                 ->join('student_infos','student_infos.id','=','student_register.student_info_id')
                 ->join('modules', 'modules.id', '=', 'student_register.module')
                 ->where('student_register.status',1)
@@ -68,12 +92,29 @@ class DaReportController extends Controller
                 ->select('student_infos.name_mm','student_register.*', 'modules.name as module_name')
                 ->get();
 
+        if($type == 'all'){
+            $title = $course->name_mm . "သင်တန်းကျောင်း<br>" . $batch->name_mm . "<br>မှတ်ပုံတင်ထားသူများစာရင်း";
+        }else{
+            $title = $type == 0 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ကိုယ်ပိုင်လေ့လာသင်ယူမည့်မှတ်ပုံတင်ထားသူများစာရင်း"
+                        : ( $type == 1 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်တက်ရောက်မည့်မှတ်ပုံတင်ထားသူများစာရင်း" 
+                                        : $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>စာရင်းစစ်ချုပ်ရုံးတွင်တက်ရောက်မည့်မှတ်ပုံတင်ထားသူများစာရင်း");
+        }
+
+        if($type == 2){
+            $filter = ['ရန်ကုန်သင်တန်းကျောင်း', 'နေပြည်တော်သင်တန်းကျောင်း'];
+            $student_registers = $student_registers->groupBy(['module']);
+        }else{
+            // $filter = ['mac', 'self study', 'private school']; // 0 self, 1 private, 2 mac
+            $filter = [];
+            $student_registers = $student_registers->groupBy(['module']);
+        }
+
         $data = [
-            'title' => 'This is a title',
+            'title' => $title,
             'filter' => ['module one', 'module two', 'all module'], // 1 module one, 2 module two, 3 all module
             'batch' => $batch,
             'course' => $course,
-            'student' => $student_registers->groupBy('module'),
+            'student' => $student_registers,
         ];
 
         return view('reporting.registration_list',compact('data'));
@@ -106,6 +147,74 @@ class DaReportController extends Controller
  
         return view('reporting.exam_result_list',compact('course','batch','exam_departments','modules'));
     }
+
+    public function attendEntryExamList(Request $request, $type)
+    {
+        if($request->course != '' && $request->batch != "" && $type != ""){
+
+            $course = Course::where('id', '=', $request->course)
+                ->with('active_batch','course_type')
+                ->first();
+
+            $batch = Batch::where('id','=',$request->batch)->first();
+
+            $student_registers = StudentCourseReg::where('batch_id', $request->batch)
+                ->when($type !== 'all', function($query) use($type){
+                    $query->where('type', '=', $type);
+                })
+                ->join('student_infos','student_infos.id','=','student_course_regs.student_info_id')
+                ->where('student_course_regs.approve_reject_status',1)
+                ->where('student_course_regs.qt_entry',1)
+                ->orderBy('student_course_regs.type','asc')
+                ->orderBy('student_infos.name_mm','asc')
+                ->with('student_info')
+                ->select('student_infos.name_mm','student_course_regs.*')
+                ->get();
+
+            if($type == 'all'){
+                $title = $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ဖြေဆိုခွင့်ရသူများစာရင်း";
+            }else{
+                $title = $type == 0 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများ ( ကိုယ်တိုင်လေ့လာသင်ယူမည့်သူများ )"
+                            : ( $type == 1 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများ ( ကိုယ်ပိုင်စာရင်းကိုသင်တန်းကျောင်းတွင်တက်ရောက်ခွင့်ရသူများ )" 
+                                            : $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ဝင်ခွင့်စာမေးပွဲအောင်မြင်သူများ ( မြန်မာနိုင်ငံစာရင်းကောင်စီတွင်တက်ရောက်ခွင့်ရသူများ )");
+            }
+
+            if($type == 2){
+                $filter = ['ရန်ကုန်သင်တန်းကျောင်း', 'နေပြည်တော်သင်တန်းကျောင်း'];
+                $student_registers = $student_registers->groupBy(['type', 'mac_type']);
+            }else{
+                // $filter = ['mac', 'self study', 'private school']; // 0 self, 1 private, 2 mac
+                $filter = [];
+                $student_registers = $student_registers->groupBy(['type']);
+            }
+                
+            $data = [
+                'title' => $title,
+                'filter' => $filter,
+                'batch' => $batch,
+                'course' => $course,
+                'student' => $student_registers,
+            ];
+
+            /*return view('reporting.application_list',compact('batch','course','student_registers'));*/
+            return view('reporting.entry_exam_list', compact('data'));
+        }
+    }
+
+
+    public function entryExamsList(Request $request)
+    {
+    
+        $course = Course::where('id', '=', $request->course)
+            ->with('active_batch','course_type')
+            ->first();
+
+        $batch = Batch::where('id','=',$request->batch)->first();   
+        $exam_departments = ExamDepartment::get();
+        $modules = Module::get();
+        return view('reporting.current_entry_exam_list',compact('course','batch','exam_departments','modules'));
+
+     }
 
     public function da_report5()
     {
