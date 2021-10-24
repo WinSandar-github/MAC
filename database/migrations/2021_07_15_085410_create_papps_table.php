@@ -81,6 +81,7 @@ class CreatePappsTable extends Migration
             $table->boolean('offline_user')->default(0);
             $table->string('cpaff_reg_no')->nullable();//need to add
             $table->string('audit_year')->nullable();//need to add
+            $table->integer('self_confession_1')->nullable();
             $table->timestamps();
 
             $table->foreign('student_id')
