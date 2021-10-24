@@ -82,6 +82,33 @@ class ArticleController extends Controller
             $apprentice_exp_file = null;
         }
 
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $image = '/storage/student_info/' . $name;
+        }else{
+            $image = "";
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = "";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = "";
+        }
+
         $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
         $acc_app->gov_staff = $request->gov_staff;
         $acc_app->gov_position = $request->gov_position;
@@ -108,6 +135,11 @@ class ArticleController extends Controller
         $invoice->student_info_id = $request->student_info_id;
 
         $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+        $std_info->phone        =   $request->phone_no;
+        $std_info->nrc_front    =   $nrc_front == "" ? $std_info->nrc_front : $nrc_front;
+        $std_info->nrc_back     =   $nrc_back == "" ? $std_info->nrc_back : $nrc_back;
+        $std_info->image        =   $image == "" ? $std_info->image : $image;
+        $std_info->save();
 
         $invoice->name_eng        = $std_info->name_eng;
         $invoice->email           = $std_info->email;
@@ -354,14 +386,14 @@ class ArticleController extends Controller
             ->setRowClass(function ($infos) {
                 return $infos->done_form_attach != null && $infos->done_status != 1 ? 'bg-success' : 'bg-light';
             });
-            $datatable = $datatable->addColumn('check_end_date', function ($infos){
-                return "<div class='btn-group'>
-                                <button type='button' class='btn btn-warning btn-sm' onclick='checkEndArticle($infos)'>
-                                    <li class='fa fa-pencil fa-sm'></li>
-                                </button>
-                            </div>";
-            });
-            $datatable = $datatable->rawColumns(['check_end_date','status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            // $datatable = $datatable->addColumn('check_end_date', function ($infos){
+            //     return "<div class='btn-group'>
+            //                     <button type='button' class='btn btn-warning btn-sm' onclick='checkEndArticle($infos)'>
+            //                         <li class='fa fa-pencil fa-sm'></li>
+            //                     </button>
+            //                 </div>";
+            // });
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
@@ -453,6 +485,33 @@ class ArticleController extends Controller
         }else{
             $police_attach = null;
         }
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $image = '/storage/student_info/' . $name;
+        }else{
+            $image = "";
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = "";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = "";
+        }
         
         // if ($request->hasfile('recommend_attach')) {
         //     $file = $request->file('recommend_attach');
@@ -490,6 +549,11 @@ class ArticleController extends Controller
         $invoice->student_info_id = $request->student_info_id;
 
         $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+        $std_info->phone        =   $request->phone_no;
+        $std_info->nrc_front    =   $nrc_front == "" ? $std_info->nrc_front : $nrc_front;
+        $std_info->nrc_back     =   $nrc_back == "" ? $std_info->nrc_back : $nrc_back;
+        $std_info->image        =   $image == "" ? $std_info->image : $image;
+        $std_info->save();
 
         $invoice->name_eng        = $std_info->name_eng;
         $invoice->email           = $std_info->email;
@@ -710,14 +774,14 @@ class ArticleController extends Controller
             ->setRowClass(function ($infos) {
                 return $infos->done_form_attach != null && $infos->done_status != 1 ? 'bg-success' : 'bg-light';
             });
-        $datatable = $datatable->addColumn('check_end_date', function ($infos){
-            return "<div class='btn-group'>
-                            <button type='button' class='btn btn-warning btn-sm' onclick='checkEndGovArticle($infos)'>
-                                <li class='fa fa-pencil fa-sm'></li>
-                            </button>
-                        </div>";
-        });
-        $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','check_end_date'])->make(true);
+        // $datatable = $datatable->addColumn('check_end_date', function ($infos){
+        //     return "<div class='btn-group'>
+        //                     <button type='button' class='btn btn-warning btn-sm' onclick='checkEndGovArticle($infos)'>
+        //                         <li class='fa fa-pencil fa-sm'></li>
+        //                     </button>
+        //                 </div>";
+        // });
+        $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
         return $datatable;
     }
 
@@ -775,6 +839,33 @@ class ArticleController extends Controller
             $resign_approve_attach = "";
         }
 
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $image = '/storage/student_info/' . $name;
+        }else{
+            $image = "";
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = "";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = "";
+        }
+
         $acc_app->resign_date = $request->resign_date;
         $acc_app->resign_reason = $request->resign_reason;
         $acc_app->recent_org = $request->recent_org;
@@ -789,6 +880,11 @@ class ArticleController extends Controller
         $invoice->student_info_id = $request->student_info_id;
 
         $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+        $std_info->phone        =   $request->phone_no;
+        $std_info->nrc_front    =   $nrc_front == "" ? $std_info->nrc_front : $nrc_front;
+        $std_info->nrc_back     =   $nrc_back == "" ? $std_info->nrc_back : $nrc_back;
+        $std_info->image        =   $image == "" ? $std_info->image : $image;
+        $std_info->save();
 
         $invoice->name_eng        = $std_info->name_eng;
         $invoice->email           = $std_info->email;
@@ -857,29 +953,8 @@ class ArticleController extends Controller
                     return "REJECTED";
                 }
             });
-            $datatable = $datatable->addColumn('done_resign', function ($infos){
-                if($infos->resign_status == 0){
-                    return "<div class='btn-group'>
-                        <button type='button' class='btn btn-primary btn-sm' disabled onclick='doneResignArticle($infos->id)'>
-                            Done
-                        </button>
-                    </div>";
-                }else if($infos->resign_status == 1){
-                    return "<div class='btn-group'>
-                        <button type='button' class='btn btn-primary btn-sm' onclick='doneResignArticle($infos->id)'>
-                            Done
-                        </button>
-                    </div>";
-                }else{
-                    return "<div class='btn-group'>
-                        <button type='button' class='btn btn-primary btn-sm' disabled onclick='doneResignArticle($infos->id)'>
-                            Done
-                        </button>
-                    </div>";
-                }
-            });
             
-            $datatable = $datatable->rawColumns(['done_resign', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
@@ -900,17 +975,6 @@ class ArticleController extends Controller
         $reject->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
-        ],200);
-    }
-
-    public function doneResignArticle(Request $request)
-    {
-        $resign = ApprenticeAccountant::find($request->id);
-        $resign->done_status = 1;
-        $resign->approve_resign_date = $request->approve_resign_date;
-        $resign->save();
-        return response()->json([
-            'message' => "You have successfully resign that user!"
         ],200);
     }
 
@@ -1072,6 +1136,33 @@ class ArticleController extends Controller
             $request_papp_attach = "";
         }
 
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $name = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path() . '/storage/student_info/', $name);
+            $image = '/storage/student_info/' . $name;
+        }else{
+            $image = "";
+        }
+
+        if ($request->hasfile('nrc_front')) {
+            $file = $request->file('nrc_front');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_front = '/storage/student_info/'.$name;
+        }else{
+            $nrc_front = "";
+        }
+
+        if ($request->hasfile('nrc_back')) {
+            $file = $request->file('nrc_back');
+            $name  = uniqid().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path().'/storage/student_info/',$name);
+            $nrc_back = '/storage/student_info/'.$name;
+        }else{
+            $nrc_back = "";
+        }
+
         // $acc_app->gov_staff = $request->gov_staff;
         // $acc_app->gov_position = $request->gov_position;
         // $acc_app->gov_joining_date = $request->gov_joining_date;
@@ -1090,6 +1181,11 @@ class ArticleController extends Controller
         $invoice->student_info_id = $request->student_info_id;
 
         $std_info = StudentInfo::where('id' , $request->student_info_id)->first();
+        $std_info->phone        =   $request->phone_no;
+        $std_info->nrc_front    =   $nrc_front == "" ? $std_info->nrc_front : $nrc_front;
+        $std_info->nrc_back     =   $nrc_back == "" ? $std_info->nrc_back : $nrc_back;
+        $std_info->image        =   $image == "" ? $std_info->image : $image;
+        $std_info->save();
 
         $invoice->name_eng        = $std_info->name_eng;
         $invoice->email           = $std_info->email;
@@ -1178,7 +1274,13 @@ class ArticleController extends Controller
     {
         $approve = ApprenticeAccountant::find($request->id);
         $approve->contract_end_date = $request->contract_end_date;
-        //$approve->done_status = 1;
+
+        $leave_request = leave_request::where('student_info_id',$request->student_info_id)->where('form_type',$request->article_form_type)->get();
+        for($i = 0 ; $i < count($leave_request) ; $i++){
+            $leave_request[$i]->status = 1;
+            $leave_request[$i]->save();
+        }
+        
         $approve->save();
         return response()->json([
             'message' => "You have successfully!"
@@ -1189,7 +1291,45 @@ class ArticleController extends Controller
     {
         $approve = ApprenticeAccountantGov::find($request->id);
         $approve->contract_end_date = $request->contract_gov_end_date;
-        //$approve->done_status = 1;
+        
+        $leave_request = leave_request::where('student_info_id',$request->student_info_id)->where('form_type',$request->article_form_type)->get();
+        for($i = 0 ; $i < count($leave_request) ; $i++){
+            $leave_request[$i]->status = 1;
+            $leave_request[$i]->save();
+        }
+
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully!"
+        ],200);
+    }
+
+    public function createDoneFormLink($id)
+    {
+        $article = ApprenticeAccountant::find($id);
+        $article->yes_done_attach = 1;
+        $article->save();
+        return response()->json([
+            'message' => "You have successfully!"
+        ],200);
+    }
+
+    public function govCreateDoneFormLink($id)
+    {
+        $article = ApprenticeAccountantGov::find($id);
+        $article->yes_done_attach = 1;
+        $article->save();
+        return response()->json([
+            'message' => "You have successfully!"
+        ],200);
+    }
+
+    public function saveRenewContractDate(Request $request)
+    {
+        $approve = ApprenticeAccountant::find($request->id);
+        $approve->contract_start_date = $request->renew_start_date;
+        $approve->contract_end_date = $request->renew_end_date;
+        //$approve->status = 1;
         $approve->save();
         return response()->json([
             'message' => "You have successfully!"

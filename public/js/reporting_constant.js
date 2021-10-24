@@ -202,7 +202,7 @@ const _ARTICLE_SECTION_MENTOR = [
     {
         route_name: "/article_mentor_intern",
         fun_name: "articleMentorIntern($(this).data(\'url\'))",
-        sub_title: "အလုပ်သင်ကြားပေးနေသူထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
+        sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
     },
 
     // {
@@ -240,23 +240,47 @@ const _FIRM_NAME = [
 
 const _TEACHER_SCHOOL = [
     {
-        route_name: "/teacher_school_license",
+        route_name: "/teacher_school_license/all",
         fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
         sub_title: "ကနဦးမှတ်ပုံတင်၊ သက်တမ်းတိုး၊ သက်တမ်းပြတ်တောက်နေသော ကိုယ်ပိုင်ကျောင်းစာရင်း (လုပ်ငန်းအမျိုးအစားအလိုက်)"
     },
 
     {
-        route_name: "/teacher_school_private",
-        fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
-        sub_title: `ကိုယ်ပိုင်သင်တန်းကျောင်းများတွင် သင်ကြားနေသောသင်တန်းဆရာများစာရင်း 
-                    ( အမျိုးအစားအလိုက် (Private/Individual)၊ ကျောင်းအလိုက်၊ ခုနှစ်အလိုက်၊ ဘာသာရပ်အလိုက်၊ သင်တန်းအမျိုးအစားအလိုက်`
+        route_name: "/teacher_school_license/init",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "ကနဦးမှတ်ပုံတင်စာရင်း"
     },
 
     {
-        route_name: "/teacher_school_license_plate",
-        fun_name: "teacherSchoolLicensePlate($(this).data(\'url\'))",
-        sub_title: "Teacher / School အလိုက်မှတ်ပုံတင်ကတ်များ (ကနဦး / သက်တမ်းတိုး) ထုတ်ယူနိုင်ရေးဆောင်ရွက်ပေးရန်"
-    }
+        route_name: "/teacher_school_license/renew",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "သက်တမ်းတိုးစာရင်း"
+    },
+
+    {
+        route_name: "/teacher_school_license/reconnect",
+        fun_name: "teacherSchoolLicense($(this).data(\'url\'))",
+        sub_title: "သက်တမ်းပြတ်တောက်စာရင်း"
+    },
+
+    {
+        route_name: "/teacher_school_private",
+        fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
+        sub_title: "သင်တန်းဆရာများစာရင်း"
+    },
+
+    // {
+    //     route_name: "/teacher_school_private",
+    //     fun_name: "teacherSchoolPrivate($(this).data(\'url\'))",
+    //     sub_title: `ကိုယ်ပိုင်သင်တန်းကျောင်းများတွင် သင်ကြားနေသောသင်တန်းဆရာများစာရင်း 
+    //                 ( အမျိုးအစားအလိုက် (Private/Individual)၊ ကျောင်းအလိုက်၊ ခုနှစ်အလိုက်၊ ဘာသာရပ်အလိုက်၊ သင်တန်းအမျိုးအစားအလိုက်`
+    // },
+
+    // {
+    //     route_name: "/teacher_school_license_plate",
+    //     fun_name: "teacherSchoolLicensePlate($(this).data(\'url\'))",
+    //     sub_title: "Teacher / School အလိုက်မှတ်ပုံတင်ကတ်များ (ကနဦး / သက်တမ်းတိုး) ထုတ်ယူနိုင်ရေးဆောင်ရွက်ပေးရန်"
+    // }
 ]
 
 const _CPA_QUALIFIED = [
@@ -294,22 +318,27 @@ const _CPA_QUALIFIED = [
 
 const _CPA_PAPP = [
     {
-        route_name: "/cpa_papp_yearly_list",
-        fun_name: 'cpaPAPPYealyList($(this).data(\'url\'))',
-        sub_title: "CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+        route_name: "/cpa_ff_yearly_list",
+        fun_name: 'cpaFFYealyList($(this).data(\'url\'))',
+        sub_title: "CPA (FF)တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+    },
+
+    {
+        route_name: "/cpa_ff_pa_yearly_list",
+        fun_name: 'cpaPAYealyList($(this).data(\'url\'))',
+        sub_title: "CPA (FF)/ PA တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+    },
+
+    {
+        route_name: "/cpa_ff_yearly_reg_list",
+        fun_name: 'cpaFFYearlyRegList($(this).data(\'url\'))',
+        sub_title: "ပြက္ဒဒိန်နှစ်အလိုက် ( CPA FF) မှတ်ပုံတင်သူများစာရင်း"
     },
 
     {
         route_name: "/cpa_papp_yearly_reg_list",
         fun_name: 'cpaPAPPYearlyRegList($(this).data(\'url\'))',
-        sub_title: "ပြက္ဒဒိန်နှစ် အလိုက် မှတ်ပုံတင်လုပ်ငန်းများစာရင်း"
-    },
-
-    {
-
-        route_name: "/cpa_papp_take_out_reg_list",
-        fun_name: 'cpaPAPPTakeOutRegList($(this).data(\'url\'))',
-        sub_title: "မှတ်ပုံတင်ကတ်ပြားများကို စနစ်ဖြင့် ထုတ်ယူခြင်း"
+        sub_title: "ပြက္ဒဒိန်နှစ်အလိုက် ( PAPP ) မှတ်ပုံတင်သူများစာရင်း"
     }
 
 ]
@@ -318,7 +347,7 @@ const _ARTICLE = [
     {
         route_name: "/article_list",
         fun_name: 'articleList($(this).data(\'url\'))',
-        sub_title: "အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှု ပေးသူတစ်ဦးချင်းးစာရင်း"
+        sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း"
     },
 
     {

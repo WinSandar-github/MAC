@@ -311,7 +311,7 @@ Route::post('store_student_app_reg','StudentRegisterController@store_student_app
 
 //Student Data Show on Mac_Student
 Route::post('get_attendes_student','StudentRegisterController@getAttendesStudent');
-Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
+Route::post('get_student_app_list','StudentRegisterController@getStudenqtAppList');
 
 
 Route::post('get_student_app_list','StudentRegisterController@getStudentAppList');
@@ -339,6 +339,8 @@ Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{code}','ApiController@generateExamSrNo');
 Route::get('/generate_entrance_exam_sr_no/{code}','ApiController@generateEntranceExamSrNo');
 Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQTSrNo');
+Route::get('/generate_exam_result/{code}','ApiController@generateExamResult');
+
 
 Route::get('/generate_app_sr_no/{code}','ApiController@generateAppSrNo');
 
@@ -428,9 +430,9 @@ Route::post('/save_registration_fee', 'ArticleController\ArticleController@saveR
 Route::post('/save_gov_registration_fee', 'ArticleController\ArticleController@saveGovRegistrationFee');
 Route::post('/save_attach_file', 'ArticleController\ArticleController@saveAttachFile');
 Route::post('/filter_done_resign_article','ArticleController\ArticleController@filterDoneResignArticle');
-Route::post('/done_resign_article','ArticleController\ArticleController@doneResignArticle');
 Route::post('/save_contract_end_date', 'ArticleController\ArticleController@saveContractEndDate');
 Route::post('/save_gov_contract_end_date', 'ArticleController\ArticleController@saveGovContractEndDate');
+Route::post('/save_renew_contract_date', 'ArticleController\ArticleController@saveRenewContractDate');
 
 Route::post('/article_renew_register', 'ArticleController\ArticleController@saveRenewArticle');
 Route::get('/get_resign_end_date/{student_info_id}', 'ArticleController\ArticleController@getResignEndDate');
@@ -439,6 +441,8 @@ Route::post('/get_leave_request','ArticleController\ArticleController@getLeaveRe
 Route::get('/get_update_leave_request/{id}','ArticleController\ArticleController@getUpdateLeaveRequest');
 Route::post('/update_leave_request','ArticleController\ArticleController@updateLeaveRequest');
 Route::get('/get_article_list/{id}', 'ArticleController\ArticleController@getArticleList');
+Route::patch('/create_done_form_link/{id}', 'ArticleController\ArticleController@createDoneFormLink');
+Route::patch('/gov_create_done_form_link/{id}', 'ArticleController\ArticleController@govCreateDoneFormLink');
 
 
 // Payment

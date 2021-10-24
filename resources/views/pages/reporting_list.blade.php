@@ -5,6 +5,13 @@
 ])
 
 @section('content')
+    <style>
+        .custom-filter{
+            display:none;
+        }
+
+    </style>
+@section('content')
     <div class="content">
         <div class="row">
             <div class="col-md-4">
@@ -128,7 +135,17 @@
                 <form method="POST" id="report-form" target="_blank">
                     <div class="modal-body" id="more-title">
                         <div class="row mb-2">
-                            <div class="col-md-6">
+
+                            <div class="col-md-6 custom-filter date-filter">
+                                <select class="form-control" id="select-date" name='date'>
+                                    <option value="">Select Year</option>
+                                    @for ($i = date('Y'); $i > 2010; $i--)
+                                        <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                                </select>
+                            </div>
+
+                            <div class="col-md-6 custom-filter course-filter">
                                 <select class="form-control" id="select-course" name='course'>
                                     <option value="">Select Course</option>
                                     @foreach ($courses as $course)
@@ -137,7 +154,7 @@
                                 </select>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 custom-filter batch-filter">
                                 <select class="form-control" id="select-batch" name='batch'>
                                     <option value="">Select Batch</option>
                                     {{-- @foreach ($batches as $batch)
@@ -157,16 +174,21 @@
     <script src="{{ asset('js/reporting_constant.js') }}"></script>
     <script src="{{ asset('js/reporting_route_functions.js') }}"></script>
     <script type="text/javascript">
+
         $('.show-more-modal').on('click', function() {
 
             let MAIN_REPORT = this.dataset.section
 
             let course = {!! $courses !!};
-
+           
             switch (MAIN_REPORT) {
                 case _MAIN_TITLE[0]: // DA
                     clearModalContent()
                     setModalContent('DA SECTION', _DA)
+
+                    $('.course-filter, .batch-filter').show();
+
+                    $('.date-filter').hide();
 
                     $('#select-course').empty();
 
@@ -193,6 +215,10 @@
                     clearModalContent()
                     setModalContent('CPA SECTION', _CPA);
 
+                    $('.course-filter, .batch-filter').show();
+                    
+                    $('.date-filter').hide();
+
                     $('#select-course').empty();
 
                     $('#select-course').append($('<option>', {
@@ -218,23 +244,8 @@
                     clearModalContent()
                     setModalContent('CPA (Qualified Test) SECTION', _CPA_QUALIFIED);
 
-                    $('#select-course').empty();
-
-                    $('#select-course').append($('<option>', {
-                        value: '',
-                        text: 'Select Course'
-                    }));
-
-                    let cpa_qualified_course = course.filter(val => {
-                        return val.course_type_id == 2
-                    });
-
-                    cpa_qualified_course.forEach(val => {
-                        $('#select-course').append($('<option>', {
-                            value: val.id,
-                            text: val.name_mm
-                        }));
-                    });
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
 
                     $('#more-modal').modal('show')
 
@@ -243,23 +254,8 @@
                     clearModalContent()
                     setModalContent('CPA(FF) AND PAPP SECTION', _CPA_PAPP);
 
-                    $('#select-course').empty();
-
-                    $('#select-course').append($('<option>', {
-                        value: '',
-                        text: 'Select Course'
-                    }));
-
-                    let cpa_papp_course = course.filter(val => {
-                        return val.course_type_id == 2
-                    });
-
-                    cpa_papp_course.forEach(val => {
-                        $('#select-course').append($('<option>', {
-                            value: val.id,
-                            text: val.name_mm
-                        }));
-                    });
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
 
                     $('#more-modal').modal('show')
 
@@ -268,23 +264,8 @@
                     clearModalContent()
                     setModalContent('Article Section', _ARTICLE);
 
-                    $('#select-course').empty();
-
-                    $('#select-course').append($('<option>', {
-                        value: '',
-                        text: 'Select Course'
-                    }));
-
-                    let article = course.filter(val => {
-                        return val.course_type_id == 2
-                    });
-
-                    article.forEach(val => {
-                        $('#select-course').append($('<option>', {
-                            value: val.id,
-                            text: val.name_mm
-                        }));
-                    });
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
 
                     $('#more-modal').modal('show')
 
@@ -293,6 +274,9 @@
                     clearModalContent()
                     setModalContent('ARTICLE SECTION (MENTOR)', _ARTICLE_SECTION_MENTOR)
 
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+                  
                     $('#more-modal').modal('show')
 
                     break;
@@ -300,13 +284,19 @@
                     clearModalContent()
                     setModalContent('FIRM NAME', _FIRM_NAME)
 
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+
                     $('#more-modal').modal('show')
 
                     break;
                 case _MAIN_TITLE[7]: 
-                    clearModalContent()
-                    setModalContent('TEACHER / SCHOOL', _TEACHER_SCHOOL)
+                    clearModalContent();
 
+                    $('.course-filter, .batch-filter').hide();
+                    $('.date-filter').show();
+
+                    setModalContent('TEACHER / SCHOOL', _TEACHER_SCHOOL)
                     $('#more-modal').modal('show')
 
                     break;

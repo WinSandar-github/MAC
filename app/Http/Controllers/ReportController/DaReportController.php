@@ -27,13 +27,14 @@ class DaReportController extends Controller
                 ->first();
 
             $batch = Batch::where('id','=',$request->batch)->first();
-
-            $student_registers = StudentCourseReg::where('batch_id', $request->batch)
+             
+            $student_registers = StudentCourseReg::where('student_course_regs.batch_id', $request->batch)
                 ->when($type !== 'all', function($query) use($type){
                     $query->where('type', '=', $type);
                 })
                 ->join('student_infos','student_infos.id','=','student_course_regs.student_info_id')
                 ->where('student_course_regs.approve_reject_status',1)
+                ->where('student_course_regs.qt_entry',0)
                 ->orderBy('student_course_regs.type','asc')
                 ->orderBy('student_infos.name_mm','asc')
                 ->with('student_info')
@@ -57,6 +58,7 @@ class DaReportController extends Controller
                 $student_registers = $student_registers->groupBy(['type']);
             }
 
+            
             $data = [
                 'title' => $title,
                 'filter' => $filter,
@@ -72,13 +74,13 @@ class DaReportController extends Controller
 
     public function daRegList(Request $request, $type)
     {
+        
         $course = Course::where('id', '=', $request->course)
                 ->with('active_batch','course_type')
                 ->first();
 
         $batch = Batch::where('id','=',$request->batch)->first();
-
-
+         
         $student_registers = StudentRegister::where('batch_id', $request->batch)
                 ->when($type !== 'all', function($query) use($type){
                     $query->where('type', '=', $type);
@@ -91,13 +93,13 @@ class DaReportController extends Controller
                 ->with('student_info')
                 ->select('student_infos.name_mm','student_register.*', 'modules.name as module_name')
                 ->get();
-
+                
         if($type == 'all'){
             $title = $course->name_mm . "သင်တန်းကျောင်း<br>" . $batch->name_mm . "<br>မှတ်ပုံတင်ထားသူများစာရင်း";
         }else{
             $title = $type == 0 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ကိုယ်ပိုင်လေ့လာသင်ယူမည့်မှတ်ပုံတင်ထားသူများစာရင်း"
                         : ( $type == 1 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်တက်ရောက်မည့်မှတ်ပုံတင်ထားသူများစာရင်း" 
-                                        : $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>စာရင်းစစ်ချုပ်ရုံးတွင်တက်ရောက်မည့်မှတ်ပုံတင်ထားသူများစာရင်း");
+                        : $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>စာရင်းစစ်ချုပ်ရုံးတွင်တက်ရောက်မည့်မှတ်ပုံတင်ထားသူများစာရင်း");
         }
 
         if($type == 2){
@@ -150,6 +152,7 @@ class DaReportController extends Controller
 
     public function attendEntryExamList(Request $request, $type)
     {
+        
         if($request->course != '' && $request->batch != "" && $type != ""){
 
             $course = Course::where('id', '=', $request->course)

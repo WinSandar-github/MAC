@@ -604,9 +604,16 @@ function getArticleList(){
           $("#show_article_body").html("");
           var r = 1;
           data.forEach(function(element){
+            console.log(element);
+            var start_date = element.contract_start_date == null ? '-' : element.contract_start_date;
+            var end_date = element.contract_end_date == null ? '-' : element.contract_end_date;
+            var cpersonal_no = element.student_info.cpersonal_no == null ? '-' : element.student_info.cpersonal_no;
             var tr = "<tr>";
             tr += "<td class='alignright'>" + r + "</td>";
             tr += "<td>" + element.student_info.name_eng + "</td>";
+            tr += "<td>" + cpersonal_no + "</td>";
+            tr += "<td>" + start_date + "</td>";
+            tr += "<td>" + end_date + "</td>";
             tr += "<td>" + element.article_form_type + "</td>";
             tr += "</tr>";
             r = r + 1;
