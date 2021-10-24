@@ -220,7 +220,7 @@ class PAPPController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_id;
-        $invoice->invoiceNo  = "papp-initial";
+        $invoice->invoiceNo  = "papp_initial".$papp->id;
         $invoice->name_eng       =  $stdInfo->name_eng;
         $invoice->email       = $stdInfo->email;
         $invoice->phone       = $stdInfo->phone;
@@ -476,15 +476,15 @@ class PAPPController extends Controller
 
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_id;
-        $invoice->invoiceNo       = 'papp-renew';
+        $invoice->invoiceNo       = 'papp_renew'.$papp->id;
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
         if($oldPapp->offline_user==0){
-            // $thisYear = date('Y');      //need to open comment
-            // $thisMonth = date('m'); 
-            $thisYear = date('Y') + 1;      //only to test Feb to April delay
-            $thisMonth = 3; 
+            $thisYear = date('Y');      //need to open comment
+            $thisMonth = date('m'); 
+            // $thisYear = date('Y') + 1;      //only to test Feb to April delay
+            // $thisMonth = 3; 
             $oldYear=date('Y',strtotime($oldPapp->validate_to));
             if($thisYear == $oldYear){
                 $invoice->productDesc     = 'Application Fee, Renewal Fee,PAPP Registration';
@@ -499,7 +499,7 @@ class PAPPController extends Controller
             }
             else{
                 $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr),PAPP Renewal Registration' ;
-                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', 10 x ' . $fees->late_fee ;
+                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', ' . 10* $fees->late_fee ;
             }
         }
         else if($oldPapp->offline_user==1){
@@ -827,10 +827,10 @@ class PAPPController extends Controller
 
           ->addColumn('use_firm', function ($infos){
               if($infos->use_firm == 0){
-                return "No Use Frim Name";
+                return "Use Frim Name";
               }
               else{
-                return "Use Frim Name";
+                return "No Use Frim Name";
               }
           })
 

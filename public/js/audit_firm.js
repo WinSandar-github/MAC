@@ -1314,10 +1314,10 @@ function rejectAuditFirmRenew(){
     return;
   }
   else{
-    var id = $("input[name = audit_firm_id]").val();
+    var id = $("input[name = student_info_id]").val();
     var firm_id = $("input[name = audit_firm_id]").val();
     var formData = new FormData();
-    formData.append('remark', $('#remark').val());
+    formData.append('remark', $('#remark_renew').val());
     //alert("youk");
     $.ajax({
         url: BACKEND_URL +"/reject_auditfirm_renew/"+id+"/"+firm_id,
