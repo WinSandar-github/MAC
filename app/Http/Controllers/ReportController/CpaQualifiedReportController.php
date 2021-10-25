@@ -64,7 +64,7 @@ class CpaQualifiedReportController extends Controller
     {
         $student = QualifiedTest::with('student_info')
                     ->where('approve_reject_status', '=', 1)
-                    ->where('grade',1)
+                    ->where('grade','!=',0)
                     ->get();
 
         $data = [

@@ -196,7 +196,7 @@ function cpaPAPPYearlyRegList(url) {
 }
 
 function articleList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -205,7 +205,7 @@ function articleList(url) {
 }
 
 function articleDailyInOutList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -214,7 +214,7 @@ function articleDailyInOutList(url) {
 }
 
 function articleInternPosList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -223,7 +223,7 @@ function articleInternPosList(url) {
 }
 
 function articleInternshipList(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -232,7 +232,7 @@ function articleInternshipList(url) {
 }
 
 function articleMentorInternRegister(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -241,7 +241,7 @@ function articleMentorInternRegister(url) {
 }
 
 function articleMentorIntern(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -250,7 +250,8 @@ function articleMentorIntern(url) {
 }
 
 function firmIndividual(url) {
-    if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    // if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -258,7 +259,7 @@ function firmIndividual(url) {
     }
 }
 
-function frimDailyAttendence(url) {
+function nonFirmIndividual(url) {
     if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
@@ -356,6 +357,7 @@ function teacherSchoolLicensePlate(url) {
     } else {
         alert('select course and batch');
     }
+
 }
 
 
