@@ -131,8 +131,6 @@ function getSchoolInfos(){
             if(data.data.approve_reject_status != 0){
                 $("#approve_reject").hide();
                 $('#cessation-btn').show();
-                
-            }else if(data.data.approve_reject_status == 1){
                 $('.school_fee').show();
             }else{
                 $("#approve_reject").show();
@@ -158,6 +156,7 @@ function getSchoolInfos(){
                 $('.school_name-class').show();
                 $("#school_name").val(data.data.school_name);
             }else{
+                $('.school_name-class').hide();
                 $("#school_name").val(data.data.renew_school_name);
             }
             if(data.data.school_address!=null){

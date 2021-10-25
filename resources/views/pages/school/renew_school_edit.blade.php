@@ -288,13 +288,24 @@
 
                                             </div>
                                         </div>
-                                        <div class="row mt-3 school_address-class" style='display:none;'>
-                                            <div class="col-md-6">
-                                            <p ><strong>ကျောင်းတည်နေရာလိပ်စာ</strong></p>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" id="school_address" class="form-control" readonly>
+                                        <div class="school_address-class" style='display:none;'>
+                                            <div class="row mt-3 ">
+                                                <div class="col-md-6">
+                                                <p ><strong>ကျောင်းတည်နေရာလိပ်စာ(မြန်မာ)</strong></p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" id="school_address" class="form-control" readonly>
 
+                                                </div>
+                                            </div>
+                                            <div class="row mt-3">
+                                                <div class="col-md-6">
+                                                <p ><strong>ကျောင်းတည်နေရာလိပ်စာ(အင်္ဂလိပ်)</strong></p>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input type="text" id="eng_school_address" class="form-control" readonly>
+
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row mt-3 view-school_location_attach" style='display:none;'>

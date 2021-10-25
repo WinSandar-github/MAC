@@ -72,8 +72,8 @@ class ExamRegisterController extends Controller
         $exam->batch_id = $batch_id;
         $exam->is_full_module = $request->is_full_module;
         $exam->exam_type_id = $type;
-        $exam->form_type = $request->form_type;
-        $exam->exam_department = $request->exam_department;
+        $exam->form_type        = $request->form_type;
+        $exam->exam_department  = $request->exam_department;
         $exam->status = 0;
         $exam->save();
 
@@ -92,8 +92,8 @@ class ExamRegisterController extends Controller
        $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code ;
-       $invoice->productDesc     = 'Application Fee,DA Exam Registration Fee,Transaction Fee,' . $std->batch->course->name;
-       $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee . ',1000';
+       $invoice->productDesc     = 'Application Fee,DA Exam Registration Fee,' . $std->batch->course->name;
+       $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee ;
        $invoice->status          = 0;
        $invoice->save();
         
@@ -425,8 +425,8 @@ class ExamRegisterController extends Controller
        $std = StudentCourseReg::with('batch')->where("student_info_id", $student_info->id)->latest()->first();
 
        $invoice->invoiceNo = 'exm_' . $std->batch->course->code;
-       $invoice->productDesc     = 'Application Fee,CPA Exam Registration Fee, Transaction Fee,' . $std->batch->course->name;
-       $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee . ',1000';
+       $invoice->productDesc     = 'Application Fee,CPA Exam Registration Fee,' . $std->batch->course->name;
+       $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->exam_fee ;
        $invoice->status          = 0;
        $invoice->save();
 
