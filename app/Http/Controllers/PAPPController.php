@@ -454,7 +454,9 @@ class PAPPController extends Controller
         $papp->audit_work       =   $request->audit_work;
         $papp->audit_year       =   $request->audit_year;
         $papp->type             =   $request->type;
-        $papp->papp_renew_date     =   $request->papp_renew_date;       
+        $papp->papp_renew_date     =   $request->papp_renew_date; 
+        $papp->latest_reg_year             =   $oldPapp->latest_reg_year;
+        $papp->papp_resign_date     =   $oldPapp->papp_resign_date;      
         $papp->self_confession  =   $request->self_confession;
         $papp->self_confession_1  =   $request->self_confession1;
         $today = date('d-m-Y');        
@@ -506,7 +508,7 @@ class PAPPController extends Controller
         }
         else if($oldPapp->offline_user==1){
             if($oldPapp->submitted_stop_form==0){
-                $thisYear = date('Y')-1;
+                $thisYear = date('Y');
                 $last_paid_year=$oldPapp->latest_reg_year;
                 $diff= $thisYear - $last_paid_year;
                 $before_2015_year= 0;
