@@ -1028,25 +1028,24 @@ class AccFirmInfController extends Controller
             // }
 
             //invoice update for audit
-            //$invoice = new Invoice();
-            $invoice_info = Invoice::where('invoiceNo','audit_initial'.$id)->get();
-            //$invoice->student_info_id = $std_info->id;
-            //$invoice->invoiceNo = 'audit_initial'.$acc_firm_info->id;
-            foreach($invoice_info as $invoice){
-              $invoice->name_eng        = $std_info->email;
-              $invoice->email           = $std_info->email;
-              $invoice->phone           = '';
-              $invoice->status          = 0;
 
-              $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'registration_fee']);
-              $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
-                            ->where('authority_to_sign', '=', 1)->count();
-
-              $invoice->productDesc     = 'Audit Application Fee, Registration Fee(per PAPP who will sign the audit report),Audit Firm';
-              $invoice->amount          = $fees->form_fee . ',' . $papp_count * $fees->registration_fee;
-              $invoice->status          = 0;
-              $invoice->save();
-            }
+            // $invoice_info = Invoice::where('invoiceNo','audit_initial'.$id)->get();
+            //
+            // foreach($invoice_info as $invoice){
+            //   $invoice->name_eng        = $std_info->email;
+            //   $invoice->email           = $std_info->email;
+            //   $invoice->phone           = '';
+            //   $invoice->status          = 0;
+            //
+            //   $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'registration_fee']);
+            //   $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+            //                 ->where('authority_to_sign', '=', 1)->count();
+            //
+            //   $invoice->productDesc     = 'Audit Application Fee, Registration Fee(per PAPP who will sign the audit report),Audit Firm';
+            //   $invoice->amount          = $fees->form_fee . ',' . $papp_count * $fees->registration_fee;
+            //   $invoice->status          = 0;
+            //   $invoice->save();
+            // }
 
         }
         //Non-Audit
@@ -1130,33 +1129,33 @@ class AccFirmInfController extends Controller
             $std_info = StudentInfo::find($acc_firm_info->student_info_id);
 
             //invoice update for non-audit
-            //$invoice = new Invoice();
-            $invoice_info = Invoice::where('invoiceNo','non_audit_initial'.$id)->get();
-            foreach($invoice_info as $invoice){
-              // $invoice->student_info_id = $std_info->id;
-              // $invoice->invoiceNo = 'non_audit_initial'.$acc_firm_info->id;
-              $invoice->name_eng        = $std_info->email;
-              $invoice->email           = $std_info->email;
-              $invoice->phone           = '';
-              $invoice->status          = 0;
 
-              $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'reg_fee_sole','reg_fee_partner']);
-
-              $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee,Non-Audit Firm';
-              if($request->org_stru_id == 1){
-                // for Sole Proprietorship
-                $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_sole;
-              }
-              else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
-                // for Partnership and Company
-                $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
-              }
-              else{
-                // for Other
-                $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
-              }
-              $invoice->save();
-            }
+            // $invoice_info = Invoice::where('invoiceNo','non_audit_initial'.$id)->get();
+            // foreach($invoice_info as $invoice){
+            //   // $invoice->student_info_id = $std_info->id;
+            //   // $invoice->invoiceNo = 'non_audit_initial'.$acc_firm_info->id;
+            //   $invoice->name_eng        = $std_info->email;
+            //   $invoice->email           = $std_info->email;
+            //   $invoice->phone           = '';
+            //   $invoice->status          = 0;
+            //
+            //   $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'reg_fee_sole','reg_fee_partner']);
+            //
+            //   $invoice->productDesc     = 'Non-Audit Application Fee, Registration Fee,Non-Audit Firm';
+            //   if($request->org_stru_id == 1){
+            //     // for Sole Proprietorship
+            //     $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_sole;
+            //   }
+            //   else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
+            //     // for Partnership and Company
+            //     $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
+            //   }
+            //   else{
+            //     // for Other
+            //     $invoice->amount          = $fees->form_fee . ',' . $fees->reg_fee_partner;
+            //   }
+            //   $invoice->save();
+            // }
         }
 
 
@@ -1543,298 +1542,285 @@ class AccFirmInfController extends Controller
 
             // invoice update
             $invoice_info = Invoice::where('invoiceNo','off_audit_renew'.$id)->get();
-            foreach($invoice_info as $invoice){
-              //invoice for audit
-
-              $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'renew_fee_sole',
-                                                                                      'renew_fee_partner','late_fee_within_jan_sole',
-                                                                                      'late_fee_within_jan_partner','late_fee_feb_to_apr_sole',
-                                                                                      'late_fee_feb_to_apr_partner','reconnect_fee_sole',
-                                                                                      'reconnect_fee_partner','renew_fee']);
-              $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
-                            ->where('authority_to_sign', '=', 1)->count();
-
-              if($request->offline_user == 1){
-                // is offline user
-                //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
-                //$invoice = New Invoice();
-                //$invoice->student_info_id = $request->student_id;
-                //$invoice->invoiceNo = 'off_audit_renew'.$acc_firm_info->id;
-                // $invoice->name_eng        = $std_info->email;
-                // $invoice->email           = $std_info->email;
-                // $invoice->phone           = '';
-                $invoice->status          = 0;
-                $invoice->save();
-
-                $current_year = date('Y');
-                $current_month_name = date('M');
-                $current_month = date('m');
-                $last_registered_year = $request->last_registered_year;
-                //$invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee';
-
-                if($request->req_for_stop == 1){
-                  // suspended
-                  $suspended_year = $request->suspended_year;
-                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
-                  if($request->org_stru_id == 1){
-                    // for Sole Proprietorship
-                    if($current_month_name == 'Jan'){
-                      // within January
-                      $delay_fee = $fees->late_fee_within_jan_sole;
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                    else if($current_month >= 2 && $current_month <= 4){
-                      // from Feb to Apr
-                      $delay_fee = $fees->late_fee_feb_to_apr_sole;
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                    else{
-                      // not late
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                  }
-                  else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
-                    // for Partnership and Company
-                    if($current_month_name == 'Jan'){
-                      // within January
-                      $delay_fee = $fees->late_fee_within_jan_partner;
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                    else if($current_month >= 2 && $current_month <= 4){
-                      // from Feb to Apr
-                      $delay_fee = $fees->late_fee_feb_to_apr_partner;
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                    else{
-                      // not late
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                  }
-                  else{
-                    // for Other
-                    // if($current_month_name == 'Jan'){
-                    //   // within January
-                    //   $delay_fee = 0;
-                    //   $renew_fee = $fees->renew_fee * $papp_count;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
-                    // }
-                    // else if($current_month >= 2 && $current_month <= 4){
-                    //   // from Feb to Apr
-                    //   $delay_fee = 0;
-                    //   $renew_fee = $fees->renew_fee * $papp_count;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
-                    // }
-                    // else{
-                    //   $renew_fee = $fees->renew_fee * $papp_count;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee;
-                    // }
-                  }
-                }
-                else{
-                  // not suspended
-                  $last_registered_year = $request->last_registered_year;
-                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
-                  if($request->org_stru_id == 1){
-                    // for Sole Proprietorship
-                    if($current_month_name == 'Jan'){
-                      // within January
-                      $delay_fee = $fees->late_fee_within_jan_sole;
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                    else if($current_month >= 2 && $current_month <= 4){
-                      // from Feb to Apr
-                      $delay_fee = $fees->late_fee_feb_to_apr_sole;
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                    else{
-                      // not late
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                  }
-                  else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
-                    // for Partnership and Company
-                    if($current_month_name == 'Jan'){
-                      // within January
-                      $delay_fee = $fees->late_fee_within_jan_partner;
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                    else if($current_month >= 2 && $current_month <= 4){
-                      // from Feb to Apr
-                      $delay_fee = $fees->late_fee_feb_to_apr_partner;
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                    else{
-                      $renew_fee = $fees->renew_fee * $papp_count;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
-                      $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Audit Firm';
-                      $invoice->save();
-                    }
-                  }
-                  else{
-                    // for Other
-                    // if($current_month_name == 'Jan'){
-                    //   // within January
-                    //   $delay_fee = 0;
-                    //   $renew_fee = $fees->renew_fee * $papp_count;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
-                    // }
-                    // else if($current_month >= 2 && $current_month <= 4){
-                    //   // from Feb to Apr
-                    //   $delay_fee = 0;
-                    //   $renew_fee = $fees->renew_fee * $papp_count;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
-                    // }
-                    // else{
-                    //   $renew_fee = $fees->renew_fee * $papp_count;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee;
-                    // }
-                  }
-                }
-                //$invoice->save();
-              }
-
-              /// end for offline users
-              else{
-                // not offline users
-                //$invoice = New Invoice();
-                //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
-                //$invoice->student_info_id = $request->student_id;
-                //$invoice->invoiceNo = 'audit_renew'.$acc_firm_info->id;
-                // $invoice->name_eng        = $std_info->email;
-                // $invoice->email           = $std_info->email;
-                // $invoice->phone           = '';
-                $invoice->status          = 0;
-
-                $current_year = date('Y');
-                $current_month_name = date('M');
-                $current_month = date('m');
-                //$invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report)';
-
-                if($request->org_stru_id == 1){
-                  // for Sole Proprietorship
-                  if($current_month_name == 'Jan'){
-                    // within January
-                    $delay_fee = $fees->late_fee_within_jan_sole;
-                    $renew_fee = $fees->renew_fee * $papp_count;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
-                    $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report), Delay Fee,Audit Firm';
-                    $invoice->save();
-                  }
-                  else if($current_month >= 2 && $current_month <= 4){
-                    // from Feb to Apr
-                    $delay_fee = $fees->late_fee_feb_to_apr_sole;
-                    $renew_fee = $fees->renew_fee * $papp_count;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
-                    $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report), Delay Fee,Audit Firm';
-                    $invoice->save();
-                  }
-                  else{
-                    // not late
-                    $renew_fee = $fees->renew_fee * $papp_count;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee;
-                    $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Audit Firm';
-                    $invoice->save();
-                  }
-                }
-                else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
-                  // for Partnership and Company
-                  if($current_month_name == 'Jan'){
-                    // within January
-                    $delay_fee = $fees->late_fee_within_jan_partner;
-                    $renew_fee = $fees->renew_fee * $papp_count;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
-                    $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report), Delay Fee,Audit Firm';
-                    $invoice->save();
-                  }
-                  else if($current_month >= 2 && $current_month <= 4){
-                    // from Feb to Apr
-                    $delay_fee = $fees->late_fee_feb_to_apr_partner;
-                    $renew_fee = $fees->renew_fee * $papp_count;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
-                    $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report), Delay Fee,Audit Firm';
-                    $invoice->save();
-                  }
-                  else{
-                    // not late
-                    $renew_fee = $fees->renew_fee * $papp_count;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee;
-                    $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Audit Firm';
-                    $invoice->save();
-                  }
-                }
-                else{
-                  // for Other
-                  // if($current_month_name == 'Jan'){
-                  //   // within January
-                  //   $delay_fee = 0;
-                  //   $renew_fee = $fees->renew_fee * $papp_count;
-                  //   $invoice->amount = $fees->form_fee + $renew_fee + $delay_fee;
-                  // }
-                  // else if($current_month >= 2 && $current_month <= 4){
-                  //   // from Feb to Apr
-                  //   $delay_fee = 0;
-                  //   $renew_fee = $fees->renew_fee * $papp_count;
-                  //   $invoice->amount = $fees->form_fee + $renew_fee + $delay_fee;
-                  // }
-                  // else{
-                  //   $renew_fee = $fees->renew_fee * $papp_count;
-                  //   $invoice->amount = $fees->form_fee + $renew_fee;
-                  // }
-                }
-                //$invoice->save();
-              }
-              // end for not offline users
-            }
+            // foreach($invoice_info as $invoice){
+            //   //invoice for audit
+            //
+            //   $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'renew_fee_sole',
+            //                                                                           'renew_fee_partner','late_fee_within_jan_sole',
+            //                                                                           'late_fee_within_jan_partner','late_fee_feb_to_apr_sole',
+            //                                                                           'late_fee_feb_to_apr_partner','reconnect_fee_sole',
+            //                                                                           'reconnect_fee_partner','renew_fee']);
+            //   $papp_count = FirmOwnershipAudit::where('accountancy_firm_info_id', '=', $acc_firm_info->id)
+            //                 ->where('authority_to_sign', '=', 1)->count();
+            //
+            //   if($request->offline_user == 1){
+            //     // is offline user
+            //
+            //     $invoice->status          = 0;
+            //     $invoice->save();
+            //
+            //     $current_year = date('Y');
+            //     $current_month_name = date('M');
+            //     $current_month = date('m');
+            //     $last_registered_year = $request->last_registered_year;
+            //     //$invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee';
+            //
+            //     if($request->req_for_stop == 1){
+            //       // suspended
+            //       $suspended_year = $request->suspended_year;
+            //       $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+            //       if($request->org_stru_id == 1){
+            //         // for Sole Proprietorship
+            //         if($current_month_name == 'Jan'){
+            //           // within January
+            //           $delay_fee = $fees->late_fee_within_jan_sole;
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //         else if($current_month >= 2 && $current_month <= 4){
+            //           // from Feb to Apr
+            //           $delay_fee = $fees->late_fee_feb_to_apr_sole;
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //         else{
+            //           // not late
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //       }
+            //       else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
+            //         // for Partnership and Company
+            //         if($current_month_name == 'Jan'){
+            //           // within January
+            //           $delay_fee = $fees->late_fee_within_jan_partner;
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //         else if($current_month >= 2 && $current_month <= 4){
+            //           // from Feb to Apr
+            //           $delay_fee = $fees->late_fee_feb_to_apr_partner;
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //         else{
+            //           // not late
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //       }
+            //       else{
+            //         // for Other
+            //         // if($current_month_name == 'Jan'){
+            //         //   // within January
+            //         //   $delay_fee = 0;
+            //         //   $renew_fee = $fees->renew_fee * $papp_count;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
+            //         // }
+            //         // else if($current_month >= 2 && $current_month <= 4){
+            //         //   // from Feb to Apr
+            //         //   $delay_fee = 0;
+            //         //   $renew_fee = $fees->renew_fee * $papp_count;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
+            //         // }
+            //         // else{
+            //         //   $renew_fee = $fees->renew_fee * $papp_count;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee;
+            //         // }
+            //       }
+            //     }
+            //     else{
+            //       // not suspended
+            //       $last_registered_year = $request->last_registered_year;
+            //       $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+            //       if($request->org_stru_id == 1){
+            //         // for Sole Proprietorship
+            //         if($current_month_name == 'Jan'){
+            //           // within January
+            //           $delay_fee = $fees->late_fee_within_jan_sole;
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //         else if($current_month >= 2 && $current_month <= 4){
+            //           // from Feb to Apr
+            //           $delay_fee = $fees->late_fee_feb_to_apr_sole;
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //         else{
+            //           // not late
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //       }
+            //       else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
+            //         // for Partnership and Company
+            //         if($current_month_name == 'Jan'){
+            //           // within January
+            //           $delay_fee = $fees->late_fee_within_jan_partner;
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //         else if($current_month >= 2 && $current_month <= 4){
+            //           // from Feb to Apr
+            //           $delay_fee = $fees->late_fee_feb_to_apr_partner;
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Delay Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //         else{
+            //           $renew_fee = $fees->renew_fee * $papp_count;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
+            //           $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee,Audit Firm';
+            //           $invoice->save();
+            //         }
+            //       }
+            //       else{
+            //         // for Other
+            //         // if($current_month_name == 'Jan'){
+            //         //   // within January
+            //         //   $delay_fee = 0;
+            //         //   $renew_fee = $fees->renew_fee * $papp_count;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
+            //         // }
+            //         // else if($current_month >= 2 && $current_month <= 4){
+            //         //   // from Feb to Apr
+            //         //   $delay_fee = 0;
+            //         //   $renew_fee = $fees->renew_fee * $papp_count;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
+            //         // }
+            //         // else{
+            //         //   $renew_fee = $fees->renew_fee * $papp_count;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee;
+            //         // }
+            //       }
+            //     }
+            //     //$invoice->save();
+            //   }
+            //
+            //   /// end for offline users
+            //   else{
+            //
+            //     $invoice->status          = 0;
+            //
+            //     $current_year = date('Y');
+            //     $current_month_name = date('M');
+            //     $current_month = date('m');
+            //     //$invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report)';
+            //
+            //     if($request->org_stru_id == 1){
+            //       // for Sole Proprietorship
+            //       if($current_month_name == 'Jan'){
+            //         // within January
+            //         $delay_fee = $fees->late_fee_within_jan_sole;
+            //         $renew_fee = $fees->renew_fee * $papp_count;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
+            //         $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report), Delay Fee,Audit Firm';
+            //         $invoice->save();
+            //       }
+            //       else if($current_month >= 2 && $current_month <= 4){
+            //         // from Feb to Apr
+            //         $delay_fee = $fees->late_fee_feb_to_apr_sole;
+            //         $renew_fee = $fees->renew_fee * $papp_count;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
+            //         $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report), Delay Fee,Audit Firm';
+            //         $invoice->save();
+            //       }
+            //       else{
+            //         // not late
+            //         $renew_fee = $fees->renew_fee * $papp_count;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee;
+            //         $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Audit Firm';
+            //         $invoice->save();
+            //       }
+            //     }
+            //     else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
+            //       // for Partnership and Company
+            //       if($current_month_name == 'Jan'){
+            //         // within January
+            //         $delay_fee = $fees->late_fee_within_jan_partner;
+            //         $renew_fee = $fees->renew_fee * $papp_count;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
+            //         $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report), Delay Fee,Audit Firm';
+            //         $invoice->save();
+            //       }
+            //       else if($current_month >= 2 && $current_month <= 4){
+            //         // from Feb to Apr
+            //         $delay_fee = $fees->late_fee_feb_to_apr_partner;
+            //         $renew_fee = $fees->renew_fee * $papp_count;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
+            //         $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report), Delay Fee,Audit Firm';
+            //         $invoice->save();
+            //       }
+            //       else{
+            //         // not late
+            //         $renew_fee = $fees->renew_fee * $papp_count;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee;
+            //         $invoice->productDesc     = 'Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Audit Firm';
+            //         $invoice->save();
+            //       }
+            //     }
+            //     else{
+            //       // for Other
+            //       // if($current_month_name == 'Jan'){
+            //       //   // within January
+            //       //   $delay_fee = 0;
+            //       //   $renew_fee = $fees->renew_fee * $papp_count;
+            //       //   $invoice->amount = $fees->form_fee + $renew_fee + $delay_fee;
+            //       // }
+            //       // else if($current_month >= 2 && $current_month <= 4){
+            //       //   // from Feb to Apr
+            //       //   $delay_fee = 0;
+            //       //   $renew_fee = $fees->renew_fee * $papp_count;
+            //       //   $invoice->amount = $fees->form_fee + $renew_fee + $delay_fee;
+            //       // }
+            //       // else{
+            //       //   $renew_fee = $fees->renew_fee * $papp_count;
+            //       //   $invoice->amount = $fees->form_fee + $renew_fee;
+            //       // }
+            //     }
+            //     //$invoice->save();
+            //   }
+            //   // end for not offline users
+            // }
         }
         //Non-Audit
         else
@@ -1914,281 +1900,281 @@ class AccFirmInfController extends Controller
 
             // invoice update
             //invoice for non-audit
-            $invoice_info = Invoice::where('invoiceNo','off_non_audit_renew'.$id)->get();
-            foreach($invoice_info as $invoice){
-              $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'renew_fee_sole',
-                                                                                      'renew_fee_partner','late_fee_within_jan_sole',
-                                                                                      'late_fee_within_jan_partner','late_fee_feb_to_apr_sole',
-                                                                                      'late_fee_feb_to_apr_partner','reconnect_fee_sole',
-                                                                                      'reconnect_fee_partner','renew_fee']);
-
-
-
-              if($request->offline_user == 1){
-                // is offline user
-                //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
-                // $invoice = New Invoice();
-                // $invoice->student_info_id = $request->student_id;
-                // $invoice->invoiceNo = 'off_non_audit_renew'.$acc_firm_info->id;
-                // $invoice->name_eng        = $std_info->email;
-                // $invoice->email           = $std_info->email;
-                // $invoice->phone           = '';
-                $invoice->status          = 0;
-                $invoice->save();
-
-                $current_year = date('Y');
-                $current_month_name = date('M');
-                $current_month = date('m');
-                $last_registered_year = $request->last_registered_year;
-                //$invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee';
-
-                if($request->req_for_stop == 1){
-                  // suspended
-                  $suspended_year = $request->suspended_year;
-                  $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
-                  if($request->org_stru_id == 1){
-                    // for Sole Proprietorship
-                    if($current_month_name == 'Jan'){
-                      // within January
-                      $delay_fee = $fees->late_fee_within_jan_sole;
-                      $renew_fee = $fees->renew_fee_sole;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
-                    }
-                    else if($current_month >= 2 && $current_month <= 4){
-                      // from Feb to Apr
-                      $delay_fee = $fees->late_fee_feb_to_apr_sole;
-                      $renew_fee = $fees->renew_fee_sole;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
-                    }
-                    else{
-                      // not late
-                      $renew_fee = $fees->renew_fee_sole;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Non-Audit Firm';
-                    }
-                  }
-                  else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
-                    // for Partnership and Company
-                    if($current_month_name == 'Jan'){
-                      // within January
-                      $delay_fee = $fees->late_fee_within_jan_partner;
-                      $renew_fee = $fees->renew_fee_partner;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
-                    }
-                    else if($current_month >= 2 && $current_month <= 4){
-                      // from Feb to Apr
-                      $delay_fee = $fees->late_fee_feb_to_apr_partner;
-                      $renew_fee = $fees->renew_fee_partner;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
-                    }
-                    else{
-                      // not  late
-                      $renew_fee = $fees->renew_fee_partner;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Non-Audit Firm';
-                    }
-                  }
-                  else{
-                    // for Other
-                    // if($current_month_name == 'Jan'){
-                    //   // within January
-                    //   $delay_fee = 0;
-                    //   $renew_fee = 0;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
-                    // }
-                    // else if($current_month >= 2 && $current_month <= 4){
-                    //   // from Feb to Apr
-                    //   $delay_fee = 0;
-                    //   $renew_fee = 0;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
-                    // }
-                    // else{
-                    //   $renew_fee = 0;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee;
-                    // }
-                  }
-                }
-                else{
-                  // not suspended
-                  $last_registered_year = $request->last_registered_year;
-                  $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
-                  if($request->org_stru_id == 1){
-                    // for Sole Proprietorship
-                    if($current_month_name == 'Jan'){
-                      // within January
-                      $delay_fee = $fees->late_fee_within_jan_sole;
-                      $renew_fee = $fees->renew_fee_sole;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee, Delay Fee,Non-Audit Firm';
-                    }
-                    else if($current_month >= 2 && $current_month <= 4){
-                      // from Feb to Apr
-                      $delay_fee = $fees->late_fee_feb_to_apr_sole;
-                      $renew_fee = $fees->renew_fee_sole;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
-                    }
-                    else{
-                      // not late
-                      $renew_fee = $fees->renew_fee_sole;
-                      $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Non-Audit Firm';
-                    }
-                  }
-                  else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
-                    // for Partnership and Company
-                    if($current_month_name == 'Jan'){
-                      // within January
-                      $delay_fee = $fees->late_fee_within_jan_partner;
-                      $renew_fee = $fees->renew_fee_partner;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
-                    }
-                    else if($current_month >= 2 && $current_month <= 4){
-                      // from Feb to Apr
-                      $delay_fee = $fees->late_fee_feb_to_apr_partner;
-                      $renew_fee = $fees->renew_fee_partner;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
-                    }
-                    else{
-                      // not late
-                      $renew_fee = $fees->renew_fee_partner;
-                      $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
-                      $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
-                      $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Reconnect Fee,Non-Audit Firm';
-                    }
-                  }
-                  else{
-                    // for Other
-                    // if($current_month_name == 'Jan'){
-                    //   // within January
-                    //   $delay_fee = 0;
-                    //   $renew_fee = 0;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
-                    // }
-                    // else if($current_month >= 2 && $current_month <= 4){
-                    //   // from Feb to Apr
-                    //   $delay_fee = 0;
-                    //   $renew_fee = 0;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
-                    // }
-                    // else{
-                    //   $renew_fee = 0;
-                    //   $reconnect_fee = 0;
-                    //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee;
-                    // }
-                  }
-                }
-                $invoice->save();
-              }
-              /// end for offline users
-              else{
-                // not offline users
-                //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
-                // $invoice = New Invoice();
-                // $invoice->student_info_id = $request->student_id;
-                // $invoice->invoiceNo = 'non_audit_renew'.$acc_firm_info->id;
-                // $invoice->name_eng        = $std_info->email;
-                // $invoice->email           = $std_info->email;
-                // $invoice->phone           = '';
-                $invoice->status          = 0;
-                $invoice->save();
-
-                $current_year = date('Y');
-                $current_month_name = date('M');
-                $current_month = date('m');
-                //$invoice->productDesc  = 'Non-Audit Application Fee, Renew Fee';
-
-                if($request->org_stru_id == 1){
-                  // for Sole Proprietorship
-                  if($current_month_name == 'Jan'){
-                    // within January
-                    $delay_fee = $fees->late_fee_within_jan_sole;
-                    $renew_fee = $fees->renew_fee_sole;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
-                    $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Delay Fee,Non-Audit Firm';
-                  }
-                  else if($current_month >= 2 && $current_month <= 4){
-                    // from Feb to Apr
-                    $delay_fee = $fees->late_fee_feb_to_apr_sole;
-                    $renew_fee = $fees->renew_fee_sole;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
-                    $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Delay Fee,Non-Audit Firm';
-                  }
-                  else{
-                    // not late
-                    $renew_fee = $fees->renew_fee_sole;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee;
-                    $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Non-Audit Firm';
-                  }
-                }
-                else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
-                  // for Partnership and Company
-                  if($current_month_name == 'Jan'){
-                    // within January
-                    $delay_fee = $fees->late_fee_within_jan_partner;
-                    $renew_fee = $fees->renew_fee_partner;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
-                    $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Delay Fee,Non-Audit Firm';
-                  }
-                  else if($current_month >= 2 && $current_month <= 4){
-                    // from Feb to Apr
-                    $delay_fee = $fees->late_fee_feb_to_apr_partner;
-                    $renew_fee = $fees->renew_fee_partner;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
-                    $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Delay Fee,Non-Audit Firm';
-                  }
-                  else{
-                    // not late
-                    $renew_fee = $fees->renew_fee_partner;
-                    $invoice->amount = $fees->form_fee .','. $renew_fee;
-                    $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Non-Audit Firm';
-                  }
-                }
-                else{
-                  // for Other
-                  // if($current_month_name == 'Jan'){
-                  //   // within January
-                  //   $delay_fee = 0;
-                  //   $renew_fee = 0;
-                  //   $invoice->amount = $fees->form_fee + $renew_fee + $delay_fee;
-                  // }
-                  // else if($current_month >= 2 && $current_month <= 4){
-                  //   // from Feb to Apr
-                  //   $delay_fee = 0;
-                  //   $renew_fee = 0;
-                  //   $invoice->amount = $fees->form_fee + $renew_fee + $delay_fee;
-                  // }
-                  // else{
-                  //   $renew_fee = 0;
-                  //   $invoice->amount = $fees->form_fee + $renew_fee;
-                  // }
-                }
-                $invoice->save();
-              }
-              // end for not offline users
-            }
+            // $invoice_info = Invoice::where('invoiceNo','off_non_audit_renew'.$id)->get();
+            // foreach($invoice_info as $invoice){
+            //   $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'renew_fee_sole',
+            //                                                                           'renew_fee_partner','late_fee_within_jan_sole',
+            //                                                                           'late_fee_within_jan_partner','late_fee_feb_to_apr_sole',
+            //                                                                           'late_fee_feb_to_apr_partner','reconnect_fee_sole',
+            //                                                                           'reconnect_fee_partner','renew_fee']);
+            //
+            //
+            //
+            //   if($request->offline_user == 1){
+            //     // is offline user
+            //     //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
+            //     // $invoice = New Invoice();
+            //     // $invoice->student_info_id = $request->student_id;
+            //     // $invoice->invoiceNo = 'off_non_audit_renew'.$acc_firm_info->id;
+            //     // $invoice->name_eng        = $std_info->email;
+            //     // $invoice->email           = $std_info->email;
+            //     // $invoice->phone           = '';
+            //     $invoice->status          = 0;
+            //     $invoice->save();
+            //
+            //     $current_year = date('Y');
+            //     $current_month_name = date('M');
+            //     $current_month = date('m');
+            //     $last_registered_year = $request->last_registered_year;
+            //     //$invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee(per PAPP who will sign the audit report),Reconnect Fee';
+            //
+            //     if($request->req_for_stop == 1){
+            //       // suspended
+            //       $suspended_year = $request->suspended_year;
+            //       $number_of_reconnect_pay_year = $suspended_year - $last_registered_year - 1;
+            //       if($request->org_stru_id == 1){
+            //         // for Sole Proprietorship
+            //         if($current_month_name == 'Jan'){
+            //           // within January
+            //           $delay_fee = $fees->late_fee_within_jan_sole;
+            //           $renew_fee = $fees->renew_fee_sole;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
+            //         }
+            //         else if($current_month >= 2 && $current_month <= 4){
+            //           // from Feb to Apr
+            //           $delay_fee = $fees->late_fee_feb_to_apr_sole;
+            //           $renew_fee = $fees->renew_fee_sole;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
+            //         }
+            //         else{
+            //           // not late
+            //           $renew_fee = $fees->renew_fee_sole;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Non-Audit Firm';
+            //         }
+            //       }
+            //       else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
+            //         // for Partnership and Company
+            //         if($current_month_name == 'Jan'){
+            //           // within January
+            //           $delay_fee = $fees->late_fee_within_jan_partner;
+            //           $renew_fee = $fees->renew_fee_partner;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
+            //         }
+            //         else if($current_month >= 2 && $current_month <= 4){
+            //           // from Feb to Apr
+            //           $delay_fee = $fees->late_fee_feb_to_apr_partner;
+            //           $renew_fee = $fees->renew_fee_partner;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
+            //         }
+            //         else{
+            //           // not  late
+            //           $renew_fee = $fees->renew_fee_partner;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Non-Audit Firm';
+            //         }
+            //       }
+            //       else{
+            //         // for Other
+            //         // if($current_month_name == 'Jan'){
+            //         //   // within January
+            //         //   $delay_fee = 0;
+            //         //   $renew_fee = 0;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
+            //         // }
+            //         // else if($current_month >= 2 && $current_month <= 4){
+            //         //   // from Feb to Apr
+            //         //   $delay_fee = 0;
+            //         //   $renew_fee = 0;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
+            //         // }
+            //         // else{
+            //         //   $renew_fee = 0;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee;
+            //         // }
+            //       }
+            //     }
+            //     else{
+            //       // not suspended
+            //       $last_registered_year = $request->last_registered_year;
+            //       $number_of_reconnect_pay_year = $current_year - $last_registered_year - 1;
+            //       if($request->org_stru_id == 1){
+            //         // for Sole Proprietorship
+            //         if($current_month_name == 'Jan'){
+            //           // within January
+            //           $delay_fee = $fees->late_fee_within_jan_sole;
+            //           $renew_fee = $fees->renew_fee_sole;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee, Delay Fee,Non-Audit Firm';
+            //         }
+            //         else if($current_month >= 2 && $current_month <= 4){
+            //           // from Feb to Apr
+            //           $delay_fee = $fees->late_fee_feb_to_apr_sole;
+            //           $renew_fee = $fees->renew_fee_sole;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
+            //         }
+            //         else{
+            //           // not late
+            //           $renew_fee = $fees->renew_fee_sole;
+            //           $reconnect_fee = $fees->reconnect_fee_sole * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Non-Audit Firm';
+            //         }
+            //       }
+            //       else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
+            //         // for Partnership and Company
+            //         if($current_month_name == 'Jan'){
+            //           // within January
+            //           $delay_fee = $fees->late_fee_within_jan_partner;
+            //           $renew_fee = $fees->renew_fee_partner;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
+            //         }
+            //         else if($current_month >= 2 && $current_month <= 4){
+            //           // from Feb to Apr
+            //           $delay_fee = $fees->late_fee_feb_to_apr_partner;
+            //           $renew_fee = $fees->renew_fee_partner;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee .','. $delay_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Reconnect Fee,Delay Fee,Non-Audit Firm';
+            //         }
+            //         else{
+            //           // not late
+            //           $renew_fee = $fees->renew_fee_partner;
+            //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
+            //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
+            //           $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Reconnect Fee,Non-Audit Firm';
+            //         }
+            //       }
+            //       else{
+            //         // for Other
+            //         // if($current_month_name == 'Jan'){
+            //         //   // within January
+            //         //   $delay_fee = 0;
+            //         //   $renew_fee = 0;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
+            //         // }
+            //         // else if($current_month >= 2 && $current_month <= 4){
+            //         //   // from Feb to Apr
+            //         //   $delay_fee = 0;
+            //         //   $renew_fee = 0;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee + $delay_fee;
+            //         // }
+            //         // else{
+            //         //   $renew_fee = 0;
+            //         //   $reconnect_fee = 0;
+            //         //   $invoice->amount = $fees->form_fee + $renew_fee + $reconnect_fee;
+            //         // }
+            //       }
+            //     }
+            //     $invoice->save();
+            //   }
+            //   /// end for offline users
+            //   else{
+            //     // not offline users
+            //     //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
+            //     // $invoice = New Invoice();
+            //     // $invoice->student_info_id = $request->student_id;
+            //     // $invoice->invoiceNo = 'non_audit_renew'.$acc_firm_info->id;
+            //     // $invoice->name_eng        = $std_info->email;
+            //     // $invoice->email           = $std_info->email;
+            //     // $invoice->phone           = '';
+            //     $invoice->status          = 0;
+            //     $invoice->save();
+            //
+            //     $current_year = date('Y');
+            //     $current_month_name = date('M');
+            //     $current_month = date('m');
+            //     //$invoice->productDesc  = 'Non-Audit Application Fee, Renew Fee';
+            //
+            //     if($request->org_stru_id == 1){
+            //       // for Sole Proprietorship
+            //       if($current_month_name == 'Jan'){
+            //         // within January
+            //         $delay_fee = $fees->late_fee_within_jan_sole;
+            //         $renew_fee = $fees->renew_fee_sole;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
+            //         $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee, Delay Fee,Non-Audit Firm';
+            //       }
+            //       else if($current_month >= 2 && $current_month <= 4){
+            //         // from Feb to Apr
+            //         $delay_fee = $fees->late_fee_feb_to_apr_sole;
+            //         $renew_fee = $fees->renew_fee_sole;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
+            //         $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Delay Fee,Non-Audit Firm';
+            //       }
+            //       else{
+            //         // not late
+            //         $renew_fee = $fees->renew_fee_sole;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee;
+            //         $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Non-Audit Firm';
+            //       }
+            //     }
+            //     else if($request->org_stru_id == 2 || $request->org_stru_id == 3 || $request->org_stru_id == 4){
+            //       // for Partnership and Company
+            //       if($current_month_name == 'Jan'){
+            //         // within January
+            //         $delay_fee = $fees->late_fee_within_jan_partner;
+            //         $renew_fee = $fees->renew_fee_partner;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
+            //         $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Delay Fee,Non-Audit Firm';
+            //       }
+            //       else if($current_month >= 2 && $current_month <= 4){
+            //         // from Feb to Apr
+            //         $delay_fee = $fees->late_fee_feb_to_apr_partner;
+            //         $renew_fee = $fees->renew_fee_partner;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee .','. $delay_fee;
+            //         $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Delay Fee,Non-Audit Firm';
+            //       }
+            //       else{
+            //         // not late
+            //         $renew_fee = $fees->renew_fee_partner;
+            //         $invoice->amount = $fees->form_fee .','. $renew_fee;
+            //         $invoice->productDesc     = 'Non-Audit Application Fee, Renew Fee,Non-Audit Firm';
+            //       }
+            //     }
+            //     else{
+            //       // for Other
+            //       // if($current_month_name == 'Jan'){
+            //       //   // within January
+            //       //   $delay_fee = 0;
+            //       //   $renew_fee = 0;
+            //       //   $invoice->amount = $fees->form_fee + $renew_fee + $delay_fee;
+            //       // }
+            //       // else if($current_month >= 2 && $current_month <= 4){
+            //       //   // from Feb to Apr
+            //       //   $delay_fee = 0;
+            //       //   $renew_fee = 0;
+            //       //   $invoice->amount = $fees->form_fee + $renew_fee + $delay_fee;
+            //       // }
+            //       // else{
+            //       //   $renew_fee = 0;
+            //       //   $invoice->amount = $fees->form_fee + $renew_fee;
+            //       // }
+            //     }
+            //     $invoice->save();
+            //   }
+            //   // end for not offline users
+            // }
 
         }
 
