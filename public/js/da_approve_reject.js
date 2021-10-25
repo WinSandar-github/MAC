@@ -309,7 +309,7 @@ function loadData() {
     })
 }
 
-function approveUser(student_info_id) {
+function approveUser(student_info_id) {    
     var student_info_id = student_info_id || $("input[name = student_course_id]").val();
     Swal.fire({
         title: 'Approve Student?',
@@ -408,6 +408,7 @@ function approveUser(student_info_id) {
 }
 
 function rejectUser(student_info_id) {
+    var student_info_id = student_info_id || $("input[name = student_course_id]").val();
     Swal.fire({
         title: 'Reject Student?',
         text: "Are you sure to reject this student?",
