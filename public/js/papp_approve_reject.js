@@ -569,6 +569,8 @@ function loadRenewPAPPData(){
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
                 $("#registration_no").append(element.student_info.cpersonal_no);
+                $("#papp_last_paid_year").append(element.latest_reg_year==null ? '-':element.latest_reg_year);
+                $("#papp_resigned_year").append(element.papp_resign_date==null ? '-':element.papp_resign_date);
                 //$(".total_audit_work").append(element.personal_no);
 
                 if(element.student_info.gov_staff == 1){

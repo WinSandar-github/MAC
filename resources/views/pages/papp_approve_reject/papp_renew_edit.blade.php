@@ -709,7 +709,22 @@
                                         <span id="papp_reg_no"></span>
                                     </div>
                                 </div>
-
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Last Paid Year</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="papp_last_paid_year"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">Resigned Year</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="papp_resigned_year"></span>
+                                    </div>
+                                </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">Status</p>
