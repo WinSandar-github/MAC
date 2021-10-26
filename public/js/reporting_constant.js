@@ -199,11 +199,11 @@ const _ARTICLE_SECTION_MENTOR = [
     //     sub_title: "အလုပ်သင်ကြားပေးသူနှစ်စဥ် စစ်ဆေးခဲ့သည့် Company စာရင်း"
     // },
 
-    {
-        route_name: "/article_mentor_intern",
-        fun_name: "articleMentorIntern($(this).data(\'url\'))",
-        sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
-    },
+    // {
+    //     route_name: "/article_mentor_intern",
+    //     fun_name: "articleMentorIntern($(this).data(\'url\'))",
+    //     sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
+    // },
 
     // {
     //     sub_title: "Mentor တစ်ဦးချင်းစီ၏ History (Initial Registeration, သက်တမ်းပြတ်ကာလ, Renew ပြန်လုပ်သည့်ကာလ"
@@ -420,9 +420,15 @@ const _ARTICLE = [
     },
 
     {
-        route_name: "/article_daily_in_out_list",
+        route_name: "/article_daily_in_out_list/firm",
         fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
-        sub_title: "စာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ။"
+        sub_title: "Firm စာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ"
+    },
+
+    {
+        route_name: "/article_daily_in_out_list/gov",
+        fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
+        sub_title: "အစိုးရစာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ"
     },
 
     {
