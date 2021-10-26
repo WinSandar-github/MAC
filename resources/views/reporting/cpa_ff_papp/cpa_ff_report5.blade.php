@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအဝင် ကပ်လျက်ရှိသော<br> ၂ နှစ်၏ CPD နာရီမှတ်တမ်း။</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">CPA (Full-Fledged)/ PAPP တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအဝင် ကပ်လျက်ရှိသော<br> ၂ နှစ်၏ CPD နာရီမှတ်တမ်း။</h5>
                         </div>
                     </div>
                 </div>

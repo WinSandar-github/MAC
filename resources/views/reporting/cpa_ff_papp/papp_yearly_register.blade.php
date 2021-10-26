@@ -19,15 +19,16 @@
                         <div class="col-md-12">
                             <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
                                 <thead>
-                                    <<thead>
+                                    <thead>
                                     <tr>
                                         <th class="bold-font-weight" >စဥ်</th>
-                                        <th class="bold-font-weight" >PAPP Reg No</th>
+                                        <th class="bold-font-weight" >CPA (Full-Fledged) Reg No.</th>
+                                        <th class="bold-font-weight" >PAPP Reg No.</th>
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
                                         <th class="bold-font-weight" >လိပ်စာ</th>
-                                        <th class="bold-font-weight" >ဖုန်းနံပါတ်</th>
-                                        <th class="bold-font-weight" >အီးမေးလ်</th>
+                                        <!--<th class="bold-font-weight" >ဖုန်းနံပါတ်</th>
+                                        <th class="bold-font-weight" >အီးမေးလ်</th>-->
                                     </tr>
                                 </thead>
                                 </thead>
@@ -35,6 +36,7 @@
                                 @foreach($data['papp'] as $key => $papp)
                                         <tr>
                                             <td>{{ ++$key }}</td>
+                                            <td>{{ $papp->reg_no }}</td>
                                             <td>{{ $papp->papp_reg_no }}</td>
                                             <td>{{ 
                                                 $papp->student_info == ""
@@ -42,9 +44,9 @@
                                                     : $papp->student_info->name_mm 
                                             }}</td>
                                             <td>{{ $papp->student_info->nrc_state_region ."/". $papp->student_info->nrc_township ."(". $papp->student_info->nrc_citizen .")". $papp->student_info->nrc_number }}</td>
-                                            <td>{{ $papp->student_info->address }}</td>
-                                            <td>{{ $papp->student_info->phone }}</td>
-                                            <td>{{ $papp->student_info->email }}</td>
+                                            <td>{{ $papp->student_info->address }}<br>
+                                                {{ $papp->student_info->phone }}<br>
+                                                {{ $papp->student_info->email }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

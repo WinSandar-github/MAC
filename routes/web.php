@@ -202,7 +202,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Article Report
     Route::post('article_list','ReportController\ArticleReportController@articleList');
-    Route::post('article_daily_in_out_list','ReportController\ArticleReportController@articleDailyInOutList');
+    Route::post('article_daily_in_out_list/{form_type}','ReportController\ArticleReportController@articleDailyInOutList');
     Route::post('article_intern_position_list','ReportController\ArticleReportController@articleInternPosList');
     Route::post('article_internship_list','ReportController\ArticleReportController@articleInternshipList');
     Route::get('firm_article_report1','ReportController@firm_article_report1');

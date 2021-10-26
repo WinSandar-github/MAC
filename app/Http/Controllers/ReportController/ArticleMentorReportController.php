@@ -34,10 +34,11 @@ class ArticleMentorReportController extends Controller
                     ->orWhere('c.code', '=', 'cpa_2')
                     ->select(
                         'aa.contract_start_date as intern_sdate', 'aa.contract_end_date as intern_edate', 'm.name_mm as mentor_name', 
-                        'std.name_mm as std_name', 'std.cpersonal_no', 'course.*'
+                        'std.name_mm as std_name', 'std.cpersonal_no', 'std.nrc_state_region','std.nrc_township','std.nrc_citizen','std.nrc_number',
+                        'std.father_name_mm',
+                        'course.*'
                         )
                     ->get();
-
         $data = [
             'title' => 'အလုပ်သင်ကြားပေးနေသူထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)',
             'intern' => $intern
