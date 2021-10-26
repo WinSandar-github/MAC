@@ -58,7 +58,7 @@
                                                     <td>{{ $m->reg_date }}</td>
                                                     <td>{{ 'N/A' }}</td>
                                                     <td>{{ \Carbon\Carbon::parse($m->reg_date)->format('d-M-Y') }}</td>
-                                                    <td>{{ \Carbon\Carbon::parse($m->reg_date)->addYear(1)->format('d-M-Y') }}</td>
+                                                    <td>{{ '_' }}</td>
                                                 </tr>
 
                                             @endforeach
@@ -92,7 +92,7 @@
             var $table = $('.table');
 
             $table.tableExport({
-                headers: false,
+                headers: true,
                 footers: false,
                 position: "bottom",
                 bootstrap: true

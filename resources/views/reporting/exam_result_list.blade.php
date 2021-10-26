@@ -79,7 +79,7 @@
             var $table = $('.table');
 
             $table.tableExport({
-                headers: false,
+                headers: true,
                 footers: false,
                 position: "bottom",
                 bootstrap: true

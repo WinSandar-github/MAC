@@ -25,8 +25,8 @@
                                         <th class="bold-font-weight" >အမည်</th>
                                         <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
                                         <th class="bold-font-weight" >လိပ်စာ</th>
-                                        <th class="bold-font-weight" >ဖုန်းနံပါတ်</th>
-                                        <th class="bold-font-weight" >အီးမေးလ်</th>
+                                        <!--<th class="bold-font-weight" >ဖုန်းနံပါတ်</th>
+                                        <th class="bold-font-weight" >အီးမေးလ်</th>-->
                                     </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable text-center">
@@ -40,9 +40,9 @@
                                                     : $cpaff->student_info->name_mm 
                                             }}</td>
                                             <td>{{ $cpaff->student_info->nrc_state_region ."/". $cpaff->student_info->nrc_township ."(". $cpaff->student_info->nrc_citizen .")". $cpaff->student_info->nrc_number }}</td>
-                                            <td>{{ $cpaff->student_info->address }}</td>
-                                            <td>{{ $cpaff->student_info->phone }}</td>
-                                            <td>{{ $cpaff->student_info->email }}</td>
+                                            <td>{{ $cpaff->student_info->address }}<br>
+                                                {{ $cpaff->student_info->phone }}<br>
+                                                {{ $cpaff->student_info->email }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

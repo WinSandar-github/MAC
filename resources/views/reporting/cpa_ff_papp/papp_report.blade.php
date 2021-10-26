@@ -30,6 +30,7 @@
                                     @foreach($data['papp'] as $key => $papp)
                                         <tr>
                                             <td>{{ ++$key }}</td>
+                                            <td>{{ $papp->reg_no }}</td>
                                             <td>{{ $papp->papp_reg_no }}</td>
                                             <td>{{ 
                                                 $papp->student_info == ""

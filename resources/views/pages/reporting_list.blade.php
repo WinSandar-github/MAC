@@ -46,7 +46,7 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">CPA(FF) AND PAPP SECTION</h5>
+                        <h5 class="card-title">CPA(Full-Fledged) AND PAPP SECTION</h5>
                         <p class="card-text">There are <span></span> reports related to this title.</p>
                         <a href="#" class="btn btn-primary show-more-modal" data-section="CPA_FF_PAPP">Show More</a>
                     </div>
@@ -252,7 +252,7 @@
                     break;
                 case _MAIN_TITLE[3]: // CPA FF PAPP
                     clearModalContent()
-                    setModalContent('CPA(FF) AND PAPP SECTION', _CPA_PAPP);
+                    setModalContent('CPA(Full-Fledged) AND PAPP SECTION', _CPA_PAPP);
 
                     $('.course-filter, .batch-filter').hide();
                     $('.date-filter').show();

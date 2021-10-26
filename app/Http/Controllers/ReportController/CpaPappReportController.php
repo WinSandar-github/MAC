@@ -31,7 +31,7 @@ class CpaPappReportController extends Controller
         $cpa = CPAFF::with('student_info')->get();
 
         $data = [
-            'title' => 'CPA (FF)တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
+            'title' => 'CPA (Full-Fledged) တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
             'fields' => [
                         'စဥ်','CPA FF Reg No',
                         'အမည်', $first_yr_str,$second_yr_str,$third_yr_str,'total hours'
@@ -55,9 +55,9 @@ class CpaPappReportController extends Controller
         $papp = Papp::with('student_info')->get();
 
         $data = [
-            'title' => 'CPA (FF)/ PA တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
+            'title' => 'PAPP တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း',
             'fields' => [
-                        'စဥ်','CPA FF/PAPP Reg_No',
+                        'စဥ်','CPA (Full-Fledged) Reg No.','PAPP Reg No.',
                         'အမည်',$first_yr_str,$second_yr_str,$third_yr_str,'total hours'
                         ],
             'papp' => $papp,
@@ -76,7 +76,7 @@ class CpaPappReportController extends Controller
         }
 
         $data = [
-            'title' => 'ပြက္ဒဒိန်နှစ်အလိုက် ( CPA FF) မှတ်ပုံတင်သူများစာရင်း',
+            'title' => $request->date .' ပြက္ခဒိန်နှစ်အလိုက် CPA (Full-Fledged) မှတ်ပုံတင်သူများစာရင်း',
             'cpaff' => $cpaff,
         ];
 
@@ -92,9 +92,9 @@ class CpaPappReportController extends Controller
         }
 
         $data = [
-            'title' => 'ပြက္ဒဒိန်နှစ်အလိုက် ( PAPP ) မှတ်ပုံတင်သူများစာရင်း',
+            'title' => $request->date .' ပြက္ခဒိန်နှစ်အလိုက် PAPP မှတ်ပုံတင်သူများစာရင်း',
             'fields' => [
-                        'စဥ်','cpa ff / papp reg_no',
+                        'စဥ်','CPA (Full-Fledged) Reg No.','PAPP Reg No.',
                         'အမည်','nrc number','address','phone','email'
                         ],
             'papp' => $papp,
