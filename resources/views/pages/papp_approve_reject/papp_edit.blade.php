@@ -1278,10 +1278,13 @@
             success: function (result) {
                 console.log("papp invoice",result);
                 if(result.status==0){
-                    $('#payment_status').append("Pending");
+                    $('#payment_status').append("Unpaid");
+                }
+                else if(result.status=='AP'){
+                    $('#payment_status').append("Paid");
                 }
                 else{
-                    $('#payment_status').append("Paid");
+                    $('#payment_status').append("-");
                 }
                 var productDesc = result.productDesc.split(",");
                 var amount = result.amount.split(",");
