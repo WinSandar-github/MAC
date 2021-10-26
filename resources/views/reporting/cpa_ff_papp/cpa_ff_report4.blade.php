@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">CPA (FF)/ PA တစ်ဦး၏ Application Form ပါ အချက်အလက်များအားလုံး<br> ပါဝင်သည့် Information အပြည့်အစုံကို Print ထုတ်ကြည့်ခြင်း။</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">CPA (Full-Fledged)/ PAPP တစ်ဦး၏ Application Form ပါ အချက်အလက်များအားလုံး<br> ပါဝင်သည့် Information အပြည့်အစုံကို Print ထုတ်ကြည့်ခြင်း။</h5>
                         </div>
                     </div>
                 </div>

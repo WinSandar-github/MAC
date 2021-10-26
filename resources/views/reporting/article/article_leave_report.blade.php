@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">အလုပ်သင်အသားတင်(ရေတွက်ခွင့်မရှိသောခွင့်ကာလနုတ်ပြီး) လုပ်သက် ၂ နှစ်(CPA မအောင်သေးသူများ) ၊ ၁နှစ် နှင့် ၃နှစ် (CPA အောင်ပြီးသူများ)‌ ပြည့်သူများစာရင်း။</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">ခွင့်ခံစားခွင့်ရသူများစာရင်း</h5>
                         </div>
                     </div>
                 </div>

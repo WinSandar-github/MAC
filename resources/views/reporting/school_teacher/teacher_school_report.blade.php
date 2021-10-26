@@ -27,7 +27,7 @@
                                     <th class="bold-font-weight">ကျောင်းအမည်</th>
                                     <th class="bold-font-weight">တာဝန်ခံအမည်</th>
                                     <th class="bold-font-weight">တာဝန်ခံမှတ်ပုံတင်အမှတ်</th>
-                                    <th class="bold-font-weight">လုပ်ငန်းအမျိုးအစား</th>
+                                    <!--<th class="bold-font-weight">လုပ်ငန်းအမျိုးအစား</th>-->
                                     <th class="bold-font-weight">လိပ်စာ</th>
                                     <th class="bold-font-weight">မှတ်ပုံတင်သက်တမ်းကာလ</th>
                                     <th class="bold-font-weight">သက်တမ်းတိုးနေ့</th>
@@ -43,7 +43,7 @@
                                             <td>{{ $school->school_name }}</td>
                                             <td>{{ $school->name_mm }}</td>
                                             <td>{{ $school->nrc_state_region ."/". $school->nrc_township ."(". $school->nrc_citizen .")". $school->nrc_number }}</td>
-                                            <td>{{ $school->type }}</td>
+                                            <!--<td>{{ $school->type }}</td>-->
                                             <td>{{ $school->school_address }}</td>
                                             <td>{{ \Carbon\Carbon::parse($school->reg_date)->diffInYears($school->renew_date) . " Year" }}</td>
                                             <td>{{ $school->renew_date }}</td>

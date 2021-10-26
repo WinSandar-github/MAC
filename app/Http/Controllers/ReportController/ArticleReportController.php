@@ -65,7 +65,7 @@ class ArticleReportController extends Controller
                     ->get();
 
         $data = [
-            'title' => 'စာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)',
+            'title' => 'အစိုးရစာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)',
             'apprentic' => $apprentic
         ];
 
@@ -80,7 +80,7 @@ class ArticleReportController extends Controller
                     ->get();
 
         $data = [
-            'title' => 'အလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)',
+            'title' => 'အစိုးရအလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)',
             'apprentic' => $apprentic
         ];
 

@@ -353,25 +353,25 @@ const _CPA_PAPP = [
     {
         route_name: "/cpa_ff_yearly_list",
         fun_name: 'cpaFFYealyList($(this).data(\'url\'))',
-        sub_title: "CPA (FF)တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+        sub_title: "CPA (Full-Fledged) တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
     },
 
     {
         route_name: "/cpa_ff_pa_yearly_list",
         fun_name: 'cpaPAYealyList($(this).data(\'url\'))',
-        sub_title: "CPA (FF)/ PA တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+        sub_title: "PAPP တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
     },
 
     {
         route_name: "/cpa_ff_yearly_reg_list",
         fun_name: 'cpaFFYearlyRegList($(this).data(\'url\'))',
-        sub_title: "ပြက္ဒဒိန်နှစ်အလိုက် ( CPA FF) မှတ်ပုံတင်သူများစာရင်း"
+        sub_title: "ပြက္ခဒိန်နှစ်အလိုက် CPA (Full-Fledged) မှတ်ပုံတင်သူများစာရင်း"
     },
 
     {
         route_name: "/cpa_papp_yearly_reg_list",
         fun_name: 'cpaPAPPYearlyRegList($(this).data(\'url\'))',
-        sub_title: "ပြက္ဒဒိန်နှစ်အလိုက် ( PAPP ) မှတ်ပုံတင်သူများစာရင်း"
+        sub_title: "ပြက္ခဒိန်နှစ်အလိုက် PAPP မှတ်ပုံတင်သူများစာရင်း"
     }
 
 ]
@@ -392,13 +392,13 @@ const _ARTICLE = [
     {
         route_name: "/article_intern_position_list",
         fun_name: 'articleInternPosList($(this).data(\'url\'))',
-        sub_title: "စာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
+        sub_title: "အစိုးရစာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
     },
 
     {
         route_name: "/article_internship_list",
         fun_name: 'articleInternshipList($(this).data(\'url\'))',
-        sub_title: "အလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)"
+        sub_title: "အစိုးရအလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)"
     }
 
 ]

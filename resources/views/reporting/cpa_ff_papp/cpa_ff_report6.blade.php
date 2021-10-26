@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5 class="text-center m-3" style="font-weight:bold">CPA (FF)/ PA တစ်ဦးချင်းစီ၏ History<br> (Initial Registration, သက်သမ်းတိုးသည့် ပြက္ခဒိန်နှစ်၊ သက်တမ်းပြတ်ကာလ)</h5>
+                            <h5 class="text-center m-3" style="font-weight:bold">CPA (Full-Fledged)/ PAPP တစ်ဦးချင်းစီ၏ History<br> (Initial Registration, သက်သမ်းတိုးသည့် ပြက္ခဒိန်နှစ်၊ သက်တမ်းပြတ်ကာလ)</h5>
                         </div>
                     </div>
                 </div>

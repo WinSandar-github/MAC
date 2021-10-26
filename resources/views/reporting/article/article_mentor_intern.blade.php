@@ -23,7 +23,7 @@
                                         <tr>
                                             <th class="bold-font-weight">စဥ်</th>
                                             <th class="bold-font-weight">အလုပ်သင်အမည်</th>
-                                            <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်၊</th>
+                                            <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်</th>
                                             <th class="bold-font-weight">အလုပ်သင်စတင်သည့်နေ့</th>
                                             <th class="bold-font-weight">ပြီးဆုံးသည့်နေ့</th>
                                             <th class="bold-font-weight">Status</th>
