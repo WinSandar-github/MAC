@@ -4049,9 +4049,7 @@ class AccFirmInfController extends Controller
                           <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
                               <li class='fa fa-eye fa-sm'></li>
                           </button>
-                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
-                              <li class='fa fa-trash fa-sm'></li>
-                          </button>
+
                       </div>";
           })
 
@@ -4113,9 +4111,7 @@ class AccFirmInfController extends Controller
                           <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
                               <li class='fa fa-eye fa-sm'></li>
                           </a>
-                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
-                              <li class='fa fa-trash fa-sm'></li>
-                          </button>
+
                       </div>";
           })
 
@@ -4186,9 +4182,7 @@ class AccFirmInfController extends Controller
                           <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
                               <li class='fa fa-eye fa-sm'></li>
                           </button>
-                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
-                              <li class='fa fa-trash fa-sm'></li>
-                          </button>
+
                       </div>";
           })
 
@@ -4250,9 +4244,7 @@ class AccFirmInfController extends Controller
                           <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
                               <li class='fa fa-eye fa-sm'></li>
                           </a>
-                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
-                              <li class='fa fa-trash fa-sm'></li>
-                          </button>
+
                       </div>";
           })
 
