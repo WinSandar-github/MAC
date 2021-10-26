@@ -362,18 +362,20 @@ class StudentInfoController extends Controller
         }else  if($request->membership == "non_audit"){
             return "Non Audit";
         }else if($request->membership == "cpaff"){
-            $cpaff=CPAFF::where('student_info_id',$id)->first();
-            $cpaff->address     = $request->address;
-            $cpaff->profile_photo         = $image_cpaff;
-            $cpaff->email         = $request->email;
-            $cpaff->phone         = $request->phone;
-            $cpaff->save();
+            // $cpaff=CPAFF::where('student_info_id',$id)->first();
+            // $cpaff->address     = $request->address;
+            // $cpaff->profile_photo         = $image_cpaff;
+            // $cpaff->email         = $request->email;
+            // $cpaff->phone         = $request->phone;
+            // $cpaff->save();
 
             $student_info = StudentInfo::find($id);
             $student_info->email         = $request->email;
-            $student_info->date_of_birth = $request->date_of_birth;
-            $student_info->phone         = $request->phone;
+            // $student_info->date_of_birth = $request->date_of_birth;
+            $student_info->name_mm         = $request->name_mm;
+            $student_info->name_eng         = $request->name_eng;
             $student_info->address       = $request->address;
+            $student_info->phone       = $request->phone;
             $student_info->image         = $image_cpaff;
             $student_info->save();
 
