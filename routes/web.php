@@ -179,7 +179,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('naudit_firm_report4','ReportController@naudit_firm_report4');
     Route::get('naudit_firm_report5','ReportController@naudit_firm_report5');
     Route::get('naudit_firm_report6','ReportController@naudit_firm_report6');
-
+//sta
+    Route::post("firm_individual", "ReportController\FirmReportController@firmIndividual");
+    Route::post("firm_daily_attendence", "ReportController\FirmReportController@firmDailyAttendence");
+    Route::post("firm_registration_yearly_calendar/{org_stru_id}/{firm_type_id}/{local_foreign}", "ReportController\FirmReportController@firmRegistrationnYearlyCalendar");
+    // Route::post("non_firm_registration_yearly_calendar/{org_stru_id}/{firm_type_id}", "ReportController\FirmReportController@nonFirmRegistrationnYearlyCalendar");
+    //khs
     Route::post("firm_individual/{type}", "ReportController\FirmReportController@firmIndividual");
     Route::post("non_firm_individual/{type}", "ReportController\FirmReportController@nonFirmIndividual");
 
@@ -197,7 +202,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     // Article Report
     Route::post('article_list','ReportController\ArticleReportController@articleList');
-    Route::post('article_daily_in_out_list','ReportController\ArticleReportController@articleDailyInOutList');
+    Route::post('article_daily_in_out_list/{form_type}','ReportController\ArticleReportController@articleDailyInOutList');
     Route::post('article_intern_position_list','ReportController\ArticleReportController@articleInternPosList');
     Route::post('article_internship_list','ReportController\ArticleReportController@articleInternshipList');
     Route::get('firm_article_report1','ReportController@firm_article_report1');

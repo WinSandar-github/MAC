@@ -71,6 +71,7 @@ function attendEntryExamSelfList(url) {
 }
 
 function daRegList(url) {
+
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
@@ -201,7 +202,7 @@ function articleList(url) {
     }
 }
 
-function articleDailyInOutList(url) {
+function articleDailyInOutList(url,form_type) {
     if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
@@ -248,7 +249,7 @@ function articleMentorIntern(url) {
 
 function firmIndividual(url) {
     // if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
-    if($('#select-date').val() != ""){
+    if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
     } else {
@@ -262,6 +263,70 @@ function nonFirmIndividual(url) {
         $('#report-form').submit();
     } else {
         alert('select course and batch');
+    }
+}
+
+function soleFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function partnershipFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function localSoleNonFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function localPartnershipNonFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+
+function foreignSoleNonFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function foreignPartnershipNonFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
+    }
+}
+
+function companyFirmRegistrationYearlyCalendar(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select year');
     }
 }
 
@@ -290,6 +355,7 @@ function teacherSchoolLicensePlate(url) {
     } else {
         alert('select course and batch');
     }
+
 }
 
 
