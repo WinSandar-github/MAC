@@ -152,7 +152,7 @@
                 {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
                 {data: 'nrc', name: 'nrc'}, 
                 {data: 'cpersonal_no', name: 'cpersonal_no'},
-                {data: 'course_name', name: 'course_name'},
+                {data: 'student_info.student_education_histroy.degree_name', name: 'course_name'},
                 {data: 'student_info.father_name_mm', name: 'student_info.father_name_mm'},
                 {data: 'age', name: 'age'},
                 {data: 'gender', name: 'gender'},

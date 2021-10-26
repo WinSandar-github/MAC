@@ -33,12 +33,17 @@
                             <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
-                                        <th class="bold-font-weight" >စဥ်</th>
+                                    <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >အမည်</th>
-                                        <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
-                                        <th class="bold-font-weight" >အဘအမည်</th>
-                                        <th class="bold-font-weight" >Module</th>
+                                        <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>                      
                                         <th class="bold-font-weight" >ကိုယ်ပိုင်အမှတ်</th>
+                                        <th class="bold-font-weight">ဘွဲ့အမည်</th>
+                                        <th class="bold-font-weight">အဘအမည်</th>
+                                        <th class="bold-font-weight">အသက်</th>
+                                        <th class="bold-font-weight">ကျား/မ</th>
+                                        <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
+                                        <th class="bold-font-weight" >Module</th>
+                                       
                                         <!-- <th class="bold-font-weight" >မှတ်ချက်</th> -->
 
 
@@ -116,11 +121,15 @@
                     {data: null, render: function (data, type, row, meta) {
                             return meta.row + meta.settings._iDisplayStart + 1;
                         }},
-                    {data: 'student_info.name_mm', name: 'student_info.name_mm'},
+                    {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
                     {data: 'nrc', name: 'nrc'}, 
-                    {data: 'student_info.father_name_mm', name: 'student_info.father_name_mm'}, 
+                    {data: 'cpersonal_no', name: 'cpersonal_no'},
+                    {data: 'student_info.student_education_histroy.degree_name', name: 'course_name'},
+                    {data: 'student_info.father_name_mm', name: 'student_info.father_name_mm'},
+                    {data: 'age', name: 'age'},
+                    {data: 'gender', name: 'gender'},
+                    {data: 'gov_staff', name: 'gov_staff'},
                     {data: 'module', name: 'Module'}, 
-                    {data: 'student_info.personal_no', name: 'personal_no'},
                     
                     
                 ],

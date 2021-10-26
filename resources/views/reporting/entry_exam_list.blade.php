@@ -44,7 +44,7 @@
                         <div class="col-md-6 pl-2">
                            {{-- @if($currend_date > $data['course']->active_batch[0]->mac_reg_end_date)
                                 
-                                    <button onclick="generateAppSrNo('{{$data['course']->code}}')"
+                                <button onclick="generateAppSrNo('{{$data['batch']->id}}')"
                                             class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်
                                     </button>
                              @endif --}}
@@ -53,65 +53,74 @@
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
                                 <thead>
                                 <tr>
-                                    <th class="bold-font-weight">စဥ်</th>
-                                    <th class="bold-font-weight">အမည်</th>
-                                    <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
-                                    <!-- <th class="bold-font-weight">ဘွဲ့အမည်</th> -->
-                                    <th class="bold-font-weight">အဘအမည်</th>
-                                    <th class="bold-font-weight">အသက်</th>
-                                    <th class="bold-font-weight">ကျား/မ</th>
-                                    <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
+                                        <th class="bold-font-weight" >စဥ်</th>
+                                        <th class="bold-font-weight" >အမည်</th>
+                                        <th class="bold-font-weight" >ခုံအမှတ်</th>
+                                        <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>                                       
+                                        <th class="bold-font-weight">အဘအမည်</th>
+                                         <th class="bold-font-weight">ဘွဲ့အမည်</th>
+                                        <th class="bold-font-weight">အသက်</th>
+                                        <th class="bold-font-weight">ကျား/မ</th>
+                                        <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
                                 
 
                                 </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable"> 
-                                @php $count = 0;
-                                  @endphp
-
-                                @foreach($data['student'] as $key => $std)
+                                    @php $count = 0;
+                                    @endphp
+                                    
+                                    @foreach($data['student'] as $key => $std)
+                              
   
                                     @if($key == 2)
                                         @foreach($std as $key => $ygn)
 
                                             @if($key == 1)
-                                                <tr class="mac-ygn">
+                                                <tr class="mac_ygn">
                                                     <td colspan="6" style="text-align: start; font-weight: bold">
                                                         MAC (ရန်ကုန်) သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
                                                     </td>
                                                 </tr>
 
                                                 @foreach($ygn as $s)
+
                                                
                                                 @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
-                                                @if($s->student_info->exam_registers[0]->exam_type_id == 3 && $s->student_info->exam_registers[0]->status == 1)
-                                                <tr class="mac-ygn">
-                                                    <td>
-                                                        {{ ++$count }}
-                                                    </td>
-                                                    <td>
-                                                        {{$s->name_mm}}
-                                                    </td>
-                                                    <td>
-                                                        {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
-                                                    </td>
-                                                    <td>
-                                                        {{ $s->student_info->father_name_mm }}
-                                                    </td>
-                                                    <td>
-                                                        {{ $age}}
-                                                    </td>
-                                                    <td>
-                                                        {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
-                                                    </td>
-                                                    <td>
-                                                        {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
-                                                    </td>
-                                                </tr>
-                                                @endif
+                                                    @if($s->student_info->exam_registers[0]->exam_type_id == 3 && $s->student_info->exam_registers[0]->status == 1)
+                                                        <tr class="mac_ygn">
+                                                            <td>
+                                                                {{ ++$count }}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->name_mm}}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->sr_no}}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->father_name_mm }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->student_education_histroy->degree_name}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $age }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်'}}
+                                                            </td>
+                                                        </tr>
+                                                    @endif
                                                 @endforeach
                                             @elseif($key == 2)
-                                                <tr class="mac-npt">
+                                                <tr class="mac_npt">
                                                     <td colspan="6" style="text-align: start; font-weight: bold">
                                                         MAC (နေပြည်တော်) သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
                                                     </td>
@@ -121,28 +130,35 @@
                                                     @php $age = \Carbon\Carbon::parse($s->student_info->date_of_birth)->age; @endphp
                                                     @if($s->student_info->exam_registers[0]->exam_type_id == 3 && $s->student_info->exam_registers[0]->status == 1)
 
-                                                    <tr class="mac-npt">
-                                                        <td>
-                                                            {{ ++$count }}
-                                                        </td>
-                                                        <td>
-                                                            {{$s->name_mm}}
-                                                        </td>
-                                                        <td>
-                                                            {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
-                                                        </td>
-                                                        <td>
-                                                            {{ $s->student_info->father_name_mm }}
-                                                        </td>
-                                                        <td>
-                                                            {{ $age}}
-                                                        </td>
-                                                        <td>
-                                                            {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
-                                                        </td>
-                                                        <td>
-                                                            {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
-                                                        </td>
+                                                    <tr class="mac_npt">
+                                                       
+                                                    <td>
+                                                                {{ ++$count }}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->name_mm}}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->sr_no}}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->father_name_mm }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->student_education_histroy->degree_name}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $age }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်'}}
+                                                            </td>
                                                     </tr>
                                                     @endif
                                                 @endforeach
@@ -174,27 +190,34 @@
                                         @if($s->student_info->exam_registers[0]->exam_type_id == 3 && $s->student_info->exam_registers[0]->status == 1 )
 
                                         <tr class="self-row">
-                                            <td>
-                                                {{ ++$count }}
-                                            </td>
-                                            <td>
-                                                {{$s->name_mm}}
-                                            </td>
-                                            <td>
-                                                {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
-                                            </td>
-                                            <td>
-                                                {{ $s->student_info->father_name_mm }}
-                                            </td>
-                                            <td>
-                                           {{ $age}}
-                                            </td>
-                                            <td>
-                                                {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
-                                            </td>
-                                            <td>
-                                                {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
-                                            </td>
+                                            
+                                        <td>
+                                                                {{ ++$count }}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->name_mm}}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->sr_no}}
+                                                            </td>
+                                                            <td>
+                                                                {{$s->student_info->nrc_state_region. "/" . $s->student_info->nrc_township . "(" . $s->student_info->nrc_citizen . ")" . $s->student_info->nrc_number}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->father_name_mm }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->student_education_histroy->degree_name}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $age }}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
+                                                            </td>
+                                                            <td>
+                                                                {{ $s->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်'}}
+                                                            </td>
                                         </tr>
                                         @endif
                                     @endforeach
@@ -231,7 +254,7 @@
                                                {{ $age}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                    {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
                                                 </td>
                                                 <td>
                                                     {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
@@ -301,12 +324,13 @@
 
             $('input[type=radio][name=filter]').on('change', function () {
                 var val = $(this).val();
-               
+                alert(val)
                 switch (val) {
                     case "all":
                         $('.mac-row, .mac_ygn, .mac_npt, .private-row, .self-row').show();
                         break;
                     case "mac":
+                        alert("hello")
                         $('.mac-row').show();
                         $('.private-row, .self-row').hide();
                         break;
@@ -317,6 +341,16 @@
                     case "private school":
                         $('.private-row').show();
                         $('.mac-row, .self-row').hide();
+                        break;
+                    case "ရန်ကုန်သင်တန်းကျောင်း":
+                      
+                        $('.mac-row, .mac_ygn').show();
+                        $('.mac_npt, .private-row, .self-row').hide();
+                        break;
+                    case "နေပြည်တော်သင်တန်းကျောင်း":
+                      
+                        $('.mac-row, .mac_npt').show();
+                        $('.mac_ygn, .private-row, .self-row').hide();
                         break;
                     
                 }

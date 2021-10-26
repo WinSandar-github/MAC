@@ -27,7 +27,7 @@ class CreateCoursesTable extends Migration
             $table->unsignedBigInteger('course_type_id');
             $table->string('code','20');
             $table->string('requirement_id');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
