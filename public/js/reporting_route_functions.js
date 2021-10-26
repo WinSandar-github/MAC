@@ -74,6 +74,7 @@ function attendEntryExamSelfList(url) {
 
 
 function daRegList(url) {
+
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
