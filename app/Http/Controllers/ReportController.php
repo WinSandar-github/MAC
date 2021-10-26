@@ -45,7 +45,7 @@ class ReportController extends Controller
         
             $student_infos = $student_infos->where('is_full_module',$request->module);
         }
-
+ 
         if($request->exam_department)
         {
             
@@ -93,10 +93,10 @@ class ReportController extends Controller
                     return Carbon::parse($infos->student_info->date_of_birth)->age;
                 })
                 ->addColumn('gender', function ($infos) {
-                    return  $infos->student_info->gender == 1 ? 'ကျား' : 'မ';
+                    return  $infos->student_info->gender == "Male" ? 'ကျား' : 'မ';
                 })
                 ->addColumn('gov_staff', function ($infos) {
-                    return  $infos->student_info->gov_staff == 1 ? 'Yes' : 'No';
+                    return  $infos->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်';
                 })
                 ->rawColumns(['action','nrc','cpersonal_no','module','course_name','age','gender','gov_staff'])
                 ->make(true);
@@ -104,7 +104,7 @@ class ReportController extends Controller
 
     }
 
-    //show reporting page
+    //show reporting page ဝင်ခွင့်ရသူများစာရင်း
     public function showEntranceExamList(Request $request)
     {
 
@@ -161,7 +161,7 @@ class ReportController extends Controller
                     return  $infos->student_info->gender == 1 ? 'ကျား' : 'မ';
                 })
                 ->addColumn('gov_staff', function ($infos) {
-                    return  $infos->student_info->gov_staff == 1 ? 'Yes' : 'No';
+                    return  $infos->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်';
                 })
                 ->rawColumns(['action','nrc','course_name','age','gender','gov_staff'])
                 ->make(true);

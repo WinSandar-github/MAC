@@ -14,7 +14,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <button type="button" class="btn btn-block btn-color btn-flat p-3" name="cpa_papp_btn">
-                                    CPA(FF) and PAPP Section
+                                    CPA(Full-Fledged) and PAPP Section
                                 </button>
                             </div>
                             <div class="col-md-6">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="card card-stats arrow-up-left" id="cpa_papp_card" style="display:none; background-color:#f5f7fa; padding-bottom:10px;">
-                            <h5 class="card-header">CPA(FF) and PAPP Section</h5><hr class="header_hr">
+                            <h5 class="card-header">CPA(Full-Fledged) and PAPP Section</h5><hr class="header_hr">
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -64,19 +64,19 @@
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('cpa_ff_report4')}}" class="btn btn-block sub-btn-col  btn-flat p-3" name="">
-                                            CPA (FF)/ PA တစ်ဦး၏ Application Form ပါ အချက်အလက်များအားလုံး<br> ပါဝင်သည့် Information အပြည့်အစုံကို Print ထုတ်ကြည့်ခြင်း။
+                                            CPA (Full-Fledged)/ PA တစ်ဦး၏ Application Form ပါ အချက်အလက်များအားလုံး<br> ပါဝင်သည့် Information အပြည့်အစုံကို Print ထုတ်ကြည့်ခြင်း။
                                         </a>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('cpa_ff_report5')}}" class="btn btn-block sub-btn-col  btn-flat p-3" name="">
-                                            CPA (FF)/ PA တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအဝင် ကပ်လျက်ရှိသော<br> ၂ နှစ်၏ CPD နာရီမှတ်တမ်း။
+                                            CPA (Full-Fledged)/ PAPP တစ်ဦး၏ သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအဝင် ကပ်လျက်ရှိသော<br> ၂ နှစ်၏ CPD နာရီမှတ်တမ်း။
                                     </a>
                                     </div>
                                     <div class="col-md-6">
                                         <a target="_blank" href="{{url('cpa_ff_report6')}}" class="btn btn-block sub-btn-col  btn-flat p-3" name="">
-                                            CPA (FF)/ PA တစ်ဦးချင်းစီ၏ History<br> (Initial Registration, သက်သမ်းတိုးသည့် ပြက္ခဒိန်နှစ်၊ သက်တမ်းပြတ်ကာလ)
+                                            CPA (Full-Fledged)/ PAPP တစ်ဦးချင်းစီ၏ History<br> (Initial Registration, သက်သမ်းတိုးသည့် ပြက္ခဒိန်နှစ်၊ သက်တမ်းပြတ်ကာလ)
 </a>
                                     </div>
                                 </div>

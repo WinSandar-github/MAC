@@ -465,7 +465,16 @@ class PAPPController extends Controller
         $papp->audit_year       =   $request->audit_year;
         $papp->type             =   $request->type;
         $papp->papp_renew_date     =   $request->papp_renew_date; 
-        $papp->latest_reg_year             =   $oldPapp->latest_reg_year;
+        $today = date('d-m-Y');
+        if(strtotime($today)<=strtotime($oldPapp->validate_to))
+        {
+            $thisYear = date('Y')+1;
+            $papp->latest_reg_year =$thisYear;
+        }
+        else{
+            $thisYear = date('Y');
+            $papp->latest_reg_year = $thisYear;
+        }  
         $papp->papp_resign_date     =   $oldPapp->papp_resign_date;      
         $papp->self_confession  =   $request->self_confession;
         $papp->self_confession_1  =   $request->self_confession1;
@@ -494,26 +503,123 @@ class PAPPController extends Controller
         $invoice->name_eng        =  $stdInfo->name_eng;
         $invoice->email           = $stdInfo->email;
         $invoice->phone           = $stdInfo->phone;
+        // if($oldPapp->offline_user==0){
+        //     $thisYear = date('Y');      //need to open comment
+        //     $thisMonth = date('m'); 
+        //     // $thisYear = date('Y') + 1;      //only to test Feb to April delay
+        //     // $thisMonth = 3; 
+        //     $oldYear=date('Y',strtotime($oldPapp->validate_to));
+        //     if($thisYear == $oldYear){
+        //         $invoice->productDesc     = 'Application Fee, Renewal Fee,PAPP Registration';
+        //         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+        //     }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
+        //         $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),PAPP Renewal Registration' ;
+        //         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+        //     }
+        //     else if($thisYear == $oldYear + 1 && $thisMonth>1 && $thisMonth<=4){
+        //         $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr),PAPP Renewal Registration' ;
+        //         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', ' . 10* $fees->late_fee ;
+        //     }
+        //     else{
+        //         $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr),PAPP Renewal Registration' ;
+        //         $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', ' . 10* $fees->late_fee ;
+        //     }
+        // }
+        // else if($oldPapp->offline_user==1){
+        //     if($oldPapp->submitted_stop_form==0){
+        //         $thisYear = date('Y');
+        //         $last_paid_year=$oldPapp->latest_reg_year;
+        //         $diff= $thisYear - $last_paid_year;
+        //         $before_2015_year= 0;
+        //         $after_2015_year = 0;
+        //         if($diff>0){
+        //             for ($x = 1; $x <= $diff; $x++)
+        //             {
+        //                 if($last_paid_year+$x >=2015)
+        //                 {
+        //                     $after_2015_year++;
+        //                 }
+        //                 else{
+        //                     $before_2015_year++;
+        //                 }
+        //             }
+        //             $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
+        //             $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
+        //             $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
+                
+        //         }
+        //         else{
+        //             $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
+        //             $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
+        //         }
+        //     }
+        //     else if($oldPapp->submitted_stop_form==1){
+        //         $last_paid_year=$oldPapp->latest_reg_year;
+        //         $submitted_stop_form_year=$oldPapp->papp_resign_date-1;
+        //         $diff= $submitted_stop_form_year - $last_paid_year;
+        //         $before_2015_year= 0;
+        //         $after_2015_year = 0;
+        //         if($diff>0){
+        //             for ($x = 1; $x <= $diff; $x++)
+        //             {
+        //                 if($last_paid_year+$x >=2015)
+        //                 {
+        //                     $after_2015_year++;
+        //                 }
+        //                 else{
+        //                     $before_2015_year++;
+        //                 }
+        //             }
+        //             $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
+        //             $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
+        //             $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
+                
+        //         }
+        //         else{
+        //             $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
+        //             $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
+        //         }
+        //     }
+        // }
+        
+        $thisYear = date('Y');
+        $thisMonth = date('M'); 
         if($oldPapp->offline_user==0){
-            $thisYear = date('Y');      //need to open comment
-            $thisMonth = date('m'); 
-            // $thisYear = date('Y') + 1;      //only to test Feb to April delay
-            // $thisMonth = 3; 
+            $last_paid_year=$oldPapp->latest_reg_year;
             $oldYear=date('Y',strtotime($oldPapp->validate_to));
-            if($thisYear == $oldYear){
-                $invoice->productDesc     = 'Application Fee, Renewal Fee,PAPP Registration';
-                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
-            }else if($thisYear == $oldYear + 1 && date('M') === 'Jan'){
-                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),PAPP Renewal Registration' ;
-                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
-            }
-            else if($thisYear == $oldYear + 1 && $thisMonth>1 && $thisMonth<=4){
-                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr),PAPP Renewal Registration' ;
-                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', ' . 10* $fees->late_fee ;
+            $diff= $thisYear - $last_paid_year;
+            $reconnect_year_count=0;
+            if($diff>0){
+                for ($x = 1; $x <= $diff; $x++)
+                {
+                    $reconnect_year_count++;
+                }
+                $calculate_amount=$reconnect_year_count*$fees->reconnected_fee;
+                if($thisMonth === 'Jan'){
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, PAPP Renewal Registration' ;
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
+                }
+                else if(date('m')>1 && date('m')<=4){
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, PAPP Renewal Registration' ;
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
+                }
+                else{
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  PAPP Renewal Registration';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
+                }
             }
             else{
-                $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr),PAPP Renewal Registration' ;
-                $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ', ' . 10* $fees->late_fee ;
+                if($thisYear == $oldYear){
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee, PAPP Renewal Registration';
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee;
+                }else if($thisYear == $oldYear + 1 &&  $thisMonth === 'Jan'){
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan), PAPP Renewal Registration' ;
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee ;
+                }
+                else if($thisYear == $oldYear + 1 && date('m')>1 && date('m')<=4){
+                    $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), PAPP Renewal Registration' ;
+                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee ;
+                }
             }
         }
         else if($oldPapp->offline_user==1){
@@ -535,26 +641,36 @@ class PAPPController extends Controller
                         }
                     }
                     $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
-                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
+                    if($thisMonth === 'Jan'){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
+                    }
+                    else if(date('m')>1 && date('m')<=4){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee, PAPP Renewal Registration' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
+                    }
+                    else{
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  PAPP Renewal Registration';
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
+                    }
                 
                 }
                 else{
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
-                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
+                    if($thisMonth === 'Jan'){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee, PAPP Renewal Registration' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",0" ;
+                    }
+                    else if(date('m')>1 && date('m')<=4){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), PAPP Renewal Registration' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",0" ;
+                    }
+                    else{
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee,  PAPP Renewal Registration';
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
+                    }
+                    // $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
+                    // $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
                 }
-                // if($last_paid_year>="2015"){
-                //     $greater_than_2015=$thisYear-$last_paid_year-1;
-                //     $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
-                //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$greater_than_2015*$fees->reconnected_fee;
-                // }
-                // else{
-                //     $year_diff_before_2015='2015'-$last_paid_year-1;
-                //     $year_diff_after_2015=$thisYear-"2015";
-                //     $calculate_amount=$year_diff_before_2015*$fees->reconnected_fee_before_2015+$year_diff_after_2015*$fees->reconnected_fee;
-                //     $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
-                //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
-                // }
             }
             else if($oldPapp->submitted_stop_form==1){
                 $last_paid_year=$oldPapp->latest_reg_year;
@@ -574,34 +690,35 @@ class PAPPController extends Controller
                         }
                     }
                     $calculate_amount=$before_2015_year*$fees->reconnected_fee_before_2015+$after_2015_year*$fees->reconnected_fee;
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
-                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
-                
+                    if($thisMonth === 'Jan'){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",".$calculate_amount ;
+                    }
+                    else if(date('m')>1 && date('m')<=4){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",".$calculate_amount ;
+                    }
+                    else{
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
+                    }
                 }
                 else{
-                    $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
-                    $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
+                    if($thisMonth === 'Jan'){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(within Jan),Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ',' . $fees->late_fee.",0" ;
+                    }
+                    else if(date('m')>1 && date('m')<=4){
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee, Delay Fee(from Feb to Apr), Reconnected Fee,PAPP Renewal Registration' ;
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee . ','. 10* $fees->late_fee .",0" ;
+                    }
+                    else{
+                        $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, PAPP Renewal Registration';
+                        $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",0";
+                    }
                 }
-                // if( $last_paid_year<"2015" && $submitted_stop_form_year<"2015"){
-                //     $year_diff=$submitted_stop_form_year-$last_paid_year-1;
-                //     $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
-                //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$year_diff*$fees->reconnected_fee_before_2015;
-                // }
-                // else if($last_paid_year<"2015" && $submitted_stop_form_year>="2015"){
-                //     $year_diff_before_2015='2015'-$last_paid_year-1;
-                //     $year_diff_after_2015=$submitted_stop_form_year-"2015";
-                //     $calculate_amount=$year_diff_before_2015*$fees->reconnected_fee_before_2015+$year_diff_after_2015*$fees->reconnected_fee;
-                //     $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
-                //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$calculate_amount;
-                // }
-                // else if($last_paid_year>"2015" && $submitted_stop_form_year>="2015"){
-                //     $year_diff=$submitted_stop_form_year-$last_paid_year-1;
-                //     $invoice->productDesc     = 'Application Fee, Renewal Fee,Reconnected Fee, CPA(Full-Fledged) Registration';
-                //     $invoice->amount          = $fees->form_fee.",".$fees->renew_fee.",".$year_diff*$fees->reconnected_fee;
-                // }
             }
         }
-        // $invoice->invoiceNo = "papp-renew";
         $invoice->status = 0;
         // return $invoice;
         $invoice->save();
@@ -776,7 +893,7 @@ class PAPPController extends Controller
 
      }
      public function getPappByStuId($stu_id){
-        $papp = Papp::where('student_id',$stu_id)->first();
+        $papp = Papp::where('student_id',$stu_id)->latest()->first();
         return response()->json([
             'data'  => $papp
         ]);

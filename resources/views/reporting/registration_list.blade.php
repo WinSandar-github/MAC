@@ -66,10 +66,11 @@
                                     <th class="bold-font-weight">အမည်</th>
                                     <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
                                     <th class="bold-font-weight">အဘအမည်</th>
+                                    <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                     @if($data['course']->course_type->course_code == 'cpa')
                                     <th class="bold-font-weight">တိုက်ရိုက်/ဝင်ခွင့်</th>
                                     @endif
-                                    <th class="bold-font-weight">ကိုယ်ပိုင်နံပါတ်</th>
+                                    <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်</th>
                                     <th class="bold-font-weight">အသက်</th>
                                     <th class="bold-font-weight">ကျား/မ</th>
                                     <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
@@ -98,6 +99,9 @@
                                                 <td>
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
+                                                <td>
+                                                        {{ $s->student_info->student_education_histroy->degree_name}}
+                                                    </td>
                                                 @if($data['course']->course_type->course_code == 'cpa')
                                                 <td>
                                                     {{ $s->student_info->student_course_regs[0]->qt_entry == 1 ? 'ဝင်ခွင့်' : 'တိုက်ရိုက်'}}
@@ -112,10 +116,10 @@
                                                {{ $age}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                    {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
+                                                    {{ $s->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်'}}
                                                 </td>
                                                 <td>
                                                     N/A
@@ -142,6 +146,9 @@
                                                 <td>
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
+                                                <td>
+                                                        {{ $s->student_info->student_education_histroy->degree_name}}
+                                                    </td>
                                                 @if($data['course']->course_type->course_code == 'cpa')
                                                 <td>
                                                     {{ $s->student_info->student_course_regs[0]->qt_entry == 1 ? 'ဝင်ခွင့်' : 'တိုက်ရိုက်'}}
@@ -156,10 +163,10 @@
                                                {{ $age}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                    {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
+                                                    {{ $s->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်'}}
                                                 </td>
                                                 <td>
                                                     N/A
@@ -186,6 +193,9 @@
                                                 <td>
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
+                                                <td>
+                                                        {{ $s->student_info->student_education_histroy->degree_name}}
+                                                    </td>
                                                 @if($data['course']->course_type->course_code == 'cpa')
                                                 <td>
                                                     {{ $s->student_info->student_course_regs[0]->qt_entry == 1 ? 'ဝင်ခွင့်' : 'တိုက်ရိုက်'}}
@@ -200,10 +210,10 @@
                                                {{ $age}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                    {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
+                                                    {{ $s->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်'}}
                                                 </td>
                                                 <td>
                                                     N/A
@@ -239,7 +249,7 @@
             var $table = $('.table');
 
             $table.tableExport({
-                headers: false,
+                headers: true,
                 footers: false,
                 position: "bottom",
                 bootstrap: true

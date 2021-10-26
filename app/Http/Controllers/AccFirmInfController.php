@@ -1005,7 +1005,7 @@ class AccFirmInfController extends Controller
                 $audit_staff->accountancy_firm_info_id = $acc_firm_info->id;
                 $audit_staff->save();
             }
-            //here
+
             AuditTotalStaff::where('accountancy_firm_info_id',$id)->delete();
             for($i=0;$i<sizeof($request->ats_audit_staff);$i++){
                 $audit_total_staff = new AuditTotalStaff();
@@ -1541,7 +1541,7 @@ class AccFirmInfController extends Controller
             // }
 
             // invoice update
-            $invoice_info = Invoice::where('invoiceNo','off_audit_renew'.$id)->get();
+            // $invoice_info = Invoice::where('invoiceNo','off_audit_renew'.$id)->get();
             // foreach($invoice_info as $invoice){
             //   //invoice for audit
             //
@@ -1703,6 +1703,7 @@ class AccFirmInfController extends Controller
             //           $invoice->save();
             //         }
             //         else{
+            //           // not late
             //           $renew_fee = $fees->renew_fee * $papp_count;
             //           $reconnect_fee = $fees->reconnect_fee_partner * $number_of_reconnect_pay_year;
             //           $invoice->amount = $fees->form_fee .','. $renew_fee .','. $reconnect_fee;
@@ -1912,13 +1913,7 @@ class AccFirmInfController extends Controller
             //
             //   if($request->offline_user == 1){
             //     // is offline user
-            //     //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
-            //     // $invoice = New Invoice();
-            //     // $invoice->student_info_id = $request->student_id;
-            //     // $invoice->invoiceNo = 'off_non_audit_renew'.$acc_firm_info->id;
-            //     // $invoice->name_eng        = $std_info->email;
-            //     // $invoice->email           = $std_info->email;
-            //     // $invoice->phone           = '';
+            //
             //     $invoice->status          = 0;
             //     $invoice->save();
             //
@@ -2091,13 +2086,7 @@ class AccFirmInfController extends Controller
             //   /// end for offline users
             //   else{
             //     // not offline users
-            //     //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
-            //     // $invoice = New Invoice();
-            //     // $invoice->student_info_id = $request->student_id;
-            //     // $invoice->invoiceNo = 'non_audit_renew'.$acc_firm_info->id;
-            //     // $invoice->name_eng        = $std_info->email;
-            //     // $invoice->email           = $std_info->email;
-            //     // $invoice->phone           = '';
+            //
             //     $invoice->status          = 0;
             //     $invoice->save();
             //
