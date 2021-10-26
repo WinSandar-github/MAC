@@ -344,7 +344,7 @@ Route::post('unique_email', 'DARegisterController@unique_email');
 Route::get('/generate_personal_no/{code}','ApiController@generatePersonalNo');
 Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{code}','ApiController@generateExamSrNo');
-Route::get('/generate_entrance_exam_sr_no/{code}','ApiController@generateEntranceExamSrNo');
+Route::get('/generate_entrance_exam_sr_no/{batch}','ApiController@generateEntranceExamSrNo');
 Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQTSrNo');
 Route::get('/generate_exam_result/{code}','ApiController@generateExamResult');
 

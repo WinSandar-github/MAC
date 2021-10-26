@@ -245,35 +245,31 @@ class ApiController extends Controller
         return "Update Serial Number in Application form";
     }
 
-    public function generateEntranceExamSrNo($code)
+    public function generateEntranceExamSrNo($batch)
     {
+        // return $batch;
+        // $course = Course::where('code',$code)->with('active_batch')->first();
         
-        $course = Course::where('code',$code)->with('active_batch')->first();
-        
-        
-        
+        $student_infos = ExamRegister::where('batch_id',$batch)
+        ->where('exam_register.status',1)
+        ->where('exam_register.exam_type_id','=',3)
+        ->join('student_infos','student_infos.id','=','exam_register.student_info_id')              
+        ->orderBy('student_infos.name_mm','asc')
+        ->with('student_info')
+        ->select('student_infos.name_mm','exam_register.*')
+        ->get();
+
        
-        $student_infos = StudentInfo::whereHas('student_course_regs', function ($query) use ($course) {
-            $query->where('batch_id', $course->active_batch[0]->id);
-        })->with('student_course')->orderBy('name_mm','asc')->get();
       
+         
+        
     
-           
+
         $count = 0;
         foreach($student_infos as $key => $student_info){
-           
-            $exam_register = ExamRegister::where('student_info_id',$student_info->id)
-                                    ->where('form_type',$course->active_batch[0]->id)
-                                    ->where('status',1)
-                                    ->where('exam_type_id','=',3)
-                                    ->first();
-
-                if(!empty($exam_register)){
-                    $exam_register->sr_no = ++$count;
-
-                    $exam_register->save();
-                
-                }
+            
+                    $student_info->sr_no = ++$count;
+                    $student_info->save();
             }
             
         
