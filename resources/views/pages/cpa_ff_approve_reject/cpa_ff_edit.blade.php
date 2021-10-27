@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">ဆက်သွယ်ရန်လိပ်စာ</p>
                                     </div>
@@ -50,11 +50,11 @@
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_phone"></span>
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">E-mail Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Contact E-mail Address</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="contact_mail"></span>
@@ -316,23 +316,6 @@
                                         <!-- <button type="button" id="nrc_fornt_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_front_Modal"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
-                                <!--NRC Card(Front) Modal -->
-                                <div id="nrc_front_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">NRC Card(Front)</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="nrc_front" class="img-fluid" /> -->
-                                            <embed id="nrc_front"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
 
                                 <!--NRC Card(Back) -->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -341,23 +324,6 @@
                                     </div>
                                     <div class="col-md-6 text-left nrc_back_file">
                                         <!-- <button type="button" id="nrc_back_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_back_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                                <!--NRC Card(Back) Modal -->
-                                <div id="nrc_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">NRC Card(Back)</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="nrc_back" class="img-fluid" /> -->
-                                            <embed id="nrc_back" width="100%" height="500px">
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
 

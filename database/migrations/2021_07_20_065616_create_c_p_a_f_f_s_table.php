@@ -16,7 +16,7 @@ class CreateCPAFFSTable extends Migration
         Schema::create('c_p_a_f_f_s', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_info_id')->nullable();
-            $table->string('profile_photo')->nullable();
+            // $table->string('profile_photo')->nullable();
             $table->string('cpa')->nullable();
             $table->string('ra')->nullable();
             $table->string('degree_name')->nullable();
@@ -31,8 +31,8 @@ class CreateCPAFFSTable extends Migration
             $table->string('cpa_certificate')->nullable();
             $table->string('mpa_mem_card')->nullable();
             $table->string('mpa_mem_card_back')->nullable();
-            $table->string('nrc_front')->nullable();
-            $table->string('nrc_back')->nullable();
+            // $table->string('nrc_front')->nullable();
+            // $table->string('nrc_back')->nullable();
             $table->string('cpd_record')->nullable();
             // $table->string('passport_image');
             $table->date('accepted_date')->default(null)->nullable();
@@ -57,24 +57,26 @@ class CreateCPAFFSTable extends Migration
             $table->string('exam_month')->nullable();          
             $table->string('roll_no')->nullable();
             $table->string('cpa_batch_no')->nullable();
-            $table->string('address')->nullable();
-            $table->string('phone')->nullable();
+            // $table->string('address')->nullable();
+            // $table->string('phone')->nullable();
             $table->string('contact_mail')->nullable();
             $table->string('form_type')->nullable();
             // $table->string('cpa_certificate_back')->nullable();
             $table->string('three_years_full')->nullable();
-            $table->string('letter')->nullable();
+            // $table->string('letter')->nullable();
             $table->string('fine_person')->nullable();
-            $table->string('email')->nullable();
-            $table->string('name_mm')->nullable();
-            $table->string('name_eng')->nullable();
-            $table->string('nrc_state_region')->nullable();
-            $table->string('nrc_township')->nullable();
-            $table->string('nrc_citizen')->nullable();
-            $table->string('nrc_number')->nullable();
-            $table->string('father_name_mm')->nullable();
-            $table->string('father_name_eng')->nullable();
-            $table->string('gender')->nullable();
+
+            // $table->string('email')->nullable();
+            // $table->string('name_mm')->nullable();
+            // $table->string('name_eng')->nullable();
+            // $table->string('nrc_state_region')->nullable();
+            // $table->string('nrc_township')->nullable();
+            // $table->string('nrc_citizen')->nullable();
+            // $table->string('nrc_number')->nullable();
+            // $table->string('father_name_mm')->nullable();
+            // $table->string('father_name_eng')->nullable();
+            // $table->string('gender')->nullable();
+
             // $table->string('payment_method')->nullable();
             // $table->string('old_card_year')->nullable();
             $table->string('renew_card_year')->nullable();
@@ -86,7 +88,7 @@ class CreateCPAFFSTable extends Migration
             $table->text('reject_description')->nullable();
             $table->text('self_confession')->nullable();
             $table->integer('type')->nullable();
-            $table->date('reg_date')->default(null)->nullable();
+            $table->string('reg_date')->nullable();
             $table->string('cpaff_reg_date')->nullable();
             $table->string('validate_from')->nullable();
             $table->string('validate_to')->nullable();

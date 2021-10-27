@@ -197,6 +197,16 @@ class PAPPController extends Controller
         $papp->tax_free_recommendation      =   $tax_free;
         $papp->status                       =  0;
         //save to papp
+        $today = date('d-m-Y');
+        if(date('m')==11 || date('m')==12)
+        {
+            $thisYear = date('Y')+1;
+            $papp->latest_reg_year =$thisYear;
+        }
+        else{
+            $thisYear = date('Y');
+            $papp->latest_reg_year = $thisYear;
+        }  
         $papp->cpa_batch_no     =   $request->cpa_batch_no;
         $papp->address          =   $request->address;
         $papp->phone            =   $request->phone;
@@ -253,6 +263,9 @@ class PAPPController extends Controller
             $approve->status = 1;
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
+            // Generate papp Reg No.
+            $approve->papp_reg_no = 'PAPP_' . str_pad($id, 5, "0", STR_PAD_LEFT);
+            // $approve->reg_date = date('Y-m-d');
         }
         else if($approve->status==1){
             $approve->status = 1;
@@ -263,6 +276,13 @@ class PAPPController extends Controller
         return response()->json([
             'message' => "You have successfully approved that user!"
         ],200);
+    }
+
+    public function getPappRegNo($stu_id){
+        $papp = PAPP::where('student_id',$stu_id)->get('papp_reg_no');
+        return response()->json([
+            'data'  => $papp
+        ]);
     }
 
     public function reject(Request $request)
@@ -926,18 +946,22 @@ class PAPPController extends Controller
               return $nrc_result;
           })
 
-          ->addColumn('status', function ($infos){
-              if($infos->status == 0){
-                return "PENDING";
-              }
-              else if($infos->status == 1){
-                return "APPROVED";
-              }
-              else{
-                return "REJECTED";
-              }
+          
+          ->addColumn('payment_status', function ($infos){
+            if($infos->type==0){
+                $invoice=Invoice::where('invoiceNo',"papp_initial".$infos->id)->get();
+               
+            }else{
+                $invoice=Invoice::where('invoiceNo',"papp_renew".$infos->id)
+                ->get();
+               
+            }
+            foreach($invoice as $i){
+                return $i->status == "0"
+                    ? "Unpaid"
+                    : "Paid";
+            }
           })
-
             // ->addColumn('type', function ($infos){
             //     if($infos->status == 0){
             //     return "Initial";
@@ -1454,16 +1478,16 @@ class PAPPController extends Controller
           })
 
           ->addColumn('status', function ($infos){
-              if($infos->status == 0){
+                if($infos->status == 0){
                 return "PENDING";
-              }
-              else if($infos->status == 1){
+                }
+                else if($infos->status == 1){
                 return "APPROVED";
-              }
-              else{
+                }
+                else{
                 return "REJECTED";
-              }
-          })
+                }
+            })
           ->rawColumns(['action','status'])
           ->make(true);
     }
