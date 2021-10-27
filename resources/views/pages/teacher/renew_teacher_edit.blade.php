@@ -214,7 +214,7 @@
                                     <div class="exist_teacher_user" style="display:none;">
                                         <div class="row mt-5 border-bottom">
                                             <div class="col-md-6">
-                                                <p style="font-weight:bold">ဘာသာရပ်ကြေး၊ဖောင်ကြေး စုစုပေါင်း</p>
+                                                <p style="font-weight:bold">ဘာသာရပ်ကြေး၊လျှောက်လွှာကြေး စုစုပေါင်း</p>
                                             </div>
                                             <div class="col-md-6">
                                                 <input type='text' id="subject_total_amount" class="form-control" disabled>

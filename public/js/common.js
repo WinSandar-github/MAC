@@ -848,7 +848,7 @@ function createDataTable(table) {
         'autoWidth': false,
         "scrollX": true,
         'select': false,
-        "order": [[0, "desc"]],
+        "order": [[0, "asc"]],
 
     });
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {

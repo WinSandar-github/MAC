@@ -478,3 +478,5 @@ Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewScho
 Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');
 //school total amount
 Route::post('/getTotalAmount', 'SchoolController\SchoolController@getTotalAmount');
+//school branch
+Route::get('/getSchoolBranch/{id}', 'SchoolController\SchoolController@getSchoolBranch');

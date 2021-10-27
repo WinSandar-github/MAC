@@ -240,7 +240,7 @@
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
-                                                                <th class="bold-font-weight" >Register Date</th>
+                                                                <th class="bold-font-weight" >Renew Date</th>
                                                                 <!-- <th class="bold-font-weight" >Expire Period time</th>
                                                                 <th class="bold-font-weight" >Payment Date</th>
                                                                 <th class="bold-font-weight" >Payment Status</th> -->
@@ -314,7 +314,7 @@
                 {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'card', name: 'card'},
                 {data: 'reason', name: 'reason'},
             ],
@@ -352,7 +352,7 @@
                 {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'card', name: 'card'},
             ],
          });
@@ -386,7 +386,7 @@
                 {data: 'reg_date', name: 'reg_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'card', name: 'card'},
                 {data: 'reason', name: 'reason'},
             ],
@@ -422,7 +422,7 @@
                 {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'card', name: 'card'},
                 {data: 'reason', name: 'reason'},
                 {data: 'yearly', name: 'yearly'},
@@ -461,7 +461,7 @@
                 {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'card', name: 'card'},
                 {data: 'yearly', name: 'yearly'},
             ],
@@ -497,7 +497,7 @@
                 {data: 'renew_date', name: 'renew_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'card', name: 'card'},
                 {data: 'reason', name: 'reason'},
                 {data: 'yearly', name: 'yearly'},
@@ -515,7 +515,7 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 2,
+                    d.status    = 1,
                     d.initial_status= 2
                 }
             
@@ -530,7 +530,7 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'reg_date', name: 'reg_date'},
+                {data: 'renew_date', name: 'renew_date'},
                 // {data: 'exp_date', name: 'exp_date'},
                 // {data: 'payment_date', name: 'payment_date'},
                 // {data: 'status', name: 'status'},
