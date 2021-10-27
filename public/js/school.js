@@ -816,11 +816,13 @@ function loadSchoolCard(){
                 }
                 
                 loadInvoice(data.data.id,data.data.initial_status,"expiry_date");
-                console.log(data.data.school_branch);
-                var school_branch=data.data.school_branch;
-                $.each(school_branch, function( index, value ) {
-                    document.getElementById('branch_address').innerHTML=value.branch_school_address;
-                })  
+                console.log(data.data.id);
+                loadSchoolBranch(data.data.id,'tbl_branch');
+                //console.log(data);
+                // var school_branch=data.data.school_branch;
+                // $.each(school_branch, function( index, value ) {
+                //     document.getElementById('branch_address').innerHTML=value.branch_school_address;
+                // })  
         }
     })
 }
@@ -887,7 +889,7 @@ function loadInvoice(id,status,table_col){
                     
                         var valid_date=new Date(val.dateTime);
                          var date=(valid_date.getFullYear())+3;
-                         document.getElementById(table_col).innerHTML="31-12-"+date;
+                        // document.getElementById(table_col).innerHTML="31-12-"+date;
                      })
                 }
                 
@@ -917,11 +919,19 @@ function loadInvoice(id,status,table_col){
                 $('#total_fee').append(thousands_separators(sum));
                 if(table_col=="expiry_date"){
                     $.each(result.data, function( index, val ){
-                    
+                        if(val.dateTime!=null){
+                            var now=new Date();
+                            if((now.getMonth()+1)==10 ||(now.getMonth()+1)==11 || (now.getMonth()+1)==12){
+                                document.getElementById(table_col).innerHTML="12-31-"+(now.getFullYear()+4);
+                            }else if((now.getMonth()+1)==01){
+                                document.getElementById(table_col).innerHTML="12-31-"+(now.getFullYear()+3);
+                            }
+                        }
                         var valid_date=new Date(val.dateTime);
                          var date=(valid_date.getFullYear())+3;
-                         document.getElementById(table_col).innerHTML="31-12-"+date;
-                     })
+                         //document.getElementById(table_col).innerHTML="31-12-"+date;
+                        
+                    })
                 }
                 
                 
@@ -929,4 +939,21 @@ function loadInvoice(id,status,table_col){
         });
     }
     
+}
+function loadSchoolBranch(id,table){
+    
+    $.ajax({
+        type : 'GET',
+        url : BACKEND_URL+"/getSchoolBranch/"+id,
+        success : function(data){
+          
+            $.each(data.data, function( index, value ){
+                console.log(value.branch_school_address);
+                var tr="<tr>";
+                tr += '<td>'+value.branch_school_address+'</td>';
+                tr += "</tr>";
+                $("table#"+table).append(tr);
+            })
+        }
+    })
 }
