@@ -1344,7 +1344,6 @@ class PAPPController extends Controller
 
         $cpa_ff  = new CPAFF();
         $cpa_ff->student_info_id    =   $student_info->id;
-<<<<<<< HEAD
         // $cpa_ff->profile_photo    =   $profile_photo;
         // $cpa_ff->email             =   strtolower($request->email);
         // $cpa_ff->name_mm           =   $request->name_mm;
@@ -1355,18 +1354,6 @@ class PAPPController extends Controller
         // $cpa_ff->nrc_number        =   $request->nrc_number;
         // $cpa_ff->father_name_mm    =   $request->father_name_mm;
         // $cpa_ff->father_name_eng   =   $request->father_name_eng; 
-=======
-        $cpa_ff->profile_photo    =   $profile_photo;
-        $cpa_ff->email             =   strtolower($request->email);
-        $cpa_ff->name_mm           =   $request->name_mm;
-        $cpa_ff->name_eng          =   $request->name_eng;
-        $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-        $cpa_ff->nrc_township      =   $request->nrc_township;
-        $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-        $cpa_ff->nrc_number        =   $request->nrc_number;
-        $cpa_ff->father_name_mm    =   $request->father_name_mm;
-        $cpa_ff->father_name_eng   =   $request->father_name_eng;
->>>>>>> a0b2f30ba8a97c32a84288e1fd6eb51a3675893c
         $cpa_ff->cpa              =   $cpa;
         $cpa_ff->ra               =   $ra;
         $cpa_ff->degree_name      =   json_encode($request->degree_name);
@@ -1593,13 +1580,9 @@ class PAPPController extends Controller
 
             $cpa_ff->old_card_file    =   $cpaff_old_card_file;
         }
-<<<<<<< HEAD
         else{
             $cpa_ff->old_card_file    =   $cpa_ff->old_card_file;
         }
-=======
-
->>>>>>> a0b2f30ba8a97c32a84288e1fd6eb51a3675893c
         $cpaff_data=CPAFF::where('student_info_id',$request->student_id)->first();
         if ($request->hasfile('cpa')) {
             $cpa_file = $request->file('cpa');
@@ -1611,15 +1594,11 @@ class PAPPController extends Controller
 
             $papp->cpa                          =   $cpa;
         }
-<<<<<<< HEAD
         else{
             $cpa_ff->cpa              =   $cpa_ff->cpa  ;
             
             $papp->cpa                          =  $papp->cpa     ;
         }
-=======
-
->>>>>>> a0b2f30ba8a97c32a84288e1fd6eb51a3675893c
 
         if ($request->hasfile('ra')) {
             $ra_file = $request->file('ra');
@@ -1659,13 +1638,9 @@ class PAPPController extends Controller
 
             $cpa_ff->cpa_certificate  =   $cpa_certificate;
         }
-<<<<<<< HEAD
         else{
             $cpa_ff->cpa_certificate  =    $cpa_ff->cpa_certificate;
         }
-=======
-
->>>>>>> a0b2f30ba8a97c32a84288e1fd6eb51a3675893c
         if ($request->hasfile('cpa_ff_recommendation')) {
             $cpa_ff_file = $request->file('cpa_ff_recommendation');
             $cpa_ff_name  = uniqid().'.'.$cpa_ff_file->getClientOriginalExtension();
@@ -1673,13 +1648,9 @@ class PAPPController extends Controller
             $cpa_ff_path = '/storage/student_papp/'.$cpa_ff_name;
             $papp->cpa_ff_recommendation        =   $cpa_ff_path;
         }
-<<<<<<< HEAD
         else{
             $papp->cpa_ff_recommendation        =  $papp->cpa_ff_recommendation    ;
         }
-=======
-
->>>>>>> a0b2f30ba8a97c32a84288e1fd6eb51a3675893c
 
         if ($request->hasfile('mpa_mem_card_front')) {
             $mpa_mem_card_front_file = $request->file('mpa_mem_card_front');
@@ -1750,7 +1721,6 @@ class PAPPController extends Controller
         $student_info->save();
 
         $cpa_ff->student_info_id    =   $student_info->id;
-<<<<<<< HEAD
         // $cpa_ff->email             =   strtolower($request->email);
         // $cpa_ff->name_mm           =   $request->name_mm;
         // $cpa_ff->name_eng          =   $request->name_eng;
@@ -1762,19 +1732,6 @@ class PAPPController extends Controller
         // $cpa_ff->father_name_eng   =   $request->father_name_eng; 
         
         
-=======
-        $cpa_ff->email             =   strtolower($request->email);
-        $cpa_ff->name_mm           =   $request->name_mm;
-        $cpa_ff->name_eng          =   $request->name_eng;
-        $cpa_ff->nrc_state_region  =   $request->nrc_state_region;
-        $cpa_ff->nrc_township      =   $request->nrc_township;
-        $cpa_ff->nrc_citizen       =   $request->nrc_citizen;
-        $cpa_ff->nrc_number        =   $request->nrc_number;
-        $cpa_ff->father_name_mm    =   $request->father_name_mm;
-        $cpa_ff->father_name_eng   =   $request->father_name_eng;
-
-
->>>>>>> a0b2f30ba8a97c32a84288e1fd6eb51a3675893c
         $cpa_ff->degree_name      =   json_encode($request->degree_name);
         $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
 
@@ -1789,20 +1746,12 @@ class PAPPController extends Controller
         $cpa_ff->cpaff_reg_no           =   $request->cpaff_reg_no;
         $cpa_ff->cpaff_reg_year   =   $request->cpaff_reg_year;
         $cpa_ff->is_convicted     =   $request->is_convicted;
-<<<<<<< HEAD
         $papp->self_confession  =   $request->self_confession;
         $papp->self_confession_1  =   $request->self_confession1;
        
         
        
         
-=======
-
-
-
-
-
->>>>>>> a0b2f30ba8a97c32a84288e1fd6eb51a3675893c
         $cpa_ff->status           =  0;
         $cpa_ff->is_renew         =   2;
         $cpa_ff->offline_user         =  1;
