@@ -256,7 +256,7 @@
                                                                 <th class="bold-font-weight" >Email</th>     
                                                                 <th class="bold-font-weight" >Phone Number</th>
                                                                 <th class="bold-font-weight" >NRC</th>
-                                                                <th class="bold-font-weight" >Register Date</th>
+                                                                <th class="bold-font-weight" >Renew Date</th>
                                                                 <!-- <th class="bold-font-weight" >Expire Period time</th>
                                                                 <th class="bold-font-weight" >Status</th>
                                                                 <th class="bold-font-weight" >Payment Status</th> -->
@@ -324,7 +324,7 @@
                 {data: 'reg_date', name: 'reg_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'reason', name: 'reason'},
             ],
             
@@ -362,7 +362,7 @@
                 {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'card', name: 'card'},
             ],
          });
@@ -397,7 +397,7 @@
                 {data: 'reg_date', name: 'reg_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'reason', name: 'reason'},
             ],
         });
@@ -471,7 +471,7 @@
                 {data: 'exp_date', name: 'exp_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'card', name: 'card'},
             ],
          });
@@ -507,7 +507,7 @@
                 {data: 'reg_date', name: 'reg_date'},
                 {data: 'payment_date', name: 'payment_date'},
                 {data: 'status', name: 'status'},
-                {data: 'payment_method', name: 'payment_method'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'reason', name: 'reason'},
             ],
         });
@@ -539,7 +539,7 @@
                 {data: 'email', name: 'email'},
                 {data: 'phone', name: 'phone'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'reg_date', name: 'reg_date'},
+                {data: 'renew_date', name: 'renew_date'},
                 // {data: 'payment_date', name: 'payment_date'},
                 // {data: 'status', name: 'status'},
                 // {data: 'payment_method', name: 'payment_method'},
