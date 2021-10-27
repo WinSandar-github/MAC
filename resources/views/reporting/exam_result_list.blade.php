@@ -18,7 +18,38 @@
                 </div>
                 <div class="card-body">
                     <div class="row"> 
-                            <div class="col-md-12 pl-2">
+                    <div class="col-md-9">
+                                <div class="d-flex flex-row">
+
+                                    
+                                    <div class="">
+                                        
+                                        <select class="form-control form-select" name="student_type" id="student_type">
+                                            <option value="" selected >Select Student Type</option>
+                                                
+                                            <option value="2">MAC</option>
+                                            <option value="1">Private School</option>
+                                            <option value="0">Selfstudy</option>
+
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="mx-2">
+                                        
+                                        <select class="form-control form-select" name="selected_module" id="selected_module">
+                                            <option value="" selected >Select Module</option>
+                                            @foreach($modules as $module)
+                                            <option value="{{$module['id']}}">{{$module['name']}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="">
+                                        <button type="button" class="btn btn-primary btn-round m-0"
+                                            id="search">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 pl-2">
                                
                                
                                 <button   onclick="generateExamResult('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
@@ -44,7 +75,7 @@
                                         <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
                                         <th class="bold-font-weight" >Module</th>
                                        
-                                        <!-- <th class="bold-font-weight" >မှတ်ချက်</th> -->
+                                        <th class="bold-font-weight" >မှတ်ချက်</th>
 
 
                                     </tr>
@@ -112,7 +143,9 @@
                     data :  function (d) {
                         d.code        =  course_code,
                         d.grade       = 1,
-                        d.batch_id = $('#batch_id').val()
+                        d.batch_id = $('#batch_id').val(),
+                        d.student_type = $('#student_type').val()
+
 
                         
                     }
@@ -130,6 +163,8 @@
                     {data: 'gender', name: 'gender'},
                     {data: 'gov_staff', name: 'gov_staff'},
                     {data: 'module', name: 'Module'}, 
+                    {data: 'remark', name: 'remark'}, 
+
                     
                     
                 ],

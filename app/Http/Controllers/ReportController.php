@@ -14,11 +14,14 @@ use Illuminate\Support\Str;
 use LdapRecord\Query\Events\Read;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
 class ReportController extends Controller
 {
 
     public function index()
     {
+
         $courses = Course::all();
         $batches = Batch::all();
         // return $courses;
@@ -28,28 +31,64 @@ class ReportController extends Controller
     public function showExamList(Request $request)
     {
          
-        $current_course = Course::where('code',$request->code)->with('active_batch')->first();
-       
-        $student_infos = ExamRegister::where('batch_id',$request->batch_id)
-                        ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
-                        ->where('exam_type_id','!=',3)
-                        ->where('status',1)
-                        ->with('student_info')->select('exam_register.*');
+        $batch = Batch::where('id',$request->batch_id)->with('course',)->first();
 
-        $student_infos = $current_course->course_type->course_code == "da" 
+        $student_infos = DB::table('student_infos')
+                        // ->join('student_course_regs', 'student_course_regs.student_info_id', '=', 'student_infos.id')
+                        ->join('exam_register', 'exam_register.student_info_id', '=', 'student_infos.id')
+                        ->where('exam_register.batch_id',$request->batch_id)
+                        ->where('exam_register.status',1)
+                        ->where('exam_register.exam_type_id','!=',3)   
+                        ->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC') 
+                        ->orderBy('student_infos.cpersonal_no', 'ASC')
+
+                        ->select('student_infos.cpersonal_no','student_infos.id',)                    
+                        ->groupBy('student_infos.id','student_infos.cpersonal_no')
+                        ->get();
+                        if($request->module)
+                        {
+                        
+                            $student_infos = $student_infos->where('is_full_module',$request->module);
+                        }                 
+
+                       
+
+        
+
+
+         
+                        return $student_infos;
+        // $student_infos = ExamRegister::where('batch_id',$request->batch_id)
+        //                 ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
+        //                 ->where('exam_type_id','!=',3)
+        //                 ->where('status',1)
+        //                 ->with('student_info')->select('exam_register.*')->get();
+
+        //                 return $student_infos;
+
+        $student_infos = $batch->course->course_type->course_code == "da" 
         ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no)','ASC')->orderBy('student_infos.personal_no','ASC')
         : $student_infos->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC')->orderBy('student_infos.cpersonal_no','ASC');
-                        
+          
         if($request->module)
         {
         
             $student_infos = $student_infos->where('is_full_module',$request->module);
         }
- 
+
+  
         if($request->exam_department)
         {
             
             $student_infos = $student_infos->where('exam_department',$request->exam_department);
+        }
+
+        if($request->student_type)
+        {
+            $type = StudentCourseReg::where('type',$student->type)->  
+            $student_infos = $student_infos->whereHas('comments', function (Builder $query) {
+                $query->where('content', 'like', 'code%');
+            });
         }
         
         $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
@@ -98,7 +137,24 @@ class ReportController extends Controller
                 ->addColumn('gov_staff', function ($infos) {
                     return  $infos->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်';
                 })
-                ->rawColumns(['action','nrc','cpersonal_no','module','course_name','age','gender','gov_staff'])
+                ->addColumn('remark', function ($infos) {
+                    $type = $infos->student_info->student_register[0]->type;
+                    switch($type){
+                        case 0:
+                            return "self";
+                            break;
+                        case 1:
+                            return "private";
+                        break;
+                        case 2:
+                           return "mac";
+                        break;
+                    }
+            
+            
+                    // return  $infos->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်';
+                })
+                ->rawColumns(['action','nrc','cpersonal_no','module','course_name','age','gender','gov_staff','remark'])
                 ->make(true);
 
 
@@ -163,6 +219,7 @@ class ReportController extends Controller
                 ->addColumn('gov_staff', function ($infos) {
                     return  $infos->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်';
                 })
+               
                 ->rawColumns(['action','nrc','course_name','age','gender','gov_staff'])
                 ->make(true);
     }
