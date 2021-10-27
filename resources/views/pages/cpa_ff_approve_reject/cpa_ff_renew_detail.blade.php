@@ -43,7 +43,7 @@
                                     </div>
                                 </div>--}}
 
-                                <div class="row m-2 mt-3 border-bottom">
+                                {{--<div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">ဆက်သွယ်ရန်လိပ်စာ</p>
                                     </div>
@@ -59,11 +59,11 @@
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_phone"></span>
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">E-mail Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Contact E-mail Address</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="contact_mail"></span>
