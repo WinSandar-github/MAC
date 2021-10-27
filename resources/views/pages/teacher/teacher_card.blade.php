@@ -101,16 +101,16 @@
                                     <div class="row mt-3 " >
                                         
                                         <div class="col-md-6 ">
-                                            <p class="serial"><span style="font-weight:bold" >Serial No.</span><span class="invoice_no "></span></p>
+                                            <p class="serial"><span style="font-weight:bold" >Serial No.</span><span class="invoice_no " style="border-bottom:1px dotted black;"></span></p>
                                         </div>
                                         <div class="col-md-6 ">
-                                            <p class="serial2 "><span style="font-weight:bold" >Dated.</span><span class="payment_date"></span></p>
+                                            <p class="serial2 "><span style="font-weight:bold" >Dated.</span><span class="payment_date" style="border-bottom:1px dotted black;"></span></p>
                                         </div>
                                     </div>
                                     <div class="row mt-3 " >
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
-                                            <span id="father_eng"></span>, son / daughter  of <span id="name_eng"></span>,  holder of
+                                            <span id="father_eng" style="border-bottom:1px dotted black;"></span>, son / daughter  of <span id="name_eng" style="border-bottom:1px dotted black;"></span>,  holder of
                                             CSC No 
                                         </div>
                                         <div class="col-md-1"></div>
@@ -118,7 +118,7 @@
                                     <div class="row mt-3 " style="text-align: justify;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
-                                            <span id="nrc_eng"></span>, has been registered as a Lecturer/Tutor of  a Private Accounting  
+                                            <span id="nrc_eng" style="border-bottom:1px dotted black;"></span>, has been registered as a Lecturer/Tutor of  a Private Accounting  
                                              
                                         </div>
                                         <div class="col-md-1"></div>
@@ -182,7 +182,7 @@
                                     <div class="row mt-3 period" style="text-align: justify;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
-                                            <p >This certificate is valid for the period <span id="period_time"></span></p>
+                                            <p >This certificate is valid for the period <span id="period_time_start" style='border-bottom:1px dotted black;'></span> to <span id="period_time_end" style='border-bottom:1px dotted black;'></span></p>
                                         </div>
                                         <div class="col-md-6">
                                             
