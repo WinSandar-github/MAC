@@ -1630,7 +1630,7 @@
                         return meta.row + meta.settings._iDisplayStart + 1;
                     }},
                     {data:'action', name: 'action', orderable: false, searchable: false},
-                    {data: 'student_info.name_mm', name: 'Student Name'},
+                    {data: 'student_info.name_mm', name: 'Name'},
                     {data: 'nrc', name: 'NRC'},
                     {data: 'student_info.email', name: 'Email'},
                     {data: 'self', name: 'Self Confession'},
