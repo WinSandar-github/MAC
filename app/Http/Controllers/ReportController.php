@@ -31,40 +31,11 @@ class ReportController extends Controller
     public function showExamList(Request $request)
     {
          
-        $batch = Batch::where('id',$request->batch_id)->with('course',)->first();
-
-        $student_infos = DB::table('student_infos')
-                        // ->join('student_course_regs', 'student_course_regs.student_info_id', '=', 'student_infos.id')
-                        ->join('exam_register', 'exam_register.student_info_id', '=', 'student_infos.id')
-                        ->where('exam_register.batch_id',$request->batch_id)
-                        ->where('exam_register.status',1)
-                        ->where('exam_register.exam_type_id','!=',3)   
-                        ->orderByRaw('LENGTH(student_infos.cpersonal_no)','ASC') 
-                        ->orderBy('student_infos.cpersonal_no', 'ASC')
-
-                        ->select('student_infos.cpersonal_no','student_infos.id',)                    
-                        ->groupBy('student_infos.id','student_infos.cpersonal_no')
-                        ->get();
-                        if($request->module)
-                        {
-                        
-                            $student_infos = $student_infos->where('is_full_module',$request->module);
-                        }                 
-
-                       
-
-        
-
-
-         
-                        return $student_infos;
-        // $student_infos = ExamRegister::where('batch_id',$request->batch_id)
-        //                 ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
-        //                 ->where('exam_type_id','!=',3)
-        //                 ->where('status',1)
-        //                 ->with('student_info')->select('exam_register.*')->get();
-
-        //                 return $student_infos;
+        $student_infos = ExamRegister::where('batch_id',$request->batch_id)
+                        ->join('student_infos', 'student_infos.id', '=', 'exam_register.student_info_id')
+                        ->where('exam_type_id','!=',3)
+                        ->where('status',1)
+                        ->with('student_info')->select('exam_register.*');
 
         $student_infos = $batch->course->course_type->course_code == "da" 
         ? $student_infos->orderByRaw('LENGTH(student_infos.personal_no)','ASC')->orderBy('student_infos.personal_no','ASC')
@@ -82,15 +53,7 @@ class ReportController extends Controller
             
             $student_infos = $student_infos->where('exam_department',$request->exam_department);
         }
-
-        if($request->student_type)
-        {
-            $type = StudentCourseReg::where('type',$student->type)->  
-            $student_infos = $student_infos->whereHas('comments', function (Builder $query) {
-                $query->where('content', 'like', 'code%');
-            });
-        }
-        
+ 
         $request->grade && $student_infos =  $student_infos->Where('grade',$request->grade);
         $request->exam_type_id &&  $student_infos =  $student_infos->Where('exam_type_id',$request->exam_type_id);
 
