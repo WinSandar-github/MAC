@@ -18,6 +18,7 @@ use App\Declaration;
 use App\AuditFirmFile;
 use App\NonAuditFirmFile;
 use App\StudentInfo;
+use App\Papp;
 use App\Invoice;
 use Hash;
 use File;
@@ -412,9 +413,9 @@ class AccFirmInfController extends Controller
             $invoice->student_info_id = $std_info->id;
             //$invoice->student_info_id = $request->student_id;
             $invoice->invoiceNo = 'audit_initial'.$acc_firm_info->id;
-            $invoice->name_eng        = $std_info->email;
+            $invoice->name_eng        = $acc_firm_info->accountancy_firm_name;
             $invoice->email           = $std_info->email;
-            $invoice->phone           = '';
+            $invoice->phone           = $acc_firm_info->telephones;
             $invoice->status          = 0;
 
             $fees = \App\Membership::where('membership_name', '=', 'Audit')->first(['form_fee', 'registration_fee']);
@@ -504,9 +505,9 @@ class AccFirmInfController extends Controller
             $invoice->student_info_id = $std_info->id;
             //$invoice->student_info_id = $request->student_id;
             $invoice->invoiceNo = 'non_audit_initial'.$acc_firm_info->id;
-            $invoice->name_eng        = $std_info->email;
+            $invoice->name_eng        = $acc_firm_info->accountancy_firm_name;
             $invoice->email           = $std_info->email;
-            $invoice->phone           = '';
+            $invoice->phone           = $acc_firm_info->telephones;
             $invoice->status          = 0;
 
             $fees = \App\Membership::where('membership_name', '=', 'Non-Audit')->first(['form_fee', 'reg_fee_sole','reg_fee_partner']);
@@ -913,6 +914,7 @@ class AccFirmInfController extends Controller
         // $acc_firm_info->form_fee = $request->form_fee;
         // $acc_firm_info->nrc_fee  = $request->nrc_fee;
         $acc_firm_info->register_date  = $register_date;
+        $acc_firm_info->other  = $request->other;
         $acc_firm_info->verify_status  = 0;
         $acc_firm_info->req_for_stop    = $request->req_for_stop;
         $acc_firm_info->last_registered_year    = $request->last_registered_year;
@@ -1414,6 +1416,7 @@ class AccFirmInfController extends Controller
         }
         $acc_firm_info->declaration  = $request->declaration;
         $acc_firm_info->declaration_mm  = $request->declaration_mm;
+        $acc_firm_info->other  = $request->other;
         if($image != ''){
           $acc_firm_info->image  = $image;
         }
@@ -2930,9 +2933,9 @@ class AccFirmInfController extends Controller
               $invoice = New Invoice();
               $invoice->student_info_id = $request->student_id;
               $invoice->invoiceNo = 'off_audit_renew'.$acc_firm_info->id;
-              $invoice->name_eng        = $std_info->email;
+              $invoice->name_eng        = $acc_firm_info->accountancy_firm_name;
               $invoice->email           = $std_info->email;
-              $invoice->phone           = '';
+              $invoice->phone           = $acc_firm_info->telephones;
               $invoice->status          = 0;
               $invoice->save();
 
@@ -3120,9 +3123,9 @@ class AccFirmInfController extends Controller
               //$invoice = Invoice::where('student_info_id',$request->student_id)->first();
               $invoice->student_info_id = $request->student_id;
               $invoice->invoiceNo = 'audit_renew'.$acc_firm_info->id;
-              $invoice->name_eng        = $std_info->email;
+              $invoice->name_eng        = $acc_firm_info->accountancy_firm_name;
               $invoice->email           = $std_info->email;
-              $invoice->phone           = '';
+              $invoice->phone           = $acc_firm_info->telephones;
               $invoice->status          = 0;
 
               $current_year = date('Y');
@@ -3294,9 +3297,9 @@ class AccFirmInfController extends Controller
               $invoice = New Invoice();
               $invoice->student_info_id = $request->student_id;
               $invoice->invoiceNo = 'off_non_audit_renew'.$acc_firm_info->id;
-              $invoice->name_eng        = $std_info->email;
+              $invoice->name_eng        = $acc_firm_info->accountancy_firm_name;
               $invoice->email           = $std_info->email;
-              $invoice->phone           = '';
+              $invoice->phone           = $acc_firm_info->telephones;
               $invoice->status          = 0;
               $invoice->save();
 
@@ -3473,9 +3476,9 @@ class AccFirmInfController extends Controller
               $invoice = New Invoice();
               $invoice->student_info_id = $request->student_id;
               $invoice->invoiceNo = 'non_audit_renew'.$acc_firm_info->id;
-              $invoice->name_eng        = $std_info->email;
+              $invoice->name_eng        = $acc_firm_info->accountancy_firm_name;
               $invoice->email           = $std_info->email;
-              $invoice->phone           = '';
+              $invoice->phone           = $acc_firm_info->telephones;
               $invoice->status          = 0;
               $invoice->save();
 
@@ -4037,10 +4040,12 @@ class AccFirmInfController extends Controller
       //                                             ->where('audit_firm_type_id','=',$firm_type)
       //                                             ->get();
 
-      $acc_firm_info = AccountancyFirmInformation::where('status','=',$status)
+      $acc_firm_info = AccountancyFirmInformation::with('accountancy_firm_invoices')
+                                                  ->where('status','=',$status)
                                                   ->where('is_renew','=',0)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
+
 
       if($firm_type == 1){
         return DataTables::of($acc_firm_info)
@@ -4049,9 +4054,7 @@ class AccFirmInfController extends Controller
                           <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
                               <li class='fa fa-eye fa-sm'></li>
                           </button>
-                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
-                              <li class='fa fa-trash fa-sm'></li>
-                          </button>
+
                       </div>";
           })
 
@@ -4102,6 +4105,13 @@ class AccFirmInfController extends Controller
           ->addColumn('website', function ($infos){
               return $infos->website;
           })
+
+          // ->addColumn('payment_status', function ($infos){
+          //     return $infos->website;
+          // })
+          // ->addColumn('payment_date', function ($infos){
+          //     return $infos->website;
+          // })
 
           ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
           ->make(true);
@@ -4113,9 +4123,7 @@ class AccFirmInfController extends Controller
                           <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
                               <li class='fa fa-eye fa-sm'></li>
                           </a>
-                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
-                              <li class='fa fa-trash fa-sm'></li>
-                          </button>
+
                       </div>";
           })
 
@@ -4166,6 +4174,13 @@ class AccFirmInfController extends Controller
           ->addColumn('website', function ($infos){
               return $infos->website;
           })
+
+          // ->addColumn('payment_status', function ($infos){
+          //     return $infos->website;
+          // })
+          // ->addColumn('payment_date', function ($infos){
+          //     return $infos->website;
+          // })
 
           ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
           ->make(true);
@@ -4186,9 +4201,7 @@ class AccFirmInfController extends Controller
                           <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
                               <li class='fa fa-eye fa-sm'></li>
                           </button>
-                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo( \"$infos->accountancy_firm_name\", $infos->id )'>
-                              <li class='fa fa-trash fa-sm'></li>
-                          </button>
+
                       </div>";
           })
 
@@ -4240,6 +4253,7 @@ class AccFirmInfController extends Controller
               return $infos->website;
           })
 
+
           ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
           ->make(true);
       }
@@ -4250,9 +4264,7 @@ class AccFirmInfController extends Controller
                           <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
                               <li class='fa fa-eye fa-sm'></li>
                           </a>
-                          <button type='button' class='btn btn-danger btn-xs' onclick='deleteAuditInfo(\"$infos->accountancy_firm_name\", $infos->id)'>
-                              <li class='fa fa-trash fa-sm'></li>
-                          </button>
+
                       </div>";
           })
 
@@ -4418,4 +4430,51 @@ class AccFirmInfController extends Controller
         ],200);
     }
 
+    public function checkPAPP($reg_no,$status)
+    {
+      if($status == 0){
+        // for initial users
+        $papp = Papp::where('papp_reg_no',$reg_no)
+                    ->where('offline_user',0)
+                    ->with('student_info','student_job', 'student_education_histroy','student_register')
+                    ->get();
+        return response()->json([
+            'data'  => $papp
+        ]);
+      }
+      else{
+        // for offline users
+        $papp = Papp::where('papp_reg_no',$reg_no)
+                    ->where('offline_user',1)
+                    ->with('student_info','student_job', 'student_education_histroy','student_register')
+                    ->get();
+        return response()->json([
+            'data'  => $papp
+        ]);
+      }
+    }
+
+    // public function checkOfflinePAPP($reg_no,$status)
+    // {
+    //   if($status == 0){
+    //     // for initial users
+    //     $papp = Papp::where('papp_reg_no',$reg_no)
+    //                 ->where('offline_user',1)
+    //                 ->with('student_info','student_job', 'student_education_histroy','student_register')
+    //                 ->get();
+    //     return response()->json([
+    //         'data'  => $papp
+    //     ]);
+    //   }
+    //   else{
+    //     // for offline users
+    //     $papp = Papp::where('papp_reg_no',$reg_no)
+    //                 ->where('offline_user',1)
+    //                 ->with('student_info','student_job', 'student_education_histroy','student_register')
+    //                 ->get();
+    //     return response()->json([
+    //         'data'  => $papp
+    //     ]);
+    //   }
+    // }
 }
