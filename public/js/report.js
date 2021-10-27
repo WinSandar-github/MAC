@@ -102,18 +102,18 @@ function generateExamResult(code) {
 }
 
 
-function generateEntranceExamSrNo(code) {
+function generateEntranceExamSrNo(batch) {
 
     show_loader();
     $.ajax({
-        url: BACKEND_URL + "/generate_entrance_exam_sr_no/" + code,
+        url: BACKEND_URL + "/generate_entrance_exam_sr_no/" + batch,
         type: 'get',
         contentType: false,
         processData: false,
         success: function (result) {
-            EasyLoading.hide();
-            successMessage("Update Serial Number");
-            location.reload();
+            // EasyLoading.hide();
+            // successMessage("Update Serial Number");
+            // location.reload();
 
         }
     });

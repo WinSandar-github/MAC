@@ -30,6 +30,8 @@
                             @if($data)
 															@foreach($data as $item)
 															<input type="hidden" id="firm_id" value="{{$item->id}}" />
+															<input type="hidden" id="offline_user" value="{{$item->offline_user}}" />
+															<input type="hidden" id="is_renew" value="{{$item->is_renew}}" />
 															<div class="card-body">
 	                            	<h5 class="border-bottom pb-2 mt-3 text-center" style="font-weight:bold">Non_Audit Firm Information</h5>
 	                                            <div class="row">
@@ -1238,6 +1240,29 @@
 								                                </div>
 																							@endif
 
+																							<div class="card">
+											                            <div class="card-header">
+											                                <h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
+											                            </div>
+											                            <div class="card-body pt-0">
+											                                <div class="row m-2 mt-3 border-bottom">
+											                                    <div class="col-md-6 text-left">
+											                                        <p class="ml-2" style="font-weight:bold">Fees</p>
+											                                    </div>
+											                                    <div class="col-md-6 text-left">
+											                                        <button type="button" class="btn btn-info mt-0" data-toggle="modal" data-target="#payment_detail_modal">View Detail</button>
+											                                    </div>
+											                                </div>
+											                                <div class="row m-2 mt-3 border-bottom">
+											                                    <div class="col-md-6 text-left">
+											                                        <p class="ml-2" style="font-weight:bold">Status</p>
+											                                    </div>
+											                                    <div class="col-md-6 text-left">
+											                                        <span id="payment_status" style="font-size:20px;"></span>
+											                                    </div>
+											                                </div>
+											                            </div>
+											                        </div>
 
 	                                            <input type="hidden" name="audit_firm_id" >
 
@@ -1334,35 +1359,59 @@
 						</div>
 
 						<div class="modal fade" id="remarkModalRenewNA" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
-										    <div class="modal-content">
-										      <div class="modal-header">
-										        <h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
-										        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										          <span aria-hidden="true">&times;</span>
-										        </button>
-										      </div>
-										      <form id="remark-form-renew"  method="post" action="javascript:rejectNonAuditFirmRenew({{$item->student_info_id}},{{$item->id}})" enctype="multipart/form-data">
-										      @csrf
-										        <div class="modal-body">
-										            <div class="row">
-										                <div class="col-md-12">
+						  <div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						          <span aria-hidden="true">&times;</span>
+						        </button>
+						      </div>
+						      <form id="remark-form-renew"  method="post" action="javascript:rejectNonAuditFirmRenew({{$item->student_info_id}},{{$item->id}})" enctype="multipart/form-data">
+						      @csrf
+						        <div class="modal-body">
+						            <div class="row">
+						                <div class="col-md-12">
 
-										                    <div class="form-group">
-										                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
-										                        <textarea class="form-control" name="remark_renew_na" id="remark_renew_na" rows="3"></textarea>
-										                    </div>
-										                </div>
-										            </div>
-										        </div>
-										        <div class="modal-footer">
-										            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										            <button type="submit" class="btn btn-primary" form="remark-form-renew">Reject</button>
-										        </div>
-										    </form>
-										    </div>
-										  </div>
-										</div>
+						                    <div class="form-group">
+						                        <!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+						                        <textarea class="form-control" name="remark_renew_na" id="remark_renew_na" rows="3"></textarea>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						        <div class="modal-footer">
+						            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						            <button type="submit" class="btn btn-primary" form="remark-form-renew">Reject</button>
+						        </div>
+						    </form>
+						    </div>
+						  </div>
+						</div>
+
+						{{-- Payment detail Modal --}}
+						<div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						    <div class="modal-dialog modal-dialog-centered" role="document">
+						      <div class="modal-content">
+						        <div class="modal-header">
+						          <h5 class="modal-title" id="exampleModalLabel"> PAPP Initial Registration Fees</h5>
+						          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						            <span aria-hidden="true">&times;</span>
+						          </button>
+						        </div>
+						        <div class="modal-body">
+						            <ul class="list-group mb-3 sticky-top fee_list">
+
+						            </ul>
+						        </div>
+						        <div class="modal-footer">
+						          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						        </div>
+						      </div>
+						    </div>
+						</div>
+						{{-- Payment detail Modal End --}}
+
 						@endforeach
 						@endif
     <script>
@@ -1396,7 +1445,134 @@
     //loadNonAuditStaff();
     //loadNonAuditOrganization();
 		var firm_id = $("#firm_id").val();
+		var offline_user = $("#offline_user").val();
+		var is_renew = $("#is_renew").val();
 		loadAttachFiles(firm_id);
+
+    if(offline_user == 0 && is_renew == 0){
+			$.ajax({
+	            url: BACKEND_URL + "/get_payment_info/" + 'non_audit_initial'+firm_id,
+	            type: 'get',
+	            success: function (result) {
+	                console.log("firm invoice",result);
+	                if(result.status==0){
+	                    $('#payment_status').append("Pending");
+											$('#payment_status').addClass("text-warning");
+	                }
+	                else{
+	                    $('#payment_status').append("Paid");
+											$('#payment_status').addClass("text-success");
+	                }
+	                var productDesc = result.productDesc.split(",");
+	                var amount = result.amount.split(",");
+	                var total=0;
+	                for(var i in amount) {
+	                    total += parseInt(amount[i]);
+	                }
+	                console.log(total);
+	                for(let i=0 ; i<amount.length ; i++){
+	                    $('.fee_list').append(`
+	                        <li
+	                            class="list-group-item d-flex justify-content-between lh-condensed">
+	                            <h6 class="my-0">${productDesc[i]}</h6>
+	                            <span class="text-muted">- ${amount[i]} MMK</span>
+	                        </li>
+	                    `);
+	                }
+	                $('.fee_list').append(`
+	                    <li class="list-group-item d-flex justify-content-between">
+	                        <span>Total (MMK)</span>
+	                        <span id="total">
+	                            - <strong>${total}</strong> MMK
+	                        </span>
+	                    </li>
+	                `);
+	            }
+	        });
+		}
+		else if(offline_user == 0 && is_renew == 1){
+			$.ajax({
+	            url: BACKEND_URL + "/get_payment_info/" + 'non_audit_renew'+firm_id,
+	            type: 'get',
+	            success: function (result) {
+	                console.log("firm invoice",result);
+	                if(result.status==0){
+	                    $('#payment_status').append("Pending");
+											$('#payment_status').addClass("text-warning");
+	                }
+	                else{
+	                    $('#payment_status').append("Paid");
+											$('#payment_status').addClass("text-success");
+	                }
+	                var productDesc = result.productDesc.split(",");
+	                var amount = result.amount.split(",");
+	                var total=0;
+	                for(var i in amount) {
+	                    total += parseInt(amount[i]);
+	                }
+	                console.log(total);
+	                for(let i=0 ; i<amount.length ; i++){
+	                    $('.fee_list').append(`
+	                        <li
+	                            class="list-group-item d-flex justify-content-between lh-condensed">
+	                            <h6 class="my-0">${productDesc[i]}</h6>
+	                            <span class="text-muted">- ${amount[i]} MMK</span>
+	                        </li>
+	                    `);
+	                }
+	                $('.fee_list').append(`
+	                    <li class="list-group-item d-flex justify-content-between">
+	                        <span>Total (MMK)</span>
+	                        <span id="total">
+	                            - <strong>${total}</strong> MMK
+	                        </span>
+	                    </li>
+	                `);
+	            }
+	        });
+		}
+		else if(offline_user == 1 && is_renew == 1){
+			$.ajax({
+	            url: BACKEND_URL + "/get_payment_info/" + 'off_non_audit_renew'+firm_id,
+	            type: 'get',
+	            success: function (result) {
+	                console.log("firm invoice",result);
+	                if(result.status==0){
+	                    $('#payment_status').append("Pending");
+											$('#payment_status').addClass("text-warning");
+	                }
+	                else{
+	                    $('#payment_status').append("Paid");
+											$('#payment_status').addClass("text-success");
+	                }
+	                var productDesc = result.productDesc.split(",");
+	                var amount = result.amount.split(",");
+	                var total=0;
+	                for(var i in amount) {
+	                    total += parseInt(amount[i]);
+	                }
+	                console.log(total);
+	                for(let i=0 ; i<amount.length ; i++){
+	                    $('.fee_list').append(`
+	                        <li
+	                            class="list-group-item d-flex justify-content-between lh-condensed">
+	                            <h6 class="my-0">${productDesc[i]}</h6>
+	                            <span class="text-muted">- ${amount[i]} MMK</span>
+	                        </li>
+	                    `);
+	                }
+	                $('.fee_list').append(`
+	                    <li class="list-group-item d-flex justify-content-between">
+	                        <span>Total (MMK)</span>
+	                        <span id="total">
+	                            - <strong>${total}</strong> MMK
+	                        </span>
+	                    </li>
+	                `);
+	            }
+	        });
+		}
+
     //loadNonAuditTypeOfService();
     //autoLoadAudit();
 </script>

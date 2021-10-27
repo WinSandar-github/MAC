@@ -923,7 +923,7 @@ class ArticleController extends Controller
 
         // return $acc_app;
         if($acc_app->save()){
-            return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
+            return response()->json($invoice, 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
     }
@@ -966,8 +966,17 @@ class ArticleController extends Controller
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                 return $nrc_result;
             })
-            ->addColumn('registration_fee', function ($infos){
-                return $infos->registration_fee == null ? "-" : $infos->registration_fee;
+            ->addColumn('resign_fee', function ($infos){
+                $length = count($infos->student_info->invoice);
+                for($i=0 ; $i< $length; $i++){
+                    if($infos->student_info->invoice[$i]->invoiceNo == 'resign'){
+                        if($infos->student_info->invoice[$i]->status == '0'){
+                            return "PENDING";
+                        }else{
+                            return "COMPLETED";
+                        }
+                    }
+                }
             })
             ->addColumn('status', function ($infos){
                 if($infos->resign_status == 0){
@@ -979,7 +988,7 @@ class ArticleController extends Controller
                 }
             });
             
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee'])->make(true);
             return $datatable;
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\SchoolRegister;
 use App\TeacherRegister;
+use App\Subject;
 
 class TeacherSchoolReportController extends Controller
 {
@@ -44,17 +45,24 @@ class TeacherSchoolReportController extends Controller
 
     public function teacherSchoolPrivate(Request $request)
     {
-        return $teacher = TeacherRegister::with('school')->get();
+        // 1 = private , 0 = individual
+        $teacher = TeacherRegister::with('school')->where('from_valid_date', 'like', "%$request->date%")->get();
 
-
+        $teacher = $teacher->map(function($item){
+            $subj_id = explode(',', $item->certificates);
+            $subject = Subject::whereIn('id', $subj_id)->get(['subject_name']);
+            $item->subject = $subject;
+            return $item;
+        });
 
         $data = [
-            'title' => 'ကိုယ်ပိုင်သင်တန်းကျောင်းများတွင် သင်ကြားနေသောသင်တန်းဆရာများစာရင်း 
-            ( အမျိုးအစားအလိုက် (Private/Individual)၊ ကျောင်းအလိုက်၊ ခုနှစ်အလိုက်၊ ဘာသာရပ်အလိုက်၊ သင်တန်းအမျိုးအစားအလိုက်',
-            'list' => []
+            // 'title' => 'ကိုယ်ပိုင်သင်တန်းကျောင်းများတွင် သင်ကြားနေသောသင်တန်းဆရာများစာရင်း 
+            // ( အမျိုးအစားအလိုက် (Private/Individual)၊ ကျောင်းအလိုက်၊ ခုနှစ်အလိုက်၊ ဘာသာရပ်အလိုက်၊ သင်တန်းအမျိုးအစားအလိုက်',
+            'title' => 'သင်တန်းဆရာများစာရင်း',
+            'teacher' => $teacher,
         ];
 
-        return view('reporting.school_teacher.teacher_school_report', compact('data'));
+        return view('reporting.school_teacher.teacher_report', compact('data'));
     }
 
     public function teacherSchoolLicensePlate(Request $request)

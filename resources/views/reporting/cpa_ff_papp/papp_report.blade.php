@@ -17,7 +17,6 @@
             
                 <div class="card-body">
                     <div class="row">
-                        
                     <div class="col-md-12 table-responsive">
                             <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
                                 <thead>
@@ -28,19 +27,20 @@
                                 </tr>
                                 </thead>
                                 <tbody id="tbl_app_list_body" class="hoverTable">
-                                    @foreach($data['cpa'] as $key => $cpa)
+                                    @foreach($data['papp'] as $key => $papp)
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            <td>{{ $cpa->cpaff_reg_no }}</td>
+                                            <td>{{ $papp->reg_no }}</td>
+                                            <td>{{ $papp->papp_reg_no }}</td>
                                             <td>{{ 
-                                                $cpa->student_info == ""
+                                                $papp->student_info == ""
                                                     ? 'error'
-                                                    : $cpa->student_info->name_mm 
+                                                    : $papp->student_info->name_mm 
                                             }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
+                                            <td>{{ $papp->cpd_hours }}</td>
+                                            <td>{{ $papp->cpd_hours }}</td>
+                                            <td>{{ $papp->cpd_hours }}</td>
+                                            <td>{{ $papp->cpd_hours }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -85,9 +85,7 @@
                 searching: false,
                 paging:false,
                 "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
-
             });
         })
 </script>
 @endpush
-

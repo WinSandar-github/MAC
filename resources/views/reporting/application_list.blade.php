@@ -56,8 +56,8 @@
                                     <th class="bold-font-weight">စဥ်</th>
                                     <th class="bold-font-weight">အမည်</th>
                                     <th class="bold-font-weight">နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
-                                    <!-- <th class="bold-font-weight">ဘွဲ့အမည်</th> -->
                                     <th class="bold-font-weight">အဘအမည်</th>
+                                    <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                     <th class="bold-font-weight">အသက်</th>
                                     <th class="bold-font-weight">ကျား/မ</th>
                                     <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
@@ -99,10 +99,13 @@
                                                         {{ $s->student_info->father_name_mm }}
                                                     </td>
                                                     <td>
+                                                        {{ $s->student_info->student_education_histroy->degree_name}}
+                                                    </td>
+                                                    <td>
                                                         {{ $age}}
                                                     </td>
                                                     <td>
-                                                        {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                        {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
                                                     </td>
                                                     <td>
                                                         {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
@@ -133,10 +136,13 @@
                                                             {{ $s->student_info->father_name_mm }}
                                                         </td>
                                                         <td>
+                                                            {{ $s->student_info->student_education_histroy->degree_name}}
+                                                        </td>
+                                                        <td>
                                                             {{ $age}}
                                                         </td>
                                                         <td>
-                                                            {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                            {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
                                                         </td>
                                                         <td>
                                                             {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
@@ -183,13 +189,16 @@
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
+                                                    {{ $s->student_info->student_education_histroy->degree_name}}
+                                                </td>
+                                                <td>
                                                {{ $age}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                    {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
+                                                    {{ $s->student_info->gov_staff == 1 ? 'ဟုတ်' : 'မဟုတ်'}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -222,10 +231,13 @@
                                                     {{ $s->student_info->father_name_mm }}
                                                 </td>
                                                 <td>
+                                                    {{ $s->student_info->student_education_histroy->degree_name}}
+                                                </td>
+                                                <td>
                                                {{ $age}}
                                                 </td>
                                                 <td>
-                                                    {{ $s->student_info->gender == 1 ? 'ကျား' : 'မ'}}
+                                                    {{ $s->student_info->gender == "Male" ? 'ကျား' : 'မ'}}
                                                 </td>
                                                 <td>
                                                     {{ $s->student_info->gov_staff == 1 ? 'Yes' : 'No'}}
@@ -280,7 +292,7 @@
             var $table = $('.table');
 
             $table.tableExport({
-                headers: false,
+                headers: true,
                 footers: false,
                 position: "bottom",
                 bootstrap: true
@@ -298,7 +310,7 @@
                
                 switch (val) {
                     case "all":
-                        $('.mac-row, .mac_ygn, .mac_npt, .private-row, .self-row').show();
+                        $('.mac-row, .mac-ygn, .mac-npt, .private-row, .self-row').show();
                         break;
                     case "mac":
                         $('.mac-row').show();
@@ -312,6 +324,16 @@
                         $('.private-row').show();
                         $('.mac-row, .self-row').hide();
                         break;
+                    case "ရန်ကုန်သင်တန်းကျောင်း":
+                      
+                      $('.mac-row, .mac-ygn').show();
+                      $('.mac-npt, .private-row, .self-row').hide();
+                      break;
+                    case "နေပြည်တော်သင်တန်းကျောင်း":
+                    
+                      $('.mac-row, .mac-npt').show();
+                      $('.mac-ygn, .private-row, .self-row').hide();
+                      break;
                     
                 }
             })

@@ -77,7 +77,7 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -99,7 +99,7 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -121,7 +121,7 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -162,7 +162,7 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >PaymentnStatus</th>
 
                                                     </tr>
                                                 </thead>
@@ -184,7 +184,7 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -206,7 +206,7 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
