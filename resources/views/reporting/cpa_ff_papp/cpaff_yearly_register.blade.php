@@ -1,46 +1,48 @@
 @extends('reporting.main')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12 text-center">
+<div class="row">
+    <div class="col-md-12 text-center">
            
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12">
-                            <h3 class="text-center m-3" style="font-weight:bold">
+                            <h5 class="text-center m-3" style="font-weight:bold"> 
                                 {{ $data['title'] }}
-                            </h3>
+                            </h5>
                         </div>
                     </div>
                 </div>
-            
                 <div class="card-body">
-                    <div class="row">
-                        
-                    <div class="col-md-12 table-responsive">
-                            <table width="100%" id="tbl_application" class="table table-hover text-nowrap ">
+                    <div class="row"> 
+                        <div class="col-md-12 table-responsive">
+                            <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
                                 <thead>
-                                <tr>
-                                    @foreach($data['fields'] as $col)
-                                        <th>{{$col}}</th>
-                                    @endforeach
-                                </tr>
+                                    <tr>
+                                        <th class="bold-font-weight" >စဥ်</th>
+                                        <th class="bold-font-weight" >CPA FF Reg No</th>
+                                        <th class="bold-font-weight" >အမည်</th>
+                                        <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>
+                                        <th class="bold-font-weight" >လိပ်စာ</th>
+                                        <!--<th class="bold-font-weight" >ဖုန်းနံပါတ်</th>
+                                        <th class="bold-font-weight" >အီးမေးလ်</th>-->
+                                    </tr>
                                 </thead>
-                                <tbody id="tbl_app_list_body" class="hoverTable">
-                                    @foreach($data['cpa'] as $key => $cpa)
+                                <tbody id="tbl_app_list_body" class="hoverTable text-center">
+                                    @foreach($data['cpaff'] as $key => $cpaff)
                                         <tr>
                                             <td>{{ ++$key }}</td>
-                                            <td>{{ $cpa->cpaff_reg_no }}</td>
+                                            <td>{{ $cpaff->cpaff_reg_no }}</td>
                                             <td>{{ 
-                                                $cpa->student_info == ""
+                                                $cpaff->student_info == ""
                                                     ? 'error'
-                                                    : $cpa->student_info->name_mm 
+                                                    : $cpaff->student_info->name_mm 
                                             }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
-                                            <td>{{ $cpa->total_hours }}</td>
+                                            <td>{{ $cpaff->student_info->nrc_state_region ."/". $cpaff->student_info->nrc_township ."(". $cpaff->student_info->nrc_citizen .")". $cpaff->student_info->nrc_number }}</td>
+                                            <td>{{ $cpaff->student_info->address }}<br>
+                                                {{ $cpaff->student_info->phone }}<br>
+                                                {{ $cpaff->student_info->email }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -50,8 +52,10 @@
                     </div>
                 </div>
             </div>
-        </div>
     </div>
+</div>
+
+
 @endsection
 @push('styles')
 <link href="{{ asset('assets/js/plugins/tableexport/dist/css/tableexport.min.css') }}" rel="stylesheet">
@@ -90,4 +94,3 @@
         })
 </script>
 @endpush
-
