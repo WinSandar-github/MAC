@@ -366,7 +366,13 @@ function autoLoadAudit(){
        audit_data.forEach(function(element){
          // console.log('audit_firm',element);
          // console.log('non_audit_firm',element);
+
          $("input[name=student_info_id]").val(element.student_info_id);
+         $("input[name=offline_user]").val(element.offline_user);
+         $("input[name=is_renew]").val(element.is_renew);
+
+         autoLoadPayment(element.offline_user,element.is_renew);
+
          if(element.is_renew == 1){
            $("#renew_btns").css('display','block');
            $("#initial_btns").css('display','none');
@@ -1219,6 +1225,138 @@ function autoLoadAuditReconnect(){
     error:function (message){
       errorMessage(message);
     }
+  });
+}
+
+function autoLoadPayment(offline_user,is_renew){
+  let firm_id=localStorage.getItem("id");
+  $(document).ready(function(){
+
+    if(offline_user == 0 && is_renew == 0){
+      $.ajax({
+              url: BACKEND_URL + "/get_payment_info/" + 'audit_initial'+firm_id,
+              type: 'get',
+              success: function (result) {
+                  console.log("firm invoice",result);
+                  if(result.status==0){
+                      $('#payment_status').append("Pending");
+                      $('#payment_status').addClass("text-warning");
+                  }
+                  else{
+                      $('#payment_status').append("Paid");
+                      $('#payment_status').addClass("text-success");
+                  }
+                  var productDesc = result.productDesc.split(",");
+                  var amount = result.amount.split(",");
+                  var total=0;
+                  for(var i in amount) {
+                      total += parseInt(amount[i]);
+                  }
+                  console.log(total);
+                  for(let i=0 ; i<amount.length ; i++){
+                      $('.fee_list').append(`
+                          <li
+                              class="list-group-item d-flex justify-content-between lh-condensed">
+                              <h6 class="my-0">${productDesc[i]}</h6>
+                              <span class="text-muted">- ${amount[i]} MMK</span>
+                          </li>
+                      `);
+                  }
+                  $('.fee_list').append(`
+                      <li class="list-group-item d-flex justify-content-between">
+                          <span>Total (MMK)</span>
+                          <span id="total">
+                              - <strong>${total}</strong> MMK
+                          </span>
+                      </li>
+                  `);
+              }
+          });
+    }
+    else if(offline_user == 0 && is_renew == 1){
+      $.ajax({
+              url: BACKEND_URL + "/get_payment_info/" + 'audit_renew'+firm_id,
+              type: 'get',
+              success: function (result) {
+                  console.log("firm invoice",result);
+                  if(result.status==0){
+                      $('#payment_status').append("Pending");
+                      $('#payment_status').addClass("text-warning");
+                  }
+                  else{
+                      $('#payment_status').append("Paid");
+                      $('#payment_status').addClass("text-success");
+                  }
+                  var productDesc = result.productDesc.split(",");
+                  var amount = result.amount.split(",");
+                  var total=0;
+                  for(var i in amount) {
+                      total += parseInt(amount[i]);
+                  }
+                  console.log(total);
+                  for(let i=0 ; i<amount.length ; i++){
+                      $('.fee_list').append(`
+                          <li
+                              class="list-group-item d-flex justify-content-between lh-condensed">
+                              <h6 class="my-0">${productDesc[i]}</h6>
+                              <span class="text-muted">- ${amount[i]} MMK</span>
+                          </li>
+                      `);
+                  }
+                  $('.fee_list').append(`
+                      <li class="list-group-item d-flex justify-content-between">
+                          <span>Total (MMK)</span>
+                          <span id="total">
+                              - <strong>${total}</strong> MMK
+                          </span>
+                      </li>
+                  `);
+              }
+          });
+    }
+    else if(offline_user == 1 && is_renew == 1){
+      $.ajax({
+              url: BACKEND_URL + "/get_payment_info/" + 'off_audit_renew'+firm_id,
+              type: 'get',
+              success: function (result) {
+                  console.log("firm invoice",result);
+                  if(result.status==0){
+                      $('#payment_status').append("Pending");
+                      $('#payment_status').addClass("text-warning");
+                  }
+                  else{
+                      $('#payment_status').append("Paid");
+                      $('#payment_status').addClass("text-success");
+                  }
+                  //console.log(result.productDesc);
+                  var productDesc = result.productDesc.split(",");
+                  var amount = result.amount.split(",");
+                  var total=0;
+                  for(var i in amount) {
+                      total += parseInt(amount[i]);
+                  }
+                  console.log(total);
+                  for(let i=0 ; i<amount.length ; i++){
+                      $('.fee_list').append(`
+                          <li
+                              class="list-group-item d-flex justify-content-between lh-condensed">
+                              <h6 class="my-0">${productDesc[i]}</h6>
+                              <span class="text-muted">- ${amount[i]} MMK</span>
+                          </li>
+                      `);
+                  }
+                  $('.fee_list').append(`
+                      <li class="list-group-item d-flex justify-content-between">
+                          <span>Total (MMK)</span>
+                          <span id="total">
+                              - <strong>${total}</strong> MMK
+                          </span>
+                      </li>
+                  `);
+              }
+          });
+    }
+
   });
 }
 

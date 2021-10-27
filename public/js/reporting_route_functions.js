@@ -205,7 +205,7 @@ function articleList(url) {
     }
 }
 
-function articleDailyInOutList(url) {
+function articleDailyInOutList(url,form_type) {
     if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();

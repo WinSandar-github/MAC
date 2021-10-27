@@ -43,6 +43,8 @@ Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@reje
 Route::post('/reject_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@rejectReconnect');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::get('/check_initial_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
+Route::get('/check_offline_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
 
 // Mentor
 Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
@@ -114,10 +116,12 @@ Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
 Route::get('/cpa_ff_offline_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffOfflineRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
-Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff');
+// Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff');
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
+Route::get('/get_cpaff_reg_no/{stu_id}','CPAFFController@getCpaffRegNo');
+Route::get('/get_papp_reg_no/{stu_id}','PAPPController@getPappRegNo');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
@@ -478,3 +482,5 @@ Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewScho
 Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');
 //school total amount
 Route::post('/getTotalAmount', 'SchoolController\SchoolController@getTotalAmount');
+//school branch
+Route::get('/getSchoolBranch/{id}', 'SchoolController\SchoolController@getSchoolBranch');
