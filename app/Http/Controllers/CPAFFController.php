@@ -195,7 +195,15 @@ class CPAFFController extends Controller
             $cpa_ff->cpa2_pass_date    =   $request->cpa2_pass_date;
             $cpa_ff->cpa2_reg_no       =   $request->cpa2_reg_no;//need to add
             $cpa_ff->type              =   $request->type;
-
+            if(date('m')==11 || date('m')==12)
+            {
+                $thisYear = date('Y')+1;
+                $cpa_ff->last_paid_year =$thisYear;
+            }
+            else{
+                $thisYear = date('Y');
+                $cpa_ff->last_paid_year = $thisYear;
+            }  
             $thisYear = date('Y');
             $today = date('d-m-Y');
             $cpa_ff->validate_from = $today;
@@ -1380,16 +1388,20 @@ class CPAFFController extends Controller
                     }
                 })
                 ->addColumn('status', function ($infos){
-                    if($infos->status == 0){
-                      return "PENDING";
+                    if($infos->type==0){
+                        $invoice=Invoice::where('invoiceNo',"cpaff_initial".$infos->id)->get();
+                       
+                    }else{
+                        $invoice=Invoice::where('invoiceNo',"cpaff_renew".$infos->id)
+                        ->get();
+                       
                     }
-                    else if($infos->status == 1){
-                      return "APPROVED";
+                    foreach($invoice as $i){
+                        return $i->status == "0"
+                            ? "Unpaid"
+                            : "Paid";
                     }
-                    else{
-                      return "REJECTED";
-                    }
-                })
+                  })
                 ->addColumn('degree', function ($infos){
                     if($infos->cpa_part_2 == 1){
                       return "CPA Part 2 Pass";
