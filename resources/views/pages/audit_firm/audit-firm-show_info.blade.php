@@ -20,7 +20,11 @@
         </div>--}}
         <form id="audit_firm_form" method="post" action="javascript:updateAuditFirm();" enctype="multipart/form-data">
 
-
+					<input type="hidden" name="audit_firm_type_id">
+					<input type="hidden" name="local_foreign_id">
+					<input type="hidden" name="accountancy_firm_id">
+					<input type="hidden" name="offline_user">
+					<input type="hidden" name="is_renew">
         	<div class="row">
             <div class="col-md-12">
                 <div class="card custom-border-top card-stats">
@@ -40,9 +44,7 @@
                                       <label class="col-md-1 form-label">{{ __(':') }}</label>
                                       <div class="col-md-3">
                                           <div class="form-group">
-                                              <input type="hidden" name="audit_firm_type_id">
-                                              <input type="hidden" name="local_foreign_id">
-                                              <input type="hidden" name="accountancy_firm_id">
+
                                               <span id="accountancy_firm_reg_no"></span>
                                               <!-- <input type="text" name="accountancy_firm_reg_no" class="form-control" autocomplete="off"> -->
                                           </div>
@@ -922,6 +924,30 @@
 	                                </div>
 																</div>
 
+																<div class="card">
+				                            <div class="card-header">
+				                                <h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
+				                            </div>
+				                            <div class="card-body pt-0">
+				                                <div class="row m-2 mt-3 border-bottom">
+				                                    <div class="col-md-6 text-left">
+				                                        <p class="ml-2" style="font-weight:bold">Fees</p>
+				                                    </div>
+				                                    <div class="col-md-6 text-left">
+				                                        <button type="button" class="btn btn-info mt-0" data-toggle="modal" data-target="#payment_detail_modal">View Detail</button>
+				                                    </div>
+				                                </div>
+				                                <div class="row m-2 mt-3 border-bottom">
+				                                    <div class="col-md-6 text-left">
+				                                        <p class="ml-2" style="font-weight:bold">Status</p>
+				                                    </div>
+				                                    <div class="col-md-6 text-left">
+				                                        <span id="payment_status" style="font-size:20px;"></span>
+				                                    </div>
+				                                </div>
+				                            </div>
+				                        </div>
+
                                 <!-- <div class="row">
                                     <div class="col-md-11 d-md-flex justify-content-md-end">
                                         <button type="submit" class="btn btn-primary btn-round" form="audit_firm_form">{{ __('Save') }}</button>
@@ -1048,6 +1074,29 @@
 						  </div>
 						</div>
 
+					{{-- Payment detail Modal --}}
+					<div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					    <div class="modal-dialog modal-dialog-centered" role="document">
+					      <div class="modal-content">
+					        <div class="modal-header">
+					          <h5 class="modal-title" id="exampleModalLabel"> PAPP Initial Registration Fees</h5>
+					          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					            <span aria-hidden="true">&times;</span>
+					          </button>
+					        </div>
+					        <div class="modal-body">
+					            <ul class="list-group mb-3 sticky-top fee_list">
+
+					            </ul>
+					        </div>
+					        <div class="modal-footer">
+					          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					        </div>
+					      </div>
+					    </div>
+					</div>
+					{{-- Payment detail Modal End --}}
+
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
         // get NRC Townships data from myanmarnrc.php config file
@@ -1066,7 +1115,9 @@
     loadAuditTotalStaff();
     loadAuditStaff();
     autoLoadAudit();
+		autoLoadPayment();
 
+		
 
 </script>
 @endpush

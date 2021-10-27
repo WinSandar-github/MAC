@@ -43,6 +43,8 @@ Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@reje
 Route::post('/reject_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@rejectReconnect');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::get('/check_initial_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
+Route::get('/check_offline_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
 
 // Mentor
 Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
@@ -480,3 +482,5 @@ Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewScho
 Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');
 //school total amount
 Route::post('/getTotalAmount', 'SchoolController\SchoolController@getTotalAmount');
+//school branch
+Route::get('/getSchoolBranch/{id}', 'SchoolController\SchoolController@getSchoolBranch');
