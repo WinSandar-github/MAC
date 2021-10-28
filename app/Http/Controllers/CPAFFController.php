@@ -905,6 +905,7 @@ class CPAFFController extends Controller
             $thisYear = date('Y');
             $cpa_ff->last_paid_year = $thisYear;
         }     
+        $cpa_ff->previous_last_paid_year =$oldCpaff->last_paid_year;
         $cpa_ff->resign_date      =   $request->resign_date;
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;

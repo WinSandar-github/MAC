@@ -659,8 +659,8 @@ function loadCPAFFRenewData(){
                 $("#cpaff_pass_date").append(element.cpaff_pass_date);
                 $("#cpaff_renew_date").append(element.cpaff_renew_date);
                 
-                if(element.last_paid_year != null){
-                    $("#last_paid_year").append(element.last_paid_year);
+                if(element.previous_last_paid_year != null){
+                    $("#last_paid_year").append(element.previous_last_paid_year);
                 }else{
                     $("#last_paid_year").append(`<span>-</span>`);
                 }

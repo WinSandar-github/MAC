@@ -248,7 +248,7 @@ class PAPPController extends Controller
     public function show($id)
     {
         $papp = Papp::where('id',$id)->with('student_info','student_job', 'student_education_histroy','student_register')->get();
-        return $papp;
+        // return $papp;
         return response()->json([
             'data'  => $papp
         ]);
@@ -486,6 +486,7 @@ class PAPPController extends Controller
             $thisYear = date('Y');
             $papp->latest_reg_year = $thisYear;
         }
+        $papp->previous_latest_reg_year = $oldPapp->latest_reg_year;
         $papp->papp_resign_date     =   $oldPapp->papp_resign_date;
         $papp->self_confession  =   $request->self_confession;
         $papp->self_confession_1  =   $request->self_confession1;
@@ -1360,8 +1361,8 @@ class PAPPController extends Controller
         $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
         $cpa_ff->foreign_degree   =   json_encode($degree);
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
-        $cpa_ff->address          =   $request->address;
-        $cpa_ff->phone            =   $request->phone;
+        // $cpa_ff->address          =   $request->address;
+        // $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->last_paid_year   =   $request->last_paid_year;
         $cpa_ff->old_card_no      =   $request->old_card_no;
@@ -1373,8 +1374,8 @@ class PAPPController extends Controller
         $cpa_ff->cpa_certificate  =   $cpa_certificate;
         $cpa_ff->mpa_mem_card     =   $mpa_mem_card_front;
         $cpa_ff->mpa_mem_card_back=   $mpa_mem_card_back;
-        $cpa_ff->nrc_front        =   $nrc_front;
-        $cpa_ff->nrc_back         =   $nrc_back;
+        // $cpa_ff->nrc_front        =   $nrc_front;
+        // $cpa_ff->nrc_back         =   $nrc_back;
         $cpa_ff->status           =  0;
         $cpa_ff->is_renew         =   2;
         $cpa_ff->offline_user         =  1;
@@ -1683,22 +1684,22 @@ class PAPPController extends Controller
             $nrc_front= '/storage/student_info/'.$name;
 
             $student_info->nrc_front        =   $nrc_front;
-            $cpa_ff->nrc_front        =   $nrc_front;
+            // $cpa_ff->nrc_front        =   $nrc_front;
         }
         else{
             $student_info->nrc_front        =   $student_info->nrc_front;
-            $cpa_ff->nrc_front        =   $cpa_ff->nrc_front ;
+            // $cpa_ff->nrc_front        =   $cpa_ff->nrc_front ;
         }
         if ($request->hasfile('nrc_back')) {
             $file = $request->file('nrc_back');
             $name  = uniqid().'.'.$file->getClientOriginalExtension();
             $file->move(public_path().'/storage/student_info/',$name);
             $nrc_back= '/storage/student_info/'.$name;
-            $cpa_ff->nrc_back         =   $nrc_back;
+            // $cpa_ff->nrc_back         =   $nrc_back;
             $student_info->nrc_back         =   $nrc_back;
         }
         else{
-            $cpa_ff->nrc_back         =   $cpa_ff->nrc_back  ;
+            // $cpa_ff->nrc_back         =   $cpa_ff->nrc_back  ;
             $student_info->nrc_back         =   $student_info->nrc_back   ;
         }
         $date_of_birth = $request->date_of_birth;
@@ -1736,8 +1737,8 @@ class PAPPController extends Controller
         $cpa_ff->degree_pass_year =   json_encode($request->degree_pass_year);
 
         $cpa_ff->cpa_batch_no     =   $request->cpa_batch_no;
-        $cpa_ff->address          =   $request->address;
-        $cpa_ff->phone            =   $request->phone;
+        // $cpa_ff->address          =   $request->address;
+        // $cpa_ff->phone            =   $request->phone;
         $cpa_ff->contact_mail     =   $request->contact_mail;
         $cpa_ff->last_paid_year   =   $request->last_paid_year;
         $cpa_ff->old_card_no      =   $request->old_card_no;
