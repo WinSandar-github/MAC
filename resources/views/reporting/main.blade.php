@@ -26,6 +26,9 @@
     <link href="{{ asset('plugins/toastr/toastr.min.css')}}" rel="stylesheet">
     <!-- DataTables -->
     <link href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.dataTables.min.css')}}">
     <link href="{{ asset('EasyLoading/jquery-ui.min.css')}}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/css/easy-loading.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/custom_table.css') }}">
@@ -62,9 +65,18 @@
 <script src="{{ asset('plugins/jquery/jquery.js') }}"></script>
 <script src="{{ asset('paper/demo/jquery.sharrre.js')}}"></script>
 
-<!-- dataTables JS -->
-<script src="{{ asset('js/dataTables/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('js/dataTables/dataTables.bootstrap5.min.js')}}"></script>
+
+<!--Datatable JS-->
+<script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/jszip.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.flash.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{asset('plugins/datatables-buttons/js/buttons.colVis.js')}}"></script>
 
 <!-- bootstrap JS -->
 <script src="{{ asset('js/bootstrap/bootstrap.min.js')}}"></script>
