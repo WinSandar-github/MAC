@@ -12,10 +12,11 @@ use App\Http\Requests\AppAccRequest;
 use App\Invoice;
 use App\StudentInfo;
 use App\Membership;
+use App\EducationHistroy;
 
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
-
+use Hash;
 use Carbon\Carbon;
 
 class ArticleController extends Controller
@@ -49,16 +50,135 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         if($request->offline_user=="true"){
+            if ($request->hasfile('request_papp_attach')) {
+                $file = $request->file('request_papp_attach');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $request_papp_attach = '/storage/student_info/'.$name;
+            }else{
+                $request_papp_attach = "";
+            }
+    
+            if($request->hasfile('apprentice_exp_file'))
+            {
+                foreach($request->file('apprentice_exp_file') as $file)
+                {
+                    $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                    $file->move(public_path().'/storage/student_info/',$name);
+                    $apprentice_exp_file[] = '/storage/student_info/'.$name;
+                }
+            }else{
+                $apprentice_exp_file = null;
+            }
+    
+            if ($request->hasfile('image')) {
+                $file = $request->file('image');
+                $name = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path() . '/storage/student_info/', $name);
+                $image = '/storage/student_info/' . $name;
+            }else{
+                $image = "";
+            }
+    
+            if ($request->hasfile('nrc_front')) {
+                $file = $request->file('nrc_front');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $nrc_front = '/storage/student_info/'.$name;
+            }else{
+                $nrc_front = "";
+            }
+    
+            if ($request->hasfile('nrc_back')) {
+                $file = $request->file('nrc_back');
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $nrc_back = '/storage/student_info/'.$name;
+            }else{
+                $nrc_back = "";
+            }
+            if ($request->hasfile('degrees_certificates')) {
+                foreach($request->file('degrees_certificates') as $file)
+                 {
+                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                     $file->move(public_path().'/storage/student_info/',$name);
+                     $degrees_certificates[] = $name;
+                 }
+                
+            }else{
+                $degrees_certificates=null;
+            }
+            if ($request->hasfile('experience_file')) {
+                foreach($request->file('experience_file') as $file)
+                 {
+                     $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                     $file->move(public_path().'/storage/student_info/',$name);
+                     $apprentice_exp_file[] = $name;
+                 }
+                
+            }else{
+                $apprentice_exp_file=null;
+            }
             //Student Info
             $std_info = new StudentInfo();
             $std_info->email = $request->email;
             $std_info->password = Hash::make($request->password);
+            $std_info->name_mm = $request->name_mm;
+            $std_info->name_eng = $request->name_eng;
+            $std_info->father_name_mm = $request->father_name_mm;
+            $std_info->father_name_eng = $request->father_name_eng;
+            $std_info->phone = $request->phone;
+            $std_info->nrc_state_region = $request->nrc_state_region;
+            $std_info->nrc_township = $request->nrc_township;
+            $std_info->nrc_citizen = $request->nrc_citizen;
+            $std_info->nrc_number = $request->nrc_number;
+            $std_info->nrc_front = $nrc_front;
+            $std_info->nrc_back = $nrc_back;
+            $std_info->image = $image;
+            $std_info->race = $request->race;
+            $std_info->religion = $request->religion;
+            $std_info->date_of_birth = $request->date_of_birth;
+            $std_info->address = $request->address;
+            $std_info->gender = $request->gender;
+            $std_info->personal_no = $request->personal_no;
             $std_info->save();
             //article
             $acc_app = new ApprenticeAccountant();
             $acc_app->student_info_id = $std_info->id;
             $acc_app->article_form_type = $request->article_form_type;
-            $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
+            $acc_app->apprentice_exp = $request->experience == "undefined" ? null : $request->experience ;
+            $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
+        $acc_app->gov_staff = $request->current_job;
+        $acc_app->gov_position = $request->gov_position;
+        $acc_app->gov_joining_date = $request->gov_joining_date;
+        $acc_app->request_papp = $request->request_papp;
+        $acc_app->mentor_id = $request->mentor_id;
+        $acc_app->request_papp_attach = $request_papp_attach;
+        $acc_app->exam_pass_date = $request->pass_date;
+        $acc_app->exam_pass_batch = $request->pass_no;
+        $acc_app->current_address = $request->current_address;
+        //$acc_app->m_email = $request->email;
+        $acc_app->ex_papp = $request->previous_papp_name;
+        $acc_app->exp_start_date = $request->previous_papp_start_date;
+        $acc_app->exp_end_date = $request->previous_papp_end_date;
+        $acc_app->accept_policy = $request->accept_policy;
+        $acc_app->offline_user = true;
+        $acc_app->resign_status = 0;
+        $acc_app->status = 0;
+        $acc_app->done_status = 0;
+
+        if($degrees_certificates!=null){
+            $degrees_certificates=implode(',', $degrees_certificates);
+            $new_degrees_certificates= explode(',',$degrees_certificates);
+            for($i=0;$i < sizeof($request->degrees);$i++){
+           
+                $education_histroy  =   new EducationHistroy();
+                $education_histroy->student_info_id = $std_info->id;
+                $education_histroy->degree_name = $request->degrees[$i];
+                $education_histroy->certificate     ='/storage/student_info/'.$new_degrees_certificates[$i];
+                $education_histroy->save();
+            }
+        }
         }else{
             $acc_app = new ApprenticeAccountant();
             $acc_app->student_info_id = $request->student_info_id;
@@ -123,25 +243,25 @@ class ArticleController extends Controller
         }
 
         $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
-        $acc_app->gov_staff = $request->gov_staff;
-        $acc_app->gov_position = $request->gov_position;
-        $acc_app->gov_joining_date = $request->gov_joining_date;
-        $acc_app->request_papp = $request->request_papp;
-        $acc_app->mentor_id = $request->mentor_id;
-        $acc_app->request_papp_attach = $request_papp_attach;
-        $acc_app->exam_pass_date = $request->exam_pass_date;
-        $acc_app->exam_pass_batch = $request->exam_pass_batch;
-        $acc_app->current_address = $request->current_address;
-        $acc_app->m_email = $request->m_email;
-        $acc_app->ex_papp = $request->ex_papp;
-        $acc_app->exp_start_date = $request->exp_start_date;
-        $acc_app->exp_end_date = $request->exp_end_date;
-        $acc_app->accept_policy = $request->accept_policy;
-        $acc_app->resign_date = $request->resign_date ?? "N/A";
-        $acc_app->resign_reason = $request->resign_reason ?? "N/A";
-        $acc_app->recent_org = $request->recent_org ?? "N/A";
-        $acc_app->resign_approve_file = $request->resign_approve_file ?? "N/A";
-        $acc_app->know_policy = $request->know_policy;
+            $acc_app->gov_staff = $request->current_job;
+            $acc_app->gov_position = $request->gov_position;
+            $acc_app->gov_joining_date = $request->gov_joining_date;
+            $acc_app->request_papp = $request->papp_name;
+            $acc_app->mentor_id = $request->mentor_id;
+            $acc_app->request_papp_attach = $request_papp_attach;
+            $acc_app->exam_pass_date = $request->exam_pass_date;
+            $acc_app->exam_pass_batch = $request->exam_pass_batch;
+            $acc_app->current_address = $request->current_address;
+            $acc_app->m_email = $request->m_email;
+            $acc_app->ex_papp = $request->ex_papp;
+            $acc_app->exp_start_date = $request->exp_start_date;
+            $acc_app->exp_end_date = $request->exp_end_date;
+            $acc_app->accept_policy = $request->accept_policy;
+            $acc_app->resign_date = $request->resign_date ?? "N/A";
+            $acc_app->resign_reason = $request->resign_reason ?? "N/A";
+            $acc_app->recent_org = $request->recent_org ?? "N/A";
+            $acc_app->resign_approve_file = $request->resign_approve_file ?? "N/A";
+            $acc_app->know_policy = $request->know_policy;
 
         //invoice
         $invoice = new Invoice();
