@@ -48,10 +48,22 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $acc_app = new ApprenticeAccountant();
-        $acc_app->student_info_id = $request->student_info_id;
-        $acc_app->article_form_type = $request->article_form_type;
-        $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
+        if($request->offline_user=="true"){
+            //Student Info
+            $std_info = new StudentInfo();
+            $std_info->email = $request->email;
+            $std_info->password = Hash::make($request->password);
+            $std_info->save();
+            //article
+            $acc_app = new ApprenticeAccountant();
+            $acc_app->student_info_id = $std_info->id;
+            $acc_app->article_form_type = $request->article_form_type;
+            $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
+        }else{
+            $acc_app = new ApprenticeAccountant();
+            $acc_app->student_info_id = $request->student_info_id;
+            $acc_app->article_form_type = $request->article_form_type;
+            $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
 
         // $exp_file = '';
         // if($request->apprentice_exp == 1 && $request->hasfile($request->apprentice_exp_file)){
@@ -151,6 +163,7 @@ class ArticleController extends Controller
         $invoice->amount          = '5000';
         $invoice->status          = 0;
         $invoice->save();
+        }
 
         if($acc_app->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
