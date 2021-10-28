@@ -27,4 +27,13 @@ class Mentor extends Model
         }
         return $arr ;
     }
+
+    public function papp(){
+
+        return $this->hasOne(Mentor::class,'papp_reg_no','papp_reg_no');
+
+
+
+    }
+
 }

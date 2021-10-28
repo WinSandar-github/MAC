@@ -420,14 +420,14 @@ const _ARTICLE = [
     },
 
     {
-        route_name: "/article_daily_in_out_list/firm",
-        fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
+        route_name: "/article_daily_in_out_list_firm",
+        fun_name: 'articleDailyInOutListFirm($(this).data(\'url\'))',
         sub_title: "Firm စာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ"
     },
 
     {
-        route_name: "/article_daily_in_out_list/gov",
-        fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
+        route_name: "/article_daily_in_out_list_gov",
+        fun_name: 'articleDailyInOutListGov($(this).data(\'url\'))',
         sub_title: "အစိုးရစာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ"
     },
 
