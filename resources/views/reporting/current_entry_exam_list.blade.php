@@ -11,14 +11,14 @@
                         <h3 class="text-center m-3" style="font-weight:bold">
                                 {{ $course->name_mm }}<br>
                                 {{ $batch->name_mm }}<br>
-                                ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရှိသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
+                                ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရှိသူများစာရင်း</h5>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row"> 
                             <div class="col-md-3 pl-2">
-                                <select class="form-control form-select" name="select_batch" id="select_batch">
+                                <!-- <select class="form-control form-select" name="select_batch" id="select_batch">
                                     <option value="" selected >Select Batch</option>
                                     
                                     @foreach($course->batches as $b)
@@ -26,7 +26,7 @@
                                     @endforeach
                                     
                                     
-                                </select>
+                                </select> -->
                                  
                             </div>
                             <div class="col-md-9">
