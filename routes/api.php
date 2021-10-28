@@ -409,7 +409,7 @@ Route::get('/acc_app/{id}', 'ArticleController\ArticleController@show');
 Route::post('/article_firm_register', 'ArticleController\ArticleController@store');
 Route::post('/filter_firm_article','ArticleController\ArticleController@FilterArticle');
 Route::patch('/approve_article/{id}', 'ArticleController\ArticleController@approve');
-Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject');
+Route::post('/reject_article/{id}', 'ArticleController\ArticleController@reject');
 
 // Qualified Test
 Route::apiResource('/qualifiedtest','QualifiedTest\QualifiedTestController');
@@ -420,13 +420,13 @@ Route::get('get_fees/{id}','CourseController@getFees');
 Route::post('/article_gov_register', 'ArticleController\ArticleController@saveGovArticle');
 Route::post('/filter_gov_article','ArticleController\ArticleController@FilterGovArticle');
 Route::patch('/approve_gov_article/{id}', 'ArticleController\ArticleController@approveGov');
-Route::patch('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
+Route::post('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
 Route::get('/gov_article_show/{id}', 'ArticleController\ArticleController@showGovArticle');
 
 Route::post('/article_resign_register', 'ArticleController\ArticleController@saveResignArticle');
 Route::post('/filter_resign_article','ArticleController\ArticleController@FilterResignArticle');
 Route::patch('/approve_resign_article/{id}', 'ArticleController\ArticleController@approveResign');
-Route::patch('/reject_resign_article/{id}', 'ArticleController\ArticleController@rejectResign');
+Route::post('/reject_resign_article/{id}', 'ArticleController\ArticleController@rejectResign');
 Route::get('/resign_article_show/{id}', 'ArticleController\ArticleController@showResignArticle');
 Route::post('/save_contract_date', 'ArticleController\ArticleController@saveContractDate');
 Route::post('/save_done_form', 'ArticleController\ArticleController@saveDoneForm');
