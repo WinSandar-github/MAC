@@ -513,12 +513,16 @@ class TeacherController extends Controller
             //     return $infos->from_valid_date.' to 31-Dec-'.date('Y');
             // })
             ->addColumn('card', function ($infos) {
+                // return "<div class='btn-group'>
+                //             <a href='MAC/public$infos->teacher_card' class='btn btn-info btn-xs' target='_blank'>
+                //                 <li class='nc-icon nc-tap-01'></li>
+                //             </a>
+                //         </div>";
                 return "<div class='btn-group'>
-                            <a href='MAC/public$infos->teacher_card' class='btn btn-info btn-xs' target='_blank'>
+                            <a href='" . route('get_teacher_card', ['id' => $infos->id]) . "' class='btn btn-info btn-xs' target='_blank'>
                                 <li class='nc-icon nc-tap-01'></li>
                             </a>
                         </div>";
-                
             })
             ->rawColumns(['card','action'])
             ->make(true);
@@ -657,19 +661,18 @@ class TeacherController extends Controller
                                 :'01-01-'.$expYear.' to 31-12-'.$expYear;
                         }
                     }
-                    
                 })
                 ->addColumn('card', function ($infos) {
+
                     $btn='';
+                    
                     if($infos->initial_status==0){
                         $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                             $q->where('tranRef', '=', $infos->payment_method);
                         })
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"init_tec".$infos->id)
-                        
                         ->get();
-                       
                     }else{
                         $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                             $q->where('tranRef', '=', $infos->payment_method);
@@ -677,13 +680,13 @@ class TeacherController extends Controller
                         ->where('student_info_id',$infos->student_info_id)
                         ->where('invoiceNo',"renew_tec".$infos->id)
                         ->get();
-                       
                     }
+
                     foreach($invoice as $i){
                         return $i->status == "0"
                             ? ""
                             : "<div class='btn-group'>
-                                    <a href='teacher_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                                    <a href='" . route('get_teacher_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
                                         <li class='fa fa-id-card-o fa-sm'></li>
                                     </a>
                                 </div>";

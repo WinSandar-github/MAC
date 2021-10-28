@@ -11,7 +11,7 @@ class CertificateSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('certificates')->delete();
+        DB::table('certificates')->truncate();
 
         DB::table('certificates')->insert([
             [
@@ -70,7 +70,75 @@ class CertificateSeeder extends Seeder
                     </tr>
                 </tbody>
             </table>')
-            ]
+            ],
+            [
+                'cert_code' => 'teacher_card',
+                'cert_data' => htmlspecialchars('<img src="{{ userImage }}" alt="user image" width="100px"
+                height="100px" style="float: right; position: relative; top: 185px;right: 60px;">
+        
+                <table style="margin-right: 100px; margin-left: 100px;">
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 100px; padding-bottom: 20px;"
+                                colspan="2">
+                                REPUBLIC OF THE UNION OF MYANMAR</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 16px; font-weight: 800;" colspan="2">
+                                MYANMAR ACCOUNTANCY COUNCIL
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; padding: 20px;" colspan="2">
+                                <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
+                                    height="100px">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: center; font-size: 16px; font-weight: 800; padding-bottom: 2rem;"
+                                colspan="2">
+                                Registration Certificate of Lecture/Tutor
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Serial No. <span class="input">{{ serialNo }}</span>
+                            </td>
+                            <td style="float: right;">
+                                Dated. <span class="input">{{ dated }}</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;"
+                                colspan="2">
+                                <p style="line-height: 2rem;">
+                                    {{ studentName }} son/daughter of {{ abaName }},holder of CSC No. {{ nrcNumber }}, has been
+                                    registered as a Lecturer/Tutor of a Private Accounting School or an Individual Lecture/Tutor
+                                    under section 32 of the Myanmar Accountancy Council Law.<br>
+                                    He/She is permitted to engage as a Lecture/Tutor of a Private Accounting School.<br>
+                                    His/Her teaching Course(s) and Subject(s) are shown as below.
+                                </p>
+        
+                                {{ courseAndSubject }}
+        
+                                <p>
+                                    This certificate is valid for the period {{ validFrom }} to {{ validTo }}.
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right; padding-top: 10%; vertical-align: middle;" colspan="2">
+                                {{ officerName }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;" colspan="2">
+                                Registrar
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>')
+            ],
         ]);
     }
 }
