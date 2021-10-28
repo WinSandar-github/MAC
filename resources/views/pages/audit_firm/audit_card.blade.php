@@ -2,7 +2,7 @@
 @extends('layouts.app', [
 'class' => '',
 'parentElement' => '',
-'elementActive' => 'teacher_registration'
+'elementActive' => 'audit_firm_registration'
 ])
 @section('content')
     <!-- Theme style -->
@@ -85,10 +85,10 @@
                         <div class="col-md-12">
                             <div class="card">
 
-                                <div class="card-header">
+                                {{--<div class="card-header">
 
 
-                                </div>
+                                </div>--}}
 
                                 <div class="card-body text-center">
                                 <center>
@@ -103,18 +103,17 @@
                                         
                                     </div>
                                     <h5 class="mt-3"><b>ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းမှတ်ပုံတင်လက်မှတ်</b></h5>
-                                    <h6 class="mt-3"><b>Registration Certificate of Private Accounting School </b></h6>
+                                    <h6 class="mt-3"><b>Certificate Of Audit Firm Name Registration</b></h6>
                                     <div class="row mt-3 " style="text-align: justify;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
-                                        မြန်မာနိုင်ငံစာရင်းကောင်စီသည် အောက်ဖော်ပြပါ ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းအား မြန်မာနိုင်ငံစာရင်းကောင်စီ
-                                        ဥပဒေ ပုဒ်မ ၂၉ နှင့်အညီ ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း မှတ်ပုံတင် လက်မှတ် ထုတ်ပေးလိုက်သည်။
+                                        မြန်မာနိုင်ငံစာရင်းကောင်စီသည် အောက်ဖော်ပြပါလုပ်ငန်းအဖွဲ့အား မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၅၁ နှင့်အညီ စာရင်းစစ်လုပ်ငန်းအမည်မှတ်ပုံတင်လက်မှတ်ထုတ်ပေးလိုက်သည်။
                                         </div>
                                     </div>
                                     <div class="row mt-3 " style="text-align: justify;">
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
-                                            Myanmar Accountancy Council hereby issues this Registration Certificate of Private Accounting School to the following Private Accounting School in accordance with section 29 of its Law.
+                                            Myanmar Accountancy Council hereby issues this Certificate of Audit Firm Name to the following firm in accordance with section 51 of its Law.
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
@@ -136,12 +135,12 @@
                                                 
                                             </tr>
                                             <tr>
-                                                <td width="55%">သင်တန်းကျောင်းအမည်</td>
-                                                <td id='school_name' rowspan="2"></td>
+                                                <td width="55%">လုပ်ငန်းအမည်</td>
+                                                <td id='accountancy_firm_name' rowspan="2"></td>
                                                 
                                             </tr>
                                             <tr>
-                                                <td >Name of school</td>
+                                                <td >Name of the Firm</td>
                                                 
                                                 
                                             </tr>
@@ -152,15 +151,13 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-check mt-2 form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="school_type1"
-                                                                    value='PCS' > Sole proprietorship
+                                                                <input class="form-check-input" type="radio" name="os1"> Sole proprietorship
 
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-check mt-2 form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="school_type2"
-                                                                    value='PCP' > Partnership
+                                                                <input class="form-check-input" type="radio" name="os2"> Partnership
 
                                                             </div>
                                                         </div>
@@ -169,15 +166,13 @@
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="form-check mt-2 form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="school_type3" id=""
-                                                                    value='PCC' > Company incorporated
+                                                                <input class="form-check-input" type="radio" name="os3"> Company incorporated
 
                                                             </div>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <div class="form-check mt-2 form-check-inline">
-                                                                <input class="form-check-input" type="radio" name="school_type4" id=""
-                                                                    value='P' > Other
+                                                                <input class="form-check-input" type="radio" name="os4"> Other
 
                                                             </div>
                                                         </div>
@@ -193,42 +188,32 @@
                                                 
                                             </tr>
                                             <tr>
-                                                <td>ကျောင်းတည်ထောင်သူ/တာဝန်ခံ၏ အမည်</td>
+                                                <td>တာဝန်ခံPAPP အမည်</td>
                                                 
-                                                <td id="founder_name" rowspan="2"> </td>
+                                                <td id="name" rowspan="2"> </td>
                                             </tr>
                                             <tr>
-                                                <td>Name of School Founder</td>
-                                                
-                                                
-                                            </tr>
-                                            <tr>
-                                                <td>ကျောင်းတည်ထောင်သူ၏ မှတ်ပုံတင်အမှတ်</td>
-                                                
-                                                <td id="founder_csc" rowspan="2"> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>School Founder’s CSC. No</td>
+                                                <td>Name of Responsible PAPP</td>
                                                 
                                                 
                                             </tr>
                                             <tr>
-                                                <td>သင်တန်းအမျိုးအစားများ</td>
+                                                <td>တာဝန်ခံPAPP မှတ်ပုံတင်အမှတ်</td>
                                                 
-                                                <td rowspan="2" id="course"> </td>
+                                                <td id="public_private_reg_no" rowspan="2"> </td>
                                             </tr>
                                             <tr>
-                                                <td>Types of Classes</td>
+                                                <td>Responsible PAPP’s Reg. No.</td>
                                                 
                                                 
                                             </tr>
                                             <tr>
-                                                <td>ကျောင်းတည်နေရာ</td>
+                                                <td>လုပ်ငန်းတည်နေရာ</td>
                                                 
-                                                <td id="school_location" rowspan="2"> </td>
+                                                <td rowspan="2" id="head_office_address"> </td>
                                             </tr>
                                             <tr>
-                                                <td>Location of school</td>
+                                                <td>Address</td>
                                                 
                                                 
                                             </tr>
@@ -242,38 +227,16 @@
                                                 
                                                 
                                             </tr>
-                                            </tbody>
+                                        </tbody>
                                         </table>
-                                        
+                                             
                                         </div>
                                         <div class="col-md-2"></div>
-                                    </div>
-                                    <diiv class="row" style="text-align: justify;">
-                                        <div class="col-md-2"></div>
-                                        <div class="col-md-10"><p>Location of Branch School is mentioned on the reverse.</p></div>
-                                        
                                     </div>
                                     <div class="row mt-3 " style="text-align: justify;">
-                                        <div class="col-md-4"></div>
-                                        <div class="col-md-4">
-                                            Location of Branch School
-                                        </div>
-                                        <div class="col-md-4"></div>
-                                    </div>
-                                    <div class="row" >
                                         <div class="col-md-2"></div>
                                         <div class="col-md-8">
-                                            
-                                        <table style="width:100%" id="tbl_branch" class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>Branch</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbl_branch_body">
-                                                
-                                            </tbody>
-                                        </table>
+                                            This certificate is issued to the Firm to facilitate engagement appointment and auditors report must be signed off by the engagement partner holding practicing certificate.
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
@@ -309,11 +272,11 @@
 
 @endsection
 @push('scripts')
-    <script src="{{ asset('js/school.js') }}"></script>
+    <script src="{{ asset('js/audit_card.js') }}"></script>
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
     
     <script>
-        loadSchoolCard();
+        loadAuditCard();
         
     </script>
 @endpush
