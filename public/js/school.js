@@ -127,11 +127,11 @@ function getSchoolInfos(){
             $("#phone").append(data.data.phone);
             $("#email").append(data.data.email);
             $("#hidden_attach").val(data.data.attachment);
-            
+            $('.school_fee').show();
             if(data.data.approve_reject_status != 0){
                 $("#approve_reject").hide();
                 $('#cessation-btn').show();
-                $('.school_fee').show();
+                
             }else{
                 $("#approve_reject").show();
             }
