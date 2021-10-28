@@ -4050,12 +4050,21 @@ class AccFirmInfController extends Controller
       if($firm_type == 1){
         return DataTables::of($acc_firm_info)
           ->addColumn('action', function ($infos) {
-              return "<div class='btn-group'>
-                          <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
-                              <li class='fa fa-eye fa-sm'></li>
-                          </button>
+              // return "<div class='btn-group'>
+              //             <button type='button' class='btn btn-primary btn-xs' onclick='showAuditInfo($infos->id)'>
+              //                 <li class='fa fa-eye fa-sm'></li>
+              //             </button>
 
-                      </div>";
+              //         </div>";
+              return "<div class='btn-group'>
+                  <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
+                      <li class='fa fa-eye fa-sm'></li>
+                  </button>
+                  <a href='audit_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
+                    <li class='fa fa-file-text-o fa-sm'></li>
+                  </a>
+
+              </div>";
           })
 
           ->addColumn('accountancy_firm_reg_no', function ($infos){
@@ -4118,11 +4127,23 @@ class AccFirmInfController extends Controller
       }
       else{
         return DataTables::of($acc_firm_info)
+          // ->addColumn('action', function ($infos) {
+          //     return "<div class='btn-group'>
+          //                 <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
+          //                     <li class='fa fa-eye fa-sm'></li>
+          //                 </a>
+
+          //             </div>";
+          // })
+
           ->addColumn('action', function ($infos) {
               return "<div class='btn-group'>
-                          <a type='button' class='btn btn-primary btn-xs' href='show_non_audit_firm_info/$infos->id'>
-                              <li class='fa fa-eye fa-sm'></li>
-                          </a>
+                            <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
+                            <li class='fa fa-eye fa-sm'></li>
+                            </a>
+                            <a href='non_audit_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
+                              <li class='fa fa-file-text-o fa-sm'></li>
+                            </a>
 
                       </div>";
           })

@@ -184,7 +184,7 @@ function loadArticle()
             // }else{
             //     $("#module_name").text("အားလုံး");
             // }
-            
+
             // if(type == 0){
             //     $("#type_name").text("ကိုယ်တိုင်လေ့လာသင်ယူသူအဖြစ်");
             // }else if(type == 1){
@@ -258,8 +258,8 @@ function loadArticle()
 
                 let certificate = JSON.parse(student_info.qualified_test.local_education_certificate);
                 $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
-                   
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+
                 })
 
             }else{
@@ -267,11 +267,11 @@ function loadArticle()
 
                 let certificate = JSON.parse(student_info.student_education_histroy.certificate);
                 $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
-                   
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+
                 })
             }
-            
+
 
             $("#address").val(student_info.address);
             $("#current_address").val(student_info.current_address);
@@ -452,7 +452,7 @@ function approveArticle(){
         });
     }
 }
-  
+
 function rejectArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
     {
@@ -491,7 +491,7 @@ function approveDoneArticle(){
         });
     }
 }
-  
+
 function rejectDoneArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
     {
@@ -513,6 +513,18 @@ function rejectDoneArticle(){
 function showGovContractDate(info){
     $("#contractGovModal").modal('show');
     $("#gov_article_id").val(info.id);
+}
+
+function showPaymentInfo(info){
+  $("#payment_detail_modal").modal('show');
+
+  autoLoadPayment(info.id);
+}
+
+function showPaymentInfoResign(info){
+  $("#payment_detail_modal").modal('show');
+
+  autoLoadPaymentResign(info.id);
 }
 
 function updateGovContractDate(info){
@@ -601,7 +613,7 @@ function loadGovArticle()
             $("#address").val(student_info.address);
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
-            
+
             if(data.married == 1)
             {
                 $('input:radio[name=married][value=1]').attr('checked',true);
@@ -629,8 +641,8 @@ function loadGovArticle()
 
             let certificate = JSON.parse(student_info.student_education_histroy.certificate);
                 $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
-                   
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+
                 })
 
             let labor_registration_attach = JSON.parse(data.labor_registration_attach);
@@ -722,6 +734,95 @@ function loadGovArticle()
     });
 }
 
+function autoLoadPayment(gov_id){
+  //let student_id=localStorage.getItem("student_id");
+  $("#payment_detail_modal").find(".fee_list").html('');
+  $.ajax({
+          url: BACKEND_URL + "/get_payment_info/" + 'gov'+gov_id,
+          type: 'get',
+          success: function (result) {
+              console.log("gov aricle",result);
+
+              if(result.status==0){
+                  $('#payment_status').append("Pending");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Paid");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
+                          <h6 class="my-0">${productDesc[i]}</h6>
+                          <span class="text-muted">- ${amount[i]} MMK</span>
+                      </li>
+                  `);
+              }
+              $('.fee_list').append(`
+                  <li class="list-group-item d-flex justify-content-between">
+                      <span>Total (MMK)</span>
+                      <span id="total">
+                          - <strong>${total}</strong> MMK
+                      </span>
+                  </li>
+              `);
+          }
+      });
+}
+
+function autoLoadPaymentResign(firm_id){
+  $("#payment_detail_modal").find(".fee_list").html('');
+  $.ajax({
+          url: BACKEND_URL + "/get_payment_info/" + 'resign'+firm_id,
+          type: 'get',
+          success: function (result) {
+              console.log("gov aricle",result);
+
+              if(result.status==0){
+                  $('#payment_status').append("Pending");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Paid");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
+                          <h6 class="my-0">${productDesc[i]}</h6>
+                          <span class="text-muted">- ${amount[i]} MMK</span>
+                      </li>
+                  `);
+              }
+              $('.fee_list').append(`
+                  <li class="list-group-item d-flex justify-content-between">
+                      <span>Total (MMK)</span>
+                      <span id="total">
+                          - <strong>${total}</strong> MMK
+                      </span>
+                  </li>
+              `);
+          }
+      });
+}
+
 function approveGovArticle(){
     if (!confirm('Are you sure you want to approve this article?'))
     {
@@ -742,7 +843,7 @@ function approveGovArticle(){
         });
     }
 }
-  
+
 function rejectGovArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
     {
@@ -781,7 +882,7 @@ function approveDoneGovArticle(){
         });
     }
 }
-  
+
 function rejectDoneGovArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
     {
@@ -840,16 +941,16 @@ function loadResignArticle()
 
                 let certificate = JSON.parse(qualified_test.local_education_certificate);
                 $.each(certificate,function(fileCount,fileName){
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
-                   
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+
                 })
             }else{
                 $("#education").val(student_info.student_education_histroy.degree_name);
                 let certificate = JSON.parse(student_info.student_education_histroy.certificate);
                 $.each(certificate,function(fileCount,fileName){
-                   
-                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);                    
-                   
+
+                     $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
+
                 })
             }
 
@@ -900,7 +1001,7 @@ function approveResignArticle(){
         });
     }
 }
-  
+
 function rejectResignArticle(){
     if (!confirm('Are you sure you want to reject this article?'))
     {
