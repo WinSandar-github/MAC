@@ -213,7 +213,7 @@ Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/getNonAuditDateRange/{id}','AccFirmInfController@nonAuditDateRange');
-Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
+Route::get('/checkVerify/{id}/{firm_id}','AccFirmInfController@checkVerify');
 Route::get('/nonAuditCheckVerify/{id}','AccFirmInfController@nonAuditCheckVerify');
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
