@@ -49,7 +49,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('done_form_attach')->nullable();
             $table->boolean('done_status')->default(0);
             $table->timestamps();
-
+            $table->string('offline_user')->nullable();
             $table->foreign('student_info_id')->references('id')->on('student_infos')->onDelete('cascade');
         });
     }
