@@ -423,9 +423,9 @@ function getTeacherInfos(){
                         $('.teacher_card_class').hide();
                         
                     }
-                    if(value.approve_reject_status==1){
+                    //if(value.approve_reject_status==1){
                         $('.exist_teacher_user').show();
-                    }
+                    //}
                     
                 }
                 

@@ -30,6 +30,25 @@ function loadAuditCard(){
             //         })
             //     }
             // }
+
+            if(audit_data.accountancy_firm_reg_no!=null){
+                document.getElementById('accountancy_firm_reg_no').innerHTML=audit_data.accountancy_firm_reg_no;
+            }
+
+            if(audit_data.register_date!=null){
+                document.getElementById('register_date').innerHTML=audit_data.register_date;
+            }
+
+            var accept = new Date(audit_data.register_date);
+            var year = accept.getFullYear();
+            var y = year + 1;
+            var month = accept.getMonth() + 1;
+            var day = accept.getUTCDate();
+            // console.log(y+ '-'+month+'-'+day);
+            // console.log(data.data[0].register_date)
+            var expiry_date = y+ '-'+month+'-'+day;
+            
+            document.getElementById('expiry_date').innerHTML=expiry_date;
             
             if(audit_data.accountancy_firm_name!=null){
                 document.getElementById('accountancy_firm_name').innerHTML=audit_data.accountancy_firm_name;
