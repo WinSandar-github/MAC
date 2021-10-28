@@ -46,7 +46,7 @@ const _DA = [
     {
         route_name: "/da_reg/2",
         fun_name: 'daRegList($(this).data(\'url\'))',
-        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+        sub_title: "မြန်မာနိုင်ငံစာရင်းကောင်စီတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
@@ -58,7 +58,7 @@ const _DA = [
     {
         route_name: "/da_reg/1",
         fun_name: 'daRegList($(this).data(\'url\'))',
-        sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+        sub_title: "ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင် မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
@@ -89,13 +89,13 @@ const _CPA = [
     {
         route_name: "/da_attend/2",
         fun_name: 'daAttendMacList($(this).data(\'url\'))',
-        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+        sub_title: "မြန်မာနိုင်ငံစာရင်းကောင်စီတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
     },
 
     {
         route_name: "/da_attend/1",
         fun_name: 'daAttendPrvList($(this).data(\'url\'))',
-        sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+        sub_title: "ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
     },
 
     {
@@ -142,7 +142,7 @@ const _CPA = [
     {
         route_name: "/da_reg/2",
         fun_name: 'daRegList($(this).data(\'url\'))',
-        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+        sub_title: "မြန်မာနိုင်ငံစာရင်းကောင်စီတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
@@ -420,14 +420,14 @@ const _ARTICLE = [
     },
 
     {
-        route_name: "/article_daily_in_out_list/firm",
-        fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
+        route_name: "/article_daily_in_out_list_firm",
+        fun_name: 'articleDailyInOutListFirm($(this).data(\'url\'))',
         sub_title: "Firm စာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ"
     },
 
     {
-        route_name: "/article_daily_in_out_list/gov",
-        fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
+        route_name: "/article_daily_in_out_list_gov",
+        fun_name: 'articleDailyInOutListGov($(this).data(\'url\'))',
         sub_title: "အစိုးရစာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ"
     },
 

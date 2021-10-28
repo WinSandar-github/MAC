@@ -19,23 +19,26 @@ class ArticleReportController extends Controller
 {
     public function articleList(Request $request)
     {
-        $intern = DB::table('apprentice_accountants as aa')
-                    ->Join('mentors as m', 'm.papp_reg_no', 'aa.request_papp')
-                    ->join('student_infos as std', 'std.id', 'aa.student_info_id')
-                    ->join('student_course_regs as course', 'course.student_info_id', 'std.id')
-                    ->join('education_histroys as education', 'education.student_info_id', 'std.id')
-                    ->join('current_check_services as service', 'service.id', 'm.current_check_service_id')
-                    ->join('batches as b', 'b.id', 'course.batch_id')
-                    ->join('courses as c', 'c.id', 'b.course_id')
-                    ->where('c.code', '=', 'cpa_1')
-                    ->orWhere('c.code', '=', 'cpa_2')
-                    ->select(
-                        'aa.contract_start_date as intern_sdate', 'aa.contract_end_date as intern_edate', 'm.name_mm as mentor_name', 
-                        'std.name_mm as std_name', 'std.cpersonal_no', 'std.nrc_state_region','std.nrc_township','std.nrc_citizen','std.nrc_number',
-                        'std.father_name_mm','education.degree_name','c.name as current_class', 'service.name as current_check_service_name',
-                        'course.*'
-                        )
-                    ->get();
+        // $intern = DB::table('apprentice_accountants as aa')
+        //             ->Join('mentors as m', 'm.papp_reg_no', 'aa.request_papp')
+        //             ->join('student_infos as std', 'std.id', 'aa.student_info_id')
+        //             ->join('student_course_regs as course', 'course.student_info_id', 'std.id')
+        //             ->join('education_histroys as education', 'education.student_info_id', 'std.id')
+        //             ->join('current_check_services as service', 'service.id', 'm.current_check_service_id')
+        //             ->join('batches as b', 'b.id', 'course.batch_id')
+        //             ->join('courses as c', 'c.id', 'b.course_id')
+        //             ->where('c.code', '=', 'cpa_1')
+        //             ->orWhere('c.code', '=', 'cpa_2')
+        //             ->select(
+        //                 'aa.contract_start_date as intern_sdate', 'aa.contract_end_date as intern_edate', 'm.name_mm as mentor_name', 
+        //                 'std.name_mm as std_name', 'std.cpersonal_no', 'std.phone', 'std.email',
+        //                 'std.nrc_state_region','std.nrc_township','std.nrc_citizen','std.nrc_number',
+        //                 'std.father_name_mm','education.degree_name','c.name as current_class', 'service.name as current_check_service_name',
+        //                 'course.*','aa.*'
+        //                 )
+        //             ->get();
+                   
+        $intern = ApprenticeAccountant::with('student_info','mentor')->get();
 
         $data = [
             'title' => 'အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း',
@@ -45,22 +48,42 @@ class ArticleReportController extends Controller
         return view('reporting.article.article_mentor_intern', compact('data'));
     }
     
-    public function articleDailyInOutList(Request $request,$form_type)
+    public function articleDailyInOutListFirm(Request $request)
     {
         $leave = DB::table('leave_requests as l')
                     ->join('student_infos as std', 'std.id', '=', 'l.student_info_id')
-                    ->where('l.form_type', $form_type == 'gov' ? '=' : '<>' , 'gov' )
+                    ->join('apprentice_accountants as aa', 'std.id', '=', 'aa.student_info_id')
+                    ->join('mentors as m', 'aa.mentor_id', '=', 'm.id')
+                    ->where('l.form_type', '<>' , 'gov' )
                     ->where('l.start_date', 'like', "%$request->date%")
                     //->orWhere('l.end_date', 'like', "%$request->date%")
-                    ->select('std.name_mm', 'std.cpersonal_no', 'l.*')
+                    ->select('std.name_mm', 'std.cpersonal_no', 'std.phone', 'std.email','m.name_mm as mentor_name','l.*')
                     ->get();
 
         $data = [
-            'title' => $form_type == 'gov' ? 'အစိုးရစာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ' : 'Firm စာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ',
+            'title' => 'Firm စာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ',
             'leave' => $leave
         ];
 
-        return view('reporting.article.article_leave_report', compact('data'));
+        return view('reporting.article.article_leave_report_firm', compact('data'));
+    }
+
+    public function articleDailyInOutListGov(Request $request)
+    {
+        $leave = DB::table('leave_requests as l')
+                    ->join('student_infos as std', 'std.id', '=', 'l.student_info_id')
+                    ->where('l.form_type', '=', 'gov' )
+                    ->where('l.start_date', 'like', "%$request->date%")
+                    //->orWhere('l.end_date', 'like', "%$request->date%")
+                    ->select('std.name_mm', 'std.cpersonal_no', 'std.phone', 'std.email','l.*')
+                    ->get();
+
+        $data = [
+            'title' => 'အစိုးရစာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ',
+            'leave' => $leave
+        ];
+
+        return view('reporting.article.article_leave_report_gov', compact('data'));
     }
 
     public function articleInternPosList(Request $request)

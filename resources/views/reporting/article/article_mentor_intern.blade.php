@@ -25,43 +25,49 @@
                                             <th class="bold-font-weight">အလုပ်သင်အမည်</th>
                                             <th class="bold-font-weight">ကိုယ်ပိုင်အမှတ်</th>
                                             <th class="bold-font-weight">မှတ်ပုံတင်အမှတ်</th>
-                                            <th class="bold-font-weight">အဖအမည်</th>
+                                            <th class="bold-font-weight">ဖုန်း</th>
+                                            <th class="bold-font-weight">အီးမေးလ်</th>
+                                            <th class="bold-font-weight">အဘအမည်</th>
                                             <th class="bold-font-weight">ပညာအရည်အချင်း</th>
                                             <th class="bold-font-weight">တက်ရောက်နေသည့်အတန်း<br>CPA I or CPA II</th>
                                             <th class="bold-font-weight">တက်ရောက်နေသည့်ကျောင်း<br>MAC / Private School / Self Study</th>
                                             <th class="bold-font-weight">အလုပ်သင်ကာလပြီးစီးမှုအခြေအနေ <br> 1year/ 2year/ 3year</th>
-                                            <!--<th class="bold-font-weight">အလုပ်သင်စတင်သည့်နေ့</th>
+                                            <th class="bold-font-weight">အလုပ်သင်စတင်သည့်နေ့</th>
                                             <th class="bold-font-weight">ပြီးဆုံးသည့်နေ့</th>
-                                            <th class="bold-font-weight">Status</th>-->
-                                            <th class="bold-font-weight">အလုပ်သင်ကြားပေးသူ</th>
+                                            <!--<th class="bold-font-weight">Status</th>-->
+                                            <th class="bold-font-weight">အလုပ်သင်ကြားပေးသူ အမည်</th>
+                                            <th class="bold-font-weight">အလုပ်သင်ကြားပေးသူ၏<br>လုပ်ငန်းအမှတ်</th>
                                             <th class="bold-font-weight">အလုပ်သင်ကြားပေးသူ၏<br>လုပ်ငန်းအမျိုးအစား</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbl_app_list_body" class="hoverTable">
-
+                                    
                                         @if ($data['intern'] != '')
-                                            @foreach ($data['intern'] as $k => $m)
+                                            @foreach ($data['intern'] as $k => $m)             
                                                 @php 
-                                                    $sdate=date_create($m->intern_sdate);
-                                                    $edate=date_create($m->intern_edate);
+                                                    $sdate=date_create($m->contract_start_date);
+                                                    $edate=date_create(date('d-M-Y'));
                                                     $diff=date_diff($sdate,$edate);
                                                 @endphp
                                                 <tr>
                                                     <td>{{ ++$k }}</td>
-                                                    <td>{{ $m->std_name }}</td>
-                                                    <td>{{ $m->cpersonal_no ?? 'N/A' }}</td>
-                                                    <td>{{ $m->nrc_state_region ? $m->nrc_state_region .'/'. $m->nrc_township .
-                                                        '('. $m->nrc_citizen.')'. $m->nrc_number : 'N/A'}}</td>
-                                                    <td>{{ $m->father_name_mm}}</td>
-                                                    <td>{{ $m->degree_name }}</td>
-                                                    <td>{{ $m->current_class }}</td>
-                                                    <td>{{ $m->type == 0 ? 'Self Study' : $m->type == 1 ? "Private School" : 'MAC' }}</td>
+                                                    <td>{{ $m->student_info->name_mm }}</td>
+                                                    <td>{{ $m->student_info->cpersonal_no ?? 'N/A' }}</td>                        
+                                                    <td>{{ $m->student_info->nrc_state_region ? $m->student_info->nrc_state_region .'/'. $m->student_info->nrc_township .
+                                                        '('. $m->student_info->nrc_citizen.')'. $m->student_info->nrc_number : 'N/A'}}</td>
+                                                    <td>{{ $m->student_info->phone }}</td>
+                                                    <td>{{ $m->student_info->email }}</td>
+                                                    <td>{{ $m->student_info->father_name_mm}}</td>
+                                                    <td>{{ $m->student_info->student_education_histroy->degree_name }}</td>
+                                                    <td>{{ $m->student_info->student_course->batch->course->name }}</td>
+                                                    <td>{{ $m->student_info->student_course->type == 1 ? "Private School" : 'MAC' }}</td>
                                                     <td>{{ $diff->format("%y year") }}</td>
-                                                    <!--<td>{{ $m->intern_sdate ?? 'N/A' }}</td>
-                                                    <td>{{ $m->intern_edate ?? 'N/A' }}</td>
-                                                    <td>CI တက်ရောက်ဆဲ</td>-->
-                                                    <td>{{ $m->mentor_name }}</td>
-                                                    <td><span class="d-block m-1 badge bg-info text-white"> {{ $m->current_check_service_name }}</span></td>
+                                                    <td>{{ $m->contract_start_date ?? 'N/A' }}</td>
+                                                    <td>{{ $m->contract_end_date ?? 'N/A' }}</td>
+                                                    <!--<td>CI တက်ရောက်ဆဲ</td>-->
+                                                    <td>{{ $m->mentor->name_mm ?? 'N/A'}}</td>
+                                                    <td>{{ $m->mentor->papp->papp_reg_no ?? 'N/A'}}</td>
+                                                    <td>{{ $m->mentor->papp->firm_type ?? 'N/A' }}</td>
                                                 </tr>
 
                                             @endforeach

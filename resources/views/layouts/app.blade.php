@@ -29,6 +29,7 @@
     <link href="{{ asset('plugins/toastr/toastr.min.css') }}" rel="stylesheet">
     <!-- DataTables -->
     <link href="{{ asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <script src="{{asset('plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
     <link href="{{ asset('EasyLoading/jquery-ui.min.css') }}" rel="stylesheet">
     <link href="{{ asset('EasyLoading/css/easy-loading.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom_table.css') }}" rel="stylesheet">
