@@ -523,7 +523,7 @@
                 data :  function (d) {
                     d.name      =  $("input[name=filter_by_name]").val(),
                     d.nrc       =  $("input[name=filter_by_nrc]").val(),
-                    d.status    = 2,
+                    d.status    = 1,
                     d.initial_status= 2
                 }
             

@@ -3997,10 +3997,17 @@ class AccFirmInfController extends Controller
     }
 
     //check verify
-    public function checkVerify($id)
+    public function checkVerify($id,$firm_id)
     {
-        $data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->get();
-        //$data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
+        $data = array();
+        $acc_firm = AccountancyFirmInformation::where('student_info_id',$id)->latest()->get();
+        $audit_invoice_status = Invoice::where('invoiceNo','audit_initial'.$firm_id)->select('status')->get();
+        $nonaudit_invoice_status = Invoice::where('invoiceNo','non_audit_initial'.$firm_id)->select('status')->get();
+
+        array_push($data , ['acc_firm'=>$acc_firm,
+                            'audit_invoice_status'=> $audit_invoice_status,
+                            'nonaudit_invoice_status' => $nonaudit_invoice_status
+                           ]);
         return response()->json($data,200);
     }
 
