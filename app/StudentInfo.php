@@ -27,7 +27,7 @@ class StudentInfo extends Model
 
     public function student_course()
     {
-        return $this->hasOne(StudentCourseReg::class,'student_info_id','id')->with('batch');
+        return $this->hasOne(StudentCourseReg::class,'student_info_id','id')->with('batch')->latest();
     }
 
     public function student_self_study()
