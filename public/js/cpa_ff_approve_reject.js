@@ -1001,24 +1001,40 @@ function approveCPAFFUser(){
 }
 
 //offline cpaff
-// function approveOfflineCPAFFUser(){
-//     if(!confirm('Are you sure you want to approve this user?')){
-//         return;
-//     }else{
-//         var is_renew=localStorage.getItem("is_renew");
-//         var id = $("input[name = cpaff_id]").val();
-//         console.log('approvecpaid',id);
-//         $.ajax({
-//             url: BACKEND_URL + "/approve_offline_cpaff/"+id,
-//             type: 'patch',
-//             success: function(result){
-//                 successMessage("You have approved that user!");
-//                 location.href = FRONTEND_URL + "/offline_user";
-//             }
-//         });
-//     }
-// }
-
+function approveOfflineCPAFFUser(){
+    if(!confirm('Are you sure you want to approve this user?')){
+        return;
+    }else{
+        var is_renew=localStorage.getItem("is_renew");
+        var id = $("input[name = cpaff_id]").val();
+        console.log('approvecpaid',id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_offline_cpaff/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                location.href = FRONTEND_URL + "/offline_user";
+            }
+        });
+    }
+}
+function approveRenewCPAFFUser(){
+    if(!confirm('Are you sure you want to approve this user?')){
+        return;
+    }else{
+        var is_renew=localStorage.getItem("is_renew");
+        var id = $("input[name = cpaff_id]").val();
+        console.log('approvecpaid',id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_renew_cpaff/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                location.href = FRONTEND_URL + "/cpa_ff_registration_list";
+            }
+        });
+    }
+}
 function rejectModal(){ 
     $('#reject_modal').modal('show');
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers\CertificateController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\ExamRegister;
+use App\TeacherRegister;
 use DB;
+use Illuminate\Support\Carbon;
 
 class CertificateController extends Controller
 {
@@ -40,7 +42,7 @@ class CertificateController extends Controller
 
         list($curYear, $curMth, $curDay) = explode('-', date('Y-M-d'));
 
-        $template = DB::table('certificates')->first();
+        $template = DB::table('certificates')->where('cert_code', '=', 'da_cpa_finish')->first();
 
         $template->cert_data = str_replace('{{ studentName }}', "<strong>$student->name_mm</strong>", $template->cert_data);
 
@@ -64,7 +66,57 @@ class CertificateController extends Controller
         
         $template->cert_data = str_replace('{{ dayMM }}', "<strong>" . $this->en2mmNumber($curDay) . "</strong>", $template->cert_data);
 
-        return view('certificate.complete_certificate', compact('template'));
+        $className = 'border-style';
+
+        return view('certificate.complete_certificate', compact('template', 'className'));
+    }
+
+    public function getTeacherCard(Request $req, $id)
+    {
+        $teacher = TeacherRegister::where('id', '=', $id)->first();
+
+        $cpa_subj_id = explode(',', $teacher->certificates);
+
+        $cpa_subjects = DB::table('subjects as s')
+                    ->join('courses as c', 'c.id', '=', 's.course_id')
+                    ->whereIn('s.id', $cpa_subj_id)
+                    ->select('c.name as course_name', 'c.code', 's.subject_name')
+                    ->get();
+
+        $cpa_subject_template = "<p style='text-align:center; font-weight: bold'>" . $this->en2romaNumber(str_replace('_', ' ', strtoupper($cpa_subjects[0]->code))) . "</p>";
+        foreach($cpa_subjects as $key => $cpa){
+            $cpa_subject_template .= "<p>(" . ++$key . ")&nbsp;&nbsp;&nbsp;&nbsp;" . $cpa->subject_name . "</p>";
+        }
+
+        $da_subj_id = explode(',', $teacher->diplomas);
+
+        $da_subjects = DB::table('subjects as s')
+                    ->join('courses as c', 'c.id', '=', 's.course_id')
+                    ->whereIn('s.id', $da_subj_id)
+                    ->select('c.name as course_name', 'c.code', 's.subject_name')
+                    ->get();
+        
+        $da_subject_template = "<p style='text-align:center; font-weight: bold'>" . $this->en2romaNumber(str_replace('_', ' ', strtoupper($da_subjects[0]->code))) . "</p>";
+        foreach($da_subjects as $key => $da){
+            $da_subject_template .= "<p>(" . ++$key . ")&nbsp;&nbsp;&nbsp;&nbsp;" . $da->subject_name . "</p>";
+        }
+
+        $template = DB::table('certificates')->where('cert_code', '=', 'teacher_card')->first();
+
+        $template->cert_data = str_replace('{{ userImage }}', $teacher->image, $template->cert_data);
+        $template->cert_data = str_replace('{{ serialNo }}', $teacher->t_code, $template->cert_data);
+        $template->cert_data = str_replace('{{ dated }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentName }}', "<strong>$teacher->name_eng</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ abaName }}', "<strong>$teacher->name_eng</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ nrcNumber }}', "<strong>$teacher->nrc_state_region/$teacher->nrc_township($teacher->nrc_citizen)$teacher->nrc_number</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ courseAndSubject }}', $da_subject_template . $cpa_subject_template, $template->cert_data);
+        $template->cert_data = str_replace('{{ validFrom }}', "<strong>" . Carbon::parse($teacher->from_valid_date)->format('d-m-Y') . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ validTo }}', "<strong>" . Carbon::parse($teacher->to_valid_date)->format('d-m-Y') . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+
+        $className = '';
+
+        return view('certificate.complete_certificate', compact('template', 'className'));
     }
 
     private function en2mm($month)
@@ -83,5 +135,14 @@ class CertificateController extends Controller
         $my = ['၀','၁', '၂', '၃', '၄', '၅', '၆', '၇', '၈', '၉'];
 
         return str_replace($en, $my, $number);
+    }
+
+    private function en2romaNumber($number)
+    {
+        $en = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+        $roma = ['','I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
+
+        return str_replace($en, $roma, $number);
     }
 }

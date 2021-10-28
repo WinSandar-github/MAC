@@ -15,7 +15,7 @@ class ApprenticeAccountant extends Model
     }
 
     public function mentor(){
-        return $this->hasOne(Mentor::class,'id','mentor_id');
+        return $this->hasOne(Mentor::class,'id','mentor_id')->with('papp');
 
     }
 
