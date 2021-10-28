@@ -127,11 +127,11 @@ function getSchoolInfos(){
             $("#phone").append(data.data.phone);
             $("#email").append(data.data.email);
             $("#hidden_attach").val(data.data.attachment);
-            
+            $('.school_fee').show();
             if(data.data.approve_reject_status != 0){
                 $("#approve_reject").hide();
                 $('#cessation-btn').show();
-                $('.school_fee').show();
+                
             }else{
                 $("#approve_reject").show();
             }
@@ -733,7 +733,7 @@ function loadSchoolCard(){
         url : BACKEND_URL+"/school/"+id,
         success : function(data){
             
-           
+            console.log(data.data)
             if(data.data.from_valid_date!=null){
                 var today = new Date(data.data.from_valid_date);
                 var date = addZero(today.getDate())+'-'+addZero(today.getMonth()+1)+'-'+today.getFullYear();
