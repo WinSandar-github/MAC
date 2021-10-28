@@ -906,6 +906,7 @@ class CPAFFController extends Controller
             $cpa_ff->last_paid_year = $thisYear;
         }     
         $cpa_ff->previous_last_paid_year =$oldCpaff->last_paid_year;
+        $cpa_ff->cpaff_reg_no =$oldCpaff->cpaff_reg_no;
         $cpa_ff->resign_date      =   $request->resign_date;
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;
@@ -1193,7 +1194,26 @@ class CPAFFController extends Controller
             'message' => "You have successfully approved that user!"
         ],200);
     }
-
+    public function approveRenewCpaff($id)
+    {
+        $accepted_date = date('Y-m-d');
+        $approve = CPAFF::find($id);
+        if($approve->status==0)
+        {
+            $approve->status = 1;
+            $approve->accepted_date=$accepted_date;
+        $approve->renew_accepted_date=$accepted_date;
+        }
+        else if($approve->status==1){
+            $approve->status = 1;
+            $approve->renew_status=1;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
     public function approveOfflineCpaff($id)
     {
         $month_day=date('m-d');

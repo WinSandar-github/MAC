@@ -277,7 +277,26 @@ class PAPPController extends Controller
             'message' => "You have successfully approved that user!"
         ],200);
     }
-
+    public function approveRenewPapp($id)
+    {
+        $accepted_date = date('Y-m-d');
+        $approve = Papp::find($id);
+        if($approve->status==0)
+        {
+            $approve->status = 1;
+            $approve->accepted_date=$accepted_date;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        else if($approve->status==1){
+            $approve->status = 1;
+            $approve->renew_status=1;
+            $approve->renew_accepted_date=$accepted_date;
+        }
+        $approve->save();
+        return response()->json([
+            'message' => "You have successfully approved that user!"
+        ],200);
+    }
     public function getPappRegNo($stu_id){
         $papp = PAPP::where('student_id',$stu_id)->get('papp_reg_no');
         return response()->json([
@@ -470,7 +489,7 @@ class PAPPController extends Controller
         $papp->phone            =   $request->phone;
         $papp->contact_mail     =   $request->contact_mail;
         $papp->letter           =   $letter;
-        $papp->cpaff_reg_no           =   $request->cpaff_reg_no;
+        $papp->cpaff_reg_no     =   $request->cpaff_reg_no;
         $papp->papp_reg_no      =   $request->papp_reg_no;
         $papp->audit_work       =   $request->audit_work;
         $papp->audit_year       =   $request->audit_year;
