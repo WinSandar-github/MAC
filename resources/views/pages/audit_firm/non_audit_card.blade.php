@@ -131,7 +131,7 @@
                                             <tr>
                                                 <td width="55%">မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ</td>
                                                 
-                                                <td id='regno_date' rowspan="2"></td>
+                                                <td rowspan="2"><span id='accountancy_firm_reg_no'></span>&nbsp;/&nbsp;<span id="register_date"></span></td>
                                                 
                                             </tr>
                                             <tr>

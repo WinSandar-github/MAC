@@ -68,13 +68,15 @@
                                 <tbody id="tbl_app_list_body" class="hoverTable"> 
                                 @php $count = 0;
                                   @endphp
-
+                                
                                 @foreach($data['student'] as $key => $std)
-  
+                                    
                                     @if($key == 2)
-                                        @foreach($std as $key => $ygn)
-
+                                     
+                                    @foreach($std as $key => $ygn)
+                                        
                                             @if($key == 1)
+ 
                                                 <tr class="mac-ygn">
                                                     <td colspan="6" style="text-align: start; font-weight: bold">
                                                         MAC (ရန်ကုန်) သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
@@ -113,6 +115,7 @@
                                                 </tr>
                                                 @endforeach
                                             @elseif($key == 2)
+                                            
                                                 <tr class="mac-npt">
                                                     <td colspan="6" style="text-align: start; font-weight: bold">
                                                         MAC (နေပြည်တော်) သင်တန်းကျောင်းတွင်တက်ရောက်မည့်သူများ
@@ -299,6 +302,7 @@
             });
 
             $btn = $table.find('caption').children().detach();
+           
 
             $btn.appendTo('#export-btn');
             // table export
@@ -325,7 +329,6 @@
                         $('.mac-row, .self-row').hide();
                         break;
                     case "ရန်ကုန်သင်တန်းကျောင်း":
-                      
                       $('.mac-row, .mac-ygn').show();
                       $('.mac-npt, .private-row, .self-row').hide();
                       break;
