@@ -100,6 +100,7 @@ Route::resource('/papp','PAPPController');
 Route::post('/papp_renew','PAPPController@PappRenewRegistration');
 Route::get('/papp_register_list/{status}/{type}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
+Route::patch('/approve_renew_papp/{id}', 'PAPPController@approveRenewPapp');
 Route::post('/reject_papp/{id}', 'PAPPController@reject');
 Route::post('/update_papp_initial', 'PAPPController@updateRejectedInitialData');
 Route::post('/update_papp_renewal', 'PAPPController@updateRejectedRenewalData');
@@ -118,6 +119,7 @@ Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterC
 Route::get('/cpa_ff_offline_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffOfflineRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff');
+Route::patch('/approve_renew_cpaff/{id}', 'CPAFFController@approveRenewCpaff');
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');

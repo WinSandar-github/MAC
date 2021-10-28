@@ -21,6 +21,8 @@
                                         <th class="bold-font-weight" rowspan="2">စဥ်</th>
                                         <th class="bold-font-weight" rowspan="2">အမည်</th>
                                         <th class="bold-font-weight" rowspan="2">ကိုယ်ပိုင်အမှတ်</th>
+                                        <th class="bold-font-weight" rowspan="2">ဖုန်း</th>
+                                        <th class="bold-font-weight" rowspan="2">အီးမေးလ်</th>
                                         <th class="bold-font-weight" rowspan="2">ခွင့်အမျိုးအစား</th>
                                         <th class="bold-font-weight" colspan="2">ခွင့်ကာလ</th>
                                     </tr>
@@ -35,6 +37,8 @@
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $leave->name_mm }}</td>
                                         <td>{{ $leave->cpersonal_no }}</td>
+                                        <td>{{ $leave->phone }}</td>
+                                        <td>{{ $leave->email }}</td>
                                         <td>{{ $leave->remark }}</td>
                                         <td>{{ $leave->start_date }}</td>
                                         <td>{{ $leave->end_date }}</td>
