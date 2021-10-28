@@ -3997,10 +3997,17 @@ class AccFirmInfController extends Controller
     }
 
     //check verify
-    public function checkVerify($id)
+    public function checkVerify($id,$firm_id)
     {
-        $data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->get();
-        //$data = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
+        $data = array();
+        $acc_firm = AccountancyFirmInformation::where('student_info_id',$id)->latest()->get();
+        $audit_invoice_status = Invoice::where('invoiceNo','audit_initial'.$firm_id)->select('status')->get();
+        $nonaudit_invoice_status = Invoice::where('invoiceNo','non_audit_initial'.$firm_id)->select('status')->get();
+
+        array_push($data , ['acc_firm'=>$acc_firm,
+                            'audit_invoice_status'=> $audit_invoice_status,
+                            'nonaudit_invoice_status' => $nonaudit_invoice_status
+                           ]);
         return response()->json($data,200);
     }
 
@@ -4046,7 +4053,6 @@ class AccFirmInfController extends Controller
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
 
-
       if($firm_type == 1){
         return DataTables::of($acc_firm_info)
           ->addColumn('action', function ($infos) {
@@ -4056,7 +4062,10 @@ class AccFirmInfController extends Controller
               //             </button>
 
               //         </div>";
-              return "<div class='btn-group'>
+              $invoice = Invoice::where('student_info_id',$infos->student_info_id)->first('status');
+              // return $invoice->status;
+              if($infos->status == 1 && $invoice->status == 'AP'){
+                return "<div class='btn-group'>
                   <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
                       <li class='fa fa-eye fa-sm'></li>
                   </button>
@@ -4065,6 +4074,22 @@ class AccFirmInfController extends Controller
                   </a>
 
               </div>";
+              }else if($infos->status == 1 && $invoice->status != 'AP'){
+                  return "<div class='btn-group'>
+                    <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
+                        <li class='fa fa-eye fa-sm'></li>
+                    </button>
+
+                </div>";
+              }else{
+                return "<div class='btn-group'>
+                  <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
+                      <li class='fa fa-eye fa-sm'></li>
+                  </button>
+
+              </div>";
+              }
+              
           })
 
           ->addColumn('accountancy_firm_reg_no', function ($infos){
@@ -4137,15 +4162,77 @@ class AccFirmInfController extends Controller
           // })
 
           ->addColumn('action', function ($infos) {
-              return "<div class='btn-group'>
-                            <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
-                            <li class='fa fa-eye fa-sm'></li>
-                            </a>
-                            <a href='non_audit_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
-                              <li class='fa fa-file-text-o fa-sm'></li>
-                            </a>
+            $invoice = Invoice::where('student_info_id',$infos->student_info_id)->first('status');
+              if($infos->local_foreign_type == 1 && $infos->status == 1){
+                    if($infos->status == 1 && $invoice->status == 'AP') {
+                        return "<div class='btn-group'>
+                                      <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
+                                      <li class='fa fa-eye fa-sm'></li>
+                                      </a>
+                                      <a href='non_audit_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
+                                        <li class='fa fa-file-text-o fa-sm'></li>
+                                      </a>
 
-                      </div>";
+                                </div>";
+                    }else if($infos->status == 1 && $invoice->status != 'AP'){
+                        return "<div class='btn-group'>
+                                      <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
+                                      <li class='fa fa-eye fa-sm'></li>
+                                      </a>
+
+                                </div>";
+                    }else{
+                        return "<div class='btn-group'>
+                                      <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
+                                      <li class='fa fa-eye fa-sm'></li>
+                                      </a>
+
+                                </div>";
+                    }
+              }else if($infos->local_foreign_type == 2 && $infos->status == 1){
+                     if($infos->status == 1 && $invoice->status == 'AP'){
+                        return "<div class='btn-group'>
+                                  <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
+                                  <li class='fa fa-eye fa-sm'></li>
+                                  </a>
+                                  <a href='non_audit_foreign_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
+                                    <li class='fa fa-file-text-o fa-sm'></li>
+                                  </a>
+
+                            </div>";
+                        }else if($infos->status == 1 && $invoice->status != 'AP'){
+                            return "<div class='btn-group'>
+                                  <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
+                                  <li class='fa fa-eye fa-sm'></li>
+                                  </a>
+
+                            </div>";
+                        }else{
+                           return "<div class='btn-group'>
+                                  <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
+                                  <li class='fa fa-eye fa-sm'></li>
+                                  </a>
+
+                            </div>"; 
+                        }
+                
+              }  else{
+                return "<div class='btn-group'>
+                              <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
+                              <li class='fa fa-eye fa-sm'></li>
+                              </a>
+
+                        </div>";
+              }
+              
+          })
+
+          ->addColumn('local_foreign_type', function ($infos){
+              if($infos->local_foreign_type == 1){
+                return "LOCAL";
+              }else{
+                return "FOREIGN";
+              }
           })
 
           ->addColumn('accountancy_firm_reg_no', function ($infos){

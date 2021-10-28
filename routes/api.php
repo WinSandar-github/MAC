@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Invoice;
 
 /*
 |--------------------------------------------------------------------------
@@ -116,7 +117,7 @@ Route::resource('/cpa_ff','CPAFFController');
 Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffRegistration');
 Route::get('/cpa_ff_offline_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffOfflineRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
-// Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff');
+Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff');
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
@@ -213,7 +214,7 @@ Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/getNonAuditDateRange/{id}','AccFirmInfController@nonAuditDateRange');
-Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
+Route::get('/checkVerify/{id}/{firm_id}','AccFirmInfController@checkVerify');
 Route::get('/nonAuditCheckVerify/{id}','AccFirmInfController@nonAuditCheckVerify');
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
