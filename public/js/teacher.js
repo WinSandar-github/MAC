@@ -349,17 +349,49 @@ function getTeacherInfos(){
                     $('.school_name_class').hide();
                 }
                 if(value.payment_method!=null){
-                    $('.period').show();
+                    
                     var now=new Date();
                     if(value.initial_status==0){
                         //var new_date=value.from_valid_date.split('-');
                         loadInvoiceByTeacher(value.id,value.initial_status);
-                         
+                        $('.period').show();
                     }else if(value.initial_status==1){
                         //var new_date=value.renew_date.split('-');
-                        loadInvoiceByTeacher(value.id,value.initial_status);
-                        $(".payment_date").append(value.from_valid_date);
-                        $('.renew_period_time').text("01-01-"+now.getFullYear()+" to 31-12-"+now.getFullYear());
+                        if((now.getMonth()+1)==11 || (now.getMonth()+1)==12){
+                            $('.renew_period_time').text("01-01-"+(now.getFullYear()+1)+" to 31-12-"+(now.getFullYear()+1));
+                        }else{
+                            $('.renew_period_time').text("01-01-"+(now.getFullYear())+" to 31-12-"+(now.getFullYear()));
+                        }
+                        
+                       
+                        $('.period').show();
+                        if(value.from_valid_date!=null){
+                            var from_valid_date = new Date(value.from_valid_date);
+                            var date = addZero(from_valid_date.getDate())+'-'+addZero(from_valid_date.getMonth()+1)+'-'+from_valid_date.getFullYear();
+                            $(".payment_date").append(date);
+                            
+                        }
+                        if((now.getMonth()+1)==11 || (now.getMonth()+1)==12){
+                            $('#period_time_start').text("01-01-"+(now.getFullYear()+1));
+                            $('#period_time_end').text("31-12-"+(now.getFullYear()+1));
+                        }else{
+                            $('#period_time_start').text("01-01-"+(now.getFullYear()));
+                            $('#period_time_end').text("31-12-"+(now.getFullYear()));
+                        }
+                    }else{
+                        if(value.from_valid_date!=null){
+                            var from_valid_date = new Date(value.from_valid_date);
+                            var date = addZero(from_valid_date.getDate())+'-'+addZero(from_valid_date.getMonth()+1)+'-'+from_valid_date.getFullYear();
+                            $(".payment_date").append(date);
+                            
+                        }
+                        if((now.getMonth()+1)==11 || (now.getMonth()+1)==12){
+                            $('#period_time_start').text("01-01-"+(now.getFullYear()+1));
+                            $('#period_time_end').text("31-12-"+(now.getFullYear()+1));
+                        }else{
+                            $('#period_time_start').text("01-01-"+(now.getFullYear()));
+                            $('#period_time_end').text("31-12-"+(now.getFullYear()));
+                        }
                     }
                     
                     //var period_date=new_date[0].split('-');
@@ -391,9 +423,9 @@ function getTeacherInfos(){
                         $('.teacher_card_class').hide();
                         
                     }
-                    if(value.approve_reject_status==1){
+                    //if(value.approve_reject_status==1){
                         $('.exist_teacher_user').show();
-                    }
+                    //}
                     
                 }
                 
@@ -605,12 +637,13 @@ function loadEductaionHistory(id,status){
             success: function(result){
                 $.each(result.data, function( index, value ) {
                     var tr = "<tr>";
-                    tr += `<td> ${ index += 1 } </td>`;
+                    tr += `<td>${ index += 1 }</td>`;
                     tr += `<td> ${ value.degree_name } </td>`;
                     tr += `<td><a href='${PDF_URL+value.certificate}' style='margin-top:0.5px;' target='_blank' class='btn btn-success btn-md'><i class="nc-icon nc-tap-01"></i></a></td>`;
                     tr += "</tr>";
                     $("#tbl_degree_body").append(tr);
                 });
+                
                 createDataTable('#tbl_degree');
             }
         });
@@ -900,10 +933,11 @@ function loadInvoiceByTeacher(id,status){
             success: function(result){
                 
                 $.each(result.data, function( index, val ){
-                    $("#payment_date").val(val.dateTime);
+                    var from_valid_date = new Date(val.dateTime);
+                    var date = addZero(from_valid_date.getDate())+'-'+addZero(from_valid_date.getMonth()+1)+'-'+from_valid_date.getFullYear();
+                    $("#payment_date").val(date);
+                    $('#period_time').text(date+" to 31-12-"+now.getFullYear());
                     
-                    $('#period_time').text(val.dateTime+" to 31-12-"+now.getFullYear());
-                  
                 })
                 
                 
@@ -912,4 +946,10 @@ function loadInvoiceByTeacher(id,status){
             }
         });
     
+}
+function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
 }

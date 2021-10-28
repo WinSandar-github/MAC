@@ -8,6 +8,9 @@
         background: rgb(204, 204, 204);
     }
 
+    .input {
+        border-bottom: dotted;
+    }
     page {
         background: white;
         display: block;
@@ -21,7 +24,7 @@
         height: 29.7cm;
     }
 
-    page {
+    page > .border-style {
         background-image: url(https://demo.aggademo.me/MAC/public/img/dacpa_certificate.png);
         background-size: 97%;
         background-repeat: no-repeat;
@@ -40,7 +43,7 @@
 </style>
 
 <body>
-    <page size="A4">
+    <page size="A4" class="{{ $className }}">
         {{-- <table style="margin-right: 100px; margin-left: 100px;">
             <tbody>
                 <tr>

@@ -210,7 +210,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
-                                                            <th class="bold-font-weight" >Registration Fee</th>
+                                                            <th class="bold-font-weight" >Resign Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -227,7 +227,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
-                                                            <th class="bold-font-weight" >Registration Fee</th>
+                                                            <th class="bold-font-weight" >Resign Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -244,7 +244,7 @@
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
-                                                            <th class="bold-font-weight" >Registration Fee</th>
+                                                            <th class="bold-font-weight" >Resign Fee</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -535,7 +535,30 @@
             </div>
         </div>
     </form>
-    
+
+    {{-- Payment detail Modal --}}
+		<div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Article Payment Details</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+								<ul class="list-group mb-3 sticky-top fee_list">
+
+								</ul>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</div>
+		</div>
+		{{-- Payment detail Modal End --}}
+
 @endsection
 @push('scripts')
 <script src="{{ asset('js/article.js') }}"></script>
@@ -582,7 +605,7 @@
                 allowInput: true
         });
     });
-    
+
     $('document').ready(function(){
         //firm article
         var table_pending = $('#tbl_firm_article_pending').DataTable({
@@ -801,7 +824,7 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'registration_fee', name: 'registration_fee'},
+                {data: 'resign_fee', name: 'resign_fee'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -829,7 +852,7 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'registration_fee', name: 'registration_fee'},
+                {data: 'resign_fee', name: 'resign_fee'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -857,7 +880,7 @@
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
-                {data: 'registration_fee', name: 'registration_fee'},
+                {data: 'resign_fee', name: 'resign_fee'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

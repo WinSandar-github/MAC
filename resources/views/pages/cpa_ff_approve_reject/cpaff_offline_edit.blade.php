@@ -45,6 +45,15 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged) Initial Registration Date</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="cpaff_reg_year"></span>
+                                    </div>
+                                </div>
+
+                                {{--<div class="row m-2 mt-3 border-bottom">
+                                    <div class="col-md-6 text-left">
                                         <p class="ml-2" style="font-weight:bold">ဆက်သွယ်ရန်လိပ်စာ</p>
                                     </div>
                                     <div class="col-md-6 text-left">
@@ -59,11 +68,11 @@
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_phone"></span>
                                     </div>
-                                </div>
+                                </div>--}}
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">E-mail Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Contact E-mail Address</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="contact_mail"></span>
@@ -81,7 +90,7 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">CPA(Full-Fledged ) Registeration Date</p>
+                                        <p class="ml-2" style="font-weight:bold">Last CPA(Full-Fledged ) Registeration Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="cpaff_pass_date"></span>
@@ -108,7 +117,7 @@
 
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">PAPP Registeration Date</p>
+                                        <p class="ml-2" style="font-weight:bold">Last PAPP Registeration Date</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="papp_reg_year"></span>
@@ -222,23 +231,6 @@
                                         <!-- <button type="button" id="nrc_fornt_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_front_Modal"><i class="fa fa-paperclip"></i></button> -->
                                     </div>
                                 </div>
-                                <!--NRC Card(Front) Modal -->
-                                <div id="nrc_front_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">NRC Card(Front)</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="nrc_front" class="img-fluid" /> -->
-                                            <embed id="nrc_front"  width="100%" height="500px">
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
 
                                 <!--NRC Card(Back) -->
                                 <div class="row m-2 mt-3 border-bottom">
@@ -247,23 +239,6 @@
                                     </div>
                                     <div class="col-md-6 text-left nrc_back_file">
                                         <!-- <button type="button" id="nrc_back_btn"style="width: 30%;margin-top:1% ;" class="btn btn-primary" data-toggle="modal" data-target="#nrc_back_Modal"><i class="fa fa-paperclip"></i></button> -->
-                                    </div>
-                                </div>
-                                <!--NRC Card(Back) Modal -->
-                                <div id="nrc_back_Modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title text-center">NRC Card(Back)</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- <img id="nrc_back" class="img-fluid" /> -->
-                                            <embed id="nrc_back" width="100%" height="500px">
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
 
@@ -371,7 +346,7 @@
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">Address</p>
+                                        <p class="ml-2" style="font-weight:bold">Current Address</p>
                                     </div>
                                     <div class="col-md-6 text-left">
                                         <span id="address"></span>
@@ -458,6 +433,7 @@
                                     {{--<button type="submit" name="save" class="btn btn-danger"  onclick="rejectCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>--}}
                                     <button type="submit" name="save" class="btn btn-danger"  onclick="rejectModal()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                     <button type="submit" name="save" class="btn btn-primary" onclick="approveOfflineCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+                                    {{--<button type="submit" name="save" class="btn btn-primary" onclick="approveCPAFFUser()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>--}}
                                 </div>                               
                             </div>
                         </div>

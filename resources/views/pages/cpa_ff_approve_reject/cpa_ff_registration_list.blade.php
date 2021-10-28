@@ -77,7 +77,7 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -96,10 +96,11 @@
                                                         <th class="bold-font-weight" >Email</th>
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <!-- <th class="bold-font-weight" >CPAFF Reg; No.</th> -->
-                                                        <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >Reg; Date</th>                                                        
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -121,7 +122,7 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -160,9 +161,10 @@
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <!-- <th class="bold-font-weight" >CPAFF Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >PaymentnStatus</th>
 
                                                     </tr>
                                                 </thead>
@@ -182,9 +184,10 @@
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <!-- <th class="bold-font-weight" >CPAFF Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -204,9 +207,10 @@
                                                         <th class="bold-font-weight" >ကိုယ်တိုင်ဝန်ခံချက်</th>
                                                         <!-- <th class="bold-font-weight" >CPAFF Reg; No.</th> -->
                                                         <th class="bold-font-weight" >Reg; Date</th>
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -275,6 +279,7 @@
             // {data: 'cpaff_reg_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
             {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
             // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
             {data: 'total_hours', name: 'CPD Total Hours'},
             {data: 'status', name: 'Status'},
@@ -322,6 +327,7 @@
               {data: 'self', name: 'Self Confession'},
               // {data: 'cpaff_reg_no', name: 'Registration Number',className: "set-text-center"},
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'total_hours', name: 'CPD Total Hours'},
               // {data: 'degree', name: 'Degree'},
@@ -348,6 +354,7 @@
             // {data: 'cpaff_reg_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
             {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
             // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
             {data: 'total_hours', name: 'CPD Total Hours'},
             {data: 'status', name: 'Status'},
@@ -372,6 +379,7 @@
             // {data: 'cpaff_reg_no', name: 'Registration Number',className: "set-text-center"},
             // {data: 'degree', name: 'Degree'},
             {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
             // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
             {data: 'total_hours', name: 'CPD Total Hours'},
             {data: 'status', name: 'Status'},

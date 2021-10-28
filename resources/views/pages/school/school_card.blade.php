@@ -242,19 +242,38 @@
                                                 
                                                 
                                             </tr>
-                                            <tr>
-                                                <td>Location of Branch School</td>
-                                                
-                                                <td id="branch_address" rowspan="2"> </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Branch</td>
-                                                
-                                                
-                                            </tr>
-                                        </tbody>
+                                            </tbody>
                                         </table>
-                                             
+                                        
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    <diiv class="row" style="text-align: justify;">
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-10"><p>Location of Branch School is mentioned on the reverse.</p></div>
+                                        
+                                    </div>
+                                    <div class="row mt-3 " style="text-align: justify;">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-4">
+                                            Location of Branch School
+                                        </div>
+                                        <div class="col-md-4"></div>
+                                    </div>
+                                    <div class="row" >
+                                        <div class="col-md-2"></div>
+                                        <div class="col-md-8">
+                                            
+                                        <table style="width:100%" id="tbl_branch" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Branch</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbl_branch_body">
+                                                
+                                            </tbody>
+                                        </table>
                                         </div>
                                         <div class="col-md-2"></div>
                                     </div>
@@ -262,7 +281,7 @@
                                         <div class="col-md-8"></div>
                                         <div class="col-md-4">
                                             <textarea></textarea>
-                                            <label>မှတ်ပုံတင်အရာရှိ (Registrar)</label>
+                                            <label>မှတ်ပုံတင်အရာရှိ (Register)</label>
                                         </div>
                                     </div>
                                     <center>

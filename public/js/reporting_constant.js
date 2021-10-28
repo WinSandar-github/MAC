@@ -46,7 +46,7 @@ const _DA = [
     {
         route_name: "/da_reg/2",
         fun_name: 'daRegList($(this).data(\'url\'))',
-        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+        sub_title: "မြန်မာနိုင်ငံစာရင်းကောင်စီတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
@@ -58,7 +58,7 @@ const _DA = [
     {
         route_name: "/da_reg/1",
         fun_name: 'daRegList($(this).data(\'url\'))',
-        sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+        sub_title: "ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင် မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
@@ -89,13 +89,13 @@ const _CPA = [
     {
         route_name: "/da_attend/2",
         fun_name: 'daAttendMacList($(this).data(\'url\'))',
-        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+        sub_title: "မြန်မာနိုင်ငံစာရင်းကောင်စီတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
     },
 
     {
         route_name: "/da_attend/1",
         fun_name: 'daAttendPrvList($(this).data(\'url\'))',
-        sub_title: "ကိုယ်ပိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
+        sub_title: "ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင် သင်တန်းတက်ရောက်ခွင့်ရရှိသူစာရင်း"
     },
 
     {
@@ -142,7 +142,7 @@ const _CPA = [
     {
         route_name: "/da_reg/2",
         fun_name: 'daRegList($(this).data(\'url\'))',
-        sub_title: "စာရင်းစစ်ချုပ်ရုံးတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
+        sub_title: "မြန်မာနိုင်ငံစာရင်းကောင်စီတွင်မှတ်ပုံတင်ထားသူသင်တန်းသားစာရင်း"
     },
 
     {
@@ -199,11 +199,11 @@ const _ARTICLE_SECTION_MENTOR = [
     //     sub_title: "အလုပ်သင်ကြားပေးသူနှစ်စဥ် စစ်ဆေးခဲ့သည့် Company စာရင်း"
     // },
 
-    {
-        route_name: "/article_mentor_intern",
-        fun_name: "articleMentorIntern($(this).data(\'url\'))",
-        sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
-    },
+    // {
+    //     route_name: "/article_mentor_intern",
+    //     fun_name: "articleMentorIntern($(this).data(\'url\'))",
+    //     sub_title: "အလုပ်သင်ကြားပေးသူ(PAPP)ထံတွင် အလုပ်သင်ဆင်းနေသူစာရင်း (ကျောင်းသား status အလိုက်)"
+    // },
 
     // {
     //     sub_title: "Mentor တစ်ဦးချင်းစီ၏ History (Initial Registeration, သက်တမ်းပြတ်ကာလ, Renew ပြန်လုပ်သည့်ကာလ"
@@ -215,23 +215,92 @@ const _FIRM_NAME = [
     //     sub_title: `လုပ်သင်အသားတင်(ရေတွက်ခွင့်မရှိသောခွင့်ကာလနှုတ်ပြီး) လုပ်သက် ၂ နှစ်
     //                 (CPA မအောင်သေးသူများ၊ ၁ နှစ် နှင့် ၃ နှစ် (CPA အောင်ပြီးသူများ) ပြည့်သူများစာရင်း`
     // },
-
     // {
     //     sub_title: `အလုပ်သင်နှုတ်ထွက်သူများစာရင်း`
     // },
 
     {
-        route_name: "/firm_individual",
-        fun_name: "firmIndividual($(this).data(\'url\'))",
-        sub_title: `အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှုပေးသူတစ်ဦးချင်း`
+        route_name: '/firm_individual/1',
+        fun_name: 'firmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Audit Firm - Sole )'
     },
-
     {
-        route_name: "/firm_daily_attendence",
-        fun_name: "frimDailyAttendence($(this).data(\'url\'))",
-        sub_title: `နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ`
+        route_name: '/firm_individual/2',
+        fun_name: 'firmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Audit Firm - Partnership )'
+    },
+    {
+        route_name: '/firm_individual/3',
+        fun_name: 'firmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Audit Firm - Company )'
+    },
+    {
+        route_name: '/non_firm_individual/1',
+        fun_name: 'nonFirmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Sole )'
+    },
+    {
+        route_name: '/non_firm_individual/2',
+        fun_name: 'nonFirmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Partnership )'
+    },
+    {
+        route_name: '/non_firm_individual/3',
+        fun_name: 'nonFirmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Local Company )'
+    },
+    {
+        route_name: '/non_firm_individual/4',
+        fun_name: 'nonFirmIndividual($(this).data(\'url\'))',
+        sub_title: 'ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ - ( Non Audit Firm - Foreign Company )'
     },
 
+    // {
+    //     route_name: "/firm_registration_yearly_calendar/1/1/NULL",
+    //     fun_name: "soleFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+    //     sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Audit Firm ) ( Sole )`
+    // },
+    // {
+    //     route_name: "/firm_registration_yearly_calendar/2/1/NULL",
+    //     fun_name: "partnershipFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+    //     sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Audit Firm ) ( Partnership )`
+    // },
+    // {
+    //     route_name: "/firm_registration_yearly_calendar/3/1/NULL",
+    //     fun_name: "companyFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+    //     sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Audit Firm ) ( Company )`
+    // },
+    // {
+    //     route_name: "/firm_registration_yearly_calendar/1/2/1",
+    //     fun_name: "localSoleNonFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+    //     sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Non Audit Firm ) (  Local Sole )`
+    // },
+    // {
+    //     route_name: "/firm_registration_yearly_calendar/2/2/1",
+    //     fun_name: "localPartnershipNonFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+    //     sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Non Audit Firm ) ( Local Partnership )`
+    // },
+    // {
+    //     route_name: "/firm_registration_yearly_calendar/1/2/2",
+    //     fun_name: "foreignSoleNonFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+    //     sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Non Audit Firm ) ( Foreign Sole )`
+    // },
+    // {
+    //     route_name: "/firm_registration_yearly_calendar/2/2/2",
+    //     fun_name: "foreignPartnershipNonFirmRegistrationYearlyCalendar($(this).data(\'url\'))",
+    //     sub_title: `ပြက္ခဒိန်နှစ်လိုက်မှတ်ပုံတင်လုပ်ငန်းများ ( Non Audit Firm ) ( Foreign Partnership )`
+    // },
+
+    // {
+    //     route_name: "/firm_individual",
+    //     fun_name: "firmIndividual($(this).data(\'url\'))",
+    //     sub_title: `အလုပ်သင်ကြားပေးနိုင်သည့် အများပြည်သူသို့ စာရင်းဝန်ဆောင်မှုပေးသူတစ်ဦးချင်း`
+    // },
+    // {
+    //     route_name: "/firm_daily_attendence",
+    //     fun_name: "frimDailyAttendence($(this).data(\'url\'))",
+    //     sub_title: `နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ`
+    // },
     // {
     //     sub_title: `အလုပ်သင်မှတ်တမ်း - ၂ နှစ်ပြည့်၊ ၃ နှစ်ပြည့်`
     // }
@@ -320,25 +389,25 @@ const _CPA_PAPP = [
     {
         route_name: "/cpa_ff_yearly_list",
         fun_name: 'cpaFFYealyList($(this).data(\'url\'))',
-        sub_title: "CPA (FF)တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+        sub_title: "CPA (Full-Fledged) တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
     },
 
     {
         route_name: "/cpa_ff_pa_yearly_list",
         fun_name: 'cpaPAYealyList($(this).data(\'url\'))',
-        sub_title: "CPA (FF)/ PA တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ဒဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
+        sub_title: "PAPP တစ်ဦး၏သက်တမ်းတိုးမည့် ပြက္ခဒိန်နှစ်အပါအ၀င် ကပ်လျက်ရှိသော ၂နှစ်၏ CPD နာရီမှတ်တမ်း"
     },
 
     {
         route_name: "/cpa_ff_yearly_reg_list",
         fun_name: 'cpaFFYearlyRegList($(this).data(\'url\'))',
-        sub_title: "ပြက္ဒဒိန်နှစ်အလိုက် ( CPA FF) မှတ်ပုံတင်သူများစာရင်း"
+        sub_title: "ပြက္ခဒိန်နှစ်အလိုက် CPA (Full-Fledged) မှတ်ပုံတင်သူများစာရင်း"
     },
 
     {
         route_name: "/cpa_papp_yearly_reg_list",
         fun_name: 'cpaPAPPYearlyRegList($(this).data(\'url\'))',
-        sub_title: "ပြက္ဒဒိန်နှစ်အလိုက် ( PAPP ) မှတ်ပုံတင်သူများစာရင်း"
+        sub_title: "ပြက္ခဒိန်နှစ်အလိုက် PAPP မှတ်ပုံတင်သူများစာရင်း"
     }
 
 ]
@@ -351,21 +420,27 @@ const _ARTICLE = [
     },
 
     {
-        route_name: "/article_daily_in_out_list",
+        route_name: "/article_daily_in_out_list/firm",
         fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
-        sub_title: "နေ့စဥ်ရုံးတက်ရုံးဆင်းမှတ်တမ်း၊ ခွင့်ပုံစံ။"
+        sub_title: "Firm စာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ"
+    },
+
+    {
+        route_name: "/article_daily_in_out_list/gov",
+        fun_name: 'articleDailyInOutList($(this).data(\'url\'))',
+        sub_title: "အစိုးရစာရင်းကိုင်အလုပ်သင်များ၏ ခွင့်ခံစားမှုအခြေအနေ"
     },
 
     {
         route_name: "/article_intern_position_list",
         fun_name: 'articleInternPosList($(this).data(\'url\'))',
-        sub_title: "စာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
+        sub_title: "အစိုးရစာရင်းကိုင်အလုပ်သင်ခန့်အပ်စာရင်း (Batch အလိုက်)"
     },
 
     {
         route_name: "/article_internship_list",
         fun_name: 'articleInternshipList($(this).data(\'url\'))',
-        sub_title: "အလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)"
+        sub_title: "အစိုးရအလုပ်သင်ဆင်းသူများစာရင်း (Batch အလိုက်)"
     }
 
 ]

@@ -267,20 +267,20 @@
                 </div>
             </li>
 
-            <li class="{{ $elementActive == 'exam_entry_list' ? 'active' : '' }}">
+            <!-- <li class="{{ $elementActive == 'exam_entry_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'exam_entry_list') }}">
                     <i class="nc-icon nc-tap-01"></i>
                     <p>{{ __('Entry Exam List') }}</p>
                     <b class="caret"></b>
                 </a>
-            </li>
-
+            </li> -->
+<!-- 
             <li class="{{ $elementActive == 'qualified_test_payment_list' ? 'active' : '' }}">
                 <a href="{{ route('page.index', 'qualified_test_payment_list') }}">
                     <i class="nc-icon nc-tap-01"></i>
                     <p>{{ __('QT Payment List') }}</p>
                 </a>
-            </li>
+            </li> -->
 
             <li class="{{ $elementActive == 'offline_user' ? 'active' : '' }}">
                 <a href="{{ route('offline_user') }}">

@@ -68,6 +68,7 @@ class CreatePappsTable extends Migration
             $table->string('audit_work')->nullable();
             
             $table->string('latest_reg_year')->nullable();
+            $table->string('previous_latest_reg_year')->nullable(); //only for detail information
             $table->integer('submitted_stop_form')->nullable();
             // $table->string('submitted_from_date')->nullable();
             // $table->string('submitted_to_date')->nullable();

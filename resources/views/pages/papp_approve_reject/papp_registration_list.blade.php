@@ -68,9 +68,10 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >PAPP Date</th>
-                                                        <th class="bold-font-weight" >No Use Firm Name</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <!-- <th class="bold-font-weight" >PAPP Date</th>
+                                                        <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -92,9 +93,11 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >PAPP Date</th>
-                                                        <th class="bold-font-weight" >No Use Firm Name</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <!-- <th class="bold-font-weight" >PAPP Date</th>
+                                                        <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >PAPP Reg; No.</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -116,9 +119,10 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >PAPP Date</th>
-                                                        <th class="bold-font-weight" >No Use Firm Name</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <!-- <th class="bold-font-weight" >PAPP Date</th>
+                                                        <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -161,9 +165,11 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >PAPP Date</th>
-                                                        <th class="bold-font-weight" >No Use Firm Name</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <!-- <th class="bold-font-weight" >PAPP Date</th>
+                                                        <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >PAPP Reg; No.</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -185,9 +191,11 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >PAPP Date</th>
-                                                        <th class="bold-font-weight" >No Use Firm Name</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <!-- <th class="bold-font-weight" >PAPP Date</th>
+                                                        <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >PAPP Reg; No.</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -209,9 +217,11 @@
                                                         <th class="bold-font-weight" >Reg; Date</th>
                                                         <!-- <th class="bold-font-weight" >Payment Date</th> -->
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
-                                                        <th class="bold-font-weight" >PAPP Date</th>
-                                                        <th class="bold-font-weight" >No Use Firm Name</th>
-                                                        <th class="bold-font-weight" >Status</th>
+                                                        <!-- <th class="bold-font-weight" >PAPP Date</th>
+                                                        <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >PAPP Reg; No.</th>
+                                                        <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -252,9 +262,10 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
-              {data: 'papp_date', name: 'PAPP Date'},
-              {data: 'use_firm', name: 'No Use Firm Name'},
-              {data: 'status', name: 'Status'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+            //   {data: 'papp_date', name: 'PAPP Date'},
+            //   {data: 'use_firm', name: 'No Use Firm Name'},
+              {data: 'payment_status', name: 'Payment Status'},
             //   {data: 'type', name: 'Type'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -277,9 +288,11 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
-              {data: 'papp_date', name: 'PAPP Date'},
-              {data: 'use_firm', name: 'No Use Firm Name'},
-              {data: 'status', name: 'Status'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+              {data: 'papp_reg_no', name: 'PAPP Reg; No.'},
+            //   {data: 'papp_date', name: 'PAPP Date'},
+            //   {data: 'use_firm', name: 'No Use Firm Name'},
+              {data: 'payment_status', name: 'Payment Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
@@ -301,9 +314,10 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
-              {data: 'papp_date', name: 'PAPP Date'},
-              {data: 'use_firm', name: 'No Use Firm Name'},
-              {data: 'status', name: 'Status'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+            //   {data: 'papp_date', name: 'PAPP Date'},
+            //   {data: 'use_firm', name: 'No Use Firm Name'},
+              {data: 'payment_status', name: 'Payment Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
@@ -325,9 +339,11 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
-              {data: 'papp_date', name: 'PAPP Date'},
-              {data: 'use_firm', name: 'No Use Firm Name'},
-              {data: 'status', name: 'Status'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+              {data: 'papp_reg_no', name: 'PAPP Reg; No.'},
+            //   {data: 'papp_date', name: 'PAPP Date'},
+            //   {data: 'use_firm', name: 'No Use Firm Name'},
+              {data: 'payment_status', name: 'Payment Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
@@ -349,9 +365,11 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
-              {data: 'papp_date', name: 'PAPP Date'},
-              {data: 'use_firm', name: 'No Use Firm Name'},
-              {data: 'status', name: 'Status'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+              {data: 'papp_reg_no', name: 'PAPP Reg; No.'},
+            //   {data: 'papp_date', name: 'PAPP Date'},
+            //   {data: 'use_firm', name: 'No Use Firm Name'},
+              {data: 'payment_status', name: 'Payment Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });
@@ -373,9 +391,11 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
-              {data: 'papp_date', name: 'PAPP Date'},
-              {data: 'use_firm', name: 'No Use Firm Name'},
-              {data: 'status', name: 'Status'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+              {data: 'papp_reg_no', name: 'PAPP Reg; No.'},
+            //   {data: 'papp_date', name: 'PAPP Date'},
+            //   {data: 'use_firm', name: 'No Use Firm Name'},
+              {data: 'payment_status', name: 'Payment Status'},
           ],
           "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
       });

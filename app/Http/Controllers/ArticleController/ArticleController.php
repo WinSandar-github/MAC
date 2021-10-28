@@ -11,6 +11,7 @@ use App\leave_request;
 use App\Http\Requests\AppAccRequest;
 use App\Invoice;
 use App\StudentInfo;
+use App\Membership;
 
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
@@ -47,10 +48,22 @@ class ArticleController extends Controller
 
     public function store(Request $request)
     {
-        $acc_app = new ApprenticeAccountant();
-        $acc_app->student_info_id = $request->student_info_id;
-        $acc_app->article_form_type = $request->article_form_type;
-        $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
+        if($request->offline_user=="true"){
+            //Student Info
+            $std_info = new StudentInfo();
+            $std_info->email = $request->email;
+            $std_info->password = Hash::make($request->password);
+            $std_info->save();
+            //article
+            $acc_app = new ApprenticeAccountant();
+            $acc_app->student_info_id = $std_info->id;
+            $acc_app->article_form_type = $request->article_form_type;
+            $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
+        }else{
+            $acc_app = new ApprenticeAccountant();
+            $acc_app->student_info_id = $request->student_info_id;
+            $acc_app->article_form_type = $request->article_form_type;
+            $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
 
         // $exp_file = '';
         // if($request->apprentice_exp == 1 && $request->hasfile($request->apprentice_exp_file)){
@@ -74,10 +87,10 @@ class ArticleController extends Controller
         {
             foreach($request->file('apprentice_exp_file') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
                 $apprentice_exp_file[] = '/storage/student_info/'.$name;
-            }        
+            }
         }else{
             $apprentice_exp_file = null;
         }
@@ -129,7 +142,7 @@ class ArticleController extends Controller
         $acc_app->recent_org = $request->recent_org ?? "N/A";
         $acc_app->resign_approve_file = $request->resign_approve_file ?? "N/A";
         $acc_app->know_policy = $request->know_policy;
-        
+
         //invoice
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_info_id;
@@ -144,12 +157,13 @@ class ArticleController extends Controller
         $invoice->name_eng        = $std_info->name_eng;
         $invoice->email           = $std_info->email;
         $invoice->phone           = $std_info->phone;
-        
+
         $invoice->invoiceNo = $request->article_form_type;
         $invoice->productDesc     = 'Registration Fee, Article Registration Form';
         $invoice->amount          = '5000';
         $invoice->status          = 0;
         $invoice->save();
+        }
 
         if($acc_app->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
@@ -326,7 +340,7 @@ class ArticleController extends Controller
         }else{
             $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
         }
-        
+
         $result_article = [];
         for($i=0;$i<count($article);$i++){
             if($article[$i]->contract_end_date != null){
@@ -479,10 +493,10 @@ class ArticleController extends Controller
         {
             foreach($request->file('labor_registration_attach') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
                 $labor_registration_attach[] = '/storage/student_info/'.$name;
-            }        
+            }
         }else{
             $labor_registration_attach = null;
         }
@@ -491,10 +505,10 @@ class ArticleController extends Controller
         {
             foreach($request->file('recommend_attach') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
                 $recommend_attach[] = '/storage/student_info/'.$name;
-            }        
+            }
         }else{
             $recommend_attach = null;
         }
@@ -503,10 +517,10 @@ class ArticleController extends Controller
         {
             foreach($request->file('police_attach') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
                 $police_attach[] = '/storage/student_info/'.$name;
-            }        
+            }
         }else{
             $police_attach = null;
         }
@@ -537,7 +551,7 @@ class ArticleController extends Controller
         }else{
             $nrc_back = "";
         }
-        
+
         // if ($request->hasfile('recommend_attach')) {
         //     $file = $request->file('recommend_attach');
         //     $name  = uniqid().'.'.$file->getClientOriginalExtension();
@@ -567,9 +581,10 @@ class ArticleController extends Controller
         $acc_app->recommend_attach = json_encode($recommend_attach);
         $acc_app->police_attach = json_encode($police_attach);
         $acc_app->accept_policy = $request->accept_policy;
-        // return $acc_app;
+        $acc_app->save();
 
         //invoice
+        $fees = \App\Membership::where('membership_name', '=', 'Article')->first(['registration_fee']);
         $invoice = new Invoice();
         $invoice->student_info_id = $request->student_info_id;
 
@@ -583,14 +598,14 @@ class ArticleController extends Controller
         $invoice->name_eng        = $std_info->name_eng;
         $invoice->email           = $std_info->email;
         $invoice->phone           = $std_info->phone;
-        
-        $invoice->invoiceNo = "gov";
-        $invoice->productDesc     = 'Registration Fee, Article Registration Form';
-        $invoice->amount          = '5000';
-        $invoice->status          = 0;
-        $invoice->save();
 
-        if($acc_app->save()){
+        $invoice->invoiceNo = "gov".$acc_app->id;
+        $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+        $invoice->amount          = $fees->registration_fee;
+        $invoice->status          = 0;
+        //$invoice->save();
+
+        if($invoice->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
@@ -613,6 +628,7 @@ class ArticleController extends Controller
     {
         $article = ApprenticeAccountantGov::where('status',$request->status)->with('student_info')->get();
         $result_article = [];
+        $article_type = "gov";
         for($i=0;$i<count($article);$i++){
             if($article[$i]->contract_end_date != null){
                 $end_time = strtotime($article[$i]->contract_end_date);
@@ -654,9 +670,12 @@ class ArticleController extends Controller
                     return "REJECTED";
                 }
             })
+
             ->addColumn('registration_fee', function ($infos){
-                return $infos->registration_fee == null ? "-" : $infos->registration_fee;;
+
+                return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfo($infos)'>View Payment</button>";
             })
+
             ->addColumn('form_type', function ($infos){
                 return "Gov Form";
             });
@@ -704,7 +723,7 @@ class ArticleController extends Controller
                 </div>";
             }
         });
-        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee'])->make(true);
         return $datatable;
     }
 
@@ -899,6 +918,7 @@ class ArticleController extends Controller
         $acc_app->know_policy = $request->know_policy;
         $acc_app->article_form_type = $request->article_form_type;
         $acc_app->gov_staff = 0;
+        $acc_app->save();
 
         //invoice
         $invoice = new Invoice();
@@ -914,16 +934,16 @@ class ArticleController extends Controller
         $invoice->name_eng        = $std_info->name_eng;
         $invoice->email           = $std_info->email;
         $invoice->phone           = $std_info->phone;
-        
-        $invoice->invoiceNo = $request->article_form_type;
+
+        $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
         $invoice->productDesc     = 'Resign Fee, Article Resign Form';
         $invoice->amount          = '300000';
         $invoice->status          = 0;
-        $invoice->save();
+        //$invoice->save();
 
         // return $acc_app;
-        if($acc_app->save()){
-            return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
+        if($invoice->save()){
+            return response()->json($invoice, 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
     }
@@ -944,7 +964,7 @@ class ArticleController extends Controller
     public function FilterResignArticle(Request $request)
     {
         $article = ApprenticeAccountant::where('resign_status',$request->status)->where('done_status',0)->where('article_form_type', '=' , 'resign')->with('student_info')->get();
-
+        $article_type = "resign";
         $datatable = DataTables::of($article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
@@ -966,9 +986,20 @@ class ArticleController extends Controller
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
                 return $nrc_result;
             })
-            ->addColumn('registration_fee', function ($infos){
-                return $infos->registration_fee == null ? "-" : $infos->registration_fee;
+            ->addColumn('resign_fee', function ($infos){
+                $length = count($infos->student_info->invoice);
+                for($i=0 ; $i< $length; $i++){
+                    if($infos->student_info->invoice[$i]->invoiceNo == 'resign'.$infos->id){
+                        // if($infos->student_info->invoice[$i]->status == '0'){
+                        //     return "PENDING";
+                        // }else{
+                        //     return "COMPLETED";
+                        // }
+                        return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfoResign($infos)'>View Payment</button>";
+                    }
+                }
             })
+
             ->addColumn('status', function ($infos){
                 if($infos->resign_status == 0){
                     return "PENDING";
@@ -978,8 +1009,8 @@ class ArticleController extends Controller
                     return "REJECTED";
                 }
             });
-            
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee'])->make(true);
             return $datatable;
     }
 
@@ -1151,10 +1182,10 @@ class ArticleController extends Controller
         {
             foreach($request->file('attach_file') as $file)
             {
-                $name  = uniqid().'.'.$file->getClientOriginalExtension(); 
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
                 $file->move(public_path().'/storage/student_info/',$name);
                 $attach_file[] = '/storage/student_info/'.$name;
-            }        
+            }
         }else{
             $attach_file = null;
         }
@@ -1236,7 +1267,7 @@ class ArticleController extends Controller
         $invoice->name_eng        = $std_info->name_eng;
         $invoice->email           = $std_info->email;
         $invoice->phone           = $std_info->phone;
-        
+
         $invoice->invoiceNo = $request->article_form_type;
         $invoice->productDesc     = 'Registration Fee, Article Renew Form';
         $invoice->amount          = '5000';
@@ -1264,7 +1295,7 @@ class ArticleController extends Controller
             $approve = ApprenticeAccountant::find($request->id);
             $form_type = $approve->article_form_type;
         }
-        
+
         $leave_request = new leave_request();
         $leave_request->student_info_id = $approve->student_info_id;
         $leave_request->form_type = $form_type;
@@ -1326,7 +1357,7 @@ class ArticleController extends Controller
             $leave_request[$i]->status = 1;
             $leave_request[$i]->save();
         }
-        
+
         $approve->save();
         return response()->json([
             'message' => "You have successfully!"
@@ -1337,7 +1368,7 @@ class ArticleController extends Controller
     {
         $approve = ApprenticeAccountantGov::find($request->id);
         $approve->contract_end_date = $request->contract_gov_end_date;
-        
+
         $leave_request = leave_request::where('student_info_id',$request->student_info_id)->where('form_type',$request->article_form_type)->get();
         for($i = 0 ; $i < count($leave_request) ; $i++){
             $leave_request[$i]->status = 1;

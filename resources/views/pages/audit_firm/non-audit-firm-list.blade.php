@@ -75,6 +75,7 @@
 																									<tr>
 																											<th class="bold-font-weight">Sr</th>
 																											<th class="bold-font-weight">Action</th>
+																											<th class="bold-font-weight">Type</th>
 																											<th class="bold-font-weight">Accountancy Firm Registration No</th>
 																											<th class="bold-font-weight">Accountancy Firm Name</th>
 																											<th class="bold-font-weight">Township</th>
@@ -98,6 +99,7 @@
 																									<tr>
 																											<th class="bold-font-weight">Sr</th>
 																											<th class="bold-font-weight">Action</th>
+																											<th class="bold-font-weight">Type</th>
 																											<th class="bold-font-weight">Accountancy Firm Registration No</th>
 																											<th class="bold-font-weight">Accountancy Firm Name</th>
 																											<th class="bold-font-weight">Township</th>
@@ -121,6 +123,7 @@
 																									<tr>
 																											<th class="bold-font-weight">Sr</th>
 																											<th class="bold-font-weight">Action</th>
+																											<th class="bold-font-weight">Type</th>
 																											<th class="bold-font-weight">Accountancy Firm Registration No</th>
 																											<th class="bold-font-weight">Accountancy Firm Name</th>
 																											<th class="bold-font-weight">Township</th>
@@ -165,6 +168,7 @@
 																									<tr>
 																											<th class="bold-font-weight">Sr</th>
 																											<th class="bold-font-weight">Action</th>
+																											<th class="bold-font-weight">Type</th>
 																											<th class="bold-font-weight">Accountancy Firm Registration No</th>
 																											<th class="bold-font-weight">Accountancy Firm Name</th>
 																											<th class="bold-font-weight">Township</th>
@@ -189,6 +193,7 @@
 																									<tr>
 																											<th class="bold-font-weight">Sr</th>
 																											<th class="bold-font-weight">Action</th>
+																											<th class="bold-font-weight">Type</th>
 																											<th class="bold-font-weight">Accountancy Firm Registration No</th>
 																											<th class="bold-font-weight">Accountancy Firm Name</th>
 																											<th class="bold-font-weight">Township</th>
@@ -213,6 +218,7 @@
 																									<tr>
 																											<th class="bold-font-weight">Sr</th>
 																											<th class="bold-font-weight">Action</th>
+																											<th class="bold-font-weight">Type</th>
 																											<th class="bold-font-weight">Accountancy Firm Registration No</th>
 																											<th class="bold-font-weight">Accountancy Firm Name</th>
 																											<th class="bold-font-weight">Township</th>
@@ -269,6 +275,7 @@
 								return meta.row + meta.settings._iDisplayStart + 1;
 						}},
 						{data: 'action', name: 'action', orderable: false, searchable: false},
+						{data: 'local_foreign_type', name: 'Type'},
 						{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
 						{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
 						{data: 'township', name: 'Township'},
@@ -293,6 +300,7 @@
 								return meta.row + meta.settings._iDisplayStart + 1;
 						}},
 						{data: 'action', name: 'action', orderable: false, searchable: false},
+						{data: 'local_foreign_type', name: 'Type'},
 						{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
 						{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
 						{data: 'township', name: 'Township'},
@@ -317,6 +325,7 @@
 								return meta.row + meta.settings._iDisplayStart + 1;
 						}},
 						{data: 'action', name: 'action', orderable: false, searchable: false},
+						{data: 'local_foreign_type', name: 'Type'},
 						{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
 						{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
 						{data: 'township', name: 'Township'},
@@ -341,6 +350,7 @@
 								return meta.row + meta.settings._iDisplayStart + 1;
 						}},
 						{data: 'action', name: 'action', orderable: false, searchable: false},
+						{data: 'local_foreign_type', name: 'Type'},
 						{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
 						{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
 						{data: 'township', name: 'Township'},
@@ -365,6 +375,7 @@
 								return meta.row + meta.settings._iDisplayStart + 1;
 						}},
 						{data: 'action', name: 'action', orderable: false, searchable: false},
+						{data: 'local_foreign_type', name: 'Type'},
 						{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
 						{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
 						{data: 'township', name: 'Township'},
@@ -389,6 +400,7 @@
 								return meta.row + meta.settings._iDisplayStart + 1;
 						}},
 						{data: 'action', name: 'action', orderable: false, searchable: false},
+						{data: 'local_foreign_type', name: 'Type'},
 						{data: 'accountancy_firm_reg_no', name: 'Acc Firm Reg No'},
 						{data: 'accountancy_firm_name', name: 'Acc Firm Name'},
 						{data: 'township', name: 'Township'},

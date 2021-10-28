@@ -11,19 +11,23 @@
                         <h3 class="text-center m-3" style="font-weight:bold">
                                 {{ $course->name_mm }}<br>
                                 {{ $batch->name_mm }}<br>
-                            ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရသူများစာရင်း ထုတ်ပြန်ခြင်း</h5>
+                                ဝင်ခွင့်စာမေးပွဲဖြေဆိုခွင့်ရှိသူများစာရင်း</h5>
                         </div>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="row"> 
                             <div class="col-md-3 pl-2">
-                                @php $currend_date =  date("Y-m-d"); @endphp
-                               
-                                @if($currend_date > $batch->entrance_pass_end_date && $currend_date < $batch->end_date )
-                                  
-                                    <button onclick="generateEntranceExamSrNo('{{$course->code}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
-                                @endif
+                                <!-- <select class="form-control form-select" name="select_batch" id="select_batch">
+                                    <option value="" selected >Select Batch</option>
+                                    
+                                    @foreach($course->batches as $b)
+                                    <option value="{{$b['id']}}">{{$b['name']}}</option>
+                                    @endforeach
+                                    
+                                    
+                                </select> -->
+                                 
                             </div>
                             <div class="col-md-9">
                                 <div class="d-flex flex-row-reverse">
@@ -33,16 +37,13 @@
                                             id="search">Search</button>
                                     </div> -->
                                     <div class="mx-2">
-                                        
-                                        <select class="form-control form-select" name="select_batch" id="select_batch">
-                                            <option value="" selected >Select Batch</option>
-                                                
-                                            @foreach($course->batches as $batch)
-                                            <option value="{{$batch['id']}}">{{$batch['name']}}</option>
-                                            @endforeach
-    
+                                    @php $currend_date =  date("Y-m-d"); @endphp
+                               
+                                        @if($currend_date > $batch->entrance_pass_end_date && $currend_date < $batch->end_date )
                                             
-                                        </select>
+                                            <button onclick="generateEntranceExamSrNo('{{$batch->id}}')" class=" pull-right btn btn-sm btn-success">Publish သို့ထုတ်ပေးမည်</button>
+                                        @endif
+                                        
                                     </div>
                                      
                                 </div>
@@ -51,11 +52,12 @@
                             <table width="100%" id="tbl_exam_list" class="table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
-                                    <th class="bold-font-weight" >စဥ်</th>
+                                        <th class="bold-font-weight" >စဥ်</th>
                                         <th class="bold-font-weight" >အမည်</th>
+                                        <th class="bold-font-weight" >ခုံအမှတ်</th>
                                         <th class="bold-font-weight" >နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ်</th>                                       
-                                         <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                         <th class="bold-font-weight">အဘအမည်</th>
+                                         <th class="bold-font-weight">ဘွဲ့အမည်</th>
                                         <th class="bold-font-weight">အသက်</th>
                                         <th class="bold-font-weight">ကျား/မ</th>
                                         <th class="bold-font-weight">ဝန်ထမ်း ဟုတ်/မဟုတ်</th>
@@ -105,12 +107,13 @@ showEntryExamList = (course_code) =>{
             }
         },
         columns: [
-            {data: null, render: function (data, type, row, meta) {
+                {data: null, render: function (data, type, row, meta) {
                     return meta.row + meta.settings._iDisplayStart + 1;
                 }},
                 {data: 'student_info.name_mm', name: 'student_info.name_mm'}, 
+                {data: 'sr_no', name: 'sr_no'}, 
                 {data: 'nrc', name: 'nrc'}, 
-                 {data: 'course_name', name: 'course_name'},
+                 {data: 'student_info.student_education_histroy.degree_name', name: 'course_name'},
                 {data: 'student_info.father_name_mm', name: 'student_info.father_name_mm'},
                 {data: 'age', name: 'age'},
                 {data: 'gender', name: 'gender'},

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Invoice;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,8 @@ Route::post('/reject_auditfirm_renew/{id}/{firm_id}', 'AccFirmInfController@reje
 Route::post('/reject_auditfirm_reconnect/{id}/{firm_id}', 'AccFirmInfController@rejectReconnect');
 Route::patch('/approve_non_auditfirm/{id}', 'AccFirmInfController@approve');
 Route::post('/reject_non_auditfirm/{id}', 'AccFirmInfController@reject');
+Route::get('/check_initial_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
+Route::get('/check_offline_papp/{reg_no}/{status}','AccFirmInfController@checkPAPP');
 
 // Mentor
 Route::patch('/approve_mentor_student/{id}', 'MentorController@approve');
@@ -118,6 +121,8 @@ Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
+Route::get('/get_cpaff_reg_no/{stu_id}','CPAFFController@getCpaffRegNo');
+Route::get('/get_papp_reg_no/{stu_id}','PAPPController@getPappRegNo');
 Route::patch('/approve_cpaff_payment/{id}', 'CPAFFController@approveCpaff');
 Route::get('/check_payment_cpaff/{id}', 'CPAFFController@checkPaymentCpaff');
 Route::post('/renew_cpaff', 'CPAFFController@storeRenewForm');
@@ -209,7 +214,7 @@ Route::get('/getAuditStatus/{id}','AccFirmInfController@auditStatus');
 Route::get('/getNonAuditStatus/{id}','AccFirmInfController@nonAuditStatus');
 Route::get('/getDateRange/{id}','AccFirmInfController@dateRange');
 Route::get('/getNonAuditDateRange/{id}','AccFirmInfController@nonAuditDateRange');
-Route::get('/checkVerify/{id}','AccFirmInfController@checkVerify');
+Route::get('/checkVerify/{id}/{firm_id}','AccFirmInfController@checkVerify');
 Route::get('/nonAuditCheckVerify/{id}','AccFirmInfController@nonAuditCheckVerify');
 Route::get('/audit_update/{id}','AccFirmInfController@auditUpdate');
 Route::post('/renew_subscribe','AccFirmInfController@renewSubscribe');
@@ -344,7 +349,7 @@ Route::post('unique_email', 'DARegisterController@unique_email');
 Route::get('/generate_personal_no/{code}','ApiController@generatePersonalNo');
 Route::get('/generate_sr_no/{code}','ApiController@generateSrNo');
 Route::get('/generate_exam_sr_no/{code}','ApiController@generateExamSrNo');
-Route::get('/generate_entrance_exam_sr_no/{code}','ApiController@generateEntranceExamSrNo');
+Route::get('/generate_entrance_exam_sr_no/{batch}','ApiController@generateEntranceExamSrNo');
 Route::get('/generate_qt_sr_no','QualifiedTest\QualifiedTestController@generateQTSrNo');
 Route::get('/generate_exam_result/{code}','ApiController@generateExamResult');
 
@@ -478,3 +483,5 @@ Route::patch('/renewSchoolPayment', 'SchoolController\SchoolController@renewScho
 Route::post('/renewUpdateSchool/{id}', 'SchoolController\SchoolController@renewUpdateSchool');
 //school total amount
 Route::post('/getTotalAmount', 'SchoolController\SchoolController@getTotalAmount');
+//school branch
+Route::get('/getSchoolBranch/{id}', 'SchoolController\SchoolController@getSchoolBranch');

@@ -569,7 +569,7 @@ function loadRenewPAPPData(){
                 $("#gov_staff").append(element.student_info.gov_staff == 0 ? "မဟုတ်" : "ဟုတ်");
                 $("#profile_photo").append(element.profile_photo);
                 $("#registration_no").append(element.student_info.cpersonal_no);
-                $("#papp_last_paid_year").append(element.latest_reg_year==null ? '-':element.latest_reg_year);
+                $("#papp_last_paid_year").append(element.previous_latest_reg_year==null ? '-':element.previous_latest_reg_year);
                 $("#papp_resigned_year").append(element.papp_resign_date==null ? '-':element.papp_resign_date);
                 //$(".total_audit_work").append(element.personal_no);
 
@@ -963,7 +963,7 @@ function loadappOfflineUser(){
                     $(`.nself_confession`).append(`<i class="fa fa-times text-danger" aria-hidden="true"></i>`);
                 } 
                 $("#id").append(element.id);
-                document.getElementById('profile_photo').src=PDF_URL+element.profile_photo;                           
+                document.getElementById('profile_photo').src=PDF_URL+element.student_info.image;                           
                 $("#name_eng").append(element.student_info.name_eng);
                 $("#name_mm").append(element.student_info.name_mm);
                 $("#nrc").append(nrc);
