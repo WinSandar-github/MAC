@@ -70,6 +70,7 @@
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <!-- <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
                                                         <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
@@ -94,6 +95,8 @@
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <!-- <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >PAPP Reg; No.</th>
                                                         <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
@@ -118,6 +121,7 @@
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <!-- <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
                                                         <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
@@ -163,6 +167,8 @@
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <!-- <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >PAPP Reg; No.</th>
                                                         <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
@@ -187,6 +193,8 @@
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <!-- <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >PAPP Reg; No.</th>
                                                         <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
@@ -211,6 +219,8 @@
                                                         <th class="bold-font-weight" >CPD Total Hours</th>
                                                         <!-- <th class="bold-font-weight" >PAPP Date</th>
                                                         <th class="bold-font-weight" >No Use Firm Name</th> -->
+                                                        <th class="bold-font-weight" >CPAFF Reg; No.</th>
+                                                        <th class="bold-font-weight" >PAPP Reg; No.</th>
                                                         <th class="bold-font-weight" >Payment Status</th>
 
                                                     </tr>
@@ -252,6 +262,7 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
             //   {data: 'papp_date', name: 'PAPP Date'},
             //   {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'payment_status', name: 'Payment Status'},
@@ -277,6 +288,8 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+              {data: 'papp_reg_no', name: 'PAPP Reg; No.'},
             //   {data: 'papp_date', name: 'PAPP Date'},
             //   {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'payment_status', name: 'Payment Status'},
@@ -301,6 +314,7 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
             //   {data: 'papp_date', name: 'PAPP Date'},
             //   {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'payment_status', name: 'Payment Status'},
@@ -325,6 +339,8 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+              {data: 'papp_reg_no', name: 'PAPP Reg; No.'},
             //   {data: 'papp_date', name: 'PAPP Date'},
             //   {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'payment_status', name: 'Payment Status'},
@@ -349,6 +365,8 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+              {data: 'papp_reg_no', name: 'PAPP Reg; No.'},
             //   {data: 'papp_date', name: 'PAPP Date'},
             //   {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'payment_status', name: 'Payment Status'},
@@ -373,6 +391,8 @@
               {data: 'created_at', name: 'Reg; Date',className: "set-text-center"},
               // {data: 'updated_at', name: 'Payment Date',className: "set-text-center"},
               {data: 'cpd_hours', name: 'CPD Total Hours'},
+              {data: 'cpaff_reg_no', name: 'CPAFF Reg; No.'},
+              {data: 'papp_reg_no', name: 'PAPP Reg; No.'},
             //   {data: 'papp_date', name: 'PAPP Date'},
             //   {data: 'use_firm', name: 'No Use Firm Name'},
               {data: 'payment_status', name: 'Payment Status'},
