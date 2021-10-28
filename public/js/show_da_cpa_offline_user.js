@@ -444,6 +444,7 @@ function approveOfflineDACPAUser() {
             url: BACKEND_URL + "/approve_offline_da_cpa/" + id,
             type: 'patch',
             success: function (result) {
+                // console.log('qt_entry',result[0].qt_entry)
                 successMessage("You have approved that user!");
                 location.href = FRONTEND_URL + "/offline_user";
                 // let url;
