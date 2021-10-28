@@ -782,7 +782,22 @@ function approvePAPPUser(){
         });
     }
 }
-
+function approveRenewPappUser(){
+    if(!confirm('Are you sure you want to approve this user?')){
+        return;
+    }else{
+        var id = $("input[name = papp_id]").val();
+        console.log('approvepappid',id);
+        $.ajax({
+            url: BACKEND_URL + "/approve_renew_papp/"+id,
+            type: 'patch',
+            success: function(result){
+                successMessage("You have approved that user!");
+                location.href = FRONTEND_URL + "/papp_registration_list";
+            }
+        });
+    }
+}
 function rejectPAPPUser(){ 
     // if(!confirm('Are you sure you want to reject this user?')){
     //     return;
