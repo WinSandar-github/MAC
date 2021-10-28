@@ -1817,11 +1817,11 @@ class SchoolController extends Controller
     }
     public function cessation_school_register(Request $request)
     {
-        $std_info = StudentInfo::find($request->student_info_id);
-        $std_info->approve_reject_status = $request->status;
-        $std_info->save();
+        // $std_info = StudentInfo::find($request->student_info_id);
+        // $std_info->approve_reject_status = $request->status;
+        // $std_info->save();
         $school = SchoolRegister::find($request->id);
-        $school->approve_reject_status = $request->status;
+        //$school->approve_reject_status = $request->status;
         $school->cessation_reason = $request->cessation_reason;
         $school->initial_status = $request->initial_status;
         $school->save();
@@ -2252,7 +2252,7 @@ class SchoolController extends Controller
         //invoice
             if($request->offline_user=="true"){
                 if($request->request_for_temporary_stop=="no"){
-                    $currentYear = Carbon::now()->subYear();
+                   
                     $currentMonth = Carbon::now()->format('m');
                     $currentDay = Carbon::now()->format('d');
 
@@ -2266,7 +2266,13 @@ class SchoolController extends Controller
                     
                     list($last_pay_month, $last_pay_year) = explode("-", $request->last_registration_fee_year);
                     $dbDate = Carbon::parse($last_pay_year.'-'.$currentMonth.'-'.$currentDay);
-                    $diffYear = $currentYear->diffInYears($dbDate);
+                    if($currentMonth==10 || $currentMonth==11 || $currentMonth==12){
+                        $currentYear = Carbon::now();
+                        $diffYear = $currentYear->diffInYears($dbDate);
+                    }else if($currentMonth==01){
+                        $currentYear = Carbon::now()->subYear();
+                        $diffYear = $currentYear->diffInYears($dbDate);
+                    }
                     
                     foreach($memberships as $memberships){
                         $invoice->productDesc     = 'Application Fee,Renew Registration Fee,Renew Yearly Fee,' . $diffYear . 'Year x Reconnect Fee('.$memberships->reconnected_fee.'),School Registration';

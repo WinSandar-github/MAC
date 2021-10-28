@@ -1,4 +1,4 @@
-function loadNonAuditCard(){
+function loadNonAuditForeignCard(){
     
     let result = window.location.href;
     let url = new URL(result);
@@ -30,7 +30,6 @@ function loadNonAuditCard(){
             //         })
             //     }
             // }
-
             if(non_audit_data.accountancy_firm_reg_no!=null){
                 document.getElementById('accountancy_firm_reg_no').innerHTML=non_audit_data.accountancy_firm_reg_no;
             }
