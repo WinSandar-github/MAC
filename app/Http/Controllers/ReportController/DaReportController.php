@@ -100,7 +100,7 @@ class DaReportController extends Controller
          if($type == 'all'){
             $title = $course->name_mm . "သင်တန်းကျောင်း<br>" . $batch->name_mm . "<br>မှတ်ပုံတင်ထားသူများစာရင်း";
         }else{
-            $title = $type == 0 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ကိုယ်တိုင်လေ့လာဖြေဆိုမည့်သင်တန်းသားအဖြစ် မှတ်ပုံတင်ထားသူများ"
+            $title = $type == 0 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br> မှတ်ပုံတင်ထားသူများ"
                         : ( $type == 1 ? $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင်တက်ရောက်မည့်မှတ်ပုံတင်ထားသူများ" 
                         : $course->name_mm . "သင်တန်း<br>" . $batch->name_mm . "<br>မြန်မာနိုင်ငံစာရင်းကောင်စီတွင်တက်ရောက်မည့်မှတ်ပုံတင်ထားသူများစာရင်း");
         }

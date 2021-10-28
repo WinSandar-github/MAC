@@ -43,6 +43,18 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="mx-2">
+                                        
+                                        <select class="form-control form-select" name="exam_department" id="exam_department">
+                                            <option value="" selected >စာဖြေဌာန ရွေးချယ်ပါ</option>
+                                                
+                                            @foreach($exam_departments as $exam_department)
+                                            <option value="{{$exam_department['id']}}">{{$exam_department['name']}}</option>
+                                            @endforeach
+    
+                                            
+                                        </select>
+                                    </div>
                                     <div class="">
                                         <button type="button" class="btn btn-primary btn-round m-0"
                                             id="search">Search</button>
@@ -61,7 +73,7 @@
                           
                            
                         
-                            <table width="100%" id="tbl_exam_result_list" class="table table-hover text-nowrap ">
+                            <table width="100%" id="tbl_exam_result_list" class="tbl_exam_result_list table table-hover text-nowrap ">
                                 <thead>
                                     <tr>
                                     <th class="bold-font-weight" >စဥ်</th>
@@ -107,18 +119,18 @@
         $('document').ready(function () {
 
             // table export
-            var $table = $('.table');
+            // var $table = $('.table');
 
-            $table.tableExport({
-                headers: true,
-                footers: false,
-                position: "bottom",
-                bootstrap: true
-            });
+            // $table.tableExport({
+            //     headers: true,
+            //     footers: false,
+            //     position: "bottom",
+            //     bootstrap: true
+            // });
 
-            $btn = $table.find('caption').children().detach();
+            // $btn = $table.find('caption').children().detach();
 
-            $btn.appendTo('#export-btn');
+            // $btn.appendTo('#export-btn');
             // table export
 
             var course_code = $('#course_code').val();
@@ -131,9 +143,36 @@
         showAppList = (course_code) =>{
             
             var table_app = $('#tbl_exam_result_list').DataTable({
+                dom: 'Bfrtip',
+                "sDom": 'Rfrtlip',
+                buttons: [
+                     
+                    {
+                    className: 'bg-success',
+                    extend: 'excelHtml5',
+                    filename: 'Exam Result List',
+                    text:'Export To Excel',
+                    title: function () {
+                        return getExcelTitleName();
+                        },
+                    
+
+                    },
+                    {
+                    className: 'bg-primary',
+                    extend: 'csvHtml5',
+                    filename: 'Exam Result List',
+                    text:'Export To Csv',
+                    title: function () {
+                        return getExcelTitleName();
+                        },
+                    
+
+                    },
+                ],
                 scrollX: true,
                 processing: true,
-                serverSide: false,
+                serverSide: true,
                 searching: false,
                 paging:false,
                 
@@ -144,7 +183,10 @@
                         d.code        =  course_code,
                         d.grade       = 1,
                         d.batch_id = $('#batch_id').val(),
-                        d.student_type = $('#student_type').val()
+                        d.exam_type_id = $('#student_type').val(),
+                        d.module     = $('#selected_module').val(),
+                        d.exam_department = $('#exam_department').val()
+
 
 
                         
@@ -171,9 +213,36 @@
                 sort: function( row, type, set, meta ) {
                     return row[meta.col][1];
                 },
-                "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
+                // "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
 
             });
+
+            
+            $("#search").click(function () {
+                
+    
+                table_app.draw();
+                });
+            
+        }
+
+        function getExcelTitleName() {
+            let student_type = $('#student_type').val();
+           
+            switch(student_type) {
+                case "0":
+                    return "ကိုယ်တိုင်လေ့လာဖြေဆိုမည့်သင်တန်းသားအဖြစ် စာမေးပွဲဖြေဆိုအောင်မြင်သူများ ";
+                    break;
+                case "1":
+                    return "ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းတွင် စာမေးပွဲဖြေဆိုအောင်မြင်သူများ ";
+                    break;
+                case "2":
+                    return "မြန်မာစာရင်းကောင်စီတွင် စာမေးပွဲဖြေဆိုအောင်မြင်သူများ ";
+                    break;
+                default:
+                    return "စာမေးပွဲဖြေဆိုအောင်မြင်သူများ ";
+                    
+                }
 
             
         }

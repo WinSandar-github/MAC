@@ -302,6 +302,7 @@
             });
 
             $btn = $table.find('caption').children().detach();
+           
 
             $btn.appendTo('#export-btn');
             // table export

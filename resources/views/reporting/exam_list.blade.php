@@ -23,8 +23,19 @@
                             <div class="col-md-9">
                                 <div class="d-flex flex-row">
 
-                                    
-                                    <div class="">
+                                <div class="">
+                                        
+                                        <select class="form-control form-select" name="student_type" id="student_type">
+                                            <option value="" selected >Select Student Type</option>
+                                                
+                                            <option value="2">MAC</option>
+                                            <option value="1">Private School</option>
+                                            <option value="0">Selfstudy</option>
+
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="mx-2">
                                         
                                         <select class="form-control form-select" name="exam_department" id="exam_department">
                                             <option value="" selected >စာဖြေဌာန ရွေးချယ်ပါ</option>
@@ -36,7 +47,7 @@
                                             
                                         </select>
                                     </div>
-                                    <div class="mx-2">
+                                    <div class="mr-2">
                                         
                                         <select class="form-control form-select" name="selected_module" id="selected_module">
                                             <option value="" selected >Select Module</option>
@@ -107,18 +118,18 @@
         $('document').ready(function () {
 
             // table export
-            var $table = $('.table');
+            // var $table = $('.table');
 
-            $table.tableExport({
-                headers: true,
-                footers: false,
-                position: "bottom",
-                bootstrap: true
-            });
+            // $table.tableExport({
+            //     headers: true,
+            //     footers: false,
+            //     position: "bottom",
+            //     bootstrap: true
+            // });
 
-            $btn = $table.find('caption').children().detach();
+            // $btn = $table.find('caption').children().detach();
 
-            $btn.appendTo('#export-btn');
+            // $btn.appendTo('#export-btn');
             // table export
 
             var course_code = $('#course_code').val();
@@ -142,7 +153,9 @@
                     d.code        =  course_code,
                     d.module = $('#selected_module').val(),
                     d.exam_department = $('#exam_department').val(),
-                    d.batch_id = $('#batch_id').val()
+                    d.batch_id = $('#batch_id').val(),
+                    d.exam_type_id = $('#student_type').val()
+
 
                     
                 }
