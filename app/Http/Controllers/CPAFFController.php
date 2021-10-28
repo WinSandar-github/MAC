@@ -195,6 +195,7 @@ class CPAFFController extends Controller
             $cpa_ff->cpa2_pass_date    =   $request->cpa2_pass_date;
             $cpa_ff->cpa2_reg_no       =   $request->cpa2_reg_no;//need to add
             $cpa_ff->type              =   $request->type;
+            $cpa_ff->self_confession   = $request->self_confession;
             if(date('m')==11 || date('m')==12)
             {
                 $thisYear = date('Y')+1;
@@ -422,6 +423,7 @@ class CPAFFController extends Controller
             $cpa_ff->form_type        =   $request->form_type;
             $cpa_ff->type              =   $request->type;
             $cpa_ff->is_renew          =   $request->is_renew;
+            $cpa_ff->self_confession = $request->self_confession;
             $cpa_ff->offline_user      = 1;
             // Generate Reg No.
             // $cpa_ff->cpaff_reg_no = 'CPAFF_' . str_pad($cpa_ff->id, 5, "0", STR_PAD_LEFT);
@@ -652,10 +654,19 @@ class CPAFFController extends Controller
             $cpa_ff->roll_no        =   $request->roll_no;
             // $cpa_ff->cpa_certificate_back = $cpa_certificate_back;
             $cpa_ff->three_years_full   =   $three_years_full;
-            // $cpa_ff->letter   =   $letter;              
+            // $cpa_ff->letter   =   $letter;          
+            $cpa_ff->self_confession = $request->self_confession;    
             $cpa_ff->is_renew   =   $request->is_renew;
             $cpa_ff->type              =   $request->type;
-
+            if(date('m')==11 || date('m')==12)
+            {
+                $thisYear = date('Y')+1;
+                $cpa_ff->last_paid_year =$thisYear;
+            }
+            else{
+                $thisYear = date('Y');
+                $cpa_ff->last_paid_year = $thisYear;
+            }  
             $thisYear = date('Y');
             $today = date('d-m-Y');
             $cpa_ff->validate_from = $today;
@@ -894,6 +905,7 @@ class CPAFFController extends Controller
             $thisYear = date('Y');
             $cpa_ff->last_paid_year = $thisYear;
         }     
+        $cpa_ff->previous_last_paid_year =$oldCpaff->last_paid_year;
         $cpa_ff->resign_date      =   $request->resign_date;
         $cpa_ff->is_renew   =   $request->is_renew;
         $cpa_ff->self_confession = $request->self_confession_renew;
@@ -1336,7 +1348,7 @@ class CPAFFController extends Controller
     }
 
     public function getCpaffRegNo($stu_id){
-        $cpaff = CPAFF::where('student_info_id',$stu_id)->where('is_renew',0)->get('cpaff_reg_no');
+        $cpaff = CPAFF::where('student_info_id',$stu_id)->get('cpaff_reg_no');
         return response()->json([
             'data'  => $cpaff
         ]);
@@ -1821,7 +1833,7 @@ class CPAFFController extends Controller
         $cpa_ff->exam_month        =   $request->exam_month;
         $cpa_ff->roll_no           =   $request->roll_no;
         $cpa_ff->is_renew          =   $request->is_renew;
-        $cpa_ff->self_confession   =   $request->self_confession;
+        $cpa_ff->self_confession   =   $request->self_confession_renew;
         $cpa_ff->type              =   $request->type;
         $cpa_ff->save();
 

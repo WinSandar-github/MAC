@@ -733,7 +733,7 @@ function loadSchoolCard(){
         url : BACKEND_URL+"/school/"+id,
         success : function(data){
             
-           
+            console.log(data.data)
             if(data.data.from_valid_date!=null){
                 var today = new Date(data.data.from_valid_date);
                 var date = addZero(today.getDate())+'-'+addZero(today.getMonth()+1)+'-'+today.getFullYear();

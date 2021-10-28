@@ -1115,9 +1115,6 @@
     loadAuditTotalStaff();
     loadAuditStaff();
     autoLoadAudit();
-		autoLoadPayment();
-
-		
 
 </script>
 @endpush
