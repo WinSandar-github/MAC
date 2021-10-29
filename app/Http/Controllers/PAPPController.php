@@ -295,7 +295,7 @@ class PAPPController extends Controller
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
             $approve->papp_reg_no = $reg_no;
-            $approve->reg_date = date('Y-m-d');
+            $approve->papp_reg_date = date('Y-m-d');
 
         }
         else if($approve->status==1){
