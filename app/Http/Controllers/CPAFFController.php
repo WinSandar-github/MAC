@@ -1172,6 +1172,14 @@ class CPAFFController extends Controller
 
     public function approve($id)
     {
+        $old = CPAFF::orderBy('cpaff_reg_no', 'desc')->first();
+        // return $old->cpaff_reg_no;
+        if($old->cpaff_reg_no == '' && $old->cpaff_reg_no == NULL){
+            $reg_no = 1129;
+        }else{
+            $reg_no = $old->cpaff_reg_no +1;
+        }
+        // return $reg_no;
         $accepted_date = date('Y-m-d');
         $approve = CPAFF::find($id);
         if($approve->status==0)
@@ -1179,10 +1187,9 @@ class CPAFFController extends Controller
             $approve->status = 1;
             $approve->accepted_date=$accepted_date;
             $approve->renew_accepted_date=$accepted_date;
-            // Generate cpaff Reg No.
-            $approve->cpaff_reg_no = 'CPAFF_' . str_pad($id, 5, "0", STR_PAD_LEFT);
-            // $approve->cpaff_reg_no = str_pad($id, 5, "0", STR_PAD_LEFT);
+            $approve->cpaff_reg_no = $reg_no;
             $approve->reg_date = date('Y-m-d');
+
         }
         else if($approve->status==1){
             $approve->status = 1;
