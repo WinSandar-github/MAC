@@ -151,10 +151,6 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> adfa965de6119c42333c2235fffdf668279b0981
                         <div id="qt_education" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
@@ -300,7 +296,7 @@
 
                         <div class="praticle">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="papp_lab">{{ __('၁၄။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="papp_lab">{{ __('၁၄။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမှတ်</label>
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -329,7 +325,7 @@
                         </div>
                         <div class="c2_pass_renew" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၄။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၄။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP အမှတ်</label>
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
