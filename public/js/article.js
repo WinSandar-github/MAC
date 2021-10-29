@@ -533,6 +533,11 @@ function showPaymentInfoResign(info){
   autoLoadPaymentResign(info.id);
 }
 
+function showPaymentInfoFirm(info){
+  $("#payment_detail_modal").modal('show');
+  autoLoadPaymentFirm(info.id);
+}
+
 function updateGovContractDate(info){
     $("#contractGovModal").modal('show');
     $("#gov_article_id").val(info.id);
@@ -792,6 +797,50 @@ function autoLoadPaymentResign(firm_id){
           type: 'get',
           success: function (result) {
               console.log("gov aricle",result);
+
+              if(result.status==0){
+                  $('#payment_status').append("Pending");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Paid");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
+                          <h6 class="my-0">${productDesc[i]}</h6>
+                          <span class="text-muted">- ${amount[i]} MMK</span>
+                      </li>
+                  `);
+              }
+              $('.fee_list').append(`
+                  <li class="list-group-item d-flex justify-content-between">
+                      <span>Total (MMK)</span>
+                      <span id="total">
+                          - <strong>${total}</strong> MMK
+                      </span>
+                  </li>
+              `);
+          }
+      });
+}
+
+function autoLoadPaymentFirm(firm_id){
+  $("#payment_detail_modal").find(".fee_list").html('');
+  $.ajax({
+          url: BACKEND_URL + "/get_payment_info/" + 'c12',
+          type: 'get',
+          success: function (result) {
+              console.log("firm aricle",result);
 
               if(result.status==0){
                   $('#payment_status').append("Pending");

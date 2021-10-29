@@ -103,7 +103,7 @@ class ArticleController extends Controller
                  $file->move(public_path().'/storage/student_info/',$name);
                  $degrees_certificates[] = $name;
              }
-            
+
         }else{
             $degrees_certificates=null;
         }
@@ -114,12 +114,12 @@ class ArticleController extends Controller
                  $file->move(public_path().'/storage/student_info/',$name);
                  $apprentice_exp_file[] = $name;
              }
-            
+
         }else{
             $experience_file=null;
         }
         if($request->offline_user=="true"){
-            
+
             //Student Info
             $std_info = new StudentInfo();
             $std_info->email = $request->email;
@@ -172,7 +172,7 @@ class ArticleController extends Controller
             $degrees_certificates=implode(',', $degrees_certificates);
             $new_degrees_certificates= explode(',',$degrees_certificates);
             for($i=0;$i < sizeof($request->degrees);$i++){
-           
+
                 $education_histroy  =   new EducationHistroy();
                 $education_histroy->student_info_id = $std_info->id;
                 $education_histroy->degree_name = $request->degrees[$i];
@@ -186,7 +186,7 @@ class ArticleController extends Controller
             $acc_app->article_form_type = $request->article_form_type;
             $acc_app->apprentice_exp = $request->apprentice_exp == "undefined" ? null : $request->apprentice_exp ;
 
-       
+
 
         $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
             $acc_app->gov_staff = $request->gov_staff;
@@ -294,9 +294,11 @@ class ArticleController extends Controller
                     return "REJECTED";
                 }
             })
+
             ->addColumn('registration_fee', function ($infos){
-                return $infos->registration_fee == null ? "-" : $infos->registration_fee;
+                return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfoFirm($infos)'>View Payment</button>";
             })
+
             ->addColumn('form_type', function ($infos){
                 if($infos->article_form_type == 'c12'){
                     return "CPA I,II";
@@ -367,7 +369,7 @@ class ArticleController extends Controller
                     </div>";
                 }
             });
-            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee'])->make(true);
             return $datatable;
     }
 
@@ -514,6 +516,7 @@ class ArticleController extends Controller
         $end_article = Carbon::parse($firm[count($firm) - 1]->contract_end_date);
 
         $diff_days = $end_article->diffInDays($start_article);
+        
 
         if($diff_days > 1095){  // 1095 = 3yrs
             if(count($gov) != 0){
@@ -1090,15 +1093,15 @@ class ArticleController extends Controller
                 }else{
                     return "REJECTED";
                 }
+            })
+
+            ->addColumn('net_experience', function ($infos){
+                return "N/A";
+            })
+
+            ->addColumn('resign_date', function ($infos){
+                return $infos->resign_date;
             });
-
-            // ->addColumn('net_experience', function ($infos){
-            //     return "N/A";
-            // })
-
-            // ->addColumn('resign_date', function ($infos){
-            //     return $infos->student_info->phone;
-            // })
 
             $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience'])->make(true);
             return $datatable;
