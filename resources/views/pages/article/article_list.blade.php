@@ -211,6 +211,8 @@
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Resign Fee</th>
+                                                            <th class="bold-font-weight" >Resign Date</th>
+                                                            <th class="bold-font-weight" >Net Experience</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -228,6 +230,8 @@
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Resign Fee</th>
+                                                            <th class="bold-font-weight" >Resign Date</th>
+                                                            <th class="bold-font-weight" >Net Experience</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -245,6 +249,8 @@
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Resign Fee</th>
+                                                            <th class="bold-font-weight" >Resign Date</th>
+                                                            <th class="bold-font-weight" >Net Experience</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -825,6 +831,8 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -853,6 +861,8 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -881,6 +891,8 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'resign_date', name: 'resign_date'},
+                {data: 'net_experience', name: 'net_experience'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

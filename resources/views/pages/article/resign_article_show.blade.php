@@ -90,14 +90,14 @@
                                         <p class="ml-2" style="font-weight:bold" align="left">NRC Front</p>
                                     </div>
                                     <div class="col-md-4 nrc_front">
-                                    
+
                                     </div>
 
                                     <div class="col-md-2">
                                     <p class="ml-2" style="font-weight:bold" align="left">NRC Back</p>
                                     </div>
                                     <div class="col-md-4 nrc_back">
-                                    
+
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div id="qt_education" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
@@ -130,7 +130,7 @@
                                             <p class="ml-2" style="font-weight:bold" align="left">ပညာအရည်အချင်းမိတ္တူ</p>
                                         </div>
                                         <div class="col-md-3 certificate">
-                                        
+
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +164,7 @@
                                 <input type="text" name="resign_date" id="resign_date" class="form-control" readonly>
                             </div>
                         </div>
-                        
+
                         <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၈။') }}</span>နုတ်ထွက်ရသည့်အကြောင်းအရင်း<span style="color:red">*</span></label>
                             <div class="col-md-9">
@@ -208,28 +208,63 @@
                                         <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
                                     </div>
                                     <div class="col-md-3 mt-1 resign_approve_file">
-                                    
+
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <input type="hidden" name="article_id" >
-                        <div id="approve_reject_btn">
+                        {{--<div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
                                 <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectResignArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                 <button type="" name="article_approve" class="btn btn-primary" onclick="approveResignArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
-                        </div>
+                        </div>--}}
 
-                    </div>
+											<div id="approve_reject_btn">
+												<div class="row mt-5 justify-content-center">
+													<button type="" name="save" id="article_reject" data-toggle="modal" data-target="#remarkModal" class="btn btn-danger" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+													<button type="" name="save" id="article_approve" class="btn btn-primary" onclick="approveResignArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
+												</div>
+							        </div>
+
+    								</div>
                 </div>
             </div>
         </form>
     </div>
-
-
-
+		{{-- Remark Modal --}}
+		<div class="modal fade" id="remarkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form id="remark_resign_form"  method="post" action="javascript:rejectResignArticle()" enctype="multipart/form-data">
+							@csrf
+								<div class="modal-body">
+										<div class="row">
+												<div class="col-md-12">
+														<div class="form-group">
+																<!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+																<textarea class="form-control" name="remark_resign" id="remark_resign" rows="3"></textarea>
+														</div>
+												</div>
+										</div>
+								</div>
+								<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary" form="remark_resign_form">Reject</button>
+								</div>
+						</form>
+						</div>
+					</div>
+				</div>
+				{{-- Remark Modal --}}
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
         // get NRC Townships data from myanmarnrc.php config file

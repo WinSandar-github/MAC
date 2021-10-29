@@ -338,7 +338,7 @@
                                         </tr>
                                     </thead>
                                     <tbody id="leave_request_body">
-                                    </tbody>   
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
@@ -346,7 +346,7 @@
                         <input type="hidden" name="article_id" >
                         <div id="approve_reject_btn">
                             <div class="row mt-5 justify-content-center">
-                                <button type="" name="article_reject" class="btn btn-danger"  onclick="rejectGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
+                                <button type="" name="article_reject" class="btn btn-danger" data-toggle="modal" data-target="#remarkModal" style="width : 20%"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>REJECT</button>
                                 <button type="" name="article_approve" class="btn btn-primary" onclick="approveGovArticle()" style="width : 20%"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>APPROVE</button>
                             </div>
                         </div>
@@ -390,6 +390,38 @@
             </div>
         </div>
     </form>
+
+		{{-- Remark Modal --}}
+		<div class="modal fade" id="remarkModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" style="max-width: 600px !important">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="exampleModalLabel">မှတ်ချက်</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<form id="remark_gov_form"  method="post" action="javascript:rejectGovArticle()" enctype="multipart/form-data">
+							@csrf
+								<div class="modal-body">
+										<div class="row">
+												<div class="col-md-12">
+														<div class="form-group">
+																<!-- <label for="exampleFormControlTextarea1">Example textarea</label> -->
+																<textarea class="form-control" name="remark_gov" id="remark_gov" rows="3"></textarea>
+														</div>
+												</div>
+										</div>
+								</div>
+								<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary" form="remark_gov_form">Reject</button>
+								</div>
+						</form>
+						</div>
+					</div>
+				</div>
+				{{-- Remark Modal --}}
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
