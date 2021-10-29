@@ -100,6 +100,7 @@ Route::resource('/papp','PAPPController');
 Route::post('/papp_renew','PAPPController@PappRenewRegistration');
 Route::get('/papp_register_list/{status}/{type}', 'PAPPController@FilterPappRegistration');
 Route::patch('/approve_papp/{id}', 'PAPPController@approve');
+Route::patch('/approve_renew_papp/{id}', 'PAPPController@approveRenewPapp');
 Route::post('/reject_papp/{id}', 'PAPPController@reject');
 Route::post('/update_papp_initial', 'PAPPController@updateRejectedInitialData');
 Route::post('/update_papp_renewal', 'PAPPController@updateRejectedRenewalData');
@@ -118,6 +119,7 @@ Route::get('/cpa_ff_register_list/{status}/{is_renew}', 'CPAFFController@FilterC
 Route::get('/cpa_ff_offline_register_list/{status}/{is_renew}', 'CPAFFController@FilterCpaffOfflineRegistration');
 Route::patch('/approve_cpaff/{id}', 'CPAFFController@approve');
 Route::patch('/approve_offline_cpaff/{id}', 'CPAFFController@approveOfflineCpaff');
+Route::patch('/approve_renew_cpaff/{id}', 'CPAFFController@approveRenewCpaff');
 Route::post('/reject_cpaff/{id}', 'CPAFFController@reject');
 Route::get('/cpaff_by_stuId/{stu_id}','CPAFFController@getCpaffByStuId');
 Route::get('/get_cpaff/{stu_id}','CPAFFController@getCpaff');
@@ -410,7 +412,7 @@ Route::get('/acc_app/{id}', 'ArticleController\ArticleController@show');
 Route::post('/article_firm_register', 'ArticleController\ArticleController@store');
 Route::post('/filter_firm_article','ArticleController\ArticleController@FilterArticle');
 Route::patch('/approve_article/{id}', 'ArticleController\ArticleController@approve');
-Route::patch('/reject_article/{id}', 'ArticleController\ArticleController@reject');
+Route::post('/reject_article/{id}', 'ArticleController\ArticleController@reject');
 
 // Qualified Test
 Route::apiResource('/qualifiedtest','QualifiedTest\QualifiedTestController');
@@ -421,13 +423,13 @@ Route::get('get_fees/{id}','CourseController@getFees');
 Route::post('/article_gov_register', 'ArticleController\ArticleController@saveGovArticle');
 Route::post('/filter_gov_article','ArticleController\ArticleController@FilterGovArticle');
 Route::patch('/approve_gov_article/{id}', 'ArticleController\ArticleController@approveGov');
-Route::patch('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
+Route::post('/reject_gov_article/{id}', 'ArticleController\ArticleController@rejectGov');
 Route::get('/gov_article_show/{id}', 'ArticleController\ArticleController@showGovArticle');
 
 Route::post('/article_resign_register', 'ArticleController\ArticleController@saveResignArticle');
 Route::post('/filter_resign_article','ArticleController\ArticleController@FilterResignArticle');
 Route::patch('/approve_resign_article/{id}', 'ArticleController\ArticleController@approveResign');
-Route::patch('/reject_resign_article/{id}', 'ArticleController\ArticleController@rejectResign');
+Route::post('/reject_resign_article/{id}', 'ArticleController\ArticleController@rejectResign');
 Route::get('/resign_article_show/{id}', 'ArticleController\ArticleController@showResignArticle');
 Route::post('/save_contract_date', 'ArticleController\ArticleController@saveContractDate');
 Route::post('/save_done_form', 'ArticleController\ArticleController@saveDoneForm');

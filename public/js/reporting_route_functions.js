@@ -205,7 +205,16 @@ function articleList(url) {
     }
 }
 
-function articleDailyInOutList(url,form_type) {
+function articleDailyInOutListFirm(url) {
+    if ($('#select-date').val() != "") {
+        $('#report-form').attr('action', FRONTEND_URL + url);
+        $('#report-form').submit();
+    } else {
+        alert('select course and batch');
+    }
+}
+
+function articleDailyInOutListGov(url) {
     if ($('#select-date').val() != "") {
         $('#report-form').attr('action', FRONTEND_URL + url);
         $('#report-form').submit();
