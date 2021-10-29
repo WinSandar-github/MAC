@@ -1539,7 +1539,7 @@ class SchoolController extends Controller
                 }else{
                     
                     if($infos->initial_status==2){
-                        return "cessation";
+                        return "Cessation";
                     }else{
                         return "REJECTED";
                     }
@@ -1547,23 +1547,21 @@ class SchoolController extends Controller
             })
             ->addColumn('payment_status', function ($infos){
                 if($infos->initial_status==0){
-                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                    $invoice = Invoice::when($infos->payment_method, function($q) use ($infos){
                         $q->where('tranRef', '=', $infos->payment_method);
                     })
                     ->where('student_info_id',$infos->student_info_id)
                     ->where('invoiceNo',"init_sch".$infos->id)
-                    
                     ->get();
-                   
                 }else{
-                    $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
+                    $invoice = Invoice::when($infos->payment_method, function($q) use ($infos){
                         $q->where('tranRef', '=', $infos->payment_method);
                     })
                     ->where('student_info_id',$infos->student_info_id)
                     ->where('invoiceNo',"renew_sch".$infos->id)
                     ->get();
-                   
                 }
+                
                 foreach($invoice as $i){
                     return $i->status == "0"
                         ? "Payment Incomplete"
@@ -1638,15 +1636,13 @@ class SchoolController extends Controller
                 // }else{
                 //     return $btn;
                 // }
-                if($infos->initial_status==0){
+                if($infos->initial_status == 0){
                     $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                         $q->where('tranRef', '=', $infos->payment_method);
                     })
                     ->where('student_info_id',$infos->student_info_id)
                     ->where('invoiceNo',"init_sch".$infos->id)
-                    
                     ->get();
-                   
                 }else{
                     $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
                         $q->where('tranRef', '=', $infos->payment_method);
@@ -1654,13 +1650,17 @@ class SchoolController extends Controller
                     ->where('student_info_id',$infos->student_info_id)
                     ->where('invoiceNo',"renew_sch".$infos->id)
                     ->get();
-                   
                 }
                 foreach($invoice as $i){
-                    return $i->status == "0"
+                    return $i->status !== "0"
                         ? ""
+                        // : "<div class='btn-group'>
+                        //         <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                        //             <li class='fa fa-id-card-o fa-sm'></li>
+                        //         </a>
+                        //     </div>";
                         : "<div class='btn-group'>
-                                <a href='school_card?id=$infos->id' class='btn btn-primary btn-xs'>
+                                <a href='" . route('get_school_card', ['id' => $infos->id, 'course_code' => 'prv_school']) . "' class='btn btn-primary btn-xs'>
                                     <li class='fa fa-id-card-o fa-sm'></li>
                                 </a>
                             </div>";

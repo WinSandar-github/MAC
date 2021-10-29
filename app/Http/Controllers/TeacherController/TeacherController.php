@@ -479,6 +479,7 @@ class TeacherController extends Controller
                 $teacher=$teacher->where(DB::raw('CONCAT(nrc_state_region, "/", nrc_township,"(",nrc_citizen,")",nrc_number)'),$request->nrc);
             }
             $teachers=$teacher->get();
+
             return DataTables::of($teachers)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
@@ -663,8 +664,6 @@ class TeacherController extends Controller
                     }
                 })
                 ->addColumn('card', function ($infos) {
-
-                    $btn='';
                     
                     if($infos->initial_status==0){
                         $invoice=Invoice::when($infos->payment_method, function($q) use ($infos){
