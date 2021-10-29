@@ -487,10 +487,11 @@ class ArticleController extends Controller
         ],200);
     }
 
-    public function reject($id)
+    public function reject($id,Request $request)
     {
         $reject = ApprenticeAccountant::find($id);
         $reject->status = 2;
+        $reject->remark = $request->remark_firm;
         $reject->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
@@ -905,10 +906,11 @@ class ArticleController extends Controller
         ],200);
     }
 
-    public function rejectGov($id)
+    public function rejectGov($id,Request $request)
     {
         $reject = ApprenticeAccountantGov::find($id);
         $reject->status = 2;
+        $reject->remark = $request->remark_gov;
         $reject->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
@@ -1030,6 +1032,20 @@ class ArticleController extends Controller
     public function FilterResignArticle(Request $request)
     {
         $article = ApprenticeAccountant::where('resign_status',$request->status)->where('done_status',0)->where('article_form_type', '=' , 'resign')->with('student_info')->get();
+
+        // foreach($article as $val){
+        //   $resign_date = $val->resign_date;
+        //   $article_result = ApprenticeAccountant::where('student_info_id',$val->student_info_id)
+        //                                           ->where('article_form_type','<>','resign')
+        //                                           ->get();
+        //   $article_result_gov = ApprenticeAccountantGov::where('student_info_id',$val->student_info_id)->get();
+        //   if($article_result_gov){
+        //     $contract_start_date = $article_result_gov[0]->contract_start_date;
+        //   }
+        //
+        // }
+
+
         $article_type = "resign";
         $datatable = DataTables::of($article)
             ->addColumn('action', function ($infos) {
@@ -1076,7 +1092,15 @@ class ArticleController extends Controller
                 }
             });
 
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee'])->make(true);
+            // ->addColumn('net_experience', function ($infos){
+            //     return "N/A";
+            // })
+
+            // ->addColumn('resign_date', function ($infos){
+            //     return $infos->student_info->phone;
+            // })
+
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience'])->make(true);
             return $datatable;
     }
 
@@ -1090,15 +1114,18 @@ class ArticleController extends Controller
         ],200);
     }
 
-    public function rejectResign($id)
+    public function rejectResign($id,Request $request)
     {
         $reject = ApprenticeAccountant::find($id);
         $reject->resign_status = 2;
+        $reject->remark = $request->remark_resign;
         $reject->save();
         return response()->json([
             'message' => "You have successfully rejected that user!"
         ],200);
     }
+
+
 
     public function filterDone3yrsArticle(Request $request)
     {
