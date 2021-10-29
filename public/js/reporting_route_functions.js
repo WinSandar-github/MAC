@@ -70,9 +70,6 @@ function attendEntryExamSelfList(url) {
     }
 }
 
-
-
-
 function daRegList(url) {
 
     if ($('#select-course').val() != "" && $('#select-batch').val() != '') {

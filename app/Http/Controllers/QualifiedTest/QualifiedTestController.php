@@ -373,7 +373,17 @@ class QualifiedTestController extends Controller
           return DataTables::of($qualified_test)
                 ->addColumn('action', function ($infos) {
 
-                    
+                    if($infos->grade == 1){
+                        return "<div class='btn-group'>
+                                    <a href='qt_fill_mark/$infos->id' class='btn btn-primary btn-xs mr-3' >
+                                        <li class='fa fa-eye fa-sm'></li>
+                                    </a>
+                                    <a class='btn btn-info btn-xs p' target='_blank' title='Certificate' href='" . route('get_qt_card', ['id' => $infos->student_info_id, 'course_code' => 'cpa_qt']) . "'>
+                                        <li class='fa fa-file-text-o fa-sm'></li>
+                                    </a>
+                                </div>";
+                    }
+
                     return "<div class='btn-group'>
                                 <a href='qt_fill_mark/$infos->id' class='btn btn-primary btn-xs' >
                                     <li class='fa fa-eye fa-sm'></li>
