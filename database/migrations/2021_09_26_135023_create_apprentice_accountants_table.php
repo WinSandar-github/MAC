@@ -47,6 +47,7 @@ class CreateApprenticeAccountantsTable extends Migration
             $table->string('contract_end_date')->nullable();
             $table->boolean('yes_done_attach')->default(0);
             $table->string('done_form_attach')->nullable();
+            $table->string('remark')->nullable();
             $table->boolean('done_status')->default(0);
             $table->timestamps();
             $table->string('offline_user')->nullable();

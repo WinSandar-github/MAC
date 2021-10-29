@@ -460,9 +460,15 @@ function rejectArticle(){
     }
     else{
         var id = $("input[name = article_id]").val();
+        var formData = new FormData();
+        formData.append('remark_firm', $('#remark_firm').val());
+
         $.ajax({
             url: BACKEND_URL +"/reject_article/"+id,
-            type: 'patch',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(result){
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
@@ -851,9 +857,14 @@ function rejectGovArticle(){
     }
     else{
         var id = $("input[name = article_id]").val();
+        var formData = new FormData();
+        formData.append('remark_gov', $('#remark_gov').val());
         $.ajax({
             url: BACKEND_URL +"/reject_gov_article/"+id,
-            type: 'patch',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(result){
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
@@ -923,6 +934,7 @@ function loadResignArticle()
 
             $('#name_mm').val(student_info.name_mm);
             $("#name_eng").val(student_info.name_eng);
+            $("#personal_no").val(student_info.personal_no);
             $("#nrc_state_region").val(student_info.nrc_state_region);
             $("#nrc_township").val(student_info.nrc_township);
             $("#nrc_citizen").val(student_info.nrc_citizen);
@@ -1009,9 +1021,15 @@ function rejectResignArticle(){
     }
     else{
         var id = $("input[name = article_id]").val();
+        var formData = new FormData();
+        formData.append('remark_resign', $('#remark_resign').val());
+
         $.ajax({
             url: BACKEND_URL +"/reject_resign_article/"+id,
-            type: 'patch',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(result){
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
