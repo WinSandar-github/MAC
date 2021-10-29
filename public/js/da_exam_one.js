@@ -359,12 +359,12 @@ function loadDAExamData() {
                     document.getElementById("reject").style.display = 'none';
                 }
 
-                if(element.exam_department){
+                if (element.exam_department) {
                     $("#exam_department").append(element.exam_department.name);
-                }else{
+                } else {
                     $("#exam_department").append("-");
                 }
-                
+
                 if (element.is_full_module == 1) {
                     $("#current_module").append("Module-1");
                 } else if (element.is_full_module == 2) {
