@@ -645,8 +645,9 @@
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
-        $('#tbl_firm_article_pending').DataTable().column(6).visible(false);
+        //$('#tbl_firm_article_pending').DataTable().column(6).visible(false);
         $('#tbl_firm_article_pending').DataTable().column(8).visible(false);
+
 
         var table_approve =$('#tbl_firm_article_approved').DataTable({
             scrollX: true,
@@ -677,6 +678,7 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+        $('#tbl_firm_article_approved').DataTable().column(6).visible(false);
 
         var table_reject =$('#tbl_firm_article_rejected').DataTable({
             scrollX: true,
@@ -742,7 +744,7 @@
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
 
-        $('#tbl_gov_article_pending').DataTable().column(6).visible(false);
+        //$('#tbl_gov_article_pending').DataTable().column(6).visible(false);
         $('#tbl_gov_article_pending').DataTable().column(8).visible(false);
 
         var table_approve =$('#tbl_gov_article_approved').DataTable({
@@ -774,6 +776,7 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+        $('#tbl_gov_article_approved').DataTable().column(6).visible(false);
 
         var table_reject =$('#tbl_gov_article_rejected').DataTable({
             scrollX: true,
@@ -868,6 +871,8 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+        $('#tbl_resign_article_approved').DataTable().column(5).visible(false);
+
 
         var table_reject =$('#tbl_resign_article_rejected').DataTable({
             scrollX: true,
@@ -898,6 +903,7 @@
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
         });
+        $('#tbl_resign_article_rejected').DataTable().column(5).visible(false);
 
         //Issue two yrs form list
         var table_approve =$('#tbl_two_yrs_article_pending').DataTable({
