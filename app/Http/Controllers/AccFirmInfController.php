@@ -4069,8 +4069,9 @@ class AccFirmInfController extends Controller
                   <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
                       <li class='fa fa-eye fa-sm'></li>
                   </button>
-                  <a href='audit_card?id=$infos->id' class='btn btn-info btn-sm p' target='_blank'>
-                    <li class='fa fa-file-text-o fa-sm'></li>
+                  
+                  <a href='" . route('get_audit_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
+                      <li class='fa fa-id-card-o fa-sm'></li>
                   </a>
 
               </div>";
