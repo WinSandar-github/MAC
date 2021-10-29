@@ -296,7 +296,7 @@
 
                         <div class="praticle">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="papp_lab">{{ __('၁၄။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="papp_lab">{{ __('၁၄။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမှတ်</label>
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -325,7 +325,7 @@
                         </div>
                         <div class="c2_pass_renew" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၄။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၄။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP အမှတ်</label>
                                 <div class="col-md-9">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -342,7 +342,7 @@
                         </div>
                         <div id="previous_papp_name_row" style="display:none;">
                             <div class="row mb-3">
-                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="previous_papp_lab">{{ __('၁၅။') }}</span>ယခင်အလုပ်သင်ကြားခဲ့သည့် PAPP အမည်</label>
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="previous_papp_lab">{{ __('၁၅။') }}</span>ယခင်အလုပ်သင်ကြားခဲ့သည့် PAPP အမှတ်</label>
                                 <div class="col-md-9">
                                     <input type="text" name="previous_papp_name" id="previous_papp_name" class="form-control" readonly>
                                 </div>
