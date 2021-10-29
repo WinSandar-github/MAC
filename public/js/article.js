@@ -529,9 +529,15 @@ function rejectArticle(){
     }
     else{
         var id = $("input[name = article_id]").val();
+        var formData = new FormData();
+        formData.append('remark_firm', $('#remark_firm').val());
+
         $.ajax({
             url: BACKEND_URL +"/reject_article/"+id,
-            type: 'patch',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(result){
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
@@ -594,6 +600,11 @@ function showPaymentInfoResign(info){
   $("#payment_detail_modal").modal('show');
 
   autoLoadPaymentResign(info.id);
+}
+
+function showPaymentInfoFirm(info){
+  $("#payment_detail_modal").modal('show');
+  autoLoadPaymentFirm(info.id);
 }
 
 function updateGovContractDate(info){
@@ -892,6 +903,50 @@ function autoLoadPaymentResign(firm_id){
       });
 }
 
+function autoLoadPaymentFirm(firm_id){
+  $("#payment_detail_modal").find(".fee_list").html('');
+  $.ajax({
+          url: BACKEND_URL + "/get_payment_info/" + 'c12',
+          type: 'get',
+          success: function (result) {
+              console.log("firm aricle",result);
+
+              if(result.status==0){
+                  $('#payment_status').append("Pending");
+                  $('#payment_status').addClass("text-warning");
+              }
+              else{
+                  $('#payment_status').append("Paid");
+                  $('#payment_status').addClass("text-success");
+              }
+              var productDesc = result.productDesc.split(",");
+              var amount = result.amount.split(",");
+              var total=0;
+              for(var i in amount) {
+                  total += parseInt(amount[i]);
+              }
+              console.log(total);
+              for(let i=0 ; i<amount.length ; i++){
+                  $('.fee_list').append(`
+                      <li
+                          class="list-group-item d-flex justify-content-between lh-condensed">
+                          <h6 class="my-0">${productDesc[i]}</h6>
+                          <span class="text-muted">- ${amount[i]} MMK</span>
+                      </li>
+                  `);
+              }
+              $('.fee_list').append(`
+                  <li class="list-group-item d-flex justify-content-between">
+                      <span>Total (MMK)</span>
+                      <span id="total">
+                          - <strong>${total}</strong> MMK
+                      </span>
+                  </li>
+              `);
+          }
+      });
+}
+
 function approveGovArticle(){
     if (!confirm('Are you sure you want to approve this article?'))
     {
@@ -920,9 +975,14 @@ function rejectGovArticle(){
     }
     else{
         var id = $("input[name = article_id]").val();
+        var formData = new FormData();
+        formData.append('remark_gov', $('#remark_gov').val());
         $.ajax({
             url: BACKEND_URL +"/reject_gov_article/"+id,
-            type: 'patch',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(result){
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
@@ -992,6 +1052,7 @@ function loadResignArticle()
 
             $('#name_mm').val(student_info.name_mm);
             $("#name_eng").val(student_info.name_eng);
+            $("#personal_no").val(student_info.personal_no);
             $("#nrc_state_region").val(student_info.nrc_state_region);
             $("#nrc_township").val(student_info.nrc_township);
             $("#nrc_citizen").val(student_info.nrc_citizen);
@@ -1078,9 +1139,15 @@ function rejectResignArticle(){
     }
     else{
         var id = $("input[name = article_id]").val();
+        var formData = new FormData();
+        formData.append('remark_resign', $('#remark_resign').val());
+
         $.ajax({
             url: BACKEND_URL +"/reject_resign_article/"+id,
-            type: 'patch',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
             success: function(result){
                 successMessage("You have rejected that user!");
                 location.href = FRONTEND_URL + "/article_list";
