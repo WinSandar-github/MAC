@@ -836,10 +836,10 @@ class CpaTraAddmissionDirectController extends Controller
                 $exam_register->student_info_id     = $student_info->id;
                 $exam_register->date                = $date;
                 
-                if($request->module!=0 ){
+                if($request->module !== 0 ){
                     $exam_register->grade           = 1;
                 }else{
-                    $exam_register->grade           = 0;
+                    $exam_register->grade           = 2;
                 } 
                 $exam_register->batch_id            = $request->pass_batch_id;
                 $exam_register->is_full_module      = $request->module;

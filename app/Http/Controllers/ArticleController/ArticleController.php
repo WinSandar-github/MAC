@@ -30,7 +30,9 @@ class ArticleController extends Controller
 
     public function index()
     {
-        return "index";
+        $app_acc = ApprenticeAccountant::get();
+        return $app_acc[0]->mentor;
+
     }
 
     public function show($id)

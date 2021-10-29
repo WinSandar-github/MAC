@@ -11,12 +11,13 @@ class ApprenticeAccountant extends Model
                             'accept_policy'];
     
     public function student_info(){
-        return $this->hasOne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy','student_register','qualified_test','leave_requests','invoice');
+        return $this->hasOAne(StudentInfo::class,'id','student_info_id')->with('student_job','student_education_histroy','student_register','qualified_test','leave_requests','invoice');
     }
 
     public function mentor(){
-        return $this->hasOne(Mentor::class,'id','mentor_id');
+        return $this->hasOne(Mentor::class,'id','mentor_id')->with('papp');
 
     }
 
+   
 }
