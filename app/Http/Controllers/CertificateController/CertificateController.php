@@ -7,6 +7,7 @@ use App\ExamRegister;
 use App\QualifiedTest;
 use App\SchoolRegister;
 use App\TeacherRegister;
+use App\tbl_branch_school;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
@@ -147,6 +148,8 @@ class CertificateController extends Controller
     public function getSchoolCard(Request $req, $id){
         
         $school = SchoolRegister::where('id', '=', $id)->first();
+
+        return $branch_school = tbl_branch_school::where('id', $school->id)->get();
 
         $courseType = explode(',', $school->attend_course);
 
