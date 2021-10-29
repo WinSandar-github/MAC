@@ -151,10 +151,6 @@
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> adfa965de6119c42333c2235fffdf668279b0981
                         <div id="qt_education" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
