@@ -8,19 +8,12 @@ use App\ExamRegister;
 use App\TeacherRegister;
 use DB;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\CustomClass\Helper;
 
 class CertificateController extends Controller
 {
     public function index(Request $req, $id)
     {
-        // return DB::table('student_infos as st')
-                // ->leftJoin('exam_result as ex', 'ex.student_info_id', 'st.id')
-                // ->join('exam_register as er', 'er.student_info_id', 'st.id')
-                // ->where('st.id', $id)
-                // ->get();
-
-
-
         $student = DB::table('student_infos as st')
                 ->leftJoin('exam_result as ex', 'ex.student_info_id', 'st.id')
                 ->leftJoin('exam_register as er', 'er.student_info_id', 'st.id')
@@ -103,7 +96,7 @@ class CertificateController extends Controller
 
         $template = DB::table('certificates')->where('cert_code', '=', 'teacher_card')->first();
 
-        $template->cert_data = str_replace('{{ userImage }}', $teacher->image, $template->cert_data);
+        $template->cert_data = str_replace('{{ userImage }}', Helper::$BASE_URL . $teacher->image, $template->cert_data);
         $template->cert_data = str_replace('{{ serialNo }}', $teacher->t_code, $template->cert_data);
         $template->cert_data = str_replace('{{ dated }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
         $template->cert_data = str_replace('{{ studentName }}', "<strong>$teacher->name_eng</strong>", $template->cert_data);

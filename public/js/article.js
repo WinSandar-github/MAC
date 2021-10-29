@@ -278,7 +278,7 @@ function loadArticle()
             $("#phone_no").val(student_info.phone);
             $("#m_email").val(data.m_email);
             $("#papp_name").val(data.request_papp);
-            $("#mentor_name").val(data.mentor.name_eng);
+            $("#mentor_name").val(data?.mentor?.name_eng);
             if(data.ex_papp == null){
                 document.getElementById("previous_papp_name_row").style.display = "none";
             }else if(data.ex_papp == "undefined" && data.exp_start_date == "undefined" &&  data.exp_end_date == "undefined"){
