@@ -140,8 +140,9 @@ class ArticleController extends Controller
             $std_info->religion = $request->religion;
             $std_info->date_of_birth = $request->date_of_birth;
             $std_info->address = $request->address;
+            $std_info->current_address = $request->current_address;
             $std_info->gender = $request->gender;
-            $std_info->personal_no = $request->personal_no;
+            $std_info->cpersonal_no = $request->personal_no;
             $std_info->save();
             //article
             $acc_app = new ApprenticeAccountant();

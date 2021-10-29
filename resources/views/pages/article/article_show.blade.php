@@ -129,11 +129,28 @@
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
                                 <div class="col-md-9">
-                                <input type="text" name="education" id="education" class="form-control" readonly>
+                                    <input type="text" name="education" id="education" class="form-control" readonly>
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="offline_user" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
+                                <div class="col-md-9">
+                                    <table id="tbl_degree" class="table table-bordered text-center">
+                                                <thead class="text-nowrap table-success">
+                                                    <tr>
+                                                        <th class="bold-font-weight">စဉ်</th>
+                                                        <th class="bold-font-weight">တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ</th>
+                                                        <th class="bold-font-weight">Attached Certificate</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbl_degree_body">
+                                                </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <div id="qt_education" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
@@ -277,34 +294,52 @@
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left" id="papp_lab">{{ __('၁၄။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
-                            <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" name="papp_name" id="papp_name" class="form-control" readonly>                                          
+                        <div class="praticle">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="papp_lab">{{ __('၁၄။') }}</span>လက်တွေ့အလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" name="papp_name" id="papp_name" class="form-control" readonly>                                          
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="mentor_name" id="mentor_name" class="form-control" readonly>
+                                        </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="mentor_name" id="mentor_name" class="form-control" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 req-papp_attach">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span>လက်ခံသင်ကြားပေးကြောင်းအကြောင်းကြားစာ</label>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
+                                        </div>
+                                        <div class="col-md-3 mt-1 request_papp_attach">
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row mb-3">
-                            <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span>လက်ခံသင်ကြားပေးကြောင်းအကြောင်းကြားစာ</label>
-                            <div class="col-md-9">
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <p class="ml-2 mt-2" style="font-weight:bold" align="left">Attachment</p>
-                                    </div>
-                                    <div class="col-md-3 mt-1 request_papp_attach">
-
+                        <div class="c2_pass_renew" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left" id="c2_papp_lab">{{ __('၁၄။') }}</span>ယခုအလုပ်သင်ကြားလိုသည့် PAPP အမည်</label>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <input type="text" name="c2_papp_name" id="c2_papp_name" class="form-control" readonly>                                          
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" name="c2_mentor_name" id="c2_mentor_name" class="form-control" readonly>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                            
+                        </div>
                         <div id="previous_papp_name_row" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left" id="previous_papp_lab">{{ __('၁၅။') }}</span>ယခင်အလုပ်သင်ကြားခဲ့သည့် PAPP အမည်</label>
