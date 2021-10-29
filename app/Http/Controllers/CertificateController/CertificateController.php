@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CertificateController;
 use DB;
 use App\ExamRegister;
 use App\QualifiedTest;
+use App\SchoolRegister;
 use App\TeacherRegister;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -139,6 +140,63 @@ class CertificateController extends Controller
         $template->cert_data = str_replace('{{ officerName }}', "<strong>" . "Thandar Lay" . "</strong>", $template->cert_data);
 
         $className = 'border-style';
+
+        return view('certificate.complete_certificate', compact('template', 'className'));
+    }
+
+    public function getSchoolCard(Request $req, $id){
+        
+        $school = SchoolRegister::where('id', '=', $id)->first();
+
+        $courseType = explode(',', $school->attend_course);
+
+        collect($courseType)->map(function($val){
+            return $val . " helll ";
+        });
+
+        $template = DB::table('certificates')->where('cert_code', '=', $req->course_code)->first();
+
+        $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $school->regno . " / " . $school->reg_date . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ schoolName }}', "<strong>" . $school->school_name . "</strong>", $template->cert_data);
+        
+        switch($school->type){
+            case "PCS":
+                $template->cert_data = str_replace('{{ pcs }}', "checked", $template->cert_data);
+                break;
+            case "PCP":
+                $template->cert_data = str_replace('{{ pcp }}', "checked", $template->cert_data);
+                break;
+            case "PCC":
+                $template->cert_data = str_replace('{{ pcc }}', "checked", $template->cert_data);
+                break;
+            case "P":
+                $template->cert_data = str_replace('{{ p }}', "checked", $template->cert_data);
+                break;
+        }
+
+        if(in_array('1', $courseType)){
+            $template->cert_data = str_replace('{{ da_1 }}', "checked", $template->cert_data);
+        }
+        if(in_array('2', $courseType)){
+            $template->cert_data = str_replace('{{ da_2 }}', "checked", $template->cert_data);
+        }
+        if(in_array('3', $courseType)){
+            $template->cert_data = str_replace('{{ cpa_1 }}', "checked", $template->cert_data);
+        }
+        if(in_array('4', $courseType)){
+            $template->cert_data = str_replace('{{ cpa_2 }}', "checked", $template->cert_data);
+        }
+        if(in_array('5', $courseType)){
+            $template->cert_data = str_replace('{{ other }}', "checked", $template->cert_data);
+        }
+
+        $template->cert_data = str_replace('{{ founder }}', "<strong>" . $school->name_eng . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $school->nrc_state_region . "/" . $school->nrc_township ."(" . $school->nrc_citizen . ")" . $school->nrc_number . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ schoolLocation }}', "<strong>". $school->eng_school_address ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $school->renew_date ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+
+        $className = '';
 
         return view('certificate.complete_certificate', compact('template', 'className'));
     }

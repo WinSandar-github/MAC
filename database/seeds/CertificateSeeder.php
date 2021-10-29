@@ -264,12 +264,27 @@ class CertificateSeeder extends Seeder
                                 <tr>
                                     <td>
                                         သင်တန်းကျောင်းအမည်<br>
-                                        Organization Stucture
+                                        Name of School
                                     </td>
                                     <td>
-                                        {{ orgStructure }}
+                                        {{ schoolName }}
                                     </td>
                                 </tr>
+    
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းအမျိုးအစား<br>
+                                        Organization Structrue
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" {{ pcs }}>Sole Proprietorship
+                                        <input type="checkbox" {{ pcp }}>Partnership
+                                        <br>
+                                        <input type="checkbox" {{ pcc }}>Company Incorporated
+                                        <input type="checkbox" {{ p }}>Other                                   
+                                    </td>
+                                </tr>
+    
                                 <tr>
                                     <td>
                                         ကျောင်းတည်ထောင်သူ/တာဝန်ခံ၏အမည်<br>
@@ -294,7 +309,13 @@ class CertificateSeeder extends Seeder
                                         Types of Classes
                                     </td>
                                     <td>
-                                        {{ classType }}
+                                        <input type="checkbox" {{ da_1 }}>DA I
+                                        <input type="checkbox" {{ da_2 }}>DA II
+                                        <br>
+                                        <input type="checkbox" {{ cpa_1 }}>CPA I
+                                        <input type="checkbox" {{ cpa_2 }}>CPA II
+                                        <br>
+                                        <input type="checkbox" {{ other }}>Other
                                     </td>
                                 </tr>
                                 <tr>
@@ -322,7 +343,7 @@ class CertificateSeeder extends Seeder
                         </td>
                     </tr>
                     <tr>
-                        <td style="text-align: right; padding-top: 10%; vertical-align: middle;" colspan="2">
+                        <td style="text-align: right; padding-top: 5%; vertical-align: middle;" colspan="2">
                             {{ officerName }}
                         </td>
                     </tr>
