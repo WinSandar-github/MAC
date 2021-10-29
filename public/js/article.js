@@ -449,15 +449,16 @@ function loadArticle()
 				'autoWidth': true,
 				"scrollX": false,
 			});
-
+            
             if(data.contract_end_date != null){
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
 
                 var end_time = end_date.getTime();
                 var today_time = today.getTime();
-
+                
                 if (end_time <= today_time) {
+                    console.log(data.yes_done_attach);
                     if(data.yes_done_attach == 0){
                         document.getElementById("check_end_date").style.display = "block";
                     }
@@ -772,15 +773,16 @@ function loadGovArticle()
 				'autoWidth': true,
 				"scrollX": false,
 			});
-
+            
             if(data.contract_end_date != null){
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
 
                 var end_time = end_date.getTime();
                 var today_time = today.getTime();
-
+                
                 if (end_time <= today_time) {
+                    
                     if(data.yes_done_attach == 0){
                         document.getElementById("check_end_date").style.display = "block";
                     }
