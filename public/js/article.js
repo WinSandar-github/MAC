@@ -284,12 +284,20 @@ function loadArticle()
             $("#address").val(student_info.address);
             $("#current_address").val(student_info.current_address);
             $("#phone_no").val(student_info.phone);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6b295d65e07c51a0c4dae2c4dae6695227733ae3
             if(student_info.email!=null){
                 $("#m_email").val(student_info.email);
             }else{
                 $("#m_email").val(data.m_email);
             }
+<<<<<<< HEAD
+=======
+            
+            
+>>>>>>> 6b295d65e07c51a0c4dae2c4dae6695227733ae3
             if(data.ex_papp == null){
                 document.getElementById("previous_papp_name_row").style.display = "none";
             }else if(data.ex_papp == "undefined" && data.exp_start_date == "undefined" &&  data.exp_end_date == "undefined"){

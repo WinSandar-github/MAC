@@ -7,7 +7,11 @@ use App\ExamRegister;
 use App\QualifiedTest;
 use App\SchoolRegister;
 use App\TeacherRegister;
+<<<<<<< HEAD
 use App\tbl_branch_school;
+=======
+use App\AccountancyFirmInformation;
+>>>>>>> 6b295d65e07c51a0c4dae2c4dae6695227733ae3
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
@@ -213,6 +217,156 @@ class CertificateController extends Controller
         }
 
         return view('certificate.complete_certificate', compact('template', 'className', 'branch_template'));
+    }
+
+    public function getAuditCard(Request $req, $id){
+        
+        $audit = AccountancyFirmInformation::where('id', '=', $id)->first();
+        // return $audit;
+        $foa = $audit->firm_owner_audits;
+
+        $template = DB::table('certificates')->where('cert_code', '=', 'audit_card')->first();
+        // dd($audit->firm_owner_audits);
+        $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        
+        switch($audit->organization_structure_id){
+            case 1:
+                $template->cert_data = str_replace('{{ pcs }}', "checked", $template->cert_data);
+                break;
+            case 2:
+                $template->cert_data = str_replace('{{ pcp }}', "checked", $template->cert_data);
+                break;
+            case 3:
+                $template->cert_data = str_replace('{{ pcc }}', "checked", $template->cert_data);
+                break;
+            case 4:
+                $template->cert_data = str_replace('{{ p }}', "checked", $template->cert_data);
+                break;
+        }
+
+        $template->cert_data = str_replace('{{ founder }}', "<strong>" . $foa[0]->name . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $foa[0]->public_private_reg_no . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+
+        $className = '';
+
+        return view('certificate.complete_certificate', compact('template', 'className'));
+    }
+
+    public function getNonAuditCard(Request $req, $id){
+        
+        $audit = AccountancyFirmInformation::where('id', '=', $id)->first();
+        // return $audit;
+        // $foa = $audit->firm_owner_audits;
+        $tos = explode(',', $audit->type_of_service_provided_id);
+        $template = DB::table('certificates')->where('cert_code', '=', 'non_audit_card')->first();
+        // dd($audit->firm_owner_audits);
+        $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        
+        switch($audit->organization_structure_id){
+            case 1:
+                $template->cert_data = str_replace('{{ pcs }}', "checked", $template->cert_data);
+                break;
+            case 2:
+                $template->cert_data = str_replace('{{ pcp }}', "checked", $template->cert_data);
+                break;
+            case 3:
+                $template->cert_data = str_replace('{{ pcc }}', "checked", $template->cert_data);
+                break;
+            case 4:
+                $template->cert_data = str_replace('{{ p }}', "checked", $template->cert_data);
+                break;
+        }
+
+        if(in_array('3', $tos)){
+            $template->cert_data = str_replace('{{ ac }}', "checked", $template->cert_data);
+        }
+        if(in_array('4', $tos)){
+            $template->cert_data = str_replace('{{ ad }}', "checked", $template->cert_data);
+        }
+        if(in_array('5', $tos)){
+            $template->cert_data = str_replace('{{ ta }}', "checked", $template->cert_data);
+        }
+        if(in_array('6', $tos)){
+            $template->cert_data = str_replace('{{ li }}', "checked", $template->cert_data);
+        }
+        if(in_array('7', $tos)){
+            $template->cert_data = str_replace('{{ as }}', "checked", $template->cert_data);
+        }
+        if(in_array('8', $tos)){
+            $template->cert_data = str_replace('{{ ot }}', "checked", $template->cert_data);
+        }
+
+        $template->cert_data = str_replace('{{ founder }}', "<strong>" . $audit->name_of_sole_proprietor . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $audit->dir_passport_csc . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+
+        $className = '';
+
+        return view('certificate.complete_certificate', compact('template', 'className'));
+    }
+
+    public function getNonAuditForeignCard(Request $req, $id){
+        
+        $audit = AccountancyFirmInformation::where('id', '=', $id)->first();
+        // return $audit;
+        // $foa = $audit->firm_owner_audits;
+        $tos = explode(',', $audit->type_of_service_provided_id);
+        $template = DB::table('certificates')->where('cert_code', '=', 'non_audit_foreign_card')->first();
+        // dd($audit->firm_owner_audits);
+        $template->cert_data = str_replace('{{ issueDate }}', "<strong>" .  $audit->accountancy_firm_reg_no . " / " . $audit->register_date . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ FrimName }}', "<strong>" . $audit->accountancy_firm_name . "</strong>", $template->cert_data);
+        
+        switch($audit->organization_structure_id){
+            case 1:
+                $template->cert_data = str_replace('{{ pcs }}', "checked", $template->cert_data);
+                break;
+            case 2:
+                $template->cert_data = str_replace('{{ pcp }}', "checked", $template->cert_data);
+                break;
+            case 3:
+                $template->cert_data = str_replace('{{ pcc }}', "checked", $template->cert_data);
+                break;
+            case 4:
+                $template->cert_data = str_replace('{{ p }}', "checked", $template->cert_data);
+                break;
+        }
+        // return $tos;
+        // return in_array('5', $tos);
+        if(in_array('3', $tos)){
+            $template->cert_data = str_replace('{{ ac }}', "checked", $template->cert_data);
+        }
+        if(in_array('4', $tos)){
+            $template->cert_data = str_replace('{{ ad }}', "checked", $template->cert_data);
+        }
+        if(in_array('5', $tos)){
+            $template->cert_data = str_replace('{{ ta }}', "checked", $template->cert_data);
+        }
+        if(in_array('6', $tos)){
+            $template->cert_data = str_replace('{{ li }}', "checked", $template->cert_data);
+        }
+        if(in_array('7', $tos)){
+            $template->cert_data = str_replace('{{ as }}', "checked", $template->cert_data);
+        }
+        if(in_array('8', $tos)){
+            $template->cert_data = str_replace('{{ ot }}', "checked", $template->cert_data);
+        }
+
+        $template->cert_data = str_replace('{{ founder }}', "<strong>" . $audit->name_of_sole_proprietor . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ cscNo }}', "<strong>" . $audit->dir_passport_csc . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officeLocation }}', "<strong>". $audit->head_office_address ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ expDate }}', "<strong>". $audit->register_date ."</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>Thandar Lay</strong>", $template->cert_data);
+
+        $className = '';
+
+        return view('certificate.complete_certificate', compact('template', 'className'));
     }
 
     private function en2mmMonthName($month)
