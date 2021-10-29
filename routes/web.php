@@ -294,6 +294,7 @@ Route::get('attend_app_list/{course_code}','ReportController@attendAppList');
 // Certificate Controller
 Route::get('/certificate/{id}', 'CertificateController\CertificateController@index')->name('certificate');
 Route::get('/get_teacher_card/{id}', 'CertificateController\CertificateController@getTeacherCard')->name('get_teacher_card');
+Route::get('/get_qt_card/{id}', 'CertificateController\CertificateController@getQtCard')->name('get_qt_card');
 
 Route::get('/show_non_audit_firm_info/{id}','ShowNonAuditFirmInfoController@showNonAuditFirmInfo');
 Route::get('/show_non_audit_reconnect_info/{id}','ShowNonAuditFirmInfoController@showReconnectNonAuditFirmInfo');

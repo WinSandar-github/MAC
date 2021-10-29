@@ -141,77 +141,78 @@ class CertificateSeeder extends Seeder
             ],
             [
                 'cert_code' => 'cpa_qt',
-                'cert_data' => htmlspecialchars('<img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px" height="100px"
+                'cert_data' => htmlspecialchars('<img src="{{ userImage }}" alt="user-image" width="100px" height="100px"
                 style="float: right; position: relative; top: 185px;right: 60px;">
-                <table style="margin-right: 100px; margin-left: 100px;">
-                    <tbody>
-                        <tr>
-                            <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 100px; padding-bottom: 20px;"
-                                colspan="2">
-                                ပြည်ထောင်စုသမ္မတမြန်မာနိုင်ငံတော်<br>
-                                REPUBLIC OF THE UNION OF MYANMAR
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; font-size: 16px; font-weight: 800;" colspan="2">
-                                မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
-                                MYANMAR ACCOUNTANCY COUNCIL
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; padding: 20px;" colspan="2">
-                                <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
-                                    height="100px">
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: center; font-size: 16px; font-weight: 800; padding-bottom: 2rem;"
-                                colspan="2">
-                                လက်မှတ်ရပြည့်သူ့စာရင်းကိုင်စာမေးပွဲအောင်လက်မှတ်<br>
-                                Certified Public Accountant Examination
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                အမှတ်စဥ်. <span class="input">{{ serialNo }}</span><br>
-                                Serial No. <span class="input">{{ serialNo }}</span><br>
-                            </td>
-                            <td style="float: right;">
-                                ရက်စွဲ၊ <span class="input">{{ dated }}</span><br>
-                                Dated. <span class="input">{{ dated }}</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;"
-                                colspan="2">
-                                <p style="line-height: 2rem;">
-                                    {{ abaName }} ၏သား/သမီး {{ studentName }}
-                                    (အမျိုးသားမှတ်ပုံတင်အမှတ်/နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ် {{ nrcNumber }})
-                                    သည် {{ year }} ခုနှစ်၊ {{ month }} လအတွင်းကျင်းပခဲ့သောအဖြစ်မှတ်ပုံတင်ရန်
-                                    အရည်အချင်းစစ်စာမေးပွဲကို ခုံအမှတ် {{ qtRollNo }} ဖြင့်အောင်မြင်သဖြင့် ဤအောင်လက်မှတ်ကို
-                                    ချီးမြှင့်လိုက်သည်။
-                                </p>
-        
-                                <p style="line-height: 2rem;">
-                                    {{ studentName }} Son/Daughter of {{ abaName }} having passed the Registration as Certified
-                                    Public Accountant held in {{ month }} {{ year }} Roll No. {{ qtRollNo }} is awarded this
-                                    Certificate.
-                                </p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right; padding-top: 10%; vertical-align: middle;" colspan="2">
-                                {{ officerName }}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="text-align: right;" colspan="2">
-                                မှတ်ပုံတင်အရာရှိ<br>
-                                Registrar
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>')
+    
+            <table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 100px; padding-bottom: 20px;"
+                            colspan="2">
+                            ပြည်ထောင်စုသမ္မတမြန်မာနိုင်ငံတော်<br>
+                            REPUBLIC OF THE UNION OF MYANMAR
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800;" colspan="2">
+                            မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
+                            MYANMAR ACCOUNTANCY COUNCIL
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; padding: 20px;" colspan="2">
+                            <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
+                                height="100px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-bottom: 2rem;"
+                            colspan="2">
+                            လက်မှတ်ရပြည့်သူ့စာရင်းကိုင်စာမေးပွဲအောင်လက်မှတ်<br>
+                            Certified Public Accountant Examination
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            အမှတ်စဥ်. <span class="input">{{ serialNo }}</span><br>
+                            Serial No. <span class="input">{{ serialNo }}</span><br>
+                        </td>
+                        <td style="float: right;">
+                            ရက်စွဲ၊ <span class="input">{{ dated }}</span><br>
+                            Dated. <span class="input">{{ datedEng }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;"
+                            colspan="2">
+                            <p style="line-height: 2rem;">
+                                {{ abaName }} ၏သား/သမီး {{ studentName }}
+                                (အမျိုးသားမှတ်ပုံတင်အမှတ်/နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ် {{ nrcNumber }})
+                                သည် {{ year }} ခုနှစ်၊ {{ month }} လအတွင်းကျင်းပခဲ့သောအဖြစ်မှတ်ပုံတင်ရန်
+                                အရည်အချင်းစစ်စာမေးပွဲကို ခုံအမှတ် {{ qtRollNo }} ဖြင့်အောင်မြင်သဖြင့် ဤအောင်လက်မှတ်ကို
+                                ချီးမြှင့်လိုက်သည်။
+                            </p>
+    
+                            <p style="line-height: 2rem;">
+                                {{ studentNameEng }} Son/Daughter of {{ abaNameEng }} having passed the Registration as Certified
+                                Public Accountant held in {{ monthEng }} {{ yearEng }} Roll No. {{ qtRollNo }} is awarded this
+                                Certificate.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 10%; vertical-align: middle;" colspan="2">
+                            {{ officerName }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;" colspan="2">
+                            မှတ်ပုံတင်အရာရှိ<br>
+                            Registrar
+                        </td>
+                    </tr>
+                </tbody>
+            </table>')
             ],
             [
                 'cert_code' => 'prv_school',

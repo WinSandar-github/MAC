@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\CertificateController;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\ExamRegister;
-use App\TeacherRegister;
 use DB;
+use App\ExamRegister;
+use App\QualifiedTest;
+use App\TeacherRegister;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\CustomClass\Helper;
 
 class CertificateController extends Controller
@@ -112,9 +113,48 @@ class CertificateController extends Controller
         return view('certificate.complete_certificate', compact('template', 'className'));
     }
 
-    private function en2mm($month)
+    public function getQtCard(Request $req, $id)
+    {
+        $qt = QualifiedTest::with('student_info')
+                ->where('student_info_id', '=', $id)
+                ->first();
+
+        list($day, $month, $year) = explode('-', $qt->exam_date);                        
+
+        $template = DB::table('certificates')->where('cert_code', '=', $req->course_code)->first();
+
+        $template->cert_data = str_replace('{{ serialNo }}', "<strong>$qt->sr_no</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ dated }}', "<strong>" . $this->en2mmNumber(date('d-m-Y')) . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ datedEng }}', "<strong>" . date('d-m-Y') . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ abaName }}', "<strong>" . $qt->student_info->father_name_mm . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ abaNameEng }}', "<strong>" . $qt->student_info->father_name_eng . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentName }}', "<strong>" . $qt->student_info->name_mm . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ studentNameEng }}', "<strong>" . $qt->student_info->name_eng . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ nrcNumber }}', "<strong>" . $qt->student_info->nrc_state_region . "/" . $qt->student_info->nrc_township ."(" . $qt->student_info->nrc_citizen . ")" . $qt->student_info->nrc_number . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ year }}', "<strong>" . $this->en2mmNumber($year) . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ yearEng }}', "<strong>" . $year . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ month }}', "<strong>" . $this->en2mmMonthNumber($month) . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ monthEng }}', "<strong>" . Carbon::parse($qt->exam_date)->format('M') . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ qtRollNo }}', "<strong>" . $qt->sr_no . "</strong>", $template->cert_data);
+        $template->cert_data = str_replace('{{ officerName }}', "<strong>" . "Thandar Lay" . "</strong>", $template->cert_data);
+
+        $className = 'border-style';
+
+        return view('certificate.complete_certificate', compact('template', 'className'));
+    }
+
+    private function en2mmMonthName($month)
     {
         $en = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+        $mm = ['ဇန်နဝါရီ', 'ဖေဖော်ဝါရီ', 'မတ်', 'ဧပရယ်', 'မေ', 'ဂျွန်', 'ဂျူလိုင်', 'သြဂတ်', 'စက်တင်ဘာ', 'အောက်တိုဘာ', 'နိုဝင်ဘာ', 'ဒီဇင်ဘာ'];
+
+        return str_replace($en, $mm, $month);
+    }
+
+    private function en2mmMonthNumber($month)
+    {
+        $en = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
 
         $mm = ['ဇန်နဝါရီ', 'ဖေဖော်ဝါရီ', 'မတ်', 'ဧပရယ်', 'မေ', 'ဂျွန်', 'ဂျူလိုင်', 'သြဂတ်', 'စက်တင်ဘာ', 'အောက်တိုဘာ', 'နိုဝင်ဘာ', 'ဒီဇင်ဘာ'];
 
