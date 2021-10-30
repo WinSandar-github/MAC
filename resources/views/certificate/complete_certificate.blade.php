@@ -24,7 +24,7 @@
         height: 29.7cm;
     }
 
-    page > .border-style {
+    .border-style {
         background-image: url(https://demo.aggademo.me/MAC/public/img/dacpa_certificate.png);
         background-size: 97%;
         background-repeat: no-repeat;
@@ -38,6 +38,14 @@
             margin: 0;
             box-shadow: 0;
         }
+    }
+
+    .table{
+        width: 100%;
+    }
+
+    table.table td{
+        border: 1px solid black;
     }
 
 </style>

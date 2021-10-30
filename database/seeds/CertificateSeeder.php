@@ -139,6 +139,638 @@ class CertificateSeeder extends Seeder
                     </tbody>
                 </table>')
             ],
+            [
+                'cert_code' => 'cpa_qt',
+                'cert_data' => htmlspecialchars('<img src="{{ userImage }}" alt="user-image" width="100px" height="100px"
+                style="float: right; position: relative; top: 185px;right: 60px;">
+    
+            <table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 100px; padding-bottom: 20px;"
+                            colspan="2">
+                            ပြည်ထောင်စုသမ္မတမြန်မာနိုင်ငံတော်<br>
+                            REPUBLIC OF THE UNION OF MYANMAR
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800;" colspan="2">
+                            မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
+                            MYANMAR ACCOUNTANCY COUNCIL
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; padding: 20px;" colspan="2">
+                            <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
+                                height="100px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-bottom: 2rem;"
+                            colspan="2">
+                            လက်မှတ်ရပြည့်သူ့စာရင်းကိုင်စာမေးပွဲအောင်လက်မှတ်<br>
+                            Certified Public Accountant Examination
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            အမှတ်စဥ်. <span class="input">{{ serialNo }}</span><br>
+                            Serial No. <span class="input">{{ serialNo }}</span><br>
+                        </td>
+                        <td style="float: right;">
+                            ရက်စွဲ၊ <span class="input">{{ dated }}</span><br>
+                            Dated. <span class="input">{{ datedEng }}</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle; text-align:justify; padding-top: 10px; padding-bottom: 10px;"
+                            colspan="2">
+                            <p style="line-height: 2rem;">
+                                {{ abaName }} ၏သား/သမီး {{ studentName }}
+                                (အမျိုးသားမှတ်ပုံတင်အမှတ်/နိုင်ငံသားစိစစ်ရေးကတ်ပြားအမှတ် {{ nrcNumber }})
+                                သည် {{ year }} ခုနှစ်၊ {{ month }} လအတွင်းကျင်းပခဲ့သောအဖြစ်မှတ်ပုံတင်ရန်
+                                အရည်အချင်းစစ်စာမေးပွဲကို ခုံအမှတ် {{ qtRollNo }} ဖြင့်အောင်မြင်သဖြင့် ဤအောင်လက်မှတ်ကို
+                                ချီးမြှင့်လိုက်သည်။
+                            </p>
+    
+                            <p style="line-height: 2rem;">
+                                {{ studentNameEng }} Son/Daughter of {{ abaNameEng }} having passed the Registration as Certified
+                                Public Accountant held in {{ monthEng }} {{ yearEng }} Roll No. {{ qtRollNo }} is awarded this
+                                Certificate.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 10%; vertical-align: middle;" colspan="2">
+                            {{ officerName }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;" colspan="2">
+                            မှတ်ပုံတင်အရာရှိ<br>
+                            Registrar
+                        </td>
+                    </tr>
+                </tbody>
+            </table>')
+            ],
+            [
+                'cert_code' => 'audit_card',
+                'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
+                            colspan="2">
+                            မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
+                            Myanmar Accountancy Council
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; padding: 20px;" colspan="2">
+                            <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
+                                height="100px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800;"
+                            colspan="2">
+                            ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းမှတ်ပုံတင်လက်မှတ်<br>
+                            Certificate Of Audit Firm Name Registration
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle; text-align:justify;"
+                            colspan="2">
+                            <p style="line-height: 2rem;">
+                                မြန်မာနိုင်ငံစာရင်းကောင်စီသည် အောက်ဖော်ပြပါလုပ်ငန်းအဖွဲ့အား မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၅၁ နှင့်အညီ စာရင်းစစ်လုပ်ငန်းအမည်မှတ်ပုံတင်လက်မှတ်ထုတ်ပေးလိုက်သည်။<br>
+                                Myanmar Accountancy Council hereby issues this Certificate of Audit Firm Name to the following firm in accordance with section 51 of its Law.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
+                                        Registration Number and Date of Issue
+                                    </td>
+                                    <td>{{ issueDate }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းအမည်<br>
+                                        Name of the Firm
+                                    </td>
+                                    <td>
+                                        {{ FrimName }}
+                                    </td>
+                                </tr>
+            
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းအမျိုးအစား<br>
+                                        Organization Structrue
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" {{ pcs }}>Sole Proprietorship
+                                        <input type="checkbox" {{ pcp }}>Partnership
+                                        <br>
+                                        <input type="checkbox" {{ pcc }}>Company Incorporated
+                                        <input type="checkbox" {{ p }}>Other                                   
+                                    </td>
+                                </tr>
+            
+                                <tr>
+                                    <td>
+                                        တာဝန်ခံPAPP အမည်<br>
+                                        Name of Responsible PAPP
+                                    </td>
+                                    <td>
+                                        {{ founder }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        တာဝန်ခံPAPP မှတ်ပုံတင်အမှတ်<br>
+                                        Responsible PAPP’s Reg. No.
+                                    </td>
+                                    <td>
+                                    {{ cscNo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းတည်နေရာ<br>
+                                        Address
+                                    </td>
+                                    <td>
+                                        {{ officeLocation }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        သက်တမ်းကုန်ဆုံးရက်<br>
+                                        Date of Expiry
+                                    </td>
+                                    <td>
+                                        {{ expDate }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <p>
+                                This certificate is issued to the Firm to facilitate engagement appointment and auditors report must be signed off by the engagement partner holding practicing certificate.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 5%; vertical-align: middle;" colspan="2">
+                            {{ officerName }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;" colspan="2">
+                            မှတ်ပုံတင်အရာရှိ<br>
+                            Registrar
+                        </td>
+                    </tr>
+                </tbody>
+            </table>')
+            ],
+            [
+                'cert_code' => 'non_audit_card',
+                'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
+                            colspan="2">
+                            မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
+                            Myanmar Accountancy Council
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; padding: 20px;" colspan="2">
+                            <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
+                                height="100px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800;"
+                            colspan="2">
+                            အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းမှအပဖြစ်သောစာရင်းလုပ်ငန်းမှတ်ပုံတင်လက်မှတ် (နိုင်ငံသား)<br>
+                            Certificate Of Non_Audit Firm Registration (Citizen)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle; text-align:justify;"
+                            colspan="2">
+                            <p style="line-height: 2rem;">
+                                မြန်မာနိုင်ငံစာရင်းကောင်စီသည် အောက်ဖော်ပြပါ လုပ်ငန်းအဖွဲ့/ပုဂ္ဂိုလ်အား မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၅၁ နှင့်အညီ အများပြည်သူ့သို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းမှအပဖြစ်သော စာရင်းစစ်လုပ်ငန်း (နိုင်ငံသား) မှတ်ပုံတင်လက်မှတ်ထုတ်ပေးလိုက်သည်။<br>
+                                Myanmar Accountancy Council hereby issues this Certificate of Non_Audit Firm (Citizen) to the following firm/person in accordance with section 51 of its Law.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
+                                        Registration Number and Date of Issue
+                                    </td>
+                                    <td>{{ issueDate }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းအမည်<br>
+                                        Name of the Firm
+                                    </td>
+                                    <td>
+                                        {{ FrimName }}
+                                    </td>
+                                </tr>
+            
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းအမျိုးအစား<br>
+                                        Organization Structrue
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" {{ pcs }}>Sole Proprietorship
+                                        <input type="checkbox" {{ pcp }}>Partnership
+                                        <br>
+                                        <input type="checkbox" {{ pcc }}>Company Incorporated
+                                        <input type="checkbox" {{ p }}>Other                                   
+                                    </td>
+                                </tr>
+            
+                                <tr>
+                                    <td>
+                                        တာဝန်ခံအမည်<br>
+                                        Name of Representative
+                                    </td>
+                                    <td>
+                                        {{ founder }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        တာဝန်ခံ၏မှတ်ပုံတင်အမှတ်<br>
+                                        Representatives Citizenship Scrutiny Card No
+                                    </td>
+                                    <td>
+                                    {{ cscNo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ဝန်ဆောင်မှုလုပ်ငန်းအမျိုးအစား<br>
+                                        Types of Services
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" {{ ac }}>Accounting
+                                        <input type="checkbox" {{ ad }}>Advisory
+                                        <br>
+                                        <input type="checkbox" {{ ta }}>Taxation
+                                        <input type="checkbox" {{ li }}>Liquidation
+                                        <br>
+                                        <input type="checkbox" {{ as }}>Acconting System
+                                        <input type="checkbox" {{ ot }}>Other                                
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းတည်နေရာ<br>
+                                        Address
+                                    </td>
+                                    <td>
+                                        {{ officeLocation }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        သက်တမ်းကုန်ဆုံးရက်<br>
+                                        Date of Expiry
+                                    </td>
+                                    <td>
+                                        {{ expDate }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 5%; vertical-align: middle;" colspan="2">
+                            {{ officerName }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;" colspan="2">
+                            မှတ်ပုံတင်အရာရှိ<br>
+                            Registrar
+                        </td>
+                    </tr>
+                </tbody>
+            </table>')
+            ],
+            [
+                'cert_code' => 'non_audit_foreign_card',
+                'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
+                            colspan="2">
+                            မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
+                            Myanmar Accountancy Council
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; padding: 20px;" colspan="2">
+                            <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
+                                height="100px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800;"
+                            colspan="2">
+                            အများပြည်သူသို့စာရင်းဝန်ဆောင်မှုပေးသည့်လုပ်ငန်းမှအပဖြစ်သောစာရင်းလုပ်ငန်းမှတ်ပုံတင်လက်မှတ် (နိုင်ငံခြားသား)<br>
+                            Certificate Of Non_Audit Firm Registration (Foreigner)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle; text-align:justify;"
+                            colspan="2">
+                            <p style="line-height: 2rem;">
+                                မြန်မာနိုင်ငံစာရင်းကောင်စီသည် အောက်ဖော်ပြပါ လုပ်ငန်းအဖွဲ့/ပုဂ္ဂိုလ်အား မြန်မာနိုင်ငံစာရင်းကောင်စီဥပဒေပုဒ်မ ၅၁ နှင့်အညီ အများပြည်သူ့သို့စာရင်းဝန်ဆောင်မှုပေးသည့် လုပ်ငန်းမှအပဖြစ်သော စာရင်းစစ်လုပ်ငန်း (နိုင်ငံခြားသား) မှတ်ပုံတင်လက်မှတ်ထုတ်ပေးလိုက်သည်။<br>
+                                Myanmar Accountancy Council hereby issues this Certificate of Non_Audit Firm (Foreigner) to the following firm/person in accordance with section 51 of its Law.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
+                                        Registration Number and Date of Issue
+                                    </td>
+                                    <td>{{ issueDate }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းအမည်<br>
+                                        Name of the Firm
+                                    </td>
+                                    <td>
+                                        {{ FrimName }}
+                                    </td>
+                                </tr>
+            
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းအမျိုးအစား<br>
+                                        Organization Structrue
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" {{ pcs }}>Sole Proprietorship
+                                        <input type="checkbox" {{ pcp }}>Partnership
+                                        <br>
+                                        <input type="checkbox" {{ pcc }}>Company Incorporated
+                                        <input type="checkbox" {{ p }}>Other                                   
+                                    </td>
+                                </tr>
+            
+                                <tr>
+                                    <td>
+                                        တာဝန်ခံအမည်<br>
+                                        Name of Representative
+                                    </td>
+                                    <td>
+                                        {{ founder }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        တာဝန်ခံ၏မှတ်ပုံတင်အမှတ်/နိုင်ငံကူးလက်မှတ်အမှတ်<br>
+                                        Representatives Citizenship Scrutiny Card/Passport No.
+                                    </td>
+                                    <td>
+                                    {{ cscNo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ဝန်ဆောင်မှုလုပ်ငန်းအမျိုးအစား<br>
+                                        Types of Services
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" {{ ac }}>Accounting
+                                        <input type="checkbox" {{ ad }}>Advisory
+                                        <br>
+                                        <input type="checkbox" {{ ta }}>Taxation
+                                        <input type="checkbox" {{ li }}>Liquidation
+                                        <br>
+                                        <input type="checkbox" {{ as }}>Acconting System
+                                        <input type="checkbox" {{ ot }}>Other                                
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းတည်နေရာ<br>
+                                        Address
+                                    </td>
+                                    <td>
+                                        {{ officeLocation }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        သက်တမ်းကုန်ဆုံးရက်<br>
+                                        Date of Expiry
+                                    </td>
+                                    <td>
+                                        {{ expDate }}
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 5%; vertical-align: middle;" colspan="2">
+                            {{ officerName }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;" colspan="2">
+                            မှတ်ပုံတင်အရာရှိ<br>
+                            Registrar
+                        </td>
+                    </tr>
+                </tbody>
+            </table>')
+            ],
+            [
+                'cert_code' => 'prv_school',
+                'cert_data' => htmlspecialchars('<table style="margin-right: 100px; margin-left: 100px;">
+                <tbody>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800; padding-top: 20px;"
+                            colspan="2">
+                            မြန်မာနိုင်ငံစာရင်းကောင်စီ<br>
+                            Myanmar Accountancy Council
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; padding: 20px;" colspan="2">
+                            <img src="https://demo.aggademo.me/MAC/public/img/logo/mac_logo.jpeg" alt="logo" width="100px"
+                                height="100px">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center; font-size: 16px; font-weight: 800;"
+                            colspan="2">
+                            ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းမှတ်ပုံတင်လက်မှတ်<br>
+                            Registration Certificate of Private Accounting School
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: middle; text-align:justify;"
+                            colspan="2">
+                            <p style="line-height: 2rem;">
+                                မြန်မာနိုင်ငံစာရင်းကောင်စီသည် အောက်ဖော်ပြပါ ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်းအား
+                                မြန်မာနိုင်ငံစာရင်းကောင်စီ ဥပဒေ ပုဒ်မ ၂၉ နှင့်အညီ ကိုယ်ပိုင်စာရင်းကိုင်သင်တန်းကျောင်း
+                                မှတ်ပုံတင် လက်မှတ် ထုတ်ပေးလိုက်သည်။<br>
+                                Myanmar Accountancy Council hereby issues this Registration Certificate of Private
+                                Accounting School to the following Private Accounting School in accordance with section 29
+                                of its Law.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <table class="table">
+                                <tr>
+                                    <td>
+                                        မှတ်ပုံတင်အမှတ်နှင့် ထုတ်ပေးသည့်ရက်စွဲ<br>                                    
+                                        Registration Number and Date of Issue
+                                    </td>
+                                    <td>{{ issueDate }}</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        သင်တန်းကျောင်းအမည်<br>
+                                        Name of School
+                                    </td>
+                                    <td>
+                                        {{ schoolName }}
+                                    </td>
+                                </tr>
+    
+                                <tr>
+                                    <td>
+                                        လုပ်ငန်းအမျိုးအစား<br>
+                                        Organization Structrue
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" {{ pcs }}>Sole Proprietorship
+                                        <input type="checkbox" {{ pcp }}>Partnership
+                                        <br>
+                                        <input type="checkbox" {{ pcc }}>Company Incorporated
+                                        <input type="checkbox" {{ p }}>Other                                   
+                                    </td>
+                                </tr>
+    
+                                <tr>
+                                    <td>
+                                        ကျောင်းတည်ထောင်သူ/တာဝန်ခံ၏အမည်<br>
+                                        Name of School Founder
+                                    </td>
+                                    <td>
+                                        {{ founder }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ကျောင်းတည်ထောင်သူ၏ မှတ်ပုံတင်အမှတ်<br>
+                                        School Founder\'s CSC No.
+                                    </td>
+                                    <td>
+                                    {{ cscNo }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        သင်တန်းအမျိုးအစား<br>
+                                        Types of Classes
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" {{ da_1 }}>DA I
+                                        <input type="checkbox" {{ da_2 }}>DA II
+                                        <br>
+                                        <input type="checkbox" {{ cpa_1 }}>CPA I
+                                        <input type="checkbox" {{ cpa_2 }}>CPA II
+                                        <br>
+                                        <input type="checkbox" {{ other }}>Other
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        ကျောင်းတည်နေရာ<br>
+                                        Location of School
+                                    </td>
+                                    <td>
+                                        {{ schoolLocation }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        သက်တမ်းကုန်ဆုံးရက်<br>
+                                        Date of Expiry
+                                    </td>
+                                    <td>
+                                        {{ expDate }}
+                                    </td>
+                                </tr>
+                            </table>
+                            <p>
+                                Location of Branch School is mentioned on the reverse.
+                            </p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right; padding-top: 5%; vertical-align: middle;" colspan="2">
+                            {{ officerName }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;" colspan="2">
+                            မှတ်ပုံတင်အရာရှိ<br>
+                            Registrar
+                        </td>
+                    </tr>
+                </tbody>
+            </table>')
+            ],
+            [
+                'cert_code' => 'branch_school',
+                'cert_data' => htmlspecialchars('
+                <page size="A4">
+                <div style="margin-left: 100px; margin-right: 100px;">
+                    <h4 style="text-align: center; padding-top: 20px;">Location of Branch School</h4>
+                    <table class="table">
+                        <tr>
+                            <td>
+                                Branch
+                            </td>
+                            <td>
+                                {{ branchName }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </page>
+                ')
+            ]
         ]);
     }
 }
