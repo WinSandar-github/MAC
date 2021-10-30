@@ -359,6 +359,63 @@ function loadDAExamData() {
                     document.getElementById("reject").style.display = 'none';
                 }
 
+                if(element.status == 1){
+                    $("#payment_info_card").show();
+                }else{
+                    $("#payment_info_card").hide();
+                }
+    
+                // console.log('student_course_regs',element.student_info.student_course_regs);
+                let course_code = element.course.code == "da_1"? 'da_1' : 
+                                    element.course.code == "da_2"? 'da_2' :
+                                    element.course.code == "cpa_1"? 'cpa_1' : 'cpa_2';
+    
+                // let reg_type    = element.type == 0? 'self_reg_' : 
+                //                     element.type == 1? 'prv_reg_' : 'mac_reg_';                               
+                // console.log('reg_type',reg_type);
+                console.log('course_code',course_code);
+                
+                $.ajax({
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code+"/"+ element.student_info_id ,
+                    type: 'get',
+                    success: function (result) {
+                        console.log("papp invoice",result.productDesc);
+                        if(result.status==0){
+                            $('#payment_status').append("Unpaid");
+                        }
+                        else if(result.status=='AP'){
+                            $('#payment_status').append("Paid");
+                        }
+                        else{
+                            $('#payment_status').append("-");
+                        }
+                        var productDesc = result.productDesc.split(",");
+                        var amount = result.amount.split(",");
+                        var total=0;
+                        for(var i in amount) { 
+                            total += parseInt(amount[i]);
+                        }
+                        console.log(total);
+                        for(let i=0 ; i<amount.length ; i++){
+                            $('.fee_list').append(`
+                                <li
+                                    class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <h6 class="my-0">${productDesc[i]}</h6>
+                                    <span class="text-muted">- ${amount[i]} MMK</span>
+                                </li>
+                            `);
+                        }
+                        $('.fee_list').append(`
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (MMK)</span>
+                                <span id="total">
+                                    - <strong>${total}</strong> MMK
+                                </span>
+                            </li>
+                        `);
+                    }
+                });
+
                 if(element.exam_department){
                     $("#exam_department").append(element.exam_department.name);
                 }else{
@@ -377,7 +434,7 @@ function loadDAExamData() {
                 let course_type_id = element.course.course_type_id;
 
                 element = element.student_info;
-                console.log('student_info', element);
+                // console.log('student_info', element);
 
                 var education_history = element.student_education_histroy;
                 var job = element.student_job;
@@ -479,6 +536,9 @@ function loadDAExamData() {
                         }
                     }
                 });
+
+
+                
 
             })
         }

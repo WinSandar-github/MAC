@@ -60,6 +60,55 @@ function loadEntryDetail(id) {
                 } else {
                     status = "REJECTED";
                 }
+
+                if(element.status == 1){
+                    $("#payment_info_card").show();
+                }else{
+                    $("#payment_info_card").hide();
+                }
+    
+               
+                $.ajax({
+                    url: BACKEND_URL + "/get_payment_info_by_student/" + "cpa_app" +"/"+ element.student_info_id ,
+                    type: 'get',
+                    success: function (result) {
+                        console.log("papp invoice",result.productDesc);
+                        if(result.status==0){
+                            $('#payment_status').append("Unpaid");
+                        }
+                        else if(result.status=='AP'){
+                            $('#payment_status').append("Paid");
+                        }
+                        else{
+                            $('#payment_status').append("-");
+                        }
+                        var productDesc = result.productDesc.split(",");
+                        var amount = result.amount.split(",");
+                        var total=0;
+                        for(var i in amount) { 
+                            total += parseInt(amount[i]);
+                        }
+                        console.log(total);
+                        for(let i=0 ; i<amount.length ; i++){
+                            $('.fee_list').append(`
+                                <li
+                                    class="list-group-item d-flex justify-content-between lh-condensed">
+                                    <h6 class="my-0">${productDesc[i]}</h6>
+                                    <span class="text-muted">- ${amount[i]} MMK</span>
+                                </li>
+                            `);
+                        }
+                        $('.fee_list').append(`
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Total (MMK)</span>
+                                <span id="total">
+                                    - <strong>${total}</strong> MMK
+                                </span>
+                            </li>
+                        `);
+                    }
+                });
+                
                 // if (element.grade == 0) {
                 //     grade = "-";
                 // } else if (element.grade == 1) {

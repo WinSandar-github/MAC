@@ -620,7 +620,7 @@ class DARegisterController extends Controller
                     if($request->module!=0){
                         $exam_register->grade           = 1;
                     }else{
-                        $exam_register->grade           = 0;
+                        $exam_register->grade           = 2;
                     }                    
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
@@ -668,7 +668,7 @@ class DARegisterController extends Controller
                 if($request->module!=0){
                     $exam_register->grade           = 1;
                 }else{
-                    $exam_register->grade           = 0;
+                    $exam_register->grade           = 2;
                 } 
                 // $exam_register->grade               = 1;
                 $exam_register->batch_id            = $request->pass_batch_id;
@@ -900,7 +900,7 @@ class DARegisterController extends Controller
                     if($request->module!=0){
                         $exam_register->grade           = 1;
                     }else{
-                        $exam_register->grade           = 0;
+                        $exam_register->grade           = 2;
                     }                    
                     $exam_register->batch_id            = $request->batch_id;
                     $exam_register->is_full_module      = $request->module;
@@ -946,7 +946,7 @@ class DARegisterController extends Controller
                 if($request->module!=0){
                     $exam_register->grade           = 1;
                 }else{
-                    $exam_register->grade           = 0;
+                    $exam_register->grade           = 2;
                 } 
                 $exam_register->batch_id            = $request->pass_batch_id;
                 $exam_register->is_full_module      = $request->module;
@@ -1013,7 +1013,8 @@ class DARegisterController extends Controller
                             //$q->where('offline_user', 1);
                             $q->where('course_type_id', $request->course_type_id);
                         })
-                        ->where('student_course_regs.approve_reject_status','=', $request->status)                        
+                        ->where('student_course_regs.approve_reject_status','=', $request->status)  
+                        ->where('qt_entry','=',0)                      
                         ->where('offline_user','=',1)
                         ->get();
 
