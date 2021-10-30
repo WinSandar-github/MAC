@@ -45,7 +45,7 @@ function loadEntryDetail(id) {
             var exam_data = data.data;
 
             exam_data.forEach(function (element) {
-                console.log('exam_data', element)
+                // console.log('exam_data', element)
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -72,7 +72,7 @@ function loadEntryDetail(id) {
                     url: BACKEND_URL + "/get_payment_info_by_student/" + "cpa_app" +"/"+ element.student_info_id ,
                     type: 'get',
                     success: function (result) {
-                        console.log("papp invoice",result.productDesc);
+                        // console.log("papp invoice",result.productDesc);
                         if(result.status==0){
                             $('#payment_status').append("Unpaid");
                         }
@@ -88,7 +88,7 @@ function loadEntryDetail(id) {
                         for(var i in amount) { 
                             total += parseInt(amount[i]);
                         }
-                        console.log(total);
+                        // console.log(total);
                         for(let i=0 ; i<amount.length ; i++){
                             $('.fee_list').append(`
                                 <li
@@ -123,7 +123,7 @@ function loadEntryDetail(id) {
                 // $("#student_grade").append(grade);
                 $("#student_status").append(status);
 
-                console.log($('#entry_result').val())
+                // console.log($('#entry_result').val())
                 if ($('#entry_result').val() == 1) {
 
                     if (element.status == 0) {
@@ -222,7 +222,7 @@ function loadEntryDetail(id) {
                     let exams = data.data;
 
                     var exam = exams.filter(exam => { if (exam.exam_type_id == 2 && exam.batch_id == element.batch.id) return true });
-                    console.log('exam', exam)
+                    // console.log('exam', exam)
 
                     if (exam.length != 0) {
                         $('#exam_date').text(exam[0].exam_start_date);
@@ -254,7 +254,7 @@ function approveEntryExam() {
         url: BACKEND_URL + "/approve_exam/" + id,
         type: 'PATCH',
         success: function (result) {
-            console.log(result)
+            // console.log(result)
             successMessage("You have approved that form!");
             location.href = FRONTEND_URL + "/entry_exam_list";
             getExam();
@@ -278,7 +278,7 @@ function rejectEntryExam() {
             contentType: false,
             processData: false,
             success: function (result) {
-            console.log('remark',result);
+            // console.log('remark',result);
                 successMessage("You have rejected that form!");
                 location.href = FRONTEND_URL + "/entry_exam_list";
                 getExam();
@@ -315,7 +315,7 @@ function passEntryExam() {
         url: BACKEND_URL + "/pass_entry_exam/" + id,
         type: 'PATCH',
         success: function (result) {
-            console.log(result)
+            // console.log(result)
             successMessage("You have approved that form!");
             location.href = FRONTEND_URL + "/entry_exam_result";
             getExam();

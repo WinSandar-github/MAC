@@ -178,7 +178,7 @@ function loadStudentSelfStudy() {
         success: function (data) {
             // console.log(data,"yy");
             var element = data.data;
-            console.log('element', element);
+            // console.log('element', element);
             let student_course_regs = element.student_info.student_course_regs.slice(-1);
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
@@ -296,7 +296,7 @@ function loadStudentSelfStudy() {
             $("#roll_number").append(education_history.roll_number);
 
             let certificate = JSON.parse(education_history.certificate);
-            console.log('certificate',certificate);
+            // console.log('certificate',certificate);
             $.each(certificate, function (fileCount, fileName) {
 
                 $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -380,14 +380,14 @@ function loadStudentSelfStudy() {
 
             let reg_type    = element.type == 0? 'self_reg_' : 
                                 element.type == 1? 'prv_reg_' : 'mac_reg_';                               
-            console.log('reg_type',reg_type);
-            console.log('course_code',course_code);
+            // console.log('reg_type',reg_type);
+            // console.log('course_code',course_code);
             
             $.ajax({
                 url: BACKEND_URL + "/get_payment_info_by_student/" + reg_type + course_code+"/"+ student_info_data.id ,
                 type: 'get',
                 success: function (result) {
-                    console.log("papp invoice",result.productDesc);
+                    // console.log("papp invoice",result.productDesc);
                     if(result.status==0){
                         $('#payment_status').append("Unpaid");
                     }
@@ -403,7 +403,7 @@ function loadStudentSelfStudy() {
                     for(var i in amount) { 
                         total += parseInt(amount[i]);
                     }
-                    console.log(total);
+                    // console.log(total);
                     for(let i=0 ; i<amount.length ; i++){
                         $('.fee_list').append(`
                             <li

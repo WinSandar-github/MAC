@@ -45,20 +45,20 @@ function loadOfflineDACPAData(){
             var student = data.data;
 
             student.forEach(function (student_course) {
-                console.log('student_course',student_course)
+                // console.log('student_course',student_course)
 
                 let current_course = student_course.batch.course;
                 // console.log('current_course',current_course)
 
                 let element = student_course.student_info;
-                console.log('student_info',element)
+                // console.log('student_info',element)
                 let student_register = student_course.student_info.student_register.slice(-1);                
                 // console.log('student_register',student_register[0]);
 
                 let exam_register = student_course.student_info.exam_registers;
                 let student_course_regs = student_course.student_info.student_course_regs;
-                console.log('exam_register',exam_register);
-                console.log('student_course_regs',student_course_regs);
+                // console.log('exam_register',exam_register);
+                // console.log('student_course_regs',student_course_regs);
 
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";

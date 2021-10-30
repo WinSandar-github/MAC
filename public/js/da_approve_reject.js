@@ -144,13 +144,13 @@ function loadData() {
             var student = data.data;
 
             student.forEach(function (student_course) {
-                console.log('student_course',student_course)
+                // console.log('student_course',student_course)
 
                 let current_course = student_course.batch.course;
-                console.log('current_course',current_course)
+                // console.log('current_course',current_course)
 
                 let element = student_course.student_info;
-                console.log('student_info',element)
+                // console.log('student_info',element)
 
                 if (student_course.approve_reject_status == 0) {
                     document.getElementById("approve_reject").style.display = "block";
@@ -245,7 +245,7 @@ function loadData() {
                 $("#roll_number").append(education_history.roll_number);
 
                 let certificate = JSON.parse(education_history.certificate);
-                console.log('certificate',certificate);
+                // console.log('certificate',certificate);
                 $.each(certificate, function (fileCount, fileName) {
 
                     $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -269,7 +269,7 @@ function loadData() {
                     type: 'get',
                     success: function (result) {
                         if (result.data.length != 0) {
-                            console.log(result.data,"aa");
+                            // console.log(result.data,"aa");
                             result.data.forEach(function (course) {
                                 var success_year = new Date(course.updated_at);
                                 var module_name;
@@ -312,12 +312,12 @@ function loadData() {
                     $("#payment_info_card").hide();
                 }
                 let invoice_no=current_course.code == "da_1" ? 'app_form' : 'cpa_app';
-                console.log('invoice_no',invoice_no)
+                // console.log('invoice_no',invoice_no)
                 $.ajax({
                     url: BACKEND_URL + "/get_payment_info_by_student/" + invoice_no+"/"+ element.id ,
                     type: 'get',
                     success: function (result) {
-                        console.log("papp invoice",result.productDesc);
+                        // console.log("papp invoice",result.productDesc);
                         if(result.status==0){
                             $('#payment_status').append("Unpaid");
                         }
@@ -333,7 +333,7 @@ function loadData() {
                         for(var i in amount) { 
                             total += parseInt(amount[i]);
                         }
-                        console.log(total);
+                        // console.log(total);
                         for(let i=0 ; i<amount.length ; i++){
                             $('.fee_list').append(`
                                 <li

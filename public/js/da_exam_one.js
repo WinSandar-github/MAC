@@ -306,7 +306,7 @@ function loadDAExamData() {
         success: function (data) {
             var exam_data = data.data;
             exam_data.forEach(function (element) {
-                console.log('element', element);
+                // console.log('element', element);
                 // if (element.exam_type_id == 0) {
                 //     exam_type_id = "SELF STUDY";
                 // } else if (element.exam_type_id == 1) {
@@ -373,13 +373,13 @@ function loadDAExamData() {
                 // let reg_type    = element.type == 0? 'self_reg_' : 
                 //                     element.type == 1? 'prv_reg_' : 'mac_reg_';                               
                 // console.log('reg_type',reg_type);
-                console.log('course_code',course_code);
+                // console.log('course_code',course_code);
                 
                 $.ajax({
                     url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code+"/"+ element.student_info_id ,
                     type: 'get',
                     success: function (result) {
-                        console.log("papp invoice",result.productDesc);
+                        // console.log("papp invoice",result.productDesc);
                         if(result.status==0){
                             $('#payment_status').append("Unpaid");
                         }
@@ -395,7 +395,7 @@ function loadDAExamData() {
                         for(var i in amount) { 
                             total += parseInt(amount[i]);
                         }
-                        console.log(total);
+                        // console.log(total);
                         for(let i=0 ; i<amount.length ; i++){
                             $('.fee_list').append(`
                                 <li
@@ -1100,7 +1100,7 @@ function getModuleStd() {
                 type: 'get',
                 data: "",
                 success: function (result) {
-                    console.log('result', result.data);
+                    // console.log('result', result.data);
                     if (result.data != null) {
                         var tr = "<tr id='row_total_mark' >";
                         tr += "<td colspan='2' style='text-align:center;font-weight:bold;'>Total Marks</td>";
@@ -1197,7 +1197,7 @@ function getModuleStd() {
 }
 
 function examResultSubmit() {
-    console.log(document.activeElement.value, "e");
+    // console.log(document.activeElement.value, "e");
     var pass_fail = document.activeElement.value;
     if (!confirm("Are you sure you want to " + pass_fail + " this student?")) {
         return;
@@ -1221,7 +1221,7 @@ function examResultSubmit() {
         }
         var total_mark = 0;
         for (var i = 1; i < totalRowCount; i++) {
-            console.log($('#mark' + i).val());
+            // console.log($('#mark' + i).val());
             var mark = parseInt($('#mark' + i).val());
             total_mark += mark;
         }

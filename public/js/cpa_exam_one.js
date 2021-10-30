@@ -194,7 +194,7 @@ function loadCPAStudentDataForExamCard() {
             var exam_datas = data.data;
             // console.log(exam_datas)
             exam_datas.forEach(function (exam_data) {
-                console.log('exam_datas',exam_data);
+                // console.log('exam_datas',exam_data);
                 document.getElementById('student_img').src = PDF_URL + exam_data.student_info.image;
                 var batch_no = mm2en(exam_data.batch.number.toString());
                 $("#batch_no").append(batch_no);
@@ -338,7 +338,7 @@ function loadCPAExamData() {
             var exam_data = data.data;
 
             exam_data.forEach(function (element) {
-                console.log('exam_data', element);
+                // console.log('exam_data', element);
                 if (element.status == 0) {
                     status = "PENDING";
                 } else if (element.status == 1) {
@@ -369,13 +369,13 @@ function loadCPAExamData() {
                 // let reg_type    = element.type == 0? 'self_reg_' : 
                 //                     element.type == 1? 'prv_reg_' : 'mac_reg_';                               
                 // console.log('reg_type',reg_type);
-                console.log('course_code',course_code);
+                // console.log('course_code',course_code);
                 
                 $.ajax({
                     url: BACKEND_URL + "/get_payment_info_by_student/" + "exm_" + course_code+"/"+ element.student_info_id ,
                     type: 'get',
                     success: function (result) {
-                        console.log("papp invoice",result.productDesc);
+                        // console.log("papp invoice",result.productDesc);
                         if(result.status==0){
                             $('#payment_status').append("Unpaid");
                         }
@@ -391,7 +391,7 @@ function loadCPAExamData() {
                         for(var i in amount) { 
                             total += parseInt(amount[i]);
                         }
-                        console.log(total);
+                        // console.log(total);
                         for(let i=0 ; i<amount.length ; i++){
                             $('.fee_list').append(`
                                 <li
