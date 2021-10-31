@@ -329,7 +329,7 @@ function loadArticle()
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data.mentor.name_eng);
+                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
                     $('#previous_papp_name_row').show();
                     $('#previous_papp_date_row').show();
                     $("#previous_papp_name").val(data.ex_papp);
@@ -349,7 +349,7 @@ function loadArticle()
                         $("#previous_lab").text('၁၅။');
                         $("#exam_pass_date_label").text('၁၆။');
                         $("#papp_name").val(data.request_papp);
-                        $("#mentor_name").val(data.mentor.name_eng);
+                        $("#mentor_name").val(data?.mentor?.name_eng);
                     
                 }
                 
@@ -378,7 +378,7 @@ function loadArticle()
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
-                    $("#c2_mentor_name").val(data.mentor.name_eng);
+                    $("#c2_mentor_name").val(data?.mentor?.name_eng);
                     $('#exp_row').hide();
                     $('#gov_lab').text('၈။');
                     $('#current_lab').text('၉။');
@@ -392,7 +392,7 @@ function loadArticle()
                     
                 }else{
                     $("#papp_name").val(data.request_papp);
-                    $("#mentor_name").val(data.mentor.name_eng);
+                    $("#mentor_name").val(data?.mentor?.name_eng);
                 }
                 
             }
