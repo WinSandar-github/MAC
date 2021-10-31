@@ -34,10 +34,12 @@ class CreateApprenticeAccountantsGovTable extends Migration
             $table->boolean('accept_policy')->nullable();
             $table->boolean('status')->default(0);
             $table->string('registration_fee')->nullable();
+            $table->string('mentor_attach_file')->nullable();
             $table->string('contract_start_date')->nullable();
             $table->string('contract_end_date')->nullable();
             $table->boolean('yes_done_attach')->default(0);
             $table->string('done_form_attach')->nullable();
+            $table->string('done_remark')->nullable();
             $table->string('remark')->nullable();
             $table->boolean('done_status')->default(0);
             $table->boolean('resign_status')->default(0);

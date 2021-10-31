@@ -408,14 +408,14 @@ class ArticleController extends Controller
             //$article=ApprenticeAccountant::where('done_status',$request->status)->get();
             //foreach($article as $article){
                 if($request->offline_user==1){
-                    $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
+                    $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->with('student_info')->get();
                 }else{
-                 $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->where('offline_user' ,'<>', '1')->with('student_info')->get();
+                 $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->where('offline_user' ,'<>', '1')->with('student_info')->get();
                 }
             //}
            
         }else{
-            $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
+            $article = ApprenticeAccountant::where('done_status',$request->status)->orwhere('done_status',2)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
         }
 
         $result_article = [];
@@ -846,9 +846,9 @@ class ArticleController extends Controller
             //     ->where('apprentice_accountants_gov.done_status','=', 1)
             //     ->get();
 
-            $article = ApprenticeAccountantGov::where('done_status',$request->status)->with('student_info')->get();
+            $article = ApprenticeAccountantGov::where('done_status',$request->status)->orwhere('done_status',2)->with('student_info')->get();
         }else{
-            $article = ApprenticeAccountantGov::where('done_status',$request->status)->where('status' , '=' , 1)->with('student_info')->get();
+            $article = ApprenticeAccountantGov::where('done_status',$request->status)->orwhere('done_status',2)->where('status' , '=' , 1)->with('student_info')->get();
         }
 
         $result_article = [];
@@ -1056,10 +1056,17 @@ class ArticleController extends Controller
         //   }
         //
         // }
-
-
+        $article_resign_result = [];
+        foreach($article as $article_resign){
+            foreach($article_resign->student_info->invoice as $article_invice){
+                if($article_invice->invoiceNo == 'resign'.$article_resign->id && $article_invice->status != '0'){
+                    array_push($article_resign_result , $article_resign);
+                }
+            }
+        }
+        
         $article_type = "resign";
-        $datatable = DataTables::of($article)
+        $datatable = DataTables::of($article_resign_result)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
                                 <button type='button' class='btn btn-primary btn-sm' onclick='showResignArticle($infos->id)'>
@@ -1302,6 +1309,29 @@ class ArticleController extends Controller
         ],200);
     }
 
+    public function saveGovAttachFile(Request $request)
+    {
+        $article = ApprenticeAccountantGov::find($request->id);
+
+        if($request->hasfile('gov_attach_file'))
+        {
+            foreach($request->file('gov_attach_file') as $file)
+            {
+                $name  = uniqid().'.'.$file->getClientOriginalExtension();
+                $file->move(public_path().'/storage/student_info/',$name);
+                $gov_attach_file[] = '/storage/student_info/'.$name;
+            }
+        }else{
+            $gov_attach_file = null;
+        }
+
+        $article->mentor_attach_file = $gov_attach_file;
+        $article->save();
+        return response()->json([
+            'message' => "You have successfully!"
+        ],200);
+    }
+
     public function saveRenewArticle(Request $request)
     {
         $acc_app = new ApprenticeAccountant();
@@ -1526,6 +1556,28 @@ class ArticleController extends Controller
         $article->save();
         return response()->json([
             'message' => "You have successfully!"
+        ],200);
+    }
+
+    public function rejectDoneAttach(Request $request)
+    {
+        $reject = ApprenticeAccountant::find($request->id);
+        $reject->done_remark = $request->reason;
+        $reject->done_status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that done attach!"
+        ],200);
+    }
+
+    public function rejectGovDoneAttach(Request $request)
+    {
+        $reject = ApprenticeAccountantGov::find($request->id);
+        $reject->done_remark = $request->reason;
+        $reject->done_status = 2;
+        $reject->save();
+        return response()->json([
+            'message' => "You have successfully rejected that done attach!"
         ],200);
     }
 
