@@ -912,9 +912,11 @@ function autoLoadAuditReconnect(){
 
         // Attach Files
         var audit_file=element.audit_firm_file;
+        console.log("audit_file >>>",audit_file);
         if(element.organization_structure_id == 1){
           audit_file.forEach(function(item){
             // for Sole Proprietorship
+
             // if(item.ppa_certificate!="null"){
             //   var ppa_certificate_file = removeBracketedAudit(item.ppa_certificate,"ppa_certis");
             //   console.log("ppa_certificate_file >>>",ppa_certificate_file);
@@ -938,7 +940,6 @@ function autoLoadAuditReconnect(){
               removeBracketedAudit(item.tax_clearance,"tax_clearances");
 
             }else $(".tax_clearances").append("<span class='text-primary'>no file</span>");
-
 
 
             if(item.certificate_incor!="null"){
