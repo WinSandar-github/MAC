@@ -168,7 +168,7 @@ class ArticleController extends Controller
             $acc_app->resign_status = 0;
             $acc_app->status = 0;
             $acc_app->done_status = 0;
-
+            $acc_app->save();
         if($degrees_certificates!=null){
             $degrees_certificates=implode(',', $degrees_certificates);
             $new_degrees_certificates= explode(',',$degrees_certificates);
@@ -181,6 +181,19 @@ class ArticleController extends Controller
                 $education_histroy->save();
             }
         }
+         //invoice
+         $invoice = new Invoice();
+         $invoice->student_info_id = $std_info->id;
+ 
+         $invoice->name_eng        = $request->name_eng;
+         $invoice->email           = $request->email;
+         $invoice->phone           = $request->phone;
+ 
+         $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
+         $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+         $invoice->amount          = '5000';
+         $invoice->status          = 0;
+         //$invoice->save();
         }else{
             $acc_app = new ApprenticeAccountant();
             $acc_app->student_info_id = $request->student_info_id;
@@ -189,7 +202,7 @@ class ArticleController extends Controller
 
 
 
-        $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
+            $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
             $acc_app->gov_staff = $request->gov_staff;
             $acc_app->gov_position = $request->gov_position;
             $acc_app->gov_joining_date = $request->gov_joining_date;
@@ -209,6 +222,7 @@ class ArticleController extends Controller
             $acc_app->recent_org = $request->recent_org ?? "N/A";
             $acc_app->resign_approve_file = $request->resign_approve_file ?? "N/A";
             $acc_app->know_policy = $request->know_policy;
+            $acc_app->save();
 
         //invoice
         $invoice = new Invoice();
@@ -225,14 +239,14 @@ class ArticleController extends Controller
         $invoice->email           = $std_info->email;
         $invoice->phone           = $std_info->phone;
 
-        $invoice->invoiceNo = $request->article_form_type;
+        $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
         $invoice->productDesc     = 'Registration Fee, Article Registration Form';
         $invoice->amount          = '5000';
         $invoice->status          = 0;
-        $invoice->save();
+        //$invoice->save();
         }
 
-        if($acc_app->save()){
+        if($invoice->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);
