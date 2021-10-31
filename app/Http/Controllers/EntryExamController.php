@@ -203,10 +203,11 @@ class EntryExamController extends Controller
             $invoice->name_eng            = $student_info->name_eng;
             $invoice->email           = $student_info->email;
             $invoice->phone           = $student_info->phone;
-            $invoice->productDesc     = 'Application Fee,Entry Exam Fee';
+            $invoice->invoiceNo       = "cpa_app";
+            $invoice->productDesc     = 'Application Fee,Entry Exam Fee,'. $std->batch->course->name;
             $invoice->amount          = $std->batch->course->form_fee.','.$std->batch->course->entry_exam_fee;
             $invoice->status          = 0;  
-            $invoice->invoiceNo       = "";
+            
             $invoice->save();
                
             return response()->json([
