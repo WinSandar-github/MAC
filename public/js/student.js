@@ -178,7 +178,7 @@ function loadStudentSelfStudy() {
         success: function (data) {
             // console.log(data,"yy");
             var element = data.data;
-            console.log('element', element);
+            // console.log('element', element);
             let student_course_regs = element.student_info.student_course_regs.slice(-1);
             // $("#student_name").append(element.student_info.name_eng + "/" + element.student_info.name_mm);
             // $("#student_nrc").append(element.student_info.nrc_state_region + "/" + element.student_info.nrc_township + "(" + element.student_info.nrc_citizen + ")" + element.student_info.nrc_number);
@@ -296,7 +296,7 @@ function loadStudentSelfStudy() {
             $("#roll_number").append(education_history.roll_number);
 
             let certificate = JSON.parse(education_history.certificate);
-            console.log('certificate',certificate);
+            // console.log('certificate',certificate);
             $.each(certificate, function (fileCount, fileName) {
 
                 $(".certificate").append(`<a href='${PDF_URL + fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View File</a>`);
@@ -364,6 +364,63 @@ function loadStudentSelfStudy() {
                             searching: false,
                         });
                     }
+                }
+            });
+
+            if(element.status == 1){
+                $("#payment_info_card").show();
+            }else{
+                $("#payment_info_card").hide();
+            }
+
+            // console.log('student_course_regs',element.student_info.student_course_regs);
+            let course_code = element.course.code == "da_1"? 'da_1' : 
+                                element.course.code == "da_2"? 'da_2' :
+                                element.course.code == "cpa_1"? 'cpa_1' : 'cpa_2';
+
+            let reg_type    = element.type == 0? 'self_reg_' : 
+                                element.type == 1? 'prv_reg_' : 'mac_reg_';                               
+            // console.log('reg_type',reg_type);
+            // console.log('course_code',course_code);
+            
+            $.ajax({
+                url: BACKEND_URL + "/get_payment_info_by_student/" + reg_type + course_code+"/"+ student_info_data.id ,
+                type: 'get',
+                success: function (result) {
+                    // console.log("papp invoice",result.productDesc);
+                    if(result.status==0){
+                        $('#payment_status').append("Unpaid");
+                    }
+                    else if(result.status=='AP'){
+                        $('#payment_status').append("Paid");
+                    }
+                    else{
+                        $('#payment_status').append("-");
+                    }
+                    var productDesc = result.productDesc.split(",");
+                    var amount = result.amount.split(",");
+                    var total=0;
+                    for(var i in amount) { 
+                        total += parseInt(amount[i]);
+                    }
+                    // console.log(total);
+                    for(let i=0 ; i<amount.length ; i++){
+                        $('.fee_list').append(`
+                            <li
+                                class="list-group-item d-flex justify-content-between lh-condensed">
+                                <h6 class="my-0">${productDesc[i]}</h6>
+                                <span class="text-muted">- ${amount[i]} MMK</span>
+                            </li>
+                        `);
+                    }
+                    $('.fee_list').append(`
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>Total (MMK)</span>
+                            <span id="total">
+                                - <strong>${total}</strong> MMK
+                            </span>
+                        </li>
+                    `);
                 }
             });
             // if (course_code == "da_1") {
