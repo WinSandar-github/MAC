@@ -12,6 +12,7 @@ use App\Http\Requests\AppAccRequest;
 use App\Invoice;
 use App\StudentInfo;
 use App\Membership;
+use App\Mentor;
 use App\EducationHistroy;
 
 use Illuminate\Support\Str;
@@ -301,9 +302,9 @@ class ArticleController extends Controller
             })
 
             ->addColumn('payment_status', function ($infos){
-              $invoice_status = Invoice::where('invoiceNo','c12'.$infos->id)->select('status')->get();
+              $invoice_status = Invoice::where('invoiceNo',$infos->article_form_type.$infos->id)->select('status')->get();
               foreach($invoice_status as $value){
-                if($value->status == 0 ){
+                if($value->status == '0' ){
                   return "<span class='pending'>Payment Incomplete</span>";
                 }
                 else{
@@ -442,6 +443,7 @@ class ArticleController extends Controller
             }
         }
 
+
         $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
@@ -453,8 +455,30 @@ class ArticleController extends Controller
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
             })
-            ->addColumn('m_email', function ($infos){
-                return $infos->student_info->m_email;
+            ->addColumn('email', function ($infos){
+                return $infos->student_info->email;
+            })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+            ->addColumn('leave_days', function ($infos){
+                $leave_req = leave_request::where('student_info_id',$infos->student_info_id)
+                                          ->where('form_type',$infos->article_form_type)
+                                          ->get();
+                $total_leave = 0;
+                foreach($leave_req as $val){
+                  $total_leave += $val->total_leave;
+                }
+                return $total_leave;
+            })
+            ->addColumn('mentor_name', function ($infos){
+              $mentor_name = Mentor::where('id',$infos->mentor_id)->select('name_eng')->get();
+              foreach($mentor_name as $val){
+                return $val->name_eng;
+              }
             })
             ->addColumn('phone_no', function ($infos){
                 return $infos->student_info->phone;
@@ -497,7 +521,7 @@ class ArticleController extends Controller
             //                     </button>
             //                 </div>";
             // });
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'email','contract_start_date','contract_end_date','leave_days', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
@@ -773,7 +797,7 @@ class ArticleController extends Controller
             ->addColumn('payment_status', function ($infos){
               $invoice_status = Invoice::where('invoiceNo','gov'.$infos->id)->select('status')->get();
               foreach($invoice_status as $value){
-                if($value->status == 0 ){
+                if($value->status == '0' ){
                   return "<span class='pending'>Payment Incomplete</span>";
                 }
                 else{
@@ -889,6 +913,9 @@ class ArticleController extends Controller
                 }
             }
         }
+
+
+
         $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
@@ -900,9 +927,26 @@ class ArticleController extends Controller
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
             })
-            ->addColumn('m_email', function ($infos){
-                return $infos->student_info->m_email;
+            ->addColumn('email', function ($infos){
+                return $infos->student_info->email;
             })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+            ->addColumn('leave_days', function ($infos){
+                $leave_req = leave_request::where('student_info_id',$infos->student_info_id)
+                                          ->where('form_type','gov')
+                                          ->get();
+                $total_leave = 0;
+                foreach($leave_req as $val){
+                  $total_leave += $val->total_leave;
+                }
+                return $total_leave;
+            })
+
             ->addColumn('phone_no', function ($infos){
                 return $infos->student_info->phone;
             })
@@ -932,7 +976,7 @@ class ArticleController extends Controller
         //                     </button>
         //                 </div>";
         // });
-        $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+        $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'email','contract_start_date','contract_end_date','leave_days', 'name_mm', 'action'])->make(true);
         return $datatable;
     }
 
@@ -1125,7 +1169,7 @@ class ArticleController extends Controller
             ->addColumn('payment_status', function ($infos){
               $invoice_status = Invoice::where('invoiceNo','resign'.$infos->id)->select('status')->get();
               foreach($invoice_status as $value){
-                if($value->status == 0 ){
+                if($value->status == '0' ){
                   return "<span class='pending'>Payment Incomplete</span>";
                 }
                 else{
@@ -1204,11 +1248,40 @@ class ArticleController extends Controller
             ->addColumn('name_mm', function ($infos){
                 return $infos->student_info->name_mm;
             })
-            ->addColumn('m_email', function ($infos){
-                return $infos->student_info->m_email;
+            ->addColumn('email', function ($infos){
+                return $infos->student_info->email;
+            })
+            ->addColumn('contract_start_date', function ($infos){
+                return $infos->contract_start_date;
+            })
+            ->addColumn('contract_end_date', function ($infos){
+                return $infos->contract_end_date;
+            })
+            ->addColumn('leave_days', function ($infos){
+                $leave_req = leave_request::where('student_info_id',$infos->student_info_id)
+                                          ->where('form_type','gov')
+                                          ->get();
+                $total_leave = 0;
+                foreach($leave_req as $val){
+                  $total_leave += $val->total_leave;
+                }
+                return $total_leave;
             })
             ->addColumn('phone_no', function ($infos){
                 return $infos->student_info->phone;
+            })
+            ->addColumn('mentor_name', function ($infos){
+              if($infos->article_form_type == 'gov' ){
+                return "-";
+              }
+              else{
+                $mentor_name = Mentor::where('id',$infos->mentor_id)
+                                     ->select('name_eng')
+                                     ->get();
+                foreach($mentor_name as $val){
+                  return $val->name_eng;
+                }
+              }
             })
             ->addColumn('nrc', function ($infos){
                 $nrc_result = $infos->student_info->nrc_state_region . "/" . $infos->student_info->nrc_township . "(" . $infos->student_info->nrc_citizen . ")" . $infos->student_info->nrc_number;
@@ -1245,7 +1318,7 @@ class ArticleController extends Controller
             // ->setRowClass(function ($infos) {
             //     return $infos->done_form_attach != null ? 'bg-success' : 'bg-warning';
             // });
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'email','contract_start_date','contract_end_date','leave_days', 'name_mm', 'action'])->make(true);
             return $datatable;
     }
 
