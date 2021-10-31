@@ -1401,6 +1401,7 @@ class ArticleController extends Controller
         $acc_app->exp_start_date = $request->exp_start_date;
         $acc_app->exp_end_date = $request->exp_end_date;
         $acc_app->accept_policy = $request->accept_policy;
+        $acc_app->save();
 
         //invoice
         $invoice = new Invoice();
@@ -1417,13 +1418,13 @@ class ArticleController extends Controller
         $invoice->email           = $std_info->email;
         $invoice->phone           = $std_info->phone;
 
-        $invoice->invoiceNo = $request->article_form_type;
+        $invoice->invoiceNo = $request->article_form_type.$acc_app->id;
         $invoice->productDesc     = 'Registration Fee, Article Renew Form';
         $invoice->amount          = '5000';
         $invoice->status          = 0;
-        $invoice->save();
+        //$invoice->save();
 
-        if($acc_app->save()){
+        if($invoice->save()){
             return response()->json(['message' => 'Create Artile Success!'], 200, $this->header, $this->options);
         }
         return response()->json(['message' => 'Error While Data Save!'], 500, $this->header, $this->options);

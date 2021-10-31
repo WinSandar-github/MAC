@@ -460,7 +460,7 @@ function loadArticle()
                 var today_time = today.getTime();
 
                 if (end_time <= today_time) {
-                
+                    console.log(data.yes_done_attach);
                     if(data.yes_done_attach == 0){
                         document.getElementById("check_end_date").style.display = "block";
                     }
