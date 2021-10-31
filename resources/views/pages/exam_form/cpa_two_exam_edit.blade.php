@@ -134,17 +134,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
+                            <div class="card" id="payment_info_card" style="display: none">
                                 <div class="card-header">
                                     <h5 class="border-bottom pb-2"  style="font-weight:bold">Payment Information</h5>
                                 </div>
                                 <div class="card-body pt-0">
                                     <div class="row m-2 mt-3 border-bottom">
                                         <div class="col-md-6 text-left">
-                                            <p class="ml-2" style="font-weight:bold">Payment Method</p>
+                                            <p class="ml-2" style="font-weight:bold">Fees</p>
                                         </div>
                                         <div class="col-md-6 text-left">
-                                            <span id="payment_method">Cash</span>
+                                            <button type="button" class="btn btn-info mt-0" data-toggle="modal" data-target="#payment_detail_modal">View Detail</button>
                                         </div>
                                     </div>
                                     <div class="row m-2 mt-3 border-bottom">
@@ -152,7 +152,7 @@
                                             <p class="ml-2" style="font-weight:bold">Status</p>
                                         </div>
                                         <div class="col-md-6 text-left">
-                                            <span id="payment_status">Paid</span>
+                                            <span id="payment_status"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -387,6 +387,28 @@
             </div>
         </div>
     </div>
+    {{-- Payment detail Modal --}}
+    <div class="modal fade" id="payment_detail_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Exam Registration Fees</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group mb-3 sticky-top fee_list">
+                    
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- Payment detail Modal End --}}
 @endsection
 @push('scripts')
 <script>
