@@ -43,7 +43,7 @@ class CertificateController extends Controller
         list($curYear, $curMth, $curDay) = explode('-', date('Y-M-d'));
 
         $template = DB::table('certificates')->where('cert_code', '=', 'da_cpa_finish')->first();
-        dd($template);        
+
         $template->cert_data = str_replace('{{ studentName }}', "<strong>$student->name_mm</strong>", $template->cert_data);
 
         $template->cert_data = str_replace('{{ abaName }}', "<strong>$student->father_name_mm</strong>", $template->cert_data);
