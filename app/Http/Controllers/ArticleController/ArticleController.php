@@ -181,6 +181,19 @@ class ArticleController extends Controller
                 $education_histroy->save();
             }
         }
+         //invoice
+         $invoice = new Invoice();
+         $invoice->student_info_id = $std_info->id;
+ 
+         $invoice->name_eng        = $request->name_eng;
+         $invoice->email           = $request->email;
+         $invoice->phone           = $request->phone;
+ 
+         $invoice->invoiceNo = $request->article_form_type;
+         $invoice->productDesc     = 'Registration Fee, Article Registration Form';
+         $invoice->amount          = '5000';
+         $invoice->status          = 0;
+         $invoice->save();
         }else{
             $acc_app = new ApprenticeAccountant();
             $acc_app->student_info_id = $request->student_info_id;
@@ -189,7 +202,7 @@ class ArticleController extends Controller
 
 
 
-        $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
+            $acc_app->apprentice_exp_file = json_encode($apprentice_exp_file) ;
             $acc_app->gov_staff = $request->gov_staff;
             $acc_app->gov_position = $request->gov_position;
             $acc_app->gov_joining_date = $request->gov_joining_date;
