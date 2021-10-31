@@ -518,12 +518,20 @@
                                         <span id="registration_no"></span>
                                     </div>
                                 </div>
-                                <div class="row m-2 mt-3 border-bottom" id="direct_entry_row">
+                                <div class="row m-2 mt-3 border-bottom" id="direct_access_no_row">
                                     <div class="col-md-6 text-left">
-                                        <p class="ml-2" style="font-weight:bold">တိုက်ရိုက်တက်ရောက်ခွင့်ရသည့်(သို့)ဝင်ခွင့်စာမေးပွဲအောင်မြင်သည့် အမှတ်စဥ်</p>
+                                        <p class="ml-2" style="font-weight:bold">တိုက်ရိုက်တက်ရောက်ခွင့်ရသည့်အမှတ်စဥ်</p>
                                     </div>
                                     <div class="col-md-6 text-left">
-                                        <span id="sr_no"></span>
+                                        <span id="direct_access_no"></span>
+                                    </div>
+                                </div>
+                                <div class="row m-2 mt-3 border-bottom" id="entry_success_no_row">
+                                    <div class="col-md-6 text-left">
+                                        <p class="ml-2" style="font-weight:bold">ဝင်ခွင့်စာမေးပွဲအောင်မြင်သည့်အမှတ်စဥ်</p>
+                                    </div>
+                                    <div class="col-md-6 text-left">
+                                        <span id="entry_success_no"></span>
                                     </div>
                                 </div>
                                 <div class="row m-2 mt-3 border-bottom">

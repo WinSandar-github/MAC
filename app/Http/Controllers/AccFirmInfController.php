@@ -280,7 +280,7 @@ class AccFirmInfController extends Controller
         // if($request->t_s_p_id!=null){
         //     foreach($request->t_s_p_id as $t){
         //         $t_s_p_id = $t_s_p_id . $t . ',';
-        
+
         //     }
         // }
 
@@ -970,6 +970,7 @@ class AccFirmInfController extends Controller
            $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
            $audit_file->ppa_certificate    = json_encode($ppa_certi);
            $audit_file->letterhead         = json_encode($letterhead);
+           $audit_file->tax_clearance         = json_encode($tax_clearance);
            //$audit_file->representative     = json_encode($representative);
            $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
            $audit_file->deeds_memo        = json_encode($deeds_memo);
@@ -1483,6 +1484,7 @@ class AccFirmInfController extends Controller
            $audit_file->accountancy_firm_info_id = $acc_firm_info->id;
            $audit_file->ppa_certificate    = json_encode($ppa_certi);
            $audit_file->letterhead         = json_encode($letterhead);
+           $audit_file->tax_clearance         = json_encode($tax_clearance);
            //$audit_file->representative     = json_encode($representative);
            $audit_file->tax_reg_certificate= json_encode($tax_reg_certificate);
            $audit_file->deeds_memo        = json_encode($deeds_memo);
@@ -4008,7 +4010,7 @@ class AccFirmInfController extends Controller
     public function checkVerify($id,$firm_id)
     {
         $data = array();
-        $acc_firm = AccountancyFirmInformation::where('student_info_id',$id)->latest()->get();
+        $acc_firm = AccountancyFirmInformation::where('student_info_id',$id)->latest()->first();
         $audit_invoice_status = Invoice::where('invoiceNo','audit_initial'.$firm_id)->select('status')->get();
         $nonaudit_invoice_status = Invoice::where('invoiceNo','non_audit_initial'.$firm_id)->select('status')->get();
 
@@ -4077,7 +4079,7 @@ class AccFirmInfController extends Controller
                   <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
                       <li class='fa fa-eye fa-sm'></li>
                   </button>
-                  
+
                   <a href='" . route('get_audit_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
                       <li class='fa fa-id-card-o fa-sm'></li>
                   </a>
@@ -4098,7 +4100,7 @@ class AccFirmInfController extends Controller
 
               </div>";
               }
-              
+
           })
 
           ->addColumn('accountancy_firm_reg_no', function ($infos){
@@ -4222,9 +4224,9 @@ class AccFirmInfController extends Controller
                                   <li class='fa fa-eye fa-sm'></li>
                                   </a>
 
-                            </div>"; 
+                            </div>";
                         }
-                
+
               }  else{
                 return "<div class='btn-group'>
                               <a type='button' class='btn btn-primary btn-sm mr-3' href='show_non_audit_firm_info/$infos->id'>
@@ -4233,7 +4235,7 @@ class AccFirmInfController extends Controller
 
                         </div>";
               }
-              
+
           })
 
           ->addColumn('local_foreign_type', function ($infos){
@@ -4328,13 +4330,13 @@ class AccFirmInfController extends Controller
 
           ->addColumn('status', function ($infos){
               if($infos->status == 0){
-                return "PENDING";
+                return "<span class='pending'>PENDING</span>";
               }
               else if($infos->status == 1){
-                return "APPROVED";
+                return "<span class='approve'>APPROVED</span>";
               }
               else{
-                return "REJECTED";
+                return "<span class='reject'>REJECTED</span>";
               }
           })
 
@@ -4474,13 +4476,13 @@ class AccFirmInfController extends Controller
 
           ->addColumn('status', function ($infos){
               if($infos->status == 0){
-                return "PENDING";
+                return "<span class='pending'>PENDING</span>";
               }
               else if($infos->status == 1){
-                return "APPROVED";
+                return "<span class='approve'>APPROVED</span>";
               }
               else{
-                return "REJECTED";
+                return "<span class='reject'>REJECTED</span>";
               }
           })
 
