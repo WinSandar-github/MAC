@@ -300,6 +300,19 @@ class ArticleController extends Controller
                 return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfoFirm($infos)'>View Payment</button>";
             })
 
+            ->addColumn('payment_status', function ($infos){
+              $invoice_status = Invoice::where('invoiceNo','c12'.$infos->id)->select('status')->get();
+              foreach($invoice_status as $value){
+                if($value->status == 0 ){
+                  return "<span class='pending'>Payment Incomplete</span>";
+                }
+                else{
+                  return "<span class='approve'>Payment Success</span>";
+                }
+              }
+
+            })
+
             ->addColumn('form_type', function ($infos){
                 if($infos->article_form_type == 'c12'){
                     return "CPA I,II";
@@ -370,7 +383,7 @@ class ArticleController extends Controller
                     </div>";
                 }
             });
-            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee'])->make(true);
+            $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status'])->make(true);
             return $datatable;
     }
 
@@ -413,7 +426,7 @@ class ArticleController extends Controller
                  $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('article_form_type' ,'<>', 'c2_pass_3yr')->where('article_form_type' ,'<>', 'c2_pass_1yr')->where('offline_user' ,'<>', '1')->with('student_info')->get();
                 }
             //}
-           
+
         }else{
             $article = ApprenticeAccountant::where('done_status',$request->status)->where('article_form_type' ,'<>', 'resign')->where('status' , '=' , 1)->with('student_info')->get();
         }
@@ -428,7 +441,7 @@ class ArticleController extends Controller
                 }
             }
         }
-        
+
         $datatable = DataTables::of($result_article)
             ->addColumn('action', function ($infos) {
                 return "<div class='btn-group'>
@@ -525,7 +538,7 @@ class ArticleController extends Controller
         $end_article = Carbon::parse($firm[count($firm) - 1]->contract_end_date);
 
         $diff_days = $end_article->diffInDays($start_article);
-        
+
 
         if($diff_days > 1095){  // 1095 = 3yrs
             if(count($gov) != 0){
@@ -706,6 +719,7 @@ class ArticleController extends Controller
     public function FilterGovArticle(Request $request)
     {
         $article = ApprenticeAccountantGov::where('status',$request->status)->with('student_info')->get();
+
         $result_article = [];
         $article_type = "gov";
         for($i=0;$i<count($article);$i++){
@@ -755,6 +769,20 @@ class ArticleController extends Controller
                 return "<button type='button' class='btn btn-info mt-0' onclick='showPaymentInfo($infos)'>View Payment</button>";
             })
 
+
+            ->addColumn('payment_status', function ($infos){
+              $invoice_status = Invoice::where('invoiceNo','gov'.$infos->id)->select('status')->get();
+              foreach($invoice_status as $value){
+                if($value->status == 0 ){
+                  return "<span class='pending'>Payment Incomplete</span>";
+                }
+                else{
+                  return "<span class='approve'>Payment Success</span>";
+                }
+              }
+
+            })
+
             ->addColumn('form_type', function ($infos){
                 return "Gov Form";
             });
@@ -802,7 +830,7 @@ class ArticleController extends Controller
                 </div>";
             }
         });
-        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee'])->make(true);
+        $datatable = $datatable->rawColumns(['contract_start_date', 'status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','registration_fee','payment_status'])->make(true);
         return $datatable;
     }
 
@@ -1094,6 +1122,19 @@ class ArticleController extends Controller
                 }
             })
 
+            ->addColumn('payment_status', function ($infos){
+              $invoice_status = Invoice::where('invoiceNo','resign'.$infos->id)->select('status')->get();
+              foreach($invoice_status as $value){
+                if($value->status == 0 ){
+                  return "<span class='pending'>Payment Incomplete</span>";
+                }
+                else{
+                  return "<span class='approve'>Payment Success</span>";
+                }
+              }
+
+            })
+
             ->addColumn('status', function ($infos){
                 if($infos->resign_status == 0){
                     return "PENDING";
@@ -1112,7 +1153,7 @@ class ArticleController extends Controller
                 return $infos->resign_date;
             });
 
-            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience'])->make(true);
+            $datatable = $datatable->rawColumns(['status', 'nrc', 'phone_no', 'm_email', 'name_mm', 'action','resign_fee','resign_date','net_experience','payment_status'])->make(true);
             return $datatable;
     }
 
