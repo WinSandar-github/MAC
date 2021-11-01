@@ -103,7 +103,7 @@
                             </div>
                         </div>
 
-                        <div id="firm_education">
+                        <div id="firm_education" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
                                 <div class="col-md-9">
@@ -121,7 +121,7 @@
                             </div>
                         </div>
 
-                        <div id="certificate_row">
+                        <div id="certificate_row" style="display:none;">
                             <div class="row mb-3">
                                 <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('') }}</span></label>
                                 <div class="col-md-9">
@@ -136,7 +136,24 @@
                                 </div>
                             </div>
                         </div>
-
+                        <div class="offline_user" style="display:none;">
+                            <div class="row mb-3">
+                                <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၄။') }}</span>ပညာအရည်အချင်း</label>
+                                <div class="col-md-9">
+                                    <table id="tbl_degree" class="table table-bordered text-center">
+                                                <thead class="text-nowrap table-success">
+                                                    <tr>
+                                                        <th class="bold-font-weight">စဉ်</th>
+                                                        <th class="bold-font-weight">တက္ကသိုလ်/ဘွဲ့/ဒီပလိုမာ</th>
+                                                        <th class="bold-font-weight">Attached Certificate</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tbl_degree_body">
+                                                </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <div class="row mb-3">
                             <label class="col-md-3 col-form-label label"><span class="pull-left">{{ __('၅။') }}</span>လူမျိုး/ကိုးကွယ်သည့်ဘာသာ</label>
                             <div class="col-md-9">
