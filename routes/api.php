@@ -446,6 +446,9 @@ Route::post('/filter_done_3yrs_article','ArticleController\ArticleController@fil
 Route::post('/save_registration_fee', 'ArticleController\ArticleController@saveRegistrationFee');
 Route::post('/save_gov_registration_fee', 'ArticleController\ArticleController@saveGovRegistrationFee');
 Route::post('/save_attach_file', 'ArticleController\ArticleController@saveAttachFile');
+Route::post('/save_gov_attach_file', 'ArticleController\ArticleController@saveGovAttachFile');
+Route::post('/reject_article_done_attach', 'ArticleController\ArticleController@rejectDoneAttach');
+Route::post('/reject_gov_article_done_attach', 'ArticleController\ArticleController@rejectGovDoneAttach');
 Route::post('/filter_done_resign_article','ArticleController\ArticleController@filterDoneResignArticle');
 Route::post('/save_contract_end_date', 'ArticleController\ArticleController@saveContractEndDate');
 Route::post('/save_gov_contract_end_date', 'ArticleController\ArticleController@saveGovContractEndDate');

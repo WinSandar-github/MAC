@@ -414,6 +414,14 @@
                             </div>
                         </div>
 
+                        <div id="reject_done_attach" style="display:none;">
+                            <div class="row">
+                                <div class="col-md-12" align="right">
+                                    <button type='button' class='btn btn-danger' onclick='rejectDoneAttach()'>Reject Done Attachmen</button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="check_end_date" style="display:none;">
                             <div class="row">
                                 <div class="col-md-12" align="right">
@@ -522,6 +530,36 @@
 					</div>
 				</div>
 				{{-- Remark Modal --}}
+
+    <!-- modal -->
+    <form method="post" action="javascript:rejectArticleDoneAttach();" enctype="multipart/form-data">
+        <div class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false"  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" id="reject_done_attach_modal">
+            <div class="modal-dialog modal-dialog-scrollable modal-md">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header pt-2 pb-2">
+                        <h5 class="modal-title">Reject Reason</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <input type="hidden" id="article_id">
+                        <textarea class="form-control " id="reason" rows="100" cols='100' required></textarea>
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger">Confirm</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
 
     <script>
          var mmnrc_regions = {!! json_encode($nrc_regions) !!};
