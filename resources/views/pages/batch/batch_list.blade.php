@@ -48,7 +48,7 @@
                                         <th class="bold-font-weight">Private Registration Start Date</th>
                                         <th class="bold-font-weight">Private Registration Endt Date</th>
                                         <th class="bold-font-weight">Exam Registration Start Date</th>
-                                        <th class="bold-font-weight">Exam Registration Endt Date</th>
+                                        <th class="bold-font-weight">Exam Registration End Date</th>
                                         <th class="bold-font-weight">Entrance Exam Form Start Date</th>
                                         <th class="bold-font-weight">Entrance Exam Form End Date</th>
 
