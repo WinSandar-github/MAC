@@ -760,14 +760,7 @@ class CertificateSeeder extends Seeder
                 <div style="margin-left: 100px; margin-right: 100px;">
                     <h4 style="text-align: center; padding-top: 20px;">Location of Branch School</h4>
                     <table class="table">
-                        <tr>
-                            <td>
-                                Branch
-                            </td>
-                            <td>
-                                {{ branchName }}
-                            </td>
-                        </tr>
+                        {{ branchRow }}
                     </table>
                 </div>
             </page>
