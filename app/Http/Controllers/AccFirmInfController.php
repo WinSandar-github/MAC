@@ -4050,19 +4050,13 @@ class AccFirmInfController extends Controller
     }
 
     public function FilterAuditRegistration($status,$firm_type){
-      // $acc_firm_info = AccountancyFirmInformation::with('service_provided','organization_structure','branch_offices','firm_owner_audits','director_officer_audits','audit_staffs','audit_total_staffs',
-      //                                                   'firm_owner_non_audits','director_officer_non_audits','non_audit_total_staffs','my_cpa_foreigns','audit_firm_file','non_audit_firm_file')
-      //                                             ->where('status','=',$status)
-      //                                             ->where('is_renew','=',0)
-      //                                             ->where('audit_firm_type_id','=',$firm_type)
-      //                                             ->get();
 
       $acc_firm_info = AccountancyFirmInformation::with('accountancy_firm_invoices')
                                                   ->where('status','=',$status)
                                                   ->where('is_renew','=',0)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
-
+                                                  //dd($acc_firm_info);
       if($firm_type == 1){
         return DataTables::of($acc_firm_info)
           ->addColumn('action', function ($infos) {
@@ -4072,33 +4066,38 @@ class AccFirmInfController extends Controller
               //             </button>
 
               //         </div>";
-              $invoice = Invoice::where('student_info_id',$infos->student_info_id)->first('status');
-              // return $invoice->status;
-              if($infos->status == 1 && $invoice->status == 'AP'){
-                return "<div class='btn-group'>
-                  <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
-                      <li class='fa fa-eye fa-sm'></li>
-                  </button>
+              //dd($infos->id);
+              $invoice = Invoice::where('student_info_id',$infos->student_info_id)
+                                ->where('invoiceNo','audit_initial'.$infos->id)
+                                ->first('status');
+              //dd($invoice);
+              if($invoice){
+                if($infos->status == 1 && $invoice->status == 'AP'){
+                  return "<div class='btn-group'>
+                    <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
+                        <li class='fa fa-eye fa-sm'></li>
+                    </button>
 
-                  <a href='" . route('get_audit_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
-                      <li class='fa fa-id-card-o fa-sm'></li>
-                  </a>
+                    <a href='" . route('get_audit_card', ['id' => $infos->id]) . "' class='btn btn-primary btn-xs'>
+                        <li class='fa fa-id-card-o fa-sm'></li>
+                    </a>
 
-              </div>";
-              }else if($infos->status == 1 && $invoice->status != 'AP'){
+                </div>";
+                }else if($infos->status == 1 && $invoice->status != 'AP'){
+                    return "<div class='btn-group'>
+                      <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
+                          <li class='fa fa-eye fa-sm'></li>
+                      </button>
+
+                  </div>";
+                }else{
                   return "<div class='btn-group'>
                     <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
                         <li class='fa fa-eye fa-sm'></li>
                     </button>
 
                 </div>";
-              }else{
-                return "<div class='btn-group'>
-                  <button type='button' class='btn btn-primary btn-sm mr-3' onclick='showAuditInfo($infos->id)'>
-                      <li class='fa fa-eye fa-sm'></li>
-                  </button>
-
-              </div>";
+                }
               }
 
           })
@@ -4121,6 +4120,26 @@ class AccFirmInfController extends Controller
 
           ->addColumn('accountancy_firm_name', function ($infos){
               return $infos->accountancy_firm_name;
+          })
+
+          ->addColumn('payment_status', function ($infos){
+            // if($infos->offline_user == 1){
+            //   $invoice_status = Invoice::where('invoiceNo','off_audit_renew'.$infos->id)->select('status')->get();
+            // }
+            // else{
+            //   $invoice_status = Invoice::where('invoiceNo','audit_initial'.$infos->id)->select('status')->get();
+            // }
+
+            $invoice_status = Invoice::where('invoiceNo','audit_initial'.$infos->id)->select('status')->get();
+
+            foreach($invoice_status as $value){
+              if($value->status == '0' ){
+                return "<span class='pending'>Incomplete</span>";
+              }
+              else{
+                return "<span class='approve'>Complete</span>";
+              }
+            }
           })
 
           ->addColumn('township', function ($infos){
@@ -4158,7 +4177,7 @@ class AccFirmInfController extends Controller
           //     return $infos->website;
           // })
 
-          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','payment_status','city','state_region','telephones','h_email','website'])
           ->make(true);
       }
       else{
@@ -4174,6 +4193,7 @@ class AccFirmInfController extends Controller
 
           ->addColumn('action', function ($infos) {
             $invoice = Invoice::where('student_info_id',$infos->student_info_id)->first('status');
+            if($invoice){
               if($infos->local_foreign_type == 1 && $infos->status == 1){
                     if($infos->status == 1 && $invoice->status == 'AP') {
                         return "<div class='btn-group'>
@@ -4235,6 +4255,7 @@ class AccFirmInfController extends Controller
 
                         </div>";
               }
+            }
 
           })
 
@@ -4266,6 +4287,25 @@ class AccFirmInfController extends Controller
               return $infos->accountancy_firm_name;
           })
 
+          ->addColumn('payment_status', function ($infos){
+            // if($infos->offline_user == 1){
+            //   $invoice_status = Invoice::where('invoiceNo','off_non_audit_renew'.$infos->id)->select('status')->get();
+            // }
+            // else{
+            //   $invoice_status = Invoice::where('invoiceNo','non_audit_initial'.$infos->id)->select('status')->get();
+            // }
+
+            $invoice_status = Invoice::where('invoiceNo','non_audit_initial'.$infos->id)->select('status')->get();
+            foreach($invoice_status as $value){
+              if($value->status == '0' ){
+                return "<span class='pending'>Incomplete</span>";
+              }
+              else{
+                return "<span class='approve'>Complete</span>";
+              }
+            }
+          })
+
           ->addColumn('township', function ($infos){
               return $infos->township;
           })
@@ -4294,14 +4334,7 @@ class AccFirmInfController extends Controller
               return $infos->website;
           })
 
-          // ->addColumn('payment_status', function ($infos){
-          //     return $infos->website;
-          // })
-          // ->addColumn('payment_date', function ($infos){
-          //     return $infos->website;
-          // })
-
-          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','payment_status','telephones','h_email','website'])
           ->make(true);
       }
     }
@@ -4311,7 +4344,6 @@ class AccFirmInfController extends Controller
                                                   ->where('is_renew','=',1)
                                                   ->where('audit_firm_type_id','=',$firm_type)
                                                   ->get();
-
 
       if($firm_type == 1){
         return DataTables::of($acc_firm_info)
@@ -4344,6 +4376,24 @@ class AccFirmInfController extends Controller
               return $infos->accountancy_firm_name;
           })
 
+          ->addColumn('payment_status', function ($infos){
+            if($infos->offline_user == 1){
+              $invoice_status = Invoice::where('invoiceNo','off_audit_renew'.$infos->id)->select('status')->get();
+            }
+            else{
+              $invoice_status = Invoice::where('invoiceNo','audit_renew'.$infos->id)->select('status')->get();
+            }
+
+            foreach($invoice_status as $value){
+              if($value->status == '0' ){
+                return "<span class='pending'>Incomplete</span>";
+              }
+              else{
+                return "<span class='approve'>Complete</span>";
+              }
+            }
+          })
+
           ->addColumn('township', function ($infos){
               return $infos->township;
           })
@@ -4373,7 +4423,7 @@ class AccFirmInfController extends Controller
           })
 
 
-          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website','payment_status'])
           ->make(true);
       }
       else{
@@ -4407,6 +4457,23 @@ class AccFirmInfController extends Controller
               return $infos->accountancy_firm_name;
           })
 
+          ->addColumn('payment_status', function ($infos){
+            if($infos->offline_user == 1){
+              $invoice_status = Invoice::where('invoiceNo','off_non_audit_renew'.$infos->id)->select('status')->get();
+            }
+            else{
+              $invoice_status = Invoice::where('invoiceNo','non_audit_renew'.$infos->id)->select('status')->get();
+            }
+            foreach($invoice_status as $value){
+              if($value->status == '0' ){
+                return "<span class='pending'>Incomplete</span>";
+              }
+              else{
+                return "<span class='approve'>Complete</span>";
+              }
+            }
+          })
+
           ->addColumn('township', function ($infos){
               return $infos->township;
           })
@@ -4435,7 +4502,7 @@ class AccFirmInfController extends Controller
               return $infos->website;
           })
 
-          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website'])
+          ->rawColumns(['action','accountancy_firm_reg_no','accountancy_firm_name','status','township','postcode','city','state_region','telephones','h_email','website','payment_status'])
           ->make(true);
       }
     }
@@ -4551,26 +4618,33 @@ class AccFirmInfController extends Controller
 
     public function checkPAPP($reg_no,$status)
     {
-      if($status == 0){
-        // for initial users
-        $papp = Papp::where('papp_reg_no',$reg_no)
-                    ->where('offline_user',0)
-                    ->with('student_info','student_job', 'student_education_histroy','student_register')
-                    ->get();
-        return response()->json([
-            'data'  => $papp
-        ]);
-      }
-      else{
-        // for offline users
-        $papp = Papp::where('papp_reg_no',$reg_no)
-                    ->where('offline_user',1)
-                    ->with('student_info','student_job', 'student_education_histroy','student_register')
-                    ->get();
-        return response()->json([
-            'data'  => $papp
-        ]);
-      }
+      // if($status == 0){
+      //   // for initial users
+      //   $papp = Papp::where('papp_reg_no',$reg_no)
+      //               ->where('offline_user',0)
+      //               ->with('student_info','student_job', 'student_education_histroy','student_register')
+      //               ->get();
+      //   return response()->json([
+      //       'data'  => $papp
+      //   ]);
+      // }
+      // else{
+      //   // for offline users
+      //   $papp = Papp::where('papp_reg_no',$reg_no)
+      //               ->where('offline_user',1)
+      //               ->with('student_info','student_job', 'student_education_histroy','student_register')
+      //               ->get();
+      //   return response()->json([
+      //       'data'  => $papp
+      //   ]);
+      // }
+
+      $papp = Papp::where('papp_reg_no',$reg_no)
+                  ->with('student_info','student_job', 'student_education_histroy','student_register')
+                  ->get();
+      return response()->json([
+          'data'  => $papp
+      ]);
     }
 
     // public function checkOfflinePAPP($reg_no,$status)
