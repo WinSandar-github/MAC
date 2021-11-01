@@ -274,10 +274,10 @@ function loadArticle()
                     let certificate = JSON.parse(student_info.student_education_histroy.certificate);
                     $.each(certificate,function(fileCount,fileName){
                          $(".certificate").append(`<a href='${PDF_URL+fileName}' style='display:block; font-size:16px;text-decoration: none;' target='_blank'>View Attach File</a>`);
-    
+
                     })
                 }
-                
+
             }
 
 
@@ -289,8 +289,8 @@ function loadArticle()
             }else{
                 $("#m_email").val(data.m_email);
             }
-            
-            
+
+
             if(data.ex_papp == null){
                 document.getElementById("previous_papp_name_row").style.display = "none";
             }else if(data.ex_papp == "undefined" && data.exp_start_date == "undefined" &&  data.exp_end_date == "undefined"){
@@ -338,7 +338,7 @@ function loadArticle()
                     $("#previous_papp_start_date").val(data.exp_start_date);
                     $("#previous_papp_end_date").val(data.exp_end_date);
                 }else{
-                    
+
                         $('#exp_row').css('display','none');
                         $('#exp_attach_row').css('display','none');
                         $("#gov_lab").text('၈။');
@@ -351,11 +351,11 @@ function loadArticle()
                         $("#previous_lab").text('၁၅။');
                         $("#exam_pass_date_label").text('၁၆။');
                         $("#papp_name").val(data.request_papp);
-                        $("#mentor_name").val(data.mentor.name_eng);
-                    
+                        $("#mentor_name").val(data.mentor?.name_eng);
+
                 }
-                
-            
+
+
             }else{
                 if(data.apprentice_exp == 1)
                 {
@@ -376,7 +376,7 @@ function loadArticle()
                 $('#exp_attach_row').css('display','none');
                 }
                 if(data.offline_user==1 && data.article_form_type=="c2_pass_1yr"){
-                    
+
                     $('.praticle').hide();
                     $('.c2_pass_renew').show();
                     $("#c2_papp_name").val(data.request_papp);
@@ -391,12 +391,12 @@ function loadArticle()
                     $('#previous_papp_lab').text('၁၄။');
                     $('#previous_lab').text('၁၅။');
                     $('#exam_pass_date_label').text('၁၆။');
-                    
+
                 }else{
                     $("#papp_name").val(data.request_papp);
                     $("#mentor_name").val(data.mentor.name_eng);
                 }
-                
+
             }
 
             if(data.gov_staff == 1)
@@ -422,7 +422,7 @@ function loadArticle()
             }else{
                 $('.req-papp_attach').hide();
             }
-            
+
 
             var leave_requests = student_info.leave_requests;
             var r = 1;
@@ -451,7 +451,7 @@ function loadArticle()
 				'autoWidth': true,
 				"scrollX": false,
 			});
-            
+
             if(data.contract_end_date != null){
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
@@ -498,7 +498,7 @@ function loadArticle()
                 }
 
             }
-            
+
         }
     });
 }
@@ -776,16 +776,20 @@ function loadGovArticle()
 				'autoWidth': true,
 				"scrollX": false,
 			});
-            
+
             if(data.contract_end_date != null){
                 var end_date = new Date(data.contract_end_date);
                 var today = new Date();
 
                 var end_time = end_date.getTime();
                 var today_time = today.getTime();
-                
+
                 if (end_time <= today_time) {
+<<<<<<< HEAD
                     console.log(data.yes_done_attach);
+=======
+
+>>>>>>> fb591d8b281eb1f2c5c5420729aa824af603ff78
                     if(data.yes_done_attach == 0){
                         console.log("Reach");
                         document.getElementById("check_end_date").style.display = "block";
@@ -1330,7 +1334,7 @@ function loadEductaionHistoryByArticle(id){
                 tr += "</tr>";
                 $("#tbl_degree_body").append(tr);
             });
-            
+
             createDataTable('#tbl_degree');
         }
     });

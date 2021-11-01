@@ -435,7 +435,8 @@ class CertificateSeeder extends Seeder
                                         <input type="checkbox" {{ li }}>Liquidation
                                         <br>
                                         <input type="checkbox" {{ as }}>Acconting System
-                                        <input type="checkbox" {{ ot }}>Other                                
+                                        <input type="checkbox" {{ ot }}>Other <br>
+                                        <p style="margin-left:80px"> {{ other }} </p>                              
                                     </td>
                                 </tr>
                                 <tr>
@@ -571,7 +572,8 @@ class CertificateSeeder extends Seeder
                                         <input type="checkbox" {{ li }}>Liquidation
                                         <br>
                                         <input type="checkbox" {{ as }}>Acconting System
-                                        <input type="checkbox" {{ ot }}>Other                                
+                                        <input type="checkbox" {{ ot }}>Other <br>
+                                        <p style="margin-left:80px"> {{ other }} </p>                                 
                                     </td>
                                 </tr>
                                 <tr>
