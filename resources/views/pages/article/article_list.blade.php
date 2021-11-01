@@ -79,6 +79,7 @@
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
+                                                            <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Duty Report Date </th>
                                                         </tr>
@@ -155,6 +156,7 @@
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Form Type</th>
                                                             <th class="bold-font-weight" >Registration Fee</th>
+                                                            <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                             <th class="bold-font-weight" >Duty Report Date </th>
                                                         </tr>
@@ -230,6 +232,7 @@
                                                             <th class="bold-font-weight" >Phone</th>
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Resign Fee</th>
+                                                            <th class="bold-font-weight" >Payment Status</th>
                                                             <th class="bold-font-weight" >Resign Date</th>
                                                             <th class="bold-font-weight" >Net Experience</th>
                                                             <th class="bold-font-weight" >Status</th>
@@ -378,8 +381,13 @@
                                                             <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
+                                                            <th class="bold-font-weight" >Email</th>
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Form Type</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                            <th class="bold-font-weight" >Leave Days</th>
+                                                            <th class="bold-font-weight" >Mentor Name</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -395,8 +403,12 @@
                                                             <th class="bold-font-weight" >Action</th>
                                                             <th class="bold-font-weight" >Name</th>
                                                             <th class="bold-font-weight" >Phone</th>
+                                                            <th class="bold-font-weight" >Email</th>
                                                             <th class="bold-font-weight" >Registration No</th>
                                                             <th class="bold-font-weight" >Form Type</th>
+                                                            <th class="bold-font-weight" >Contract Start Date</th>
+                                                            <th class="bold-font-weight" >Contract End Date</th>
+                                                            <th class="bold-font-weight" >Leave Days</th>
                                                             <th class="bold-font-weight" >Status</th>
                                                         </tr>
                                                     </thead>
@@ -417,8 +429,13 @@
                                                     <th class="bold-font-weight" >Action</th>
                                                     <th class="bold-font-weight" >Name</th>
                                                     <th class="bold-font-weight" >Phone</th>
+                                                    <th class="bold-font-weight" >Email</th>
                                                     <th class="bold-font-weight" >Registration No</th>
                                                     <th class="bold-font-weight" >Form Type</th>
+                                                    <th class="bold-font-weight" >Contract Start Date</th>
+                                                    <th class="bold-font-weight" >Contract End Date</th>
+                                                    <th class="bold-font-weight" >Leave Days</th>
+                                                    <th class="bold-font-weight" >Mentor Name</th>
                                                     <th class="bold-font-weight" >Status</th>
                                                 </tr>
                                             </thead>
@@ -673,6 +690,7 @@
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
@@ -771,6 +789,7 @@
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
                 {data: 'registration_fee', name: 'registration_fee'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'status', name: 'status'},
                 {data: 'contract_start_date', name: 'contract_start_date'},
             ],
@@ -865,6 +884,7 @@
                 {data: 'phone_no', name: 'phone_no'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'resign_fee', name: 'resign_fee'},
+                {data: 'payment_status', name: 'payment_status'},
                 {data: 'resign_date', name: 'resign_date'},
                 {data: 'net_experience', name: 'net_experience'},
                 {data: 'status', name: 'status'},
@@ -986,8 +1006,13 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
+                {data: 'email', name: 'email'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'leave_days', name: 'leave_days'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -1015,8 +1040,12 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
+                {data: 'email', name: 'email'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'leave_days', name: 'leave_days'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',
@@ -1043,8 +1072,13 @@
                 {data: 'action', name: 'action', orderable: false, searchable: false},
                 {data: 'name_mm', name: 'name_mm'},
                 {data: 'phone_no', name: 'phone_no'},
+                {data: 'email', name: 'email'},
                 {data: 'nrc', name: 'nrc'},
                 {data: 'form_type', name: 'form_type'},
+                {data: 'contract_start_date', name: 'contract_start_date'},
+                {data: 'contract_end_date', name: 'contract_end_date'},
+                {data: 'leave_days', name: 'leave_days'},
+                {data: 'mentor_name', name: 'mentor_name'},
                 {data: 'status', name: 'status'},
             ],
             "dom": '<"float-left"l><"float-right"f>rt<"bottom float-left"i><"bottom float-right"p><"clear">',

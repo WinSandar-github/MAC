@@ -4109,13 +4109,13 @@ class AccFirmInfController extends Controller
 
           ->addColumn('status', function ($infos){
               if($infos->status == 0){
-                return "PENDING";
+                return "<span class='pending'>PENDING</span>";
               }
               else if($infos->status == 1){
-                return "APPROVED";
+                return "<span class='approve'>APPROVED</span>";
               }
               else{
-                return "REJECTED";
+                return "<span class='reject'>REJECTED</span>";
               }
           })
 
@@ -4252,13 +4252,13 @@ class AccFirmInfController extends Controller
 
           ->addColumn('status', function ($infos){
               if($infos->status == 0){
-                return "PENDING";
+                return "<span class='pending'>PENDING</span>";
               }
               else if($infos->status == 1){
-                return "APPROVED";
+                return "<span class='approve'>APPROVED</span>";
               }
               else{
-                return "REJECTED";
+                return "<span class='reject'>REJECTED</span>";
               }
           })
 
@@ -4393,13 +4393,13 @@ class AccFirmInfController extends Controller
 
           ->addColumn('status', function ($infos){
               if($infos->status == 0){
-                return "PENDING";
+                return "<span class='pending'>PENDING</span>";
               }
               else if($infos->status == 1){
-                return "APPROVED";
+                return "<span class='approve'>APPROVED</span>";
               }
               else{
-                return "REJECTED";
+                return "<span class='reject'>REJECTED</span>";
               }
           })
 
@@ -4518,13 +4518,13 @@ class AccFirmInfController extends Controller
 
           ->addColumn('status', function ($infos){
               if($infos->status == 0){
-                return "PENDING";
+                return "<span class='pending'>PENDING</span>";
               }
               else if($infos->status == 1){
-                return "APPROVED";
+                return "<span class='approve'>APPROVED</span>";
               }
               else{
-                return "REJECTED";
+                return "<span class='reject'>REJECTED</span>";
               }
           })
 
