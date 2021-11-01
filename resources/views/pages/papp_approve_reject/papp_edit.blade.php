@@ -1284,7 +1284,7 @@
                     $('#payment_status').append("Paid");
                 }
                 else{
-                    $('#payment_status').append("-");
+                    $('#payment_status').append("Unpaid");
                 }
                 var productDesc = result.productDesc.split(",");
                 var amount = result.amount.split(",");
